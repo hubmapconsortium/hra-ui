@@ -449,7 +449,7 @@ class AppComponent {
      */
     this.viewerOpen = false;
     /** Emits true whenever the overlay spinner should activate. */
-    this.spinnerActive$ = this.data.queryStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.map)(state => state === _core_store_data_data_state__WEBPACK_IMPORTED_MODULE_8__.DataQueryState.Running));
+    this.spinnerActive$ = this.data.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.map)(state => state?.status !== 'Ready'));
     this.loadingMessage$ = this.data.state$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.map)(x => x?.statusMessage));
     this.theme$ = this.globalConfig.getOption('theme');
     this.themeMode$ = new rxjs__WEBPACK_IMPORTED_MODULE_30__.ReplaySubject(1);
@@ -4811,19 +4811,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   OntologyTreeComponent: () => (/* binding */ OntologyTreeComponent),
 /* harmony export */   labelMap: () => (/* binding */ labelMap)
 /* harmony export */ });
-/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/tree */ 72714);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tree */ 28379);
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/tree */ 72714);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/tree */ 28379);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ 46227);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _core_models_flat_node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/models/flat-node */ 84001);
-/* harmony import */ var ngx_google_analytics__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-google-analytics */ 42599);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 60316);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/button */ 84175);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/icon */ 93840);
-/* harmony import */ var _libs_ccf_shared_src_lib_components_opacity_slider_opacity_slider_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../libs/ccf-shared/src/lib/components/opacity-slider/opacity-slider.component */ 94265);
-/* harmony import */ var _shared_components_button_toggle_button_toggle_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/components/button-toggle/button-toggle.component */ 56473);
-
+/* harmony import */ var ngx_google_analytics__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-google-analytics */ 42599);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/button */ 84175);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/icon */ 93840);
+/* harmony import */ var _shared_components_button_toggle_button_toggle_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/components/button-toggle/button-toggle.component */ 56473);
 
 
 
@@ -4842,207 +4840,125 @@ const _c0 = a0 => ({
 });
 function OntologyTreeComponent_ng_template_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("click", function OntologyTreeComponent_ng_template_1_Template_div_click_0_listener($event) {
-      const node_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r2).node;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.select($event.ctrlKey, node_r3, true, !ctx_r3.isSelected(node_r3)));
+    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function OntologyTreeComponent_ng_template_1_Template_div_click_0_listener($event) {
+      const node_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r2).node;
+      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r3.select($event.ctrlKey, node_r3, true, !ctx_r3.isSelected(node_r3)));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const node_r3 = ctx.node;
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("hidden", node_r3.label === (ctx_r3.highlightedNode == null ? null : ctx_r3.highlightedNode.label))("filtered-out", !ctx_r3.occurenceData[node_r3.original.id] && !!ctx_r3.termData[node_r3.original.id])("unavailable", !ctx_r3.termData[node_r3.original.id])("selected", ctx_r3.isSelected(node_r3));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"](" ", ctx_r3.getNodeLabel(node_r3.label), " ");
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("filtered-out", !ctx_r3.occurenceData[node_r3.original.id] && !!ctx_r3.termData[node_r3.original.id])("unavailable", !ctx_r3.termData[node_r3.original.id])("selected", ctx_r3.isSelected(node_r3));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", ctx_r3.getNodeLabel(node_r3.label), " ");
   }
 }
-function OntologyTreeComponent_mat_tree_node_3_ng_container_8_Template(rf, ctx) {
+function OntologyTreeComponent_mat_tree_node_3_ng_container_3_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementContainer"](0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainer"](0);
   }
 }
-function OntologyTreeComponent_mat_tree_node_3_div_11_Template(rf, ctx) {
+function OntologyTreeComponent_mat_tree_node_3_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 16)(1, "ccf-button-toggle", 17);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("selectionChange", function OntologyTreeComponent_mat_tree_node_3_div_11_Template_ccf_button_toggle_selectionChange_1_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r8);
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.toggleSelection($event));
+    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 11)(1, "ccf-button-toggle", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("selectionChange", function OntologyTreeComponent_mat_tree_node_3_div_6_Template_ccf_button_toggle_selectionChange_1_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r5);
+      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r3.toggleSelection($event));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("menuOptions", ctx_r3.menuOptions)("selectedItems", ctx_r3.selectedtoggleOptions);
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("menuOptions", ctx_r3.menuOptions)("selectedItems", ctx_r3.selectedtoggleOptions);
   }
 }
 function OntologyTreeComponent_mat_tree_node_3_Template(rf, ctx) {
   if (rf & 1) {
-    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "mat-tree-node", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("mouseleave", function OntologyTreeComponent_mat_tree_node_3_Template_mat_tree_node_mouseleave_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5);
-      const slider1_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵreference"](5);
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      ctx_r3.mouseOut();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](slider1_r6.reset());
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](1, "div")(2, "mat-icon", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("mouseenter", function OntologyTreeComponent_mat_tree_node_3_Template_mat_icon_mouseenter_2_listener() {
-      const node_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.mouseOver(node_r7));
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "div", 9)(4, "ccf-opacity-slider", 10, 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("opacityChange", function OntologyTreeComponent_mat_tree_node_3_Template_ccf_opacity_slider_opacityChange_4_listener($event) {
-      const node_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.updateOpacity(node_r7, $event));
-    })("opacityReset", function OntologyTreeComponent_mat_tree_node_3_Template_ccf_opacity_slider_opacityReset_4_listener() {
-      const node_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.resetNode(node_r7));
-    })("visibilityToggle", function OntologyTreeComponent_mat_tree_node_3_Template_ccf_opacity_slider_visibilityToggle_4_listener() {
-      const node_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.toggleVisibility(node_r7));
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](6, "div", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](7, "div", 12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](8, OntologyTreeComponent_mat_tree_node_3_ng_container_8_Template, 1, 0, "ng-container", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "div", 14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](11, OntologyTreeComponent_mat_tree_node_3_div_11_Template, 2, 2, "div", 15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-tree-node", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](1, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](3, OntologyTreeComponent_mat_tree_node_3_ng_container_3_Template, 1, 0, "ng-container", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](6, OntologyTreeComponent_mat_tree_node_3_div_6_Template, 2, 2, "div", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const node_r7 = ctx.$implicit;
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-    const selectableRegion_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵreference"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("matTreeNodePaddingIndent", ctx_r3.indent);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("display", node_r7.opacity !== -1 ? "none" : "block");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("left", ctx_r3.getLeftIndent(node_r7.level));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("fade", node_r7.visible !== true);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("left", ctx_r3.getLeftIndent(node_r7.level));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("hidden", node_r7.label !== (ctx_r3.highlightedNode == null ? null : ctx_r3.highlightedNode.label));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("visible", node_r7.visible)("opacity", node_r7.opacity);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngTemplateOutlet", selectableRegion_r9)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction1"](20, _c0, node_r7));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("suborgan", node_r7.level > 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate2"](" ", ctx_r3.getCountLabel(node_r7), "", ctx_r3.occurenceData[node_r7.original.id] || 0, " ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx_r3.showtoggle && node_r7.original.id === "biomarkers");
+    const node_r6 = ctx.$implicit;
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+    const selectableRegion_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵreference"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matTreeNodePaddingIndent", ctx_r3.indent);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngTemplateOutlet", selectableRegion_r7)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpureFunction1"](8, _c0, node_r6));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("suborgan", node_r6.level > 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate2"](" ", ctx_r3.getCountLabel(node_r6), "", ctx_r3.occurenceData[node_r6.original.id] || 0, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx_r3.showtoggle && node_r6.original.id === "biomarkers");
   }
 }
-function OntologyTreeComponent_mat_tree_node_4_ng_container_10_Template(rf, ctx) {
+function OntologyTreeComponent_mat_tree_node_4_ng_container_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementContainer"](0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainer"](0);
   }
 }
-function OntologyTreeComponent_mat_tree_node_4_div_13_Template(rf, ctx) {
+function OntologyTreeComponent_mat_tree_node_4_div_8_Template(rf, ctx) {
   if (rf & 1) {
-    const _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 16)(1, "ccf-button-toggle", 21);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("selectionChange", function OntologyTreeComponent_mat_tree_node_4_div_13_Template_ccf_button_toggle_selectionChange_1_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r13);
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.toggleSelection($event));
+    const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 11)(1, "ccf-button-toggle", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("selectionChange", function OntologyTreeComponent_mat_tree_node_4_div_8_Template_ccf_button_toggle_selectionChange_1_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r8);
+      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r3.toggleSelection($event));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    let tmp_8_0;
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("tooltips", ctx_r3.tooltips)("enableTooltip", true)("menuOptions", ctx_r3.menuOptions)("selectedItems", (tmp_8_0 = ctx_r3.selectedtoggleOptions) !== null && tmp_8_0 !== undefined ? tmp_8_0 : ctx_r3.menuOptions);
+    let tmp_7_0;
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("tooltips", ctx_r3.tooltips)("enableTooltip", true)("menuOptions", ctx_r3.menuOptions)("selectedItems", (tmp_7_0 = ctx_r3.selectedtoggleOptions) !== null && tmp_7_0 !== undefined ? tmp_7_0 : ctx_r3.menuOptions);
   }
 }
 function OntologyTreeComponent_mat_tree_node_4_Template(rf, ctx) {
   if (rf & 1) {
-    const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "mat-tree-node", 18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("mouseleave", function OntologyTreeComponent_mat_tree_node_4_Template_mat_tree_node_mouseleave_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r10);
-      const slider2_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵreference"](5);
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      ctx_r3.mouseOut();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](slider2_r11.reset());
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](1, "div")(2, "mat-icon", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("mouseenter", function OntologyTreeComponent_mat_tree_node_4_Template_mat_icon_mouseenter_2_listener() {
-      const node_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r10).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.mouseOver(node_r12));
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "div", 9)(4, "ccf-opacity-slider", 10, 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("opacityChange", function OntologyTreeComponent_mat_tree_node_4_Template_ccf_opacity_slider_opacityChange_4_listener($event) {
-      const node_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r10).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.updateOpacity(node_r12, $event));
-    })("opacityReset", function OntologyTreeComponent_mat_tree_node_4_Template_ccf_opacity_slider_opacityReset_4_listener() {
-      const node_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r10).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.resetNode(node_r12));
-    })("visibilityToggle", function OntologyTreeComponent_mat_tree_node_4_Template_ccf_opacity_slider_visibilityToggle_4_listener() {
-      const node_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r10).$implicit;
-      const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r3.toggleVisibility(node_r12));
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](6, "div", 12)(7, "button", 19)(8, "mat-icon", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](10, OntologyTreeComponent_mat_tree_node_4_ng_container_10_Template, 1, 0, "ng-container", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](13, OntologyTreeComponent_mat_tree_node_4_div_13_Template, 2, 4, "div", 15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-tree-node", 13)(1, "div", 7)(2, "button", 14)(3, "mat-icon", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, OntologyTreeComponent_mat_tree_node_4_ng_container_5_Template, 1, 0, "ng-container", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](8, OntologyTreeComponent_mat_tree_node_4_div_8_Template, 2, 4, "div", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const node_r12 = ctx.$implicit;
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-    const selectableRegion_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵreference"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("matTreeNodePaddingIndent", ctx_r3.indent);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("display", node_r12.opacity !== -1 ? "none" : "block");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("left", ctx_r3.getLeftIndent(node_r12.level));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("fade", node_r12.visible !== true);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵstyleProp"]("left", ctx_r3.getLeftIndent(node_r12.level));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("hidden", node_r12.label !== (ctx_r3.highlightedNode == null ? null : ctx_r3.highlightedNode.label));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("visible", node_r12.visible)("opacity", node_r12.opacity);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("hidden", node_r12.label === (ctx_r3.highlightedNode == null ? null : ctx_r3.highlightedNode.label));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵattributeInterpolate1"]("aria-label", "Toggle ", node_r12.label, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"](" ", ctx_r3.control.isExpanded(node_r12) ? "expand_less" : "expand_more", " ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngTemplateOutlet", selectableRegion_r9)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction1"](25, _c0, node_r12));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("suborgan", node_r12.level > 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate2"](" ", ctx_r3.getCountLabel(node_r12), "", ctx_r3.occurenceData[node_r12.original.id] || 0, " ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx_r3.showtoggle && node_r12.original.id === "biomarkers");
+    const node_r9 = ctx.$implicit;
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+    const selectableRegion_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵreference"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matTreeNodePaddingIndent", ctx_r3.indent);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵattributeInterpolate1"]("aria-label", "Toggle ", node_r9.label, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", ctx_r3.control.isExpanded(node_r9) ? "expand_less" : "expand_more", " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngTemplateOutlet", selectableRegion_r7)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpureFunction1"](11, _c0, node_r9));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("suborgan", node_r9.level > 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate2"](" ", ctx_r3.getCountLabel(node_r9), "", ctx_r3.occurenceData[node_r9.original.id] || 0, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx_r3.showtoggle && node_r9.original.id === "biomarkers");
   }
 }
 const labelMap = new Map([['colon', 'large intestine'], ['body', 'Anatomical Structures (AS)'], ['cell', 'Cell Types (CT)']]);
@@ -5124,16 +5040,16 @@ class OntologyTreeComponent {
     /**
      * Emits an event whenever a node has been selected.
      */
-    this.nodeSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
+    this.nodeSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_3__.EventEmitter();
     /**
-     * Emits an event whenever the node's visibility or opacity has changed
+     * Emits an event whenever the node's visibility changed
      */
-    this.nodeChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
+    this.nodeChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_3__.EventEmitter();
     /**
      * Any time a button is clicked, event is emitted.
      */
-    this.selectionChange = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
-    this.selectedBiomarkerOptions = new _angular_core__WEBPACK_IMPORTED_MODULE_4__.EventEmitter();
+    this.selectionChange = new _angular_core__WEBPACK_IMPORTED_MODULE_3__.EventEmitter();
+    this.selectedBiomarkerOptions = new _angular_core__WEBPACK_IMPORTED_MODULE_3__.EventEmitter();
     /**
      * Indentation of each level in the tree.
      */
@@ -5141,15 +5057,15 @@ class OntologyTreeComponent {
     /**
      * Tree controller.
      */
-    this.control = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_5__.FlatTreeControl(getLevel, isExpandable);
+    this.control = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_4__.FlatTreeControl(getLevel, isExpandable);
     /**
      * Node flattener.
      */
-    this.flattener = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeFlattener(_core_models_flat_node__WEBPACK_IMPORTED_MODULE_1__.FlatNode.create, getLevel, isExpandable, lodash__WEBPACK_IMPORTED_MODULE_0__.invoke.bind(undefined, this, 'getChildren'));
+    this.flattener = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeFlattener(_core_models_flat_node__WEBPACK_IMPORTED_MODULE_1__.FlatNode.create, getLevel, isExpandable, lodash__WEBPACK_IMPORTED_MODULE_0__.invoke.bind(undefined, this, 'getChildren'));
     /**
      * Data source of flat nodes.
      */
-    this.dataSource = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeFlatDataSource(this.control, this.flattener);
+    this.dataSource = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeFlatDataSource(this.control, this.flattener);
     /**
      * Storage for getter/setter 'nodes'.
      */
@@ -5307,61 +5223,6 @@ class OntologyTreeComponent {
     }
   }
   /**
-   * Sets the current highlighted node to the moused over node (reveals opacity slider)
-   *
-   * @param node
-   */
-  mouseOver(node) {
-    this.highlightedNode = node;
-  }
-  /**
-   * Deselects the highlighted node on mouse out
-   */
-  mouseOut() {
-    this.highlightedNode = undefined;
-  }
-  /**
-   * Sets the opacity of a node
-   *
-   * @param node The node to be updated
-   * @param value Opacity value
-   */
-  updateOpacity(node, value) {
-    node.opacity = value;
-    this.ga.event('opacity_update', 'ontology_tree', node.label, value);
-    this.nodeChanged.emit(node);
-  }
-  /**
-   * Resets node to default opacity and visibility
-   *
-   * @param node The node to be reset
-   */
-  resetNode(node) {
-    node.opacity = 20;
-    node.visible = true;
-    this.ga.event('node_reset', 'ontology_tree', node.label);
-    this.nodeChanged.emit(node);
-  }
-  /**
-   * Toggles visibility of a node
-   *
-   * @param node The node to be toggled
-   */
-  toggleVisibility(node) {
-    node.visible = node.visible === true ? false : true;
-    this.ga.event('visibility_update', 'ontology_tree', node.label, +node.visible);
-    this.nodeChanged.emit(node);
-  }
-  /**
-   * Used to properly set the position of the slider popup on the ontology tree
-   *
-   * @param level Current level of a node in the ontology tree
-   * @returns left indent value
-   */
-  getLeftIndent(level) {
-    return `${level * -1.5}rem`;
-  }
-  /**
    * Handles the scroll event to detect when scroll is at the bottom.
    *
    * @param event The scroll event.
@@ -5386,9 +5247,9 @@ class OntologyTreeComponent {
     this.selectedBiomarkerOptions.emit([...this.selectedtoggleOptions]);
   }
   static #_ = this.ɵfac = function OntologyTreeComponent_Factory(t) {
-    return new (t || OntologyTreeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](ngx_google_analytics__WEBPACK_IMPORTED_MODULE_7__.GoogleAnalyticsService));
+    return new (t || OntologyTreeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_3__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](ngx_google_analytics__WEBPACK_IMPORTED_MODULE_6__.GoogleAnalyticsService));
   };
-  static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
+  static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({
     type: OntologyTreeComponent,
     selectors: [["ccf-ontology-tree"]],
     inputs: {
@@ -5409,29 +5270,29 @@ class OntologyTreeComponent {
       selectionChange: "selectionChange",
       selectedBiomarkerOptions: "selectedBiomarkerOptions"
     },
-    features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵNgOnChangesFeature"]],
+    features: [_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵNgOnChangesFeature"]],
     decls: 5,
     vars: 5,
-    consts: [["selectableRegion", ""], ["slider1", ""], ["slider2", ""], [1, "ccf-ontology-tree", 3, "scroll", "dataSource", "treeControl"], ["class", "node leaf-node block", "matTreeNodePadding", "", 3, "matTreeNodePaddingIndent", "mouseleave", 4, "matTreeNodeDef"], ["class", "node inner-node block", "matTreeNodePadding", "", 3, "matTreeNodePaddingIndent", "mouseleave", 4, "matTreeNodeDef", "matTreeNodeDefWhen"], [1, "text", 3, "click"], ["matTreeNodePadding", "", 1, "node", "leaf-node", "block", 3, "mouseleave", "matTreeNodePaddingIndent"], ["svgIcon", "app:opacity", 1, "icon", "opacity", 3, "mouseenter"], [1, "slider"], [3, "opacityChange", "opacityReset", "visibilityToggle", "visible", "opacity"], [1, "non-expandable"], [1, "node-container"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "num-results"], ["class", "biomarkers-toggle", 4, "ngIf"], [1, "biomarkers-toggle"], [3, "selectionChange", "menuOptions", "selectedItems"], ["matTreeNodePadding", "", 1, "node", "inner-node", "block", 3, "mouseleave", "matTreeNodePaddingIndent"], ["mat-icon-button", "", "matTreeNodeToggle", "", 1, "toggle"], [1, "icon", "font-icon"], [3, "selectionChange", "tooltips", "enableTooltip", "menuOptions", "selectedItems"]],
+    consts: [["selectableRegion", ""], [1, "ccf-ontology-tree", 3, "scroll", "dataSource", "treeControl"], ["class", "node leaf-node block", "matTreeNodePadding", "", 3, "matTreeNodePaddingIndent", 4, "matTreeNodeDef"], ["class", "node inner-node block", "matTreeNodePadding", "", 3, "matTreeNodePaddingIndent", 4, "matTreeNodeDef", "matTreeNodeDefWhen"], [1, "text", 3, "click"], ["matTreeNodePadding", "", 1, "node", "leaf-node", "block", 3, "matTreeNodePaddingIndent"], [1, "non-expandable"], [1, "node-container"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "num-results"], ["class", "biomarkers-toggle", 4, "ngIf"], [1, "biomarkers-toggle"], [3, "selectionChange", "menuOptions", "selectedItems"], ["matTreeNodePadding", "", 1, "node", "inner-node", "block", 3, "matTreeNodePaddingIndent"], ["mat-icon-button", "", "matTreeNodeToggle", "", 1, "toggle"], [1, "icon", "font-icon"], [3, "selectionChange", "tooltips", "enableTooltip", "menuOptions", "selectedItems"]],
     template: function OntologyTreeComponent_Template(rf, ctx) {
       if (rf & 1) {
-        const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "mat-tree", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("scroll", function OntologyTreeComponent_Template_mat_tree_scroll_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r1);
-          return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx.onScroll($event));
+        const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-tree", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("scroll", function OntologyTreeComponent_Template_mat_tree_scroll_0_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r1);
+          return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx.onScroll($event));
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](1, OntologyTreeComponent_ng_template_1_Template, 2, 9, "ng-template", null, 0, _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplateRefExtractor"])(3, OntologyTreeComponent_mat_tree_node_3_Template, 12, 22, "mat-tree-node", 4)(4, OntologyTreeComponent_mat_tree_node_4_Template, 14, 27, "mat-tree-node", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](1, OntologyTreeComponent_ng_template_1_Template, 2, 7, "ng-template", null, 0, _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplateRefExtractor"])(3, OntologyTreeComponent_mat_tree_node_3_Template, 7, 10, "mat-tree-node", 2)(4, OntologyTreeComponent_mat_tree_node_4_Template, 9, 13, "mat-tree-node", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
       }
       if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵclassProp"]("header-hidden", !ctx.header);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("dataSource", ctx.dataSource)("treeControl", ctx.control);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("matTreeNodeDefWhen", ctx.isInnerNode);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("header-hidden", !ctx.header);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("dataSource", ctx.dataSource)("treeControl", ctx.control);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matTreeNodeDefWhen", ctx.isInnerNode);
       }
     },
-    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_8__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_8__.NgTemplateOutlet, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatIconButton, _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__.MatIcon, _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeNodeDef, _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeNodePadding, _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeNodeToggle, _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTree, _angular_material_tree__WEBPACK_IMPORTED_MODULE_6__.MatTreeNode, _libs_ccf_shared_src_lib_components_opacity_slider_opacity_slider_component__WEBPACK_IMPORTED_MODULE_2__.OpacitySliderComponent, _shared_components_button_toggle_button_toggle_component__WEBPACK_IMPORTED_MODULE_3__.ButtonToggleComponent],
+    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_7__.NgTemplateOutlet, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__.MatIconButton, _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__.MatIcon, _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeNodeDef, _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeNodePadding, _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeNodeToggle, _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTree, _angular_material_tree__WEBPACK_IMPORTED_MODULE_5__.MatTreeNode, _shared_components_button_toggle_button_toggle_component__WEBPACK_IMPORTED_MODULE_2__.ButtonToggleComponent],
     styles: [".ccf-ontology-tree[_ngcontent-%COMP%] {\n  background: none;\n  scrollbar-width: thin;\n  overflow: hidden;\n}\n.ccf-ontology-tree.header-hidden[_ngcontent-%COMP%] {\n  max-height: 40vh;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]:first-of-type   .toggle[_ngcontent-%COMP%] {\n  z-index: -1;\n  opacity: 0;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]:first-of-type   .text[_ngcontent-%COMP%] {\n  margin-left: 0.5rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node-container[_ngcontent-%COMP%] {\n  display: flex;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .biomarkers-toggle[_ngcontent-%COMP%]  {\n  margin: 0.5rem;\n  padding-left: 1rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%] {\n  min-height: 0;\n  font-size: 1rem;\n  margin-bottom: 0.25rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%] {\n  width: 100%;\n  transition-duration: 0.25s;\n  transition-timing-function: ease-in-out;\n  transition-property: width;\n  position: relative;\n  z-index: 1;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider.hidden[_ngcontent-%COMP%] {\n  width: 0;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider.hidden[_ngcontent-%COMP%]   ccf-opacity-slider[_ngcontent-%COMP%] {\n  display: none;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider {\n  height: 1.5rem;\n  margin-left: 1rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider .slider-box {\n  width: 100%;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider .slider-box .slider-and-label {\n  width: 100%;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider .mat-slider {\n  height: 1.5rem;\n  width: 15rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider .mat-slider .mat-slider-wrapper {\n  top: 12px;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .slider[_ngcontent-%COMP%]     ccf-opacity-slider .opacity-value {\n  width: 3rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .num-results[_ngcontent-%COMP%] {\n  margin-right: 0.25rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node.inner-node[_ngcontent-%COMP%]   button.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .opacity[_ngcontent-%COMP%] {\n  position: relative;\n  min-width: 1.5rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .toggle[_ngcontent-%COMP%] {\n  width: 1.5rem;\n  height: 1.5rem;\n  line-height: normal;\n  padding: 0;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .autocomplete-open[_ngcontent-%COMP%]   .toggle[_ngcontent-%COMP%] {\n  border-bottom: none;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .non-expandable[_ngcontent-%COMP%] {\n  margin-left: 1.5rem;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .text[_ngcontent-%COMP%] {\n  cursor: pointer;\n  margin-left: 1rem;\n  opacity: 1;\n  transition-duration: 0.25s;\n  transition-timing-function: ease-in-out;\n  transition-property: opacity, width;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .text.hidden[_ngcontent-%COMP%] {\n  opacity: 0;\n  width: 0%;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .text.unavailable[_ngcontent-%COMP%] {\n  pointer-events: none;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .node[_ngcontent-%COMP%]   .num-results[_ngcontent-%COMP%] {\n  margin-left: auto;\n}\n.ccf-ontology-tree[_ngcontent-%COMP%]   .block[_ngcontent-%COMP%] {\n  display: block;\n}\n\n.scroll-gradient[_ngcontent-%COMP%] {\n  position: absolute;\n  height: 3rem;\n  width: 90%;\n  bottom: 0;\n  pointer-events: none;\n}\n.scroll-gradient.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9udG9sb2d5LXRyZWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZ0JBQUE7QUFDRjtBQUNFO0VBQ0UsZ0JBQUE7QUFDSjtBQUdJO0VBQ0UsV0FBQTtFQUNBLFVBQUE7QUFETjtBQUdJO0VBQ0UsbUJBQUE7QUFETjtBQUlFO0VBQ0UsYUFBQTtBQUZKO0FBS0U7RUFDRSxjQUFBO0VBQ0Esa0JBQUE7QUFISjtBQU1FO0VBQ0UsYUFBQTtFQUNBLGVBQUE7RUFDQSxzQkFBQTtBQUpKO0FBTUk7RUFDRSxXQUFBO0VBQ0EsMEJBQUE7RUFDQSx1Q0FBQTtFQUNBLDBCQUFBO0VBQ0Esa0JBQUE7RUFDQSxVQUFBO0FBSk47QUFNTTtFQUNFLFFBQUE7QUFKUjtBQUtRO0VBQ0UsYUFBQTtBQUhWO0FBT007RUFDRSxjQUFBO0VBQ0EsaUJBQUE7QUFMUjtBQU9RO0VBQ0UsV0FBQTtBQUxWO0FBT1U7RUFDRSxXQUFBO0FBTFo7QUFTUTtFQUNFLGNBQUE7RUFDQSxZQUFBO0FBUFY7QUFTVTtFQUNFLFNBQUE7QUFQWjtBQVdRO0VBQ0UsV0FBQTtBQVRWO0FBY0k7RUFDRSxxQkFBQTtBQVpOO0FBaUJRO0VBQ0UsYUFBQTtBQWZWO0FBb0JJO0VBQ0Usa0JBQUE7RUFDQSxpQkFBQTtBQWxCTjtBQXFCSTtFQUNFLGFBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxVQUFBO0FBbkJOO0FBc0JJO0VBQ0UsbUJBQUE7QUFwQk47QUF1Qkk7RUFDRSxtQkFBQTtBQXJCTjtBQXdCSTtFQUNFLGVBQUE7RUFDQSxpQkFBQTtFQUNBLFVBQUE7RUFDQSwwQkFBQTtFQUNBLHVDQUFBO0VBQ0EsbUNBQUE7QUF0Qk47QUF3Qk07RUFDRSxVQUFBO0VBQ0EsU0FBQTtBQXRCUjtBQXlCTTtFQUNFLG9CQUFBO0FBdkJSO0FBMkJJO0VBQ0UsaUJBQUE7QUF6Qk47QUE2QkU7RUFDRSxjQUFBO0FBM0JKOztBQStCQTtFQUNFLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLFVBQUE7RUFDQSxTQUFBO0VBQ0Esb0JBQUE7QUE1QkY7QUE4QkU7RUFDRSxhQUFBO0FBNUJKIiwiZmlsZSI6Im9udG9sb2d5LXRyZWUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2NmLW9udG9sb2d5LXRyZWUge1xuICBiYWNrZ3JvdW5kOiBub25lO1xuICBzY3JvbGxiYXItd2lkdGg6IHRoaW47XG4gIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgJi5oZWFkZXItaGlkZGVuIHtcbiAgICBtYXgtaGVpZ2h0OiA0MHZoO1xuICB9XG5cbiAgLm5vZGU6Zmlyc3Qtb2YtdHlwZSB7XG4gICAgLnRvZ2dsZSB7XG4gICAgICB6LWluZGV4OiAtMTtcbiAgICAgIG9wYWNpdHk6IDA7XG4gICAgfVxuICAgIC50ZXh0IHtcbiAgICAgIG1hcmdpbi1sZWZ0OiAwLjVyZW07XG4gICAgfVxuICB9XG4gIC5ub2RlLWNvbnRhaW5lciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgfVxuXG4gIC5iaW9tYXJrZXJzLXRvZ2dsZTo6bmctZGVlcCB7XG4gICAgbWFyZ2luOiAwLjVyZW07XG4gICAgcGFkZGluZy1sZWZ0OiAxcmVtO1xuICB9XG5cbiAgLm5vZGUge1xuICAgIG1pbi1oZWlnaHQ6IDA7XG4gICAgZm9udC1zaXplOiAxcmVtO1xuICAgIG1hcmdpbi1ib3R0b206IDAuMjVyZW07XG5cbiAgICAuc2xpZGVyIHtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgdHJhbnNpdGlvbi1kdXJhdGlvbjogMC4yNXM7XG4gICAgICB0cmFuc2l0aW9uLXRpbWluZy1mdW5jdGlvbjogZWFzZS1pbi1vdXQ7XG4gICAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiB3aWR0aDtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHotaW5kZXg6IDE7XG5cbiAgICAgICYuaGlkZGVuIHtcbiAgICAgICAgd2lkdGg6IDA7XG4gICAgICAgIGNjZi1vcGFjaXR5LXNsaWRlciB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICA6Om5nLWRlZXAgY2NmLW9wYWNpdHktc2xpZGVyIHtcbiAgICAgICAgaGVpZ2h0OiAxLjVyZW07XG4gICAgICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xuXG4gICAgICAgIC5zbGlkZXItYm94IHtcbiAgICAgICAgICB3aWR0aDogMTAwJTtcblxuICAgICAgICAgIC5zbGlkZXItYW5kLWxhYmVsIHtcbiAgICAgICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuXG4gICAgICAgIC5tYXQtc2xpZGVyIHtcbiAgICAgICAgICBoZWlnaHQ6IDEuNXJlbTtcbiAgICAgICAgICB3aWR0aDogMTVyZW07XG5cbiAgICAgICAgICAubWF0LXNsaWRlci13cmFwcGVyIHtcbiAgICAgICAgICAgIHRvcDogMTJweDtcbiAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAub3BhY2l0eS12YWx1ZSB7XG4gICAgICAgICAgd2lkdGg6IDNyZW07XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICAubnVtLXJlc3VsdHMge1xuICAgICAgbWFyZ2luLXJpZ2h0OiAwLjI1cmVtO1xuICAgIH1cblxuICAgICYuaW5uZXItbm9kZSB7XG4gICAgICBidXR0b24ge1xuICAgICAgICAmLmhpZGRlbiB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cblxuICAgIC5vcGFjaXR5IHtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIG1pbi13aWR0aDogMS41cmVtO1xuICAgIH1cblxuICAgIC50b2dnbGUge1xuICAgICAgd2lkdGg6IDEuNXJlbTtcbiAgICAgIGhlaWdodDogMS41cmVtO1xuICAgICAgbGluZS1oZWlnaHQ6IG5vcm1hbDtcbiAgICAgIHBhZGRpbmc6IDA7XG4gICAgfVxuXG4gICAgLmF1dG9jb21wbGV0ZS1vcGVuIC50b2dnbGUge1xuICAgICAgYm9yZGVyLWJvdHRvbTogbm9uZTtcbiAgICB9XG5cbiAgICAubm9uLWV4cGFuZGFibGUge1xuICAgICAgbWFyZ2luLWxlZnQ6IDEuNXJlbTtcbiAgICB9XG5cbiAgICAudGV4dCB7XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICBtYXJnaW4tbGVmdDogMXJlbTtcbiAgICAgIG9wYWNpdHk6IDE7XG4gICAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjI1cztcbiAgICAgIHRyYW5zaXRpb24tdGltaW5nLWZ1bmN0aW9uOiBlYXNlLWluLW91dDtcbiAgICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IG9wYWNpdHksIHdpZHRoO1xuXG4gICAgICAmLmhpZGRlbiB7XG4gICAgICAgIG9wYWNpdHk6IDA7XG4gICAgICAgIHdpZHRoOiAwJTtcbiAgICAgIH1cblxuICAgICAgJi51bmF2YWlsYWJsZSB7XG4gICAgICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAgICAgfVxuICAgIH1cblxuICAgIC5udW0tcmVzdWx0cyB7XG4gICAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICB9XG4gIH1cblxuICAuYmxvY2sge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG59XG5cbi5zY3JvbGwtZ3JhZGllbnQge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGhlaWdodDogM3JlbTtcbiAgd2lkdGg6IDkwJTtcbiAgYm90dG9tOiAwO1xuICBwb2ludGVyLWV2ZW50czogbm9uZTtcblxuICAmLmhpZGRlbiB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxufVxuIl19 */\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL2FwcHMvY2NmLWV1aS9zcmMvYXBwL21vZHVsZXMvb250b2xvZ3ktZXhwbG9yYXRpb24vb250b2xvZ3ktdHJlZS9vbnRvbG9neS10cmVlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQUE7RUFDQSxxQkFBQTtFQUNBLGdCQUFBO0FBQ0Y7QUFDRTtFQUNFLGdCQUFBO0FBQ0o7QUFHSTtFQUNFLFdBQUE7RUFDQSxVQUFBO0FBRE47QUFHSTtFQUNFLG1CQUFBO0FBRE47QUFJRTtFQUNFLGFBQUE7QUFGSjtBQUtFO0VBQ0UsY0FBQTtFQUNBLGtCQUFBO0FBSEo7QUFNRTtFQUNFLGFBQUE7RUFDQSxlQUFBO0VBQ0Esc0JBQUE7QUFKSjtBQU1JO0VBQ0UsV0FBQTtFQUNBLDBCQUFBO0VBQ0EsdUNBQUE7RUFDQSwwQkFBQTtFQUNBLGtCQUFBO0VBQ0EsVUFBQTtBQUpOO0FBTU07RUFDRSxRQUFBO0FBSlI7QUFLUTtFQUNFLGFBQUE7QUFIVjtBQU9NO0VBQ0UsY0FBQTtFQUNBLGlCQUFBO0FBTFI7QUFPUTtFQUNFLFdBQUE7QUFMVjtBQU9VO0VBQ0UsV0FBQTtBQUxaO0FBU1E7RUFDRSxjQUFBO0VBQ0EsWUFBQTtBQVBWO0FBU1U7RUFDRSxTQUFBO0FBUFo7QUFXUTtFQUNFLFdBQUE7QUFUVjtBQWNJO0VBQ0UscUJBQUE7QUFaTjtBQWlCUTtFQUNFLGFBQUE7QUFmVjtBQW9CSTtFQUNFLGtCQUFBO0VBQ0EsaUJBQUE7QUFsQk47QUFxQkk7RUFDRSxhQUFBO0VBQ0EsY0FBQTtFQUNBLG1CQUFBO0VBQ0EsVUFBQTtBQW5CTjtBQXNCSTtFQUNFLG1CQUFBO0FBcEJOO0FBdUJJO0VBQ0UsbUJBQUE7QUFyQk47QUF3Qkk7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxVQUFBO0VBQ0EsMEJBQUE7RUFDQSx1Q0FBQTtFQUNBLG1DQUFBO0FBdEJOO0FBd0JNO0VBQ0UsVUFBQTtFQUNBLFNBQUE7QUF0QlI7QUF5Qk07RUFDRSxvQkFBQTtBQXZCUjtBQTJCSTtFQUNFLGlCQUFBO0FBekJOO0FBNkJFO0VBQ0UsY0FBQTtBQTNCSjs7QUErQkE7RUFDRSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsU0FBQTtFQUNBLG9CQUFBO0FBNUJGO0FBOEJFO0VBQ0UsYUFBQTtBQTVCSjtBQUNBLGdoSkFBZ2hKIiwic291cmNlc0NvbnRlbnQiOlsiLmNjZi1vbnRvbG9neS10cmVlIHtcbiAgYmFja2dyb3VuZDogbm9uZTtcbiAgc2Nyb2xsYmFyLXdpZHRoOiB0aGluO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuXG4gICYuaGVhZGVyLWhpZGRlbiB7XG4gICAgbWF4LWhlaWdodDogNDB2aDtcbiAgfVxuXG4gIC5ub2RlOmZpcnN0LW9mLXR5cGUge1xuICAgIC50b2dnbGUge1xuICAgICAgei1pbmRleDogLTE7XG4gICAgICBvcGFjaXR5OiAwO1xuICAgIH1cbiAgICAudGV4dCB7XG4gICAgICBtYXJnaW4tbGVmdDogMC41cmVtO1xuICAgIH1cbiAgfVxuICAubm9kZS1jb250YWluZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAuYmlvbWFya2Vycy10b2dnbGU6Om5nLWRlZXAge1xuICAgIG1hcmdpbjogMC41cmVtO1xuICAgIHBhZGRpbmctbGVmdDogMXJlbTtcbiAgfVxuXG4gIC5ub2RlIHtcbiAgICBtaW4taGVpZ2h0OiAwO1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICBtYXJnaW4tYm90dG9tOiAwLjI1cmVtO1xuXG4gICAgLnNsaWRlciB7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuMjVzO1xuICAgICAgdHJhbnNpdGlvbi10aW1pbmctZnVuY3Rpb246IGVhc2UtaW4tb3V0O1xuICAgICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogd2lkdGg7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB6LWluZGV4OiAxO1xuXG4gICAgICAmLmhpZGRlbiB7XG4gICAgICAgIHdpZHRoOiAwO1xuICAgICAgICBjY2Ytb3BhY2l0eS1zbGlkZXIge1xuICAgICAgICAgIGRpc3BsYXk6IG5vbmU7XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgOjpuZy1kZWVwIGNjZi1vcGFjaXR5LXNsaWRlciB7XG4gICAgICAgIGhlaWdodDogMS41cmVtO1xuICAgICAgICBtYXJnaW4tbGVmdDogMXJlbTtcblxuICAgICAgICAuc2xpZGVyLWJveCB7XG4gICAgICAgICAgd2lkdGg6IDEwMCU7XG5cbiAgICAgICAgICAuc2xpZGVyLWFuZC1sYWJlbCB7XG4gICAgICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAubWF0LXNsaWRlciB7XG4gICAgICAgICAgaGVpZ2h0OiAxLjVyZW07XG4gICAgICAgICAgd2lkdGg6IDE1cmVtO1xuXG4gICAgICAgICAgLm1hdC1zbGlkZXItd3JhcHBlciB7XG4gICAgICAgICAgICB0b3A6IDEycHg7XG4gICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgLm9wYWNpdHktdmFsdWUge1xuICAgICAgICAgIHdpZHRoOiAzcmVtO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuXG4gICAgLm51bS1yZXN1bHRzIHtcbiAgICAgIG1hcmdpbi1yaWdodDogMC4yNXJlbTtcbiAgICB9XG5cbiAgICAmLmlubmVyLW5vZGUge1xuICAgICAgYnV0dG9uIHtcbiAgICAgICAgJi5oaWRkZW4ge1xuICAgICAgICAgIGRpc3BsYXk6IG5vbmU7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICAub3BhY2l0eSB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICBtaW4td2lkdGg6IDEuNXJlbTtcbiAgICB9XG5cbiAgICAudG9nZ2xlIHtcbiAgICAgIHdpZHRoOiAxLjVyZW07XG4gICAgICBoZWlnaHQ6IDEuNXJlbTtcbiAgICAgIGxpbmUtaGVpZ2h0OiBub3JtYWw7XG4gICAgICBwYWRkaW5nOiAwO1xuICAgIH1cblxuICAgIC5hdXRvY29tcGxldGUtb3BlbiAudG9nZ2xlIHtcbiAgICAgIGJvcmRlci1ib3R0b206IG5vbmU7XG4gICAgfVxuXG4gICAgLm5vbi1leHBhbmRhYmxlIHtcbiAgICAgIG1hcmdpbi1sZWZ0OiAxLjVyZW07XG4gICAgfVxuXG4gICAgLnRleHQge1xuICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgbWFyZ2luLWxlZnQ6IDFyZW07XG4gICAgICBvcGFjaXR5OiAxO1xuICAgICAgdHJhbnNpdGlvbi1kdXJhdGlvbjogMC4yNXM7XG4gICAgICB0cmFuc2l0aW9uLXRpbWluZy1mdW5jdGlvbjogZWFzZS1pbi1vdXQ7XG4gICAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBvcGFjaXR5LCB3aWR0aDtcblxuICAgICAgJi5oaWRkZW4ge1xuICAgICAgICBvcGFjaXR5OiAwO1xuICAgICAgICB3aWR0aDogMCU7XG4gICAgICB9XG5cbiAgICAgICYudW5hdmFpbGFibGUge1xuICAgICAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICAubnVtLXJlc3VsdHMge1xuICAgICAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gICAgfVxuICB9XG5cbiAgLmJsb2NrIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgfVxufVxuXG4uc2Nyb2xsLWdyYWRpZW50IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBoZWlnaHQ6IDNyZW07XG4gIHdpZHRoOiA5MCU7XG4gIGJvdHRvbTogMDtcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG5cbiAgJi5oaWRkZW4ge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"],
     changeDetection: 0
   });
@@ -5450,16 +5311,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   OntologyTreeModule: () => (/* binding */ OntologyTreeModule)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 60316);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/button */ 84175);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/icon */ 93840);
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tooltip */ 80640);
-/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/tree */ 28379);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/button */ 84175);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/icon */ 93840);
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tooltip */ 80640);
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tree */ 28379);
 /* harmony import */ var _ontology_tree_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ontology-tree.component */ 29426);
-/* harmony import */ var ccf_shared__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ccf-shared */ 85172);
-/* harmony import */ var _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/components/button-toggle/button-toggle.module */ 91244);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
-
+/* harmony import */ var _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/components/button-toggle/button-toggle.module */ 91244);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37580);
 
 
 
@@ -5472,17 +5331,17 @@ class OntologyTreeModule {
   static #_ = this.ɵfac = function OntologyTreeModule_Factory(t) {
     return new (t || OntologyTreeModule)();
   };
-  static #_2 = this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({
+  static #_2 = this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({
     type: OntologyTreeModule
   });
-  static #_3 = this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({
-    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_5__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__.MatIconModule, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__.MatTooltipModule, _angular_material_tree__WEBPACK_IMPORTED_MODULE_8__.MatTreeModule, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.OpacitySliderModule, _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_2__.ButtonToggleModule]
+  static #_3 = this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({
+    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_4__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_5__.MatIconModule, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_6__.MatTooltipModule, _angular_material_tree__WEBPACK_IMPORTED_MODULE_7__.MatTreeModule, _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_1__.ButtonToggleModule]
   });
 }
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](OntologyTreeModule, {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](OntologyTreeModule, {
     declarations: [_ontology_tree_component__WEBPACK_IMPORTED_MODULE_0__.OntologyTreeComponent],
-    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_5__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__.MatIconModule, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__.MatTooltipModule, _angular_material_tree__WEBPACK_IMPORTED_MODULE_8__.MatTreeModule, ccf_shared__WEBPACK_IMPORTED_MODULE_1__.OpacitySliderModule, _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_2__.ButtonToggleModule],
+    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_4__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_5__.MatIconModule, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_6__.MatTooltipModule, _angular_material_tree__WEBPACK_IMPORTED_MODULE_7__.MatTreeModule, _shared_components_button_toggle_button_toggle_module__WEBPACK_IMPORTED_MODULE_1__.ButtonToggleModule],
     exports: [_ontology_tree_component__WEBPACK_IMPORTED_MODULE_0__.OntologyTreeComponent]
   });
 })();
