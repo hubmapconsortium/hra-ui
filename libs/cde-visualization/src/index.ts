@@ -3,6 +3,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
 export * from './lib/cde-visualization/cde-visualization.component';
+export * from './lib/models/data';
 
 export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;

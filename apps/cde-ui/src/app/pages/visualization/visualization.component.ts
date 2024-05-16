@@ -31,6 +31,7 @@ export class VisualizationPageComponent {
       const el = this.vis()?.nativeElement;
       if (el) {
         el.nodes = this.dataService.nodes();
+        el.edges = this.dataService.edges();
         el.colorMap = this.dataService.colorMap();
       }
     });

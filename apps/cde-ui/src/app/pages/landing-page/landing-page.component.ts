@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
