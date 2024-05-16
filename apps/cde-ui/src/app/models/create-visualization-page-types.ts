@@ -1,4 +1,4 @@
-import { CellTypeTableData } from '../services/file-upload-service';
+import { CellTypeTableData } from '../pages/create-visualization-page/create-visualization-page.component';
 
 /** Color map row */
 export interface ColorMapItem {
