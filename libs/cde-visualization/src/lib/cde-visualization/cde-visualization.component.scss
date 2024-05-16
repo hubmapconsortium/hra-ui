@@ -56,7 +56,7 @@
   .visualizations {
     display: grid;
     grid-area: visualization;
-    grid-template-rows: 2fr 22.5rem;
+    grid-template-rows: 1fr auto;
     row-gap: 0.25rem;
   }
 }

@@ -2,21 +2,14 @@ import { CommonModule, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, inject, input, numberAttribute, Signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { parse } from 'papaparse';
+import { ParseRemoteConfig, parse } from 'papaparse';
 import { map, Observable, of, switchAll } from 'rxjs';
 
 import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-
-export interface Node {
-  x: number;
-  y: number;
-  z?: number;
-  cell_type: string;
-  cell_ontology_id?: string;
-}
+import { EdgeEntry, NodeEntry } from '../models/data';
 
 export interface ColorMapItem {
   cell_type: string;
@@ -49,7 +42,9 @@ const EMPTY_METADATA: Metadata = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CdeVisualizationComponent {
-  readonly nodes = input<string | Node[]>('assets/TEMP/nodes.csv');
+  readonly nodes = input<string | NodeEntry[]>('assets/TEMP/nodes.csv');
+
+  readonly edges = input<string | EdgeEntry[]>('assets/TEMP/edges.csv');
 
   readonly cellTypeAnchor = input<string>();
 
@@ -76,6 +71,23 @@ export class CdeVisualizationComponent {
   readonly pixelSize = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
 
   readonly resolvedNodes = this.resolveData(this.nodes, (url) => this.loadCsvFile(url), []);
+
+  readonly resolvedEdges = this.resolveData(this.edges, (url) => this.loadCsvFile(url, { header: false }), []);
+
+  readonly resolvedEdges2 = computed(() => {
+    const data = this.resolvedEdges() as unknown as number[][];
+    return data.map(
+      (item): EdgeEntry => ({
+        sourceNodeIndex: item[0],
+        x0: item[1],
+        x1: item[4],
+        y0: item[2],
+        y1: item[5],
+        z0: item[3],
+        z1: item[6],
+      }),
+    );
+  });
 
   readonly resolvedColorMap = this.resolveData(this.colorMap, (url) => this.loadCsvFile(url), []);
 
@@ -146,7 +158,7 @@ export class CdeVisualizationComponent {
     return toSignal(data$, { initialValue: defaultValue, rejectErrors: true });
   }
 
-  private loadCsvFile<T>(url: string): Observable<T[]> {
+  private loadCsvFile<T>(url: string, config?: Partial<ParseRemoteConfig>): Observable<T[]> {
     if (!url.startsWith('http')) {
       url = this.location.prepareExternalUrl(url);
     }
@@ -155,11 +167,12 @@ export class CdeVisualizationComponent {
       const chunks: T[][] = [];
 
       parse<T>(url, {
-        worker: true,
-        download: true,
         header: true,
         dynamicTyping: true,
         skipEmptyLines: 'greedy',
+        ...config,
+        worker: true,
+        download: true,
         chunk: (results, parser) => {
           if (subscriber.closed) {
             parser.abort();
@@ -216,7 +229,7 @@ export class CdeVisualizationComponent {
     }
   }
 
-  private hasDefaultCellType(nodes: Node[]): boolean {
+  private hasDefaultCellType(nodes: NodeEntry[]): boolean {
     return nodes.some(({ cell_type }) => cell_type === DEFAULT_CELL_TYPE_ANCHOR);
   }
 }
