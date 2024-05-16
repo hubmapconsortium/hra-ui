@@ -1,3 +1,39 @@
-<h3>This is landing page</h3>
-
-<a routerLink="/create">CREATE</a>
+<section class="create-and-explore">
+  <div class="create-explore-content">
+    <div class="header">
+      <h1>Create and Explore Cell Distance Visualizations</h1>
+      <p>
+        This website supports visualization and quantification of cells and cell-cell distance distributions in
+        processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
+        embedded on websites.
+      </p>
+    </div>
+    <cde-visual-card [cardData]="data"></cde-visual-card>
+  </div>
+</section>
+<section class="vccf">
+  <div class="paper">
+    <h2>Background Information: Constructing the Vasculature Common Coordinate Framework</h2>
+    <p>
+      The vasculature is the human body's delivery system. It is also a cornerstone of medicine, helping surgeons guide
+      surgeries, pathologists diagnose disease, and serving as a landmark for medical practitioners of all stripes. The
+      Vasculature Common Coordinate Framework (VCCF) taps into this organic infrastructure in order to map the cells in
+      the body based on their proximity to nearby blood vessels.
+    </p>
+    <a
+      class="hra-btn cta-filled"
+      href="https://doi.org/10.3389/fcvm.2020.00029"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Read VCCF Paper
+      <mat-icon iconPositionEnd> east </mat-icon>
+    </a>
+    <a class="hra-btn cta-flat" href="https://humanatlas.io/vccf" target="_blank" rel="noopener noreferrer"
+      >VCCF Visualization Poster
+      <mat-icon iconPositionEnd> east </mat-icon>
+    </a>
+  </div>
+  <div class="youtube-player">
+    <youtube-player videoId="zQeMgxo8n_U"></youtube-player>
+  </div>
+</section>

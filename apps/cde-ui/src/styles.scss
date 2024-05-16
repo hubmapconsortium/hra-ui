@@ -1,5 +1,6 @@
-@use './styles/resets';
-@use './styles/fonts';
+@use './styles/cta' as cta;
+@use './styles/global/resets';
+@use './styles/global/fonts';
 @use './styles/material-theming';
 
 input::-webkit-outer-spin-button,
@@ -13,29 +14,47 @@ input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
 
-.header-nav {
-  color: #201e3d;
-  border-bottom: solid #4b4b5e 2px;
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cta-filled {
+  @include cta.filledDefault();
 
   &:hover {
-    border-bottom: solid #b20a2f 2px;
+    @include cta.filledHover();
   }
 
   &:active {
-    color: #6a061c;
-    border-bottom: solid #6a061c 2px;
-  }
-
-  &:focus {
-    outline: none;
+    @include cta.filledActive();
   }
 
   &:focus-visible {
-    border-bottom: none;
-    outline: none;
-    margin: -0.25rem -0.25rem -0.125rem -0.25rem;
-    background-color: white;
-    border: solid #e00d3a 4px;
+    color: rgba(32, 30, 61, 1);
+  }
+
+  &:focus-visible::after {
+    @include cta.filledFocus();
+  }
+}
+
+.cta-flat {
+  @include cta.flatDefault();
+
+  &:hover {
+    @include cta.flatHover();
+  }
+
+  &:active {
+    @include cta.flatActive();
+  }
+
+  &:focus-visible {
+    @include cta.flatFocus();
   }
 }
 

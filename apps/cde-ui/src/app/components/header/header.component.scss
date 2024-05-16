@@ -1,30 +1,47 @@
-:host {
-  display: block;
-  padding: 3rem 5rem;
+@use 'sass:math';
 
-  a {
-    text-decoration: none;
+:host {
+  $logo-height: 3rem;
+
+  display: flex;
+  height: 9rem;
+  padding: 0 5rem;
+  align-items: center;
+  gap: 2rem;
+
+  .hra-home,
+  .cde-home {
+    height: $logo-height;
+    border-radius: 0.5rem;
+
+    img {
+      height: $logo-height;
+    }
   }
 
-  .header-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .help {
+    $border-width: 0.125rem;
+    $bottom-border-width: 0.125rem;
 
-    .hra-logo {
-      margin-right: 2rem;
+    height: 2.6875rem;
+    padding: 0.5rem 5rem 0.5rem 0.25rem;
+
+    &:not(:focus-visible) {
+      border-bottom-style: solid;
+      border-bottom-width: $bottom-border-width;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
-    .hra-logo,
-    .cde-logo {
-      height: 3rem;
+    &:focus-visible {
+      padding: (0.5rem - $border-width) (5rem - $border-width) (0.5rem - $border-width + $bottom-border-width)
+        (0.25rem - $border-width);
+      border-style: solid;
+      border-width: $border-width;
     }
+  }
 
-    .help {
-      padding: 0.5rem 5rem 0.5rem 0.25rem;
-      font-weight: 500;
-      font-size: 1.5rem;
-      line-height: 2.25rem;
-    }
+  .filler {
+    flex-grow: 1;
   }
 }

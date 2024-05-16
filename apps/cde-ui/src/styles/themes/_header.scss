@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../constants/palettes' as palettes;
+
+$primary: mat.define-palette(map.get(palettes.$palettes, 'red'), 700, 500, 900);
+$accent: mat.define-palette(map.get(palettes.$palettes, 'blue'), 900, 800, 900);
+
+$typography: mat.define-typography-config(
+  $font-family: 'Metropolis',
+  $button: mat.define-typography-level(18px, 27px, 500),
+);
+
+$theme: (
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: $typography,
+  density: 0,
+);

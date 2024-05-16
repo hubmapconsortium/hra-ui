@@ -5,6 +5,7 @@
     "webcomponents",
     "state",
     "cde-visualization",
-    "cde"
+    "cde",
+    "cdk"
   ]
 }
