@@ -1,0 +1,53 @@
+<mat-accordion displayMode="flat">
+  <mat-expansion-panel expanded #panel>
+    <mat-expansion-panel-header class="header">
+      <mat-panel-title class="title">
+        <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
+        Histogram
+        <mat-icon class="material-symbols-rounded">info</mat-icon>
+
+        <div class="filler"></div>
+
+        <button mat-flat-button color="accent" class="mat-caption download" (click)="download('svg')">
+          <mat-icon class="material-symbols-rounded">download</mat-icon>
+          SVG
+        </button>
+        <button mat-flat-button color="accent" class="mat-caption download" (click)="download('png')">
+          <mat-icon class="material-symbols-rounded">download</mat-icon>
+          PNG
+        </button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="content">
+      <div class="histogram" #histogram></div>
+      <div class="legend"></div>
+    </div>
+
+    <!-- <div class="histogram-container">
+      <div class="visualization" #vis></div>
+      <div class="legend">
+        <div class="legend-entry" *ngFor="let color of colors$() | async"> -->
+    <!-- Icon with color picker -->
+    <!-- <div
+            class="color-icon"
+            (colorPickerOpen)="setCurrentColor(color.cell_color)"
+            [style.background]="toRGB(color.cell_color)"
+            [(colorPicker)]="currentColor"
+            [cpOutputFormat]="'hex'"
+            [cpOKButton]="true"
+            [cpCancelButton]="true"
+            [cpPosition]="'top-left'"
+            [cpOKButtonClass]="'accept-button'"
+            [cpOKButtonText]="'Accept'"
+            [cpCancelButtonClass]="'cancel-button'"
+            [cpAlphaChannel]="'always'"
+          ></div> -->
+    <!-- <span class="color-icon" [style.background]="toRGB(color.cell_color)"></span>
+          <mat-icon *ngIf="anchor === color.cell_type" class="material-symbols-rounded anchor"> anchor </mat-icon>
+          {{ color.cell_type }}
+        </div>
+      </div>
+    </div> -->
+  </mat-expansion-panel>
+</mat-accordion>

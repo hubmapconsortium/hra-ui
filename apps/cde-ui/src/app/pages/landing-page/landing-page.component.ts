@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
 
 /**
  * Landing Page Component

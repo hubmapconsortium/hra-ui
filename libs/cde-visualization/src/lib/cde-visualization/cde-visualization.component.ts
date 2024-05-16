@@ -1,16 +1,18 @@
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Signal, computed, inject, input, numberAttribute } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { parse } from 'papaparse';
-import { Observable, map, of, switchAll } from 'rxjs';
-import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
-import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
-import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-import { HttpClient } from '@angular/common/http';
-import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { ParseRemoteConfig, parse } from 'papaparse';
+import { Observable, map, of, switchAll } from 'rxjs';
+import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
+import { HistogramComponent } from '../components/histogram/histogram.component';
+import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
+import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
+import { EdgeEntry, NodeEntry } from '../models/data';
 
 export interface Node {
   x: number;
@@ -59,6 +61,7 @@ const EMPTY_METADATA: Metadata = {
     MatButtonModule,
     MatIconModule,
     OverlayModule,
+    HistogramComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
@@ -66,7 +69,7 @@ const EMPTY_METADATA: Metadata = {
 })
 export class CdeVisualizationComponent {
   readonly nodes = input<string | Node[]>();
-  readonly edges = input<unknown>();
+  readonly edges = input<string | EdgeEntry[]>();
   readonly nodeTargetKey = input<string>('Cell Type');
   readonly colorMapKey = input<string>('cell_type');
   readonly colorMapValueKey = input<string>('cell_color');
@@ -98,6 +101,23 @@ export class CdeVisualizationComponent {
   readonly pixelSize = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
 
   readonly resolvedNodes = this.resolveData(this.nodes, [], (url) => this.loadCsvFile(url));
+
+  readonly resolvedEdges = this.resolveData(this.edges, [], (url) => this.loadCsvFile(url, { header: false }));
+
+  readonly resolvedEdges2 = computed(() => {
+    const data = this.resolvedEdges() as unknown as number[][];
+    return data.map(
+      (item): EdgeEntry => ({
+        sourceNodeIndex: item[0],
+        x0: item[1],
+        x1: item[4],
+        y0: item[2],
+        y1: item[5],
+        z0: item[3],
+        z1: item[6],
+      }),
+    );
+  });
 
   readonly resolvedColorMap = this.resolveData(
     this.colorMap,
@@ -194,7 +214,7 @@ export class CdeVisualizationComponent {
     return toSignal(data$, { initialValue: defaultValue, rejectErrors: true });
   }
 
-  private loadCsvFile<T>(url: string): Observable<T[]> {
+  private loadCsvFile<T>(url: string, config?: Partial<ParseRemoteConfig>): Observable<T[]> {
     if (!url.startsWith('http')) {
       url = this.location.prepareExternalUrl(url);
     }
@@ -203,11 +223,12 @@ export class CdeVisualizationComponent {
       const chunks: T[][] = [];
 
       parse<T>(url, {
-        worker: true,
-        download: true,
         header: true,
         dynamicTyping: true,
         skipEmptyLines: 'greedy',
+        ...config,
+        worker: true,
+        download: true,
         chunk: (results, parser) => {
           if (subscriber.closed) {
             parser.abort();
@@ -264,7 +285,7 @@ export class CdeVisualizationComponent {
     }
   }
 
-  private hasDefaultCellType(nodes: Node[]): boolean {
+  private hasDefaultCellType(nodes: NodeEntry[]): boolean {
     return nodes.some(({ cell_type }) => cell_type === DEFAULT_CELL_TYPE_ANCHOR);
   }
 
