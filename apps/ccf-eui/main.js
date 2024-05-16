@@ -1429,7 +1429,7 @@ class WorkerDataSourceService extends ccf_shared__WEBPACK_IMPORTED_MODULE_0__.Wo
   }
   getWorkerUrl(directImport) {
     if (directImport) {
-      return new URL('./data-source.worker', "file:///home/runner/work/hra-ui/hra-ui/apps/ccf-eui/src/app/core/services/data-source/worker-data-source.service.ts");
+      return new URL('./data-source.worker', "file:///home/bherr/workspaces/hubmap/hra-ui/apps/ccf-eui/src/app/core/services/data-source/worker-data-source.service.ts");
     }
     const externalUrl = this.locator.prepareExternalUrl('0-es2015.worker.js');
     const codeBlob = new Blob([`importScripts('${externalUrl}')`], {
@@ -6816,7 +6816,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DrawerComponent: () => (/* binding */ DrawerComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/animations */ 47172);
 /* harmony import */ var _angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/coercion */ 2814);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
@@ -6865,7 +6865,7 @@ class InitializationState {
    */
   wait() {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return _this.deferred;
     })();
   }
@@ -7099,7 +7099,7 @@ class DrawerComponent {
    */
   sendToggle() {
     var _this2 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this2.initialized.wait();
       _this2.channel.sendMessage({
         type: 'drawer-toggled',
@@ -10272,7 +10272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BodyUI: () => (/* binding */ BodyUI)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _deck_gl_core_typed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @deck.gl/core/typed */ 98397);
 /* harmony import */ var _deck_gl_core_typed__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @deck.gl/core/typed */ 18335);
@@ -10362,7 +10362,7 @@ class BodyUI {
   }
   initialize() {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       while (!_this.bodyUILayer.state) {
         yield new Promise(r => {
           setTimeout(r, 200);
@@ -10576,7 +10576,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   loadGLTF2: () => (/* binding */ loadGLTF2),
 /* harmony export */   registerGLTFLoaders: () => (/* binding */ registerGLTFLoaders)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _loaders_gl_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @loaders.gl/core */ 34992);
 /* harmony import */ var _loaders_gl_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @loaders.gl/core */ 59085);
 /* harmony import */ var _loaders_gl_draco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @loaders.gl/draco */ 89838);
@@ -10631,7 +10631,7 @@ function loadGLTF(_x, _x2) {
   return _loadGLTF.apply(this, arguments);
 }
 function _loadGLTF() {
-  _loadGLTF = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (model, cache) {
+  _loadGLTF = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (model, cache) {
     const gltfUrl = model.scenegraph;
     let gltfPromise;
     if (cache) {
@@ -10657,7 +10657,7 @@ function loadGLTF2(_x3, _x4) {
   return _loadGLTF2.apply(this, arguments);
 }
 function _loadGLTF2() {
-  _loadGLTF2 = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (scenegraphNodeName,
+  _loadGLTF2 = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (scenegraphNodeName,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   gltfPromise) {
     return deriveScenegraph(scenegraphNodeName, yield gltfPromise);
@@ -10678,7 +10678,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   processSceneNodes: () => (/* binding */ processSceneNodes)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _math_gl_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @math.gl/core */ 7493);
 /* harmony import */ var cannon_es__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! cannon-es */ 89792);
 /* harmony import */ var _load_gltf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./load-gltf */ 71873);
@@ -10701,7 +10701,7 @@ function processSceneNodes(_x, _x2, _x3, _x4) {
 }
 /* eslint-enable */
 function _processSceneNodes() {
-  _processSceneNodes = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (gltfUrl, worldMatrix, scenegraphNode, gltfCache) {
+  _processSceneNodes = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (gltfUrl, worldMatrix, scenegraphNode, gltfCache) {
     (0,_load_gltf__WEBPACK_IMPORTED_MODULE_1__.registerGLTFLoaders)();
     const gltf = yield (0,_load_gltf__WEBPACK_IMPORTED_MODULE_1__.loadGLTF)({
       scenegraph: gltfUrl,
@@ -10837,7 +10837,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   simplifyScene: () => (/* binding */ simplifyScene)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _math_gl_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @math.gl/core */ 7493);
 /* harmony import */ var cannon_es__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cannon-es */ 89792);
 /* harmony import */ var _load_gltf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./load-gltf */ 71873);
@@ -10851,7 +10851,7 @@ function simplifyScene(_x) {
   return _simplifyScene.apply(this, arguments);
 }
 function _simplifyScene() {
-  _simplifyScene = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (nodes) {
+  _simplifyScene = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (nodes) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const gltfCache = {};
     const gltfUrls = new Set(nodes.map(n => n.scenegraph).filter(n => !!n));
@@ -10936,7 +10936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   doCollisions: () => (/* binding */ doCollisions)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _loaders_gl_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @loaders.gl/core */ 75300);
 /* harmony import */ var _loaders_gl_draco__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @loaders.gl/draco */ 7115);
 /* harmony import */ var _loaders_gl_gltf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @loaders.gl/gltf */ 71396);
@@ -10954,7 +10954,7 @@ function doCollisions(_x) {
   return _doCollisions.apply(this, arguments);
 }
 function _doCollisions() {
-  _doCollisions = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (scene) {
+  _doCollisions = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (scene) {
     console.log('Starting Collisioning');
     const sourceBoxes = scene.filter(d => !d.scenegraph && d.geometry !== 'wireframe').map(model => {
       const mat = new _math_gl_core__WEBPACK_IMPORTED_MODULE_2__["default"](model.transformMatrix);
@@ -11114,7 +11114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   CCFDatabase: () => (/* binding */ CCFDatabase),
 /* harmony export */   DEFAULT_CCF_DB_OPTIONS: () => (/* binding */ DEFAULT_CCF_DB_OPTIONS)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var idb_keyval__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! idb-keyval */ 60581);
 /* harmony import */ var object_hash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! object-hash */ 60838);
 /* harmony import */ var object_hash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(object_hash__WEBPACK_IMPORTED_MODULE_1__);
@@ -11187,7 +11187,7 @@ class CCFDatabase {
    */
   connect(options, cached = false) {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (options) {
         _this.options = options;
       }
@@ -11204,7 +11204,7 @@ class CCFDatabase {
   }
   cachedConnect() {
     var _this2 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const start = new Date().getTime();
       const optionsHash = object_hash__WEBPACK_IMPORTED_MODULE_1__(_this2.options, {
         encoding: 'base64',
@@ -11238,7 +11238,7 @@ class CCFDatabase {
    */
   doConnect() {
     var _this3 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const ops = [];
       const sources = _this3.options.dataSources?.concat() ?? [];
       const ccfOwlUrl = _this3.options.ccfOwlUrl;
@@ -11275,10 +11275,10 @@ class CCFDatabase {
   }
   addDataSources(sources, inputStore) {
     var _this4 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const store = inputStore ?? _this4.store;
       yield Promise.all(sources.map( /*#__PURE__*/function () {
-        var _ref = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (source) {
+        var _ref = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (source) {
           if (typeof source === 'string') {
             if ((source.startsWith('http') || source.startsWith('assets/')) && source.includes('jsonld')) {
               const sourceUrl = source;
@@ -11311,7 +11311,7 @@ class CCFDatabase {
   }
   synchronize() {
     var _this5 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Add a small delay to allow the triple store to settle
       yield new Promise(r => {
         setTimeout(r, 500);
@@ -11326,7 +11326,7 @@ class CCFDatabase {
   }
   deserialize(value) {
     var _this6 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this6.store = (0,triple_store_utils__WEBPACK_IMPORTED_MODULE_2__.deserializeN3Store)(value, triple_store_utils__WEBPACK_IMPORTED_MODULE_2__.DataFactory);
       _this6.graph = new _ccf_spatial_graph__WEBPACK_IMPORTED_MODULE_3__.CCFSpatialGraph(_this6);
       _this6.scene = new _ccf_spatial_scene__WEBPACK_IMPORTED_MODULE_4__.CCFSpatialScene(_this6);
@@ -11378,7 +11378,7 @@ class CCFDatabase {
   }
   getDatabaseStatus() {
     var _this7 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (!_this7.status) {
         _this7.status = new _util_ccf_database_status_tracker__WEBPACK_IMPORTED_MODULE_11__.CCFDatabaseStatusTracker(_this7);
       }
@@ -11392,7 +11392,7 @@ class CCFDatabase {
    */
   getDatasetTechnologyNames() {
     var _this8 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_aggregate_results_n3__WEBPACK_IMPORTED_MODULE_5__.getDatasetTechnologyNames)(_this8.store);
     })();
   }
@@ -11403,7 +11403,7 @@ class CCFDatabase {
    */
   getProviderNames() {
     var _this9 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_aggregate_results_n3__WEBPACK_IMPORTED_MODULE_5__.getProviderNames)(_this9.store);
     })();
   }
@@ -11415,7 +11415,7 @@ class CCFDatabase {
    */
   getTissueBlockResults(filter) {
     var _this10 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       filter = {
         ...filter,
@@ -11432,7 +11432,7 @@ class CCFDatabase {
    */
   getAggregateResults(filter) {
     var _this11 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_aggregate_results_n3__WEBPACK_IMPORTED_MODULE_5__.getAggregateResults)(_this11.getIds(filter), _this11.store);
     })();
   }
@@ -11444,7 +11444,7 @@ class CCFDatabase {
    */
   getOntologyTermOccurences(filter) {
     var _this12 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_term_occurences_n3__WEBPACK_IMPORTED_MODULE_7__.getOntologyTermOccurences)(_this12.getIds(filter), _this12.store);
     })();
   }
@@ -11456,7 +11456,7 @@ class CCFDatabase {
    */
   getCellTypeTermOccurences(filter) {
     var _this13 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_term_occurences_n3__WEBPACK_IMPORTED_MODULE_7__.getCellTypeTermOccurences)(_this13.getIds(filter), _this13.store);
     })();
   }
@@ -11468,7 +11468,7 @@ class CCFDatabase {
    */
   getBiomarkerTermOccurences(filter) {
     var _this14 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_term_occurences_n3__WEBPACK_IMPORTED_MODULE_7__.getBiomarkerTermOccurences)(_this14.getIds(filter), _this14.store);
     })();
   }
@@ -11479,7 +11479,7 @@ class CCFDatabase {
    */
   getOntologyTreeModel() {
     var _this15 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_tree_n3__WEBPACK_IMPORTED_MODULE_8__.getAnatomicalStructureTreeModel)(_this15.store);
     })();
   }
@@ -11490,7 +11490,7 @@ class CCFDatabase {
    */
   getCellTypeTreeModel() {
     var _this16 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_tree_n3__WEBPACK_IMPORTED_MODULE_8__.getCellTypeTreeModel)(_this16.store);
     })();
   }
@@ -11501,7 +11501,7 @@ class CCFDatabase {
    */
   getBiomarkerTreeModel() {
     var _this17 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (0,_queries_ontology_tree_n3__WEBPACK_IMPORTED_MODULE_8__.getBiomarkerTreeModel)(_this17.store);
     })();
   }
@@ -11512,7 +11512,7 @@ class CCFDatabase {
    */
   getReferenceOrgans() {
     var _this18 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return _this18.scene.getReferenceOrgans();
     })();
   }
@@ -11524,7 +11524,7 @@ class CCFDatabase {
    */
   getScene(filter) {
     var _this19 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this19.graph.createGraph();
       return _this19.scene.getScene(filter);
     })();
@@ -11538,14 +11538,14 @@ class CCFDatabase {
    */
   getReferenceOrganScene(organIri, filter) {
     var _this20 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this20.graph.createGraph();
       return _this20.scene.getReferenceOrganScene(organIri, filter);
     })();
   }
   getSpatialPlacement(source, targetIri) {
     var _this21 = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return _this21.graph.getSpatialPlacement(source, targetIri);
     })();
   }
@@ -13104,7 +13104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CCFDatabaseStatusTracker: () => (/* binding */ CCFDatabaseStatusTracker)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 
 class CCFDatabaseStatusTracker {
   constructor(database) {
@@ -13123,12 +13123,12 @@ class CCFDatabaseStatusTracker {
   }
   connect() {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.status = 'Loading';
       _this.message = 'Loading database';
       const startTime = Date.now();
       return _this.database.connect().then( /*#__PURE__*/function () {
-        var _ref = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (loaded) {
+        var _ref = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (loaded) {
           if (loaded) {
             // Warm up the database
             _this.message = 'Building scene';
@@ -13176,7 +13176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getBmLocatedInAs: () => (/* binding */ getBmLocatedInAs)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 
 /**
  * The SPARQL endpoint to grab the data from
@@ -13214,7 +13214,7 @@ function getBmLocatedInAs() {
   return _getBmLocatedInAs.apply(this, arguments);
 }
 function _getBmLocatedInAs() {
-  _getBmLocatedInAs = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+  _getBmLocatedInAs = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
     const url = `${SPARQL_ENDPOINT}?query=${encodeURIComponent(query)}`;
     return fetch(url, {
       headers: {
@@ -14347,7 +14347,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   searchXConsortia: () => (/* binding */ searchXConsortia)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _xconsortia_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./xconsortia-data */ 78688);
 
 
@@ -14386,7 +14386,7 @@ function doSearchRequest(_x, _x2) {
   return _doSearchRequest.apply(this, arguments);
 }
 function _doSearchRequest() {
-  _doSearchRequest = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, init) {
+  _doSearchRequest = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, init) {
     try {
       const res = yield fetch(url, init);
       const text = yield res.text();
@@ -14420,7 +14420,7 @@ function doApiSearch(_x3, _x4, _x5) {
  * @returns CCF-compatible JSON-LD data or undefined on error
  */
 function _doApiSearch() {
-  _doApiSearch = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, token, query) {
+  _doApiSearch = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (url, token, query) {
     const perReqCount = PER_API_SEARCH_REQUEST_COUNT;
     const headers = getApiSearchHeaders(token);
     const body = getApiSearchBody(0, perReqCount, query);
@@ -14463,7 +14463,7 @@ function searchXConsortia(_x6, _x7, _x8, _x9) {
   return _searchXConsortia.apply(this, arguments);
 }
 function _searchXConsortia() {
-  _searchXConsortia = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataUrl, serviceType, query, serviceToken, _assetsApi = '', _portalUrl = '') {
+  _searchXConsortia = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataUrl, serviceType, query, serviceToken, _assetsApi = '', _portalUrl = '') {
     let hubmapData;
     if (serviceType === 'static') {
       hubmapData = yield doSearchRequest(dataUrl);
@@ -15465,7 +15465,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BodyUiComponent: () => (/* binding */ BodyUiComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var ccf_body_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ccf-body-ui */ 25632);
 
@@ -15576,7 +15576,7 @@ class BodyUiComponent {
    */
   setupBodyUI() {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const canvas = _this.bodyCanvas.nativeElement;
       const bodyUI = new ccf_body_ui__WEBPACK_IMPORTED_MODULE_1__.BodyUI({
         id: 'body-ui',
@@ -18551,7 +18551,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   DEFAULT_MAX_OPTIONS: () => (/* binding */ DEFAULT_MAX_OPTIONS),
 /* harmony export */   TextSearchComponent: () => (/* binding */ TextSearchComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ 34456);
@@ -18658,7 +18658,7 @@ class TextSearchComponent {
    */
   getOptions(search) {
     var _this = this;
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         autoCompleter,
         maxOptions = _this.defaultMaxOptions
@@ -19439,7 +19439,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   HybridCCfDatabaseDatasourceService: () => (/* binding */ HybridCCfDatabaseDatasourceService),
 /* harmony export */   WorkerCCFDatabaseDataSourceService: () => (/* binding */ WorkerCCFDatabaseDataSourceService)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var ccf_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ccf-database */ 75532);
 /* harmony import */ var comlink__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! comlink */ 88116);
@@ -19469,7 +19469,7 @@ class CCFDatabaseDataSourceBaseService extends _data_source__WEBPACK_IMPORTED_MO
     this.impl$ = this.database$ = globalConfig.config$.pipe(source => source, (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.filter)(config => Object.keys(config).length > 0), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(config => (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.using)(() => this.createDatabase(config), manager => this.connectDatabase(manager, config))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.map)(manager => manager.database), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.shareReplay)(1));
   }
   connectDatabase(manager, config) {
-    return (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const cacheResults = !(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.isDevMode)(); // Do not cache while in dev mode
       yield manager.database.connect(config, cacheResults);
       return manager;
@@ -20517,7 +20517,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   serializeN3Store: () => (/* binding */ serializeN3Store),
 /* harmony export */   streamToArray: () => (/* binding */ streamToArray)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var jsonld__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jsonld */ 30045);
 /* harmony import */ var jsonld__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jsonld__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var n3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! n3 */ 94672);
@@ -20589,7 +20589,7 @@ function addJsonLdToStore(_x, _x2) {
  * @returns A promise that resolves when the data has been added.
  */
 function _addJsonLdToStore() {
-  _addJsonLdToStore = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
+  _addJsonLdToStore = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
     let jsonLdData;
     if (typeof uri === 'string') {
       const response = yield fetch(uri, {
@@ -20621,7 +20621,7 @@ function addRdfXmlToStore(_x3, _x4) {
  * @returns A promise that resolves when the data has been added.
  */
 function _addRdfXmlToStore() {
-  _addRdfXmlToStore = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
+  _addRdfXmlToStore = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
     let xmlData;
     if (typeof uri === 'string' && uri?.startsWith('http')) {
       const response = yield fetch(uri, {
@@ -20654,7 +20654,7 @@ function addN3ToStore(_x5, _x6) {
   return _addN3ToStore.apply(this, arguments);
 }
 function _addN3ToStore() {
-  _addN3ToStore = (0,_home_runner_work_hra_ui_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
+  _addN3ToStore = (0,_home_bherr_workspaces_hubmap_hra_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (uri, store) {
     let data;
     if (typeof uri === 'string' && uri?.startsWith('http')) {
       const response = yield fetch(uri, {

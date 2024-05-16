@@ -249,6 +249,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+ng-table-virtual-scroll
+MIT
+
 ngx-google-analytics
 MIT
 MIT License
