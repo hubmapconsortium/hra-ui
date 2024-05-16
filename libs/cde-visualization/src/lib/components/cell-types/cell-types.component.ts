@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, effect, input, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, effect, input, model, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -43,7 +43,7 @@ export interface CellTypeOption {
 })
 export class CellTypesComponent implements AfterViewInit {
   /** Data for Cell Types table */
-  data = input.required<CellTypeOption[]>();
+  data = model.required<CellTypeOption[]>();
   /** Name of the anchor cell type */
   anchor = input<string>();
   /** Columns to be displayed */

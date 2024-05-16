@@ -4,74 +4,111 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  computed,
   effect,
   input,
+  model,
   viewChild,
+  Signal,
 } from '@angular/core';
-// import { colorCategories } from '@deck.gl/carto';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
-import { type ColorMapItem, type Node } from '../../cde-visualization/cde-visualization.component';
+import { type ColorMapItem } from '../../cde-visualization/cde-visualization.component';
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { EdgeEntry, NodeEntry } from '../../models/data';
 
 interface PreactSignal<T> {
   value: T;
 }
 
-interface NodeDistVisElement extends HTMLElement {
-  nodes: PreactSignal<Node[]>;
+type PreactSignalValue<T> = T extends PreactSignal<infer U> ? U : never;
+
+interface NodeDistVisElementProps {
+  nodesData: PreactSignal<NodeEntry[]>;
+  edgesUrl: PreactSignal<string>;
+  edgesData: PreactSignal<EdgeEntry[]>;
   nodeTargetKey: PreactSignal<string>;
   nodeTargetValue: PreactSignal<string>;
   maxEdgeDistance: PreactSignal<number>;
-  colorCoding: PreactSignal<unknown>;
+  colorMapData: PreactSignal<unknown>;
 }
+
+interface NodeDistVisElement extends HTMLElement, NodeDistVisElementProps {}
 
 @Component({
   selector: 'cde-node-dist-visualization',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
-  readonly nodes = input.required<Node[]>();
-  readonly edges = input<Node[]>();
+  readonly nodes = input.required<NodeEntry[]>();
+  readonly edges = model.required<string | EdgeEntry[]>();
   readonly anchor = input.required<string>();
   readonly colorMap = input.required<ColorMapItem[]>();
 
-  readonly vis = viewChild<ElementRef<NodeDistVisElement>>('vis');
+  private readonly vis = viewChild<ElementRef<NodeDistVisElement>>('vis');
+  visInfoOpen = false;
 
-  readonly visNodes = computed(() =>
-    this.nodes().map((node) => ({
-      ...node,
-      position: [node.x, node.y, node.z ?? 0],
-    })),
-  );
-
-  readonly visColorCoding = computed(() => {
-    // const colorMap = this.colorMap();
-    // const domain = colorMap.map((item) => item.cell_type);
-    // const colors = colorMap.map((item) => item.cell_color);
-    // return (attr: string) =>
-    //   colorCategories({
-    //     attr,
-    //     domain,
-    //     colors,
-    //     othersColor: [255, 255, 255],
-    //     nullColor: [255, 255, 255],
-    //   });
-  });
+  overlayPositions: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      overlayX: 'start',
+      originY: 'top',
+      overlayY: 'top',
+    },
+  ];
 
   constructor() {
+    this.initializeDataBindings();
+    this.initializeOutputEvents();
+  }
+
+  private initializeDataBindings(): void {
+    this.bindData('nodesData', this.nodes);
+    this.bindData('nodeTargetValue', this.anchor);
+    this.bindData('colorMapData', this.colorMap);
+    effect(() => console.log(this.vis()?.nativeElement));
+
     effect(() => {
       const el = this.vis()?.nativeElement;
       if (el) {
-        el.nodes.value = this.visNodes();
-        el.nodeTargetKey.value = 'cell_type';
-        el.nodeTargetValue.value = this.anchor();
-        el.maxEdgeDistance.value = 100;
-        // el.colorCoding.value = this.visColorCoding();
+        const edges = this.edges();
+        if (typeof edges === 'string') {
+          el.edgesUrl.value = edges;
+        } else if (edges.length > 0) {
+          el.edgesData.value = edges;
+        }
+      }
+    });
+  }
+
+  private initializeOutputEvents(): void {
+    const ref = effect(() => {
+      const el = this.vis()?.nativeElement;
+      if (el) {
+        el.addEventListener('edges', (event) => {
+          const customEvent = event as CustomEvent;
+          if (customEvent.detail) {
+            this.edges.set(customEvent.detail);
+          }
+        });
+        ref.destroy();
+      }
+    });
+  }
+
+  private bindData<K extends keyof NodeDistVisElementProps>(
+    prop: K,
+    value: Signal<PreactSignalValue<NodeDistVisElementProps[K]>>,
+  ): void {
+    effect(() => {
+      const el = this.vis()?.nativeElement;
+      if (el) {
+        el[prop].value = value();
       }
     });
   }

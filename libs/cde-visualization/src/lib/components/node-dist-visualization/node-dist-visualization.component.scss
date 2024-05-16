@@ -1,3 +1,25 @@
 :host {
   display: block;
+
+  .vis-app {
+    display: flex;
+    background-color: black;
+    color: white;
+    padding: 0.75rem;
+    height: calc(100% - 1.5rem);
+
+    span {
+      display: flex;
+      height: max-content;
+      align-items: center;
+    }
+
+    .download-png {
+      --mdc-filled-button-container-height: 1.75rem;
+      font-size: 0.6875rem;
+      line-height: 1.0313rem;
+      letter-spacing: 0.002em;
+      --mdc-filled-button-label-text-color: #201e3d;
+    }
+  }
 }

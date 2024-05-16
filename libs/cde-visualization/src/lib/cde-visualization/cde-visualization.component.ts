@@ -1,10 +1,7 @@
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Signal, computed, inject, input, numberAttribute } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { ParseRemoteConfig, parse } from 'papaparse';
 import { Observable, map, of, switchAll } from 'rxjs';
 import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
@@ -58,9 +55,6 @@ const EMPTY_METADATA: Metadata = {
     MetadataComponent,
     CellTypesComponent,
     NodeDistVisualizationComponent,
-    MatButtonModule,
-    MatIconModule,
-    OverlayModule,
     HistogramComponent,
   ],
   templateUrl: './cde-visualization.component.html',
@@ -171,15 +165,6 @@ export class CdeVisualizationComponent {
 
     return Object.values(options);
   });
-
-  overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-    },
-  ];
 
   private readonly location = inject(Location);
   private readonly http = inject(HttpClient);
