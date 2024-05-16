@@ -1,0 +1,6 @@
+@use '../app/pages/create-visualization-page/create-visualization-page.component.theme.scss' as create-vis-page;
+
+@mixin theme($theme) {
+  /** Add theme mixins for custom components here! */
+  @include create-vis-page.theme($theme);
+}

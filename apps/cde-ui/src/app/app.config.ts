@@ -1,7 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { Routes, provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/cdk/icons';
+import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 /**
@@ -11,6 +13,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => LandingPageComponent,
+  },
+  {
+    path: 'create',
+    loadComponent: () => CreateVisualizationPageComponent,
   },
   {
     path: '**',
@@ -24,6 +30,7 @@ const routes: Routes = [
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideAnimations(),
     provideHttpClient(),
     provideIcons({
       fontIcons: {

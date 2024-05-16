@@ -1,0 +1,26 @@
+:host {
+  display: block;
+
+  .upload-success {
+    display: flex;
+    justify-content: space-between;
+
+    .filename span {
+      display: block;
+    }
+
+    .file-name {
+      font-weight: 300;
+    }
+
+    .remove-file {
+      align-self: flex-end;
+    }
+  }
+
+  .upload-colormap .loaded-label {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+}
