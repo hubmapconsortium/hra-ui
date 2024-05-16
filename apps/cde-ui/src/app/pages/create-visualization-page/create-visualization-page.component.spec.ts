@@ -1,16 +1,14 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { OutputEmitterRef } from '@angular/core';
+import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { CreateVisualizationPageComponent } from './create-visualization-page.component';
-import { CellTypeTableData } from '../../services/file-upload-service';
-import { OutputEmitterRef } from '@angular/core';
 import { VisualizationSettings } from '../../models/create-visualization-page-types';
-import { provideIcons } from '../../services/icon-registry/icon-registry.service';
-import { ICON_DEFINITIONS } from '../../shared/icon-definitions';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
+import { CellTypeTableData, CreateVisualizationPageComponent } from './create-visualization-page.component';
 
 describe('CreateVisualizationPageComponent', () => {
-  const globalProviders = [provideIcons(ICON_DEFINITIONS), provideHttpClient(), provideHttpClientTesting()];
+  const globalProviders = [provideIcons(), provideHttpClient(), provideHttpClientTesting()];
 
   it('should process and update data correctly in setData', async () => {
     const { fixture } = await render(CreateVisualizationPageComponent, {

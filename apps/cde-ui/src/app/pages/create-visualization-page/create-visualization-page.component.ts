@@ -4,20 +4,42 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ColorMap, ColorMapItem, VisualizationSettings } from '../../models/create-visualization-page-types';
-import { CellTypeTableData, MetadataSelectOption } from '../../services/file-upload-service';
-import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
-import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
-import { MatDividerModule } from '@angular/material/divider';
-import { validateInteger } from '../../shared/form-validators/is-integer';
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
+import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { HeaderComponent } from '../../components/header/header.component';
+import { ColorMap, ColorMapItem, VisualizationSettings } from '../../models/create-visualization-page-types';
+import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
+import { validateInteger } from '../../shared/form-validators/is-integer';
 
+/** Metadata select dropdown option */
+export interface MetadataSelectOption {
+  /** Value */
+  value: string;
+  /** User text */
+  viewValue: string;
+}
+
+/** Node data row */
+export interface CellTypeTableData {
+  /** x position */
+  x: number;
+  /** y position */
+  y: number;
+  /** Cell type */
+  cellType: string;
+  /** Optional z position */
+  z?: number;
+  /** Ontology id */
+  ontologyId?: string;
+}
+
+/** Visualization customization page */
 @Component({
   selector: 'cde-create-visualization-page',
   standalone: true,
@@ -43,10 +65,13 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
+  /** Emits user data */
   readonly visualize = output<VisualizationSettings>();
 
+  /** Form builder */
   private readonly formBuilder = inject(FormBuilder);
 
+  /** Component form controller */
   visualizationForm = this.formBuilder.nonNullable.group({
     anchorCellType: [''],
     metadata: this.formBuilder.nonNullable.group({
@@ -61,11 +86,17 @@ export class CreateVisualizationPageComponent {
     colorMapOption: ['default'],
   });
 
+  /** Node data */
   data?: CellTypeTableData[];
+  /** Color map data */
   colorMap?: ColorMap;
+  /** ??? */
   selectedValue?: string;
+  /** Organ options */
   organs: MetadataSelectOption[] = [];
+  /** File loader factory service */
   service = inject(CsvLoaderService);
+  /** Node data file loader */
   loadCsv = this.service.createLoader<CellTypeTableData>({
     dynamicTyping: {
       x: true,
@@ -73,6 +104,7 @@ export class CreateVisualizationPageComponent {
       z: true,
     },
   });
+  /** Color map file loader */
   loadColorMap = this.service.createLoader<ColorMapItem>({
     dynamicTyping: {
       cell_id: true,
@@ -84,9 +116,16 @@ export class CreateVisualizationPageComponent {
       }) as ColorMapItem,
   });
 
+  /** Node cell type values */
   anchorCellTypes: MetadataSelectOption[] = [];
+  /** Whether to use the default color map */
   useDefaultColorMap = true;
 
+  /**
+   * Sets the loaded node data
+   *
+   * @param data Nodes data
+   */
   setData(data: CellTypeTableData[]): void {
     const cellTypes = data.map((item) => item.cellType);
     const uniqueCellTypes = Array.from(new Set(cellTypes));
@@ -98,10 +137,16 @@ export class CreateVisualizationPageComponent {
     }));
   }
 
+  /**
+   * Toggle to/from using the default color map
+   */
   toggleDefaultColorMap(): void {
     this.useDefaultColorMap = !this.useDefaultColorMap;
   }
 
+  /**
+   * Emits the user data
+   */
   onSubmit() {
     if (this.data) {
       this.visualize.emit({
