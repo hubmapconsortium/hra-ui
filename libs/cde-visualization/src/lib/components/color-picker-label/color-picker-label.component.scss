@@ -107,4 +107,14 @@
     text-align: center;
     align-content: center;
   }
+
+  .label {
+    cursor: pointer;
+  }
+}
+
+::ng-deep {
+  .label-tooltip div {
+    margin: 0.75rem 1rem;
+  }
 }

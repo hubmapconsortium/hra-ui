@@ -13,4 +13,26 @@
   [cpAlphaChannel]="'always'"
 ></span>
 <mat-icon *ngIf="isAnchor()" class="material-symbols-rounded anchor"> anchor </mat-icon>
-{{ label() }}
+<span
+  cdkOverlayOrigin
+  #resetTrigger="cdkOverlayOrigin"
+  class="label"
+  (mouseover)="tooltipOpen = !tooltipOpen"
+  (mouseout)="tooltipOpen = !tooltipOpen"
+>
+  {{ label() }}
+  <ng-container>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'label-tooltip']"
+      [cdkConnectedOverlayOrigin]="resetTrigger"
+      [cdkConnectedOverlayPositions]="overlayPositions"
+      [cdkConnectedOverlayOpen]="tooltipOpen"
+      [cdkConnectedOverlayOffsetX]="5"
+    >
+      <div>
+        {{ label() }}
+      </div>
+    </ng-template>
+  </ng-container>
+</span>
