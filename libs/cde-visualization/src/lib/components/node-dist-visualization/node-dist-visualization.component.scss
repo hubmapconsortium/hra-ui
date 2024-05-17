@@ -23,3 +23,18 @@
     }
   }
 }
+
+::ng-deep {
+  .node-dist-vis-panel div {
+    margin: 0rem 1rem;
+    ul {
+      padding: 0;
+      color: #201e3d;
+    }
+
+    li {
+      margin-left: 1.5rem;
+      color: #4c4c58;
+    }
+  }
+}
