@@ -95,4 +95,16 @@
     position: relative;
     cursor: pointer;
   }
+
+  .anchor {
+    background-color: #201e3d;
+    border-radius: 50%;
+    color: white;
+    vertical-align: middle;
+    height: 1.125rem;
+    width: 1.125rem;
+    font-size: 1rem;
+    text-align: center;
+    align-content: center;
+  }
 }
