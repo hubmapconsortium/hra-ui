@@ -1,0 +1,15 @@
+<span
+  class="color-pick"
+  [cpWidth]="'264px'"
+  [(colorPicker)]="color"
+  [style.background]="color()"
+  [cpOutputFormat]="'hex'"
+  [cpOKButton]="true"
+  [cpCancelButton]="true"
+  [cpPosition]="'right'"
+  [cpOKButtonClass]="'accept-button'"
+  [cpOKButtonText]="'Accept'"
+  [cpCancelButtonClass]="'cancel-button'"
+  [cpAlphaChannel]="'always'"
+></span>
+{{ label() }}
