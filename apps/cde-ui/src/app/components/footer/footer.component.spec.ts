@@ -1,13 +1,11 @@
-import { render, screen } from '@testing-library/angular';
-import { FooterComponent } from './footer.component';
-import { ICON_DEFINITIONS } from '../../shared/icon-definitions';
-import '@testing-library/jest-dom';
-import { provideIcons } from '../../services/icon-registry/icon-registry.service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideIcons } from '@hra-ui/cdk/icons';
+import { render, screen } from '@testing-library/angular';
+import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
-  const globalProviders = [provideIcons(ICON_DEFINITIONS), provideHttpClient(), provideHttpClientTesting()];
+  const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
 
   beforeEach(async () => {
     await render(FooterComponent, {

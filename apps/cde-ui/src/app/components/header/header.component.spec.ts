@@ -1,13 +1,12 @@
 import { render, screen } from '@testing-library/angular';
 import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
-import '@testing-library/jest-dom';
 
 describe('HeaderComponent', () => {
   it('should render the logo', async () => {
     await render(HeaderComponent);
 
-    const logo = screen.getByAltText('Human Reference Atlas Home');
+    const logo = screen.getByAltText('Human Reference Atlas home');
     expect(logo).toBeInTheDocument();
   });
 
@@ -16,7 +15,7 @@ describe('HeaderComponent', () => {
       imports: [RouterModule.forRoot([])],
     });
 
-    const homeLink = screen.getByAltText('Cell Distance Explorer Home');
+    const homeLink = screen.getByAltText('Cell Distance Explorer home');
     expect(homeLink).toBeInTheDocument();
   });
 });

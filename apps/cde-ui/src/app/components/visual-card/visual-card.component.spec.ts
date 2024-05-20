@@ -1,6 +1,5 @@
 import { VisualCardComponent, VisualCard } from './visual-card.component';
 import { render, screen } from '@testing-library/angular';
-import '@testing-library/jest-dom';
 
 describe('VisualCardComponent', () => {
   const mockCards: VisualCard[] = [

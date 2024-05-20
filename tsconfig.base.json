@@ -29,6 +29,9 @@
       "@hra-ui/cdk": [
         "libs/cdk/src/index.ts"
       ],
+      "@hra-ui/cdk/icons": [
+        "libs/cdk/icons/src/index.ts"
+      ],
       "@hra-ui/cdk/injectors": [
         "libs/cdk/injectors/src/index.ts"
       ],

@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/angular';
 import { LandingPageComponent } from './landing-page.component';
-import '@testing-library/jest-dom';
 
 describe('LandingPageComponent', () => {
   it('should create', async () => {
