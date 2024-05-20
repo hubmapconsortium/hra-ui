@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 
 /** Interface for Cell Type Option */
 export interface CellTypeOption {
@@ -36,6 +37,7 @@ export interface CellTypeOption {
     MatSortModule,
     ColorPickerModule,
     OverlayModule,
+    ColorPickerLabelComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -71,10 +73,13 @@ export class CellTypesComponent implements AfterViewInit {
 
   /** Sets input to the table datasource */
   constructor() {
-    effect(() => {
-      this.dataSource.data = this.data();
-      this.totalCellTypes = this.dataSource.data.length;
-    });
+    effect(
+      () => {
+        this.dataSource.data = this.data();
+        this.totalCellTypes = this.dataSource.data.length;
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   /** Sorts the table data after component loads */

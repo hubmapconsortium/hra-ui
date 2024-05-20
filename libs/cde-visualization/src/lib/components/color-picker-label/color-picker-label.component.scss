@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: flex;
 
   ::ng-deep {
     .color-picker {
@@ -81,6 +81,22 @@
       .selected-color {
         border: none;
       }
+
+      .hue-alpha {
+        padding: 0;
+        margin: 1.5rem 1.625rem 0.5rem;
+
+        .cursor {
+          height: 0.5rem;
+          width: 0.5rem;
+          border-width: 2px;
+        }
+        .hue,
+        .alpha {
+          border-radius: 0.25rem;
+          height: 0.5rem;
+        }
+      }
     }
   }
 
@@ -110,6 +126,11 @@
 
   .label {
     cursor: pointer;
+    display: block;
+    white-space: nowrap;
+    width: 9rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 

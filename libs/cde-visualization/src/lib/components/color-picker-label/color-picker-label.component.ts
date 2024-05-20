@@ -23,6 +23,7 @@ export class ColorPickerLabelComponent {
       overlayX: 'start',
       originY: 'top',
       overlayY: 'top',
+      offsetX: 70,
       offsetY: -10,
     },
   ];
