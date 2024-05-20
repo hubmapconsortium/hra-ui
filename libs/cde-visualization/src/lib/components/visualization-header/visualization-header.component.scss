@@ -1,8 +1,8 @@
-@use '@angular/material' as mat;
-@use '../../../../../../apps/cde-ui/src/styles/palettes' as palettes;
 @use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
 
-$blue: mat.define-palette(palettes.$hra-blue4-palette, 500);
+$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
 $blue-theme: mat.define-light-theme(
   (
     color: (
@@ -30,7 +30,7 @@ $blue-theme: mat.define-light-theme(
   border-radius: 0.5rem;
   background-color: #fcfcfc;
   justify-content: space-between;
-  $button-text-color: map.get(palettes.$hra-blue1-palette, 500);
+  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
 
   & div:not(:first-child, :last-child) {
     margin: 1rem 0;

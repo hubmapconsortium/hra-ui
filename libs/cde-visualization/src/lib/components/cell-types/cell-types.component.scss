@@ -1,8 +1,8 @@
-@use '@angular/material' as mat;
-@use '../../../../../../apps/cde-ui/src/styles/palettes' as palettes;
 @use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
 
-$blue: mat.define-palette(palettes.$hra-blue4-palette, 500);
+$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
 $blue-theme: mat.define-light-theme(
   (
     color: (
@@ -33,7 +33,7 @@ $blue-theme: mat.define-light-theme(
   background-color: white;
   padding: 0.75rem;
   border-radius: 0.5rem;
-  $button-text-color: map.get(palettes.$hra-blue1-palette, 500);
+  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   --mat-table-background-color: white;
   --mdc-checkbox-unselected-icon-color: #201e3d;
   --mat-sort-arrow-color: #4b4b5e;
