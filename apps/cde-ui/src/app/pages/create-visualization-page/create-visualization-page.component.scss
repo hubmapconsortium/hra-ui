@@ -21,6 +21,10 @@ $higher-density-theme: mat.define-light-theme(
   display: block;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-size: 100% 100%;
+  --mdc-filled-text-field-hover-label-text-color: #464954;
+  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
+  --mat-standard-button-toggle-selected-state-text-color: white;
+  --mat-standard-button-toggle-divider-color: #4c4c58;
 
   .content {
     display: flex;
@@ -39,6 +43,8 @@ $higher-density-theme: mat.define-light-theme(
 
     .title {
       margin-top: 5rem;
+      line-height: 3.9375rem;
+      letter-spacing: -0.0325em;
     }
 
     .card {
@@ -62,6 +68,8 @@ $higher-density-theme: mat.define-light-theme(
         display: flex;
         align-items: center;
         margin-bottom: 3rem;
+        font-size: 2rem;
+        line-height: 3rem;
 
         .step-number {
           display: inline-block;
@@ -113,10 +121,12 @@ $higher-density-theme: mat.define-light-theme(
 
       .subheader-required-columns {
         grid-area: subheader-required-columns;
+        margin-bottom: 0.5rem;
       }
 
       .subheader-optional-columns {
         grid-area: subheader-optional-columns;
+        margin-bottom: 0.5rem;
       }
 
       .divider {
@@ -211,8 +221,18 @@ $higher-density-theme: mat.define-light-theme(
 
     .visualize {
       .visualize-button {
-        color: white;
-        background-color: rgba(224, 13, 58, 1);
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 500;
+        font-size: 1.125rem;
+        padding: 0.15625rem 1.5rem;
+        width: max-content;
+        line-height: 2.15625rem;
+
+        .mat-icon {
+          vertical-align: middle;
+          margin-left: 0.75rem;
+        }
       }
     }
   }

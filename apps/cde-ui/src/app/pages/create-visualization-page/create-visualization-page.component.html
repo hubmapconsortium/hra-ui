@@ -1,6 +1,6 @@
 <cde-header></cde-header>
 <form class="content" [formGroup]="visualizationForm" (ngSubmit)="onSubmit()">
-  <h1 class="title">Create a Cell Distance Visualization</h1>
+  <h2 class="title">Create a Cell Distance Visualization</h2>
 
   <div class="card data-upload">
     <h2 class="header">
@@ -155,7 +155,7 @@
       Visualize Cell Distance Data
       <span class="material-symbols-rounded info"> info </span>
     </h2>
-    <button type="submit" mat-flat-button class="cta-button visualize-button" data-testid="visualize">
+    <button type="submit" class="visualize-button cta-filled" data-testid="visualize">
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
