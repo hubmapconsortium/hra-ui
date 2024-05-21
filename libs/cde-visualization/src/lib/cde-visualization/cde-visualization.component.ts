@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, signal } from '@angular/core';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-import { CellType } from '../models/cell-type';
-import { Rgb } from '../models/color';
+import { CellTypeEntry } from '../models/cell-type';
 import {
+  ColorMapColorKey,
   ColorMapEntry,
-  ColorMapKey,
-  ColorMapValueKey,
+  ColorMapTypeKey,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
+  colorMapToLookup,
 } from '../models/color-map';
 import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
 import { Metadata } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry, NodeTargetKey } from '../models/node';
-import { DataService } from '../services/data/data.service';
+import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
+import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
+import { DataLoaderService } from '../services/data/data-loader.service';
 import { CsvFileLoaderService } from '../services/file-loader/csv-file-loader';
 import { JsonFileLoaderService } from '../services/file-loader/json-file-loader';
 import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
@@ -41,7 +42,7 @@ import { mergeObjects } from '../shared/merge';
 })
 export class CdeVisualizationComponent {
   readonly nodes = input<string | NodeEntry[]>();
-  readonly nodeTargetKey = input(DEFAULT_NODE_TARGET_KEY, { transform: brandAttribute<string, NodeTargetKey>() });
+  readonly nodeTargetKey = input(undefined, { transform: brandAttribute<string, NodeTargetKey>() });
   readonly nodeTargetValue = input<string>();
 
   readonly edges = model<string | EdgeEntry[]>();
@@ -50,9 +51,9 @@ export class CdeVisualizationComponent {
   });
 
   readonly colorMap = model<string | ColorMapEntry[]>();
-  readonly colorMapKey = input(DEFAULT_COLOR_MAP_KEY, { transform: brandAttribute<string, ColorMapKey>() });
+  readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
   readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
-    transform: brandAttribute<string, ColorMapValueKey>(),
+    transform: brandAttribute<string, ColorMapColorKey>(),
   });
 
   readonly metadata = input<string | Metadata>();
@@ -66,82 +67,33 @@ export class CdeVisualizationComponent {
   readonly thickness = input(undefined, { transform: numberAttribute() });
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
 
-  private readonly dataService = inject(DataService);
+  private readonly dataLoader = inject(DataLoaderService);
 
-  readonly loadedNodes = this.dataService.load(this.nodes, [], CsvFileLoaderService, {
+  readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
     papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
   });
-  readonly loadedEdges = this.dataService.load(this.edges, [], CsvFileLoaderService, {
+  readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
+  readonly selectedNodeTargetValue = computed(
+    () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
+  );
+
+  readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
     papaparse: { dynamicTyping: true },
   });
-  readonly loadedColorMap = this.dataService.load(this.colorMap, [], CsvFileLoaderService, {
+
+  readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
     papaparse: { header: true },
   });
-  readonly loadedMetadata = this.dataService.load(this.metadata, {}, JsonFileLoaderService, {});
+  readonly colorMapTypeKey = computed(
+    () => this.colorMapKey() ?? (this.nodeTargetKey() as unknown as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
+  );
+  private readonly colorMapLookup = computed(() =>
+    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
+  );
 
-  readonly selectedNodeTargetValue = computed(() => this.selectNodeTargetValue());
-  readonly normalizedColorMap = computed(() => this.normalizeColorMap());
-  readonly cellTypes = computed(() => this.createCellTypes());
-  readonly mergedMetadata = computed(() => this.mergeMetadata());
-
-  private selectNodeTargetValue(): string {
-    const value = this.nodeTargetValue();
-    const defaultValue = DEFAULT_NODE_TARGET_VALUE;
-    if (value) {
-      return value;
-    }
-
-    const nodes = this.loadedNodes();
-    if (nodes.length === 0) {
-      return defaultValue;
-    }
-
-    const key = this.nodeTargetKey();
-    const hasDefault = nodes.some((node) => node[key] === defaultValue);
-    return hasDefault ? defaultValue : nodes[0][key];
-  }
-
-  private normalizeColorMap(): ColorMapEntry[] {
-    const entries = this.loadedColorMap();
-    const key = this.colorMapValueKey();
-    if (entries.length === 0 || typeof entries[0][key] !== 'string') {
-      return entries;
-    }
-
-    return entries.map((entry) => ({ ...entry, [key]: JSON.parse(`${entry[key]}`) }));
-  }
-
-  private getColorLookup(): (name: string) => Rgb {
-    const colorMap = this.normalizedColorMap();
-    const key = this.colorMapKey();
-    const valueKey = this.colorMapValueKey();
-    const colorByName: Record<string, Rgb> = {};
-    const colorGenerator = createColorGenerator();
-
-    for (const entry of colorMap) {
-      colorByName[entry[key]] = entry[valueKey];
-    }
-
-    return (name) => colorByName[name] ?? colorGenerator();
-  }
-
-  private createCellTypes(): CellType[] {
-    const nodes = this.loadedNodes();
-    const key = this.nodeTargetKey();
-    const getColor = this.getColorLookup();
-    const cellTypeByName: Record<string, CellType> = {};
-
-    for (const node of nodes) {
-      const name = node[key];
-      cellTypeByName[name] ??= { name, count: 0, color: getColor(name) };
-      cellTypeByName[name].count += 1;
-    }
-
-    return Object.values(cellTypeByName);
-  }
-
-  private mergeMetadata(): Metadata {
-    return mergeObjects(this.loadedMetadata(), {
+  readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
+  readonly mergedMetadata = computed(() =>
+    mergeObjects(this.loadedMetadata(), {
       title: this.title(),
       technology: this.technology(),
       organ: this.organ(),
@@ -151,6 +103,30 @@ export class CdeVisualizationComponent {
       creationTime: this.creationTime(),
       thickness: this.thickness(),
       pixelSize: this.pixelSize(),
-    });
-  }
+    }),
+  );
+
+  readonly cellTypes = signal<CellTypeEntry[]>([]);
+  readonly cellTypesCreateRef = effect(
+    () => {
+      const nodes = this.loadedNodes();
+      const targetKey = this.nodeTypeKey();
+      const colorLookup = this.colorMapLookup();
+      const defaultColorGenerator = createColorGenerator();
+      const cellTypeByName: Record<string, CellTypeEntry> = {};
+
+      for (const node of nodes) {
+        const name = node[targetKey];
+        cellTypeByName[name] ??= {
+          name,
+          count: 0,
+          color: colorLookup.get(name) ?? defaultColorGenerator(),
+        };
+        cellTypeByName[name].count += 1;
+      }
+
+      this.cellTypes.set(Object.values(cellTypeByName));
+    },
+    { allowSignalWrites: true },
+  );
 }

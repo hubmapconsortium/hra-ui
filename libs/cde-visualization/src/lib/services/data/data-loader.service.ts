@@ -7,7 +7,7 @@ import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-load
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class DataLoaderService {
   private readonly location = inject(Location);
 
   load<T, const LoaderT extends Type<FileLoader<T, unknown>>>(

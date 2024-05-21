@@ -1,7 +1,8 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, effect, input, model, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, model, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,8 +10,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { map } from 'rxjs';
+import { CellTypeEntry } from '../../models/cell-type';
+import { Rgb } from '../../models/color';
+import { TOOLTIP_POSITION_HORIZONTAL } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { CellType } from '../../models/cell-type';
 
 /**
  * Cell Type Component
@@ -34,76 +38,64 @@ import { CellType } from '../../models/cell-type';
   styleUrl: './cell-types.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellTypesComponent implements AfterViewInit {
-  /** Data for Cell Types table */
-  data = model.required<CellType[]>();
-  /** Name of the anchor cell type */
-  anchor = input<string>();
-  /** Columns to be displayed */
-  displayedColumns: string[] = ['select', 'name', 'count'];
-  /** Datasource to store table data */
-  dataSource = new MatTableDataSource<CellType>();
-  /** Selection to select cell type rows */
-  selection = new SelectionModel<CellType>(true, []);
-  /** Total number of cell type rows */
-  totalCellTypes = this.dataSource.data.length;
-  /** Flag to check if info tooltip is open */
+export class CellTypesComponent {
+  readonly cellTypes = model.required<CellTypeEntry[]>();
+
+  readonly selectedCellType = input<string>('');
+
+  readonly sort = viewChild.required(MatSort);
+
+  readonly cellTypeCount = computed(() => this.cellTypes().length);
+
+  readonly cellCount = computed(() => this.cellTypes().reduce((count, entry) => count + entry.count, 0));
+
+  readonly displayedColumns = ['select', 'name', 'count'];
+
+  readonly dataSource = new MatTableDataSource<CellTypeEntry>();
+
+  readonly selectionModel = new SelectionModel<CellTypeEntry>(true, []);
+
+  readonly selected = toSignal(this.selectionModel.changed.pipe(map(() => this.selectionModel.selected)), {
+    initialValue: [],
+  });
+
+  readonly isAllSelected = computed(() => this.cellTypeCount() > 0 && this.selected().length === this.cellTypeCount());
+
+  readonly isSomeSelected = computed(() => this.selected().length > 0 && !this.isAllSelected());
+
+  readonly headerCheckboxLabel = computed(() => `${this.isAllSelected() ? 'deselect' : 'select'} all`);
+
+  readonly tooltipPosition = TOOLTIP_POSITION_HORIZONTAL;
+
   cellTypesInfoOpen = false;
-  /** Tooltip overlay position */
-  overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-    },
-  ];
 
-  /** Sorts the Cell Types table */
-  sort = viewChild.required(MatSort);
-
-  /** Sets input to the table datasource */
   constructor() {
-    effect(
-      () => {
-        this.dataSource.data = this.data();
-        this.totalCellTypes = this.dataSource.data.length;
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => (this.dataSource.data = this.cellTypes()));
+    effect(() => (this.dataSource.sort = this.sort()));
   }
 
-  /** Sorts the table data after component loads */
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort();
+  trackByName(_index: number, item: CellTypeEntry): string {
+    return item.name;
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    return numSelected === this.dataSource.data.length;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
+      this.selectionModel.clear();
+    } else {
+      this.selectionModel.select(...this.dataSource.data);
     }
-    this.selection.select(...this.dataSource.data);
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: CellType, index?: number): string {
-    if (!row || index === undefined) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${index + 1}`;
+  checkboxLabel(row: CellTypeEntry, index: number): string {
+    return `${this.selectionModel.isSelected(row) ? 'deselect' : 'select'} row ${index + 1}`;
   }
 
-  /** Calculates the total number of cells in the table */
-  totalCells() {
-    const sum = this.dataSource.data.reduce((acc, entry) => acc + entry.count, 0);
-    return sum.toLocaleString();
+  updateColor(row: CellTypeEntry, color: Rgb): void {
+    const entries = this.cellTypes();
+    const index = entries.indexOf(row);
+    const copy = [...entries];
+
+    copy[index] = { ...copy[index], color };
+    this.cellTypes.set(copy);
   }
 }

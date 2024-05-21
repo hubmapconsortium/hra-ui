@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { ChangeDetectionStrategy, Component, effect, input, model, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, hexToRgb, rgbToHex } from '../../models/color';
+import { TOOLTIP_POSITION_HORIZONTAL } from '../../shared/tooltip-position';
 
 @Component({
   selector: 'cde-color-picker-label',
@@ -18,21 +19,17 @@ export class ColorPickerLabelComponent {
   readonly label = input.required<string>();
   readonly isAnchor = input<boolean>(false);
 
-  readonly hexColor = computed(() => rgbToHex(this.color()));
+  readonly hexColor = signal('#000000');
+
+  readonly tooltipPosition = TOOLTIP_POSITION_HORIZONTAL;
 
   tooltipOpen = false;
-  readonly overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-      offsetX: 70,
-      offsetY: -10,
-    },
-  ];
 
-  updateColor(hex: string): void {
+  constructor() {
+    effect(() => this.hexColor.set(rgbToHex(this.color())), { allowSignalWrites: true });
+  }
+
+  selectColor(hex: string): void {
     this.color.set(hexToRgb(hex));
   }
 }

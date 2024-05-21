@@ -3,14 +3,14 @@
 </div>
 <div class="metadata">
   <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
-  <cde-cell-types [data]="cellTypes()"></cde-cell-types>
+  <cde-cell-types [(cellTypes)]="cellTypes" [selectedCellType]="selectedNodeTargetValue()"></cde-cell-types>
 </div>
 <div class="visualizations">
   <cde-node-dist-visualization
     [nodes]="loadedNodes()"
-    [edges]="[]"
+    [edges]="loadedEdges()"
     [anchor]="selectedNodeTargetValue()"
-    [colorMap]="normalizedColorMap()"
+    [colorMap]="loadedColorMap()"
   ></cde-node-dist-visualization>
-  <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTargetKey()" [edges]="loadedEdges()"></cde-histogram>
+  <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTypeKey()" [edges]="loadedEdges()"></cde-histogram>
 </div>
