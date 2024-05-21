@@ -97,7 +97,6 @@ $higher-density-theme: mat.define-light-theme(
 
     .data-upload {
       display: grid;
-      display: grid;
       grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
       grid-template-rows: auto;
       grid-template-areas:
@@ -133,6 +132,11 @@ $higher-density-theme: mat.define-light-theme(
         grid-area: divider;
         place-self: center;
         height: 100%;
+        width: 100%;
+      }
+
+      .vertical {
+        display: none;
       }
 
       .required-columns {
@@ -232,6 +236,59 @@ $higher-density-theme: mat.define-light-theme(
         .mat-icon {
           vertical-align: middle;
           margin-left: 0.75rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .content {
+      max-width: 58rem;
+
+      .data-upload {
+        grid-template-columns: 1.25fr 1.25fr 0.75fr 0.75fr;
+        grid-template-areas:
+          'header header header header'
+          'subheader-1 subheader-1 subheader-1 subheader-1'
+          'subheader-required-columns subheader-optional-columns . .'
+          'required-columns optional-columns . .'
+          'upload-csv upload-csv upload-csv upload-csv'
+          'divider divider divider divider'
+          'subheader-2 subheader-2 subheader-2 subheader-2'
+          'use-template use-template use-template use-template';
+
+        .subheader-1 {
+          margin-bottom: 1.5rem;
+        }
+
+        .upload-csv {
+          margin-top: 1.5rem;
+        }
+
+        .horizontal {
+          margin: 2.5rem 0;
+          height: 0;
+        }
+      }
+      .metadata {
+        .metadata-options {
+          .metadata-option:nth-child(n + 3):nth-child(-n + 7) {
+            width: calc(50% - 4rem);
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1441px) {
+    .content {
+      .data-upload {
+        .vertical {
+          display: block;
+        }
+
+        .horizontal {
+          display: none;
         }
       }
     }
