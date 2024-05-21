@@ -8,11 +8,11 @@
 
         <div class="filler"></div>
 
-        <button mat-flat-button color="accent" class="mat-caption download" (click)="download('svg')">
+        <button mat-flat-button color="accent" class="mat-caption download" (click)="download($event, 'svg')">
           <mat-icon class="material-symbols-rounded">download</mat-icon>
           SVG
         </button>
-        <button mat-flat-button color="accent" class="mat-caption download" (click)="download('png')">
+        <button mat-flat-button color="accent" class="mat-caption download" (click)="download($event, 'png')">
           <mat-icon class="material-symbols-rounded">download</mat-icon>
           PNG
         </button>

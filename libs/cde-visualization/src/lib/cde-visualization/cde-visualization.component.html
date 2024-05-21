@@ -12,5 +12,10 @@
     [anchor]="selectedNodeTargetValue()"
     [colorMap]="normalizedColorMap()"
   ></cde-node-dist-visualization>
-  <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTargetKey()" [edges]="loadedEdges()"></cde-histogram>
+  <cde-histogram
+    [nodes]="loadedNodes()"
+    [nodeTargetKey]="nodeTargetKey()"
+    [edges]="loadedEdges()"
+    [cellTypes]="cellTypes()"
+  ></cde-histogram>
 </div>
