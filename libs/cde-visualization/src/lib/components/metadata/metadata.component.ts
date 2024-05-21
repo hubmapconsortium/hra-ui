@@ -1,36 +1,28 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { MatIconModule } from '@angular/material/icon';
+import { Metadata } from '../../models/metadata';
+import { TOOLTIP_POSITION_HORIZONTAL } from '../../shared/tooltip-position';
 
-/**
- * Interface for metadata
- */
-export interface Metadata {
-  /** Title of the visualization */
-  title: string;
-  /** Name of the source file */
-  sourceData: string;
-  /** Name of the colormap file */
-  colorMap: string;
-  /** Name of the organ */
-  organ: string;
-  /** Technology */
-  technology: string;
-  /** Sex */
-  sex: string;
-  /** Age */
-  age: number | string;
-  /** Thickness */
-  thickness: number | string;
-  /** Pixel size */
-  pixelSize: number | string;
-  /** Creation date */
-  creationDate: string;
-  /** Creation time */
-  creationTime: string;
+/** Simple pipe that returns 'N/A' when the passed value is undefined */
+@Pipe({
+  name: 'orNA',
+  standalone: true,
+  pure: true,
+})
+export class NotAvailablePipe implements PipeTransform {
+  /**
+   * Replaces undefined values with the string 'N/A'
+   *
+   * @param value Original value
+   * @returns The original value unchanged or 'N/A' if it was undefined
+   */
+  transform(value: unknown): unknown {
+    return value !== undefined ? value : 'N/A';
+  }
 }
 
 /**
@@ -39,25 +31,16 @@ export interface Metadata {
 @Component({
   selector: 'cde-metadata',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule, NotAvailablePipe],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataComponent {
-  /** Flag to check if panel is open */
-  panelOpen = true;
-  /** Input for metadata */
-  data = input.required<Metadata>();
+  readonly metadata = input.required<Metadata>();
+
+  readonly tooltipPosition = TOOLTIP_POSITION_HORIZONTAL;
+
   /** Flag to check if info tooltip is open */
-  metadataInfoOpen = false;
-  /** Tooltip overlay position */
-  overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-    },
-  ];
+  tooltipOpen = false;
 }

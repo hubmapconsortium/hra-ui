@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Renderer2,
   computed,
   effect,
   inject,
@@ -21,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-import { EdgeEntry, NodeEntry } from '../../models/data';
+import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
+import { NodeEntry, NodeTargetKey } from '../../models/node';
 import histogramSpec from './histogram.vl.json';
 
 interface DistanceEntry {
@@ -33,11 +33,6 @@ interface DistanceEntry {
 
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 const ALL_CELLS_TYPE = 'All Cells';
-
-function getEdgeDistance(edge: EdgeEntry): number {
-  const { x0, x1, y0, y1, z0, z1 } = edge;
-  return Math.hypot(x0 - x1, y0 - y1, z0 - z1);
-}
 
 @Component({
   selector: 'cde-histogram',
@@ -59,11 +54,11 @@ function getEdgeDistance(edge: EdgeEntry): number {
 })
 export class HistogramComponent {
   readonly nodes = input.required<NodeEntry[]>();
+  readonly nodeTargetKey = input.required<NodeTargetKey>();
   readonly edges = input.required<EdgeEntry[]>();
   readonly anchor = input<string>();
 
   private readonly document = inject(DOCUMENT);
-  private readonly renderer = inject(Renderer2);
   private readonly histogramEl = viewChild<ElementRef>('histogram');
   private readonly view = signal<View | undefined>(undefined);
 
@@ -116,17 +111,18 @@ export class HistogramComponent {
       return [];
     }
 
+    const nodeTargetKey = this.nodeTargetKey();
     const anchor = this.anchor();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
-      const sourceNode = nodes[edge.sourceNodeIndex];
-      const type = sourceNode.cell_type;
+      const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
+      const type = sourceNode[nodeTargetKey];
       if (type !== anchor) {
         distances.push({
           type,
           sourceNode,
           edge,
-          distance: getEdgeDistance(edge),
+          distance: edgeDistance(edge),
         });
       }
     }

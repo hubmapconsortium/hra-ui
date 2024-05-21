@@ -2,15 +2,15 @@
   <cde-visualization-header></cde-visualization-header>
 </div>
 <div class="metadata">
-  <cde-metadata [data]="resolvedMetadata()"></cde-metadata>
-  <cde-cell-types [data]="cellTypeOptions()"></cde-cell-types>
+  <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
+  <cde-cell-types [data]="cellTypes()"></cde-cell-types>
 </div>
 <div class="visualizations">
   <cde-node-dist-visualization
-    [nodes]="resolvedNodes()"
+    [nodes]="loadedNodes()"
     [edges]="[]"
-    [anchor]="resolvedCellTypeAnchor()"
-    [colorMap]="resolvedColorMap()"
+    [anchor]="selectedNodeTargetValue()"
+    [colorMap]="normalizedColorMap()"
   ></cde-node-dist-visualization>
-  <cde-histogram [nodes]="resolvedNodes()" [edges]="resolvedEdges2()"></cde-histogram>
+  <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTargetKey()" [edges]="loadedEdges()"></cde-histogram>
 </div>

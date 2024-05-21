@@ -1,50 +1,28 @@
-import { CommonModule, Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, Signal, computed, inject, input, numberAttribute } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { ParseRemoteConfig, parse } from 'papaparse';
-import { Observable, map, of, switchAll } from 'rxjs';
-import { CellTypeOption, CellTypesComponent } from '../components/cell-types/cell-types.component';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model } from '@angular/core';
+import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
-import { Metadata, MetadataComponent } from '../components/metadata/metadata.component';
+import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
-import { EdgeEntry, NodeEntry } from '../models/data';
-
-export interface Node {
-  x: number;
-  y: number;
-  z?: number;
-  cell_type: string;
-  cell_ontology_id?: string;
-}
-
-export interface RawColorMapItem {
-  cell_type: string;
-  cell_color: string | [number, number, number];
-}
-
-export interface ColorMapItem {
-  cell_type: string;
-  cell_color: [number, number, number];
-}
-
-const DEFAULT_CELL_TYPE_ANCHOR = 'Endothelial';
-const DEFAULT_CELL_TYPE_COLOR = '#5D667F';
-
-const EMPTY_METADATA: Metadata = {
-  title: 'N/A',
-  sourceData: 'N/A',
-  colorMap: 'N/A',
-  organ: 'N/A',
-  technology: 'N/A',
-  sex: 'N/A',
-  age: 'N/A',
-  thickness: 'N/A',
-  pixelSize: 'N/A',
-  creationDate: 'N/A',
-  creationTime: 'N/A',
-};
+import { CellType } from '../models/cell-type';
+import { Rgb } from '../models/color';
+import {
+  ColorMapEntry,
+  ColorMapKey,
+  ColorMapValueKey,
+  DEFAULT_COLOR_MAP_KEY,
+  DEFAULT_COLOR_MAP_VALUE_KEY,
+} from '../models/color-map';
+import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
+import { Metadata } from '../models/metadata';
+import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry, NodeTargetKey } from '../models/node';
+import { DataService } from '../services/data/data.service';
+import { CsvFileLoaderService } from '../services/file-loader/csv-file-loader';
+import { JsonFileLoaderService } from '../services/file-loader/json-file-loader';
+import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
+import { createColorGenerator } from '../shared/color-generator';
+import { mergeObjects } from '../shared/merge';
 
 @Component({
   selector: 'cde-visualization-root',
@@ -62,223 +40,117 @@ const EMPTY_METADATA: Metadata = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CdeVisualizationComponent {
-  readonly nodes = input<string | Node[]>();
-  readonly edges = input<string | EdgeEntry[]>();
-  readonly nodeTargetKey = input<string>('Cell Type');
-  readonly colorMapKey = input<string>('cell_type');
-  readonly colorMapValueKey = input<string>('cell_color');
-  readonly maxEdgeDistance = input<number, number | string | undefined>(1000, { transform: numberAttribute });
-  visInfoOpen = false;
-
+  readonly nodes = input<string | NodeEntry[]>();
+  readonly nodeTargetKey = input(DEFAULT_NODE_TARGET_KEY, { transform: brandAttribute<string, NodeTargetKey>() });
   readonly nodeTargetValue = input<string>();
 
-  readonly colorMap = input<string | RawColorMapItem[]>();
+  readonly edges = model<string | EdgeEntry[]>();
+  readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, {
+    transform: numberAttribute(DEFAULT_MAX_EDGE_DISTANCE),
+  });
 
-  readonly metadata = input<string | Partial<Metadata>>();
+  readonly colorMap = model<string | ColorMapEntry[]>();
+  readonly colorMapKey = input(DEFAULT_COLOR_MAP_KEY, { transform: brandAttribute<string, ColorMapKey>() });
+  readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
+    transform: brandAttribute<string, ColorMapValueKey>(),
+  });
 
+  readonly metadata = input<string | Metadata>();
   readonly title = input<string>();
-
   readonly technology = input<string>();
-
   readonly organ = input<string>();
-
   readonly sex = input<string>();
-
+  readonly age = input(undefined, { transform: numberAttribute() });
   readonly creationDate = input<string>();
-
   readonly creationTime = input<string>();
+  readonly thickness = input(undefined, { transform: numberAttribute() });
+  readonly pixelSize = input(undefined, { transform: numberAttribute() });
 
-  readonly age = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
+  private readonly dataService = inject(DataService);
 
-  readonly thickness = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
-
-  readonly pixelSize = input<number, number | string | undefined>(NaN, { transform: numberAttribute });
-
-  readonly resolvedNodes = this.resolveData(this.nodes, [], (url) => this.loadCsvFile(url));
-
-  readonly resolvedEdges = this.resolveData(this.edges, [], (url) => this.loadCsvFile(url, { header: false }));
-
-  readonly resolvedEdges2 = computed(() => {
-    const data = this.resolvedEdges() as unknown as number[][];
-    return data.map(
-      (item): EdgeEntry => ({
-        sourceNodeIndex: item[0],
-        x0: item[1],
-        x1: item[4],
-        y0: item[2],
-        y1: item[5],
-        z0: item[3],
-        z1: item[6],
-      }),
-    );
+  readonly loadedNodes = this.dataService.load(this.nodes, [], CsvFileLoaderService, {
+    papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
   });
-
-  readonly resolvedColorMap = this.resolveData(
-    this.colorMap,
-    [],
-    (url) => this.loadCsvFile(url),
-    this.normalizeColorMap,
-  );
-
-  readonly resolvedMetadataWithoutOverrides = this.resolveData(this.metadata, {}, (url) => this.loadJsonFile(url));
-
-  readonly resolvedMetadata = computed(() => {
-    const metadata = {
-      ...EMPTY_METADATA,
-      ...this.resolvedMetadataWithoutOverrides(),
-    };
-
-    this.applyOverride(metadata, 'title', this.title());
-    this.applyOverride(metadata, 'technology', this.technology());
-    this.applyOverride(metadata, 'organ', this.organ());
-    this.applyOverride(metadata, 'sex', this.sex());
-    this.applyOverride(metadata, 'age', this.age());
-    this.applyOverride(metadata, 'thickness', this.thickness());
-    this.applyOverride(metadata, 'pixelSize', this.pixelSize());
-    this.applyOverride(metadata, 'creationDate', this.creationDate());
-    this.applyOverride(metadata, 'creationTime', this.creationTime());
-
-    return metadata;
+  readonly loadedEdges = this.dataService.load(this.edges, [], CsvFileLoaderService, {
+    papaparse: { dynamicTyping: true },
   });
+  readonly loadedColorMap = this.dataService.load(this.colorMap, [], CsvFileLoaderService, {
+    papaparse: { header: true },
+  });
+  readonly loadedMetadata = this.dataService.load(this.metadata, {}, JsonFileLoaderService, {});
 
-  readonly resolvedCellTypeAnchor = computed(() => {
-    const anchor = this.nodeTargetValue();
-    if (anchor !== undefined) {
-      return anchor;
+  readonly selectedNodeTargetValue = computed(() => this.selectNodeTargetValue());
+  readonly normalizedColorMap = computed(() => this.normalizeColorMap());
+  readonly cellTypes = computed(() => this.createCellTypes());
+  readonly mergedMetadata = computed(() => this.mergeMetadata());
+
+  private selectNodeTargetValue(): string {
+    const value = this.nodeTargetValue();
+    const defaultValue = DEFAULT_NODE_TARGET_VALUE;
+    if (value) {
+      return value;
     }
 
-    const nodes = this.resolvedNodes();
-    if (nodes.length === 0 || this.hasDefaultCellType(nodes)) {
-      return DEFAULT_CELL_TYPE_ANCHOR;
+    const nodes = this.loadedNodes();
+    if (nodes.length === 0) {
+      return defaultValue;
     }
 
-    return nodes[0].cell_type;
-  });
-
-  /** Data for the Cell Type component */
-  readonly cellTypeOptions = computed(() => {
-    const options: Record<string, CellTypeOption> = {};
-    for (const { cell_type } of this.resolvedNodes()) {
-      options[cell_type] ??= { name: cell_type, count: 0, color: DEFAULT_CELL_TYPE_COLOR };
-      options[cell_type].count += 1;
-    }
-
-    return Object.values(options);
-  });
-
-  private readonly location = inject(Location);
-  private readonly http = inject(HttpClient);
-
-  private resolveData<T>(
-    source: Signal<string | T | undefined>,
-    defaultValue: T,
-    loadFile: (url: string) => Observable<T>,
-  ): Signal<T>;
-  private resolveData<T, R>(
-    source: Signal<string | T | undefined>,
-    defaultValue: T,
-    loadFile: (url: string) => Observable<T>,
-    processData: (data: T) => R,
-  ): Signal<R>;
-  private resolveData(
-    source: Signal<unknown>,
-    defaultValue: unknown,
-    loadFile: (url: string) => Observable<unknown>,
-    processData = (data: unknown) => data,
-  ): Signal<unknown> {
-    const sourceInput$ = toObservable(source);
-    const loadData = (value: unknown) => {
-      if (typeof value === 'string') {
-        return loadFile(value);
-      }
-
-      return of(value ?? defaultValue);
-    };
-
-    const data$ = sourceInput$.pipe(map(loadData), switchAll(), map(processData));
-    return toSignal(data$, { initialValue: defaultValue, rejectErrors: true });
+    const key = this.nodeTargetKey();
+    const hasDefault = nodes.some((node) => node[key] === defaultValue);
+    return hasDefault ? defaultValue : nodes[0][key];
   }
 
-  private loadCsvFile<T>(url: string, config?: Partial<ParseRemoteConfig>): Observable<T[]> {
-    if (!url.startsWith('http')) {
-      url = this.location.prepareExternalUrl(url);
+  private normalizeColorMap(): ColorMapEntry[] {
+    const entries = this.loadedColorMap();
+    const key = this.colorMapValueKey();
+    if (entries.length === 0 || typeof entries[0][key] !== 'string') {
+      return entries;
     }
 
-    return new Observable((subscriber) => {
-      const chunks: T[][] = [];
+    return entries.map((entry) => ({ ...entry, [key]: JSON.parse(`${entry[key]}`) }));
+  }
 
-      parse<T>(url, {
-        header: true,
-        dynamicTyping: true,
-        skipEmptyLines: 'greedy',
-        ...config,
-        worker: true,
-        download: true,
-        chunk: (results, parser) => {
-          if (subscriber.closed) {
-            parser.abort();
-          } else if (results.errors.length > 0) {
-            subscriber.error(results.errors);
-          } else {
-            chunks.push(this.normalizeProperties(results.data));
-          }
-        },
-        complete: () => {
-          if (!subscriber.closed) {
-            subscriber.next(chunks.flat(1));
-            subscriber.complete();
-          }
-        },
-        error: (error) => {
-          if (!subscriber.closed) {
-            subscriber.error(error);
-          }
-        },
-      });
+  private getColorLookup(): (name: string) => Rgb {
+    const colorMap = this.normalizedColorMap();
+    const key = this.colorMapKey();
+    const valueKey = this.colorMapValueKey();
+    const colorByName: Record<string, Rgb> = {};
+    const colorGenerator = createColorGenerator();
+
+    for (const entry of colorMap) {
+      colorByName[entry[key]] = entry[valueKey];
+    }
+
+    return (name) => colorByName[name] ?? colorGenerator();
+  }
+
+  private createCellTypes(): CellType[] {
+    const nodes = this.loadedNodes();
+    const key = this.nodeTargetKey();
+    const getColor = this.getColorLookup();
+    const cellTypeByName: Record<string, CellType> = {};
+
+    for (const node of nodes) {
+      const name = node[key];
+      cellTypeByName[name] ??= { name, count: 0, color: getColor(name) };
+      cellTypeByName[name].count += 1;
+    }
+
+    return Object.values(cellTypeByName);
+  }
+
+  private mergeMetadata(): Metadata {
+    return mergeObjects(this.loadedMetadata(), {
+      title: this.title(),
+      technology: this.technology(),
+      organ: this.organ(),
+      sex: this.sex(),
+      age: this.age(),
+      creationDate: this.creationDate(),
+      creationTime: this.creationTime(),
+      thickness: this.thickness(),
+      pixelSize: this.pixelSize(),
     });
-  }
-
-  private loadJsonFile<T>(url: string): Observable<T> {
-    if (!url.startsWith('http')) {
-      url = this.location.prepareExternalUrl(url);
-    }
-
-    return this.http.get<T>(url, { responseType: 'json' });
-  }
-
-  private normalizeProperties<T>(data: T[]): T[] {
-    const normalizedProps: [string, string][] = [];
-    for (const key in data[0]) {
-      const newKey = key.replace(' ', '_').toLowerCase();
-      if (key !== newKey) {
-        normalizedProps.push([key, newKey]);
-      }
-    }
-
-    for (const item of data) {
-      for (const [key, newKey] of normalizedProps) {
-        (item as Record<string, unknown>)[newKey] = (item as Record<string, unknown>)[key];
-      }
-    }
-
-    return data;
-  }
-
-  private applyOverride<T, K extends keyof T>(object: T, key: K, override: T[K] | undefined): void {
-    if (override !== undefined && !Number.isNaN(override)) {
-      object[key] = override;
-    }
-  }
-
-  private hasDefaultCellType(nodes: NodeEntry[]): boolean {
-    return nodes.some(({ cell_type }) => cell_type === DEFAULT_CELL_TYPE_ANCHOR);
-  }
-
-  private normalizeColorMap(data: RawColorMapItem[]): ColorMapItem[] {
-    const normalizeColor = (value: RawColorMapItem['cell_color']): ColorMapItem['cell_color'] => {
-      return typeof value === 'string' ? JSON.parse(value) : value;
-    };
-
-    return data.map((item) => ({ ...item, cell_color: normalizeColor(item.cell_color) }));
   }
 }

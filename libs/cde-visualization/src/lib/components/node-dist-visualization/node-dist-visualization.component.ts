@@ -1,21 +1,22 @@
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Signal,
   effect,
   input,
   model,
   viewChild,
-  Signal,
 } from '@angular/core';
-import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
-import { type ColorMapItem } from '../../cde-visualization/cde-visualization.component';
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { EdgeEntry, NodeEntry } from '../../models/data';
+import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
+import { ColorMapEntry } from '../../models/color-map';
+import { EdgeEntry } from '../../models/edge';
+import { NodeEntry } from '../../models/node';
 
 interface PreactSignal<T> {
   value: T;
@@ -30,7 +31,7 @@ interface NodeDistVisElementProps {
   nodeTargetKey: PreactSignal<string>;
   nodeTargetValue: PreactSignal<string>;
   maxEdgeDistance: PreactSignal<number>;
-  colorMapData: PreactSignal<unknown>;
+  colorMapData: PreactSignal<ColorMapEntry[]>;
 }
 
 interface NodeDistVisElement extends HTMLElement, NodeDistVisElementProps {}
@@ -48,7 +49,7 @@ export class NodeDistVisualizationComponent {
   readonly nodes = input.required<NodeEntry[]>();
   readonly edges = model.required<string | EdgeEntry[]>();
   readonly anchor = input.required<string>();
-  readonly colorMap = input.required<ColorMapItem[]>();
+  readonly colorMap = input.required<ColorMapEntry[]>();
 
   private readonly vis = viewChild<ElementRef<NodeDistVisElement>>('vis');
   visInfoOpen = false;

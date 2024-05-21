@@ -10,16 +10,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-
-/** Interface for Cell Type Option */
-export interface CellTypeOption {
-  /** Name of the cell */
-  name: string;
-  /** Count of the cell */
-  count: number;
-  /** Color of the cell */
-  color?: string;
-}
+import { CellType } from '../../models/cell-type';
 
 /**
  * Cell Type Component
@@ -45,15 +36,15 @@ export interface CellTypeOption {
 })
 export class CellTypesComponent implements AfterViewInit {
   /** Data for Cell Types table */
-  data = model.required<CellTypeOption[]>();
+  data = model.required<CellType[]>();
   /** Name of the anchor cell type */
   anchor = input<string>();
   /** Columns to be displayed */
   displayedColumns: string[] = ['select', 'name', 'count'];
   /** Datasource to store table data */
-  dataSource = new MatTableDataSource<CellTypeOption>();
+  dataSource = new MatTableDataSource<CellType>();
   /** Selection to select cell type rows */
-  selection = new SelectionModel<CellTypeOption>(true, []);
+  selection = new SelectionModel<CellType>(true, []);
   /** Total number of cell type rows */
   totalCellTypes = this.dataSource.data.length;
   /** Flag to check if info tooltip is open */
@@ -103,7 +94,7 @@ export class CellTypesComponent implements AfterViewInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: CellTypeOption, index?: number): string {
+  checkboxLabel(row?: CellType, index?: number): string {
     if (!row || index === undefined) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
