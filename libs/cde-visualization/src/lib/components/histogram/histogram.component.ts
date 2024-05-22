@@ -7,6 +7,7 @@ import {
   ElementRef,
   inject,
   input,
+  model,
   Renderer2,
   signal,
   viewChild,
@@ -24,7 +25,7 @@ import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 import { CellType, cellTypeToLookup } from '../../models/cell-type';
-import { rgbToHex } from '../../models/color';
+import { Rgb, rgbToHex } from '../../models/color';
 import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
@@ -101,7 +102,7 @@ export class HistogramComponent {
   readonly nodeTargetKey = input.required<NodeTargetKey>();
   readonly edges = input.required<EdgeEntry[]>();
   readonly anchor = input<string>(DEFAULT_ANCHOR);
-  readonly cellTypes = input.required<CellType[]>();
+  readonly cellTypes = model.required<CellType[]>();
 
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);
@@ -149,6 +150,17 @@ export class HistogramComponent {
     renderer.removeChild(body, link);
 
     finalize();
+  }
+
+  updateColor(event: { type: string; color: Rgb }): void {
+    const entries = this.cellTypes();
+    const copy = [...entries];
+    const entry = copy.find((entry) => entry.name === event.type);
+    if (entry) {
+      const index = entries.indexOf(entry);
+      copy[index] = { ...copy[index], color: event.color.slice(0, 3) as Rgb };
+      this.cellTypes.set(copy);
+    }
   }
 
   private initializeHistogram(): void {
@@ -205,9 +217,9 @@ export class HistogramComponent {
   }
 
   private computeData(): DistanceEntry[] {
+    const allColor = rgbToHex(this.cellTypes()[0].color);
     const distances = this.distances();
-    // TODO add color to each item from the color map
-    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: '#000000' }));
+    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: allColor }));
     return distances.concat(allCellDistances);
   }
 }

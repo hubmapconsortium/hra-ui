@@ -1,6 +1,6 @@
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, computed, input, model } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, hexToRgb, rgbToHex } from '../../models/color';
@@ -38,7 +38,10 @@ export class ColorPickerLabelComponent {
     },
   ];
 
+  @Output() colorChanged = new EventEmitter<{ type: string; color: Rgb }>();
+
   updateColor(hex: string): void {
     this.color.set(hexToRgb(hex));
+    this.colorChanged.emit({ type: this.label(), color: this.color() });
   }
 }

@@ -82,6 +82,7 @@ export class CdeVisualizationComponent {
   readonly selectedNodeTargetValue = computed(() => this.selectNodeTargetValue());
   readonly normalizedColorMap = computed(() => this.normalizeColorMap());
   readonly cellTypes = computed(() => this.createCellTypes());
+  readonly cellTypesAll = computed(() => this.createCellTypesWithAll());
   readonly mergedMetadata = computed(() => this.mergeMetadata());
 
   private selectNodeTargetValue(): string {
@@ -152,5 +153,10 @@ export class CdeVisualizationComponent {
       thickness: this.thickness(),
       pixelSize: this.pixelSize(),
     });
+  }
+
+  private createCellTypesWithAll(): CellType[] {
+    const sumAll = this.createCellTypes().reduce((sum, { count }) => sum + count, 0);
+    return [{ name: 'All Cells', count: sumAll, color: [0, 0, 0] } as CellType].concat(this.createCellTypes());
   }
 }
