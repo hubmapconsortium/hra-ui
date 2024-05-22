@@ -22,6 +22,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/hra-ui/apps/hra-dashboard/",
           "budgets": [
             {
               "type": "initial",
@@ -40,6 +41,17 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/apps/dashboard-ui/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/dashboard-ui/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
