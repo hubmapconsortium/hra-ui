@@ -69,6 +69,7 @@ export const CELL_SUMMARY_ROW = z.object({
 /** Zod Schema for a CELL_SUMMARY */
 export const CELL_SUMMARY = z.object({
   label: z.string(),
+  cellSource: z.string(),
   cells: CELL.array(),
   biomarkers: BIOMARKER.array(),
   summaries: CELL_SUMMARY_ROW.array(),
@@ -82,8 +83,12 @@ export const DATA_FILE_REFERENCE = z.object({
 
 /** Zod Schema for a SOURCE_REFERENCE */
 export const SOURCE_REFERENCE = z.object({
+  id: IRI,
   title: z.string(),
   label: z.string(),
+  authors: z.string().array(),
+  year: z.number(),
+  doi: z.string(),
   link: z.string().url(),
 });
 

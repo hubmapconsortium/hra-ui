@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,6 +39,12 @@ export class HeaderComponent {
 
   /** Input for about link */
   @Input() aboutLink = EMPTY_LINK;
+
+  /** Input for HRA Portal link */
+  @Input() hraPortal = EMPTY_LINK;
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly contactClick = new EventEmitter<void>();
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);

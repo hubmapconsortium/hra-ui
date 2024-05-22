@@ -5,18 +5,32 @@
   display: block;
   height: 100%;
 
+  @media (min-height: 60.75rem) {
+    .toggle {
+      height: 3rem !important;
+    }
+
+    ::ng-deep thead > tr {
+      height: 3rem !important;
+    }
+  }
+
   .sr-only {
     @include utils.sr-only();
+  }
+
+  hra-label-box {
+    font-size: 0.875rem;
+    padding-left: 1.5rem;
   }
 
   .toggle {
     display: flex;
     align-items: center;
-    height: 3.5rem;
+    height: 2.5rem;
     grid-area: source-list-header;
-    color: var(--dark-primary-text);
-    border-top: 0.063rem solid #d3d3d3;
-    border-bottom: 0.063rem solid #d3d3d3;
+    border-top: 1px solid rgba(vars.$light-dividers);
+    border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .table-content {
@@ -27,20 +41,111 @@
       display: none;
     }
 
-    table {
-      height: 100%;
+    .mat-column-select {
+      width: 1rem;
+      padding-right: 0;
+    }
+
+    .mat-column-authors,
+    .mat-column-title,
+    .mat-column-doi,
+    .mat-column-link {
+      max-width: 7rem;
+    }
+
+    .mat-column-year {
+      max-width: 3.5rem;
+    }
+
+    .mat-column-link {
+      padding-right: 3rem;
+    }
+
+    ::ng-deep thead {
+      .mat-sort-header-stem,
+      .mat-sort-header-indicator {
+        opacity: 0 !important;
+      }
+
+      .mat-sort-header-arrow {
+        background-image: url('../../assets/icons/arrow-upward.svg');
+        background-size: contain;
+        height: 1rem;
+        width: 1rem;
+      }
+
+      [aria-sort='descending'] {
+        .mat-sort-header-arrow {
+          background-image: url('../../assets/icons/arrow-down.svg');
+        }
+      }
+
+      [aria-sort='none'] {
+        .mat-sort-header-arrow {
+          background-image: url('../../assets/icons/arrow-upward.svg');
+          transition: 0.5s;
+        }
+      }
+
+      tr {
+        color: rgba(vars.$primary-darker);
+        background: rgba(vars.$primary-lighter);
+        height: 2.5rem;
+      }
+    }
+
+    ::ng-deep tbody {
+      .mat-column-title,
+      .mat-column-doi,
+      .mat-column-link {
+        color: rgba(vars.$accent);
+        font-weight: 500;
+      }
+    }
+
+    .mat-mdc-cell,
+    .mat-mdc-header-cell {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mat-mdc-header-cell {
+      border-bottom-color: rgba(vars.$light-dividers);
     }
 
     .mat-mdc-cell {
-      vertical-align: top;
-      border: none;
-      padding: 0.25rem 0.875rem;
-      font-size: 1rem;
+      border-bottom: none;
     }
 
-    ::ng-deep .mdc-data-table__content {
-      display: block;
-      padding: 1rem 0rem;
+    tr {
+      font-size: 0.75rem;
+      height: 2.25rem;
+
+      .mat-column-link {
+        cursor: pointer;
+      }
     }
+  }
+
+  ::ng-deep mat-checkbox {
+    .mdc-form-field {
+      height: 2.25rem;
+
+      .mdc-checkbox {
+        padding: 9px;
+      }
+    }
+    --mdc-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
+
+    .mdc-checkbox__background {
+      background-color: transparent !important;
+      border-color: rgba(vars.$primary) !important;
+      top: 9px;
+      left: 9px;
+    }
+  }
+
+  .end {
+    cursor: pointer;
   }
 }

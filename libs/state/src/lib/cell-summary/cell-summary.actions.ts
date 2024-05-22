@@ -1,16 +1,29 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { Iri } from '@hra-ui/services';
+import { Iri, SourceReference } from '@hra-ui/services';
 
 /** Action base class factory */
 const Action = ActionGroup('CellSummary');
 
-/** loads the given Iri to the state */
+/** Loads the given Iri to the state */
 export class Load extends Action('Load') {
   /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
 }
+
+/** Filters summaries by sources */
+export class FilterSummaries extends Action('Filter Summaries') {
+  /** Initializes */
+  constructor(readonly sources: SourceReference[]) {
+    super();
+  }
+}
+
+/**
+ * Action to combine summaries by biomarker
+ */
+export class CombineSummariesByBiomarker extends Action('Combine Summaries by Biomarker') {}
 
 /**
  * Compute aggregate of the given data and store to state */

@@ -73,7 +73,7 @@
     },
     "build-webcomponent": {
       "dependsOn": ["build"],
-      "inputs": ["{projectRoot}/src/webcomponent-example.html"],
+      "inputs": ["{projectRoot}/src/webcomponent-example.html", "{workspaceRoot}/dist/{projectRoot}/main.js"],
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}/wc.js",
         "{workspaceRoot}/dist/{projectRoot}/webcomponent-example.html"

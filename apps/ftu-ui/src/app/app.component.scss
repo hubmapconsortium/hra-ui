@@ -4,25 +4,35 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: 21rem max(100% - 21rem);
-  grid-template-rows: 4.5rem max(100% - 4.5rem);
+  grid-template-columns: 14.75rem auto;
+  grid-template-rows: 4rem max(100% - 4rem, 41.25rem);
+
   grid-template-areas:
     'header header'
     'sidebar content';
 
+  @media (min-width: 90rem) {
+    grid-template-columns: 17.5rem auto;
+  }
+
+  @media (min-width: 120rem) {
+    grid-template-columns: 21rem auto;
+  }
+
+  @media (min-height: 49.5rem) {
+    grid-template-rows: 4.5rem calc(100% - 4.5rem);
+  }
+
   .header {
     grid-area: header;
-    border-bottom: 0.0625rem solid #d3d3d3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
     width: 100%;
-    z-index: 1;
+    z-index: 2;
   }
 
   .sidebar {
     grid-area: sidebar;
-
-    ::ng-deep .label {
-      border-right: 0.0625rem solid #d3d3d3;
-    }
+    border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   .page-content::ng-deep {

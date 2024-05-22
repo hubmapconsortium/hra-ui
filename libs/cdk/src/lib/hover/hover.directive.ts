@@ -1,4 +1,4 @@
-import { ConnectionPositionPair, Overlay } from '@angular/cdk/overlay';
+import { ConnectionPositionPair, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Directive, ElementRef, HostListener, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
@@ -34,19 +34,11 @@ export class HoverDirective<T = unknown> {
   /**  Reference to the element that the directive is attached to */
   private readonly el: Element = inject(ElementRef).nativeElement;
 
+  /** Overlay service */
+  private readonly overlay = inject(Overlay);
+
   /**  Reference to the overlay that is created when the userhovers over the element along with its position setting */
-  readonly overlayRef = inject(Overlay).create({
-    positionStrategy: inject(Overlay)
-      .position()
-      .flexibleConnectedTo(this.el)
-      .withPositions([
-        new ConnectionPositionPair({ originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
-        new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
-        new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
-        new ConnectionPositionPair({ originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' }),
-      ])
-      .withPush(true),
-  });
+  private overlayRef?: OverlayRef;
 
   /** Reference view container that the directive is attached to */
   private readonly viewContainerRef = inject(ViewContainerRef);
@@ -60,9 +52,10 @@ export class HoverDirective<T = unknown> {
   /** Function to handle the mouse over event to attach the portal and display the hover content */
   @HostListener('mouseover')
   startHover(): void {
-    const { overlayRef, portal } = this;
-    if (!overlayRef.hasAttached() && portal) {
-      overlayRef.attach(portal);
+    const { portal } = this;
+    if (portal) {
+      this.overlayRef = this.createOverlay();
+      this.overlayRef.attach(portal);
     }
   }
 
@@ -70,17 +63,31 @@ export class HoverDirective<T = unknown> {
   @HostListener('mouseout')
   endHover(): void {
     const { overlayRef } = this;
-    if (overlayRef.hasAttached()) {
-      overlayRef.detach();
-    }
+    overlayRef?.dispose();
   }
 
   /** Function to handle the updation of overlay with up to date content when the input changes */
   private updateContent(): void {
     const { overlayRef, portal } = this;
-    if (overlayRef.hasAttached() && portal) {
+    if (overlayRef && portal) {
       overlayRef.detach();
       overlayRef.attach(portal);
     }
+  }
+
+  /** Function to create overlay and set its position */
+  private createOverlay(): OverlayRef {
+    return this.overlay.create({
+      positionStrategy: this.overlay
+        .position()
+        .flexibleConnectedTo(this.el)
+        .withPositions([
+          new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
+          new ConnectionPositionPair({ originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
+          new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
+          new ConnectionPositionPair({ originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' }),
+        ])
+        .withPush(true),
+    });
   }
 }

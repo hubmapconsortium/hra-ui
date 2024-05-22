@@ -1,55 +1,79 @@
-<table class="table" mat-table [dataSource]="dataSource">
-  <caption class="sr-only">
-    Cell type table by Biomarker
-  </caption>
+<cdk-virtual-scroll-viewport tvsItemSize="32" headerHeight="72">
+  <table class="table" mat-table [dataSource]="dataSource" #table>
+    <caption class="sr-only">
+      Cell type table by Biomarker
+    </caption>
 
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Cell Type</th>
+    <ng-container matColumnDef="type" sticky>
+      <th mat-header-cell *matHeaderCellDef>Cell Type</th>
 
-    <td class="type" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
-      <div class="pseudo-type">{{ element[0] }}</div>
-      {{ element[0] }}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="count">
-    <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
-
-    <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
-      {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
-    </td>
-  </ng-container>
-
-  <ng-container *ngFor="let column of columns; let index = index" [matColumnDef]="column">
-    <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
-      {{ column }}
-    </th>
-
-    <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
-      <hra-biomarker-table-data-icon
-        class="icon"
-        *ngIf="element[index + 2] !== undefined; else emptyCell"
-        [color]="getColor(element[index + 2].color)"
-        [size]="getSize(element[index + 2].size)"
-        [hraHover]="dataHover"
-        [hraHoverData]="[index + 2, element]"
+      <td
+        class="type"
+        mat-cell
+        *matCellDef="let element"
+        [class.highlight]="isHighlighted(element)"
+        [hraHover]="columnHover"
+        [hraHoverData]="element[0]"
       >
-      </hra-biomarker-table-data-icon>
+        {{ element[0] }}
+      </td>
+    </ng-container>
 
-      <ng-template #emptyCell>
-        <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
-      </ng-template>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="count" sticky>
+      <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
 
-  <tr mat-header-row *matHeaderRowDef="columnsWithTypeAndCount; sticky: true"></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: columnsWithTypeAndCount"
-    (mouseover)="setHoverId(getHoverId(row))"
-    (mouseout)="setHoverId(undefined)"
-  ></tr>
-</table>
+      <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
+        {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="preFiller">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="max-width: unset">
+        <div [style.width]="preFillerWidth"></div>
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor="let column of columns; let index = index; trackBy: trackByIndex" [matColumnDef]="column">
+      <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
+        <div class="header-column-text">
+          {{ column }}
+        </div>
+      </th>
+
+      <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
+        <hra-biomarker-table-data-icon
+          class="icon"
+          *ngIf="element[index + 2] !== undefined; else emptyCell"
+          [color]="getColor(element[index + 2].color)"
+          [size]="getSize(element[index + 2].size)"
+          [hraHover]="dataHover"
+          [hraHoverData]="[index + 2, element]"
+        >
+        </hra-biomarker-table-data-icon>
+
+        <ng-template #emptyCell>
+          <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="postFiller">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="max-width: unset">
+        <div [style.width]="postFillerWidth"></div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="(columns$ | async) ?? []; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: (columns$ | async) ?? []"
+      (mouseover)="setHoverId(getHoverId(row))"
+      (mouseout)="setHoverId(undefined)"
+    ></tr>
+  </table>
+</cdk-virtual-scroll-viewport>
 
 <ng-template #columnHover let-columnName>
   <div class="biomarker-table-hover full-column-name">

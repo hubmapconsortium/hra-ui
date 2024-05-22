@@ -37,7 +37,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/humanatlas.io/",
+          "baseHref": "/",
           "budgets": [
             {
               "type": "initial",

@@ -4,6 +4,16 @@
 :host {
   display: block;
 
+  @media (min-height: 60.75rem) {
+    .table th {
+      height: 4.5rem !important;
+    }
+  }
+
+  cdk-virtual-scroll-viewport {
+    height: 100%;
+  }
+
   .sr-only {
     @include utils.sr-only();
   }
@@ -12,7 +22,7 @@
     margin-left: -1px;
 
     .highlight {
-      background-color: #f8f9fa;
+      background: rgba(vars.$primary-lighter);
     }
     td.type {
       text-transform: lowercase;
@@ -20,56 +30,57 @@
   }
 
   .table th {
-    background-color: #fff7f8;
-    color: #59264d;
-    text-align: right;
-    font-weight: 400;
+    background: rgba(vars.$primary-lighter);
+    color: rgba(vars.$accent-darker);
+    font-weight: 500;
+    height: 56px;
+    padding: 0;
+    max-width: 2.75rem;
+    min-width: 2.75rem;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .table td {
-    border-bottom: 0.063rem solid #d3d3d3;
-    border-left: 0.063rem solid #d3d3d3;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
+    padding: 0 0.5rem;
+
+    &:not(:first-child) {
+      border-left: 1px solid rgba(vars.$light-dividers);
+    }
   }
 
   .table tr {
-    height: 3rem;
+    height: 2rem;
+    font-size: 0.75rem;
   }
 
   .table tr:first-child td {
-    border-top: 0rem solid #d3d3d3;
+    border-top: 0rem solid rgba(vars.$light-dividers);
+    max-width: 13.5rem;
   }
 
   tr > td:first-child {
     text-align: left;
-    padding: 0 2rem;
   }
 
   tr > th:first-child {
     text-align: left;
-    padding: 0 2rem;
   }
 
   tr > td:last-of-type {
-    border-right: 0.063rem solid #d3d3d3;
+    border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   tr > th:last-of-type {
-    border-right: 0.063rem solid #d3d3d3;
-    border-left: solid #d3d3d3 1px;
+    border-right: 1px solid rgba(vars.$light-dividers);
+    border-left: 1px solid rgba(vars.$light-dividers);
   }
 
   .type {
-    height: 3rem;
-    max-width: 26rem;
-    min-width: 17rem;
+    height: 2rem;
+    max-width: 13.5rem;
     border-radius: 0rem;
     white-space: nowrap;
-
-    .pseudo-type {
-      font-weight: bold;
-      opacity: 0;
-      height: 0;
-    }
 
     &.highlight {
       font-weight: bold;
@@ -77,25 +88,32 @@
   }
 
   .count {
-    text-align: right;
-    height: 3rem;
-    min-width: 6.5rem;
+    height: 2rem;
+    min-width: 4.25rem;
+    border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   th:not(:first-child) {
-    border-left: solid #d3d3d3 1px;
+    border-left: 1px solid rgba(vars.$light-dividers);
+  }
+
+  th:first-child,
+  th:nth-child(2) {
+    padding: 0 0.5rem !important;
   }
 
   .icon-header {
-    max-width: 5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    .header-column-text {
+      transform: rotate(-45deg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .icon-cell {
-    max-width: 5rem;
-    min-height: 3rem;
+    width: 2rem;
+    min-height: 2rem;
 
     .icon {
       margin: auto;
@@ -103,20 +121,6 @@
   }
 }
 
-::ng-deep .mat-mdc-tab-header {
-  margin-left: -1px !important;
-}
-
 .mat-mdc-row:hover .mat-mdc-cell {
-  background-color: #f8f9fa;
-}
-
-::ng-deep .biomarker-table-hover.full-column-name {
-  display: flex;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  background-color: vars.$primary-contrast-rgb;
-  overflow: auto;
-  max-width: fit-content;
+  background: rgba(vars.$primary-lighter);
 }
