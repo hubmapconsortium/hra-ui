@@ -1,6 +1,7 @@
 :host {
   background-color: white; // TODO
   border-radius: 0.5rem;
+  max-width: calc(100vw - 19rem);
 
   .header {
     padding: 0 1rem;
@@ -15,9 +16,21 @@
   .content {
     height: 20rem;
     display: flex;
+    gap: 2rem;
 
     .histogram {
+      width: calc(100% - 249px);
+    }
+
+    .legend {
+      overflow-y: scroll;
+      font-size: 14px;
+      font-weight: 400;
       flex-grow: 1;
+
+      cde-color-picker-label {
+        align-items: center;
+      }
     }
   }
 

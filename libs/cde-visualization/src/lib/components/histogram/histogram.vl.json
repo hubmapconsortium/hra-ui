@@ -67,8 +67,14 @@
       "type": "nominal",
       "legend": null,
       "scale": {
-        "range": ["blue", "red", "green", "pink", "black"]
+        "range": {
+          "field": "color"
+        }
       }
+    },
+    "tooltip": {
+      "field": "type",
+      "type": "nominal"
     }
   }
 }

@@ -23,16 +23,17 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
-import { CellType } from '../../models/cell-type';
+import { CellType, cellTypeToLookup } from '../../models/cell-type';
+import { rgbToHex } from '../../models/color';
 import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
+import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import histogramSpec from './histogram.vl.json';
 
 interface DistanceEntry {
   type: string;
   distance: number;
-  sourceNode: NodeEntry;
-  edge: EdgeEntry;
+  color: string;
 }
 
 interface ModifiableHistogramSpec {
@@ -56,6 +57,8 @@ interface ModifiableHistogramSpec {
   };
 }
 
+const DEFAULT_ANCHOR = 'Endothelial';
+
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 const ALL_CELLS_TYPE = 'All Cells';
 const EXPORT_IMAGE_PADDING = 16;
@@ -71,7 +74,14 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
 @Component({
   selector: 'cde-histogram',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatExpansionModule, ColorPickerModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    ColorPickerModule,
+    ColorPickerLabelComponent,
+  ],
   providers: [
     {
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
@@ -90,14 +100,15 @@ export class HistogramComponent {
   readonly nodes = input.required<NodeEntry[]>();
   readonly nodeTargetKey = input.required<NodeTargetKey>();
   readonly edges = input.required<EdgeEntry[]>();
-  readonly anchor = input<string>();
-  readonly cellTypes = input<CellType[]>();
+  readonly anchor = input<string>(DEFAULT_ANCHOR);
+  readonly cellTypes = input.required<CellType[]>();
 
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);
   private readonly histogramEl = viewChild<ElementRef>('histogram');
   private readonly view = signal<View | undefined>(undefined);
 
+  private readonly colorLookup = computed(() => cellTypeToLookup(this.cellTypes()));
   private readonly distances = computed(() => this.computeDistances());
   private readonly data = computed(() => this.computeData());
 
@@ -176,6 +187,7 @@ export class HistogramComponent {
 
     const nodeTargetKey = this.nodeTargetKey();
     const anchor = this.anchor();
+    const colorLookup = this.colorLookup();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
       const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
@@ -183,9 +195,8 @@ export class HistogramComponent {
       if (type !== anchor) {
         distances.push({
           type,
-          sourceNode,
-          edge,
           distance: edgeDistance(edge),
+          color: rgbToHex(colorLookup.get(type) ?? [0, 0, 0]),
         });
       }
     }
@@ -196,7 +207,7 @@ export class HistogramComponent {
   private computeData(): DistanceEntry[] {
     const distances = this.distances();
     // TODO add color to each item from the color map
-    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE }));
+    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: '#000000' }));
     return distances.concat(allCellDistances);
   }
 }
