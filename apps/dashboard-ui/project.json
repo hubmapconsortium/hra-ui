@@ -22,7 +22,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/hra-ui/apps/hra-dashboard/",
+          "baseHref": "/hra-ui/apps/dashboard-ui/",
           "budgets": [
             {
               "type": "initial",

@@ -18,31 +18,31 @@ export class LandingComponent {
       image: 'assets/backgrounds/data.svg',
       label: 'Data',
       alt: 'Image for Data card',
-      route: 'data',
+      route: '/data',
     },
     {
       image: 'assets/backgrounds/usage.svg',
       label: 'Usage',
       alt: 'Image for Usage card',
-      route: 'usage',
+      route: '/usage',
     },
     {
       image: 'assets/backgrounds/diversity.svg',
       label: 'Diversity & Inclusion',
       alt: 'Image for Diversity and Inclusion Card',
-      route: 'diversity-and-inclusion',
+      route: '/diversity-and-inclusion',
     },
     {
       image: 'assets/backgrounds/publication.svg',
       label: 'Publications',
       alt: 'Image for Publication card',
-      route: 'publications',
+      route: '/publications',
     },
     {
       image: 'assets/backgrounds/experimental.svg',
       label: 'Experimental Data',
       alt: 'Image for Experimental Data card',
-      route: 'experimental-data',
+      route: '/experimental-data',
     },
   ];
 }
