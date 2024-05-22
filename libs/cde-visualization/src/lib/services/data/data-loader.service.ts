@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Injectable, Injector, Signal, Type, inject, runInInjectionContext } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { ToSignalOptions, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, filter, map, of, switchAll, takeLast } from 'rxjs';
 import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-loader/file-loader';
 
@@ -15,7 +15,7 @@ export class DataLoaderService {
     initialValue: T,
     loaderToken: LoaderT,
     loaderOptions: FileLoaderOptions<InstanceType<LoaderT>>,
-    options?: { injector?: Injector; rejectErrors?: boolean },
+    options?: Omit<ToSignalOptions, 'initialValue'>,
   ): Signal<T> {
     const injector = options?.injector ?? inject(Injector, { optional: true });
     if (!injector) {

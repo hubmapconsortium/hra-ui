@@ -8,9 +8,16 @@
 <div class="visualizations">
   <cde-node-dist-visualization
     [nodes]="loadedNodes()"
+    [nodeTargetKey]="nodeTypeKey()"
+    [nodeTargetValue]="selectedNodeTargetValue()"
     [edges]="loadedEdges()"
-    [anchor]="selectedNodeTargetValue()"
-    [colorMap]="loadedColorMap()"
+    [maxEdgeDistance]="maxEdgeDistance()"
+    [colorMap]="cellTypesAsColorMap()"
+    [colorMapKey]="colorMapTypeKey()"
+    [colorMapValue]="colorMapValue()"
+    (nodeClick)="nodeClick.emit($event)"
+    (nodeHover)="nodeHover.emit($event)"
+    (edgesChange)="edges.set($event)"
   ></cde-node-dist-visualization>
   <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTypeKey()" [edges]="loadedEdges()"></cde-histogram>
 </div>

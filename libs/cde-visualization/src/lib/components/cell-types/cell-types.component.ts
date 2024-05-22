@@ -13,7 +13,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '../../models/color';
-import { TOOLTIP_POSITION_HORIZONTAL } from '../../shared/tooltip-position';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 
 /**
@@ -65,7 +65,7 @@ export class CellTypesComponent {
 
   readonly headerCheckboxLabel = computed(() => `${this.isAllSelected() ? 'deselect' : 'select'} all`);
 
-  readonly tooltipPosition = TOOLTIP_POSITION_HORIZONTAL;
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   cellTypesInfoOpen = false;
 

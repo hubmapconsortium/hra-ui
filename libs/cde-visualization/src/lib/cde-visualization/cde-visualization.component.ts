@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  signal,
+} from '@angular/core';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
@@ -23,6 +33,7 @@ import { CsvFileLoaderService } from '../services/file-loader/csv-file-loader';
 import { JsonFileLoaderService } from '../services/file-loader/json-file-loader';
 import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
+import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { mergeObjects } from '../shared/merge';
 
 @Component({
@@ -52,7 +63,7 @@ export class CdeVisualizationComponent {
 
   readonly colorMap = model<string | ColorMapEntry[]>();
   readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
-  readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
+  readonly colorMapValue = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
     transform: brandAttribute<string, ColorMapColorKey>(),
   });
 
@@ -66,6 +77,9 @@ export class CdeVisualizationComponent {
   readonly creationTime = input<string>();
   readonly thickness = input(undefined, { transform: numberAttribute() });
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
+
+  readonly nodeClick = output<NodeEntry>();
+  readonly nodeHover = output<NodeEntry | undefined>();
 
   private readonly dataLoader = inject(DataLoaderService);
 
@@ -85,10 +99,10 @@ export class CdeVisualizationComponent {
     papaparse: { header: true },
   });
   readonly colorMapTypeKey = computed(
-    () => this.colorMapKey() ?? (this.nodeTargetKey() as unknown as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
+    () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
   );
   private readonly colorMapLookup = computed(() =>
-    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
+    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValue()),
   );
 
   readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
@@ -107,6 +121,22 @@ export class CdeVisualizationComponent {
   );
 
   readonly cellTypes = signal<CellTypeEntry[]>([]);
+  readonly cellTypesAsColorMap = computed(
+    () => {
+      const cellTypes = this.cellTypes();
+      const typeKey = this.colorMapTypeKey();
+      const colorKey = this.colorMapValue();
+
+      return cellTypes.map(
+        (entry) =>
+          ({
+            [typeKey]: entry.name,
+            [colorKey]: entry.color,
+          }) as ColorMapEntry,
+      );
+    },
+    { equal: emptyArrayEquals },
+  );
   readonly cellTypesCreateRef = effect(
     () => {
       const nodes = this.loadedNodes();
