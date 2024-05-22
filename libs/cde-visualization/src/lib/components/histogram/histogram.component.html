@@ -22,12 +22,11 @@
     <div class="content">
       <div class="histogram" #histogram></div>
       <div class="legend">
-        <cde-color-picker-label [label]="'All Cells'" [color]="[0, 0, 0]" [labelPos]="'left'"></cde-color-picker-label>
+        <cde-color-picker-label [label]="'All Cells'" [color]="[0, 0, 0]"></cde-color-picker-label>
         <cde-color-picker-label
           *ngFor="let type of cellTypes()"
           [label]="type.name"
           [color]="type.color"
-          [labelPos]="'left'"
           [isAnchor]="type.name === anchor()"
         ></cde-color-picker-label>
       </div>
