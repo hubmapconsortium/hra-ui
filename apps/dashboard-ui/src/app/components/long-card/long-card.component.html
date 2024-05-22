@@ -1,0 +1,9 @@
+@for (card of cardData(); track card.label) {
+  <a [routerLink]="['/', card.route]" class="long-card" rel="noopener noreferrer">
+    <img [attr.src]="card.image" [alt]="card.alt" />
+    <div class="label">
+      {{ card.label }}
+      <mat-icon iconPositionEnd class="material-symbols-rounded"> arrow_right_alt </mat-icon>
+    </div>
+  </a>
+}

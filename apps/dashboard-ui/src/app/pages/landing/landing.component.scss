@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  justify-content: center;
+
+  main {
+    max-width: 102rem;
+
+    .title {
+      margin: 5rem 0 0.5rem 0;
+      font-size: 42px;
+      line-height: 63px;
+      letter-spacing: -0.0325em;
+      font-weight: 500;
+    }
+
+    .description {
+      font-family: 'Nunito Sans', sans-serif;
+      max-width: 83.75rem;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 30px;
+      letter-spacing: 1.3px;
+      margin-bottom: 5rem;
+    }
+
+    hra-long-card {
+      margin-bottom: 112px;
+    }
+  }
+}

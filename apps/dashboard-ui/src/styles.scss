@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/metropolis.regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/metropolis.medium.otf') format('opentype');
+  font-weight: 500;
+}
+
+* {
+  font-family: 'Metropolis';
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #d5dbe3 0%, #ffffff 100%);
+}
