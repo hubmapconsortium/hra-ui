@@ -1,9 +1,16 @@
 <div class="header">
-  <cde-visualization-header></cde-visualization-header>
+  <cde-visualization-header
+    (downloadNodes)="downloadNodes()"
+    (downloadEdges)="downloadEdges()"
+  ></cde-visualization-header>
 </div>
 <div class="metadata">
   <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
-  <cde-cell-types [(cellTypes)]="cellTypes" [selectedCellType]="selectedNodeTargetValue()"></cde-cell-types>
+  <cde-cell-types
+    [(cellTypes)]="cellTypes"
+    [selectedCellType]="selectedNodeTargetValue()"
+    (download)="downloadColorMap()"
+  ></cde-cell-types>
 </div>
 <div class="visualizations">
   <cde-node-dist-visualization

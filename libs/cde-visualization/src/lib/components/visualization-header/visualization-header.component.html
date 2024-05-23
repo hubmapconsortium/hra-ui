@@ -77,11 +77,11 @@
     <mat-icon class="material-symbols-rounded"> code </mat-icon>
     Code
   </button>
-  <button mat-flat-button color="primary" class="mat-caption">
+  <button mat-flat-button color="primary" class="mat-caption" (click)="downloadNodes.emit()">
     <mat-icon class="material-symbols-rounded"> download </mat-icon>
     Nodes
   </button>
-  <button mat-flat-button color="primary" class="mat-caption">
+  <button mat-flat-button color="primary" class="mat-caption" (click)="downloadEdges.emit()">
     <mat-icon class="material-symbols-rounded"> download </mat-icon>
     Edges
   </button>

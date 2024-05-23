@@ -9,6 +9,7 @@ import {
   Signal,
   WritableSignal,
   effect,
+  inject,
   input,
   isSignal,
   model,
@@ -21,6 +22,7 @@ import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
 import { ColorMapEntry } from '../../models/color-map';
 import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
+import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 type Preactify<T> = {
@@ -41,7 +43,9 @@ interface NodeDistVisElementProps {
   colorMapValue: string;
 }
 
-interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {}
+interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {
+  toDataUrl(type?: string, quality?: unknown): string | undefined;
+}
 
 function isNonEmptyArray<T>(array: T[]): boolean {
   return array.length > 0;
@@ -71,11 +75,12 @@ export class NodeDistVisualizationComponent {
   readonly nodeClick = output<NodeEntry>();
   readonly nodeHover = output<NodeEntry | undefined>();
 
-  private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
-
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   tooltipOpen = false;
+
+  private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+  private readonly fileSaver = inject(FileSaverService);
 
   constructor() {
     this.bindData('nodesData', this.nodes, isNonEmptyArray);
@@ -92,6 +97,14 @@ export class NodeDistVisualizationComponent {
     this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
     this.bindData('colorMapKey', this.colorMapKey);
     this.bindData('colorMapValue', this.colorMapValue);
+  }
+
+  download(): void {
+    const el = this.vis().nativeElement;
+    const url = el.toDataUrl();
+    if (url) {
+      this.fileSaver.save(url, 'cell-distance-vis.png');
+    }
   }
 
   private bindData<K extends keyof NodeDistVisElementProps>(

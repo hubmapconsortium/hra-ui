@@ -22,7 +22,7 @@
     </div>
   </ng-template>
 </span>
-<button mat-flat-button color="primary" class="mat-caption download-csv">
+<button mat-flat-button class="mat-caption download-csv" color="primary" (click)="download.emit()">
   <mat-icon class="material-symbols-rounded">download</mat-icon>
   CSV
 </button>

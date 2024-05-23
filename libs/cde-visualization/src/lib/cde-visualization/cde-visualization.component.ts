@@ -16,6 +16,7 @@ import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
+import { rgbToHex } from '../models/color';
 import {
   ColorMapColorKey,
   ColorMapEntry,
@@ -31,6 +32,7 @@ import { ColorMapFileLoaderService } from '../services/data/color-map-loader.ser
 import { DataLoaderService } from '../services/data/data-loader.service';
 import { CsvFileLoaderService } from '../services/file-loader/csv-file-loader.service';
 import { JsonFileLoaderService } from '../services/file-loader/json-file-loader.service';
+import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
@@ -159,4 +161,29 @@ export class CdeVisualizationComponent {
     },
     { allowSignalWrites: true },
   );
+
+  private readonly fileSaver = inject(FileSaverService);
+
+  downloadNodes(): void {
+    const nodes = this.loadedNodes();
+    if (nodes.length > 0) {
+      this.fileSaver.saveCsv(nodes, 'nodes.csv');
+    }
+  }
+
+  downloadEdges(): void {
+    const edges = this.loadedEdges();
+    if (edges.length > 0) {
+      this.fileSaver.saveCsv(edges, 'edges.csv');
+    }
+  }
+
+  downloadColorMap(): void {
+    const colorKey = this.colorMapValue();
+    const colorMap = this.cellTypesAsColorMap();
+    const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
+    if (data.length > 0) {
+      this.fileSaver.saveCsv(data, 'color-map.csv');
+    }
+  }
 }
