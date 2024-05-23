@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, input, model, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, model, output, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -42,6 +42,8 @@ export class CellTypesComponent {
   readonly cellTypes = model.required<CellTypeEntry[]>();
 
   readonly selectedCellType = input<string>('');
+
+  readonly download = output();
 
   readonly sort = viewChild.required(MatSort);
 
