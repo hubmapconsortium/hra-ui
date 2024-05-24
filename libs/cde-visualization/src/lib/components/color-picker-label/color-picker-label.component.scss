@@ -1,5 +1,7 @@
 :host {
   display: flex;
+  height: 1.625rem;
+  align-items: center;
 
   ::ng-deep {
     .color-picker {
