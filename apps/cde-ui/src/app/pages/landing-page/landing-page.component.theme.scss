@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  cde-landing-page {
+    .hra-btn.cta-flat {
+      color: mat.get-theme-color($theme, primary, 700);
+    }
+  }
+}
+
+@mixin typography($theme) {
+  cde-landing-page {
+  }
+}
+
+@mixin theme($theme) {
+  @if mat.theme-has($theme, color) {
+    @include color($theme);
+  }
+
+  @if mat.theme-has($theme, typography) {
+    @include typography($theme);
+  }
+}

@@ -1,0 +1,5 @@
+@use '../../app/pages/landing-page/landing-page.component.theme.scss' as landing-page;
+
+@mixin theme($theme) {
+  @include landing-page.theme($theme);
+}

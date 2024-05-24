@@ -1,28 +1,33 @@
 :host {
-  & > section {
-    max-width: 120rem;
+  & > * {
     margin: 0 auto;
   }
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
   .create-explore-content {
-    margin: 4rem 10rem 7rem;
+    margin: 32px 112px 112px 112px;
   }
 
-  .header {
-    margin: 0 4.5rem 0 2.5rem;
+  p {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    letter-spacing: 1.3px;
   }
 
-  .header h2 {
-    margin-bottom: 1.5rem;
-    line-height: 3.9375rem;
+  // .header {
+  //   margin: 0 4.5rem 0 2.5rem;
+  // }
+
+  .header h1 {
+    font-size: 2.625rem;
+    max-width: 50%;
+    line-height: 63px;
     letter-spacing: -0.0325em;
   }
 
-  .header h4 {
-    margin: 0 0 4rem 0;
-    letter-spacing: 1.3px;
+  .header p {
+    margin: 0 0 3.5rem 0;
   }
 
   .vccf {
@@ -30,47 +35,42 @@
     opacity: 98%;
     padding: 17.5rem 0;
     display: flex;
-    align-items: center;
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-        'title youtube'
-        'description youtube'
-        'buttons youtube';
-      column-gap: 7.5rem;
-      margin: 0 12.25rem;
+    flex-wrap: wrap;
+    padding: 120px 96px 120px 96px;
+  }
 
-      .title {
-        grid-area: title;
-        font-size: 2rem;
-        line-height: 3rem;
-        color: #201e3d;
-      }
+  .vccf h2 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 
-      .description {
-        grid-area: description;
-        color: #4c4c58;
-        margin-bottom: 2rem;
-      }
+  .vccf a:first-of-type {
+    margin-right: 2rem;
+  }
 
-      .buttons {
-        grid-area: buttons;
-        display: flex;
-        gap: 3rem;
-      }
+  .vccf .content {
+    display: flex;
+  }
 
-      .youtube-player {
-        grid-area: youtube;
-      }
-    }
+  .paper {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .background-header-2 {
+    display: none;
+  }
+
+  .links {
+    width: 200%;
   }
 
   .hra-btn {
     display: inline-block;
     font-weight: 500;
     font-size: 1.125rem;
-    padding: 0.15625rem 1.5rem;
+    padding: 0.25rem 1.5rem;
     width: max-content;
     line-height: 2.15625rem;
 
@@ -81,31 +81,56 @@
   }
 
   .youtube-player {
-    max-height: min(100vh, 22.625rem);
-    max-width: min(100vw, 40.25rem);
-  }
+    width: 50%;
 
-  @media screen and (max-width: 1440px) {
-    .vccf {
-      padding: 10rem 0;
-      .grid-container {
-        grid-template-areas:
-          'title title'
-          'description youtube'
-          'buttons youtube';
-        column-gap: 3rem;
-        margin: 0 9.75rem;
-      }
+    youtube-player {
+      display: flex;
+      height: 100%;
+      padding-left: 6rem;
+      contain: size;
     }
 
-    .youtube-player {
-      ::ng-deep {
-        .youtube-player-placeholder,
-        iframe {
-          max-height: min(100vh, 17.375rem);
-          max-width: min(100vw, 31rem);
-        }
-      }
+    ::ng-deep youtube-player > div {
+      width: 100%;
+    }
+
+    ::ng-deep .youtube-player-placeholder,
+    ::ng-deep iframe {
+      width: 100%;
+      max-height: calc(100% - 3rem);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .create-explore-content {
+      margin: 48px 128px 112px 128px;
+    }
+
+    .vccf {
+      padding: 160px 156px 160px 156px;
+    }
+
+    .vccf .content {
+      gap: 48px;
+    }
+
+    youtube-player {
+      padding-left: 3rem !important;
+    }
+
+    ::ng-deep .youtube-player-placeholder,
+    ::ng-deep iframe {
+      max-height: 100% !important;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .background-header-1 {
+      display: none;
+    }
+
+    .background-header-2 {
+      display: unset;
     }
   }
 }
