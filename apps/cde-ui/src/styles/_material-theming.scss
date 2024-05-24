@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use './themable-sections/header' as header-section;
+@use './themable-sections/main' as main-section;
 @use './themes/header' as header-theme;
 @use './themes/main' as main-theme;
 
@@ -21,3 +22,4 @@ $_theme: main-theme.$theme;
 
 // Add section theme mixins here!
 @include header-section.theme(header-theme.$theme);
+@include main-section.theme(main-theme.$theme);

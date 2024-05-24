@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
+import { MatButtonModule } from '@angular/material/button';
 
 /**
  * Landing Page Component
@@ -10,7 +11,7 @@ import { VisualCard, VisualCardComponent } from '../../components/visual-card/vi
 @Component({
   selector: 'cde-landing-page',
   standalone: true,
-  imports: [CommonModule, VisualCardComponent, MatIconModule, YouTubePlayerModule],
+  imports: [CommonModule, VisualCardComponent, MatIconModule, MatButtonModule, YouTubePlayerModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

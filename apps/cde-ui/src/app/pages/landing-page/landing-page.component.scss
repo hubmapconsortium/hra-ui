@@ -1,71 +1,75 @@
 :host {
   & > * {
-    max-width: 120rem;
     margin: 0 auto;
   }
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
   .create-explore-content {
-    margin: 4rem 10rem 7rem;
+    margin: 32px 112px 112px 112px;
   }
 
-  .header {
-    margin: 0 4.5rem 0 2.5rem;
+  p {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    letter-spacing: 1.3px;
   }
+
+  // .header {
+  //   margin: 0 4.5rem 0 2.5rem;
+  // }
 
   .header h1 {
-    margin: 1.5rem 0;
-    font-size: 4.5rem;
-    font-weight: 500;
-    line-height: 5.625rem;
+    font-size: 2.625rem;
+    max-width: 50%;
+    line-height: 63px;
+    letter-spacing: -0.0325em;
   }
 
   .header p {
-    font-family: 'Omnes';
-    margin: 0 0 4rem 0;
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 1.875rem;
+    margin: 0 0 3.5rem 0;
   }
 
   .vccf {
     background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
     opacity: 98%;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    height: 62.8125rem;
+    padding: 120px 96px 120px 96px;
+  }
+
+  .vccf h2 {
+    font-size: 2rem;
+    line-height: 3rem;
   }
 
   .vccf a:first-of-type {
-    margin-right: 3rem;
+    margin-right: 2rem;
+  }
+
+  .vccf .content {
+    display: flex;
   }
 
   .paper {
-    max-width: 46.5rem;
-    margin-left: 13.5rem;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
   }
 
-  .paper h2 {
-    font-size: 2.625rem;
-    line-height: 3.2813rem;
-    font-weight: 500;
+  .background-header-2 {
+    display: none;
   }
 
-  .paper p {
-    font-family: 'Omnes';
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-    letter-spacing: 1.4px;
+  .links {
+    width: 200%;
   }
 
   .hra-btn {
     display: inline-block;
     font-weight: 500;
     font-size: 1.125rem;
-    padding: 0.15625rem 1.5rem;
+    padding: 0.25rem 1.5rem;
     width: max-content;
     line-height: 2.15625rem;
 
@@ -76,8 +80,56 @@
   }
 
   .youtube-player {
-    max-height: min(100vh, 22.625rem);
-    max-width: min(100vw, 40.25rem);
-    margin: 0 12.25rem 0 7.5rem;
+    width: 50%;
+
+    youtube-player {
+      display: flex;
+      height: 100%;
+      padding-left: 6rem;
+      contain: size;
+    }
+
+    ::ng-deep youtube-player > div {
+      width: 100%;
+    }
+
+    ::ng-deep .youtube-player-placeholder,
+    ::ng-deep iframe {
+      width: 100%;
+      max-height: calc(100% - 3rem);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .create-explore-content {
+      margin: 48px 128px 112px 128px;
+    }
+
+    .vccf {
+      padding: 160px 156px 160px 156px;
+    }
+
+    .vccf .content {
+      gap: 48px;
+    }
+
+    youtube-player {
+      padding-left: 3rem !important;
+    }
+
+    ::ng-deep .youtube-player-placeholder,
+    ::ng-deep iframe {
+      max-height: 100% !important;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .background-header-1 {
+      display: none;
+    }
+
+    .background-header-2 {
+      display: unset;
+    }
   }
 }
