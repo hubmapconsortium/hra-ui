@@ -1,5 +1,5 @@
 <mat-accordion displayMode="flat">
-  <mat-expansion-panel expanded #panel>
+  <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible ? 'visible' : null" #panel>
     <mat-expansion-panel-header class="header">
       <mat-panel-title class="title">
         <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
@@ -23,11 +23,12 @@
       <div class="histogram" #histogram></div>
       <div class="legend">
         <cde-color-picker-label
-          *ngFor="let type of cellTypes()"
+          *ngFor="let type of cellTypesWithTotal()"
           [label]="type.name"
           [color]="type.color"
-          [isAnchor]="type.name === anchor()"
-          (colorChanged)="updateColor($event)"
+          [isAnchor]="type.name === selectedCellType()"
+          (colorPickerOpen)="overflowVisible = $event"
+          (colorChange)="updateColor(type, $event)"
         ></cde-color-picker-label>
       </div>
     </div>

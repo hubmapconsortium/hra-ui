@@ -186,9 +186,4 @@ export class CdeVisualizationComponent {
       this.fileSaver.saveCsv(data, 'color-map.csv');
     }
   }
-
-  // private createCellTypesWithAll(): CellTypeEntry[] {
-  //   const sumAll = this.createCellTypes().reduce((sum, { count }) => sum + count, 0);
-  //   return [{ name: 'All Cells', count: sumAll, color: [0, 0, 0] } as CellTypeEntry].concat(this.createCellTypes());
-  // }
 }

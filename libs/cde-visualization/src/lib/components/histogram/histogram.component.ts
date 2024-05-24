@@ -2,13 +2,13 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  Renderer2,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
   model,
-  Renderer2,
   signal,
   viewChild,
 } from '@angular/core';
@@ -23,11 +23,11 @@ import { produce } from 'immer';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-
-import { CellType, cellTypeToLookup } from '../../models/cell-type';
-import { Rgb, rgbToHex } from '../../models/color';
-import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
+import { CellTypeEntry, cellTypeToLookup } from '../../models/cell-type';
+import { Rgb, colorEquals, rgbToHex } from '../../models/color';
+import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
+import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import histogramSpec from './histogram.vl.json';
 
@@ -57,8 +57,6 @@ interface ModifiableHistogramSpec {
     };
   };
 }
-
-const DEFAULT_ANCHOR = 'Endothelial';
 
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 const ALL_CELLS_TYPE = 'All Cells';
@@ -101,15 +99,31 @@ export class HistogramComponent {
   readonly nodes = input.required<NodeEntry[]>();
   readonly nodeTargetKey = input.required<NodeTargetKey>();
   readonly edges = input.required<EdgeEntry[]>();
-  readonly anchor = input<string>(DEFAULT_ANCHOR);
-  readonly cellTypes = model.required<CellType[]>();
+  readonly selectedCellType = input.required<string>();
+  readonly cellTypes = model.required<CellTypeEntry[]>();
+
+  readonly cellTypesWithTotal = computed(() => [this.totalCellType(), ...this.cellTypes()]);
+
+  overflowVisible = false;
 
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);
+  private readonly fileSaver = inject(FileSaverService);
   private readonly histogramEl = viewChild<ElementRef>('histogram');
   private readonly view = signal<View | undefined>(undefined);
 
-  private readonly colorLookup = computed(() => cellTypeToLookup(this.cellTypes()));
+  private readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
+  private readonly totalCellTypeCount = computed(() => this.cellTypes().reduce((total, { count }) => total + count, 0));
+  private readonly totalCellType = computed(
+    () =>
+      ({
+        name: ALL_CELLS_TYPE,
+        count: this.totalCellTypeCount(),
+        color: this.totalCellTypeColor(),
+      }) satisfies CellTypeEntry,
+  );
+
+  private readonly colorLookup = computed(() => cellTypeToLookup(this.cellTypesWithTotal()));
   private readonly distances = computed(() => this.computeDistances());
   private readonly data = computed(() => this.computeData());
 
@@ -122,9 +136,7 @@ export class HistogramComponent {
     // Prevent the event from propagating to the expansion panel
     event.stopPropagation();
 
-    const { document, renderer } = this;
-    const { body } = document;
-    const el = renderer.createElement('div');
+    const el = this.renderer.createElement('div');
     const spec = produce(histogramSpec as ModifiableHistogramSpec, (draft) => {
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
@@ -141,24 +153,19 @@ export class HistogramComponent {
     });
 
     const url = await view.toImageURL(format);
-    const link = renderer.createElement('a');
-    renderer.appendChild(body, link);
-    link.setAttribute('href', url);
-    link.setAttribute('target', '_blank');
-    link.setAttribute('download', `cde-histogram.${format}`);
-    link.dispatchEvent(new MouseEvent('click'));
-    renderer.removeChild(body, link);
-
+    this.fileSaver.save(url, `cde-histogram.${format}`);
     finalize();
   }
 
-  updateColor(event: { type: string; color: Rgb }): void {
-    const entries = this.cellTypes();
-    const copy = [...entries];
-    const entry = copy.find((entry) => entry.name === event.type);
-    if (entry) {
+  updateColor(entry: CellTypeEntry, color: Rgb): void {
+    if (entry.name === ALL_CELLS_TYPE) {
+      this.totalCellTypeColor.set(color);
+    } else {
+      const entries = this.cellTypes();
       const index = entries.indexOf(entry);
-      copy[index] = { ...copy[index], color: event.color.slice(0, 3) as Rgb };
+      const copy = [...entries];
+
+      copy[index] = { ...copy[index], color };
       this.cellTypes.set(copy);
     }
   }
@@ -198,13 +205,13 @@ export class HistogramComponent {
     }
 
     const nodeTargetKey = this.nodeTargetKey();
-    const anchor = this.anchor();
+    const selectedCellType = this.selectedCellType();
     const colorLookup = this.colorLookup();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
       const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
       const type = sourceNode[nodeTargetKey];
-      if (type !== anchor) {
+      if (type !== selectedCellType) {
         distances.push({
           type,
           distance: edgeDistance(edge),
@@ -217,7 +224,7 @@ export class HistogramComponent {
   }
 
   private computeData(): DistanceEntry[] {
-    const allColor = rgbToHex(this.cellTypes()[0].color);
+    const allColor = rgbToHex(this.totalCellTypeColor());
     const distances = this.distances();
     const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: allColor }));
     return distances.concat(allCellDistances);
