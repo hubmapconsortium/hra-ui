@@ -18,14 +18,13 @@
     }
 
     .label {
+      width: fit-content;
+      display: flex;
+      align-items: center;
       margin: 1.5rem 1.5rem 0;
       font-size: 0.875rem;
       line-height: 1.3125rem;
       font-weight: 500;
-      width: fit-content;
-      color: #b20a2f;
-      display: flex;
-      align-items: center;
     }
 
     mat-icon {
@@ -33,6 +32,7 @@
       margin-left: 0.5rem;
     }
   }
+
   @media (max-width: 544px) {
     justify-content: center;
   }

@@ -1,10 +1,11 @@
 :host {
   max-width: 102rem;
+  margin: 0 1.5rem;
 
   main {
     .title {
       margin: 5rem 0 0.5rem 0;
-      line-height: 63px;
+      line-height: 3.9375rem;
       letter-spacing: -1.365px;
     }
 
@@ -13,7 +14,7 @@
       max-width: 83.75rem;
       font-weight: 400;
       font-size: 1.25rem;
-      line-height: 30px;
+      line-height: 1.875rem;
       letter-spacing: 1.3px;
       margin-bottom: 5rem;
     }

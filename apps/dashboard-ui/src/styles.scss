@@ -5,9 +5,24 @@
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #d5dbe3 0%, #ffffff 100%);
 }
 
 a {
   text-decoration: none;
+}
+
+.cta-flat {
+  @include cta.flatDefault();
+
+  &:hover {
+    @include cta.flatHover();
+  }
+
+  &:active {
+    @include cta.flatActive();
+  }
+
+  &:focus-visible {
+    @include cta.flatFocus();
+  }
 }

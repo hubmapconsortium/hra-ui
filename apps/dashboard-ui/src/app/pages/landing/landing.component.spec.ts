@@ -9,7 +9,7 @@ describe('LandingComponent', () => {
     });
   });
   it('should render title', () => {
-    const title = screen.getByRole('heading', { level: 1 });
+    const title = screen.getByRole('heading', { level: 2 });
     expect(title).toHaveTextContent('Explore the coverage and quality of the Human Referance Atlas');
   });
 
