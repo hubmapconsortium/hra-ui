@@ -5,3 +5,12 @@ export interface CellTypeEntry {
   count: number;
   color: Rgb;
 }
+
+export function cellTypeToLookup(entries: CellTypeEntry[]): Map<string, Rgb> {
+  const lookup = new Map<string, Rgb>();
+  for (const entry of entries) {
+    lookup.set(entry.name, entry.color);
+  }
+
+  return lookup;
+}

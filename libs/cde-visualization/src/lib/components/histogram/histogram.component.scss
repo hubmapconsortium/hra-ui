@@ -1,5 +1,5 @@
 :host {
-  background-color: white; // TODO
+  background-color: white;
   border-radius: 0.5rem;
 
   .header {
@@ -15,9 +15,19 @@
   .content {
     height: 20rem;
     display: flex;
+    gap: 2rem;
 
     .histogram {
+      width: calc(100% - 250px);
+    }
+
+    .legend {
+      overflow-y: auto;
       flex-grow: 1;
+
+      cde-color-picker-label {
+        align-items: center;
+      }
     }
   }
 

@@ -1,24 +1,26 @@
 <span
   class="color-pick"
-  cpWidth="264px"
-  [colorPicker]="hexColor()"
-  (colorPickerChange)="hexColor.set($event)"
-  (colorPickerSelect)="selectColor($event)"
   [style.background]="hexColor()"
+  [colorPicker]="hexColor()"
+  cpWidth="264px"
   cpOutputFormat="hex"
+  cpPositionOffset="-17%"
   [cpOKButton]="true"
-  [cpCancelButton]="true"
-  cpPosition="right"
   cpOKButtonClass="accept-button"
   cpOKButtonText="Accept"
+  [cpCancelButton]="true"
   cpCancelButtonClass="cancel-button"
   cpAlphaChannel="disabled"
+  (colorPickerOpen)="colorPickerOpen.emit(true)"
+  (colorPickerClose)="colorPickerOpen.emit(false)"
+  (colorPickerChange)="hexColor.set($event)"
+  (colorPickerSelect)="selectColor($event)"
 ></span>
 <mat-icon *ngIf="isAnchor()" class="material-symbols-rounded anchor"> anchor </mat-icon>
 <div
   cdkOverlayOrigin
   #resetTrigger="cdkOverlayOrigin"
-  class="label"
+  class="label mat-caption"
   (mouseover)="tooltipOpen = true"
   (mouseout)="tooltipOpen = false"
 >

@@ -13,3 +13,9 @@ export function hexToRgb(hex: string): Rgb {
 
   return channels as Rgb;
 }
+
+export function colorEquals(color1: Rgb, color2: Rgb): boolean {
+  const [r1, g1, b1] = color1;
+  const [r2, g2, b2] = color2;
+  return r1 === r2 && g1 === g2 && b1 === b2;
+}

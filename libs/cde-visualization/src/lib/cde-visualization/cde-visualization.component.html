@@ -26,5 +26,11 @@
     (nodeHover)="nodeHover.emit($event)"
     (edgesChange)="edges.set($event)"
   ></cde-node-dist-visualization>
-  <cde-histogram [nodes]="loadedNodes()" [nodeTargetKey]="nodeTypeKey()" [edges]="loadedEdges()"></cde-histogram>
+  <cde-histogram
+    [nodes]="loadedNodes()"
+    [nodeTargetKey]="nodeTypeKey()"
+    [edges]="loadedEdges()"
+    [selectedCellType]="selectedNodeTargetValue()"
+    [(cellTypes)]="cellTypes"
+  ></cde-histogram>
 </div>

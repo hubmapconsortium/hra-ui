@@ -3,10 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Renderer2,
   computed,
   effect,
   inject,
   input,
+  model,
   signal,
   viewChild,
 } from '@angular/core';
@@ -17,27 +19,68 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { produce } from 'immer';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
+import { CellTypeEntry, cellTypeToLookup } from '../../models/cell-type';
+import { Rgb, colorEquals, rgbToHex } from '../../models/color';
 import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
+import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import histogramSpec from './histogram.vl.json';
 
 interface DistanceEntry {
   type: string;
   distance: number;
-  sourceNode: NodeEntry;
-  edge: EdgeEntry;
+  color: string;
+}
+
+interface ModifiableHistogramSpec {
+  config: {
+    padding: {
+      top: number;
+      right: number;
+      bottom: number;
+      left: number;
+    };
+  };
+  width: string | number;
+  height: string | number;
+  data: {
+    values?: unknown[];
+  };
+  encoding: {
+    color: {
+      legend: unknown;
+    };
+  };
 }
 
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 const ALL_CELLS_TYPE = 'All Cells';
+const EXPORT_IMAGE_PADDING = 16;
+const EXPORT_IMAGE_WIDTH = 1000;
+const EXPORT_IMAGE_HEIGHT = 500;
+const EXPORT_IMAGE_LEGEND_CONFIG = {
+  title: null,
+  symbolType: 'circle',
+  symbolStrokeWidth: 10,
+  labelFontSize: 13,
+};
 
 @Component({
   selector: 'cde-histogram',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatExpansionModule, ColorPickerModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    ColorPickerModule,
+    ColorPickerLabelComponent,
+  ],
   providers: [
     {
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
@@ -56,23 +99,75 @@ export class HistogramComponent {
   readonly nodes = input.required<NodeEntry[]>();
   readonly nodeTargetKey = input.required<NodeTargetKey>();
   readonly edges = input.required<EdgeEntry[]>();
-  readonly anchor = input<string>();
+  readonly selectedCellType = input.required<string>();
+  readonly cellTypes = model.required<CellTypeEntry[]>();
+
+  readonly cellTypesWithTotal = computed(() => [this.totalCellType(), ...this.cellTypes()]);
+
+  overflowVisible = false;
 
   private readonly document = inject(DOCUMENT);
+  private readonly renderer = inject(Renderer2);
+  private readonly fileSaver = inject(FileSaverService);
   private readonly histogramEl = viewChild<ElementRef>('histogram');
   private readonly view = signal<View | undefined>(undefined);
 
+  private readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
+  private readonly totalCellTypeCount = computed(() => this.cellTypes().reduce((total, { count }) => total + count, 0));
+  private readonly totalCellType = computed(
+    () =>
+      ({
+        name: ALL_CELLS_TYPE,
+        count: this.totalCellTypeCount(),
+        color: this.totalCellTypeColor(),
+      }) satisfies CellTypeEntry,
+  );
+
+  private readonly colorLookup = computed(() => cellTypeToLookup(this.cellTypesWithTotal()));
   private readonly distances = computed(() => this.computeDistances());
   private readonly data = computed(() => this.computeData());
 
   constructor() {
     this.initializeHistogram();
     this.initializeDataBindings();
-    console.log(this);
   }
 
-  async download(_format: string): Promise<void> {
-    // TODO
+  async download(event: Event, format: string): Promise<void> {
+    // Prevent the event from propagating to the expansion panel
+    event.stopPropagation();
+
+    const el = this.renderer.createElement('div');
+    const spec = produce(histogramSpec as ModifiableHistogramSpec, (draft) => {
+      draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
+      draft.config.padding.top = EXPORT_IMAGE_PADDING;
+      draft.config.padding.right = EXPORT_IMAGE_PADDING;
+      draft.config.padding.left = EXPORT_IMAGE_PADDING;
+      draft.data.values = this.data();
+      draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.height = EXPORT_IMAGE_HEIGHT;
+      draft.width = EXPORT_IMAGE_WIDTH;
+    });
+
+    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
+
+    const url = await view.toImageURL(format);
+    this.fileSaver.save(url, `cde-histogram.${format}`);
+    finalize();
+  }
+
+  updateColor(entry: CellTypeEntry, color: Rgb): void {
+    if (entry.name === ALL_CELLS_TYPE) {
+      this.totalCellTypeColor.set(color);
+    } else {
+      const entries = this.cellTypes();
+      const index = entries.indexOf(entry);
+      const copy = [...entries];
+
+      copy[index] = { ...copy[index], color };
+      this.cellTypes.set(copy);
+    }
   }
 
   private initializeHistogram(): void {
@@ -95,8 +190,6 @@ export class HistogramComponent {
 
   private initializeDataBindings(): void {
     effect(() => this.view()?.data('data', this.data()).run());
-
-    // TODO
   }
 
   private async ensureFontsLoaded(): Promise<void> {
@@ -112,17 +205,17 @@ export class HistogramComponent {
     }
 
     const nodeTargetKey = this.nodeTargetKey();
-    const anchor = this.anchor();
+    const selectedCellType = this.selectedCellType();
+    const colorLookup = this.colorLookup();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
       const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
       const type = sourceNode[nodeTargetKey];
-      if (type !== anchor) {
+      if (type !== selectedCellType) {
         distances.push({
           type,
-          sourceNode,
-          edge,
           distance: edgeDistance(edge),
+          color: rgbToHex(colorLookup.get(type) ?? [0, 0, 0]),
         });
       }
     }
@@ -131,76 +224,9 @@ export class HistogramComponent {
   }
 
   private computeData(): DistanceEntry[] {
+    const allColor = rgbToHex(this.totalCellTypeColor());
     const distances = this.distances();
-    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE }));
+    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: allColor }));
     return distances.concat(allCellDistances);
   }
-
-  // colorMap: CellColorData[] = [];
-
-  // // currentColor = '';
-
-  // histogramData: HistogramData[] = [];
-
-  // colors$ = computed(async () => {
-  //   const colors = (await this.fetchCsv('assets/color_mapping.csv')) as Record<string, string>[];
-  //   this.colorMap = colors.map((entry) => {
-  //     return {
-  //       cell_type: entry['cell_type'],
-  //       cell_color: entry['cell_color']
-  //         .replace('[', '')
-  //         .replace(']', '')
-  //         .split(', ')
-  //         .map((int) => parseInt(int)),
-  //     };
-  //   });
-  //   this.colorMap.unshift({ cell_type: 'All Cells', cell_color: [0, 0, 0] });
-  //   return this.colorMap;
-  // });
-
-  // toRGB(color: number[]): string {
-  //   return `rgba(${color.join(', ')})`;
-  // }
-
-  // rgbToHex(color: number[]) {
-  //   return '#' + ((1 << 24) + (color[0] << 16) + (color[1] << 8) + color[2]).toString(16).slice(1);
-  // }
-
-  // private createHistogram(data: HistogramData[]): VisualizationSpec {
-  //       color: {
-  //         field: 'type',
-  //         type: 'nominal',
-  //         legend: null,
-  //         scale: { range: this.colorMap.map((entry) => this.rgbToHex(entry.cell_color)) },
-  //       },
-  //     },
-  //     },
-  //   };
-  // }
-
-  // generateAxisValues(maxValue: number, interval: number): number[] {
-  //   const highest = Math.round(maxValue / interval) * interval;
-  //   let current = -1 * interval;
-  //   const result = [];
-  //   while (current <= highest) {
-  //     result.push(current);
-  //     current += interval;
-  //   }
-  //   return result;
-  // }
-
-  // download(event: MouseEvent, type: 'svg' | 'png') {
-  //   event.stopPropagation();
-  //   const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
-  //   const fileName = `cde_${dt}.${type}`;
-  //   if (this.view) {
-  //     this.view.toImageURL(type).then((url: string) => {
-  //       const link = document.createElement('a');
-  //       link.setAttribute('href', url);
-  //       link.setAttribute('target', '_blank');
-  //       link.setAttribute('download', fileName);
-  //       link.dispatchEvent(new MouseEvent('click'));
-  //     });
-  //   }
-  // }
 }
