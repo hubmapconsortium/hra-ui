@@ -16,7 +16,9 @@
   (colorPickerChange)="hexColor.set($event)"
   (colorPickerSelect)="selectColor($event)"
 ></span>
-<mat-icon *ngIf="isAnchor()" class="material-symbols-rounded anchor"> anchor </mat-icon>
+@if (isAnchor()) {
+  <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>
+}
 <div
   cdkOverlayOrigin
   #resetTrigger="cdkOverlayOrigin"

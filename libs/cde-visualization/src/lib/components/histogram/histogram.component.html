@@ -22,14 +22,15 @@
     <div class="content">
       <div class="histogram" #histogram></div>
       <div class="legend">
-        <cde-color-picker-label
-          *ngFor="let type of cellTypesWithTotal()"
-          [label]="type.name"
-          [color]="type.color"
-          [isAnchor]="type.name === selectedCellType()"
-          (colorPickerOpen)="overflowVisible = $event"
-          (colorChange)="updateColor(type, $event)"
-        ></cde-color-picker-label>
+        @for (type of cellTypesWithTotal(); track type.name) {
+          <cde-color-picker-label
+            [label]="type.name"
+            [color]="type.color"
+            [isAnchor]="type.name === selectedCellType()"
+            (colorPickerOpen)="overflowVisible = $event"
+            (colorChange)="updateColor(type, $event)"
+          ></cde-color-picker-label>
+        }
       </div>
     </div>
   </mat-expansion-panel>
