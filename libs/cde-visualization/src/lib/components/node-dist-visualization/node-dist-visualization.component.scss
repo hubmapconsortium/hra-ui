@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  position: relative;
+  height: calc(100% - 8px);
+  padding: 0.25rem;
+  background-color: black;
+  isolation: isolate;
+  border-radius: 0.5rem;
+
+  .info {
+    display: flex;
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    height: 2rem;
+    z-index: 1;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+  }
+
+  .download {
+    --mdc-filled-button-container-height: 1.75rem;
+    --mdc-filled-button-container-color: #d5dbe3;
+    --mdc-filled-button-label-text-color: #201e3d;
+
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+
+    font-size: 0.6875rem;
+    line-height: 1.03125rem;
+    letter-spacing: 0.002em;
+  }
+}
+
+::ng-deep {
+  .node-dist-vis-panel div {
+    margin: 0rem 1rem;
+
+    ul {
+      padding: 0;
+      color: #201e3d;
+    }
+
+    li {
+      margin-left: 1.5rem;
+      color: #4c4c58;
+    }
+  }
+}

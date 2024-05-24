@@ -5,6 +5,7 @@ import { Routes, provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { VisualizationPageComponent } from './pages/visualization/visualization.component';
 
 /**
  * App routes
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'create',
     loadComponent: () => CreateVisualizationPageComponent,
+  },
+  {
+    path: 'visualize',
+    loadComponent: () => VisualizationPageComponent,
   },
   {
     path: '**',
