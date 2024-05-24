@@ -19,14 +19,27 @@ $higher-density-theme: mat.define-light-theme(
 
 :host {
   display: block;
-  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
-  background-size: 100% 100%;
+  position: relative;
+
+  &::before {
+    background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
+    background-size: cover;
+    background-position: top;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
 
   .content {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
-    max-width: 72rem;
+    gap: 4rem;
+    max-width: 58rem;
     margin: 0 auto;
     width: 100%;
 
@@ -39,6 +52,11 @@ $higher-density-theme: mat.define-light-theme(
 
     .title {
       margin-top: 5rem;
+      font-size: 2.625rem;
+      max-width: 50%;
+      line-height: 4rem;
+      letter-spacing: -0.0325em;
+      margin-bottom: 0;
     }
 
     .card {
@@ -62,6 +80,7 @@ $higher-density-theme: mat.define-light-theme(
         display: flex;
         align-items: center;
         margin-bottom: 3rem;
+        font-size: 2rem;
 
         .step-number {
           display: inline-block;
@@ -89,15 +108,17 @@ $higher-density-theme: mat.define-light-theme(
 
     .data-upload {
       display: grid;
-      display: grid;
-      grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
-      grid-template-rows: auto;
+      grid-template-columns: 1fr -0.8fr 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto auto auto 5rem auto auto;
       grid-template-areas:
-        'header header header header'
-        'subheader-1 subheader-1 divider subheader-2'
-        'subheader-required-columns subheader-optional-columns divider use-template'
-        'required-columns optional-columns divider .'
-        'upload-csv upload-csv divider .';
+        'header header header header header'
+        'subheader-1 subheader-1 . . .'
+        'subheader-required-columns subheader-optional-columns subheader-optional-columns . .'
+        'required-columns optional-columns optional-columns . .'
+        'upload-csv . . . .'
+        'divider divider divider divider divider'
+        'subheader-2 subheader-2 . . .'
+        'use-template . . . .';
 
       .header {
         grid-area: header;
@@ -119,10 +140,17 @@ $higher-density-theme: mat.define-light-theme(
         grid-area: subheader-optional-columns;
       }
 
-      .divider {
+      mat-divider.vertical {
         grid-area: divider;
         place-self: center;
         height: 100%;
+        display: none;
+      }
+
+      mat-divider.horizontal {
+        grid-area: divider;
+        place-self: center;
+        width: 100%;
       }
 
       .required-columns {
@@ -152,22 +180,15 @@ $higher-density-theme: mat.define-light-theme(
       .metadata-options {
         display: flex;
         flex-wrap: wrap;
-        column-gap: 5rem;
+        column-gap: 2.5rem;
         row-gap: 3rem;
 
         .metadata-option {
           gap: 0.5rem;
           display: flex;
           flex-direction: column;
+          width: 23.75rem;
         }
-      }
-
-      div.metadata-option:nth-child(-n + 2) {
-        width: calc(50% - 4rem);
-      }
-
-      .metadata-option:nth-child(n + 3):nth-child(-n + 7) {
-        width: calc(33% - 4rem);
       }
     }
 
@@ -214,6 +235,52 @@ $higher-density-theme: mat.define-light-theme(
         color: white;
         background-color: rgba(224, 13, 58, 1);
       }
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .content {
+      gap: 5rem;
+      max-width: 72rem;
+    }
+
+    .title {
+      max-width: unset !important;
+    }
+
+    .data-upload {
+      grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
+      grid-template-rows: auto !important;
+      grid-template-areas:
+        'header header header header'
+        'subheader-1 subheader-1 divider subheader-2'
+        'subheader-required-columns subheader-optional-columns divider use-template'
+        'required-columns optional-columns divider .'
+        'upload-csv upload-csv divider .' !important;
+    }
+
+    mat-divider.vertical {
+      display: unset !important;
+    }
+
+    mat-divider.horizontal {
+      display: none;
+    }
+
+    .metadata-options {
+      column-gap: 5rem !important;
+    }
+
+    .metadata-option {
+      width: unset;
+    }
+
+    div.metadata-option:nth-child(-n + 2) {
+      width: calc(50% - 4rem) !important;
+    }
+
+    .metadata-option:nth-child(n + 3):nth-child(-n + 7) {
+      width: calc(33% - 4rem) !important;
     }
   }
 }
