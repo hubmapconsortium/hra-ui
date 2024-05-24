@@ -1,14 +1,19 @@
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OutputEmitterRef,
   Signal,
+  WritableSignal,
   effect,
+  inject,
   input,
+  isSignal,
   model,
+  output,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,24 +22,34 @@ import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
 import { ColorMapEntry } from '../../models/color-map';
 import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
+import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
-interface PreactSignal<T> {
-  value: T;
-}
-
-type PreactSignalValue<T> = T extends PreactSignal<infer U> ? U : never;
+type Preactify<T> = {
+  [K in keyof T]: { value: T[K] };
+};
 
 interface NodeDistVisElementProps {
-  nodesData: PreactSignal<NodeEntry[]>;
-  edgesUrl: PreactSignal<string>;
-  edgesData: PreactSignal<EdgeEntry[]>;
-  nodeTargetKey: PreactSignal<string>;
-  nodeTargetValue: PreactSignal<string>;
-  maxEdgeDistance: PreactSignal<number>;
-  colorMapData: PreactSignal<ColorMapEntry[]>;
+  nodesData: NodeEntry[];
+  nodeTargetKey: string;
+  nodeTargetValue: string;
+
+  edgesUrl: string;
+  edgesData: EdgeEntry[];
+  maxEdgeDistance: number;
+
+  colorMapData: ColorMapEntry[];
+  colorMapKey: string;
+  colorMapValue: string;
 }
 
-interface NodeDistVisElement extends HTMLElement, NodeDistVisElementProps {}
+interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {
+  toDataUrl(type?: string, quality?: unknown): string | undefined;
+}
+
+function isNonEmptyArray<T>(array: T[]): boolean {
+  return array.length > 0;
+}
 
 @Component({
   selector: 'cde-node-dist-visualization',
@@ -46,71 +61,86 @@ interface NodeDistVisElement extends HTMLElement, NodeDistVisElementProps {}
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
-  readonly nodes = input.required<NodeEntry[]>();
-  readonly edges = model.required<string | EdgeEntry[]>();
-  readonly anchor = input.required<string>();
+  readonly nodes = model.required<NodeEntry[]>();
+  readonly nodeTargetKey = input.required<string>();
+  readonly nodeTargetValue = input.required<string>();
+
+  readonly edges = model.required<EdgeEntry[]>();
+  readonly maxEdgeDistance = input.required<number>();
+
   readonly colorMap = input.required<ColorMapEntry[]>();
+  readonly colorMapKey = input.required<string>();
+  readonly colorMapValue = input.required<string>();
 
-  private readonly vis = viewChild<ElementRef<NodeDistVisElement>>('vis');
-  visInfoOpen = false;
+  readonly nodeClick = output<NodeEntry>();
+  readonly nodeHover = output<NodeEntry | undefined>();
 
-  overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-    },
-  ];
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  tooltipOpen = false;
+
+  private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+  private readonly fileSaver = inject(FileSaverService);
 
   constructor() {
-    this.initializeDataBindings();
-    this.initializeOutputEvents();
+    this.bindData('nodesData', this.nodes, isNonEmptyArray);
+    this.bindData('nodeTargetKey', this.nodeTargetKey);
+    this.bindData('nodeTargetValue', this.nodeTargetValue);
+    this.bindEvent('nodes', this.nodes, isNonEmptyArray);
+    this.bindEvent('nodeClicked', this.nodeClick);
+    this.bindEvent('nodeHovering', this.nodeHover);
+
+    this.bindData('edgesData', this.edges, isNonEmptyArray);
+    this.bindData('maxEdgeDistance', this.maxEdgeDistance);
+    this.bindEvent('edges', this.edges, isNonEmptyArray);
+
+    this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
+    this.bindData('colorMapKey', this.colorMapKey);
+    this.bindData('colorMapValue', this.colorMapValue);
   }
 
-  private initializeDataBindings(): void {
-    this.bindData('nodesData', this.nodes);
-    this.bindData('nodeTargetValue', this.anchor);
-    this.bindData('colorMapData', this.colorMap);
-    effect(() => console.log(this.vis()?.nativeElement));
-
-    effect(() => {
-      const el = this.vis()?.nativeElement;
-      if (el) {
-        const edges = this.edges();
-        if (typeof edges === 'string') {
-          el.edgesUrl.value = edges;
-        } else if (edges.length > 0) {
-          el.edgesData.value = edges;
-        }
-      }
-    });
-  }
-
-  private initializeOutputEvents(): void {
-    const ref = effect(() => {
-      const el = this.vis()?.nativeElement;
-      if (el) {
-        el.addEventListener('edges', (event) => {
-          const customEvent = event as CustomEvent;
-          if (customEvent.detail) {
-            this.edges.set(customEvent.detail);
-          }
-        });
-        ref.destroy();
-      }
-    });
+  download(): void {
+    const el = this.vis().nativeElement;
+    const url = el.toDataUrl();
+    if (url) {
+      this.fileSaver.save(url, 'cell-distance-vis.png');
+    }
   }
 
   private bindData<K extends keyof NodeDistVisElementProps>(
     prop: K,
-    value: Signal<PreactSignalValue<NodeDistVisElementProps[K]>>,
+    value: Signal<NodeDistVisElementProps[K]>,
+    selector?: (value: NodeDistVisElementProps[K]) => boolean,
   ): void {
     effect(() => {
-      const el = this.vis()?.nativeElement;
-      if (el) {
-        el[prop].value = value();
+      const el = this.vis().nativeElement;
+      const data = value();
+      if (selector === undefined || selector(data)) {
+        el[prop].value = data;
       }
+    });
+  }
+
+  private bindEvent<T>(
+    type: string,
+    outputRef: OutputEmitterRef<T> | WritableSignal<T>,
+    selector?: (value: T) => boolean,
+  ): void {
+    const emit = isSignal(outputRef)
+      ? (value: T) => outputRef() !== value && outputRef.set(value)
+      : (value: T) => outputRef.emit(value);
+
+    effect((onCleanup) => {
+      const el = this.vis().nativeElement;
+      const handler = (event: Event) => {
+        const { detail: data } = event as CustomEvent;
+        if (selector === undefined || selector(data)) {
+          emit(data);
+        }
+      };
+
+      el.addEventListener(type, handler);
+      onCleanup(() => el.removeEventListener(type, handler));
     });
   }
 }

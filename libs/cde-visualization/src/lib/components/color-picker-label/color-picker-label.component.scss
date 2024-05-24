@@ -128,9 +128,10 @@
     cursor: pointer;
     display: block;
     white-space: nowrap;
-    width: 9rem;
+    max-width: 9rem;
     text-overflow: ellipsis;
     overflow: hidden;
+    flex-grow: 0;
   }
 }
 

@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Metadata } from '../../models/metadata';
-import { TOOLTIP_POSITION_HORIZONTAL } from '../../shared/tooltip-position';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 /** Simple pipe that returns 'N/A' when the passed value is undefined */
 @Pipe({
@@ -39,7 +39,7 @@ export class NotAvailablePipe implements PipeTransform {
 export class MetadataComponent {
   readonly metadata = input.required<Metadata>();
 
-  readonly tooltipPosition = TOOLTIP_POSITION_HORIZONTAL;
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** Flag to check if info tooltip is open */
   tooltipOpen = false;

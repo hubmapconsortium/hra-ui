@@ -1,13 +1,13 @@
 import { Location } from '@angular/common';
 import { Injectable, Injector, Signal, Type, inject, runInInjectionContext } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { ToSignalOptions, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, filter, map, of, switchAll, takeLast } from 'rxjs';
 import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-loader/file-loader';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class DataLoaderService {
   private readonly location = inject(Location);
 
   load<T, const LoaderT extends Type<FileLoader<T, unknown>>>(
@@ -15,7 +15,7 @@ export class DataService {
     initialValue: T,
     loaderToken: LoaderT,
     loaderOptions: FileLoaderOptions<InstanceType<LoaderT>>,
-    options?: { injector?: Injector; rejectErrors?: boolean },
+    options?: Omit<ToSignalOptions, 'initialValue'>,
   ): Signal<T> {
     const injector = options?.injector ?? inject(Injector, { optional: true });
     if (!injector) {

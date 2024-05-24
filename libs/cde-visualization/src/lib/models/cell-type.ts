@@ -1,6 +1,6 @@
 import { Rgb } from './color';
 
-export interface CellType {
+export interface CellTypeEntry {
   name: string;
   count: number;
   color: Rgb;

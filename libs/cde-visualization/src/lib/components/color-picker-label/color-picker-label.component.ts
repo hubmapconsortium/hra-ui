@@ -1,9 +1,10 @@
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, computed, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, model, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, hexToRgb, rgbToHex } from '../../models/color';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 @Component({
   selector: 'cde-color-picker-label',
@@ -18,7 +19,10 @@ export class ColorPickerLabelComponent {
   readonly label = input.required<string>();
   readonly isAnchor = input<boolean>(false);
 
-  readonly hexColor = computed(() => rgbToHex(this.color()));
+  readonly hexColor = signal('#000000');
+  readonly hexColorSyncRef = effect(() => this.hexColor.set(rgbToHex(this.color())), { allowSignalWrites: true });
+
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   tooltipOpen = false;
   readonly overlayPositions: ConnectionPositionPair[] = [
@@ -38,10 +42,7 @@ export class ColorPickerLabelComponent {
     },
   ];
 
-  @Output() colorChanged = new EventEmitter<{ type: string; color: Rgb }>();
-
-  updateColor(hex: string): void {
+  selectColor(hex: string): void {
     this.color.set(hexToRgb(hex));
-    this.colorChanged.emit({ type: this.label(), color: this.color() });
   }
 }

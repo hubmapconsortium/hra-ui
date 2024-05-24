@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { OverlayModule } from '@angular/cdk/overlay';
 
 /**
  * Component for visualization page header
@@ -17,6 +17,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisualizationHeaderComponent {
+  readonly downloadNodes = output();
+
+  readonly downloadEdges = output();
+
   /** Flag to check if reset info tooltip is open */
   resetInfoOpen = false;
   /** Flag to check if embed info tooltip is open */

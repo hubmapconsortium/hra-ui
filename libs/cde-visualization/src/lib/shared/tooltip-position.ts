@@ -1,43 +1,27 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
 
-const POSITION_ABOVE: ConnectedPosition = {
-  originX: 'center',
-  originY: 'top',
-  overlayX: 'center',
-  overlayY: 'bottom',
-};
+function createPosition(
+  originX: ConnectedPosition['originX'],
+  originY: ConnectedPosition['originY'],
+  overlayX: ConnectedPosition['overlayX'],
+  overlayY: ConnectedPosition['overlayY'],
+): ConnectedPosition {
+  return {
+    originX,
+    originY,
+    overlayX,
+    overlayY,
+  };
+}
 
-const POSITION_BELOW: ConnectedPosition = {
-  originX: 'center',
-  originY: 'bottom',
-  overlayX: 'center',
-  overlayY: 'top',
-};
-
-const POSITION_LEFT: ConnectedPosition = {
-  originX: 'start',
-  originY: 'center',
-  overlayX: 'end',
-  overlayY: 'center',
-};
-
-const POSITION_RIGHT: ConnectedPosition = {
-  originX: 'end',
-  originY: 'center',
-  overlayX: 'start',
-  overlayY: 'center',
-};
-
-export const TOOLTIP_POSITION_HORIZONTAL: ConnectedPosition[] = [
-  POSITION_RIGHT,
-  POSITION_LEFT,
-  POSITION_BELOW,
-  POSITION_ABOVE,
+export const TOOLTIP_POSITION_RIGHT_SIDE: ConnectedPosition[] = [
+  createPosition('end', 'top', 'start', 'top'),
+  createPosition('end', 'center', 'start', 'center'),
+  createPosition('end', 'bottom', 'start', 'bottom'),
 ];
 
-export const TOOLTIP_POSITION_VERTICAL: ConnectedPosition[] = [
-  POSITION_BELOW,
-  POSITION_ABOVE,
-  POSITION_RIGHT,
-  POSITION_LEFT,
+export const TOOLTIP_POSITION_BELOW: ConnectedPosition[] = [
+  createPosition('center', 'bottom', 'center', 'top'),
+  createPosition('start', 'bottom', 'start', 'top'),
+  createPosition('end', 'bottom', 'end', 'top'),
 ];

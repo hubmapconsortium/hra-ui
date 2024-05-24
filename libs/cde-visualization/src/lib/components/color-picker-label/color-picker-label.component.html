@@ -2,7 +2,8 @@
   class="color-pick"
   cpWidth="264px"
   [colorPicker]="hexColor()"
-  (colorPickerChange)="updateColor($event)"
+  (colorPickerChange)="hexColor.set($event)"
+  (colorPickerSelect)="selectColor($event)"
   [style.background]="hexColor()"
   cpOutputFormat="hex"
   [cpOKButton]="true"
@@ -11,15 +12,15 @@
   cpOKButtonClass="accept-button"
   cpOKButtonText="Accept"
   cpCancelButtonClass="cancel-button"
-  cpAlphaChannel="always"
+  cpAlphaChannel="disabled"
 ></span>
 <mat-icon *ngIf="isAnchor()" class="material-symbols-rounded anchor"> anchor </mat-icon>
 <div
   cdkOverlayOrigin
   #resetTrigger="cdkOverlayOrigin"
   class="label"
-  (mouseover)="tooltipOpen = !tooltipOpen"
-  (mouseout)="tooltipOpen = !tooltipOpen"
+  (mouseover)="tooltipOpen = true"
+  (mouseout)="tooltipOpen = false"
 >
   {{ label() }}
   <ng-container>
@@ -27,7 +28,7 @@
       cdkConnectedOverlay
       [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'label-tooltip']"
       [cdkConnectedOverlayOrigin]="resetTrigger"
-      [cdkConnectedOverlayPositions]="overlayPositions"
+      [cdkConnectedOverlayPositions]="tooltipPosition"
       [cdkConnectedOverlayOpen]="tooltipOpen"
       [cdkConnectedOverlayOffsetX]="5"
     >
