@@ -5,7 +5,7 @@
   <div class="card data-upload">
     <h2 class="header">
       <span class="step-number">1</span>
-      Format and Upload Data
+      <div class="card-title">Format and Upload Data</div>
       <span class="material-symbols-rounded info"> info </span>
     </h2>
 
@@ -38,7 +38,7 @@
   <div class="card anchor-selection">
     <h2 class="header">
       <span class="step-number">2</span>
-      Optional: Select Anchor Cell Type
+      <div class="card-title">Optional: Select Anchor Cell Type</div>
       <mat-icon class="material-symbols-rounded info"> info </mat-icon>
     </h2>
     <mat-form-field class="select-form">
@@ -61,24 +61,24 @@
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
       <span class="step-number">3</span>
-      Add Metadata
+      <div class="card-title">Add Metadata</div>
       <span class="material-symbols-rounded info"> info </span>
     </h2>
     <div class="metadata-options">
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Visualization Title</mat-label>
           <input matInput formControlName="title" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Imaging Technology</mat-label>
           <input matInput formControlName="technology" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Organ</mat-label>
           <mat-select formControlName="organ" cdeMarkEmptyFormControl>
             @for (organ of organs; track organ) {
@@ -89,7 +89,7 @@
       </div>
 
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Sex</mat-label>
           <mat-select formControlName="sex" panelClass="select-options-container" cdeMarkEmptyFormControl>
             <mat-option value="male">Male</mat-option>
@@ -98,20 +98,20 @@
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Age</mat-label>
           <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
 
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Thickness (µm)</mat-label>
           <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Pixel size (µm/pixel)</mat-label>
           <input matInput type="number" formControlName="pixelSize" min="0" cdeMarkEmptyFormControl />
         </mat-form-field>
@@ -122,11 +122,25 @@
   <div class="color-config card">
     <h2 class="header">
       <span class="step-number">4</span>
-      Optional: Configure Color Map
+      <div class="card-title">Optional: Configure Color Map</div>
       <span class="material-symbols-rounded info"> info </span>
     </h2>
     <div class="toggle-actions">
-      <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapOption">
+      <mat-button-toggle-group
+        class="button-toggle-horizontal"
+        aria-label="Font Style"
+        formControlName="colorMapOption"
+      >
+        <mat-button-toggle value="default" (change)="toggleDefaultColorMap()">Use Default Colors</mat-button-toggle>
+        <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-button-toggle-group
+        class="button-toggle-vertical"
+        aria-label="Font Style"
+        formControlName="colorMapOption"
+        vertical
+      >
         <mat-button-toggle value="default" (change)="toggleDefaultColorMap()">Use Default Colors</mat-button-toggle>
         <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
       </mat-button-toggle-group>
@@ -154,7 +168,7 @@
   <div class="card visualize">
     <h2 class="header">
       <span class="step-number">5</span>
-      Visualize Cell Distance Data
+      <div class="card-title">Visualize Cell Distance Data</div>
       <span class="material-symbols-rounded info"> info </span>
     </h2>
     <button type="submit" mat-flat-button class="cta-button visualize-button" data-testid="visualize">
