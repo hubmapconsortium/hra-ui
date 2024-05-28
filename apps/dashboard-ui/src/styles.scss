@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+body:has(.menu-open) {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
