@@ -1,13 +1,13 @@
 import { Meta, StoryFn } from '@storybook/angular';
 
-import { SourceListComponent } from './source-list.component';
+import { SourceListComponent, SourceListItem } from './source-list.component';
 
 export default {
   title: 'SourceListComponent',
   component: SourceListComponent,
-} as Meta<SourceListComponent>;
+} as Meta<SourceListComponent<SourceListItem>>;
 
-const Template: StoryFn<SourceListComponent> = (args) => ({ props: args });
+const Template: StoryFn<SourceListComponent<SourceListItem>> = (args) => ({ props: args });
 
 export const Default = {
   render: Template,

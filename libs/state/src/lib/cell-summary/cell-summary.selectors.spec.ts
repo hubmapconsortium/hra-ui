@@ -3,7 +3,10 @@ import { CellSummarySelectors } from './cell-summary.selectors';
 
 describe('CellSummarySelectors', () => {
   const state: CellSummaryModel = {
+    biomarkerTypes: [],
     summaries: [],
+    filteredSummaries: [],
+    summariesByBiomarker: [],
     aggregates: [],
   };
 

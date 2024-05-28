@@ -2,16 +2,30 @@ import { inject, Injectable } from '@angular/core';
 import { FtuDataService, SourceReference } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
-import { Load, Reset } from './source-refs.actions';
 
-type Context = StateContext<SourceReference[]>;
+import { Load, Reset, ResetSelectedSources, SetSelectedSources } from './source-refs.actions';
+
+/**
+ * Source refs model interface
+ */
+export interface SourceRefsModel {
+  /** Current source list */
+  sources: SourceReference[];
+  /** Selected sources */
+  selected: SourceReference[];
+}
+
+type Context = StateContext<SourceRefsModel>;
 
 /**
  * State to handle the source references
  */
-@State<SourceReference[]>({
+@State<SourceRefsModel>({
   name: 'sourceReferences',
-  defaults: [],
+  defaults: {
+    sources: [],
+    selected: [],
+  },
 })
 @Injectable()
 export class SourceRefsState {
@@ -23,9 +37,25 @@ export class SourceRefsState {
   /**
    * Loads the current state with the source references
    */
-  @Action(Load)
+  @Action(Load, { cancelUncompleted: true })
   load({ setState }: Context, { iri }: Load): Observable<unknown> {
-    return this.dataService.getSourceReferences(iri).pipe(tap(setState));
+    return this.dataService.getSourceReferences(iri).pipe(tap((sources) => setState({ sources, selected: sources })));
+  }
+
+  /**
+   * Sets selected source references
+   */
+  @Action(SetSelectedSources)
+  setSelectedSources({ patchState }: Context, { sources }: SetSelectedSources): void {
+    patchState({ selected: sources });
+  }
+
+  /**
+   * Resets selected source references
+   */
+  @Action(ResetSelectedSources)
+  resetSelectedSources({ getState, dispatch }: Context): Observable<void> {
+    return dispatch(new SetSelectedSources(getState().sources));
   }
 
   /**
@@ -33,6 +63,9 @@ export class SourceRefsState {
    */
   @Action(Reset)
   reset({ setState }: Context): void {
-    setState([]);
+    setState({
+      sources: [],
+      selected: [],
+    });
   }
 }

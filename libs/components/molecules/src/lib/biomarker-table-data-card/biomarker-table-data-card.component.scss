@@ -7,6 +7,7 @@
   border-radius: 0.5rem;
   box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
   background-color: vars.$primary-contrast-rgb;
+  font-family: Metropolis;
 
   .mat-mdc-cell {
     padding: 0.25rem 0rem;
@@ -21,12 +22,14 @@
   }
 
   .label {
-    color: #243142;
+    color: rgba(vars.$primary);
     padding-right: 3rem;
+    font-weight: 500;
   }
 
   .value {
-    color: #4c5a69;
+    color: rgba(vars.$primary-400);
+    font-weight: 400;
   }
 
   .sr-only {

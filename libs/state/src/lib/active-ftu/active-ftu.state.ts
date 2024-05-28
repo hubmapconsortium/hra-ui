@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
 import { Iri } from '@hra-ui/services';
 import { Action, State, StateContext } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
+
 import { CellSummaryActions, CellSummaryState } from '../cell-summary';
+import { DownloadActions, DownloadState } from '../download';
 import { IllustratorActions, IllustratorState } from '../illustrator';
+import { Illustration } from '../link-ids';
 import { SourceRefsActions, SourceRefsState } from '../source-refs';
 import { Clear, Load, Reset, SetIllustrationUrl } from './active-ftu.actions';
-import { DownloadActions, DownloadState } from '../download';
-import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
-import { Illustration } from '../link-ids';
+import { ResetSelectedSources } from '../source-refs/source-refs.actions';
 
 /**
  * Interface for ActiveFtuModel */
@@ -44,7 +46,10 @@ export class ActiveFtuState {
         new DownloadActions.Load(iri),
         new SourceRefsActions.Load(iri),
         new SetIllustrationUrl(iri),
-      ]).pipe(tap(() => patchState({ iri })));
+      ]).pipe(
+        tap(() => patchState({ iri })),
+        switchMap(() => dispatch(new ResetSelectedSources())),
+      );
     }
   }
 

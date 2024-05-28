@@ -1,11 +1,12 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LinkDirective } from '@hra-ui/cdk';
 import { EMPTY_LINK } from '@hra-ui/cdk/state';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
  * Base type for different download format options.
@@ -61,9 +62,6 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Input for product title to displayed on the left side. */
   @Input() productTitle = '';
 
-  /** Input for HRA Portal link */
-  @Input() hraPortal = EMPTY_LINK;
-
   /** Input for Illustration metadata page link in HRA Portal */
   @Input() illustrationMetadata = EMPTY_LINK;
 
@@ -73,11 +71,11 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
   /** Different download formats options displayed to the user */
   @Input() downloadFormats: T[] = [];
 
+  /** Input for about link */
+  @Input() aboutLink = EMPTY_LINK;
+
   /** Emits the selected download format */
   @Output() readonly download = new EventEmitter<T>();
-
-  /** Emits when the contact button is clicked */
-  @Output() readonly contactClick = new EventEmitter<void>();
 
   /** Download list popup overlay positioning */
   readonly DOWNLOADS_LIST_POSITION = DOWNLOADS_LIST_POSITION;
@@ -89,6 +87,19 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
 
   /** Whether the download list panel is open */
   downloadListOpen = false;
+
+  /** Emits when the contact button is clicked */
+  @Output() readonly contactClick = new EventEmitter<void>();
+
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /**
+   * Logs event when about button clicked
+   */
+  aboutClicked(): void {
+    this.ga.event('about_icon_click', 'link_click');
+  }
 
   /**
    * Ignore if button is clicked, otherwise close the download list panel
