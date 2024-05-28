@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="logos">
+    <a href="https://humanatlas.io/" target="_blank">
+      <img src="assets/logos/hra-logo.svg" alt="Human Reference Atlas logo" />
+    </a>
+    <a [routerLink]="'home'">
+      <img src="assets/logos/dashboard-logo.svg" alt="HRA Dashboards logo" />
+    </a>
+  </div>
+  <span class="menu-btns">
+    <button [routerLink]="'data'" disableRipple mat-button>Data</button>
+    <button [routerLink]="'usage'" disableRipple mat-button>Usage</button>
+    <button [routerLink]="'diversity-and-inclusion'" disableRipple mat-button>Diversity & Inclusion</button>
+    <button [routerLink]="'publications'" disableRipple mat-button>Publications</button>
+    <button [routerLink]="'experimental-data'" disableRipple mat-button>Experimental Data</button>
+  </span>
+</div>

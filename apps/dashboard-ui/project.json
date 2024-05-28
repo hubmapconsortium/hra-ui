@@ -7,12 +7,12 @@
   "tags": ["type:app", "project:dashboard"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dashboard-ui",
         "index": "apps/dashboard-ui/src/index.html",
-        "browser": "apps/dashboard-ui/src/main.ts",
+        "main": "apps/dashboard-ui/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/dashboard-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -22,6 +22,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/hra-ui/apps/dashboard-ui/",
           "budgets": [
             {
               "type": "initial",
@@ -40,6 +41,17 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/apps/dashboard-ui/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/dashboard-ui/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"

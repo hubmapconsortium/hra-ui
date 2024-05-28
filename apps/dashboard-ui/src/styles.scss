@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/cta' as cta;
+@use './styles/global/resets';
+@use './styles/global/fonts';
+@use './styles/material-theming';
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cta-flat {
+  @include cta.flatDefault();
+
+  &:hover {
+    @include cta.flatHover();
+  }
+
+  &:active {
+    @include cta.flatActive();
+  }
+
+  &:focus-visible {
+    @include cta.flatFocus();
+  }
+}
