@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { z } from 'zod';
 import { DashboardComponent } from '../../../dashboard/dashboard.model';
+import { METRICS_CARD_DEF } from '../card/metrics-card.component';
 
 @Component({
   selector: 'hra-dashboard-metrics-container',
@@ -10,20 +11,7 @@ export class MetricsContainerComponent implements DashboardComponent<typeof Metr
   static readonly type = 'MetricsContainer';
   static readonly def = z.object({
     type: z.literal('MetricsContainer'),
-    items: z
-      .object({
-        title: z.string(),
-        tooltip: z.string(),
-        source: z.string().url().optional(),
-        items: z
-          .object({
-            label: z.string(),
-            count: z.number(),
-            unit: z.string().optional(),
-          })
-          .array(),
-      })
-      .array(),
+    items: METRICS_CARD_DEF.array(),
   });
 
   readonly spec = input<z.infer<(typeof MetricsContainerComponent)['def']>>();
