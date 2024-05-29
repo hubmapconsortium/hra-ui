@@ -310,18 +310,22 @@ $higher-density-theme: mat.define-light-theme(
       }
     }
 
-    .visualize {
-      .visualize-button {
-        height: 2rem;
-        color: white;
-        background-color: rgba(224, 13, 58, 1);
-        font-size: 11px;
+    .visualize-button {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      font-size: 11px;
+      color: white;
+      background-color: rgba(224, 13, 58, 1);
+      padding: 8px 12px 8px 12px;
+      gap: 4px;
+      letter-spacing: 0.2px;
+      line-height: 0;
 
-        mat-icon {
-          height: 1rem;
-          width: 1rem;
-          font-size: 1rem;
-        }
+      mat-icon {
+        height: 1rem;
+        width: 1rem;
+        font-size: 1rem;
       }
     }
   }
@@ -450,10 +454,10 @@ $higher-density-theme: mat.define-light-theme(
     }
 
     .visualize-button {
-      --mat-filled-button-icon-spacing: 12px;
-
       height: 40px !important;
       font-size: 18px !important;
+      padding: 8px 24px 8px 24px !important;
+      gap: 12px !important;
 
       mat-icon {
         height: 1.5rem !important;
