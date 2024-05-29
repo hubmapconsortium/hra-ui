@@ -39,13 +39,12 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
 });
 
 type IdItem = z.infer<typeof ID_ITEM>;
-type CellSourceItem = z.infer<typeof CELL_SOURCE_ITEM>;
 type Graph<T> = { '@graph': T[] };
 type Illustrations = z.infer<typeof ILLUSTRATIONS>;
 type Datasets = z.infer<typeof DATASETS>;
 type Cell_Summary = z.infer<typeof CELL_SUMMARIES>;
 type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
-type dataSources = Datasets['@graph'][number]['data_sources'];
+type DataSources = Datasets['@graph'][number]['data_sources'];
 
 /** Base ID Object */
 const ID_ITEM = z.object({
@@ -83,8 +82,12 @@ const DATASETS = z.object({
     '@id': IRI,
     data_sources: z
       .object({
+        '@id': IRI,
         label: z.string(),
         description: z.string(),
+        authors: z.string().array().optional(),
+        year: z.number().optional(),
+        doi: z.string().optional(),
         link: z.string(),
       })
       .array(),
@@ -202,7 +205,7 @@ export class FtuDataImplService extends FtuDataService {
   */
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
     return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
-      map((data) => this.findCellSummaries(data, iri)),
+      map((data) => data['@graph']),
       map((data) => (data ? this.constructCellSummaries(data) : [])),
     );
   }
@@ -280,21 +283,6 @@ export class FtuDataImplService extends FtuDataService {
   }
 
   /**
-   * Finds cell summaries from fetched Data based on cell_source field
-   * @template T
-   * @param data
-   * @param iri
-   * @returns cell summaries
-   */
-  private findCellSummaries<T extends CellSourceItem>(data: Graph<T>, iri: Iri): T[] {
-    const item = data['@graph'].filter(({ cell_source }) => cell_source === iri);
-    if (item === undefined || item.length == 0) {
-      return [];
-    }
-    return item;
-  }
-
-  /**
    * Finds illustration url and formates it to Url
    * @param files
    * @returns illustration url
@@ -352,10 +340,10 @@ export class FtuDataImplService extends FtuDataService {
    * @param data
    * @returns source references
    */
-  private toSourceReferences(data: dataSources): SourceReference[] {
+  private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] = [];
-    for (const { label, link, description } of data) {
-      results.push({ label, link, title: description });
+    for (const { '@id': id, label, link, description, authors = [], year = -1, doi = '' } of data) {
+      results.push({ id, label, link, title: description, authors, year, doi });
     }
     return results;
   }
@@ -367,7 +355,7 @@ export class FtuDataImplService extends FtuDataService {
    */
   private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
     type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
-    const cellSummary: CellSummary[] = [];
+    const cellSummaries: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
     const expandGenes = (summary: SummaryItem) =>
@@ -396,11 +384,11 @@ export class FtuDataImplService extends FtuDataService {
         count: entry.count,
         percentage: entry.percentage,
         meanExpression: entry.mean_expression,
-        dataset_count: entry.dataset_count,
       }));
 
-      cellSummary.push({
+      cellSummaries.push({
         label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
+        cellSource: summaryGroup.cell_source,
         cells,
         biomarkers,
         summaries,
@@ -409,15 +397,17 @@ export class FtuDataImplService extends FtuDataService {
 
     defaultBiomarkerLables.forEach((defaultLabel) => {
       if (!biomarkersPresent.has(defaultLabel)) {
-        cellSummary.push({
+        cellSummaries.push({
           label: `${capitalize(defaultLabel)} Biomarkers`,
+          cellSource: '',
           cells: [],
           biomarkers: [],
           summaries: [],
         });
       }
     });
-    return cellSummary;
+
+    return cellSummaries;
   }
 
   /**

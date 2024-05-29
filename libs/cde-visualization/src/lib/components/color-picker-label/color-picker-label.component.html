@@ -1,0 +1,44 @@
+<span
+  class="color-pick"
+  [style.background]="hexColor()"
+  [colorPicker]="hexColor()"
+  cpWidth="264px"
+  cpOutputFormat="hex"
+  cpPositionOffset="-17%"
+  [cpOKButton]="true"
+  cpOKButtonClass="accept-button"
+  cpOKButtonText="Accept"
+  [cpCancelButton]="true"
+  cpCancelButtonClass="cancel-button"
+  cpAlphaChannel="disabled"
+  (colorPickerOpen)="colorPickerOpen.emit(true)"
+  (colorPickerClose)="colorPickerOpen.emit(false)"
+  (colorPickerChange)="hexColor.set($event)"
+  (colorPickerSelect)="selectColor($event)"
+></span>
+@if (isAnchor()) {
+  <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>
+}
+<div
+  cdkOverlayOrigin
+  #resetTrigger="cdkOverlayOrigin"
+  class="label mat-caption"
+  (mouseover)="tooltipOpen = true"
+  (mouseout)="tooltipOpen = false"
+>
+  {{ label() }}
+  <ng-container>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'label-tooltip']"
+      [cdkConnectedOverlayOrigin]="resetTrigger"
+      [cdkConnectedOverlayPositions]="tooltipPosition"
+      [cdkConnectedOverlayOpen]="tooltipOpen"
+      [cdkConnectedOverlayOffsetX]="5"
+    >
+      <div>
+        {{ label() }}
+      </div>
+    </ng-template>
+  </ng-container>
+</div>

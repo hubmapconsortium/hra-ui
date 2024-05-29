@@ -6,15 +6,14 @@
 </div>
 <div class="filler" *ngIf="isSmall"></div>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="illustrationMetadata" disableRipple>
-  <mat-icon>info_outlined</mat-icon>
-  Illustration
+<button class="button" mat-button [hraLink]="embed" disableRipple>
+  <mat-icon>code</mat-icon>
+  Embed Illustration
 </button>
 
 <button
-  class="button download-button"
-  mat-stroked-button
-  color="accent"
+  class="button download"
+  mat-button
   (click)="downloadListOpen = !downloadListOpen"
   type="button"
   cdkOverlayOrigin
@@ -22,25 +21,30 @@
   disableRipple
 >
   <span class="material-symbols-outlined"> download </span>
-  Download
+  Download Illustration
 </button>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="embed" disableRipple>
-  <mat-icon>code</mat-icon>
-  Embed
+<button class="button illustration-metadata" mat-button [hraLink]="illustrationMetadata" disableRipple>
+  <mat-icon>info_outlined</mat-icon>
+  Illustration Metadata
 </button>
 
-<div class="filler" *ngIf="!isSmall"></div>
+<button class="button data-download" *ngIf="!isSmall" mat-button disableRipple>
+  <span class="material-symbols-outlined"> download </span>
+  Download Data
+</button>
 
-<button class="button" mat-stroked-button color="accent" (click)="contactClick.emit()" disableRipple>
+<button class="button contact" *ngIf="isSmall" mat-button (mouseup)="contactClick.emit()" disableRipple>
   <mat-icon>mail_outlined</mat-icon>
   Contact
 </button>
 
-<button class="button" mat-stroked-button color="accent" [hraLink]="hraPortal" disableRipple>
+<button class="button ftu-explorer" *ngIf="isSmall" mat-button [hraLink]="aboutLink" disableRipple>
   <mat-icon>open_in_new</mat-icon>
   HRA Portal
 </button>
+
+<div class="filler" *ngIf="!isSmall"></div>
 
 <ng-template
   cdkConnectedOverlay

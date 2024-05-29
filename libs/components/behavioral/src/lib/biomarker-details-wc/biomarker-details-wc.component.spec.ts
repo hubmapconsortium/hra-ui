@@ -1,13 +1,14 @@
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 import { calledWithFn, mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
+
 import { BiomarkerDetailsWcComponent } from './biomarker-details-wc.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -63,8 +64,14 @@ describe('BiomarkerDetailsWcComponent', () => {
         textLabel: 'label',
       },
     } as MatTabChangeEvent;
+
+    const mockEvent2 = {
+      tab: null,
+    } as unknown as MatTabChangeEvent;
+
     const spy = jest.spyOn(instance, 'logTabChange');
     instance.logTabChange(mockEvent);
+    instance.logTabChange(mockEvent2);
     expect(spy).toHaveBeenCalled();
   });
 
@@ -94,6 +101,14 @@ describe('BiomarkerDetailsWcComponent', () => {
         instance.collaborate();
         expect(spy).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('trackByIndex', () => {
+    it('returns the index', async () => {
+      const { instance } = await shallow.render();
+      instance.trackByIndex(1);
+      expect(instance.trackByIndex(1)).toEqual(1);
     });
   });
 });

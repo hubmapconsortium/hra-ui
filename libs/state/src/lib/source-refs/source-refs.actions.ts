@@ -1,5 +1,5 @@
 import { ActionGroup } from '@hra-ui/cdk/state';
-import { Iri } from '@hra-ui/services';
+import { Iri, SourceReference } from '@hra-ui/services';
 
 /** Action base class factory */
 const Action = ActionGroup('SourceRefs');
@@ -13,6 +13,21 @@ export class Load extends Action('Load') {
     super();
   }
 }
+
+/**
+ * Action to set selected source references
+ */
+export class SetSelectedSources extends Action('Set Selected Sources') {
+  /** Intializes the set iri */
+  constructor(readonly sources: SourceReference[]) {
+    super();
+  }
+}
+
+/**
+ * Action to reset selected source references
+ */
+export class ResetSelectedSources extends Action('Reset Selected Sources') {}
 
 /**
  * Action to reset the state

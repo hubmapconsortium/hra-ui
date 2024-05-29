@@ -1,24 +1,62 @@
+@use 'variables' as vars;
+
 :host {
   display: flex;
   flex-direction: column;
   min-width: 59rem;
+  height: 100%;
 
   .content-container {
     display: flex;
+    height: 100%;
 
-    .illustration {
-      max-width: calc(100% - 43rem);
-      width: 100%;
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      max-width: calc(100% - 46.3125rem);
+      flex-grow: 1;
+
+      ftu-medical-illustration-behavior {
+        height: calc(100% - 17rem);
+
+        @media (min-width: 1440px) {
+          height: calc(100% - 9.5rem);
+        }
+
+        @media (min-width: 1820px) {
+          height: calc(100% - 5rem);
+        }
+      }
+
+      ftu-footer-behavior {
+        min-height: 5rem;
+
+        @media (min-width: 1820px) {
+          ::ng-deep hra-footer {
+            padding: 0 2rem;
+
+            .filler {
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+
+      ::ng-deep hra-interactive-svg {
+        display: flex;
+        height: calc(100% - 3rem);
+      }
     }
 
     .fullscreen-content-container {
       &,
       .illustration-details {
         height: 100%;
+        z-index: 1;
       }
 
       .illustration-details {
-        border-left: 0.063rem solid #d3d3d3;
+        border-left: 1px solid rgba(vars.$light-dividers);
       }
     }
   }

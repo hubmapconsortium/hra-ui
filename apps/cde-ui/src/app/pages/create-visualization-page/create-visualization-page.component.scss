@@ -19,26 +19,12 @@ $higher-density-theme: mat.define-light-theme(
 
 :host {
   display: block;
-  position: relative;
-
-  cde-header,
-  cde-footer {
-    overflow: hidden;
-  }
-
-  &::before {
-    background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
-    background-size: cover;
-    background-position: top;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-  }
+  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
+  background-size: 100% 100%;
+  --mdc-filled-text-field-hover-label-text-color: #464954;
+  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
+  --mat-standard-button-toggle-selected-state-text-color: white;
+  --mat-standard-button-toggle-divider-color: #4c4c58;
 
   .content {
     display: flex;

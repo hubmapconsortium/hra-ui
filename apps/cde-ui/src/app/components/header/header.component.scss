@@ -2,6 +2,7 @@
 
 :host {
   $logo-height: 3rem;
+  --mat-text-button-hover-state-layer-opacity: 0;
 
   display: flex;
   height: 9rem;

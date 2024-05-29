@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { HeaderComponent } from '@hra-ui/components/molecules';
 import { ResourceIds as Ids, LinkIds } from '@hra-ui/state';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /** Component for Header Behavior */
 @Component({
@@ -39,4 +42,18 @@ export class HeaderBehaviorComponent {
    * Input for about link for user click action.
    */
   readonly aboutLink = LinkIds.About;
+
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog = inject(MatDialog);
+
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /** A function which opens the contact modal dialog box */
+  contact(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
+    this.ga.event('contact_open', 'modal');
+  }
 }

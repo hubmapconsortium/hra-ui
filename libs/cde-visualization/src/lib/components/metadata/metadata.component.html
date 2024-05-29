@@ -1,0 +1,73 @@
+<mat-accordion displayMode="flat" hideToggle>
+  <mat-expansion-panel expanded #panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-caption title">
+        <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
+        Sample Metadata
+        <mat-icon
+          class="material-symbols-rounded"
+          cdkOverlayOrigin
+          #resetTrigger="cdkOverlayOrigin"
+          (mouseover)="tooltipOpen = true"
+          (mouseout)="tooltipOpen = false"
+          >info</mat-icon
+        >
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'metadata-panel']"
+          [cdkConnectedOverlayPositions]="tooltipPosition"
+          [cdkConnectedOverlayOrigin]="resetTrigger"
+          [cdkConnectedOverlayOpen]="tooltipOpen"
+          [cdkConnectedOverlayOffsetX]="5"
+        >
+          <div>Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.</div>
+        </ng-template>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mat-caption label">Title</div>
+    <span class="mat-caption">{{ metadata().title | orNA }}</span>
+    <div class="metadata-details">
+      <div class="mat-caption">
+        Source Data
+        <span class="mat-caption">{{ metadata().sourceData | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Color Map
+        <span class="mat-caption">{{ metadata().colorMap | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Organ
+        <span>{{ metadata().organ | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Technology
+        <span>{{ metadata().technology | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Sex
+        <span>{{ metadata().sex | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Age
+        <span>{{ metadata().age | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Thickness
+        <span>{{ metadata().thickness | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Pixel Size
+        <span>{{ metadata().pixelSize | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Date
+        <span>{{ metadata().creationDate | orNA }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Time
+        <span>{{ metadata().creationTime | orNA }}</span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
