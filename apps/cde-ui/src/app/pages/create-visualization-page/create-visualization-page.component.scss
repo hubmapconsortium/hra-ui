@@ -43,29 +43,17 @@ $higher-density-theme: mat.define-light-theme(
   .content {
     display: flex;
     flex-direction: column;
-    // gap: 4rem;
     gap: 1.5rem;
-    max-width: 58rem;
     margin: 0 auto;
     width: 100%;
-
-    //
     padding: 8px 16px 48px 16px;
-
-    > :last-child {
-      // margin-bottom: 8rem;
-    }
 
     @include mat.form-field-density($higher-density-theme);
     @include mat.select-density($higher-density-theme);
 
     .title {
-      // margin-top: 5rem;
-      // font-size: 2.625rem;
-      // max-width: 50%;
       font-size: 1.5rem;
-      max-width: unset;
-      // line-height: 4rem;
+      max-width: 20rem;
       line-height: 36px;
       letter-spacing: -0.0325em;
       margin-bottom: 0;
@@ -75,7 +63,6 @@ $higher-density-theme: mat.define-light-theme(
       background-color: white;
       box-shadow: 0 5px 16px 0 rgba(32, 30, 61, 0.24);
       border-radius: 1rem;
-      // padding: 3.5rem 4rem;
       padding: 1rem;
       --mdc-filled-text-field-active-indicator-height: 0;
       --mdc-filled-text-field-focus-active-indicator-height: 0;
@@ -92,29 +79,20 @@ $higher-density-theme: mat.define-light-theme(
       .header {
         display: flex;
         align-items: center;
-        // margin-bottom: 3rem;
-        // margin-bottom: 1rem;
-        margin-bottom: 0.5rem;
-        // font-size: 2rem;
+        margin-bottom: 1rem;
         font-size: 15px;
         line-height: 22.5px;
 
         .step-number {
-          display: inline-block;
-          // width: 3.5rem;
-          // height: 3.5rem;
-          width: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 2rem;
           height: 2rem;
           background: #464954;
           text-align: center;
-          // padding: 1rem;
-          padding: 0.5rem;
-          line-height: 1rem;
-          // margin-right: 1.5rem;
           margin-right: 0.5rem;
           border-radius: 50%;
-          // font-size: 1.5rem;
-          font-size: 15px;
           color: white;
         }
 
@@ -125,33 +103,66 @@ $higher-density-theme: mat.define-light-theme(
     }
 
     .card-title {
-      width: calc(100% - 3.5rem);
+      width: calc(100% - 4rem);
+    }
+
+    .upload-csv {
+      grid-area: upload-csv;
+    }
+
+    ::ng-deep .upload-csv,
+    ::ng-deep .upload-colormap,
+    .upload-success {
+      button {
+        height: 28px;
+      }
+
+      mat-icon {
+        height: 1rem;
+        width: 1rem;
+        font-size: 1rem;
+      }
+
+      span {
+        font-size: 11px;
+      }
+    }
+
+    .use-template,
+    .colormap-template {
+      button {
+        padding: 0;
+        font-size: 11px;
+        letter-spacing: 0.02em;
+        height: 2rem;
+      }
+
+      mat-icon {
+        height: 1rem;
+        width: 1rem;
+        font-size: 1rem;
+        margin-left: 4px;
+      }
+    }
+
+    .select-form,
+    .metadata-option {
+      --mdc-filled-text-field-label-text-size: 18px;
+      --mat-form-field-container-height: 58px;
+      --mat-form-field-filled-with-label-container-padding-top: 11px;
+      --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+      --mat-select-trigger-text-line-height: 47px;
     }
 
     .select-form {
-      // min-width: 26.75rem;
-      //
-      --mdc-filled-text-field-label-text-size: 11px;
-      --mat-form-field-container-height: 40px;
-      --mat-form-field-filled-with-label-container-padding-top: 11px;
-      --mat-form-field-filled-with-label-container-padding-bottom: 0px;
       width: 100%;
+      max-width: 448px;
     }
 
     .data-upload {
       display: grid;
-      // grid-template-columns: 1fr -0.8fr 1fr 1fr 1fr;
       grid-template-columns: 1fr;
       grid-template-rows: auto auto auto auto auto auto auto 2rem auto auto;
-      // grid-template-areas:
-      //   'header header header header header'
-      //   'subheader-1 subheader-1 . . .'
-      //   'subheader-required-columns subheader-optional-columns subheader-optional-columns . .'
-      //   'required-columns optional-columns optional-columns . .'
-      //   'upload-csv . . . .'
-      //   'divider divider divider divider divider'
-      //   'subheader-2 subheader-2 . . .'
-      //   'use-template . . . .';
       grid-template-areas:
         'header'
         'subheader-1'
@@ -170,7 +181,6 @@ $higher-density-theme: mat.define-light-theme(
 
       .subheader-1 {
         grid-area: subheader-1;
-        //
         font-size: 14px;
         line-height: 21px;
         letter-spacing: 0.05em;
@@ -179,7 +189,6 @@ $higher-density-theme: mat.define-light-theme(
 
       .subheader-2 {
         grid-area: subheader-2;
-        //
         font-size: 14px;
         line-height: 21px;
         letter-spacing: 0.05em;
@@ -188,7 +197,6 @@ $higher-density-theme: mat.define-light-theme(
 
       .subheader-required-columns {
         grid-area: subheader-required-columns;
-        //
         font-size: 14px;
         line-height: 21px;
         letter-spacing: 0.05em;
@@ -197,7 +205,6 @@ $higher-density-theme: mat.define-light-theme(
 
       .subheader-optional-columns {
         grid-area: subheader-optional-columns;
-        //
         font-size: 14px;
         line-height: 21px;
         letter-spacing: 0.05em;
@@ -219,7 +226,6 @@ $higher-density-theme: mat.define-light-theme(
 
       .required-columns {
         grid-area: required-columns;
-        //
         font-size: 12px;
         line-height: 21px;
         letter-spacing: 0.05em;
@@ -228,54 +234,14 @@ $higher-density-theme: mat.define-light-theme(
 
       .optional-columns {
         grid-area: optional-columns;
-        //
         font-size: 12px;
         line-height: 21px;
         letter-spacing: 0.05em;
         margin-bottom: 12px;
       }
 
-      .upload-csv {
-        grid-area: upload-csv;
-        // margin-top: 2.5rem;
-
-        //
-        ::ng-deep {
-          button {
-            height: 28px;
-          }
-
-          mat-icon {
-            height: 1rem;
-            width: 1rem;
-            font-size: 1rem;
-          }
-
-          span {
-            font-size: 11px;
-            line-height: 16.5px;
-          }
-        }
-      }
-
       .use-template {
         grid-area: use-template;
-
-        button {
-          // gap: 0.75rem;
-          padding: 0;
-          font-size: 11px;
-          line-height: 16.5px;
-          letter-spacing: 0.02em;
-          height: 2rem;
-        }
-
-        mat-icon {
-          height: 1rem;
-          width: 1rem;
-          font-size: 1rem;
-          margin-left: 4px;
-        }
       }
     }
 
@@ -288,27 +254,29 @@ $higher-density-theme: mat.define-light-theme(
         padding: 1.5rem 0;
 
         .metadata-option {
-          //
-          --mdc-filled-text-field-label-text-size: 11px;
-          --mat-form-field-container-height: 40px;
-          --mat-form-field-filled-with-label-container-padding-top: 11px;
-          --mat-form-field-filled-with-label-container-padding-bottom: 0px;
-
           gap: 0.5rem;
           display: flex;
           flex-direction: column;
           width: 23.75rem;
 
           input {
-            //
-            font-size: 11px;
+            font-size: 18px;
+            line-height: 47px;
           }
         }
       }
     }
 
+    .color-config,
+    .visualize {
+      .header {
+        margin-bottom: 1rem;
+      }
+    }
+
     .color-config {
       .mat-button-toggle {
+        --mat-standard-button-toggle-height: 40px;
         padding: 0 1.5rem;
       }
 
@@ -321,9 +289,9 @@ $higher-density-theme: mat.define-light-theme(
 
         mat-button-toggle-group {
           --mat-standard-button-toggle-label-text-size: 11px;
-          // width: max-content;
-          // margin-bottom: 3.5rem;
           grid-area: upload-toggle;
+          width: 100%;
+          margin-bottom: 1.5rem;
         }
 
         .button-toggle-horizontal {
@@ -332,6 +300,12 @@ $higher-density-theme: mat.define-light-theme(
 
         .upload-colormap {
           grid-area: upload-colormap;
+        }
+
+        ::ng-deep .subtitle,
+        .template {
+          font-size: 14px;
+          line-height: 21px;
         }
 
         .divider {
@@ -362,25 +336,278 @@ $higher-density-theme: mat.define-light-theme(
           width: 1rem;
           font-size: 1rem;
         }
-
-        span {
-        }
       }
+    }
+  }
+
+  @media (min-width: 430px) {
+    .card {
+      padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+    }
+
+    .header {
+      margin-bottom: 1.5rem !important;
+    }
+  }
+
+  @media (min-width: 544px) {
+    .content {
+      padding: 16px 24px 104px 24px !important;
+      gap: 2rem !important;
+    }
+
+    .title {
+      font-size: 32px !important;
+      line-height: 48px !important;
+      width: calc(100% - 4.5rem) !important;
+    }
+
+    .header {
+      font-size: 1.5rem !important;
+      line-height: 36px !important;
+      margin-bottom: 2rem !important;
+    }
+
+    .step-number {
+      min-width: 3rem !important;
+      height: 3rem !important;
+      margin-right: 1rem !important;
+    }
+
+    .data-upload {
+      grid-template-rows: auto auto auto auto auto auto auto 4rem auto auto !important;
+    }
+
+    .subheader-1,
+    .subheader-2,
+    .subheader-required-columns,
+    .subheader-optional-columns,
+    ::ng-deep .subtitle,
+    .template {
+      font-size: 20px !important;
+      line-height: 30px !important;
+    }
+
+    .required-columns,
+    .optional-columns {
+      font-size: 18px !important;
+      line-height: 27px !important;
+    }
+
+    ::ng-deep .upload-csv,
+    ::ng-deep .upload-colormap {
+      span {
+        font-size: 18px !important;
+      }
+
+      button {
+        height: 43px !important;
+      }
+
+      mat-icon {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+        font-size: 1.5rem !important;
+      }
+    }
+
+    ::ng-deep .upload-colormap {
+      .upload-success {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+    }
+
+    .use-template,
+    .colormap-template {
+      button {
+        font-size: 18px !important;
+        height: 43px !important;
+      }
+
+      mat-icon {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+        font-size: 1.5rem !important;
+      }
+    }
+
+    .subheader-1,
+    .required-columns,
+    .optional-columns {
+      margin-bottom: 24px !important;
+    }
+
+    .subheader-required-columns,
+    .subheader-optional-columns {
+      margin-bottom: 0.5rem !important;
+    }
+
+    .subheader-2 {
+      margin-bottom: 1rem !important;
+    }
+
+    .toggle-actions {
+      width: fit-content;
+    }
+
+    .button-toggle-horizontal {
+      display: flex !important;
+    }
+
+    .button-toggle-vertical {
+      display: none;
+    }
+
+    mat-button-toggle-group {
+      width: fit-content !important;
+    }
+
+    .visualize-button {
+      --mat-filled-button-icon-spacing: 12px;
+
+      height: 40px !important;
+      font-size: 18px !important;
+
+      mat-icon {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .content {
+      padding: 16px 72px 104px 72px !important;
+      gap: 2rem !important;
+    }
+
+    .card {
+      padding: 24px 32px 48px 32px !important;
+    }
+
+    .title {
+      max-width: 100% !important;
+    }
+
+    .header {
+      font-size: 1.5rem !important;
+      line-height: 36px !important;
+      margin-bottom: 3rem !important;
+    }
+
+    .step-number {
+      min-width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    .data-upload {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto auto auto auto auto 4rem auto auto !important;
+      grid-template-areas:
+        'header header'
+        'subheader-1 subheader-1'
+        'subheader-required-columns subheader-optional-columns'
+        'required-columns optional-columns'
+        'upload-csv upload-csv'
+        'divider divider'
+        'subheader-2 subheader-2'
+        'use-template use-template' !important;
+    }
+
+    .required-columns,
+    .subheader-required-columns,
+    .optional-columns,
+    .subheader-optional-columns {
+      font-size: 18px !important;
+      line-height: 27px !important;
+    }
+
+    mat-button-toggle-group {
+      --mat-standard-button-toggle-label-text-size: 14px !important;
+    }
+  }
+
+  @media (min-width: 1012px) {
+    .content {
+      padding-top: 2rem !important;
+      gap: 3rem !important;
+    }
+
+    .card {
+      padding: 32px 40px 48px 40px !important;
+    }
+
+    .header {
+      font-size: 2rem !important;
+      line-height: 3rem !important;
+      margin-bottom: 40px !important;
+    }
+
+    .step-number {
+      font-size: 1.5rem !important;
+    }
+
+    .data-upload {
+      grid-template-rows: auto auto auto auto auto 80px auto auto !important;
+    }
+
+    .subheader-1,
+    .subheader-2,
+    ::ng-deep .subtitle,
+    .template {
+      font-size: 24px !important;
+      line-height: 36px !important;
+    }
+
+    .metadata-options {
+      column-gap: 28px !important;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .content {
+      gap: 4rem !important;
+      padding: 2rem 11rem 8rem 11rem !important;
+    }
+
+    .title {
+      font-size: 42px !important;
+      line-height: 63px !important;
+    }
+
+    .card {
+      padding: 48px 56px !important;
+    }
+
+    .metadata-options {
+      column-gap: 40px !important;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .content {
+      padding: 48px 224px 128px 224px !important;
+    }
+
+    .header {
+      margin-bottom: 3rem !important;
     }
   }
 
   @media (min-width: 1920px) {
     .content {
-      gap: 5rem;
-      max-width: 72rem;
+      gap: 5rem !important;
+      padding: 72px 416px 128px 352px !important;
     }
 
-    .title {
-      max-width: unset !important;
+    .card {
+      padding: 56px 64px !important;
     }
 
     .data-upload {
-      grid-template-columns: 1fr 1fr 0.5fr 1.5fr;
+      grid-template-columns: 1fr 1fr 0.5fr 1.5fr !important;
       grid-template-rows: auto !important;
       grid-template-areas:
         'header header header header'
@@ -395,7 +622,7 @@ $higher-density-theme: mat.define-light-theme(
     }
 
     mat-divider.horizontal {
-      display: none;
+      display: none !important;
     }
 
     .metadata-options {
@@ -403,7 +630,7 @@ $higher-density-theme: mat.define-light-theme(
     }
 
     .metadata-option {
-      width: unset;
+      width: unset !important;
     }
 
     div.metadata-option:nth-child(-n + 2) {

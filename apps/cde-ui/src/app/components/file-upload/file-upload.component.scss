@@ -3,7 +3,8 @@
 
   .upload-success {
     display: flex;
-    justify-content: space-between;
+    gap: 1rem;
+    flex-direction: column;
 
     .filename span {
       display: block;
@@ -11,10 +12,12 @@
 
     .file-name {
       font-weight: 300;
+      line-height: normal;
     }
 
     .remove-file {
-      align-self: flex-end;
+      padding: 4px 8px;
+      width: fit-content;
     }
   }
 
@@ -22,5 +25,13 @@
     font-weight: 500;
     font-size: 1.5rem;
     line-height: 2.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .upload-success {
+      flex-direction: row;
+      gap: 2rem;
+      align-items: flex-end;
+    }
   }
 }
