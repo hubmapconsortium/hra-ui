@@ -26,6 +26,11 @@ $higher-density-theme: mat.define-light-theme(
   --mat-standard-button-toggle-selected-state-text-color: white;
   --mat-standard-button-toggle-divider-color: #4c4c58;
 
+  cde-header,
+  cde-footer {
+    overflow: hidden;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
