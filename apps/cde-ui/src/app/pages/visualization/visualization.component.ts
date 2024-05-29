@@ -1,16 +1,15 @@
+import { CommonModule } from '@angular/common';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   effect,
-  inject,
+  input,
   viewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import '@hra-ui/cde-visualization';
-import { CdeVisualizationElement } from '@hra-ui/cde-visualization';
-import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
+import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 
 @Component({
   selector: 'cde-visualization-page',
@@ -22,18 +21,26 @@ import { VisualizationDataService } from '../../services/visualization-data-serv
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class VisualizationPageComponent {
-  private readonly vis = viewChild<ElementRef<CdeVisualizationElement>>('vis');
+  readonly data = input<Partial<CdeVisualizationElementProps>>();
+  readonly isCustomVisualization = input<boolean>();
 
-  private readonly dataService = inject(VisualizationDataService);
+  private readonly vis = viewChild.required<ElementRef<CdeVisualizationElement>>('vis');
 
-  constructor() {
-    effect(() => {
-      const el = this.vis()?.nativeElement;
-      if (el) {
-        el.nodes = this.dataService.nodes();
-        el.edges = this.dataService.edges();
-        el.colorMap = this.dataService.colorMap();
+  protected readonly dataBindRef = effect(() => {
+    const el = this.vis().nativeElement;
+    for (const [key, value] of Object.entries(this.data() ?? {})) {
+      const oldValue = el[key as never] as unknown;
+      if (value !== oldValue) {
+        el[key as never] = value as never;
       }
-    });
-  }
+    }
+  });
+
+  protected beforeUnloadRef = effect((onCleanup) => {
+    if (this.isCustomVisualization()) {
+      const handler = (event: Event) => event.preventDefault();
+      window.addEventListener('beforeunload', handler);
+      onCleanup(() => window.removeEventListener('beforeunload', handler));
+    }
+  });
 }
