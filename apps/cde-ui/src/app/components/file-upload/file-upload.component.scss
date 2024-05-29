@@ -16,11 +16,6 @@ $blue-theme: mat.define-light-theme(
   display: block;
   @include mat.button-color($blue-theme);
 
-  cde-header,
-  cde-footer {
-    overflow: hidden;
-  }
-
   .upload-success {
     display: flex;
     gap: 1rem;

@@ -1,4 +1,9 @@
 :host {
+  cde-header,
+  cde-footer {
+    overflow: hidden;
+  }
+
   & > * {
     margin: 0 auto;
   }
