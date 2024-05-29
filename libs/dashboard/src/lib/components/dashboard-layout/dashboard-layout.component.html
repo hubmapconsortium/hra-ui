@@ -1,5 +1,8 @@
-<p>dashboard works!</p>
-
+<h2 class="title">{{ spec()?.title }}</h2>
+<h4 class="description">{{ spec()?.description }}</h4>
+<button class="cta-filled">
+  <a href="{{ spec()?.link?.url }}" target="_blank">{{ spec()?.link?.label }}</a>
+</button>
 @for (item of spec()?.items; track item) {
   <hra-dashboard-outlet [spec]="item"></hra-dashboard-outlet>
 }

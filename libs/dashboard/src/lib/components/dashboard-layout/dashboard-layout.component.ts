@@ -17,6 +17,12 @@ export class DashboardLayoutComponent implements DashboardComponent<typeof Dashb
   static readonly def = z.object({
     type: z.literal('Dashboard'),
     title: z.string(),
+    description: z.string(),
+    link: z.object({
+      type: z.string().optional(),
+      url: z.string(),
+      label: z.string(),
+    }),
     items: z.any().array(),
   });
 

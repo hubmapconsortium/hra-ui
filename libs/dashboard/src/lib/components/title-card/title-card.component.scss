@@ -1,0 +1,13 @@
+:host {
+  display: block;
+
+  .title {
+    color: #201e3d;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  mat-icon {
+    vertical-align: sub;
+  }
+}
