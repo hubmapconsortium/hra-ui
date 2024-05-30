@@ -1,0 +1,5 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(auto, 396px) minmax(auto, 512px) auto;
+  gap: 0.75rem;
+}
