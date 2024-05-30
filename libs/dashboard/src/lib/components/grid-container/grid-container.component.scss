@@ -1,3 +1,9 @@
 :host {
   display: block;
+
+  .container {
+    display: grid;
+    column-gap: 1.5rem;
+    // max-height: 42.875rem;
+  }
 }

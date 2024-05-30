@@ -1,13 +1,18 @@
 import { Component, input } from '@angular/core';
 import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboard/dashboard.model';
-import { METRICS_CARD_DEF, MetricsCardComponent } from '../card/metrics-card.component';
+import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
+import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
+
+export const METRICS_CARD_DEF = TITLE_CARD_DEF.extend({
+  items: METRICS_ITEM_DEF.array(),
+});
 
 @Component({
   selector: 'hra-dashboard-metrics-container',
   templateUrl: './metrics-container.component.html',
   styleUrl: './metrics-container.component.scss',
-  imports: [MetricsCardComponent],
+  imports: [TitleCardComponent, MetricsItemComponent],
   standalone: true,
 })
 export class MetricsContainerComponent implements DashboardComponent<typeof MetricsContainerComponent> {

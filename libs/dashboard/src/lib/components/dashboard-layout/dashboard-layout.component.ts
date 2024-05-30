@@ -7,11 +7,12 @@ import {
   DashboardComponent,
   DashboardComponentSpecFor,
 } from '../../dashboard/dashboard.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'hra-dashboard-layout',
   standalone: true,
-  imports: [CommonModule, DashboardComponentOutletDirective],
+  imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,10 @@
 <h2 class="title">{{ spec().title }}</h2>
 <h4 class="description">{{ spec().description }}</h4>
-<button class="cta-filled">
-  <a [attr.href]="spec().link.url" target="_blank">{{ spec().link.label }}</a>
+<button class="cta-filled read-btn">
+  <a [attr.href]="spec().link.url" target="_blank"
+    >{{ spec().link.label }}
+    <mat-icon class="material-symbols-rounded"> arrow_right_alt </mat-icon>
+  </a>
 </button>
 
 @for (item of spec().items; track item) {

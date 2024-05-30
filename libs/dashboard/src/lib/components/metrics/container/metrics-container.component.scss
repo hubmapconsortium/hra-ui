@@ -2,4 +2,13 @@
   display: grid;
   grid-template-columns: minmax(auto, 396px) minmax(auto, 512px) auto;
   gap: 0.75rem;
+
+  .card {
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+      column-gap: 5rem;
+    }
+  }
 }

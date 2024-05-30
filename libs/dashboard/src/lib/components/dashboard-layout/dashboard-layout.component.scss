@@ -12,4 +12,22 @@
     color: #464954;
     letter-spacing: 1.3px;
   }
+
+  .read-btn {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1.125rem;
+    padding: 0.15625rem 1.5rem;
+    width: max-content;
+    line-height: 2.15625rem;
+
+    a {
+      color: white;
+
+      mat-icon {
+        vertical-align: text-bottom;
+      }
+    }
+  }
 }

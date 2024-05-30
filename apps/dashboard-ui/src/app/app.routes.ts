@@ -65,10 +65,31 @@ export const appRoutes: Route[] = [
             ],
           },
           {
+            type: 'GridContainer',
+            columns: 2,
+            items: [
+              {
+                type: 'ImageContainer',
+                title: 'HRA Growth Per Release',
+                tooltip: 'Im a tooltip 1',
+                imageUrl:
+                  'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+              },
+              {
+                type: 'ImageContainer',
+                title: 'Digital Objects Per Organ',
+                tooltip: 'Im a tooltip 2',
+                imageUrl:
+                  'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+              },
+            ],
+          },
+          {
             type: 'ImageContainer',
             title: 'HRA Growth Per Release',
             tooltip: 'Im a tooltip',
-            imageUrl: 'https://cdn.humanatlas.io/hra-dashboard-data/data/hra-growth.vl.json',
+            imageUrl:
+              'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
           },
         ],
       },

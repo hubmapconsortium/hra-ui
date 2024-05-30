@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { z } from 'zod';
 import { MatIconModule } from '@angular/material/icon';
+import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 
 export type TitleCardSpec = z.infer<typeof TITLE_CARD_DEF>;
 
@@ -13,11 +14,20 @@ export const TITLE_CARD_DEF = z.object({
 @Component({
   selector: 'hra-title-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, OverlayModule],
   templateUrl: './title-card.component.html',
   styleUrl: './title-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleCardComponent {
   readonly spec = input.required<TitleCardSpec>();
+  tooltipOpen = false;
+  overlayPositions: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      overlayX: 'start',
+      originY: 'top',
+      overlayY: 'top',
+    },
+  ];
 }
