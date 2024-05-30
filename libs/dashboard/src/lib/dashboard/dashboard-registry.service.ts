@@ -1,9 +1,9 @@
 import { EnvironmentProviders, Injectable, InjectionToken, inject, makeEnvironmentProviders } from '@angular/core';
-import { DashboardComponentSpecAny, DashboardComponentTypeAny } from './dashboard.model';
+import { DashboardComponentAnyClass, DashboardComponentAnySpec, typeFor } from './dashboard.model';
 
-const COMPONENTS_TOKEN = new InjectionToken<DashboardComponentTypeAny[][]>('Dashboard components');
+const COMPONENTS_TOKEN = new InjectionToken<DashboardComponentAnyClass[][]>('Dashboard components');
 
-export function provideDashboardComponents(components: DashboardComponentTypeAny[]): EnvironmentProviders {
+export function provideDashboardComponents(components: DashboardComponentAnyClass[]): EnvironmentProviders {
   return makeEnvironmentProviders([
     {
       provide: COMPONENTS_TOKEN,
@@ -17,16 +17,14 @@ export function provideDashboardComponents(components: DashboardComponentTypeAny
   providedIn: 'root',
 })
 export class DashboardComponentRegistryService {
-  private readonly registry = new Map<string, DashboardComponentTypeAny>();
+  private readonly components = inject(COMPONENTS_TOKEN).flat();
+  private readonly registry = new Map(this.components.map((component) => [typeFor(component), component]));
 
-  constructor() {
-    const components = inject(COMPONENTS_TOKEN).flat();
-    for (const component of components) {
-      this.registry.set(component.type, component);
-    }
+  componentFor(spec: DashboardComponentAnySpec): DashboardComponentAnyClass | undefined {
+    return this.registry.get(spec.type);
   }
 
-  getComponent(spec: DashboardComponentSpecAny): DashboardComponentTypeAny | undefined {
-    return this.registry.get(spec.type);
+  validateSpec(spec: DashboardComponentAnySpec): DashboardComponentAnySpec | undefined {
+    return this.componentFor(spec)?.def.parse(spec);
   }
 }

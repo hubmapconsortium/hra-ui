@@ -1,21 +1,37 @@
 import { InputSignal, Type } from '@angular/core';
-import { z } from 'zod';
+import { ZodLiteral, ZodTypeAny, z } from 'zod';
 
-export type DashboardComponentSpecAny = { type: string };
-export type DashboardComponentDefAny = z.ZodType<DashboardComponentSpecAny>;
+export type DashboardComponentAnySpec = { type: string };
+export type DashboardComponentAnyDef = z.ZodObject<{ type: ZodLiteral<string> }>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type DashboardComponentTypeAny = DashboardComponentType<DashboardComponentDefAny, any>;
-export type DashboardComponentAny = DashboardComponent<DashboardComponentTypeAny>;
+export type DashboardComponentDefFor<ClassT> = ClassT extends { def: infer DefT extends ZodTypeAny } ? DefT : never;
+export type DashboardComponentSpecFor<ClassT> = z.infer<DashboardComponentDefFor<ClassT>>;
 
-export interface DashboardComponentType<
-  DefT extends DashboardComponentDefAny,
-  InstanceT extends DashboardComponent<DashboardComponentType<DefT, InstanceT>>,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Use any to break circular definition
+export type DashboardComponentAnyClass = DashboardComponentClass<DashboardComponentAnyDef, DashboardComponent<any>>;
+export type DashboardComponentAny = DashboardComponent<DashboardComponentAnyClass>;
+
+export interface DashboardComponentClass<
+  DefT extends DashboardComponentAnyDef,
+  InstanceT extends DashboardComponent<DashboardComponentClass<DefT, InstanceT>>,
 > extends Type<InstanceT> {
-  readonly type: string;
   readonly def: DefT;
 }
 
-export interface DashboardComponent<ClassT extends DashboardComponentTypeAny> {
-  readonly spec: InputSignal<z.infer<ClassT['def']> | undefined>;
+export interface DashboardComponent<ClassT extends DashboardComponentAnyClass> {
+  readonly spec: InputSignal<DashboardComponentSpecFor<ClassT> | undefined>;
+}
+
+export const DASHBOARD_COMPONENT_ANY_DEF = z
+  .object({
+    type: z.string(),
+  })
+  .passthrough();
+
+export function defFor(class_: DashboardComponentAnyClass): DashboardComponentAnyDef {
+  return class_.def;
+}
+
+export function typeFor(class_: DashboardComponentAnyClass): string {
+  return defFor(class_).shape.type.value;
 }

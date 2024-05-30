@@ -1,7 +1,7 @@
 import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { DashboardComponentRegistryService } from './dashboard-registry.service';
-import { DashboardComponentSpecAny } from './dashboard.model';
+import { DashboardComponentAnySpec } from './dashboard.model';
 
 @Component({
   selector: 'hra-dashboard-outlet',
@@ -11,11 +11,11 @@ import { DashboardComponentSpecAny } from './dashboard.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardOutletComponent {
-  readonly spec = input<DashboardComponentSpecAny>();
+  readonly spec = input<DashboardComponentAnySpec>();
 
   protected readonly component = computed(() => {
     const spec = this.spec();
-    const component = spec && this.registry.getComponent(spec);
+    const component = spec && this.registry.componentFor(spec);
     return component ?? null;
   });
 
