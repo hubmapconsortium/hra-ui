@@ -1,98 +1,28 @@
 import { Route } from '@angular/router';
-import { LandingComponent } from './pages/landing/landing.component';
 import { DashboardComponentOutletComponent } from '@hra-ui/dashboard';
+import { LandingComponent } from './pages/landing/landing.component';
+import { dashboardCanActivate } from './shared/guards/dashboard.guard';
+import { dashboardDataResolver } from './shared/resolvers/dashboard-data/dashboard-data.resolver';
+import { yamlFileResolver } from './shared/resolvers/yaml-file/yaml-file.resolver';
+
+const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data/dashboards/index.yaml';
 
 export const appRoutes: Route[] = [
+  // TODO remove the landing component & routes
   { path: 'hra-landing', component: LandingComponent },
   {
-    path: 'test',
+    path: 'home',
     component: DashboardComponentOutletComponent,
-    data: {
-      spec: {
-        type: 'Dashboard',
-        title: 'Data',
-        description:
-          'The HRA Knowledge Graph interlinks the 10 different data types in the Human Reference Atlas. Key counts are provided plus the number ofanatomical structure and cell type terms added to existing ontologies. Visualizations show the growth of the HRA since the first release, its 3D spatial coverage, and the number of data type instances per anatomical structure.',
-        link: {
-          url: 'https://www.nature.com/articles/s41556-021-00788-6',
-          label: 'Read Paper',
-        },
-        items: [
-          {
-            type: 'MetricsContainer',
-            items: [
-              {
-                title: 'Size of the HRA',
-                tooltip: 'tooltip data',
-                source: 'https://humanatlas.io',
-                items: [
-                  {
-                    label: 'HRA-KG Size',
-                    count: 36631,
-                    unit: 'MB',
-                  },
-                  {
-                    label: 'HRA-KG Nodes',
-                    count: 1940490,
-                  },
-                  {
-                    label: 'edges in the HRA-KG',
-                    count: 11633795,
-                  },
-                ],
-              },
-              {
-                title: 'Digital Objects',
-                tooltip: 'Im a tooltip',
-                items: [
-                  { label: 'ASCT+B Tables', count: 36 },
-                  { label: 'OMAP Tables', count: 13 },
-                  { label: 'FTU Illustrations', count: 22 },
-                  { label: '3D Organ Models', count: 65 },
-                  { label: 'Blood Vessel Segments', count: 1 },
-                  { label: 'SOPs', count: 20 },
-                ],
-              },
-              {
-                title: 'Ontologies Extended',
-                tooltip: 'Im a tooltip',
-                items: [
-                  { label: 'Terms added to Uberon', count: 85 },
-                  { label: 'Terms added to CL', count: 129 },
-                  { label: 'Terms added to PCL', count: 468 },
-                ],
-              },
-            ],
-          },
-          {
-            type: 'GridContainer',
-            columns: 2,
-            items: [
-              {
-                type: 'ImageContainer',
-                title: 'HRA Growth Per Release',
-                tooltip: 'Im a tooltip 1',
-                imageUrl:
-                  'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              },
-              {
-                type: 'ImageContainer',
-                title: 'Digital Objects Per Organ',
-                tooltip: 'Im a tooltip 2',
-                imageUrl:
-                  'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              },
-            ],
-          },
-          {
-            type: 'ImageContainer',
-            title: 'HRA Growth Per Release',
-            tooltip: 'Im a tooltip',
-            imageUrl:
-              'https://images.pexels.com/photos/22873594/pexels-photo-22873594/free-photo-of-abundance-of-fruit-and-vegetables-on-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-          },
-        ],
-      },
+    resolve: {
+      spec: yamlFileResolver(INDEX_SPEC_URL),
+    },
+  },
+  {
+    path: ':dashboard',
+    component: DashboardComponentOutletComponent,
+    canActivate: [dashboardCanActivate(INDEX_SPEC_URL)],
+    resolve: {
+      spec: dashboardDataResolver(INDEX_SPEC_URL),
     },
   },
   { path: '**', component: LandingComponent },
