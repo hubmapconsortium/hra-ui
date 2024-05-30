@@ -24,5 +24,5 @@ export class GridContainerComponent implements DashboardComponent<typeof GridCon
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof GridContainerComponent>>();
-  readonly columns = computed(() => `repeat(${this.spec()?.columns}, 1fr)`);
+  readonly columns = computed(() => `repeat(${this.spec().columns}, 1fr)`);
 }

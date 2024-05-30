@@ -1,4 +1,4 @@
-import { InputSignal, Type } from '@angular/core';
+import { Signal, Type } from '@angular/core';
 import { SafeParseReturnType, ZodLiteral, ZodTypeAny, z } from 'zod';
 
 export type DashboardComponentAnySpec = { type: string };
@@ -7,7 +7,7 @@ export type DashboardComponentAnyDef = z.ZodObject<{ type: ZodLiteral<string> }>
 export type DashboardComponentDefFor<ClassT> = ClassT extends { def: infer DefT extends ZodTypeAny } ? DefT : never;
 export type DashboardComponentSpecFor<ClassT> = z.infer<DashboardComponentDefFor<ClassT>>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Use any to break circular definition
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Use `any` to break circular definition
 export type DashboardComponentAnyClass = DashboardComponentClass<DashboardComponentAnyDef, DashboardComponent<any>>;
 export type DashboardComponentAny = DashboardComponent<DashboardComponentAnyClass>;
 
@@ -19,7 +19,7 @@ export interface DashboardComponentClass<
 }
 
 export interface DashboardComponent<ClassT extends DashboardComponentAnyClass> {
-  readonly spec: InputSignal<DashboardComponentSpecFor<ClassT>>;
+  readonly spec: Signal<DashboardComponentSpecFor<ClassT>>;
 }
 
 export const DASHBOARD_COMPONENT_ANY_DEF = z

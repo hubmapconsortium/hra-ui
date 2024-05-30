@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { z } from 'zod';
-import { MatIconModule } from '@angular/material/icon';
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { z } from 'zod';
 
 export type TitleCardSpec = z.infer<typeof TITLE_CARD_DEF>;
 
@@ -10,6 +10,27 @@ export const TITLE_CARD_DEF = z.object({
   title: z.string(),
   tooltip: z.string(),
 });
+
+const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
+  {
+    originX: 'start',
+    originY: 'bottom',
+    overlayX: 'start',
+    overlayY: 'top',
+  },
+  {
+    originX: 'center',
+    originY: 'bottom',
+    overlayX: 'center',
+    overlayY: 'top',
+  },
+  {
+    originX: 'end',
+    originY: 'bottom',
+    overlayX: 'end',
+    overlayY: 'top',
+  },
+];
 
 @Component({
   selector: 'hra-title-card',
@@ -21,13 +42,7 @@ export const TITLE_CARD_DEF = z.object({
 })
 export class TitleCardComponent {
   readonly spec = input.required<TitleCardSpec>();
+  readonly tooltipPositions = TOOLTIP_POSITIONS;
+
   tooltipOpen = false;
-  overlayPositions: ConnectionPositionPair[] = [
-    {
-      originX: 'end',
-      overlayX: 'start',
-      originY: 'top',
-      overlayY: 'top',
-    },
-  ];
 }
