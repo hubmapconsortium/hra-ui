@@ -11,13 +11,13 @@
   background-color: rgba(252, 252, 252, 1);
 
   .create-explore-content {
-    margin: 2rem 7rem 7rem 7rem;
+    padding: 16px 24px 80px 24px;
   }
 
   p {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-    letter-spacing: 1.3px;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    line-height: 21px;
   }
 
   .header h1 {
@@ -27,101 +27,314 @@
     letter-spacing: -0.0325em;
   }
 
+  .header h2 {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+
+  .header h4 {
+    font-size: 0.75rem;
+    line-height: 21px;
+    letter-spacing: 0.05em;
+    margin-bottom: 40px;
+  }
+
   .header p {
     margin: 0 0 3.5rem 0;
+  }
+
+  cde-visual-card {
+    margin: 0 auto;
+    justify-content: center;
   }
 
   .vccf {
     background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
     opacity: 98%;
-    padding: 17.5rem 0;
-    display: flex;
     flex-wrap: wrap;
-    padding: 7.5rem 6rem 7.5rem 6rem;
+    padding: 3rem 1rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      'video'
+      'header'
+      'content';
   }
 
   .vccf h2 {
-    font-size: 2rem;
-    line-height: 3rem;
-  }
-
-  .vccf a:first-of-type {
-    margin-right: 2rem;
+    font-size: 15px;
+    line-height: 22.5px;
   }
 
   .vccf .content {
+    grid-area: content;
     display: flex;
   }
 
   .paper {
     display: flex;
-    width: 50%;
     flex-direction: column;
   }
 
   .paper p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
-  .background-header-2 {
-    display: none;
+  .background-header {
+    grid-area: header;
   }
 
   .links {
-    width: 200%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .hra-btn {
-    display: inline-block;
+    display: flex;
     font-weight: 500;
-    font-size: 1.125rem;
-    padding: 0.25rem 1.5rem;
     width: max-content;
-    line-height: 2.15625rem;
+    font-size: 11px;
+    height: 2rem;
+    font-size: 11px;
+    padding: 8px 12px;
+    letter-spacing: 0.2px;
 
     .mat-icon {
       vertical-align: middle;
-      margin-left: 0.75rem;
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+      margin-right: 4px;
+      margin-left: 4px;
     }
   }
 
   .youtube-player {
-    width: 50%;
-
-    youtube-player {
-      display: flex;
-      height: 100%;
-      padding-left: 6rem;
-      contain: size;
-    }
-
-    ::ng-deep youtube-player > div {
-      width: 100%;
-    }
+    margin-bottom: 28px;
+    grid-area: video;
 
     ::ng-deep .youtube-player-placeholder,
     ::ng-deep iframe {
       width: 100% !important;
-      max-height: calc(100% - 3rem);
+    }
+
+    .youtube-player,
+    ::ng-deep .youtube-player-placeholder,
+    ::ng-deep iframe {
+      height: 158px !important;
+
+      @media (min-width: 430px) {
+        height: 202px !important;
+      }
+
+      @media (min-width: 544px) {
+        height: 258px !important;
+      }
+
+      @media (min-width: 768px) {
+        height: 287px !important;
+      }
+
+      @media (min-width: 1012px) {
+        height: 193px !important;
+      }
+
+      @media (min-width: 1280px) {
+        height: 252px !important;
+      }
+
+      @media (min-width: 1440px) {
+        height: 278px !important;
+      }
+
+      @media (min-width: 1920px) {
+        height: 362px !important;
+      }
+    }
+  }
+
+  @media (min-width: 430px) {
+    .create-explore-content {
+      padding: 1rem 2.5rem 5rem 2.5rem;
+    }
+
+    .vccf {
+      padding: 3rem 2.5rem;
+    }
+
+    .links {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 544px) {
+    .create-explore-content {
+      padding: 2rem 1.5rem 112px 1.5rem;
+    }
+
+    .header h2 {
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    .header h4 {
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    .vccf {
+      padding: 68px 3rem;
+    }
+
+    .vccf h2 {
+      font-size: 1.5rem;
+      line-height: 36px;
+    }
+
+    .links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .links a:last-of-type {
+      padding-left: 0;
+    }
+
+    .hra-btn {
+      font-size: 18px;
+      padding: 0 1.5rem;
+      line-height: 27px;
+      width: max-content;
+      height: 40px;
+
+      .mat-icon {
+        margin-left: 0.75rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .create-explore-content {
+      padding: 2px 48px 112px 48px;
+    }
+
+    .header {
+      padding: 0 3rem;
+    }
+
+    .header h4 {
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    cde-visual-card {
+      padding: 0 92px;
+    }
+
+    .vccf {
+      padding: 68px 4rem;
+    }
+
+    .youtube-player {
+      padding: 0 4rem;
+    }
+
+    .links {
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .links a:last-of-type {
+      padding-left: unset;
+    }
+  }
+
+  @media (min-width: 1012px) {
+    .create-explore-content {
+      padding: 2px 64px 112px 64px;
+    }
+
+    .header {
+      padding: 0 1rem;
+    }
+
+    .header h4 {
+      font-size: 20px;
+      line-height: 30px;
+    }
+
+    .vccf {
+      padding: 68px 3rem;
+      grid-template-columns: 55% auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        'header header'
+        'content video'
+        'content video';
+      column-gap: 4rem;
+    }
+
+    .youtube-player {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .create-explore-content {
+      padding: 2rem 7rem 7rem 7rem;
+    }
+
+    .header {
+      padding: 0;
+    }
+
+    .header h2 {
+      font-size: 42px;
+      line-height: 63px;
+      max-width: 50%;
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
+
+    cde-visual-card {
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    .vccf {
+      padding: 7.5rem 6rem 7.5rem 6rem;
+    }
+
+    .vccf h2 {
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+
+    .youtube-player {
+      margin-bottom: 0;
     }
   }
 
   @media (min-width: 1440px) {
     .create-explore-content {
-      margin: 48px 128px 7rem 128px;
+      padding: 48px 128px 7rem 128px;
     }
 
     .vccf {
       padding: 10rem 9.75rem;
-    }
-
-    youtube-player {
-      padding-left: 3rem !important;
-    }
-
-    ::ng-deep .youtube-player-placeholder,
-    ::ng-deep iframe {
-      max-height: 100% !important;
     }
   }
 
@@ -130,7 +343,7 @@
       padding: 0 4.5rem 0 2.5rem;
     }
 
-    .header h1 {
+    .header h2 {
       max-width: 100%;
     }
 
@@ -140,23 +353,14 @@
 
     .vccf {
       padding: 17.5rem 13.5rem;
-    }
-
-    .background-header-1 {
-      display: none;
-    }
-
-    .background-header-2 {
-      display: unset;
-      margin-bottom: 2rem;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        'header video'
+        'content video';
     }
 
     .paper p {
       margin-bottom: 2rem;
-    }
-
-    youtube-player {
-      padding-left: 7.5rem !important;
     }
   }
 }
