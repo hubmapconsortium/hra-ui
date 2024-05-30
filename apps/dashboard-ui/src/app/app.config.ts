@@ -5,6 +5,7 @@ import {
   GridContainerComponent,
   ImageContainerComponent,
   MetricsContainerComponent,
+  VegaContainerComponent,
   provideDashboardComponents,
 } from '@hra-ui/dashboard';
 import { DashboardLayoutComponent } from '@hra-ui/dashboard';
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
       MetricsContainerComponent,
       ImageContainerComponent,
       GridContainerComponent,
+      VegaContainerComponent,
     ]),
   ],
 };
