@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from '../../dashboard/dashboard.model';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { z } from 'zod';
-import { TitleCardComponent } from '../title-card/title-card.component';
+import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
+import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 
 @Component({
   selector: 'hra-image-container',
@@ -13,13 +13,10 @@ import { TitleCardComponent } from '../title-card/title-card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageContainerComponent implements DashboardComponent<typeof ImageContainerComponent> {
-  static readonly type = 'ImageContainer';
-  static readonly def = z.object({
+  static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('ImageContainer'),
-    title: z.string(),
-    tooltip: z.string(),
     imageUrl: z.string(),
   });
 
-  readonly spec = input<z.infer<(typeof ImageContainerComponent)['def']>>();
+  readonly spec = input.required<DashboardComponentSpecFor<typeof ImageContainerComponent>>();
 }

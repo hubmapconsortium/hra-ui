@@ -23,8 +23,4 @@ export class DashboardComponentRegistryService {
   componentFor(spec: DashboardComponentAnySpec): DashboardComponentAnyClass | undefined {
     return this.registry.get(spec.type);
   }
-
-  validateSpec(spec: DashboardComponentAnySpec): DashboardComponentAnySpec | undefined {
-    return this.componentFor(spec)?.def.parse(spec);
-  }
 }

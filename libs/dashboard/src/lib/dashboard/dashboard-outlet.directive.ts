@@ -1,12 +1,12 @@
 import { Directive, ViewContainerRef, computed, effect, inject, input } from '@angular/core';
 import { DashboardComponentRegistryService } from './dashboard-registry.service';
-import { DashboardComponentAnySpec } from './dashboard.model';
+import { DashboardComponentAnySpec, safeValidateSpec } from './dashboard.model';
 
 @Directive({
   selector: '[hraDashboardComponentOutlet]',
   standalone: true,
 })
-export class DashboardOutletDirective {
+export class DashboardComponentOutletDirective {
   readonly hraDashboardComponentOutlet = input.required<DashboardComponentAnySpec | undefined>();
 
   private readonly viewContainerRef = inject(ViewContainerRef);
@@ -26,13 +26,14 @@ export class DashboardOutletDirective {
 
     // TODO: consider only validating the spec in dev mode
 
-    const validatedSpec = this.registry.validateSpec(spec);
-    if (!validatedSpec) {
-      // TODO log invalid spec
+    const validateResult = safeValidateSpec(component, spec);
+    if (!validateResult.success) {
+      // TODO improve logging spec errors
+      console.log(validateResult.error.issues);
       return undefined;
     }
 
-    return { component, spec: validatedSpec };
+    return { component, spec: validateResult.data };
   });
 
   private readonly component = computed(() => this.componentWithSpec()?.component);

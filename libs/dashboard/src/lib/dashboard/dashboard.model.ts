@@ -1,5 +1,5 @@
 import { InputSignal, Type } from '@angular/core';
-import { ZodLiteral, ZodTypeAny, z } from 'zod';
+import { SafeParseReturnType, ZodLiteral, ZodTypeAny, z } from 'zod';
 
 export type DashboardComponentAnySpec = { type: string };
 export type DashboardComponentAnyDef = z.ZodObject<{ type: ZodLiteral<string> }>;
@@ -19,7 +19,7 @@ export interface DashboardComponentClass<
 }
 
 export interface DashboardComponent<ClassT extends DashboardComponentAnyClass> {
-  readonly spec: InputSignal<DashboardComponentSpecFor<ClassT> | undefined>;
+  readonly spec: InputSignal<DashboardComponentSpecFor<ClassT>>;
 }
 
 export const DASHBOARD_COMPONENT_ANY_DEF = z
@@ -34,4 +34,18 @@ export function defFor(class_: DashboardComponentAnyClass): DashboardComponentAn
 
 export function typeFor(class_: DashboardComponentAnyClass): string {
   return defFor(class_).shape.type.value;
+}
+
+export function validateSpec(
+  class_: DashboardComponentAnyClass,
+  spec: DashboardComponentAnySpec,
+): DashboardComponentAnySpec {
+  return defFor(class_).parse(spec);
+}
+
+export function safeValidateSpec(
+  class_: DashboardComponentAnyClass,
+  spec: DashboardComponentAnySpec,
+): SafeParseReturnType<DashboardComponentAnySpec, DashboardComponentAnySpec> {
+  return defFor(class_).safeParse(spec);
 }

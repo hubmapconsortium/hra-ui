@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
-import { DashboardOutletComponent } from '@hra-ui/dashboard';
+import { DashboardComponentOutletComponent } from '@hra-ui/dashboard';
 
 export const appRoutes: Route[] = [
   { path: 'hra-landing', component: LandingComponent },
   {
     path: 'test',
-    component: DashboardOutletComponent,
+    component: DashboardComponentOutletComponent,
     data: {
       spec: {
         type: 'Dashboard',
@@ -22,11 +22,9 @@ export const appRoutes: Route[] = [
             type: 'MetricsContainer',
             items: [
               {
-                titledef: {
-                  title: 'Size of the HRA',
-                  tooltip: 'tooltip data',
-                  source: 'https://humanatlas.io',
-                },
+                title: 'Size of the HRA',
+                tooltip: 'tooltip data',
+                source: 'https://humanatlas.io',
                 items: [
                   {
                     label: 'HRA-KG Size',
@@ -44,10 +42,8 @@ export const appRoutes: Route[] = [
                 ],
               },
               {
-                titledef: {
-                  title: 'Digital Objects',
-                  tooltip: 'Im a tooltip',
-                },
+                title: 'Digital Objects',
+                tooltip: 'Im a tooltip',
                 items: [
                   { label: 'ASCT+B Tables', count: 36 },
                   { label: 'OMAP Tables', count: 13 },
@@ -58,10 +54,8 @@ export const appRoutes: Route[] = [
                 ],
               },
               {
-                titledef: {
-                  title: 'Ontologies Extended',
-                  tooltip: 'Im a tooltip',
-                },
+                title: 'Ontologies Extended',
+                tooltip: 'Im a tooltip',
                 items: [
                   { label: 'Terms added to Uberon', count: 85 },
                   { label: 'Terms added to CL', count: 129 },

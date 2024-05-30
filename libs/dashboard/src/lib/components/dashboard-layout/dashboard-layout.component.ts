@@ -1,19 +1,22 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { z } from 'zod';
-import { DashboardComponent } from '../../dashboard/dashboard.model';
-import { DashboardOutletComponent } from '../../dashboard/dashboard-outlet.component';
+import { DashboardComponentOutletDirective } from '../../dashboard/dashboard-outlet.directive';
+import {
+  DASHBOARD_COMPONENT_ANY_DEF,
+  DashboardComponent,
+  DashboardComponentSpecFor,
+} from '../../dashboard/dashboard.model';
 
 @Component({
   selector: 'hra-dashboard-layout',
   standalone: true,
-  imports: [CommonModule, DashboardOutletComponent],
+  imports: [CommonModule, DashboardComponentOutletDirective],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardLayoutComponent implements DashboardComponent<typeof DashboardLayoutComponent> {
-  static readonly type = 'Dashboard';
   static readonly def = z.object({
     type: z.literal('Dashboard'),
     title: z.string(),
@@ -23,8 +26,8 @@ export class DashboardLayoutComponent implements DashboardComponent<typeof Dashb
       url: z.string(),
       label: z.string(),
     }),
-    items: z.any().array(),
+    items: DASHBOARD_COMPONENT_ANY_DEF.array(),
   });
 
-  readonly spec = input<z.infer<(typeof DashboardLayoutComponent)['def']>>();
+  readonly spec = input.required<DashboardComponentSpecFor<typeof DashboardLayoutComponent>>();
 }
