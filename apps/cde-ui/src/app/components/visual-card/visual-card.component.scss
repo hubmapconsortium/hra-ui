@@ -4,12 +4,9 @@
   font-family: 'Metropolis';
   display: flex;
   flex-wrap: wrap;
-  // gap: 4rem;
   gap: 2.5rem;
 
   .visual-card {
-    // max-height: 30.5rem;
-    // max-width: 30.5rem;
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0px 5px 1rem 0px rgba(32, 30, 61, 0.24);
@@ -34,16 +31,10 @@
     }
 
     .label {
-      // margin: 3.4063rem auto;
-      // padding: 0.5rem 1.5rem;
-      // font-size: 1.125rem;
-
       display: flex;
       align-items: center;
       justify-content: center;
       margin: auto auto;
-
-      //
       font-size: 11px;
       letter-spacing: 0.2px;
       font-weight: 500;
@@ -51,7 +42,6 @@
 
     mat-icon {
       vertical-align: middle;
-      // margin-left: 0.75rem;
       margin-left: 0.25rem;
       height: 1rem;
       width: 1rem;
