@@ -1,34 +1,34 @@
 <div class="column-content">
-  @if (!file && fileTitle(); as title) {
+  @if (!file && fileTitle()) {
     <h3 class="subtitle">{{ fileTitle() }}</h3>
   }
   @if (file) {
     <div class="upload-success">
       <div class="filename">
-        @if (fileTitle(); as title) {
+        @if (fileTitle()) {
           <h3 class="subtitle">File Loaded:</h3>
         } @else {
           <span class="loaded-label">File loaded:</span>
         }
         <span class="column-info-list mat-body-2 file-name">{{ file.name }}</span>
       </div>
-      <button class="remove-file" mat-flat-button (click)="cancelLoad()" type="button" color="primary">
+      <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
         <mat-icon class="material-symbols-rounded">cancel</mat-icon>
         Remove CSV
       </button>
     </div>
   } @else {
-    <button class="upload" mat-flat-button (click)="fileInput.click()" type="button" color="primary">
+    <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
       <mat-icon class="material-symbols-rounded">upload</mat-icon>
       Upload CSV
     </button>
     <input
-      #fileInput
-      (change)="load(fileInput)"
       type="file"
-      [attr.accept]="accept()"
-      name="fileInput"
       style="display: none"
+      name="fileInput"
+      [attr.accept]="accept()"
+      (change)="load(fileInput)"
+      #fileInput
     />
   }
 </div>
