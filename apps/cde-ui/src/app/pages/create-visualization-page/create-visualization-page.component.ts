@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TOOLTIP_POSITION_LEFT_SIDE } from '@hra-ui/cde-visualization';
+
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -16,8 +19,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ColorMap, ColorMapItem, VisualizationSettings } from '../../models/create-visualization-page-types';
 import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { TOOLTIP_POSITION_LEFT_SIDE } from '@hra-ui/cde-visualization';
 
 /** Metadata select dropdown option */
 export interface MetadataSelectOption {
@@ -124,12 +125,18 @@ export class CreateVisualizationPageComponent {
   /** Whether to use the default color map */
   useDefaultColorMap = true;
 
+  /** Whether to show upload info tooltip */
   uploadInfoOpen = false;
+  /** Whether to show anchor info tooltip */
   anchorInfoOpen = false;
+  /** Whether to show metadata info tooltip */
   metadataInfoOpen = false;
+  /** Whether to show color map info tooltip */
   colorInfoOpen = false;
+  /** Whether to show visualize info tooltip */
   visualizeInfoOpen = false;
 
+  /** Tooltip position config */
   readonly tooltipPosition = TOOLTIP_POSITION_LEFT_SIDE;
 
   /**

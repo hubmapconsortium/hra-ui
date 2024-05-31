@@ -6,7 +6,7 @@ describe('HeaderComponent', () => {
   it('should render the logo', async () => {
     await render(HeaderComponent);
 
-    const logo = screen.getByAltText('Human Reference Atlas home');
+    const logo = screen.getAllByAltText('Human Reference Atlas home')[0];
     expect(logo).toBeInTheDocument();
   });
 
