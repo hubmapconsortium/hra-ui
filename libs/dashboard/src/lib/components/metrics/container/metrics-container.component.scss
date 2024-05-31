@@ -2,14 +2,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-bottom: 1.5rem;
 
   .card {
     flex-grow: 1;
     .items {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: 1rem;
-      column-gap: 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 1rem;
+    }
+
+    .multi-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }

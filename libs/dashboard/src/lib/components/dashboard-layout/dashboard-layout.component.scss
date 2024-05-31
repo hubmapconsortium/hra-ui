@@ -1,5 +1,6 @@
 :host {
   display: block;
+  margin: 2rem 6rem 5rem;
 
   .title {
     line-height: 3.9375rem;
@@ -14,6 +15,7 @@
   }
 
   .read-btn {
+    margin-bottom: 4rem;
     cursor: pointer;
     display: inline-block;
     font-weight: 500;

@@ -16,6 +16,7 @@ export class VegaContainerComponent implements DashboardComponent<typeof VegaCon
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('VegaContainer'),
     specUrl: z.string(),
+    aspectRatio: z.string().default('4/3'),
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof VegaContainerComponent>>();

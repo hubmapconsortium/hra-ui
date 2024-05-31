@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
-import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
+import { METRICS_ITEM_DEF, MetricsItemComponent, MetricsItemSpec } from '../item/metrics-item.component';
 
 export const METRICS_CARD_DEF = TITLE_CARD_DEF.extend({
   items: METRICS_ITEM_DEF.array(),
@@ -22,4 +22,12 @@ export class MetricsContainerComponent implements DashboardComponent<typeof Metr
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof MetricsContainerComponent>>();
+
+  selectLayoutClass(items: MetricsItemSpec[]): string | undefined {
+    if (items.length >= 4) {
+      return 'multi-column';
+    }
+
+    return undefined;
+  }
 }

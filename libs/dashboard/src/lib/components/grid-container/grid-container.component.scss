@@ -1,8 +1,9 @@
 :host {
   display: block;
+  margin-bottom: 1.5rem;
 
   .container {
     display: grid;
-    column-gap: 1.5rem;
+    gap: 1.5rem;
   }
 }

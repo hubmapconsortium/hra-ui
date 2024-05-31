@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
+import { LONG_CARD_DEF, LongCardComponent } from '../long-card/long-card.component';
 
 @Component({
   selector: 'hra-dashboard-index',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LongCardComponent],
   templateUrl: './dashboard-index.component.html',
   styleUrl: './dashboard-index.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,14 +15,9 @@ import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/d
 export class DashboardIndexComponent implements DashboardComponent<typeof DashboardIndexComponent> {
   static readonly def = z.object({
     type: z.literal('DashboardIndex'),
-    items: z
-      .object({
-        title: z.string(),
-        route: z.string(),
-        background: z.string().url(),
-        url: z.string().url(),
-      })
-      .array(),
+    items: LONG_CARD_DEF.extend({
+      url: z.string().url(),
+    }).array(),
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof DashboardIndexComponent>>();

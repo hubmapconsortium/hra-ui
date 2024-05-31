@@ -1,3 +1,70 @@
 :host {
+  max-width: 102rem;
+  margin: 0 1.5rem;
   display: block;
+
+  main {
+    .title {
+      margin: 5rem 0 0.5rem 0;
+      line-height: 3.9375rem;
+      letter-spacing: -1.365px;
+    }
+
+    .description {
+      font-family: 'Nunito Sans', sans-serif;
+      max-width: 83.75rem;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+      letter-spacing: 1.3px;
+      margin-bottom: 5rem;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: 7rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    main {
+      .description {
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        letter-spacing: 0.8px;
+      }
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    main {
+      .description {
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  @media (max-width: 1012px) {
+    main {
+      .title {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+        letter-spacing: -1.25px;
+      }
+    }
+  }
+
+  @media (min-width: 1013px) and (max-width: 1280px) {
+    main {
+      .title {
+        font-size: 2.25rem;
+        line-height: 3.375rem;
+        letter-spacing: -1.75px;
+      }
+    }
+  }
 }

@@ -16,6 +16,7 @@ export class ImageContainerComponent implements DashboardComponent<typeof ImageC
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('ImageContainer'),
     imageUrl: z.string(),
+    aspectRatio: z.string().default('4/3'),
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof ImageContainerComponent>>();

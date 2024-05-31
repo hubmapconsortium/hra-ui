@@ -1,9 +1,6 @@
 :host {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-
   .long-card {
+    display: block;
     width: 14.5rem;
     height: 42rem;
     border-radius: 1rem;

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { z } from 'zod';
 
+export type MetricsItemSpec = z.infer<typeof METRICS_ITEM_DEF>;
+
 export const METRICS_ITEM_DEF = z.object({
   label: z.string(),
   count: z.number(),
@@ -15,5 +17,5 @@ export const METRICS_ITEM_DEF = z.object({
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetricsItemComponent {
-  readonly spec = input.required<z.infer<typeof METRICS_ITEM_DEF>>();
+  readonly spec = input.required<MetricsItemSpec>();
 }
