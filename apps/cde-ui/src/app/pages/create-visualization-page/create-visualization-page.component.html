@@ -1,12 +1,12 @@
 <cde-header></cde-header>
-<form class="content" [formGroup]="visualizationForm" (ngSubmit)="onSubmit()">
+<form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
   <h2 class="title">Create a Cell Distance Visualization</h2>
 
   <div class="card data-upload">
     <h2 class="header">
       <span class="step-number">1</span>
       Format and Upload Data
-      <span class="material-symbols-rounded info"> info </span>
+      <mat-icon class="info"> info </mat-icon>
     </h2>
 
     <h3 class="subheader-1">Upload Cell Type Table</h3>
@@ -17,8 +17,10 @@
     <cde-file-upload
       class="upload-csv"
       accept="text/csv,.csv"
-      [loader]="loadCsv"
-      (loadCompleted)="data = $event; setData($event)"
+      [loader]="nodesLoader"
+      [options]="nodesLoaderOptions"
+      (loadCompleted)="setNodes($event[0])"
+      (loadCancelled)="clearNodes()"
     >
     </cde-file-upload>
 
@@ -29,7 +31,7 @@
     <div class="use-template">
       <button mat-button type="button" color="primary">
         Use Template
-        <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </button>
     </div>
   </div>
@@ -38,20 +40,18 @@
     <h2 class="header">
       <span class="step-number">2</span>
       Optional: Select Anchor Cell Type
-      <mat-icon class="material-symbols-rounded info"> info </mat-icon>
+      <mat-icon class="info"> info </mat-icon>
     </h2>
     <mat-form-field class="select-form">
       <mat-label>Anchor Cell Type</mat-label>
       <mat-select
         class="select"
-        formControlName="anchorCellType"
+        formControlName="nodeTargetValue"
         panelClass="select-options-container"
         cdeMarkEmptyFormControl
       >
-        <mat-option value="endothelial">Endothelial 1</mat-option>
-        <mat-option value="endothelial">Endothelial 2</mat-option>
-        @for (cell of anchorCellTypes; track cell) {
-          <mat-option [value]="cell.value">{{ cell.viewValue }}</mat-option>
+        @for (type of cellTypes; track type) {
+          <mat-option [value]="type">{{ type }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -61,7 +61,7 @@
     <h2 class="header">
       <span class="step-number">3</span>
       Add Metadata
-      <span class="material-symbols-rounded info"> info </span>
+      <mat-icon class="info"> info </mat-icon>
     </h2>
     <div class="metadata-options">
       <div class="metadata-option">
@@ -91,8 +91,8 @@
         <mat-form-field>
           <mat-label>Sex</mat-label>
           <mat-select formControlName="sex" panelClass="select-options-container" cdeMarkEmptyFormControl>
-            <mat-option value="male">Male</mat-option>
-            <mat-option value="female">Female</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -122,20 +122,22 @@
     <h2 class="header">
       <span class="step-number">4</span>
       Optional: Configure Color Map
-      <span class="material-symbols-rounded info"> info </span>
+      <mat-icon class="info"> info </mat-icon>
     </h2>
     <div class="toggle-actions">
-      <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapOption">
-        <mat-button-toggle value="default" (change)="toggleDefaultColorMap()">Use Default Colors</mat-button-toggle>
+      <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapType">
+        <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
         <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
       </mat-button-toggle-group>
-      @if (visualizationForm.value.colorMapOption === 'custom') {
+      @if (useCustomColorMap) {
         <cde-file-upload
           class="upload-colormap"
           [fileTitle]="'Action Required: Upload Color Map'"
           accept="text/csv,.csv"
-          [loader]="loadColorMap"
-          (loadCompleted)="colorMap = $event"
+          [loader]="colorMapLoader"
+          [options]="colorMapLoaderOptions"
+          (loadCompleted)="setCustomColorMap($event[0])"
+          (loadCancelled)="clearCustomColorMap()"
         >
         </cde-file-upload>
         <mat-divider vertical class="divider"> </mat-divider>
@@ -143,7 +145,7 @@
           <h3 class="template">Color Map Template</h3>
           <button mat-button class="cta-button use-template" type="button" color="primary">
             Use Template
-            <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
           </button>
         </div>
       }
@@ -154,11 +156,18 @@
     <h2 class="header">
       <span class="step-number">5</span>
       Visualize Cell Distance Data
-      <span class="material-symbols-rounded info"> info </span>
+      <mat-icon class="info"> info </mat-icon>
     </h2>
-    <button type="submit" class="visualize-button cta-filled" data-testid="visualize">
+    <button
+      mat-flat-button
+      type="submit"
+      class="visualize-button cta-filled"
+      [disabled]="!hasValidNodes()"
+      color="primary"
+      data-testid="visualize"
+    >
       Visualize
-      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
   </div>
 </form>

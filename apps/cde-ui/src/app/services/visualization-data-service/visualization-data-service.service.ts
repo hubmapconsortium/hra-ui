@@ -2,6 +2,8 @@ import { Injectable, Signal, inject, signal } from '@angular/core';
 import { CanActivateFn, NavigationExtras, ResolveFn, Router } from '@angular/router';
 import { CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 
+export type VisualizationData = Partial<CdeVisualizationElementProps>;
+
 export function visualizationDataCanActivate(
   commands: unknown[] = ['/'],
   navigationExtras?: NavigationExtras,
@@ -17,21 +19,21 @@ export function visualizationDataCanActivate(
   };
 }
 
-export function visualizationDataResolver(): ResolveFn<Partial<CdeVisualizationElementProps>> {
-  return () => inject(VisualizationDataService).getData()() as Partial<CdeVisualizationElementProps>;
+export function visualizationDataResolver(): ResolveFn<VisualizationData> {
+  return () => inject(VisualizationDataService).getData()() as VisualizationData;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class VisualizationDataService {
-  private readonly data = signal<Partial<CdeVisualizationElementProps> | undefined>(undefined);
+  private readonly data = signal<VisualizationData | undefined>(undefined);
 
-  setData(data: Partial<CdeVisualizationElementProps>): void {
+  setData(data: VisualizationData): void {
     this.data.set(data);
   }
 
-  getData(): Signal<Partial<CdeVisualizationElementProps> | undefined> {
+  getData(): Signal<VisualizationData | undefined> {
     return this.data.asReadonly();
   }
 
