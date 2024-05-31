@@ -1,8 +1,4 @@
 :host {
-  cde-header {
-    overflow: hidden;
-  }
-
   & > * {
     margin: 0 auto;
   }
@@ -224,7 +220,7 @@
 
   @media (min-width: 768px) {
     .create-explore-content {
-      padding: 2px 48px 112px 48px;
+      padding: 2rem 48px 112px 48px;
     }
 
     .header {
@@ -260,7 +256,7 @@
 
   @media (min-width: 1012px) {
     .create-explore-content {
-      padding: 2px 64px 112px 64px;
+      padding: 2rem 64px 112px 64px;
     }
 
     .header {
