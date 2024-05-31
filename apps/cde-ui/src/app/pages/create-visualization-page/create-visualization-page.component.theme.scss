@@ -105,7 +105,7 @@ $blue-theme: mat.define-light-theme(
           --mdc-filled-text-field-label-text-color: #{$selected-option-color};
         }
         .mdc-text-field--filled {
-          outline: 4px solid #{$button-toggle-selected-background};
+          outline: 0.25rem solid #{$button-toggle-selected-background};
         }
       }
     }

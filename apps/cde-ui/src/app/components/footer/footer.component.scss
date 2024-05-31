@@ -61,8 +61,8 @@
         align-items: flex-end;
 
         a {
-          height: 36px;
-          width: 36px;
+          height: 2.25rem;
+          width: 2.25rem;
 
           .mat-icon {
             color: hsla(347, 89%, 46%, 1);
@@ -96,7 +96,7 @@
               content: '';
               position: absolute;
               color: white;
-              border: solid hsla(347, 89%, 46%, 1) 4px;
+              border: solid hsla(347, 89%, 46%, 1) 0.25rem;
               height: 100%;
               width: 100%;
               left: 0;
@@ -118,7 +118,7 @@
           display: flex;
           align-items: center;
           gap: 2rem;
-          height: 40px;
+          height: 2.5rem;
         }
       }
     }
@@ -133,11 +133,11 @@
 
   @media (min-width: 430px) {
     .footer-left {
-      padding: 56px 40px;
+      padding: 3.5rem 2.5rem;
     }
 
     .footer-right {
-      padding: 37.5px 40px;
+      padding: 37.5px 2.5rem;
       row-gap: 3rem;
     }
 
@@ -153,11 +153,11 @@
 
   @media (min-width: 544px) {
     .footer-left {
-      padding: 56px 3rem;
+      padding: 3.5rem 3rem;
       row-gap: 2rem;
 
       img {
-        max-width: 258px;
+        max-width: 16.125rem;
       }
     }
 
@@ -166,13 +166,13 @@
     }
 
     .footer-right {
-      padding: 56px 3rem;
+      padding: 3.5rem 3rem;
     }
   }
 
   @media (min-width: 768px) {
     .footer-left {
-      padding: 56px 40px;
+      padding: 3.5rem 2.5rem;
     }
 
     .footer-right {
@@ -181,7 +181,7 @@
   }
 
   @media (min-width: 1012px) {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 21px;
 
     .footer-wrapper {
@@ -189,22 +189,22 @@
     }
 
     .footer-right {
-      padding: 56px 4rem;
+      padding: 3.5rem 4rem;
     }
   }
 
   @media (min-width: 1280px) {
     .footer-left {
-      min-width: 448px;
+      min-width: 28rem;
     }
 
     .footer-right {
-      padding: 4rem 72px;
-      row-gap: 80px;
+      padding: 4rem 4.5rem;
+      row-gap: 5rem;
     }
 
     .social-media {
-      width: 348px !important;
+      width: 21.75rem !important;
     }
 
     .social-funded {
@@ -214,15 +214,15 @@
   }
 
   @media (min-width: 1440px) {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 27px;
 
     .footer-left {
-      padding: 0 72px;
+      padding: 0 4.5rem;
     }
 
     .footer-right {
-      padding: 4rem 88px;
+      padding: 4rem 5.5rem;
     }
 
     .social-media {
@@ -231,21 +231,21 @@
   }
 
   @media (min-width: 1920px) {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 27px;
 
     .footer-left {
-      padding: 0 88px;
+      padding: 0 5.5rem;
     }
 
     .footer-right {
-      padding: 4rem 104px;
+      padding: 4rem 6.5rem;
 
       .social-funded {
         max-width: 933px;
 
         .social-media {
-          width: 488px !important;
+          width: 30.5rem !important;
         }
       }
     }

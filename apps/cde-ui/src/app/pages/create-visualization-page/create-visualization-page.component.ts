@@ -16,6 +16,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ColorMap, ColorMapItem, VisualizationSettings } from '../../models/create-visualization-page-types';
 import { CsvLoaderService } from '../../services/csv-loader/csv-loader.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { TOOLTIP_POSITION_LEFT_SIDE } from '@hra-ui/cde-visualization';
 
 /** Metadata select dropdown option */
 export interface MetadataSelectOption {
@@ -59,6 +61,7 @@ export interface CellTypeTableData {
     HeaderComponent,
     FooterComponent,
     MarkEmptyFormControlDirective,
+    OverlayModule,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -120,6 +123,14 @@ export class CreateVisualizationPageComponent {
   anchorCellTypes: MetadataSelectOption[] = [];
   /** Whether to use the default color map */
   useDefaultColorMap = true;
+
+  uploadInfoOpen = false;
+  anchorInfoOpen = false;
+  metadataInfoOpen = false;
+  colorInfoOpen = false;
+  visualizeInfoOpen = false;
+
+  readonly tooltipPosition = TOOLTIP_POSITION_LEFT_SIDE;
 
   /**
    * Sets the loaded node data

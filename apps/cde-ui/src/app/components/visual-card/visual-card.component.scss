@@ -5,14 +5,14 @@
   display: flex;
   flex-wrap: wrap;
   // gap: 4rem;
-  gap: 40px;
+  gap: 2.5rem;
 
   .visual-card {
     // max-height: 30.5rem;
     // max-width: 30.5rem;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 5px 16px 0px rgba(32, 30, 61, 0.24);
+    box-shadow: 0px 5px 1rem 0px rgba(32, 30, 61, 0.24);
     outline-offset: 0;
     cursor: pointer;
     display: flex;
@@ -21,7 +21,7 @@
     height: calc(100vw - 3rem);
 
     &:hover {
-      box-shadow: 0px 5px 16px 5px rgba(32, 30, 61, 0.24);
+      box-shadow: 0px 5px 1rem 5px rgba(32, 30, 61, 0.24);
     }
 
     &:focus-visible .label {
@@ -61,7 +61,7 @@
 
   @media (min-width: 430px) {
     .visual-card {
-      height: calc(100vw - 80px) !important;
+      height: calc(100vw - 5rem) !important;
     }
   }
 
@@ -69,31 +69,19 @@
     gap: 3rem;
 
     .visual-card {
-      width: 488px;
-      height: 488px !important;
+      width: 30.5rem;
+      height: 30.5rem !important;
     }
 
     .label {
-      font-size: 18px !important;
+      font-size: 1.125rem !important;
     }
 
     mat-icon {
       height: 1.5rem !important;
       width: 1.5rem !important;
       font-size: 1.5rem !important;
-      margin-left: 12px !important;
+      margin-left: 0.75rem !important;
     }
   }
-
-  // @media (min-width: 768px) {
-  //   .visual-card {
-  //     height: calc(100vw - 280px) !important;
-  //   }
-  // }
-
-  // @media (min-width: 1012px) {
-  //   .visual-card {
-  //     height: calc(100vw - 524px) !important;
-  //   }
-  // }
 }

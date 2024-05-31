@@ -10,6 +10,7 @@ export * from './lib/models/color-map';
 export * from './lib/models/edge';
 export * from './lib/models/metadata';
 export * from './lib/models/node';
+export * from './lib/shared/tooltip-position';
 
 export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
