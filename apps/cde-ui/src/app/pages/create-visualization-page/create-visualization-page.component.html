@@ -5,8 +5,29 @@
   <div class="card data-upload">
     <h2 class="header">
       <span class="step-number">1</span>
-      Format and Upload Data
-      <span class="material-symbols-rounded info"> info </span>
+      <div class="card-title">Format and Upload Data</div>
+      <span
+        class="material-symbols-rounded info"
+        cdkOverlayOrigin
+        #resetTrigger1="cdkOverlayOrigin"
+        (mouseover)="uploadInfoOpen = true"
+        (mouseout)="uploadInfoOpen = false"
+      >
+        info
+      </span>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="resetTrigger1"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="uploadInfoOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          Format single-cell spatial feature tables into the Cell Type Table template to upload and explore data. Cell
+          coordinates should be in micrometers. Damage and proliferation markers can be included.
+        </div>
+      </ng-template>
     </h2>
 
     <h3 class="subheader-1">Upload Cell Type Table</h3>
@@ -37,8 +58,33 @@
   <div class="card anchor-selection">
     <h2 class="header">
       <span class="step-number">2</span>
-      Optional: Select Anchor Cell Type
-      <mat-icon class="material-symbols-rounded info"> info </mat-icon>
+      <div class="card-title">Optional: Select Anchor Cell Type</div>
+      <mat-icon
+        class="material-symbols-rounded info"
+        cdkOverlayOrigin
+        #resetTrigger2="cdkOverlayOrigin"
+        (mouseover)="anchorInfoOpen = true"
+        (mouseout)="anchorInfoOpen = false"
+      >
+        info
+      </mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'anchor-tooltip']"
+        [cdkConnectedOverlayOrigin]="resetTrigger2"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="anchorInfoOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+          computed and visualized. Euclidian distance is used to compute the distance between two cells.
+        </div>
+        <div>
+          “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
+          first listed cell type label is used as the anchor cell type.
+        </div>
+      </ng-template>
     </h2>
     <mat-form-field class="select-form">
       <mat-label>Anchor Cell Type</mat-label>
@@ -60,24 +106,45 @@
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
       <span class="step-number">3</span>
-      Add Metadata
-      <span class="material-symbols-rounded info"> info </span>
+      <div class="card-title">Optional: Add Metadata</div>
+      <span
+        class="material-symbols-rounded info"
+        cdkOverlayOrigin
+        #resetTrigger3="cdkOverlayOrigin"
+        (mouseover)="metadataInfoOpen = true"
+        (mouseout)="metadataInfoOpen = false"
+      >
+        info
+      </span>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="resetTrigger3"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="metadataInfoOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          Information in these fields will not change the visualization output. Metadata may be helpful for taking
+          screenshots of the uploaded data and resulting visualizations in the Visualization App.
+        </div>
+      </ng-template>
     </h2>
     <div class="metadata-options">
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Visualization Title</mat-label>
           <input matInput formControlName="title" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Imaging Technology</mat-label>
           <input matInput formControlName="technology" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Organ</mat-label>
           <mat-select formControlName="organ" cdeMarkEmptyFormControl>
             @for (organ of organs; track organ) {
@@ -88,7 +155,7 @@
       </div>
 
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Sex</mat-label>
           <mat-select formControlName="sex" panelClass="select-options-container" cdeMarkEmptyFormControl>
             <mat-option value="male">Male</mat-option>
@@ -97,20 +164,20 @@
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Age</mat-label>
           <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
 
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Thickness (µm)</mat-label>
           <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
       <div class="metadata-option">
-        <mat-form-field>
+        <mat-form-field subscriptSizing="dynamic">
           <mat-label>Pixel size (µm/pixel)</mat-label>
           <input matInput type="number" formControlName="pixelSize" min="0" cdeMarkEmptyFormControl />
         </mat-form-field>
@@ -121,11 +188,46 @@
   <div class="color-config card">
     <h2 class="header">
       <span class="step-number">4</span>
-      Optional: Configure Color Map
-      <span class="material-symbols-rounded info"> info </span>
+      <div class="card-title">Optional: Configure Color Map</div>
+      <span
+        class="material-symbols-rounded info"
+        cdkOverlayOrigin
+        #resetTrigger4="cdkOverlayOrigin"
+        (mouseover)="colorInfoOpen = true"
+        (mouseout)="colorInfoOpen = false"
+      >
+        info
+      </span>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="resetTrigger4"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="colorInfoOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type
+          colors may be changed individually while exploring the visualization in the Visualization App.
+        </div>
+      </ng-template>
     </h2>
     <div class="toggle-actions">
-      <mat-button-toggle-group aria-label="Font Style" formControlName="colorMapOption">
+      <mat-button-toggle-group
+        class="button-toggle-horizontal"
+        aria-label="Font Style"
+        formControlName="colorMapOption"
+      >
+        <mat-button-toggle value="default" (change)="toggleDefaultColorMap()">Use Default Colors</mat-button-toggle>
+        <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-button-toggle-group
+        class="button-toggle-vertical"
+        aria-label="Font Style"
+        formControlName="colorMapOption"
+        vertical
+      >
         <mat-button-toggle value="default" (change)="toggleDefaultColorMap()">Use Default Colors</mat-button-toggle>
         <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
       </mat-button-toggle-group>
@@ -153,8 +255,26 @@
   <div class="card visualize">
     <h2 class="header">
       <span class="step-number">5</span>
-      Visualize Cell Distance Data
-      <span class="material-symbols-rounded info"> info </span>
+      <div class="card-title">Visualize Cell Distance Data</div>
+      <span
+        class="material-symbols-rounded info"
+        cdkOverlayOrigin
+        #resetTrigger5="cdkOverlayOrigin"
+        (mouseover)="visualizeInfoOpen = true"
+        (mouseout)="visualizeInfoOpen = false"
+      >
+        info
+      </span>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="resetTrigger5"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="visualizeInfoOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>Inputs on the Create Visualization page cannot be modified after a visualization is generated.</div>
+      </ng-template>
     </h2>
     <button type="submit" class="visualize-button cta-filled" data-testid="visualize">
       Visualize
