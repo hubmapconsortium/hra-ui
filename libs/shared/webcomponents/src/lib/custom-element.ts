@@ -1,16 +1,18 @@
-import { ApplicationConfig, InputSignal, InputSignalWithTransform, Type } from '@angular/core';
+import { ApplicationConfig, InputSignalWithTransform, ModelSignal, Type } from '@angular/core';
 import { NgElementConstructor, createCustomElement as createCustomElementImpl } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
 import { ComponentNgElementStrategyFactory } from './element-strategy/component-factory-strategy';
 
-type InputSignalValue<SignalT> = SignalT extends InputSignal<infer ValueT>
+type InputSignalKey<KeyT, ValueT> = [InputSignalValue<ValueT>] extends [never] ? never : KeyT;
+
+type InputSignalValue<SignalT> = SignalT extends InputSignalWithTransform<infer ValueT, infer _Unused>
   ? ValueT
-  : SignalT extends InputSignalWithTransform<infer ValueT, unknown>
+  : SignalT extends ModelSignal<infer ValueT>
     ? ValueT
     : never;
 
 export type InputProps<CompT> = {
-  -readonly [KeyT in keyof CompT]: InputSignalValue<CompT[KeyT]>;
+  -readonly [KeyT in keyof CompT as InputSignalKey<KeyT, CompT[KeyT]>]: InputSignalValue<CompT[KeyT]>;
 };
 
 export async function createCustomElement<CompT>(
