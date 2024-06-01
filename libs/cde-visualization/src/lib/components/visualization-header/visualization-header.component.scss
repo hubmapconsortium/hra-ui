@@ -31,6 +31,7 @@ $blue-theme: mat.define-light-theme(
   background-color: #fcfcfc;
   justify-content: space-between;
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  height: 100%;
 
   & div:not(:first-child, :last-child) {
     margin: 1rem 0;
@@ -47,7 +48,7 @@ $blue-theme: mat.define-light-theme(
   }
 
   .mat-divider-vertical {
-    height: 65%;
+    height: calc(100% - 0.75rem);
   }
 
   .info {
@@ -57,6 +58,9 @@ $blue-theme: mat.define-light-theme(
 
   button {
     --mdc-filled-button-label-text-color: #{button-text-color};
+    height: 25px;
+    font-size: 11px;
+    letter-spacing: 0.2px;
   }
 
   .home {
