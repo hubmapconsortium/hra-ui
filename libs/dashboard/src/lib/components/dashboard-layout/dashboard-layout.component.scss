@@ -1,6 +1,7 @@
 :host {
   display: block;
-  margin: 2rem 6rem 5rem;
+  max-width: calc(100vw - 12rem);
+  margin: 2rem 0 5rem 0;
 
   .title {
     line-height: 3.9375rem;
@@ -31,5 +32,29 @@
         vertical-align: text-bottom;
       }
     }
+  }
+
+  @media (max-width: 1440px) {
+    max-width: calc(100vw - 9rem);
+  }
+
+  @media (max-width: 1280px) {
+    max-width: calc(100vw - 6rem);
+  }
+
+  @media (min-width: 548px) and (max-width: 1280px) {
+    max-width: calc(100vw - 6rem);
+  }
+
+  @media (max-width: 544px) {
+    max-width: calc(100vw - 4rem);
+  }
+
+  @media (max-width: 430px) {
+    max-width: calc(100vw - 3rem);
+  }
+
+  @media (max-width: 320px) {
+    max-width: calc(100vw - 2rem);
   }
 }

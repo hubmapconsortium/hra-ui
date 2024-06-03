@@ -21,6 +21,7 @@ export class DashboardComponentOutletDirective {
     const component = this.registry.componentFor(spec);
     if (!component) {
       // TODO log missing component
+      console.log('Component Missing', spec);
       return undefined;
     }
 
