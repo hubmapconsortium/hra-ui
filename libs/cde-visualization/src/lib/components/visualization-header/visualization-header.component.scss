@@ -36,6 +36,7 @@ $blue-theme: mat.define-light-theme(
   & div:not(:first-child, :last-child) {
     margin: 1rem 0;
 
+    a,
     button:not(:last-child) {
       margin-right: 1rem;
     }
@@ -56,6 +57,7 @@ $blue-theme: mat.define-light-theme(
     margin-bottom: 2px;
   }
 
+  a,
   button {
     --mdc-filled-button-label-text-color: #{button-text-color};
     height: 25px;
