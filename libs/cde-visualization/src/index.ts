@@ -10,6 +10,7 @@ export * from './lib/models/color-map';
 export * from './lib/models/edge';
 export * from './lib/models/metadata';
 export * from './lib/models/node';
+export * from './lib/shared/tooltip-position';
 
 // TODO: Move these exports into a separate library
 export * from './lib/services/file-loader/file-loader';

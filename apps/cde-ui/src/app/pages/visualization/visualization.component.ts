@@ -11,6 +11,9 @@ import {
 import '@hra-ui/cde-visualization';
 import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 
+/**
+ * Visualization page component
+ */
 @Component({
   selector: 'cde-visualization-page',
   standalone: true,

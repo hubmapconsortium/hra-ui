@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import {
   DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
+  TOOLTIP_POSITION_LEFT_SIDE,
 } from '@hra-ui/cde-visualization';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
@@ -92,6 +94,7 @@ function optionalValue<T>(): T | null {
     FooterComponent,
     HeaderComponent,
     MarkEmptyFormControlDirective,
+    OverlayModule,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -142,6 +145,21 @@ export class CreateVisualizationPageComponent {
   };
 
   readonly organs = ORGANS;
+
+  /** Tooltip position config */
+  readonly tooltipPosition = TOOLTIP_POSITION_LEFT_SIDE;
+
+  /** Whether to show upload info tooltip */
+  uploadInfoOpen = false;
+  /** Whether to show anchor info tooltip */
+  anchorInfoOpen = false;
+  /** Whether to show metadata info tooltip */
+  metadataInfoOpen = false;
+  /** Whether to show color map info tooltip */
+  colorInfoOpen = false;
+  /** Whether to show visualize info tooltip */
+  visualizeInfoOpen = false;
+
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
   private nodes?: NodeEntry[];

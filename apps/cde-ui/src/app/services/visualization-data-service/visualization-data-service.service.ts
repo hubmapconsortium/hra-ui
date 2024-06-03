@@ -23,6 +23,9 @@ export function visualizationDataResolver(): ResolveFn<VisualizationData> {
   return () => inject(VisualizationDataService).getData()() as VisualizationData;
 }
 
+/**
+ * Visualization data service
+ */
 @Injectable({
   providedIn: 'root',
 })

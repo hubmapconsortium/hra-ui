@@ -1,14 +1,13 @@
 @use 'sass:math';
 
 :host {
-  $logo-height: 3rem;
+  $logo-height: 2rem;
   --mat-text-button-hover-state-layer-opacity: 0;
 
   display: flex;
-  height: 9rem;
-  padding: 0 5rem;
+  padding: 1rem 0.5rem;
   align-items: center;
-  gap: 2rem;
+  gap: 0.25rem;
 
   .hra-home,
   .cde-home {
@@ -20,12 +19,18 @@
     }
   }
 
-  .help {
-    $border-width: 0.125rem;
-    $bottom-border-width: 0.125rem;
+  .logo.large {
+    display: none;
+  }
 
-    height: 2.6875rem;
-    padding: 0.5rem 5rem 0.5rem 0.25rem;
+  .help {
+    --mdc-text-button-label-text-size: 11px;
+    --mdc-text-button-label-text-tracking: 0.2px;
+    line-height: 16.5px;
+    $border-width: 0.125rem;
+    $bottom-border-width: 0rem;
+    height: 1.75rem;
+    min-width: fit-content;
 
     &:not(:focus-visible) {
       border-bottom-style: solid;
@@ -44,5 +49,55 @@
 
   .filler {
     flex-grow: 1;
+  }
+
+  @media (min-width: 544px) {
+    padding: 1rem 1.5rem;
+
+    .help {
+      --mdc-text-button-label-text-size: 0.875rem;
+      line-height: 21px;
+      padding: 0.75rem 1.5rem;
+      height: 45px;
+    }
+  }
+
+  @media (min-width: 1012px) {
+    $logo-height: 3rem !important;
+    gap: 2rem;
+    padding: 1.5rem 3rem;
+
+    img {
+      height: $logo-height;
+    }
+
+    .hra-home,
+    .cde-home {
+      height: $logo-height;
+      border-radius: 0.5rem;
+
+      img {
+        height: $logo-height;
+      }
+    }
+
+    .logo.large {
+      display: unset;
+    }
+
+    .logo.small {
+      display: none;
+    }
+
+    .help {
+      border-bottom-width: 0.125rem !important;
+      padding: 0 5rem 0 0.25rem;
+      --mdc-text-button-label-text-size: 1.125rem;
+      line-height: 27px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    padding: 3rem 5rem;
   }
 }
