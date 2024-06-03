@@ -81,7 +81,7 @@
           <mat-label>Organ</mat-label>
           <mat-select formControlName="organ" cdeMarkEmptyFormControl>
             @for (organ of organs; track organ) {
-              <mat-option [value]="organ.value">{{ organ.viewValue }}</mat-option>
+              <mat-option [value]="organ">{{ organ }}</mat-option>
             }
           </mat-select>
         </mat-form-field>

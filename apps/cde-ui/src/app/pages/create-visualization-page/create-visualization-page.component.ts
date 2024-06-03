@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,13 +27,46 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 
-/** Metadata select dropdown option */
-interface MetadataSelectOption {
-  /** Value */
-  value: string;
-  /** User text */
-  viewValue: string;
-}
+// TODO: This should probably be replaced by a sparql query using a data resolver
+const ORGANS: string[] = [
+  'Blood Vasculature',
+  'Brain',
+  'Heart',
+  'Large Intestine',
+  'Larynx',
+  'Left Eye',
+  'Left Fallopian Tube',
+  'Left Kidney',
+  'Left Knee',
+  'Left Mammary Gland',
+  'Left Ovary',
+  'Left Palatine Tonsil',
+  'Left Ureter',
+  'Liver',
+  'Lung',
+  'Lymph Node',
+  'Main Bronchus',
+  'Pancreas',
+  'Pelvis',
+  'Placenta',
+  'Prostate',
+  'Right Eye',
+  'Right Fallopian Tube',
+  'Right Kidney',
+  'Right Knee',
+  'Right Mammary Gland',
+  'Right Ovary',
+  'Right Palatine Tonsil',
+  'Right Ureter',
+  'Skin',
+  'Small Intestine',
+  'Spinal Cord',
+  'Spleen',
+  'Thymus',
+  'Trachea',
+  'Urinary Bladder',
+  'Uterus',
+];
 
 function optionalValue<T>(): T | null {
   return null;
@@ -46,19 +78,19 @@ function optionalValue<T>(): T | null {
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    FormsModule,
     ReactiveFormsModule,
-    MatIconModule,
-    FileUploadComponent,
+
+    MatButtonModule,
+    MatButtonToggleModule,
     MatDividerModule,
-    HeaderComponent,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+
+    FileUploadComponent,
     FooterComponent,
+    HeaderComponent,
     MarkEmptyFormControlDirective,
   ],
   templateUrl: './create-visualization-page.component.html',
@@ -109,13 +141,11 @@ export class CreateVisualizationPageComponent {
     },
   };
 
+  readonly organs = ORGANS;
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
   private nodes?: NodeEntry[];
   private customColorMap?: ColorMapEntry[];
-
-  /** Organ options */
-  organs: MetadataSelectOption[] = [];
 
   setNodes(nodes: NodeEntry[]): void {
     this.nodes = nodes;
