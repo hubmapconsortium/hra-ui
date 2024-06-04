@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2rem;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 0;
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 1px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    --mdc-filled-button-label-text-size: 14px;
+    --mdc-text-button-label-text-size: 14px;
+
+    .atlas-btn {
+      padding: 0 1.25rem 0 1rem;
+
+      .mat-icon {
+        margin-left: 0.5rem;
+
+        height: 1rem;
+        width: 1rem;
+        font-size: 1rem;
+      }
+    }
+
+    .btn-stroked {
+      --mat-text-button-horizontal-padding: 1rem;
+    }
+  }
+}
