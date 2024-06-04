@@ -83,6 +83,8 @@ export class CdeVisualizationComponent {
   readonly nodeClick = output<NodeEntry>();
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  readonly homeLink = input<string>('home');
+
   private readonly dataLoader = inject(DataLoaderService);
 
   readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {

@@ -30,9 +30,9 @@ import { colorEquals, Rgb, rgbToHex } from '../../models/color';
 import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import histogramSpec from './histogram.vl.json';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 interface DistanceEntry {
   type: string;
