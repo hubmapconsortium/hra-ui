@@ -1,7 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { createCustomElement } from '@hra-ui/webcomponents';
+import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
 
@@ -12,8 +12,15 @@ export * from './lib/models/metadata';
 export * from './lib/models/node';
 export * from './lib/shared/tooltip-position';
 
-export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
+// TODO: Move these exports into a separate library
+export * from './lib/services/file-loader/file-loader';
+export * from './lib/services/file-loader/csv-file-loader.service';
+export * from './lib/services/file-loader/json-file-loader.service';
+export * from './lib/services/data/color-map-loader.service';
+
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>;
+export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
   providers: [provideHttpClient(), provideAnimations(), importProvidersFrom(ColorPickerModule)],

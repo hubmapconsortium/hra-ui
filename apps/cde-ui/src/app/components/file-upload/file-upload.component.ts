@@ -1,27 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Injector, Signal, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Type, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-/** Loader options */
-export interface FileLoaderOptions {
-  /** Signal to stop loading */
-  signal: AbortSignal;
-}
-
-/** Result from a file loader callback */
-export interface FileLoaderResult<T> {
-  /** Signal of current progress in range [0, 1] */
-  progress: Signal<number>;
-  /** Promise resolving to the loaded data */
-  result: Promise<T>;
-}
-
-/** File loader function */
-export type FileLoader<T> = (file: File, options: FileLoaderOptions) => FileLoaderResult<T>;
-
-/** Cleanup function */
-type CleanupFn = () => void;
+import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
+import { Subscription, reduce } from 'rxjs';
 
 /** Component for loading a file from disk */
 @Component({
@@ -32,13 +14,15 @@ type CleanupFn = () => void;
   styleUrl: './file-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FileUploadComponent<T> {
+export class FileUploadComponent<T, OptionsT> {
   /** Title */
   readonly fileTitle = input<string>();
   /** Accepted file types */
   readonly accept = input.required<string>();
   /** File loader */
-  readonly loader = input.required<FileLoader<T>>();
+  readonly loader = input.required<Type<FileLoader<T, OptionsT>>>();
+  /** File loader options */
+  readonly options = input.required<OptionsT>();
 
   /** Progress events */
   readonly progress = output<number>();
@@ -49,15 +33,15 @@ export class FileUploadComponent<T> {
   /** Loading error events */
   readonly loadErrored = output<unknown>();
   /** Loading completed events */
-  readonly loadCompleted = output<T>();
+  readonly loadCompleted = output<T[]>();
+
+  /** Loaded file */
+  file?: File;
 
   /** Reference to injector */
   private readonly injector = inject(Injector);
 
-  /** Loaded file */
-  file?: File;
-  /** Cleanup functions */
-  private cleanup: CleanupFn[] = [];
+  private subscription?: Subscription;
 
   /**
    * Loads a file
@@ -67,72 +51,44 @@ export class FileUploadComponent<T> {
   load(el: HTMLInputElement): void {
     if (el.files === null) {
       return;
+    } else if (this.subscription) {
+      this.cancelLoad();
     }
 
-    const { loader, injector, progress, loadStarted } = this;
+    const { injector, loader, options } = this;
+    const loaderInstance = injector.get(loader());
     const file = (this.file = el.files[0]);
-    const cleanup: CleanupFn[] = (this.cleanup = []);
-    const abortController = new AbortController();
-    const options: FileLoaderOptions = {
-      signal: abortController.signal,
-    };
-    const result = loader()(file, options);
-    let done = false;
+    const event$ = loaderInstance.load(file, options());
+    const data$ = event$.pipe(reduce((acc, event) => this.handleLoadEvent(acc, event), [] as T[]));
 
-    el.files = null;
-    loadStarted.emit(file);
-    const progressRef = effect(() => progress.emit(result.progress()), { injector, manualCleanup: true });
-    this.handleResult(result.result, cleanup, () => done);
-
-    cleanup.push(
-      () => (done = true),
-      () => progressRef.destroy(),
-      () => abortController.abort(),
-    );
+    this.subscription = data$.subscribe({
+      next: (data) => this.loadCompleted.emit(data),
+      error: (error) => this.cancelLoad(error),
+    });
   }
 
   /**
    * Cancels the currently loading file
    */
-  cancelLoad(): void {
-    this.runCleanup(this.cleanup);
+  cancelLoad(error?: unknown): void {
+    this.subscription?.unsubscribe();
     this.file = undefined;
-    this.loadCancelled.emit();
-  }
+    this.subscription = undefined;
 
-  /**
-   * Runs a set of cleanup functions
-   *
-   * @param fns Cleanup functions to run
-   */
-  private runCleanup(fns: CleanupFn[]): void {
-    for (const fn of fns) {
-      fn();
+    if (error) {
+      this.loadErrored.emit(error);
+    } else {
+      this.loadCancelled.emit();
     }
   }
 
-  /**
-   * Processes the result of a loader
-   *
-   * @param result Promise resolving to the loaded data
-   * @param cleanup Cleanup function to run at the end
-   * @param isDone Query function returning whether the loading has cancelled
-   */
-  private async handleResult(result: Promise<T>, cleanup: CleanupFn[], isDone: () => boolean): Promise<void> {
-    const { progress, loadErrored, loadCompleted } = this;
-    try {
-      const data = await result;
-      if (!isDone()) {
-        progress.emit(1);
-        loadCompleted.emit(data);
-      }
-    } catch (reason) {
-      if (!isDone()) {
-        this.file = undefined;
-        loadErrored.emit(reason);
-      }
-    } finally {
-      this.runCleanup(cleanup);
+  private handleLoadEvent(acc: T[], event: FileLoaderEvent<T>): T[] {
+    if (event.type === 'data') {
+      acc.push(event.data);
+    } else if (event.type === 'progress' && event.total !== undefined) {
+      this.progress.emit(event.loaded / event.total);
     }
+
+    return acc;
   }
 }
