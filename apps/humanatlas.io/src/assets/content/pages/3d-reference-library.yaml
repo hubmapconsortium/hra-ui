@@ -49,6 +49,8 @@
   tableRequired: false
   isMultiRow: false
   versionData:
+    - release: 7th HRA Release (v2.1), June 2024
+      version: '2.1'
     - release: 6th HRA Release (v2.0), December 2023
       version: '2.0'
     - release: 5th HRA Release (v1.4), June 2023
@@ -2104,6 +2106,10 @@
 
 - type: download-ftu
   versions:
+    - release: 7th HRA Release (v2.1), June 2024
+      version: '7'
+    - release: 6th HRA Release (v2.0), December 2023
+      version: '6'
     - release: 5th HRA Release (v1.4), June 2023
       version: '5'
     - release: 4th HRA Release (v1.3), December 2022

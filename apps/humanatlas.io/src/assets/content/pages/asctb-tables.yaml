@@ -46,6 +46,9 @@
 - type: table-version
   versionChooserDisabled: false
   versionData:
+    - release: 7th HRA Release (v2.1), June 2024
+      file: asctb_release7.csv
+      version: 2.1
     - release: 6th HRA Release (v2.0), December 2023
       file: asctb_release6.csv
       version: 2.0
