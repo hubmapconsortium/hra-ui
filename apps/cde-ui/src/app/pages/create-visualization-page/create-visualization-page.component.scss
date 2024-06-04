@@ -1,156 +1,141 @@
-@use '@angular/material' as mat;
-
-$higher-density-theme: mat.define-light-theme(
-  (
-    density: -1,
-  )
-);
-
-::ng-deep {
-  .cdk-overlay-container div.cdk-overlay-pane div.select-options-container {
-    border-radius: 1rem;
-
-    mat-option {
-      --mat-option-selected-state-label-text-color: #201e3d;
-      --mat-minimal-pseudo-checkbox-selected-checkmark-color: #b20a2f;
-    }
-  }
-}
+@use '../../../styles/breakpoints' as breakpoints;
 
 :host {
   display: block;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-size: 100% 100%;
-  --mdc-filled-text-field-hover-label-text-color: #464954;
-  --mat-standard-button-toggle-selected-state-background-color: #e00d3a;
-  --mat-standard-button-toggle-selected-state-text-color: white;
-  --mat-standard-button-toggle-divider-color: #4c4c58;
 
   .content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin: 0 auto;
     width: 100%;
-    padding: 0.5rem 1rem 3rem 1rem;
+    margin: 0 auto;
+    padding: 4.5rem 26rem 6.5rem 22rem;
+    gap: 2rem;
 
-    @include mat.form-field-density($higher-density-theme);
-    @include mat.select-density($higher-density-theme);
+    @include breakpoints.breakpoint('xx-small', 'x-small') {
+      padding: 0.5rem 1rem 3rem;
+      gap: 1.5rem;
+    }
+
+    @include breakpoints.breakpoint('small') {
+      padding: 1rem 1.5rem 6.5rem;
+    }
+
+    @include breakpoints.breakpoint('medium') {
+      padding: 1rem 4.5rem 6.5rem;
+    }
+
+    @include breakpoints.breakpoint('large') {
+      padding: 2rem 4.5rem 6.5rem;
+    }
+
+    @include breakpoints.breakpoint('x-large') {
+      padding: 2rem 10rem 8rem;
+    }
+
+    @include breakpoints.breakpoint('xx-large') {
+      padding: 3rem 14rem 8rem;
+    }
+  }
+
+  .page-nav {
+    .nav {
+      display: flex;
+      align-items: center;
+      height: 2.0625rem;
+      margin-bottom: 2rem;
+      gap: 1rem;
+
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        margin-bottom: 0.5rem;
+        gap: 0.25rem;
+      }
+
+      & > :not(mat-icon) {
+        padding: 0.5rem;
+      }
+    }
 
     .title {
-      font-size: 1.5rem;
-      max-width: 20rem;
-      line-height: 2.25rem;
-      letter-spacing: -0.0325em;
-      margin-bottom: 0;
+      margin: 0;
     }
+  }
 
-    .card {
-      background-color: white;
-      box-shadow: 0 5px 1rem 0 rgba(32, 30, 61, 0.24);
-      border-radius: 1rem;
+  .card {
+    box-shadow: 0 0.3125rem 1rem 0 rgba(32, 30, 61, 0.24);
+    border-radius: 1rem;
+    padding: 3.5rem 4rem;
+
+    @include breakpoints.breakpoint('xx-small') {
       padding: 1rem;
-      --mdc-filled-text-field-active-indicator-height: 0;
-      --mdc-filled-text-field-focus-active-indicator-height: 0;
-      --mdc-filled-button-container-height: 2.5rem;
+    }
 
-      ::ng-deep {
-        .mat-mdc-text-field-wrapper,
-        .mdc-text-field {
-          border-radius: 1rem;
-          box-shadow: 0 5px 1rem 0 rgba(32, 30, 61, 0.24);
-        }
-      }
+    @include breakpoints.breakpoint('x-small', 'small') {
+      padding: 1.5rem;
+    }
 
-      .header {
-        display: flex;
-        align-items: center;
+    @include breakpoints.breakpoint('medium') {
+      padding: 1.5rem 2rem 3rem;
+    }
+
+    @include breakpoints.breakpoint('large') {
+      padding: 2rem 2.5rem 3rem;
+    }
+
+    @include breakpoints.breakpoint('x-large') {
+      padding: 3rem 3.5rem 3rem;
+    }
+
+    @include breakpoints.breakpoint('x-large', 'xx-large') {
+      padding: 3rem 3.5rem 3rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem;
+
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
         margin-bottom: 1rem;
-        font-size: 15px;
-        line-height: 22.5px;
+        gap: 0.5rem;
+      }
 
-        .step-number {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 2rem;
+      .step-number {
+        display: flex;
+        width: 3.5rem;
+        height: 3.5rem;
+        line-height: 3.5rem;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+
+        @include breakpoints.breakpoint('xx-small', 'x-small') {
+          width: 2rem;
           height: 2rem;
-          background: #464954;
-          text-align: center;
-          margin-right: 0.5rem;
-          border-radius: 50%;
-          color: white;
+          line-height: 2rem;
         }
-
-        .info {
-          margin-left: auto;
-          cursor: default;
-        }
-      }
-    }
-
-    .card-title {
-      width: calc(100% - 4rem);
-    }
-
-    .upload-csv {
-      grid-area: upload-csv;
-    }
-
-    ::ng-deep .upload-csv,
-    ::ng-deep .upload-colormap,
-    .upload-success {
-      button {
-        height: 1.75rem;
       }
 
       mat-icon {
-        height: 1rem;
-        width: 1rem;
-        font-size: 1rem;
-      }
-
-      span {
-        font-size: 11px;
+        flex-shrink: 0;
       }
     }
+  }
 
-    .use-template,
-    .colormap-template {
-      button {
-        padding: 0;
-        font-size: 11px;
-        letter-spacing: 0.02em;
-        height: 2rem;
-      }
+  .data-upload {
+    display: grid;
+    grid:
+      'header header header header'
+      'subheader-1 subheader-1 divider subheader-2'
+      'subheader-required-columns subheader-optional-columns divider use-template'
+      'required-columns optional-columns divider .'
+      'upload-csv upload-csv divider .';
+    column-gap: 6.375rem;
 
-      mat-icon {
-        height: 1rem;
-        width: 1rem;
-        font-size: 1rem;
-        margin-left: 0.25rem;
-      }
-    }
-
-    .select-form,
-    .metadata-option {
-      --mdc-filled-text-field-label-text-size: 1.125rem;
-      --mat-form-field-container-height: 58px;
-      --mat-form-field-filled-with-label-container-padding-top: 11px;
-      --mat-form-field-filled-with-label-container-padding-bottom: 0px;
-      --mat-select-trigger-text-line-height: 47px;
-    }
-
-    .select-form {
-      width: 100%;
-      max-width: 28rem;
-    }
-
-    .data-upload {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto auto auto auto auto auto 2rem auto auto;
-      grid-template-areas:
+    @include breakpoints.breakpoint('xx-small', 'small') {
+      grid:
         'header'
         'subheader-1'
         'subheader-required-columns'
@@ -161,499 +146,258 @@ $higher-density-theme: mat.define-light-theme(
         'divider'
         'subheader-2'
         'use-template';
-
-      .header {
-        grid-area: header;
-      }
-
-      .subheader-1 {
-        grid-area: subheader-1;
-        font-size: 0.875rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-
-      .subheader-2 {
-        grid-area: subheader-2;
-        font-size: 0.875rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin: 0;
-      }
-
-      .subheader-required-columns {
-        grid-area: subheader-required-columns;
-        font-size: 0.875rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin: 0;
-      }
-
-      .subheader-optional-columns {
-        grid-area: subheader-optional-columns;
-        font-size: 0.875rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin: 0;
-      }
-
-      mat-divider.vertical {
-        grid-area: divider;
-        place-self: center;
-        height: 100%;
-        display: none;
-      }
-
-      mat-divider.horizontal {
-        grid-area: divider;
-        place-self: center;
-        width: 100%;
-      }
-
-      .required-columns {
-        grid-area: required-columns;
-        font-size: 0.75rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-
-      .optional-columns {
-        grid-area: optional-columns;
-        font-size: 0.75rem;
-        line-height: 21px;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-
-      .use-template {
-        grid-area: use-template;
-      }
     }
 
-    .metadata {
-      .metadata-options {
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 2.5rem;
-        row-gap: 3rem;
-        padding: 1.5rem 0;
-
-        .metadata-option {
-          gap: 0.5rem;
-          display: flex;
-          flex-direction: column;
-          width: 23.75rem;
-
-          input {
-            font-size: 1.125rem;
-            line-height: 47px;
-          }
-        }
-      }
+    @include breakpoints.breakpoint('x-small', 'medium', 'large', 'x-large', 'xx-large') {
+      grid:
+        'header header header'
+        'subheader-1 subheader-1 subheader-1'
+        'subheader-required-columns subheader-optional-columns .'
+        'required-columns optional-columns .'
+        'upload-csv upload-csv upload-csv'
+        'divider divider divider'
+        'subheader-2 subheader-2 subheader-2'
+        'use-template use-template use-template'
+        / auto auto 1fr;
+      column-gap: 6.375rem;
     }
 
-    .color-config,
-    .visualize {
-      .header {
+    .header {
+      grid-area: header;
+    }
+
+    .subheader-1 {
+      grid-area: subheader-1;
+      margin-bottom: 1.5rem;
+
+      @include breakpoints.breakpoint('xx-small') {
+        margin-bottom: 0.75rem;
+      }
+
+      @include breakpoints.breakpoint('x-small') {
         margin-bottom: 1rem;
       }
     }
 
-    .color-config {
-      .mat-button-toggle {
-        --mat-standard-button-toggle-height: 2.5rem;
-        padding: 0 1.5rem;
-      }
-
-      .toggle-actions {
-        display: grid;
-        grid-template-columns: 1.625fr 0.25fr 1.125fr;
-        grid-template-areas:
-          'upload-toggle upload-toggle upload-toggle'
-          'upload-colormap divider colormap-template';
-
-        mat-button-toggle-group {
-          --mat-standard-button-toggle-label-text-size: 11px;
-          grid-area: upload-toggle;
-          width: 100%;
-          margin-bottom: 1.5rem;
-        }
-
-        .upload-colormap {
-          grid-area: upload-colormap;
-        }
-
-        ::ng-deep .subtitle,
-        .template {
-          font-size: 0.875rem;
-          line-height: 21px;
-        }
-
-        .divider {
-          height: 100%;
-          grid-area: divider;
-          place-self: center;
-        }
-
-        .colormap-template {
-          grid-area: colormap-template;
-
-          button {
-            padding: 0;
-          }
-        }
-      }
+    .subheader-required-columns {
+      grid-area: subheader-required-columns;
     }
 
-    .visualize-button {
-      display: flex;
-      align-items: center;
-      height: 2rem;
-      font-size: 11px;
-      color: white;
-      background-color: rgba(224, 13, 58, 1);
-      padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-      gap: 0.25rem;
-      letter-spacing: 0.2px;
-      line-height: 0;
-
-      mat-icon {
-        height: 1rem;
-        width: 1rem;
-        font-size: 1rem;
-      }
-    }
-  }
-
-  @media (min-width: 430px) {
-    .card {
-      padding: 1rem 1.5rem 1.5rem 1.5rem !important;
-    }
-
-    .header {
-      margin-bottom: 1.5rem !important;
-    }
-  }
-
-  @media (min-width: 544px) {
-    .content {
-      padding: 1rem 1.5rem 6.5rem 1.5rem !important;
-      gap: 2rem !important;
-    }
-
-    .title {
-      font-size: 2rem !important;
-      line-height: 3rem !important;
-      width: calc(100% - 4.5rem) !important;
-    }
-
-    .header {
-      font-size: 1.5rem !important;
-      line-height: 2.25rem !important;
-      margin-bottom: 2rem !important;
-    }
-
-    .step-number {
-      min-width: 3rem !important;
-      height: 3rem !important;
-      margin-right: 1rem !important;
-    }
-
-    .data-upload {
-      grid-template-rows: auto auto auto auto auto auto auto 4rem auto auto !important;
-    }
-
-    .subheader-1,
-    .subheader-2,
-    .subheader-required-columns,
-    .subheader-optional-columns,
-    ::ng-deep .subtitle,
-    .template {
-      font-size: 20px !important;
-      line-height: 30px !important;
-    }
-
-    .required-columns,
-    .optional-columns {
-      font-size: 1.125rem !important;
-      line-height: 27px !important;
-    }
-
-    ::ng-deep .upload-csv,
-    ::ng-deep .upload-colormap {
-      span {
-        font-size: 1.125rem !important;
-      }
-
-      button {
-        height: 43px !important;
-      }
-
-      mat-icon {
-        height: 1.5rem !important;
-        width: 1.5rem !important;
-        font-size: 1.5rem !important;
-      }
-    }
-
-    ::ng-deep .upload-colormap {
-      .upload-success {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-      }
-    }
-
-    .use-template,
-    .colormap-template {
-      button {
-        font-size: 1.125rem !important;
-        height: 43px !important;
-      }
-
-      mat-icon {
-        height: 1.5rem !important;
-        width: 1.5rem !important;
-        font-size: 1.5rem !important;
-      }
-    }
-
-    .subheader-1,
-    .required-columns,
-    .optional-columns {
-      margin-bottom: 1.5rem !important;
+    .subheader-optional-columns {
+      grid-area: subheader-optional-columns;
     }
 
     .subheader-required-columns,
     .subheader-optional-columns {
-      margin-bottom: 0.5rem !important;
+      margin-bottom: 0.5rem;
+
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        margin-bottom: 0;
+      }
+    }
+
+    .required-columns {
+      grid-area: required-columns;
+    }
+
+    .optional-columns {
+      grid-area: optional-columns;
+    }
+
+    .required-columns,
+    .optional-columns {
+      margin-bottom: 1.5rem;
+
+      @include breakpoints.breakpoint('xx-small') {
+        margin-bottom: 0.75rem;
+      }
+
+      @include breakpoints.breakpoint('x-small') {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .upload-csv {
+      grid-area: upload-csv;
+    }
+
+    .divider {
+      grid-area: divider;
     }
 
     .subheader-2 {
-      margin-bottom: 1rem !important;
-    }
+      grid-area: subheader-2;
+      margin-bottom: 1rem;
 
-    .toggle-actions {
-      width: fit-content;
-    }
+      @include breakpoints.breakpoint('xx-small') {
+        margin-bottom: 0rem;
+      }
 
-    mat-button-toggle-group {
-      width: fit-content !important;
-    }
-
-    .visualize-button {
-      height: 2.5rem !important;
-      font-size: 1.125rem !important;
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem !important;
-      gap: 0.75rem !important;
-
-      mat-icon {
-        height: 1.5rem !important;
-        width: 1.5rem !important;
-        font-size: 1.5rem !important;
+      @include breakpoints.breakpoint('x-small') {
+        margin-bottom: 0.25rem;
       }
     }
   }
 
-  @media (min-width: 768px) {
-    .content {
-      padding: 1rem 4.5rem 6.5rem 4.5rem !important;
-      gap: 2rem !important;
+  .anchor-selection {
+    .header {
+      margin-bottom: 0.5rem;
     }
 
-    .card {
-      padding: 1.5rem 2rem 3rem 2rem !important;
+    .select-form {
+      margin: 1.5rem 0;
+      max-width: 28rem;
+
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        margin: 1.25rem 0;
+      }
+    }
+  }
+
+  .metadata {
+    display: grid;
+    grid: 'header header header';
+    column-gap: 5rem;
+
+    @include breakpoints.breakpoint('xx-small', 'x-small', 'small', 'medium') {
+      grid: 'header';
     }
 
-    .title {
-      max-width: 100% !important;
+    @include breakpoints.breakpoint('large', 'x-large', 'xx-large') {
+      grid: 'header header';
+      column-gap: 2.5rem;
     }
 
     .header {
-      font-size: 1.5rem !important;
-      line-height: 2.25rem !important;
-      margin-bottom: 3rem !important;
+      grid-area: header;
+      margin-bottom: 2rem;
+
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        margin-bottom: 0.5rem;
+      }
     }
 
-    .step-number {
-      min-width: 3.5rem !important;
-      height: 3.5rem !important;
+    mat-form-field {
+      margin: 1.5rem 0;
     }
+  }
 
-    .data-upload {
-      grid-template-columns: 1fr 1fr !important;
-      grid-template-rows: auto auto auto auto auto 4rem auto auto !important;
-      grid-template-areas:
-        'header header'
-        'subheader-1 subheader-1'
-        'subheader-required-columns subheader-optional-columns'
-        'required-columns optional-columns'
-        'upload-csv upload-csv'
-        'divider divider'
-        'subheader-2 subheader-2'
-        'use-template use-template' !important;
-    }
+  .color-config {
+    @include breakpoints.breakpoint('xxx-large') {
+      display: grid;
+      grid:
+        'header header header .'
+        'toggle toggle . .'
+        'upload-colormap divider template .'
+        'upload-colormap divider use-template .'
+        / auto auto auto 1fr;
+      column-gap: 6.5rem;
 
-    .required-columns,
-    .subheader-required-columns,
-    .optional-columns,
-    .subheader-optional-columns {
-      font-size: 1.125rem !important;
-      line-height: 27px !important;
+      mat-button-toggle-group {
+        width: fit-content;
+      }
     }
 
     mat-button-toggle-group {
-      --mat-standard-button-toggle-label-text-size: 0.875rem !important;
-    }
-  }
+      grid-area: toggle;
 
-  @media (min-width: 1012px) {
-    .content {
-      padding-top: 2rem !important;
-      gap: 3rem !important;
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        width: 100%;
+        max-width: 23.75rem;
+      }
     }
 
-    .card {
-      padding: 2rem 2.5rem 3rem 2.5rem !important;
+    .divider {
+      grid-area: divider;
     }
 
-    .header {
-      font-size: 2rem !important;
-      line-height: 3rem !important;
-      margin-bottom: 2.5rem !important;
+    .upload-colormap {
+      grid-area: upload-colormap;
+      margin-top: 1rem;
     }
 
-    .step-number {
-      font-size: 1.5rem !important;
-    }
-
-    .data-upload {
-      grid-template-rows: auto auto auto auto auto 5rem auto auto !important;
-    }
-
-    .subheader-1,
-    .subheader-2,
-    ::ng-deep .subtitle,
     .template {
-      font-size: 1.5rem !important;
-      line-height: 2.25rem !important;
-    }
-
-    .metadata-options {
-      column-gap: 1.75rem !important;
+      grid-area: template;
+      margin: 0;
     }
   }
 
-  @media (min-width: 1280px) {
-    .content {
-      gap: 4rem !important;
-      padding: 2rem 11rem 8rem 11rem !important;
-    }
+  .data-upload,
+  .color-config {
+    .use-template {
+      grid-area: use-template;
+      width: fit-content;
+      height: 2.6875rem;
 
-    .title {
-      font-size: 42px !important;
-      line-height: 63px !important;
-    }
-
-    .card {
-      padding: 3rem 3.5rem !important;
-    }
-
-    .metadata-options {
-      column-gap: 2.5rem !important;
+      @include breakpoints.breakpoint('xx-small', 'x-small') {
+        height: 2rem;
+      }
     }
   }
 
-  @media (min-width: 1440px) {
-    .content {
-      padding: 3rem 224px 8rem 224px !important;
+  h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  mat-form-field {
+    width: 100%;
+    max-width: 23.75rem;
+    box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
+    border-radius: 1rem;
+
+    --mat-form-field-container-height: 3.625rem;
+    --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0;
+
+    @include breakpoints.breakpoint('xx-small', 'x-small') {
+      --mat-form-field-container-height: 2.5rem;
+      --mat-form-field-filled-with-label-container-padding-top: 1rem;
+      --mat-form-field-filled-with-label-container-padding-bottom: 0;
     }
 
-    .header {
-      margin-bottom: 3rem !important;
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      border-radius: 1rem;
+    }
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mdc-line-ripple {
+      &::before,
+      &::after {
+        display: none;
+      }
     }
   }
 
-  @media (min-width: 1920px) {
-    .content {
-      gap: 5rem !important;
-      padding: 4.5rem 416px 8rem 352px !important;
+  .mat-divider-horizontal {
+    margin: 2rem 0;
+
+    @include breakpoints.breakpoint('xx-small') {
+      margin: 1rem 0;
     }
 
-    .card {
-      padding: 3.5rem 4rem !important;
-    }
-
-    .data-upload {
-      grid-template-columns: 1fr 1fr 0.5fr 1.5fr !important;
-      grid-template-rows: auto !important;
-      grid-template-areas:
-        'header header header header'
-        'subheader-1 subheader-1 divider subheader-2'
-        'subheader-required-columns subheader-optional-columns divider use-template'
-        'required-columns optional-columns divider .'
-        'upload-csv upload-csv divider .' !important;
-    }
-
-    mat-divider.vertical {
-      display: unset !important;
-    }
-
-    mat-divider.horizontal {
-      display: none !important;
-    }
-
-    .metadata-options {
-      column-gap: 5rem !important;
-    }
-
-    .metadata-option {
-      width: unset !important;
-    }
-
-    div.metadata-option:nth-child(-n + 2) {
-      width: calc(50% - 4rem) !important;
-    }
-
-    .metadata-option:nth-child(n + 3):nth-child(-n + 7) {
-      width: calc(33% - 4rem) !important;
+    @include breakpoints.breakpoint('x-small') {
+      margin: 1.5rem 0;
     }
   }
 }
 
-::ng-deep {
-  .info-tooltip-panel {
-    background-color: white;
-    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
-    border-radius: 0.5rem;
-    max-width: 27.5rem;
+::ng-deep .info-tooltip-panel {
+  display: flex;
+  flex-direction: column;
+  max-width: min(calc(100vw - 1rem), 40rem);
+  padding: 1rem;
+  box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
+  border-radius: 0.5rem;
+}
 
-    .break {
-      margin-bottom: 1rem;
-    }
-
-    div,
-    span {
-      font-family: 'Metropolis';
-      font-size: 0.875rem;
-      line-height: 1.3125rem;
-      letter-spacing: 0.005em;
-      font-weight: 400;
-      color: #4b4b5e;
-    }
-
-    div {
-      margin: 1rem;
-
-      span {
-        display: block;
-      }
-    }
-  }
-
-  .anchor-tooltip {
-    display: flex;
-    flex-direction: column;
-  }
+::ng-deep .select-panel {
+  border-radius: 0.5rem !important;
+  box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d !important;
 }

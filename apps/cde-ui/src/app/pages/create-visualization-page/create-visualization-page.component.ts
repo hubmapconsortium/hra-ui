@@ -1,7 +1,7 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, input, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {
   ColorMapEntry,
   ColorMapFileLoaderService,
@@ -20,7 +20,7 @@ import {
   DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
-  TOOLTIP_POSITION_LEFT_SIDE,
+  TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
@@ -28,47 +28,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
-
-// TODO: This should probably be replaced by a sparql query using a data resolver
-const ORGANS: string[] = [
-  'Blood Vasculature',
-  'Brain',
-  'Heart',
-  'Large Intestine',
-  'Larynx',
-  'Left Eye',
-  'Left Fallopian Tube',
-  'Left Kidney',
-  'Left Knee',
-  'Left Mammary Gland',
-  'Left Ovary',
-  'Left Palatine Tonsil',
-  'Left Ureter',
-  'Liver',
-  'Lung',
-  'Lymph Node',
-  'Main Bronchus',
-  'Pancreas',
-  'Pelvis',
-  'Placenta',
-  'Prostate',
-  'Right Eye',
-  'Right Fallopian Tube',
-  'Right Kidney',
-  'Right Knee',
-  'Right Mammary Gland',
-  'Right Ovary',
-  'Right Palatine Tonsil',
-  'Right Ureter',
-  'Skin',
-  'Small Intestine',
-  'Spinal Cord',
-  'Spleen',
-  'Thymus',
-  'Trachea',
-  'Urinary Bladder',
-  'Uterus',
-];
+import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 
 function optionalValue<T>(): T | null {
   return null;
@@ -81,6 +41,7 @@ function optionalValue<T>(): T | null {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
 
     MatButtonModule,
     MatButtonToggleModule,
@@ -101,6 +62,11 @@ function optionalValue<T>(): T | null {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
+  readonly organs = input.required<OrganEntry[]>();
+
+  readonly useVerticalDividers = signal(false);
+  readonly useVerticalToggleButtons = signal(false);
+
   private readonly fb = inject(FormBuilder);
   private readonly fbnn = this.fb.nonNullable;
   private readonly router = inject(Router);
@@ -112,11 +78,11 @@ export class CreateVisualizationPageComponent {
     metadata: this.fb.group({
       title: [optionalValue<string>()],
       technology: [optionalValue<string>()],
-      organ: [optionalValue<string>()],
+      organ: [optionalValue<OrganEntry>()],
       sex: [optionalValue<string>()],
-      age: [optionalValue<number>(), validateInteger()],
-      thickness: [optionalValue<number>()],
-      pixelSize: [optionalValue<number>()],
+      age: [optionalValue<number>(), [Validators.min(0), Validators.max(120), validateInteger()]],
+      thickness: [optionalValue<number>(), Validators.min(0)],
+      pixelSize: [optionalValue<number>(), Validators.min(0)],
     }),
     colorMapType: ['default'],
   });
@@ -144,10 +110,8 @@ export class CreateVisualizationPageComponent {
     },
   };
 
-  readonly organs = ORGANS;
-
   /** Tooltip position config */
-  readonly tooltipPosition = TOOLTIP_POSITION_LEFT_SIDE;
+  readonly tooltipPosition = TOOLTIP_POSITION_BELOW;
 
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;
@@ -164,6 +128,10 @@ export class CreateVisualizationPageComponent {
 
   private nodes?: NodeEntry[];
   private customColorMap?: ColorMapEntry[];
+
+  constructor() {
+    this.initViewportResizeObserver();
+  }
 
   setNodes(nodes: NodeEntry[]): void {
     this.nodes = nodes;
@@ -214,6 +182,12 @@ export class CreateVisualizationPageComponent {
     const { nodes, customColorMap, visualizationForm } = this;
     const { nodeTargetValue, colorMapType, metadata } = visualizationForm.value;
     const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
+    const normalizedMetadata = this.removeNullishValues({
+      ...metadata,
+      organId: metadata?.organ?.id,
+      organ: metadata?.organ?.label,
+    });
+
     this.dataService.setData(
       this.removeNullishValues({
         nodes,
@@ -224,7 +198,7 @@ export class CreateVisualizationPageComponent {
         colorMapKey: DEFAULT_COLOR_MAP_KEY,
         colorMapValue: DEFAULT_COLOR_MAP_VALUE_KEY,
 
-        metadata: this.removeNullishValues(metadata),
+        metadata: normalizedMetadata,
       }),
     );
 
@@ -240,5 +214,26 @@ export class CreateVisualizationPageComponent {
     }
 
     return result as { [KeyT in keyof T]?: NonNullable<T[KeyT]> };
+  }
+
+  private initViewportResizeObserver(): void {
+    const VERTICAL_DIVIDERS_MIN_WIDTH = 1920;
+    const VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH = 544;
+
+    const el: HTMLElement = inject(ElementRef).nativeElement;
+    const destroyRef = inject(DestroyRef);
+    const observer = new ResizeObserver(([entry]) => {
+      const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
+      const width = box.inlineSize;
+      this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
+      this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+    });
+
+    const initialWidth = el.getBoundingClientRect().width;
+    this.useVerticalDividers.set(initialWidth >= VERTICAL_DIVIDERS_MIN_WIDTH);
+    this.useVerticalToggleButtons.set(initialWidth < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+
+    observer.observe(el);
+    destroyRef.onDestroy(() => observer.disconnect());
   }
 }
