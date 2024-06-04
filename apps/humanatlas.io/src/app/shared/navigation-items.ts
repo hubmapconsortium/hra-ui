@@ -75,6 +75,22 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         menuName: 'Explore Biomarker Expressions for Cell Types',
         route: 'user-story/3',
       },
+      {
+        menuName: 'Functional Tissue Unit Explorer',
+        route: 'user-story/4',
+      },
+      {
+        menuName: 'Cell Distance Explorer',
+        route: 'user-story/5',
+      },
+      {
+        menuName: 'Use Atlas Components',
+        route: 'user-story/6',
+      },
+      {
+        menuName: 'Track Atlas Evolution and Usage',
+        route: 'user-story/7',
+      },
     ],
   },
   {

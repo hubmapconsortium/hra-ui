@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: margin
   top: 3.5rem
@@ -15,9 +15,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
@@ -29,18 +29,38 @@
 
 - type: long-card
   longCardItems:
-    - icon: assets/images/improve_cta.svg
+    - icon: assets/images/improve_cta_us1.svg
       title: Improve Cell Type Annotations
       body: Use the HRA API to improve the accuracy of annotations for bulk and spatial data
       route: user-story/1
       alt: Improve Cell Type Annotations Icon
     - icon: assets/images/predict_3d_spatial_organs.svg
       title: Predict 3D Spatial Origin of Tissue Samples
-      body: Use biomarker expression values to predict the 3-dimensional location of tissue samples
+      body: Use cell type populations to predict the 3-dimensional location of tissue samples
       route: user-story/2
       alt: Predict 3D Spatial Origin icon
     - icon: assets/images/explore_biomarker_expressions.svg
       title: Explore Biomarker Expressions for Cell Types
-      body: Use the Exploration User Interface to examine biomarker expression values
+      body: Use the Exploration User Interface to examine anatomical structures, cell types, and biomarkers
       route: user-story/3
       alt: Explore Biomarker Expressions for Cell Types Icon
+    - icon: assets/images/ftu_explorer_us4.svg
+      title: Functional Tissue Unit Explorer
+      body: Examine cell type abundance and biomarker expression values for functional tissue units (FTUs)
+      route: user-story/4
+      alt: Functional Tissue Unit Explorer Icon
+    - icon: assets/images/cell_dist_explorer_us5.svg
+      title: Cell Distance Explorer
+      body: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
+      route: user-story/5
+      alt: Functional Tissue Unit Explorer Icon
+    - icon: assets/images/hra_api.svg
+      title: Use Atlas Components
+      body: Explore, use, and share HRA web components to improve data access and analysis
+      route: user-story/6
+      alt: Use Atlas Components Icon
+    - icon: assets/images/track_atlas_usage_us7.svg
+      title: Track Atlas Evolution and Usage
+      body: Explore usage statistics of atlas data and code
+      route: user-story/7
+      alt: Track Atlas Evolution and Usage Icon

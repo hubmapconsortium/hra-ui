@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -9,9 +9,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: margin
@@ -46,6 +46,9 @@
 - type: table-version
   versionChooserDisabled: false
   versionData:
+    - release: 7th HRA Release (v2.1), June 2024
+      file: asctb_release6.csv
+      version: 2.1
     - release: 6th HRA Release (v2.0), December 2023
       file: asctb_release6.csv
       version: 2.0
