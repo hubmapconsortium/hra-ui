@@ -5,6 +5,8 @@
   background-color: black;
   isolation: isolate;
   border-radius: 0.5rem;
+  height: 0;
+  flex-grow: 1;
 
   .info {
     display: flex;
