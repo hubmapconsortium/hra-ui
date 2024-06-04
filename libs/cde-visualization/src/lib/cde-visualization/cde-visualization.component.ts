@@ -54,6 +54,8 @@ import { mergeObjects } from '../shared/merge';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CdeVisualizationComponent {
+  readonly homeLink = input<string>('home');
+
   readonly nodes = input<string | NodeEntry[]>();
   readonly nodeTargetKey = input(undefined, { transform: brandAttribute<string, NodeTargetKey>() });
   readonly nodeTargetValue = input<string>();
@@ -82,8 +84,6 @@ export class CdeVisualizationComponent {
 
   readonly nodeClick = output<NodeEntry>();
   readonly nodeHover = output<NodeEntry | undefined>();
-
-  readonly homeLink = input<string>('home');
 
   private readonly dataLoader = inject(DataLoaderService);
 

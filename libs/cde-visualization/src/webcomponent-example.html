@@ -13,10 +13,44 @@
     />
     <link href="styles.css" rel="stylesheet" />
   </head>
-
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const ftu = document.getElementById('cde');
+      const nodeClick = (nodeEntry) => {
+        console.log('node click', nodeEntry);
+      };
+      const nodeHover = (nodeEntry) => {
+        console.log('node hover', nodeEntry);
+      };
+      ftu.addEventListener('nodeClicked', nodeClick);
+      ftu.addEventListener('nodeHovered', nodeHover);
+    });
+  </script>
   <body>
     <div class="wc-content">
-      <cde-visualization-root id="cde"></cde-visualization-root>
+      <cde-visualization-root
+        id="cde"
+        home-link=""
+        nodes=""
+        node-target-key=""
+        node-target-value=""
+        edges=""
+        max-edge-distance=""
+        color-map=""
+        color-map-key=""
+        color-map-value=""
+        metadata=""
+        title=""
+        technology=""
+        organ=""
+        sex=""
+        age="50"
+        creation-date=""
+        creation-time=""
+        thickness=""
+        pixelSize=""
+      >
+      </cde-visualization-root>
     </div>
   </body>
 </html>
