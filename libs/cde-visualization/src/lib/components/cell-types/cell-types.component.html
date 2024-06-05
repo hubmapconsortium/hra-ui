@@ -29,11 +29,11 @@
 
 <div class="mat-caption total-ct-label">
   Total Cell Types
-  <span>{{ cellTypeCount() }}</span>
+  <span>{{ selection().length }}</span>
 </div>
 <div class="mat-caption total-cells">
   Total Cells
-  <span>{{ cellCount() }}</span>
+  <span>{{ totalCellCount() | number }}</span>
 </div>
 
 <div class="table-overflow-container">
@@ -50,18 +50,18 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
           (change)="toggleAllRows()"
-          [checked]="isAllSelected()"
-          [indeterminate]="isSomeSelected()"
-          [aria-label]="headerCheckboxLabel()"
+          [checked]="selectionState() === 'full'"
+          [indeterminate]="selectionState() === 'partial'"
+          [aria-label]="getCheckboxLabel(selectionState() === 'full')"
         >
         </mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let row; let index = index">
         <mat-checkbox
           (click)="$event.stopPropagation()"
-          (change)="selectionModel.toggle(row)"
-          [checked]="selectionModel.isSelected(row)"
-          [aria-label]="checkboxLabel(row, index)"
+          (change)="toggleRow(row)"
+          [checked]="isSelected(row)"
+          [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
         >
         </mat-checkbox>
       </td>
@@ -85,7 +85,7 @@
       <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
   </table>
 </div>
