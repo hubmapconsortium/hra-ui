@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable, Injector, Signal, Type, inject, runInInjectionContext } from '@angular/core';
 import { ToSignalOptions, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, filter, map, of, switchAll, takeLast } from 'rxjs';
+import { createAbsoluteUrl } from '../../shared/url-normalization';
 import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-loader/file-loader';
 
 @Injectable({
@@ -29,11 +30,7 @@ export class DataLoaderService {
           return of(sourceValue ?? initialValue);
         }
 
-        if (!sourceValue.startsWith('http')) {
-          sourceValue = this.location.prepareExternalUrl(sourceValue);
-        }
-
-        return loader.load(sourceValue, loaderOptions).pipe(
+        return loader.load(createAbsoluteUrl(sourceValue, { injector }), loaderOptions).pipe(
           filter((event): event is FileLoaderDataEvent<T> => event.type === 'data'),
           takeLast(1),
           map((event) => event.data),

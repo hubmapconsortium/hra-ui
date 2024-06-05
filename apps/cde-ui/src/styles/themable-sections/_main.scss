@@ -3,3 +3,7 @@
 @mixin theme($theme) {
   @include landing-page.theme($theme);
 }
+
+@mixin typography($typography) {
+  @include landing-page.typography($typography);
+}

@@ -1,122 +1,85 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
-@use '../../../styles/palettes' as palettes;
+@use '../../../styles/constants/palettes' as palettes;
 
-$gray: mat.define-palette(palettes.$hra-gray1-palette, 500);
-$red: mat.define-palette(palettes.$hra-red2-palette, 500);
-$blue: mat.define-palette(palettes.$hra-blue4-palette, 500);
-
-$gray-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $gray,
-      accent: $gray,
-    ),
-  )
-);
-
-$red-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $red,
-      accent: $red,
-    ),
-  )
-);
-
-$blue-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
+$gray-palette: map.get(palettes.$palettes, 'gray');
 
 @mixin color($theme) {
   cde-create-visualization-page {
-    @include mat.form-field-color($gray-theme);
-    @include mat.select-color($gray-theme);
-    @include mat.option-color($gray-theme);
-
-    $divider-color: map.get(palettes.$hra-blue4-palette, 500);
-    --mat-divider-color: #{$divider-color};
-
-    $button-toggle-selected-background: map.get(palettes.$hra-red2-palette, 500);
-
-    cde-file-upload {
-      @include mat.button-color($blue-theme);
-      --mdc-filled-button-label-text-color: black;
-    }
-
-    mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-background-color: #{$button-toggle-selected-background};
-      --mat-standard-button-toggle-selected-state-text-color: white;
-      --mat-standard-button-toggle-divider-color: #4c4c58;
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: mat.get-theme-color($theme, accent, darker);
     }
 
     mat-form-field {
-      $label-color: map.get(palettes.$hra-gray1-palette, 500);
-      --mdc-filled-text-field-label-text-color: #{$label-color};
-      --mdc-filled-text-field-label-text-weight: 500;
+      --mdc-filled-text-field-container-color: white;
     }
 
-    .metadata .metadata-options mat-form-field,
-    .anchor-selection mat-form-field {
-      --mat-form-field-hover-state-layer-opacity: 0;
-      --mat-form-field-focus-state-layer-opacity: 0;
-      --mdc-filled-text-field-hover-label-text-color: var(--mdc-filled-text-field-label-text-color);
-      --mat-select-enabled-arrow-color: var(--mdc-filled-text-field-label-text-color);
-      --mdc-filled-text-field-container-color: #ffffff;
-
-      $selected-option-color: map.get(palettes.$hra-blue1-palette, 500);
-      --mat-select-enabled-trigger-text-color: #{$selected-option-color};
-
-      $form-field-container-hover-color: map.get(palettes.$hra-blue5-palette, 500);
-
-      &:hover {
-        --mdc-filled-text-field-container-color: #{$form-field-container-hover-color};
-        --mdc-filled-text-field-label-text-color: #{$selected-option-color};
-        --mat-select-enabled-arrow-color: #{$selected-option-color};
+    .page-nav .nav {
+      a {
+        color: mat.get-theme-color($theme, primary, 700);
       }
 
-      &:active {
-        --mdc-filled-text-field-container-color: #{$divider-color};
-        --mdc-filled-text-field-label-text-color: #{$selected-option-color};
-        --mat-select-enabled-arrow-color: #{$selected-option-color};
+      mat-icon,
+      span {
+        color: map.get($gray-palette, 700);
       }
+    }
 
-      &:has(.empty) {
-        $select-label-color: map.get(palettes.$hra-red5-palette, 500);
-        .mdc-floating-label--float-above {
-          --mdc-filled-text-field-focus-label-text-color: #{$select-label-color};
-          color: var(--mdc-filled-text-field-focus-label-text-color);
+    .card {
+      background-color: white;
+
+      .header {
+        .step-number {
+          background-color: map.get($gray-palette, 700);
+          color: white;
         }
 
-        .mdc-floating-label--float-above + mat-select {
-          --mat-select-focused-arrow-color: #{$select-label-color};
-          --mat-select-enabled-arrow-color: #{$select-label-color};
-        }
-      }
-
-      &:has(mat-select:focus-visible, input:focus-visible) {
-        label {
-          --mdc-filled-text-field-focus-label-text-color: #{$selected-option-color};
-          --mdc-filled-text-field-label-text-color: #{$selected-option-color};
-        }
-        .mdc-text-field--filled {
-          outline: 0.25rem solid #{$button-toggle-selected-background};
+        mat-icon {
+          color: mat.get-theme-color($theme, accent, darker);
         }
       }
     }
+
+    .data-upload {
+      .required-columns,
+      .optional-columns {
+        color: mat.get-theme-color($theme, accent, 800);
+      }
+
+      .use-template {
+        color: mat.get-theme-color($theme, primary, 700);
+      }
+    }
+
+    .color-config {
+      mat-button-toggle-group {
+        border-color: map.get($gray-palette, 700);
+        --mat-standard-button-toggle-text-color: #{mat.get-theme-color($theme, accent, darker)};
+        --mat-standard-button-toggle-background-color: #{mat.get-theme-color($theme, accent, lighter)};
+        --mat-standard-button-toggle-selected-state-text-color: white;
+        --mat-standard-button-toggle-selected-state-background-color: #{mat.get-theme-color($theme, primary, default)};
+      }
+
+      .use-template {
+        color: mat.get-theme-color($theme, primary, 700);
+      }
+    }
+
+    .metadata {
+      --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
+    }
+  }
+
+  .info-tooltip-panel {
+    background-color: white;
   }
 }
 
 @mixin typography($theme) {
   cde-create-visualization-page {
-    .metadata .metadata-options mat-form-field {
-      font: mat.get-theme-typography($theme, button);
-    }
   }
 }
 
