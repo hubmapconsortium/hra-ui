@@ -17,8 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisualizationHeaderComponent {
-  readonly downloadNodes = output();
+  readonly resetView = output();
+  readonly resetAll = output();
 
+  readonly downloadNodes = output();
   readonly downloadEdges = output();
 
   /** Flag to check if reset info tooltip is open */
