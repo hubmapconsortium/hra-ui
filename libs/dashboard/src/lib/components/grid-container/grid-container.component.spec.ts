@@ -1,21 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GridContainerComponent } from './grid-container.component';
+import { render, screen } from '@testing-library/angular';
 
 describe('GridContainerComponent', () => {
-  let component: GridContainerComponent;
-  let fixture: ComponentFixture<GridContainerComponent>;
+  const testGridContainerData = {
+    type: 'GridContainer',
+    columns: 2,
+    items: [{ type: 'ImageContainer', imageUrl: 'https://example.com/image1.jpg' }],
+  };
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [GridContainerComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(GridContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(GridContainerComponent, {
+      componentInputs: { spec: testGridContainerData },
+      componentProviders: [],
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create a grid container', () => {
+    // const container = screen.findByRole('div');
+    // expect(container).toBeInTheDocument();
+
+    expect(screen.getByRole('container')).toHaveStyle({
+      gridTemplateColumns: `repeat(2, 1fr)`,
+    });
   });
 });
