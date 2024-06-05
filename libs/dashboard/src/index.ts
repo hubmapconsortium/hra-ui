@@ -11,3 +11,5 @@ export * from './lib/components/metrics/container/metrics-container.component';
 
 export * from './lib/components/vega-container/vega-container.component';
 export * from './lib/components/long-card/long-card.component';
+
+export * from './lib/components/iframe-container/iframe-container.component';
