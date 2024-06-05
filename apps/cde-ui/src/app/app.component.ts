@@ -1,21 +1,24 @@
 import { AfterContentInit, Component, HostListener, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { RouterOutlet } from '@angular/router';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
-import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 
 /**
  * App component for CDE
  */
 @Component({
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, ScreenSizeNoticeComponent, MatDialogModule],
-  providers: [
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    ScreenSizeNoticeComponent,
+    MatDialogModule,
+    MatButtonModule,
   ],
   selector: 'cde-root',
   templateUrl: './app.component.html',
@@ -27,7 +30,6 @@ export class AppComponent implements AfterContentInit {
   screenSizeNoticeOpen = false;
 
   private readonly dialog = inject(MatDialog);
-  private ref = inject(MatDialogRef<ScreenSizeNoticeComponent>);
   private readonly hasShownSmallViewportNotice = localStorage.getItem('cde-screen-size-notice-seen');
 
   @HostListener('window:resize', ['$event'])
@@ -48,11 +50,10 @@ export class AppComponent implements AfterContentInit {
     ) {
       const dialogConfig: MatDialogConfig = {
         panelClass: 'custom-overlay',
-        minWidth: '28rem',
+        minWidth: '485px',
       };
-
-      this.ref = this.dialog.open(ScreenSizeNoticeComponent, dialogConfig);
-      this.ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
+      const dialogRef = this.dialog.open(ScreenSizeNoticeComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
       this.screenSizeNoticeOpen = true;
     }
 
