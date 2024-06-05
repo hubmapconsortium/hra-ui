@@ -28,24 +28,24 @@ export const DASHBOARD_COMPONENT_ANY_DEF = z
   })
   .passthrough();
 
-export function defFor(class_: DashboardComponentAnyClass): DashboardComponentAnyDef {
-  return class_.def;
+export function defFor(cls: DashboardComponentAnyClass): DashboardComponentAnyDef {
+  return cls.def;
 }
 
-export function typeFor(class_: DashboardComponentAnyClass): string {
-  return defFor(class_).shape.type.value;
+export function typeFor(cls: DashboardComponentAnyClass): string {
+  return defFor(cls).shape.type.value;
 }
 
 export function validateSpec(
-  class_: DashboardComponentAnyClass,
+  cls: DashboardComponentAnyClass,
   spec: DashboardComponentAnySpec,
 ): DashboardComponentAnySpec {
-  return defFor(class_).parse(spec);
+  return defFor(cls).parse(spec);
 }
 
 export function safeValidateSpec(
-  class_: DashboardComponentAnyClass,
+  cls: DashboardComponentAnyClass,
   spec: DashboardComponentAnySpec,
 ): SafeParseReturnType<DashboardComponentAnySpec, DashboardComponentAnySpec> {
-  return defFor(class_).safeParse(spec);
+  return defFor(cls).safeParse(spec);
 }
