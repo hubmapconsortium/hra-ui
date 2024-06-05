@@ -123,6 +123,8 @@ export class CdeVisualizationComponent {
   );
 
   readonly cellTypes = signal<CellTypeEntry[]>([]);
+  readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+  readonly cellTypesResetCounter = signal(0);
   readonly cellTypesAsColorMap = computed(
     () => {
       const cellTypes = this.cellTypes();
@@ -147,6 +149,9 @@ export class CdeVisualizationComponent {
       const defaultColorGenerator = createColorGenerator();
       const cellTypeByName: Record<string, CellTypeEntry> = {};
 
+      // Grab dependency on the reset counter
+      this.cellTypesResetCounter();
+
       for (const node of nodes) {
         const name = node[targetKey];
         cellTypeByName[name] ??= {
@@ -157,10 +162,16 @@ export class CdeVisualizationComponent {
         cellTypeByName[name].count += 1;
       }
 
-      this.cellTypes.set(Object.values(cellTypeByName));
+      const cellTypes = Object.values(cellTypeByName);
+      this.cellTypes.set(cellTypes);
+      this.cellTypesSelection.set(cellTypes.map((entry) => entry.name));
     },
     { allowSignalWrites: true },
   );
+
+  resetCellTypes(): void {
+    this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
+  }
 
   private readonly fileSaver = inject(FileSaverService);
 

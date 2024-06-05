@@ -44,6 +44,7 @@ interface NodeDistVisElementProps {
 }
 
 interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {
+  resetView(): void;
   toDataUrl(type?: string, quality?: unknown): string | undefined;
 }
 
@@ -105,6 +106,10 @@ export class NodeDistVisualizationComponent {
     if (url) {
       this.fileSaver.save(url, 'cell-distance-vis.png');
     }
+  }
+
+  resetView(): void {
+    this.vis().nativeElement.resetView();
   }
 
   private bindData<K extends keyof NodeDistVisElementProps>(

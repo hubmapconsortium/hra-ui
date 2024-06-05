@@ -1,17 +1,22 @@
 <div class="header">
   <cde-visualization-header
+    (resetView)="visualization.resetView()"
+    (resetAll)="visualization.resetView(); resetCellTypes()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
   ></cde-visualization-header>
 </div>
+
 <div class="metadata">
   <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
+    [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="selectedNodeTargetValue()"
     (download)="downloadColorMap()"
   ></cde-cell-types>
 </div>
+
 <div class="visualizations">
   <cde-node-dist-visualization
     [nodes]="loadedNodes()"
@@ -25,7 +30,9 @@
     (nodeClick)="nodeClick.emit($event)"
     (nodeHover)="nodeHover.emit($event)"
     (edgesChange)="edges.set($event)"
+    #visualization
   ></cde-node-dist-visualization>
+
   <cde-histogram
     [nodes]="loadedNodes()"
     [nodeTargetKey]="nodeTypeKey()"
