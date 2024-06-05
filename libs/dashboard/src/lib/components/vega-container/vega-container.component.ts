@@ -22,9 +22,9 @@ export class VegaContainerComponent implements DashboardComponent<typeof VegaCon
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof VegaContainerComponent>>();
 
-  protected readonly visRef = viewChild<ElementRef>('vis');
+  protected readonly visRef = viewChild.required<ElementRef>('vis');
   protected readonly embedRef = effect(async (onCleanup) => {
-    const el = this.visRef()?.nativeElement;
+    const el = this.visRef().nativeElement;
     const { finalize } = await embed(el, this.spec().specUrl, {
       actions: false,
     });
