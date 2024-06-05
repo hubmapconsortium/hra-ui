@@ -17,7 +17,6 @@ export class ImageContainerComponent implements DashboardComponent<typeof ImageC
     type: z.literal('ImageContainer'),
     imageUrl: z.string(),
     aspectRatio: z.string().default('4/3'),
-    tooltip: z.string(),
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof ImageContainerComponent>>();
