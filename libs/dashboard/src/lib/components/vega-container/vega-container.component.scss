@@ -1,12 +1,16 @@
 :host {
   display: block;
+  width: 100%;
 
   .card {
     width: 100%;
+    height: 100%;
 
     .visualization {
-      width: 100%;
       height: 100%;
+      width: 100%;
+      max-width: 828px;
+      max-height: 686px;
     }
   }
 }

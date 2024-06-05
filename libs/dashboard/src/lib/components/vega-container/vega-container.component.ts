@@ -36,8 +36,14 @@ export class VegaContainerComponent implements DashboardComponent<typeof VegaCon
       const { finalize, view } = await embed(el, this.spec().specUrl, {
         actions: false,
         patch: [
-          { op: 'add', path: '/autosize', value: 'fit' },
-          { op: 'add', path: '/padding', value: 0 },
+          { op: 'add', path: '/autosize/type', value: 'fit' },
+          { op: 'add', path: '/width', value: 'container' },
+          { op: 'add', path: '/height', value: 'container' },
+          { op: 'add', path: '/autosize/contains', value: 'padding' },
+          // { op: 'add', path: '/autosize', value: 'fit-y' },
+          // { op: 'add', path: '/height', value: '100%'}
+          // { op: 'add', path: '/padding', value: 0 },
+          // { op: 'add', path: '/autosize/resize', value: 'false' },
         ],
       });
       onCleanup(finalize);
