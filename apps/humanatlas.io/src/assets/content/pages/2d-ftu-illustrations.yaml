@@ -101,6 +101,7 @@
       cell: "`${element['#AS']}`"
       alignment: end
   organInfo:
+    # TODO: version '2.1'
     - version: '2.0'
       organData:
         - name: Kidney
@@ -851,7 +852,7 @@
       rows:
         - label: 2D Models Crosswalk
           links:
-            - link: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv
+            - link: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv
               label: CSV
 
 - type: margin

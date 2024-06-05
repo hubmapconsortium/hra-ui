@@ -21,7 +21,7 @@
   pageData:
     - heading: Overview
       descriptions: |
-        The CCF 3D Reference Object Library provides anatomically correct reference organs. The organs are developed by a specialist in 3D medical illustration and approved by organ experts.
+        The HRA 3D Reference Object Library provides anatomically correct reference organs. The organs are developed by a specialist in 3D medical illustration and approved by organ experts.
 
         Initially, reference objects are created using data from the Visible Human male and female datasets provided by the National Library of Medicine. The male dataset comprises 1,871 cross-sections at 1mm intervals for both CT and anatomical images at a resolution of 4,096 pixels by 2,700 pixels. The female data set has the same characteristics as the Visible Human Male but axial anatomical images were obtained at 0.33 mm intervals resulting in 5,189 cross-section anatomical images. The male was white, 180.3 cm (71 inch) tall, 199 pounds, and was 38 years old. The female was white, 171.2 cm (67.4 inch) tall, obese, and 59 years old.
 
@@ -60,6 +60,7 @@
     - release: 3rd HRA Release (v1.2), June 2022
       version: '1.2'
   organInfo:
+    # TODO: version '2.1'
     - version: '2.0'
       organData:
         - name: Blood Vasculature
@@ -2028,6 +2029,9 @@
   versionData:
     # Get data from https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra//as-per-organ.csv
     # TODO: pull from the HRA-KG dynamically
+    - release: 7th HRA Release (v2.1), June 2024
+      version: 2.1
+      file: as-per-organ.csv
     - release: 6th HRA Release (v2.0), December 2023
       version: 2.0
       file: as-per-organ.csv
@@ -2062,7 +2066,7 @@
 - type: page-data
   pageData:
     - heading: License
-      descriptions: All CCF 3D reference objects are released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Attribution 4.0 International (CC BY 4.0)</a>.
+      descriptions: All HRA 3D reference objects are released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Attribution 4.0 International (CC BY 4.0)</a>.
 
 - type: page-data
   pageData:
@@ -2248,6 +2252,34 @@
           links:
             - label: GLB
               link: https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.4/models
+    - version: '6'
+      rows:
+        - label: 3D Models Crosswalk
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.5/assets/asct-b-3d-models-crosswalk.csv
+        - label: Extraction sites
+          links:
+            - label: GLB
+              link: https://lod.humanatlas.io/landmark/
+        - label: Reference Organs
+          links:
+            - label: GLB
+              link: https://lod.humanatlas.io/ref-organ/
+    - version: '7'
+      rows:
+        - label: 3D Models Crosswalk
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.6/assets/asct-b-3d-models-crosswalk.csv
+        - label: Extraction sites
+          links:
+            - label: GLB
+              link: https://lod.humanatlas.io/landmark/
+        - label: Reference Organs
+          links:
+            - label: GLB
+              link: https://lod.humanatlas.io/ref-organ/
 
 - type: margin
   bottom: 5rem

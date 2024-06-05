@@ -90,6 +90,7 @@
   versionChooserDisabled: false
   isTotal: true
   versionData:
+    # TODO: generate omaps_release7.csv
     - release: '7th HRA Release (v2.1), June 2024'
       file: omaps_release7.csv
       version: '2.1'

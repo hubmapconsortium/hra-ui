@@ -64,14 +64,14 @@
           url: https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
           links:
             - label: GLB
-              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/VH_F_Blood_Vasculature.glb
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb
           releaseVersion: v1.3
           dot: 3D Reference Object
         - label: Blood Vasculature Male
           url: https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
           links:
             - label: GLB
-              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/VH_M_Blood_Vasculature.glb
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb
           releaseVersion: v1.3
           dot: 3D Reference Object
         - label: Blood Vasculature Organ Crosswalk
@@ -110,10 +110,10 @@
           releaseVersion: v1.1
           dot: ASCT+B Table
         - label: Skeleton
-          url: https://purl.humanatlas.io/asct-b/skeleton/v1.2
+          url: https://purl.humanatlas.io/asct-b/skeleton/v1.1
           links:
             - label: CSV
-              link: https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.2/assets/asct-b-vh-skeleton.csv
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.1/assets/asct-b-vh-skeleton.csv
           releaseVersion: v1.2
           dot: ASCT+B Table
     - version: '2.0'

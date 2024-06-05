@@ -46,6 +46,7 @@
 - type: table-version
   versionChooserDisabled: false
   versionData:
+    # TODO: Download new asctb_release7.csv file from ASCT+B Reporter
     - release: 7th HRA Release (v2.1), June 2024
       file: asctb_release7.csv
       version: 2.1
