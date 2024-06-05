@@ -23,7 +23,7 @@ export class IframeContainerComponent implements OnInit {
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof IframeContainerComponent>>();
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.spec().iframeUrl);
