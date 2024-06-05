@@ -107,13 +107,13 @@
           links:
             - label: CSV
               link: https://cdn.humanatlas.io/digital-objects/asct-b/muscular-system/v1.2/assets/asct-b-vh-muscular-system.csv
-          releaseVersion: v1.1
+          releaseVersion: v1.2
           dot: ASCT+B Table
         - label: Skeleton
-          url: https://purl.humanatlas.io/asct-b/skeleton/v1.1
+          url: https://purl.humanatlas.io/asct-b/skeleton/v1.2
           links:
             - label: CSV
-              link: https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.1/assets/asct-b-vh-skeleton.csv
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.2/assets/asct-b-vh-skeleton.csv
           releaseVersion: v1.2
           dot: ASCT+B Table
     - version: '2.0'
