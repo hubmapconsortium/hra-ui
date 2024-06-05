@@ -5,5 +5,9 @@
     globe. HRA Dashboards show the size and coverage of HRA data; the number and type of HRA usage over time;
     publication and experimental data for the HRA; plus diversity of atlas authors, donors, and users.
   </div>
-  <hra-long-card [cardData]="cardData"></hra-long-card>
+  <div class="cards">
+    @for (card of spec().items; track card) {
+      <hra-long-card [spec]="card"></hra-long-card>
+    }
+  </div>
 </main>

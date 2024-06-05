@@ -1,0 +1,5 @@
+<div [style.grid-template-columns]="columns()" class="container">
+  @for (item of spec().items; track item) {
+    <ng-container *hraDashboardComponentOutlet="item"></ng-container>
+  }
+</div>

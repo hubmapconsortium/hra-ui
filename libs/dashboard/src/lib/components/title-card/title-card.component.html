@@ -1,0 +1,26 @@
+<h3 class="title">{{ spec().title }}</h3>
+<mat-icon
+  class="material-symbols-rounded"
+  cdkOverlayOrigin
+  #resetTrigger="cdkOverlayOrigin"
+  (mouseover)="tooltipOpen = true"
+  (mouseout)="tooltipOpen = false"
+  >info</mat-icon
+>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+  [cdkConnectedOverlayOrigin]="resetTrigger"
+  [cdkConnectedOverlayPositions]="tooltipPositions"
+  [cdkConnectedOverlayOpen]="tooltipOpen"
+  [cdkConnectedOverlayOffsetX]="5"
+>
+  <div>
+    {{ spec().tooltip }}
+  </div>
+</ng-template>
+
+<div class="content">
+  <ng-content></ng-content>
+</div>

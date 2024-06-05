@@ -1,6 +1,7 @@
 :host {
   max-width: 102rem;
   margin: 0 1.5rem;
+  display: block;
 
   main {
     .title {
@@ -19,10 +20,14 @@
       margin-bottom: 5rem;
     }
 
-    hra-long-card {
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
       margin-bottom: 7rem;
     }
   }
+
   @media (max-width: 768px) {
     main {
       .description {

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+
+  .card {
+    width: 100%;
+
+    .visualization {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

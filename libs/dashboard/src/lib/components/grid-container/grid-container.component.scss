@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  .container {
+    display: grid;
+    gap: 1.5rem;
+  }
+}

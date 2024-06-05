@@ -1,11 +1,19 @@
-import { render, screen } from '@testing-library/angular';
-import { LandingComponent } from './landing.component';
+import { DashboardIndexComponent } from './dashboard-index.component';
 import { RouterModule } from '@angular/router';
+import { render, screen } from '@testing-library/angular';
+import { z } from 'zod';
+import { LONG_CARD_DEF } from '../long-card/long-card.component';
 
-describe('LandingComponent', () => {
+describe('DashboardIndexComponent', () => {
+  const testData: z.infer<typeof LONG_CARD_DEF> = {
+    title: 'test title',
+    route: 'test route',
+    background: 'test bg',
+  };
   beforeEach(async () => {
-    await render(LandingComponent, {
+    await render(DashboardIndexComponent, {
       providers: [RouterModule],
+      componentInputs: testData,
     });
   });
   it('should render title', () => {

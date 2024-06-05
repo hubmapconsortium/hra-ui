@@ -1,0 +1,27 @@
+:host {
+  display: inline-block;
+  background-color: white;
+  padding: 0.75rem;
+  box-shadow: 0px 5px 16px 0px #201e3d3d;
+  border-radius: 1rem;
+
+  .title {
+    color: #201e3d;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  mat-icon {
+    vertical-align: sub;
+    cursor: pointer;
+  }
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: black;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+  }
+}

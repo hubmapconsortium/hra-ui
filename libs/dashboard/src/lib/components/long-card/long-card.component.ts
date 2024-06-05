@@ -2,17 +2,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { z } from 'zod';
 
-export interface LongCard {
-  /** Image for the card */
-  image: string;
-  /** Label for the card */
-  label: string;
-  /** Route for the card */
-  route: string;
-  /** Alternate text for the card image */
-  alt: string;
-}
+export type LongCardSpec = z.infer<typeof LONG_CARD_DEF>;
+
+export const LONG_CARD_DEF = z.object({
+  title: z.string(),
+  route: z.string(),
+  background: z.string().url(),
+});
+
 /**
  * Long Card Component
  */
@@ -25,6 +24,5 @@ export interface LongCard {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LongCardComponent {
-  /** Input for the card(s) */
-  cardData = input.required<LongCard[]>();
+  readonly spec = input.required<LongCardSpec>();
 }
