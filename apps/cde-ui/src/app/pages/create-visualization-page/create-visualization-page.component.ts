@@ -29,6 +29,25 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
+import { ParseError } from 'papaparse';
+
+export interface MissingKeyError {
+  type: 'missing-key';
+  keys: string[];
+}
+
+export interface IncorrectFileTypeError {
+  type: 'incorrect-file-type';
+  expected: string;
+  received?: string;
+}
+
+export interface FileParsingError {
+  type: 'parsing-failure';
+  errors: ParseError[];
+}
+
+export type FileError = MissingKeyError | IncorrectFileTypeError | FileParsingError;
 
 function optionalValue<T>(): T | null {
   return null;
@@ -93,6 +112,7 @@ export class CreateVisualizationPageComponent {
 
   readonly nodesLoader = CsvFileLoaderService<NodeEntry>;
   readonly nodesLoaderOptions: CsvFileLoaderOptions = {
+    errorTolerance: 0,
     papaparse: {
       header: true,
       dynamicTyping: {
@@ -126,6 +146,10 @@ export class CreateVisualizationPageComponent {
 
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
+  nodeLoadErrors?: FileError;
+
+  errorMessage?: string;
+
   private nodes?: NodeEntry[];
   private customColorMap?: ColorMapEntry[];
 
@@ -134,9 +158,15 @@ export class CreateVisualizationPageComponent {
   }
 
   setNodes(nodes: NodeEntry[]): void {
-    this.nodes = nodes;
+    this.errorMessage = '';
+    this.nodeLoadErrors = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
+    if (this.nodeLoadErrors) {
+      this.errorMessage = `Required columns missing: ${this.nodeLoadErrors.keys.join(', ')}`;
+      return;
+    }
 
     const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
+    this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
     const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
@@ -149,6 +179,8 @@ export class CreateVisualizationPageComponent {
 
   clearNodes(): void {
     this.nodes = undefined;
+    this.nodeLoadErrors = undefined;
+    this.errorMessage = undefined;
   }
 
   hasValidNodes(): boolean {
@@ -235,5 +267,28 @@ export class CreateVisualizationPageComponent {
 
     observer.observe(el);
     destroyRef.onDestroy(() => observer.disconnect());
+  }
+
+  private checkRequiredKeys(data: object[], keys: string[]): MissingKeyError | undefined {
+    const item = data[0];
+    const result = [];
+    for (const key of keys) {
+      if (!(key in item)) {
+        result.push(key);
+      }
+    }
+
+    if (result.length > 0) {
+      return { type: 'missing-key', keys: result };
+    }
+
+    return undefined;
+  }
+
+  loadError(event: FileError) {
+    console.log(event);
+    if (event.type === 'incorrect-file-type') {
+      this.errorMessage = `Invalid file type: ${event.received}`;
+    }
   }
 }

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Injector, Type, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
-import { Subscription, reduce } from 'rxjs';
+import { reduce, Subscription } from 'rxjs';
+
+import { FileError } from '../../pages/create-visualization-page/create-visualization-page.component';
 
 /** Component for loading a file from disk */
 @Component({
@@ -31,7 +33,7 @@ export class FileUploadComponent<T, OptionsT> {
   /** Loading cancelled events */
   readonly loadCancelled = output<void>();
   /** Loading error events */
-  readonly loadErrored = output<unknown>();
+  readonly loadErrored = output<FileError>();
   /** Loading completed events */
   readonly loadCompleted = output<T[]>();
 
@@ -56,8 +58,18 @@ export class FileUploadComponent<T, OptionsT> {
     }
 
     const { injector, loader, options } = this;
-    const loaderInstance = injector.get(loader());
     const file = (this.file = el.files[0]);
+    if (!this.accept().split(',').includes(file.type)) {
+      const match = file.name.match(/\.(.+)$/);
+      this.cancelLoad({
+        type: 'incorrect-file-type',
+        expected: this.accept(),
+        received: match ? match[1] : undefined,
+      });
+      return;
+    }
+
+    const loaderInstance = injector.get(loader());
     const event$ = loaderInstance.load(file, options());
     const data$ = event$.pipe(reduce((acc, event) => this.handleLoadEvent(acc, event), [] as T[]));
 
@@ -70,7 +82,7 @@ export class FileUploadComponent<T, OptionsT> {
   /**
    * Cancels the currently loading file
    */
-  cancelLoad(error?: unknown): void {
+  cancelLoad(error?: FileError): void {
     this.subscription?.unsubscribe();
     this.file = undefined;
     this.subscription = undefined;

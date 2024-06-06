@@ -51,8 +51,10 @@
       accept="text/csv,.csv"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
+      (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
+      (loadErrored)="loadError($event)"
     >
     </cde-file-upload>
 
@@ -63,6 +65,11 @@
       Use Template
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
+
+    @if (errorMessage) {
+      <span>{{ errorMessage }}</span>
+      <span>Please upload a CSV file with the required columns.</span>
+    }
   </div>
 
   <div class="card anchor-selection">
