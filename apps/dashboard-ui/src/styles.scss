@@ -43,6 +43,10 @@ a {
   }
 
   &:focus-visible {
+    --mdc-filled-button-label-text-color: rgba(32, 30, 61, 1);
+  }
+
+  &:focus-visible::after {
     @include cta.filledFocus();
   }
 }

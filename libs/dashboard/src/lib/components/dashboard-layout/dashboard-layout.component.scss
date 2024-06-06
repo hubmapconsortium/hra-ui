@@ -35,12 +35,8 @@
     width: max-content;
     line-height: 2.15625rem;
 
-    a {
-      color: white;
-
-      mat-icon {
-        vertical-align: text-bottom;
-      }
+    mat-icon {
+      vertical-align: middle;
     }
   }
 
