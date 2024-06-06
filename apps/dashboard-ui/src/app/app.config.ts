@@ -5,6 +5,7 @@ import {
   DashboardIndexComponent,
   DashboardLayoutComponent,
   GridContainerComponent,
+  IframeContainerComponent,
   ImageContainerComponent,
   MetricsContainerComponent,
   VegaContainerComponent,
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       ImageContainerComponent,
       MetricsContainerComponent,
       VegaContainerComponent,
+      IframeContainerComponent,
     ]),
   ],
 };
