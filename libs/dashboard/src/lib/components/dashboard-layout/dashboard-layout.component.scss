@@ -3,8 +3,14 @@
   max-width: calc(100vw - 12rem);
   margin: 2rem 0 5rem 0;
 
-  ::ng-deep *:nth-child(n + 4) {
+  ::ng-deep > :nth-child(n + 4) {
     margin-bottom: 1.5rem;
+
+    @media (max-width: 1012px) {
+      &:not(hra-dashboard-metrics-container) {
+        min-width: 42rem;
+      }
+    }
   }
 
   .title {
@@ -50,15 +56,42 @@
     max-width: calc(100vw - 6rem);
   }
 
+  @media (min-width: 545px) and (max-width: 768px) {
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 3rem;
+        display: inline-block;
+      }
+    }
+  }
+
   @media (max-width: 544px) {
     max-width: calc(100vw - 4rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 2rem;
+        display: inline-block;
+      }
+    }
   }
 
   @media (max-width: 430px) {
     max-width: calc(100vw - 3rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
   }
 
   @media (max-width: 320px) {
     max-width: calc(100vw - 2rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 1rem;
+        display: inline-block;
+      }
+    }
   }
 }
