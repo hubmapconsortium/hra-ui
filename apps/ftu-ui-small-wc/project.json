@@ -99,6 +99,9 @@
       "options": {
         "buildTarget": "ftu-ui-small-wc:build"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/build-webcomponent.mjs ftu-ui-small-wc"
     }
   }
 }

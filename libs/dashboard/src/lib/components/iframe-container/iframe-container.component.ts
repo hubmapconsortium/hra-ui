@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { z } from 'zod';
 import { DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 
 @Component({
   selector: 'hra-iframe-container',
@@ -13,9 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './iframe-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IframeContainerComponent implements OnInit {
-  safeUrl!: SafeResourceUrl;
-
+export class IframeContainerComponent {
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('IFrameContainer'),
     iframeUrl: z.string(),
@@ -23,9 +21,7 @@ export class IframeContainerComponent implements OnInit {
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof IframeContainerComponent>>();
-  constructor(private readonly sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {
-    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.spec().iframeUrl);
-  }
+  protected readonly sanitizer = inject(DomSanitizer);
+  protected iframeUrl = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.spec().iframeUrl));
 }
