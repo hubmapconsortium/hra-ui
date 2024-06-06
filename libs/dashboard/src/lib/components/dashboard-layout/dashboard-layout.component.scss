@@ -3,6 +3,10 @@
   max-width: calc(100vw - 12rem);
   margin: 2rem 0 5rem 0;
 
+  ::ng-deep *:nth-child(n + 4) {
+    margin-bottom: 1.5rem;
+  }
+
   .title {
     line-height: 3.9375rem;
     letter-spacing: -0.0853rem;
