@@ -30,3 +30,19 @@ a {
     @include cta.flatFocus();
   }
 }
+
+.cta-filled {
+  @include cta.filledDefault();
+
+  &:hover {
+    @include cta.filledHover();
+  }
+
+  &:active {
+    @include cta.filledActive();
+  }
+
+  &:focus-visible {
+    @include cta.filledFocus();
+  }
+}
