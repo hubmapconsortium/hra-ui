@@ -10,7 +10,6 @@
   @media (max-width: 1012px) {
     .container {
       grid-template-columns: 1fr !important;
-      overflow: scroll;
 
       ::ng-deep > * {
         min-width: 42rem;

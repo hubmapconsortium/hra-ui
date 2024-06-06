@@ -1,12 +1,14 @@
-<h3 class="title">{{ spec().title }}</h3>
-<mat-icon
-  class="material-symbols-rounded"
-  cdkOverlayOrigin
-  #resetTrigger="cdkOverlayOrigin"
-  (mouseover)="tooltipOpen = true"
-  (mouseout)="tooltipOpen = false"
-  >info</mat-icon
->
+<h3 class="title">
+  {{ spec().title }}
+  <mat-icon
+    class="material-symbols-rounded"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="tooltipOpen = true"
+    (mouseout)="tooltipOpen = false"
+    >info</mat-icon
+  >
+</h3>
 
 <ng-template
   cdkConnectedOverlay
