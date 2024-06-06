@@ -7,11 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link href="styles.css" rel="stylesheet" />
+    <script src="wc.js"></script>
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -27,30 +23,28 @@
     });
   </script>
   <body>
-    <div class="wc-content">
-      <cde-visualization-root
-        id="cde"
-        home-link=""
-        nodes=""
-        node-target-key=""
-        node-target-value=""
-        edges=""
-        max-edge-distance=""
-        color-map=""
-        color-map-key=""
-        color-map-value=""
-        metadata=""
-        title=""
-        technology=""
-        organ=""
-        sex=""
-        age="50"
-        creation-date=""
-        creation-time=""
-        thickness=""
-        pixelSize=""
-      >
-      </cde-visualization-root>
-    </div>
+    <cde-visualization-root
+      id="cde"
+      home-link="/home"
+      nodes=""
+      node-target-key=""
+      node-target-value=""
+      edges=""
+      max-edge-distance=""
+      color-map=""
+      color-map-key=""
+      color-map-value=""
+      metadata=""
+      title=""
+      technology=""
+      organ=""
+      sex=""
+      age="50"
+      creation-date=""
+      creation-time=""
+      thickness=""
+      pixelSize=""
+    >
+    </cde-visualization-root>
   </body>
 </html>
