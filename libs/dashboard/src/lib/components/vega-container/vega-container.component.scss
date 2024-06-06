@@ -8,9 +8,11 @@
 
     .visualization {
       height: 100%;
-      width: 100%;
-      max-width: 828px;
-      max-height: 686px;
+
+      ::ng-deep canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
   }
 }
