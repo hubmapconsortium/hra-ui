@@ -8,12 +8,32 @@
   .title {
     color: #201e3d;
     display: inline-block;
-    margin-right: 0.5rem;
   }
 
   mat-icon {
     vertical-align: sub;
     cursor: pointer;
+  }
+
+  @media (max-width: 1440px) {
+    .title {
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .title {
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+    }
+
+    .mat-icon {
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
   }
 }
 

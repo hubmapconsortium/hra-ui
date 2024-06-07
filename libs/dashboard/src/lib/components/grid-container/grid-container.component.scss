@@ -6,4 +6,15 @@
     display: grid;
     gap: 1.5rem;
   }
+
+  @media (max-width: 1012px) {
+    .container {
+      grid-template-columns: 1fr !important;
+
+      ::ng-deep > * {
+        min-width: 42rem;
+        min-height: 33.875rem;
+      }
+    }
+  }
 }

@@ -28,6 +28,14 @@
     }
   }
 
+  @media (min-width: 545px) and (max-width: 768px) {
+    main {
+      .cards {
+        gap: 0.75rem;
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     main {
       .description {
@@ -64,6 +72,18 @@
         font-size: 2.25rem;
         line-height: 3.375rem;
         letter-spacing: -1.75px;
+      }
+
+      .cards {
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 1281px) and (max-width: 1440px) {
+    main {
+      .cards {
+        gap: 1.875rem;
       }
     }
   }

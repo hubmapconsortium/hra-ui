@@ -1,10 +1,11 @@
 <div class="header">
   <div class="logos">
     <a href="https://humanatlas.io/" target="_blank">
-      <img src="assets/logos/hra-logo.svg" alt="Human Reference Atlas logo" />
+      <img src="assets/logos/hra-logo.svg" alt="Human Reference Atlas logo" class="hra-logo" />
+      <img src="assets/logos/hra-logo-small.svg" alt="Human Reference Atlas logo" class="hra-mini-logo" />
     </a>
-    <a [routerLink]="'home'">
-      <img src="assets/logos/dashboard-logo.svg" alt="HRA Dashboards logo" />
+    <a [routerLink]="'home'" (click)="closeMenu()">
+      <img src="assets/logos/dashboard-logo.svg" alt="HRA Dashboards logo" class="dashboard-logo" />
     </a>
   </div>
   <span class="menu-btns">
@@ -14,4 +15,29 @@
     <button [routerLink]="'publications'" disableRipple mat-button>Publications</button>
     <button [routerLink]="'experimental-data'" disableRipple mat-button>Experimental Data</button>
   </span>
+  <button
+    mat-button
+    disableRipple
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    aria-label="Icon button with a menu"
+    class="menu-toggle"
+    (menuOpened)="menuOpen = true"
+    (menuClosed)="menuOpen = false"
+  >
+    <mat-icon class="material-symbols-rounded">
+      {{ menuTrigger.menuOpen ? 'close' : 'menu' }}
+    </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="panelClass">
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'data'"> Data </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'usage'"> Usage </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'diversity-and-inclusion'">
+      Diversity & Inclusion
+    </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'publications'"> Publications </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'experimental-data'">
+      Expirimental Data
+    </a>
+  </mat-menu>
 </div>

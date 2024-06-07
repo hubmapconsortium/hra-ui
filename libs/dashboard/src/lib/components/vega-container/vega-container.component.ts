@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, ElementRef, effect, input, signal, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, effect, input, viewChild } from '@angular/core';
+import embed from 'vega-embed';
+import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
-import { z } from 'zod';
-import embed from 'vega-embed';
-import { View } from 'vega';
 
 @Component({
   selector: 'hra-vega-container',
@@ -15,9 +14,6 @@ import { View } from 'vega';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VegaContainerComponent implements DashboardComponent<typeof VegaContainerComponent> {
-  private readonly visRef = viewChild<ElementRef>('vis');
-  private readonly view = signal<View | undefined>(undefined);
-
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('VegaContainer'),
     specUrl: z.string(),
@@ -26,22 +22,13 @@ export class VegaContainerComponent implements DashboardComponent<typeof VegaCon
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof VegaContainerComponent>>();
 
-  constructor() {
-    this.embedVegaChart();
-  }
-
-  private embedVegaChart(): void {
-    effect(async (onCleanup) => {
-      const el = this.visRef()?.nativeElement;
-      const { finalize, view } = await embed(el, this.spec().specUrl, {
-        actions: false,
-        patch: [
-          { op: 'add', path: '/autosize', value: 'fit' },
-          { op: 'add', path: '/padding', value: 0 },
-        ],
-      });
-      onCleanup(finalize);
-      this.view.set(view);
+  protected readonly visRef = viewChild.required<ElementRef>('vis');
+  protected readonly embedRef = effect(async (onCleanup) => {
+    const el = this.visRef().nativeElement;
+    const { finalize } = await embed(el, this.spec().specUrl, {
+      actions: false,
     });
-  }
+
+    onCleanup(finalize);
+  });
 }

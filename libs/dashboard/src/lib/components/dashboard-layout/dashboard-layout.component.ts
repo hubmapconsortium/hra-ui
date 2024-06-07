@@ -8,11 +8,12 @@ import {
   DashboardComponentSpecFor,
 } from '../../dashboard/dashboard.model';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'hra-dashboard-layout',
   standalone: true,
-  imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule],
+  imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule, MatButtonModule],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
