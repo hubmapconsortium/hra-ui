@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -29,6 +30,8 @@ import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { emptyArrayEquals } from '../../shared/empty-array-equals';
+
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import HISTOGRAM_SPEC from './histogram.vl.json';
 
@@ -88,6 +91,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatExpansionModule,
     ColorPickerModule,
     ColorPickerLabelComponent,
+    OverlayModule,
   ],
   providers: [
     {
@@ -110,6 +114,9 @@ export class HistogramComponent {
   readonly selectedCellType = input.required<string>();
   readonly cellTypes = model.required<CellTypeEntry[]>();
   readonly cellTypesSelection = input.required<string[]>();
+
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+  infoOpen = false;
 
   protected readonly overflowVisible = signal(false);
 

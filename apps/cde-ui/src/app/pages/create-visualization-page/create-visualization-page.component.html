@@ -51,18 +51,35 @@
       accept="text/csv,.csv"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
+      (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
+      (loadErrored)="nodesLoadError = $event"
+      #nodesFileUpload
     >
     </cde-file-upload>
+
+    @if (nodesErrorMessage) {
+      <div class="upload-errors">
+        <span>{{ nodesErrorMessage }}</span>
+        <span>Please upload a CSV file with the required columns.</span>
+      </div>
+    }
 
     <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
 
     <h3 class="subheader-2">Cell Type Table Template</h3>
-    <button mat-button type="button" class="use-template" color="primary">
+    <a
+      mat-button
+      class="use-template"
+      color="primary"
+      href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Use Template
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </button>
+    </a>
   </div>
 
   <div class="card anchor-selection">
@@ -230,16 +247,32 @@
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
+        (loadErrored)="customColorMapLoadError = $event"
+        #customColorMapFileUpload
       >
       </cde-file-upload>
+
+      @if (colorErrorMessage) {
+        <div class="upload-errors">
+          <span>{{ colorErrorMessage }}</span>
+          <span>Please upload a CSV file with the required columns.</span>
+        </div>
+      }
 
       <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
 
       <h3 class="template">Color Map Template</h3>
-      <button mat-button class="cta-button use-template" type="button" color="primary">
+      <a
+        mat-button
+        class="cta-button use-template"
+        color="primary"
+        href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/color_map.csv"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Use Template
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </button>
+      </a>
     }
   </div>
 
@@ -270,17 +303,14 @@
       </ng-template>
     </h2>
 
-    <button
-      mat-flat-button
-      type="submit"
-      class="visualize-button cta-filled"
-      [disabled]="!hasValidNodes()"
-      color="primary"
-      data-testid="visualize"
-    >
-      Visualize
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </button>
+    @if (hasValidNodes()) {
+      <button mat-flat-button type="submit" class="visualize-button cta-filled" color="primary" data-testid="visualize">
+        Visualize
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </button>
+    } @else {
+      <span>Please format and upload data to explore a visualization.</span>
+    }
   </div>
 </form>
 <cde-footer></cde-footer>

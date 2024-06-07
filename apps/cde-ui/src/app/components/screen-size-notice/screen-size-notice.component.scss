@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 2.5rem;
+
+  .header {
+    --mat-dialog-headline-padding: 0;
+    --mdc-dialog-subhead-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin-bottom: 0;
+
+    .header-close {
+      margin-left: auto;
+    }
+  }
+
+  mat-dialog-content {
+    --mat-dialog-with-actions-content-padding: 0;
+    --mdc-dialog-supporting-text-size: 0.875rem;
+    --mdc-dialog-supporting-text-line-height: 21px;
+    --mdc-dialog-supporting-text-tracking: 1px;
+  }
+
+  mat-dialog-actions {
+    --mat-dialog-actions-padding: 0;
+    --mdc-filled-button-label-text-size: 0.875rem;
+    --mdc-text-button-label-text-size: 0.875rem;
+    --mat-dialog-actions-alignment: space-between;
+  }
+
+  .atlas-btn {
+    padding: 0 1.25rem 0 1rem;
+
+    .mat-icon {
+      margin-left: 0.5rem;
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  .btn-stroked {
+    --mat-text-button-horizontal-padding: 1rem;
+  }
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  --mdc-dialog-container-shape: 1rem;
+}

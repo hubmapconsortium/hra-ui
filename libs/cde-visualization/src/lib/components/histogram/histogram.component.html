@@ -4,7 +4,27 @@
       <mat-panel-title class="title">
         <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
         Histogram
-        <mat-icon class="material-symbols-rounded">info</mat-icon>
+        <mat-icon
+          class="material-symbols-rounded"
+          cdkOverlayOrigin
+          #resetTrigger="cdkOverlayOrigin"
+          (mouseover)="infoOpen = true"
+          (mouseout)="infoOpen = false"
+          >info</mat-icon
+        >
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'histogram-panel']"
+          [cdkConnectedOverlayOrigin]="resetTrigger"
+          [cdkConnectedOverlayPositions]="tooltipPosition"
+          [cdkConnectedOverlayOpen]="infoOpen"
+          [cdkConnectedOverlayOffsetX]="5"
+        >
+          <div>
+            The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell
+            type in the dataset.
+          </div>
+        </ng-template>
 
         <div class="filler"></div>
 

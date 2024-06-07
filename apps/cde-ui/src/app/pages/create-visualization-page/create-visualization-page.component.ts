@@ -1,6 +1,16 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  input,
+  NgZone,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -22,13 +32,24 @@ import {
   NodeEntry,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { ParseError } from 'papaparse';
+
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
-import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
+
+export interface MissingKeyError {
+  type: 'missing-key-error';
+  keys: string[];
+}
+
+export type ExtendedFileLoadError = FileLoadError | MissingKeyError;
+
+type AnyFileUploadComponent = FileUploadComponent<unknown, unknown>;
 
 function optionalValue<T>(): T | null {
   return null;
@@ -67,10 +88,14 @@ export class CreateVisualizationPageComponent {
   readonly useVerticalDividers = signal(false);
   readonly useVerticalToggleButtons = signal(false);
 
+  private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
+  private readonly customColorMapFileUpload = viewChild.required<AnyFileUploadComponent>('customColorMapFileUpload');
+
   private readonly fb = inject(FormBuilder);
   private readonly fbnn = this.fb.nonNullable;
   private readonly router = inject(Router);
   private readonly dataService = inject(VisualizationDataService);
+  private readonly ngZone = inject(NgZone);
 
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
@@ -93,6 +118,7 @@ export class CreateVisualizationPageComponent {
 
   readonly nodesLoader = CsvFileLoaderService<NodeEntry>;
   readonly nodesLoaderOptions: CsvFileLoaderOptions = {
+    errorTolerance: 0,
     papaparse: {
       header: true,
       dynamicTyping: {
@@ -126,6 +152,17 @@ export class CreateVisualizationPageComponent {
 
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
+  nodesLoadError?: ExtendedFileLoadError;
+  customColorMapLoadError?: ExtendedFileLoadError;
+
+  get nodesErrorMessage(): string {
+    return this.nodesLoadError ? this.formatErrorMessage(this.nodesLoadError) : '';
+  }
+
+  get colorErrorMessage(): string {
+    return this.customColorMapLoadError ? this.formatErrorMessage(this.customColorMapLoadError) : '';
+  }
+
   private nodes?: NodeEntry[];
   private customColorMap?: ColorMapEntry[];
 
@@ -134,9 +171,14 @@ export class CreateVisualizationPageComponent {
   }
 
   setNodes(nodes: NodeEntry[]): void {
-    this.nodes = nodes;
+    this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
+    if (this.nodesLoadError) {
+      this.nodesFileUpload().reset();
+      return;
+    }
 
     const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
+    this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
     const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
@@ -149,6 +191,7 @@ export class CreateVisualizationPageComponent {
 
   clearNodes(): void {
     this.nodes = undefined;
+    this.nodesLoadError = undefined;
   }
 
   hasValidNodes(): boolean {
@@ -157,11 +200,17 @@ export class CreateVisualizationPageComponent {
   }
 
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
+    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['cell_id', 'cell_type', 'cell_color']);
+    if (this.customColorMapLoadError) {
+      this.customColorMapFileUpload().reset();
+      return;
+    }
     this.customColorMap = colorMap;
   }
 
   clearCustomColorMap(): void {
     this.customColorMap = undefined;
+    this.customColorMapLoadError = undefined;
   }
 
   hasValidCustomColorMap(): boolean {
@@ -223,10 +272,13 @@ export class CreateVisualizationPageComponent {
     const el: HTMLElement = inject(ElementRef).nativeElement;
     const destroyRef = inject(DestroyRef);
     const observer = new ResizeObserver(([entry]) => {
-      const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
-      const width = box.inlineSize;
-      this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
-      this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+      // Need ngZone.run for UI to detect changes
+      this.ngZone.run(() => {
+        const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
+        const width = box.inlineSize;
+        this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
+        this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+      });
     });
 
     const initialWidth = el.getBoundingClientRect().width;
@@ -235,5 +287,50 @@ export class CreateVisualizationPageComponent {
 
     observer.observe(el);
     destroyRef.onDestroy(() => observer.disconnect());
+  }
+
+  private checkRequiredKeys(data: object[], keys: string[]): MissingKeyError | undefined {
+    const missingKeys = keys.filter((key) => !(key in data[0]));
+    return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
+  }
+
+  private formatErrorMessage(error: ExtendedFileLoadError): string {
+    switch (error.type) {
+      case 'missing-key-error':
+        return `Required columns missing: ${error.keys.join(', ')}`;
+
+      case 'type-error':
+        return `Invalid file type: ${error.received}, expected csv`;
+
+      case 'parse-error': {
+        if (Array.isArray(error.cause)) {
+          return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
+        } else if (error.cause instanceof Error) {
+          return 'Required columns missing: cell_color';
+        }
+
+        return 'Invalid file: too many invalid rows.';
+      }
+
+      default:
+        return '';
+    }
+  }
+
+  private formatCsvErrors(errors: ParseError[]): string {
+    const ROW_SAMPLE_SIZE = 5;
+    const rows = errors
+      .slice(0, ROW_SAMPLE_SIZE)
+      .map((e) => e.row)
+      .filter((r) => r !== undefined)
+      .join(', ');
+    const additionalErrorsLength = errors.length - ROW_SAMPLE_SIZE;
+    let message = `errors on row${rows.length > 1 ? 's' : ''} ${rows}`;
+
+    if (additionalErrorsLength > 0) {
+      message += ` and ${additionalErrorsLength} more rows`;
+    }
+
+    return message;
   }
 }
