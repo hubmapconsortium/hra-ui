@@ -1,12 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, inject } from '@angular/core';
-import { UnparseConfig, UnparseObject, unparse } from 'papaparse';
+import { inject, Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { unparse, UnparseConfig, UnparseObject } from 'papaparse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileSaverService {
   private readonly document = inject(DOCUMENT);
+  private readonly snackbar = inject(MatSnackBar);
 
   save(url: string, filename: string): void {
     const { document } = this;
@@ -19,6 +21,7 @@ export class FileSaverService {
     document.body.appendChild(linkEl);
     linkEl.dispatchEvent(new MouseEvent('click'));
     document.body.removeChild(linkEl);
+    this.snackbar.open('File downloaded', undefined, { duration: 1000, panelClass: 'download-snackbar-panel' });
   }
 
   saveData(data: Blob, filename: string): void {
