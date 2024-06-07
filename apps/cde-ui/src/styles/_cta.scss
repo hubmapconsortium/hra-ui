@@ -31,6 +31,7 @@ $y-multiplier: 0.4566;
   background-color: rgba(224, 13, 58, 1);
   color: white;
   border: none;
+  border-radius: 0 !important;
   clip-path: polygon(
     /* Bottom left */ 0 100%,
     /* Top left */ 0 0,
