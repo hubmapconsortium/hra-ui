@@ -83,8 +83,8 @@ export class CsvFileLoaderService<DataT> implements FileLoader<DataT[], CsvFileL
           if (errorTolerance !== false) {
             arrayAppend(errors, results.errors);
             if (errors.length > errorTolerance) {
-              parser.abort();
               subject.error(errors);
+              parser.abort();
               return;
             }
           }

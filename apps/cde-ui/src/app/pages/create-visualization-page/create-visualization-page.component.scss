@@ -131,7 +131,8 @@
       'subheader-1 subheader-1 divider subheader-2'
       'subheader-required-columns subheader-optional-columns divider use-template'
       'required-columns optional-columns divider .'
-      'upload-csv upload-csv divider .';
+      'upload-csv upload-csv divider .'
+      'upload-errors upload-errors . .';
     column-gap: 6.375rem;
 
     @include breakpoints.breakpoint('xx-small', 'small') {
@@ -143,6 +144,7 @@
         'subheader-optional-columns'
         'optional-columns'
         'upload-csv'
+        'upload-errors'
         'divider'
         'subheader-2'
         'use-template';
@@ -155,6 +157,7 @@
         'subheader-required-columns subheader-optional-columns .'
         'required-columns optional-columns .'
         'upload-csv upload-csv upload-csv'
+        'upload-errors upload-errors upload-errors'
         'divider divider divider'
         'subheader-2 subheader-2 subheader-2'
         'use-template use-template use-template'
@@ -290,6 +293,7 @@
         'toggle toggle . .'
         'upload-colormap divider template .'
         'upload-colormap divider use-template .'
+        'upload-errors upload-errors . .'
         / auto auto auto 1fr;
       column-gap: 6.5rem;
 
@@ -395,6 +399,13 @@
     @include breakpoints.breakpoint('x-small') {
       margin: 1.5rem 0;
     }
+  }
+
+  .upload-errors {
+    display: flex;
+    flex-direction: column;
+    grid-area: upload-errors;
+    margin-top: 1.5rem;
   }
 }
 

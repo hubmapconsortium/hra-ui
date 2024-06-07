@@ -1,5 +1,6 @@
-import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+
 import { ColorMapEntry } from '../../models/color-map';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '../file-loader/csv-file-loader.service';
 import { FileLoader, FileLoaderEvent } from '../file-loader/file-loader';

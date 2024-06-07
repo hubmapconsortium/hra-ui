@@ -1,9 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Injector, Type, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
-import { Subscription, reduce } from 'rxjs';
+import { reduce, Subscription } from 'rxjs';
+
+export interface FileTypeError {
+  type: 'type-error';
+  expected: string;
+  received?: string;
+}
+
+export interface FileParseError {
+  type: 'parse-error';
+  cause: unknown;
+}
+
+export type FileLoadError = FileTypeError | FileParseError;
 
 /** Component for loading a file from disk */
 @Component({
@@ -31,7 +44,7 @@ export class FileUploadComponent<T, OptionsT> {
   /** Loading cancelled events */
   readonly loadCancelled = output<void>();
   /** Loading error events */
-  readonly loadErrored = output<unknown>();
+  readonly loadErrored = output<FileLoadError>();
   /** Loading completed events */
   readonly loadCompleted = output<T[]>();
 
@@ -42,6 +55,12 @@ export class FileUploadComponent<T, OptionsT> {
   private readonly injector = inject(Injector);
 
   private subscription?: Subscription;
+
+  reset(): void {
+    this.subscription?.unsubscribe();
+    this.file = undefined;
+    this.subscription = undefined;
+  }
 
   /**
    * Loads a file
@@ -56,25 +75,36 @@ export class FileUploadComponent<T, OptionsT> {
     }
 
     const { injector, loader, options } = this;
-    const loaderInstance = injector.get(loader());
     const file = (this.file = el.files[0]);
+    if (!this.accept().split(',').includes(file.type)) {
+      const segments = file.name.split('.');
+      this.cancelLoad({
+        type: 'type-error',
+        expected: this.accept(),
+        received: segments.at(-1),
+      });
+      return;
+    }
+
+    const loaderInstance = injector.get(loader());
     const event$ = loaderInstance.load(file, options());
     const data$ = event$.pipe(reduce((acc, event) => this.handleLoadEvent(acc, event), [] as T[]));
 
     this.subscription = data$.subscribe({
       next: (data) => this.loadCompleted.emit(data),
-      error: (error) => this.cancelLoad(error),
+      error: (error) =>
+        this.cancelLoad({
+          type: 'parse-error',
+          cause: error,
+        }),
     });
   }
 
   /**
    * Cancels the currently loading file
    */
-  cancelLoad(error?: unknown): void {
-    this.subscription?.unsubscribe();
-    this.file = undefined;
-    this.subscription = undefined;
-
+  cancelLoad(error?: FileLoadError): void {
+    this.reset();
     if (error) {
       this.loadErrored.emit(error);
     } else {
