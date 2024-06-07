@@ -41,6 +41,8 @@ interface NodeDistVisElementProps {
   colorMapData: ColorMapEntry[];
   colorMapKey: string;
   colorMapValue: string;
+
+  selection: string[];
 }
 
 interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {
@@ -73,6 +75,8 @@ export class NodeDistVisualizationComponent {
   readonly colorMapKey = input.required<string>();
   readonly colorMapValue = input.required<string>();
 
+  readonly cellTypesSelection = input.required<string[]>();
+
   readonly nodeClick = output<NodeEntry>();
   readonly nodeHover = output<NodeEntry | undefined>();
 
@@ -98,6 +102,8 @@ export class NodeDistVisualizationComponent {
     this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
     this.bindData('colorMapKey', this.colorMapKey);
     this.bindData('colorMapValue', this.colorMapValue);
+
+    this.bindData('selection', this.cellTypesSelection);
   }
 
   download(): void {
