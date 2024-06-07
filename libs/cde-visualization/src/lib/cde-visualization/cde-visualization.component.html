@@ -1,18 +1,24 @@
 <div class="header">
   <cde-visualization-header
+    (resetView)="visualization.resetView()"
+    (resetAll)="cellTypesTable.resetSort(); visualization.resetView(); histogram.resetAllCellsColor(); resetCellTypes()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
     [homeLink]="homeLink()"
   ></cde-visualization-header>
 </div>
+
 <div class="metadata">
   <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
+    [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="selectedNodeTargetValue()"
     (download)="downloadColorMap()"
+    #cellTypesTable
   ></cde-cell-types>
 </div>
+
 <div class="visualizations">
   <cde-node-dist-visualization
     [nodes]="loadedNodes()"
@@ -23,15 +29,20 @@
     [colorMap]="cellTypesAsColorMap()"
     [colorMapKey]="colorMapTypeKey()"
     [colorMapValue]="colorMapValue()"
+    [cellTypesSelection]="cellTypesSelection()"
     (nodeClick)="nodeClick.emit($event)"
     (nodeHover)="nodeHover.emit($event)"
     (edgesChange)="edges.set($event)"
+    #visualization
   ></cde-node-dist-visualization>
+
   <cde-histogram
     [nodes]="loadedNodes()"
     [nodeTargetKey]="nodeTypeKey()"
     [edges]="loadedEdges()"
     [selectedCellType]="selectedNodeTargetValue()"
     [(cellTypes)]="cellTypes"
+    [cellTypesSelection]="cellTypesSelection()"
+    #histogram
   ></cde-histogram>
 </div>

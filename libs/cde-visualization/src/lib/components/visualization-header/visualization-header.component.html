@@ -6,7 +6,9 @@
     <img src="assets/logo/cde_logo.svg" alt="Cell Distance Explorer home" />
   </a>
 </div>
+
 <mat-divider vertical></mat-divider>
+
 <div class="reset">
   <span class="mat-caption" cdkOverlayOrigin #resetTrigger="cdkOverlayOrigin">
     Reset
@@ -17,6 +19,7 @@
     >
       info
     </mat-icon>
+
     <ng-container>
       <ng-template
         cdkConnectedOverlay
@@ -38,15 +41,18 @@
       </ng-template>
     </ng-container>
   </span>
-  <button mat-flat-button color="primary" class="mat-caption">
+
+  <button mat-flat-button color="primary" class="mat-caption" (click)="resetView.emit()">
     <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
     Visualization View
   </button>
-  <button mat-flat-button color="primary" class="mat-caption">
+
+  <button mat-flat-button color="primary" class="mat-caption" (click)="resetAll.emit()">
     <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
     All Settings
   </button>
 </div>
+
 <mat-divider vertical></mat-divider>
 <div class="embed">
   <span class="mat-caption" cdkOverlayOrigin #embedTrigger="cdkOverlayOrigin">
@@ -97,11 +103,13 @@
     <mat-icon class="material-symbols-rounded"> download </mat-icon>
     Nodes
   </button>
+
   <button mat-flat-button color="primary" class="mat-caption" (click)="downloadEdges.emit()">
     <mat-icon class="material-symbols-rounded"> download </mat-icon>
     Edges
   </button>
 </div>
+
 <mat-divider vertical></mat-divider>
 <!-- Disable until help page created -->
 <!-- <div class="help">

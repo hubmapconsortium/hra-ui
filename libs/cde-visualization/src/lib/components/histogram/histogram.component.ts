@@ -3,13 +3,13 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  Renderer2,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
   model,
-  Renderer2,
   signal,
   viewChild,
 } from '@angular/core';
@@ -24,20 +24,20 @@ import { produce } from 'immer';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-
-import { CellTypeEntry, cellTypeToLookup } from '../../models/cell-type';
-import { colorEquals, Rgb, rgbToHex } from '../../models/color';
-import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
+import { CellTypeEntry } from '../../models/cell-type';
+import { Rgb, colorEquals, rgbToHex } from '../../models/color';
+import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { emptyArrayEquals } from '../../shared/empty-array-equals';
+
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import histogramSpec from './histogram.vl.json';
+import HISTOGRAM_SPEC from './histogram.vl.json';
 
 interface DistanceEntry {
   type: string;
   distance: number;
-  color: string;
 }
 
 interface ModifiableHistogramSpec {
@@ -57,21 +57,29 @@ interface ModifiableHistogramSpec {
   encoding: {
     color: {
       legend: unknown;
+      scale: {
+        range: unknown[];
+      };
     };
   };
 }
 
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 const ALL_CELLS_TYPE = 'All Cells';
-const EXPORT_IMAGE_PADDING = 16;
 const EXPORT_IMAGE_WIDTH = 1000;
 const EXPORT_IMAGE_HEIGHT = 500;
+const EXPORT_IMAGE_PADDING = 16;
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
   symbolType: 'circle',
   symbolStrokeWidth: 10,
   labelFontSize: 13,
 };
+
+const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
+const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
+  .fill(0)
+  .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
 
 @Component({
   selector: 'cde-histogram',
@@ -105,55 +113,71 @@ export class HistogramComponent {
   readonly edges = input.required<EdgeEntry[]>();
   readonly selectedCellType = input.required<string>();
   readonly cellTypes = model.required<CellTypeEntry[]>();
+  readonly cellTypesSelection = input.required<string[]>();
 
-  readonly cellTypesWithTotal = computed(() => [this.totalCellType(), ...this.cellTypes()]);
-
-  overflowVisible = false;
-  infoOpen = false;
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+  infoOpen = false;
+
+  protected readonly overflowVisible = signal(false);
+
+  protected readonly filteredCellTypes = computed(
+    () => {
+      const selection = new Set(this.cellTypesSelection());
+      selection.delete(this.selectedCellType());
+      const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
+      return filtered.sort((a, b) => b.count - a.count);
+    },
+    { equal: emptyArrayEquals },
+  );
+
+  protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
+  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
+
+  private readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
+  private readonly data = computed(() => this.computeData(), { equal: emptyArrayEquals });
+  private readonly colors = computed(() => this.computeColors(), { equal: emptyArrayEquals });
 
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);
   private readonly fileSaver = inject(FileSaverService);
-  private readonly histogramEl = viewChild<ElementRef>('histogram');
-  private readonly view = signal<View | undefined>(undefined);
 
-  private readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
-  private readonly totalCellTypeCount = computed(() => this.cellTypes().reduce((total, { count }) => total + count, 0));
-  private readonly totalCellType = computed(
-    () =>
-      ({
-        name: ALL_CELLS_TYPE,
-        count: this.totalCellTypeCount(),
-        color: this.totalCellTypeColor(),
-      }) satisfies CellTypeEntry,
+  private readonly histogramEl = viewChild.required<ElementRef>('histogram');
+  private readonly view = signal<View | undefined>(undefined);
+  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
+  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.colors()).run());
+  protected readonly viewCreateRef = effect(
+    async (onCleanup) => {
+      const el = this.histogramEl().nativeElement;
+      await this.ensureFontsLoaded();
+
+      const spec = produce(HISTOGRAM_SPEC, (draft) => {
+        draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+      });
+      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+        actions: false,
+      });
+
+      onCleanup(finalize);
+      this.view.set(view);
+      console.log(view);
+    },
+    { allowSignalWrites: true },
   );
 
-  private readonly colorLookup = computed(() => cellTypeToLookup(this.cellTypesWithTotal()));
-  private readonly distances = computed(() => this.computeDistances());
-  private readonly data = computed(() => this.computeData());
-
-  constructor() {
-    this.initializeHistogram();
-    this.initializeDataBindings();
-  }
-
-  async download(event: Event, format: string): Promise<void> {
-    // Prevent the event from propagating to the expansion panel
-    event.stopPropagation();
-
-    const el = this.renderer.createElement('div');
-    const spec = produce(histogramSpec as ModifiableHistogramSpec, (draft) => {
+  async download(format: string): Promise<void> {
+    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
+      draft.width = EXPORT_IMAGE_WIDTH;
+      draft.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.data.values = this.data();
       draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
-      draft.height = EXPORT_IMAGE_HEIGHT;
-      draft.width = EXPORT_IMAGE_WIDTH;
+      draft.data.values = this.data();
+      draft.encoding.color.scale.range = this.colors();
     });
 
+    const el = this.renderer.createElement('div');
     const { view, finalize } = await embed(el, spec as VisualizationSpec, {
       actions: false,
     });
@@ -164,38 +188,16 @@ export class HistogramComponent {
   }
 
   updateColor(entry: CellTypeEntry, color: Rgb): void {
-    if (entry.name === ALL_CELLS_TYPE) {
-      this.totalCellTypeColor.set(color);
-    } else {
-      const entries = this.cellTypes();
-      const index = entries.indexOf(entry);
-      const copy = [...entries];
+    const entries = this.cellTypes();
+    const index = entries.indexOf(entry);
+    const copy = [...entries];
 
-      copy[index] = { ...copy[index], color };
-      this.cellTypes.set(copy);
-    }
+    copy[index] = { ...copy[index], color };
+    this.cellTypes.set(copy);
   }
 
-  private initializeHistogram(): void {
-    effect(
-      async (onCleanup) => {
-        const el = this.histogramEl()?.nativeElement;
-        if (el) {
-          await this.ensureFontsLoaded();
-          const { finalize, view } = await embed(el, histogramSpec as VisualizationSpec, {
-            actions: false,
-          });
-
-          onCleanup(finalize);
-          this.view.set(view);
-        }
-      },
-      { allowSignalWrites: true },
-    );
-  }
-
-  private initializeDataBindings(): void {
-    effect(() => this.view()?.data('data', this.data()).run());
+  resetAllCellsColor(): void {
+    this.totalCellTypeColor.set([0, 0, 0]);
   }
 
   private async ensureFontsLoaded(): Promise<void> {
@@ -212,17 +214,12 @@ export class HistogramComponent {
 
     const nodeTargetKey = this.nodeTargetKey();
     const selectedCellType = this.selectedCellType();
-    const colorLookup = this.colorLookup();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
       const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
       const type = sourceNode[nodeTargetKey];
       if (type !== selectedCellType) {
-        distances.push({
-          type,
-          distance: edgeDistance(edge),
-          color: rgbToHex(colorLookup.get(type) ?? [0, 0, 0]),
-        });
+        distances.push({ type, distance: edgeDistance(edge) });
       }
     }
 
@@ -230,9 +227,18 @@ export class HistogramComponent {
   }
 
   private computeData(): DistanceEntry[] {
-    const allColor = rgbToHex(this.totalCellTypeColor());
-    const distances = this.distances();
-    const allCellDistances = distances.map((item) => ({ ...item, type: ALL_CELLS_TYPE, color: allColor }));
-    return distances.concat(allCellDistances);
+    const selection = new Set(this.cellTypesSelection());
+    if (selection.size === 0) {
+      return [];
+    }
+
+    return this.distances().filter(({ type }) => selection.has(type));
+  }
+
+  private computeColors(): string[] {
+    const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
+    return [totalCellType, ...this.filteredCellTypes()]
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(({ color }) => rgbToHex(color));
   }
 }

@@ -19,8 +19,10 @@ import { MatIconModule } from '@angular/material/icon';
 export class VisualizationHeaderComponent {
   readonly homeLink = input<string>();
 
-  readonly downloadNodes = output();
+  readonly resetView = output();
+  readonly resetAll = output();
 
+  readonly downloadNodes = output();
   readonly downloadEdges = output();
 
   /** Flag to check if reset info tooltip is open */
