@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+body:has(.menu-open) {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
@@ -39,6 +43,10 @@ a {
   }
 
   &:focus-visible {
+    --mdc-filled-button-label-text-color: rgba(32, 30, 61, 1);
+  }
+
+  &:focus-visible::after {
     @include cta.filledFocus();
   }
 }
