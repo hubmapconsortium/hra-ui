@@ -1,12 +1,13 @@
-import { TitleCardComponent } from './title-card.component';
 import { render, screen } from '@testing-library/angular';
+import { TitleCardComponent } from './title-card.component';
 
 describe('TitleCardComponent', () => {
-  const testData = {
-    title: 'test',
-    tooltip: 'tooltip',
-  };
   beforeEach(async () => {
+    const testData = {
+      title: 'test',
+      tooltip: 'tooltip',
+    };
+
     await render(TitleCardComponent, {
       componentInputs: { spec: testData },
     });

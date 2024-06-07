@@ -1,3 +1,4 @@
+import { DashboardComponentRegistryService } from '../../dashboard/dashboard-registry.service';
 import { GridContainerComponent } from './grid-container.component';
 import { render, screen } from '@testing-library/angular';
 
@@ -11,7 +12,11 @@ describe('GridContainerComponent', () => {
   beforeEach(async () => {
     await render(GridContainerComponent, {
       componentInputs: { spec: testGridContainerData },
-      componentProviders: [],
+      componentProviders: [
+        {
+          provide: DashboardComponentRegistryService,
+        },
+      ],
     });
   });
 

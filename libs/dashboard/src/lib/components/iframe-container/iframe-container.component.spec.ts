@@ -1,21 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { IframeContainerComponent } from './iframe-container.component';
 
 describe('IframeContainerComponent', () => {
-  let component: IframeContainerComponent;
-  let fixture: ComponentFixture<IframeContainerComponent>;
+  it('should render title and iframe', async () => {
+    const spec = {
+      type: 'IFrameContainer',
+      title: 'Iframe Title',
+      iframeUrl: 'https://example.com',
+      aspectRatio: '16/9',
+    };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [IframeContainerComponent],
-    }).compileComponents();
+    await render(IframeContainerComponent, {
+      componentInputs: { spec: spec },
+    });
 
-    fixture = TestBed.createComponent(IframeContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    const title = screen.getByText('Iframe Title');
+    const iframe = screen.getByTitle('Iframe Title');
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(title).toBeInTheDocument();
+    expect(iframe).toHaveAttribute('src', 'https://example.com');
   });
 });
