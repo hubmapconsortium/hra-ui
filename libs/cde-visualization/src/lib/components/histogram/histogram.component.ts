@@ -1,14 +1,15 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  Renderer2,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   model,
+  Renderer2,
   signal,
   viewChild,
 } from '@angular/core';
@@ -23,11 +24,13 @@ import { produce } from 'immer';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
+
 import { CellTypeEntry, cellTypeToLookup } from '../../models/cell-type';
-import { Rgb, colorEquals, rgbToHex } from '../../models/color';
-import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
+import { colorEquals, Rgb, rgbToHex } from '../../models/color';
+import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import histogramSpec from './histogram.vl.json';
 
@@ -80,6 +83,7 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
     MatExpansionModule,
     ColorPickerModule,
     ColorPickerLabelComponent,
+    OverlayModule,
   ],
   providers: [
     {
@@ -105,6 +109,8 @@ export class HistogramComponent {
   readonly cellTypesWithTotal = computed(() => [this.totalCellType(), ...this.cellTypes()]);
 
   overflowVisible = false;
+  infoOpen = false;
+  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(Renderer2);

@@ -1,11 +1,12 @@
 :host {
   display: block;
   position: relative;
-  height: calc(100% - 8px);
   padding: 0.25rem;
   background-color: black;
   isolation: isolate;
   border-radius: 0.5rem;
+  height: 0;
+  flex-grow: 1;
 
   .info {
     display: flex;

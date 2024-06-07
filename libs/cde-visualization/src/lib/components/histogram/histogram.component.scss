@@ -1,6 +1,8 @@
 :host {
   background-color: white;
   border-radius: 0.5rem;
+  height: fit-content;
+  position: sticky;
 
   .header {
     padding: 0 1rem;
@@ -33,5 +35,11 @@
 
   .filler {
     flex-grow: 1;
+  }
+}
+
+::ng-deep {
+  .histogram-panel {
+    max-width: 27.5rem;
   }
 }

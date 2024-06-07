@@ -1,6 +1,15 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  input,
+  NgZone,
+  signal,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -91,6 +100,7 @@ export class CreateVisualizationPageComponent {
   private readonly fbnn = this.fb.nonNullable;
   private readonly router = inject(Router);
   private readonly dataService = inject(VisualizationDataService);
+  private readonly ngZone = inject(NgZone);
 
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
@@ -259,10 +269,13 @@ export class CreateVisualizationPageComponent {
     const el: HTMLElement = inject(ElementRef).nativeElement;
     const destroyRef = inject(DestroyRef);
     const observer = new ResizeObserver(([entry]) => {
-      const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
-      const width = box.inlineSize;
-      this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
-      this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+      // Need ngZone.run for UI to detect changes
+      this.ngZone.run(() => {
+        const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
+        const width = box.inlineSize;
+        this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
+        this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
+      });
     });
 
     const initialWidth = el.getBoundingClientRect().width;

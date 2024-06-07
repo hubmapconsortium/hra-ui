@@ -304,10 +304,20 @@
 
     mat-button-toggle-group {
       grid-area: toggle;
+      --mat-standard-button-toggle-label-text-size: 14px;
+      --mat-standard-button-toggle-height: 40px;
+
+      ::ng-deep .mat-button-toggle-label-content {
+        padding: 0 1.5rem;
+      }
 
       @include breakpoints.breakpoint('xx-small', 'x-small') {
         width: 100%;
         max-width: 23.75rem;
+      }
+
+      @include breakpoints.breakpoint('xx-small', 'x-small', 'small') {
+        --mat-standard-button-toggle-label-text-size: 11px;
       }
     }
 
