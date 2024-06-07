@@ -1,7 +1,7 @@
 <div class="header">
   <cde-visualization-header
     (resetView)="visualization.resetView()"
-    (resetAll)="visualization.resetView(); resetCellTypes()"
+    (resetAll)="visualization.resetView(); resetCellTypes(); histogram.resetAllCellsColor()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
   ></cde-visualization-header>
@@ -39,5 +39,7 @@
     [edges]="loadedEdges()"
     [selectedCellType]="selectedNodeTargetValue()"
     [(cellTypes)]="cellTypes"
+    [cellTypesSelection]="cellTypesSelection()"
+    #histogram
   ></cde-histogram>
 </div>

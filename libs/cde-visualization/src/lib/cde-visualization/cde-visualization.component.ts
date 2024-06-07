@@ -141,30 +141,33 @@ export class CdeVisualizationComponent {
     },
     { equal: emptyArrayEquals },
   );
+  readonly cellTypesFromNodes = computed(() => {
+    const nodes = this.loadedNodes();
+    const targetKey = this.nodeTypeKey();
+    const colorLookup = this.colorMapLookup();
+    const defaultColorGenerator = createColorGenerator();
+    const cellTypeByName: Record<string, CellTypeEntry> = {};
+
+    for (const node of nodes) {
+      const name = node[targetKey];
+      cellTypeByName[name] ??= {
+        name,
+        count: 0,
+        color: colorLookup.get(name) ?? defaultColorGenerator(),
+      };
+      cellTypeByName[name].count += 1;
+    }
+
+    return Object.values(cellTypeByName);
+  });
+  readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
   readonly cellTypesCreateRef = effect(
     () => {
-      const nodes = this.loadedNodes();
-      const targetKey = this.nodeTypeKey();
-      const colorLookup = this.colorMapLookup();
-      const defaultColorGenerator = createColorGenerator();
-      const cellTypeByName: Record<string, CellTypeEntry> = {};
-
       // Grab dependency on the reset counter
       this.cellTypesResetCounter();
 
-      for (const node of nodes) {
-        const name = node[targetKey];
-        cellTypeByName[name] ??= {
-          name,
-          count: 0,
-          color: colorLookup.get(name) ?? defaultColorGenerator(),
-        };
-        cellTypeByName[name].count += 1;
-      }
-
-      const cellTypes = Object.values(cellTypeByName);
-      this.cellTypes.set(cellTypes);
-      this.cellTypesSelection.set(cellTypes.map((entry) => entry.name));
+      this.cellTypes.set(this.cellTypesFromNodes());
+      this.cellTypesSelection.set(this.cellTypesSelectionFromNodes());
     },
     { allowSignalWrites: true },
   );
