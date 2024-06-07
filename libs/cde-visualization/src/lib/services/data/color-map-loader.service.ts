@@ -37,28 +37,9 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
     }
 
     if (colorKey === undefined) {
-      throw {
-        type: 'missing-key',
-        keys: this.checkRequiredKeys(data, ['cell_id', 'cell_type', 'cell_color']),
-      };
+      throw new Error('Could not parse color map');
     }
 
     return data.map((item) => ({ ...item, [colorKey]: JSON.parse(item[colorKey]) }));
-  }
-
-  private checkRequiredKeys(data: object[], keys: string[]): Record<string, unknown> | undefined {
-    const item = data[0];
-    const result = [];
-    for (const key of keys) {
-      if (!(key in item)) {
-        result.push(key);
-      }
-    }
-
-    if (result.length > 0) {
-      return { type: 'missing-key', keys: result };
-    }
-
-    return undefined;
   }
 }

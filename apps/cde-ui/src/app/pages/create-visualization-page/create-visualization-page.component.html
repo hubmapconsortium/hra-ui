@@ -54,13 +54,14 @@
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
-      (loadErrored)="loadDataError($event)"
+      (loadErrored)="nodesLoadError = $event"
+      #nodesFileUpload
     >
     </cde-file-upload>
 
-    @if (dataErrorMessage) {
+    @if (nodesErrorMessage) {
       <div class="upload-errors">
-        <span>{{ dataErrorMessage }}</span>
+        <span>{{ nodesErrorMessage }}</span>
         <span>Please upload a CSV file with the required columns.</span>
       </div>
     }
@@ -246,7 +247,8 @@
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
-        (loadErrored)="loadColorError($event)"
+        (loadErrored)="customColorMapLoadError = $event"
+        #customColorMapFileUpload
       >
       </cde-file-upload>
 

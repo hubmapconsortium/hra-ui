@@ -3,10 +3,20 @@ import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Ty
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
-import { ParseError } from 'papaparse';
 import { reduce, Subscription } from 'rxjs';
 
-import { FileError, MissingKeyError } from '../../pages/create-visualization-page/create-visualization-page.component';
+export interface FileTypeError {
+  type: 'type-error';
+  expected: string;
+  received?: string;
+}
+
+export interface FileParseError {
+  type: 'parse-error';
+  cause: unknown;
+}
+
+export type FileLoadError = FileTypeError | FileParseError;
 
 /** Component for loading a file from disk */
 @Component({
@@ -34,7 +44,7 @@ export class FileUploadComponent<T, OptionsT> {
   /** Loading cancelled events */
   readonly loadCancelled = output<void>();
   /** Loading error events */
-  readonly loadErrored = output<FileError>();
+  readonly loadErrored = output<FileLoadError>();
   /** Loading completed events */
   readonly loadCompleted = output<T[]>();
 
@@ -45,6 +55,12 @@ export class FileUploadComponent<T, OptionsT> {
   private readonly injector = inject(Injector);
 
   private subscription?: Subscription;
+
+  reset(): void {
+    this.subscription?.unsubscribe();
+    this.file = undefined;
+    this.subscription = undefined;
+  }
 
   /**
    * Loads a file
@@ -61,11 +77,11 @@ export class FileUploadComponent<T, OptionsT> {
     const { injector, loader, options } = this;
     const file = (this.file = el.files[0]);
     if (!this.accept().split(',').includes(file.type)) {
-      const match = file.name.match(/\.(.+)$/);
+      const segments = file.name.split('.');
       this.cancelLoad({
-        type: 'incorrect-file-type',
+        type: 'type-error',
         expected: this.accept(),
-        received: match ? match[1] : undefined,
+        received: segments.at(-1),
       });
       return;
     }
@@ -76,27 +92,21 @@ export class FileUploadComponent<T, OptionsT> {
 
     this.subscription = data$.subscribe({
       next: (data) => this.loadCompleted.emit(data),
-      error: (error) => this.cancelLoad(error),
+      error: (error) =>
+        this.cancelLoad({
+          type: 'parse-error',
+          cause: error,
+        }),
     });
   }
 
   /**
    * Cancels the currently loading file
    */
-  cancelLoad(error?: FileError | ParseError[] | MissingKeyError): void {
-    this.subscription?.unsubscribe();
-    this.file = undefined;
-    this.subscription = undefined;
-
+  cancelLoad(error?: FileLoadError): void {
+    this.reset();
     if (error) {
-      if (error instanceof Array) {
-        this.loadErrored.emit({
-          type: 'parsing-failure',
-          errors: error,
-        });
-      } else {
-        this.loadErrored.emit(error);
-      }
+      this.loadErrored.emit(error);
     } else {
       this.loadCancelled.emit();
     }
