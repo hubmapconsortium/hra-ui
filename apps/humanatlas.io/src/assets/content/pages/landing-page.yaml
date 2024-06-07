@@ -104,6 +104,7 @@
       count: 1,000+
       text: publications
       alt: Publications
+    # TODO: grab from https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/data/hra-growth.atlas.csv
     - image: assets/images/organs_metric.svg
       count: 65
       text: organs
