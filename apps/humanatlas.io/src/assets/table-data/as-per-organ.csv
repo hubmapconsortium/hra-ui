@@ -1,66 +1,60 @@
 organ,sex,as_count,uberon_id,url
-Blood Vasculature,Female,123,UBERON:0004537,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-blood-vasculature.html
-Blood Vasculature,Male,121,UBERON:0004537,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-blood-vasculature.html
-Brain,Female,105,UBERON:0000955,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-f-brain.html
-Brain,Male,105,UBERON:0000955,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-m-brain.html
-Heart,Female,17,UBERON:0000948,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-heart.html
-Heart,Male,17,UBERON:0000948,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-heart.html
-Large Intestine,Female,11,UBERON:0000059,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-large-intestine.html
-Large Intestine,Male,11,UBERON:0000059,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-large-intestine.html
-Larynx,Female,11,UBERON:0001737,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-larynx.html
-Larynx,Male,11,UBERON:0001737,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-larynx.html
-Left Eye,Female,24,UBERON:0004548,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-eye-l.html
-Left Eye,Male,24,UBERON:0004548,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-eye-l.html
-Left Fallopian Tube,Female,5,UBERON:0001303,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-fallopian-tube-l.html
-Left Kidney,Female,31,UBERON:0004538,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-kidney-l.html
-Left Kidney,Male,27,UBERON:0004538,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-kidney-l.html
-Left Knee,Female,16,FMA:24978,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-knee-l.html
-Left Knee,Male,16,FMA:24978,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-knee-l.html
-Left Mammary Gland,Female,9,FMA:57991,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-mammary-gland-l.html
-Left Ovary,Female,1,FMA:7214,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ovary-l.html
-Left Palatine Tonsil,Female,1,FMA:54974,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-palatine-tonsil-l.html
-Left Palatine Tonsil,Male,1,FMA:54974,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-palatine-tonsil-l.html
-Left Ureter,Female,1,UBERON:0001223,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ureter-l.html
-Left Ureter,Male,1,UBERON:0001223,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-ureter-l.html
-Liver,Female,23,UBERON:0002107,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-liver.html
-Liver,Male,23,UBERON:0002107,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-liver.html
-Lung,Female,70,UBERON:0001004,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-lung.html
-Lung,Male,71,UBERON:0001004,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-lung.html
-Lymph Node,Female,8,UBERON:0002509,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-lymph-node.html
-Lymph Node,Male,8,UBERON:0002509,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-lymph-node.html
-Main Bronchus,Female,5,UBERON:0002182,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-main-bronchus.html
-Main Bronchus,Male,5,UBERON:0002182,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-main-bronchus.html
-Pancreas,Female,5,UBERON:0001264,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-pancreas.html
-Pancreas,Male,6,UBERON:0001264,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-pancreas.html
-Pelvis,Female,24,UBERON:0001270,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-pelvis.html
-Pelvis,Male,24,UBERON:0001270,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-pelvis.html
-Placenta,Female,7,UBERON:0001987,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-placenta-full-term.html
-Prostate,Male,18,UBERON:0000079,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-prostate.html
-Right Eye,Female,24,UBERON:0004549,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-eye-r.html
-Right Eye,Male,24,UBERON:0004549,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-eye-r.html
-Right Fallopian Tube,Female,5,UBERON:0001302,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-fallopian-tube-r.html
-Right Kidney,Female,29,UBERON:0004539,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-kidney-r.html
-Right Kidney,Male,29,UBERON:0004539,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-kidney-r.html
-Right Knee,Female,16,FMA:24977,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-knee-r.html
-Right Knee,Male,16,FMA:24977,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-knee-r.html
-Right Mammary Gland,Female,9,FMA:57987,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-mammary-gland-r.html
-Right Ovary,Female,1,FMA:7213,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ovary-r.html
-Right Palatine Tonsil,Female,1,FMA:54973,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-palatine-tonsil-r.html
-Right Palatine Tonsil,Male,1,FMA:54973,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-palatine-tonsil-r.html
-Right Ureter,Female,1,UBERON:0001222,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-ureter-r.html
-Right Ureter,Male,1,UBERON:0001222,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-ureter-r.html
-Skin,Female,1,UBERON:0002097,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-skin.html
-Skin,Male,1,UBERON:0002097,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-skin.html
-Small Intestine,Female,11,UBERON:0002108,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-small-intestine.html
-Small Intestine,Male,12,UBERON:0002108,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-small-intestine.html
-Spinal Cord,Female,30,UBERON:0002240,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-spinal-cord.html
-Spinal Cord,Male,31,UBERON:0002240,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-spinal-cord.html
-Spleen,Female,6,UBERON:0002106,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-spleen.html
-Spleen,Male,6,UBERON:0002106,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-spleen.html
-Thymus,Female,3,UBERON:0002370,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-thymus.html
-Thymus,Male,3,UBERON:0002370,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-thymus.html
-Trachea,Female,4,UBERON:0003126,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-trachea.html
-Trachea,Male,4,UBERON:0003126,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-trachea.html
-Urinary Bladder,Female,7,UBERON:0001255,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-urinary-bladder.html
-Urinary Bladder,Male,8,UBERON:0001255,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-urinary-bladder.html
-Uterus,Female,10,UBERON:0000995,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-uterus.html
+blood vasculature,Female,125,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
+blood vasculature,Male,123,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
+brain,Female,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-female/v1.4
+brain,Male,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-male/v1.4
+bronchus,Female,69,UBERON:0002185,https://purl.humanatlas.io/ref-organ/lung-female/v1.4
+bronchus,Male,6,UBERON:0002185,https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
+extrapulmonary bronchus,Female,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
+heart,Female,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-female/v1.3
+heart,Male,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-male/v1.3
+large intestine,Female,11,UBERON:0000059,https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3
+large intestine,Male,11,UBERON:0000059,https://purl.humanatlas.io/ref-organ/large-intestine-male/v1.3
+left eye,Female,24,UBERON:0004548,https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3
+left eye,Male,24,UBERON:0004548,https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3
+left fallopian tube,Female,5,UBERON:0001303,https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2
+left kidney,Female,31,UBERON:0004538,https://purl.humanatlas.io/ref-organ/kidney-female-left/v1.3
+left kidney,Male,27,UBERON:0004538,https://purl.humanatlas.io/ref-organ/kidney-male-left/v1.3
+left knee,Female,16,FMA:24978,https://purl.humanatlas.io/ref-organ/knee-female-left/v1.2
+left knee,Male,16,FMA:24978,https://purl.humanatlas.io/ref-organ/knee-male-left/v1.2
+left ovary,Female,1,FMA:7214,https://purl.humanatlas.io/ref-organ/ovary-female-left/v1.2
+liver,Female,23,UBERON:0002107,https://purl.humanatlas.io/ref-organ/liver-female/v1.2
+liver,Male,23,UBERON:0002107,https://purl.humanatlas.io/ref-organ/liver-male/v1.2
+lung,Male,71,UBERON:0002048,https://purl.humanatlas.io/ref-organ/lung-male/v1.4
+main bronchus,Female,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
+male reproductive system,Male,20,UBERON:0000079,https://purl.humanatlas.io/ref-organ/prostate-male/v1.2
+mesenteric lymph node,Female,8,UBERON:0002509,https://purl.humanatlas.io/ref-organ/lymph-node-female/v1.3
+mesenteric lymph node,Male,8,UBERON:0002509,https://purl.humanatlas.io/ref-organ/lymph-node-male/v1.3
+pancreas,Female,6,UBERON:0001264,https://purl.humanatlas.io/ref-organ/pancreas-female/v1.3
+pancreas,Male,6,UBERON:0001264,https://purl.humanatlas.io/ref-organ/pancreas-male/v1.3
+pelvis,Female,24,UBERON:0001270,https://purl.humanatlas.io/ref-organ/pelvis-female/v1.3
+pelvis,Male,24,UBERON:0001270,https://purl.humanatlas.io/ref-organ/pelvis-male/v1.3
+placenta,Female,7,UBERON:0001987,https://purl.humanatlas.io/ref-organ/placenta-full-term-female/v1.1
+renal pelvis,Male,17,UBERON:0001224,https://purl.humanatlas.io/ref-organ/ureter-male-left/v1.2
+right eye,Female,24,UBERON:0004549,https://purl.humanatlas.io/ref-organ/eye-female-right/v1.3
+right eye,Male,24,UBERON:0004549,https://purl.humanatlas.io/ref-organ/eye-male-right/v1.3
+right fallopian tube,Female,5,UBERON:0001302,https://purl.humanatlas.io/ref-organ/fallopian-tube-female-right/v1.2
+right kidney,Female,29,UBERON:0004539,https://purl.humanatlas.io/ref-organ/kidney-female-right/v1.3
+right kidney,Male,29,UBERON:0004539,https://purl.humanatlas.io/ref-organ/kidney-male-right/v1.3
+right knee,Female,16,FMA:24977,https://purl.humanatlas.io/ref-organ/knee-female-right/v1.2
+right knee,Male,16,FMA:24977,https://purl.humanatlas.io/ref-organ/knee-male-right/v1.2
+right ovary,Female,1,FMA:7213,https://purl.humanatlas.io/ref-organ/ovary-female-right/v1.2
+skin,Male,1,UBERON:0002097,https://purl.humanatlas.io/ref-organ/skin-male/v1.3
+skin of body,Male,1,UBERON:0002097,https://purl.humanatlas.io/ref-organ/skin-male/v1.3
+small intestine,Female,22,UBERON:0002108,https://purl.humanatlas.io/ref-organ/small-intestine-female/v1.2
+small intestine,Male,24,UBERON:0002108,https://purl.humanatlas.io/ref-organ/small-intestine-male/v1.2
+spinal cord,Female,30,UBERON:0002240,https://purl.humanatlas.io/ref-organ/spinal-cord-female/v1.1
+spinal cord,Male,31,UBERON:0002240,https://purl.humanatlas.io/ref-organ/spinal-cord-male/v1.1
+spleen,Female,6,UBERON:0002106,https://purl.humanatlas.io/ref-organ/spleen-female/v1.3
+spleen,Male,6,UBERON:0002106,https://purl.humanatlas.io/ref-organ/spleen-male/v1.3
+thoracic thymus,Female,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-female/v1.3
+thoracic thymus,Male,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-male/v1.3
+thymus,Female,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-female/v1.3
+thymus,Male,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-male/v1.3
+trachea,Female,3,UBERON:0003126,https://purl.humanatlas.io/ref-organ/trachea-female/v1.1
+trachea,Male,4,UBERON:0003126,https://purl.humanatlas.io/ref-organ/trachea-male/v1.1
+urinary bladder,Female,7,UBERON:0001255,https://purl.humanatlas.io/ref-organ/urinary-bladder-female/v1.2
+urinary bladder,Male,8,UBERON:0001255,https://purl.humanatlas.io/ref-organ/urinary-bladder-male/v1.2
+uterus,Female,20,UBERON:0000995,https://purl.humanatlas.io/ref-organ/uterus-female/v1.2
+vascular system,Female,125,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
+vascular system,Male,123,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
