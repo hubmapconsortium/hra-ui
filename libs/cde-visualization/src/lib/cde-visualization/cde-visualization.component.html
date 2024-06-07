@@ -1,7 +1,7 @@
 <div class="header">
   <cde-visualization-header
     (resetView)="visualization.resetView()"
-    (resetAll)="visualization.resetView(); resetCellTypes(); histogram.resetAllCellsColor()"
+    (resetAll)="cellTypesTable.resetSort(); visualization.resetView(); histogram.resetAllCellsColor(); resetCellTypes()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
   ></cde-visualization-header>
@@ -14,6 +14,7 @@
     [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="selectedNodeTargetValue()"
     (download)="downloadColorMap()"
+    #cellTypesTable
   ></cde-cell-types>
 </div>
 

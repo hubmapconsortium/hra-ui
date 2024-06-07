@@ -121,4 +121,14 @@ export class CellTypesComponent {
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
   }
+
+  resetSort(): void {
+    const sorter = this.sort();
+    const sortable = sorter.sortables.get('count');
+    if (sortable) {
+      do {
+        sorter.sort(sortable);
+      } while (sorter.direction !== 'desc');
+    }
+  }
 }
