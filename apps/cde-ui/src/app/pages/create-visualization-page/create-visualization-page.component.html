@@ -54,9 +54,16 @@
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
-      (loadErrored)="loadError($event)"
+      (loadErrored)="loadDataError($event)"
     >
     </cde-file-upload>
+
+    @if (dataErrorMessage) {
+      <div class="upload-errors">
+        <span>{{ dataErrorMessage }}</span>
+        <span>Please upload a CSV file with the required columns.</span>
+      </div>
+    }
 
     <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
 
@@ -65,11 +72,6 @@
       Use Template
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
-
-    @if (errorMessage) {
-      <span>{{ errorMessage }}</span>
-      <span>Please upload a CSV file with the required columns.</span>
-    }
   </div>
 
   <div class="card anchor-selection">
@@ -237,8 +239,16 @@
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
+        (loadErrored)="loadColorError($event)"
       >
       </cde-file-upload>
+
+      @if (colorErrorMessage) {
+        <div class="upload-errors">
+          <span>{{ colorErrorMessage }}</span>
+          <span>Please upload a CSV file with the required columns.</span>
+        </div>
+      }
 
       <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
 

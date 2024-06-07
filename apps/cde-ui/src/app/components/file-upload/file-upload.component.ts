@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Ty
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
+import { ParseError } from 'papaparse';
 import { reduce, Subscription } from 'rxjs';
 
-import { FileError } from '../../pages/create-visualization-page/create-visualization-page.component';
+import { FileError, MissingKeyError } from '../../pages/create-visualization-page/create-visualization-page.component';
 
 /** Component for loading a file from disk */
 @Component({
@@ -82,13 +83,20 @@ export class FileUploadComponent<T, OptionsT> {
   /**
    * Cancels the currently loading file
    */
-  cancelLoad(error?: FileError): void {
+  cancelLoad(error?: FileError | ParseError[] | MissingKeyError): void {
     this.subscription?.unsubscribe();
     this.file = undefined;
     this.subscription = undefined;
 
     if (error) {
-      this.loadErrored.emit(error);
+      if (error instanceof Array) {
+        this.loadErrored.emit({
+          type: 'parsing-failure',
+          errors: error,
+        });
+      } else {
+        this.loadErrored.emit(error);
+      }
     } else {
       this.loadCancelled.emit();
     }

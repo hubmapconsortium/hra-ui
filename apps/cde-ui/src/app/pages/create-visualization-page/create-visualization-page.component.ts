@@ -22,6 +22,8 @@ import {
   NodeEntry,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { ParseError } from 'papaparse';
+
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -29,7 +31,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
-import { ParseError } from 'papaparse';
 
 export interface MissingKeyError {
   type: 'missing-key';
@@ -147,8 +148,10 @@ export class CreateVisualizationPageComponent {
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
   nodeLoadErrors?: FileError;
+  colorLoadErrors?: FileError;
 
-  errorMessage?: string;
+  dataErrorMessage?: string;
+  colorErrorMessage?: string;
 
   private nodes?: NodeEntry[];
   private customColorMap?: ColorMapEntry[];
@@ -158,10 +161,10 @@ export class CreateVisualizationPageComponent {
   }
 
   setNodes(nodes: NodeEntry[]): void {
-    this.errorMessage = '';
+    this.dataErrorMessage = '';
     this.nodeLoadErrors = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
     if (this.nodeLoadErrors) {
-      this.errorMessage = `Required columns missing: ${this.nodeLoadErrors.keys.join(', ')}`;
+      this.dataErrorMessage = `Required columns missing: ${this.nodeLoadErrors.keys.join(', ')}`;
       return;
     }
 
@@ -180,7 +183,7 @@ export class CreateVisualizationPageComponent {
   clearNodes(): void {
     this.nodes = undefined;
     this.nodeLoadErrors = undefined;
-    this.errorMessage = undefined;
+    this.dataErrorMessage = undefined;
   }
 
   hasValidNodes(): boolean {
@@ -194,6 +197,7 @@ export class CreateVisualizationPageComponent {
 
   clearCustomColorMap(): void {
     this.customColorMap = undefined;
+    this.colorErrorMessage = undefined;
   }
 
   hasValidCustomColorMap(): boolean {
@@ -285,10 +289,26 @@ export class CreateVisualizationPageComponent {
     return undefined;
   }
 
-  loadError(event: FileError) {
-    console.log(event);
+  loadDataError(event: FileError) {
     if (event.type === 'incorrect-file-type') {
-      this.errorMessage = `Invalid file type: ${event.received}`;
+      this.dataErrorMessage = `Invalid file type: ${event.received}`;
+    } else if (event.type === 'parsing-failure') {
+      this.dataErrorMessage = 'Invalid file: too many invalid rows.';
+    }
+  }
+
+  loadColorError(event: FileError) {
+    this.colorErrorMessage = '';
+    if (event.type === 'incorrect-file-type') {
+      this.colorErrorMessage = `Invalid file type: ${event.received}`;
+    } else if (event.type === 'parsing-failure') {
+      this.colorErrorMessage = 'Invalid file: too many invalid rows.';
+    } else {
+      this.colorLoadErrors = this.checkRequiredKeys([event.keys], ['cell_id', 'cell_type', 'cell_color']);
+      if (this.colorLoadErrors) {
+        this.colorErrorMessage = `Required columns missing: ${this.colorLoadErrors.keys.join(', ')}`;
+        return;
+      }
     }
   }
 }
