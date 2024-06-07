@@ -26,6 +26,21 @@
     {
       "name": "yAxisTickCount",
       "value": 5
+    },
+    {
+      "name": "colors",
+      "value": []
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "[datum.type, 'All Cells']",
+      "as": "type"
+    },
+    {
+      "flatten": [
+        "type"
+      ]
     }
   ],
   "mark": {
@@ -64,12 +79,13 @@
     },
     "color": {
       "field": "type",
-      "type": "nominal",
       "legend": null,
       "scale": {
-        "range": {
-          "field": "color"
-        }
+        "range": [
+          {
+            "expr": "'Replaced/repeated in javascript' || color[0] || '#000'"
+          }
+        ]
       }
     },
     "tooltip": {

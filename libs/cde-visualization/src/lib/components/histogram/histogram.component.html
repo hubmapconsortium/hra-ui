@@ -1,5 +1,5 @@
 <mat-accordion displayMode="flat">
-  <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible ? 'visible' : null" #panel>
+  <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
     <mat-expansion-panel-header class="header">
       <mat-panel-title class="title">
         <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
@@ -28,11 +28,21 @@
 
         <div class="filler"></div>
 
-        <button mat-flat-button color="accent" class="mat-caption download" (click)="download($event, 'svg')">
+        <button
+          mat-flat-button
+          color="accent"
+          class="mat-caption download"
+          (click)="$event.stopPropagation(); download('svg')"
+        >
           <mat-icon class="material-symbols-rounded">download</mat-icon>
           SVG
         </button>
-        <button mat-flat-button color="accent" class="mat-caption download" (click)="download($event, 'png')">
+        <button
+          mat-flat-button
+          color="accent"
+          class="mat-caption download"
+          (click)="$event.stopPropagation(); download('png')"
+        >
           <mat-icon class="material-symbols-rounded">download</mat-icon>
           PNG
         </button>
@@ -42,12 +52,18 @@
     <div class="content">
       <div class="histogram" #histogram></div>
       <div class="legend">
-        @for (type of cellTypesWithTotal(); track type.name) {
+        <cde-color-picker-label
+          [label]="totalCellTypeLabel"
+          [(color)]="totalCellTypeColor"
+          (colorPickerOpen)="overflowVisible.set($event)"
+        >
+        </cde-color-picker-label>
+        @for (type of filteredCellTypes(); track type.name) {
           <cde-color-picker-label
             [label]="type.name"
             [color]="type.color"
             [isAnchor]="type.name === selectedCellType()"
-            (colorPickerOpen)="overflowVisible = $event"
+            (colorPickerOpen)="overflowVisible.set($event)"
             (colorChange)="updateColor(type, $event)"
           ></cde-color-picker-label>
         }

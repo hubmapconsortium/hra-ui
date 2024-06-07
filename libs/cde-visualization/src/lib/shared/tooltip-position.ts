@@ -19,9 +19,9 @@ function createPosition(
 }
 
 export const TOOLTIP_POSITION_RIGHT_SIDE = [
-  createPosition('end', 'top', 'start', 'bottom'),
+  createPosition('end', 'top', 'start', 'top', 0, -20),
   createPosition('end', 'center', 'start', 'center'),
-  createPosition('end', 'bottom', 'start', 'top'),
+  createPosition('end', 'bottom', 'start', 'bottom'),
 ];
 
 export const TOOLTIP_POSITION_LEFT_SIDE = [

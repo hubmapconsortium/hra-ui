@@ -40,56 +40,77 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 })
 export class CellTypesComponent {
   readonly cellTypes = model.required<CellTypeEntry[]>();
+  readonly cellTypesSelection = model.required<string[]>();
 
   readonly selectedCellType = input<string>('');
 
   readonly download = output();
 
-  readonly sort = viewChild.required(MatSort);
+  protected readonly columns = ['select', 'name', 'count'];
+  protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
-  readonly cellTypeCount = computed(() => this.cellTypes().length);
+  protected readonly sort = viewChild.required(MatSort);
+  protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
 
-  readonly cellCount = computed(() => this.cellTypes().reduce((count, entry) => count + entry.count, 0));
+  protected readonly dataSource = new MatTableDataSource<CellTypeEntry>();
+  protected readonly dataSourceBindRef = effect(() => (this.dataSource.data = this.cellTypes()));
 
-  readonly displayedColumns = ['select', 'name', 'count'];
+  protected readonly selectionModel = new SelectionModel<string>(true);
+  protected readonly selectionModelBindRef = effect(
+    () => this.selectionModel.setSelection(...this.cellTypesSelection()),
+    { allowSignalWrites: true },
+  );
 
-  readonly dataSource = new MatTableDataSource<CellTypeEntry>();
-
-  readonly selectionModel = new SelectionModel<CellTypeEntry>(true, []);
-
-  readonly selected = toSignal(this.selectionModel.changed.pipe(map(() => this.selectionModel.selected)), {
-    initialValue: [],
+  protected readonly selection$ = this.selectionModel.changed.pipe(map(() => this.selectionModel.selected));
+  protected readonly selection = toSignal(this.selection$, { initialValue: [] });
+  protected readonly selectionState = computed(() => {
+    const cellTypesLength = this.cellTypes().length;
+    const selectionLength = this.selection().length;
+    if (cellTypesLength === 0 || selectionLength === 0) {
+      return 'none';
+    } else if (selectionLength < cellTypesLength) {
+      return 'partial';
+    } else {
+      return 'full';
+    }
   });
 
-  readonly isAllSelected = computed(() => this.cellTypeCount() > 0 && this.selected().length === this.cellTypeCount());
+  protected totalCellCount = computed(() => {
+    const sumCounts = (count: number, entry: CellTypeEntry) => {
+      const value = this.isSelected(entry) ? entry.count : 0;
+      return count + value;
+    };
 
-  readonly isSomeSelected = computed(() => this.selected().length > 0 && !this.isAllSelected());
+    // Grab dependency on current selection since selectionModel is used indirectly
+    this.selection();
 
-  readonly headerCheckboxLabel = computed(() => `${this.isAllSelected() ? 'deselect' : 'select'} all`);
+    return this.cellTypes().reduce(sumCounts, 0);
+  });
 
-  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
-
-  cellTypesInfoOpen = false;
-
-  constructor() {
-    effect(() => (this.dataSource.data = this.cellTypes()));
-    effect(() => (this.dataSource.sort = this.sort()));
-  }
+  protected cellTypesInfoOpen = false;
 
   trackByName(_index: number, item: CellTypeEntry): string {
     return item.name;
   }
 
-  toggleAllRows() {
-    if (this.isAllSelected()) {
-      this.selectionModel.clear();
-    } else {
-      this.selectionModel.select(...this.dataSource.data);
-    }
+  getCheckboxLabel(isSelected: boolean, row?: number): string {
+    const action = isSelected ? 'deselect' : 'select';
+    const where = row === undefined ? 'all' : `row ${row}`;
+    return `${action} ${where}`;
   }
 
-  checkboxLabel(row: CellTypeEntry, index: number): string {
-    return `${this.selectionModel.isSelected(row) ? 'deselect' : 'select'} row ${index + 1}`;
+  isSelected(row: CellTypeEntry): boolean {
+    return this.selectionModel.isSelected(row.name);
+  }
+
+  toggleRow(row: CellTypeEntry): void {
+    this.selectionModel.toggle(row.name);
+    this.cellTypesSelection.set(this.selectionModel.selected);
+  }
+
+  toggleAllRows(): void {
+    const selection = this.selectionState() === 'full' ? [] : this.cellTypes().map((entry) => entry.name);
+    this.cellTypesSelection.set(selection);
   }
 
   updateColor(row: CellTypeEntry, color: Rgb): void {
@@ -99,5 +120,15 @@ export class CellTypesComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  resetSort(): void {
+    const sorter = this.sort();
+    const sortable = sorter.sortables.get('count');
+    if (sortable) {
+      do {
+        sorter.sort(sortable);
+      } while (sorter.direction !== 'desc');
+    }
   }
 }
