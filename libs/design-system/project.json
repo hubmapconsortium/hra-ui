@@ -29,6 +29,35 @@
         "jestConfig": "libs/design-system/jest.config.ts"
       }
     },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/design-system/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/design-system"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/design-system/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/design-system",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p libs/design-system/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     }
