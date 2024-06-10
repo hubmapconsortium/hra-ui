@@ -51,6 +51,10 @@
               {
                 "sourceTag": "ccf",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "project:design-system",
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }
