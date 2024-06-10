@@ -14,5 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  /** HRA Logo url */
   readonly logo = input.required<string>();
 }

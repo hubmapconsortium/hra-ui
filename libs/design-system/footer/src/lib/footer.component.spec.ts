@@ -10,13 +10,14 @@ describe('FooterComponent', () => {
   beforeEach(async () => {
     await render(FooterComponent, {
       providers: globalProviders,
+      componentInputs: { logo: 'assets/logo.svg' },
     });
   });
 
   it('should render the Human Reference Atlas logo', async () => {
     const logo = screen.getByAltText('Human Reference Atlas Logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'assets/logo/hra_logo.svg');
+    expect(logo).toHaveAttribute('src', 'assets/logo.svg');
   });
 
   it('should display copyright information correctly', async () => {

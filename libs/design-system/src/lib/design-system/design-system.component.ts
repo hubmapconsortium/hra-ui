@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Component for design system
+ */
 @Component({
   selector: 'hra-ui-design-system',
   standalone: true,
