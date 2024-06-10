@@ -27,6 +27,19 @@
     }
   }
 }
+
+::ng-deep .download-snackbar-panel {
+  --mdc-snackbar-container-color: white;
+  --mdc-snackbar-supporting-text-color: #4b4b5e;
+  translate: 0 -2rem;
+  text-align: center;
+
+  .mdc-snackbar__surface {
+    border-radius: 0.5rem !important;
+    min-width: 13rem !important;
+  }
+}
+
 :host {
   background-color: gray;
   padding: 6px 4px;
