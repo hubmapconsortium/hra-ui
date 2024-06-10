@@ -23,6 +23,7 @@
       "@hra-ui/components/molecules": ["libs/components/molecules/src/index.ts"],
       "@hra-ui/components/organisms": ["libs/components/organisms/src/index.ts"],
       "@hra-ui/design-system": ["libs/design-system/src/index.ts"],
+      "@hra-ui/design-system/footer": ["libs/design-system/footer/src/index.ts"],
       "@hra-ui/services": ["libs/services/src/index.ts"],
       "@hra-ui/state": ["libs/state/src/index.ts"],
       "@hra-ui/theming": ["libs/shared/theming/src/index.ts"],
