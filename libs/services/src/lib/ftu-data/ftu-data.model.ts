@@ -1,5 +1,5 @@
+import { createLinkId } from '@hra-ui/cdk/state';
 import { z } from 'zod';
-
 import { IRI } from '../shared/common.model';
 
 // ---------------------------------------
@@ -35,7 +35,7 @@ export const TISSUE = z.object({
   label: z.string(),
   parent: IRI,
   children: IRI.array().default([]),
-  link: z.string().optional(),
+  link: z.string().transform(createLinkId).optional(),
 });
 
 /** Zod Schema for a tissue library object */
