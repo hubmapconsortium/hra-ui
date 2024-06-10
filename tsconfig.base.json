@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@hra-ui/cdk": ["libs/cdk/src/index.ts"],
+      "@hra-ui/cdk/icons": ["libs/cdk/icons/src/index.ts"],
       "@hra-ui/cdk/injectors": ["libs/cdk/injectors/src/index.ts"],
       "@hra-ui/cdk/state": ["libs/cdk/state/src/index.ts"],
       "@hra-ui/components/atoms": ["libs/components/atoms/src/index.ts"],
