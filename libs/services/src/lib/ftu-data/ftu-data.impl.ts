@@ -1,14 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
-import { firstValueFrom, from, map, Observable, shareReplay, switchMap, take, withLatestFrom } from 'rxjs';
+import { firstValueFrom, from, map, Observable, of, shareReplay, switchMap, take, withLatestFrom } from 'rxjs';
 import { z } from 'zod';
-
-import { IRI, Iri, setUrl, Url } from '../shared/common.model';
+import { Iri, setUrl, Url } from '../shared/common.model';
 import {
   CellSummary,
   DataFileReference,
   IllustrationMappingItem,
+  RAW_CELL_SUMMARIES,
+  RAW_DATASETS,
+  RAW_ILLUSTRATIONS_JSONLD,
+  RawCellSummary,
+  RawDatasets,
+  RawIllustrationFile,
+  RawIllustrationsJsonld,
   SourceReference,
   TissueLibrary,
 } from './ftu-data.model';
@@ -16,14 +22,14 @@ import { FtuDataService } from './ftu-data.service';
 
 /** Endpoints for Injecting input path */
 export interface FtuDataImplEndpoints {
-  /** Endpoint for File having Cell illustrations data */
-  illustrations: Url;
-  /** Endpoint for File having Cell Summaries data */
-  summaries: Url;
-  /** Endpoint for File having Cell Source References data */
-  datasets: Url;
   /** Endpoint for baseHref */
-  baseHref: Url;
+  baseHref: string;
+  /** Endpoint for File having Cell illustrations data */
+  illustrations: string | object;
+  /** Endpoint for File having Cell Summaries data */
+  summaries: string | object;
+  /** Endpoint for File having Cell Source References data */
+  datasets: string | object;
 }
 /** Constant  to read the endpoints */
 export const FTU_DATA_IMPL_ENDPOINTS = new InjectionToken<Observable<FtuDataImplEndpoints>>('Endpoints');
@@ -38,97 +44,19 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
   }),
 });
 
-type IdItem = z.infer<typeof ID_ITEM>;
 type Graph<T> = { '@graph': T[] };
-type Illustrations = z.infer<typeof ILLUSTRATIONS>;
-type Datasets = z.infer<typeof DATASETS>;
-type Cell_Summary = z.infer<typeof CELL_SUMMARIES>;
-type IllusrationFiles = Illustrations['@graph'][number]['illustration_files'];
-type DataSources = Datasets['@graph'][number]['data_sources'];
-
-/** Base ID Object */
-const ID_ITEM = z.object({
-  '@id': IRI,
-});
-
-/** ILLUSTRATIONS Object reflecting the format in the file*/
-const ILLUSTRATIONS = z.object({
-  '@graph': ID_ITEM.extend({
-    '@id': IRI,
-    label: z.string(),
-    organ_id: z.string(),
-    organ_label: z.string(),
-    representation_of: z.string(),
-    illustration_files: z
-      .object({
-        file: z.string(),
-        file_format: z.string(),
-      })
-      .array(),
-    mapping: z
-      .object({
-        svg_id: z.string(),
-        svg_group_id: z.string(),
-        label: z.string(),
-        representation_of: z.string(),
-      })
-      .array(),
-  }).array(),
-});
-
-/** DATASETS Object reflecting the format in the file*/
-const DATASETS = z.object({
-  '@graph': ID_ITEM.extend({
-    '@id': IRI,
-    data_sources: z
-      .object({
-        '@id': IRI,
-        label: z.string(),
-        description: z.string(),
-        authors: z.string().array().optional(),
-        year: z.number().optional(),
-        doi: z.string().optional(),
-        link: z.string(),
-      })
-      .array(),
-  }).array(),
-});
-
-/** Base CELL_SOURCE_ITEM Object  having cell_source */
-const CELL_SOURCE_ITEM = z.object({
-  cell_source: IRI,
-});
-
-/** CELL_SUMMARIES zod Object reflecting the format in the file*/
-const CELL_SUMMARIES = z.object({
-  '@graph': CELL_SOURCE_ITEM.extend({
-    cell_source: IRI,
-    biomarker_type: z.string(),
-    summary: z
-      .object({
-        cell_id: z.string(),
-        cell_label: z.string(),
-        genes: z
-          .object({
-            '@type': z.string(),
-            gene_id: z.string(),
-            gene_label: z.string(),
-            mean_expression: z.number(),
-          })
-          .array(),
-        count: z.number(),
-        percentage: z.number(),
-        dataset_count: z.number().optional(),
-      })
-      .array(),
-  }).array(),
-});
+type DataSources = RawDatasets['@graph'][number]['data_sources'];
 
 /** Creates clickable link for the tissue tree element */
 const TISSUE_LINK = createLinkId('FTU');
 
 /** Provides Base/root url for the tissue tree */
 const BASE_IRI = 'https://purl.humanatlas.io/2d-ftu/' as Iri;
+
+const EMPTY_TISSUE_LIBRARY: TissueLibrary = {
+  root: '' as Iri,
+  nodes: {},
+};
 
 /** Capitalizes the first character */
 function capitalize(str: string): string {
@@ -160,15 +88,21 @@ export class FtuDataImplService extends FtuDataService {
   /** Stores the last retrived Tissue Iri */
   private cachedIri?: Iri;
   /** Stores the last retrived data for tissue */
-  private cache = new Map<Url, Promise<unknown>>();
+  private readonly cache = new Map<Url, Promise<unknown>>();
+
+  /** Setup cache invalidation triggers */
+  constructor() {
+    super();
+    this.endpoints.subscribe(() => this.cache.clear());
+  }
 
   /**
   Overrides the getTissueLibrary method to return a data for the tissue Library tree.
   @returns An Observable that emits the tissue Tree data.
   */
   override getTissueLibrary(): Observable<TissueLibrary> {
-    return this.fetchData(undefined, 'illustrations', ILLUSTRATIONS).pipe(
-      map((data) => this.constructTissueLibrary(data['@graph'])),
+    return this.fetchData(undefined, 'illustrations', RAW_ILLUSTRATIONS_JSONLD).pipe(
+      map((data) => (data ? this.constructTissueLibrary(data['@graph']) : EMPTY_TISSUE_LIBRARY)),
     );
   }
 
@@ -192,8 +126,8 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an IllustrationMappingItem array.
   */
   override getIllustrationMapping(iri: Iri): Observable<IllustrationMappingItem[]> {
-    return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
-      map((data) => this.findGraphItem(data, iri).mapping),
+    return this.fetchData(iri, 'illustrations', RAW_ILLUSTRATIONS_JSONLD).pipe(
+      map((data) => data && this.findGraphItem(data, iri).mapping),
       map((data) => (data ? this.toIllustrationMapping(data) : [])),
     );
   }
@@ -204,8 +138,8 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an CellSummary array.
   */
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
-    return this.fetchData(iri, 'summaries', CELL_SUMMARIES).pipe(
-      map((data) => data['@graph']),
+    return this.fetchData(iri, 'summaries', RAW_CELL_SUMMARIES).pipe(
+      map((data) => data?.['@graph']),
       map((data) => (data ? this.constructCellSummaries(data) : [])),
     );
   }
@@ -216,8 +150,8 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an DataFileReference array.
   */
   override getDataFileReferences(iri: Iri): Observable<DataFileReference[]> {
-    return this.fetchData(iri, 'illustrations', ILLUSTRATIONS).pipe(
-      map((data) => this.findGraphItem(data, iri).illustration_files),
+    return this.fetchData(iri, 'illustrations', RAW_ILLUSTRATIONS_JSONLD).pipe(
+      map((data) => data && this.findGraphItem(data, iri).illustration_files),
       map((data) => (data ? this.toDataFileReferences(data) : [])),
     );
   }
@@ -228,8 +162,8 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an empty array.
   */
   override getSourceReferences(iri: Iri): Observable<SourceReference[]> {
-    return this.fetchData(iri, 'datasets', DATASETS).pipe(
-      map((data) => this.findGraphItem(data, iri).data_sources),
+    return this.fetchData(iri, 'datasets', RAW_DATASETS).pipe(
+      map((data) => data && this.findGraphItem(data, iri).data_sources),
       map((data) => (data ? this.toSourceReferences(data) : [])),
     );
   }
@@ -246,14 +180,21 @@ export class FtuDataImplService extends FtuDataService {
     iri: Iri | undefined,
     endpoint: keyof FtuDataImplEndpoints,
     schema: T,
-  ): Observable<z.infer<T>> {
+  ): Observable<z.infer<T> | undefined> {
     return this.endpoints.pipe(
-      map((endpoints) => endpoints[endpoint]),
-      switchMap((url) => {
+      switchMap((endpoints) => {
+        const source = endpoints[endpoint];
+        if (typeof source === 'object') {
+          return of(schema.parse(source));
+        } else if (source === '') {
+          return of(undefined);
+        }
+
+        const url = setUrl(source, endpoints.baseHref);
         const { http, cachedIri, cache } = this;
         if (iri !== undefined && iri !== cachedIri) {
           this.cachedIri = iri;
-          this.cache = new Map();
+          this.cache.clear();
         }
         if (!cache.has(url)) {
           const opts = { params: { id: iri ?? '' }, responseType: 'json' as const };
@@ -274,7 +215,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param iri
    * @returns graph item
    */
-  private findGraphItem<T extends IdItem>(data: Graph<T>, iri: Iri): T {
+  private findGraphItem<T extends { '@id': Iri }>(data: Graph<T>, iri: Iri): T {
     const item = data['@graph'].find(({ '@id': id }) => id === iri);
     if (item === undefined) {
       return {} as T;
@@ -306,12 +247,14 @@ export class FtuDataImplService extends FtuDataService {
     mappings: { label: string; svg_id: string; svg_group_id: string; representation_of: string }[],
   ): IllustrationMappingItem[] {
     const results: IllustrationMappingItem[] = [];
-    for (const { label, svg_id, svg_group_id, representation_of } of mappings) {
+    for (const source of mappings) {
+      const { label, svg_id, svg_group_id, representation_of } = source;
       results.push({
         label,
         id: svg_id,
         groupId: svg_group_id,
         ontologyId: representation_of,
+        source,
       });
     }
 
@@ -323,7 +266,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param data
    * @returns data file references
    */
-  private toDataFileReferences(data: IllusrationFiles): DataFileReference[] {
+  private toDataFileReferences(data: RawIllustrationFile[]): DataFileReference[] {
     const { fileFormatMapping: formats } = this;
     const results: DataFileReference[] = [];
     for (const { file, file_format } of data) {
@@ -353,8 +296,8 @@ export class FtuDataImplService extends FtuDataService {
    * @param data
    * @returns
    */
-  private constructCellSummaries(data: Cell_Summary['@graph']): CellSummary[] {
-    type SummaryItem = Cell_Summary['@graph'][number]['summary'][number];
+  private constructCellSummaries(data: RawCellSummary['@graph']): CellSummary[] {
+    type SummaryItem = RawCellSummary['@graph'][number]['summary'][number];
     const cellSummaries: CellSummary[] = [];
     const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
     const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
@@ -415,7 +358,7 @@ export class FtuDataImplService extends FtuDataService {
    * @param items
    * @returns
    */
-  private constructTissueLibrary(items: Illustrations['@graph']): TissueLibrary {
+  private constructTissueLibrary(items: RawIllustrationsJsonld['@graph']): TissueLibrary {
     const nodes: TissueLibrary['nodes'] = {};
     for (const { '@id': id, label, organ_id, organ_label } of items) {
       const parentId = (BASE_IRI + organ_id) as Iri;
