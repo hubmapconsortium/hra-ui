@@ -3,9 +3,10 @@ import { IframeContainerComponent } from './iframe-container.component';
 
 describe('IframeContainerComponent', () => {
   it('should render title and iframe', async () => {
+    const iframeTitle = 'Iframe Title';
     const spec = {
       type: 'IFrameContainer',
-      title: 'Iframe Title',
+      title: iframeTitle,
       iframeUrl: 'https://example.com',
       aspectRatio: '16/9',
     };
@@ -14,8 +15,8 @@ describe('IframeContainerComponent', () => {
       componentInputs: { spec: spec },
     });
 
-    const title = screen.getByText('Iframe Title');
-    const iframe = screen.getByTitle('Iframe Title');
+    const title = screen.getByText(iframeTitle);
+    const iframe = screen.getByTitle(iframeTitle);
 
     expect(title).toBeInTheDocument();
     expect(iframe).toHaveAttribute('src', 'https://example.com');

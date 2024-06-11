@@ -26,39 +26,4 @@ describe('DashboardLayoutComponent', () => {
     expect(description).toBeInTheDocument();
     expect(link).toHaveAttribute('href', 'https://example.com');
   });
-
-  // it('should render child components', async () => {
-  //   const childComponent = {
-  //     type: 'ChildComponent',
-  //     data: 'Child component data'
-  //   };
-
-  //   const spec = {
-  //     type: 'Dashboard',
-  //     title: 'Dashboard Title',
-  //     description: 'This is a dashboard description.',
-  //     link: {
-  //       url: 'https://example.com',
-  //       label: 'Learn More'
-  //     },
-  //     items: [childComponent]
-  //   };
-
-  //   const renderChildComponent = jest.fn().mockReturnValue('Child component rendered');
-
-  //   await render(DashboardLayoutComponent, {
-  //     componentInputs: { spec: spec },
-  //     imports: [
-  //       {
-  //         directive: DashboardComponentOutletDirective,
-  //         renderers: {
-  //           'ChildComponent': renderChildComponent
-  //         }
-  //       }
-  //     ]
-  //   });
-
-  //   expect(renderChildComponent).toHaveBeenCalledWith(childComponent);
-  //   expect(screen.getByText('Child component rendered')).toBeInTheDocument();
-  // });
 });
