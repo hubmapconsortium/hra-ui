@@ -22,6 +22,7 @@ $_theme: main-theme.$theme;
 @include mat.icon-theme($_theme);
 @include mat.progress-bar-theme($_theme);
 @include mat.select-theme($_theme);
+@include mat.snack-bar-theme($_theme);
 
 // Add section theme mixins here!
 @include header-section.theme($_theme);
