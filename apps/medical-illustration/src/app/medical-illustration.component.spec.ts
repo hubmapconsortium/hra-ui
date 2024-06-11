@@ -1,35 +1,43 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ErrorHandler, SimpleChange } from '@angular/core';
+import { Iri, RawCellEntry, RawIllustration, RawIllustrationFile, RawIllustrationsJsonld } from '@hra-ui/services';
 import { firstValueFrom } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { MedicalIllustrationComponent } from './medical-illustration.component';
-import { CellEntry, Illustration, IllustrationFile, IllustrationsJsonld } from './medical-illustration.models';
 
-const SAMPLE_FILE: IllustrationFile = {
+const SAMPLE_FILE: RawIllustrationFile = {
   file: 'test.svg',
   file_format: 'image/svg+xml',
 };
 
-const SAMPLE_CELL: CellEntry = {
+const SAMPLE_CELL: RawCellEntry = {
   label: 'cell1',
   svg_id: 'cell1-path',
   svg_group_id: 'cell1-group',
   representation_of: 'tissue',
 };
 
-const SAMPLE_ILLUSTRATION_1: Illustration = {
-  '@id': 'test1',
+const SAMPLE_ILLUSTRATION_1: RawIllustration = {
+  '@id': 'test1' as Iri,
+  label: '',
+  organ_id: '',
+  organ_label: '',
+  representation_of: '',
   mapping: [SAMPLE_CELL],
   illustration_files: [SAMPLE_FILE],
 };
 
-const SAMPLE_ILLUSTRATION_2: Illustration = {
-  '@id': 'test2',
+const SAMPLE_ILLUSTRATION_2: RawIllustration = {
+  '@id': 'test2' as Iri,
+  label: '',
+  organ_id: '',
+  organ_label: '',
+  representation_of: '',
   mapping: [],
   illustration_files: [],
 };
 
-const SAMPLE_ILLUSTRATIONS: IllustrationsJsonld = {
+const SAMPLE_ILLUSTRATIONS: RawIllustrationsJsonld = {
   '@graph': [SAMPLE_ILLUSTRATION_1, SAMPLE_ILLUSTRATION_2],
 };
 
