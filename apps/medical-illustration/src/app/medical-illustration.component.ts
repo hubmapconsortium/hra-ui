@@ -7,6 +7,7 @@ import {
   inject,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -62,7 +63,7 @@ function selectData<T, Z extends z.ZodTypeAny>(
   styleUrls: ['medical-illustration.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MedicalIllustrationComponent implements OnChanges {
+export class MedicalIllustrationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
   @Input() selectedIllustration?: string | RawIllustration;
 
@@ -118,13 +119,23 @@ export class MedicalIllustrationComponent implements OnChanges {
     ),
   );
 
+  /** Whether the component has run the first initialization pass */
+  private initialized = false;
+
+  /**
+   * Marks the component as initialized
+   */
+  ngOnInit(): void {
+    this.initialized = true;
+  }
+
   /**
    * Updates the data source when inputs change
    *
    * @param changes Changed properties
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('baseHref' in changes || 'illustrations' in changes) {
+    if ('baseHref' in changes || 'illustrations' in changes || !this.initialized) {
       const { baseHref, illustrations } = this;
       this.endpoints.next({
         baseHref,

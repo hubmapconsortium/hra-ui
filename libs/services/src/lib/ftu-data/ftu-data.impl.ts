@@ -111,12 +111,12 @@ export class FtuDataImplService extends FtuDataService {
   @param iri The Iri of the illustration.
   @returns An Observable that emits the mock URL.
   */
-  override getIllustrationUrl(iri: Iri): Observable<Url | string> {
+  override getIllustrationUrl(iri: Iri): Observable<Url | undefined> {
     return this.getDataFileReferences(iri)
       .pipe(map((data) => this.findIllustrationUrl(data)))
       .pipe(
         withLatestFrom(this.endpoints),
-        map(([url, { baseHref }]) => setUrl(url, baseHref)),
+        map(([url, { baseHref }]) => url && setUrl(url, baseHref)),
       );
   }
 
@@ -228,14 +228,11 @@ export class FtuDataImplService extends FtuDataService {
    * @param files
    * @returns illustration url
    */
-  private findIllustrationUrl(files: DataFileReference[]): string {
+  private findIllustrationUrl(files: DataFileReference[]): Url | undefined {
     const { fileFormatMapping } = this;
     const svgFormat = fileFormatMapping['image/svg+xml'];
     const ref = files.find(({ format }) => format === svgFormat);
-    if (ref === undefined) {
-      return '' as Url;
-    }
-    return ref.url;
+    return ref?.url as Url | undefined;
   }
 
   /**
