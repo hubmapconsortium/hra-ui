@@ -3,8 +3,4 @@
   flex-direction: column;
   align-items: center;
   background: linear-gradient(180deg, #d5dbe3 0%, #ffffff 100%);
-
-  @media (max-width: 48rem) {
-    overflow: scroll;
-  }
 }
