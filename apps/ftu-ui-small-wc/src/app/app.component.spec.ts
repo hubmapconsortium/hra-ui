@@ -6,9 +6,8 @@ import { LinkRegistryActions } from '@hra-ui/cdk/state';
 import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints } from '@hra-ui/services';
 import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
 import { mock } from 'jest-mock-extended';
-import { of, ReplaySubject } from 'rxjs';
+import { ReplaySubject, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
-
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 import { NavigationLessRouter } from './routing/simple-router.service';
@@ -68,28 +67,18 @@ describe('AppComponent', () => {
   });
 
   it('should dispatch actions after input', async () => {
-    await shallow.render({ bind: { linksYamlUrl: '', resourcesYamlUrl: '', organIri: '' } });
+    await shallow.render();
     expect(dispatch).toHaveBeenCalled();
   });
 
   it('should load default iri when no iri present', async () => {
     jest.mocked(select$).mockReturnValue(of({ test1: { children: ['testUrl'] } }));
-    await shallow.render({ bind: { linksYamlUrl: '', resourcesYamlUrl: '', organIri: '' } });
+    await shallow.render();
     expect(dispatch).toHaveBeenCalledWith(LinkRegistryActions.Navigate);
   });
 
   it('should reset and reload datasets on change of datasetUrl', async () => {
-    const { instance } = await shallow.render({
-      bind: {
-        linksYamlUrl: '',
-        resourcesYamlUrl: '',
-        organIri: '',
-        datasetUrl: '',
-        illustrationsUrl: '',
-        summariesUrl: '',
-      },
-    });
-    instance.datasetUrl = 'tempUrl';
+    await shallow.render();
     expect(dispatch$).toHaveBeenCalledWith(ActiveFtuActions.Reset);
     expect(dispatch).toHaveBeenCalledWith(TissueLibraryActions.Load);
   });
