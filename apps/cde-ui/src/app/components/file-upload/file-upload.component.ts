@@ -5,17 +5,29 @@ import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
 import { reduce, Subscription } from 'rxjs';
 
+/**
+ * Error when wrong file type is uploaded
+ */
 export interface FileTypeError {
+  /** Error type */
   type: 'type-error';
+  /** Expected file type */
   expected: string;
+  /** Received file type */
   received?: string;
 }
 
+/**
+ * Error encountered during file parsing
+ */
 export interface FileParseError {
+  /** Error type */
   type: 'parse-error';
+  /** Cause of error */
   cause: unknown;
 }
 
+/** Combined file load error type */
 export type FileLoadError = FileTypeError | FileParseError;
 
 /** Component for loading a file from disk */
@@ -54,8 +66,12 @@ export class FileUploadComponent<T, OptionsT> {
   /** Reference to injector */
   private readonly injector = inject(Injector);
 
+  /** Subscription for data observable */
   private subscription?: Subscription;
 
+  /**
+   * Resets subscriptions and uploaded file
+   */
   reset(): void {
     this.subscription?.unsubscribe();
     this.file = undefined;
@@ -112,6 +128,9 @@ export class FileUploadComponent<T, OptionsT> {
     }
   }
 
+  /**
+   * Handles a load event; returns data array or emits progress data
+   */
   private handleLoadEvent(acc: T[], event: FileLoaderEvent<T>): T[] {
     if (event.type === 'data') {
       acc.push(event.data);

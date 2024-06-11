@@ -28,5 +28,6 @@ import { VisualCard, VisualCardComponent } from '../../components/visual-card/vi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
+  /** Visual cards to display on the landing page */
   readonly cards = input<VisualCard[]>([]);
 }

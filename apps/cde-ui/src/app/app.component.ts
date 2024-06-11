@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
+
+/** Max width to show screen size notice */
+export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
+/** Max height to show screen size notice */
+export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
 
 /**
  * App component for CDE
@@ -15,8 +21,11 @@ import { ScreenSizeNoticeComponent } from './components/screen-size-notice/scree
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  /**
+   * Screen size notice detector of app component
+   */
   protected readonly screenSizeNoticeDetector = ScreenSizeNoticeComponent.createDetector({
-    width: 1280,
-    height: 832,
+    width: SCREEN_SIZE_NOTICE_MAX_WIDTH,
+    height: SCREEN_SIZE_NOTICE_MAX_HEIGHT,
   });
 }
