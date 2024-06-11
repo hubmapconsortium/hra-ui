@@ -10,5 +10,5 @@ import { DashboardComponentAnySpec } from './dashboard.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponentOutletComponent {
-  readonly spec = input.required<DashboardComponentAnySpec>();
+  readonly spec = input.required<DashboardComponentAnySpec | undefined>();
 }

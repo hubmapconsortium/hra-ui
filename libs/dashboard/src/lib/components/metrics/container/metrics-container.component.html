@@ -1,8 +1,8 @@
 @for (item of spec().items; track item) {
-  <hra-title-card [spec]="item" class="card">
-    <div class="items" [class]="selectLayoutClass(item.items)">
+  <hra-title-card [spec]="item" class="card" data-testid="title-card">
+    <div class="items" [class]="selectLayoutClass(item.items)" data-testid="metrics-group">
       @for (metric of item.items; track metric) {
-        <hra-metrics-item [spec]="metric"></hra-metrics-item>
+        <hra-metrics-item [spec]="metric" data-testid="metrics-item"></hra-metrics-item>
       }
     </div>
   </hra-title-card>

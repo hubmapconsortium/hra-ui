@@ -1,21 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+import { provideDashboardComponents } from '../../dashboard/dashboard-registry.service';
+import { ImageContainerComponent } from '../image-container/image-container.component';
 import { GridContainerComponent } from './grid-container.component';
 
 describe('GridContainerComponent', () => {
-  let component: GridContainerComponent;
-  let fixture: ComponentFixture<GridContainerComponent>;
+  const testGridContainerData = {
+    type: 'GridContainer',
+    columns: 2,
+    items: [
+      {
+        title: 'Test Image Container',
+        tooltip: 'test tooltip',
+        type: 'ImageContainer',
+        imageUrl: 'https://example.com/image1.jpg',
+        aspectRatio: '1/4',
+      },
+    ],
+  };
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [GridContainerComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(GridContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(GridContainerComponent, {
+      componentInputs: { spec: testGridContainerData },
+      providers: [provideDashboardComponents([ImageContainerComponent])],
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create a grid container', () => {
+    expect(screen.getByTestId('grid-container')).toHaveStyle({
+      gridTemplateColumns: `repeat(2, 1fr)`,
+    });
   });
 });
