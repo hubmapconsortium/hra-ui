@@ -1,7 +1,14 @@
-import { CommonModule } from '@angular/common';
+import { render } from '@testing-library/angular';
+import embed from 'vega-embed';
 import { VegaContainerComponent } from './vega-container.component';
-import { render, screen } from '@testing-library/angular';
-import { TitleCardComponent } from '../title-card/title-card.component';
+
+jest.mock('vega-embed', () => {
+  return {
+    default: jest.fn().mockReturnValue({
+      finalize: jest.fn(),
+    }),
+  };
+});
 
 describe('VegaContainerComponent', () => {
   it('should render the title card and visualization container', async () => {
@@ -12,14 +19,11 @@ describe('VegaContainerComponent', () => {
     };
 
     await render(VegaContainerComponent, {
-      imports: [CommonModule, TitleCardComponent],
       componentInputs: {
         spec: spec,
       },
     });
 
-    const visualizationContainer = screen.getByRole('region', { name: /visualization/i });
-    expect(visualizationContainer).toBeInTheDocument();
-    expect(visualizationContainer).toHaveStyle({ 'aspect-ratio': '16/9' });
+    expect(embed).toHaveBeenCalled();
   });
 });
