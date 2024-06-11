@@ -37,6 +37,8 @@
 
 - type: download-ftu
   versions:
+    - release: '7th HRA Release (v2.1), June 2024'
+      version: '2.1'
     - release: '6th HRA Release (v2.0), December 2023'
       version: '2.0'
     - release: '5th HRA Release (v1.4), June 2023'
@@ -56,6 +58,64 @@
     releaseVersion: Release Version
     digitalObjectType: Digital Object Type
   versionedData:
+    - version: '2.1'
+      rows:
+        - label: Blood Vasculature Female
+          url: https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
+          links:
+            - label: GLB
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb
+          releaseVersion: v1.3
+          dot: 3D Reference Object
+        - label: Blood Vasculature Male
+          url: https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
+          links:
+            - label: GLB
+              link: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb
+          releaseVersion: v1.3
+          dot: 3D Reference Object
+        - label: Blood Vasculature Organ Crosswalk
+          url: https://purl.humanatlas.io/asct-b/blood-vasculature-organ-crosswalk/v1.2
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature-organ-crosswalk/v1.2/assets/blood-vasculature-organ-crosswalk.csv
+          releaseVersion: v1.2
+          dot: Crosswalk
+        - label: Blood Vasculature Geometry
+          url: https://purl.humanatlas.io/vascular-geometry/blood-vasculature-geometry/v1.2
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/vascular-geometry/blood-vasculature-geometry/v1.2/assets/blood-vasculature-geometry.csv
+          releaseVersion: v1.2
+          dot: Vascular Geometry
+        - label: Blood Vasculature
+          url: https://purl.humanatlas.io/asct-b/blood-vasculature/v1.6
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature/v1.6/assets/asct-b-vh-blood-vasculature.csv
+          releaseVersion: v1.6
+          dot: ASCT+B Table
+        - label: Lymph Vasculature
+          url: https://purl.humanatlas.io/asct-b/lymph-vasculature/v1.5
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/lymph-vasculature/v1.5/assets/asct-b-vh-lymph-vasculature.csv
+          releaseVersion: v1.5
+          dot: ASCT+B Table
+        - label: Muscular System
+          url: https://purl.humanatlas.io/asct-b/muscular-system/v1.2
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/muscular-system/v1.2/assets/asct-b-vh-muscular-system.csv
+          releaseVersion: v1.2
+          dot: ASCT+B Table
+        - label: Skeleton
+          url: https://purl.humanatlas.io/asct-b/skeleton/v1.2
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.2/assets/asct-b-vh-skeleton.csv
+          releaseVersion: v1.2
+          dot: ASCT+B Table
     - version: '2.0'
       rows:
         - label: Blood Vasculature Female
