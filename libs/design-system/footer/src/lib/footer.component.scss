@@ -47,7 +47,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      row-gap: 3.5rem;
+      gap: 2rem;
       max-width: 933px;
 
       .social-media {
@@ -193,8 +193,8 @@
         }
 
         .social-funded {
-          margin: 3rem 3.5rem 0 3rem;
-          row-gap: 3rem;
+          margin: 3rem 3rem 0 3rem;
+          gap: 2rem;
         }
 
         .disclaimer {
@@ -305,7 +305,7 @@
         row-gap: 2rem;
         .social-funded {
           margin: 2.375rem 2.5rem 0 2.5rem;
-          row-gap: 2rem;
+          gap: 2rem;
 
           .social-media {
             a {
