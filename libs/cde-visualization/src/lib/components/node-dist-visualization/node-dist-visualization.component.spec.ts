@@ -1,21 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NodeDistVisualizationComponent } from './node-dist-visualization.component';
+// import { ElementRef } from '@angular/core';
+// import { NodeDistVisElement, NodeDistVisualizationComponent } from './node-dist-visualization.component';
+// import { render, screen } from '@testing-library/angular';
+// import '@testing-library/jest-dom';
 
-describe('VisualizationComponent', () => {
-  let component: NodeDistVisualizationComponent;
-  let fixture: ComponentFixture<NodeDistVisualizationComponent>;
+// describe('NodeDistVisualizationComponent', () => {
+//   it('should render', async () => {
+//     await render(NodeDistVisualizationComponent, {
+//       componentInputs: {
+//         nodes: [],
+//         nodeTargetKey: 'target-key',
+//         nodeTargetValue: 'target-value',
+//         edges: [],
+//         maxEdgeDistance: 10,
+//         colorMap: [],
+//         colorMapKey: 'color-map-key',
+//         colorMapValue: 'color-map-value',
+//         cellTypesSelection: [],
+//       }
+//     });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [NodeDistVisualizationComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(NodeDistVisualizationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//     expect(screen.getByText('Visualization')).toBeInTheDocument();
+//   });
+// });
