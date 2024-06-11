@@ -10,15 +10,17 @@ describe('DashboardIndexComponent', () => {
     route: 'test route',
     background: 'test bg',
   };
+
   beforeEach(async () => {
     await render(DashboardIndexComponent, {
       providers: [RouterModule],
       componentInputs: { spec: testData },
     });
   });
+
   it('should render heading', () => {
     const title = screen.getByRole('heading', { level: 2 });
-    expect(title).toHaveTextContent('Explore the coverage and quality of the Human Referance Atlas');
+    expect(title).toHaveTextContent('Explore the coverage and quality of the Human Reference Atlas');
   });
 
   it('should render the description', async () => {
