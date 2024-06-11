@@ -3,7 +3,6 @@
 :host {
   align-self: flex-start;
   width: 100%;
-  background-color: #d5dbe3;
   --mat-text-button-pressed-state-layer-opacity: 0;
   --mat-text-button-hover-state-layer-opacity: 0;
   --mdc-text-button-container-shape: 0;
@@ -17,7 +16,7 @@
     margin: 1.6563rem 2.5rem 1.6563rem 1rem;
 
     .logos {
-      a img:first-child {
+      .hra-logo {
         margin-right: 2rem;
       }
 
@@ -171,6 +170,18 @@
         width: fit-content;
         --mat-menu-item-label-text-color: #201e3d;
         font-weight: 500;
+
+        &:hover {
+          @include cta.flatHover();
+        }
+
+        &:active {
+          @include cta.flatActive();
+        }
+
+        &:focus-visible {
+          @include cta.flatFocus();
+        }
       }
 
       .mat-mdc-menu-item-text {

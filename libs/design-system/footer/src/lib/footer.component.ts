@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
  * Component for footer
  */
 @Component({
-  selector: 'hra-ui-footer',
+  selector: 'hra-footer',
   standalone: true,
   imports: [CommonModule, MatIconModule],
   templateUrl: './footer.component.html',

@@ -13,12 +13,14 @@ import {
   provideDashboardComponents,
 } from '@hra-ui/dashboard';
 import { appRoutes } from './app.routes';
+import { provideIcons } from '@hra-ui/cdk/icons';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withComponentInputBinding()),
     provideHttpClient(),
     provideAnimations(),
+    provideIcons(),
     provideDashboardComponents([
       DashboardIndexComponent,
       DashboardLayoutComponent,
