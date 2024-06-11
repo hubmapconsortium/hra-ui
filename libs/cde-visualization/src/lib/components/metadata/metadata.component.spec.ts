@@ -1,6 +1,7 @@
-import { Metadata, MetadataComponent } from './metadata.component';
+import { MetadataComponent } from './metadata.component';
 import { render, screen } from '@testing-library/angular';
 import '@testing-library/jest-dom';
+import { Metadata } from '../../models/metadata';
 
 describe('MetadataComponent', () => {
   it('should display the metadata information when data is provided', async () => {
@@ -20,19 +21,19 @@ describe('MetadataComponent', () => {
 
     await render(MetadataComponent, {
       componentInputs: {
-        data: metadata,
+        metadata,
       },
     });
 
-    expect(screen.getByText(metadata.title)).toBeInTheDocument();
-    expect(screen.getByText(metadata.sourceData)).toBeInTheDocument();
-    expect(screen.getByText(metadata.organ)).toBeInTheDocument();
-    expect(screen.getByText(metadata.technology)).toBeInTheDocument();
-    expect(screen.getByText(metadata.sex)).toBeInTheDocument();
-    expect(screen.getByText(metadata.age.toString())).toBeInTheDocument();
-    expect(screen.getByText(metadata.thickness.toString())).toBeInTheDocument();
-    expect(screen.getByText(metadata.pixelSize.toString())).toBeInTheDocument();
-    expect(screen.getByText(metadata.creationDate)).toBeInTheDocument();
-    expect(screen.getByText(metadata.creationTime)).toBeInTheDocument();
+    expect(screen.getByText(metadata.title ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.sourceData ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.organ ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.technology ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.sex ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.age ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.thickness ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.pixelSize ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.creationDate ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.creationTime ?? '')).toBeInTheDocument();
   });
 });
