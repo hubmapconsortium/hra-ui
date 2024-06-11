@@ -60,7 +60,7 @@
     - release: 3rd HRA Release (v1.2), June 2022
       version: '1.2'
   organInfo:
-    # TODO: grab from https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/ref-organs.yaml
+    # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/ref-organs.yaml
     - version: '2.1'
       organData:
         - name: Blood Vasculature
@@ -2417,7 +2417,7 @@
 - type: table-version
   versionChooserDisabled: false
   versionData:
-    # TODO: grab from https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/as-per-organ.csv
+    # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/as-per-organ.csv
     - release: 7th HRA Release (v2.1), June 2024
       version: 2.1
       file: as-per-organ.csv

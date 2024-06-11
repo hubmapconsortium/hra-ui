@@ -101,7 +101,7 @@
       cell: "`${element['#AS']}`"
       alignment: end
   organInfo:
-    # TODO: grab from https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/ftu-illustrations.yaml
+    # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/ftu-illustrations.yaml
     - version: '2.1'
       organData:
         - name: Kidney
@@ -320,7 +320,6 @@
               svg: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.svg
               ai: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.ai
               png: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.png
-
     - version: '2.0'
       organData:
         - name: Kidney
