@@ -28,12 +28,12 @@
   .read-btn {
     margin-bottom: 4rem;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
     font-weight: 500;
     font-size: 1.125rem;
     padding: 0.15625rem 1.5rem;
     width: max-content;
-    line-height: 2.15625rem;
+    line-height: 1.6875rem;
 
     mat-icon {
       vertical-align: middle;

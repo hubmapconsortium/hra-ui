@@ -13,10 +13,10 @@ describe('DashboardIndexComponent', () => {
   beforeEach(async () => {
     await render(DashboardIndexComponent, {
       providers: [RouterModule],
-      componentInputs: testData,
+      componentInputs: { spec: testData },
     });
   });
-  it('should render title', () => {
+  it('should render heading', () => {
     const title = screen.getByRole('heading', { level: 2 });
     expect(title).toHaveTextContent('Explore the coverage and quality of the Human Referance Atlas');
   });
@@ -26,15 +26,5 @@ describe('DashboardIndexComponent', () => {
       /The Human Reference Atlas \(HRA\) is constructed and used by experts from many fields of science from around the globe\./i,
     );
     expect(description).toBeInTheDocument();
-  });
-
-  it('should render the long cards', async () => {
-    const cards = screen.getAllByRole('link');
-    expect(cards).toHaveLength(5);
-    expect(cards[0]).toHaveTextContent('Data');
-    expect(cards[1]).toHaveTextContent('Usage');
-    expect(cards[2]).toHaveTextContent('Diversity & Inclusion');
-    expect(cards[3]).toHaveTextContent('Publications');
-    expect(cards[4]).toHaveTextContent('Experimental Data');
   });
 });

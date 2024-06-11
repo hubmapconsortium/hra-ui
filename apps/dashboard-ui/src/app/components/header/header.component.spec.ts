@@ -31,4 +31,16 @@ describe('HeaderComponent', () => {
     expect(publicationsButton).toBeInTheDocument();
     expect(experimentalDataButton).toBeInTheDocument();
   });
+
+  it('should close the menu when closeMenu is called', () => {
+    const component = new HeaderComponent();
+    const menuTriggerMock = {
+      closeMenu: jest.fn(),
+    };
+    component.menuTrigger = menuTriggerMock as any;
+
+    component.closeMenu();
+
+    expect(menuTriggerMock.closeMenu).toHaveBeenCalled();
+  });
 });

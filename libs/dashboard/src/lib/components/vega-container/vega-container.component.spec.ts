@@ -1,21 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
+import embed from 'vega-embed';
 import { VegaContainerComponent } from './vega-container.component';
 
+jest.mock('vega-embed', () => {
+  return {
+    default: jest.fn().mockReturnValue({
+      finalize: jest.fn(),
+    }),
+  };
+});
+
 describe('VegaContainerComponent', () => {
-  let component: VegaContainerComponent;
-  let fixture: ComponentFixture<VegaContainerComponent>;
+  it('should render the title card and visualization container', async () => {
+    const spec = {
+      type: 'VegaContainer',
+      specUrl: 'https://example.com/vega-spec.json',
+      aspectRatio: '16/9',
+    };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [VegaContainerComponent],
-    }).compileComponents();
+    await render(VegaContainerComponent, {
+      componentInputs: {
+        spec: spec,
+      },
+    });
 
-    fixture = TestBed.createComponent(VegaContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(embed).toHaveBeenCalled();
   });
 });

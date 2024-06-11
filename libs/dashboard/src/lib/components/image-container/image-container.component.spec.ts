@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ImageContainerComponent } from './image-container.component';
+import { render, screen } from '@testing-library/angular';
 
 describe('ImageContainerComponent', () => {
-  let component: ImageContainerComponent;
-  let fixture: ComponentFixture<ImageContainerComponent>;
-
+  const testImageInputs = {
+    title: 'test',
+    tooltip: 'tooltip',
+    imageUrl: 'test.png',
+    aspectRatio: '1/3',
+  };
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ImageContainerComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ImageContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(ImageContainerComponent, {
+      componentInputs: { spec: testImageInputs },
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create image container', async () => {
+    expect(await screen.findByText('test')).toBeInTheDocument();
+    expect(await screen.findByRole('img')).toHaveAttribute('src', 'test.png');
   });
 });

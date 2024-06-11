@@ -1,4 +1,4 @@
-<div [style.grid-template-columns]="columns()" class="container">
+<div [style.grid-template-columns]="columns()" data-testid="grid-container">
   @for (item of spec().items; track item) {
     <ng-container *hraDashboardComponentOutlet="item"></ng-container>
   }

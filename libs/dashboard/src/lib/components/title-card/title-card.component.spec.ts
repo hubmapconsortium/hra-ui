@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { TitleCardComponent } from './title-card.component';
 
 describe('TitleCardComponent', () => {
-  let component: TitleCardComponent;
-  let fixture: ComponentFixture<TitleCardComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TitleCardComponent],
-    }).compileComponents();
+    const testData = {
+      title: 'test',
+      tooltip: 'tooltip',
+    };
 
-    fixture = TestBed.createComponent(TitleCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(TitleCardComponent, {
+      componentInputs: { spec: testData },
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    const heading = screen.findByText('test');
+    expect(await heading).toBeInTheDocument();
   });
 });
