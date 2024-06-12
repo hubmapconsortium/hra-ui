@@ -4,13 +4,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { z } from 'zod';
 
+/** Type definition of Title Card */
 export type TitleCardSpec = z.infer<typeof TITLE_CARD_DEF>;
 
+/** Title card definition object */
 export const TITLE_CARD_DEF = z.object({
   title: z.string(),
   tooltip: z.string(),
 });
 
+/** Tooltip positions definition */
 const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
   {
     originX: 'start',
@@ -32,6 +35,7 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
   },
 ];
 
+/** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: 'hra-title-card',
   standalone: true,
@@ -41,8 +45,12 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleCardComponent {
+  /** Input for title card component */
   readonly spec = input.required<TitleCardSpec>();
+
+  /** Setting the tooltip positions  */
   readonly tooltipPositions = TOOLTIP_POSITIONS;
 
+  /** Flag to check if tooltip is open */
   tooltipOpen = false;
 }

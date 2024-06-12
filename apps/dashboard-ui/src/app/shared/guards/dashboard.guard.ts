@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { dashboardUrlResolver } from '../resolvers/dashboard-data/dashboard-data.resolver';
 import { maybeAsyncToObservable } from '../utils/maybe-async-to-observable';
 
+/** Activates route if url is resolved else redirects to '/ */
 export function dashboardCanActivate(
   indexUrl: string | ProviderToken<MaybeAsync<string>>,
   routeParamKey?: string,

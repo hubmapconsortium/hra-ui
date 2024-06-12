@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 
+/** Iframe Container Component, renders html document inside the container  */
 @Component({
   selector: 'hra-iframe-container',
   standalone: true,
@@ -14,14 +15,19 @@ import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IframeContainerComponent {
+  /** Input type for Iframe container component */
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('IFrameContainer'),
     iframeUrl: z.string(),
     aspectRatio: z.string().default('4/3'),
   });
 
+  /** Input for Iframe container component */
   readonly spec = input.required<DashboardComponentSpecFor<typeof IframeContainerComponent>>();
 
+  /** DomSanitizer instance */
   protected readonly sanitizer = inject(DomSanitizer);
+
+  /** Computed safe url of iframe source url */
   protected iframeUrl = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.spec().iframeUrl));
 }

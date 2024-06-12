@@ -15,6 +15,7 @@ import {
 } from '@hra-ui/dashboard';
 import { appRoutes } from './app.routes';
 
+/** Application config */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
