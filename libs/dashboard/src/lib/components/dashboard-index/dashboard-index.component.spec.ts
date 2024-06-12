@@ -20,13 +20,11 @@ describe('DashboardIndexComponent', () => {
 
   it('should render heading', () => {
     const title = screen.getByRole('heading', { level: 2 });
-    expect(title).toHaveTextContent('Explore the coverage and quality of the Human Reference Atlas');
+    expect(title).toHaveTextContent('test title');
   });
 
   it('should render the description', async () => {
-    const description = screen.getByText(
-      /The Human Reference Atlas \(HRA\) is constructed and used by experts from many fields of science from around the globe\./i,
-    );
+    const description = screen.getByRole('heading', { level: 4 });
     expect(description).toBeInTheDocument();
   });
 });

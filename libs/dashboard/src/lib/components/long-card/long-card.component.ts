@@ -6,6 +6,7 @@ import { z } from 'zod';
 
 export type LongCardSpec = z.infer<typeof LONG_CARD_DEF>;
 
+/** Zod Object definition for the long card */
 export const LONG_CARD_DEF = z.object({
   title: z.string(),
   route: z.string(),
@@ -24,5 +25,6 @@ export const LONG_CARD_DEF = z.object({
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LongCardComponent {
+  /** Long card component input */
   readonly spec = input.required<LongCardSpec>();
 }

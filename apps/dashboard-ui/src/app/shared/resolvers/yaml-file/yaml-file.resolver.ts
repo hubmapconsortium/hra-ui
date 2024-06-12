@@ -6,10 +6,13 @@ import { load } from 'js-yaml';
 import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { YAML_FILE_CACHE } from './yaml-file-cache';
 
+/** Interface for resolver options */
 export interface YamlFileResolverOptions {
+  /** Flag for cache */
   cache?: boolean;
 }
 
+/** YAML File resolver */
 export function yamlFileResolver<T = unknown>(
   url: string | ProviderToken<MaybeAsync<string>>,
   options?: YamlFileResolverOptions,
@@ -40,6 +43,7 @@ export function yamlFileResolver<T = unknown>(
   };
 }
 
+/** Returns an observable of the source url */
 function getUrlSource(url: string | ProviderToken<MaybeAsync<string>>): Observable<string> {
   if (typeof url === 'string') {
     return of(url);

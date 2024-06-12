@@ -31,6 +31,24 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/dashboard/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/dashboard-ui"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
     }
   }
 }

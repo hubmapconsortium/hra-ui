@@ -85,7 +85,11 @@
       margin: 1rem 1.5rem 1rem 1rem;
 
       .menu-btns {
-        gap: 0.25rem;
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
       }
     }
   }
@@ -109,14 +113,6 @@
           height: 2rem;
           width: 7.625rem;
         }
-      }
-
-      .menu-btns {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
       }
     }
   }

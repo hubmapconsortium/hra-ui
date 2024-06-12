@@ -1,7 +1,8 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { provideIcons } from '@hra-ui/cdk/icons';
 import {
   DashboardIndexComponent,
   DashboardLayoutComponent,
@@ -13,11 +14,15 @@ import {
   provideDashboardComponents,
 } from '@hra-ui/dashboard';
 import { appRoutes } from './app.routes';
-import { provideIcons } from '@hra-ui/cdk/icons';
 
+/** Application config */
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes, withComponentInputBinding()),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
+    ),
     provideHttpClient(),
     provideAnimations(),
     provideIcons(),

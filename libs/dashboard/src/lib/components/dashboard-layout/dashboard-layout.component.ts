@@ -10,6 +10,9 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+/**
+ * Dashboard Layout component
+ */
 @Component({
   selector: 'hra-dashboard-layout',
   standalone: true,
@@ -19,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardLayoutComponent implements DashboardComponent<typeof DashboardLayoutComponent> {
+  /** Input type for Dashboard Layout Component */
   static readonly def = z.object({
     type: z.literal('Dashboard'),
     title: z.string(),
@@ -31,5 +35,6 @@ export class DashboardLayoutComponent implements DashboardComponent<typeof Dashb
     items: DASHBOARD_COMPONENT_ANY_DEF.array(),
   });
 
+  /** Input for dashboard layout component */
   readonly spec = input.required<DashboardComponentSpecFor<typeof DashboardLayoutComponent>>();
 }

@@ -20,10 +20,13 @@ import { RouterModule } from '@angular/router';
   },
 })
 export class HeaderComponent {
+  /** Trigger for the menu */
   @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
 
+  /** Flag for menu status */
   menuOpen = false;
 
+  /** Closes menu if open */
   closeMenu() {
     if (this.menuTrigger) {
       this.menuTrigger.closeMenu();

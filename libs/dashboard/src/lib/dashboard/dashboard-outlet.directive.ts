@@ -2,16 +2,24 @@ import { Directive, ViewContainerRef, computed, effect, inject, input } from '@a
 import { DashboardComponentRegistryService } from './dashboard-registry.service';
 import { DashboardComponentAnySpec, safeValidateSpec } from './dashboard.model';
 
+/**
+ * Dashboard outlet directive
+ */
 @Directive({
   selector: '[hraDashboardComponentOutlet]',
   standalone: true,
 })
 export class DashboardComponentOutletDirective {
+  /** Input for dashboard outlet directive */
   readonly hraDashboardComponentOutlet = input.required<DashboardComponentAnySpec | undefined>();
 
+  /** Reference to the view container */
   private readonly viewContainerRef = inject(ViewContainerRef);
+
+  /** Reference to the dashboard component registry service */
   private readonly registry = inject(DashboardComponentRegistryService);
 
+  /** Computed value for the component and its validated specification */
   private readonly componentWithSpec = computed(() => {
     const spec = this.hraDashboardComponentOutlet();
     if (!spec) {
@@ -37,8 +45,10 @@ export class DashboardComponentOutletDirective {
     return { component, spec: validateResult.data };
   });
 
+  /** Computed value for the component class */
   private readonly component = computed(() => this.componentWithSpec()?.component);
 
+  /** Computed value for the component reference created within the view container */
   private readonly componentRef = computed(() => {
     const component = this.component();
     if (!component) {
@@ -49,6 +59,7 @@ export class DashboardComponentOutletDirective {
     return this.viewContainerRef.createComponent(component);
   });
 
+  /** Effect to bind inputs to the created component reference */
   protected readonly inputBindingsRef = effect(() => {
     const componentRef = this.componentRef();
     if (!componentRef) {

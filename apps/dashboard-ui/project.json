@@ -92,6 +92,24 @@
         "staticFilePath": "dist/apps/dashboard-ui/browser",
         "spa": true
       }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/dashboard-ui/tsconfig.json",
+        "outputPath": "dist/compodoc/dashboard-ui"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
     }
   }
 }

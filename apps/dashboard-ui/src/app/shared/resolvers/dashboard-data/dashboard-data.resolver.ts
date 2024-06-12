@@ -7,6 +7,7 @@ import { yamlFileResolver } from '../yaml-file/yaml-file.resolver';
 
 type IndexSpec = DashboardComponentSpecFor<typeof DashboardIndexComponent>;
 
+/** Dashboard URL resolver */
 export function dashboardUrlResolver(
   indexUrl: string | ProviderToken<MaybeAsync<string>>,
   routeParamKey = 'dashboard',
@@ -24,6 +25,7 @@ export function dashboardUrlResolver(
   };
 }
 
+/** Dashboard data resolver */
 export function dashboardDataResolver(
   indexUrl: string | ProviderToken<MaybeAsync<string>>,
   routeParamKey?: string,
