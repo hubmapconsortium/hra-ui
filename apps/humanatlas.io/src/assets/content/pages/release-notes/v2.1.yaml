@@ -98,7 +98,7 @@
                 - 7 Vasculature Common Coordinate Framework (VCCF) Tables
         - type: button
           text: 7th Release Digital Objects
-          url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/index.html
+          url: https://purl.humanatlas.io/collection/hra/v2.1
           styles:
             margin-bottom: 2.5rem
             margin-top: -3rem
@@ -188,11 +188,11 @@
           pageData:
             - heading: ''
               descriptions: |
-                - <a href='' target="_blank">Preview: Functional Tissue Unit (FTU) Explorer</a>
-                - <a href='' target="_blank">Preview: Cell Distance Explorer</a>
-                - <a href='' target="_blank">Preview: Use Atlas Components</a>
-                - <a href='' target="_blank">Preview: HRA Dashboards</a>
-                - <a href='' target="_blank">Human Atlas Stories: Knowledge Graph</a>
+                - <a href='https://apps.humanatlas.io/ftu-explorer/' target="_blank">Preview: Functional Tissue Unit (FTU) Explorer</a>
+                - <a href='https://apps.humanatlas.io/cde/' target="_blank">Preview: Cell Distance Explorer</a>
+                - <a href='https://apps.humanatlas.io/us6/' target="_blank">Preview: Use Atlas Components</a>
+                - <a href='https://apps.humanatlas.io/dashboard/' target="_blank">Preview: HRA Dashboards</a>
+                - <a href='https://lod.humanatlas.io' target="_blank">Human Atlas Stories: Knowledge Graph</a>
           styles:
             margin-bottom: 2.5rem
         - type: title
@@ -207,11 +207,11 @@
             - heading: ''
               descriptions: |
                 - <a href='https://humanatlas.io/' target="_blank">Human Reference Atlas</a>
-                - <a href='' target="_blank">Overview: Use HRA Previews</a>
-                - <a href='' target="_blank">Atlas Demo Apps</a>
-                - <a href='' target="_blank">ASCT+B Reporter</a>
-                - <a href='' target="_blank">Exploration User Interface (EUI)</a>
-                - <a href='' target="_blank">Registration User Interface (RUI)</a>
+                - <a href='https://humanatlas.io/overview-use-the-hra' target="_blank">Overview: Use HRA Previews</a>
+                - <a href='https://apps.humanatlas.io' target="_blank">Atlas Demo Apps</a>
+                - <a href='https://hubmapconsortium.github.io/ccf-asct-reporter/' target="_blank">ASCT+B Reporter</a>
+                - <a href='https://apps.humanatlas.io/eui/' target="_blank">Exploration User Interface (EUI)</a>
+                - <a href='https://apps.humanatlas.io/rui/' target="_blank">Registration User Interface (RUI)</a>
                 - <a href='https://www.meta.com/experiences/5696814507101529/' target="_blank">HRA Organ Gallery</a>
           styles:
             margin-bottom: 2.5rem
@@ -226,14 +226,14 @@
           pageData:
             - heading: ''
               descriptions: |
-                - <a href='' target="_blank">HRA-API v0.6.0</a>
-                - <a href='' target="_blank">HRA-API Client Libraries v0.6.0</a>
-                  - <a href='' target="_blank">JavaScript</a>
-                  - <a href='' target="_blank">TypeScript</a>
-                  - <a href='' target="_blank">Angular</a>
-                  - <a href='' target="_blank">Python</a>
-                - <a href='' target="_blank">HRA_KGs</a>
-                - <a href='' target="_blank">grlc API</a>
+                - <a href='https://www.npmjs.com/package/hra-api' target="_blank">HRA-API v0.6.0</a>
+                - HRA-API Client Libraries v0.6.0:
+                  - <a href='https://www.npmjs.com/package/@hra-api/js-client' target="_blank">JavaScript</a>
+                  - <a href='https://www.npmjs.com/package/@hra-api/ts-client' target="_blank">TypeScript</a>
+                  - <a href='https://www.npmjs.com/package/@hra-api/ng-client' target="_blank">Angular</a>
+                  - <a href='https://pypi.org/project/hra-api-client/' target="_blank">Python</a>
+                - <a href='http://lod.humanatlas.io' target="_blank">HRA-KG</a>
+                - <a href='https://github.com/hubmapconsortium/ccf-grlc/' target="_blank">grlc API</a>
     - type: styled-group
       id: news
       components:
