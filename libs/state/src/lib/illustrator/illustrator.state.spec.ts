@@ -1,10 +1,17 @@
-import { MockProxy, mock } from 'jest-mock-extended';
-import { IllustratorModel, IllustratorState } from './illustrator.state';
-import { StateContext } from '@ngxs/store';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataService, IllustrationMappingItem, Iri, Url } from '@hra-ui/services';
-import { Load, SetClicked, SetHover } from './illustrator.actions';
-import { firstValueFrom, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
+import {
+  FTU_DATA_IMPL_ENDPOINTS,
+  FtuDataService,
+  IllustrationMappingItem,
+  Iri,
+  RawCellEntry,
+  Url,
+} from '@hra-ui/services';
+import { StateContext } from '@ngxs/store';
+import { MockProxy, mock } from 'jest-mock-extended';
+import { firstValueFrom, of } from 'rxjs';
+import { Load, SetClicked, SetHover } from './illustrator.actions';
+import { IllustratorModel, IllustratorState } from './illustrator.state';
 
 describe('IllustratorState', () => {
   const testUrl = 'https://www.example.com' as Url;
@@ -61,6 +68,7 @@ describe('IllustratorState', () => {
         id: 'Mock Name',
         groupId: 'Mock Group',
         ontologyId: 'Mock id',
+        source: {} as RawCellEntry,
       };
       state.SetHover(ctx, new SetHover(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnHover: mockSelected });
@@ -74,6 +82,7 @@ describe('IllustratorState', () => {
         id: 'Mock Name',
         groupId: 'Mock Group',
         ontologyId: 'Mock id',
+        source: {} as RawCellEntry,
       };
       state.SetClicked(ctx, new SetClicked(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnClick: mockSelected });

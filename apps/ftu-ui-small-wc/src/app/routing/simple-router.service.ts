@@ -10,6 +10,6 @@ export class NavigationLessRouter extends Router {
   override navigate(commands: unknown[], extras?: NavigationExtras | undefined): Promise<boolean> {
     const id = extras?.queryParams?.['id'];
     this.setActive(id);
-    return new Promise(() => true);
+    return Promise.resolve(true);
   }
 }
