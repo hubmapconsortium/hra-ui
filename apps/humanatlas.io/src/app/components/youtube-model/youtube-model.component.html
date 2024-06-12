@@ -1,2 +1,2 @@
-<p class="player-title">{{ playerData.playerTitle }}</p>
+<p *ngIf="playerData.playerTitle" class="player-title">{{ playerData.playerTitle }}</p>
 <youtube-player [height]="playerData.height" [width]="playerData.width" [videoId]="playerData.videoId"></youtube-player>
