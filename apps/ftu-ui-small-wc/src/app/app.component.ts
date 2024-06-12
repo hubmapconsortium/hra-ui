@@ -40,6 +40,7 @@ import {
 } from '@hra-ui/state';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
+/** Input property keys */
 type InputProps =
   | 'selectedIllustration'
   | 'illustrations'
@@ -48,10 +49,14 @@ type InputProps =
   | 'baseHref'
   | 'appLinks'
   | 'appResources';
+
+/** Used by applyUpdates to determine which part of the app needs updates */
 type UpdateSelectors = Record<InputProps, boolean>;
 
+/** Link to main ftu page */
 export const ftuPage = createLinkId('FTU');
 
+/** Update selection where every part of the app should update  */
 const UPDATE_ALL_SELECTORS: UpdateSelectors = {
   appLinks: true,
   appResources: true,
@@ -62,10 +67,15 @@ const UPDATE_ALL_SELECTORS: UpdateSelectors = {
   summaries: true,
 };
 
+/**
+ * Creates an observable operator function that remove undefined values from a stream
+ * @returns Observable operator function
+ */
 function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
+/** FTU ui small web component */
 @Component({
   selector: 'hra-root',
   imports: [
@@ -84,45 +94,68 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent implements OnInit, OnChanges {
+  /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
+  /** Set of all illustrations */
   @Input() illustrations: string | RawIllustrationsJsonld =
     'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
-  @Input() datasets: string | RawDatasets = '';
+  /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';
+  /** Datasets to display in the sources tab */
+  @Input() datasets: string | RawDatasets = '';
+  /** Base href if different from the page */
   @Input() baseHref = '';
 
+  /** Application links */
   @Input() appLinks = 'assets/links.yml';
+  /** Application resources */
   @Input() appResources = 'assets/resources.yml';
 
+  /** Emits whenever a different illustration is selected by the user */
   @Output('illustration-selected') readonly illustrationSelected = select$(ActiveFtuSelectors.iri).pipe(
     filterUndefined(),
   );
 
+  /** Emits when the mouse hover on/off a single cell */
   @Output('cell-hover') readonly cellHover = select$(IllustratorSelectors.selectedOnHovered).pipe(
     map((node) => node?.source),
   );
 
+  /** Emits when the user clicks a cell */
   @Output('cell-click') readonly cellClick = select$(IllustratorSelectors.selectedOnClicked).pipe(
     filterUndefined(),
     map((node) => node.source),
   );
 
+  /** Whether in full screen mode */
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
+  /** Whether an illustration is active */
   private readonly isActive = selectSnapshot(ActiveFtuSelectors.isActive);
+  /** Loaded tissues */
   private readonly tissues = select$(TissueLibrarySelectors.tissues);
 
+  /** Updates the application base href */
   private readonly setBaseHref = dispatch(BaseHrefActions.Set);
+  /** Load links */
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
+  /** Load resources */
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
+  /** Load datasets */
   private readonly loadDatasets = dispatch(TissueLibraryActions.Load);
+  /** Set the screen size to small */
   private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize, 'small');
+  /** Navigate */
   private readonly navigate = dispatch(LinkRegistryActions.Navigate);
+  /** Clear the active illustration */
   private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
 
+  /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
+  /** Whether the component is initialized */
   private initialized = false;
 
+  /** Initializes the component */
   ngOnInit() {
     this.setScreenSmall();
 
@@ -132,6 +165,7 @@ export class AppComponent implements OnInit, OnChanges {
     }
   }
 
+  /** Updates the state when inputs change */
   ngOnChanges(changes: SimpleChanges) {
     const selectors =
       'baseHref' in changes || !this.initialized
@@ -150,6 +184,10 @@ export class AppComponent implements OnInit, OnChanges {
     this.initialized = true;
   }
 
+  /**
+   * Applies updates
+   * @param selectors What parts to update
+   */
   private applyUpdates(selectors: UpdateSelectors): void {
     const { baseHref } = this;
     let endpointsUpdated = false;
@@ -193,6 +231,9 @@ export class AppComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Updates the selected illustration using a default if not provided
+   */
   private updateSelectedIllustration(): void {
     const { selectedIllustration: selected } = this;
     if (selected === undefined || selected === '') {
@@ -207,6 +248,9 @@ export class AppComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Select a default illustration
+   */
   private setDefaultSelectedIllustration(): void {
     this.tissues
       .pipe(

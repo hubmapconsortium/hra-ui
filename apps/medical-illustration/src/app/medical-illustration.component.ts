@@ -126,7 +126,9 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
    * Marks the component as initialized
    */
   ngOnInit(): void {
-    this.initialized = true;
+    if (!this.initialized) {
+      this.ngOnChanges({});
+    }
   }
 
   /**
@@ -148,6 +150,8 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
     if ('selectedIllustration' in changes) {
       this.illustration$.next(this.selectedIllustration);
     }
+
+    this.initialized = true;
   }
 
   /**

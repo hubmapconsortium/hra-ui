@@ -53,6 +53,7 @@ const TISSUE_LINK = createLinkId('FTU');
 /** Provides Base/root url for the tissue tree */
 const BASE_IRI = 'https://purl.humanatlas.io/2d-ftu/' as Iri;
 
+/** Default empty tissue library object */
 const EMPTY_TISSUE_LIBRARY: TissueLibrary = {
   root: '' as Iri,
   nodes: {},
