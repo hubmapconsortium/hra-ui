@@ -38,7 +38,7 @@ import {
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { filter, from, map, ReplaySubject, switchMap, take } from 'rxjs';
+import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
 type InputProps =
   | 'selectedIllustration'
@@ -61,6 +61,10 @@ const UPDATE_ALL_SELECTORS: UpdateSelectors = {
   selectedIllustration: true,
   summaries: true,
 };
+
+function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
+  return filter((value): value is T => value !== undefined);
+}
 
 @Component({
   selector: 'hra-root',
@@ -91,7 +95,7 @@ export class AppComponent implements OnInit, OnChanges {
   @Input() appResources = 'assets/resources.yml';
 
   @Output('illustration-selected') readonly illustrationSelected = select$(ActiveFtuSelectors.iri).pipe(
-    filter((iri: string | undefined): iri is string => iri !== undefined),
+    filterUndefined(),
   );
 
   @Output('cell-hover') readonly cellHover = select$(IllustratorSelectors.selectedOnHovered).pipe(
@@ -99,7 +103,8 @@ export class AppComponent implements OnInit, OnChanges {
   );
 
   @Output('cell-click') readonly cellClick = select$(IllustratorSelectors.selectedOnClicked).pipe(
-    map((node) => node?.source),
+    filterUndefined(),
+    map((node) => node.source),
   );
 
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
@@ -120,7 +125,11 @@ export class AppComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.setScreenSmall();
-    this.initialized = true;
+
+    // Ensure updates are run even when no inputs have been set
+    if (!this.initialized) {
+      this.ngOnChanges({});
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -138,6 +147,7 @@ export class AppComponent implements OnInit, OnChanges {
           };
 
     this.applyUpdates(selectors);
+    this.initialized = true;
   }
 
   private applyUpdates(selectors: UpdateSelectors): void {
@@ -185,7 +195,7 @@ export class AppComponent implements OnInit, OnChanges {
 
   private updateSelectedIllustration(): void {
     const { selectedIllustration: selected } = this;
-    if (selected === undefined) {
+    if (selected === undefined || selected === '') {
       this.setDefaultSelectedIllustration();
     } else {
       const iri = typeof selected === 'string' ? selected : selected['@id'];
