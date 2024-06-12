@@ -4,32 +4,20 @@
   "projectType": "application",
   "prefix": "hra",
   "sourceRoot": "apps/dashboard-ui/src",
-  "tags": [
-    "type:app",
-    "project:dashboard"
-  ],
+  "tags": ["type:app", "project:dashboard"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser-esbuild",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dashboard-ui",
         "index": "apps/dashboard-ui/src/index.html",
         "main": "apps/dashboard-ui/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/dashboard-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/dashboard-ui/src/favicon.ico",
-          "apps/dashboard-ui/src/assets"
-        ],
-        "styles": [
-          "apps/dashboard-ui/src/styles.scss"
-        ],
+        "assets": ["apps/dashboard-ui/src/favicon.ico", "apps/dashboard-ui/src/assets"],
+        "styles": ["apps/dashboard-ui/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -91,9 +79,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/dashboard-ui/jest.config.ts"
       }
