@@ -87,15 +87,15 @@
             - heading: ''
               descriptions: |
                 The HRA now includes:
-                - [# of] ASCT+B Tables
-                  - [# of] anatomical structures
-                  - [# of] cell types
-                  - [# of] biomarkers
-                - [# of] 2D Functional Tissue Units (FTUs)
-                - [# of] 3D Organ Models
-                - [# of] Organ Mapping Antibody Panel (OMAP) Tables
-                - [# of] Crosswalk Tables
-                - [# of] Vasculature Common Coordinate Framework (VCCF) Tables
+                - 36 ASCT+B Tables
+                  - 4,659 anatomical structures
+                  - 2,024 cell types
+                  - 1,311 biomarkers
+                - 22 2D Functional Tissue Units (FTUs)
+                - 65 3D Organ Models
+                - 21 Organ Mapping Antibody Panel (OMAP) Tables
+                - 10 Crosswalk Tables
+                - 7 Vasculature Common Coordinate Framework (VCCF) Tables
         - type: button
           text: 7th Release Digital Objects
           url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/index.html
