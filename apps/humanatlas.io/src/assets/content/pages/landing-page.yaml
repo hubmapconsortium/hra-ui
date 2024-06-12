@@ -104,24 +104,25 @@
       count: 1,000+
       text: publications
       alt: Publications
+    # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/data/hra-growth.atlas.csv
     - image: assets/images/organs_metric.svg
       count: 65
       text: organs
       alt: Organs
     - image: assets/images/anatomical-structures.svg
-      count: 4,499
+      count: 4,659
       text: anatomical structures
       alt: Anatomical Structures
     - image: assets/images/cell-types.svg
-      count: 1,195
+      count: 1,311
       text: cell types
       alt: Cell Types
     - image: assets/images/biomarkers.svg
-      count: 2,089
+      count: 2,024
       text: biomarkers
       alt: Biomarkers
     - image: assets/images/omap.svg
-      count: 13
+      count: 21
       text: organ mapping antibody panels
       alt: Omap
     - image: assets/images/ftu.svg
