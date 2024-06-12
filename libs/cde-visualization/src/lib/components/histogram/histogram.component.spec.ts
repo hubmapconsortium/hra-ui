@@ -9,6 +9,8 @@ import { EdgeEntry } from '../../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
+import { WritableSignal } from '@angular/core';
+import { Rgb } from '../../models/color';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
@@ -106,61 +108,41 @@ describe('HistogramComponent', () => {
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
   });
 
-  it('should allow the user to update color', async () => {
-    const { fixture } = await render(HistogramComponent, {
+  it('should updateColor', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await render(HistogramComponent, {
       componentInputs: {
-        nodes: sampleNodes,
-        nodeTargetKey,
-        edges: sampleEdges,
-        selectedCellType: sampleNodes[0][nodeTargetKey],
+        nodes: [],
+        nodeTargetKey: 'key',
+        edges: [],
+        selectedCellType: 'type',
         cellTypes: sampleCellTypes,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
-    await fixture.whenStable();
 
-    const [colorPickerEl] = screen.getAllByTestId('color-picker-button');
-    await userEvent.click(colorPickerEl);
-    //
+    instance.updateColor(sampleCellTypes[0], [255, 255, 255]);
+    expect(instance.cellTypes()[0].color).toEqual([255, 255, 255]);
   });
 
-  // it('should updateColor', async () => {
-  //   const component = await render(HistogramComponent, {
-  //     componentInputs: {
-  //       nodes: [],
-  //       nodeTargetKey: 'key',
-  //       edges: [],
-  //       selectedCellType: 'type',
-  //       cellTypes: [
-  //         { name: 'name', count: 2, color: [0, 0, 0] },
-  //         { name: 'name2', count: 4, color: [0, 1, 2] },
-  //       ],
-  //       cellTypesSelection: ['name', 'name2'],
-  //     },
-  //   });
+  it('should reset all cell colors', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await render(HistogramComponent, {
+      componentInputs: {
+        nodes: [],
+        nodeTargetKey,
+        edges: [],
+        selectedCellType: '',
+        cellTypes: [],
+        cellTypesSelection: [],
+      },
+    });
 
-  //   component.fixture.componentInstance.updateColor(
-  //     component.fixture.componentInstance.cellTypes()[0],
-  //     [255, 255, 255],
-  //   );
-  //   expect(component.fixture.componentInstance.cellTypes()[0].color).toEqual([255, 255, 255]);
-  // });
-
-  // it('should reset all cell colors', async () => {
-  //   const component = await render(HistogramComponent, {
-  //     componentInputs: {
-  //       nodes: [],
-  //       nodeTargetKey: 'key',
-  //       edges: [],
-  //       selectedCellType: 'type',
-  //       cellTypes: [
-  //         { name: 'name', count: 2, color: [0, 0, 0] },
-  //         { name: 'name2', count: 4, color: [0, 1, 2] },
-  //       ],
-  //       cellTypesSelection: ['name', 'name2'],
-  //     },
-  //   });
-
-  //   component.fixture.componentInstance.resetAllCellsColor();
-  // });
+    const priedInstance = instance as unknown as { totalCellTypeColor: WritableSignal<Rgb> };
+    priedInstance.totalCellTypeColor.set([1, 2, 3]);
+    instance.resetAllCellsColor();
+    expect(priedInstance.totalCellTypeColor()).toEqual([0, 0, 0]);
+  });
 });
