@@ -39,4 +39,45 @@ describe('CellTypesComponent', () => {
     await userEvent.click(firstCheckbox);
     expect(firstCheckbox).not.toBeChecked();
   });
+
+  it('toggles row', async () => {
+    const component = await render(CellTypesComponent, {
+      componentInputs: { cellTypes: mockData, cellTypesSelection: ['a', 'b', 'c'] },
+    });
+
+    component.fixture.componentInstance.toggleRow(mockData[0]);
+    expect(component.fixture.componentInstance.cellTypesSelection()).toEqual(['a', 'b', 'c', 'Cell Type 1']);
+  });
+
+  it('updates row color', async () => {
+    const component = await render(CellTypesComponent, {
+      componentInputs: { cellTypes: mockData, cellTypesSelection: ['a', 'b', 'c'] },
+    });
+
+    component.fixture.componentInstance.updateColor(mockData[0], [0, 0, 0]);
+    expect(component.fixture.componentInstance.cellTypes()[0].color).toEqual([0, 0, 0]);
+  });
+
+  it('resets sort', async () => {
+    const component = await render(CellTypesComponent, {
+      componentInputs: { cellTypes: mockData, cellTypesSelection: ['a', 'b', 'c'] },
+    });
+
+    component.fixture.componentInstance.resetSort();
+  });
+
+  it('returns partial selection state', async () => {
+    const component = await render(CellTypesComponent, {
+      componentInputs: { cellTypes: mockData, cellTypesSelection: ['Cell Type 1', 'Cell Type 2', 'Cell Type 3'] },
+    });
+
+    component.fixture.componentInstance.toggleRow(mockData[1]);
+    component.fixture.componentInstance.toggleRow(mockData[2]);
+    component.fixture.componentInstance.toggleAllRows();
+    expect(component.fixture.componentInstance.cellTypesSelection()).toEqual([
+      'Cell Type 1',
+      'Cell Type 2',
+      'Cell Type 3',
+    ]);
+  });
 });

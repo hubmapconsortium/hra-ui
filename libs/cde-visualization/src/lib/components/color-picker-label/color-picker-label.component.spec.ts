@@ -1,21 +1,29 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { ColorPickerLabelComponent } from './color-picker-label.component';
+import { render } from '@testing-library/angular';
 
-// describe('ColorPickerLabelComponent', () => {
-//   let component: ColorPickerLabelComponent;
-//   let fixture: ComponentFixture<ColorPickerLabelComponent>;
+import { ColorPickerLabelComponent } from './color-picker-label.component';
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [ColorPickerLabelComponent],
-//     }).compileComponents();
+describe('ColorPickerLabelComponent', () => {
+  it('should update color when selectColor is called', async () => {
+    const component = await render(ColorPickerLabelComponent, {
+      componentInputs: {
+        color: [0, 0, 0],
+        label: 'Test Label',
+      },
+    });
 
-//     fixture = TestBed.createComponent(ColorPickerLabelComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+    component.fixture.componentInstance.selectColor('#ffffff');
+    expect(component.fixture.componentInstance.color()).toEqual([255, 255, 255]);
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should not update color if same color picked', async () => {
+    const component = await render(ColorPickerLabelComponent, {
+      componentInputs: {
+        color: [255, 255, 255],
+        label: 'Test Label',
+      },
+    });
+
+    component.fixture.componentInstance.selectColor('#ffffff');
+    expect(component.fixture.componentInstance.color()).toEqual([255, 255, 255]);
+  });
+});
