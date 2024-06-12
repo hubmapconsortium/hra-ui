@@ -17,7 +17,7 @@ export class IframeContainerComponent {
   static readonly def = TITLE_CARD_DEF.extend({
     type: z.literal('IFrameContainer'),
     iframeUrl: z.string(),
-    aspectRatio: z.string().default('3/1'),
+    aspectRatio: z.string().default('4/3'),
   });
 
   readonly spec = input.required<DashboardComponentSpecFor<typeof IframeContainerComponent>>();
