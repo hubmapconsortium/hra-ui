@@ -1,7 +1,18 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, input, model, output, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  viewChild,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -52,12 +63,20 @@ export class CellTypesComponent {
   protected readonly sort = viewChild.required(MatSort);
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
 
+  private readonly cdr = inject(ChangeDetectorRef);
+
   protected readonly dataSource = new MatTableDataSource<CellTypeEntry>();
-  protected readonly dataSourceBindRef = effect(() => (this.dataSource.data = this.cellTypes()));
+  protected readonly dataSourceBindRef = effect(() => {
+    this.dataSource.data = this.cellTypes();
+    this.cdr.markForCheck();
+  });
 
   protected readonly selectionModel = new SelectionModel<string>(true);
   protected readonly selectionModelBindRef = effect(
-    () => this.selectionModel.setSelection(...this.cellTypesSelection()),
+    () => {
+      this.selectionModel.setSelection(...this.cellTypesSelection());
+      this.cdr.markForCheck();
+    },
     { allowSignalWrites: true },
   );
 
