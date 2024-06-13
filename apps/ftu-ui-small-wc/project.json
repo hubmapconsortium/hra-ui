@@ -17,7 +17,7 @@
         "main": "apps/ftu-ui-small-wc/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/ftu-ui-small-wc/tsconfig.app.json",
-        "assets": ["apps/ftu-ui-small-wc/src/favicon.ico", "apps/ftu-ui-small-wc/src/assets"],
+        "assets": ["apps/ftu-ui-small-wc/src/favicon.png", "apps/ftu-ui-small-wc/src/assets"],
         "styles": ["apps/ftu-ui-small-wc/src/styles.scss", "apps/ftu-ui-small-wc/src/assets/fonts/fonts.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]

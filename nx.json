@@ -75,7 +75,7 @@
       "cache": true
     },
     "build-webcomponent": {
-      "dependsOn": ["build"],
+      "dependsOn": [{ "target": "build", "params": "forward" }],
       "inputs": ["production", "{projectRoot}/src/webcomponent-example.html", "{workspaceRoot}/dist/{projectRoot}/main.js"],
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}/wc.js",

@@ -23,7 +23,7 @@
         "polyfills": "apps/ccf-organ-info/src/polyfills.ts",
         "tsConfig": "apps/ccf-organ-info/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-organ-info/src/favicon.ico", "apps/ccf-organ-info/src/assets"],
+        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
         "scripts": [
           {
@@ -125,7 +125,7 @@
         "tsConfig": "apps/ccf-organ-info/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-organ-info/karma.conf.js",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-organ-info/src/favicon.ico", "apps/ccf-organ-info/src/assets"],
+        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",

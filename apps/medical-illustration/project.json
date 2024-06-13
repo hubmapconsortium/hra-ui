@@ -15,7 +15,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/medical-illustration/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/medical-illustration/src/favicon.ico", "apps/medical-illustration/src/assets"],
+        "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
         "styles": ["apps/medical-illustration/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
