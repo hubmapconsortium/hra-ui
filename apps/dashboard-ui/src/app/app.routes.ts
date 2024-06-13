@@ -10,7 +10,7 @@ const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data/dashboards/
 /** Application routes definition */
 export const appRoutes: Route[] = [
   {
-    path: 'home',
+    path: '',
     component: DashboardComponentOutletComponent,
     resolve: {
       spec: yamlFileResolver(INDEX_SPEC_URL),
@@ -24,5 +24,5 @@ export const appRoutes: Route[] = [
       spec: dashboardDataResolver(INDEX_SPEC_URL),
     },
   },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: '' },
 ];
