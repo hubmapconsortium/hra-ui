@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
+import { rgbToHex } from '../models/color';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
-import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../models/node';
-import { rgbToHex } from '../models/color';
+import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
@@ -27,7 +27,7 @@ class MockNodeDistVis extends HTMLElement {
   maxEdgeDistance = createReactSignal();
   colorMapData = createReactSignal();
   colorMapKey = createReactSignal();
-  colorMapValue = createReactSignal();
+  colorMapValueKey = createReactSignal();
   selection = createReactSignal();
 
   resetView() {
@@ -63,7 +63,12 @@ describe('CdeVisualizationComponent', () => {
     return { [nodeTargetKey]: target, x, y } as NodeEntry;
   }
 
-  const sampleNodes = [createNodeEntry('a', 0, 0), createNodeEntry('b', 0, 2), createNodeEntry('c', 0, 4)];
+  const sampleNodes = [
+    createNodeEntry('a', 0, 0),
+    createNodeEntry('b', 0, 2),
+    createNodeEntry('c', 0, 4),
+    createNodeEntry('b', 0, 5),
+  ];
   const sampleEdges: EdgeEntry[] = [
     [0, 0, 0, 3, 4, 5, 6],
     [1, 0, 2, 3, 4, 5, 6],
@@ -78,7 +83,7 @@ describe('CdeVisualizationComponent', () => {
   const sampleColorMap = [
     createColorMapEntry(0, 'a', [0, 0, 0]),
     createColorMapEntry(1, 'b', [0, 0, 1]),
-    createColorMapEntry(2, 'c', [0, 0, 3]),
+    createColorMapEntry(2, 'c', [0, 0, 2]),
   ];
 
   const embedResult = mockDeep<Result>();
@@ -144,7 +149,7 @@ describe('CdeVisualizationComponent', () => {
 
     const processedColorMap = instance
       .cellTypesAsColorMap()
-      .map((entry) => ({ ...entry, [instance.colorMapValue()]: rgbToHex(entry[instance.colorMapValue()]) }));
+      .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
 
     const fileSaver = TestBed.inject(FileSaverService);
     const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
@@ -167,5 +172,175 @@ describe('CdeVisualizationComponent', () => {
     });
     instance.resetCellTypes();
     expect(instance.cellTypesResetCounter()).toEqual(1);
+  });
+
+  describe('nodeTypeKey()', () => {
+    it('should use the default node target key provided', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetKey: 'key',
+        },
+      });
+      expect(instance.nodeTypeKey()).toEqual('key');
+    });
+
+    it('should use the default node target key if node target key is not provided', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetKey: undefined,
+        },
+      });
+      expect(instance.nodeTypeKey()).toEqual(DEFAULT_NODE_TARGET_KEY);
+    });
+  });
+
+  describe('selectedNodeTargetValue()', () => {
+    it('should set a default node target with nodeTargetValue', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetValue: 'Endothelial',
+        },
+      });
+      expect(instance.selectedNodeTargetValue()).toEqual('Endothelial');
+    });
+
+    it('should set a default node target if nodeTargetValue is not provided', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetValue: undefined,
+        },
+      });
+      expect(instance.selectedNodeTargetValue()).toEqual(DEFAULT_NODE_TARGET_VALUE);
+    });
+  });
+
+  describe('colorMapTypeKey()', () => {
+    it('should set color map key', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          colorMapKey: 'key',
+        },
+      });
+      expect(instance.colorMapTypeKey()).toEqual('key');
+    });
+
+    it('should set color map key as node target key if colorMapKey is undefined and nodeTargetKey is provided', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetKey: 'key',
+          colorMapKey: undefined,
+        },
+      });
+      expect(instance.colorMapTypeKey()).toEqual('key');
+    });
+
+    it('should set a default color map key if colorMapKey and nodeTargetKey are undefined', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodeTargetKey: undefined,
+          colorMapKey: undefined,
+        },
+      });
+      expect(instance.colorMapTypeKey()).toEqual(DEFAULT_COLOR_MAP_KEY);
+    });
+  });
+
+  describe('cellTypesFromNodes()', () => {
+    it('should get cell types from nodes and set color from color map', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodes: [
+            {
+              cell_type: 'a',
+              x: 0,
+              y: 1,
+            },
+            {
+              cell_type: 'b',
+              x: 0,
+              y: 2,
+            },
+            {
+              cell_type: 'c',
+              x: 0,
+              y: 3,
+            },
+          ],
+          colorMap: sampleColorMap,
+          nodeTargetKey: 'cell_type',
+        },
+      });
+
+      expect(instance.cellTypesFromNodes()).toEqual([
+        {
+          name: 'a',
+          count: 1,
+          color: [0, 0, 0],
+        },
+        {
+          name: 'b',
+          count: 1,
+          color: [0, 0, 1],
+        },
+        {
+          name: 'c',
+          count: 1,
+          color: [0, 0, 2],
+        },
+      ]);
+    });
+
+    it('should set default colors if color map not provided', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CdeVisualizationComponent, {
+        componentInputs: {
+          ...sampleData,
+          nodes: sampleNodes,
+          colorMap: undefined,
+        },
+      });
+      expect(instance.cellTypesFromNodes()).toEqual([
+        {
+          name: 'a',
+          count: 1,
+          color: [112, 165, 168],
+        },
+        {
+          name: 'b',
+          count: 2,
+          color: [205, 132, 144],
+        },
+        {
+          name: 'c',
+          count: 1,
+          color: [116, 149, 174],
+        },
+      ]);
+    });
   });
 });
