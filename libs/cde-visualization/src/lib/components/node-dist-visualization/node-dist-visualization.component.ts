@@ -40,7 +40,7 @@ interface NodeDistVisElementProps {
 
   colorMapData: ColorMapEntry[];
   colorMapKey: string;
-  colorMapValue: string;
+  colorMapValueKey: string;
 
   selection: string[];
 }
@@ -73,7 +73,7 @@ export class NodeDistVisualizationComponent {
 
   readonly colorMap = input.required<ColorMapEntry[]>();
   readonly colorMapKey = input.required<string>();
-  readonly colorMapValue = input.required<string>();
+  readonly colorMapValueKey = input.required<string>();
 
   readonly cellTypesSelection = input.required<string[]>();
 
@@ -101,7 +101,7 @@ export class NodeDistVisualizationComponent {
 
     this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
     this.bindData('colorMapKey', this.colorMapKey);
-    this.bindData('colorMapValue', this.colorMapValue);
+    this.bindData('colorMapValueKey', this.colorMapValueKey);
 
     this.bindData('selection', this.cellTypesSelection);
   }

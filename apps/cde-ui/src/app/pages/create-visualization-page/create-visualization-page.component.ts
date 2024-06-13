@@ -299,7 +299,7 @@ export class CreateVisualizationPageComponent {
 
         colorMap,
         colorMapKey: DEFAULT_COLOR_MAP_KEY,
-        colorMapValue: DEFAULT_COLOR_MAP_VALUE_KEY,
+        colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
 
         metadata: normalizedMetadata,
       }),

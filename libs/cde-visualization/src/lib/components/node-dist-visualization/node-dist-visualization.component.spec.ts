@@ -23,7 +23,7 @@ class MockNodeDistVis extends HTMLElement {
   maxEdgeDistance = createReactSignal();
   colorMapData = createReactSignal();
   colorMapKey = createReactSignal();
-  colorMapValue = createReactSignal();
+  colorMapValueKey = createReactSignal();
   selection = createReactSignal();
 
   resetView() {
@@ -65,7 +65,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 10,
         colorMap: [],
         colorMapKey: 'color-map-key',
-        colorMapValue: 'color-map-value',
+        colorMapValueKey: 'color-map-value',
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -85,7 +85,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 10,
         colorMap: [],
         colorMapKey: 'color-map-key',
-        colorMapValue: 'color-map-value',
+        colorMapValueKey: 'color-map-value',
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -109,7 +109,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 10,
         colorMap: [],
         colorMapKey: 'color-map-key',
-        colorMapValue: 'color-map-value',
+        colorMapValueKey: 'color-map-value',
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -134,7 +134,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 10,
         colorMap: [],
         colorMapKey: 'color-map-key',
-        colorMapValue: 'color-map-value',
+        colorMapValueKey: 'color-map-value',
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -159,7 +159,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 10,
         colorMap: [],
         colorMapKey: 'color-map-key',
-        colorMapValue: 'color-map-value',
+        colorMapValueKey: 'color-map-value',
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
