@@ -41,12 +41,12 @@
       route: exploration-user-interface
       alt: Exploration user interface icon
     - icon: assets/images/ftu_explorer_us4.svg
-      title: Functional Tissue Unit Explorer
+      title: "Preview: Functional Tissue Unit Explorer"
       body: An interactive tool for exploring functional tissue units (FTUs) via cell types by gene, protein, and lipid biomarkers
       route: user-story/4
       alt: Functional Tissue Unit Explorer icon
     - icon: assets/images/cell_dist_explorer_us5.svg
-      title: Cell Distance Explorer
+      title: "Preview: Cell Distance Explorer"
       body: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
       route: /user-story/5
       alt: Functional Tissue Unit Explorer icon

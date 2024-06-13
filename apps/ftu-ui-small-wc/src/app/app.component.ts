@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +10,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { dispatch, dispatch$, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
@@ -19,7 +20,15 @@ import {
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
 import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplEndpoints, setUrl, Url } from '@hra-ui/services';
+import {
+  FTU_DATA_IMPL_ENDPOINTS,
+  FtuDataImplEndpoints,
+  RawCellSummary,
+  RawDatasets,
+  RawIllustration,
+  RawIllustrationsJsonld,
+  setUrl,
+} from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
@@ -29,8 +38,44 @@ import {
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { ReplaySubject, tap } from 'rxjs';
+import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
+/** Input property keys */
+type InputProps =
+  | 'selectedIllustration'
+  | 'illustrations'
+  | 'datasets'
+  | 'summaries'
+  | 'baseHref'
+  | 'appLinks'
+  | 'appResources';
+
+/** Used by applyUpdates to determine which part of the app needs updates */
+type UpdateSelectors = Record<InputProps, boolean>;
+
+/** Link to main ftu page */
+export const ftuPage = createLinkId('FTU');
+
+/** Update selection where every part of the app should update  */
+const UPDATE_ALL_SELECTORS: UpdateSelectors = {
+  appLinks: true,
+  appResources: true,
+  baseHref: true,
+  datasets: true,
+  illustrations: true,
+  selectedIllustration: true,
+  summaries: true,
+};
+
+/**
+ * Creates an observable operator function that remove undefined values from a stream
+ * @returns Observable operator function
+ */
+function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
+  return filter((value): value is T => value !== undefined);
+}
+
+/** FTU ui small web component */
 @Component({
   selector: 'hra-root',
   imports: [
@@ -49,82 +94,176 @@ import { ReplaySubject, tap } from 'rxjs';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent implements OnInit, OnChanges {
-  title = 'ftu-ui-small-wc';
-
-  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
-  readonly tissues = select$(TissueLibrarySelectors.tissues);
-  constructor() {
-    this.setScreenSmall('small');
-  }
-
-  @Input() linksYamlUrl = '';
-
-  @Input() resourcesYamlUrl = '';
-
-  @Input() set organIri(iri: string) {
-    iri ? this.navigateToOrgan(createLinkId('FTU'), { queryParams: { id: iri } }) : this.showDefaultIri();
-  }
-
-  @Input() datasetUrl = '';
-  @Input() illustrationsUrl = '';
-  @Input() summariesUrl = '';
+  /** Illustration to display (choosen automatically if not provided) */
+  @Input() selectedIllustration?: string | RawIllustration;
+  /** Set of all illustrations */
+  @Input() illustrations: string | RawIllustrationsJsonld =
+    'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+  /** Cell summaries to display in tables */
+  @Input() summaries: string | RawCellSummary = '';
+  /** Datasets to display in the sources tab */
+  @Input() datasets: string | RawDatasets = '';
+  /** Base href if different from the page */
   @Input() baseHref = '';
 
-  @Output() readonly organSelected = select$(ActiveFtuSelectors.iri);
+  /** Application links */
+  @Input() appLinks = 'assets/links.yml';
+  /** Application resources */
+  @Input() appResources = 'assets/resources.yml';
 
-  @Output() readonly nodeHovered = select$(IllustratorSelectors.selectedOnHovered);
+  /** Emits whenever a different illustration is selected by the user */
+  @Output('illustration-selected') readonly illustrationSelected = select$(ActiveFtuSelectors.iri).pipe(
+    filterUndefined(),
+  );
 
-  @Output() readonly nodeClicked = select$(IllustratorSelectors.selectedOnClicked);
+  /** Emits when the mouse hover on/off a single cell */
+  @Output('cell-hover') readonly cellHover = select$(IllustratorSelectors.selectedOnHovered).pipe(
+    map((node) => node?.source),
+  );
 
+  /** Emits when the user clicks a cell */
+  @Output('cell-click') readonly cellClick = select$(IllustratorSelectors.selectedOnClicked).pipe(
+    filterUndefined(),
+    map((node) => node.source),
+  );
+
+  /** Whether in full screen mode */
+  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
+  /** Whether an illustration is active */
+  private readonly isActive = selectSnapshot(ActiveFtuSelectors.isActive);
+  /** Loaded tissues */
+  private readonly tissues = select$(TissueLibrarySelectors.tissues);
+
+  /** Updates the application base href */
   private readonly setBaseHref = dispatch(BaseHrefActions.Set);
+  /** Load links */
   private readonly loadLinks = dispatch(LinkRegistryActions.LoadFromYaml);
-  private readonly addMany = dispatch(LinkRegistryActions.AddMany);
+  /** Load resources */
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
-  private readonly navigateToOrgan = dispatch(LinkRegistryActions.Navigate);
-  private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize);
-  private readonly reloadDataSets = dispatch(TissueLibraryActions.Load);
-  private readonly reloadActiveFtu = dispatch(ActiveFtuActions.Load);
+  /** Load datasets */
+  private readonly loadDatasets = dispatch(TissueLibraryActions.Load);
+  /** Set the screen size to small */
+  private readonly setScreenSmall = dispatch(ScreenModeAction.SetSize, 'small');
+  /** Navigate */
+  private readonly navigate = dispatch(LinkRegistryActions.Navigate);
+  /** Clear the active illustration */
+  private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
 
-  private readonly reset = dispatch$(ActiveFtuActions.Reset);
-
+  /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
+  /** Whether the component is initialized */
+  private initialized = false;
+
+  /** Initializes the component */
   ngOnInit() {
-    const { baseHref } = this;
-    this.setBaseHref(this.baseHref);
-    this.loadLinks(setUrl(this.linksYamlUrl, baseHref));
-    this.loadResources(setUrl(this.resourcesYamlUrl, baseHref));
-    this.endpoints.next({
-      illustrations: setUrl(this.illustrationsUrl, baseHref),
-      datasets: setUrl(this.datasetUrl, baseHref),
-      summaries: setUrl(this.summariesUrl, baseHref),
-      baseHref: this.baseHref as Url,
-    });
+    this.setScreenSmall();
+
+    // Ensure updates are run even when no inputs have been set
+    if (!this.initialized) {
+      this.ngOnChanges({});
+    }
   }
 
+  /** Updates the state when inputs change */
   ngOnChanges(changes: SimpleChanges) {
-    this.reset()
-      .pipe(
-        tap(() => {
-          this.reloadDataSets();
-          this.reloadActiveFtu(changes['organIri']?.currentValue);
-        }),
-      )
-      .subscribe();
+    const selectors =
+      'baseHref' in changes || !this.initialized
+        ? UPDATE_ALL_SELECTORS
+        : {
+            appLinks: 'appLinks' in changes,
+            appResources: 'appResources' in changes,
+            baseHref: false,
+            datasets: 'datasets' in changes,
+            illustrations: 'illustrations' in changes,
+            selectedIllustration: 'selectedIllustration' in changes,
+            summaries: 'summaries' in changes,
+          };
+
+    this.applyUpdates(selectors);
+    this.initialized = true;
   }
 
-  showDefaultIri() {
+  /**
+   * Applies updates
+   * @param selectors What parts to update
+   */
+  private applyUpdates(selectors: UpdateSelectors): void {
+    const { baseHref } = this;
+    let endpointsUpdated = false;
+    const updateEndpointsOnce = () => {
+      if (!endpointsUpdated) {
+        const { illustrations, datasets, summaries, baseHref } = this;
+        this.endpoints.next({
+          illustrations,
+          datasets,
+          summaries,
+          baseHref,
+        });
+        endpointsUpdated = true;
+      }
+    };
+
+    if (selectors.baseHref) {
+      this.setBaseHref(baseHref);
+    }
+
+    if (selectors.appLinks) {
+      this.loadLinks(setUrl(this.appLinks, baseHref));
+    }
+
+    if (selectors.appResources) {
+      this.loadResources(setUrl(this.appResources, baseHref));
+    }
+
+    if (selectors.datasets) {
+      updateEndpointsOnce();
+      this.loadDatasets();
+    }
+
+    if (selectors.illustrations || selectors.summaries) {
+      updateEndpointsOnce();
+      this.clearActiveFtu();
+    }
+
+    if (selectors.selectedIllustration || selectors.illustrations || selectors.summaries) {
+      this.updateSelectedIllustration();
+    }
+  }
+
+  /**
+   * Updates the selected illustration using a default if not provided
+   */
+  private updateSelectedIllustration(): void {
+    const { selectedIllustration: selected } = this;
+    if (selected === undefined || selected === '') {
+      this.setDefaultSelectedIllustration();
+    } else {
+      const iri = typeof selected === 'string' ? selected : selected['@id'];
+      this.navigate(ftuPage, {
+        queryParams: {
+          id: iri,
+        },
+      });
+    }
+  }
+
+  /**
+   * Select a default illustration
+   */
+  private setDefaultSelectedIllustration(): void {
     this.tissues
       .pipe(
-        tap((nodes) => {
-          for (const [key, { children }] of Object.entries(nodes)) {
-            if (children.length > 0 && key) {
-              this.organIri = children[0];
-              break;
-            }
-          }
-        }),
+        switchMap((tissues) => from(Object.values(tissues))),
+        filter(({ children }) => children.length > 0),
+        map(({ children }) => children[0]),
+        take(1),
       )
-      .subscribe();
+      .subscribe((iri) => {
+        if (!this.isActive() && this.selectedIllustration === undefined) {
+          this.selectedIllustration = iri;
+          this.updateSelectedIllustration();
+        }
+      });
   }
 }
