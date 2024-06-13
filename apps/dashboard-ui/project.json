@@ -16,7 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/dashboard-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/dashboard-ui/src/favicon.ico", "apps/dashboard-ui/src/assets"],
+        "assets": ["apps/dashboard-ui/src/favicon.png", "apps/dashboard-ui/src/assets"],
         "styles": ["apps/dashboard-ui/src/styles.scss"],
         "scripts": []
       },
