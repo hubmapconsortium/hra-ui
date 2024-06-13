@@ -8,9 +8,10 @@
   "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "ngx-build-plus:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "singleBundle": true,
         "outputPath": "dist/apps/ftu-ui-small-wc",
         "index": "apps/ftu-ui-small-wc/src/index.html",
         "main": "apps/ftu-ui-small-wc/src/main.ts",
@@ -62,7 +63,7 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": ""
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
