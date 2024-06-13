@@ -5,7 +5,7 @@
     - title: Use Atlas Components
       subtitle: Explore, use, and share HRA web components to improve data access and analysis
       image: assets/images/hra_api.svg
-      alt: Functional Tissue Unit Explorer icon
+      alt: API icon
 
 - type: margin
   bottom: 3.5rem
@@ -32,8 +32,8 @@
   bottom: -3rem
 
 - type: button
-  text: Use Components (UPDATE LINK)
-  url: https://apps.humanatlas.io/us2/
+  text: Use Components
+  url: https://apps.humanatlas.io/us6/
 
 - type: margin
   bottom: 5rem
@@ -43,7 +43,7 @@
     height: 584
     width: 1232
     videoId: AlcTRCMU2ME
-    playerTitle: 'TO BE DECIDED'
+    playerTitle: 'Video Demonstration -- NEED VIDEO'
 
 - type: margin
   bottom: 5rem
@@ -64,4 +64,4 @@
 
 - type: button
   text: GitHub Repository
-  url: https://github.com/x-atlas-consortia/hra-apps
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us6-lightweight-atlas-components/

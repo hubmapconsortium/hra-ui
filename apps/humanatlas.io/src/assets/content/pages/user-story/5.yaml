@@ -5,7 +5,7 @@
     - title: Cell Distance Explorer
       subtitle: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
       image: assets/images/cell_dist_explorer_us5.svg
-      alt: Functional Tissue Unit Explorer icon
+      alt: Cell Distance Explorer icon
 
 - type: margin
   bottom: 3.5rem
@@ -34,8 +34,8 @@
   bottom: -3rem
 
 - type: button
-  text: Use the Cell Distance Explorer (UPDATE LINK)
-  url: https://apps.humanatlas.io/us2/
+  text: Use the Cell Distance Explorer
+  url: https://apps.humanatlas.io/cde/
 
 - type: margin
   bottom: 5rem
@@ -44,8 +44,8 @@
   youtubePlayer:
     height: 584
     width: 1232
-    videoId: AlcTRCMU2ME
-    playerTitle: 'TO BE DECIDED'
+    videoId: q8zCRd7vHH8
+    playerTitle: 'Video Demonstration'
 
 - type: margin
   bottom: 5rem
@@ -66,4 +66,5 @@
 
 - type: button
   text: GitHub Repository
-  url: https://github.com/x-atlas-consortia/hra-apps
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/cde-cell-distance-explorer/
+

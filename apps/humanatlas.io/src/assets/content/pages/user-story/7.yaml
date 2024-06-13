@@ -5,7 +5,7 @@
     - title: Track Atlas Evolution and Usage
       subtitle: Explore usage statistics of atlas data and code
       image: assets/images/track_atlas_usage_us7.svg
-      alt: Functional Tissue Unit Explorer icon
+      alt: Dashboard icon
 
 - type: margin
   bottom: 3.5rem
@@ -32,8 +32,8 @@
   bottom: -3rem
 
 - type: button
-  text: Use HRA Dashboards (UPDATE LINK)
-  url: https://apps.humanatlas.io/us2/
+  text: Use HRA Dashboards
+  url: https://apps.humanatlas.io/dashboard/
 
 - type: margin
   bottom: 5rem
@@ -54,7 +54,7 @@
 
 - type: button
   text: GitHub Repository
-  url: https://github.com/x-atlas-consortia/hra-apps
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us7-hra-dashboard/
 
 - type: image
   imageSource: assets/images/us3.png
