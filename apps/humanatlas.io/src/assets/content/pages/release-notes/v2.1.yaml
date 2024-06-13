@@ -82,6 +82,8 @@
         - type: title
           title: Data
           class: release-title
+          styles:
+            margin-bottom: 0.5rem
         - type: page-data
           pageData:
             - heading: ''
@@ -137,6 +139,7 @@
             font-size: 20px
             line-height: 28px
             font-weight: 400
+            margin-bottom: 0.5rem
         - type: page-data
           pageData:
             - heading: ''
@@ -172,6 +175,8 @@
         - type: title
           title: User Interfaces
           class: release-title
+          styles:
+            margin-bottom: 0.5rem
         - type: title
           title: Explore new and updated Human Reference Atlas APIs, applications, and websites.
           class: page-data
@@ -312,7 +317,7 @@
                 - Documenting the CCF Ontology v2.0.1 connecting specimen, biological structure, and spatial data, as well as the HRA API to make the HRA programmatically accessible and interoperable with Linked Open Data (LOD): Herr II, Hardi, Quardokus, et al. Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas. Scientific Data 10, 171 (2023). doi: 10.1038/s41597-023-01993-8
                 - Documenting Organ Mapping Antibody Panels (OMAPs): Quardokus, Saunders, McDonough, et al. Organ Mapping Antibody Panels: A community resource for standardized multiplexed tissue imaging. Nature Methods 20, 1174-1178 (2023). doi: 10.1038/s41592-023-01846-7
         - type: title
-          title: New & Updated Standard Operating Procedures (SOPs)
+          title: Standard Operating Procedures (SOPs)
           styles:
             font-size: 1.25rem
             line-height: 1.75rem
@@ -322,7 +327,14 @@
           pageData:
             - heading: ''
               descriptions: |
-                - Lisel to provide
+                - New SOPs
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623744' target='_blank'>Authoring the Pathway Organ Crosswalk Tables</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623897' target='_blank'>Constructing Blood Vasculature-Organ Crosswalk Diagrams</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623414' target='_blank'>Authoring the Pathway Crosswalk Table</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623222' target='_blank'>Authoring the Blood Vasculature Geometry Table</a>
+                - Updated SOPs
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.5639622' target='_blank'>Human Reference Atlas Working Group Communications</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.10359228' target='_blank'>Managing Human Reference Atlas Registrations</a>
           styles:
             margin-bottom: 2.5rem
         - type: title
@@ -354,8 +366,8 @@
           styles:
             margin-bottom: 2rem
         - type: button
-          text: Start Course - UPDATE URL
-          url: https://cdn.humanatlas.io/hra-releases/v2.0/docs/index.html
+          text: Start Course
+          url: https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc
           styles:
             margin-bottom: 2rem
         - type: title
