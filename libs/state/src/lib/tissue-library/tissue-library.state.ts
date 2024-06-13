@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { FtuDataService } from '@hra-ui/services';
+import { FtuDataService, Iri } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { Load } from './tissue-library.actions';
@@ -8,6 +8,10 @@ import { TissueLibraryContext, TissueLibraryModel } from './tissue-library.model
 /** State handling tissue data*/
 @State<TissueLibraryModel>({
   name: 'tissueLibrary',
+  defaults: {
+    root: '' as Iri,
+    nodes: {},
+  },
 })
 @Injectable()
 export class TissueLibraryState {

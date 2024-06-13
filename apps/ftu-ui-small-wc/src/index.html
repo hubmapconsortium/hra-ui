@@ -22,31 +22,25 @@
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
-        const selectOrgan = (activeIri) => {
-          console.log('selected organ', activeIri);
+        const logEvent = (event) => {
+          console.log(`Event ${event.type} with data`, event.detail);
         };
-        const selectNode = (selectedNode) => {
-          console.log('selected node', selectedNode);
-        };
-        ftu.addEventListener('organSelected', selectOrgan);
-        ftu.addEventListener('nodeClicked', selectNode);
+
+        ftu.addEventListener('illustration-selected', logEvent);
+        ftu.addEventListener('cell-click', logEvent);
+        ftu.addEventListener('cell-hover', logEvent);
       });
     </script>
   </head>
 
   <body>
     <div class="wc-content">
-      <ftu-hra-small-wc
+      <hra-ftu-ui-small
         id="ftu"
-        links-yaml-url="assets/links.yml"
-        resources-yaml-url="assets/resources.yml"
-        organ-iri="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"
-        dataset-url="assets/TEMP/ftu-datasets.jsonld"
-        illustrations-url="assets/TEMP/2d-ftu-illustrations.jsonld"
-        summaries-url="assets/TEMP/ftu-cell-summaries.jsonld"
-        (organSelected)="selectOrgan()"
-        (nodeClicked)="selectNode()"
-      ></ftu-hra-small-wc>
+        selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct"
+        datasets="assets/TEMP/ftu-datasets.jsonld"
+        summaries="assets/TEMP/ftu-cell-summaries.jsonld"
+      ></hra-ftu-ui-small>
     </div>
   </body>
 </html>
