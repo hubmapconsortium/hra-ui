@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   effect,
+  inject,
   input,
   viewChild,
 } from '@angular/core';
@@ -28,6 +29,9 @@ export class VisualizationPageComponent {
   readonly isCustomVisualization = input<boolean>();
 
   private readonly vis = viewChild.required<ElementRef<CdeVisualizationElement>>('vis');
+
+  private readonly location = inject(Location);
+  protected readonly homeLink = this.location.prepareExternalUrl('/');
 
   protected readonly dataBindRef = effect(() => {
     const el = this.vis().nativeElement;

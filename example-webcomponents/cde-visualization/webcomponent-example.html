@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CDE Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="wc.js"></script>
+  </head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const ftu = document.getElementById('cde');
+      const nodeClick = (nodeEntry) => {
+        console.log('node click', nodeEntry);
+      };
+      const nodeHover = (nodeEntry) => {
+        console.log('node hover', nodeEntry);
+      };
+      ftu.addEventListener('nodeClicked', nodeClick);
+      ftu.addEventListener('nodeHovered', nodeHover);
+    });
+  </script>
+  <body>
+    <cde-visualization-wc
+      id="cde"
+      home-link="https://apps.humanatlas.io/cde/"
+      nodes=""
+      node-target-key=""
+      node-target-value=""
+      edges=""
+      max-edge-distance=""
+      color-map=""
+      color-map-key=""
+      color-map-value=""
+      metadata=""
+      title=""
+      technology=""
+      organ=""
+      sex=""
+      age="50"
+      creation-date=""
+      creation-time=""
+      thickness=""
+      pixelSize=""
+    >
+    </cde-visualization-wc>
+  </body>
+</html>

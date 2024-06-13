@@ -16,7 +16,7 @@ import { organsResolver } from './shared/resolvers/organs/organs.resolver';
  */
 export const ROUTES: Routes = [
   {
-    path: 'home',
+    path: '',
     component: LandingPageComponent,
     resolve: {
       cards: jsonFileResolver<VisualCard[]>('assets/data/landing-page/cards.json', { cache: true }),
@@ -49,6 +49,6 @@ export const ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
   },
 ];

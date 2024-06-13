@@ -159,7 +159,6 @@ export class HistogramComponent {
 
       onCleanup(finalize);
       this.view.set(view);
-      console.log(view);
     },
     { allowSignalWrites: true },
   );
