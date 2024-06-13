@@ -7,6 +7,7 @@
     "cde-visualization",
     "cde",
     "cdk",
-    "ftu-ui"
+    "ftu-ui",
+    "services"
   ]
 }

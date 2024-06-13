@@ -1,7 +1,8 @@
 import { dispatchAction$ } from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions, LinkType, createLinkId } from '@hra-ui/cdk/state';
+import { LinkRegistryActions, LinkType } from '@hra-ui/cdk/state';
 import { LinkIds } from '@hra-ui/state';
 import { Observable } from 'rxjs';
+import { ftuPage } from './app.component';
 
 /**
  * Factory for APP_INITIALIZER to initialize the application
@@ -16,7 +17,7 @@ export function initFactory(): () => Observable<unknown> {
           type: LinkType.Internal,
           commands: ['/'],
         },
-        [createLinkId('FTU')]: {
+        [ftuPage]: {
           type: LinkType.Internal,
           commands: ['ftu/'],
         },
