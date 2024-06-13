@@ -21,7 +21,7 @@
         "tsConfig": "apps/humanatlas.io/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "apps/humanatlas.io/src/favicon.ico",
+          "apps/humanatlas.io/src/favicon.png",
           "apps/humanatlas.io/src/assets",
           {
             "glob": "**/*",
