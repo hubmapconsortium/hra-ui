@@ -5,6 +5,10 @@
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
+  .create-and-explore {
+    max-width: 120rem;
+  }
+
   .create-explore-content {
     padding: 1rem 1.5rem 5rem 1.5rem;
   }
@@ -43,10 +47,16 @@
     justify-content: center;
   }
 
-  .vccf {
+  .vccf-container {
     background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
     opacity: 98%;
-    flex-wrap: wrap;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+  }
+
+  .vccf {
+    max-width: 120rem;
     padding: 3rem 1rem;
     display: grid;
     grid-template-columns: 100%;
@@ -104,6 +114,10 @@
       margin-right: 0.25rem;
       margin-left: 0.25rem;
     }
+
+    --mat-text-button-hover-state-layer-opacity: 0;
+    --mat-text-button-pressed-state-layer-opacity: 0;
+    --mat-text-button-focus-state-layer-opacity: 0;
   }
 
   .youtube-player {
