@@ -1,10 +1,15 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
-
 import { LandingPageComponent } from './landing-page.component';
 
 describe('LandingPageComponent', () => {
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
+
   it('should create', async () => {
     await render(LandingPageComponent, {
+      providers,
       componentInputs: {
         cards: [
           {

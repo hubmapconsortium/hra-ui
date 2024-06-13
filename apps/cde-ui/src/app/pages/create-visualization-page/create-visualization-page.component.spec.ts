@@ -41,7 +41,9 @@ describe('CreateVisualizationPageComponent', () => {
 
   describe('submit()', () => {
     it('submits', async () => {
-      const component = await render(CreateVisualizationPageComponent, {
+      const {
+        fixture: { componentInstance: instance },
+      } = await render(CreateVisualizationPageComponent, {
         componentInputs: {
           organs: [
             {
@@ -52,9 +54,9 @@ describe('CreateVisualizationPageComponent', () => {
         },
         providers: globalProviders,
       });
-      component.fixture.componentInstance.setNodes(sampleNodes);
-      component.fixture.componentInstance.setCustomColorMap(sampleColorMap);
-      component.fixture.componentInstance.submit();
+      instance.setNodes(sampleNodes);
+      instance.setCustomColorMap(sampleColorMap);
+      instance.submit();
     });
   });
 });

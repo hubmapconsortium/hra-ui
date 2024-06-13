@@ -1,28 +1,62 @@
-// import { FileLoaderOptions, FileLoaderResult, FileUploadComponent } from './file-upload.component';
-// import { render, screen } from '@testing-library/angular';
-// import '@testing-library/jest-dom';
-// import { signal } from '@angular/core';
+import { Injector, OutputEmitterRef, signal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 
-// describe('FileUploadComponent', () => {
-//   let loader: jest.Mock<FileLoaderResult<unknown>, [File, FileLoaderOptions]>;
+import { FileUploadComponent } from './file-upload.component';
 
-//   beforeEach(() => {
-//     loader = jest.fn();
-//     loader.mockReturnValue({
-//       progress: signal(0),
-//       result: Promise.resolve('abc'),
-//     });
-//   });
+describe('FileUploadComponent', () => {
+  const loader = jest.fn();
+  const mockFiles = {
+    0: {
+      name: 'nodes.csv',
+      type: 'text/csv',
+    } as File,
+    length: 1,
+  } as unknown as FileList;
 
-//   test('should load', async () => {
-//     await render(FileUploadComponent, {
-//       componentInputs: {
-//         fileTitle: 'testTitle',
-//         accept: 'csv',
-//         loader: loader,
-//       },
-//     });
+  beforeEach(() => {
+    loader.mockReturnValue({
+      progress: signal(0),
+      result: Promise.resolve('abc'),
+    });
+  });
 
-//     expect(screen.getByText(/testTitle/i)).toBeInTheDocument();
-//   });
-// });
+  it('should load', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await render(FileUploadComponent, {
+      componentInputs: {
+        fileTitle: 'testTitle',
+        accept: 'csv',
+        loader: loader,
+        options: {},
+      },
+    });
+
+    instance.load({ files: mockFiles } as HTMLInputElement);
+    expect(screen.getByText(/testTitle/i)).toBeInTheDocument();
+  });
+
+  it('should cancel load', async () => {
+    const loadCancelled = jest.fn();
+    const {
+      fixture: { componentInstance: instance },
+    } = await render(FileUploadComponent, {
+      componentInputs: {
+        fileTitle: 'testTitle',
+        accept: 'csv',
+        loader: loader,
+        options: {},
+      },
+      componentOutputs: {
+        loadCancelled: {
+          emit: loadCancelled,
+        } as unknown as OutputEmitterRef<void>,
+      },
+    });
+
+    TestBed.inject(Injector);
+    instance.cancelLoad();
+    expect(loadCancelled).toHaveBeenCalled();
+  });
+});
