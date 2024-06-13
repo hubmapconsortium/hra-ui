@@ -31,7 +31,7 @@ export class VisualizationPageComponent {
   private readonly vis = viewChild.required<ElementRef<CdeVisualizationElement>>('vis');
 
   private readonly location = inject(Location);
-  protected readonly homeLink = this.location.prepareExternalUrl('');
+  protected readonly homeLink = this.location.prepareExternalUrl('/');
 
   protected readonly dataBindRef = effect(() => {
     const el = this.vis().nativeElement;
