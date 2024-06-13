@@ -40,10 +40,10 @@
       body: An interactive tool for exploring and validating spatially registered tissue blocks and cell type populations
       route: exploration-user-interface
       alt: Exploration user interface icon
-    - icon: assets/images/ftu_explorer.svg
+    - icon: assets/images/ftu_explorer_us4.svg
       title: Functional Tissue Unit Explorer
       body: An interactive tool for exploring functional tissue units (FTUs) via cell types by gene, protein, and lipid biomarkers
-      externalLink: https://apps.humanatlas.io/ftu-explorer/#/
+      route: user-story/4
       alt: Functional Tissue Unit Explorer icon
     - icon: assets/images/cell_dist_explorer_us5.svg
       title: Cell Distance Explorer
