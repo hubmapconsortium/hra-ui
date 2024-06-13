@@ -22,7 +22,7 @@ export abstract class FtuDataService {
    * This method takes
    * @param iri and @returns an observable url
    */
-  abstract getIllustrationUrl(iri: Iri): Observable<Url | string>;
+  abstract getIllustrationUrl(iri: Iri): Observable<Url | undefined>;
   /**
    * This method takes
    * @param iri and @returns observable of IllustrationMappingItem

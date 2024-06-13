@@ -2,6 +2,6 @@
   [url]="(url$ | async) ?? ''"
   [mapping]="(mapping$ | async) ?? []"
   [highlightId]="highlightId"
-  (nodeHover)="cellHover.emit($event?.cell)"
-  (nodeClick)="cellClick.emit($event.cell)"
+  (nodeHover)="cellHover.emit($event?.source)"
+  (nodeClick)="cellClick.emit($event.source)"
 ></hra-interactive-svg>

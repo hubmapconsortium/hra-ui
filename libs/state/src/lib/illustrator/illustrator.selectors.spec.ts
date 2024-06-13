@@ -1,4 +1,4 @@
-import { IllustrationMappingItem, Url } from '@hra-ui/services';
+import { IllustrationMappingItem, RawCellEntry, Url } from '@hra-ui/services';
 import { IllustratorModel } from './illustrator.state';
 import { IllustratorSelectors } from './illustrator.selectors';
 
@@ -10,12 +10,14 @@ describe('IllustratorSelectors', () => {
       id: ' ',
       groupId: ' ',
       ontologyId: ' ',
+      source: {} as RawCellEntry,
     },
     selectedOnClick: {
       label: ' ',
       id: ' ',
       groupId: ' ',
       ontologyId: ' ',
+      source: {} as RawCellEntry,
     },
     mapping: [],
   };
@@ -31,6 +33,7 @@ describe('IllustratorSelectors', () => {
       id: ' ',
       groupId: ' ',
       ontologyId: ' ',
+      source: {} as RawCellEntry,
     };
     const result = IllustratorSelectors.selectedOnHovered(state);
     expect(result).toEqual(testSelectedOnHover);
@@ -42,6 +45,7 @@ describe('IllustratorSelectors', () => {
       id: ' ',
       groupId: ' ',
       ontologyId: ' ',
+      source: {} as RawCellEntry,
     };
     const result = IllustratorSelectors.selectedOnClicked(state);
     expect(result).toEqual(testSelectedOnClick);

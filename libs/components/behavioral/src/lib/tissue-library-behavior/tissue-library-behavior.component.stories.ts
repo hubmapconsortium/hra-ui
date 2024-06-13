@@ -1,4 +1,4 @@
-import { FtuDataService, MockFtuDataService, MockTissueLibraryService, TissueLibraryService } from '@hra-ui/services';
+import { FtuDataService, MockFtuDataService } from '@hra-ui/services';
 import { TissueLibraryActions, TissueLibraryState } from '@hra-ui/state';
 import { Meta, applicationConfig } from '@storybook/angular';
 import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.component';
@@ -14,13 +14,7 @@ export default {
   component: TissueLibraryBehaviorComponent,
   decorators: [
     applicationConfig({
-      providers: [
-        {
-          provide: TissueLibraryService,
-          useExisting: MockTissueLibraryService,
-        },
-        { provide: FtuDataService, useExisting: MockFtuDataService },
-      ],
+      providers: [{ provide: FtuDataService, useExisting: MockFtuDataService }],
     }),
   ],
 } as Meta<TissueLibraryBehaviorComponent>;
