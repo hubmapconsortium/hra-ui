@@ -82,6 +82,10 @@ describe('CreateVisualizationPageComponent', () => {
     0,cell1,[0,0,0]
     1,cell2,[1,1,1]`;
 
+  const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
+    0,cell1,[0,0,0]
+    1,cell2,[1,1,1]`;
+
   let instance: CreateVisualizationPageComponent;
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
@@ -144,7 +148,7 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('setCustomColorMap()', () => {
-    it('sets a custom color map', async () => {
+    it('shows error if invalid color map file type', async () => {
       const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
       const toggleHarness = await loader.getAllHarnesses(MatButtonToggleHarness);
       await toggleHarness[1].check();
@@ -156,6 +160,19 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
 
       expect(instance.colorErrorMessage).toMatch(/Invalid file type/);
+    });
+    it('shows error if invalid color map keys', async () => {
+      const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+      const toggleHarness = await loader.getAllHarnesses(MatButtonToggleHarness);
+      await toggleHarness[1].check();
+      fixture.autoDetectChanges();
+
+      const data = new File([csvColorMapWrongKeys], 'blah.csv', { type: 'text/csv' });
+      const colorMapEl = screen.getAllByTestId('file-upload')[1];
+      await userEvent.upload(colorMapEl, data);
+      fixture.autoDetectChanges();
+
+      expect(instance.colorErrorMessage).toMatch(/Required columns missing/);
     });
   });
 
@@ -279,6 +296,24 @@ describe('CreateVisualizationPageComponent', () => {
         cause: 'whatever',
       } as unknown as ExtendedFileLoadError;
       expect(priedInstance.formatErrorMessage(testError)).toMatch('');
+    });
+
+    it('returns number of additional errors', async () => {
+      const csvNodeDataMissingValuesMany = `Cell Type,x,y
+      a,0
+      b,1
+      c,2
+      d,3
+      e,4
+      f,5`;
+
+      const nodeDataEl = screen.getAllByTestId('file-upload')[0];
+      const data = new File([csvNodeDataMissingValuesMany], 'blah.csv', { type: 'text/csv' });
+      await userEvent.upload(nodeDataEl, data);
+      instance.clearCustomColorMap();
+      fixture.autoDetectChanges();
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      expect(instance.nodesErrorMessage).toMatch(/and 1 more rows/);
     });
   });
 });
