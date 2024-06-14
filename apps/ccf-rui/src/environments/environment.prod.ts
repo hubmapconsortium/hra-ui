@@ -16,7 +16,7 @@ export const environment = {
     homeUrl: 'https://portal.hubmapconsortium.org/',
     logoTooltip: 'Human BioMolecular Atlas Project',
     collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
-    referenceData: 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/rui/assets/reference-organ-data.json',
+    referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },
   skipUnsavedChangesConfirmation: false,
   googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4',

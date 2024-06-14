@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: header
   headerCard:
@@ -9,9 +9,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: margin
@@ -41,7 +41,7 @@
 
         > <a href="https://doi.org/10.5281/zenodo.5746143" target="_blank">Assigning RUI Data to Multiple Tissue Blocks</a>
 
-        > <a href="https://zenodo.org/doi/10.5281/zenodo.10359228" target="_blank">Managing Human Reference Atlas (HRA) Registrations</a>
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.10359228" target="_blank">Managing Human Reference Atlas Registrations</a>
 
         > <a href="https://doi.org/10.5281/zenodo.7901004" target="_blank">Constructing a Millitome and Generating Virtual Tissue Blocks</a>
 
@@ -65,13 +65,15 @@
 
         > Using Cell Type Population Data to Predict The Location or Biomolecular Composition of Tissue Blocks
 
-        <a href="https://docs.google.com/document/d/1DNYeE7eQ0fGj-OSMQ5ccM2sLWqUg2BpEZwoG6l6aSvY/edit#heading=h.4ou04n97ttbd" target="_blank">Vasculature Common Coordinate Framework</a>
+        <a href="https://docs.google.com/document/d/1ORM4FJ1eoMCOpHkj0aig30iXqzIRWbFvojlxcdnkwnA/edit" target="_blank">Vasculature Common Coordinate Framework</a>
 
-        > Creating Organ Vessel Maps
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.11623744" target="_blank">Authoring the Pathway Organ Crosswalk Tables</a>
 
-        > Connecting Blood Vasculature With FTUs
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.11623897" target="_blank">Constructing Blood Vasculature-Organ Crosswalk Diagrams</a>
 
-        > Blood Vasculature That Does Not Connect with ASCT+B Tables
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.11623414" target="_blank">Authoring the Pathway Crosswalk Table</a>
+
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.11623222" target="_blank">Authoring the Blood Vasculature Geometry Table</a>
 
         Vasculature Computations
 
@@ -91,13 +93,13 @@
 
         > <a href="https://doi.org/10.5281/zenodo.7418623" target="_blank">Constructing Antibody Validation Reports (AVRs)</a>
 
-        >> <a href="https://software.docs.hubmapconsortium.org/avr/avr-faq.html" target="_blank">FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)</a>
+        >> <a href="https://docs.hubmapconsortium.org/avr/avr-faq.html" target="_blank">FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)</a>
 
         > Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps
 
         > Mapping Experimental Data to the HRA Using OMAPs or Azimuth
 
-        > <a href="https://doi.org/10.5281/zenodo.5639622" target="_blank">ASCT+B Table Communications</a>
+        > <a href="https://doi.org/10.5281/zenodo.5639622" target="_blank">Human Reference Atlas Working Group Communications</a>
 
         <a href="https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit#heading=h.6ys5lo962o6b" target="_blank">3D Reference Object Library</a>
 
@@ -115,7 +117,7 @@
 
         > <a href="https://doi.org/10.5281/zenodo.6703376" target="_blank">Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations</a>
 
-        > <a href="https://zenodo.org/doi/10.5281/zenodo.5748154" target="_blank">Mapping Functional Tissue Unit Illustrations to ASTC+B Tables</a>
+        > <a href="https://zenodo.org/doi/10.5281/zenodo.5748154" target="_blank">Mapping Functional Tissue Unit Illustrations to ASCT+B Tables</a>
 
         <a href="https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit" target="_blank">Human Reference Atlas Validation and Review</a>
 

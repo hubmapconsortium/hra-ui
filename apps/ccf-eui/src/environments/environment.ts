@@ -19,7 +19,7 @@ export const environment = {
     hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
 
     useRemoteApi: false,
-    remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api--staging/v1',
+    remoteApiEndpoint: 'https://apps.humanatlas.io/api/v1',
   },
   customization: {
     theme: 'default',
