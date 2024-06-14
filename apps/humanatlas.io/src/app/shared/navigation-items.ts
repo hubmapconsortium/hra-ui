@@ -131,7 +131,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'user-story/5',
       },
       {
-        menuName: 'Organ Gallery in VR',
+        menuName: 'HRA Organ Gallery',
         route: 'organ-gallery-in-vr',
       },
       {
