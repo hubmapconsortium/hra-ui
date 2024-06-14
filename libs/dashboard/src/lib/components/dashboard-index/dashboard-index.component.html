@@ -1,0 +1,9 @@
+<main>
+  <h2 class="title">{{ spec().title }}</h2>
+  <h4 class="description">{{ spec().description }}</h4>
+  <div class="cards">
+    @for (card of spec().items; track card) {
+      <hra-long-card [spec]="card"></hra-long-card>
+    }
+  </div>
+</main>

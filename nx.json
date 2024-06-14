@@ -72,7 +72,7 @@
       "cache": true
     },
     "build-webcomponent": {
-      "dependsOn": ["build"],
+      "dependsOn": [{ "target": "build", "params": "forward" }],
       "inputs": ["production", "{projectRoot}/src/webcomponent-example.html", "{workspaceRoot}/dist/{projectRoot}/main.js"],
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}/wc.js",
@@ -88,14 +88,19 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "@angular-devkit/build-angular:application": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {
     "@nx/angular:application": {
-      "style": "scss",
+      "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "style": "scss",
+      "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
       "linter": "eslint",

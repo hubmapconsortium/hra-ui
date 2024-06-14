@@ -45,19 +45,12 @@
     gap: 2rem
 
 - type: margin
-  bottom: 5rem
+  bottom: 3rem
 
 - type: page-data
   pageData:
     - heading: Demo Code
-      descriptions: ''
-  styles:
-    margin-bottom: -2rem
-- type: page-data
-  pageData:
-    - heading: ''
-      descriptions: |
-        Human Reference Atlas APIs are available freely on GitHub.
+      descriptions: 'Human Reference Atlas APIs are available freely on GitHub.'
   styles:
     margin-bottom: 2rem
 

@@ -19,11 +19,7 @@ LandingPageIntroDescription:
   markdown: |
     A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
     and is replicated multiple times in a whole organ. Explore medical illustrations of FTUs to view cell type populations
-    by gene, protein, and lipid biomarkers. The FTU Explorer features experimental datasets from
-    <a href='https://portal.hubmapconsortium.org/' target='_blank'>HuBMAP</a>,
-    <a href='https://cellxgene.cziscience.com/' target='_blank'>CellxGene</a>,
-    <a href='https://nemoarchive.org' target='_blank'>NeMO</a>,
-    and <a href='https://gtexportal.org/' target='_blank'>GTEx</a>.
+    by gene, protein, and lipid biomarkers. The FTU Explorer showcases single-cell expression data from the <a href='https://www.ebi.ac.uk/about/news/updates-from-data-resources/anatomograms-new-feature-single-cell-expression-atlas/' target='_blank'>Anatomogram</a> site by EMBL-EBI.
 
 LandingPageIntroPartners:
   type: markdown
