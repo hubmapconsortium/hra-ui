@@ -1,21 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ScreenSizeNoticeComponent } from './screen-size-notice.component';
+import { render } from '@testing-library/angular';
+import { EMPTY_SUBSCRIPTION } from 'rxjs/internal/Subscription';
+
+import { ScreenSizeNoticeComponent, ScreenSizeNoticeDetectorOptions } from './screen-size-notice.component';
 
 describe('ScreenSizeNoticeComponent', () => {
-  let component: ScreenSizeNoticeComponent;
-  let fixture: ComponentFixture<ScreenSizeNoticeComponent>;
+  const screenSizeOptions: ScreenSizeNoticeDetectorOptions = {
+    width: 100,
+    height: 100,
+  };
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ScreenSizeNoticeComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ScreenSizeNoticeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(ScreenSizeNoticeComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should return empty subscription if screen size notice has been shown', () => {
+    localStorage.setItem('cde-screen-size-notice', 'true');
+    const createDetectorSpy = jest.spyOn(ScreenSizeNoticeComponent, 'createDetector');
+    ScreenSizeNoticeComponent.createDetector(screenSizeOptions);
+    expect(createDetectorSpy).toHaveReturnedWith(EMPTY_SUBSCRIPTION);
   });
 });

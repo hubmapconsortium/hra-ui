@@ -4,9 +4,13 @@ import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs';
 import { z } from 'zod';
 
+/** Organ entry type */
 export type OrganEntry = z.infer<typeof ORGANS_DEF>[number];
 
+/** Default endpoint for reference organs */
 const DEFAULT_ENDPOINT = 'https://apps.humanatlas.io/api/v1/reference-organs';
+
+/** Typing for organ data */
 const ORGANS_DEF = z
   .object({
     representation_of: z.string(),
@@ -18,6 +22,7 @@ const ORGANS_DEF = z
   }))
   .array();
 
+/** Fetches and parses reference organ data */
 export function organsResolver(endpoint = DEFAULT_ENDPOINT): ResolveFn<OrganEntry[]> {
   return () => {
     const http = inject(HttpClient);
@@ -29,6 +34,7 @@ export function organsResolver(endpoint = DEFAULT_ENDPOINT): ResolveFn<OrganEntr
   };
 }
 
+/** Returns only unique organ entries */
 function dedupByLabel(organs: OrganEntry[]): OrganEntry[] {
   const seen = new Set<string>();
   return organs.filter(({ label }) => {

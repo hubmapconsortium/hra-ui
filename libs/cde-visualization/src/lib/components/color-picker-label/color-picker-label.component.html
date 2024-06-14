@@ -15,6 +15,7 @@
   (colorPickerClose)="colorPickerOpen.emit(false)"
   (colorPickerChange)="hexColor.set($event)"
   (colorPickerSelect)="selectColor($event)"
+  data-testid="color-picker-button"
 ></span>
 @if (isAnchor()) {
   <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>

@@ -42,15 +42,21 @@ import { VisualizationDataService } from '../../services/visualization-data-serv
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 
+/** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
+  /** Error type */
   type: 'missing-key-error';
+  /** Required keys missing */
   keys: string[];
 }
 
+/** Type for all load errors */
 export type ExtendedFileLoadError = FileLoadError | MissingKeyError;
 
+/** File upload component for any type */
 type AnyFileUploadComponent = FileUploadComponent<unknown, unknown>;
 
+/** Returns null for all optional values */
 function optionalValue<T>(): T | null {
   return null;
 }
@@ -83,18 +89,28 @@ function optionalValue<T>(): T | null {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateVisualizationPageComponent {
+  /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
 
+  /** Use vertical dividers in file upload cards */
   readonly useVerticalDividers = signal(false);
+  /** Use vertical toggle buttons in color map card */
   readonly useVerticalToggleButtons = signal(false);
 
+  /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
+  /** Color map upload component */
   private readonly customColorMapFileUpload = viewChild.required<AnyFileUploadComponent>('customColorMapFileUpload');
 
+  /** Form builder */
   private readonly fb = inject(FormBuilder);
+  /** Make form control elements in form builder non nullable */
   private readonly fbnn = this.fb.nonNullable;
+  /** Router service */
   private readonly router = inject(Router);
+  /** Visualization data service */
   private readonly dataService = inject(VisualizationDataService);
+  /** Service to detect changes outside of Angular */
   private readonly ngZone = inject(NgZone);
 
   /** Component form controller */
@@ -112,13 +128,16 @@ export class CreateVisualizationPageComponent {
     colorMapType: ['default'],
   });
 
+  /** Returns true is custom color map is used */
   get useCustomColorMap(): boolean {
     return this.visualizationForm.value.colorMapType === 'custom';
   }
 
+  /** Node CSV file loader service */
   readonly nodesLoader = CsvFileLoaderService<NodeEntry>;
+  /** Options for node CSV loader */
   readonly nodesLoaderOptions: CsvFileLoaderOptions = {
-    errorTolerance: 0,
+    errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
     papaparse: {
       header: true,
       dynamicTyping: {
@@ -129,7 +148,9 @@ export class CreateVisualizationPageComponent {
     },
   };
 
+  /** Color map loader service */
   readonly colorMapLoader = ColorMapFileLoaderService;
+  /** Options for color map loader */
   readonly colorMapLoaderOptions: CsvFileLoaderOptions = {
     papaparse: {
       header: true,
@@ -150,26 +171,38 @@ export class CreateVisualizationPageComponent {
   /** Whether to show visualize info tooltip */
   visualizeInfoOpen = false;
 
+  /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
+  /** Node CSV load error */
   nodesLoadError?: ExtendedFileLoadError;
+  /** Color map CSV load error */
   customColorMapLoadError?: ExtendedFileLoadError;
 
+  /** Error message for nodes uploading */
   get nodesErrorMessage(): string {
     return this.nodesLoadError ? this.formatErrorMessage(this.nodesLoadError) : '';
   }
 
+  /** Error message for color map loading */
   get colorErrorMessage(): string {
     return this.customColorMapLoadError ? this.formatErrorMessage(this.customColorMapLoadError) : '';
   }
 
+  /** Current nodes */
   private nodes?: NodeEntry[];
+  /** Current color map */
   private customColorMap?: ColorMapEntry[];
 
+  /** Initializes viewport resize observer on load */
   constructor() {
     this.initViewportResizeObserver();
   }
 
+  /**
+   * Sets node values
+   * @param nodes Nodes to set
+   */
   setNodes(nodes: NodeEntry[]): void {
     this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
     if (this.nodesLoadError) {
@@ -189,16 +222,27 @@ export class CreateVisualizationPageComponent {
     });
   }
 
+  /**
+   * Clears all nodes and node load errors
+   */
   clearNodes(): void {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
   }
 
+  /**
+   * True if nodes exist and include the default node target
+   * @returns boolean
+   */
   hasValidNodes(): boolean {
     const { nodes } = this;
     return !!(nodes && nodes.length > 0 && DEFAULT_NODE_TARGET_KEY in nodes[0]);
   }
 
+  /**
+   * Sets custom color map
+   * @param colorMap Color map entries
+   */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
     this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['cell_id', 'cell_type', 'cell_color']);
     if (this.customColorMapLoadError) {
@@ -208,11 +252,18 @@ export class CreateVisualizationPageComponent {
     this.customColorMap = colorMap;
   }
 
+  /**
+   * Clears custom color map
+   */
   clearCustomColorMap(): void {
     this.customColorMap = undefined;
     this.customColorMapLoadError = undefined;
   }
 
+  /**
+   * True if color map entries exist and include the default color key/value as the first entry
+   * @returns boolean
+   */
   hasValidCustomColorMap(): boolean {
     const { customColorMap: colors } = this;
     return !!(
@@ -223,6 +274,9 @@ export class CreateVisualizationPageComponent {
     );
   }
 
+  /**
+   * Submits data and navigates to visualization page
+   */
   submit(): void {
     if (!this.nodes) {
       return;
@@ -245,7 +299,7 @@ export class CreateVisualizationPageComponent {
 
         colorMap,
         colorMapKey: DEFAULT_COLOR_MAP_KEY,
-        colorMapValue: DEFAULT_COLOR_MAP_VALUE_KEY,
+        colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
 
         metadata: normalizedMetadata,
       }),
@@ -254,6 +308,12 @@ export class CreateVisualizationPageComponent {
     this.router.navigate(['/visualize']);
   }
 
+  /**
+   * Removes nullish values from data
+   * @template T Data type
+   * @param obj Data
+   * @returns Data with nullish values removed
+   */
   private removeNullishValues<T>(obj: T): { [KeyT in keyof T]?: NonNullable<T[KeyT]> } {
     const result = { ...obj } as Record<string, unknown>;
     for (const key in result) {
@@ -265,6 +325,9 @@ export class CreateVisualizationPageComponent {
     return result as { [KeyT in keyof T]?: NonNullable<T[KeyT]> };
   }
 
+  /**
+   * Checks window size and changes divider and toggle button settings accordingly
+   */
   private initViewportResizeObserver(): void {
     const VERTICAL_DIVIDERS_MIN_WIDTH = 1920;
     const VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH = 544;
@@ -289,11 +352,22 @@ export class CreateVisualizationPageComponent {
     destroyRef.onDestroy(() => observer.disconnect());
   }
 
+  /**
+   * Checks if all required keys are present in the data
+   * @param data Data
+   * @param keys Required keys
+   * @returns Error if any keys are missing
+   */
   private checkRequiredKeys(data: object[], keys: string[]): MissingKeyError | undefined {
     const missingKeys = keys.filter((key) => !(key in data[0]));
     return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
   }
 
+  /**
+   * Formats error message according to the error type
+   * @param error Error
+   * @returns Formatted error message
+   */
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case 'missing-key-error':
@@ -317,6 +391,11 @@ export class CreateVisualizationPageComponent {
     }
   }
 
+  /**
+   * Returns parse errors as a properly formatted string
+   * @param errors Parse errors
+   * @returns Formatted string
+   */
   private formatCsvErrors(errors: ParseError[]): string {
     const ROW_SAMPLE_SIZE = 5;
     const rows = errors

@@ -235,7 +235,7 @@
 
     <mat-button-toggle-group [vertical]="useVerticalToggleButtons()" formControlName="colorMapType">
       <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle value="custom">Upload Custom Color Map</mat-button-toggle>
+      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Custom Color Map</mat-button-toggle>
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
@@ -248,6 +248,7 @@
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
         (loadErrored)="customColorMapLoadError = $event"
+        data-testid="color-map-upload"
         #customColorMapFileUpload
       >
       </cde-file-upload>

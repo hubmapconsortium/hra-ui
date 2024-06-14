@@ -10,7 +10,7 @@ export interface ColorMapEntry {
 }
 
 export const DEFAULT_COLOR_MAP_KEY = 'cell_type' as ColorMapTypeKey;
-export const DEFAULT_COLOR_MAP_VALUE_KEY = 'color' as ColorMapColorKey;
+export const DEFAULT_COLOR_MAP_VALUE_KEY = 'cell_color' as ColorMapColorKey;
 
 export function colorMapToLookup(
   colorMap: ColorMapEntry[],

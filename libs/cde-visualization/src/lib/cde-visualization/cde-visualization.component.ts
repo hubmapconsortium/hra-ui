@@ -67,7 +67,7 @@ export class CdeVisualizationComponent {
 
   readonly colorMap = model<string | ColorMapEntry[]>();
   readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
-  readonly colorMapValue = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
+  readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
     transform: brandAttribute<string, ColorMapColorKey>(),
   });
 
@@ -106,7 +106,7 @@ export class CdeVisualizationComponent {
     () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
   );
   private readonly colorMapLookup = computed(() =>
-    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValue()),
+    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
   );
 
   readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
@@ -131,7 +131,7 @@ export class CdeVisualizationComponent {
     () => {
       const cellTypes = this.cellTypes();
       const typeKey = this.colorMapTypeKey();
-      const colorKey = this.colorMapValue();
+      const colorKey = this.colorMapValueKey();
 
       return cellTypes.map(
         (entry) =>
@@ -146,7 +146,6 @@ export class CdeVisualizationComponent {
   readonly cellTypesFromNodes = computed(() => {
     const nodes = this.loadedNodes();
     const targetKey = this.nodeTypeKey();
-    const colorLookup = this.colorMapLookup();
     const defaultColorGenerator = createColorGenerator();
     const cellTypeByName: Record<string, CellTypeEntry> = {};
 
@@ -155,7 +154,7 @@ export class CdeVisualizationComponent {
       cellTypeByName[name] ??= {
         name,
         count: 0,
-        color: colorLookup.get(name) ?? defaultColorGenerator(),
+        color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
       };
       cellTypeByName[name].count += 1;
     }
@@ -195,7 +194,7 @@ export class CdeVisualizationComponent {
   }
 
   downloadColorMap(): void {
-    const colorKey = this.colorMapValue();
+    const colorKey = this.colorMapValueKey();
     const colorMap = this.cellTypesAsColorMap();
     const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
     if (data.length > 0) {

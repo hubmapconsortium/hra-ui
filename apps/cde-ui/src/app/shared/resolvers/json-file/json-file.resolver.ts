@@ -1,14 +1,26 @@
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ProviderToken, inject } from '@angular/core';
+import { inject, ProviderToken } from '@angular/core';
 import { MaybeAsync, ResolveFn } from '@angular/router';
-import { Observable, from, map, of, switchMap, tap } from 'rxjs';
+import { from, map, Observable, of, switchMap, tap } from 'rxjs';
+
 import { JSON_FILE_CACHE } from './json-file-cache';
 
+/**
+ * Json file resolver options
+ */
 export interface JsonFileResolverOptions {
+  /** Uses cache if true */
   cache?: boolean;
 }
 
+/**
+ * Json file resolver
+ * @template T Type
+ * @param url Path to json file
+ * @param options Resolver options
+ * @returns Function for resolving data
+ */
 export function jsonFileResolver<T>(
   url: string | ProviderToken<MaybeAsync<string>>,
   options?: JsonFileResolverOptions,
@@ -38,6 +50,11 @@ export function jsonFileResolver<T>(
   };
 }
 
+/**
+ * Gets url source
+ * @param url Url
+ * @returns Observable with url source
+ */
 function getUrlSource(url: string | ProviderToken<MaybeAsync<string>>): Observable<string> {
   if (typeof url === 'string') {
     return of(url);

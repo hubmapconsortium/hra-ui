@@ -25,14 +25,18 @@ import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/c
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class VisualizationPageComponent {
+  /** Data for visualization page */
   readonly data = input<Partial<CdeVisualizationElementProps>>();
+  /** If the visualization is custom */
   readonly isCustomVisualization = input<boolean>();
 
+  /** Visualization element reference */
   private readonly vis = viewChild.required<ElementRef<CdeVisualizationElement>>('vis');
 
   private readonly location = inject(Location);
   protected readonly homeLink = this.location.prepareExternalUrl('/');
 
+  /** Binds the input data to the corresponding values in the visualization element */
   protected readonly dataBindRef = effect(() => {
     const el = this.vis().nativeElement;
     for (const [key, value] of Object.entries(this.data() ?? {})) {
@@ -43,6 +47,7 @@ export class VisualizationPageComponent {
     }
   });
 
+  /** Sets up an event listener for the beforeunload event that prevents the page from unloading if the current class is a custom visualization */
   protected beforeUnloadRef = effect((onCleanup) => {
     if (this.isCustomVisualization()) {
       const handler = (event: Event) => event.preventDefault();

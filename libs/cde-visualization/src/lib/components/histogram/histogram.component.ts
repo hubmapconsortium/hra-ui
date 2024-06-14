@@ -33,7 +33,7 @@ import { emptyArrayEquals } from '../../shared/empty-array-equals';
 
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import HISTOGRAM_SPEC from './histogram.vl.json';
+import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 interface DistanceEntry {
   type: string;
