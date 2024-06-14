@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+$primary: mat.define-palette(map.get(palettes.$palettes, 'red'), 700, 500, 900);
+$accent: mat.define-palette(map.get(palettes.$palettes, 'blue'), 900, 800, 900);
+
+$typography: mat.define-typography-config(
+  $font-family: 'Metropolis',
+  $body-1: mat.define-typography-level(18px, 27px, 500),
+  $caption: mat.define-typography-level(15px, 22.5px, 400),
+);
+
+$theme: (
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: $typography,
+  density: 0,
+);
