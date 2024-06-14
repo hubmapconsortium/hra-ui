@@ -1,10 +1,10 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: header
   headerCard:
-    - title: Improve Cell Type Annotations
+    - title: 'Preview: Improve Cell Type Annotations'
       subtitle: Use the HRA API to improve the accuracy of annotations for bulk and spatial data
-      image: assets/images/improve_cta.svg
+      image: assets/images/improve_cta_us1.svg
       alt: Improve Cell Type Annotations Icon
 
 - type: margin
@@ -12,9 +12,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: margin
