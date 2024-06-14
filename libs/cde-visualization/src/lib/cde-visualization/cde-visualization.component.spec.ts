@@ -40,54 +40,54 @@ class MockNodeDistVis extends HTMLElement {
 
 customElements.define('hra-node-dist-vis', MockNodeDistVis);
 
+const sampleData = {
+  nodes: undefined,
+  edges: undefined,
+  colorMap: undefined,
+  metadata: undefined,
+  nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
+  title: 'Test Title',
+  technology: 'Test Technology',
+  organ: 'Test Organ',
+  sex: 'Test Sex',
+  age: 30,
+  creationDate: 'Test Date',
+  creationTime: 'Test Time',
+  thickness: 1,
+  pixelSize: 1,
+};
+
+const nodeTargetKey = DEFAULT_NODE_TARGET_KEY;
+function createNodeEntry(target: string, x: number, y: number): NodeEntry {
+  return { [nodeTargetKey]: target, x, y } as NodeEntry;
+}
+
+const sampleNodes = [
+  createNodeEntry('a', 0, 0),
+  createNodeEntry('b', 0, 2),
+  createNodeEntry('c', 0, 4),
+  createNodeEntry('b', 0, 5),
+];
+const sampleEdges: EdgeEntry[] = [
+  [0, 0, 0, 3, 4, 5, 6],
+  [1, 0, 2, 3, 4, 5, 6],
+  [2, 0, 4, 3, 4, 5, 6],
+];
+
+const colorMapKey = DEFAULT_COLOR_MAP_KEY;
+const colorMapValueKey = DEFAULT_COLOR_MAP_VALUE_KEY;
+function createColorMapEntry(id: number, key: string, value: [number, number, number]): ColorMapEntry {
+  return { cell_id: id, [colorMapKey]: key, [colorMapValueKey]: value } as ColorMapEntry;
+}
+const sampleColorMap = [
+  createColorMapEntry(0, 'a', [0, 0, 0]),
+  createColorMapEntry(1, 'b', [0, 0, 1]),
+  createColorMapEntry(2, 'c', [0, 0, 2]),
+];
+
+const embedResult = mockDeep<Result>();
+
 describe('CdeVisualizationComponent', () => {
-  const sampleData = {
-    nodes: undefined,
-    edges: undefined,
-    colorMap: undefined,
-    metadata: undefined,
-    nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-    title: 'Test Title',
-    technology: 'Test Technology',
-    organ: 'Test Organ',
-    sex: 'Test Sex',
-    age: 30,
-    creationDate: 'Test Date',
-    creationTime: 'Test Time',
-    thickness: 1,
-    pixelSize: 1,
-  };
-
-  const nodeTargetKey = DEFAULT_NODE_TARGET_KEY;
-  function createNodeEntry(target: string, x: number, y: number): NodeEntry {
-    return { [nodeTargetKey]: target, x, y } as NodeEntry;
-  }
-
-  const sampleNodes = [
-    createNodeEntry('a', 0, 0),
-    createNodeEntry('b', 0, 2),
-    createNodeEntry('c', 0, 4),
-    createNodeEntry('b', 0, 5),
-  ];
-  const sampleEdges: EdgeEntry[] = [
-    [0, 0, 0, 3, 4, 5, 6],
-    [1, 0, 2, 3, 4, 5, 6],
-    [2, 0, 4, 3, 4, 5, 6],
-  ];
-
-  const colorMapKey = DEFAULT_COLOR_MAP_KEY;
-  const colorMapValueKey = DEFAULT_COLOR_MAP_VALUE_KEY;
-  function createColorMapEntry(id: number, key: string, value: [number, number, number]): ColorMapEntry {
-    return { cell_id: id, [colorMapKey]: key, [colorMapValueKey]: value } as ColorMapEntry;
-  }
-  const sampleColorMap = [
-    createColorMapEntry(0, 'a', [0, 0, 0]),
-    createColorMapEntry(1, 'b', [0, 0, 1]),
-    createColorMapEntry(2, 'c', [0, 0, 2]),
-  ];
-
-  const embedResult = mockDeep<Result>();
-
   beforeEach(() => {
     if (document.fonts === undefined) {
       Object.defineProperty(document, 'fonts', {

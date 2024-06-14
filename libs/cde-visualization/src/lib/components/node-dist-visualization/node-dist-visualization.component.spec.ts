@@ -38,6 +38,11 @@ customElements.define('hra-node-dist-vis', MockNodeDistVis);
 
 describe('NodeDistVisualizationComponent', () => {
   const sampleTargetKey = 'target-key';
+  const sampleTargetValue = 'target-value';
+  const sampleColorMapKey = 'color-map-key';
+  const sampleColorMapValueKey = 'color-map-value';
+  const testId = 'node-dist-vis';
+
   function createNodeEntry(target: string, x: number, y: number): NodeEntry {
     return { [sampleTargetKey]: target, x, y } as NodeEntry;
   }
@@ -60,12 +65,12 @@ describe('NodeDistVisualizationComponent', () => {
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey: sampleTargetKey,
-        nodeTargetValue: 'target-value',
+        nodeTargetValue: sampleTargetValue,
         edges: sampleEdges,
         maxEdgeDistance: 10,
         colorMap: [],
-        colorMapKey: 'color-map-key',
-        colorMapValueKey: 'color-map-value',
+        colorMapKey: sampleColorMapKey,
+        colorMapValueKey: sampleColorMapValueKey,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -80,17 +85,17 @@ describe('NodeDistVisualizationComponent', () => {
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey: sampleTargetKey,
-        nodeTargetValue: 'target-value',
+        nodeTargetValue: sampleTargetValue,
         edges: [],
         maxEdgeDistance: 10,
         colorMap: [],
-        colorMapKey: 'color-map-key',
-        colorMapValueKey: 'color-map-value',
+        colorMapKey: sampleColorMapKey,
+        colorMapValueKey: sampleColorMapValueKey,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
 
-    const nodeDistVis = screen.getByTestId('node-dist-vis') as MockNodeDistVis;
+    const nodeDistVis = screen.getByTestId(testId) as MockNodeDistVis;
     const edgesEvent = new CustomEvent('edges', { detail: sampleEdges });
     nodeDistVis.dispatchEvent(edgesEvent);
 
@@ -104,12 +109,12 @@ describe('NodeDistVisualizationComponent', () => {
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey: sampleTargetKey,
-        nodeTargetValue: 'target-value',
+        nodeTargetValue: sampleTargetValue,
         edges: [],
         maxEdgeDistance: 10,
         colorMap: [],
-        colorMapKey: 'color-map-key',
-        colorMapValueKey: 'color-map-value',
+        colorMapKey: sampleColorMapKey,
+        colorMapValueKey: sampleColorMapValueKey,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -117,7 +122,7 @@ describe('NodeDistVisualizationComponent', () => {
     const clicks = jest.fn();
     instance.nodeClick.subscribe(clicks);
 
-    const nodeDistVis = screen.getByTestId('node-dist-vis') as MockNodeDistVis;
+    const nodeDistVis = screen.getByTestId(testId) as MockNodeDistVis;
     const nodeClickEvent = new CustomEvent('nodeClicked', { detail: sampleNodes[0] });
     nodeDistVis.dispatchEvent(nodeClickEvent);
 
@@ -129,12 +134,12 @@ describe('NodeDistVisualizationComponent', () => {
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey: sampleTargetKey,
-        nodeTargetValue: 'target-value',
+        nodeTargetValue: sampleTargetValue,
         edges: sampleEdges,
         maxEdgeDistance: 10,
         colorMap: [],
-        colorMapKey: 'color-map-key',
-        colorMapValueKey: 'color-map-value',
+        colorMapKey: sampleColorMapKey,
+        colorMapValueKey: sampleColorMapValueKey,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
@@ -154,17 +159,17 @@ describe('NodeDistVisualizationComponent', () => {
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey: sampleTargetKey,
-        nodeTargetValue: 'target-value',
+        nodeTargetValue: sampleTargetValue,
         edges: sampleEdges,
         maxEdgeDistance: 10,
         colorMap: [],
-        colorMapKey: 'color-map-key',
-        colorMapValueKey: 'color-map-value',
+        colorMapKey: sampleColorMapKey,
+        colorMapValueKey: sampleColorMapValueKey,
         cellTypesSelection: sampleCellTypesSelection,
       },
     });
 
-    const nodeDistVis = screen.getByTestId('node-dist-vis') as MockNodeDistVis;
+    const nodeDistVis = screen.getByTestId(testId) as MockNodeDistVis;
     const resetViewSpy = jest.spyOn(nodeDistVis, 'resetView');
 
     instance.resetView();
