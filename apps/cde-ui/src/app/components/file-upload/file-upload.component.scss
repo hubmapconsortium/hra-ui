@@ -1,0 +1,52 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../styles/constants/palettes' as palettes;
+
+$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 400);
+$blue-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $blue,
+      accent: $blue,
+    ),
+  )
+);
+
+:host {
+  display: block;
+  @include mat.button-color($blue-theme);
+
+  .upload-success {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+
+    .filename span {
+      display: block;
+    }
+
+    .file-name {
+      font-weight: 300;
+      line-height: normal;
+    }
+
+    .remove-file {
+      padding: 0.25rem 8px;
+      width: fit-content;
+    }
+  }
+
+  .upload-colormap .loaded-label {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .upload-success {
+      flex-direction: row;
+      gap: 2rem;
+      align-items: flex-end;
+    }
+  }
+}

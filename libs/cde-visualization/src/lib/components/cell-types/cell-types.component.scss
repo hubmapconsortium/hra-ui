@@ -1,0 +1,120 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
+
+$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
+$blue-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $blue,
+      accent: $blue,
+    ),
+  )
+);
+
+::ng-deep {
+  .celltypes-panel {
+    max-width: 27.5rem;
+  }
+}
+
+:host {
+  @include mat.button-color($blue-theme);
+
+  display: grid;
+  grid:
+    'cell-types . download'
+    'total-cell-types . total-cells'
+    'table table table' 1fr
+    / auto 1fr auto;
+  align-items: start;
+  row-gap: 0.75rem;
+  overflow: hidden;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  --mat-table-background-color: white;
+  --mdc-checkbox-unselected-icon-color: #201e3d;
+  --mat-sort-arrow-color: #4b4b5e;
+  --mat-table-row-item-container-height: 1.75rem;
+  --mat-table-row-item-outline-width: 0;
+  --mat-table-header-headline-color: var(--mat-sort-arrow-color);
+
+  span.cell-types-label {
+    grid-area: cell-types;
+    font-size: 0.9375rem;
+    mat-icon {
+      vertical-align: middle;
+    }
+  }
+
+  button.download-csv {
+    --mdc-filled-button-label-text-color: #{button-text-color};
+    grid-area: download;
+  }
+
+  .mat-caption,
+  .total-ct-label {
+    font-weight: 400;
+    grid-area: total-cell-types;
+
+    span {
+      display: block;
+    }
+  }
+
+  .total-cells {
+    grid-area: total-cells;
+  }
+
+  .table-overflow-container {
+    overflow: auto;
+    grid-area: table;
+    height: 100%;
+
+    table {
+      ::ng-deep {
+        thead {
+          .mat-sort-header-arrow {
+            opacity: 1 !important;
+            transform: none !important;
+          }
+
+          tr th:last-child > div {
+            justify-content: flex-end;
+            margin-right: 0.75rem;
+          }
+        }
+
+        tbody tr td.mdc-data-table__cell:last-child {
+          text-align: end;
+          padding-right: 0.75rem;
+          color: var(--mat-sort-arrow-color);
+        }
+      }
+
+      .mat-mdc-header-row {
+        height: unset;
+
+        & > * {
+          padding-bottom: 0.5rem;
+        }
+
+        .mat-mdc-checkbox {
+          padding-right: 0.5rem;
+        }
+      }
+
+      td.name {
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .mdc-data-table__cell,
+      .mdc-data-table__header-cell {
+        padding: 0;
+      }
+    }
+  }
+}

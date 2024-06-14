@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+@use './themable-sections/header' as header-section;
+@use './themable-sections/main' as main-section;
+@use './themable-sections/create-visualization' as create-visualization-section;
+@use './themes/header' as header-theme;
+@use './themes/main' as main-theme;
+@use './typographies' as typographies;
+@use './breakpoints' as breakpoints;
+
+$_theme: main-theme.$theme;
+
+@include mat.core();
+@include mat.core-theme($_theme);
+@include mat.typography-hierarchy($_theme);
+
+// Add theme mixin for material components here!
+@include mat.button-theme($_theme);
+@include mat.button-toggle-theme($_theme);
+@include mat.card-theme($_theme);
+@include mat.divider-theme($_theme);
+@include mat.form-field-theme($_theme);
+@include mat.icon-theme($_theme);
+@include mat.progress-bar-theme($_theme);
+@include mat.select-theme($_theme);
+@include mat.snack-bar-theme($_theme);
+
+// Add section theme mixins here!
+@include header-section.theme($_theme);
+@include main-section.theme($_theme);
+@include create-visualization-section.theme($_theme);
+
+// Typography
+@include breakpoints.breakpoint('xx-small', 'x-small') {
+  @include create-visualization-section.typography(typographies.$x-small);
+}
+
+@include breakpoints.breakpoint('small', 'medium') {
+  @include create-visualization-section.typography(typographies.$small);
+}
+
+@include breakpoints.breakpoint('large') {
+  @include create-visualization-section.typography(typographies.$large);
+}
+
+@include breakpoints.breakpoint('x-large') {
+  @include create-visualization-section.typography(typographies.$x-large);
+}

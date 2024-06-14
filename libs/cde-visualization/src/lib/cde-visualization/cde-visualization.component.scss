@@ -1,0 +1,74 @@
+::ng-deep {
+  .info-tooltip-panel {
+    background-color: white;
+    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
+    border-radius: 0.5rem;
+
+    .break {
+      margin-bottom: 1rem;
+    }
+
+    div,
+    span {
+      font-family: 'Metropolis';
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      letter-spacing: 0.005em;
+      font-weight: 400;
+      color: #4b4b5e;
+    }
+
+    div {
+      margin: 1rem;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+::ng-deep .download-snackbar-panel {
+  --mdc-snackbar-container-color: white;
+  --mdc-snackbar-supporting-text-color: #4b4b5e;
+  translate: 0 -2rem;
+  text-align: center;
+
+  .mdc-snackbar__surface {
+    border-radius: 0.5rem !important;
+    min-width: 13rem !important;
+  }
+}
+
+:host {
+  background-color: gray;
+  padding: 6px 4px;
+  height: 100%;
+  width: 100%;
+  row-gap: 0.375rem;
+  column-gap: 0.25rem;
+  display: grid;
+  grid-template-columns: 18.375rem auto;
+  grid-template-rows: 66px calc(100% - 72px);
+  grid-template-areas:
+    'header header'
+    'metadata visualization';
+
+  .header {
+    grid-area: header;
+  }
+
+  .metadata {
+    display: grid;
+    grid-area: metadata;
+    grid-template-rows: auto 1fr;
+    row-gap: 0.25rem;
+  }
+
+  .visualizations {
+    grid-area: visualization;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

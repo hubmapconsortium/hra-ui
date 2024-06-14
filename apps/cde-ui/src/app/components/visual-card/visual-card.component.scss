@@ -1,0 +1,77 @@
+@use '../../../styles/cta' as cta;
+
+:host {
+  font-family: 'Metropolis';
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+
+  .visual-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 5px 1rem 0px rgba(32, 30, 61, 0.24);
+    outline-offset: 0;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: calc(100vw - 3rem);
+
+    &:hover {
+      box-shadow: 0px 5px 1rem 5px rgba(32, 30, 61, 0.24);
+    }
+
+    &:focus-visible .label {
+      @include cta.flatFocus();
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto auto;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+      font-weight: 500;
+    }
+
+    mat-icon {
+      vertical-align: middle;
+      margin-left: 0.25rem;
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 430px) {
+    .visual-card {
+      height: calc(100vw - 5rem) !important;
+    }
+  }
+
+  @media (min-width: 544px) {
+    gap: 3rem;
+
+    .visual-card {
+      width: 30.5rem;
+      height: 30.5rem !important;
+    }
+
+    .label {
+      font-size: 1.125rem !important;
+    }
+
+    mat-icon {
+      height: 1.5rem !important;
+      width: 1.5rem !important;
+      font-size: 1.5rem !important;
+      margin-left: 0.75rem !important;
+    }
+  }
+}

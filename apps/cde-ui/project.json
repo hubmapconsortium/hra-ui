@@ -1,0 +1,131 @@
+{
+  "name": "cde-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "cde",
+  "sourceRoot": "apps/cde-ui/src",
+  "tags": ["app", "cde"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/cde-ui",
+        "index": "apps/cde-ui/src/index.html",
+        "main": "apps/cde-ui/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/cde-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/cde-ui/src/favicon.png", "apps/cde-ui/src/assets"],
+        "styles": ["apps/cde-ui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+        },
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "baseHref": "/hra-ui/apps/cde-ui/",
+          "outputHashing": "none",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "8kb",
+              "maximumError": "16kb"
+            }
+          ]
+        },
+        "development": {
+          "baseHref": "/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/apps/cde-ui/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/cde-ui/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "cde-ui:build:production"
+        },
+        "development": {
+          "buildTarget": "cde-ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "cde-ui:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/cde-ui/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "cde-ui:build",
+        "staticFilePath": "dist/apps/cde-ui/browser"
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/cde-ui/tsconfig.app.json",
+        "outputPath": "dist/compodoc/cde-ui"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
+    "compodoc-json": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/cde-ui/tsconfig.app.json",
+        "outputPath": "dist/compodoc/cde-ui",
+        "exportFormat": "json"
+      }
+    },
+    "test-doc-coverage": {
+      "command": "compodoc -p apps/cde-ui/tsconfig.app.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
+    }
+  },
+  "implicitDependencies": ["shared-theming"]
+}

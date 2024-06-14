@@ -1,0 +1,97 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
+
+$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
+$blue-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $blue,
+      accent: $blue,
+    ),
+  )
+);
+
+::ng-deep {
+  .reset-panel {
+    max-width: 32rem;
+  }
+
+  .embed-panel {
+    max-width: 27.5rem;
+  }
+}
+
+:host {
+  @include mat.button-color($blue-theme);
+
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  justify-content: space-between;
+  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  height: 100%;
+
+  & div:not(:first-child, :last-child) {
+    margin: 1rem 0;
+
+    a,
+    button:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  span.mat-caption {
+    font-size: 0.9375rem;
+    letter-spacing: unset;
+    margin-right: 3rem;
+  }
+
+  .mat-divider-vertical {
+    height: calc(100% - 0.75rem);
+  }
+
+  .info {
+    vertical-align: middle;
+    margin-bottom: 2px;
+  }
+
+  a,
+  button {
+    --mdc-filled-button-label-text-color: #{button-text-color};
+    height: 25px;
+    font-size: 11px;
+    letter-spacing: 0.2px;
+  }
+
+  .home {
+    height: 2.5rem;
+
+    & * {
+      height: 100%;
+    }
+
+    .hra-logo {
+      margin-right: 0.5rem;
+      margin-left: 0.75rem;
+    }
+  }
+
+  .help {
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9375rem;
+      margin-right: 0.75rem;
+    }
+  }
+
+  @media (max-width: 1544px) {
+    .reset,
+    .embed {
+      span {
+        display: block;
+      }
+    }
+  }
+}

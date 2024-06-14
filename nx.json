@@ -13,7 +13,10 @@
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/**/test.[jt]s"
+      "!{projectRoot}/**/test.[jt]s",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
     ],
     "sharedGlobals": []
   },

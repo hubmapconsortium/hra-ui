@@ -57,6 +57,10 @@
                 "onlyDependOnLibsWithTags": ["*"]
               },
               {
+                "sourceTag": "project:cde",
+                "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
                 "sourceTag": "project:design-system",
                 "onlyDependOnLibsWithTags": ["*"]
               }

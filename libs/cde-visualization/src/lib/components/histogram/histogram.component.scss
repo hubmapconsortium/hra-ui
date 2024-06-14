@@ -1,0 +1,45 @@
+:host {
+  background-color: white;
+  border-radius: 0.5rem;
+  height: fit-content;
+  position: sticky;
+
+  .header {
+    padding: 0 1rem;
+
+    .title {
+      display: flex;
+      margin: 0;
+      gap: 0.5rem;
+    }
+  }
+
+  .content {
+    height: 20rem;
+    display: flex;
+    gap: 2rem;
+
+    .histogram {
+      width: calc(100% - 250px);
+    }
+
+    .legend {
+      overflow-y: auto;
+      flex-grow: 1;
+
+      cde-color-picker-label {
+        align-items: center;
+      }
+    }
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+}
+
+::ng-deep {
+  .histogram-panel {
+    max-width: 27.5rem;
+  }
+}

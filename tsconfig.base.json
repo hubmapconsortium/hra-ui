@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -14,10 +15,17 @@
       "es2017",
       "dom"
     ],
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@components/*": [
+        "apps/human-atlas/src/app/components/*"
+      ],
+      "@hra-ui/cde-visualization": [
+        "libs/cde-visualization/src/index.ts"
+      ],
       "@hra-ui/cdk": [
         "libs/cdk/src/index.ts"
       ],
@@ -92,6 +100,9 @@
       ],
       "ccf-shared/web-components": [
         "libs/ccf-shared/web-components/src/public-api.ts"
+      ],
+      "cde-ui": [
+        "apps/cde-ui/src/index.ts"
       ],
       "stream": [
         "./node_modules/stream-browserify"

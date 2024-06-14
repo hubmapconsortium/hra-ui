@@ -1,0 +1,46 @@
+<div class="info">
+  Visualization
+  <mat-icon
+    class="material-symbols-rounded"
+    cdkOverlayOrigin
+    #visTrigger="cdkOverlayOrigin"
+    (mouseover)="tooltipOpen = true"
+    (mouseout)="tooltipOpen = false"
+    >info</mat-icon
+  >
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'node-dist-vis-panel']"
+    [cdkConnectedOverlayPositions]="tooltipPosition"
+    [cdkConnectedOverlayOrigin]="visTrigger"
+    [cdkConnectedOverlayOpen]="tooltipOpen"
+    [cdkConnectedOverlayOffsetX]="5"
+  >
+    <div>
+      <ul>
+        Zoom Options
+        <li>Mouse pinwheel</li>
+        <li>Trackpad Pinch</li>
+      </ul>
+      <ul>
+        Pan Options
+        <li>CTRL/CMD + mouse drag</li>
+        <li>Right click + mouse drag</li>
+        <li>Keyboard arrows</li>
+      </ul>
+      <ul>
+        Rotation Options for 3D Visualizations
+        <li>CTRL/CMD + keyboard arrows</li>
+        <li>Mouse Drag</li>
+      </ul>
+    </div>
+  </ng-template>
+</div>
+
+<button mat-flat-button class="download" (click)="download()">
+  PNG
+  <mat-icon class="material-symbols-rounded">download</mat-icon>
+</button>
+
+<hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
