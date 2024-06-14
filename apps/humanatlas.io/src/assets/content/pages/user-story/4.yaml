@@ -56,7 +56,7 @@
 
 - type: button
   text: GitHub Repository
-  url: https://github.com/x-atlas-consortia/hra-apps
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/ftu-explorer/
 
 - type: margin
   bottom: 5rem
