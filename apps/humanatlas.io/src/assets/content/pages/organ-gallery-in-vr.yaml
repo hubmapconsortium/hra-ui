@@ -1,17 +1,17 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: header
   headerCard:
-    - title: Organ Gallery in VR
+    - title: HRA Organ Gallery
       subtitle: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
       image: assets/images/vr_gallery.svg
-      alt: Organ Gallery in VR icon
+      alt: HRA Organ Gallery icon
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: margin
@@ -24,8 +24,16 @@
         The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that enables users to explore 3D organ models of the HRA in their true size, location, and spatial relation to each other.
         The HRA Organ Gallery has two main use cases: 1) introducing both novice and expert users to the HuBMAP data available via the HuBMAP Data Portal, and 2) providing quality assurance and quality control (QA/QC) for HRA data providers.
         More use cases are under development. Further information can be found in this <a href="https://doi.org/10.1101/2023.02.13.528002" target="_blank">recent preprint title</a>.
-        Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest 2 or 3. The app can be downloaded at
-        <a href="https://www.meta.com/experiences/5696814507101529" target="_blank">https://www.meta.com/experiences/5696814507101529</a>
+        Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest 2 or 3.
+  styles:
+    margin-bottom: 2rem
+
+- type: button
+  text: Use the HRA Organ Gallery
+  url: https://www.meta.com/experiences/5696814507101529
+
+- type: margin
+  bottom: 5rem
 
 - type: image
   imageSource: assets/images/OrganGallery.jpg
@@ -71,22 +79,6 @@
 
         Please email Andreas Bueckle (abueckle@iu.edu) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
 
-- type: title
-  title: Video Demo
-  styles:
-    font-size: 1.5rem
-    font-weight: 300
-
-- type: margin
-  bottom: 2.5rem
-
-- type: player
-  youtubePlayer:
-    height: 584
-    width: 1232
-    videoId: V3rmLTANDC8
-    playerTitle: Please view the video below for a demo of the HRA Organ VR Gallery
-
 - type: margin
   bottom: 5rem
 
@@ -106,3 +98,7 @@
         van Dam, Andries. 1997.
         "<a href="https://doi.org/10.1145/253671.253708" target="blank">Post-WIMP User Interfaces</a>".
         <i>Communications of the ACM</i> 40 (2): 63-67. doi: 10.1145/253671.253708.
+
+        A. Bueckle, C. Qing, S. Luley, Y. Kumar, N. Pandey, and K. Börner,
+        “The HRA Organ Gallery affords immersive superpowers for building and explorring the Human Reference Atlas with virtual reality,”
+        Frontiers in Bioinformatics, vol. 3, 2023. doi: <a href="https://doi.org/10.3389/fbinf.2023.1162723" target="_blank">10.3389/fbinf.2023.1162723</a>

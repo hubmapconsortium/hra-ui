@@ -12,4 +12,8 @@
     text-decoration-thickness: 2px;
     color: #444c65;
   }
+
+  ::ng-deep p {
+    margin: 0;
+  }
 }

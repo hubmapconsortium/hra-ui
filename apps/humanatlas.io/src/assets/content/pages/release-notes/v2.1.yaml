@@ -1,0 +1,499 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+- type: menu-tree
+  overlayClass: overlay-position-fifth-release
+  styles:
+    margin-top: 2rem
+  positions:
+    - originX: end
+      originY: top
+      overlayX: start
+      overlayY: top
+      offsetX: 4
+      offsetY: 0
+  mobileNavigationItems:
+    - menuName: Introduction
+      id: intro
+    - menuName: Data
+      id: data
+    - menuName: User Interfaces
+      id: user-interfaces
+    - menuName: News
+      id: news
+    - menuName: Resources
+      id: resources
+
+- type: header
+  styles:
+    margin-top: 3rem
+  headerCard:
+    - image: assets/images/4th_release.svg
+      title: 7th Release Notes
+      subtitle: See what's new in the 7th Release (v2.1) of the Human Reference Atlas
+      alt: 7th Release Notes Icon
+
+- type: drawer
+  navigationItems:
+    - menuName: Introduction
+      id: intro
+    - menuName: Data
+      id: data
+    - menuName: User Interfaces
+      id: user-interfaces
+    - menuName: News
+      id: news
+    - menuName: Resources
+      id: resources
+  drawerStyles:
+    background-color: unset
+  components:
+    - type: styled-group
+      id: intro
+      styles:
+        display: flex
+        justify-content: space-between
+        margin-bottom: 2.5rem
+      components:
+        - type: title
+          title: Introduction
+          class: release-title
+        - type: title
+          class: release-title
+          title: June 15, 2024
+    - type: styled-group
+      components:
+        - type: title
+          title:
+            HuBMAP's Indiana University Mapping Component (MC-IU) has published the 7th Release of the Human Reference Atlas (v2.1) in close collaboration with the HuBMAP team
+            and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level.
+            Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
+          class: page-data
+          styles:
+            margin-bottom: 2.5rem
+        - type: image
+          imageSource: assets/images/6th_release_intro.svg
+          alt: HRA Release Calendar
+          styles:
+            margin-bottom: 5rem
+            width: 100%
+    - type: styled-group
+      id: data
+      components:
+        - type: title
+          title: Data
+          class: release-title
+          styles:
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                The HRA now includes:
+                - 36 ASCT+B Tables
+                  - 4,659 anatomical structures
+                  - 2,024 cell types
+                  - 1,311 biomarkers
+                - 22 2D Functional Tissue Units (FTUs)
+                - 65 3D Organ Models
+                - 21 Organ Mapping Antibody Panel (OMAP) Tables
+                - 10 Crosswalk Tables
+                - 7 Vasculature Common Coordinate Framework (VCCF) Tables
+        - type: button
+          text: 7th Release Digital Objects
+          url: https://purl.humanatlas.io/collection/hra/v2.1
+          styles:
+            margin-bottom: 2.5rem
+            margin-top: -3rem
+        - type: title
+          title: New Digital Objects
+          styles:
+            font-size: 20px
+            line-height: 28px
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - 8 Organ Mapping Antibody Panel (OMAP) Tables
+                  - OMAP-14: Kidney, FFPE, CyCIF
+                  - OMAP-15: Intestines, FFPE, CODEX
+                  - OMAP-16: Lung, FFPE, CODEX
+                  - OMAP-17: Thymus, Fixed Frozen, IBEX
+                  - OMAP-18: Lymph Node, Fixed Frozen, IBEX
+                  - OMAP-19: Palatine tonsil, Fixed Frozen, IBEX
+                  - OMAP-20: Kidney, Fresh Frozen, IMS/CyCIF
+                  - OMAP-21: Palatine tonsil, FFPE, MICS
+                - 6 Crosswalk Tables
+                  - Pathway
+                  - Lymph vasculature to organ
+                  - Peripheral nervous system to organ
+                  - Azimuth
+                  - CellTypist
+                  - popv
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Revised Digital Objects
+          styles:
+            font-size: 20px
+            line-height: 28px
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+                  - Blood
+                  - Blood vasculature
+                  - Bone marrow
+                  - Brain
+                  - Heart
+                  - Fallopian tube
+                  - Kidney
+                  - Knee
+                  - Liver
+                  - Lung
+                  - Lymph node
+                  - Lymph vasculature
+                  - Main bronchus
+                  - Muscular system
+                  - Ovary
+                  - Palatine tonsil
+                  - Peripheral nervous system
+                  - Placenta
+                  - Skeleton
+                - 13 OMAP Tables
+                  - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields: target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids.
+                - 67 3D Organ Models (formerly 3D Reference Objects)
+                  - All male and female 3D Organ Models were re-exported to include the node types as organizational, mesh, or surface.
+    - type: styled-group
+      id: user-interfaces
+      components:
+        - type: title
+          title: User Interfaces
+          class: release-title
+          styles:
+            margin-bottom: 0.5rem
+        - type: title
+          title: Explore new and updated Human Reference Atlas APIs, applications, and websites.
+          class: page-data
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: New Websites & Applications
+          styles:
+            font-size: 20px
+            line-height: 28px
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - <a href='https://apps.humanatlas.io/ftu-explorer/' target="_blank">Preview: Functional Tissue Unit (FTU) Explorer</a>
+                - <a href='https://apps.humanatlas.io/cde/' target="_blank">Preview: Cell Distance Explorer</a>
+                - <a href='https://apps.humanatlas.io/us6/' target="_blank">Preview: Use Atlas Components</a>
+                - <a href='https://apps.humanatlas.io/dashboard/' target="_blank">Preview: HRA Dashboards</a>
+                - <a href='https://lod.humanatlas.io' target="_blank">Human Atlas Stories: Knowledge Graph</a>
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Updated Websites & Applications
+          styles:
+            font-size: 20px
+            line-height: 28px
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - <a href='https://humanatlas.io/' target="_blank">Human Reference Atlas</a>
+                - <a href='https://humanatlas.io/overview-use-the-hra' target="_blank">Overview: Use HRA Previews</a>
+                - <a href='https://apps.humanatlas.io' target="_blank">Atlas Demo Apps</a>
+                - <a href='https://hubmapconsortium.github.io/ccf-asct-reporter/' target="_blank">ASCT+B Reporter</a>
+                - <a href='https://apps.humanatlas.io/eui/' target="_blank">Exploration User Interface (EUI)</a>
+                - <a href='https://apps.humanatlas.io/rui/' target="_blank">Registration User Interface (RUI)</a>
+                - <a href='https://www.meta.com/experiences/5696814507101529/' target="_blank">HRA Organ Gallery</a>
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Updated APIs
+          styles:
+            font-size: 20px
+            line-height: 28px
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - <a href='https://www.npmjs.com/package/hra-api' target="_blank">HRA-API v0.6.0</a>
+                - HRA-API Client Libraries v0.6.0:
+                  - <a href='https://www.npmjs.com/package/@hra-api/js-client' target="_blank">JavaScript</a>
+                  - <a href='https://www.npmjs.com/package/@hra-api/ts-client' target="_blank">TypeScript</a>
+                  - <a href='https://www.npmjs.com/package/@hra-api/ng-client' target="_blank">Angular</a>
+                  - <a href='https://pypi.org/project/hra-api-client/' target="_blank">Python</a>
+                - <a href='http://lod.humanatlas.io' target="_blank">HRA-KG</a>
+                - <a href='https://github.com/hubmapconsortium/ccf-grlc/' target="_blank">grlc API</a>
+    - type: styled-group
+      id: news
+      components:
+        - type: title
+          title: News
+          class: release-title
+          styles:
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: Human Reference Atlas news from the 7th release cycle.
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Bio IT World HuBMAP Feature
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 1rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - <a href='https://www.bio-itworld.com/news/2024/03/07/human-biomolecular-atlas-program-update' target="_blank">Human Biomolecular Atlas Program Update</a>
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: New CIFAR Video
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 1rem
+        - type: player
+          youtubePlayer:
+            height: 584
+            width: 1232
+            videoId: -F6i5KOVGx8
+            playerTitle: ''
+        - type: margin
+          bottom: 5rem
+    - type: styled-group
+      id: resources
+      components:
+        - type: title
+          title: Resources
+          styles:
+            font-size: 1.75rem
+            line-height: 2.625rem
+            font-weight: 300
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                Explore new and updated Human Reference Atlas publications, standard operating procedures, and contact information.
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Publications
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                Recent papers (co-)authored by MC-IU that explain how the HRA is constructed and used:
+                - Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage. bioRxiv 2024.03.27.587041 (2024) doi:10.1101/2024.03.27.587041.
+                - How to use the Registration and Exploration User Interfaces of the HRA: Börner, Bueckle, Herr II, et al. Tissue registration and exploration user interfaces in support of a human reference atlas. Communications Biology 5, 1369 (2022). doi: 10.1038/s42003-022-03644-x
+                - Creation and usage of ASCT+B Tables as an essential data structure for the HRA: Börner, Teichmann, Quardokus, et al. Anatomical structures, cell types and biomarkers of the Human Reference Atlas. Nature Cell Biology 23, 1117-1128 (2021). doi: 10.1038/s41556-021-00788-6
+                - Documenting the CCF Ontology v2.0.1 connecting specimen, biological structure, and spatial data, as well as the HRA API to make the HRA programmatically accessible and interoperable with Linked Open Data (LOD): Herr II, Hardi, Quardokus, et al. Specimen, Biological Structure, and Spatial Ontologies in Support of a Human Reference Atlas. Scientific Data 10, 171 (2023). doi: 10.1038/s41597-023-01993-8
+                - Documenting Organ Mapping Antibody Panels (OMAPs): Quardokus, Saunders, McDonough, et al. Organ Mapping Antibody Panels: A community resource for standardized multiplexed tissue imaging. Nature Methods 20, 1174-1178 (2023). doi: 10.1038/s41592-023-01846-7
+        - type: title
+          title: Standard Operating Procedures (SOPs)
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - New SOPs
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623744' target='_blank'>Authoring the Pathway Organ Crosswalk Tables</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623897' target='_blank'>Constructing Blood Vasculature-Organ Crosswalk Diagrams</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623414' target='_blank'>Authoring the Pathway Crosswalk Table</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.11623222' target='_blank'>Authoring the Blood Vasculature Geometry Table</a>
+                - Updated SOPs
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.5639622' target='_blank'>Human Reference Atlas Working Group Communications</a>
+                  - <a href='https://zenodo.org/doi/10.5281/zenodo.10359228' target='_blank'>Managing Human Reference Atlas Registrations</a>
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: HRA Diversity Survey 2024
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas.
+                The survey is conducted annually to measure how the Human Reference Atlas community evolves over time.
+                The baseline survey in 2023 was shared with 297 individuals and the response rate was 7.7%.
+                The survey was rerun in March-April of 2024 (shared with 341 individuals). The response rate this time was 9.4%.
+                To date, a total of 54 individuals completed the survey.
+                Respondents hold the following roles in the Human Reference Atlas:
+                - HRA Digital Object author
+                - HRA Digital Object reviewer
+                - Infrastructure designer
+                - Interface designer
+                - Organizer
+                - Toolmaker
+                - User
+                - Interface tester
+                - Other
+                - I prefer not to respond
+
+                <br>
+
+                **Gender and sexual orientation**\
+                Female: 53% (was 52%)\
+                Male: 44% (was 48%)\
+                Identify as LGBTIA+: 7.79% (was 4.3%)
+
+                **Ethnicity and race**\
+                White: 80.7% (was 82.6%)\
+                Asian: 12.9% (was 13%)\
+                Hispanic, Latino, or Spanish: 1.6% (was 4.3%)
+
+                **Disability**\
+                8% (was 5.3%)
+
+                **Continent of residence**\
+                North America: 81.3 % (was 79.1%)\
+                Europe: 14.7% (was 12.5%)\
+                Australia/Oceania: 1.3% (was 4.2%)
+
+                **Socio-economic background**\
+                Individuals from disadvantaged backgrounds, as defined using
+                <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 26.2% (was 47%)
+
+                The survey used to gather this information can be found <a href="https://drive.google.com/file/d/15cqbz-wHURmEyJ2DnsQKLV0ejVbXp9zG/view?usp=sharing" target="_blank">here</a>.
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Visible Human Massive Open Online Course (VHMOOC) Updates
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                - 4 new videos added
+          styles:
+            margin-bottom: 2rem
+        - type: button
+          text: Start Course
+          url: https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc
+          styles:
+            margin-bottom: 2rem
+        - type: title
+          title: 'Human Reference Atlas: Vasculature Common Coordinate Framework'
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 2rem
+        - type: player
+          youtubePlayer:
+            height: 584
+            width: 1232
+            videoId: zQeMgxo8n_U
+            playerTitle: ''
+        - type: margin
+          bottom: 2.5rem
+        - type: title
+          title: Release Calendar
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: title
+          title: Download the Human Reference Atlas (HRA) Release Calendar to stay ahead of deadlines.
+          class: page-data
+          styles:
+            margin-bottom: 2rem
+        - type: button
+          text: Download JPG
+          icon: download
+          url: assets/images/hra-release-calendar.svg
+          styles:
+            margin-bottom: 2rem
+        - type: image
+          imageSource: assets/images/hra-release-calendar.svg
+          alt: HRA ASCTB Reporter
+          styles:
+            margin-bottom: 2.5rem
+            width: 100%
+    - type: styled-group
+      id: contact-us
+      components:
+        - type: title
+          title: Contact Us
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: page-data
+          styles:
+            margin-bottom: 2rem
+          pageData:
+            - heading: ''
+              descriptions: |
+                Interested in getting involved? Join the <a href='https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH' target='_blank'>HRA Working Group</a> or contact us!
+        - type: button
+          styles:
+            margin-bottom: 2rem
+          text: Contact the HRA Team
+          url: mailto:infoccf@indiana.edu
+          icon: email
+        - type: contact-card
+          contactData:
+            - image: assets/images/katy_borner.svg
+              name: Katy Börner
+              field: Research
+              role: MC-IU PI, CNS Director
+              email: katy@iu.edu
+              alt: Katy Borner profile image
+            - image: assets/images/bruce_herr.svg
+              name: Bruce W. Herr II
+              field: Development
+              role: Technical Director
+              email: bherr@iu.edu
+              alt: Bruce Herr II profile image
+            - image: assets/images/andreas_bueckle.svg
+              name: Andreas Bueckle
+              field: Research
+              role: Research Lead
+              email: abueckle@iu.edu
+              alt: Bruce Herr II profile image
+        - type: margin
+          bottom: 2rem
+
+- type: margin
+  bottom: 4.5rem

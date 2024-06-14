@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+- type: header
+  headerCard:
+    - title: 'Preview: Cell Distance Explorer'
+      subtitle: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
+      image: assets/images/cell_dist_explorer_us5.svg
+      alt: Cell Distance Explorer icon
+
+- type: margin
+  bottom: 3.5rem
+
+- type: announcement
+  announcementCard:
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
+      emoji: '🎉'
+
+- type: margin
+  bottom: 3.5rem
+
+- type: page-data
+  pageData:
+    - heading: Overview
+      descriptions: |
+        Compute, visualize, and explore distance distributions between different cells, cell types,
+        and anatomical structures (e.g., FTUs), and cell types and morphological features (e.g., the edge of an organ).
+        Use the Cell Distance Explorer to add granularity to our understanding of how disease develops
+        (e.g., how tumor cells grow or metastasize) in support of targeted therapies.
+        Download data and visualizations or embed visualizations on websites.
+
+- type: margin
+  bottom: -3rem
+
+- type: button
+  text: Use the Cell Distance Explorer
+  url: https://apps.humanatlas.io/cde/
+
+- type: margin
+  bottom: 5rem
+
+- type: player
+  youtubePlayer:
+    height: 584
+    width: 1232
+    videoId: q8zCRd7vHH8
+    playerTitle: 'Video Demonstration'
+
+- type: margin
+  bottom: 5rem
+
+- type: page-data
+  pageData:
+    - heading: Demo Code
+      descriptions: 'Human Reference Atlas APIs are available freely on GitHub.'
+  styles:
+    margin-bottom: 2rem
+
+- type: button
+  text: GitHub Repository
+  url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/cde-cell-distance-explorer/
