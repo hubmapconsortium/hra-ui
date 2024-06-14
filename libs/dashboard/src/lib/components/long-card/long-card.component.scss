@@ -1,0 +1,49 @@
+:host {
+  .long-card {
+    display: block;
+    width: 14.5rem;
+    height: 42rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 5px 16px 0px rgba(32, 30, 61, 0.24);
+    outline-offset: 0;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .label {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 1.5rem 0;
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      font-weight: 500;
+    }
+
+    mat-icon {
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+  }
+
+  @media (max-width: 544px) {
+    justify-content: center;
+  }
+
+  @media (min-width: 1441px) {
+    .long-card {
+      width: 17rem;
+      height: 51rem;
+
+      .label {
+        margin: 3rem 1.5rem 0;
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+      }
+    }
+  }
+}

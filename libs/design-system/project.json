@@ -2,7 +2,7 @@
   "name": "design-system",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/design-system/src",
-  "prefix": "hra-ui",
+  "prefix": "hra",
   "projectType": "library",
   "tags": ["type:lib", "project:design-system"],
   "targets": {

@@ -42,6 +42,9 @@
       "@hra-ui/components/organisms": [
         "libs/components/organisms/src/index.ts"
       ],
+      "@hra-ui/dashboard": [
+        "libs/dashboard/src/index.ts"
+      ],
       "@hra-ui/design-system": [
         "libs/design-system/src/index.ts"
       ],

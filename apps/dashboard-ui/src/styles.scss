@@ -1,0 +1,52 @@
+@use './styles/cta' as cta;
+@use './styles/global/resets';
+@use './styles/global/fonts';
+@use './styles/material-theming';
+
+body {
+  margin: 0;
+}
+
+body:has(.menu-open) {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cta-flat {
+  @include cta.flatDefault();
+
+  &:hover {
+    @include cta.flatHover();
+  }
+
+  &:active {
+    @include cta.flatActive();
+  }
+
+  &:focus-visible {
+    @include cta.flatFocus();
+  }
+}
+
+.cta-filled {
+  @include cta.filledDefault();
+
+  &:hover {
+    @include cta.filledHover();
+  }
+
+  &:active {
+    @include cta.filledActive();
+  }
+
+  &:focus-visible {
+    --mdc-filled-button-label-text-color: rgba(32, 30, 61, 1);
+  }
+
+  &:focus-visible::after {
+    @include cta.filledFocus();
+  }
+}
