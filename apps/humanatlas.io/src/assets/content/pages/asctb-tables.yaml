@@ -14,6 +14,10 @@
       routeText: '7th Release Notes.'
       emoji: '🎉'
 
+- type: announcement
+  announcementCard:
+    - message: 'Warning: DOI registration in progress. HRA v2.1 DOI URLs will not work until further notice.'
+
 - type: margin
   bottom: 3.5rem
 
