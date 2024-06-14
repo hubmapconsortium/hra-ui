@@ -46,7 +46,7 @@ runs:
 
     - name: Build app web components
       shell: bash
-      run: npx nx ${{ inputs.nx-command }} --targets=build-webcomponent
+      run: npx nx ${{ inputs.nx-command }} --targets=build-webcomponent --configuration=${{ inputs.app-configuration }}
 
     - name: Build compodoc
       if: ${{ inputs.build-compodoc == 'true' }}

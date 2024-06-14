@@ -42,11 +42,13 @@ $y-multiplier: 0.4566;
 }
 
 @mixin filledHover() {
-  background-color: rgba(178, 10, 47, 1);
+  --mdc-filled-button-container-color: rgba(178, 10, 47, 1);
+  background-color: var(--mdc-filled-button-container-color);
 }
 
 @mixin filledActive() {
-  background-color: rgba(142, 8, 37, 1);
+  --mdc-filled-button-container-color: rgba(142, 8, 37, 1);
+  background-color: var(--mdc-filled-button-container-color);
 }
 
 @mixin filledFocus() {

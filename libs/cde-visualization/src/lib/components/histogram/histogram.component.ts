@@ -237,7 +237,7 @@ export class HistogramComponent {
   private computeColors(): string[] {
     const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
     return [totalCellType, ...this.filteredCellTypes()]
-      .sort((a, b) => a.name.localeCompare(b.name))
+      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
       .map(({ color }) => rgbToHex(color));
   }
 }

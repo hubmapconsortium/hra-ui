@@ -11,7 +11,7 @@ import { ClearSelection, HighlightCellType, Load, Reset, SetClicked, SetHover } 
  */
 export interface IllustratorModel {
   /** Illustration URL */
-  url?: Url | string;
+  url?: Url;
   /** Selected Illustrator Item on hover */
   selectedOnHover?: IllustrationMappingItem;
   /** Selected Illustrator Item on click */

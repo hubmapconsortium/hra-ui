@@ -1,35 +1,49 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ErrorHandler, SimpleChange } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import {
+  FTU_DATA_IMPL_ENDPOINTS,
+  Iri,
+  RawCellEntry,
+  RawIllustration,
+  RawIllustrationFile,
+  RawIllustrationsJsonld,
+} from '@hra-ui/services';
+import { ReplaySubject, firstValueFrom } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { MedicalIllustrationComponent } from './medical-illustration.component';
-import { CellEntry, Illustration, IllustrationFile, IllustrationsJsonld } from './medical-illustration.models';
 
-const SAMPLE_FILE: IllustrationFile = {
+const SAMPLE_FILE: RawIllustrationFile = {
   file: 'test.svg',
   file_format: 'image/svg+xml',
 };
 
-const SAMPLE_CELL: CellEntry = {
+const SAMPLE_CELL: RawCellEntry = {
   label: 'cell1',
   svg_id: 'cell1-path',
   svg_group_id: 'cell1-group',
   representation_of: 'tissue',
 };
 
-const SAMPLE_ILLUSTRATION_1: Illustration = {
-  '@id': 'test1',
+const SAMPLE_ILLUSTRATION_1: RawIllustration = {
+  '@id': 'https://example.com?id=1' as Iri,
+  label: '',
+  organ_id: '',
+  organ_label: '',
+  representation_of: '',
   mapping: [SAMPLE_CELL],
   illustration_files: [SAMPLE_FILE],
 };
 
-const SAMPLE_ILLUSTRATION_2: Illustration = {
-  '@id': 'test2',
+const SAMPLE_ILLUSTRATION_2: RawIllustration = {
+  '@id': 'https://example.com?id=2' as Iri,
+  label: '',
+  organ_id: '',
+  organ_label: '',
+  representation_of: '',
   mapping: [],
   illustration_files: [],
 };
 
-const SAMPLE_ILLUSTRATIONS: IllustrationsJsonld = {
+const SAMPLE_ILLUSTRATIONS: RawIllustrationsJsonld = {
   '@graph': [SAMPLE_ILLUSTRATION_1, SAMPLE_ILLUSTRATION_2],
 };
 
@@ -39,7 +53,11 @@ describe('MedicalIllustrationComponent', () => {
   beforeEach(() => {
     shallow = new Shallow(MedicalIllustrationComponent)
       .import(HttpClientTestingModule)
-      .dontMock(HttpClientTestingModule);
+      .dontMock(HttpClientTestingModule, FTU_DATA_IMPL_ENDPOINTS)
+      .provide({
+        provide: FTU_DATA_IMPL_ENDPOINTS,
+        useValue: new ReplaySubject(1),
+      });
   });
 
   it('creates', async () => {
@@ -53,7 +71,7 @@ describe('MedicalIllustrationComponent', () => {
       expect(url).toEqual(SAMPLE_FILE.file);
     });
 
-    it('accepts an id when illustrations is set', async () => {
+    it('accepts an id when illustrations is set to an object', async () => {
       const { instance } = await shallow.render({
         bind: {
           selectedIllustration: SAMPLE_ILLUSTRATION_1['@id'],
@@ -64,16 +82,16 @@ describe('MedicalIllustrationComponent', () => {
       expect(url).toEqual(SAMPLE_FILE.file);
     });
 
-    it('accepts an id when remoteApiEndpoint is set', async () => {
+    it('accepts an id when illustrations is set to an url', async () => {
       const endpoint = 'https://www.example.com';
       const { instance, inject } = await shallow.render({
         bind: {
           selectedIllustration: SAMPLE_ILLUSTRATION_1['@id'],
-          remoteApiEndpoint: endpoint,
+          illustrations: endpoint,
         },
       });
       const controller = inject(HttpTestingController);
-      const request = controller.expectOne(endpoint);
+      const request = controller.expectOne((req) => req.url.startsWith(endpoint));
       request.flush(SAMPLE_ILLUSTRATIONS);
 
       const url = await firstValueFrom(instance.url$);
@@ -85,48 +103,6 @@ describe('MedicalIllustrationComponent', () => {
       const { instance } = await shallow.render({ bind: { selectedIllustration: '' } });
       const url = await firstValueFrom(instance.url$);
       expect(url).toBeUndefined();
-    });
-
-    it('errors if it is an id and neither illustrations nor remoteApiEndpoint are set', async () => {
-      const handleError = jest.fn();
-      const { instance } = await shallow
-        .mock(ErrorHandler, {
-          handleError,
-        })
-        .render({
-          bind: {
-            selectedIllustration: SAMPLE_ILLUSTRATION_1['@id'],
-          },
-        });
-
-      const url = await firstValueFrom(instance.url$);
-      expect(url).toBeUndefined();
-      expect(handleError).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('.remoteApiEndpoint', () => {
-    it('caches responses', async () => {
-      const endpoint = 'https://www.example.com';
-      const { instance, inject } = await shallow.render({
-        bind: {
-          selectedIllustration: SAMPLE_ILLUSTRATION_1['@id'],
-          remoteApiEndpoint: endpoint,
-        },
-      });
-      const controller = inject(HttpTestingController);
-      const request = controller.expectOne(endpoint);
-      request.flush(SAMPLE_ILLUSTRATIONS);
-
-      const selectedIllustration = SAMPLE_ILLUSTRATION_2['@id'];
-      instance.selectedIllustration = selectedIllustration;
-      instance.ngOnChanges({
-        selectedIllustration: new SimpleChange('', selectedIllustration, false),
-      });
-
-      const url = await firstValueFrom(instance.url$);
-      expect(url).toBeUndefined();
-      controller.verify();
     });
   });
 
