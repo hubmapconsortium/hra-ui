@@ -33,7 +33,9 @@ export class VisualizationPageComponent {
   /** Visualization element reference */
   private readonly vis = viewChild.required<ElementRef<CdeVisualizationElement>>('vis');
 
+  /** Service for handling external urls */
   private readonly location = inject(Location);
+  /** Link to CDE home page */
   protected readonly homeLink = this.location.prepareExternalUrl('/');
 
   /** Binds the input data to the corresponding values in the visualization element */
