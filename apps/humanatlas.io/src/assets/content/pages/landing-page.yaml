@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: styled-group
   class: main-content
@@ -40,9 +40,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
@@ -56,12 +56,12 @@
   carouselContainerStyles:
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
-    - title: Map the human body at single-cell resolution
-      body: Learn more about the thousands of experts building the Human Reference Atlas.
+    - title: Map the human body at single cell resolution
+      body: Read our flagship paper about the thousands of experts building a Human Reference Atlas.
       image: assets/images/carousel1.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
       buttonText: View Paper
-      alt: Map the human body at single-cell resolution
+      alt: Map the human body at single cell resolution
     # - title: Contribute data to the Human Reference Atlas
     #   body: Register your data spatially using the Registration User Interface tool.
     #   image: assets/images/carousel2.svg
@@ -104,24 +104,25 @@
       count: 1,000+
       text: publications
       alt: Publications
+    # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/data/hra-growth.atlas.csv
     - image: assets/images/organs_metric.svg
       count: 65
       text: organs
       alt: Organs
     - image: assets/images/anatomical-structures.svg
-      count: 4,499
+      count: 4,659
       text: anatomical structures
       alt: Anatomical Structures
     - image: assets/images/cell-types.svg
-      count: 1,195
+      count: 1,311
       text: cell types
       alt: Cell Types
     - image: assets/images/biomarkers.svg
-      count: 2,089
+      count: 2,024
       text: biomarkers
       alt: Biomarkers
     - image: assets/images/omap.svg
-      count: 13
+      count: 21
       text: organ mapping antibody panels
       alt: Omap
     - image: assets/images/ftu.svg

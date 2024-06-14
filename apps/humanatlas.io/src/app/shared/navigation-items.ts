@@ -56,24 +56,40 @@ export const NAVIGATION_ITEMS: NavItems[] = [
     ],
   },
   {
-    menuName: 'Use the HRA',
+    menuName: 'Use HRA Previews',
     children: [
       {
-        menuName: 'Overview: HRA Use Cases',
+        menuName: 'Overview: Use HRA Previews',
         route: 'overview-use-the-hra',
         divider: true,
       },
       {
-        menuName: 'Improve Cell Type Annotations',
+        menuName: 'Preview: Improve Cell Type Annotations',
         route: 'user-story/1',
       },
       {
-        menuName: 'Predict 3D Spatial Origin of Tissue Samples',
+        menuName: 'Preview: Predict 3D Spatial Origin of Tissue Samples',
         route: 'user-story/2',
       },
       {
-        menuName: 'Explore Biomarker Expressions for Cell Types',
+        menuName: 'Preview: Explore Biomarker Expressions for Cell Types',
         route: 'user-story/3',
+      },
+      {
+        menuName: 'Preview: Functional Tissue Unit Explorer',
+        route: 'user-story/4',
+      },
+      {
+        menuName: 'Preview: Cell Distance Explorer',
+        route: 'user-story/5',
+      },
+      {
+        menuName: 'Preview: Use Atlas Components',
+        route: 'user-story/6',
+      },
+      {
+        menuName: 'Preview: Track Atlas Evolution and Usage',
+        route: 'user-story/7',
       },
     ],
   },
@@ -107,8 +123,12 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
-        menuName: 'Functional Tissue Unit Explorer',
-        url: 'https://apps.humanatlas.io/ftu-explorer/#/',
+        menuName: 'Preview: Functional Tissue Unit Explorer',
+        route: 'user-story/4',
+      },
+      {
+        menuName: 'Preview: Cell Distance Explorer',
+        route: 'user-story/5',
       },
       {
         menuName: 'Organ Gallery in VR',
@@ -144,10 +164,6 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         menuName: 'Standard Operating Procedures',
         route: 'standard-operating-procedures',
         disabled: true,
-      },
-      {
-        menuName: 'HRA User Stories',
-        url: 'https://docs.google.com/document/d/1I4gFPY47EBKEIDQ-hWTcxCUsGRxL7yJqKfCvlQAQe5Y/edit#heading=h.6n4dk68tke9a',
       },
       {
         menuName: 'Outreach',
