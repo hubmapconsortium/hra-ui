@@ -78,4 +78,13 @@ describe('CellTypesComponent', () => {
       'Cell Type 3',
     ]);
   });
+
+  it('should return total cell count', async () => {
+    const { fixture } = await render(CellTypesComponent, {
+      componentInputs: { cellTypes: mockData, cellTypesSelection: ['Cell Type 1'] },
+    });
+    fixture.autoDetectChanges();
+
+    expect(screen.getByTestId('total-cell-count')).toHaveTextContent('100');
+  });
 });

@@ -1,6 +1,8 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import {
   ColorMapEntry,
   DEFAULT_COLOR_MAP_KEY,
@@ -12,17 +14,15 @@ import {
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { mock } from 'jest-mock-extended';
 
-import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
-import { CreateVisualizationPageComponent } from './create-visualization-page.component';
+import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
+import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-}));
+const resizeObserverInstance = mock<ResizeObserver>();
+global.ResizeObserver = jest.fn(() => resizeObserverInstance);
 
 describe('CreateVisualizationPageComponent', () => {
   const globalProviders = [provideIcons(), provideHttpClient(), provideHttpClientTesting()];
@@ -63,28 +63,37 @@ describe('CreateVisualizationPageComponent', () => {
     createColorMapEntry(2, 'c', [0, 0, 3]),
   ];
 
+  const sampleMetadata = {
+    organ: {
+      id: 'sampleId',
+      label: 'Sample Label',
+    },
+  };
+
   const csvNodeDataWrongKeys = `BADKEY,x,y
     a,0,0
     b,1,2`;
 
-  // const csvColorMap = `cell_id,cell_type,cell_color
-  //   0,cell1,[0,0,0]
-  //   1,cell2,[1,1,1]`;
+  const csvNodeDataMissingValues = `Cell Type,x,y
+    a,0
+    b,1,2`;
 
-  // const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
-  //   0,cell1,[0,0,0]
-  //   1,cell2,[1,1,1]`;
+  const csvColorMap = `cell_id,cell_type,cell_color
+    0,cell1,[0,0,0]
+    1,cell2,[1,1,1]`;
 
   let instance: CreateVisualizationPageComponent;
+  let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
   beforeEach(async () => {
-    const { fixture } = await render(CreateVisualizationPageComponent, {
+    const context = await render(CreateVisualizationPageComponent, {
+      providers: globalProviders,
       componentInputs: {
         organs: [],
       },
-      providers: globalProviders,
     });
 
+    fixture = context.fixture;
     instance = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -93,9 +102,12 @@ describe('CreateVisualizationPageComponent', () => {
     it('checks for required keys, if missing do not update data', async () => {
       const nodeDataEl = screen.getAllByTestId('file-upload')[0];
       const data = new File([csvNodeDataWrongKeys], 'blah.csv', { type: 'text/csv' });
-      await userEvent.upload(nodeDataEl, data);
       const spy = jest.spyOn(instance.visualizationForm, 'patchValue');
+      await userEvent.upload(nodeDataEl, data);
+      fixture.autoDetectChanges();
+      await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
+      expect(instance.nodesErrorMessage).toMatch(/Required columns missing/);
     });
 
     it('sets nodes', async () => {
@@ -131,20 +143,21 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
-  // describe('setCustomColorMap()', () => {
-  //   it('sets a custom color map', async () => {
-  //     const toggleCustom = screen.getByTestId('upload-custom');
-  //     console.log(toggleCustom)
-  //     await userEvent.click(toggleCustom).then(() => {
-  //       instance.visualizationForm.value.colorMapType = 'custom';
-  //       console.log(instance.useCustomColorMap);
-  //       const colorMapEl = screen.getByTestId('color-map-upload'); //this doesn't work
-  //       console.log(colorMapEl)
-  //       const data = new File([csvColorMap], 'blah.csv', { type: 'text/csv' });
-  //       userEvent.upload(colorMapEl, data);
-  //     })
-  //   });
-  // });
+  describe('setCustomColorMap()', () => {
+    it('sets a custom color map', async () => {
+      const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+      const toggleHarness = await loader.getAllHarnesses(MatButtonToggleHarness);
+      await toggleHarness[1].check();
+      fixture.autoDetectChanges();
+
+      const data = new File([csvColorMap], 'blah', { type: 'text/invalid' });
+      const colorMapEl = screen.getAllByTestId('file-upload')[1];
+      await userEvent.upload(colorMapEl, data, { applyAccept: false });
+      fixture.autoDetectChanges();
+
+      expect(instance.colorErrorMessage).toMatch(/Invalid file type/);
+    });
+  });
 
   describe('clearCustomColorMap()', () => {
     it('clears color map and color map load errors', async () => {
@@ -183,6 +196,89 @@ describe('CreateVisualizationPageComponent', () => {
       instance.submit();
 
       expect(setDataSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('uses custom color map on submit', async () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.setCustomColorMap(sampleColorMap);
+      instance.visualizationForm.value.colorMapType = 'custom';
+      const processedSampleDataWithColorMap = { ...processedSampleData, colorMap: sampleColorMap };
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithColorMap);
+    });
+
+    it('submits metadata', async () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.value.metadata = sampleMetadata;
+      const processedMetadata = {
+        organId: sampleMetadata.organ.id,
+        organ: sampleMetadata.organ.label,
+      };
+
+      const processedSampleDataWithMetadata = { ...processedSampleData, metadata: processedMetadata };
+
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithMetadata);
+    });
+
+    it('uses empty object as metadata if no metadata', async () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.value.metadata = undefined;
+      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: {} };
+
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithEmptyMetadata);
+    });
+  });
+
+  describe('parse errors', () => {
+    it('shows parse errors', async () => {
+      const nodeDataEl = screen.getAllByTestId('file-upload')[0];
+      const data = new File([csvNodeDataMissingValues], 'blah.csv', { type: 'text/csv' });
+      await userEvent.upload(nodeDataEl, data);
+      instance.clearCustomColorMap();
+      fixture.autoDetectChanges();
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      expect(instance.nodesErrorMessage).toMatch(/Invalid file/);
+    });
+
+    it('shows parse error (cause is Error type)', async () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError: ExtendedFileLoadError = {
+        type: 'parse-error',
+        cause: new Error(),
+      };
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Required columns missing/);
+    });
+
+    it('shows parse errors (cause is some other type)', async () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError: ExtendedFileLoadError = {
+        type: 'parse-error',
+        cause: 'whatever',
+      };
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Invalid file: too many invalid rows/);
+    });
+
+    it('returns empty string if no error type', async () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError = {
+        type: undefined,
+        cause: 'whatever',
+      } as unknown as ExtendedFileLoadError;
+      expect(priedInstance.formatErrorMessage(testError)).toMatch('');
     });
   });
 });

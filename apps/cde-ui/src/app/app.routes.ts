@@ -6,7 +6,7 @@ import { VisualizationPageComponent } from './pages/visualization/visualization.
 import {
   visualizationDataCanActivate,
   visualizationDataResolver,
-} from './services/visualization-data-service/visualization-data-service.service';
+} from './services/visualization-data-service/visualization-data.service';
 import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs/organs.resolver';

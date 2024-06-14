@@ -38,7 +38,7 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
-import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data-service.service';
+import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 
