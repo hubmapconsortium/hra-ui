@@ -343,13 +343,52 @@
             line-height: 1.75rem
             font-weight: 400
             margin-bottom: 0.5rem
-        # - type: page-data
-        #   pageData:
-        #     - heading: ''
-        #       descriptions: |
-        #         - Andi to provide
-        #   styles:
-        #     margin-bottom: 2.5rem
+        - type: page-data
+          pageData:
+            - heading: ''
+              descriptions: |
+                The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas.
+                The survey is conducted annually to measure how the Human Reference Atlas community evolves over time.
+                The baseline survey in 2023 was shared with 297 individuals and the response rate was 7.7%.
+                The survey was rerun in March-April of 2024 (shared with 341 individuals). The response rate this time was 9.4%.
+                To date, a total of 54 individuals completed the survey.
+                Respondents hold the following roles in the Human Reference Atlas:
+                - HRA Digital Object author
+                - HRA Digital Object reviewer
+                - Infrastructure designer
+                - Interface designer
+                - Organizer
+                - Toolmaker
+                - User
+                - Interface tester
+                - Other
+                - I prefer not to respond
+
+                **Gender and sexual orientation**\
+                Female: 53% (was 52%)\
+                Male: 44% (was 48%)\
+                Identify as LGBTIA+: 7.79% (was 4.3%)
+
+                **Ethnicity and race**\
+                White: 80.7% (was 82.6%)\
+                Asian: 12.9% (was 13%)\
+                Hispanic, Latino, or Spanish: 1.6% (was 4.3%)
+
+                **Disability**\
+                8% (was 5.3%)
+
+                **Continent of residence**\
+                North America: 81.3 % (was 79.1%)\
+                Europe: 14.7% (was 12.5%)\
+                Australia/Oceania: 1.3% (was 4.2%)
+
+                **Socio-economic background**\
+                Individuals from disadvantaged backgrounds, as defined using
+                <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 26.2% (was 47%)
+
+                The survey used to gather this information can be found <a href="https://drive.google.com/file/d/15cqbz-wHURmEyJ2DnsQKLV0ejVbXp9zG/view?usp=sharing" target="_blank">here</a>.
+          styles:
+            margin-bottom: 2.5rem
         - type: title
           title: Visible Human Massive Open Online Course (VHMOOC) Updates
           styles:

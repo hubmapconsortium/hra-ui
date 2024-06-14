@@ -61,6 +61,12 @@
 - type: margin
   bottom: 5rem
 
+- type: title
+  title: FTU Explorer Features
+  class: content-title
+  styles:
+    margin-bottom: 2rem
+
 - type: image
   imageSource: assets/images/us4.svg
   alt: FTU Explorer Image
