@@ -40,7 +40,7 @@ interface NodeDistVisElementProps {
 
   colorMapData: ColorMapEntry[];
   colorMapKey: string;
-  colorMapValueKey: string;
+  colorMapValue: string;
 
   selection: string[];
 }
@@ -101,7 +101,7 @@ export class NodeDistVisualizationComponent {
 
     this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
     this.bindData('colorMapKey', this.colorMapKey);
-    this.bindData('colorMapValueKey', this.colorMapValueKey);
+    this.bindData('colorMapValue', this.colorMapValueKey);
 
     this.bindData('selection', this.cellTypesSelection);
   }

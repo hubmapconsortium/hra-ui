@@ -92,12 +92,11 @@ export class FileUploadComponent<T, OptionsT> {
 
     const { injector, loader, options } = this;
     const file = (this.file = el.files[0]);
-    if (!this.accept().split(',').includes(file.type)) {
-      const segments = file.name.split('.');
+    if (!this.hasAcceptableFileType(file)) {
       this.cancelLoad({
         type: 'type-error',
         expected: this.accept(),
-        received: segments.at(-1),
+        received: this.getFileSuffix(file).slice(1),
       });
       return;
     }
@@ -139,5 +138,28 @@ export class FileUploadComponent<T, OptionsT> {
     }
 
     return acc;
+  }
+
+  /**
+   * Checks whether a file is one of the `accept()` file types.
+   * This does not guarantee that the file has the correct content so the loader should
+   * check for errors too.
+   *
+   * @param file File to check
+   * @returns true if the file matches one of the accepted file types
+   */
+  private hasAcceptableFileType(file: File): boolean {
+    const types = this.accept().split(',');
+    return types.includes(file.type) || types.includes(this.getFileSuffix(file));
+  }
+
+  /**
+   * Gets file suffix including the leading '.'
+   *
+   * @param file File to extract suffix from
+   * @returns The suffix part of the file name or an empty string if the file does not have a suffix
+   */
+  private getFileSuffix(file: File): string {
+    return file.name.match(/\.[^.]+$/i)?.[0] ?? '';
   }
 }
