@@ -1,0 +1,43 @@
+<div class="header">
+  <div class="logos">
+    <a href="https://humanatlas.io/" target="_blank" rel="noopener noreferrer">
+      <img src="assets/logo/hra-logo.svg" alt="Human Reference Atlas logo" class="hra-logo" />
+      <img src="assets/logo/hra-logo-small.svg" alt="Small Size Human Reference Atlas logo" class="hra-mini-logo" />
+    </a>
+    <a [routerLink]="''" (click)="closeMenu()">
+      <img src="assets/logo/dashboard.svg" alt="HRA Dashboards logo" class="dashboard-logo" />
+    </a>
+  </div>
+  <span class="menu-btns">
+    <button [routerLink]="'data'" disableRipple mat-button>Data</button>
+    <button [routerLink]="'usage'" disableRipple mat-button>Usage</button>
+    <button [routerLink]="'diversity-and-inclusion'" disableRipple mat-button>Diversity & Inclusion</button>
+    <button [routerLink]="'publications'" disableRipple mat-button>Publications</button>
+    <button [routerLink]="'experimental-data'" disableRipple mat-button>Experimental Data</button>
+  </span>
+  <button
+    mat-button
+    disableRipple
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    aria-label="Icon button with a menu"
+    class="menu-toggle"
+    (menuOpened)="menuOpen = true"
+    (menuClosed)="menuOpen = false"
+  >
+    <mat-icon class="material-symbols-rounded">
+      {{ menuTrigger.menuOpen ? 'close' : 'menu' }}
+    </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="panelClass">
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'data'"> Data </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'usage'"> Usage </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'diversity-and-inclusion'">
+      Diversity & Inclusion
+    </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'publications'"> Publications </a>
+    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'experimental-data'">
+      Expirimental Data
+    </a>
+  </mat-menu>
+</div>

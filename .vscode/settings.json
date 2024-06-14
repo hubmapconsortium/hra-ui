@@ -1,3 +1,11 @@
 {
-  "conventionalCommits.scopes": ["molecules", "medical-illustration", "webcomponents", "state", "ftu-ui", "services"]
+  "conventionalCommits.scopes": [
+    "molecules",
+    "medical-illustration",
+    "webcomponents",
+    "state",
+    "dashboard",
+    "ftu-ui",
+    "services"
+  ]
 }

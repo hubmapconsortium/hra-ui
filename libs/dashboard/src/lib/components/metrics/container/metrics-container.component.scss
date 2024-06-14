@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  .card {
+    flex-grow: 1;
+    .items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+    }
+
+    .multi-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
