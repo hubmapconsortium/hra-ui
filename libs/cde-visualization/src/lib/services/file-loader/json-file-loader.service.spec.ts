@@ -9,8 +9,8 @@ import { JsonFileLoaderService } from './json-file-loader.service';
 describe('JsonFileLoaderService', () => {
   const url = 'https://example.com';
   const data = { a: 1, b: 2 };
-  const serizalizedData = JSON.stringify(data);
-  const size = serizalizedData.length;
+  const serializedData = JSON.stringify(data);
+  const size = serializedData.length;
 
   async function getEvents<T>(source: Observable<FileLoaderEvent<T>>): Promise<FileLoaderEvent<T>[]> {
     return firstValueFrom(source.pipe(toArray()));
@@ -18,8 +18,8 @@ describe('JsonFileLoaderService', () => {
 
   it('loads a local file', async () => {
     const file = mock<File>({
-      size: serizalizedData.length,
-      text: () => Promise.resolve(serizalizedData),
+      size: serializedData.length,
+      text: () => Promise.resolve(serializedData),
     });
     const service = TestBed.inject(JsonFileLoaderService);
     const result$ = service.load(file, {});
