@@ -47,16 +47,6 @@
 - type: margin
   bottom: 5rem
 
-- type: player
-  youtubePlayer:
-    height: 584
-    width: 1232
-    videoId: AlcTRCMU2ME
-    playerTitle: 'TO BE DECIDED'
-
-- type: margin
-  bottom: 5rem
-
 - type: page-data
   pageData:
     - heading: Demo Code
@@ -74,3 +64,15 @@
 - type: button
   text: GitHub Repository
   url: https://github.com/x-atlas-consortia/hra-apps
+
+- type: margin
+  bottom: 5rem
+
+- type: image
+  imageSource: assets/images/us4.svg
+  alt: FTU Explorer Image
+  styles:
+    width: 100%
+
+- type: margin
+  bottom: 3.5rem

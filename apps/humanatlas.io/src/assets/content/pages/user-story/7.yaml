@@ -25,7 +25,7 @@
     - heading: Overview
       descriptions: |
         The Human Reference Atlas (HRA) is constructed and used by experts from many fields of science from around the globe.
-        Find metrics related to the size and coverage of HRA data; the number and type of HRA usage over time;
+        Find metrics related to the size and coverage of HRA data; the amount and type of HRA usage over time;
         scholarly and experimental data evidence for the HRA; plus diversity of atlas authors, donors, and users.
 
 - type: margin
@@ -57,8 +57,8 @@
   url: https://github.com/x-atlas-consortia/hra-apps
 
 - type: image
-  imageSource: assets/images/us3.png
-  alt: Image of US3 App
+  imageSource: assets/images/us7.svg
+  alt: Image of Track Atlas Evolution and Usage
   styles:
     width: 100%
 

@@ -38,16 +38,6 @@
 - type: margin
   bottom: 5rem
 
-- type: player
-  youtubePlayer:
-    height: 584
-    width: 1232
-    videoId: AlcTRCMU2ME
-    playerTitle: 'TO BE DECIDED'
-
-- type: margin
-  bottom: 5rem
-
 - type: page-data
   pageData:
     - heading: Demo Code
@@ -65,3 +55,21 @@
 - type: button
   text: GitHub Repository
   url: https://github.com/x-atlas-consortia/hra-apps
+
+- type: margin
+  bottom: 5rem
+
+- type: title
+  title: UI Preview
+  class: content-title
+  styles:
+    margin-bottom: 2rem
+
+- type: image
+  imageSource: assets/images/us6.svg
+  alt: Image of Use Atlas Components
+  styles:
+    width: 100%
+
+- type: margin
+  bottom: 3.5rem

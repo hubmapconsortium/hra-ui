@@ -44,8 +44,8 @@
   youtubePlayer:
     height: 584
     width: 1232
-    videoId: AlcTRCMU2ME
-    playerTitle: 'TO BE DECIDED'
+    videoId: q8zCRd7vHH8
+    playerTitle: Video Demonstration
 
 - type: margin
   bottom: 5rem
@@ -53,14 +53,7 @@
 - type: page-data
   pageData:
     - heading: Demo Code
-      descriptions: ''
-  styles:
-    margin-bottom: -2rem
-- type: page-data
-  pageData:
-    - heading: ''
-      descriptions: |
-        Human Reference Atlas APIs are available freely on GitHub.
+      descriptions: 'Human Reference Atlas APIs are available freely on GitHub.'
   styles:
     margin-bottom: 2rem
 
