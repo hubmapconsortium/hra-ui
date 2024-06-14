@@ -49,6 +49,15 @@
   text: GitHub Repository
   url: https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us7-hra-dashboard/
 
+- type: margin
+  bottom: 5rem
+
+- type: title
+  title: 'Preview: Diversity & Inclusion Dashboard'
+  class: content-title
+  styles:
+    margin-bottom: 2rem
+
 - type: image
   imageSource: assets/images/us7.svg
   alt: Image of Track Atlas Evolution and Usage
