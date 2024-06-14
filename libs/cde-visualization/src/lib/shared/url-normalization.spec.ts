@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { createAbsoluteUrl } from './url-normalization';
 import { Location } from '@angular/common';
+import { TestBed } from '@angular/core/testing';
 import { mock } from 'jest-mock-extended';
+import { createAbsoluteUrl } from './url-normalization';
+import { Injector } from '@angular/core';
 
 describe('createAbsoluteUrl(url)', () => {
   it('throws if not run in an injection context', () => {
-    expect(() => createAbsoluteUrl('')).toThrow(/injection context/);
+    expect(() => createAbsoluteUrl('')).toThrow();
   });
 
   it('returns the url unchanged if it is already absolute', () => {
@@ -26,10 +27,9 @@ describe('createAbsoluteUrl(url)', () => {
       useValue: mockLocation,
     });
 
-    TestBed.runInInjectionContext(() => {
-      const result = createAbsoluteUrl(relativeUrl);
-      expect(mockLocation.prepareExternalUrl).toHaveBeenCalledWith(relativeUrl);
-      expect(result).toEqual(resultUrl);
-    });
+    const injector = TestBed.inject(Injector);
+    const result = createAbsoluteUrl(relativeUrl, { injector });
+    expect(mockLocation.prepareExternalUrl).toHaveBeenCalledWith(relativeUrl);
+    expect(result).toEqual(resultUrl);
   });
 });

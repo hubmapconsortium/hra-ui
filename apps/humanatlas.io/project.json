@@ -60,6 +60,7 @@
         },
         "development": {
           "buildOptimizer": false,
+          "baseHref": "/",
           "optimization": false,
           "vendorChunk": true,
           "extractLicenses": false,

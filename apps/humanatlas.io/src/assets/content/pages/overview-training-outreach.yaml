@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: title
   title: Human Reference Atlas Training & Outreach
@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
@@ -77,6 +77,11 @@
           title: 6th Release Notes
           body: See what's new in the 6th Release (v2.0) of the Human Reference Atlas
           route: release-notes/v2.0
+          alt: Release notes icon
+        - icon: assets/images/hra-sop.svg
+          title: 7th Release Notes
+          body: See what's new in the 7th Release (v2.1) of the Human Reference Atlas
+          route: release-notes/v2.1
           alt: Release notes icon
       id: release-notes
     - heading: Human Atlas Stories
