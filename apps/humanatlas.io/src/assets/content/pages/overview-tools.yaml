@@ -51,10 +51,10 @@
       route: /user-story/5
       alt: Functional Tissue Unit Explorer icon
     - icon: assets/images/vr_gallery.svg
-      title: Organ Gallery in VR
+      title: HRA Organ Gallery
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
       route: organ-gallery-in-vr
-      alt: Organ gallery in VR icon
+      alt: HRA Organ Gallery icon
     - icon: assets/images/hra_milletome.svg
       title: Millitome
       body: A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs
