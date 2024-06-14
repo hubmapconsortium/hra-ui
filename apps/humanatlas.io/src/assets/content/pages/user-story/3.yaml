@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Explore Biomarker Expressions for Cell Types
+    - title: 'Preview: Explore Biomarker Expressions for Cell Types'
       subtitle: Use the Exploration User Interface to examine anatomical structures, cell types, and biomarkers
       image: assets/images/explore_biomarker_expressions.svg
       alt: Improve Cell Type Annotations Icon

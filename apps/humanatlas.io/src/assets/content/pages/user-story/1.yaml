@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Improve Cell Type Annotations
+    - title: 'Preview: Improve Cell Type Annotations'
       subtitle: Use the HRA API to improve the accuracy of annotations for bulk and spatial data
       image: assets/images/improve_cta_us1.svg
       alt: Improve Cell Type Annotations Icon

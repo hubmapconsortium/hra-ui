@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Functional Tissue Unit Explorer
+    - title: 'Preview: Functional Tissue Unit Explorer'
       subtitle: Examine cell type abundance and biomarker expression values for functional tissue units (FTUs)
       image: assets/images/ftu_explorer_us4.svg
       alt: Functional Tissue Unit Explorer icon

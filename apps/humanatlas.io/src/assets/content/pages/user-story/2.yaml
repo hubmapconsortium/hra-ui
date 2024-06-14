@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Predict 3D Spatial Origin of Tissue Samples
+    - title: 'Preview: Predict 3D Spatial Origin of Tissue Samples'
       subtitle: Use cell type populations to predict the 3-dimensional location of tissue samples
       image: assets/images/predict_3d_spatial_organs.svg
       alt: Predict 3D Spatial Origin icon

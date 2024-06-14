@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Use Atlas Components
+    - title: 'Preview: Use Atlas Components'
       subtitle: Explore, use, and share HRA web components to improve data access and analysis
       image: assets/images/hra_api.svg
       alt: API icon

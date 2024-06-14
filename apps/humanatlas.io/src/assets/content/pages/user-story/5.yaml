@@ -2,7 +2,7 @@
 
 - type: header
   headerCard:
-    - title: Cell Distance Explorer
+    - title: 'Preview: Cell Distance Explorer'
       subtitle: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
       image: assets/images/cell_dist_explorer_us5.svg
       alt: Cell Distance Explorer icon
