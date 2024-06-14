@@ -166,7 +166,6 @@
                   - Skeleton
                 - 13 OMAP Tables
                   - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields: target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids.
-
                 - 67 3D Organ Models (formerly 3D Reference Objects)
                   - All male and female 3D Organ Models were re-exported to include the node types as organizational, mesh, or surface.
     - type: styled-group
@@ -344,13 +343,13 @@
             line-height: 1.75rem
             font-weight: 400
             margin-bottom: 0.5rem
-        - type: page-data
-          pageData:
-            - heading: ''
-              descriptions: |
-                - Andi to provide
-          styles:
-            margin-bottom: 2.5rem
+        # - type: page-data
+        #   pageData:
+        #     - heading: ''
+        #       descriptions: |
+        #         - Andi to provide
+        #   styles:
+        #     margin-bottom: 2.5rem
         - type: title
           title: Visible Human Massive Open Online Course (VHMOOC) Updates
           styles:
