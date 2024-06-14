@@ -27,7 +27,7 @@ class MockNodeDistVis extends HTMLElement {
   maxEdgeDistance = createReactSignal();
   colorMapData = createReactSignal();
   colorMapKey = createReactSignal();
-  colorMapValueKey = createReactSignal();
+  colorMapValue = createReactSignal();
   selection = createReactSignal();
 
   resetView() {
