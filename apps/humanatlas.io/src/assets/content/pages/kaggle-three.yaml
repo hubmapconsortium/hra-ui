@@ -3,7 +3,7 @@
 - type: header
   headerCard:
     - title: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature'
-      subtitle: ''
+      subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
       image: assets/images/kaggle.svg
       alt: Kaggle three icon
 

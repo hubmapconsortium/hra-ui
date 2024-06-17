@@ -3,7 +3,7 @@
 - type: header
   headerCard:
     - title: 'Kaggle #4: SenNet + HOA - Hacking the Human Vasculature in 3D'
-      subtitle: ''
+      subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
       image: assets/images/kaggle.svg
       alt: Kaggle four icon
 
