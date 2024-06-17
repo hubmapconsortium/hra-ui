@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+- type: header
+  headerCard:
+    - title: 'Kaggle #4: SenNet + HOA - Hacking the Human Vasculature in 3D'
+      subtitle: ''
+      image: assets/images/kaggle.svg
+      alt: Kaggle two icon
+
+- type: announcement
+  announcementCard:
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
+      emoji: '🎉'
+
+- type: margin
+  bottom: 3.5rem
+
+- type: page-data
+  pageData:
+    - heading: Overview
+      descriptions: |
+        The goal of this competition was to segment blood vessels. Teams created a model trained on 3D Hierarchical Phase-Contrast Tomography (HiP-CT) data from human kidneys to help complete a picture of vasculature throughout the body.
+
+        This work will better researchers' understanding of the size, shape, branching angles, and patterning of blood vessels in human tissue.
+
+        Your body's organs and tissues depend on the interaction, spatial organization, and specialization of your cells—all 37 trillion of them. Researchers make sense of cellular functions and relationships with the Vasculature Common Coordinate Framework (VCCF). The VCCF maps cells using the blood vasculature in the human body as the primary navigation system. The framework crosses all scale levels and provides a unique way to identify cellular locations using capillary structures as an address. However, the gaps in what researchers know about the vasculature lead to gaps in the VCCF. If data science could help automatically segment vasculature arrangements, researchers could use the real-world tissue data to fill in those gaps and complete their picture of the vasculature throughout the body.
+
+        Currently, human expert annotators manually trace the vascular structures—a slow process. Even with expert annotators, each new dataset takes 6+ months to complete. Machine learning approaches using this manual data do not generalize well to new datasets because of the variability of both human anatomy and to changes in the image quality as HiP-CT technology continues to improve and change.
+
+        Competition host the Common Fund's Cellular Senescence Network (SenNet) Program was established to comprehensively identify and characterize the differences in senescent cells across the body, across various states of human health, and across the lifespan. SenNet provides publicly accessible atlases of senescent cells and develops innovative tools and technologies that build upon previous advances in single-cell analysis.
+
+        SenNet was joined by the Human Organ Atlas (HOA) for this competition. HOA is a digital atlas containing 3D multi-resolution imaging datasets, created at the world's brightest synchrotron (European Synchrotron Radiation Facility), using an imaging technique called Hierarchical Phase-Contrast Tomography (HiP-CT). HiP-CT spans a previously poorly explored scale in researchers' understanding of human anatomy, from microns to entire intact organs.
+
+        This effort aimed to improve our understanding of the effect of vasculature on different cells in the human body. With better data, researchers could simulate the flow of blood, oxygen, or even drugs through the vessel network. They could also use the available organ images to augment their understanding of how blood vasculature changes as sex, age, and BMI change. Ultimately, you could help pave the way towards a more complete Vascular Common Coordinate Framework (VCCF) and Human Reference Atlas (HRA), which could identify how the relationships between cells affect our health.
+
+        Please see the <a href='https://www.kaggle.com/competitions/blood-vessel-segmentation' target='_blank'>competition website</a> for more details.
+
+- type: page-data
+  pageData:
+    - heading: Publication
+      descriptions: |
+        The competition results are currently being written as a manuscript. The link will be added here soon.
+
+- type: page-data
+  pageData:
+    - heading: Awards Ceremony
+      descriptions: ''
+  styles:
+    margin-bottom: 0
+
+- type: player
+  youtubePlayer:
+    height: 584
+    width: 1232
+    videoId: OxZOZ_TTq80
+    playerTitle: ''
+
+- type: margin
+  bottom: 5rem
+
+- type: title
+  title: Winning Teams
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+    margin-bottom: 2rem
+
+- type: mat-card
+  styles:
+    margin-bottom: 1rem
+  components:
+    - type: image
+      imageSource: assets/images/kaggle-4-winners.png
+      alt: kaggle 4 winners image
+      styles:
+        width: 100%
+
+- type: prize-card
+  prizeCard:
+    - title: 'First Prize ($25,000)'
+      matDivider: false
+      winner:
+        - winner: <a href="https://www.kaggle.com/clevert" target='_blank'>Clevert</a> and <a href="https://www.kaggle.com/lum0s517" target='_blank'>Lum0s517</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475522
+    - title: Second Prize ($20,000)
+      matDivider: false
+      winner:
+        - winner: <a href="https://www.kaggle.com/ojimaryoji" target='_blank'>ryo</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475657
+    - title: Third Prize ($15,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/forcewithme" target='_blank'>ForcewithMe</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475074
+    - title: Fourth Prize ($10,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/igorkrashenyi" target='_blank'>Igor Krashenyi</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475052
+    - title: Fifth Prize ($5,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/ivanpan" target='_blank'>Ivan Panshin</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475288
+
+- type: margin
+  bottom: 5rem
+
+- type: page-data
+  pageData:
+    - heading: Datasets
+      descriptions: |
+        All training data used in the competition is available on the <a href='https://www.kaggle.com/competitions/blood-vessel-segmentation/data' target='_blank'>competition website</a>.
+        The test data will soon be released with the manuscript.
+
+- type: page-data
+  pageData:
+    - heading: Code
+      descriptions: |
+        All code submitted by the winning teams will be made publicly available as part of the scientific paper showcasing the results of the competition as a
+        <a href='https://github.com/cns-iu/hra-sennet-hoa-kaggle-2024' target='_blank'>GitHub repository</a>.
+
+- type: page-data
+  pageData:
+    - heading: Acknowledgments
+      descriptions: |
+        We would like to thank the many individuals that made this competition possible, including:
+
+        <strong>Organizers:</strong> Katy Börner, Peter Lee, Claire Walsh, Yashvardhan Jain, Lisel Record, Nancy Ruschman
+
+        <strong>Competition Sponsors:</strong> [Add Images Here]
+
+        <strong>Funders:</strong> This work has been funded in part by NIH under award U24CA268108. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
