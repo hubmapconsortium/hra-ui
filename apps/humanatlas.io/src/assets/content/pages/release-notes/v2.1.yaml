@@ -238,6 +238,30 @@
                   - <a href='https://pypi.org/project/hra-api-client/' target="_blank">Python</a>
                 - <a href='http://lod.humanatlas.io' target="_blank">HRA-KG</a>
                 - <a href='https://github.com/hubmapconsortium/ccf-grlc/' target="_blank">grlc API</a>
+          styles:
+            margin-bottom: 2.5rem
+        - type: title
+          title: Human Reference Atlas in 60+ Languages
+          styles:
+            font-size: 1.25rem
+            line-height: 1.75rem
+            font-weight: 400
+            margin-bottom: 0.5rem
+        - type: title
+          title: Use Google Translate to access the HRA.
+          class: page-data
+          styles:
+            margin-bottom: 2rem
+        - type: image
+          imageSource: 'assets/images/hra_translate.svg'
+          alt: HRA Google Translate Image
+          styles:
+            width: 90%
+            box-shadow: '0px 5px 16px 0px #201E3D3D'
+            border-radius: 1rem
+            margin-left: 1rem
+            margin-bottom: 5rem
+
     - type: styled-group
       id: news
       components:
