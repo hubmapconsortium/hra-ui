@@ -5,7 +5,7 @@
     - title: 'Kaggle #4: SenNet + HOA - Hacking the Human Vasculature in 3D'
       subtitle: ''
       image: assets/images/kaggle.svg
-      alt: Kaggle two icon
+      alt: Kaggle four icon
 
 - type: announcement
   announcementCard:
@@ -143,6 +143,6 @@
 
         <strong>Organizers:</strong> Katy Börner, Peter Lee, Claire Walsh, Yashvardhan Jain, Lisel Record, Nancy Ruschman
 
-        <strong>Competition Sponsors:</strong> [Add Images Here]
+        <strong>Competition Sponsors:</strong> Kaggle, CIFAR, Indiana University, UCL, Royal Academy of Engineering, Chan Zuckerberg Initiative, Techpoint
 
         <strong>Funders:</strong> This work has been funded in part by NIH under award U24CA268108. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
