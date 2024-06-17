@@ -53,12 +53,12 @@
         - icon: assets/images/kaggle.svg
           title: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature'
           body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
-          externalLink: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/overview/timeline
+          route: kaggle-three
           alt: Kaggle three icon
         - icon: assets/images/kaggle.svg
           title: 'Kaggle #4: SenNet + HOA - Hacking the Human Vasculature in 3D'
           body: Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction
-          externalLink: https://www.kaggle.com/competitions/blood-vessel-segmentation
+          route: kaggle-four
           alt: Kaggle four icon
       id: outreach
     - heading: Release Notes
