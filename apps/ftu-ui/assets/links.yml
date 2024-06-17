@@ -8,7 +8,7 @@ FTU:
     - ftu/
 About:
   type: external
-  url: https://humanatlas.io/
+  url: https://humanatlas.io/user-story/4
   target: _blank
 ExploreFTU:
   type: internal
