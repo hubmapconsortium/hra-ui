@@ -237,7 +237,7 @@
                     - <a href="https://apps.humanatlas.io/eui/" target="_blank">Exploration User Interface (EUI)</a>
                     - <a href="https://apps.humanatlas.io/rui/" target="_blank">Registration User Interface (RUI)</a>
                     - <a href='https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/' target="_blank">Functional Tissue Unit (FTU) Explorer</a>
-                    - <a href="https://humanatlas.io/organ-gallery-in-vr" target="_blank">Organ Gallery in VR</a>
+                    - <a href="https://humanatlas.io/hra-organ-gallery" target="_blank">Organ Gallery in VR</a>
 
             - type: divider
               styles:
