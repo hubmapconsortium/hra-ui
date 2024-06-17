@@ -1,0 +1,129 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+- type: header
+  headerCard:
+    - title: 'Kaggle #3: HuBMAP - Hacking the Human Vasculature'
+      subtitle: Algorithm development challenges that engage teams from around the globe to develop code for HRA construction
+      image: assets/images/kaggle.svg
+      alt: Kaggle three icon
+
+- type: announcement
+  announcementCard:
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
+      emoji: '🎉'
+
+- type: margin
+  bottom: 3.5rem
+
+- type: page-data
+  pageData:
+    - heading: Overview
+      descriptions: |
+        The goal of this competition was to segment instances of microvascular structures, including capillaries, arterioles, and venules. You'll create a model trained on 2D PAS-stained histology images from healthy human kidney tissue slides.
+
+        The proper functioning of your body's organs and tissues depends on the interaction, spatial organization, and specialization of your cells—all 37 trillion of them. With so many cells, determining their functions and relationships is a monumental undertaking.
+
+        Current efforts to map cells involve the Vasculature Common Coordinate Framework (VCCF), which uses the blood vasculature in the human body as the primary navigation system. The VCCF crosses all scale levels--from the whole body to the single cell level--and provides a unique way to identify cellular locations using capillary structures as an address. However, the gaps in what researchers know about microvasculature lead to gaps in the VCCF. If we could automatically segment microvasculature arrangements, researchers could use the real-world tissue data to begin to fill in those gaps and map out the vasculature.
+
+        Competition host Human BioMolecular Atlas Program (HuBMAP) hopes to develop an open and global platform to map healthy cells in the human body. Using the latest molecular and cellular biology technologies, HuBMAP researchers are studying the connections that cells have with each other throughout the body.
+
+        There are still many unknowns regarding microvasculature, but machine learning insights could enable researchers to use the available tissue data to augment understanding of how these small vessels are arranged throughout the body. Ultimately, participants will be helping to pave the way towards building a Vascular Common Coordinate Framework (VCCF) and a Human Reference Atlas (HRA), which will identify how the relationships between cells can affect our health.
+
+        Please see the <a href='https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature' target='_blank'>competition website</a> for more details.
+
+- type: page-data
+  pageData:
+    - heading: Publication
+      descriptions: |
+        The competition results are currently being written as a manuscript. The link will be added here soon.
+
+- type: title
+  title: Winning Teams
+  styles:
+    font-weight: 300
+    font-size: 1.5rem
+    margin-bottom: 2rem
+
+- type: mat-card
+  styles:
+    margin-bottom: 1rem
+  components:
+    - type: image
+      imageSource: assets/images/kaggle-3-winners.png
+      alt: kaggle 3 winners image
+      styles:
+        width: 100%
+
+- type: prize-card
+  prizeCard:
+    - title: 'First Prize ($20,000)'
+      matDivider: false
+      winner:
+        - winner: <a href="https://www.kaggle.com/tascj0" target='_blank'>tascj</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/discussion/429060
+    - title: Second Prize ($10,000)
+      matDivider: false
+      winner:
+        - winner: <a href="https://www.kaggle.com/phamvanlinh143" target='_blank'>Phan Van Linh</a> and <a href="https://www.kaggle.com/qdv206" target='_blank'>qdv206</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/discussion/429240
+    - title: Third Prize ($10,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/nischaydnk" target='_blank'>Nischay</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/discussion/430242
+    - title: Fourth Prize ($5,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/damtrongtuyen" target='_blank'>Đàm Trọng Tuyên</a> and <a href="https://www.kaggle.com/ducmanvo" target='_blank'>Duc Man Vo</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/discussion/428994
+    - title: Fifth Prize ($5,000)
+      matDivider: false
+      winner:
+        - winner: |
+            <a href="https://www.kaggle.com/wushaodong" target='_blank'>zw</a>
+          button:
+            - label: Solution Summary
+              link: https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature/discussion/429873
+
+- type: margin
+  bottom: 5rem
+
+- type: page-data
+  pageData:
+    - heading: Datasets
+      descriptions: |
+        All training data used in the competition is available on the <a href='https://www.kaggle.com/competitions/hubmap-hacking-the-human-vasculature' target='_blank'>competition website</a>.
+        The test data will soon be released with the manuscript.
+
+- type: page-data
+  pageData:
+    - heading: Code
+      descriptions: |
+        All code submitted by the winning teams will be made publicly available as part of the scientific paper showcasing the results of the competition as a
+        <a href='https://github.com/cns-iu/hra-vccf-2d-kaggle-2023' target='_blank'>GitHub repository</a>.
+
+- type: page-data
+  pageData:
+    - heading: Acknowledgments
+      descriptions: |
+        We would like to thank the many individuals that made this competition possible, including:
+
+        <strong>Organizers:</strong> Katy Börner, Amy Kemper, Katherine Gustilo, Yashvardhan Jain
+
+        <strong>Support Team:</strong> Haichun Yang, Lisel Record, Nancy Ruschman, Shriya Mandarapu
+
+        <strong>Competition Sponsors:</strong> Kaggle, Google, Indiana University
+
+        <strong>Funders:</strong> This work has been funded in part by the NIH Common Fund through the Office of the NIH Director under award OT2OD026671. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.

@@ -13,7 +13,7 @@
 
 - type: simple-tile
   description:
-    - title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+    - title: The **Human Reference Atlas (HRA)** is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
 
 - type: margin
   bottom: 3.5rem
@@ -53,7 +53,7 @@
     - icon: assets/images/vr_gallery.svg
       title: HRA Organ Gallery
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
-      route: organ-gallery-in-vr
+      route: hra-organ-gallery
       alt: HRA Organ Gallery icon
     - icon: assets/images/hra_milletome.svg
       title: Millitome

@@ -132,7 +132,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
       },
       {
         menuName: 'HRA Organ Gallery',
-        route: 'organ-gallery-in-vr',
+        route: 'hra-organ-gallery',
       },
       {
         menuName: 'Millitome',
