@@ -1,25 +1,68 @@
-import { TestBed } from '@angular/core/testing';
+import { DEFAULT_NODE_TARGET_KEY } from '@hra-ui/cde-visualization';
+import { render } from '@testing-library/angular';
+
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterTestingModule } from '@angular/router/testing';
+
+jest.mock('hra-node-dist-vis/docs/hra-node-dist-vis.wc.js', () => ({}));
+jest.mock('vega-embed', () => ({ default: jest.fn() }));
+
+function createReactSignal() {
+  return { value: undefined };
+}
+
+class MockNodeDistVis extends HTMLElement {
+  nodesData = createReactSignal();
+  nodeTargetKey = createReactSignal();
+  nodeTargetValue = createReactSignal();
+  edgesUrl = createReactSignal();
+  edgesData = createReactSignal();
+  maxEdgeDistance = createReactSignal();
+  colorMapData = createReactSignal();
+  colorMapKey = createReactSignal();
+  colorMapValue = createReactSignal();
+  selection = createReactSignal();
+
+  resetView() {
+    // Intentionally empty
+  }
+  toDataUrl() {
+    return 'test/url';
+  }
+}
+
+customElements.define('hra-node-dist-vis', MockNodeDistVis);
+
+const sampleData = {
+  nodes: undefined,
+  edges: undefined,
+  colorMap: undefined,
+  metadata: undefined,
+  nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
+  title: 'Test Title',
+  technology: 'Test Technology',
+  organ: 'Test Organ',
+  sex: 'Test Sex',
+  age: 30,
+  creationDate: 'Test Date',
+  creationTime: 'Test Time',
+  thickness: 1,
+  pixelSize: 1,
+};
 
 describe('AppComponent', () => {
+  let component: AppComponent;
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterTestingModule],
-    }).compileComponents();
-  });
+    const {
+      fixture: { componentInstance: instance },
+    } = await render(AppComponent, {
+      componentInputs: {
+        ...sampleData,
+      },
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome cde-visualization-wc');
+    component = instance;
   });
-
-  it(`should have as title 'cde-visualization-wc'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('cde-visualization-wc');
+  it(`should have as title 'cde-visualization-wc'`, async () => {
+    expect(component.title()).toEqual('Test Title');
   });
 });
