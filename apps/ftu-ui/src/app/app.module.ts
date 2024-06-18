@@ -70,6 +70,6 @@ export class AppModule implements DoBootstrap {
       injector: this.injector,
     });
 
-    customElements.define('hra-ftu-wc', FtuWebComponent);
+    customElements.define('hra-ftu-ui', FtuWebComponent);
   }
 }
