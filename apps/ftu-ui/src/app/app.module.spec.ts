@@ -14,7 +14,7 @@ describe('AppModule', () => {
     const appModule = new AppModule(injector);
     appModule.ngDoBootstrap();
 
-    const element = customElements.get('hra-ftu-wc');
+    const element = customElements.get('hra-ftu-ui');
     expect(element).toBeTruthy();
   });
 });
