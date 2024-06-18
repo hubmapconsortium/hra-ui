@@ -1,1 +1,21 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<cde-visualization-root
+  [homeLink]="homeLink()"
+  [nodes]="nodes()"
+  [nodeTargetKey]="nodeTargetKey()"
+  [nodeTargetValue]="nodeTargetValue()"
+  [edges]="edges()"
+  [maxEdgeDistance]="maxEdgeDistance()"
+  [colorMap]="colorMap()"
+  [colorMapKey]="colorMapKey()"
+  [colorMapValueKey]="colorMapValueKey()"
+  [metadata]="metadata()"
+  [title]="title()"
+  [technology]="technology()"
+  [organ]="organ()"
+  [sex]="sex()"
+  [age]="age()"
+  [creationDate]="creationDate()"
+  [creationTime]="creationTime()"
+  [thickness]="thickness()"
+  [pixelSize]="pixelSize()"
+></cde-visualization-root>

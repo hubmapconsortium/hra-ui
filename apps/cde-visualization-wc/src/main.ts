@@ -1,5 +1,11 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideHttpClient } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { createCustomElement } from '@hra-ui/webcomponents';
+import { ColorPickerModule } from 'ngx-color-picker';
+
 import { AppComponent } from './app/app.component';
 
-bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
+createCustomElement('cde-visualization-wc', AppComponent, {
+  providers: [provideHttpClient(), provideAnimations(), importProvidersFrom(ColorPickerModule)],
+});
