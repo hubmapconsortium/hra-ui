@@ -108,11 +108,6 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
-        menuName: 'Cell Population Graphs',
-        route: 'cell-population-graphs',
-        disabled: true,
-      },
-      {
         menuName: 'Registration User Interface (RUI)',
         route: 'registration-user-interface',
         disabled: true,
@@ -123,6 +118,16 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
+        menuName: 'HRA Organ Gallery',
+        route: 'hra-organ-gallery',
+      },
+      {
+        menuName: 'HRA API',
+        route: 'api',
+        disabled: true,
+        divider: true,
+      },
+      {
         menuName: 'Preview: Functional Tissue Unit Explorer',
         route: 'user-story/4',
       },
@@ -131,17 +136,21 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'user-story/5',
       },
       {
-        menuName: 'HRA Organ Gallery',
-        route: 'hra-organ-gallery',
+        menuName: 'Preview: Atlas Components',
+        route: 'user-story/6',
       },
       {
-        menuName: 'Millitome',
-        route: 'millitome',
+        menuName: 'Preview: HRA Dashboards',
+        route: 'user-story/7',
+      },
+      {
+        menuName: 'Preview: Cell Population Graphs',
+        route: 'cell-population-graphs',
         disabled: true,
       },
       {
-        menuName: 'Application Programming Interfaces (APIs)',
-        route: 'api',
+        menuName: 'Preview: Millitome',
+        route: 'millitome',
         disabled: true,
       },
     ],
