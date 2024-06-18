@@ -215,4 +215,10 @@
       }
     }
   }
+
+  @media (min-width: 1012px) {
+    .cdk-overlay-pane .mat-mdc-menu-panel {
+      display: none;
+    }
+  }
 }
