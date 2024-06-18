@@ -64,17 +64,17 @@
       title: 'Preview: Cell Distance Explorer'
       body: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
       route: /user-story/5
-      alt: Functional Tissue Unit Explorer icon
+      alt: Cell Distance Explorer icon
     - icon: assets/images/hra_api.svg
       title: 'Preview: Use Atlas Components'
       body: Explore, use, and share HRA web components to improve data access and analysis
       route: /user-story/6
-      alt: Functional Tissue Unit Explorer icon
+      alt: Use Atlas Components icon
     - icon: assets/images/track_atlas_usage_us7.svg
       title: 'Preview: Track Atlas Evolution and Usage'
       body: Explore usage statistics of atlas data and code
       route: /user-story/7
-      alt: Functional Tissue Unit Explorer icon
+      alt: Track Atlas Evolution and Usage icon
   # - icon: assets/images/hra_usage.svg
   #   title: Human Reference Atlas Usage Metrics
   #   body: Data and statistics on which tools and consortia are using the Human Reference Atlas
