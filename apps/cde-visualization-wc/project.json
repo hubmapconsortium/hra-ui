@@ -7,21 +7,23 @@
   "tags": ["app", "cde", "webcomponent"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "ngx-build-plus:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "singleBundle": true,
         "outputPath": "dist/apps/cde-visualization-wc",
         "index": "apps/cde-visualization-wc/src/index.html",
-        "browser": "apps/cde-visualization-wc/src/main.ts",
+        "main": "apps/cde-visualization-wc/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/cde-visualization-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/cde-visualization-wc/src/favicon.ico", "apps/cde-visualization-wc/src/assets"],
+        "assets": ["apps/cde-visualization-wc/src/favicon.png", "apps/cde-visualization-wc/src/assets"],
         "styles": ["apps/cde-visualization-wc/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/cde-visualization-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -40,6 +42,19 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/cde-visualization-wc/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/cde-visualization-wc/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
@@ -80,6 +95,9 @@
         "staticFilePath": "dist/apps/cde-visualization-wc/browser",
         "spa": true
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/build-webcomponent.mjs cde-visualization-wc"
     }
   }
 }
