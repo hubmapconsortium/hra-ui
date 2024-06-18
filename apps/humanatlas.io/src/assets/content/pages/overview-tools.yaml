@@ -40,16 +40,6 @@
       body: An interactive tool for exploring and validating spatially registered tissue blocks and cell type populations
       route: exploration-user-interface
       alt: Exploration user interface icon
-    - icon: assets/images/ftu_explorer_us4.svg
-      title: 'Preview: Functional Tissue Unit Explorer'
-      body: An interactive tool for exploring functional tissue units (FTUs) via cell types by gene, protein, and lipid biomarkers
-      route: user-story/4
-      alt: Functional Tissue Unit Explorer icon
-    - icon: assets/images/cell_dist_explorer_us5.svg
-      title: 'Preview: Cell Distance Explorer'
-      body: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
-      route: /user-story/5
-      alt: Functional Tissue Unit Explorer icon
     - icon: assets/images/vr_gallery.svg
       title: HRA Organ Gallery
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
@@ -65,6 +55,26 @@
       body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
       route: api
       alt: HRA Api icon
+    - icon: assets/images/ftu_explorer_us4.svg
+      title: 'Preview: Functional Tissue Unit Explorer'
+      body: Examine cell type abundance and biomarker expression values for functional tissue units (FTUs)
+      route: user-story/4
+      alt: Functional Tissue Unit Explorer icon
+    - icon: assets/images/cell_dist_explorer_us5.svg
+      title: 'Preview: Cell Distance Explorer'
+      body: Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more
+      route: /user-story/5
+      alt: Functional Tissue Unit Explorer icon
+    - icon: assets/images/hra_api.svg
+      title: 'Preview: Use Atlas Components'
+      body: Explore, use, and share HRA web components to improve data access and analysis
+      route: /user-story/6
+      alt: Functional Tissue Unit Explorer icon
+    - icon: assets/images/track_atlas_usage_us7.svg
+      title: 'Preview: Track Atlas Evolution and Usage'
+      body: Explore usage statistics of atlas data and code
+      route: /user-story/7
+      alt: Functional Tissue Unit Explorer icon
   # - icon: assets/images/hra_usage.svg
   #   title: Human Reference Atlas Usage Metrics
   #   body: Data and statistics on which tools and consortia are using the Human Reference Atlas
