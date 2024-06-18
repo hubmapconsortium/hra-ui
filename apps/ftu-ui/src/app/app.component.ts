@@ -309,7 +309,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
     this.detectSmallViewport();
   }
 
-  private detectSmallViewport(): void {
+  detectSmallViewport(): void {
     if (
       window.innerWidth <= SMALL_VIEWPORT_THRESHOLD &&
       !this.hasShownSmallViewportNotice() &&

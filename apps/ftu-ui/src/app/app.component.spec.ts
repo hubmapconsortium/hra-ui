@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { dispatch, dispatch$, dispatchAction$, select$, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
 import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
-import { ActiveFtuActions, TissueLibraryActions } from '@hra-ui/state';
+import { TissueLibraryActions } from '@hra-ui/state';
 import { mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
@@ -28,6 +28,7 @@ describe('AppComponent', () => {
     jest.mocked(dispatch).mockReturnValue(jest.fn());
     jest.mocked(selectQuerySnapshot).mockReturnValue(jest.fn());
     jest.mocked(dispatch$).mockReturnValue(jest.fn(() => of({})));
+    jest.mocked(select$).mockReturnValue(of({}));
     dialog.open.mockReturnValue(postRef);
 
     shallow = new Shallow(AppComponent, AppModule)
@@ -40,7 +41,7 @@ describe('AppComponent', () => {
   });
 
   it('should create component', async () => {
-    expect(shallow.render()).resolves.toBeDefined();
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 
   it('should show dailog box if sceen size is less than 480px', async () => {
@@ -53,43 +54,43 @@ describe('AppComponent', () => {
   it('should load links from YAML URL', async () => {
     const { instance } = await shallow.render();
     const url = 'mock-url';
-    instance.linksYamlUrl = url;
+    instance.appLinks = url;
     expect(dispatch).toHaveBeenCalled();
   });
 
   it('should load resources from YAML URL', async () => {
     const { instance } = await shallow.render();
     const url = 'mock-url';
-    instance.resourcesYamlUrl = url;
+    instance.appResources = url;
     expect(dispatch).toHaveBeenCalled();
   });
 
   it('should navigate to organ based on provided IRI', async () => {
     jest.mocked(dispatch).mockReturnValue((TestId) => new LinkRegistryActions.Navigate(TestId));
     const { instance } = await shallow.render();
-    instance.organIri = 'test-id';
+    instance.selectedIllustration = 'test-id';
     expect(dispatch).toHaveBeenCalledWith(LinkRegistryActions.Navigate);
   });
 
   it('should load default iri when no iri present', async () => {
     jest.mocked(select$).mockReturnValue(of({ test1: { children: ['testUrl'] } }));
-    await shallow.render({ bind: { linksYamlUrl: '', resourcesYamlUrl: '', organIri: '' } });
+    await shallow.render({ bind: { appLinks: '', appResources: '', selectedIllustration: '' } });
     expect(dispatch).toHaveBeenCalledWith(LinkRegistryActions.Navigate);
   });
 
   it('should reset and reload datasets on change of datasetUrl', async () => {
     const { instance } = await shallow.render({
       bind: {
-        linksYamlUrl: '',
-        resourcesYamlUrl: '',
-        organIri: '',
-        datasetUrl: '',
-        illustrationsUrl: '',
-        summariesUrl: '',
+        appLinks: '',
+        appResources: '',
+        selectedIllustration: '',
+        datasets: '',
+        illustrations: '',
+        summaries: '',
       },
     });
-    instance.datasetUrl = 'tempUrl';
-    expect(dispatch$).toHaveBeenCalledWith(ActiveFtuActions.Reset);
+    instance.datasets = 'tempUrl';
+    expect(dispatch$).toHaveBeenCalledWith(LinkRegistryActions.LoadFromYaml);
     expect(dispatch).toHaveBeenCalledWith(TissueLibraryActions.Load);
   });
 });
