@@ -1,5 +1,7 @@
 :host {
   .long-card {
+    --mdc-text-button-label-text-color: #b20a2f;
+    --mat-text-button-hover-state-layer-opacity: 0;
     display: block;
     width: 14.5rem;
     height: 42rem;
@@ -19,8 +21,9 @@
       display: flex;
       align-items: center;
       margin: 1.5rem 1.5rem 0;
-      font-size: 0.875rem;
-      line-height: 1.3125rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-family: 'Metropolis';
       font-weight: 500;
     }
 
@@ -38,12 +41,6 @@
     .long-card {
       width: 17rem;
       height: 51rem;
-
-      .label {
-        margin: 3rem 1.5rem 0;
-        font-size: 1.125rem;
-        line-height: 1.6875rem;
-      }
     }
   }
 }

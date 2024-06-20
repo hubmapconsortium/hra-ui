@@ -1,7 +1,7 @@
 :host {
   display: block;
   max-width: calc(100vw - 12rem);
-  margin: 2rem 0 5rem 0;
+  margin: 0 auto;
 
   ::ng-deep > :nth-child(n + 4) {
     margin-bottom: 1.5rem;

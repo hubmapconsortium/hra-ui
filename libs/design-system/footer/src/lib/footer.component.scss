@@ -12,16 +12,21 @@
 
   .footer-left {
     background-color: #4b4b5e;
-    margin: 68px 0;
+    margin: 2.9375rem 0;
     display: grid;
     row-gap: 2rem;
     padding-left: 5.5rem;
 
+    img {
+      max-width: 15.375rem;
+      max-height: 6.375rem;
+    }
+
     .copyright {
       display: block;
       font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 1.6875rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
       color: white;
       width: fit-content;
 
@@ -36,7 +41,7 @@
     background-color: #e6eaf0;
     display: flex;
     flex-direction: column;
-    row-gap: 5rem;
+    row-gap: 2rem;
     justify-content: center;
 
     > * {
@@ -120,8 +125,10 @@
     }
 
     .disclaimer {
-      color: #201e3d;
+      color: #464954;
       font-family: 'Metropolis';
+      font-size: 1rem;
+      line-height: 1.5rem;
     }
   }
 

@@ -1,13 +1,14 @@
 :host {
   max-width: 102rem;
-  margin: 0 1.5rem;
+  margin: 0 auto;
   display: block;
 
   main {
+    max-width: calc(100% - 2rem);
+    margin: 0 auto;
+
     .title {
-      margin: 5rem 0 0.5rem 0;
-      line-height: 3.9375rem;
-      letter-spacing: -1.365px;
+      margin-bottom: 0.5rem;
     }
 
     .description {
@@ -25,14 +26,12 @@
 
   @media (max-width: 1440px) {
     main {
-      .title {
-        font-size: 2.625rem;
-        line-height: 3.9375rem;
-        letter-spacing: -0.0853rem;
-      }
-
       .cards {
         gap: 1.875rem;
+      }
+
+      .description {
+        margin-bottom: 4rem;
       }
     }
   }
@@ -40,15 +39,15 @@
   @media (max-width: 1280px) {
     main {
       .title {
-        font-size: 2.25rem;
-        line-height: 3.375rem;
-        letter-spacing: -0.1094rem;
+        font-size: 2.375rem;
+        line-height: 3.5625rem;
+        letter-spacing: -1.75px;
       }
 
       .description {
         font-size: 0.875rem;
         line-height: 1.3125rem;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
       }
 
       .cards {
@@ -60,13 +59,17 @@
   @media (max-width: 1012px) {
     main {
       .title {
-        font-size: 1.75rem;
-        line-height: 2.25rem;
+        font-size: 2rem;
+        line-height: 3rem;
         letter-spacing: -1.25px;
       }
 
       .description {
         margin-bottom: 3.5rem;
+      }
+
+      .cards {
+        gap: 2rem;
       }
     }
   }
@@ -76,7 +79,8 @@
       .description {
         font-size: 0.75rem;
         line-height: 1.125rem;
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 2rem;
       }
 
       .cards {
