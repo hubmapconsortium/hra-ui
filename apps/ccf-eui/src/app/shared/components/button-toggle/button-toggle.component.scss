@@ -36,5 +36,16 @@
     height: 2rem;
     justify-content: center;
     padding: 0 !important;
+    align-items: center;
+  }
+
+  ::ng-deep .mat-pseudo-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px !important;
+
+    &::after {
+      width: 15px !important;
+    }
   }
 }

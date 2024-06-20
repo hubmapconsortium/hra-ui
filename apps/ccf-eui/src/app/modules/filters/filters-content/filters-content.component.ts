@@ -111,7 +111,9 @@ export class FiltersContentComponent implements OnChanges {
    * @param key The key for the filter to be saved at
    */
   updateFilter(value: unknown, key: string): void {
+    console.warn(value, key);
     this.filters = { ...this.filters, [key]: value };
+    console.log(this.filters);
     this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
     this.filtersChange.emit(this.filters);
   }
