@@ -47,6 +47,78 @@
     justify-content: center;
   }
 
+  .vccf-wrapper {
+    background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
+    opacity: 98%;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    padding: 7.5rem 12.875rem;
+    align-items: center;
+
+    .vccf-card {
+      box-shadow: 0px 5px 16px 0px #201e3d3d;
+      background-color: white;
+      border-radius: 1rem;
+      max-width: 49rem;
+      padding: 2rem 2.5rem;
+
+      .description {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .youtube-player {
+      ::ng-deep {
+        .youtube-player-placeholder {
+          max-width: 35.6875rem;
+          max-height: 20rem;
+
+          @media (max-width: 1280px) {
+            max-width: 468px;
+          }
+
+          @media (max-width: 1012px) {
+            max-width: 39.4375rem;
+            max-height: 22.0625rem;
+          }
+
+          @media (max-width: 544px) {
+            max-width: 24.1875rem;
+            max-height: 13.5625rem;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1440px) {
+      padding: 7.5rem 3.75rem;
+
+      .vccf-card {
+        max-width: 39.4375rem;
+      }
+    }
+
+    @media (max-width: 1012px) {
+      flex-direction: column-reverse;
+      padding: 7.5rem 0;
+
+      .vccf-card {
+        max-width: 39.4375rem;
+      }
+    }
+
+    @media (max-width: 1012px) {
+      padding: 4rem 0;
+    }
+
+    @media (max-width: 1012px) {
+      .vccf-card {
+        max-width: 29.25rem;
+      }
+    }
+  }
+
   .vccf-container {
     background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
     opacity: 98%;
@@ -125,9 +197,9 @@
     grid-area: video;
 
     ::ng-deep .youtube-player-placeholder,
-    ::ng-deep iframe {
-      width: 100% !important;
-    }
+    // ::ng-deep iframe {
+    //   width: 100% !important;
+    // }
 
     .youtube-player,
     ::ng-deep .youtube-player-placeholder,
