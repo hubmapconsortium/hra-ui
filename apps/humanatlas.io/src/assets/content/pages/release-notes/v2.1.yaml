@@ -53,6 +53,8 @@
         display: flex
         justify-content: space-between
         margin-bottom: 2.5rem
+        flex-wrap: wrap
+        row-gap: 1rem
       components:
         - type: title
           title: Introduction
@@ -393,7 +395,7 @@
                 **Gender and sexual orientation**\
                 Female: 53% (was 52%)\
                 Male: 44% (was 48%)\
-                Identify as LGBTIA+: 7.79% (was 4.3%)
+                Identify as LGBTQIA+: 7.79% (was 4.3%)
 
                 **Ethnicity and race**\
                 White: 80.7% (was 82.6%)\

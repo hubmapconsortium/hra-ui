@@ -1,7 +1,7 @@
 :host {
   display: block;
   max-width: calc(100vw - 12rem);
-  margin: 2rem 0 5rem 0;
+  margin: 0 auto;
 
   ::ng-deep > :nth-child(n + 4) {
     margin-bottom: 1.5rem;
@@ -14,15 +14,15 @@
   }
 
   .title {
-    line-height: 3.9375rem;
-    letter-spacing: -0.0853rem;
     margin-bottom: 0.5rem;
     color: #201e3d;
   }
 
   .description {
     color: #464954;
-    letter-spacing: 1.3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+    max-width: 80rem;
   }
 
   .read-btn {
@@ -48,9 +48,7 @@
     max-width: calc(100vw - 9rem);
 
     .description {
-      font-size: 1.125rem;
-      line-height: 1.6875rem;
-      letter-spacing: 1.25px;
+      max-width: 67rem;
     }
   }
 
@@ -59,30 +57,8 @@
   }
 
   @media (min-width: 769px) and (max-width: 1280px) {
-    .title {
-      font-size: 2.25rem;
-      line-height: 3.375rem;
-      letter-spacing: -1.75px;
-    }
-
     .description {
-      font-size: 0.875rem;
-      line-height: 1.3125rem;
-      letter-spacing: 1px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .title {
-      font-size: 1.75rem;
-      line-height: 2.25rem;
-      letter-spacing: -1.25px;
-    }
-
-    .description {
-      font-size: 0.75rem;
-      line-height: 1.125rem;
-      letter-spacing: 0.8px;
+      max-width: unset;
     }
   }
 
@@ -106,6 +82,12 @@
         margin-right: 2rem;
         display: inline-block;
       }
+    }
+
+    .title {
+      font-size: 2.375rem;
+      line-height: 3.5625rem;
+      letter-spacing: -1.75px;
     }
   }
 
