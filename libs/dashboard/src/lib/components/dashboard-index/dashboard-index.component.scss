@@ -19,17 +19,15 @@
     .cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 2.5rem;
+      max-width: 100%;
+      gap: 0;
+      justify-content: space-between;
       margin-bottom: 7rem;
     }
   }
 
   @media (max-width: 1440px) {
     main {
-      .cards {
-        gap: 1.875rem;
-      }
-
       .description {
         margin-bottom: 4rem;
       }
@@ -38,53 +36,27 @@
 
   @media (max-width: 1280px) {
     main {
-      .title {
-        font-size: 2.375rem;
-        line-height: 3.5625rem;
-        letter-spacing: -1.75px;
-      }
-
       .description {
-        font-size: 0.875rem;
-        line-height: 1.3125rem;
-        letter-spacing: 0.5px;
-      }
-
-      .cards {
-        gap: 0.5rem;
+        margin-bottom: 3rem;
       }
     }
   }
 
   @media (max-width: 1012px) {
     main {
-      .title {
-        font-size: 2rem;
-        line-height: 3rem;
-        letter-spacing: -1.25px;
-      }
-
-      .description {
-        margin-bottom: 3.5rem;
-      }
-
       .cards {
-        gap: 2rem;
+        gap: 3rem;
+        justify-content: unset;
       }
     }
   }
 
   @media (max-width: 768px) {
     main {
-      .description {
-        font-size: 0.75rem;
-        line-height: 1.125rem;
-        letter-spacing: 0.5px;
-        margin-bottom: 2rem;
-      }
-
-      .cards {
-        gap: 0.75rem;
+      .title {
+        font-size: 2.375rem;
+        line-height: 3.5625rem;
+        letter-spacing: -1.75px;
       }
     }
   }
@@ -92,8 +64,8 @@
   @media (max-width: 544px) {
     main {
       .cards {
-        justify-content: center;
-        gap: 2.5rem;
+        flex-direction: column;
+        align-items: center;
       }
     }
   }

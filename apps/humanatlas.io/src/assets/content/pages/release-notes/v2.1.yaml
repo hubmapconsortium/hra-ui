@@ -53,6 +53,8 @@
         display: flex
         justify-content: space-between
         margin-bottom: 2.5rem
+        flex-wrap: wrap
+        row-gap: 1rem
       components:
         - type: title
           title: Introduction
