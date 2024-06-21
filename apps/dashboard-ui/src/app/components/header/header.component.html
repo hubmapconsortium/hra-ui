@@ -11,9 +11,9 @@
   <span class="menu-btns">
     <button [routerLink]="'data'" disableRipple mat-button>Data</button>
     <button [routerLink]="'usage'" disableRipple mat-button>Usage</button>
-    <button [routerLink]="'diversity-and-inclusion'" disableRipple mat-button>Diversity & Inclusion</button>
     <button [routerLink]="'publications'" disableRipple mat-button>Publications</button>
     <button [routerLink]="'experimental-data'" disableRipple mat-button>Experimental Data</button>
+    <button [routerLink]="'diversity-and-inclusion'" disableRipple mat-button>Diversity & Inclusion</button>
   </span>
   <button
     mat-button
@@ -29,15 +29,11 @@
       {{ menuTrigger.menuOpen ? 'close' : 'menu' }}
     </mat-icon>
   </button>
-  <mat-menu #menu="matMenu" class="panelClass">
-    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'data'"> Data </a>
-    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'usage'"> Usage </a>
-    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'diversity-and-inclusion'">
-      Diversity & Inclusion
-    </a>
-    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'publications'"> Publications </a>
-    <a mat-menu-item disableRipple class="mat-caption cta-flat" [routerLink]="'experimental-data'">
-      Expirimental Data
-    </a>
+  <mat-menu #menu="matMenu" class="menu-panel">
+    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'data'"> Data </a>
+    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'usage'"> Usage </a>
+    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'publications'"> Publications </a>
+    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'experimental-data'"> Experimental Data </a>
+    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'diversity-and-inclusion'"> Diversity & Inclusion </a>
   </mat-menu>
 </div>

@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@use './themes/main' as main-theme;
+@use './typographies' as typographies;
+@use './breakpoints' as breakpoints;
+
+$_theme: main-theme.$theme;
+
+@include mat.core();
+@include mat.core-theme($_theme);
+@include mat.typography-hierarchy($_theme);
+
+// Add theme mixin for material components here!
+@include mat.button-theme($_theme);
+@include mat.button-toggle-theme($_theme);
+@include mat.card-theme($_theme);
+@include mat.divider-theme($_theme);
+@include mat.form-field-theme($_theme);
+@include mat.icon-theme($_theme);
+@include mat.progress-bar-theme($_theme);
+@include mat.select-theme($_theme);
+@include mat.snack-bar-theme($_theme);
+
+// Typography
