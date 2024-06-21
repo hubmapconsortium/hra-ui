@@ -7,10 +7,9 @@
   "tags": ["app", "cde", "webcomponent"],
   "targets": {
     "build": {
-      "executor": "ngx-build-plus:browser",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "singleBundle": true,
         "outputPath": "dist/apps/cde-visualization-wc",
         "index": "apps/cde-visualization-wc/src/index.html",
         "main": "apps/cde-visualization-wc/src/main.ts",
