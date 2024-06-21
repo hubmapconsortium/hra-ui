@@ -1,21 +1,24 @@
 @use '../../../styles/cta' as cta;
 
 :host {
-  align-self: flex-start;
   width: 100%;
+  display: block;
   --mat-text-button-pressed-state-layer-opacity: 0;
   --mat-text-button-hover-state-layer-opacity: 0;
   --mdc-text-button-container-shape: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background-color: #d5dbe3;
 
   .header {
-    position: relative;
-    z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 1.6563rem 2.5rem 1.6563rem 1rem;
+    padding: 0.75rem;
 
     .logos {
+      max-height: 40px;
       .hra-logo {
         margin-right: 2rem;
       }
@@ -26,14 +29,18 @@
         height: 2rem;
         width: 2rem;
       }
+
+      img {
+        max-height: 2.5rem;
+      }
     }
 
     .menu-btns {
       display: flex;
-      column-gap: 5rem;
+      column-gap: 2rem;
 
       button {
-        padding: 0.5rem 1rem;
+        padding: 0.25rem 0.5rem;
         &:hover {
           @include cta.flatHover();
         }
@@ -63,7 +70,7 @@
 
   @media (max-width: 1440px) {
     .header {
-      margin: 1.6563rem 2rem 1.6563rem 1rem;
+      padding: 1.6563rem 2rem 1.6563rem 1rem;
       .menu-btns {
         gap: 2rem;
       }
@@ -72,7 +79,7 @@
 
   @media (max-width: 1280px) {
     .header {
-      margin: 1.25rem 1.5rem 1.25rem 1rem;
+      padding: 1.25rem 1.5rem 1.25rem 1rem;
 
       .menu-btns {
         gap: 1.5rem;
@@ -82,7 +89,7 @@
 
   @media (max-width: 1012px) {
     .header {
-      margin: 1rem 1.5rem 1rem 1rem;
+      padding: 1rem 1.5rem 1rem 1rem;
 
       .menu-btns {
         display: none;
@@ -96,7 +103,7 @@
 
   @media (max-width: 768px) {
     .header {
-      margin: 0.75rem 1rem;
+      padding: 0.75rem 1rem;
       .logos {
         a {
           vertical-align: sub;
@@ -159,13 +166,16 @@
       padding: 0;
       display: grid;
       row-gap: 2.5rem;
-      top: 3rem;
+      top: 4.5rem;
       position: relative;
 
       .mat-mdc-menu-item {
         width: fit-content;
         --mat-menu-item-label-text-color: #201e3d;
         font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-family: 'Metropolis';
 
         &:hover {
           @include cta.flatHover();
@@ -220,5 +230,12 @@
     .cdk-overlay-pane .mat-mdc-menu-panel {
       display: none;
     }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-pane:has(.menu-panel) {
+    right: unset !important;
+    left: 0;
   }
 }
