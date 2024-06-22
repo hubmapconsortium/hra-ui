@@ -1,0 +1,12 @@
+@use 'normalize.css/normalize.css';
+
+// Box sizing reset
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

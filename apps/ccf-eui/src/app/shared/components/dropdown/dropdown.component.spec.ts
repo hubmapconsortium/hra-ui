@@ -13,7 +13,7 @@ describe('DropdownComponent', () => {
   it('should provide the current value to mat-select', async () => {
     const { findComponent } = await shallow.render({ bind: { selection: 'one' } });
     const matSelect = findComponent(MatSelect);
-    expect(matSelect.value).toBe('one');
+    expect(matSelect.value).toBe('One');
   });
 
   it('should open options if clicked', async () => {
