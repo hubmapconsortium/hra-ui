@@ -10,7 +10,7 @@
   }
 
   .create-explore-content {
-    padding: 1rem 1.5rem 5rem 1.5rem;
+    padding: 3rem 1rem 5rem 1rem;
   }
 
   p {
@@ -26,16 +26,11 @@
     letter-spacing: -0.0325em;
   }
 
-  .header h2 {
-    font-size: 1.5rem;
-    line-height: 2.25rem;
-  }
-
   .header h4 {
-    font-size: 0.75rem;
-    line-height: 21px;
-    letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
+    // font-size: 1.125rem;
+    // line-height: 21px;
+    // letter-spacing: 0.05em;
+    margin-bottom: 3rem;
   }
 
   .header p {
@@ -57,19 +52,19 @@
 
   .vccf {
     max-width: 120rem;
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-areas:
       'video'
-      'header'
-      'content';
+      'content-container';
   }
 
-  .vccf h2 {
-    font-size: 15px;
-    line-height: 22.5px;
+  .vccf .content-container {
+    grid-area: content-container;
+    background: white;
+    padding: 2rem 1.5rem;
   }
 
   .vccf .content {
@@ -82,29 +77,27 @@
     flex-direction: column;
   }
 
-  .paper p {
-    margin-bottom: 1rem;
+  .paper h3 {
+    font-family: Nunito Sans;
+    margin-bottom: 2rem;
   }
 
   .background-header {
     grid-area: header;
+    margin-bottom: 0.5rem;
   }
 
   .links {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .hra-btn {
     display: flex;
-    font-weight: 500;
     width: max-content;
-    font-size: 11px;
     height: 2rem;
-    font-size: 11px;
-    padding: 8px 0.75rem;
-    letter-spacing: 0.75px;
+    padding: 0.5rem 0.75rem;
 
     .mat-icon {
       vertical-align: middle;
@@ -121,7 +114,7 @@
   }
 
   .youtube-player {
-    margin-bottom: 1.75rem;
+    margin-bottom: 3rem;
     grid-area: video;
 
     ::ng-deep .youtube-player-placeholder,
@@ -132,7 +125,7 @@
     .youtube-player,
     ::ng-deep .youtube-player-placeholder,
     ::ng-deep iframe {
-      height: 158px !important;
+      height: 157px !important;
 
       @media (min-width: 430px) {
         height: 202px !important;

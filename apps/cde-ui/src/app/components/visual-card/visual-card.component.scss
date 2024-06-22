@@ -1,7 +1,7 @@
 @use '../../../styles/cta' as cta;
 
 :host {
-  font-family: 'Metropolis';
+  // font-family: 'Metropolis';
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
@@ -35,9 +35,6 @@
       align-items: center;
       justify-content: center;
       margin: auto auto;
-      font-size: 11px;
-      letter-spacing: 0.2px;
-      font-weight: 500;
     }
 
     mat-icon {
