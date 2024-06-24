@@ -15,5 +15,5 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class FooterComponent {
   /** HRA Logo url */
-  readonly logo = input.required<string>();
+  readonly logo = input<string>('assets/logo/hra_logo.svg');
 }
