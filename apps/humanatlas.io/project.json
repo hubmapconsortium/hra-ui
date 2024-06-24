@@ -27,11 +27,6 @@
             "glob": "**/*",
             "input": "apps/humanatlas.io/src/static",
             "output": "."
-          },
-          {
-            "glob": "_redirects",
-            "input": "src",
-            "output": "/"
           }
         ],
         "styles": ["apps/humanatlas.io/src/styles.scss"],
