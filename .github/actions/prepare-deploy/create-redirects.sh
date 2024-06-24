@@ -1,10 +1,11 @@
 #!/bin/bash
+set -e
 
-REDIRECTS_CONTENT='/* /index.html 200'
-
-for dir in ./dist/apps/*
+touch dist/_redirects
+for dir in dist/apps/*
 do
   if [ -d "$dir" ]; then
-    echo "$REDIRECTS_CONTENT" > "${dir}/_redirects"
+    APP="$(basename $dir)"
+    echo "/apps/${APP}/* /apps/${APP}/index.html 200" >> dist/_redirects
   fi
 done
