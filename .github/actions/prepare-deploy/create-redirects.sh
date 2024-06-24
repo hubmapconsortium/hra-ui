@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-echo $PWD
-echo $(ls deploy/apps/*)
 touch deploy/_redirects
 for dir in deploy/apps/*
 do
@@ -12,5 +10,3 @@ do
     echo "/apps/${APP}/* /apps/${APP}/index.html 200" >> deploy/_redirects
   fi
 done
-
-cat deploy/_redirects
