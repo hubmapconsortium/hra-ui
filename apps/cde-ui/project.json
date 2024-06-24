@@ -25,7 +25,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/hra-ui/apps/cde-ui/",
+          "baseHref": "/ui/cde-ui/",
           "outputHashing": "none",
           "budgets": [
             {
@@ -48,7 +48,7 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/apps/cde-ui/",
+          "baseHref": "/ui--staging/cde-ui/",
           "outputHashing": "none"
         },
         "preview": {

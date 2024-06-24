@@ -22,7 +22,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/hra-ui/apps/dashboard-ui/",
+          "baseHref": "/ui/dashboard-ui/",
           "budgets": [
             {
               "type": "initial",
@@ -43,7 +43,7 @@
           "sourceMap": true
         },
         "staging": {
-          "baseHref": "/apps/dashboard-ui/",
+          "baseHref": "/ui--staging/dashboard-ui/",
           "outputHashing": "none"
         },
         "preview": {
