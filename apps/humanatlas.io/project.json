@@ -23,6 +23,7 @@
         "assets": [
           "apps/humanatlas.io/src/favicon.png",
           "apps/humanatlas.io/src/assets",
+          "apps/humanatlas.io/src/_redirects",
           {
             "glob": "**/*",
             "input": "apps/humanatlas.io/src/static",
