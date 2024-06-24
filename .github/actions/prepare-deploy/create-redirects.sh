@@ -2,15 +2,15 @@
 set -e
 
 echo $PWD
-echo $(ls dist/apps/*)
-touch dist/_redirects
-for dir in dist/apps/*
+echo $(ls deploy/apps/*)
+touch deploy/_redirects
+for dir in deploy/apps/*
 do
   echo $dir
   if [ -d "$dir" ]; then
     APP="$(basename $dir)"
-    echo "/apps/${APP}/* /apps/${APP}/index.html 200" >> dist/_redirects
+    echo "/apps/${APP}/* /apps/${APP}/index.html 200" >> deploy/_redirects
   fi
 done
 
-cat dist/_redirects
+cat deploy/_redirects
