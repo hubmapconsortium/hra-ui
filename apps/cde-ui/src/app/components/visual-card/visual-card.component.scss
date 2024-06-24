@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
+  column-gap: 28px;
 
   .visual-card {
     border-radius: 1rem;
@@ -13,9 +14,9 @@
     outline-offset: 0;
     cursor: pointer;
     display: flex;
-    width: 100%;
     flex-direction: column;
-    height: calc(100vw - 3rem);
+    width: 280px;
+    height: 280px;
 
     &:hover {
       box-shadow: 0px 5px 1rem 5px rgba(32, 30, 61, 0.24);
@@ -39,36 +40,30 @@
 
     mat-icon {
       vertical-align: middle;
-      margin-left: 0.25rem;
       height: 1rem;
       width: 1rem;
       font-size: 1rem;
+      margin-left: 0.5rem;
     }
   }
 
-  @media (min-width: 430px) {
+  // @media (min-width: 430px) {
+  //   .visual-card {
+  //     height: calc(100vw - 5rem) !important;
+  //   }
+  // }
+
+  @media (min-width: 1012px) {
     .visual-card {
-      height: calc(100vw - 5rem) !important;
-    }
-  }
+      width: 392px;
+      height: 392px;
 
-  @media (min-width: 544px) {
-    gap: 3rem;
-
-    .visual-card {
-      width: 30.5rem;
-      height: 30.5rem !important;
-    }
-
-    .label {
-      font-size: 1.125rem !important;
-    }
-
-    mat-icon {
-      height: 1.5rem !important;
-      width: 1.5rem !important;
-      font-size: 1.5rem !important;
-      margin-left: 0.75rem !important;
+      mat-icon {
+        height: 1.5rem;
+        width: 1.5rem;
+        font-size: 1.5rem;
+        margin-left: 0.75rem;
+      }
     }
   }
 }

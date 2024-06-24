@@ -5,10 +5,6 @@
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
-  .create-and-explore {
-    max-width: 120rem;
-  }
-
   .create-explore-content {
     padding: 3rem 1rem 5rem 1rem;
   }
@@ -19,22 +15,20 @@
     line-height: 21px;
   }
 
-  .header h1 {
-    font-size: 2.625rem;
-    max-width: 50%;
-    line-height: 4rem;
-    letter-spacing: -0.0325em;
+  .header h2 {
+    margin-bottom: 0.5rem;
   }
 
   .header h4 {
-    // font-size: 1.125rem;
-    // line-height: 21px;
-    // letter-spacing: 0.05em;
     margin-bottom: 3rem;
   }
 
-  .header p {
-    margin: 0 0 3.5rem 0;
+  // .header p {
+  //   margin: 0 0 3.5rem 0;
+  // }
+
+  ::ng-deep .footer-wrapper {
+    overflow: hidden;
   }
 
   cde-visual-card {
@@ -51,7 +45,7 @@
   }
 
   .vccf {
-    max-width: 120rem;
+    // max-width: 120rem;
     padding: 4rem 1rem;
     display: grid;
     grid-template-columns: 100%;
@@ -65,6 +59,7 @@
     grid-area: content-container;
     background: white;
     padding: 2rem 1.5rem;
+    border-radius: 1rem;
   }
 
   .vccf .content {
@@ -78,7 +73,7 @@
   }
 
   .paper h3 {
-    font-family: Nunito Sans;
+    // font-family: Nunito Sans;
     margin-bottom: 2rem;
   }
 
@@ -94,10 +89,12 @@
   }
 
   .hra-btn {
+    --mdc-filled-button-label-text-size: 12px;
+    --mdc-text-button-label-text-size: 12px;
     display: flex;
     width: max-content;
     height: 2rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0 11px 0 0.75rem;
 
     .mat-icon {
       vertical-align: middle;
@@ -128,19 +125,19 @@
       height: 157px !important;
 
       @media (min-width: 430px) {
-        height: 202px !important;
+        height: 217px !important;
       }
 
       @media (min-width: 544px) {
-        height: 258px !important;
+        height: 217px !important;
       }
 
       @media (min-width: 768px) {
-        height: 287px !important;
+        height: 353px !important;
       }
 
       @media (min-width: 1012px) {
-        height: 193px !important;
+        height: 353px !important;
       }
 
       @media (min-width: 1280px) {
@@ -159,96 +156,78 @@
 
   @media (min-width: 430px) {
     .create-explore-content {
-      padding: 1rem 2.5rem 5rem 2.5rem;
+      padding: 3rem 1rem 5rem 1rem;
     }
 
     .vccf {
-      padding: 3rem 2.5rem;
+      padding: 4rem 25px;
+
+      .content-container {
+        padding: 1.5rem 2rem;
+      }
     }
 
     .links {
-      flex-direction: row;
+      flex-direction: column;
+
+      .hra-btn {
+        --mdc-filled-button-label-text-size: 14px;
+        --mdc-text-button-label-text-size: 14px;
+
+        &.cta-filled {
+          padding-left: 1rem;
+        }
+
+        .mat-icon {
+          margin-left: 0.5rem;
+        }
+      }
     }
   }
 
   @media (min-width: 544px) {
     .create-explore-content {
-      padding: 2rem 1.5rem 112px 1.5rem;
-    }
-
-    .header h2 {
-      font-size: 2rem;
-      line-height: 3rem;
-    }
-
-    p {
-      font-size: 1.125rem;
-      line-height: 27px;
-    }
-
-    .header h4 {
-      font-size: 1.125rem;
-      line-height: 27px;
+      padding: 3rem 1rem 5rem 1rem;
     }
 
     .vccf {
-      padding: 68px 3rem;
+      padding: 4rem 38px;
+
+      .content-container {
+        padding: 1.5rem 2rem;
+      }
     }
 
-    .vccf h2 {
-      font-size: 1.5rem;
-      line-height: 2.25rem;
+    .youtube-player {
+      padding: 0 40.5px;
     }
 
     .links {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .links a:last-of-type {
-      padding-left: 0;
-    }
-
-    .hra-btn {
-      font-size: 1.125rem;
-      padding: 0 1.5rem;
-      line-height: 27px;
-      width: max-content;
-      height: 2.5rem;
-
-      .mat-icon {
-        margin-left: 0.75rem;
-        height: 1.5rem;
-        width: 1.5rem;
-        font-size: 1.5rem;
-      }
+      flex-direction: row;
+      gap: 0.5rem;
     }
   }
 
   @media (min-width: 768px) {
-    .create-explore-content {
-      padding: 2rem 48px 112px 48px;
-    }
-
-    .header {
-      padding: 0 3rem;
+    .create-and-explore {
+      max-width: 620px;
     }
 
     .header h4 {
-      font-size: 1.125rem;
-      line-height: 27px;
+      // font-size: 1.125rem;
+      // line-height: 27px;
     }
 
     cde-visual-card {
-      padding: 0 92px;
+      justify-content: flex-start;
     }
 
     .vccf {
-      padding: 68px 4rem;
+      padding: 4rem 68.5px;
     }
 
     .youtube-player {
-      padding: 0 4rem;
+      padding: 0;
     }
 
     .links {
@@ -262,32 +241,46 @@
   }
 
   @media (min-width: 1012px) {
+    .create-and-explore {
+      max-width: 848px;
+    }
+
     .create-explore-content {
-      padding: 2rem 4rem 112px 4rem;
+      padding: 3rem 0 5rem 0;
     }
 
     .header {
-      padding: 0 1rem;
-    }
-
-    .header h4 {
-      font-size: 20px;
-      line-height: 30px;
+      padding: 0 72px 0 40px;
     }
 
     .vccf {
-      padding: 68px 3rem;
-      grid-template-columns: 55% auto;
-      grid-template-rows: auto auto auto;
-      grid-template-areas:
-        'header header'
-        'content video'
-        'content video';
-      column-gap: 4rem;
+      padding: 120px 190.5px;
+
+      .content-container {
+        padding: 2rem 2.5rem;
+      }
     }
 
-    .youtube-player {
-      padding: 0;
+    .links {
+      gap: 3rem;
+
+      .hra-btn {
+        --mdc-filled-button-label-text-size: 16px;
+        --mdc-text-button-label-text-size: 16px;
+        height: 2.5rem;
+        padding-right: 15px;
+
+        &.cta-filled {
+          padding-left: 1.5rem;
+        }
+
+        .mat-icon {
+          height: 1.5rem;
+          width: 1.5rem;
+          font-size: 1.5rem;
+          margin-left: 0.75rem;
+        }
+      }
     }
   }
 
@@ -316,17 +309,32 @@
       padding: 0;
     }
 
-    .vccf {
-      padding: 7.5rem 6rem 7.5rem 6rem;
-    }
+    // .vccf {
+    //   padding: 7.5rem 6rem 7.5rem 6rem;
+    // }
 
-    .vccf h2 {
-      font-size: 2rem;
-      line-height: 3rem;
+    // .vccf h2 {
+    //   font-size: 2rem;
+    //   line-height: 3rem;
+    // }
+
+    // .youtube-player {
+    //   margin-bottom: 0;
+    // }
+
+    .vccf {
+      padding: 68px 3rem;
+      grid-template-columns: 55% auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        'header header'
+        'content video'
+        'content video';
+      column-gap: 4rem;
     }
 
     .youtube-player {
-      margin-bottom: 0;
+      padding: 0;
     }
   }
 

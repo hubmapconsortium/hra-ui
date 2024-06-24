@@ -4,21 +4,31 @@ $xx-small: mat.define-rem-typography-config(
   $font-family: 'Metropolis',
   $headline-5: mat.define-typography-level(1.5rem, 2.25rem, 500),
   $headline-6: mat.define-typography-level(2rem, 3rem, 500, $letter-spacing: -1.25px),
-  $subtitle-1: mat.define-typography-level(0.875rem, 1.3125rem, 400, $letter-spacing: 0.5px),
+  $subtitle-1: mat.define-typography-level(0.875rem, 1.3125rem, 400, 'Nunito Sans', $letter-spacing: 0.5px),
   $body-1: mat.define-typography-level(1.125rem, 27px, 400, 'Nunito Sans', $letter-spacing: 0.5px),
   $body-2: mat.define-typography-level(12px, 18px, 500, $letter-spacing: 0.002em),
   $button: mat.define-typography-level(0.6875rem, 1.03125rem, 500, $letter-spacing: 0.002em),
 );
 
-$x-small: $xx-small;
+// $x-small: $xx-small;
+
+$x-small: mat.define-rem-typography-config(
+  $font-family: 'Metropolis',
+  $headline-5: mat.define-typography-level(28px, 42px, 500),
+  $headline-6: mat.define-typography-level(2rem, 3rem, 500, $letter-spacing: -1.25px),
+  $subtitle-1: mat.define-typography-level(1rem, 1.5rem, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-1: mat.define-typography-level(1.125rem, 27px, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-2: mat.define-typography-level(12px, 18px, 500, $letter-spacing: 0.002em),
+  $button: mat.define-typography-level(0.6875rem, 1.03125rem, 500, $letter-spacing: 0.002em),
+);
 
 $small: mat.define-rem-typography-config(
   $font-family: 'Metropolis',
-  $headline-5: mat.define-typography-level(2rem, 3rem, 500),
-  $headline-6: mat.define-typography-level(1.5rem, 2.25rem, 500),
-  $subtitle-1: mat.define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
-  $body-1: mat.define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
-  $body-2: mat.define-typography-level(1.125rem, 1.6875rem, 500, $letter-spacing: 0.0125em),
+  $headline-5: mat.define-typography-level(28px, 42px, 500),
+  $headline-6: mat.define-typography-level(38px, 57px, 500, $letter-spacing: -1.75px),
+  $subtitle-1: mat.define-typography-level(1rem, 1.5rem, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-1: mat.define-typography-level(1.125rem, 27px, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-2: mat.define-typography-level(14px, 21px, 500, $letter-spacing: 0.002em),
   $button: mat.define-typography-level(1.125rem, 1.6875rem, 500),
 );
 
@@ -27,10 +37,10 @@ $medium: $small;
 $large: mat.define-rem-typography-config(
   $font-family: 'Metropolis',
   $headline-5: mat.define-typography-level(2rem, 3rem, 500),
-  $headline-6: mat.define-typography-level(2rem, 3rem, 500),
-  $subtitle-1: mat.define-typography-level(1.5rem, 2.25rem, 500),
-  $body-1: mat.define-typography-level(1.125rem, 1.6875rem, 500),
-  $body-2: mat.define-typography-level(1.125rem, 1.6875rem, 500),
+  $headline-6: mat.define-typography-level(42px, 63px, 500, $letter-spacing: -1.25px),
+  $subtitle-1: mat.define-typography-level(1rem, 1.5rem, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-1: mat.define-typography-level(1.125rem, 27px, 400, 'Nunito Sans', $letter-spacing: 0.5px),
+  $body-2: mat.define-typography-level(1rem, 1.5rem, 500),
   $button: mat.define-typography-level(1.125rem, 1.6875rem, 500),
 );
 
