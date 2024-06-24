@@ -19,10 +19,10 @@ jobs:
           fetch-depth: 0
 
       - name: Make create_redirects.sh executable
-        run: chmod +x ./create-redirects.sh
+        run: chmod +x ./.github/workflows/create-redirects.sh
 
       - name: Create Redirects file
-        run: ./create-redirects.sh
+        run: ./.github/workflows/create-redirects.sh
 
       - name: Prepare Deploy
         uses: ./.github/actions/prepare-deploy
