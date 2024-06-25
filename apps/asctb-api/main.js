@@ -913,14 +913,14 @@ class OmapDataTransformer {
         let organLabelMissingWarningAdded = false;
         let organUberonMissingWarningAdded = false;
         dataObject.forEach((data) => {
-            var _a, _b, _c;
+            var _a, _b, _c, _d, _e;
             const uniprots = data.uniprot_accession_number.split(', ');
             const hgncIds = data.HGNC_ID.split(', ');
-            const targetNames = data.target_name.split(', ');
+            const targetNames = (_b = (_a = data.target_symbol) === null || _a === void 0 ? void 0 : _a.split(', ')) !== null && _b !== void 0 ? _b : [];
             if (!(uniprots.length === hgncIds.length && hgncIds.length === targetNames.length)) {
                 this.warnings.add('WARNING: Number of entires in column uniprot_accession_number, HGNC_ID,' +
-                    `target_name are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
-                    `HGNC_ID: ${hgncIds.length}; target_name: ${targetNames.length}`);
+                    `target_symbol are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
+                    `HGNC_ID: ${hgncIds.length}; target_symbol: ${targetNames.length}`);
             }
             let notes = `Extra information in "${title}", Row ${data.rowNo} \n`;
             notes += data.notes;
@@ -938,13 +938,16 @@ class OmapDataTransformer {
                     organUberonMissingWarningAdded = true;
                 }
             }
-            if (data.uniprot_accession_number !== '' && data.HGNC_ID !== '' && data.target_name !== '') {
+            if (data.uniprot_accession_number !== '' &&
+                data.HGNC_ID !== '' &&
+                data.target_symbol !== '' &&
+                data.target_symbol !== undefined) {
                 const newrow = this.isLegacyOmap
                     ? [organ.name, organ.rdfs_label, organ.id]
                     : [data.organ, data.organ, data.organ_uberon];
                 const maxBPs = Math.max(uniprots.length, hgncIds.length, targetNames.length);
                 for (let i = 0; i < maxBPs; i++) {
-                    newrow.push((_a = targetNames[i]) !== null && _a !== void 0 ? _a : '', (_b = uniprots[i]) !== null && _b !== void 0 ? _b : '', (_c = hgncIds[i]) !== null && _c !== void 0 ? _c : '', notes !== null && notes !== void 0 ? notes : '');
+                    newrow.push((_c = targetNames[i]) !== null && _c !== void 0 ? _c : '', (_d = uniprots[i]) !== null && _d !== void 0 ? _d : '', (_e = hgncIds[i]) !== null && _e !== void 0 ? _e : '', notes !== null && notes !== void 0 ? notes : '');
                 }
                 transformedData.push(newrow);
             }
@@ -976,7 +979,7 @@ class OmapDataTransformer {
         return dataObject;
     }
     createNotes(dataObject) {
-        const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_name', 'rowNo'];
+        const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_symbol', 'rowNo'];
         dataObject.forEach((obj) => {
             const entries = Object.entries(obj);
             const formattedEntries = entries
