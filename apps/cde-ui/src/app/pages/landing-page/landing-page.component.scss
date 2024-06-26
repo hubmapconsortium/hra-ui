@@ -5,8 +5,12 @@
   display: block;
   background-color: rgba(252, 252, 252, 1);
 
+  .create-and-explore {
+    max-width: 18rem;
+  }
+
   .create-explore-content {
-    padding: 3rem 1rem 5rem 1rem;
+    padding: 3rem 0 5rem 0;
   }
 
   .header h1 {
@@ -15,14 +19,6 @@
 
   .header h4 {
     margin-bottom: 3rem;
-  }
-
-  // .header p {
-  //   margin: 0 0 3.5rem 0;
-  // }
-
-  ::ng-deep .footer-wrapper {
-    overflow: hidden;
   }
 
   .vccf-container {
@@ -34,8 +30,8 @@
   }
 
   .vccf {
-    // max-width: 120rem;
-    padding: 4rem 1rem;
+    max-width: 18rem;
+    padding: 4rem 0;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto;
@@ -62,7 +58,6 @@
   }
 
   .paper p {
-    // font-family: Nunito Sans;
     margin-bottom: 2rem;
   }
 
@@ -78,8 +73,8 @@
   }
 
   .hra-btn {
-    --mdc-filled-button-label-text-size: 12px;
-    --mdc-text-button-label-text-size: 12px;
+    --mdc-filled-button-label-text-size: 0.75rem;
+    --mdc-text-button-label-text-size: 0.75rem;
     display: flex;
     width: max-content;
     height: 2rem;
@@ -117,15 +112,7 @@
         height: 217px !important;
       }
 
-      @media (min-width: 544px) {
-        height: 217px !important;
-      }
-
       @media (min-width: 768px) {
-        height: 353px !important;
-      }
-
-      @media (min-width: 1012px) {
         height: 353px !important;
       }
 
@@ -134,22 +121,18 @@
       }
 
       @media (min-width: 1440px) {
-        height: 278px !important;
-      }
-
-      @media (min-width: 1920px) {
-        height: 362px !important;
+        height: 320px !important;
       }
     }
   }
 
   @media (min-width: 430px) {
-    .create-explore-content {
-      padding: 3rem 1rem 5rem 1rem;
+    .create-and-explore {
+      max-width: 24.875rem;
     }
 
     .vccf {
-      padding: 4rem 25px;
+      max-width: 23.75rem;
 
       .content-container {
         padding: 1.5rem 2rem;
@@ -160,8 +143,8 @@
       flex-direction: column;
 
       .hra-btn {
-        --mdc-filled-button-label-text-size: 14px;
-        --mdc-text-button-label-text-size: 14px;
+        --mdc-filled-button-label-text-size: 0.875rem;
+        --mdc-text-button-label-text-size: 0.875rem;
 
         &.cta-filled {
           padding-left: 1rem;
@@ -175,16 +158,12 @@
   }
 
   @media (min-width: 544px) {
-    .create-explore-content {
-      padding: 3rem 1rem 5rem 1rem;
+    .create-and-explore {
+      max-width: 32rem;
     }
 
     .vccf {
-      padding: 4rem 38px;
-
-      .content-container {
-        padding: 1.5rem 2rem;
-      }
+      max-width: 29.25;
     }
 
     .youtube-player {
@@ -199,16 +178,11 @@
 
   @media (min-width: 768px) {
     .create-and-explore {
-      max-width: 620px;
-    }
-
-    .header h4 {
-      // font-size: 1.125rem;
-      // line-height: 27px;
+      max-width: 38.75rem;
     }
 
     .vccf {
-      padding: 4rem 68.5px;
+      max-width: 39.4375rem;
     }
 
     .youtube-player {
@@ -227,7 +201,7 @@
 
   @media (min-width: 1012px) {
     .create-and-explore {
-      max-width: 848px;
+      max-width: 53rem;
     }
 
     .create-explore-content {
@@ -235,11 +209,11 @@
     }
 
     .header {
-      padding: 0 72px 0 40px;
+      padding: 0 4.5rem 0 2.5rem;
     }
 
     .vccf {
-      padding: 120px 190.5px;
+      padding: 7.5rem 0;
 
       .content-container {
         padding: 2rem 2.5rem;
@@ -250,8 +224,8 @@
       gap: 3rem;
 
       .hra-btn {
-        --mdc-filled-button-label-text-size: 16px;
-        --mdc-text-button-label-text-size: 16px;
+        --mdc-filled-button-label-text-size: 1rem;
+        --mdc-text-button-label-text-size: 1rem;
         height: 2.5rem;
         padding-right: 15px;
 
@@ -271,32 +245,16 @@
 
   @media (min-width: 1280px) {
     .create-and-explore {
-      max-width: 100%;
+      max-width: 77.5rem;
     }
 
     .create-explore-content {
-      padding: 3rem 20px 5rem 20px;
+      padding: 3rem 0 5rem 0;
     }
-
-    .header {
-      padding: 0 2.5rem;
-    }
-
-    // .vccf {
-    //   padding: 7.5rem 6rem 7.5rem 6rem;
-    // }
-
-    // .vccf h2 {
-    //   font-size: 2rem;
-    //   line-height: 3rem;
-    // }
-
-    // .youtube-player {
-    //   margin-bottom: 0;
-    // }
 
     .vccf {
-      padding: 120px 66.5px;
+      max-width: 71.6875rem;
+      padding: 7.5rem 0;
       grid-template-columns: 55% auto;
       grid-template-rows: auto;
       grid-template-areas: 'content-container video';
@@ -305,7 +263,6 @@
 
     .youtube-player {
       margin-bottom: 0;
-      /* height: min-content; */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -314,37 +271,31 @@
 
   @media (min-width: 1440px) {
     .create-explore-content {
-      padding: 48px 8rem 7rem 8rem;
+      padding: 5rem 0 7rem 0;
     }
 
     .vccf {
-      padding: 10rem 9.75rem;
+      max-width: 82.625rem;
+      column-gap: 7.5rem;
     }
   }
 
   @media (min-width: 1920px) {
-    .header {
-      padding: 0 4.5rem 0 2.5rem;
+    .create-and-explore {
+      max-width: 100rem;
     }
 
-    .header h2 {
-      max-width: 100%;
+    .create-explore-content {
+      padding: 5rem 0 7rem 0;
     }
 
-    cde-visual-card {
-      justify-content: space-between;
+    .header h4 {
+      margin-bottom: 4rem;
     }
 
     .vccf {
-      padding: 17.5rem 13.5rem;
-      grid-template-rows: auto auto;
-      grid-template-areas:
-        'header video'
-        'content video';
-    }
-
-    .paper p {
-      margin-bottom: 2rem;
+      max-width: 94.25rem;
+      column-gap: 153px;
     }
   }
 }

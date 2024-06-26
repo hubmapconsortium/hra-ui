@@ -97,7 +97,7 @@
               content: '';
               position: absolute;
               color: white;
-              border: solid hsla(347, 89%, 46%, 1) 4px;
+              border: solid hsla(347, 89%, 46%, 1) 0.25rem;
               height: 100%;
               width: 100%;
               left: 0;
@@ -152,7 +152,7 @@
       }
 
       .social-funded {
-        max-width: 816px;
+        max-width: 51rem;
       }
     }
   }
@@ -171,7 +171,7 @@
       }
 
       .social-funded {
-        max-width: 764px;
+        max-width: 47.75rem;
       }
     }
   }
@@ -248,10 +248,10 @@
 
       .footer-right {
         .social-funded {
-          margin: 3.5rem 3rem 0 3rem;
+          margin: 2rem;
 
           .social-media {
-            gap: 1.5rem;
+            gap: 1rem;
           }
         }
 

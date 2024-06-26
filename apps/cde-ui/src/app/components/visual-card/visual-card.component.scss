@@ -1,11 +1,10 @@
 @use '../../../styles/cta' as cta;
 
 :host {
-  // font-family: 'Metropolis';
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
-  column-gap: 28px;
+  column-gap: 1.75rem;
   justify-content: center;
 
   .visual-card {
@@ -16,10 +15,10 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    width: 280px;
-    height: 280px;
     justify-content: center;
     font-family: Metropolis;
+    width: 17.5rem;
+    height: 17.5rem;
 
     &:hover {
       box-shadow: 0px 5px 1rem 5px rgba(32, 30, 61, 0.24);
@@ -39,6 +38,8 @@
       align-items: center;
       justify-content: center;
       margin: auto auto;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
     }
 
     mat-icon {
@@ -50,20 +51,19 @@
     }
   }
 
-  // @media (min-width: 430px) {
-  //   .visual-card {
-  //     height: calc(100vw - 5rem) !important;
-  //   }
-  // }
-
   @media (min-width: 768px) {
     justify-content: space-between;
   }
 
   @media (min-width: 1012px) {
     .visual-card {
-      width: 392px;
-      height: 392px;
+      width: 24.5rem;
+      height: 24.5rem;
+
+      .label {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
 
       mat-icon {
         height: 1.5rem;
@@ -76,5 +76,12 @@
 
   @media (min-width: 1280px) {
     column-gap: 2rem;
+  }
+
+  @media (min-width: 1920px) {
+    .visual-card {
+      width: 30.5rem;
+      height: 30.5rem;
+    }
   }
 }

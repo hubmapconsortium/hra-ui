@@ -45,3 +45,11 @@ $_theme: main-theme.$theme;
 @include breakpoints.breakpoint('x-large') {
   @include create-visualization-section.typography(typographies.$x-large);
 }
+
+@include breakpoints.breakpoint('xx-large') {
+  @include create-visualization-section.typography(typographies.$xx-large);
+}
+
+@include breakpoints.breakpoint('xxx-large') {
+  @include create-visualization-section.typography(typographies.$xxx-large);
+}
