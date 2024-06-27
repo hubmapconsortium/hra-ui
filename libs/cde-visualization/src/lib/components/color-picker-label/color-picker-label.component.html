@@ -18,7 +18,31 @@
   data-testid="color-picker-button"
 ></span>
 @if (isAnchor()) {
-  <mat-icon class="material-symbols-rounded anchor"> anchor </mat-icon>
+  <mat-icon
+    class="material-symbols-rounded anchor"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="anchorOpen = true"
+    (mouseout)="anchorOpen = false"
+  >
+    anchor
+    <ng-container>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'anchor-tooltip']"
+        [cdkConnectedOverlayOrigin]="resetTrigger"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="anchorOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+          computed and visualized. The nearest cell distance is computed based on the Euclidian distance between two
+          cells.
+        </div>
+      </ng-template>
+    </ng-container>
+  </mat-icon>
 }
 <div
   cdkOverlayOrigin
