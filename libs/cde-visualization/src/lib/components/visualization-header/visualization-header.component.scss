@@ -12,18 +12,9 @@ $blue-theme: mat.define-light-theme(
   )
 );
 
-::ng-deep {
-  .reset-panel {
-    max-width: 32rem;
-  }
-
-  .embed-panel {
-    max-width: 27.5rem;
-  }
-}
-
 :host {
   @include mat.button-color($blue-theme);
+  --mat-divider-width: 2px;
 
   display: flex;
   align-items: center;
@@ -33,15 +24,6 @@ $blue-theme: mat.define-light-theme(
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   height: 100%;
 
-  & div:not(:first-child, :last-child) {
-    margin: 1rem 0;
-
-    a,
-    button:not(:last-child) {
-      margin-right: 1rem;
-    }
-  }
-
   span.mat-caption {
     font-size: 0.9375rem;
     letter-spacing: unset;
@@ -49,24 +31,32 @@ $blue-theme: mat.define-light-theme(
   }
 
   .mat-divider-vertical {
-    height: calc(100% - 0.75rem);
+    height: 100%;
   }
 
   .info {
     vertical-align: middle;
     margin-bottom: 2px;
+    height: 1.25rem;
+    width: 1.25rem;
+    font-size: 1.25rem;
   }
 
   a,
   button {
     --mdc-filled-button-label-text-color: #{button-text-color};
-    height: 25px;
-    font-size: 11px;
-    letter-spacing: 0.2px;
+    height: 2rem;
+    padding: 4px 8px;
+    font-weight: 500;
+
+    .mat-icon {
+      margin-right: 0.125rem;
+      margin-left: 0;
+    }
   }
 
   .home {
-    height: 2.5rem;
+    height: 3rem;
 
     & * {
       height: 100%;
@@ -78,19 +68,33 @@ $blue-theme: mat.define-light-theme(
     }
   }
 
-  .help {
-    button {
-      padding: 0.75rem 1.5rem;
-      font-size: 0.9375rem;
-      margin-right: 0.75rem;
-    }
-  }
+  .tools {
+    display: flex;
+    height: 100%;
 
-  @media (max-width: 1544px) {
+    div {
+      margin: 0.6875rem 1rem;
+
+      a,
+      button:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+    }
+
     .reset,
-    .embed {
+    .embed,
+    .about {
       span {
         display: block;
+        margin-bottom: 0.125rem;
+      }
+    }
+
+    .help {
+      button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9375rem;
+        margin-right: 0.75rem;
       }
     }
   }
