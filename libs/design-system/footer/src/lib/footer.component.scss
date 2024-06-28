@@ -5,17 +5,21 @@
   width: 100%;
 
   .footer-wrapper {
-    max-width: 120rem;
+    width: 100%;
     display: grid;
     grid-template-columns: minmax(30.25rem, auto) 2fr;
   }
 
   .footer-left {
     background-color: #4b4b5e;
-    margin: 2.9375rem 0;
     display: grid;
-    row-gap: 2rem;
-    padding-left: 5.5rem;
+    row-gap: 1.5rem;
+    height: min-content;
+    margin: auto auto;
+
+    a {
+      height: 6.375rem;
+    }
 
     img {
       max-width: 15.375rem;
@@ -45,9 +49,10 @@
     flex-direction: column;
     row-gap: 2rem;
     justify-content: center;
+    padding: 3rem 0;
 
     > * {
-      margin: 0 6.5rem;
+      margin: 0.25rem 6.5rem;
     }
 
     .social-funded {
@@ -55,7 +60,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 2rem;
-      max-width: 933px;
+      max-width: 57.25rem;
 
       .social-media {
         display: flex;
@@ -97,7 +102,7 @@
               content: '';
               position: absolute;
               color: white;
-              border: solid hsla(347, 89%, 46%, 1) 4px;
+              border: solid hsla(347, 89%, 46%, 1) 0.25rem;
               height: 100%;
               width: 100%;
               left: 0;
@@ -115,7 +120,7 @@
           font-size: 1rem;
           line-height: 1.5rem;
           font-weight: 500;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
           color: #4b4b5e;
         }
 
@@ -123,6 +128,14 @@
           display: flex;
           align-items: center;
           gap: 2rem;
+
+          a {
+            line-height: 0;
+
+            img {
+              height: 3rem;
+            }
+          }
         }
       }
     }
@@ -142,7 +155,6 @@
       grid-template-columns: minmax(23.0625rem, auto) 2fr;
       .footer-left {
         padding-left: 3rem;
-        margin: 4.1875rem 0;
       }
       .footer-right {
         > * {
@@ -152,63 +164,37 @@
       }
 
       .social-funded {
-        max-width: 816px;
+        max-width: 51rem;
       }
     }
   }
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1279px) {
     .footer-wrapper {
       grid-template-columns: minmax(23.25rem, auto) 2fr;
+
+      .footer-right {
+        padding: 2rem 0;
+      }
+
       .footer-left {
         padding: 0;
         justify-content: center;
-
-        img {
-          height: 6.6875rem;
-          width: 16.125rem;
-        }
       }
 
       .social-funded {
-        max-width: 764px;
+        max-width: 47.75rem;
       }
     }
   }
 
-  @media (max-width: 1128px) {
-    .footer-wrapper {
-      grid-template-columns: minmax(21.25rem, auto) 2fr;
-
-      .footer-left {
-        align-items: center;
-        row-gap: 1.5rem;
-        margin: 5.9375rem 0;
-      }
-
-      .footer-right {
-        row-gap: 2rem;
-
-        > * {
-          margin: 0 4rem;
-        }
-
-        .social-funded {
-          margin: 2rem 3rem 0 3rem;
-          gap: 2rem;
-        }
-
-        .disclaimer {
-          margin: 0 3rem 2rem 3rem;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 880px) {
-    background: unset;
+  @media (max-width: 1011px) {
     .footer-wrapper {
       grid-template-columns: unset;
+
+      .footer-right {
+        padding: 0;
+      }
 
       .footer-left {
         padding: 2rem;
@@ -216,7 +202,40 @@
         display: block;
 
         img {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .footer-right {
+        row-gap: 1.5rem;
+        .social-funded {
+          flex-direction: column;
+          gap: 1.5rem;
+          margin: 2rem 2rem 0 2rem;
+
+          .social-media {
+            gap: 2rem;
+          }
+        }
+
+        .disclaimer {
+          margin: 0 2rem 2rem 2rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    background: unset;
+    .footer-wrapper {
+      .footer-left {
+        padding: 2rem;
+        margin: 0;
+        display: block;
+
+        img {
+          margin-bottom: 1rem;
+          width: 11.125rem;
         }
       }
 
@@ -234,50 +253,20 @@
     }
   }
 
-  @media (max-width: 544px) {
+  @media (max-width: 543px) {
     .footer-wrapper {
       .footer-left {
         padding: 2rem 0;
         margin: 0;
         padding-left: 2rem;
-
-        img {
-          margin-bottom: 1rem;
-        }
       }
 
-      .footer-right {
-        .social-funded {
-          margin: 3.5rem 3rem 0 3rem;
-
-          .social-media {
-            gap: 1.5rem;
-          }
-        }
-
-        .disclaimer {
-          margin: 0 3rem 3.5rem 3rem;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 430px) {
-    .footer-wrapper {
-      .footer-left {
-        img {
-          max-height: 4.625rem;
-          max-width: 11.125rem;
-          margin-bottom: 1rem;
-        }
-      }
       .footer-right {
         .social-funded {
           margin: 2rem 2rem 0 2rem;
-          gap: 1.5rem;
+
           .social-media {
-            gap: 0;
-            justify-content: space-between;
+            gap: 1rem;
           }
         }
 
@@ -288,14 +277,55 @@
     }
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 429px) {
+    .footer-wrapper {
+      .footer-left {
+        img {
+          max-height: 4.625rem;
+          max-width: 11.125rem;
+        }
+      }
+      .footer-right {
+        .social-funded {
+          margin: 2rem 2rem 0 2rem;
+          gap: 1.5rem;
+
+          a {
+            height: 2.25rem;
+            width: 2.25rem;
+
+            img {
+              height: 2.25rem !important;
+            }
+          }
+
+          .social-media {
+            gap: 0;
+            justify-content: space-between;
+          }
+        }
+
+        .funded-by {
+          .funded-logo {
+            height: 2.25rem;
+            gap: 1.5rem;
+          }
+        }
+
+        .disclaimer {
+          margin: 0 2rem 2rem 2rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 319px) {
     .footer-wrapper {
       .footer-left {
         padding: 1.5rem 0 1.5rem 1.5rem;
         img {
           height: 4.5rem;
           width: 10.75rem;
-          margin-bottom: 1rem;
         }
 
         .copyright {

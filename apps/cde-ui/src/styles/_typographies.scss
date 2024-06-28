@@ -43,3 +43,6 @@ $x-large: mat.define-rem-typography-config(
   $body-2: mat.define-typography-level(1.125rem, 1.6875rem, 500),
   $button: mat.define-typography-level(1.125rem, 1.6875rem, 500),
 );
+
+$xx-large: $x-large;
+$xxx-large: $xx-large;
