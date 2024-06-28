@@ -22,6 +22,24 @@
 
 @mixin typography($theme) {
   cde-landing-page {
+    h1 {
+      font: mat.get-theme-typography($theme, headline-5) !important;
+      letter-spacing: mat.get-theme-typography($theme, headline-5, letter-spacing) !important;
+    }
+
+    h4 {
+      font: mat.get-theme-typography($theme, body-1) !important;
+      letter-spacing: mat.get-theme-typography($theme, body-1, letter-spacing) !important;
+    }
+
+    h2 {
+      font: mat.get-theme-typography($theme, headline-6) !important;
+    }
+
+    p {
+      font: mat.get-theme-typography($theme, body-2) !important;
+      letter-spacing: mat.get-theme-typography($theme, body-2, letter-spacing) !important;
+    }
   }
 }
 

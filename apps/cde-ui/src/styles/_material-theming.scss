@@ -5,6 +5,7 @@
 @use './themes/header' as header-theme;
 @use './themes/main' as main-theme;
 @use './typographies' as typographies;
+@use './landing-page-typographies' as landing-page-typographies;
 @use './breakpoints' as breakpoints;
 
 $_theme: main-theme.$theme;
@@ -30,18 +31,32 @@ $_theme: main-theme.$theme;
 @include create-visualization-section.theme($_theme);
 
 // Typography
-@include breakpoints.breakpoint('xx-small', 'x-small') {
+@include breakpoints.breakpoint('xx-small') {
+  @include main-section.typography(landing-page-typographies.$xx-small);
+  @include create-visualization-section.typography(typographies.$xx-small);
+}
+
+@include breakpoints.breakpoint('x-small') {
+  @include main-section.typography(landing-page-typographies.$x-small);
   @include create-visualization-section.typography(typographies.$x-small);
 }
 
 @include breakpoints.breakpoint('small', 'medium') {
+  @include main-section.typography(landing-page-typographies.$small);
   @include create-visualization-section.typography(typographies.$small);
 }
 
 @include breakpoints.breakpoint('large') {
+  @include main-section.typography(landing-page-typographies.$large);
   @include create-visualization-section.typography(typographies.$large);
 }
 
 @include breakpoints.breakpoint('x-large') {
+  @include main-section.typography(landing-page-typographies.$x-large);
   @include create-visualization-section.typography(typographies.$x-large);
+}
+
+@include breakpoints.breakpoint('xx-large', 'xxx-large') {
+  @include main-section.typography(landing-page-typographies.$xx-large);
+  @include create-visualization-section.typography(typographies.$xx-large);
 }
