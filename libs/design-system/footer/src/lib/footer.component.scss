@@ -153,9 +153,6 @@
   @media (max-width: 1440px) {
     .footer-wrapper {
       grid-template-columns: minmax(23.0625rem, auto) 2fr;
-      .footer-left {
-        padding-left: 3rem;
-      }
       .footer-right {
         > * {
           margin: 0 3rem;

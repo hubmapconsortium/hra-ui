@@ -82,6 +82,9 @@
       .small {
         display: block;
       }
+      img {
+        height: 2.5rem;
+      }
     }
     .cde-home {
       .cde-label {
@@ -92,6 +95,10 @@
       .preview-app {
         font-size: 0.75rem;
         line-height: 18px;
+      }
+
+      img {
+        height: 2.5rem;
       }
     }
   }
