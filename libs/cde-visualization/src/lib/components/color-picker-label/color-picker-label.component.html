@@ -24,7 +24,7 @@
   cdkOverlayOrigin
   #resetTrigger="cdkOverlayOrigin"
   class="label mat-caption"
-  (mouseover)="tooltipOpen = true"
+  (mouseover)="handleHover($event)"
   (mouseout)="tooltipOpen = false"
 >
   {{ label() }}
