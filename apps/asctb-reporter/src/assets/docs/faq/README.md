@@ -74,5 +74,5 @@
 **Answer 12:** There are several ways you may contact us to report problems:
 
 1. Create a **New Issue** on our GitHub [repository](https://github.com/hubmapconsortium/ccf-asct-reporter/issues).
-2. send an email to infoccf@indiana.edu
+2. send an email to infoccf@iu.edu
 3. Click the **Contact us** button in the lower left panel of the ASCT+B Reporter
