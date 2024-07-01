@@ -29,6 +29,7 @@ export class ColorPickerLabelComponent {
   readonly tooltipPosition = TOOLTIP_POSITION_COLOR_PICKER_LABEL;
 
   tooltipOpen = false;
+  anchorOpen = false;
 
   selectColor(hex: string): void {
     const rgb = hexToRgb(hex);

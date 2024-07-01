@@ -135,11 +135,16 @@
     text-overflow: ellipsis;
     overflow: hidden;
     flex-grow: 0;
+    font-weight: 500;
   }
 }
 
 ::ng-deep {
   .label-tooltip div {
     margin: 0.75rem 1rem;
+  }
+
+  .anchor-tooltip {
+    max-width: 21rem;
   }
 }
