@@ -63,16 +63,19 @@ $blue-theme: mat.define-light-theme(
 
   .mat-caption,
   .total-ct-label {
-    font-weight: 400;
     grid-area: total-cell-types;
 
     span {
       display: block;
+      color: #4b4b5e;
     }
   }
 
   .total-cells {
     grid-area: total-cells;
+    span {
+      color: #4b4b5e;
+    }
   }
 
   .table-overflow-container {

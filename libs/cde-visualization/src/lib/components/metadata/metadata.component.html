@@ -28,45 +28,53 @@
     <div class="mat-caption label">Title</div>
     <span class="mat-caption">{{ metadata().title | orNA }}</span>
     <div class="metadata-details">
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Source Data
         <span class="mat-caption">{{ metadata().sourceData | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Color Map
         <span class="mat-caption">{{ metadata().colorMap | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Organ
         <span>{{ metadata().organ | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Technology
         <span>{{ metadata().technology | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Sex
         <span>{{ metadata().sex | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Age
         <span>{{ metadata().age | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Thickness
         <span>{{ metadata().thickness | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Pixel Size
         <span>{{ metadata().pixelSize | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Creation Date
         <span>{{ metadata().creationDate | orNA }}</span>
       </div>
-      <div class="mat-caption">
+      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
         Creation Time
         <span>{{ metadata().creationTime | orNA }}</span>
+      </div>
+      <div class="show-hide">
+        <span mat-button class="mat-caption" (click)="toggleEmptyFields()" [class.hide]="!hideEmptyFields"
+          >Show empty metadata fields</span
+        >
+        <span mat-button class="mat-caption" (click)="toggleEmptyFields()" [class.hide]="hideEmptyFields"
+          >Hide empty metadata fields</span
+        >
       </div>
     </div>
   </mat-expansion-panel>

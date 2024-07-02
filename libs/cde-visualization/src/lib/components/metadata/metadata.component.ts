@@ -43,4 +43,17 @@ export class MetadataComponent {
 
   /** Flag to check if info tooltip is open */
   tooltipOpen = false;
+
+  /** Flag to decide if to hide empty fields */
+  hideEmptyFields = true;
+
+  /** Decide which field to decide */
+  shouldHideField(value: unknown): boolean {
+    return this.hideEmptyFields && value === undefined;
+  }
+
+  // Toggle function for the show/hide buttons
+  toggleEmptyFields() {
+    this.hideEmptyFields = !this.hideEmptyFields;
+  }
 }

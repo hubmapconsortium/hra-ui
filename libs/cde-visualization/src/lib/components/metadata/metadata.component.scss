@@ -31,9 +31,8 @@
 
       & + span {
         display: block;
-        font-weight: 400;
         margin-bottom: 0.75rem;
-        color: #4c4c58;
+        color: #b20a2f;
       }
     }
 
@@ -48,19 +47,30 @@
       }
 
       div.mat-caption {
-        font-weight: 400;
-        font-size: 0.875rem;
-        line-height: 1.3125rem;
-
         &:not(:has(span.mat-caption)) {
           span {
-            font-size: 0.75rem;
             color: #4c4c58;
           }
         }
 
         span.mat-caption {
           color: #b20a2f;
+        }
+      }
+
+      .show-hide {
+        grid-column-start: 1;
+        display: flex;
+        grid-column-end: 3;
+        flex-direction: column;
+        color: #b20a2f;
+
+        .hide {
+          display: none;
+        }
+
+        span {
+          cursor: pointer;
         }
       }
     }
