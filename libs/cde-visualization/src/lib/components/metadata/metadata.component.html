@@ -91,18 +91,14 @@
           <span>{{ metadata().pixelSize | defaultTo: 'Default' }}</span>
         </div>
       }
-      @if (isFieldVisible('creationDate')) {
-        <div class="mat-caption">
-          Creation Date
-          <span>{{ metadata().creationDate }}</span>
-        </div>
-      }
-      @if (isFieldVisible('creationTime')) {
-        <div class="mat-caption">
-          Creation Time
-          <span>{{ metadata().creationTime }}</span>
-        </div>
-      }
+      <div class="mat-caption">
+        Creation Date
+        <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Time
+        <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
     </div>
 
     @if (hasEmptyFields()) {

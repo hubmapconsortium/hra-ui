@@ -17,10 +17,8 @@ export interface Metadata {
   thickness?: number;
   /** Pixel size */
   pixelSize?: number;
-  /** Creation date */
-  creationDate?: string;
-  /** Creation time */
-  creationTime?: string;
+  /** Creation timestamp (ms since 1/1/1970 UTC) */
+  creationTimestamp?: number;
   /** Extra metadata for example datasets */
   sampleExtra?: SampleMetadataExtra;
 }

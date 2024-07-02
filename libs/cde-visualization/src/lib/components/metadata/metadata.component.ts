@@ -18,24 +18,6 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'pixelSize',
 ];
 
-/** Simple pipe that returns 'N/A' when the passed value is undefined */
-@Pipe({
-  name: 'orNA',
-  standalone: true,
-  pure: true,
-})
-export class NotAvailablePipe implements PipeTransform {
-  /**
-   * Replaces undefined values with the string 'N/A'
-   *
-   * @param value Original value
-   * @returns The original value unchanged or 'N/A' if it was undefined
-   */
-  transform(value: unknown): unknown {
-    return value !== undefined ? value : 'N/A';
-  }
-}
-
 @Pipe({
   name: 'defaultTo',
   standalone: true,
@@ -53,15 +35,7 @@ export class DefaultToPipe implements PipeTransform {
 @Component({
   selector: 'cde-metadata',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatExpansionModule,
-    OverlayModule,
-    NotAvailablePipe,
-    DefaultToPipe,
-  ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule, DefaultToPipe],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,6 +57,18 @@ export class MetadataComponent {
 
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
+  readonly dateFormat = new Intl.DateTimeFormat(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  readonly timeFormat = new Intl.DateTimeFormat(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
   /** Flag to check if info tooltip is open */
   tooltipOpen = false;
 
@@ -93,5 +79,9 @@ export class MetadataComponent {
   // Toggle function for the show/hide buttons
   toggleEmptyFields(): void {
     this.showEmptyFields.set(!this.showEmptyFields());
+  }
+
+  formatCreationTimestamp(format: Intl.DateTimeFormat): string | undefined {
+    return format.format(this.metadata().creationTimestamp);
   }
 }
