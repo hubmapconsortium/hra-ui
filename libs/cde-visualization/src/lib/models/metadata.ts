@@ -21,4 +21,17 @@ export interface Metadata {
   creationDate?: string;
   /** Creation time */
   creationTime?: string;
+  /** Extra metadata for example datasets */
+  sampleExtra?: SampleMetadataExtra;
+}
+
+export interface SampleMetadataExtra {
+  /** Sample type, generally '2D' or '3D' */
+  type: string;
+  /** Organ name */
+  organ: string;
+  /** Data file url*/
+  fileUrl: string;
+  /** Source Data Sheet url */
+  sourceDataUrl: string;
 }

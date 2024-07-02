@@ -7,8 +7,20 @@
     "node-target-value": "Endothelial",
     "max-edge-distance": 1000,
     "metadata": {
-      "title": "colon-cycif-sorgerlab / CRC01002 (483,936 cells)",
-      "organ": "Colon"
+      "title": "colon-cycif-sorgerlab / CRC01002",
+      "organ": "Intestine",
+      "sourceData": "2D Intestine Sample",
+      "technology": "CODEX",
+      "thickness": "5",
+      "pixelSize": "0.65",
+      "creationDate": "March 14, 2024",
+      "creationTime": "UTC 7:03:23",
+      "sampleExtra": {
+        "type": "2D",
+        "organ": "Intestine",
+        "fileUrl": "https://doi.org/10.1016/j.cell.2022.12.028",
+        "sourceDataUrl": "https://docs.google.com/spreadsheets/d/1oy8U8ot7DX8ZZ2M8tz07EUHEbgzy5i2rmr09g5BrRmg/edit?gid=631939841#gid=631939841"
+      }
     }
   },
   {
@@ -19,8 +31,20 @@
     "node-target-value": "Endothelial",
     "max-edge-distance": 1000,
     "metadata": {
-      "title": "skin-celldive-ge / region_6 (46,268 cells)",
-      "organ": "Skin"
+      "title": "skin-celldive-ge / region_6",
+      "organ": "Skin",
+      "sourceData": "3D Skin Sample",
+      "technology": "Cell Dive",
+      "thickness": "5",
+      "pixelSize": "0.325",
+      "creationDate": "March 14, 2024",
+      "creationTime": "UTC 7:03:23",
+      "sampleExtra": {
+        "type": "3D",
+        "organ": "Skin",
+        "fileUrl": "https://doi.org/10.1038/s42003-023-04991-z",
+        "sourceDataUrl": "https://docs.google.com/spreadsheets/d/1sBnCiggPjo6S7FBIbP6rdSK-TCSmOPBVfQcMcfgvehM/edit?gid=0#gid=0"
+      }
     }
   }
 ]

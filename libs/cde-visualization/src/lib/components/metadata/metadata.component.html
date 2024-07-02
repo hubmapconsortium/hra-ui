@@ -3,7 +3,7 @@
     <mat-expansion-panel-header>
       <mat-panel-title class="mat-caption title">
         <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
-        Sample Metadata
+        {{ metadata().sampleExtra ? 'Sample ' : '' }}Metadata
         <mat-icon
           class="material-symbols-rounded"
           cdkOverlayOrigin
@@ -25,57 +25,92 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <div class="mat-caption label">Title</div>
-    <span class="mat-caption">{{ metadata().title | orNA }}</span>
+    @if (isFieldVisible('title')) {
+      <div class="mat-caption label">
+        {{ titleLabel() }}
+      </div>
+      @if (metadata().sampleExtra; as extra) {
+        <a [attr.href]="extra.fileUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
+          metadata().title
+        }}</a>
+      } @else {
+        <span class="mat-caption">{{ metadata().title | defaultTo: 'Unknown' }}</span>
+      }
+    }
+
     <div class="metadata-details">
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
+      <div class="mat-caption">
         Source Data
-        <span class="mat-caption">{{ metadata().sourceData | orNA }}</span>
+        @if (metadata().sampleExtra; as extra) {
+          <a [attr.href]="extra.sourceDataUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
+            metadata().sourceData
+          }}</a>
+        } @else {
+          <span class="mat-caption">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+        }
       </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Color Map
-        <span class="mat-caption">{{ metadata().colorMap | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Organ
-        <span>{{ metadata().organ | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Technology
-        <span>{{ metadata().technology | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Sex
-        <span>{{ metadata().sex | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Age
-        <span>{{ metadata().age | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Thickness
-        <span>{{ metadata().thickness | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Pixel Size
-        <span>{{ metadata().pixelSize | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Creation Date
-        <span>{{ metadata().creationDate | orNA }}</span>
-      </div>
-      <div class="mat-caption" *ngIf="!shouldHideField(metadata().sourceData)">
-        Creation Time
-        <span>{{ metadata().creationTime | orNA }}</span>
-      </div>
-      <div class="show-hide">
-        <span mat-button class="mat-caption" (click)="toggleEmptyFields()" [class.hide]="!hideEmptyFields"
-          >Show empty metadata fields</span
-        >
-        <span mat-button class="mat-caption" (click)="toggleEmptyFields()" [class.hide]="hideEmptyFields"
-          >Hide empty metadata fields</span
-        >
-      </div>
+      @if (isFieldVisible('colorMap')) {
+        <div class="mat-caption">
+          Color Map
+          <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('organ')) {
+        <div class="mat-caption">
+          Organ
+          <span>{{ metadata().organ | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('technology')) {
+        <div class="mat-caption">
+          Technology
+          <span>{{ metadata().technology | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('sex')) {
+        <div class="mat-caption">
+          Sex
+          <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('age')) {
+        <div class="mat-caption">
+          Age
+          <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('thickness')) {
+        <div class="mat-caption">
+          Thickness
+          <span>{{ metadata().thickness | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('pixelSize')) {
+        <div class="mat-caption">
+          Pixel Size
+          <span>{{ metadata().pixelSize | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('creationDate')) {
+        <div class="mat-caption">
+          Creation Date
+          <span>{{ metadata().creationDate }}</span>
+        </div>
+      }
+      @if (isFieldVisible('creationTime')) {
+        <div class="mat-caption">
+          Creation Time
+          <span>{{ metadata().creationTime }}</span>
+        </div>
+      }
     </div>
+
+    @if (hasEmptyFields()) {
+      <div class="show-hide">
+        <button mat-button disableRipple class="mat-caption" color="primary" (click)="toggleEmptyFields()">
+          {{ showEmptyFields() ? 'Hide' : 'Show' }} empty metadata fields
+        </button>
+      </div>
+    }
   </mat-expansion-panel>
 </mat-accordion>

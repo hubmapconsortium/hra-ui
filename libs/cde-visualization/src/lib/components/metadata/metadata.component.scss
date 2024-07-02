@@ -1,5 +1,7 @@
 :host {
   display: block;
+  --mat-text-button-hover-state-layer-opacity: 0;
+  --mat-text-button-pressed-state-layer-opacity: 0;
 
   .mat-expansion-panel {
     --mat-expansion-container-shape: 0.5rem;
@@ -25,11 +27,8 @@
     }
 
     .label {
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 1.3125rem;
-
-      & + span {
+      & + span,
+      + a {
         display: block;
         margin-bottom: 0.75rem;
         color: #b20a2f;
@@ -56,22 +55,18 @@
         span.mat-caption {
           color: #b20a2f;
         }
+
+        a.mat-caption {
+          display: block;
+          color: #b20a2f;
+        }
       }
+    }
 
-      .show-hide {
-        grid-column-start: 1;
-        display: flex;
-        grid-column-end: 3;
-        flex-direction: column;
-        color: #b20a2f;
-
-        .hide {
-          display: none;
-        }
-
-        span {
-          cursor: pointer;
-        }
+    .show-hide {
+      .mdc-button {
+        --mdc-text-button-label-text-color: #b20a2f;
+        padding: 0;
       }
     }
   }
