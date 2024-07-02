@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="styles.css" rel="stylesheet" />
   </head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const eui = document.querySelector('ccf-eui');
+      eui.dataSources = ['https://purl.humanatlas.io/ds-graph/hubmap'];
+      eui.filter = {
+        sex: 'Female',
+      };
+    });
+  </script>
   <body class="mat-typography">
     <ccf-eui use-remote-api="true"></ccf-eui>
   </body>

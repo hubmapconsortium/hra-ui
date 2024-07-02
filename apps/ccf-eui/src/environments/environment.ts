@@ -12,7 +12,7 @@ export const environment = {
     'https://data.sennetconsortium.org',
   ],
   dbOptions: {
-    ccfOwlUrl: 'assets/ccf.owl.n3store.json',
+    ccfOwlUrl: 'https://apps.humanatlas.io/hra-api/v1/ccf.owl.n3store.json',
     ccfContextUrl: 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
     hubmapDataService: 'search-api',
     hubmapDataUrl: 'https://search.api.hubmapconsortium.org/v3/entities/search',
