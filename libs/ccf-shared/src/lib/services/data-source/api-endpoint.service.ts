@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   DatabaseStatus,
   DefaultService,
@@ -21,10 +21,13 @@ import { Cacheable } from 'ts-cacheable';
 
 import { GlobalConfigState } from '../../config/global-config.state';
 import { DataSource } from './data-source';
+import { HttpClient } from '@angular/common/http';
 
 export interface ApiEndpointDataSourceOptions {
   remoteApiEndpoint: string;
   hubmapToken?: string;
+  dataSources?: string[];
+  filter?: Filter;
 }
 
 // Not exported from ts-cacheable!?
@@ -101,11 +104,39 @@ function spatialSceneNodeReviver(nodes: RawSpatialSceneNode[]): SpatialSceneNode
   providedIn: 'root',
 })
 export class ApiEndpointDataSourceService implements DataSource {
+  private readonly http = inject(HttpClient);
+
   constructor(
     private readonly api: DefaultService,
     private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>,
   ) {
     globalConfig.getOption('hubmapToken').subscribe(buster$);
+    combineLatest([
+      globalConfig.getOption('dataSources'),
+      globalConfig.getOption('filter'),
+      globalConfig.getOption('remoteApiEndpoint'),
+    ])
+      .pipe(
+        tap(([sources, filter, endpoint]) => {
+          if ((sources && sources.length > 0) || filter) {
+            const sessionTokenRequest = {
+              dataSources: sources,
+              filter: filter,
+            };
+            console.log(sessionTokenRequest);
+
+            // Get session token
+            this.http.post(endpoint + '/session-token', sessionTokenRequest).subscribe((resp: DefaultParams) => {
+              const token = resp.token;
+              console.log(token);
+
+              globalConfig.patchState({ hubmapToken: token });
+              this.getDatabaseStatus();
+            });
+          }
+        }),
+      )
+      .subscribe();
   }
 
   getDatabaseStatus(): Observable<DatabaseStatus> {
