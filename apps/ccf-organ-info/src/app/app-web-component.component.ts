@@ -56,7 +56,7 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() hubmapDataService!: string;
   @Input() hubmapDataUrl!: string;
   @Input() hubmapAssetUrl!: string;
-  @Input() hubmapToken!: string;
+  @Input() token!: string;
   @Input() hubmapPortalUrl!: string;
 
   @Input() useRemoteApi!: string | boolean;

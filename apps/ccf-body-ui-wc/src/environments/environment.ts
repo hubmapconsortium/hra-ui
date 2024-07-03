@@ -18,7 +18,7 @@ export const environment = {
     hubmapPortalUrl: 'https://portal.hubmapconsortium.org/',
     hubmapDataUrl: 'https://search.api.hubmapconsortium.org/v3/entities/search',
     hubmapAssetsUrl: 'https://assets.hubmapconsortium.org',
-    hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
+    token: localStorage.getItem('SESSION_TOKEN') ?? '',
   },
   googleAnalyticsToken: 'G-B3DT7XPMRT',
 };

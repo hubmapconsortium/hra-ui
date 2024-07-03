@@ -335,7 +335,7 @@ export class AppComponent implements OnInit {
    * Gets login token
    */
   get loggedIn(): boolean {
-    const token = this.globalConfig.snapshot.hubmapToken ?? '';
+    const token = this.globalConfig.snapshot.token ?? '';
     return token.length > 0;
   }
 

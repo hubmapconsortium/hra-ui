@@ -14,7 +14,7 @@ export const environment = {
     hubmapPortalUrl: '',
     hubmapDataUrl: '',
     hubmapAssetsUrl: '',
-    hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
+    token: localStorage.getItem('SESSION_TOKEN') ?? '',
 
     useRemoteApi: false,
     remoteApiEndpoint: 'https://apps.humanatlas.io/hra-api--staging/v1',

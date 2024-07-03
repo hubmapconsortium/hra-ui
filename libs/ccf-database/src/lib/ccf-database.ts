@@ -57,7 +57,7 @@ export interface CCFDatabaseOptions {
   /** Hubmap assets api url. */
   hubmapAssetsUrl: string;
   /** HuBMAP Service Token. */
-  hubmapToken?: string;
+  token?: string;
 }
 
 /** Default initialization options. */
@@ -186,7 +186,7 @@ export class CCFDatabase {
             this.options.hubmapDataUrl,
             this.options.hubmapDataService,
             this.options.hubmapQuery,
-            this.options.hubmapToken,
+            this.options.token,
           ).then((jsonld) => {
             if (jsonld) {
               return this.addDataSources([jsonld]);
