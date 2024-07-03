@@ -308,7 +308,7 @@
               styles:
                 margin-bottom: 2rem
               text: Contact the HRA Team
-              url: mailto:infoccf@indiana.edu
+              url: mailto:infoccf@iu.edu
               icon: email
             - type: contact-card
               contactData:

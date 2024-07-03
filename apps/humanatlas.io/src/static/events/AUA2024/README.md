@@ -6,7 +6,7 @@
 
 On Sunday, May 5th, 2024, [Bruce W. Herr II](https://orcid.org/0000-0002-6703-7647) presented the Keynote Address: "_The Human Reference Atlas_" at the [_AUA2024 Basic Sciences Symposium_](https://aua2021.app.swapcard.com/event/2024-annual-meeting-san-antonio/planning/UGxhbm5pbmdfMTczMDU1Nw==) in San Antonio, Texas. This resource site provides links to resources referenced in the Keynote and potentially relevant to the urology community.
 
-More information about the Human Reference Atlas can be found at <https://humanatlas.io>. Contact [infoccf@indiana.edu](mailto:infoccf@indiana.edu) for information on how to join the HRA Working Group.
+More information about the Human Reference Atlas can be found at <https://humanatlas.io>. Contact [infoccf@iu.edu](mailto:infoccf@iu.edu) for information on how to join the HRA Working Group.
 
 ## Atlas Resources
 
@@ -82,6 +82,6 @@ All HRA data is captured as digital objects, normalized to RDF graphs, and publi
 # Contact Us
 
 - Website: <https://cns.iu.edu>
-- Email: [infoccf@indiana.edu](mailto:infoccf@indiana.edu)
+- Email: [infoccf@iu.edu](mailto:infoccf@iu.edu)
 - Twitter: <https://twitter.com/cnscenter>
 - LinkedIn: <https://www.linkedin.com/company/cns-indiana-university-bloomington/>
