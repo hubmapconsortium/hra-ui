@@ -8,9 +8,6 @@ export const environment = {
     'https://data.sennetconsortium.org',
   ],
   dbOptions: {
-    ccfOwlUrl: 'https://apps.humanatlas.io/hra-api/v1/ccf.owl.n3store.json',
-    ccfContextUrl: 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
-    token: localStorage.getItem('SESSION_TOKEN') ?? '',
     remoteApiEndpoint: 'https://apps.humanatlas.io/api',
   },
   customization: {

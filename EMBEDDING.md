@@ -344,8 +344,6 @@ Full EUI Example
 
 The following options are available for configuration
 
-- `ccfOwlUrl: string` - A url to load data from.
-- `ccfContextUrl: string` - Context.
 - `dataSources: string[]` - A list of data sources (in .jsonld format)
 - `token: string` - Service token.
 - `selectedOrgans: string[]` - A list of organ IDs.
