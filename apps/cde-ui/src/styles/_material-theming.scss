@@ -60,3 +60,9 @@ $_theme: main-theme.$theme;
   @include main-section.typography(landing-page-typographies.$xx-large);
   @include create-visualization-section.typography(typographies.$xx-large);
 }
+
+.mat-typography:has(cde-visualization-page) {
+  @include main-section.typography(landing-page-typographies.$xx-large);
+  @include create-visualization-section.typography(landing-page-typographies.$xx-large);
+  @include mat.typography-hierarchy($_theme);
+}

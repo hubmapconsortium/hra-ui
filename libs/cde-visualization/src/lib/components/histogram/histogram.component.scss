@@ -4,6 +4,7 @@
   height: fit-content;
   position: sticky;
   --mdc-filled-button-container-height: 2rem;
+  max-height: 22.5rem;
 
   .header {
     padding: 0 1rem;
@@ -28,7 +29,7 @@
   }
 
   .content {
-    height: 20rem;
+    height: 17.75rem;
     display: flex;
     gap: 2rem;
 
