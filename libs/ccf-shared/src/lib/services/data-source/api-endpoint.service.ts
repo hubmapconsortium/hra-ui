@@ -17,7 +17,7 @@ import {
   TissueBlockResult,
 } from 'ccf-database';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime, map, switchMap, take, tap } from 'rxjs/operators';
 import { Cacheable } from 'ts-cacheable';
 
 import { GlobalConfigState } from '../../config/global-config.state';
@@ -226,24 +226,22 @@ export class ApiEndpointDataSourceService implements DataSource {
 
   private checkForSources(): Observable<unknown> {
     return combineLatest([this.globalConfig.getOption('dataSources'), this.globalConfig.getOption('filter')]).pipe(
+      debounceTime(1000),
       tap(([sources, filter]) => {
         if ((sources && sources.length > 0) || filter) {
           const sessionTokenRequest = {
             dataSources: sources,
             filter: filter,
           };
-          console.warn(sessionTokenRequest);
           this.getSessionToken({ sessionTokenRequest } as SessionTokenRequestParams);
         }
       }),
     );
   }
 
-  getSessionToken(params: SessionTokenRequestParams) {
+  private getSessionToken(params: SessionTokenRequestParams) {
     this.api.sessionToken(params).subscribe((resp: DefaultParams) => {
       const token = resp.token;
-      console.warn(token);
-
       this.globalConfig.patchState({ token });
       localStorage.setItem('SESSION_TOKEN', token ?? '');
       this.getDatabaseStatus();

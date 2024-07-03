@@ -223,6 +223,9 @@ export class CCFDatabase {
             await addRdfXmlToStore(source, store);
           } else {
             // Passthrough assumes a JSON-LD response
+            if ((source.startsWith('http') || source.startsWith('assets/')) && source.includes('jsonld')) {
+              return;
+            }
             source = patchJsonLd(source);
             await addJsonLdToStore(source, store);
           }
