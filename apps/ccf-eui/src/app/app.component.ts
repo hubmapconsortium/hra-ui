@@ -331,14 +331,6 @@ export class AppComponent implements OnInit {
     this.viewerOpen = false;
   }
 
-  /**
-   * Gets login token
-   */
-  get loggedIn(): boolean {
-    const token = this.globalConfig.snapshot.token ?? '';
-    return token.length > 0;
-  }
-
   isItemSelected(item: string) {
     return this.selectedtoggleOptions.includes(item);
   }

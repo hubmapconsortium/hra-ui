@@ -5,7 +5,6 @@
     [class.hide]="(header$ | async) === false"
     [logoTooltip]="(logoTooltip$ | async) ?? ''"
     [homeUrl]="(homeUrl$ | async) ?? ''"
-    [loggedIn]="loggedIn"
     [loginDisabled]="(loginDisabled$ | async) ?? false"
     [baseRef]="(baseHref$ | async) ?? ''"
     *ngIf="(spinnerActive$ | async) === false"

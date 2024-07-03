@@ -8,7 +8,6 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { SpatialSceneNode } from 'ccf-body-ui';
 import { AggregateResult, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -16,6 +15,7 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 
 import { OrganLookupService } from './core/services/organ-lookup/organ-lookup.service';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 
 interface GlobalConfig {
   organIri?: string;
