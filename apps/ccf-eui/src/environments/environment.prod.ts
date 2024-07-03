@@ -10,12 +10,8 @@ export const environment = {
   dbOptions: {
     ccfOwlUrl: 'https://apps.humanatlas.io/hra-api/v1/ccf.owl.n3store.json',
     ccfContextUrl: 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',
-    hubmapDataService: 'search-api',
-    hubmapDataUrl: 'https://search.api.hubmapconsortium.org/v3/entities/search',
-    hubmapToken: localStorage.getItem('HUBMAP_TOKEN') ?? '',
-
-    useRemoteApi: false,
-    remoteApiEndpoint: 'https://apps.humanatlas.io/api/v1',
+    token: localStorage.getItem('SESSION_TOKEN') ?? '',
+    remoteApiEndpoint: 'https://apps.humanatlas.io/api',
   },
   customization: {
     theme: 'hubmap',

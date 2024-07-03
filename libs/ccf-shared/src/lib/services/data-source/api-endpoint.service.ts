@@ -1,11 +1,12 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   DatabaseStatus,
-  DefaultService,
   MinMax,
+  SessionTokenRequestParams,
   SpatialSceneNode as RawSpatialSceneNode,
   SpatialSearch,
-} from '@ccf-openapi/ng-client';
+  V1Service,
+} from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
 import {
   AggregateResult,
@@ -15,17 +16,16 @@ import {
   SpatialSceneNode,
   TissueBlockResult,
 } from 'ccf-database';
-import { Observable, Subject, combineLatest } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Cacheable } from 'ts-cacheable';
 
 import { GlobalConfigState } from '../../config/global-config.state';
 import { DataSource } from './data-source';
-import { HttpClient } from '@angular/common/http';
 
 export interface ApiEndpointDataSourceOptions {
   remoteApiEndpoint: string;
-  hubmapToken?: string;
+  token?: string;
   dataSources?: string[];
   filter?: Filter;
 }
@@ -72,7 +72,7 @@ function cast<T>(): (data: unknown) => T {
   return (data) => data as T;
 }
 
-function rangeToMinMax(range: [number, number] | undefined, low: number, high: number): MinMax | undefined {
+function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
   return range
     ? { min: range[0] > low ? range[0] : undefined, max: range[1] < high ? range[1] : undefined }
     : undefined;
@@ -104,39 +104,12 @@ function spatialSceneNodeReviver(nodes: RawSpatialSceneNode[]): SpatialSceneNode
   providedIn: 'root',
 })
 export class ApiEndpointDataSourceService implements DataSource {
-  private readonly http = inject(HttpClient);
-
   constructor(
-    private readonly api: DefaultService,
+    private readonly api: V1Service,
     private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>,
   ) {
-    globalConfig.getOption('hubmapToken').subscribe(buster$);
-    combineLatest([
-      globalConfig.getOption('dataSources'),
-      globalConfig.getOption('filter'),
-      globalConfig.getOption('remoteApiEndpoint'),
-    ])
-      .pipe(
-        tap(([sources, filter, endpoint]) => {
-          if ((sources && sources.length > 0) || filter) {
-            const sessionTokenRequest = {
-              dataSources: sources,
-              filter: filter,
-            };
-            console.log(sessionTokenRequest);
-
-            // Get session token
-            this.http.post(endpoint + '/session-token', sessionTokenRequest).subscribe((resp: DefaultParams) => {
-              const token = resp.token;
-              console.log(token);
-
-              globalConfig.patchState({ hubmapToken: token });
-              this.getDatabaseStatus();
-            });
-          }
-        }),
-      )
-      .subscribe();
+    globalConfig.getOption('token').subscribe(buster$);
+    this.checkForSources().subscribe();
   }
 
   getDatabaseStatus(): Observable<DatabaseStatus> {
@@ -238,7 +211,7 @@ export class ApiEndpointDataSourceService implements DataSource {
     const { api, globalConfig } = this;
     const requestParams: Record<string, unknown> = { ...filterToParams(filter), ...params };
 
-    return combineLatest([globalConfig.getOption('remoteApiEndpoint'), globalConfig.getOption('hubmapToken')]).pipe(
+    return combineLatest([globalConfig.getOption('remoteApiEndpoint'), globalConfig.getOption('token')]).pipe(
       take(1),
       tap(([endpoint, token]) => {
         api.configuration.basePath = endpoint;
@@ -249,5 +222,31 @@ export class ApiEndpointDataSourceService implements DataSource {
       switchMap(() => method(requestParams)),
       map((data) => (reviver ? reviver(data) : data)),
     );
+  }
+
+  private checkForSources(): Observable<unknown> {
+    return combineLatest([this.globalConfig.getOption('dataSources'), this.globalConfig.getOption('filter')]).pipe(
+      tap(([sources, filter]) => {
+        if ((sources && sources.length > 0) || filter) {
+          const sessionTokenRequest = {
+            dataSources: sources,
+            filter: filter,
+          };
+          console.warn(sessionTokenRequest);
+          this.getSessionToken({ sessionTokenRequest } as SessionTokenRequestParams);
+        }
+      }),
+    );
+  }
+
+  getSessionToken(params: SessionTokenRequestParams) {
+    this.api.sessionToken(params).subscribe((resp: DefaultParams) => {
+      const token = resp.token;
+      console.warn(token);
+
+      this.globalConfig.patchState({ token });
+      localStorage.setItem('SESSION_TOKEN', token ?? '');
+      this.getDatabaseStatus();
+    });
   }
 }
