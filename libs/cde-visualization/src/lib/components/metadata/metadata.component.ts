@@ -81,7 +81,8 @@ export class MetadataComponent {
   tooltipOpen = false;
 
   isFieldVisible(field: keyof Metadata): boolean {
-    return this.showEmptyFields() || this.metadata()[field] !== undefined;
+    const value = this.metadata()[field];
+    return this.showEmptyFields() || (value !== undefined && value !== '');
   }
 
   /** Toggle function for the show/hide buttons */
