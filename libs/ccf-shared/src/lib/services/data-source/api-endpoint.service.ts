@@ -3,19 +3,11 @@ import {
   DatabaseStatus,
   MinMax,
   SessionTokenRequestParams,
-  SpatialSceneNode as RawSpatialSceneNode,
+  SpatialSceneNode,
   SpatialSearch,
   V1Service,
 } from '@hra-api/ng-client';
-import { Matrix4 } from '@math.gl/core';
-import {
-  AggregateResult,
-  Filter,
-  OntologyTreeModel,
-  SpatialEntity,
-  SpatialSceneNode,
-  TissueBlockResult,
-} from 'ccf-database';
+import { AggregateResult, Filter, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs/operators';
 import { Cacheable } from 'ts-cacheable';
@@ -91,13 +83,6 @@ function filterToParams(filter?: Filter): FilterParams {
     technologies: filter?.technologies,
     spatial: filter?.spatialSearches,
   };
-}
-
-function spatialSceneNodeReviver(nodes: RawSpatialSceneNode[]): SpatialSceneNode[] {
-  return nodes.map((node) => ({
-    ...(node as SpatialSceneNode),
-    transformMatrix: new Matrix4(node.transformMatrix ?? []),
-  }));
 }
 
 @Injectable({
@@ -178,17 +163,12 @@ export class ApiEndpointDataSourceService implements DataSource {
 
   @Cacheable(CACHE_CONFIG_PARAMS)
   getScene(filter?: Filter): Observable<SpatialSceneNode[]> {
-    return this.doRequest((params) => this.api.scene(params), filter, {}, spatialSceneNodeReviver);
+    return this.doRequest((params) => this.api.scene(params), filter, {});
   }
 
   @Cacheable(CACHE_CONFIG_PARAMS)
   getReferenceOrganScene(organIri: string, filter?: Filter): Observable<SpatialSceneNode[]> {
-    return this.doRequest(
-      (params) => this.api.referenceOrganScene(params),
-      filter,
-      { organIri },
-      spatialSceneNodeReviver,
-    );
+    return this.doRequest((params) => this.api.referenceOrganScene(params), filter, { organIri });
   }
 
   private doRequest<T, P>(

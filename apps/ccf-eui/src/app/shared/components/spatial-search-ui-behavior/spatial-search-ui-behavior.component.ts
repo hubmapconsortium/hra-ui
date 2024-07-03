@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { SpatialSceneNode, TissueBlockResult } from 'ccf-database';
+import { TissueBlockResult } from 'ccf-database';
 import { GlobalConfigState, InfoButtonService, InfoDialogComponent, OrganInfo, PanelData } from 'ccf-shared';
 import { Observable, Subscription } from 'rxjs';
 

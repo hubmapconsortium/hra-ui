@@ -1,8 +1,9 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { NgxsOnInit, Selector, State } from '@ngxs/store';
-import { NodeClickEvent, SpatialSceneNode } from 'ccf-body-ui';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { SpatialEntity } from 'ccf-database';
 import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo } from 'ccf-shared';
 import { combineLatest } from 'rxjs';

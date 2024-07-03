@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import {
   AggregateResult,
   DatabaseStatus,
   Filter,
   OntologyTreeModel,
   SpatialEntity,
-  SpatialSceneNode,
   TissueBlockResult,
 } from 'ccf-database';
 import { Observable } from 'rxjs';

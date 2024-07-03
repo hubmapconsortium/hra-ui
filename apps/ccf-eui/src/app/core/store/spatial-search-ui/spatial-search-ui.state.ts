@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
 import { Action, Actions, ofActionDispatched, Selector, State, StateContext, Store } from '@ngxs/store';
-import {
-  Filter,
-  getOriginScene,
-  SpatialEntity,
-  SpatialSceneNode,
-  SpatialSearch,
-  TissueBlockResult,
-} from 'ccf-database';
+import { Filter, getOriginScene, SpatialEntity, SpatialSearch, TissueBlockResult } from 'ccf-database';
 import { DataSourceService, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { forkJoin, Observable } from 'rxjs';

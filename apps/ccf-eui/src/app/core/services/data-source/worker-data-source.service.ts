@@ -1,6 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { CCFDatabaseOptions } from 'ccf-database';
+import { DatabaseOptions } from 'ccf-database';
 import { GlobalConfigState, WorkerCCFDatabaseDataSourceService } from 'ccf-shared';
 
 @Injectable({
@@ -8,13 +8,13 @@ import { GlobalConfigState, WorkerCCFDatabaseDataSourceService } from 'ccf-share
 })
 export class WorkerDataSourceService extends WorkerCCFDatabaseDataSourceService {
   constructor(
-    globalConfig: GlobalConfigState<CCFDatabaseOptions>,
+    globalConfig: GlobalConfigState<DatabaseOptions>,
     private readonly locator: LocationStrategy,
   ) {
     super(globalConfig);
   }
 
-  protected createWorker(_config: CCFDatabaseOptions): Worker {
+  protected createWorker(_config: DatabaseOptions): Worker {
     const url = this.getWorkerUrl(true);
     return new Worker(url, { type: 'module' });
   }

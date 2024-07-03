@@ -1,16 +1,10 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Action, NgxsOnInit, State } from '@ngxs/store';
 import { bind } from 'bind-decorator';
-import {
-  AggregateResult,
-  DatabaseStatus,
-  Filter,
-  OntologyTreeModel,
-  SpatialSceneNode,
-  TissueBlockResult,
-} from 'ccf-database';
+import { AggregateResult, DatabaseStatus, Filter, OntologyTreeModel, TissueBlockResult } from 'ccf-database';
 import { DataSourceService } from 'ccf-shared';
 import { combineLatest, defer, ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject } from 'rxjs';
 import {

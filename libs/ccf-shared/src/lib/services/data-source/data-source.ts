@@ -1,10 +1,10 @@
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import {
   AggregateResult,
   DatabaseStatus,
   Filter,
   OntologyTreeModel,
   SpatialEntity,
-  SpatialSceneNode,
   TissueBlockResult,
 } from 'ccf-database';
 import { Observable, ObservableInput, ObservedValueOf } from 'rxjs';

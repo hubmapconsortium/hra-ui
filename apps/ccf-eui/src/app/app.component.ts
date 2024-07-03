@@ -10,7 +10,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { CCFDatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
+import { DatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
 import { BodyUiComponent, DataSourceService, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
@@ -32,7 +32,7 @@ import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spat
 import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
 import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
 
-interface AppOptions extends CCFDatabaseOptions {
+interface AppOptions extends DatabaseOptions {
   theme?: string;
   header?: boolean;
   homeUrl?: string;
