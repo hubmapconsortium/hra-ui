@@ -18,6 +18,7 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'pixelSize',
 ];
 
+/** Defines a pipe that provides a default value if the input is undefined or empty */
 @Pipe({
   name: 'defaultTo',
   standalone: true,
@@ -25,7 +26,7 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
 })
 export class DefaultToPipe implements PipeTransform {
   transform<T, D>(value: T | undefined, defaultValue: D): T | D {
-    return value !== undefined ? value : defaultValue;
+    return value !== undefined && value !== '' ? value : defaultValue;
   }
 }
 
@@ -41,28 +42,35 @@ export class DefaultToPipe implements PipeTransform {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataComponent {
+  /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
 
+  /** Defines a computed property for the title label */
   readonly titleLabel = computed(() => {
     const { sampleExtra } = this.metadata();
     return sampleExtra ? `Sample ${sampleExtra.type} Visualization (${sampleExtra.organ})` : 'Title';
   });
 
+  /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
 
+  /** Defines a computed property to check for empty fields */
   readonly hasEmptyFields = computed(() => {
     const metadata = this.metadata();
     return HIDABLE_FIELDS.some((field) => metadata[field] === undefined);
   });
 
+  /** Sets the tooltip position to the right side */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
+  /** Creates a date formatter with default locale */
   readonly dateFormat = new Intl.DateTimeFormat(undefined, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
+  /** Creates a time formatter with default locale */
   readonly timeFormat = new Intl.DateTimeFormat(undefined, {
     hour: 'numeric',
     minute: '2-digit',
@@ -76,11 +84,12 @@ export class MetadataComponent {
     return this.showEmptyFields() || this.metadata()[field] !== undefined;
   }
 
-  // Toggle function for the show/hide buttons
+  /** Toggle function for the show/hide buttons */
   toggleEmptyFields(): void {
     this.showEmptyFields.set(!this.showEmptyFields());
   }
 
+  /** Formats the creation timestamp using a given formatter */
   formatCreationTimestamp(format: Intl.DateTimeFormat): string | undefined {
     return format.format(this.metadata().creationTimestamp);
   }

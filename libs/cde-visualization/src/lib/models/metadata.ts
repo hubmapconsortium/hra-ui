@@ -29,7 +29,7 @@ export interface SampleMetadataExtra {
   /** Organ name */
   organ: string;
   /** Data file url*/
-  fileUrl: string;
+  sampleUrl: string;
   /** Source Data Sheet url */
   sourceDataUrl: string;
 }

@@ -8,7 +8,7 @@
     --mat-expansion-container-background-color: white;
 
     .mat-expansion-panel-header {
-      padding: 0.75rem;
+      padding: 0.75rem 1rem;
 
       .title {
         font-size: 0.9375rem;
@@ -22,7 +22,7 @@
 
     ::ng-deep {
       .mat-expansion-panel-body {
-        padding: 0 0.75rem 0.75rem;
+        padding: 0 1rem 0.75rem 1rem;
       }
     }
 
@@ -33,13 +33,17 @@
         margin-bottom: 0.75rem;
         color: #b20a2f;
       }
+
+      & + span.user-title {
+        color: #4c4c58;
+      }
     }
 
     .metadata-details {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      row-gap: 0.5rem;
-      column-gap: 0.375rem;
+      row-gap: 0.75rem;
+      column-gap: 1rem;
 
       span {
         display: block;
@@ -54,6 +58,10 @@
 
         span.mat-caption {
           color: #b20a2f;
+        }
+
+        span.user-source {
+          color: #4c4c58;
         }
 
         a.mat-caption {

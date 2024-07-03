@@ -64,5 +64,12 @@ $_theme: main-theme.$theme;
 .mat-typography:has(cde-visualization-page) {
   @include main-section.typography(landing-page-typographies.$xx-large);
   @include create-visualization-section.typography(landing-page-typographies.$xx-large);
-  @include mat.typography-hierarchy($_theme);
+  @include mat.typography-hierarchy(
+    mat.define-light-theme(
+      (
+        typography: typographies.$xx-large,
+        density: 0,
+      )
+    )
+  );
 }

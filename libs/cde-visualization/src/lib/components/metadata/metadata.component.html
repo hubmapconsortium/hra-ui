@@ -30,11 +30,11 @@
         {{ titleLabel() }}
       </div>
       @if (metadata().sampleExtra; as extra) {
-        <a [attr.href]="extra.fileUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
+        <a [attr.href]="extra.sampleUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
           metadata().title
         }}</a>
       } @else {
-        <span class="mat-caption">{{ metadata().title | defaultTo: 'Unknown' }}</span>
+        <span class="mat-caption user-title">{{ metadata().title | defaultTo: 'Unknown' }}</span>
       }
     }
 
@@ -46,7 +46,7 @@
             metadata().sourceData
           }}</a>
         } @else {
-          <span class="mat-caption">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+          <span class="mat-caption user-source">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
         }
       </div>
       @if (isFieldVisible('colorMap')) {
@@ -58,13 +58,13 @@
       @if (isFieldVisible('organ')) {
         <div class="mat-caption">
           Organ
-          <span>{{ metadata().organ | defaultTo: 'Default' }}</span>
+          <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('technology')) {
         <div class="mat-caption">
           Technology
-          <span>{{ metadata().technology | defaultTo: 'Default' }}</span>
+          <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('sex')) {
@@ -81,14 +81,14 @@
       }
       @if (isFieldVisible('thickness')) {
         <div class="mat-caption">
-          Thickness
-          <span>{{ metadata().thickness | defaultTo: 'Default' }}</span>
+          Thickness (µm)
+          <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('pixelSize')) {
         <div class="mat-caption">
-          Pixel Size
-          <span>{{ metadata().pixelSize | defaultTo: 'Default' }}</span>
+          Pixel Size (µm/pixel)
+          <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
         </div>
       }
       <div class="mat-caption">

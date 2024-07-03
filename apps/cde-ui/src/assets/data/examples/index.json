@@ -18,7 +18,7 @@
       "sampleExtra": {
         "type": "2D",
         "organ": "Intestine",
-        "fileUrl": "https://doi.org/10.1016/j.cell.2022.12.028",
+        "sampleUrl": "https://doi.org/10.1016/j.cell.2022.12.028",
         "sourceDataUrl": "https://docs.google.com/spreadsheets/d/1oy8U8ot7DX8ZZ2M8tz07EUHEbgzy5i2rmr09g5BrRmg/edit?gid=631939841#gid=631939841"
       }
     }
@@ -42,7 +42,7 @@
       "sampleExtra": {
         "type": "3D",
         "organ": "Skin",
-        "fileUrl": "https://doi.org/10.1038/s42003-023-04991-z",
+        "sampleUrl": "https://doi.org/10.1038/s42003-023-04991-z",
         "sourceDataUrl": "https://docs.google.com/spreadsheets/d/1sBnCiggPjo6S7FBIbP6rdSK-TCSmOPBVfQcMcfgvehM/edit?gid=0#gid=0"
       }
     }
