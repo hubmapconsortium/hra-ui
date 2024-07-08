@@ -4,14 +4,17 @@
   padding: 0.75rem;
   box-shadow: 0px 5px 16px 0px #201e3d3d;
   border-radius: 1rem;
+  min-width: 18rem;
 
   .title {
     color: #201e3d;
     display: inline-block;
+    font-family: 'Metropolis';
+    margin-bottom: 0.75rem;
   }
 
   mat-icon {
-    vertical-align: sub;
+    vertical-align: middle;
     cursor: pointer;
   }
 
@@ -44,6 +47,7 @@
     padding: 1rem;
     color: #4c4c58;
     box-shadow: 0px 5px 16px 0px #201e3d3d;
+    max-width: 21rem;
 
     .mat-caption {
       font-weight: 500;
