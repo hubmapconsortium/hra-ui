@@ -6,6 +6,7 @@
 
   .footer-wrapper {
     width: 100%;
+    max-width: 120rem;
     display: grid;
     grid-template-columns: minmax(30.25rem, auto) 2fr;
   }
