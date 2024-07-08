@@ -2,7 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
-import { METRICS_ITEM_DEF, MetricsItemComponent, MetricsItemSpec } from '../item/metrics-item.component';
+import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
 
 export type MetricsCard = z.infer<typeof METRICS_CARD_DEF>;
 
@@ -11,6 +11,7 @@ export const METRICS_CARD_DEF = TITLE_CARD_DEF.extend({
   items: METRICS_ITEM_DEF.array(),
 });
 
+/** Limit to decide if cards needs to be wide */
 const WIDE_CARD_MIN_ITEM_COUNT = 4;
 
 /** Metrics Container Component, renders metric cards inside the container */
@@ -31,6 +32,7 @@ export class MetricsContainerComponent implements DashboardComponent<typeof Metr
   /** Input for metrics container component */
   readonly spec = input.required<DashboardComponentSpecFor<typeof MetricsContainerComponent>>();
 
+  /** Computes the boolean array if a card needs to be wide */
   private readonly layout = computed(() => {
     const cards = this.spec().items;
     const isWide: boolean[] = [];
@@ -49,20 +51,13 @@ export class MetricsContainerComponent implements DashboardComponent<typeof Metr
     return isWide;
   });
 
+  /** Returns if card needs to be wide based on number of items inside it */
   isWideCard(card: MetricsCard): boolean {
     return card.items.length >= WIDE_CARD_MIN_ITEM_COUNT;
   }
 
+  /** Returns if card is wide based on previously computed array */
   isWideCardAt(index: number): boolean {
     return this.layout()[index];
-  }
-
-  /** Selects css class based on number of items inside the metrics card */
-  selectLayoutClass(items: MetricsItemSpec[]): string | undefined {
-    if (items.length > 3) {
-      return 'span-columns';
-    }
-
-    return undefined;
   }
 }
