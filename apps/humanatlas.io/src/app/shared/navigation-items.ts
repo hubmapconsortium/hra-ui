@@ -53,6 +53,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
         url: 'https://portal.hubmapconsortium.org/',
       },
+      {
+        menuName: 'SenNet Data Portal',
+        disabled: true,
+        url: 'https://data.sennetconsortium.org/',
+      },
     ],
   },
   {
