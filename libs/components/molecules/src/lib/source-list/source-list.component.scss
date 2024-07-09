@@ -59,6 +59,7 @@
 
     .mat-column-link {
       padding-right: 3rem;
+      text-overflow: unset !important;
     }
 
     ::ng-deep thead {
@@ -123,6 +124,39 @@
 
       .mat-column-link {
         cursor: pointer;
+      }
+    }
+
+    .source-link {
+      font-size: 0.75rem;
+      padding: 0;
+      justify-content: left;
+      color: #b20a2f;
+      text-decoration: none;
+      border: 0.25rem solid transparent;
+
+      &:hover {
+        color: #8e0825;
+      }
+
+      &:active {
+        color: #6a061c;
+      }
+
+      &:focus {
+        color: #201e3d;
+        border-color: #e00d3a;
+      }
+
+      ::ng-deep .mdc-button__ripple::before {
+        background-color: transparent;
+      }
+
+      ::ng-deep .mdc-button__label {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 9rem;
+        overflow: hidden;
       }
     }
   }

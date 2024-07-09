@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: min-content 2rem 69px auto;
+  grid-template-rows: auto 2rem 69px min-content;
   grid-template-areas:
     'table table table'
     'gradient-legend-header size-legend-header size-legend-header'
@@ -23,14 +23,14 @@
   }
 
   @media (min-height: 49.5rem) {
-    grid-template-rows: min-content 37px 69px auto;
+    grid-template-rows: auto 37px 69px min-content;
     ::ng-deep .table-tab-header {
       height: calc(3rem - 1px) !important;
     }
   }
 
   @media (min-height: 60.75rem) {
-    grid-template-rows: min-content 3rem 5rem auto;
+    grid-template-rows: auto 3rem 5rem min-content;
   }
 
   .cursor {
@@ -51,6 +51,7 @@
     border-bottom: 1px solid rgba(vars.$light-dividers);
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
+      height: 100%;
       border-top: 1px solid rgba(vars.$light-dividers);
     }
 
@@ -117,17 +118,14 @@
   }
 
   .source-list {
+    height: min-content;
     grid-area: source-list;
     overflow: hidden;
-    min-height: 16.5rem;
+    max-height: 276px;
   }
 
   hra-biomarker-table {
-    height: 22rem;
-
-    @media (min-height: 60.75rem) {
-      height: max(calc(100vh - 45rem), 25rem);
-    }
+    height: 100%;
 
     &.small {
       height: fit-content;

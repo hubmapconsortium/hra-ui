@@ -61,22 +61,25 @@
     </ng-container>
 
     <!-- DOI Column -->
-    <ng-container matColumnDef="doi">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Paper DOI</th>
-      <td mat-cell *matCellDef="let row" [hraHover]="dataHover" [hraHoverData]="row.doi">{{ row.doi }}</td>
-    </ng-container>
-
-    <!-- Link Column -->
     <ng-container matColumnDef="link">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Link to Data</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Paper DOI</th>
       <td
         mat-cell
         *matCellDef="let row"
-        (click)="sourceLinkClicked(row)"
         [hraHover]="dataHover"
         [hraHoverData]="row.link"
+        (click)="sourceLinkClicked(row)"
       >
-        {{ row.link }}
+        <a
+          class="source-link"
+          mat-flat-button
+          [href]="sourceLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          disableRipple
+        >
+          {{ row.link }}
+        </a>
       </td>
     </ng-container>
 
