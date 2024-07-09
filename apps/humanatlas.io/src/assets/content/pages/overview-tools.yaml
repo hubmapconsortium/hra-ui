@@ -25,11 +25,6 @@
       body: A visualization tool for human organ experts to explore and compare ASCT+B Tables
       route: asctb-reporter
       alt: ASCT+B reporter icon
-    - icon: assets/images/cell_graphs.svg
-      title: Cell Population Graphs
-      body: An interactive tool for exploring and comparing cell populations
-      route: cell-population-graphs
-      alt: Cell population graphs icon
     - icon: assets/images/rui.svg
       title: Registration User Interface (RUI)
       body: An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B table terms
@@ -45,11 +40,6 @@
       body: An immersive application that allows users to explore 3D reference organs, anatomical structures, and cell types in virtual reality
       route: hra-organ-gallery
       alt: HRA Organ Gallery icon
-    - icon: assets/images/hra_milletome.svg
-      title: Millitome
-      body: A unique 3D printed tool and standard operating procedure for the uniform sectioning of organs
-      route: millitome
-      alt: Millitome icon
     - icon: assets/images/hra_api.svg
       title: Application Programming Interfaces (APIs)
       body: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more
@@ -75,6 +65,16 @@
       body: Explore usage statistics of atlas data and code
       route: /user-story/7
       alt: Track Atlas Evolution and Usage icon
+    - icon: assets/images/cell_graphs.svg
+      title: 'Preview: Cell Population Graphs'
+      body: An interactive tool for exploring and comparing cell populations
+      route: cell-population-graphs
+      alt: Cell population graphs icon
+    - icon: assets/images/hra_milletome.svg
+      title: 'Preview: Millitome'
+      body: A unique 3D printed tool for the uniform sectioning of organs
+      route: millitome
+      alt: Millitome icon
   # - icon: assets/images/hra_usage.svg
   #   title: Human Reference Atlas Usage Metrics
   #   body: Data and statistics on which tools and consortia are using the Human Reference Atlas
