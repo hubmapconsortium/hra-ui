@@ -206,7 +206,7 @@ export class ApiEndpointDataSourceService implements DataSource {
 
   private checkForSources(): Observable<unknown> {
     return combineLatest([this.globalConfig.getOption('dataSources'), this.globalConfig.getOption('filter')]).pipe(
-      debounceTime(1000),
+      debounceTime(250),
       tap(([sources, filter]) => {
         if ((sources && sources.length > 0) || filter) {
           const sessionTokenRequest = {
@@ -223,7 +223,6 @@ export class ApiEndpointDataSourceService implements DataSource {
     this.api.sessionToken(params).subscribe((resp: DefaultParams) => {
       const token = resp.token;
       this.globalConfig.patchState({ token });
-      localStorage.setItem('SESSION_TOKEN', token ?? '');
       this.getDatabaseStatus();
     });
   }
