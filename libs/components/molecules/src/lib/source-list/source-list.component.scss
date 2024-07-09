@@ -34,7 +34,7 @@
   }
 
   .table-content {
-    height: calc(100% - 3.5rem);
+    max-height: 236px;
     overflow: auto;
 
     &.hidden {
