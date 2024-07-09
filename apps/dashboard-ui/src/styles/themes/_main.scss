@@ -9,11 +9,12 @@ $typography: mat.define-typography-config(
   $font-family: 'Metropolis',
   $headline-5: mat.define-typography-level(72px, 90px, 500, $letter-spacing: -0.05em),
   $headline-6: mat.define-typography-level(42px, 63px, 500, $letter-spacing: -1.25px),
-  $subtitle-1: mat.define-typography-level(24px, 36px, 500),
+  $subtitle-1: mat.define-typography-level(16px, 24px, 500),
+  $subtitle-2: mat.define-typography-level(24px, 36px, 500),
   $body-1: mat.define-typography-level(20px, 30px, 400, 'Nunito Sans', $letter-spacing: 0.07em),
-  $body-2: mat.define-typography-level(18px, 27px, 400, 'Nunito Sans', $letter-spacing: 0.07em),
+  $body-2: mat.define-typography-level(16px, 24px, 500, 'Nunito Sans', $letter-spacing: 0.07em),
   $button: mat.define-typography-level(16px, 24px, 500),
-  $caption: mat.define-typography-level(14px, 21px, 400, $letter-spacing: 0.005em),
+  $caption: mat.define-typography-level(16px, 24px, 500, $letter-spacing: 0.005em),
 );
 
 $theme: mat.define-light-theme(
