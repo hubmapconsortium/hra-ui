@@ -59,6 +59,7 @@
     bottom: 0px;
     position: absolute;
     display: inline-flex;
+    z-index: 2;
   }
 
   .swiper-pagination-bullet-active {
