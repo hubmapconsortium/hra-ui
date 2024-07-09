@@ -1,6 +1,7 @@
 @use '@fontsource/material-symbols-outlined';
 @use '@fontsource/material-symbols-rounded';
-@use '@fontsource/metropolis';
+@use '@fontsource/metropolis/400.css' as Metropolis400;
+@use '@fontsource/metropolis/500.css' as Metropolis500;
 @use '@fontsource/nunito-sans';
 
 /* As per https://fontsource.org/docs/getting-started/material-symbols */

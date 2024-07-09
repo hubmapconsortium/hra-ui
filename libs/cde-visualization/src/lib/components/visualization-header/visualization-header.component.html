@@ -1,122 +1,141 @@
 <div class="home">
   <a class="hra-logo" href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
-    <img src="assets/logo/hra_small.svg" alt="Human Reference Atlas home" />
+    <img src="assets/logo/hra_small.svg" alt="Human Reference Atlas home" class="hra-small" />
   </a>
   <a class="cde-logo" [href]="homeLink()" rel="noopener noreferrer">
     <img src="assets/logo/cde_logo.svg" alt="Cell Distance Explorer home" />
+    <span>
+      <div class="cde-label">Cell Distance Explorer</div>
+      <div class="preview-app">HRA Preview Application</div>
+    </span>
   </a>
 </div>
+<div class="tools">
+  <mat-divider vertical></mat-divider>
 
-<mat-divider vertical></mat-divider>
-
-<div class="reset">
-  <span class="mat-caption" cdkOverlayOrigin #resetTrigger="cdkOverlayOrigin">
-    Reset
-    <mat-icon
-      class="material-symbols-rounded info"
-      (mouseover)="resetInfoOpen = !resetInfoOpen"
-      (mouseout)="resetInfoOpen = !resetInfoOpen"
-    >
-      info
-    </mat-icon>
-
-    <ng-container>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'reset-panel']"
-        [cdkConnectedOverlayOrigin]="resetTrigger"
-        [cdkConnectedOverlayOpen]="resetInfoOpen"
-        [cdkConnectedOverlayOffsetY]="10"
+  <div class="reset">
+    <span class="mat-caption" cdkOverlayOrigin #resetTrigger="cdkOverlayOrigin">
+      Reset
+      <mat-icon
+        class="material-symbols-rounded info"
+        (mouseover)="resetInfoOpen = !resetInfoOpen"
+        (mouseout)="resetInfoOpen = !resetInfoOpen"
       >
-        <div>
-          <span>Reset Visualization View</span>
-          <span class="break">Button restoring the initial view of the cell distance visualization</span>
+        info
+      </mat-icon>
 
-          <span>Reset All Settings</span>
-          <span>
-            Button restoring all settings: Cell distance visualization view, cell type list selections, cell type color
-            settings, and histogram color settings
-          </span>
-        </div>
-      </ng-template>
-    </ng-container>
-  </span>
+      <ng-container>
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+          [cdkConnectedOverlayOrigin]="resetTrigger"
+          [cdkConnectedOverlayOpen]="resetInfoOpen"
+          [cdkConnectedOverlayOffsetY]="10"
+        >
+          <div>
+            <span>Reset Visualization View</span>
+            <span class="break">Button restoring the initial view of the cell distance visualization</span>
 
-  <button mat-flat-button color="primary" class="mat-caption" (click)="resetView.emit()">
-    <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
-    Visualization View
-  </button>
+            <span>Reset All Settings</span>
+            <span>
+              Button restoring all settings: Cell distance visualization view, cell type list selections, cell type
+              color settings, and histogram color settings
+            </span>
+          </div>
+        </ng-template>
+      </ng-container>
+    </span>
 
-  <button mat-flat-button color="primary" class="mat-caption" (click)="resetAll.emit()">
-    <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
-    All Settings
-  </button>
-</div>
+    <button mat-flat-button color="primary" class="mat-caption" (click)="resetView.emit()">
+      <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
+      Visualization View
+    </button>
 
-<mat-divider vertical></mat-divider>
-<div class="embed">
-  <span class="mat-caption" cdkOverlayOrigin #embedTrigger="cdkOverlayOrigin">
-    Embed Visualization
-    <mat-icon
-      class="material-symbols-rounded info"
-      (mouseover)="embedInfoOpen = !embedInfoOpen"
-      (mouseout)="embedInfoOpen = !embedInfoOpen"
-    >
-      info
-    </mat-icon>
-    <ng-container>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'embed-panel']"
-        [cdkConnectedOverlayOrigin]="embedTrigger"
-        [cdkConnectedOverlayOpen]="embedInfoOpen"
-        [cdkConnectedOverlayOffsetY]="10"
+    <button mat-flat-button color="primary" class="mat-caption" (click)="resetAll.emit()">
+      <mat-icon class="material-symbols-rounded"> restart_alt </mat-icon>
+      All Settings
+    </button>
+  </div>
+
+  <mat-divider vertical></mat-divider>
+  <div class="embed">
+    <span class="mat-caption" cdkOverlayOrigin #embedTrigger="cdkOverlayOrigin">
+      Embed Visualization
+      <mat-icon
+        class="material-symbols-rounded info"
+        (mouseover)="embedInfoOpen = !embedInfoOpen"
+        (mouseout)="embedInfoOpen = !embedInfoOpen"
       >
-        <div>
-          Embed the cell distance visualization viewer component on websites by using HRA open-source code and the nodes
-          and edges downloads. View step-by-step instructions on GitHub via the Documentation button.
-        </div>
-      </ng-template>
-    </ng-container>
-  </span>
-  <a
-    mat-flat-button
-    color="primary"
-    class="mat-caption"
-    href="https://github.com/hubmapconsortium/hra-ui/tree/develop/libs/cde-visualization/EMBEDDING.md"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <mat-icon class="material-symbols-rounded"> download </mat-icon>
-    Documentation
-  </a>
-  <a
-    mat-flat-button
-    color="primary"
-    class="mat-caption"
-    href="https://github.com/hubmapconsortium/hra-ui/tree/develop/example-webcomponents/cde-visualization/webcomponent-example.html"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <mat-icon class="material-symbols-rounded"> code </mat-icon>
-    Code
-  </a>
-  <button mat-flat-button color="primary" class="mat-caption" (click)="downloadNodes.emit()">
-    <mat-icon class="material-symbols-rounded"> download </mat-icon>
-    Nodes
-  </button>
+        info
+      </mat-icon>
+      <ng-container>
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+          [cdkConnectedOverlayOrigin]="embedTrigger"
+          [cdkConnectedOverlayOpen]="embedInfoOpen"
+          [cdkConnectedOverlayOffsetY]="10"
+        >
+          <div>
+            Embed the cell distance visualization viewer component on websites by using HRA open-source code and the
+            nodes and edges downloads. View step-by-step instructions on GitHub via the Documentation button.
+          </div>
+        </ng-template>
+      </ng-container>
+    </span>
+    <a
+      mat-flat-button
+      color="primary"
+      class="mat-caption"
+      href="https://github.com/hubmapconsortium/hra-ui/tree/develop/libs/cde-visualization/EMBEDDING.md"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <mat-icon class="material-symbols-rounded"> code </mat-icon>
+      Documentation
+    </a>
+    <a
+      mat-flat-button
+      color="primary"
+      class="mat-caption"
+      href="https://github.com/hubmapconsortium/hra-ui/tree/develop/example-webcomponents/cde-visualization/webcomponent-example.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <mat-icon class="material-symbols-rounded"> code </mat-icon>
+      Code
+    </a>
+    <button mat-flat-button color="primary" class="mat-caption" (click)="downloadNodes.emit()">
+      <mat-icon class="material-symbols-rounded"> download </mat-icon>
+      Nodes
+    </button>
 
-  <button mat-flat-button color="primary" class="mat-caption" (click)="downloadEdges.emit()">
-    <mat-icon class="material-symbols-rounded"> download </mat-icon>
-    Edges
-  </button>
+    <button mat-flat-button color="primary" class="mat-caption" (click)="downloadEdges.emit()">
+      <mat-icon class="material-symbols-rounded"> download </mat-icon>
+      Edges
+    </button>
+  </div>
+
+  <mat-divider vertical></mat-divider>
+  <div class="about">
+    <span class="mat-caption">About</span>
+    <a
+      mat-flat-button
+      color="primary"
+      class="mat-caption"
+      href="https://www.youtube.com/watch?v=q8zCRd7vHH8"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Demo
+      <mat-icon class="material-symbols-rounded"> play_circle </mat-icon>
+    </a>
+  </div>
+  <!-- Disable until help page created -->
+  <!-- <div class="help">
+    <button mat-button class="mat-caption">
+      Help
+      <mat-icon class="material-symbols-rounded" iconPositionEnd> open_in_new </mat-icon>
+    </button>
+  </div> -->
 </div>
-
-<mat-divider vertical></mat-divider>
-<!-- Disable until help page created -->
-<!-- <div class="help">
-  <button mat-button class="mat-caption">
-    Help
-    <mat-icon class="material-symbols-rounded" iconPositionEnd> open_in_new </mat-icon>
-  </button>
-</div> -->

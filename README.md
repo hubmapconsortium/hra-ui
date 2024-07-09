@@ -1,4 +1,4 @@
-# Human Reference Atlas (HRA) and Functional Tissue Unit Explorer (FTU) - User Interfaces
+# Human Reference Atlas (HRA) User Interfaces
 
 [![Tests](https://github.com/hubmapconsortium/ccf-ui/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hubmapconsortium/hra-ui.svg)](https://github.com/hubmapconsortium/hra-ui/commits/develop)

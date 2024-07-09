@@ -24,6 +24,9 @@ jobs:
           main-branch-name: develop
           app-configuration: preview
 
+      - name: Create Redirects file
+        run: ./.github/actions/prepare-deploy/create-redirects.sh
+
       - name: Publish
         id: deploy
         uses: netlify/actions/cli@master

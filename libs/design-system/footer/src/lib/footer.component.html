@@ -1,6 +1,8 @@
 <div class="footer-wrapper">
   <div class="footer-left">
-    <img [attr.src]="logo()" alt="Human Reference Atlas Logo" />
+    <a href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
+      <img [attr.src]="logo()" alt="Human Reference Atlas Logo" />
+    </a>
     <span class="copyright">
       <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
       2024 CNS at Indiana University
@@ -10,26 +12,32 @@
     <div class="social-funded">
       <div class="social-media">
         <a href="https://twitter.com/cnscenter" target="_blank" rel="noopener noreferrer">
-          <mat-icon svgIcon="social:x"></mat-icon>
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:x"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:x_large"></mat-icon>
         </a>
         <a href="https://www.facebook.com/cnscenter/" target="_blank" rel="noopener noreferrer">
-          <mat-icon svgIcon="social:facebook"></mat-icon>
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:facebook"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:facebook_large"></mat-icon>
         </a>
         <a href="https://www.instagram.com/cns_at_iu/" target="_blank" rel="noopener noreferrer">
-          <mat-icon svgIcon="social:instagram"></mat-icon>
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:instagram"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:instagram_large"></mat-icon>
         </a>
         <a href="https://www.youtube.com/@CNSCenter/" target="_blank" rel="noopener noreferrer">
-          <mat-icon svgIcon="social:youtube"></mat-icon>
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:youtube"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:youtube_large"></mat-icon>
         </a>
         <a
           href="https://www.linkedin.com/company/cns-indiana-university-bloomington"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <mat-icon svgIcon="social:linkedin"></mat-icon>
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:linkedin"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:linkedin_large"></mat-icon>
         </a>
-        <a href="mailto:infoccf@indiana.edu" rel="noopener noreferrer">
-          <mat-icon svgIcon="social:email"></mat-icon>
+        <a href="mailto:infoccf@iu.edu" rel="noopener noreferrer">
+          <mat-icon *ngIf="isExtraSmall" svgIcon="social:email_large"></mat-icon>
+          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:email_large"></mat-icon>
         </a>
       </div>
       <div class="funded-by">
@@ -47,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="disclaimer mat-body">
+    <div class="disclaimer">
       Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
       medical or professional advice.
     </div>

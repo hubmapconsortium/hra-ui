@@ -32,11 +32,10 @@ import {
   NodeEntry,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { FooterComponent } from '@hra-ui/design-system/footer';
 import { ParseError } from 'papaparse';
-
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
-import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
@@ -100,7 +99,7 @@ export class CreateVisualizationPageComponent {
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
   /** Color map upload component */
-  private readonly customColorMapFileUpload = viewChild.required<AnyFileUploadComponent>('customColorMapFileUpload');
+  private readonly customColorMapFileUpload = viewChild<AnyFileUploadComponent>('customColorMapFileUpload');
 
   /** Form builder */
   private readonly fb = inject(FormBuilder);
@@ -246,7 +245,7 @@ export class CreateVisualizationPageComponent {
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
     this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['cell_id', 'cell_type', 'cell_color']);
     if (this.customColorMapLoadError) {
-      this.customColorMapFileUpload().reset();
+      this.customColorMapFileUpload()?.reset();
       return;
     }
     this.customColorMap = colorMap;
@@ -287,8 +286,11 @@ export class CreateVisualizationPageComponent {
     const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
+      sourceData: this.nodesFileUpload().file?.name,
+      colorMap: this.customColorMapFileUpload()?.file?.name,
       organId: metadata?.organ?.id,
       organ: metadata?.organ?.label,
+      creationTimestamp: Date.now(),
     });
 
     this.dataService.setData(

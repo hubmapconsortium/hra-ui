@@ -3,6 +3,7 @@
     background-color: white;
     box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
     border-radius: 0.5rem;
+    max-width: 21rem;
 
     .break {
       margin-bottom: 1rem;
@@ -14,8 +15,8 @@
       font-size: 0.875rem;
       line-height: 1.3125rem;
       letter-spacing: 0.005em;
-      font-weight: 400;
-      color: #4b4b5e;
+      font-weight: 500;
+      color: #4c4c58;
     }
 
     div {
@@ -48,8 +49,8 @@
   row-gap: 0.375rem;
   column-gap: 0.25rem;
   display: grid;
-  grid-template-columns: 18.375rem auto;
-  grid-template-rows: 66px calc(100% - 72px);
+  grid-template-columns: 21rem auto;
+  grid-template-rows: 84px calc(100% - 90px);
   grid-template-areas:
     'header header'
     'metadata visualization';

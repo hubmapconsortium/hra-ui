@@ -18,7 +18,8 @@
   >
     <div>
       Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type
-      visualization colors by clicking the cell type's color legend button.
+      visualization colors by clicking the cell type's color legend button. Download a color map CSV file of the current
+      cell types and HEX codes.
     </div>
   </ng-template>
 </span>
@@ -68,7 +69,7 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Name</th>
       <td mat-cell *matCellDef="let element" class="mat-caption name">
         <cde-color-picker-label
           [label]="element.name"
@@ -81,7 +82,7 @@
     </ng-container>
 
     <ng-container matColumnDef="count">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Count</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Count</th>
       <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
     </ng-container>
 

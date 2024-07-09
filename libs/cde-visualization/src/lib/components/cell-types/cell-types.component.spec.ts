@@ -1,5 +1,7 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { ComponentFixture } from '@angular/core/testing';
+import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
 
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
@@ -10,7 +12,7 @@ describe('CellTypesComponent', () => {
     { name: 'Cell Type 2', count: 200, color: [3, 4, 5] },
     { name: 'Cell Type 3', count: 300, color: [6, 7, 8] },
   ];
-  const cellTypesSelection = [cellTypes[0].name];
+  const cellTypesSelection = [cellTypes[0].name, cellTypes[1].name];
 
   it('should render the component', async () => {
     await render(CellTypesComponent, {
@@ -23,19 +25,24 @@ describe('CellTypesComponent', () => {
   });
 
   it('should toggle row selection', async () => {
-    await render(CellTypesComponent, {
+    const context = await render(CellTypesComponent, {
       componentInputs: { cellTypes, cellTypesSelection },
     });
 
+    const fixture: ComponentFixture<CellTypesComponent> = context.fixture;
+    const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+    const checkboxHarness = await loader.getAllHarnesses(MatCheckboxHarness);
     const checkboxes = screen.getAllByRole('checkbox');
     const firstCheckbox = checkboxes[1];
 
     expect(firstCheckbox).not.toBeChecked();
 
-    await userEvent.click(firstCheckbox);
+    await checkboxHarness[1].check();
+    fixture.autoDetectChanges();
     expect(firstCheckbox).toBeChecked();
 
-    await userEvent.click(firstCheckbox);
+    await checkboxHarness[1].uncheck();
+    fixture.autoDetectChanges();
     expect(firstCheckbox).not.toBeChecked();
   });
 
@@ -45,6 +52,7 @@ describe('CellTypesComponent', () => {
     });
 
     component.fixture.componentInstance.toggleRow(cellTypes[0]);
+    component.fixture.componentInstance.toggleRow(cellTypes[1]);
     expect(component.fixture.componentInstance.cellTypesSelection()).toEqual([]);
   });
 

@@ -14,7 +14,7 @@ $blue-theme: mat.define-light-theme(
 
 ::ng-deep {
   .celltypes-panel {
-    max-width: 27.5rem;
+    max-width: 21rem;
   }
 }
 
@@ -36,10 +36,11 @@ $blue-theme: mat.define-light-theme(
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   --mat-table-background-color: white;
   --mdc-checkbox-unselected-icon-color: #201e3d;
-  --mat-sort-arrow-color: #4b4b5e;
+  --mat-sort-arrow-color: #201e3d;
   --mat-table-row-item-container-height: 1.75rem;
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
+  --mdc-filled-button-container-height: 2rem;
 
   span.cell-types-label {
     grid-area: cell-types;
@@ -52,20 +53,29 @@ $blue-theme: mat.define-light-theme(
   button.download-csv {
     --mdc-filled-button-label-text-color: #{button-text-color};
     grid-area: download;
+    padding: 0.3438rem 0.5rem;
+
+    .mat-icon {
+      margin-right: 2px;
+      margin-left: unset;
+    }
   }
 
   .mat-caption,
   .total-ct-label {
-    font-weight: 400;
     grid-area: total-cell-types;
 
     span {
       display: block;
+      color: #4b4b5e;
     }
   }
 
   .total-cells {
     grid-area: total-cells;
+    span {
+      color: #4b4b5e;
+    }
   }
 
   .table-overflow-container {
@@ -90,7 +100,38 @@ $blue-theme: mat.define-light-theme(
         tbody tr td.mdc-data-table__cell:last-child {
           text-align: end;
           padding-right: 0.75rem;
-          color: var(--mat-sort-arrow-color);
+          color: #4b4b5e;
+        }
+
+        tbody {
+          td:not(:first-child, :last-child) {
+            color: #201e3d;
+          }
+        }
+
+        tr:has(.anchor) {
+          background-color: #e6eaf0;
+
+          td:first-child {
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            border-top: solid #d5dbe3 0.0625rem;
+            border-left: solid #d5dbe3 0.0625rem;
+            border-bottom: solid #d5dbe3 0.0625rem;
+          }
+
+          td:not(:first-child, :last-child) {
+            border-top: solid #d5dbe3 0.0625rem;
+            border-bottom: solid #d5dbe3 0.0625rem;
+          }
+
+          td:last-child {
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border-top: solid #d5dbe3 0.0625rem;
+            border-right: solid #d5dbe3 0.0625rem;
+            border-bottom: solid #d5dbe3 0.0625rem;
+          }
         }
       }
 
@@ -108,12 +149,16 @@ $blue-theme: mat.define-light-theme(
 
       td.name {
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       .mdc-data-table__cell,
       .mdc-data-table__header-cell {
         padding: 0;
+      }
+
+      .mat-column-select {
+        padding-left: 0.3438rem;
       }
     }
   }

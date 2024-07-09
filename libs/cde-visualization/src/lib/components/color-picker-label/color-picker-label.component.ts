@@ -6,6 +6,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, colorEquals, hexToRgb, rgbToHex } from '../../models/color';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
+const MAX_LABEL_WIDTH = 168;
+
 @Component({
   selector: 'cde-color-picker-label',
   standalone: true,
@@ -27,11 +29,18 @@ export class ColorPickerLabelComponent {
   readonly tooltipPosition = TOOLTIP_POSITION_COLOR_PICKER_LABEL;
 
   tooltipOpen = false;
+  anchorOpen = false;
 
   selectColor(hex: string): void {
     const rgb = hexToRgb(hex);
     if (!colorEquals(this.color(), rgb)) {
       this.color.set(rgb);
+    }
+  }
+
+  handleHover(event: MouseEvent): void {
+    if ((event.target as HTMLElement).getBoundingClientRect().width === MAX_LABEL_WIDTH) {
+      this.tooltipOpen = true;
     }
   }
 }

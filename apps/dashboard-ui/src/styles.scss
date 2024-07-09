@@ -9,6 +9,10 @@ body {
 
 body:has(.menu-open) {
   overflow: hidden;
+
+  hra-header {
+    background-color: unset;
+  }
 }
 
 a {

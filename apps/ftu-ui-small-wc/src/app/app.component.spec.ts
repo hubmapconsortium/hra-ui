@@ -39,7 +39,7 @@ describe('AppComponent', () => {
   afterEach(() => jest.clearAllMocks());
 
   it('should create component', async () => {
-    expect(shallow.render()).resolves.toBeDefined();
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 
   describe('.selectedIllustration', () => {
