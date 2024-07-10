@@ -89,14 +89,13 @@
       }
 
       tr {
-        color: rgba(vars.$primary-darker);
+        color: rgba(vars.$primary);
         background: rgba(vars.$primary-lighter);
         height: 2.5rem;
       }
     }
 
     ::ng-deep tbody {
-      .mat-column-title,
       .mat-column-doi,
       .mat-column-link {
         color: rgba(vars.$accent);
@@ -128,7 +127,9 @@
     }
 
     .source-link {
+      --mdc-filled-button-label-text-tracking: 0.0178571429em;
       font-size: 0.75rem;
+      font-weight: 500;
       padding: 0;
       justify-content: left;
       color: #b20a2f;
