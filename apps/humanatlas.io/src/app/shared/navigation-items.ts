@@ -20,6 +20,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
+        menuName: 'Cell Type Annotations',
+        route: 'cell-type-annotations',
+      },
+      {
         menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth',
         route: 'asctb-azimuth',
         disabled: true,

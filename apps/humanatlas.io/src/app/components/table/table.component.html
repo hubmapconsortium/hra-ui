@@ -41,7 +41,7 @@
       </th>
     </ng-container>
     <ng-template #noSortHeader>
-      <th mat-header-cell *matHeaderCellDef class="table-title">
+      <th mat-header-cell *matHeaderCellDef class="table-title" [class]="getAlignmentClass(column)">
         {{ column.header }}
       </th>
     </ng-template>
@@ -61,7 +61,7 @@
           {{ getTotal(column.columnDef) }}
         </ng-container>
         <ng-template #totalLabel>
-          <ng-container *ngIf="column.isTotalRequired">Totals</ng-container>
+          <ng-container *ngIf="column.isTotalRequired">{{ column.totalLabel ?? 'Totals' }}</ng-container>
         </ng-template>
       </td>
     </ng-container>

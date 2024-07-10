@@ -360,6 +360,7 @@ const HeaderData = z
     alignment: z.string({
       description: 'Alignment of the data (start or end)',
     }),
+    totalLabel: z.string({ description: 'Label for the first column in Total row' }).optional(),
   })
   .partial({
     isTotalRequired: true,
