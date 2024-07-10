@@ -34,7 +34,7 @@
   }
 
   .table-content {
-    height: calc(100% - 3.5rem);
+    max-height: 236px;
     overflow: auto;
 
     &.hidden {
@@ -59,6 +59,7 @@
 
     .mat-column-link {
       padding-right: 3rem;
+      text-overflow: unset !important;
     }
 
     ::ng-deep thead {
@@ -95,7 +96,6 @@
     }
 
     ::ng-deep tbody {
-      .mat-column-title,
       .mat-column-doi,
       .mat-column-link {
         color: rgba(vars.$accent);
@@ -118,11 +118,47 @@
     }
 
     tr {
+      color: rgba(vars.$primary);
       font-size: 0.75rem;
       height: 2.25rem;
 
       .mat-column-link {
         cursor: pointer;
+      }
+    }
+
+    .source-link {
+      --mdc-filled-button-label-text-tracking: 0.0178571429em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0;
+      justify-content: left;
+      color: #b20a2f;
+      text-decoration: none;
+      border: 0.25rem solid transparent;
+
+      &:hover {
+        color: #8e0825;
+      }
+
+      &:active {
+        color: #6a061c;
+      }
+
+      &:focus {
+        color: #201e3d;
+        border-color: #e00d3a;
+      }
+
+      ::ng-deep .mdc-button__ripple::before {
+        background-color: transparent;
+      }
+
+      ::ng-deep .mdc-button__label {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 9rem;
+        overflow: hidden;
       }
     }
   }
