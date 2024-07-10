@@ -1,11 +1,11 @@
-import { Location } from '@angular/common';
+import { Signal } from '@angular/core';
 import { IconResolver } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 /** Configuration for a svg icon resolver */
 export interface SvgIconResolverConfig {
-  /** Location service used to resolve urls */
-  location: Location;
+  /** App href value */
+  appHref: Signal<string>;
   /** Sanitizer to create resource urls */
   sanitizer: DomSanitizer;
   /** Base directory of icons and namespace folders */
@@ -20,10 +20,10 @@ export interface SvgIconResolverConfig {
  * @returns A resolver function
  */
 export function createSvgIconResolver(config: SvgIconResolverConfig): IconResolver {
-  const { location, sanitizer, directory } = config;
+  const { appHref, sanitizer, directory } = config;
   return (name, namespace) => {
     const path = joinPath(directory, namespace, name) + '.svg';
-    const url = location.prepareExternalUrl(path);
+    const url = appHref() + path;
     return sanitizer.bypassSecurityTrustResourceUrl(url);
   };
 }
