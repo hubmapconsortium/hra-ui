@@ -38,6 +38,24 @@
         "jestConfig": "libs/cde-visualization/jest.config.ts"
       }
     },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/cde-visualization/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/cde-visualization"
+      },
+      "configurations": {
+        "ci": {
+          "silent": true
+        },
+        "serve": {
+          "watch": true,
+          "disableCoverage": false,
+          "disablePrivate": false,
+          "disableInternal": false
+        }
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },

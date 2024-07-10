@@ -86,6 +86,12 @@
       url: https://portal.hubmapconsortium.org/
       buttonText: HuBMAP Data Portal
       alt: Learn more about the Human BioMolecular Atlas Program
+    - title: Learn more about the Cellular Senescence Network (SenNet) Program
+      body: Explore SenNet data, code, and documentation using the SenNet Data Portal.
+      image: assets/images/carousel_sennet.svg
+      url: https://data.sennetconsortium.org/
+      buttonText: SenNet Data Portal
+      alt: Learn more about the Cellular Senescence Network (SenNet) Program
 
 - type: margin
   bottom: 5rem

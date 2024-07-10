@@ -9,6 +9,7 @@ import {
   DEFAULT_COLOR_MAP_VALUE_KEY,
   DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
+  Metadata,
   NodeEntry,
 } from '@hra-ui/cde-visualization';
 import { provideIcons } from '@hra-ui/cdk/icons';
@@ -39,7 +40,9 @@ const sampleNodes = [
 const processedSampleData = {
   colorMapKey: 'cell_type',
   colorMapValueKey: 'cell_color',
-  metadata: {},
+  metadata: {
+    creationTimestamp: 0,
+  } satisfies Metadata,
   nodeTargetKey: 'Cell Type',
   nodeTargetValue: 'a',
   nodes: [
@@ -92,6 +95,8 @@ describe('CreateVisualizationPageComponent', () => {
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
   beforeEach(async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(0);
+
     const context = await render(CreateVisualizationPageComponent, {
       providers: globalProviders,
       componentInputs: {
@@ -237,6 +242,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = sampleMetadata;
       const processedMetadata = {
+        creationTimestamp: 0,
         organId: sampleMetadata.organ.id,
         organ: sampleMetadata.organ.label,
       };
@@ -254,7 +260,7 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = undefined;
-      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: {} };
+      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: { creationTimestamp: 0 } };
 
       instance.submit();
 

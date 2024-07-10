@@ -18,12 +18,17 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisualizationHeaderComponent {
+  /** Defines an input property for the home link */
   readonly homeLink = input<string>();
 
+  /** Defines an output event for resetting the view */
   readonly resetView = output();
+  /** Defines an output event for resetting all settings */
   readonly resetAll = output();
 
+  /** Defines an output event for downloading nodes */
   readonly downloadNodes = output();
+  /** Defines an output event for downloading edges */
   readonly downloadEdges = output();
 
   /** Flag to check if reset info tooltip is open */
