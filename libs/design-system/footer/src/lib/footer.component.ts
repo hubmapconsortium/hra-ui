@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 
 /** Below this size, use smaller icons */
 const EXTRA_SMALL_THRESHOLD = 430;
@@ -13,7 +14,7 @@ const SMALL_LOGO_THRESHOLD = 768;
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, AssetUrlPipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

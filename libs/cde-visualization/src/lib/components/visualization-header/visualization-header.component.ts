@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 
 /**
  * Component for visualization page header
@@ -11,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'cde-visualization-header',
   standalone: true,
-  imports: [CommonModule, MatDividerModule, MatIconModule, MatButtonModule, OverlayModule],
+  imports: [CommonModule, MatDividerModule, MatIconModule, MatButtonModule, OverlayModule, AssetUrlPipe],
   templateUrl: './visualization-header.component.html',
   styleUrl: './visualization-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
