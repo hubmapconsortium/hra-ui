@@ -34,7 +34,17 @@
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney",
+          "year": 2021,
+          "authors": [
+            "Yoshiharu Muto",
+            "Parker C. Wilson",
+            "Nicolas Ledru",
+            "Haojia Wu",
+            "Henrik Dimke",
+            "Sushrut S. Waikar",
+            "Benjamin D .Humphreys"
+          ]
         }
       ]
     },
@@ -47,7 +57,17 @@
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney",
+          "year": 2021,
+          "authors": [
+            "Yoshiharu Muto",
+            "Parker C. Wilson",
+            "Nicolas Ledru",
+            "Haojia Wu",
+            "Henrik Dimke",
+            "Sushrut S. Waikar",
+            "Benjamin D .Humphreys"
+          ]
         }
       ]
     },
@@ -60,7 +80,17 @@
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney",
+          "year": 2021,
+          "authors": [
+            "Yoshiharu Muto",
+            "Parker C. Wilson",
+            "Nicolas Ledru",
+            "Haojia Wu",
+            "Henrik Dimke",
+            "Sushrut S. Waikar",
+            "Benjamin D .Humphreys"
+          ]
         }
       ]
     },
@@ -73,7 +103,17 @@
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
-          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney"
+          "description": "Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney",
+          "year": 2021,
+          "authors": [
+            "Yoshiharu Muto",
+            "Parker C. Wilson",
+            "Nicolas Ledru",
+            "Haojia Wu",
+            "Henrik Dimke",
+            "Sushrut S. Waikar",
+            "Benjamin D .Humphreys"
+          ]
         }
       ]
     },
@@ -86,7 +126,21 @@
           "@type": "Dataset",
           "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma"
+          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "year": 2019,
+          "authors": [
+            "Felipe A.",
+            "Vieira Braga",
+            "Gozde Kar",
+            "Marijn Berg",
+            "Orestes A. Carpaij",
+            "Krzysztof Polanski",
+            "Lukas M. Simon",
+            "Sharon Brouwer",
+            "Tomas Gomes",
+            "Laura Hesse",
+            "Jian Jiang"
+          ]
         }
       ]
     },
@@ -99,7 +153,21 @@
           "@type": "Dataset",
           "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
-          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma"
+          "description": "A cellular census of human lungs identifies novel cell states in health and in asthma",
+          "year": 2019,
+          "authors": [
+            "Felipe A.",
+            "Vieira Braga",
+            "Gozde Kar",
+            "Marijn Berg",
+            "Orestes A. Carpaij",
+            "Krzysztof Polanski",
+            "Lukas M. Simon",
+            "Sharon Brouwer",
+            "Tomas Gomes",
+            "Laura Hesse",
+            "Jian Jiang"
+          ]
         }
       ]
     },
@@ -112,7 +180,29 @@
           "@type": "Dataset",
           "label": "sc Bulk Transcriptomics of Liver Data",
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
-          "description": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis"
+          "description": "Single-cell and bulk transcriptomics of the liver reveals potential targets of NASH with fibrosis",
+          "year": 2021,
+          "authors": [
+            "Zhong Yi Wang",
+            "Adrian Keogh",
+            "Annick Waldt",
+            "Rachel Cuttat",
+            "Marilisa Neri",
+            "Shanshan Zhu",
+            "Sven Schuierer",
+            "Alexandra Ruchti",
+            "Christophe Crochemore",
+            "Judith Knehr",
+            "Julie Bastien",
+            "Iwona Ksiazek",
+            "Daniel Sánchez Taltavull",
+            "Hui Ge",
+            "Jing Wu",
+            "Guglielmo Roma",
+            "Stephen B. Helliwell",
+            "Deborah Stroka",
+            "Florian Nigsch"
+          ]
         }
       ]
     }

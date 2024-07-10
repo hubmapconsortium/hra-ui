@@ -11,6 +11,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -41,6 +42,7 @@ export interface SourceListItem {
   standalone: true,
   imports: [
     CommonModule,
+    MatButtonModule,
     MatTableModule,
     MatIconModule,
     MatSortModule,
@@ -73,7 +75,7 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
   dataSource = new MatTableDataSource<T>();
 
   /** Columns to display in the sources list */
-  displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'doi', 'link'];
+  displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'link'];
 
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
