@@ -3,6 +3,8 @@
   border-radius: 0.5rem;
   height: fit-content;
   position: sticky;
+  --mdc-filled-button-container-height: 2rem;
+  max-height: 22.5rem;
 
   .header {
     padding: 0 1rem;
@@ -11,11 +13,23 @@
       display: flex;
       margin: 0;
       gap: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+
+      button {
+        padding: 0.375rem 0.5rem;
+        --mdc-filled-button-label-text-color: #201e3d;
+
+        .mat-icon {
+          margin-right: 0.25rem;
+          margin-left: unset;
+        }
+      }
     }
   }
 
   .content {
-    height: 20rem;
+    height: 17.75rem;
     display: flex;
     gap: 2rem;
 

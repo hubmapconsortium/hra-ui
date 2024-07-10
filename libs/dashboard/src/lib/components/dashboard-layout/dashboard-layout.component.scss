@@ -1,6 +1,6 @@
 :host {
   display: block;
-  max-width: calc(100vw - 12rem);
+  max-width: min(80rem, calc(100vw - 12rem));
   margin: 0 auto;
 
   ::ng-deep > :nth-child(n + 4) {
@@ -22,7 +22,8 @@
     color: #464954;
     letter-spacing: 0.5px;
     margin-bottom: 2rem;
-    max-width: 80rem;
+    max-width: 63.25rem;
+    font-weight: 400;
   }
 
   .read-btn {

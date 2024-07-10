@@ -6,7 +6,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, colorEquals, hexToRgb, rgbToHex } from '../../models/color';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
-const MAX_LABEL_WIDTH = 128;
+const MAX_LABEL_WIDTH = 168;
 
 @Component({
   selector: 'cde-color-picker-label',

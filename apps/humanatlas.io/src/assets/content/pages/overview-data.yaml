@@ -19,6 +19,11 @@
       body: Data tables containing hierarchical anatomical structures, cell types, and biomarkers
       route: asctb-tables
       alt: ASCT+B tables icon
+    - icon: assets/images/cell-type-annotations.svg
+      title: Cell Type Annotations
+      body: Crosswalks from cell types used in sc/snRNA-seq annotation tools to ASCT+B Tables
+      route: cell-type-annotations
+      alt: Cell Type Annotations icon
     - icon: assets/images/asctb_azimuth.svg
       title: ASCT+B Cell Types Data from Azimuth Reference Data with Summaries
       body: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data
