@@ -1,9 +1,9 @@
 <a class="hra-home" href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
-  <img class="logo large" src="assets/logo/hra_logo_black.svg" alt="Human Reference Atlas home" />
-  <img class="logo small" src="assets/logo/hra_small.svg" alt="Human Reference Atlas home" />
+  <img class="logo large" [attr.src]="'assets/logo/hra_logo_black.svg' | assetUrl" alt="Human Reference Atlas home" />
+  <img class="logo small" [attr.src]="'assets/logo/hra_small.svg' | assetUrl" alt="Human Reference Atlas home" />
 </a>
 <a class="cde-home" routerLink="/">
-  <img src="assets/logo/cde_logo.svg" alt="Cell Distance Explorer home" />
+  <img [attr.src]="'assets/logo/cde_logo.svg' | assetUrl" alt="Cell Distance Explorer home" />
   <span>
     <div class="cde-label">Cell Distance Explorer</div>
     <div class="preview-app">HRA Preview Application</div>
