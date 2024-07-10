@@ -53,11 +53,7 @@ function findCurrentScriptPathFromStackTrace(): string | undefined {
     throw new Error();
   } catch (error) {
     const { stack } = error as Error;
-    if (!stack) {
-      return undefined;
-    }
-
-    const match = stack.match(/(https?:\/\/.+):\d+:\d+/);
+    const match = stack?.match(/(https?:\/\/.+):\d+:\d+/);
     return match?.[1];
   }
 }
