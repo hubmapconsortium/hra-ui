@@ -89,7 +89,7 @@
       }
 
       tr {
-        color: rgba(vars.$primary);
+        color: rgba(vars.$primary-darker);
         background: rgba(vars.$primary-lighter);
         height: 2.5rem;
       }
@@ -118,6 +118,7 @@
     }
 
     tr {
+      color: rgba(vars.$primary);
       font-size: 0.75rem;
       height: 2.25rem;
 
