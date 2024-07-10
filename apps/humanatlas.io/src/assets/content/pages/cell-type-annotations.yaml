@@ -88,7 +88,7 @@
 - type: page-data
   pageData:
     - heading: ''
-      descriptions: 'To map cell type labels to standardized Cell Ontology (CL) labels and CL IDs used in ASCT+B Tables, crosswalk tables for Azimuth, CellTypist, and Popular vote (popV) were constructed. Use tool-specific crosswalk tables'
+      descriptions: 'To map cell type labels to standardized Cell Ontology (CL) labels and CL IDs used in ASCT+B Tables, crosswalk tables for Azimuth, CellTypist, and Popular vote (popV) were constructed. Use tool-specific crosswalk tables:'
   styles:
     margin-bottom: 2rem
 
