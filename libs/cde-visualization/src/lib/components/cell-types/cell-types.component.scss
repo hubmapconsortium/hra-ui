@@ -79,9 +79,14 @@ $blue-theme: mat.define-light-theme(
   }
 
   .table-overflow-container {
-    overflow: auto;
     grid-area: table;
     height: 100%;
+    scrollbar-gutter: stable;
+    overflow: hidden;
+
+    &:hover {
+      overflow: auto;
+    }
 
     table {
       ::ng-deep {
