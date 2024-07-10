@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AppHrefService } from '@hra-ui/cdk/app-href';
 import { createSvgIconResolver } from './resolvers';
 
 /** Font icon provider configuration */
@@ -68,13 +68,13 @@ function registerDefaultFontSetClassesFactory(
  */
 function registerSvgIconResolverFactory(
   registry: MatIconRegistry,
-  location: Location,
+  appHrefService: AppHrefService,
   sanitizer: DomSanitizer,
   { directory }: Required<SvgIconsConfig>,
 ): () => void {
   return () => {
     const resolver = createSvgIconResolver({
-      location,
+      appHref: appHrefService.appHref,
       sanitizer,
       directory,
     });
@@ -120,7 +120,7 @@ export function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {
       provide: APP_INITIALIZER,
       multi: true,
       useFactory: registerSvgIconResolverFactory,
-      deps: [MatIconRegistry, Location, DomSanitizer, SVG_ICONS_CONFIG],
+      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],
     },
   ]);
 }

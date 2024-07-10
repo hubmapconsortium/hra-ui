@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 
 /**
  * Header Component
@@ -11,7 +12,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'hra-header',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterModule, MatMenuModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, RouterModule, MatMenuModule, MatIconModule, AssetUrlPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
