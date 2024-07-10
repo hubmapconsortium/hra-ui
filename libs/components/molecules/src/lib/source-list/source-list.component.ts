@@ -77,9 +77,6 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
   /** Columns to display in the sources list */
   displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'link'];
 
-  /** Link to selected data */
-  sourceLink = '';
-
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
@@ -117,7 +114,6 @@ export class SourceListComponent<T extends SourceListItem> implements OnChanges 
    * @param item Source list item
    */
   sourceLinkClicked(item: SourceListItem): void {
-    this.sourceLink = item.link;
     this.ga.event('source_link_clicked', 'link_click', item.link);
   }
 
