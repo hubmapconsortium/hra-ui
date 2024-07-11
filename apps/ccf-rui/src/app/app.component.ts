@@ -100,14 +100,18 @@ export class AppComponent implements OnDestroy, OnInit {
       this.logoTooltip = tooltip ?? '';
     });
 
-    combineLatest([this.theme$, this.themeMode$, this.view$, this.viewSide$]).subscribe(
-      ([theme, mode, view, viewSide]) => {
-        this.theming.setTheme(`${theme}-theme-${mode}`);
-        this.model.setViewType(view ?? 'register');
-        this.model.setViewSide(viewSide ?? 'anterior');
-        cdr.markForCheck();
-      },
-    );
+    combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
+      this.theming.setTheme(`${theme}-theme-${mode}`);
+      this.model.setViewType(view ?? 'register');
+      this.model.setViewSide(viewSide ?? 'anterior');
+      cdr.markForCheck();
+    });
+
+    combineLatest([this.view$, this.viewSide$]).subscribe(([view, viewSide]) => {
+      this.model.setViewType(view ?? 'register');
+      this.model.setViewSide(viewSide ?? 'anterior');
+      cdr.markForCheck();
+    });
   }
 
   ngOnInit(): void {
