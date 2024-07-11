@@ -1,11 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CcfApiConfiguration, CcfApiModule } from '@ccf-openapi/ng-client';
-import { DataSourceService } from 'ccf-shared';
+import { HraApiConfiguration, HraApiModule } from '@hra-api/ng-client';
+import { ApiEndpointDataSourceService, DataSourceService } from 'ccf-shared';
 import { AnalyticsModule } from 'ccf-shared/analytics';
 
 import { environment } from '../../environments/environment';
-import { DelegateDataSourceService } from './services/data-source/data-source.service';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
@@ -20,16 +19,16 @@ import { StoreModule } from './store/store.module';
       developmentMode: !environment.production,
     }),
 
-    CcfApiModule.forRoot(
+    HraApiModule.forRoot(
       () =>
-        new CcfApiConfiguration({
+        new HraApiConfiguration({
           basePath: environment.dbOptions.remoteApiEndpoint,
         }),
     ),
 
     StoreModule,
   ],
-  providers: [{ provide: DataSourceService, useExisting: DelegateDataSourceService }],
+  providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
   exports: [],
 })
 export class CoreModule {

@@ -1,5 +1,5 @@
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
-import { SpatialSceneNode } from 'ccf-body-ui';
 import { getProbingSphereScene, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { OrganInfo } from 'ccf-shared';
 

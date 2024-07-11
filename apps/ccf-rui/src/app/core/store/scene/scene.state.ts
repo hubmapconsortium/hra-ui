@@ -5,7 +5,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { AABB, Vec3 } from 'cannon-es';
-import { SpatialEntityJsonLd, SpatialSceneNode } from 'ccf-body-ui';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { SpatialEntity, SpatialPlacement, getOriginScene, getTissueBlockScene } from 'ccf-database';
 import { GlobalConfigState } from 'ccf-shared';
 import { isEqual } from 'lodash';
@@ -28,6 +28,7 @@ import { ModelState } from '../model/model.state';
 import { RegistrationState } from '../registration/registration.state';
 import { VisibilityItem } from './../../models/visibility-item';
 import { ReferenceDataState } from './../reference-data/reference-data.state';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 
 /**
  * Scene state model
@@ -95,7 +96,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
             ...n,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
               .rotateY(toRadians(rotation))
-              .multiplyRight(n.transformMatrix),
+              .multiplyRight(n.transformMatrix ?? []),
           }));
         }
       }),

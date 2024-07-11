@@ -1,6 +1,7 @@
 import { render } from '@testing-library/angular';
-import embed from 'vega-embed';
+import embed, { Result } from 'vega-embed';
 import { VegaContainerComponent } from './vega-container.component';
+import { mockClear, mockDeep } from 'jest-mock-extended';
 
 jest.mock('vega-embed', () => {
   return {
@@ -11,6 +12,20 @@ jest.mock('vega-embed', () => {
 });
 
 describe('VegaContainerComponent', () => {
+  const embedResult = mockDeep<Result>();
+  beforeEach(() => {
+    if (document.fonts === undefined) {
+      Object.defineProperty(document, 'fonts', {
+        value: mockDeep(),
+      });
+    }
+    jest.mocked(embed).mockReturnValue(Promise.resolve(embedResult));
+  });
+
+  afterEach(() => {
+    mockClear(embedResult);
+  });
+
   it('should render the title card and visualization container', async () => {
     const spec = {
       type: 'VegaContainer',
@@ -18,12 +33,13 @@ describe('VegaContainerComponent', () => {
       aspectRatio: '16/9',
     };
 
-    await render(VegaContainerComponent, {
+    const { fixture } = await render(VegaContainerComponent, {
       componentInputs: {
         spec: spec,
       },
     });
 
+    await fixture.whenStable();
     expect(embed).toHaveBeenCalled();
   });
 });

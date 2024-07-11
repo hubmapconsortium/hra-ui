@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="styles.css" rel="stylesheet" />
   </head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const eui = document.querySelector('ccf-eui');
+      eui.dataSources = ['https://cdn.humanatlas.io/digital-objects/ds-graph/hubmap/v2023/assets/dataset-graph.jsonld'];
+      eui.filter = {
+        sex: 'Female',
+      };
+    });
+  </script>
   <body class="mat-typography">
-    <ccf-eui use-remote-api="true"></ccf-eui>
+    <ccf-eui></ccf-eui>
   </body>
 </html>

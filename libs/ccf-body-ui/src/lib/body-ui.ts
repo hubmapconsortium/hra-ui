@@ -1,11 +1,11 @@
 import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core/typed';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
 import { bind } from 'bind-decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 import { BodyUILayer } from './body-ui-layer';
-import { SpatialSceneNode } from './shared/spatial-scene-node';
 import { processSceneNodes } from './util/process-scene-nodes';
 
 interface BodyUIViewStateProps {

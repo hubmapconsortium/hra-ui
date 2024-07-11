@@ -10,8 +10,8 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { CCFDatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
-import { BodyUiComponent, DataSourceService, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { DatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
+import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -32,7 +32,7 @@ import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spat
 import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
 import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
 
-interface AppOptions extends CCFDatabaseOptions {
+interface AppOptions extends DatabaseOptions {
   theme?: string;
   header?: boolean;
   homeUrl?: string;
@@ -155,7 +155,6 @@ export class AppComponent implements OnInit {
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
     overlay: AppRootOverlayContainer,
-    readonly dataSource: DataSourceService,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
     cdr: ChangeDetectorRef,
   ) {
@@ -329,14 +328,6 @@ export class AppComponent implements OnInit {
    */
   closeiFrameViewer(): void {
     this.viewerOpen = false;
-  }
-
-  /**
-   * Gets login token
-   */
-  get loggedIn(): boolean {
-    const token = this.globalConfig.snapshot.hubmapToken ?? '';
-    return token.length > 0;
   }
 
   isItemSelected(item: string) {
