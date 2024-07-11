@@ -261,7 +261,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     defer(() => this.source.getDatabaseStatus())
       .pipe(
         tap((status) => this.updateStatus(status)),
-        delay(2000),
+        delay(500),
         take(1),
       )
       .pipe(

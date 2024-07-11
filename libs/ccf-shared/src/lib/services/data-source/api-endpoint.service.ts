@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import {
+  Filter as ApiFilter,
   DatabaseStatus,
   MinMax,
-  SessionTokenRequestParams,
   SpatialSceneNode,
   SpatialSearch,
   V1Service,
 } from '@hra-api/ng-client';
+import { Matrix4 } from '@math.gl/core';
 import { AggregateResult, Filter, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { debounceTime, map, switchMap, take, tap } from 'rxjs/operators';
+import { Observable, ReplaySubject, Subject, combineLatest, of } from 'rxjs';
+import {
+  debounceTime,
+  delay,
+  endWith,
+  filter,
+  ignoreElements,
+  map,
+  repeat,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 import { Cacheable } from 'ts-cacheable';
 
 import { GlobalConfigState } from '../../config/global-config.state';
@@ -70,11 +82,18 @@ function rangeToMinMax(range: number[] | undefined, low: number, high: number): 
     : undefined;
 }
 
+function spatialSceneNodeReviver(nodes: SpatialSceneNode[]): SpatialSceneNode[] {
+  return nodes.map((node) => ({
+    ...node,
+    transformMatrix: new Matrix4(node.transformMatrix ?? []),
+  }));
+}
+
 function filterToParams(filter?: Filter): FilterParams {
   return {
     age: rangeToMinMax(filter?.ageRange, 1, 110),
     bmi: rangeToMinMax(filter?.bmiRange, 13, 83),
-    sex: filter?.sex?.toLowerCase?.() as FilterParams['sex'],
+    sex: filter?.sex?.toLowerCase() as FilterParams['sex'],
     ontologyTerms: filter?.ontologyTerms,
     cellTypeTerms: filter?.cellTypeTerms,
     biomarkerTerms: filter?.biomarkerTerms,
@@ -89,12 +108,24 @@ function filterToParams(filter?: Filter): FilterParams {
   providedIn: 'root',
 })
 export class ApiEndpointDataSourceService implements DataSource {
+  private readonly initialized = new ReplaySubject<void>(1);
+
   constructor(
     private readonly api: V1Service,
     private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>,
   ) {
-    globalConfig.getOption('token').subscribe(buster$);
-    this.checkForSources().subscribe();
+    this.getSessionToken()
+      .pipe(
+        tap((token) => globalConfig.patchConfig({ token })),
+        tap(buster$),
+        debounceTime(1),
+      )
+      .subscribe(() => {
+        if (!this.initialized.closed) {
+          this.initialized.next();
+          this.initialized.complete();
+        }
+      });
   }
 
   getDatabaseStatus(): Observable<DatabaseStatus> {
@@ -163,7 +194,7 @@ export class ApiEndpointDataSourceService implements DataSource {
 
   @Cacheable(CACHE_CONFIG_PARAMS)
   getScene(filter?: Filter): Observable<SpatialSceneNode[]> {
-    return this.doRequest((params) => this.api.scene(params), filter, {});
+    return this.doRequest((params) => this.api.scene(params), filter, {}, spatialSceneNodeReviver);
   }
 
   @Cacheable(CACHE_CONFIG_PARAMS)
@@ -191,7 +222,12 @@ export class ApiEndpointDataSourceService implements DataSource {
     const { api, globalConfig } = this;
     const requestParams: Record<string, unknown> = { ...filterToParams(filter), ...params };
 
-    return combineLatest([globalConfig.getOption('remoteApiEndpoint'), globalConfig.getOption('token')]).pipe(
+    return combineLatest([
+      globalConfig.getOption('remoteApiEndpoint'),
+      globalConfig.getOption('token'),
+      this.initialized,
+    ]).pipe(
+      debounceTime(1),
       take(1),
       tap(([endpoint, token]) => {
         api.configuration.basePath = endpoint;
@@ -204,26 +240,45 @@ export class ApiEndpointDataSourceService implements DataSource {
     );
   }
 
-  private checkForSources(): Observable<unknown> {
-    return combineLatest([this.globalConfig.getOption('dataSources'), this.globalConfig.getOption('filter')]).pipe(
-      debounceTime(250),
-      tap(([sources, filter]) => {
-        if ((sources && sources.length > 0) || filter) {
-          const sessionTokenRequest = {
-            dataSources: sources,
-            filter: filter,
-          };
-          this.getSessionToken({ sessionTokenRequest } as SessionTokenRequestParams);
-        }
-      }),
+  private getSessionToken(): Observable<string | undefined> {
+    const { globalConfig } = this;
+    const dataSources = globalConfig.getOption('dataSources');
+    const filter = globalConfig.getOption('filter');
+    return combineLatest([dataSources, filter]).pipe(
+      debounceTime(50),
+      switchMap((args) => this.getSessionTokenImpl(...args)),
+      switchMap((token) => this.ensureDatabaseReady(token)),
     );
   }
 
-  private getSessionToken(params: SessionTokenRequestParams) {
-    this.api.sessionToken(params).subscribe((resp: DefaultParams) => {
-      const token = resp.token;
-      this.globalConfig.patchState({ token });
-      this.getDatabaseStatus();
-    });
+  private getSessionTokenImpl(
+    dataSources: string[] | undefined,
+    filter: Filter | undefined,
+  ): Observable<string | undefined> {
+    if ((dataSources === undefined || dataSources.length === 0) && filter === undefined) {
+      return of(undefined);
+    }
+
+    const { api, globalConfig } = this;
+    const sessionTokenRequest = {
+      dataSources: dataSources ?? [],
+      filter: filter as ApiFilter,
+    };
+
+    return globalConfig.getOption('remoteApiEndpoint').pipe(
+      tap((endpoint) => (api.configuration.basePath = endpoint)),
+      switchMap(() => api.sessionToken({ sessionTokenRequest })),
+      map(({ token }) => token),
+    );
+  }
+
+  private ensureDatabaseReady(token: string | undefined): Observable<string | undefined> {
+    const check = () =>
+      this.api.dbStatus({ token }).pipe(
+        filter((resp) => resp.status !== 'Ready'),
+        switchMap((resp) => of(undefined).pipe(delay(resp.checkback ?? 0))),
+      );
+
+    return of(undefined).pipe(repeat({ delay: check }), ignoreElements(), endWith(token));
   }
 }
