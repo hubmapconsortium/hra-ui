@@ -102,8 +102,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
     combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
       this.theming.setTheme(`${theme}-theme-${mode}`);
-      this.model.setViewType(view ?? 'register');
-      this.model.setViewSide(viewSide ?? 'anterior');
       cdr.markForCheck();
     });
 
