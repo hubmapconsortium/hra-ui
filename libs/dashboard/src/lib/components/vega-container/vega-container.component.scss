@@ -15,3 +15,32 @@
     }
   }
 }
+
+::ng-deep {
+  #vg-tooltip-element.vg-tooltip {
+    font-family: 'Metropolis';
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    color: #201e3d;
+    padding: 0.5rem;
+    max-width: 22.5rem;
+    box-shadow: 0px 5px 16px 0px #201e3d3d;
+
+    table tbody {
+      tr {
+        &:not(:last-child) {
+          margin-bottom: 4px;
+        }
+        td:first-child {
+          color: #201e3d;
+          text-align: left;
+        }
+
+        td:last-child {
+          color: #4b4b5e;
+        }
+      }
+    }
+  }
+}
