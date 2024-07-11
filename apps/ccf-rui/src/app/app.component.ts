@@ -11,11 +11,11 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
-import { ReplaySubject, Subscription, combineLatest } from 'rxjs';
+import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
 
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
-import { ModelState } from './core/store/model/model.state';
+import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 
 export interface User {
@@ -28,6 +28,8 @@ interface AppOptions extends GlobalConfig {
   header?: boolean;
   homeUrl?: string;
   logoTooltip?: string;
+  view?: ViewType;
+  viewSide?: ViewSide;
 }
 
 /**
@@ -58,6 +60,9 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly header$ = this.globalConfig.getOption('header');
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
   readonly logoTooltip$ = this.globalConfig.getOption('logoTooltip');
+
+  readonly view$ = this.globalConfig.getOption('view');
+  readonly viewSide$ = this.globalConfig.getOption('viewSide');
 
   theme!: string;
 
@@ -97,6 +102,12 @@ export class AppComponent implements OnDestroy, OnInit {
 
     combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
       this.theming.setTheme(`${theme}-theme-${mode}`);
+      cdr.markForCheck();
+    });
+
+    combineLatest([this.view$, this.viewSide$]).subscribe(([view, viewSide]) => {
+      this.model.setViewType(view ?? 'register');
+      this.model.setViewSide(viewSide ?? 'anterior');
       cdr.markForCheck();
     });
   }
