@@ -1,3 +1,5 @@
+import { JsonLd } from 'jsonld/jsonld-spec';
+
 /** Status of the database */
 export interface DatabaseStatus {
   /** Status of the database */
@@ -167,4 +169,11 @@ export interface OntologyTreeModel {
   root: string;
   /** Mapping from id/IRI to ontology node instance */
   nodes: { [id: string]: OntologyTreeNode };
+}
+
+export interface DatabaseOptions {
+  /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
+  dataSources: (string | JsonLd)[];
+  /** Service Token. */
+  token?: string;
 }

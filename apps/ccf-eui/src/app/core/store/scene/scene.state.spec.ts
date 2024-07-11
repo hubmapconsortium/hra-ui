@@ -1,8 +1,10 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule } from '@ngxs/store';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { ALL_POSSIBLE_ORGANS, CCFDatabaseDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
+import { ALL_POSSIBLE_ORGANS, ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
+
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
 import { DataState } from '../data/data.state';
 import { ListResultsState } from '../list-results/list-results.state';
@@ -21,10 +23,11 @@ describe('SceneState', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         NgxsDataPluginModule.forRoot(),
         NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState]),
       ],
-      providers: [{ provide: DataSourceService, useExisting: CCFDatabaseDataSourceService }],
+      providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
     });
     sceneState = TestBed.inject(SceneState);
   });

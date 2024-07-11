@@ -1,4 +1,4 @@
-import { SpatialSceneNode } from 'ccf-body-ui';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 
 export class StartSpatialSearchFlow {
   static readonly type = '[SpatialSearchUi] Start the Spatial Search flow';

@@ -9,7 +9,8 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { NodeClickEvent, SpatialSceneNode } from 'ccf-body-ui';
+import { SpatialSceneNode } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { Filter, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { BodyUiComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';

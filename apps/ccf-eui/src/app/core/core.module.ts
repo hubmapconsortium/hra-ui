@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { DataSourceService, MousePositionTrackerModule } from 'ccf-shared';
+import { ApiEndpointDataSourceService, DataSourceService, MousePositionTrackerModule } from 'ccf-shared';
 import { AnalyticsModule } from 'ccf-shared/analytics';
+
 import { environment } from '../../environments/environment';
 import { HeaderModule } from './header/header.module';
-import { DelegateDataSourceService } from './services/data-source/data-source.service';
 import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
@@ -21,7 +21,7 @@ import { StoreModule } from './store/store.module';
     StoreModule,
     ThemingModule,
   ],
-  providers: [{ provide: DataSourceService, useExisting: DelegateDataSourceService }],
+  providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
   exports: [HeaderModule],
 })
 export class CoreModule {

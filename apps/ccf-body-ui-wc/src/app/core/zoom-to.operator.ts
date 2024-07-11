@@ -1,4 +1,4 @@
-import { SpatialSceneNode } from 'ccf-database';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { MonoTypeOperatorFunction, Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 

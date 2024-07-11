@@ -1,5 +1,5 @@
 import { Matrix4, toRadians } from '@math.gl/core';
-import { SpatialSceneNode } from '../ccf-spatial-scene';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { SpatialEntity, SpatialPlacement } from '../spatial-types';
 
 type Color = [number, number, number, number];

@@ -71,7 +71,7 @@
     </div>
     <button
       class="run-spatial-search button"
-      [class.disabled]="tissueBlocks?.length === 0"
+      [class.disabled]="tissueBlocks.length === 0"
       mat-button
       (click)="addSpatialSearch.emit()"
     >
@@ -87,7 +87,7 @@
         [scene]="scene"
         [bounds]="sceneBounds"
         [target]="sceneTarget"
-        (nodeClick)="nodeClicked.emit($event?.node)"
+        (nodeClick)="nodeClicked.emit($event.node)"
         (rotationChange)="minimap.rotation = $event[0]; minimap.rotationX = $event[1]"
       ></ccf-body-ui>
     </div>
@@ -99,7 +99,7 @@
         [scene]="scene"
         [bounds]="sceneBounds"
         [target]="sceneTarget"
-        (nodeClick)="nodeClicked.emit($event?.node)"
+        (nodeClick)="nodeClicked.emit($event.node)"
       ></ccf-body-ui>
       <ccf-spatial-search-keyboard-ui-behavior
         [delta]="1"

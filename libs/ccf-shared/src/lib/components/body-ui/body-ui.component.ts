@@ -10,7 +10,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { BodyUI, NodeClickEvent, NodeDragEvent, SpatialSceneNode } from 'ccf-body-ui';
+import { SpatialSceneNode } from '@hra-api/ng-client';
+import { BodyUI, NodeClickEvent, NodeDragEvent } from 'ccf-body-ui';
 import { Subscription } from 'rxjs';
 
 interface XYZTriplet<T = number> {
