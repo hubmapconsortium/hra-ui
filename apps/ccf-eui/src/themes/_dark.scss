@@ -2,7 +2,7 @@
 @use 'common/utility';
 
 $primary-colors: utility.add-colors(
-  mat.$gray-palette,
+  mat.$m2-gray-palette,
   (
     'white': white,
     'black': black,
@@ -15,12 +15,12 @@ $primary-colors: utility.add-colors(
   )
 );
 
-$primary: mat.define-palette($primary-colors, $text: 50);
-$accent: mat.define-palette(mat.$blue-palette, 600);
-$warn: mat.define-palette(mat.$red-palette);
+$primary: mat.m2-define-palette($primary-colors, $text: 50);
+$accent: mat.m2-define-palette(mat.$m2-blue-palette, 600);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $foreground: map-merge(
-  mat.$dark-theme-foreground-palette,
+  mat.$m2-dark-theme-foreground-palette,
   (
     main: map-get($primary-colors, 'white'),
     logo: map-get($primary-colors, 'white'),
@@ -46,11 +46,11 @@ $foreground: map-merge(
     //#FAFAFA
     contrast-text: map-get($primary-colors, 50),
     //#FAFAFA
-    download-icon: map-get(mat.$amber-palette, A400),
+    download-icon: map-get(mat.$m2-amber-palette, A400),
     disabled: map-get($primary-colors, 800),
     //#424242
     highlight: map-get($primary-colors, 'white'),
-    header-download-icon: map-get(mat.$amber-palette, A400),
+    header-download-icon: map-get(mat.$m2-amber-palette, A400),
     header-shadow: map-get($primary-colors, 'black'),
     text-muted: #9a9a9a,
     organ-off: map-get($primary-colors, 800),
@@ -75,7 +75,7 @@ $foreground: map-merge(
 );
 
 $background: map-merge(
-  mat.$dark-theme-background-palette,
+  mat.$m2-dark-theme-background-palette,
   (
     background: map-get($primary-colors, 900),
     //#212121

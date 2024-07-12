@@ -66,10 +66,10 @@ $mat-reporter-accent: (
   ),
 );
 
-$primary: mat.define-palette($mat-reporter-primary);
-$accent: mat.define-palette($mat-reporter-accent);
+$primary: mat.m2-define-palette($mat-reporter-primary);
+$accent: mat.m2-define-palette($mat-reporter-accent);
 
-$theme: mat.define-light-theme($primary, $accent);
+$theme: mat.m2-define-light-theme($primary, $accent);
 
 @include mat.core();
 @include mat.all-component-themes($theme);

@@ -15,12 +15,12 @@ $gtex-light-palette: utility.add-colors(
   )
 );
 
-$primary: mat.define-palette($gtex-light-palette, $text: 900);
-$accent: mat.define-palette($gtex-light-palette, main);
-$warn: mat.define-palette(mat.$red-palette);
+$primary: mat.m2-define-palette($gtex-light-palette, $text: 900);
+$accent: mat.m2-define-palette($gtex-light-palette, main);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $foreground: map-merge(
-  mat.$light-theme-foreground-palette,
+  mat.$m2-light-theme-foreground-palette,
   (
     main: map-get($gtex-light-palette, main),
     active-icon: map-get($gtex-light-palette, main),
@@ -50,15 +50,15 @@ $foreground: map-merge(
     scrollbar-thumb: #cdcdcd,
     secondary-text: map-get($gtex-light-palette, text),
     sidebar-dividers: map-get($gtex-light-palette, 'white'),
-    slider-blue: map-get(mat.$blue-palette, A400),
-    slider-green: map-get(mat.$green-palette, A700),
-    slider-red: map-get(mat.$red-palette, A700),
-    slider-blue-light: map-get(mat.$blue-palette, A100),
-    slider-green-light: map-get(mat.$green-palette, A200),
-    slider-red-light: map-get(mat.$red-palette, A100),
+    slider-blue: map-get(mat.$m2-blue-palette, A400),
+    slider-green: map-get(mat.$m2-green-palette, A700),
+    slider-red: map-get(mat.$m2-red-palette, A700),
+    slider-blue-light: map-get(mat.$m2-blue-palette, A100),
+    slider-green-light: map-get(mat.$m2-green-palette, A200),
+    slider-red-light: map-get(mat.$m2-red-palette, A100),
     button-background: #549cc7,
     chip-icon-block-primary: map-get($gtex-light-palette, 400),
-    chip-icon-done-green: map-get(mat.$green-palette, A700),
+    chip-icon-done-green: map-get(mat.$m2-green-palette, A700),
     chip-icon-background: #e9e9e9,
     chip-border-primary: map-get($gtex-light-palette, 400),
     toggle-thumb: map-get($gtex-light-palette, 400),
@@ -78,7 +78,7 @@ $foreground: map-merge(
 );
 
 $background: map-merge(
-  mat.$light-theme-background-palette,
+  mat.$m2-light-theme-background-palette,
   (
     background: map-get($gtex-light-palette, 'white'),
     hover-background: #eee,
