@@ -18,7 +18,6 @@ $blue-theme: mat.define-light-theme(
 
   display: flex;
   align-items: center;
-  border-radius: 0.5rem;
   background-color: #fcfcfc;
   justify-content: space-between;
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);

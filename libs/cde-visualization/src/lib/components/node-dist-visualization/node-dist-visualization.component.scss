@@ -4,16 +4,15 @@
   padding: 0.25rem;
   background-color: black;
   isolation: isolate;
-  border-radius: 0.5rem;
   height: 0;
   flex-grow: 1;
 
   .info {
     display: flex;
     position: absolute;
-    top: 0.75rem;
+    top: 0.625rem;
     left: 0.75rem;
-    height: 2rem;
+    height: 28px;
     z-index: 1;
     align-items: center;
     gap: 0.5rem;
