@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -19,49 +19,39 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-
-    MatDialogModule,
-
-    InlineSVGModule.forRoot(),
-    MarkdownModule.forRoot({
-      loader: HttpClient,
-    }),
-    NgxsModule.forRoot(),
-    ThemingModule,
-
-    AppRoutingModule,
-    CdkStateModule,
-    HraServiceModule,
-    HraStateModule.forRoot({
-      googleAnalyticsToken: environment.googleAnalyticsToken,
-    }),
-
-    HeaderBehaviorComponent,
-    TissueLibraryBehaviorComponent,
-    MouseTrackerModule,
-  ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initFactory,
-      multi: true,
-    },
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-    {
-      provide: FTU_DATA_IMPL_ENDPOINTS,
-      useValue: new ReplaySubject(1),
-    },
-  ],
-})
+@NgModule({ declarations: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        InlineSVGModule.forRoot(),
+        MarkdownModule.forRoot({
+            loader: HttpClient,
+        }),
+        NgxsModule.forRoot(),
+        ThemingModule,
+        AppRoutingModule,
+        CdkStateModule,
+        HraServiceModule,
+        HraStateModule.forRoot({
+            googleAnalyticsToken: environment.googleAnalyticsToken,
+        }),
+        HeaderBehaviorComponent,
+        TissueLibraryBehaviorComponent,
+        MouseTrackerModule], providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initFactory,
+            multi: true,
+        },
+        {
+            provide: MatDialogRef,
+            useValue: {},
+        },
+        {
+            provide: FTU_DATA_IMPL_ENDPOINTS,
+            useValue: new ReplaySubject(1),
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule implements DoBootstrap {
   constructor(private readonly injector: Injector) {}
 

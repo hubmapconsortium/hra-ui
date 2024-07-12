@@ -4,20 +4,18 @@ import { NgxsModule } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
 
 import { DataState, DEFAULT_FILTER } from './data.state';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DataState', () => {
   let dataState: DataState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([DataState, GlobalConfigState]),
-        HttpClientTestingModule,
-      ],
-      providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
-    });
+    imports: [NgxsDataPluginModule.forRoot(),
+        NgxsModule.forRoot([DataState, GlobalConfigState])],
+    providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     dataState = TestBed.inject(DataState);
   });

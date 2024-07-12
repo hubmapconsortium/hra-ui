@@ -1,5 +1,5 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule } from '@ngxs/store';
 import { NodeClickEvent } from 'ccf-body-ui';
@@ -9,6 +9,7 @@ import { ColorAssignmentState } from '../color-assignment/color-assignment.state
 import { DataState } from '../data/data.state';
 import { ListResultsState } from '../list-results/list-results.state';
 import { DEFAULT_SELECTED_ORGANS, SceneState } from './scene.state';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SceneState', () => {
   let sceneState: SceneState;
@@ -22,13 +23,10 @@ describe('SceneState', () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState]),
-      ],
-      providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
-    });
+    imports: [NgxsDataPluginModule.forRoot(),
+        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState])],
+    providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     sceneState = TestBed.inject(SceneState);
   });
 

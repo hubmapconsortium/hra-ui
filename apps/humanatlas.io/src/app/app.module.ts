@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -15,27 +15,20 @@ import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    ToolbarModule,
-    BottomToolbarModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    TissueInfoPageModule,
-    NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
-    NgxGoogleAnalyticsRouterModule,
-    MarkdownModule.forRoot({
-      sanitize: SecurityContext.NONE,
-      markedExtensions: [gfmHeadingId()],
-    }),
-    PageRendererModule,
-    PageModule,
-    RouterModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        ToolbarModule,
+        BottomToolbarModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        TissueInfoPageModule,
+        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
+        NgxGoogleAnalyticsRouterModule,
+        MarkdownModule.forRoot({
+            sanitize: SecurityContext.NONE,
+            markedExtensions: [gfmHeadingId()],
+        }),
+        PageRendererModule,
+        PageModule,
+        RouterModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

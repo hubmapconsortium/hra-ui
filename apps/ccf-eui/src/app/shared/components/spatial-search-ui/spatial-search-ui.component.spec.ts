@@ -2,7 +2,7 @@ import { Shallow } from 'shallow-render';
 
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
 import { SpatialSearchUiModule } from './spatial-search-ui.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {} from '@angular/common/http/testing';
 
 describe('SpatialSearchUiComponent', () => {
   let shallow: Shallow<SpatialSearchUiComponent>;

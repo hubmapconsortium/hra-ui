@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,42 +33,36 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
     );
 }
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    NgxChartsModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
-    NgxsResetPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot({
-      disabled: environment.production,
-    }),
-    MarkdownModule.forRoot(),
-    DocsModule,
-    RootModule,
-    HomeModule,
-    FileUploadModule,
-    OrganTableSelectorModule,
-    FooterModule,
-    AnalyticsModule.forRoot({
-      gaToken: environment.googleAnalyticsId,
-      appName: 'reporter',
-    }),
-    TrackingPopupModule,
-    MousePositionTrackerModule,
-  ],
-  providers: [
-    ConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [ConfigService],
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        NgxChartsModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
+        NgxsResetPluginModule.forRoot(),
+        NgxsLoggerPluginModule.forRoot({
+            disabled: environment.production,
+        }),
+        MarkdownModule.forRoot(),
+        DocsModule,
+        RootModule,
+        HomeModule,
+        FileUploadModule,
+        OrganTableSelectorModule,
+        FooterModule,
+        AnalyticsModule.forRoot({
+            gaToken: environment.googleAnalyticsId,
+            appName: 'reporter',
+        }),
+        TrackingPopupModule,
+        MousePositionTrackerModule], providers: [
+        ConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeApp,
+            deps: [ConfigService],
+            multi: true,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

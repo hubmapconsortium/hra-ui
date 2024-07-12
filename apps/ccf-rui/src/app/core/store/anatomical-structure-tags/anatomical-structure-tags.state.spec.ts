@@ -5,7 +5,7 @@ import { GlobalConfigState } from 'ccf-shared';
 import { Observable, lastValueFrom, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { PageState } from '../page/page.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
 import { RegistrationState } from '../registration/registration.state';
@@ -13,6 +13,7 @@ import { GLOBAL_CONFIG } from './../../services/config/config';
 import { ModelState } from './../model/model.state';
 import { SceneState } from './../scene/scene.state';
 import { AnatomicalStructureTagState } from './anatomical-structure-tags.state';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 function nextValue<T>(obs: Observable<T>): Promise<T> {
   return lastValueFrom(obs.pipe(take(1)));
@@ -23,35 +24,34 @@ describe('AnatomicalStructureTagsState', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState]),
-      ],
-      providers: [
+    imports: [NgxsDataPluginModule.forRoot(),
+        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState])],
+    providers: [
         AnatomicalStructureTagState,
         RegistrationState,
         SceneState,
         {
-          provide: ModelState,
-          useValue: {
-            modelChanged$: of([]),
-          },
+            provide: ModelState,
+            useValue: {
+                modelChanged$: of([]),
+            },
         },
         ReferenceDataState,
         GlobalConfigState,
         {
-          provide: GLOBAL_CONFIG,
-          useValue: {},
+            provide: GLOBAL_CONFIG,
+            useValue: {},
         },
         {
-          provide: PageState,
-          useValue: {
-            setHasChanges: () => undefined,
-          },
+            provide: PageState,
+            useValue: {
+                setHasChanges: () => undefined,
+            },
         },
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
 
     TestBed.inject(Store).reset({
       tags: {
