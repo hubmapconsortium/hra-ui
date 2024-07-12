@@ -7,7 +7,7 @@ import { ScreenSizeNoticeComponent } from './components/screen-size-notice/scree
 /** Max width to show screen size notice */
 export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
 /** Max height to show screen size notice */
-export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
+export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 900;
 
 /**
  * App component for CDE
