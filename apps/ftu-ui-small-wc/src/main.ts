@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { CdkStateModule } from '@hra-ui/cdk/state';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
@@ -22,8 +22,6 @@ createCustomElement('hra-ftu-ui-small', AppComponent, {
   providers: [
     importProvidersFrom(
       BrowserModule,
-      BrowserAnimationsModule,
-      HttpClientModule,
       MatDialogModule,
       MatIconModule,
 
@@ -38,6 +36,8 @@ createCustomElement('hra-ftu-ui-small', AppComponent, {
       HraServiceModule,
       HraStateModule,
     ),
+    provideAnimations(),
+    provideHttpClient(),
     {
       provide: APP_INITIALIZER,
       useFactory: initFactory,
