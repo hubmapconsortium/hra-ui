@@ -98,7 +98,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
       useValue: {
         collapsedHeight: '56px',
-        expandedHeight: '60px',
+        expandedHeight: '56px',
         hideToggle: true,
       } satisfies MatExpansionPanelDefaultOptions,
     },
