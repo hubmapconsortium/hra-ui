@@ -7,16 +7,28 @@ import { AnalyticsModule } from 'ccf-shared/analytics';
 import { environment } from '../../environments/environment';
 import { StoreModule } from './store/store.module';
 
-@NgModule({ exports: [], imports: [AnalyticsModule.forRoot({
-            gaToken: environment.googleAnalyticsToken,
-            appName: 'organ-info',
-            projectName: 'ccf',
-            developmentMode: !environment.production,
+@NgModule({
+  exports: [],
+  imports: [
+    AnalyticsModule.forRoot({
+      gaToken: environment.googleAnalyticsToken,
+      appName: 'organ-info',
+      projectName: 'ccf',
+      developmentMode: !environment.production,
+    }),
+    HraApiModule.forRoot(
+      () =>
+        new HraApiConfiguration({
+          basePath: environment.dbOptions.remoteApiEndpoint,
         }),
-        HraApiModule.forRoot(() => new HraApiConfiguration({
-            basePath: environment.dbOptions.remoteApiEndpoint,
-        })),
-        StoreModule], providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient(withInterceptorsFromDi())] })
+    ),
+    StoreModule,
+  ],
+  providers: [
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {
     if (core) {

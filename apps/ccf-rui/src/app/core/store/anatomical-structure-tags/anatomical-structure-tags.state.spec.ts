@@ -24,34 +24,36 @@ describe('AnatomicalStructureTagsState', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState])],
-    providers: [
+      imports: [
+        NgxsDataPluginModule.forRoot(),
+        NgxsModule.forRoot([AnatomicalStructureTagState, SceneState, ModelState, GlobalConfigState]),
+      ],
+      providers: [
         AnatomicalStructureTagState,
         RegistrationState,
         SceneState,
         {
-            provide: ModelState,
-            useValue: {
-                modelChanged$: of([]),
-            },
+          provide: ModelState,
+          useValue: {
+            modelChanged$: of([]),
+          },
         },
         ReferenceDataState,
         GlobalConfigState,
         {
-            provide: GLOBAL_CONFIG,
-            useValue: {},
+          provide: GLOBAL_CONFIG,
+          useValue: {},
         },
         {
-            provide: PageState,
-            useValue: {
-                setHasChanges: () => undefined,
-            },
+          provide: PageState,
+          useValue: {
+            setHasChanges: () => undefined,
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-});
+      ],
+    });
 
     TestBed.inject(Store).reset({
       tags: {

@@ -15,20 +15,26 @@ import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 
-@NgModule({ declarations: [AppComponent],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        ToolbarModule,
-        BottomToolbarModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        TissueInfoPageModule,
-        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
-        NgxGoogleAnalyticsRouterModule,
-        MarkdownModule.forRoot({
-            sanitize: SecurityContext.NONE,
-            markedExtensions: [gfmHeadingId()],
-        }),
-        PageRendererModule,
-        PageModule,
-        RouterModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    ToolbarModule,
+    BottomToolbarModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    TissueInfoPageModule,
+    NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
+    NgxGoogleAnalyticsRouterModule,
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE,
+      markedExtensions: [gfmHeadingId()],
+    }),
+    PageRendererModule,
+    PageModule,
+    RouterModule,
+  ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
+})
 export class AppModule {}

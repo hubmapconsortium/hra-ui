@@ -8,14 +8,23 @@ import { HeaderModule } from './header/header.module';
 import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
-@NgModule({ exports: [HeaderModule], imports: [AnalyticsModule.forRoot({
-            gaToken: environment.googleAnalyticsToken,
-            appName: 'eui',
-        }),
-        MousePositionTrackerModule,
-        HeaderModule,
-        StoreModule,
-        ThemingModule], providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  exports: [HeaderModule],
+  imports: [
+    AnalyticsModule.forRoot({
+      gaToken: environment.googleAnalyticsToken,
+      appName: 'eui',
+    }),
+    MousePositionTrackerModule,
+    HeaderModule,
+    StoreModule,
+    ThemingModule,
+  ],
+  providers: [
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {
     if (core) {

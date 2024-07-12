@@ -8,14 +8,20 @@ import { ConfigModule } from './services/config/config.module';
 import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
-@NgModule({ exports: [], imports: [AnalyticsModule.forRoot({
-            gaToken: environment.googleAnalyticsToken,
-            appName: 'rui',
-        }),
-        MousePositionTrackerModule,
-        ConfigModule,
-        StoreModule,
-        ThemingModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  exports: [],
+  imports: [
+    AnalyticsModule.forRoot({
+      gaToken: environment.googleAnalyticsToken,
+      appName: 'rui',
+    }),
+    MousePositionTrackerModule,
+    ConfigModule,
+    StoreModule,
+    ThemingModule,
+  ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
+})
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {
     if (core) {

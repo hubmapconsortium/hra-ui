@@ -9,12 +9,8 @@ describe('InfoButtonService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [HttpClientModule],
-    providers: [InfoButtonService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}{
-    imports: [HttpClientTestingModule],
-    providers: [InfoButtonService, provideHttpClient(withInterceptorsFromDi())]
-}).compileComponents();
+      providers: [InfoButtonService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+    }).compileComponents();
 
     spyOn(TestBed.inject(HttpClient), 'get').and.returnValue(of('# About'));
     service = TestBed.inject(InfoButtonService);

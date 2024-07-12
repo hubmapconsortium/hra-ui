@@ -23,10 +23,16 @@ describe('SceneState', () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState])],
-    providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+      imports: [
+        NgxsDataPluginModule.forRoot(),
+        NgxsModule.forRoot([SceneState, ListResultsState, ColorAssignmentState, DataState, GlobalConfigState]),
+      ],
+      providers: [
+        { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    });
     sceneState = TestBed.inject(SceneState);
   });
 
