@@ -19,10 +19,19 @@
       "labelLineHeight": 18,
       "titleColor": "#201E3D",
       "labelColor": "#4B4B5E",
-      "labelAngle": 45,
+      "labelAngle": -45,
       "ticks": false,
       "domain": false,
       "labelPadding": 8
+    },
+    "legend": {
+      "titleFontSize": 14,
+      "titleLineHeight": 21,
+      "titleColor": "#201E3D",
+      "titleFontWeight": 500,
+      "labelFontSize": 14,
+      "labelFontWeight": 500,
+      "labelColor": "#4B4B5E"
     }
   },
   "data": {
