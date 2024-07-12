@@ -27,6 +27,8 @@
   @include theming.ccf-theme(hubmap_light.$theme);
 }
 
+.hubmap-theme-light,
+.hubmap-theme-dark,
 .default-theme-light,
 .default-theme-dark {
   .home {
