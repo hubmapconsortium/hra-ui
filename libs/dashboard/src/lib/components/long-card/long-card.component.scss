@@ -8,10 +8,22 @@
     height: 42rem;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 5px 16px 0px rgba(32, 30, 61, 0.24);
+    box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.24);
     outline-offset: 0;
     background-color: white;
     cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
+
+    &:active {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
+
+    &:focus-visible {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
 
     img {
       width: 100%;
