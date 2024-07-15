@@ -18,7 +18,7 @@ $small: mat.define-rem-typography-config(
   $headline-6: mat.define-typography-level(1.5rem, 2.25rem, 500),
   $subtitle-1: mat.define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
   $body-1: mat.define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
-  $body-2: mat.define-typography-level(1.125rem, 1.6875rem, 500, $letter-spacing: 0.0125em),
+  $body-2: mat.define-typography-level(1.125rem, 1.6875rem, 500),
   $button: mat.define-typography-level(1.125rem, 1.6875rem, 500),
 );
 
