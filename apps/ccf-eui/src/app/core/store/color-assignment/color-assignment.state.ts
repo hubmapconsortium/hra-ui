@@ -3,7 +3,6 @@ import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorator
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
 import { State } from '@ngxs/store';
-import hexRgb from 'hex-rgb';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
@@ -25,8 +24,11 @@ export const DEFAULT_COLOR_PALETTE: Color[] = [
   '#E040FB',
   '#00E5FF',
 ].map((color, rank) => {
-  const rgba = hexRgb(color, { format: 'array' });
-  rgba[3] = 255; // for Deck.gl
+  const rgba: Color['rgba'] = [0, 0, 0, 255];
+  for (let index = 0; index < 3; index++) {
+    const start = 2 * index + 1;
+    rgba[index] = Number.parseInt(color.slice(start, start + 2), 16);
+  }
   return { color, rgba, rank };
 });
 
