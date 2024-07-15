@@ -3,7 +3,6 @@ import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorato
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
 import { State } from '@ngxs/store';
-import { bind as Bind } from 'bind-decorator';
 import { combineLatest, Observable, ObservableInput } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -133,8 +132,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
    * @param limit Maximum returned results hint
    * @returns external Search result
    */
-  @Bind
-  searchExternal(text: string, limit: number): ObservableInput<TagSearchResult> {
+  readonly searchExternal = (text: string, limit: number): ObservableInput<TagSearchResult> => {
     const matches = this.model.snapshot.anatomicalStructures.filter(
       (as) => as.name.toLowerCase().indexOf(text.toLowerCase()) !== -1,
     );
@@ -152,7 +150,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
           .slice(0, limit),
       },
     ];
-  }
+  };
 
   /**
    * Adds a tag. Implementation helper for `addTags` and `addTag`

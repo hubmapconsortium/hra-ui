@@ -1,6 +1,5 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { Injectable } from '@angular/core';
-import { bind } from 'bind-decorator';
 import { OntologyTreeModel, OntologyTreeNode } from 'ccf-database';
 import { at } from 'lodash';
 import { Observable, ReplaySubject } from 'rxjs';
@@ -120,9 +119,8 @@ export class OntologySearchService {
    * @param node The node for which to get children.
    * @returns An array of children, empty if the node has no children.
    */
-  @bind
-  getChildren(node: OntologyTreeNode): OntologyTreeNode[] {
+  readonly getChildren = (node: OntologyTreeNode): OntologyTreeNode[] => {
     const nodes = this.treeModel?.nodes ?? {};
     return at(nodes, node.children);
-  }
+  };
 }
