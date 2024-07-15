@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';

@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { Injectable } from '@angular/core';
 import { bind } from 'bind-decorator';
 import { OntologyTreeModel, OntologyTreeNode } from 'ccf-database';

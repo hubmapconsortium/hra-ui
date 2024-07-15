@@ -7,7 +7,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@angular-ru/common": "^15.313.0",
+    "@angular-ru/cdk": "^15.2.0",
     "@angular-ru/ngxs": "^14.2.2",
     "@angular-slider/ngx-slider": "18.0.0",
     "@angular/animations": "18.0.7",

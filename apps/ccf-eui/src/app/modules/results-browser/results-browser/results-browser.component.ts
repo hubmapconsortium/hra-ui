@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings/immutability';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { AggregateResult } from 'ccf-database';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';

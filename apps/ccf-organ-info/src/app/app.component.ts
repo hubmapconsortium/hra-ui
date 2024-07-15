@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,

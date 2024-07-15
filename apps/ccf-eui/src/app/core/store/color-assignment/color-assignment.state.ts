@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings/immutability';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
