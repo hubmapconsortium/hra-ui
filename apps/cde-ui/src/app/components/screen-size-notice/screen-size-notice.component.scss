@@ -4,6 +4,7 @@
   gap: 1rem;
   padding: 1.75rem 2rem;
   max-width: 32.5rem;
+  box-shadow: 0px 5px 16px 0px #201e3d3d;
 
   .header {
     --mat-dialog-headline-padding: 0;
@@ -59,6 +60,9 @@
   }
 }
 
-::ng-deep .mat-mdc-dialog-surface {
-  --mdc-dialog-container-shape: 1rem;
+::ng-deep {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    box-shadow: unset;
+    --mdc-dialog-container-shape: 1rem;
+  }
 }
