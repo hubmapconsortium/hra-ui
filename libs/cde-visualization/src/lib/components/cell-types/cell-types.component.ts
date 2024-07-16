@@ -25,9 +25,9 @@ import { map } from 'rxjs';
 
 import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '../../models/color';
-import { ScrollGradientDirective } from '../../shared/scroll-gradient-directive';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { ScrollGradientComponent } from '../scroll-gradient/scroll-gradient.component';
 
 /**
  * Cell Type Component
@@ -46,7 +46,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     ColorPickerModule,
     OverlayModule,
     ColorPickerLabelComponent,
-    ScrollGradientDirective,
+    ScrollGradientComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

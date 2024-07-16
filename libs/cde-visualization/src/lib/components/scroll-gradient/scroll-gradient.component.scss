@@ -1,0 +1,11 @@
+:host {
+  &:not(.at-bottom)::after {
+    position: absolute;
+    content: '';
+    width: var(--width);
+    height: var(--height);
+    bottom: var(--bottom);
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+}

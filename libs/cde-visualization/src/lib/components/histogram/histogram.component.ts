@@ -31,9 +31,9 @@ import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { emptyArrayEquals } from '../../shared/empty-array-equals';
-import { ScrollGradientDirective } from '../../shared/scroll-gradient-directive';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { ScrollGradientComponent } from '../scroll-gradient/scroll-gradient.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 interface DistanceEntry {
@@ -99,7 +99,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
-    ScrollGradientDirective,
+    ScrollGradientComponent,
   ],
   providers: [
     {

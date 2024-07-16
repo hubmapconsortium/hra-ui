@@ -1,13 +1,15 @@
-import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
 
-/**
- * Directive for cde scroll areas
- */
-@Directive({
-  selector: '[cdeScrollGradient]',
+@Component({
+  selector: 'cde-scroll-gradient',
   standalone: true,
+  imports: [CommonModule],
+  templateUrl: './scroll-gradient.component.html',
+  styleUrl: './scroll-gradient.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScrollGradientDirective implements OnInit {
+export class ScrollGradientComponent implements OnInit {
   constructor(private readonly el: ElementRef<HTMLElement>) {}
 
   /**
