@@ -3,18 +3,22 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, concatMap, defer, filter, from, map, of, startWith } from 'rxjs';
 import { FileLoader, FileLoaderEvent, FileLoaderProgressEvent } from './file-loader';
 
+/** Options for loading JSON files */
 export type JsonFileLoaderOptions = Record<string, never>;
 
+/** Service for loading JSON files, either locally or remotely */
 @Injectable({
   providedIn: 'root',
 })
 export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileLoaderOptions> {
   private readonly http = inject(HttpClient, { optional: true });
 
+  /** Loads a JSON file and returns an observable of file loader events */
   load(file: string | File, options: JsonFileLoaderOptions): Observable<FileLoaderEvent<DataT>> {
     return defer(() => this.loadImpl(file, options));
   }
 
+  /** Implementation of the load method, handling local and remote files */
   private loadImpl(file: string | File, _options: JsonFileLoaderOptions): Observable<FileLoaderEvent<DataT>> {
     if (typeof file === 'object') {
       return this.loadLocalFile(file);
@@ -23,6 +27,7 @@ export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileL
     }
   }
 
+  /** Loads a local JSON file and emits progress and data events */
   private loadLocalFile(file: File): Observable<FileLoaderEvent<DataT>> {
     const fileSize = file.size;
     const progressStart: FileLoaderProgressEvent = {
@@ -43,6 +48,7 @@ export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileL
     );
   }
 
+  /** Loads a remote JSON file and emits progress and data events */
   private loadRemoteFile(file: string): Observable<FileLoaderEvent<DataT>> {
     const { http } = this;
     if (!http) {
@@ -60,6 +66,7 @@ export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileL
     );
   }
 
+  /** Converts HTTP events to file loader events */
   private httpEventToFileLoaderEvent(event: HttpEvent<DataT>): FileLoaderEvent<DataT> | undefined {
     switch (event.type) {
       case HttpEventType.Sent:

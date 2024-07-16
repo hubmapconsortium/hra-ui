@@ -5,12 +5,15 @@ import { ColorMapEntry } from '../../models/color-map';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '../file-loader/csv-file-loader.service';
 import { FileLoader, FileLoaderEvent } from '../file-loader/file-loader';
 
+/** Service to load color map entries from CSV files */
 @Injectable({
   providedIn: 'root',
 })
 export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], CsvFileLoaderOptions> {
+  /** CSV loader service for handling CSV file loading */
   private readonly csvLoader = inject<CsvFileLoaderService<Record<string, string>>>(CsvFileLoaderService);
 
+  /** Loads a color map file and returns an observable of the loading events */
   load(file: string | File, options: CsvFileLoaderOptions): Observable<FileLoaderEvent<ColorMapEntry[]>> {
     return this.csvLoader.load(file, options).pipe(
       map((event) => {
@@ -23,6 +26,7 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
     );
   }
 
+  /** Parses the raw CSV data into an array of ColorMapEntry objects */
   private parseColorMapEntries(data: Record<string, string>[]): ColorMapEntry[] {
     if (data.length === 0) {
       return [];

@@ -18,7 +18,7 @@ export function brandAttribute<T, const BrandT extends AnyBrand>(): (value: T) =
  * used instead of NaN.
  *
  * @returns A transform function
- * @see {@link https://github.com/angular/angular/blob/17.3.9/packages/core/src/util/coercion.ts#L38)
+ * @see {@link https://github.com/angular/angular/blob/17.3.9/packages/core/src/util/coercion.ts#L38}
  */
 export function numberAttribute(): (value: unknown) => number | undefined;
 export function numberAttribute<FallbackT>(fallback: FallbackT): (value: unknown) => number | FallbackT;
