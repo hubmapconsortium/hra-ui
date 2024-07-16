@@ -8,16 +8,16 @@
     "max-edge-distance": 1000,
     "metadata": {
       "title": "colon-cycif-sorgerlab / CRC01002",
-      "organ": "Intestine",
-      "sourceData": "2D Intestine Sample",
-      "technology": "CODEX",
+      "organ": "Large Intestine",
+      "sourceData": "2D Large Intestine Sample",
+      "technology": "CyCIF",
       "thickness": "5",
       "pixelSize": "0.65",
       "creationDate": "March 14, 2024",
       "creationTime": "UTC 7:03:23",
       "sampleExtra": {
         "type": "2D",
-        "organ": "Intestine",
+        "organ": "Large Intestine",
         "sampleUrl": "https://doi.org/10.1016/j.cell.2022.12.028",
         "sourceDataUrl": "https://docs.google.com/spreadsheets/d/1oy8U8ot7DX8ZZ2M8tz07EUHEbgzy5i2rmr09g5BrRmg/edit?gid=631939841#gid=631939841"
       }
