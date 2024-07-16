@@ -39,7 +39,6 @@
       "@hra-ui/utils/types": ["libs/shared/utils/types/src/index.ts"],
       "@hra-ui/webcomponents": ["libs/shared/webcomponents/src/index.ts"],
       "ccf-body-ui": ["libs/ccf-body-ui/src/public-api.ts"],
-      "ccf-database": ["libs/ccf-database/src/public-api.ts"],
       "ccf-scene-utils": ["libs/ccf-scene-utils/src/index.ts"],
       "ccf-shared": ["libs/ccf-shared/src/public-api.ts"],
       "ccf-shared/analytics": ["libs/ccf-shared/analytics/src/public-api.ts"],
