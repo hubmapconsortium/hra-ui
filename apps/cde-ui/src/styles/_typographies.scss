@@ -18,7 +18,7 @@ $small: mat.m2-define-rem-typography-config(
   $headline-6: mat.m2-define-typography-level(1.5rem, 2.25rem, 500),
   $subtitle-1: mat.m2-define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
   $body-1: mat.m2-define-typography-level(1.25rem, 1.875rem, 400, $letter-spacing: 0.013em),
-  $body-2: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500, $letter-spacing: 0.0125em),
+  $body-2: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500),
   $button: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500),
 );
 
@@ -42,7 +42,7 @@ $x-large: mat.m2-define-rem-typography-config(
   $body-1: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500),
   $body-2: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500),
   $button: mat.m2-define-typography-level(1.125rem, 1.6875rem, 500),
-  $caption: mat.m2-define-typography-level(0.875rem, 1.3125rem, 500, $letter-spacing: 0.005em),
+  $caption: mat.m2-define-typography-level(0.875rem, 1.3125rem, 500, $letter-spacing: 0.02em),
 );
 
 $xx-large: $x-large;

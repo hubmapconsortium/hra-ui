@@ -69,7 +69,7 @@ export class ScreenSizeNoticeComponent {
   static launchNotice(dialog: MatDialog): MatDialogRef<ScreenSizeNoticeComponent, never> {
     return dialog.open(ScreenSizeNoticeComponent, {
       panelClass: 'screen-size-notice-panel',
-      minWidth: '485px',
+      minWidth: '320px',
       disableClose: true,
       closeOnNavigation: false,
     });

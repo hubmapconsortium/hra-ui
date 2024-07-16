@@ -73,7 +73,13 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
   symbolType: 'circle',
   symbolStrokeWidth: 10,
-  labelFontSize: 13,
+  labelFontSize: 14,
+  titleFontSize: 14,
+  titleLineHeight: 21,
+  titleColor: '#201E3D',
+  titleFontWeight: 500,
+  labelFontWeight: 500,
+  labelColor: '#4B4B5E',
 };
 
 const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
@@ -98,7 +104,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
       useValue: {
         collapsedHeight: '56px',
-        expandedHeight: '60px',
+        expandedHeight: '56px',
         hideToggle: true,
       } satisfies MatExpansionPanelDefaultOptions,
     },

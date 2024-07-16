@@ -2,14 +2,28 @@
   .long-card {
     --mdc-text-button-label-text-color: #b20a2f;
     --mat-text-button-hover-state-layer-opacity: 0;
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 14.5rem;
     height: 42rem;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 5px 16px 0px rgba(32, 30, 61, 0.24);
+    box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.24);
     outline-offset: 0;
+    background-color: white;
     cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
+
+    &:active {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
+
+    &:focus-visible {
+      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
+    }
 
     img {
       width: 100%;
@@ -20,16 +34,14 @@
       width: fit-content;
       display: flex;
       align-items: center;
-      margin: 1.5rem 1.5rem 0;
-      font-size: 1rem;
-      line-height: 1.5rem;
+      margin: auto 1.5rem;
       font-family: 'Metropolis';
-      font-weight: 500;
+      letter-spacing: normal;
     }
 
     mat-icon {
       vertical-align: middle;
-      margin-left: 0.5rem;
+      margin-left: 0.25rem;
     }
   }
 
