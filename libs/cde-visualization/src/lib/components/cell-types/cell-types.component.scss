@@ -102,11 +102,7 @@ $blue-theme: mat.define-light-theme(
       height: var(--height);
       bottom: var(--bottom);
       pointer-events: none;
-      background: linear-gradient(
-        to top,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0)
-      ); /* Gradient for blur effect */
+      background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     }
 
     table {

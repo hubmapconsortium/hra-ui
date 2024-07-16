@@ -1,6 +1,4 @@
 :host {
-  background-color: white;
-  border-radius: 0.5rem;
   height: fit-content;
   position: sticky;
   --mdc-filled-button-container-height: 2rem;
@@ -36,6 +34,10 @@
     }
   }
 
+  ::ng-deep .mat-expansion-panel-body {
+    padding-bottom: 0.75rem;
+  }
+
   .content {
     height: 18rem;
     display: flex;
@@ -57,11 +59,7 @@
         height: var(--height);
         bottom: var(--bottom);
         pointer-events: none;
-        background: linear-gradient(
-          to top,
-          rgba(255, 255, 255, 1),
-          rgba(255, 255, 255, 0)
-        ); /* Gradient for blur effect */
+        background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
       }
 
       cde-color-picker-label {
