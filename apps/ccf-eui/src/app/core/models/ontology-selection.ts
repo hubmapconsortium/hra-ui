@@ -1,4 +1,4 @@
-import { OntologyTreeNode } from 'ccf-database';
+import { OntologyTreeNode } from '@hra-api/ng-client';
 
 export interface OntologySelection {
   location: OntologyTreeNode | undefined;

@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { State } from '@ngxs/store';
 import { SpatialPlacementJsonLd, SpatialSceneNode } from 'ccf-body-ui';
-import { ExtractionSet, SpatialEntity } from 'ccf-database';
 import { ALL_ORGANS, GlobalConfigState, GlobalsService, OrganInfo } from 'ccf-shared';
 import { EMPTY, Observable, from } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
+import { SpatialEntity } from '@hra-api/ng-client';
 import { environment } from '../../../../environments/environment';
 import { GlobalConfig } from '../../services/config/config';
 import { XYZTriplet } from '../model/model.state';
@@ -34,6 +34,18 @@ export function applySpatialPlacement(tx: Matrix4, placement: Immutable<SpatialP
   const S = [p.x_scaling, p.y_scaling, p.z_scaling];
 
   return tx.translate(T).rotateXYZ(R).scale(S);
+}
+
+/** A set of extraction sites */
+export interface ExtractionSet {
+  /** Identifier */
+  '@id': string;
+  /** Type name */
+  '@type': 'ExtractionSet';
+  /** Entity label */
+  label: string;
+  /** The list of extraction sites in this set */
+  extractionSites: SpatialEntity[];
 }
 
 export interface ReferenceDataStateModel {

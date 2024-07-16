@@ -1,6 +1,6 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { Injectable } from '@angular/core';
-import { OntologyTreeModel, OntologyTreeNode } from 'ccf-database';
+import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { at } from 'lodash';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -24,8 +24,8 @@ export interface SearchResult {
  */
 @Injectable()
 export class OntologySearchService {
-  private readonly treeModel$ = new ReplaySubject<OntologyTreeModel>(1);
-  private treeModel!: OntologyTreeModel;
+  private readonly treeModel$ = new ReplaySubject<OntologyTree>(1);
+  private treeModel!: OntologyTree;
 
   /** All nodes in the ontology tree. */
   public readonly nodes$ = this.treeModel$.pipe(map((state) => Object.values(state.nodes)));
@@ -33,7 +33,7 @@ export class OntologySearchService {
   /** Root node of the ontology tree. */
   public readonly rootNode$ = this.treeModel$.pipe(map((state) => state.nodes[state.root]));
 
-  setTreeModel(treeModel: OntologyTreeModel): void {
+  setTreeModel(treeModel: OntologyTree): void {
     this.treeModel$.next(treeModel);
     this.treeModel = treeModel;
   }
@@ -60,16 +60,18 @@ export class OntologySearchService {
 
     if (nodes) {
       nodes.forEach((node) => {
-        const condition = node.label.toLowerCase().includes(searchValue);
+        if (node.id === undefined) {
+          return;
+        }
 
-        if (condition && !searchResults.get(node.id)) {
+        if (node.label?.toLowerCase().includes(searchValue) && !searchResults.get(node.id)) {
           searchResults.set(node.id, {
             index: this.getIndexOfMatch(node.label, searchValue),
             displayLabel: this.formatLabel(node.label, searchValue),
             node: node as OntologyTreeNode,
           });
         } else {
-          const match = node.synonymLabels.find((label) => label.toLowerCase().includes(searchValue));
+          const match = node.synonymLabels?.find((label) => label.toLowerCase().includes(searchValue));
 
           if (match && !searchResults.get(node.id)) {
             searchResults.set(node.id, {
@@ -121,6 +123,6 @@ export class OntologySearchService {
    */
   readonly getChildren = (node: OntologyTreeNode): OntologyTreeNode[] => {
     const nodes = this.treeModel?.nodes ?? {};
-    return at(nodes, node.children);
+    return at(nodes, node.children ?? []);
   };
 }

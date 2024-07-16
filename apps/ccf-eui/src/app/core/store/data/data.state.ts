@@ -1,9 +1,16 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
-import { SpatialSceneNode } from '@hra-api/ng-client';
+import {
+  AggregateCount,
+  DatabaseStatus,
+  Filter,
+  FilterSexEnum,
+  OntologyTree,
+  SpatialSceneNode,
+  TissueBlock,
+} from '@hra-api/ng-client';
 import { Action, NgxsOnInit, State } from '@ngxs/store';
-import { AggregateResult, DatabaseStatus, Filter, OntologyTreeModel, TissueBlockResult } from 'ccf-database';
 import { DataSourceService } from 'ccf-shared';
 import { ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject, combineLatest, defer } from 'rxjs';
 import {
@@ -19,12 +26,11 @@ import {
   takeWhile,
   tap,
 } from 'rxjs/operators';
-
 import { UpdateFilter } from './data.actions';
 
 /** Default values for filters. */
 export const DEFAULT_FILTER: Filter = {
-  sex: 'Both',
+  sex: FilterSexEnum.Both,
   ageRange: [1, 110],
   bmiRange: [13, 83],
   consortiums: [],
@@ -86,9 +92,9 @@ export interface DataStateModel {
   filter: Filter;
   status: 'Loading' | 'Ready' | 'Error';
   statusMessage: string;
-  anatomicalStructuresTreeModel?: OntologyTreeModel;
-  cellTypesTreeModel?: OntologyTreeModel;
-  biomarkersTreeModel?: OntologyTreeModel;
+  anatomicalStructuresTreeModel?: OntologyTree;
+  cellTypesTreeModel?: OntologyTree;
+  biomarkersTreeModel?: OntologyTree;
 }
 
 /**
@@ -140,7 +146,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
    * @param filter The filter used during query.
    * @returns The result of the query.
    */
-  private readonly tissueBlockData = (filter: Filter): ObservableInput<TissueBlockResult[]> => {
+  private readonly tissueBlockData = (filter: Filter): ObservableInput<TissueBlock[]> => {
     this._tissueBlockDataQueryStatus$.next(DataQueryState.Running);
     return this.databaseReady$.pipe(switchMap(() => this.source.getTissueBlockResults(filter)));
   };
@@ -151,7 +157,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
    * @param filter The filter used during query.
    * @returns The result of the query.
    */
-  private readonly aggregateData = (filter: Filter): ObservableInput<AggregateResult[]> => {
+  private readonly aggregateData = (filter: Filter): ObservableInput<AggregateCount[]> => {
     this._aggregateDataQueryStatus$.next(DataQueryState.Running);
     return this.databaseReady$.pipe(switchMap(() => this.source.getAggregateResults(filter)));
   };
@@ -363,21 +369,21 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   }
 
   @DataAction()
-  updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       anatomicalStructuresTreeModel: model,
     });
   }
 
   @DataAction()
-  updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       cellTypesTreeModel: model,
     });
   }
 
   @DataAction()
-  updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       biomarkersTreeModel: model,
     });

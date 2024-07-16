@@ -1,8 +1,7 @@
-import { DatasetResult } from 'ccf-database';
-import { Shallow } from 'shallow-render';
-
+import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { of } from 'rxjs/internal/observable/of';
+import { Shallow } from 'shallow-render';
 import { ThumbnailCarouselComponent } from './thumbnail-carousel.component';
 import { ThumbnailCarouselModule } from './thumbnail-carousel.module';
 
@@ -22,7 +21,7 @@ describe('ThumbnailCarouselComponent', () => {
   describe('itemId(index, item)', () => {
     it('returns an identifier', async () => {
       const { instance } = await shallow.render();
-      const result = instance.itemId(0, castPartial<DatasetResult>({ thumbnail: 'abc' }));
+      const result = instance.itemId(0, castPartial<TissueDataset>({ thumbnail: 'abc' }));
       expect(result).toEqual('abc');
     });
   });

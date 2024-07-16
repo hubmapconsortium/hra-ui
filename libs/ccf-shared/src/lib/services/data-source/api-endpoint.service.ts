@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import {
+  AggregateCount,
   Filter as ApiFilter,
   DatabaseStatus,
+  Filter,
   MinMax,
+  OntologyTree,
+  SpatialEntity,
   SpatialSceneNode,
   SpatialSearch,
+  TissueBlock,
   V1Service,
 } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
-import { AggregateResult, Filter, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { Observable, ReplaySubject, Subject, combineLatest, of } from 'rxjs';
 import {
   debounceTime,
@@ -23,7 +27,6 @@ import {
   tap,
 } from 'rxjs/operators';
 import { Cacheable } from 'ts-cacheable';
-
 import { GlobalConfigState } from '../../config/global-config.state';
 import { DataSource } from './data-source';
 
@@ -143,13 +146,13 @@ export class ApiEndpointDataSourceService implements DataSource {
   }
 
   @Cacheable(CACHE_CONFIG_NO_PARAMS)
-  getOntologyTreeModel(): Observable<OntologyTreeModel> {
-    return this.doRequest((params) => this.api.ontologyTreeModel(params), undefined, {}, cast<OntologyTreeModel>());
+  getOntologyTreeModel(): Observable<OntologyTree> {
+    return this.doRequest((params) => this.api.ontologyTreeModel(params), undefined, {}, cast<OntologyTree>());
   }
 
   @Cacheable(CACHE_CONFIG_NO_PARAMS)
-  getCellTypeTreeModel(): Observable<OntologyTreeModel> {
-    return this.doRequest((params) => this.api.cellTypeTreeModel(params), undefined, {}, cast<OntologyTreeModel>());
+  getCellTypeTreeModel(): Observable<OntologyTree> {
+    return this.doRequest((params) => this.api.cellTypeTreeModel(params), undefined, {}, cast<OntologyTree>());
   }
 
   /**
@@ -158,8 +161,8 @@ export class ApiEndpointDataSourceService implements DataSource {
    * @returns An observable emitting the results.
    */
   @Cacheable(CACHE_CONFIG_NO_PARAMS)
-  getBiomarkerTreeModel(): Observable<OntologyTreeModel> {
-    return this.doRequest((params) => this.api.biomarkerTreeModel(params), undefined, {}, cast<OntologyTreeModel>());
+  getBiomarkerTreeModel(): Observable<OntologyTree> {
+    return this.doRequest((params) => this.api.biomarkerTreeModel(params), undefined, {}, cast<OntologyTree>());
   }
 
   @Cacheable(CACHE_CONFIG_NO_PARAMS)
@@ -168,12 +171,12 @@ export class ApiEndpointDataSourceService implements DataSource {
   }
 
   @Cacheable(CACHE_CONFIG_PARAMS)
-  getTissueBlockResults(filter?: Filter): Observable<TissueBlockResult[]> {
-    return this.doRequest((params) => this.api.tissueBlocks(params), filter, {}, cast<TissueBlockResult[]>());
+  getTissueBlockResults(filter?: Filter): Observable<TissueBlock[]> {
+    return this.doRequest((params) => this.api.tissueBlocks(params), filter, {}, cast<TissueBlock[]>());
   }
 
   @Cacheable(CACHE_CONFIG_PARAMS)
-  getAggregateResults(filter?: Filter): Observable<AggregateResult[]> {
+  getAggregateResults(filter?: Filter): Observable<AggregateCount[]> {
     return this.doRequest((params) => this.api.aggregateResults(params), filter);
   }
 

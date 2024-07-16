@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Filter, FilterSexEnum, OntologyTree } from '@hra-api/ng-client';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
-
-import { Filter, OntologyTreeModel } from 'ccf-database';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { OntologySelection } from './core/models/ontology-selection';
@@ -34,7 +33,7 @@ describe('AppComponent', () => {
   let right: jasmine.SpyObj<DrawerComponent>;
   let filterbox: jasmine.SpyObj<FiltersPopoverComponent>;
   const testFilter: Filter = {
-    sex: 'Both',
+    sex: FilterSexEnum.Both,
     ageRange: [5, 99],
     bmiRange: [30, 80],
     ontologyTerms: [],
@@ -45,7 +44,7 @@ describe('AppComponent', () => {
     spatialSearches: [],
     technologies: [],
   };
-  const testTreeStr: OntologyTreeModel = {
+  const testTreeStr: OntologyTree = {
     root: 'a',
     nodes: {
       a: {

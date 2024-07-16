@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { SpatialSceneNode } from '@hra-api/ng-client';
-import { AggregateResult, Filter, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import {
+  AggregateCount,
+  Filter,
+  FilterSexEnum,
+  SpatialEntity,
+  SpatialSceneNode,
+  TissueBlock,
+} from '@hra-api/ng-client';
 import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo } from 'ccf-shared';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,7 +22,7 @@ export class OrganLookupService {
   getOrganInfo(
     iri: string,
     side?: OrganInfo['side'],
-    _sex: Filter['sex'] = 'Female',
+    _sex: Filter['sex'] = FilterSexEnum.Female,
   ): Observable<OrganInfo | undefined> {
     let info = this.organs.find((item) => item.id === iri);
     if (!info) {
@@ -35,7 +41,7 @@ export class OrganLookupService {
     return of(info);
   }
 
-  getOrgan(info: OrganInfo, sex: Filter['sex'] = 'Both'): Observable<SpatialEntity | undefined> {
+  getOrgan(info: OrganInfo, sex: Filter['sex'] = FilterSexEnum.Both): Observable<SpatialEntity | undefined> {
     return this.source
       .getReferenceOrgans()
       .pipe(
@@ -45,7 +51,7 @@ export class OrganLookupService {
       );
   }
 
-  getOrganScene(info: OrganInfo, sex: Filter['sex'] = 'Female'): Observable<SpatialSceneNode[]> {
+  getOrganScene(info: OrganInfo, sex: Filter['sex'] = FilterSexEnum.Female): Observable<SpatialSceneNode[]> {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getReferenceOrganScene(info.id, filter as Filter);
@@ -54,7 +60,7 @@ export class OrganLookupService {
     }
   }
 
-  getOrganStats(info: OrganInfo, sex: Filter['sex'] = 'Female'): Observable<AggregateResult[]> {
+  getOrganStats(info: OrganInfo, sex: Filter['sex'] = FilterSexEnum.Female): Observable<AggregateCount[]> {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getAggregateResults(filter as Filter);
@@ -63,7 +69,7 @@ export class OrganLookupService {
     }
   }
 
-  getBlocks(info: OrganInfo, sex: Filter['sex'] = 'Female'): Observable<TissueBlockResult[]> {
+  getBlocks(info: OrganInfo, sex: Filter['sex'] = FilterSexEnum.Female): Observable<TissueBlock[]> {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getTissueBlockResults(filter as Filter);

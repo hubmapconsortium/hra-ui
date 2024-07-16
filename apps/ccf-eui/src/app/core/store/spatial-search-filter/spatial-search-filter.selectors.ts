@@ -1,6 +1,5 @@
+import { SpatialSearch } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
-import { SpatialSearch } from 'ccf-database';
-
 import {
   SpatialSearchFilterItem,
   SpatialSearchFilterModel,

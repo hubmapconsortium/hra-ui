@@ -1,8 +1,7 @@
-import { SpatialSceneNode } from '@hra-api/ng-client';
+import { OntologyTree, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
-import { OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import { getProbingSphereScene } from 'ccf-scene-utils';
 import { OrganInfo } from 'ccf-shared';
-
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { DataStateSelectors } from '../data/data.selectors';
 import {
@@ -12,7 +11,6 @@ import {
   SpatialSearchUiState,
   TermResult,
 } from './spatial-search-ui.state';
-import { getProbingSphereScene } from 'ccf-scene-utils';
 
 export class SpatialSearchUiSelectors {
   static readonly organEntity = SpatialSearchUiState.organEntity;
@@ -115,21 +113,21 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiState])
-  static tissueBlocks(state: SpatialSearchUiModel): TissueBlockResult[] {
+  static tissueBlocks(state: SpatialSearchUiModel): TissueBlock[] {
     return state.tissueBlocks ?? [];
   }
 
   @Selector([SpatialSearchUiState, DataStateSelectors.anatomicalStructuresTreeModel])
-  static anatomicalStructures(state: SpatialSearchUiModel, tree: OntologyTreeModel): TermResult[] {
+  static anatomicalStructures(state: SpatialSearchUiModel, tree: OntologyTree): TermResult[] {
     return this.getTermCounts(state.anatomicalStructures, tree);
   }
 
   @Selector([SpatialSearchUiState, DataStateSelectors.cellTypesTreeModel])
-  static cellTypes(state: SpatialSearchUiModel, tree: OntologyTreeModel): TermResult[] {
+  static cellTypes(state: SpatialSearchUiModel, tree: OntologyTree): TermResult[] {
     return this.getTermCounts(state.cellTypes, tree);
   }
 
-  private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTreeModel): TermResult[] {
+  private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTree): TermResult[] {
     return Object.entries(counts ?? {})
       .filter(([_, count]) => count > 0)
       .map(([term, count]) => ({
