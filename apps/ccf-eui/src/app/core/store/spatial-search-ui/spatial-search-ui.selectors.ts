@@ -1,6 +1,6 @@
 import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
-import { getProbingSphereScene, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import { OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
 import { OrganInfo } from 'ccf-shared';
 
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
@@ -12,6 +12,7 @@ import {
   SpatialSearchUiState,
   TermResult,
 } from './spatial-search-ui.state';
+import { getProbingSphereScene } from 'ccf-scene-utils';
 
 export class SpatialSearchUiSelectors {
   static readonly organEntity = SpatialSearchUiState.organEntity;

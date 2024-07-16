@@ -8,5 +8,5 @@
     "types": []
   },
   "exclude": ["src/test.ts", "**/*.spec.ts", "karma.conf.js", "**/*.test.ts", "**/*.stories.ts", "**/*.stories.js"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../ccf-scene-utils/src/lib/origin-scene.ts"]
 }
