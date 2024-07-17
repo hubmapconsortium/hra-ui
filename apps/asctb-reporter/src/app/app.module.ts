@@ -6,7 +6,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
+import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
 
 import { environment } from '../environments/environment';
 import { ConfigService } from './app-config.service';
@@ -42,7 +42,6 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
     BrowserAnimationsModule,
     AppRoutingModule,
     NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
-    NgxsResetPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),
@@ -69,6 +68,7 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
       multi: true,
     },
     provideHttpClient(withInterceptorsFromDi()),
+    withNgxsResetPlugin(),
   ],
 })
 export class AppModule {}

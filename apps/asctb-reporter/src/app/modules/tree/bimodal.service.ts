@@ -359,11 +359,11 @@ export class BimodalService {
         this.store.dispatch(new UpdateLinksData(AS_CT_LINKS, CT_BM_LINKS, AS_CT, CT_BM));
 
         this.store.dispatch(new UpdateBimodal(nodes, links)).subscribe(() => {
-          const state = this.store.selectSnapshot(TreeState);
-          const view = TreeState.getVegaView(state);
-          const updatedNodes = state.bimodal.nodes;
-          const updatedLinks = state.bimodal.links;
-          const spec = state.spec;
+          const view = this.store.selectSnapshot(TreeState.getVegaView);
+          const bimodal = this.store.selectSnapshot(TreeState.getBimodal);
+          const updatedNodes = bimodal.nodes;
+          const updatedLinks = bimodal.links;
+          const spec = this.store.selectSnapshot(TreeState.getVegaSpec);
           this.updateBimodalData(view, spec, updatedNodes, updatedLinks);
         });
       } else {
