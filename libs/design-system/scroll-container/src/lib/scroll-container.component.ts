@@ -13,6 +13,10 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollContainerComponent implements OnInit {
+  /**
+   * Creates an instance of scroll container component.
+   * @param el Scroll container element
+   */
   constructor(private readonly el: ElementRef<HTMLElement>) {}
 
   /**
