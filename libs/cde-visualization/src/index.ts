@@ -18,10 +18,16 @@ export * from './lib/services/file-loader/csv-file-loader.service';
 export * from './lib/services/file-loader/json-file-loader.service';
 export * from './lib/services/data/color-map-loader.service';
 
+/** Type for CdeVisualizationElement instance */
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+
+/** Input properties for CdeVisualizationComponent */
 export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>;
+
+/** Constructor type for CdeVisualizationElement */
 export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 
+/** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
   providers: [provideHttpClient(), provideAnimations(), importProvidersFrom(ColorPickerModule)],
 });
