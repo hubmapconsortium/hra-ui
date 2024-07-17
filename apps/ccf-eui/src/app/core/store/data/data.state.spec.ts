@@ -1,11 +1,11 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { NgxsModule } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
-
-import { DataState, DEFAULT_FILTER } from './data.state';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { DEFAULT_FILTER, DataState } from './data.state';
 
 describe('DataState', () => {
   let dataState: DataState;
@@ -29,8 +29,8 @@ describe('DataState', () => {
 
   describe('.updateFilter(changes)', () => {
     it('updates the filter', () => {
-      dataState.updateFilter({ sex: 'Female' });
-      expect(dataState.getState().filter.sex).toEqual('Female');
+      dataState.updateFilter({ sex: FilterSexEnum.Female });
+      expect(dataState.getState().filter.sex).toEqual(FilterSexEnum.Female);
     });
   });
 });

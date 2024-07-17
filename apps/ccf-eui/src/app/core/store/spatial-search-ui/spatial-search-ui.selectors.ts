@@ -76,10 +76,14 @@ export class SpatialSearchUiSelectors {
   ])
   static scene(
     state: SpatialSearchUiModel,
-    organEntity: SpatialEntity,
+    organEntity: SpatialEntity | undefined,
     position: Position,
     radius: number,
   ): SpatialSceneNode[] {
+    if (organEntity === undefined) {
+      return [];
+    }
+
     const sphere = getProbingSphereScene(organEntity, {
       ...position,
       radius,
@@ -96,8 +100,8 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiState.organEntity])
-  static sceneBounds(organEntity: SpatialEntity): Position {
-    const { x_dimension: x, y_dimension: y, z_dimension: z } = organEntity;
+  static sceneBounds(organEntity: SpatialEntity | undefined): Position {
+    const { x_dimension: x = 0, y_dimension: y = 0, z_dimension: z = 0 } = organEntity ?? {};
     const margin = Math.max(x, y, z) * 0.42;
     return {
       x: (margin + x) / 1000,
@@ -107,8 +111,8 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiState.organEntity])
-  static sceneTarget(organEntity: SpatialEntity): [number, number, number] {
-    const { x_dimension: x, y_dimension: y, z_dimension: z } = organEntity;
+  static sceneTarget(organEntity: SpatialEntity | undefined): [number, number, number] {
+    const { x_dimension: x = 0, y_dimension: y = 0, z_dimension: z = 0 } = organEntity ?? {};
     return [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
   }
 
