@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
+/** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'title',
   'colorMap',
@@ -80,6 +81,7 @@ export class MetadataComponent {
   /** Flag to check if info tooltip is open */
   tooltipOpen = false;
 
+  /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {
     const value = this.metadata()[field];
     return this.showEmptyFields() || (value !== undefined && value !== '');
