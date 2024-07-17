@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
 
+/**
+ * Scroll container with gradient feature
+ */
 @Component({
   selector: 'hra-scroll-container',
   standalone: true,
