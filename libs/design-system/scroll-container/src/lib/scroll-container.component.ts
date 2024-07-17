@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cde-scroll-gradient',
+  selector: 'hra-scroll-container',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './scroll-gradient.component.html',
-  styleUrl: './scroll-gradient.component.scss',
+  templateUrl: './scroll-container.component.html',
+  styleUrl: './scroll-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScrollGradientComponent implements OnInit {
+export class ScrollContainerComponent implements OnInit {
   constructor(private readonly el: ElementRef<HTMLElement>) {}
 
   /**

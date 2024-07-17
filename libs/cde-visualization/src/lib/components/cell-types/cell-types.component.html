@@ -37,7 +37,7 @@
   <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
 </div>
 
-<cde-scroll-gradient class="table-overflow-container">
+<hra-scroll-container class="table-overflow-container">
   <table
     mat-table
     [dataSource]="dataSource"
@@ -89,4 +89,4 @@
     <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columns"></tr>
   </table>
-</cde-scroll-gradient>
+</hra-scroll-container>

@@ -20,6 +20,7 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { ScrollContainerComponent } from '@hra-ui/design-system/scroll-container';
 import { produce } from 'immer';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
@@ -33,7 +34,6 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { emptyArrayEquals } from '../../shared/empty-array-equals';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { ScrollGradientComponent } from '../scroll-gradient/scroll-gradient.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 interface DistanceEntry {
@@ -99,7 +99,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
-    ScrollGradientComponent,
+    ScrollContainerComponent,
   ],
   providers: [
     {

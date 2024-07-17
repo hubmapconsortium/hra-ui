@@ -51,7 +51,7 @@
 
     <div class="content">
       <div class="histogram" data-testid="histogram" #histogram></div>
-      <cde-scroll-gradient class="legend">
+      <hra-scroll-container class="legend">
         <cde-color-picker-label
           [label]="totalCellTypeLabel"
           [(color)]="totalCellTypeColor"
@@ -67,7 +67,7 @@
             (colorChange)="updateColor(type, $event)"
           ></cde-color-picker-label>
         }
-      </cde-scroll-gradient>
+      </hra-scroll-container>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

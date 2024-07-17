@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ScrollContainerComponent } from '@hra-ui/design-system/scroll-container';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 
@@ -27,7 +28,6 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '../../models/color';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { ScrollGradientComponent } from '../scroll-gradient/scroll-gradient.component';
 
 /**
  * Cell Type Component
@@ -46,7 +46,7 @@ import { ScrollGradientComponent } from '../scroll-gradient/scroll-gradient.comp
     ColorPickerModule,
     OverlayModule,
     ColorPickerLabelComponent,
-    ScrollGradientComponent,
+    ScrollContainerComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

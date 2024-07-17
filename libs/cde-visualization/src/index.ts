@@ -17,7 +17,6 @@ export * from './lib/services/file-loader/file-loader';
 export * from './lib/services/file-loader/csv-file-loader.service';
 export * from './lib/services/file-loader/json-file-loader.service';
 export * from './lib/services/data/color-map-loader.service';
-export * from './lib/components/scroll-gradient/scroll-gradient.component';
 
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
 export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>;
