@@ -7,7 +7,7 @@ export default {
   component: BiomarkerTableDataCardComponent,
 } as Meta<BiomarkerTableDataCardComponent>;
 
-const Template: StoryFn<BiomarkerTableDataCardComponent> = (args: unknown) => ({
+const Template: StoryFn<BiomarkerTableDataCardComponent> = (args) => ({
   props: args,
 });
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { CloseDialog, LearnMore } from '../../states/call-to-action/call-to-action.actions';
 import { CallToActionSelectors } from '../../states/call-to-action/call-to-action.selectors';
+import { CallToActionState } from '../../states/call-to-action/call-to-action.state';
 
 /**
  * Info button component: Information icon displays project details when clicked.
@@ -41,3 +42,6 @@ export class CallToActionBehaviorComponent {
   @Dispatch()
   readonly learnMore = (): LearnMore => new LearnMore();
 }
+
+// Break cyclical import...
+CallToActionState.callToActionComponent = CallToActionBehaviorComponent;

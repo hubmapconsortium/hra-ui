@@ -5,8 +5,7 @@ import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-
-import { CallToActionBehaviorComponent } from '../../components/call-to-action-behavior/call-to-action-behavior.component';
+import type { CallToActionBehaviorComponent } from '../../components/call-to-action-behavior/call-to-action-behavior.component';
 import { DocumentationContent, InfoButtonService } from '../../components/info/info-button/info-button.service';
 import { InfoDialogComponent } from '../../components/info/info-dialog/info-dialog.component';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
@@ -53,6 +52,9 @@ const SPATIAL_SEARCH_README = 'assets/docs/SPATIAL_SEARCH_README.md';
  */
 @Injectable()
 export class CallToActionState implements NgxsOnInit {
+  /** Used to break cyclical import */
+  static callToActionComponent: typeof CallToActionBehaviorComponent;
+
   /**
    * Function that determines if expiration date has passed
    * @param expirationDate
@@ -127,7 +129,7 @@ export class CallToActionState implements NgxsOnInit {
    */
   @Action(OpenDialog)
   open(ctx: StateContext<CallToActionModel>): void {
-    this.dialog.open(CallToActionBehaviorComponent, {
+    this.dialog.open(CallToActionState.callToActionComponent, {
       autoFocus: false,
       panelClass: 'modal-animated',
       width: '30.75rem',
