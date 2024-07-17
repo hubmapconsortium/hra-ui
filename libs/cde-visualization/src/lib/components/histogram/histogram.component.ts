@@ -110,6 +110,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
   .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
 
+/**
+ * Histogram Component
+ */
 @Component({
   selector: 'cde-histogram',
   standalone: true,

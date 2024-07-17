@@ -11,6 +11,7 @@ export type JsonFileLoaderOptions = Record<string, never>;
   providedIn: 'root',
 })
 export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileLoaderOptions> {
+  /** Reference to the HTTP client */
   private readonly http = inject(HttpClient, { optional: true });
 
   /** Loads a JSON file and returns an observable of file loader events */
