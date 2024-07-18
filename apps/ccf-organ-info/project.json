@@ -25,11 +25,7 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       },
       "configurations": {
         "production": {
@@ -135,11 +131,7 @@
           "**/*.module.ts"
         ],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       }
     },
     "lint": {

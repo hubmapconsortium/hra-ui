@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HraApiConfiguration, HraApiModule } from '@hra-api/ng-client';
 import { ApiEndpointDataSourceService, DataSourceService } from 'ccf-shared';
@@ -8,28 +8,26 @@ import { environment } from '../../environments/environment';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
+  exports: [],
   imports: [
-    HttpClientModule,
     AnalyticsModule.forRoot({
       gaToken: environment.googleAnalyticsToken,
-
       appName: 'organ-info',
       projectName: 'ccf',
-
       developmentMode: !environment.production,
     }),
-
     HraApiModule.forRoot(
       () =>
         new HraApiConfiguration({
           basePath: environment.dbOptions.remoteApiEndpoint,
         }),
     ),
-
     StoreModule,
   ],
-  providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
-  exports: [],
+  providers: [
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

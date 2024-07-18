@@ -1,8 +1,7 @@
-import { Immutable } from '@angular-ru/common/typings/immutability';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { AggregateResult } from 'ccf-database';
+import { AggregateCount } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { ListResult } from '../../../core/models/list-result';
 
 /**
@@ -25,7 +24,7 @@ export class ResultsBrowserComponent {
   /**
    * Input used to add a list of stats at the top the results browser
    */
-  @Input() aggregateData!: Immutable<AggregateResult[]>;
+  @Input() aggregateData!: Immutable<AggregateCount[]>;
 
   /**
    * Input allowing the title of the result browser to be set outside of the component

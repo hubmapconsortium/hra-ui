@@ -1,25 +1,25 @@
-import { SpatialSceneNode } from '@hra-api/ng-client';
 import {
-  AggregateResult,
+  AggregateCount,
   DatabaseStatus,
   Filter,
-  OntologyTreeModel,
+  OntologyTree,
   SpatialEntity,
-  TissueBlockResult,
-} from 'ccf-database';
+  SpatialSceneNode,
+  TissueBlock,
+} from '@hra-api/ng-client';
 import { Observable } from 'rxjs';
 
 export interface DataSource {
   getDatabaseStatus(): Observable<DatabaseStatus>;
   getProviderNames(): Observable<string[]>;
   getDatasetTechnologyNames(): Observable<string[]>;
-  getOntologyTreeModel(): Observable<OntologyTreeModel>;
-  getCellTypeTreeModel(): Observable<OntologyTreeModel>;
-  getBiomarkerTreeModel(): Observable<OntologyTreeModel>;
+  getOntologyTreeModel(): Observable<OntologyTree>;
+  getCellTypeTreeModel(): Observable<OntologyTree>;
+  getBiomarkerTreeModel(): Observable<OntologyTree>;
   getReferenceOrgans(): Observable<SpatialEntity[]>;
 
-  getTissueBlockResults(filter?: Filter): Observable<TissueBlockResult[]>;
-  getAggregateResults(filter?: Filter): Observable<AggregateResult[]>;
+  getTissueBlockResults(filter?: Filter): Observable<TissueBlock[]>;
+  getAggregateResults(filter?: Filter): Observable<AggregateCount[]>;
   getOntologyTermOccurences(filter?: Filter): Observable<Record<string, number>>;
   getCellTypeTermOccurences(filter?: Filter): Observable<Record<string, number>>;
   getBiomarkerTermOccurences(filter?: Filter): Observable<Record<string, number>>;

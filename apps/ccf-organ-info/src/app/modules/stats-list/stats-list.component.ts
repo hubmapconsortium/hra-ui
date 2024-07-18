@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AggregateResult } from 'ccf-database';
+import { AggregateCount } from '@hra-api/ng-client';
 
 @Component({
   selector: 'ccf-stats-list',
@@ -9,5 +9,5 @@ import { AggregateResult } from 'ccf-database';
 })
 export class StatsListComponent {
   @Input() statsLabel!: string;
-  @Input() stats!: AggregateResult[];
+  @Input() stats!: AggregateCount[];
 }

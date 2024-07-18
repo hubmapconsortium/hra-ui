@@ -21,11 +21,7 @@
         "tsConfig": "apps/ccf-rui/tsconfig.app.json",
         "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
         "styles": ["apps/ccf-rui/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ],
+        "scripts": [],
         "vendorChunk": true,
         "extractLicenses": false,
         "buildOptimizer": false,

@@ -25,11 +25,7 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
         "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       },
       "configurations": {
         "production": {
@@ -138,11 +134,7 @@
           "**/*.module.ts"
         ],
         "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       }
     },
     "lint": {

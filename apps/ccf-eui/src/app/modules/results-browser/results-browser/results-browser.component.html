@@ -10,7 +10,7 @@
   <div class="results-browser-list" [class.header-hidden]="!header" (scroll)="onScroll($event)">
     <div
       class="browser-item-container"
-      (mouseenter)="handleHover(result.tissueBlock.spatialEntityId)"
+      (mouseenter)="handleHover(result.tissueBlock.spatialEntityId ?? '')"
       (mouseleave)="handleUnhover()"
       *ngFor="let result of listResults"
     >

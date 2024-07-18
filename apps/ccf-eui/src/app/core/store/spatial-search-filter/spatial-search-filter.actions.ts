@@ -1,7 +1,5 @@
-import { SpatialSearch } from 'ccf-database';
-
+import { SpatialSearch } from '@hra-api/ng-client';
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
-
 import type { SpatialSearchFilterItem } from './spatial-search-filter.state';
 
 export class AddSearch {

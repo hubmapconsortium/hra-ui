@@ -1,19 +1,19 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   .ccf-tissue-block-list {
-    background-color: mat.get-color-from-palette($background, modal);
+    background-color: mat.m2-get-color-from-palette($background, modal);
     color: map-get($foreground, text);
 
     .tissue-block-header {
       .title {
-        color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent);
       }
 
       .info {

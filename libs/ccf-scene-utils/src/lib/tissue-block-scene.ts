@@ -1,6 +1,5 @@
+import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
-import { SpatialSceneNode } from '@hra-api/ng-client';
-import { SpatialEntity, SpatialPlacement } from '../spatial-types';
 
 type Color = [number, number, number, number];
 const gray: Color = [204, 204, 204, 255];

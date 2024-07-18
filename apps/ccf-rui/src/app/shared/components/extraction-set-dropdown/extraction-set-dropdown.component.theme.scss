@@ -1,33 +1,33 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   .extraction-dropdown-label {
-    color: mat.get-color-from-palette($foreground, placeholder-text);
+    color: mat.m2-get-color-from-palette($foreground, placeholder-text);
   }
 
   .mdc-line-ripple::after {
-    border-bottom-color: mat.get-color-from-palette($accent) !important;
+    border-bottom-color: mat.m2-get-color-from-palette($accent) !important;
   }
 
   .extraction-set-panel {
-    background-color: mat.get-color-from-palette($primary, 'white');
+    background-color: mat.m2-get-color-from-palette($primary, 'white');
 
     .mat-mdc-option {
-      border-color: mat.get-color-from-palette($foreground, borders);
-      color: mat.get-color-from-palette($foreground, placeholder-text);
+      border-color: mat.m2-get-color-from-palette($foreground, borders);
+      color: mat.m2-get-color-from-palette($foreground, placeholder-text);
 
       &:hover {
-        background-color: mat.get-color-from-palette($background, hover-background);
+        background-color: mat.m2-get-color-from-palette($background, hover-background);
       }
 
       &.mat-mdc-option-active {
-        background-color: mat.get-color-from-palette($background, background);
+        background-color: mat.m2-get-color-from-palette($background, background);
       }
     }
   }
@@ -35,15 +35,15 @@
   .dropdown-form-field {
     .mat-mdc-text-field-wrapper,
     .mat-mdc-form-field-focus-overlay {
-      background-color: mat.get-color-from-palette($background, background);
+      background-color: mat.m2-get-color-from-palette($background, background);
     }
   }
 
   .mat-mdc-select-value {
-    color: mat.get-color-from-palette($foreground, placeholder-text);
+    color: mat.m2-get-color-from-palette($foreground, placeholder-text);
   }
 
   .mat-mdc-select-arrow {
-    color: mat.get-color-from-palette($foreground, icon);
+    color: mat.m2-get-color-from-palette($foreground, icon);
   }
 }

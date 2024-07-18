@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -9,48 +9,48 @@
 
   .ccf-organ-selector {
     .container {
-      color: mat.get-color-from-palette($foreground, text);
+      color: mat.m2-get-color-from-palette($foreground, text);
 
       &.error {
-        border-color: mat.get-color-from-palette($foreground, slider-red);
+        border-color: mat.m2-get-color-from-palette($foreground, slider-red);
       }
 
       .carousel-left-icon,
       .carousel-right-icon {
-        color: mat.get-color-from-palette($foreground, carousel-arrow);
+        color: mat.m2-get-color-from-palette($foreground, carousel-arrow);
 
         &:hover {
-          color: mat.get-color-from-palette($foreground, active-icon);
+          color: mat.m2-get-color-from-palette($foreground, active-icon);
         }
 
         &.disabled {
-          color: mat.get-color-from-palette($foreground, disabled);
+          color: mat.m2-get-color-from-palette($foreground, disabled);
         }
       }
     }
   }
 
   .carousel-item {
-    color: mat.get-color-from-palette($foreground, organ-off);
+    color: mat.m2-get-color-from-palette($foreground, organ-off);
 
     &:hover {
-      background-color: mat.get-color-from-palette($background, hover-background);
+      background-color: mat.m2-get-color-from-palette($background, hover-background);
     }
 
     &.selected {
-      color: mat.get-color-from-palette($foreground, main);
+      color: mat.m2-get-color-from-palette($foreground, main);
     }
 
     &.disabled {
-      color: mat.get-color-from-palette($foreground, disabled);
+      color: mat.m2-get-color-from-palette($foreground, disabled);
     }
 
     .organ-number {
-      color: mat.get-color-from-palette($foreground, organ-numbers);
+      color: mat.m2-get-color-from-palette($foreground, organ-numbers);
     }
 
     .carousel-text {
-      color: mat.get-color-from-palette($foreground, carousel-text);
+      color: mat.m2-get-color-from-palette($foreground, carousel-text);
     }
   }
 }

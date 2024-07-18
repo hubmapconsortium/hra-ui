@@ -19,7 +19,7 @@ export function exampleDataResolver(
     const data$ = maybeAsyncToObservable(dataResolver(route, state));
 
     return data$.pipe(
-      map((items) => items[index]),
+      map((items) => (items as Record<string, unknown>[])[index]),
       map((data) => normalizeData(data)),
     );
   };

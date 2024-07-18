@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -9,30 +9,30 @@
 
   .ccf-visibility-toggle {
     .toggle-wrapper {
-      border-color: mat.get-color-from-palette($foreground, chip-border-primary);
+      border-color: mat.m2-get-color-from-palette($foreground, chip-border-primary);
 
       &:hover {
-        background-color: mat.get-color-from-palette($foreground, toggle-bg);
+        background-color: mat.m2-get-color-from-palette($foreground, toggle-bg);
       }
 
       &.disabled {
-        color: mat.get-color-from-palette($foreground, icons-disabled);
-        border-color: mat.get-color-from-palette($foreground, icons-disabled);
+        color: mat.m2-get-color-from-palette($foreground, icons-disabled);
+        border-color: mat.m2-get-color-from-palette($foreground, icons-disabled);
       }
 
       .icon {
-        color: mat.get-color-from-palette($foreground, chip-icon-block-primary);
+        color: mat.m2-get-color-from-palette($foreground, chip-icon-block-primary);
         &.visible {
-          color: mat.get-color-from-palette($accent);
+          color: mat.m2-get-color-from-palette($accent);
         }
       }
 
       .green {
-        color: mat.get-color-from-palette($foreground, chip-icon-done-green);
+        color: mat.m2-get-color-from-palette($foreground, chip-icon-done-green);
       }
 
       .icon-background {
-        background-color: mat.get-color-from-palette($foreground, chip-icon-background);
+        background-color: mat.m2-get-color-from-palette($foreground, chip-icon-background);
         &.disabled {
           opacity: 40%;
         }

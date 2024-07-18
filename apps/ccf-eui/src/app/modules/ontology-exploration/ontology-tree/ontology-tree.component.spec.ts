@@ -1,7 +1,6 @@
-import { OntologyTreeNode } from 'ccf-database';
-import { RecursivePartial, Shallow } from 'shallow-render';
-
 import { SimpleChanges } from '@angular/core';
+import { OntologyTreeNode } from '@hra-api/ng-client';
+import { RecursivePartial, Shallow } from 'shallow-render';
 import { FlatNode } from '../../../core/models/flat-node';
 import { OntologyTreeComponent } from './ontology-tree.component';
 import { OntologyTreeModule } from './ontology-tree.module';

@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NgxsModule } from '@ngxs/store';
-import { Shallow } from 'shallow-render';
-
 import { GlobalConfigState } from 'ccf-shared';
 import { of } from 'rxjs/internal/observable/of';
+import { Shallow } from 'shallow-render';
+import { SpatialSearchUiState } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchUiBehaviorComponent } from './spatial-search-ui-behavior.component';
 import { SpatialSearchUiBehaviorModule } from './spatial-search-ui-behavior.module';
 
@@ -19,7 +19,7 @@ describe('SpatialSearchUiBehaviorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([], {})],
+      imports: [NgxsModule.forRoot([SpatialSearchUiState], {})],
     });
 
     shallow = new Shallow(SpatialSearchUiBehaviorComponent, SpatialSearchUiBehaviorModule)
@@ -28,7 +28,8 @@ describe('SpatialSearchUiBehaviorComponent', () => {
           /* Empty */
         },
       })
-      .mock(GlobalConfigState, { getOption: () => of(undefined) });
+      .mock(GlobalConfigState, { getOption: () => of(undefined) })
+      .mock(SpatialSearchUiState, {});
   });
 
   it('should close the dialog when the close() method is called', async () => {

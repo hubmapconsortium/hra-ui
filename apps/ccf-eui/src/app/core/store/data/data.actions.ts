@@ -1,4 +1,4 @@
-import { Filter } from 'ccf-database';
+import { Filter } from '@hra-api/ng-client';
 
 export class UpdateFilter {
   static readonly type = '[DataState] Update filter';

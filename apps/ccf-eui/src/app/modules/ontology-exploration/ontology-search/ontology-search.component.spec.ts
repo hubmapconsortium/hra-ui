@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { OntologyTreeNode } from 'ccf-database';
+import { OntologyTreeNode } from '@hra-api/ng-client';
 import { of } from 'rxjs';
 import { RecursivePartial, Shallow } from 'shallow-render';
-
 import { OntologySearchService, SearchResult } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologySearchComponent } from './ontology-search.component';
 import { OntologySearchModule } from './ontology-search.module';

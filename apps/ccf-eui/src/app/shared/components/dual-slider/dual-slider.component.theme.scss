@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -10,39 +10,39 @@
   .slider-form-field {
     .mat-mdc-text-field-wrapper {
       .mdc-line-ripple {
-        color: mat.get-color-from-palette($foreground, contrast-icon);
+        color: mat.m2-get-color-from-palette($foreground, contrast-icon);
       }
     }
   }
 
   .mat-mdc-select-arrow {
-    color: mat.get-color-from-palette($foreground, contrast-icon);
+    color: mat.m2-get-color-from-palette($foreground, contrast-icon);
   }
 
   .name-label {
-    color: mat.get-color-from-palette($foreground, text-muted);
+    color: mat.m2-get-color-from-palette($foreground, text-muted);
   }
 
   .range-label {
-    color: mat.get-color-from-palette($background, text);
+    color: mat.m2-get-color-from-palette($background, text);
   }
 
   .slider-pane {
-    border-color: mat.get-color-from-palette($foreground, modal-borders);
+    border-color: mat.m2-get-color-from-palette($foreground, modal-borders);
   }
 
   .ccf-slider {
-    background-color: mat.get-color-from-palette($background, modal);
+    background-color: mat.m2-get-color-from-palette($background, modal);
 
     .slider {
       .ngx-slider-bar,
       .ngx-slider-selection,
       .ngx-slider-pointer {
-        background-color: mat.get-color-from-palette($background, mat-slider-primary);
+        background-color: mat.m2-get-color-from-palette($background, mat-slider-primary);
       }
 
       .ngx-slider-pointer {
-        border-color: mat.get-color-from-palette($background, modal);
+        border-color: mat.m2-get-color-from-palette($background, modal);
       }
     }
 
@@ -50,19 +50,19 @@
       &.min,
       &.max {
         input {
-          color: mat.get-color-from-palette($primary, text);
+          color: mat.m2-get-color-from-palette($primary, text);
         }
       }
 
       &.ceil,
       &.floor {
-        color: mat.get-color-from-palette($foreground, text-muted);
+        color: mat.m2-get-color-from-palette($foreground, text-muted);
       }
     }
   }
 
   .input-high,
   .input-low {
-    background-color: mat.get-color-from-palette($foreground, input-bg);
+    background-color: mat.m2-get-color-from-palette($foreground, input-bg);
   }
 }
