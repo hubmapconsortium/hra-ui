@@ -8,7 +8,7 @@
     "@angular/material": "18.0.6",
     "papaparse": "^5.4.1",
     "rxjs": "7.8.0",
-    "ngx-color-picker": "^16.0.0",
+    "ngx-color-picker": "^17.0.0",
     "@hra-ui/design-system": "0.0.1",
     "@hra-ui/webcomponents": "0.0.1",
     "hra-node-dist-vis": "github:cns-iu/hra-node-dist-vis",
