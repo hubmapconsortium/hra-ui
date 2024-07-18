@@ -1,22 +1,23 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { NgxsModule } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
-
-import { DataState, DEFAULT_FILTER } from './data.state';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DEFAULT_FILTER, DataState } from './data.state';
 
 describe('DataState', () => {
   let dataState: DataState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxsDataPluginModule.forRoot(),
-        NgxsModule.forRoot([DataState, GlobalConfigState]),
-        HttpClientTestingModule,
+      imports: [NgxsDataPluginModule.forRoot(), NgxsModule.forRoot([DataState, GlobalConfigState])],
+      providers: [
+        { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
-      providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }],
     });
 
     dataState = TestBed.inject(DataState);
@@ -28,8 +29,8 @@ describe('DataState', () => {
 
   describe('.updateFilter(changes)', () => {
     it('updates the filter', () => {
-      dataState.updateFilter({ sex: 'Female' });
-      expect(dataState.getState().filter.sex).toEqual('Female');
+      dataState.updateFilter({ sex: FilterSexEnum.Female });
+      expect(dataState.getState().filter.sex).toEqual(FilterSexEnum.Female);
     });
   });
 });

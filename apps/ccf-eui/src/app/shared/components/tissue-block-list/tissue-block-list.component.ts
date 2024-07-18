@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { TissueBlockResult } from 'ccf-database';
+import { TissueBlock } from '@hra-api/ng-client';
 
 /**
  * Tissue block list in spatial search UI
@@ -15,5 +15,5 @@ export class TissueBlockListComponent {
   @HostBinding('class') readonly className = 'ccf-tissue-block-list';
 
   /** Tissue blocks to be displayed */
-  @Input() tissueBlocks: TissueBlockResult[] = [];
+  @Input() tissueBlocks: TissueBlock[] = [];
 }

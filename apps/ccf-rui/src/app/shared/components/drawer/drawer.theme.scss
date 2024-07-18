@@ -1,38 +1,38 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   .ccf-drawer {
-    background-color: mat.get-color-from-palette($background, background);
-    border-right-color: mat.get-color-from-palette($foreground, divider);
-    border-left-color: mat.get-color-from-palette($foreground, divider);
+    background-color: mat.m2-get-color-from-palette($background, background);
+    border-right-color: mat.m2-get-color-from-palette($foreground, divider);
+    border-left-color: mat.m2-get-color-from-palette($foreground, divider);
   }
 
   .ccf-drawer-toggle-button {
-    background-color: mat.get-color-from-palette($background, modal);
+    background-color: mat.m2-get-color-from-palette($background, modal);
 
     &:hover {
-      background-color: mat.get-color-from-palette($background, drawer-hover);
+      background-color: mat.m2-get-color-from-palette($background, drawer-hover);
     }
   }
 
   .drawer-icons {
     .button {
-      color: mat.get-color-from-palette($foreground, contrast-icon);
+      color: mat.m2-get-color-from-palette($foreground, contrast-icon);
 
       :hover {
-        color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent);
       }
     }
   }
 
   .ccf-drawer-content {
-    background-color: mat.get-color-from-palette($background, drawer-background);
+    background-color: mat.m2-get-color-from-palette($background, drawer-background);
     padding-bottom: 1.5rem;
   }
 }

@@ -34,5 +34,10 @@ describe('ScreenNoticeBehaviorComponent', () => {
       instance.close();
       expect(dialogRefMock.close).toHaveBeenCalled();
     });
+
+    it('does not close the dialog if the dialog reference is null', async () => {
+      const { instance } = await new Shallow(ScreenNoticeBehaviorComponent).render();
+      expect(() => instance.close()).not.toThrow();
+    });
   });
 });

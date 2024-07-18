@@ -70,7 +70,7 @@ describe('CallToActionState', () => {
     expect(datePassed).toBeTrue();
   });
 
-  it('opoens dialog box', () => {
+  it('opens dialog box', () => {
     const markdownContent: DocumentationContent[] = [];
     state.launchLearnMore(markdownContent);
     expect(dialog.open).toHaveBeenCalled();

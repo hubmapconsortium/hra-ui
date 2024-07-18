@@ -8,8 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { OntologyTreeModel, OntologyTreeNode } from 'ccf-database';
-
+import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
@@ -44,7 +43,7 @@ export class OntologySelectionComponent implements OnChanges {
   /**
    * The ontology tree model to display
    */
-  @Input() treeModel!: OntologyTreeModel;
+  @Input() treeModel!: OntologyTree;
 
   /**
    * Input list of selected ontology terms passed down to ontology-tree.
@@ -86,8 +85,8 @@ export class OntologySelectionComponent implements OnChanges {
       tap((rootNode) => {
         this.rootNode = { ...rootNode };
         if (this.rootNode.id === 'biomarkers') {
-          this.tooltips = [...rootNode.children];
-          this.biomarkerMenuOptions = [...rootNode.children]
+          this.tooltips = [...(rootNode.children ?? [])];
+          this.biomarkerMenuOptions = [...(rootNode.children ?? [])]
             .map((option) => this.biomarkerLabelMap.get(option))
             .filter((x): x is string => x !== undefined);
           this.filterNodes(this.biomarkerMenuOptions);
@@ -109,16 +108,18 @@ export class OntologySelectionComponent implements OnChanges {
    */
   selected(ontologyNode: OntologyTreeNode): void {
     const nodes = this.treeModel?.nodes ?? {};
-    this.tree.expandAndSelect(ontologyNode, (node) => nodes[node.parent]);
+    this.tree.expandAndSelect(ontologyNode, (node) => nodes[node.parent ?? '']);
   }
 
   filterNodes(selectedTypes: string[]): void {
     const nodes = Object.values(this.treeModel.nodes);
     const filteredNodes = nodes
-      .filter((node) => selectedTypes.includes(this.biomarkerLabelMap.get(node.parent) ?? ''))
-      .sort((node1, node2) => (node1.label.trim().toLowerCase() > node2.label.trim().toLowerCase() ? 1 : -1));
+      .filter((node) => selectedTypes.includes(this.biomarkerLabelMap.get(node.parent ?? '') ?? ''))
+      .sort((node1, node2) =>
+        (node1.label?.trim().toLowerCase() ?? '') > (node2.label?.trim().toLowerCase() ?? '') ? 1 : -1,
+      );
     const rootNode = { ...this.rootNode };
-    rootNode.children = filteredNodes.map((node) => node.id);
+    rootNode.children = filteredNodes.map((node) => node.id ?? '');
     this.rootNode = { ...rootNode };
   }
 }

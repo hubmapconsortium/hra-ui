@@ -63,11 +63,11 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
   }
 
   selectListResult(result: ListResult): void {
-    this.colorAssignments.assignColor(result.tissueBlock.spatialEntityId);
+    this.colorAssignments.assignColor(result.tissueBlock.spatialEntityId ?? '');
   }
 
   deselectListResult(result: ListResult): void {
-    this.colorAssignments.unassignColor(result.tissueBlock.spatialEntityId);
+    this.colorAssignments.unassignColor(result.tissueBlock.spatialEntityId ?? '');
   }
 
   highlightNode(id: string): void {
@@ -96,7 +96,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
           const otherBlocks: ListResult[] = [];
 
           for (const tissueBlock of tissueBlocks) {
-            const color = colors[tissueBlock.spatialEntityId];
+            const color = colors[tissueBlock.spatialEntityId ?? ''];
             if (color) {
               topBlocks.push({
                 selected: true,

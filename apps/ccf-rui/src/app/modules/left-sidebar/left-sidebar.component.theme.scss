@@ -1,41 +1,41 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   .ccf-left-sidebar {
-    background-color: mat.get-color-from-palette($background, sidebar-background);
-    scrollbar-color: mat.get-color-from-palette($foreground, scrollbar-thumb)
-      mat.get-color-from-palette($background, sidebar-background);
+    background-color: mat.m2-get-color-from-palette($background, sidebar-background);
+    scrollbar-color: mat.m2-get-color-from-palette($foreground, scrollbar-thumb)
+      mat.m2-get-color-from-palette($background, sidebar-background);
 
     &::-webkit-scrollbar-track {
-      background-color: mat.get-color-from-palette($background, sidebar-background);
+      background-color: mat.m2-get-color-from-palette($background, sidebar-background);
     }
 
     mat-divider {
-      border-color: mat.get-color-from-palette($foreground, sidebar-dividers);
+      border-color: mat.m2-get-color-from-palette($foreground, sidebar-dividers);
     }
 
     .mat-expansion-indicator {
-      color: mat.get-color-from-palette($foreground, icon);
+      color: mat.m2-get-color-from-palette($foreground, icon);
     }
 
     .extraction-site-tooltip {
-      border-color: mat.get-color-from-palette($foreground, contrast-icon);
-      background-color: mat.get-color-from-palette($foreground, text);
-      color: mat.get-color-from-palette($foreground, logo);
+      border-color: mat.m2-get-color-from-palette($foreground, contrast-icon);
+      background-color: mat.m2-get-color-from-palette($foreground, text);
+      color: mat.m2-get-color-from-palette($foreground, logo);
     }
 
     .mat-divider {
-      border-top-color: mat.get-color-from-palette($foreground, mat-divider);
+      border-top-color: mat.m2-get-color-from-palette($foreground, mat-divider);
     }
 
     .expansion-placeholder {
-      color: mat.get-color-from-palette($foreground, icons-disabled);
+      color: mat.m2-get-color-from-palette($foreground, icons-disabled);
     }
   }
 }

@@ -11,7 +11,11 @@
   disablePagination="true"
   disableRipple="true"
 >
-  <mat-tab *ngFor="let tab of tabs()" labelClass="table-tab-header" [label]="'Cell Types by ' + tab.label">
+  <mat-tab
+    *ngFor="let tab of tabs(); trackBy: trackByLabel"
+    labelClass="table-tab-header"
+    [label]="'Cell Types by ' + tab.label"
+  >
     <hra-biomarker-table
       #table
       *ngIf="tab.rows.length !== 0"

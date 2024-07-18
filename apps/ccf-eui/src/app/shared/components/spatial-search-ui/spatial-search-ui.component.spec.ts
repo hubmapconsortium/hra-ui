@@ -1,14 +1,14 @@
 import { Shallow } from 'shallow-render';
 
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
 import { SpatialSearchUiModule } from './spatial-search-ui.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SpatialSearchUiComponent', () => {
   let shallow: Shallow<SpatialSearchUiComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(SpatialSearchUiComponent, SpatialSearchUiModule).import(HttpClientTestingModule);
+    shallow = new Shallow(SpatialSearchUiComponent, SpatialSearchUiModule).provide(provideHttpClientTesting());
   });
 
   it('creates', async () => {

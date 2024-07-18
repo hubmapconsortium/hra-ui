@@ -1,8 +1,8 @@
-import { TissueBlockResult } from 'ccf-database';
+import { TissueBlock } from '@hra-api/ng-client';
 
 export interface ListResult {
   selected: boolean;
   color?: string;
-  tissueBlock: TissueBlockResult;
+  tissueBlock: TissueBlock;
   rank?: number;
 }

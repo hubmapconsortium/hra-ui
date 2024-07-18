@@ -39,7 +39,7 @@ $sennet-palette: (
 );
 
 $sennet-accent: utility.add-colors(
-  mat.$blue-palette,
+  mat.$m2-blue-palette,
   (
     'light': #6a6eff,
     'main': #0742ef,
@@ -52,7 +52,7 @@ $sennet-accent: utility.add-colors(
 );
 
 $sennet-warn: utility.add-colors(
-  mat.$red-palette,
+  mat.$m2-red-palette,
   (
     'light': #f2884b,
     'main': #ba5a1e,
@@ -64,12 +64,12 @@ $sennet-warn: utility.add-colors(
   )
 );
 
-$primary: mat.define-palette($sennet-palette, $text: 'text');
-$accent: mat.define-palette($sennet-palette);
-$warn: mat.define-palette($sennet-warn);
+$primary: mat.m2-define-palette($sennet-palette, $text: 'text');
+$accent: mat.m2-define-palette($sennet-palette);
+$warn: mat.m2-define-palette($sennet-warn);
 
 $foreground: map-merge(
-  mat.$light-theme-foreground-palette,
+  mat.$m2-light-theme-foreground-palette,
   (
     text: map-get($sennet-palette, 'text'),
     icon: map-get($sennet-palette, 'gray'),
@@ -98,17 +98,17 @@ $foreground: map-merge(
     scrollbar-thumb: #cdcdcd,
     secondary-text: map-get($sennet-palette, text),
     sidebar-dividers: map-get($sennet-palette, 'white'),
-    slider-blue: map-get(mat.$blue-palette, A400),
-    slider-green: map-get(mat.$green-palette, A700),
-    slider-red: map-get(mat.$red-palette, A700),
-    slider-blue-light: map-get(mat.$blue-palette, A100),
-    slider-green-light: map-get(mat.$green-palette, A200),
-    slider-red-light: map-get(mat.$red-palette, A100),
+    slider-blue: map-get(mat.$m2-blue-palette, A400),
+    slider-green: map-get(mat.$m2-green-palette, A700),
+    slider-red: map-get(mat.$m2-red-palette, A700),
+    slider-blue-light: map-get(mat.$m2-blue-palette, A100),
+    slider-green-light: map-get(mat.$m2-green-palette, A200),
+    slider-red-light: map-get(mat.$m2-red-palette, A100),
     main: map-get($sennet-palette, 400),
     button-background: map-get($sennet-palette, 400),
     button-background-hover: map-get($sennet-palette, 'white-hover'),
     chip-icon-block-primary: map-get($sennet-palette, 400),
-    chip-icon-done-green: map-get(mat.$green-palette, A700),
+    chip-icon-done-green: map-get(mat.$m2-green-palette, A700),
     chip-icon-background: #e9e9e9,
     chip-border-primary: map-get($sennet-palette, 400),
     toggle-thumb: map-get($sennet-palette, 400),
@@ -128,7 +128,7 @@ $foreground: map-merge(
 );
 
 $background: map-merge(
-  mat.$light-theme-background-palette,
+  mat.$m2-light-theme-background-palette,
   (
     background: map-get($sennet-palette, 'white'),
     hover-background: map-get($sennet-palette, 'light-background'),

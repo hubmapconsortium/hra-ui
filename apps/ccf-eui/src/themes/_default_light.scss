@@ -14,15 +14,15 @@ $default-light-palette: utility.add-colors(
   )
 );
 
-$primary: mat.define-palette($default-light-palette, $text: 900);
-$accent: mat.define-palette(mat.$blue-palette, 700);
-$warn: mat.define-palette(mat.$red-palette);
+$primary: mat.m2-define-palette($default-light-palette, $text: 900);
+$accent: mat.m2-define-palette(mat.$m2-blue-palette, 700);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $default-light-foreground: map-merge(
   $foreground,
   (
     main: map-get($default-light-palette, main),
-    active-icon: map-get(mat.$blue-palette, 700),
+    active-icon: map-get(mat.$m2-blue-palette, 700),
     header-border: map-get($default-light-palette, 800),
     //#424242
     modal-borders: map-get($primary-colors, 'black'),

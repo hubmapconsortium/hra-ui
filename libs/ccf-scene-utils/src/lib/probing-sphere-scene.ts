@@ -1,7 +1,5 @@
+import { SpatialEntity, SpatialSceneNode, SpatialSearch } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
-import { SpatialSearch } from '../interfaces';
-import { SpatialEntity } from '../spatial-types';
-import { SpatialSceneNode } from '@hra-api/ng-client';
 
 type Color = [number, number, number, number];
 const gold: Color = [240, 183, 98, 255];

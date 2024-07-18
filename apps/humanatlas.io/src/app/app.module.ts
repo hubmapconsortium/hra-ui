@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -17,13 +17,13 @@ import { gfmHeadingId } from 'marked-gfm-heading-id';
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     ToolbarModule,
     BottomToolbarModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
     TissueInfoPageModule,
     NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsToken),
     NgxGoogleAnalyticsRouterModule,
@@ -35,7 +35,6 @@ import { gfmHeadingId } from 'marked-gfm-heading-id';
     PageModule,
     RouterModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}
