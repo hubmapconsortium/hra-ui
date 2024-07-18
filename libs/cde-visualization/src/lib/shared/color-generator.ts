@@ -1,5 +1,6 @@
 import { Rgb, hexToRgb } from '../models/color';
 
+/** Array of predefined colors in RGB format */
 const COLORS: Rgb[] = [
   hexToRgb('#70A5A8'),
   hexToRgb('#CD8490'),
@@ -17,6 +18,11 @@ const COLORS: Rgb[] = [
   hexToRgb('#637597'),
 ];
 
+/**
+ * Creates a generator function that cycles through a predefined list of colors.
+ *
+ * @returns A function that returns the next color in the list.
+ */
 export function createColorGenerator(): () => Rgb {
   let index = 0;
   return () => {

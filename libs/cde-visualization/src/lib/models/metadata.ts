@@ -1,3 +1,6 @@
+/**
+ * Interface for Metadata
+ */
 export interface Metadata {
   /** Title of the visualization */
   title?: string;
@@ -23,6 +26,9 @@ export interface Metadata {
   sampleExtra?: SampleMetadataExtra;
 }
 
+/**
+ * Interface for Extra Metadata fields
+ */
 export interface SampleMetadataExtra {
   /** Sample type, generally '2D' or '3D' */
   type: string;

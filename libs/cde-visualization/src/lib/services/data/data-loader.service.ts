@@ -4,10 +4,20 @@ import { Observable, filter, map, of, switchAll, takeLast } from 'rxjs';
 import { createAbsoluteUrl } from '../../shared/url-normalization';
 import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-loader/file-loader';
 
+/** Service for loading data using specified loaders */
 @Injectable({
   providedIn: 'root',
 })
 export class DataLoaderService {
+  /**
+   * Loads data from a source using a specified loader
+   * @param source - Signal containing the source URL or data
+   * @param initialValue - The initial value to use if the source is undefined
+   * @param loaderToken - The token for the loader to use
+   * @param loaderOptions - Options to configure the loader
+   * @param options - Additional options for signal creation
+   * @returns A signal containing the loaded data
+   */
   load<T, const LoaderT extends Type<FileLoader<T, unknown>>>(
     source: Signal<string | T | undefined>,
     initialValue: T,
