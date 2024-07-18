@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -10,28 +10,28 @@
   .ccf-ontology-tree {
     .node {
       .toggle {
-        background: mat.get-color-from-palette($background, background);
-        color: mat.get-color-from-palette($foreground, text);
+        background: mat.m2-get-color-from-palette($background, background);
+        color: mat.m2-get-color-from-palette($foreground, text);
       }
 
       .text {
-        color: mat.get-color-from-palette($primary, text);
+        color: mat.m2-get-color-from-palette($primary, text);
 
         &:hover {
-          color: mat.get-color-from-palette($accent);
+          color: mat.m2-get-color-from-palette($accent);
         }
       }
 
       .selected {
-        color: mat.get-color-from-palette($foreground, selected-ontology-text);
+        color: mat.m2-get-color-from-palette($foreground, selected-ontology-text);
       }
 
       .filtered-out {
-        color: mat.get-color-from-palette($primary, text);
+        color: mat.m2-get-color-from-palette($primary, text);
       }
 
       .unavailable {
-        color: mat.get-color-from-palette($foreground, disabled-text);
+        color: mat.m2-get-color-from-palette($foreground, disabled-text);
       }
     }
   }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { DatasetResult } from 'ccf-database';
+import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { SwiperOptions } from 'swiper';
 import { NavigationOptions } from 'swiper/types';
@@ -31,12 +31,12 @@ export class ThumbnailCarouselComponent {
   /**
    * Items to show in the carousel
    */
-  @Input() data!: DatasetResult[];
+  @Input() data!: TissueDataset[];
 
   /**
    * Outputs the result whose link was clicked
    */
-  @Output() readonly linkClicked = new EventEmitter<DatasetResult>();
+  @Output() readonly linkClicked = new EventEmitter<TissueDataset>();
 
   /**
    * Per instance unique identifier
@@ -94,7 +94,7 @@ export class ThumbnailCarouselComponent {
    * @param item The item
    * @returns An unique identifier
    */
-  itemId(_index: number, item: DatasetResult): string {
+  itemId(_index: number, item: TissueDataset): string | undefined {
     return item.thumbnail;
   }
 
@@ -102,7 +102,7 @@ export class ThumbnailCarouselComponent {
     this.baseHref = url;
   }
 
-  thumbnailUrl(item: DatasetResult): string {
+  thumbnailUrl(item: TissueDataset): string {
     return `url(${this.baseHref + item.thumbnail})`;
   }
 }

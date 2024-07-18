@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -22,22 +22,22 @@
 
     .mdc-notched-outline__leading,
     .mdc-notched-outline__trailing {
-      border-color: mat.get-color-from-palette($foreground, text) !important;
+      border-color: mat.m2-get-color-from-palette($foreground, text) !important;
     }
 
     .add-button {
       background-color: transparent;
 
       &.active {
-        background-color: mat.get-color-from-palette($foreground, icons-hover);
+        background-color: mat.m2-get-color-from-palette($foreground, icons-hover);
       }
 
       &:hover {
-        background-color: mat.get-color-from-palette($foreground, icons-hover);
+        background-color: mat.m2-get-color-from-palette($foreground, icons-hover);
       }
 
       &:active {
-        background-color: mat.get-color-from-palette($foreground, icons-disabled);
+        background-color: mat.m2-get-color-from-palette($foreground, icons-disabled);
       }
     }
   }

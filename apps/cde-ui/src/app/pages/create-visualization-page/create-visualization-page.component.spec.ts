@@ -178,7 +178,7 @@ describe('CreateVisualizationPageComponent', () => {
       const colorMapEl = screen.getAllByTestId(testId)[1];
       await userEvent.upload(colorMapEl, data);
       fixture.autoDetectChanges();
-
+      await new Promise((resolve) => setTimeout(resolve, 50));
       expect(instance.colorErrorMessage).toMatch(/Required columns missing/);
     });
   });

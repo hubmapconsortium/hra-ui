@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -24,24 +24,19 @@ import { initFactory } from './app.init';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-
     MatDialogModule,
-
     InlineSVGModule.forRoot(),
     MarkdownModule.forRoot({
       loader: HttpClient,
     }),
     NgxsModule.forRoot(),
     ThemingModule,
-
     AppRoutingModule,
     CdkStateModule,
     HraServiceModule,
     HraStateModule.forRoot({
       googleAnalyticsToken: environment.googleAnalyticsToken,
     }),
-
     HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
     MouseTrackerModule,
@@ -60,6 +55,7 @@ import { initFactory } from './app.init';
       provide: FTU_DATA_IMPL_ENDPOINTS,
       useValue: new ReplaySubject(1),
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 })
 export class AppModule implements DoBootstrap {

@@ -41,7 +41,7 @@ export const ROOT_STATES = [
 
     // Must come before all other plugins except the ngxs data plugin!
     NgxsStoragePluginModule.forRoot({
-      key: ['registration.registrations'],
+      keys: ['registration.registrations'],
     }),
 
     // Logger plugin must be last!

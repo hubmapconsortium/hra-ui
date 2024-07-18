@@ -28,6 +28,7 @@ import {
   SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
+  CellSummaryAggregate,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -162,6 +163,16 @@ export class BiomarkerDetailsComponent {
   private mapping_: IllustrationMappingItem[] = [];
   /** Illustration ids reference */
   private illustrationIds_: string[] = [];
+
+  /**
+   * Track a tab by it's label
+   *
+   * @param _index Unused index of tab
+   * @param tab Tab data
+   */
+  trackByLabel(_index: number, tab: CellSummaryAggregate): string {
+    return tab.label;
+  }
 
   /** A function that toggles isTableFullScreen and
    * calls the setScreenMode function.

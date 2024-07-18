@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { TissueBlockResult } from 'ccf-database';
+import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -16,7 +16,7 @@ export class DonorCardComponent {
   @HostBinding('class') readonly clsName = 'ccf-donor-card';
 
   /** Tissue Block to generate the donor card from */
-  @Input() tissueBlock!: TissueBlockResult;
+  @Input() tissueBlock!: TissueBlock;
 
   /** Allows the selected state to be set from outside the component */
   @Input() selected = false;

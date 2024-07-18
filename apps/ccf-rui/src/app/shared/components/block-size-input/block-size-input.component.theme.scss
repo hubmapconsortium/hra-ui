@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -9,10 +9,10 @@
 
   .ccf-block-size-input {
     .icon {
-      color: mat.get-color-from-palette($foreground, main);
+      color: mat.m2-get-color-from-palette($foreground, main);
 
       &:hover {
-        background: mat.get-color-from-palette($foreground, icons-hover);
+        background: mat.m2-get-color-from-palette($foreground, icons-hover);
       }
     }
 
@@ -25,11 +25,11 @@
     }
 
     .form-input-label {
-      color: mat.get-color-from-palette($foreground, icon-disabled);
+      color: mat.m2-get-color-from-palette($foreground, icon-disabled);
     }
 
     .mdc-line-ripple::after {
-      border-bottom-color: mat.get-color-from-palette($accent) !important;
+      border-bottom-color: mat.m2-get-color-from-palette($accent) !important;
     }
   }
 }

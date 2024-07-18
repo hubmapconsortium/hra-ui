@@ -24,11 +24,7 @@
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/swiper"]
         },
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ],
+        "scripts": [],
         "webWorkerTsConfig": "apps/ccf-eui/tsconfig.worker.json",
         "vendorChunk": true,
         "extractLicenses": false,

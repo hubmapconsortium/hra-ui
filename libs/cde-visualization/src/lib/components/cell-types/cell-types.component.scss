@@ -2,8 +2,8 @@
 @use '@angular/material' as mat;
 @use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
 
-$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
-$blue-theme: mat.define-light-theme(
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
+$blue-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $blue,

@@ -13,7 +13,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { bind as Bind } from 'bind-decorator';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ObservableInput, Subject, from, interval } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, throttle } from 'rxjs/operators';
@@ -182,8 +181,7 @@ export class TagSearchComponent implements OnDestroy {
    * @param text Search text
    * @returns An observable of the search result.
    */
-  @Bind
-  private executeSearch(text: string): ObservableInput<TagSearchResult> {
+  private readonly executeSearch = (text: string): ObservableInput<TagSearchResult> => {
     const { search, searchLimit = DEFAULT_SEARCH_LIMIT } = this;
     if (!text || !search) {
       return [EMPTY_RESULT];
@@ -193,7 +191,7 @@ export class TagSearchComponent implements OnDestroy {
       catchError(() => [EMPTY_RESULT]),
       map(this.truncateResults),
     );
-  }
+  };
 
   /**
    * Truncates the number of results returned by a search
@@ -201,8 +199,7 @@ export class TagSearchComponent implements OnDestroy {
    * @param result The results
    * @returns Results with at most `searchLimit` items
    */
-  @Bind
-  private truncateResults(result: TagSearchResult): TagSearchResult {
+  private readonly truncateResults = (result: TagSearchResult): TagSearchResult => {
     const { searchLimit = DEFAULT_SEARCH_LIMIT } = this;
     const items = result.results;
 
@@ -214,7 +211,7 @@ export class TagSearchComponent implements OnDestroy {
     }
 
     return result;
-  }
+  };
 
   /**
    * Computes a new checked object for result items. Already checked items are preserved.

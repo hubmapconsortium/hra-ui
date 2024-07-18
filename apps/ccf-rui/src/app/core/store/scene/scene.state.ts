@@ -2,11 +2,12 @@ import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { AABB, Vec3 } from 'cannon-es';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
-import { SpatialEntity, SpatialPlacement, getOriginScene, getTissueBlockScene } from 'ccf-database';
+import { getOriginScene, getTissueBlockScene } from 'ccf-scene-utils';
 import { GlobalConfigState } from 'ccf-shared';
 import { isEqual } from 'lodash';
 import { Observable, combineLatest, defer, of } from 'rxjs';
@@ -28,7 +29,6 @@ import { ModelState } from '../model/model.state';
 import { RegistrationState } from '../registration/registration.state';
 import { VisibilityItem } from './../../models/visibility-item';
 import { ReferenceDataState } from './../reference-data/reference-data.state';
-import { SpatialSceneNode } from '@hra-api/ng-client';
 
 /**
  * Scene state model
