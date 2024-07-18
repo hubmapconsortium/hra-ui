@@ -26,7 +26,7 @@ type RemoteRequestKeys = 'downloadRequestHeaders' | 'downloadRequestBody' | 'wit
 /** Dynamic typing option but without the ability to pass a function */
 type DynamicTyping = { dynamicTyping?: Exclude<ParseLocalConfig['dynamicTyping'], AnyFunction> };
 
-/** Additional options for loading from urls */
+/** Additional options for loading from URLs */
 type RemoteRequest = Pick<ParseRemoteConfig, RemoteRequestKeys>;
 
 /** Accepted papaparse configuration subset */
@@ -36,26 +36,30 @@ export type PapaparseConfig = Omit<ParseLocalConfig, ReservedPapaparseConfigKeys
 export interface CsvFileLoaderOptions {
   /** Whether to collect the results into a single data event or emit multiple events */
   collect?: boolean;
-  /** Number of parsing errors that can happend before the load aborts */
+  /** Number of parsing errors that can happen before the load aborts */
   errorTolerance?: false | number;
   /** Additional papaparse configuration */
   papaparse?: PapaparseConfig;
 }
 
+/** Appends items to an array */
 function arrayAppend<T>(array: T[], items: T[]): void {
   for (const item of items) {
     array.push(item);
   }
 }
 
+/** Service for loading CSV files */
 @Injectable({
   providedIn: 'root',
 })
 export class CsvFileLoaderService<DataT> implements FileLoader<DataT[], CsvFileLoaderOptions> {
+  /** Loads a CSV file and returns an observable of the loader events */
   load(file: string | File, options: CsvFileLoaderOptions): Observable<FileLoaderEvent<DataT[]>> {
     return defer(() => this.loadImpl(file, options));
   }
 
+  /** Implementation of the CSV file loading logic */
   private loadImpl(file: string | File, options: CsvFileLoaderOptions): Observable<FileLoaderEvent<DataT[]>> {
     const isLocalFile = typeof file === 'object';
     const fileSize = isLocalFile ? file.size : undefined;
