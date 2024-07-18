@@ -12,10 +12,17 @@ import {
   selectSnapshot,
 } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
-import { ActiveFtuActions, IllustratorSelectors, LinkIds, TissueLibraryActions } from '@hra-ui/state';
+import { FTU_DATA_IMPL_ENDPOINTS, IllustrationMappingItem } from '@hra-ui/services';
+import {
+  ActiveFtuActions,
+  IllustratorActions,
+  IllustratorSelectors,
+  LinkIds,
+  TissueLibraryActions,
+} from '@hra-ui/state';
+import { ActionContext, ActionStatus, Actions } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
-import { firstValueFrom, from, of, take, toArray } from 'rxjs';
+import { ReplaySubject, firstValueFrom, from, of, take, toArray } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
@@ -29,6 +36,7 @@ describe('AppComponent', () => {
   const dispatchSpy = jest.fn();
 
   let shallow: Shallow<AppComponent>;
+  let actions: ReplaySubject<ActionContext>;
 
   beforeEach(() => {
     jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
@@ -38,13 +46,22 @@ describe('AppComponent', () => {
     jest.mocked(select$).mockReturnValue(of({}));
     dialog.open.mockReturnValue(postRef);
 
+    actions = new ReplaySubject(1);
+
     shallow = new Shallow(AppComponent, AppModule)
       .replaceModule(RouterModule, RouterTestingModule)
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
-      .dontMock(MatDialogModule)
-      .dontMock(FTU_DATA_IMPL_ENDPOINTS)
-      .provideMock({ provide: MatDialog, useValue: dialog })
-      .dontMock(ENVIRONMENT_INITIALIZER);
+      .dontMock(MatDialogModule, FTU_DATA_IMPL_ENDPOINTS, ENVIRONMENT_INITIALIZER)
+      .provideMock(
+        {
+          provide: MatDialog,
+          useValue: dialog,
+        },
+        {
+          provide: Actions,
+          useValue: actions,
+        },
+      );
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -117,13 +134,16 @@ describe('AppComponent', () => {
     it('emits node click events', async () => {
       const node = {
         source: { id: 'abc' },
+      } as unknown as IllustrationMappingItem;
+      const context: ActionContext = {
+        status: ActionStatus.Dispatched,
+        action: new IllustratorActions.SetClicked(node),
       };
-      const events = from([undefined, node]);
-      jest.mocked(select$).mockImplementation((fn) => (fn === IllustratorSelectors.selectedOnClicked ? events : of()));
 
       const { instance } = await shallow.render();
-      const output = await firstValueFrom(instance.cellClick.pipe(take(1)));
-      expect(output).toEqual(node.source);
+      const output = firstValueFrom(instance.cellClick.pipe(take(1)));
+      actions.next(context);
+      expect(await output).toEqual(node.source);
     });
   });
 
