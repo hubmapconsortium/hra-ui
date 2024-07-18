@@ -26,6 +26,7 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '../../models/color';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 /**
  * Cell Type Component
@@ -44,6 +45,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     ColorPickerModule,
     OverlayModule,
     ColorPickerLabelComponent,
+    NgScrollbarModule,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

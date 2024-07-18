@@ -20,7 +20,7 @@ $blue-theme: mat.m2-define-light-theme(
 
 :host {
   @include mat.button-color($blue-theme);
-
+  --scrollbar-thickness: 8;
   display: grid;
   grid:
     'cell-types . download'

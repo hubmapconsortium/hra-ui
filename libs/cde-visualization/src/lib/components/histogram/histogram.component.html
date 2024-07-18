@@ -51,23 +51,25 @@
 
     <div class="content">
       <div class="histogram" data-testid="histogram" #histogram></div>
-      <div class="legend">
-        <cde-color-picker-label
-          [label]="totalCellTypeLabel"
-          [(color)]="totalCellTypeColor"
-          (colorPickerOpen)="overflowVisible.set($event)"
-        >
-        </cde-color-picker-label>
-        @for (type of filteredCellTypes(); track type.name) {
+      <ng-scrollbar [appearance]="'compact'" [visibility]="'hover'">
+        <div class="legend">
           <cde-color-picker-label
-            [label]="type.name"
-            [color]="type.color"
-            [isAnchor]="type.name === selectedCellType()"
+            [label]="totalCellTypeLabel"
+            [(color)]="totalCellTypeColor"
             (colorPickerOpen)="overflowVisible.set($event)"
-            (colorChange)="updateColor(type, $event)"
-          ></cde-color-picker-label>
-        }
-      </div>
+          >
+          </cde-color-picker-label>
+          @for (type of filteredCellTypes(); track type.name) {
+            <cde-color-picker-label
+              [label]="type.name"
+              [color]="type.color"
+              [isAnchor]="type.name === selectedCellType()"
+              (colorPickerOpen)="overflowVisible.set($event)"
+              (colorChange)="updateColor(type, $event)"
+            ></cde-color-picker-label>
+          }
+        </div>
+      </ng-scrollbar>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

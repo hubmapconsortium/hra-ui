@@ -34,6 +34,7 @@ import { emptyArrayEquals } from '../../shared/empty-array-equals';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 /** Interface for representing the distance entry */
 interface DistanceEntry {
@@ -124,6 +125,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
+    NgScrollbarModule,
   ],
   providers: [
     {
