@@ -23,7 +23,7 @@ $_theme: main-theme.$theme;
 // Typography
 .wc-content {
   @include mat.typography-hierarchy(
-    mat.define-light-theme(
+    mat.m2-define-light-theme(
       (
         typography: typographies.$xx-large,
         density: 0,
