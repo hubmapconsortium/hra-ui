@@ -38,12 +38,14 @@ import {
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  IllustratorActions,
   IllustratorSelectors,
   LinkIds,
   ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
+import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
 /** Input property keys */
@@ -121,9 +123,9 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   );
 
   /** Emits when the user clicks a cell */
-  @Output('cell-click') readonly cellClick = select$(IllustratorSelectors.selectedOnClicked).pipe(
-    filterUndefined(),
-    map((node) => node.source),
+  @Output('cell-click') readonly cellClick = inject(Actions).pipe(
+    ofActionDispatched(IllustratorActions.SetClicked),
+    map(({ selectedOnClick }) => selectedOnClick.source),
   );
 
   /** Whether in full screen mode */
