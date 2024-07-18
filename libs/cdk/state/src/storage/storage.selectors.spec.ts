@@ -12,7 +12,7 @@ describe('StorageSelectors', () => {
 
   describe('get()', () => {
     it('returns the item', () => {
-      const selector = StorageSelectors.get();
+      const selector = StorageSelectors.get({});
       expect(selector(StorageId.Local, 'hello')).toEqual('world');
       expect(selector(StorageId.Session, 'session1')).toEqual('value1');
       expect(selector(StorageId.Local, 'hello2')).toEqual(undefined);
@@ -21,7 +21,7 @@ describe('StorageSelectors', () => {
 
   describe('length()', () => {
     it('returns the length item', () => {
-      const selector = StorageSelectors.length();
+      const selector = StorageSelectors.length({});
       expect(selector(StorageId.Local)).toEqual(1);
       expect(selector(StorageId.Session)).toEqual(1);
     });

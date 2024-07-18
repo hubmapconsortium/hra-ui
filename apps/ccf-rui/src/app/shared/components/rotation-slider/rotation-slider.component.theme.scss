@@ -23,7 +23,7 @@
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -31,10 +31,10 @@
 
   .ccf-rotation-slider {
     .header .reset {
-      color: mat.get-color-from-palette($foreground, main);
+      color: mat.m2-get-color-from-palette($foreground, main);
 
       &:hover {
-        background: mat.get-color-from-palette($foreground, icons-hover);
+        background: mat.m2-get-color-from-palette($foreground, icons-hover);
       }
     }
 
@@ -48,18 +48,18 @@
 
     @include slider-theme(
       '.red',
-      mat.get-color-from-palette($foreground, slider-red),
-      mat.get-color-from-palette($foreground, slider-red-light)
+      mat.m2-get-color-from-palette($foreground, slider-red),
+      mat.m2-get-color-from-palette($foreground, slider-red-light)
     );
     @include slider-theme(
       '.green',
-      mat.get-color-from-palette($foreground, slider-green),
-      mat.get-color-from-palette($foreground, slider-green-light)
+      mat.m2-get-color-from-palette($foreground, slider-green),
+      mat.m2-get-color-from-palette($foreground, slider-green-light)
     );
     @include slider-theme(
       '.blue',
-      mat.get-color-from-palette($foreground, slider-blue),
-      mat.get-color-from-palette($foreground, slider-blue-light)
+      mat.m2-get-color-from-palette($foreground, slider-blue),
+      mat.m2-get-color-from-palette($foreground, slider-blue-light)
     );
   }
 }

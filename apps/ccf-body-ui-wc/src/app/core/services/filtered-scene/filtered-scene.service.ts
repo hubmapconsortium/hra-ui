@@ -1,9 +1,8 @@
-import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 import { SpatialEntity, SpatialSceneNode, V1Service } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
-import { combineLatest, Observable, of } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { GlobalConfig } from '../../../app.component';
@@ -50,12 +49,7 @@ export class FilteredSceneService {
   ) {}
 
   private chooseScene(data?: JsonLdObj[], organs?: SpatialEntity[]): Observable<SpatialSceneNode[]> {
-    const organUrls =
-      data?.map((obj) => {
-        const block: Any = obj[SPATIAL_ENTITY_URL];
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return block?.placement.target;
-      }) ?? [];
+    const organUrls = data?.map(this.getPlacementTarget) ?? [];
     const uniqueOrganUrls = new Set(organUrls);
 
     if (uniqueOrganUrls.size > 1) {
@@ -73,13 +67,8 @@ export class FilteredSceneService {
     return of([]);
   }
 
-  private selectOrgans(data: Any[] | undefined): Set<string> {
-    const selectOrgan = (item: Any) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      item[SPATIAL_ENTITY_URL].placement.target;
-
-    const organs = (data ?? []).map(selectOrgan);
-    return new Set(organs);
+  private selectOrgans(data: JsonLdObj[] | undefined): Set<string> {
+    return new Set(data?.map(this.getPlacementTarget)) as Set<string>;
   }
 
   private filterSceneNodes(
@@ -112,5 +101,11 @@ export class FilteredSceneService {
     });
 
     return [...skins];
+  }
+
+  private getPlacementTarget(this: never, obj: JsonLdObj): string | undefined {
+    type Block = { placement: { target: string } };
+    const block = obj[SPATIAL_ENTITY_URL] as Block | undefined;
+    return block?.placement.target;
   }
 }

@@ -1,10 +1,10 @@
-import { TissueSectionResult } from 'ccf-database';
+import { TissueSection } from '@hra-api/ng-client';
 import { Shallow } from 'shallow-render';
 import { TissueSectionVisComponent } from './tissue-section-vis.component';
 import { TissueSectionVisModule } from './tissue-section-vis.module';
 
-function getTissueSections(count: number): TissueSectionResult[] {
-  const tempSections: TissueSectionResult[] = [];
+function getTissueSections(count: number): TissueSection[] {
+  const tempSections: TissueSection[] = [];
 
   for (let i = 1; i < count; i++) {
     tempSections.push({

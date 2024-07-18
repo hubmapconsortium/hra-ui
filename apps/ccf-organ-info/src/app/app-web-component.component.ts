@@ -80,7 +80,6 @@ export class AppWebComponent extends BaseWebComponent {
       parse: {
         dataSources: parseDataSources,
         highlightProviders: parseStringArray,
-        useRemoteApi: BUILTIN_PARSERS.boolean,
       },
     });
   }

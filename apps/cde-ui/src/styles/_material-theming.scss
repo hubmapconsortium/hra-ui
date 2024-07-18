@@ -65,7 +65,7 @@ $_theme: main-theme.$theme;
   @include main-section.typography(landing-page-typographies.$xx-large);
   @include create-visualization-section.typography(landing-page-typographies.$xx-large);
   @include mat.typography-hierarchy(
-    mat.define-light-theme(
+    mat.m2-define-light-theme(
       (
         typography: typographies.$xx-large,
         density: 0,

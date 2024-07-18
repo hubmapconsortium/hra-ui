@@ -11,7 +11,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { OntologyTreeNode } from 'ccf-database';
+import { OntologyTreeNode } from '@hra-api/ng-client';
 import { filter, invoke, property } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { FlatNode } from '../../../core/models/flat-node';
@@ -243,7 +243,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
 
   selectByIDs(ids: string[]): void {
     const dataNodes = this.control.dataNodes;
-    const selectedNodes: FlatNode[] = dataNodes.filter((node) => ids.indexOf(node.original.id) > -1);
+    const selectedNodes: FlatNode[] = dataNodes.filter((node) => ids.indexOf(node.original.id ?? '') > -1);
 
     if (selectedNodes?.length > 0) {
       this.selectedNodes = selectedNodes;

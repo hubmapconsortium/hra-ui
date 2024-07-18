@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Filter } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { BUILTIN_PARSERS, BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
-
-import { Filter } from 'ccf-database';
 import { environment } from '../environments/environment';
 
 function isNumber(value: unknown): value is number {

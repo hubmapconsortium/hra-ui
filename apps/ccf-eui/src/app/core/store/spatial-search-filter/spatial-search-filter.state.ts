@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
+import { SpatialSearch } from '@hra-api/ng-client';
 import { Action, State, StateContext } from '@ngxs/store';
 import { append, removeItem } from '@ngxs/store/operators';
-import { SpatialSearch } from 'ccf-database';
 import { SpatialSearchListItem } from 'ccf-shared';
-
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { AddSearch, RemoveSearch, SetSelectedSearches } from './spatial-search-filter.actions';
 

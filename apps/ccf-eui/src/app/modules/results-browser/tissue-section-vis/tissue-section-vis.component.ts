@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { TissueSectionResult } from 'ccf-database';
+import { TissueSection } from '@hra-api/ng-client';
 
 @Component({
   selector: 'ccf-tissue-section-vis',
@@ -15,7 +15,7 @@ export class TissueSectionVisComponent {
   @Input() totalTissueSections!: number;
 
   /** Tissue section data, used to determine which tissues to color on the graph */
-  @Input() tissueSections!: TissueSectionResult[];
+  @Input() tissueSections!: TissueSection[];
 
   /** Returns whether or not the given section number exists in the tissueSection array */
   tissueSectionExists(sectionNumber: number): boolean {

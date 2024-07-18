@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -10,12 +10,12 @@
   .ccf-stage-nav {
     .input-group {
       .mdc-form-field:hover {
-        color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent);
       }
     }
 
     .mdc-form-field {
-      color: mat.get-color-from-palette($foreground, contrast-text);
+      color: mat.m2-get-color-from-palette($foreground, contrast-text);
 
       .mdc-radio__outer-circle {
         border-color: white !important;
@@ -23,29 +23,29 @@
     }
 
     .mat-mdc-radio-checked {
-      color: mat.get-color-from-palette($accent);
+      color: mat.m2-get-color-from-palette($accent);
 
       .mdc-radio__outer-circle {
-        border-color: mat.get-color-from-palette($accent) !important;
+        border-color: mat.m2-get-color-from-palette($accent) !important;
       }
     }
 
     .slide-label {
-      color: mat.get-color-from-palette($foreground, contrast-text);
+      color: mat.m2-get-color-from-palette($foreground, contrast-text);
 
       &.highlighted {
-        color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent);
       }
     }
 
     .dropdown-label {
       &.dropdown {
-        color: mat.get-color-from-palette($foreground, contrast-text);
+        color: mat.m2-get-color-from-palette($foreground, contrast-text);
       }
     }
 
     .dropdown-label:hover {
-      color: mat.get-color-from-palette($accent);
+      color: mat.m2-get-color-from-palette($accent);
     }
 
     .stage-options {
@@ -54,38 +54,38 @@
 
         .mdc-form-field,
         .slide-label {
-          color: mat.get-color-from-palette($foreground, text);
+          color: mat.m2-get-color-from-palette($foreground, text);
 
           .mdc-radio__outer-circle {
-            border-color: mat.get-color-from-palette($foreground, text) !important;
+            border-color: mat.m2-get-color-from-palette($foreground, text) !important;
           }
         }
 
         .mat-mdc-radio-checked {
-          color: mat.get-color-from-palette($accent);
+          color: mat.m2-get-color-from-palette($accent);
 
           .mdc-radio__outer-circle {
-            border-color: mat.get-color-from-palette($accent) !important;
+            border-color: mat.m2-get-color-from-palette($accent) !important;
           }
         }
 
         mat-divider {
-          color: mat.get-color-from-palette($foreground, icon);
+          color: mat.m2-get-color-from-palette($foreground, icon);
         }
       }
     }
 
     .mdc-switch__track::before,
     .mdc-switch__track::after {
-      background-color: mat.get-color-from-palette($accent, 900) !important;
+      background-color: mat.m2-get-color-from-palette($accent, 900) !important;
     }
 
     .mdc-switch__shadow {
-      background-color: mat.get-color-from-palette($accent) !important;
+      background-color: mat.m2-get-color-from-palette($accent) !important;
     }
 
     .highlighted {
-      color: mat.get-color-from-palette($accent) !important;
+      color: mat.m2-get-color-from-palette($accent) !important;
     }
   }
 }

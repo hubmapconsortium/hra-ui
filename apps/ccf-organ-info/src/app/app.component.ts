@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -8,19 +8,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { AggregateResult, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable, combineLatest, of } from 'rxjs';
 import { map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
-
 import { OrganLookupService } from './core/services/organ-lookup/organ-lookup.service';
-import { SpatialSceneNode } from '@hra-api/ng-client';
 
 interface GlobalConfig {
   organIri?: string;
   side?: string;
-  sex?: 'Both' | 'Male' | 'Female';
+  sex?: FilterSexEnum;
   highlightProviders?: string[];
   donorLabel?: string;
   ruiUrl?: string;
@@ -62,11 +60,11 @@ export class AppComponent implements AfterViewInit {
   readonly organInfo$: Observable<OrganInfo | undefined>;
   readonly organ$: Observable<SpatialEntity | undefined>;
   readonly scene$: Observable<SpatialSceneNode[]>;
-  readonly stats$: Observable<AggregateResult[]>;
+  readonly stats$: Observable<AggregateCount[]>;
   readonly statsLabel$: Observable<string>;
-  readonly blocks$: Observable<TissueBlockResult[]>;
+  readonly blocks$: Observable<TissueBlock[]>;
 
-  stats: AggregateResult[] = [];
+  stats: AggregateCount[] = [];
 
   private latestConfig: Immutable<GlobalConfig> = {};
   private latestOrganInfo?: OrganInfo;
@@ -107,7 +105,7 @@ export class AppComponent implements AfterViewInit {
     this.scene$ = this.organ$.pipe(
       switchMap((organ) =>
         organ && this.latestOrganInfo
-          ? lookup.getOrganScene(this.latestOrganInfo, organ.sex)
+          ? lookup.getOrganScene(this.latestOrganInfo, organ.sex as FilterSexEnum)
           : of(EMPTY_SCENE as SpatialSceneNode[]),
       ),
     );
@@ -116,7 +114,7 @@ export class AppComponent implements AfterViewInit {
       switchMap(([organ, donorLabel]) =>
         organ && this.latestOrganInfo
           ? lookup
-              .getOrganStats(this.latestOrganInfo, organ.sex)
+              .getOrganStats(this.latestOrganInfo, organ.sex as FilterSexEnum)
               .pipe(
                 map((agg) =>
                   agg.map((result) =>
@@ -135,7 +133,7 @@ export class AppComponent implements AfterViewInit {
 
     this.blocks$ = this.organ$.pipe(
       switchMap((organ) =>
-        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, organ.sex) : of([]),
+        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, organ.sex as FilterSexEnum) : of([]),
       ),
     );
   }

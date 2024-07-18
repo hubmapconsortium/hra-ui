@@ -1,4 +1,4 @@
-import { OntologyTreeNode } from 'ccf-database';
+import { OntologyTreeNode } from '@hra-api/ng-client';
 
 /**
  * Node type used by ontology tree component.
@@ -14,14 +14,14 @@ export class FlatNode {
    * Gets this node's label.
    */
   get label(): string {
-    return this.original.label;
+    return this.original.label ?? '';
   }
 
   /**
    * Indicates whether this node has children.
    */
   get expandable(): boolean {
-    return this.original.children.length > 0;
+    return (this.original.children?.length ?? 0) > 0;
   }
 
   /**

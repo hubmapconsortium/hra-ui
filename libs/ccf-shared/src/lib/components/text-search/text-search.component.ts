@@ -9,7 +9,6 @@ import {
   Output,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { bind as Bind } from 'bind-decorator';
 import { Observable, ObservableInput, from, lastValueFrom } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, take } from 'rxjs/operators';
 
@@ -93,6 +92,27 @@ export class TextSearchComponent {
   readonly controller = new UntypedFormControl();
 
   /**
+   * Fetches the latest autocomplete suggestions for the provided search text.
+   *
+   * @param search The search text to find suggestions for
+   * @returns The found suggestions
+   */
+  private readonly getOptions = async (search: string): Promise<AutoCompleteOption[]> => {
+    const { autoCompleter, maxOptions = this.defaultMaxOptions } = this;
+    if (!autoCompleter || maxOptions < 1) {
+      return [];
+    }
+
+    const options = autoCompleter(search, maxOptions);
+    return lastValueFrom(
+      from(options).pipe(
+        take(1),
+        map((array) => (array.length <= maxOptions ? array : array.slice(0, maxOptions))),
+      ),
+    );
+  };
+
+  /**
    * Emits the latest autocomplete suggestions
    */
   readonly options = (this.controller.valueChanges as Observable<string>).pipe(
@@ -108,28 +128,6 @@ export class TextSearchComponent {
    */
   constructor(@Inject(DEFAULT_MAX_OPTIONS) private readonly defaultMaxOptions: number) {
     this.valueChange = this.controller.valueChanges;
-  }
-
-  /**
-   * Fetches the latest autocomplete suggestions for the provided search text.
-   *
-   * @param search The search text to find suggestions for
-   * @returns The found suggestions
-   */
-  @Bind
-  private async getOptions(search: string): Promise<AutoCompleteOption[]> {
-    const { autoCompleter, maxOptions = this.defaultMaxOptions } = this;
-    if (!autoCompleter || maxOptions < 1) {
-      return [];
-    }
-
-    const options = autoCompleter(search, maxOptions);
-    return lastValueFrom(
-      from(options).pipe(
-        take(1),
-        map((array) => (array.length <= maxOptions ? array : array.slice(0, maxOptions))),
-      ),
-    );
   }
 
   /**

@@ -10,7 +10,7 @@ export class StorageSelectors {
    * @returns (id,key) of the given storage id else undefined
    */
   @Selector([StorageState])
-  static get(): (id: StorageId, key: string) => string | undefined {
+  static get(_state: unknown): (id: StorageId, key: string) => string | undefined {
     return (id, key) => StorageState.getStorage(id).getItem(key) ?? undefined;
   }
   /**
@@ -20,7 +20,7 @@ export class StorageSelectors {
   @Selector([StorageState])
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore Allow selector name
-  static length(): (id: StorageId) => number | undefined {
+  static length(_state: unknown): (id: StorageId) => number | undefined {
     return (id) => StorageState.getStorage(id).length;
   }
 }

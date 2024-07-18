@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -16,7 +16,7 @@
 
       .swiper-button-disabled,
       .swiper-button-lock {
-        color: mat.get-color-from-palette($foreground, disabled);
+        color: mat.m2-get-color-from-palette($foreground, disabled);
       }
     }
 
@@ -46,7 +46,7 @@
       }
 
       .link {
-        background-color: mat.get-color-from-palette($background, hover-background);
+        background-color: mat.m2-get-color-from-palette($background, hover-background);
 
         &,
         &:link,
