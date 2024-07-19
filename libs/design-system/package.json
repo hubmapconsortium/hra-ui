@@ -4,8 +4,7 @@
   "peerDependencies": {
     "@angular/common": "18.0.7",
     "@angular/core": "18.0.7",
-    "@hra-ui/cdk": "0.0.1",
-    "@angular/material": "18.0.6"
+    "@hra-ui/cdk": "0.0.1"
   },
   "dependencies": {},
   "sideEffects": false
