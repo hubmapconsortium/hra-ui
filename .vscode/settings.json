@@ -10,6 +10,7 @@
     "dashboard",
     "ftu-ui",
     "services",
-    "ccf-organ-info"
+    "ccf-organ-info",
+    "design-system"
   ]
 }
