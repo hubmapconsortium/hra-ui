@@ -14,7 +14,6 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -34,6 +33,7 @@ import {
 } from '@hra-ui/cde-visualization';
 import { FooterComponent } from '@hra-ui/design-system/footer';
 import { ParseError } from 'papaparse';
+
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { HeaderComponent } from '../../components/header/header.component';
@@ -71,7 +71,6 @@ function optionalValue<T>(): T | null {
 
     MatButtonModule,
     MatButtonToggleModule,
-    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -91,10 +90,10 @@ export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
 
-  /** Use vertical dividers in file upload cards */
-  readonly useVerticalDividers = signal(false);
   /** Use vertical toggle buttons in color map card */
   readonly useVerticalToggleButtons = signal(false);
+
+  readonly nodesSet = signal(false);
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
@@ -219,6 +218,7 @@ export class CreateVisualizationPageComponent {
     this.visualizationForm.patchValue({
       nodeTargetValue: defaultCellType,
     });
+    this.nodesSet.set(true);
   }
 
   /**
@@ -227,6 +227,7 @@ export class CreateVisualizationPageComponent {
   clearNodes(): void {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
+    this.nodesSet.set(false);
   }
 
   /**
@@ -328,10 +329,9 @@ export class CreateVisualizationPageComponent {
   }
 
   /**
-   * Checks window size and changes divider and toggle button settings accordingly
+   * Checks window size and changes toggle button settings accordingly
    */
   private initViewportResizeObserver(): void {
-    const VERTICAL_DIVIDERS_MIN_WIDTH = 1920;
     const VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH = 544;
 
     const el: HTMLElement = inject(ElementRef).nativeElement;
@@ -341,13 +341,11 @@ export class CreateVisualizationPageComponent {
       this.ngZone.run(() => {
         const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
         const width = box.inlineSize;
-        this.useVerticalDividers.set(width >= VERTICAL_DIVIDERS_MIN_WIDTH);
         this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
       });
     });
 
     const initialWidth = el.getBoundingClientRect().width;
-    this.useVerticalDividers.set(initialWidth >= VERTICAL_DIVIDERS_MIN_WIDTH);
     this.useVerticalToggleButtons.set(initialWidth < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
 
     observer.observe(el);

@@ -4,56 +4,31 @@
   display: block;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-size: 100% 100%;
+  min-width: 545px;
 
   .content {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    padding: 4.5rem 26rem 6.5rem 22rem;
-    gap: 2rem;
+    padding: 3rem 1rem 6rem;
+    gap: 3rem;
 
-    @include breakpoints.breakpoint('xx-small', 'x-small') {
-      padding: 0.5rem 1rem 3rem;
-      gap: 1.5rem;
-    }
-
-    @include breakpoints.breakpoint('small') {
-      padding: 1rem 1.5rem 6.5rem;
-    }
-
-    @include breakpoints.breakpoint('medium') {
+    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
       padding: 1rem 4.5rem 6.5rem;
-    }
-
-    @include breakpoints.breakpoint('large') {
-      padding: 2rem 4.5rem 6.5rem;
-    }
-
-    @include breakpoints.breakpoint('x-large') {
-      padding: 2rem 10rem 8rem;
-    }
-
-    @include breakpoints.breakpoint('xx-large') {
-      padding: 3rem 14rem 8rem;
     }
   }
 
   .page-nav {
+    margin-bottom: -0.6rem;
+
     .nav {
       display: flex;
       align-items: center;
-      height: 2.0625rem;
-      margin-bottom: 2rem;
-      gap: 1rem;
-
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        margin-bottom: 0.5rem;
-        gap: 0.25rem;
-      }
+      margin-bottom: 1.5rem;
 
       & > :not(mat-icon) {
-        padding: 0.5rem;
+        padding: 0.375rem 0.5rem;
       }
     }
 
@@ -65,179 +40,104 @@
   .card {
     box-shadow: 0 0.3125rem 1rem 0 rgba(32, 30, 61, 0.24);
     border-radius: 1rem;
-    padding: 3.5rem 4rem;
+    padding: 2rem;
 
-    @include breakpoints.breakpoint('xx-small') {
-      padding: 1rem;
-    }
-
-    @include breakpoints.breakpoint('x-small', 'small') {
-      padding: 1.5rem;
-    }
-
-    @include breakpoints.breakpoint('medium') {
-      padding: 1.5rem 2rem 3rem;
-    }
-
-    @include breakpoints.breakpoint('large') {
-      padding: 2rem 2.5rem 3rem;
-    }
-
-    @include breakpoints.breakpoint('x-large') {
-      padding: 3rem 3.5rem 3rem;
-    }
-
-    @include breakpoints.breakpoint('x-large', 'xx-large') {
+    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
       padding: 3rem 3.5rem 3rem;
     }
 
     .header {
       display: flex;
-      align-items: center;
       margin-bottom: 2rem;
-      gap: 1rem;
+      justify-content: space-between;
 
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        margin-bottom: 1rem;
-        gap: 0.5rem;
+      .header-content {
+        display: flex;
       }
 
       .step-number {
         display: flex;
-        width: 3.5rem;
-        height: 3.5rem;
-        line-height: 3.5rem;
+        width: 2rem;
+        height: 2rem;
         border-radius: 50%;
         justify-content: center;
         align-items: center;
-
-        @include breakpoints.breakpoint('xx-small', 'x-small') {
-          width: 2rem;
-          height: 2rem;
-          line-height: 2rem;
-        }
+        margin-right: 1rem;
+        font-size: 1rem;
       }
 
-      mat-icon {
-        flex-shrink: 0;
+      .info {
+        margin: 0.25rem;
       }
     }
   }
 
   .data-upload {
-    display: grid;
-    grid:
-      'header header header header'
-      'subheader-1 subheader-1 divider subheader-2'
-      'subheader-required-columns subheader-optional-columns divider use-template'
-      'required-columns optional-columns divider .'
-      'upload-csv upload-csv divider .'
-      'upload-errors upload-errors . .';
-    column-gap: 6.375rem;
-
-    @include breakpoints.breakpoint('xx-small', 'small') {
-      grid:
-        'header'
-        'subheader-1'
-        'subheader-required-columns'
-        'required-columns'
-        'subheader-optional-columns'
-        'optional-columns'
-        'upload-csv'
-        'upload-errors'
-        'divider'
-        'subheader-2'
-        'use-template';
-    }
-
-    @include breakpoints.breakpoint('x-small', 'medium', 'large', 'x-large', 'xx-large') {
-      grid:
-        'header header header'
-        'subheader-1 subheader-1 subheader-1'
-        'subheader-required-columns subheader-optional-columns .'
-        'required-columns optional-columns .'
-        'upload-csv upload-csv upload-csv'
-        'upload-errors upload-errors upload-errors'
-        'divider divider divider'
-        'subheader-2 subheader-2 subheader-2'
-        'use-template use-template use-template'
-        / auto auto 1fr;
-      column-gap: 6.375rem;
+    &.loaded {
+      .upload-content {
+        grid:
+          '. subheader-required-columns gap subheader-optional-columns'
+          '. required-columns gap optional-columns'
+          '. upload-csv upload-csv upload-csv'
+          '. upload-errors upload-errors upload-errors'
+          '. use-template use-template use-template'
+          / 3rem min-content 80px min-content;
+      }
     }
 
     .header {
-      grid-area: header;
+      width: 100%;
     }
 
-    .subheader-1 {
-      grid-area: subheader-1;
-      margin-bottom: 1.5rem;
+    .upload-content {
+      display: grid;
+      grid:
+        '. subheader-required-columns gap subheader-optional-columns'
+        '. required-columns gap optional-columns'
+        '. upload-errors upload-errors upload-errors'
+        '. upload-csv gap2 use-template'
+        / 3rem min-content 80px min-content;
 
-      @include breakpoints.breakpoint('xx-small') {
-        margin-bottom: 0.75rem;
+      .subheader-required-columns {
+        grid-area: subheader-required-columns;
       }
 
-      @include breakpoints.breakpoint('x-small') {
-        margin-bottom: 1rem;
-      }
-    }
-
-    .subheader-required-columns {
-      grid-area: subheader-required-columns;
-    }
-
-    .subheader-optional-columns {
-      grid-area: subheader-optional-columns;
-    }
-
-    .subheader-required-columns,
-    .subheader-optional-columns {
-      margin-bottom: 0.5rem;
-
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        margin-bottom: 0;
-      }
-    }
-
-    .required-columns {
-      grid-area: required-columns;
-    }
-
-    .optional-columns {
-      grid-area: optional-columns;
-    }
-
-    .required-columns,
-    .optional-columns {
-      margin-bottom: 1.5rem;
-
-      @include breakpoints.breakpoint('xx-small') {
-        margin-bottom: 0.75rem;
+      .subheader-optional-columns {
+        grid-area: subheader-optional-columns;
       }
 
-      @include breakpoints.breakpoint('x-small') {
-        margin-bottom: 1rem;
-      }
-    }
-
-    .upload-csv {
-      grid-area: upload-csv;
-    }
-
-    .divider {
-      grid-area: divider;
-    }
-
-    .subheader-2 {
-      grid-area: subheader-2;
-      margin-bottom: 1rem;
-
-      @include breakpoints.breakpoint('xx-small') {
-        margin-bottom: 0rem;
+      .required-columns {
+        grid-area: required-columns;
+        text-wrap: nowrap;
       }
 
-      @include breakpoints.breakpoint('x-small') {
-        margin-bottom: 0.25rem;
+      .optional-columns {
+        grid-area: optional-columns;
+        text-wrap: nowrap;
+      }
+
+      .gap {
+        grid-area: gap;
+      }
+
+      .gap2 {
+        grid-area: gap2;
+      }
+
+      .required-columns,
+      .optional-columns {
+        margin-bottom: 3rem;
+      }
+
+      .upload-csv {
+        --mdc-filled-button-label-text-size: 1rem;
+        --mat-filled-button-horizontal-padding: 0.5rem;
+        --mdc-filled-button-label-text-tracking: 0.02em;
+        --mat-filled-button-icon-spacing: 0.25rem;
+        grid-area: upload-csv;
+        display: flex;
+        align-items: center;
+        height: 40px;
       }
     }
   }
@@ -339,18 +239,21 @@
   .data-upload,
   .color-config {
     .use-template {
+      --mdc-text-button-label-text-size: 1rem;
+      --mat-text-button-with-icon-horizontal-padding: 0rem;
+      --mdc-text-button-label-text-tracking: 0.02em;
+      --mat-text-button-icon-spacing: 0.25rem;
       grid-area: use-template;
       width: fit-content;
-      height: 2.6875rem;
+      height: 40px;
+      margin-left: -0.5rem;
 
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        height: 2rem;
+      mat-icon {
+        font-size: 1.5rem;
+        height: 1.5rem;
+        width: 1.5rem;
       }
     }
-  }
-
-  h3 {
-    margin-bottom: 0.75rem;
   }
 
   h4 {
@@ -405,7 +308,6 @@
     display: flex;
     flex-direction: column;
     grid-area: upload-errors;
-    margin-top: 1.5rem;
   }
 }
 

@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 @use '../../../styles/constants/palettes' as palettes;
 
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 400);
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600);
 $blue-theme: mat.m2-define-light-theme(
   (
     color: (
@@ -16,10 +16,16 @@ $blue-theme: mat.m2-define-light-theme(
   display: block;
   @include mat.button-color($blue-theme);
 
+  mat-icon {
+    --mat-filled-button-icon-offset: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+  }
+
   .upload-success {
     display: flex;
     gap: 1rem;
-    flex-direction: column;
 
     .filename span {
       display: block;

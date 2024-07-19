@@ -10,10 +10,12 @@
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <div class="card data-upload">
+  <div class="card data-upload" [class.loaded]="nodesSet()">
     <h2 class="header">
-      <span class="step-number">1</span>
-      <span class="card-title">Format and Upload Data</span>
+      <div class="header-content">
+        <div class="step-number">1</div>
+        <span class="card-title">Format and Upload Data</span>
+      </div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -40,52 +42,54 @@
       </ng-template>
     </h2>
 
-    <h3 class="subheader-1">Upload Cell Type Table</h3>
-    <h4 class="subheader-required-columns">Required Columns</h4>
-    <h4 class="subheader-optional-columns">Optional Columns</h4>
-    <span class="required-columns">X, Y, and Cell Type</span>
-    <span class="optional-columns">Z and Cell Ontology ID</span>
+    <div class="upload-content">
+      <span class="subheader-required-columns">Required Columns:</span>
+      <span class="subheader-optional-columns">Optional Columns:</span>
+      <span class="required-columns">X, Y, and Cell Type</span>
+      <span class="optional-columns">Z and Cell Ontology ID</span>
 
-    <cde-file-upload
-      class="upload-csv"
-      accept="text/csv,.csv"
-      [loader]="nodesLoader"
-      [options]="nodesLoaderOptions"
-      (loadStarted)="clearNodes()"
-      (loadCompleted)="setNodes($event[0])"
-      (loadCancelled)="clearNodes()"
-      (loadErrored)="nodesLoadError = $event"
-      #nodesFileUpload
-    >
-    </cde-file-upload>
+      <cde-file-upload
+        class="upload-csv"
+        accept="text/csv,.csv"
+        [loader]="nodesLoader"
+        [options]="nodesLoaderOptions"
+        (loadStarted)="clearNodes()"
+        (loadCompleted)="setNodes($event[0])"
+        (loadCancelled)="clearNodes()"
+        (loadErrored)="nodesLoadError = $event"
+        #nodesFileUpload
+      >
+      </cde-file-upload>
 
-    @if (nodesErrorMessage) {
-      <div class="upload-errors">
-        <span>{{ nodesErrorMessage }}</span>
-        <span>Please upload a CSV file with the required columns.</span>
-      </div>
-    }
+      @if (nodesErrorMessage) {
+        <div class="upload-errors">
+          <span>{{ nodesErrorMessage }}</span>
+          <span>Please upload a CSV file with the required columns.</span>
+        </div>
+      }
 
-    <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
-
-    <h3 class="subheader-2">Cell Type Table Template</h3>
-    <a
-      mat-button
-      class="use-template"
-      color="primary"
-      href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Use Template
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
+      <div class="gap"></div>
+      <div class="gap2"></div>
+      <a
+        mat-button
+        class="use-template"
+        color="primary"
+        href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Use Template
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    </div>
   </div>
 
   <div class="card anchor-selection">
     <h2 class="header">
-      <span class="step-number">2</span>
-      <span class="card-title">Optional: Select Anchor Cell Type</span>
+      <div class="header-content">
+        <div class="step-number">2</div>
+        <span class="card-title">Optional: Select Anchor Cell Type</span>
+      </div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -133,8 +137,10 @@
 
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
-      <span class="step-number">3</span>
-      <div class="card-title">Optional: Add Metadata</div>
+      <div class="header-content">
+        <div class="step-number">3</div>
+        <div class="card-title">Optional: Add Metadata</div>
+      </div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -205,8 +211,10 @@
 
   <div class="color-config card">
     <h2 class="header">
-      <span class="step-number">4</span>
-      <div class="card-title">Optional: Configure Color Map</div>
+      <div class="header-content">
+        <div class="step-number">4</div>
+        <div class="card-title">Optional: Configure Color Map</div>
+      </div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -260,8 +268,6 @@
         </div>
       }
 
-      <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
-
       <h3 class="template">Color Map Template</h3>
       <a
         mat-button
@@ -279,8 +285,10 @@
 
   <div class="card visualize">
     <h2 class="header">
-      <span class="step-number">5</span>
-      <div class="card-title">Visualize Cell Distance Data</div>
+      <div class="header-content">
+        <div class="step-number">5</div>
+        <div class="card-title">Visualize Cell Distance Data</div>
+      </div>
       <mat-icon
         class="material-symbols-rounded info"
         cdkOverlayOrigin

@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use '../../../styles/constants/palettes' as palettes;
+@use '../../../styles/breakpoints' as breakpoints;
 
 $gray-palette: map.get(palettes.$palettes, 'gray');
 
@@ -80,6 +81,8 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
 
 @mixin typography($theme) {
   cde-create-visualization-page {
+    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
+    }
   }
 }
 
