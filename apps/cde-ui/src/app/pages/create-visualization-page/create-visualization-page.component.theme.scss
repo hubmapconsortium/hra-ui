@@ -4,6 +4,7 @@
 @use '../../../styles/breakpoints' as breakpoints;
 
 $gray-palette: map.get(palettes.$palettes, 'gray');
+$blue-palette: map.get(palettes.$palettes, 'blue');
 
 @mixin color($theme) {
   cde-create-visualization-page {
@@ -12,10 +13,6 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
     h3,
     h4 {
       color: mat.get-theme-color($theme, accent, darker);
-    }
-
-    mat-form-field {
-      --mdc-filled-text-field-container-color: white;
     }
 
     .page-nav .nav {
@@ -76,14 +73,43 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
 
   .info-tooltip-panel {
     background-color: white;
+    color: map.get($gray-palette, 600);
+  }
+
+  mat-form-field {
+    --mdc-filled-text-field-container-color: #{map.get($blue-palette, 500)};
+    --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
+    --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
+    --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
+    --mat-select-focused-arrow-color: #{mat.get-theme-color($theme, primary, darker)};
+  }
+
+  .mat-form-field-hide-placeholder {
+    --mdc-filled-text-field-container-color: white;
+  }
+
+  .select-panel {
+    --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, 500)};
+    --mat-option-label-text-color: #{map.get($gray-palette, 700)};
+    --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, 900)};
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{mat.get-theme-color($theme, primary, 700)};
+  }
+
+  .visualize-notification {
+    color: #{map.get($blue-palette, 800)};
+  }
+
+  .upload-errors {
+    .error-message {
+      color: #{mat.get-theme-color($theme, primary, darker)};
+    }
+    .error-instructions {
+      color: #{map.get($gray-palette, 700)};
+    }
   }
 }
 
 @mixin typography($theme) {
-  cde-create-visualization-page {
-    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
-    }
-  }
 }
 
 @mixin theme($theme) {

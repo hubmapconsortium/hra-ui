@@ -34,12 +34,12 @@ $_theme: main-theme.$theme;
 // Typography
 @include breakpoints.breakpoint('xx-small') {
   @include main-section.typography(landing-page-typographies.$xx-small);
-  @include create-visualization-section.typography(creation-page-typographies.$xx-small);
+  @include create-visualization-section.typography(creation-page-typographies.$small);
 }
 
 @include breakpoints.breakpoint('x-small') {
   @include main-section.typography(landing-page-typographies.$x-small);
-  @include create-visualization-section.typography(creation-page-typographies.$x-small);
+  @include create-visualization-section.typography(creation-page-typographies.$small);
 }
 
 @include breakpoints.breakpoint('small', 'medium') {
@@ -54,17 +54,17 @@ $_theme: main-theme.$theme;
 
 @include breakpoints.breakpoint('x-large') {
   @include main-section.typography(landing-page-typographies.$x-large);
-  @include create-visualization-section.typography(creation-page-typographies.$x-large);
+  @include create-visualization-section.typography(creation-page-typographies.$large);
 }
 
 @include breakpoints.breakpoint('xx-large', 'xxx-large') {
   @include main-section.typography(landing-page-typographies.$xx-large);
-  @include create-visualization-section.typography(creation-page-typographies.$xx-large);
+  @include create-visualization-section.typography(creation-page-typographies.$large);
 }
 
 .mat-typography:has(cde-visualization-page) {
   @include main-section.typography(landing-page-typographies.$xx-large);
-  @include create-visualization-section.typography(landing-page-typographies.$xx-large);
+  @include create-visualization-section.typography(creation-page-typographies.$large);
   @include mat.typography-hierarchy(
     mat.m2-define-light-theme(
       (

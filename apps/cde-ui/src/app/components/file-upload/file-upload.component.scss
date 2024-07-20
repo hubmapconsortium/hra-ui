@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 @use '../../../styles/constants/palettes' as palettes;
 
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600);
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 800, 900);
 $blue-theme: mat.m2-define-light-theme(
   (
     color: (
@@ -25,18 +25,27 @@ $blue-theme: mat.m2-define-light-theme(
 
   .upload-success {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 5rem;
+
+    .filename {
+      min-width: 151px;
+    }
 
     .filename span {
       display: block;
     }
 
+    .loaded-label {
+      color: mat.get-theme-color($blue-theme, primary, 900);
+    }
+
     .file-name {
-      font-weight: 300;
-      line-height: normal;
+      color: mat.get-theme-color($blue-theme, primary, 800);
     }
 
     .remove-file {
+      --mdc-filled-button-label-text-color: #{mat.get-theme-color($blue-theme, primary, 900)};
       padding: 0.25rem 8px;
       width: fit-content;
     }
@@ -46,13 +55,5 @@ $blue-theme: mat.m2-define-light-theme(
     font-weight: 500;
     font-size: 1.5rem;
     line-height: 2.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .upload-success {
-      flex-direction: row;
-      gap: 2rem;
-      align-items: flex-end;
-    }
   }
 }

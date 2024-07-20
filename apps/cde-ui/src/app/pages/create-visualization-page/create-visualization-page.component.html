@@ -63,8 +63,8 @@
 
       @if (nodesErrorMessage) {
         <div class="upload-errors">
-          <span>{{ nodesErrorMessage }}</span>
-          <span>Please upload a CSV file with the required columns.</span>
+          <span class="error-message">{{ nodesErrorMessage }}</span>
+          <span class="error-instructions">Please upload a CSV file with the required columns.</span>
         </div>
       }
 
@@ -243,7 +243,7 @@
 
     <mat-button-toggle-group [vertical]="useVerticalToggleButtons()" formControlName="colorMapType">
       <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Custom Color Map</mat-button-toggle>
+      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
@@ -263,8 +263,8 @@
 
       @if (colorErrorMessage) {
         <div class="upload-errors">
-          <span>{{ colorErrorMessage }}</span>
-          <span>Please upload a CSV file with the required columns.</span>
+          <span class="error-message">{{ colorErrorMessage }}</span>
+          <span class="error-instructions">Please upload a CSV file with the required columns.</span>
         </div>
       }
 
@@ -318,7 +318,7 @@
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </button>
     } @else {
-      <span>Please format and upload data to explore a visualization.</span>
+      <span class="visualize-notification">Please format and upload data to explore a visualization.</span>
     }
   </div>
 </form>

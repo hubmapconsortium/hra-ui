@@ -2,9 +2,10 @@
 
 :host {
   display: block;
-  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
-  background-size: 100% 100%;
   min-width: 545px;
+  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
+  background-position: center;
+  background-size: cover;
 
   .content {
     display: flex;
@@ -14,7 +15,7 @@
     padding: 3rem 1rem 6rem;
     gap: 3rem;
 
-    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
+    @include breakpoints.breakpoint('large', 'x-large', 'xx-large', 'xxx-large') {
       padding: 1rem 4.5rem 6.5rem;
     }
   }
@@ -38,11 +39,11 @@
   }
 
   .card {
-    box-shadow: 0 0.3125rem 1rem 0 rgba(32, 30, 61, 0.24);
+    box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
     border-radius: 1rem;
     padding: 2rem;
 
-    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large') {
+    @include breakpoints.breakpoint('large', 'x-large', 'xx-large', 'xxx-large') {
       padding: 3rem 3.5rem 3rem;
     }
 
@@ -79,9 +80,15 @@
           '. subheader-required-columns gap subheader-optional-columns'
           '. required-columns gap optional-columns'
           '. upload-csv upload-csv upload-csv'
-          '. upload-errors upload-errors upload-errors'
           '. use-template use-template use-template'
           / 3rem min-content 80px min-content;
+      }
+      .use-template {
+        margin-left: 0;
+      }
+
+      .upload-csv {
+        margin-bottom: 1.5rem;
       }
     }
 
@@ -143,41 +150,33 @@
   }
 
   .anchor-selection {
+    display: flex;
+    flex-direction: column;
+
     .header {
       margin-bottom: 0.5rem;
     }
 
     .select-form {
-      margin: 1.5rem 0;
+      margin: 1.5rem 3rem;
       max-width: 28rem;
-
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        margin: 1.25rem 0;
-      }
+      width: auto;
     }
   }
 
   .metadata {
     display: grid;
-    grid: 'header header header';
-    column-gap: 5rem;
+    grid: 'header';
+    gap: 0.5rem;
 
-    @include breakpoints.breakpoint('xx-small', 'x-small', 'small', 'medium') {
-      grid: 'header';
-    }
-
-    @include breakpoints.breakpoint('large', 'x-large', 'xx-large') {
+    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large', 'xxx-large') {
       grid: 'header header';
       column-gap: 2.5rem;
     }
 
     .header {
       grid-area: header;
-      margin-bottom: 2rem;
-
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        margin-bottom: 0.5rem;
-      }
+      margin-bottom: 0;
     }
 
     mat-form-field {
@@ -186,38 +185,33 @@
   }
 
   .color-config {
-    @include breakpoints.breakpoint('xxx-large') {
-      display: grid;
-      grid:
-        'header header header .'
-        'toggle toggle . .'
-        'upload-colormap divider template .'
-        'upload-colormap divider use-template .'
-        'upload-errors upload-errors . .'
-        / auto auto auto 1fr;
-      column-gap: 6.5rem;
+    // @include breakpoints.breakpoint('xxx-large') {
+    //   display: grid;
+    //   grid:
+    //     'header header header .'
+    //     'toggle toggle . .'
+    //     'upload-colormap divider template .'
+    //     'upload-colormap divider use-template .'
+    //     'upload-errors upload-errors . .'
+    //     / auto auto auto 1fr;
+    //   column-gap: 6.5rem;
 
-      mat-button-toggle-group {
-        width: fit-content;
-      }
-    }
+    //   mat-button-toggle-group {
+    //     width: fit-content;
+    //   }
+    // }
 
     mat-button-toggle-group {
       grid-area: toggle;
-      --mat-standard-button-toggle-label-text-size: 14px;
-      --mat-standard-button-toggle-height: 40px;
+      width: 100%;
+      --mat-standard-button-toggle-label-text-size: 1rem;
+      --mat-standard-button-toggle-height: 2.5rem;
+      --mat-standard-button-toggle-shape: 1rem;
+      --mat-standard-button-toggle-label-text-weight: 500;
 
-      ::ng-deep .mat-button-toggle-label-content {
-        padding: 0 1.5rem;
-      }
-
-      @include breakpoints.breakpoint('xx-small', 'x-small') {
-        width: 100%;
-        max-width: 23.75rem;
-      }
-
-      @include breakpoints.breakpoint('xx-small', 'x-small', 'small') {
-        --mat-standard-button-toggle-label-text-size: 11px;
+      mat-button-toggle {
+        width: 50%;
+        border: none;
       }
     }
 
@@ -256,28 +250,41 @@
     }
   }
 
-  h4 {
-    margin-bottom: 0;
+  .visualize {
+    .visualize-notification,
+    .visualize-button {
+      display: flex;
+      margin-left: 3rem;
+      --mdc-filled-button-label-text-size: 1rem;
+      --mat-filled-button-horizontal-padding: 1.5rem;
+      --mdc-filled-button-label-text-tracking: 0.02em;
+      --mat-filled-button-icon-spacing: 0.75rem;
+      --mat-filled-button-icon-offset: -6px;
+
+      mat-icon {
+        font-size: 1.5rem;
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
   }
 
   mat-form-field {
-    width: 100%;
-    max-width: 23.75rem;
-    box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
-    border-radius: 1rem;
-
     --mat-form-field-container-height: 3.625rem;
     --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
     --mat-form-field-filled-with-label-container-padding-bottom: 0;
+    box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
+    border-radius: 1rem;
+    max-width: 280px;
+    width: 100%;
 
-    @include breakpoints.breakpoint('xx-small', 'x-small') {
-      --mat-form-field-container-height: 2.5rem;
-      --mat-form-field-filled-with-label-container-padding-top: 1rem;
-      --mat-form-field-filled-with-label-container-padding-bottom: 0;
+    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large', 'xxx-large') {
+      max-width: 100%;
     }
 
     ::ng-deep .mat-mdc-text-field-wrapper {
       border-radius: 1rem;
+      padding: 0 1.5rem;
     }
 
     ::ng-deep .mat-mdc-form-field-subscript-wrapper {
@@ -292,22 +299,11 @@
     }
   }
 
-  .mat-divider-horizontal {
-    margin: 2rem 0;
-
-    @include breakpoints.breakpoint('xx-small') {
-      margin: 1rem 0;
-    }
-
-    @include breakpoints.breakpoint('x-small') {
-      margin: 1.5rem 0;
-    }
-  }
-
   .upload-errors {
     display: flex;
     flex-direction: column;
     grid-area: upload-errors;
+    margin-bottom: 3rem;
   }
 }
 
@@ -316,7 +312,7 @@
   flex-direction: column;
   max-width: 448px;
   min-width: 336px;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d;
   border-radius: 0.5rem;
 
@@ -326,6 +322,12 @@
 }
 
 ::ng-deep .select-panel {
+  --mat-option-label-text-size: 1rem;
+  --mat-option-label-text-line-height: 1.5rem;
+  --mat-option-label-text-weight: 500;
+  --mat-option-label-text-font: Metropolis;
+  --mat-option-label-text-tracking: normal;
   border-radius: 0.5rem !important;
-  box-shadow: 0px 0.3125rem 1rem 0px #201e3d3d !important;
+  box-shadow: 0px 5px 4px 0px #201e3d29 !important;
+  padding: 1rem 0 !important;
 }
