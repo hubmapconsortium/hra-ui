@@ -12,10 +12,9 @@
 
   <div class="card data-upload">
     <h2 class="header">
-      <div class="header-content">
-        <div class="step-number">1</div>
-        <span class="card-title">Format and Upload Data</span>
-      </div>
+      <span class="step-number">1</span>
+      <span class="card-title">Format and Upload Data</span>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -41,37 +40,33 @@
         </p>
       </ng-template>
     </h2>
+    <span class="subheader-required-columns">Required Columns:</span>
+    <span class="subheader-optional-columns">Optional Columns:</span>
+    <span class="required-columns">X, Y, and Cell Type</span>
+    <span class="optional-columns">Z and Cell Ontology ID</span>
 
-    <div class="upload-content">
-      <span class="subheader-required-columns">Required Columns:</span>
-      <span class="subheader-optional-columns">Optional Columns:</span>
-      <span class="required-columns">X, Y, and Cell Type</span>
-      <span class="optional-columns">Z and Cell Ontology ID</span>
-
-      <cde-file-upload
-        class="upload-csv"
-        [class.uploaded]="hasValidNodes()"
-        accept="text/csv,.csv"
-        [loader]="nodesLoader"
-        [options]="nodesLoaderOptions"
-        (loadStarted)="clearNodes()"
-        (loadCompleted)="setNodes($event[0])"
-        (loadCancelled)="clearNodes()"
-        (loadErrored)="nodesLoadError = $event"
-        [nodesErrorMessage]="nodesErrorMessage"
-        [nodesErrorInstructions]="nodesErrorInstructions"
-        #nodesFileUpload
-      >
-      </cde-file-upload>
-    </div>
+    <cde-file-upload
+      class="upload-csv"
+      [class.uploaded]="hasValidNodes()"
+      accept="text/csv,.csv"
+      [loader]="nodesLoader"
+      [options]="nodesLoaderOptions"
+      (loadStarted)="clearNodes()"
+      (loadCompleted)="setNodes($event[0])"
+      (loadCancelled)="clearNodes()"
+      (loadErrored)="nodesLoadError = $event"
+      [nodesErrorMessage]="nodesErrorMessage"
+      [nodesErrorInstructions]="nodesErrorActionMessage"
+      #nodesFileUpload
+    >
+    </cde-file-upload>
   </div>
 
   <div class="card anchor-selection">
     <h2 class="header">
-      <div class="header-content">
-        <div class="step-number">2</div>
-        <span class="card-title">Optional: Select Anchor Cell Type</span>
-      </div>
+      <span class="step-number">2</span>
+      <span class="card-title">Optional: Select Anchor Cell Type</span>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -119,10 +114,9 @@
 
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
-      <div class="header-content">
-        <div class="step-number">3</div>
-        <div class="card-title">Optional: Add Metadata</div>
-      </div>
+      <span class="step-number">3</span>
+      <div class="card-title">Optional: Add Metadata</div>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -193,10 +187,9 @@
 
   <div class="color-config card">
     <h2 class="header">
-      <div class="header-content">
-        <div class="step-number">4</div>
-        <div class="card-title">Optional: Configure Color Map</div>
-      </div>
+      <span class="step-number">4</span>
+      <div class="card-title">Optional: Configure Color Map</div>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -242,7 +235,7 @@
         data-testid="color-map-upload"
         #customColorMapFileUpload
         [colorErrorMessage]="colorErrorMessage"
-        [colorErrorInstructions]="colorErrorInstructions"
+        [colorErrorInstructions]="colorErrorActionMessage"
       >
       </cde-file-upload>
     }
@@ -250,10 +243,9 @@
 
   <div class="card visualize">
     <h2 class="header">
-      <div class="header-content">
-        <div class="step-number">5</div>
-        <div class="card-title">Visualize Cell Distance Data</div>
-      </div>
+      <span class="step-number">5</span>
+      <div class="card-title">Visualize Cell Distance Data</div>
+      <div class="filler"></div>
       <mat-icon
         class="material-symbols-rounded info"
         cdkOverlayOrigin

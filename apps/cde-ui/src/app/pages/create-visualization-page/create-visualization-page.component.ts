@@ -171,17 +171,12 @@ export class CreateVisualizationPageComponent {
   }
 
   /** Error instructions for node upload error */
-  get nodesErrorInstructions(): string {
-    return this.nodesLoadError && this.nodesLoadError.type === 'type-error'
-      ? 'Please upload a cell type table CSV file.'
-      : 'Please upload a CSV file with the required columns.';
+  get nodesErrorActionMessage(): string {
+    return this.getErrorActionMessage(this.nodesLoadError, 'cell type table');
   }
-
   /** Error message for color map upload error */
-  get colorErrorInstructions(): string {
-    return this.customColorMapLoadError && this.customColorMapLoadError.type === 'type-error'
-      ? 'Please upload a color map CSV file.'
-      : 'Please upload a CSV file with the required columns.';
+  get colorErrorActionMessage(): string {
+    return this.getErrorActionMessage(this.customColorMapLoadError, 'color map');
   }
 
   /** Current nodes */
@@ -377,5 +372,22 @@ export class CreateVisualizationPageComponent {
     }
 
     return message;
+  }
+
+  /**
+   * Gets error action message
+   * @param error File load error
+   * @param fileDescription File type of required upload
+   * @returns error action message
+   */
+  private getErrorActionMessage(error: ExtendedFileLoadError | undefined, fileDescription: string): string {
+    switch (error?.type) {
+      case undefined:
+        return '';
+      case 'type-error':
+        return `Please upload a ${fileDescription} CSV file.`;
+      default:
+        return 'Please upload a CSV file with the required columns.';
+    }
   }
 }

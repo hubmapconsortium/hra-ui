@@ -77,7 +77,7 @@ $blue-palette: map.get(palettes.$palettes, 'blue');
   }
 
   mat-form-field {
-    --mdc-filled-text-field-container-color: #{map.get($blue-palette, 500)};
+    --mdc-filled-text-field-container-color: #{mat.get-theme-color($theme, accent, lighter)};
     --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
     --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
     --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
@@ -89,9 +89,9 @@ $blue-palette: map.get(palettes.$palettes, 'blue');
   }
 
   .select-panel {
-    --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, 500)};
+    --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, lighter)};
     --mat-option-label-text-color: #{map.get($gray-palette, 700)};
-    --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, 900)};
+    --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, darker)};
     --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{mat.get-theme-color($theme, primary, 700)};
   }
 
