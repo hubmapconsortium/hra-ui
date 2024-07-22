@@ -1,9 +1,11 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { NgScrollbarOptions, provideScrollbarOptions } from 'ngx-scrollbar';
 
-export function provideScrollingOptions(options?: NgScrollbarOptions): EnvironmentProviders {
+export function provideScrolling(options?: NgScrollbarOptions): EnvironmentProviders {
   return makeEnvironmentProviders([
-    ...provideScrollbarOptions({
+    // TODO point polyfill url to 'cdn.humanatlas.io/path/to/polyfill.js'?
+
+    provideScrollbarOptions({
       visibility: 'hover',
       appearance: 'compact',
       trackClass: 'hra-scrollbar-track',

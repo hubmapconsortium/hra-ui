@@ -37,56 +37,64 @@
   <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
 </div>
 
-<hra-scroll-container class="table-overflow-container">
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    [trackBy]="trackByName"
-    matSort
-    matSortDirection="desc"
-    matSortActive="count"
-    aria-label="Cell Types Count Table"
-  >
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox
-          (change)="toggleAllRows()"
-          [checked]="selectionState() === 'full'"
-          [indeterminate]="selectionState() === 'partial'"
-          [aria-label]="getCheckboxLabel(selectionState() === 'full')"
-        >
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row; let index = index">
-        <mat-checkbox
-          (click)="$event.stopPropagation()"
-          (change)="toggleRow(row)"
-          [checked]="isSelected(row)"
-          [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
-        >
-        </mat-checkbox>
-      </td>
-    </ng-container>
+<ng-scrollbar
+  class="table-overflow-container"
+  externalViewport=".scroll-viewport"
+  externalContentWrapper=".scroll-viewport"
+  externalSpacer="tbody"
+  asyncDetection="auto"
+>
+  <div class="scroll-viewport">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      [trackBy]="trackByName"
+      matSort
+      matSortDirection="desc"
+      matSortActive="count"
+      aria-label="Cell Types Count Table"
+    >
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="toggleAllRows()"
+            [checked]="selectionState() === 'full'"
+            [indeterminate]="selectionState() === 'partial'"
+            [aria-label]="getCheckboxLabel(selectionState() === 'full')"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row; let index = index">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="toggleRow(row)"
+            [checked]="isSelected(row)"
+            [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Name</th>
-      <td mat-cell *matCellDef="let element" class="mat-caption name">
-        <cde-color-picker-label
-          [label]="element.name"
-          [color]="element.color"
-          [isAnchor]="element.name === selectedCellType()"
-          (colorChange)="updateColor(element, $event)"
-        >
-        </cde-color-picker-label>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Name</th>
+        <td mat-cell *matCellDef="let element" class="mat-caption name">
+          <cde-color-picker-label
+            [label]="element.name"
+            [color]="element.color"
+            [isAnchor]="element.name === selectedCellType()"
+            (colorChange)="updateColor(element, $event)"
+          >
+          </cde-color-picker-label>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="count">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Count</th>
-      <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
-    </ng-container>
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Count</th>
+        <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
-  </table>
-</hra-scroll-container>
+      <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+</ng-scrollbar>
