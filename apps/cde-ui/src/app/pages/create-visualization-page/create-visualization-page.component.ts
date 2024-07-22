@@ -1,16 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  ElementRef,
-  inject,
-  input,
-  NgZone,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -90,12 +80,6 @@ export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
 
-  /** Use vertical toggle buttons in color map card */
-  readonly useVerticalToggleButtons = signal(false);
-
-  /** If node data has been set */
-  readonly nodesSet = signal(false);
-
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
   /** Color map upload component */
@@ -109,8 +93,6 @@ export class CreateVisualizationPageComponent {
   private readonly router = inject(Router);
   /** Visualization data service */
   private readonly dataService = inject(VisualizationDataService);
-  /** Service to detect changes outside of Angular */
-  private readonly ngZone = inject(NgZone);
 
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
@@ -188,15 +170,24 @@ export class CreateVisualizationPageComponent {
     return this.customColorMapLoadError ? this.formatErrorMessage(this.customColorMapLoadError) : '';
   }
 
+  /** Error instructions for node upload error */
+  get nodesErrorInstructions(): string {
+    return this.nodesLoadError && this.nodesLoadError.type === 'type-error'
+      ? 'Please upload a cell type table CSV file.'
+      : 'Please upload a CSV file with the required columns.';
+  }
+
+  /** Error message for color map upload error */
+  get colorErrorInstructions(): string {
+    return this.customColorMapLoadError && this.customColorMapLoadError.type === 'type-error'
+      ? 'Please upload a color map CSV file.'
+      : 'Please upload a CSV file with the required columns.';
+  }
+
   /** Current nodes */
   private nodes?: NodeEntry[];
   /** Current color map */
-  customColorMap?: ColorMapEntry[];
-
-  /** Initializes viewport resize observer on load */
-  constructor() {
-    this.initViewportResizeObserver();
-  }
+  private customColorMap?: ColorMapEntry[];
 
   /**
    * Sets node values
@@ -219,7 +210,6 @@ export class CreateVisualizationPageComponent {
     this.visualizationForm.patchValue({
       nodeTargetValue: defaultCellType,
     });
-    this.nodesSet.set(true);
   }
 
   /**
@@ -228,7 +218,6 @@ export class CreateVisualizationPageComponent {
   clearNodes(): void {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
-    this.nodesSet.set(false);
   }
 
   /**
@@ -327,30 +316,6 @@ export class CreateVisualizationPageComponent {
     }
 
     return result as { [KeyT in keyof T]?: NonNullable<T[KeyT]> };
-  }
-
-  /**
-   * Checks window size and changes toggle button settings accordingly
-   */
-  private initViewportResizeObserver(): void {
-    const VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH = 544;
-
-    const el: HTMLElement = inject(ElementRef).nativeElement;
-    const destroyRef = inject(DestroyRef);
-    const observer = new ResizeObserver(([entry]) => {
-      // Need ngZone.run for UI to detect changes
-      this.ngZone.run(() => {
-        const box = entry.contentBoxSize[0] ?? entry.borderBoxSize[0];
-        const width = box.inlineSize;
-        this.useVerticalToggleButtons.set(width < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
-      });
-    });
-
-    const initialWidth = el.getBoundingClientRect().width;
-    this.useVerticalToggleButtons.set(initialWidth < VERTICAL_TOGGLE_BUTTONS_MAX_WIDTH);
-
-    observer.observe(el);
-    destroyRef.onDestroy(() => observer.disconnect());
   }
 
   /**

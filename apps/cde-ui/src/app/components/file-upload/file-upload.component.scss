@@ -13,7 +13,11 @@ $blue-theme: mat.m2-define-light-theme(
 );
 
 :host {
-  display: block;
+  --mdc-filled-button-label-text-size: 1rem;
+  --mat-filled-button-horizontal-padding: 0.5rem;
+  --mdc-filled-button-label-text-tracking: 0.02em;
+  --mat-filled-button-icon-spacing: 0.25rem;
+  display: flex;
   @include mat.button-color($blue-theme);
 
   mat-icon {
@@ -47,7 +51,7 @@ $blue-theme: mat.m2-define-light-theme(
 
     .remove-file {
       --mdc-filled-button-label-text-color: #{mat.get-theme-color($blue-theme, primary, 900)};
-      padding: 0.25rem 8px;
+      padding: 0.25rem 0.5rem;
       width: fit-content;
     }
   }
@@ -66,8 +70,24 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .subtitle {
+    display: flex;
     align-items: center;
     gap: 1rem;
-    display: flex;
+    margin-bottom: 2rem;
+  }
+
+  .use-template {
+    --mdc-text-button-label-text-size: 1rem;
+    --mat-text-button-with-icon-horizontal-padding: 0rem;
+    --mdc-text-button-label-text-tracking: 0.02em;
+    --mat-text-button-icon-spacing: 0.25rem;
+    grid-area: use-template;
+    width: fit-content;
+
+    mat-icon {
+      font-size: 1.5rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
   }
 }

@@ -10,7 +10,7 @@
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <div class="card data-upload" [class.loaded]="nodesSet()">
+  <div class="card data-upload">
     <h2 class="header">
       <div class="header-content">
         <div class="step-number">1</div>
@@ -50,6 +50,7 @@
 
       <cde-file-upload
         class="upload-csv"
+        [class.uploaded]="hasValidNodes()"
         accept="text/csv,.csv"
         [loader]="nodesLoader"
         [options]="nodesLoaderOptions"
@@ -58,12 +59,10 @@
         (loadCancelled)="clearNodes()"
         (loadErrored)="nodesLoadError = $event"
         [nodesErrorMessage]="nodesErrorMessage"
+        [nodesErrorInstructions]="nodesErrorInstructions"
         #nodesFileUpload
       >
       </cde-file-upload>
-
-      <div class="gap"></div>
-      <div class="gap2"></div>
     </div>
   </div>
 
@@ -224,7 +223,7 @@
       </ng-template>
     </h2>
 
-    <mat-button-toggle-group [vertical]="useVerticalToggleButtons()" formControlName="colorMapType">
+    <mat-button-toggle-group formControlName="colorMapType">
       <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
       <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
@@ -232,7 +231,7 @@
     @if (useCustomColorMap) {
       <cde-file-upload
         class="upload-colormap"
-        [class.uploaded]="customColorMap"
+        [class.uploaded]="hasValidCustomColorMap()"
         [fileTitle]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
@@ -243,6 +242,7 @@
         data-testid="color-map-upload"
         #customColorMapFileUpload
         [colorErrorMessage]="colorErrorMessage"
+        [colorErrorInstructions]="colorErrorInstructions"
       >
       </cde-file-upload>
     }
