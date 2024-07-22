@@ -93,6 +93,7 @@ export class CreateVisualizationPageComponent {
   /** Use vertical toggle buttons in color map card */
   readonly useVerticalToggleButtons = signal(false);
 
+  /** If node data has been set */
   readonly nodesSet = signal(false);
 
   /** Node data upload component */

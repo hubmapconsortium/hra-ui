@@ -222,6 +222,10 @@
     .upload-colormap {
       grid-area: upload-colormap;
       margin-top: 3rem;
+      --mdc-filled-button-label-text-size: 1rem;
+      --mat-filled-button-horizontal-padding: 0.5rem;
+      --mdc-filled-button-label-text-tracking: 0.02em;
+      --mat-filled-button-icon-spacing: 0.25rem;
     }
 
     .template {
