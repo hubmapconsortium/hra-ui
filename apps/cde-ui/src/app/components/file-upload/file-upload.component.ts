@@ -42,6 +42,9 @@ export type FileLoadError = FileTypeError | FileParseError;
 export class FileUploadComponent<T, OptionsT> {
   /** Title */
   readonly fileTitle = input<string>();
+  readonly colorErrorMessage = input<string>();
+  readonly nodesErrorMessage = input<string>();
+
   /** Accepted file types */
   readonly accept = input.required<string>();
   /** File loader */

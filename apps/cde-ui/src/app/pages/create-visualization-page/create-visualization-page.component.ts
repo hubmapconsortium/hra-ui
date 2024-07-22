@@ -190,7 +190,7 @@ export class CreateVisualizationPageComponent {
   /** Current nodes */
   private nodes?: NodeEntry[];
   /** Current color map */
-  private customColorMap?: ColorMapEntry[];
+  customColorMap?: ColorMapEntry[];
 
   /** Initializes viewport resize observer on load */
   constructor() {

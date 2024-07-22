@@ -27,6 +27,7 @@ $blue-theme: mat.m2-define-light-theme(
     display: flex;
     align-items: center;
     gap: 5rem;
+    grid-area: success;
 
     .filename {
       min-width: 151px;
@@ -55,5 +56,18 @@ $blue-theme: mat.m2-define-light-theme(
     font-weight: 500;
     font-size: 1.5rem;
     line-height: 2.25rem;
+  }
+
+  .upload-errors {
+    display: flex;
+    flex-direction: column;
+    grid-area: upload-errors;
+    margin-bottom: 3rem;
+  }
+
+  .subtitle {
+    align-items: center;
+    gap: 1rem;
+    display: flex;
   }
 }

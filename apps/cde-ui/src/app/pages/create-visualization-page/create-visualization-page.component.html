@@ -57,30 +57,13 @@
         (loadCompleted)="setNodes($event[0])"
         (loadCancelled)="clearNodes()"
         (loadErrored)="nodesLoadError = $event"
+        [nodesErrorMessage]="nodesErrorMessage"
         #nodesFileUpload
       >
       </cde-file-upload>
 
-      @if (nodesErrorMessage) {
-        <div class="upload-errors">
-          <span class="error-message">{{ nodesErrorMessage }}</span>
-          <span class="error-instructions">Please upload a CSV file with the required columns.</span>
-        </div>
-      }
-
       <div class="gap"></div>
       <div class="gap2"></div>
-      <a
-        mat-button
-        class="use-template"
-        color="primary"
-        href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Use Template
-        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </a>
     </div>
   </div>
 
@@ -249,6 +232,7 @@
     @if (useCustomColorMap) {
       <cde-file-upload
         class="upload-colormap"
+        [class.uploaded]="customColorMap"
         [fileTitle]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
@@ -258,28 +242,9 @@
         (loadErrored)="customColorMapLoadError = $event"
         data-testid="color-map-upload"
         #customColorMapFileUpload
+        [colorErrorMessage]="colorErrorMessage"
       >
       </cde-file-upload>
-
-      @if (colorErrorMessage) {
-        <div class="upload-errors">
-          <span class="error-message">{{ colorErrorMessage }}</span>
-          <span class="error-instructions">Please upload a CSV file with the required columns.</span>
-        </div>
-      }
-
-      <h3 class="template">Color Map Template</h3>
-      <a
-        mat-button
-        class="cta-button use-template"
-        color="primary"
-        href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/color_map.csv"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Use Template
-        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </a>
     }
   </div>
 

@@ -51,6 +51,7 @@
     width: 100%;
 
     .header {
+      grid-area: header;
       display: flex;
       margin-bottom: 2rem;
       justify-content: space-between;
@@ -83,15 +84,8 @@
           '. subheader-required-columns gap subheader-optional-columns'
           '. required-columns gap optional-columns'
           '. upload-csv upload-csv upload-csv'
-          '. use-template use-template use-template'
+          '. use-template . .'
           / 3rem min-content 80px min-content;
-      }
-      .use-template {
-        margin-left: 0;
-      }
-
-      .upload-csv {
-        margin-bottom: 1.5rem;
       }
     }
 
@@ -104,8 +98,7 @@
       grid:
         '. subheader-required-columns gap subheader-optional-columns'
         '. required-columns gap optional-columns'
-        '. upload-errors upload-errors upload-errors'
-        '. upload-csv gap2 use-template'
+        '. upload-csv upload-csv upload-csv'
         / 3rem min-content 80px min-content;
 
       .subheader-required-columns {
@@ -146,8 +139,6 @@
         --mat-filled-button-icon-spacing: 0.25rem;
         grid-area: upload-csv;
         display: flex;
-        align-items: center;
-        height: 40px;
       }
     }
   }
@@ -187,22 +178,28 @@
     }
   }
 
-  .color-config {
-    // @include breakpoints.breakpoint('xxx-large') {
-    //   display: grid;
-    //   grid:
-    //     'header header header .'
-    //     'toggle toggle . .'
-    //     'upload-colormap divider template .'
-    //     'upload-colormap divider use-template .'
-    //     'upload-errors upload-errors . .'
-    //     / auto auto auto 1fr;
-    //   column-gap: 6.5rem;
+  .data-upload {
+    &.loaded {
+      ::ng-deep .upload-success {
+        margin-bottom: 1.5rem;
+      }
 
-    //   mat-button-toggle-group {
-    //     width: fit-content;
-    //   }
-    // }
+      ::ng-deep .use-template {
+        margin-left: 0;
+      }
+
+      .upload-csv {
+        margin-bottom: 0rem;
+      }
+    }
+  }
+
+  .color-config {
+    display: grid;
+    grid:
+      'header header header'
+      'toggle toggle toggle'
+      'upload-colormap upload-colormap upload-colormap';
 
     mat-button-toggle-group {
       grid-area: toggle;
@@ -224,26 +221,72 @@
 
     .upload-colormap {
       grid-area: upload-colormap;
-      margin-top: 1rem;
+      margin-top: 3rem;
     }
 
     .template {
       grid-area: template;
       margin: 0;
     }
+
+    ::ng-deep .subtitle {
+      margin-bottom: 2rem;
+    }
+
+    ::ng-deep .upload-errors {
+      margin-bottom: 2rem;
+    }
+
+    ::ng-deep .upload-errors,
+    .upload {
+      margin-left: 3rem;
+    }
+
+    ::ng-deep .column-content {
+      .upload {
+        margin-left: 3rem;
+      }
+    }
+
+    ::ng-deep .uploaded {
+      .column-content {
+        margin-left: 3rem;
+        display: grid;
+        grid:
+          'success .'
+          'success use-template' / min-content auto;
+
+        .upload-success {
+          gap: 0;
+          align-items: normal;
+          flex-direction: column;
+          gap: 1.5rem;
+
+          .subtitle {
+            margin-bottom: 0;
+          }
+        }
+        .use-template {
+          grid-area: use-template;
+          width: fit-content;
+          /* height: 40px; */
+          /* margin-left: -0.5rem; */
+          align-self: flex-end;
+        }
+      }
+    }
   }
 
   .data-upload,
   .color-config {
-    .use-template {
+    ::ng-deep .use-template {
       --mdc-text-button-label-text-size: 1rem;
       --mat-text-button-with-icon-horizontal-padding: 0rem;
       --mdc-text-button-label-text-tracking: 0.02em;
       --mat-text-button-icon-spacing: 0.25rem;
       grid-area: use-template;
       width: fit-content;
-      height: 40px;
-      margin-left: -0.5rem;
+      margin-left: 80px;
 
       mat-icon {
         font-size: 1.5rem;
@@ -300,13 +343,6 @@
         display: none;
       }
     }
-  }
-
-  .upload-errors {
-    display: flex;
-    flex-direction: column;
-    grid-area: upload-errors;
-    margin-bottom: 3rem;
   }
 }
 
