@@ -168,13 +168,115 @@ Commit the changes to the new feature branch and make a pull request!
 
 # HRA Portal
 
+## Overview
+
+foobar
+
+## Links
+
 - Production URL: https://humanatlas.io/
 - Staging URL: https://humanatlas-io.netlify.app/
 
+## Installation
+
+```shell
+$ git clone https://github.com/hubmapconsortium/hra-ui.git
+
+# install packages
+$ npm install
+
+# build
+$ npx nx run humanatlas.io:build
+
+# serve
+$ npx nx run humanatlas.io:serve
+
+# lint
+$ npx nx run humanatlas.io:lint
+```
+
+## Deployment
+
+Deployment is accomplished via GitHub Actions based on the branch. The `main` branch deploys to production and `develop` deploys to staging.
+
 ## Editing content on pages
 
-Steps to update content for pages on humanatlas.io is documented [here](apps/human-atlas/docs/editing-pages.md)
+Steps to update content for pages on humanatlas.io is documented [here](apps/humanatlas.io/docs/editing-pages.md)
 
 **Video Tutorial**: Steps to update content for pages on humanatlas.io
 
 https://github.com/cns-iu/humanatlas.io/assets/53601863/7d1039f8-fd0f-4701-ae8e-df027b5ed032
+
+# HRA Dashboards
+
+## Overview
+
+foobar
+
+## Links
+
+- Production URL: https://apps.humanatlas.io/dashboard/
+- Staging URL: https://cdn.humanatlas.io/ui--staging/dashboard-ui/
+
+## Installation
+
+```shell
+$ git clone https://github.com/hubmapconsortium/hra-ui.git
+
+# install packages
+$ npm install
+
+# build
+$ npx nx run dashboard-ui:build
+
+# serve
+$ npx nx run dashboard-ui:serve
+
+# lint
+$ npx nx run dashboard-ui:lint
+```
+
+## Deployment
+
+Deployment is accomplished via GitHub Actions based on the branch. The `main` branch deploys to production and `develop` deploys to staging.
+
+## Editing content on pages
+
+To update the content on the pages, make changes [here](https://github.com/x-atlas-consortia/hra-dashboard-data/tree/main/data/dashboards), commit changes to a new branch and create a pull request.
+
+# Cell Distance Explorer
+
+## Overview
+
+This website supports visualization and quantification of cells and cell-cell distance distributions in processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be embedded on websites.
+
+## Links
+
+- Production URL: https://apps.humanatlas.io/cde/
+- Staging URL: https://cdn.humanatlas.io/ui--staging/cde-ui/
+
+## Installation
+
+```shell
+$ git clone https://github.com/hubmapconsortium/hra-ui.git
+
+# install packages
+$ npm install
+
+# build
+$ npx nx run cde-ui:build
+
+# serve
+$ npx nx run cde-ui:serve
+
+# lint
+$ npx nx run cde-ui:lint
+```
+
+## Deployment
+
+Deployment is accomplished via GitHub Actions based on the branch. The `main` branch deploys to production and `develop` deploys to staging.
+
+## Editing content on pages
+
+To update the covisualization metadata, make changes [here](https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-ui/src/assets/data/examples/index.json), commit changes to a new branch and create a pull request.
