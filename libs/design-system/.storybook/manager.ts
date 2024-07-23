@@ -1,3 +1,4 @@
+import '@fontsource/metropolis';
 import { addons } from '@storybook/manager-api';
 import theme from './theme';
 

@@ -67,7 +67,8 @@
         "port": 4400,
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": []
       },
       "configurations": {
         "ci": {
@@ -82,7 +83,8 @@
         "outputDir": "dist/storybook/design-system",
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": []
       },
       "configurations": {
         "ci": {
