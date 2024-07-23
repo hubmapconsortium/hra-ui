@@ -1,61 +1,42 @@
-<div class="column-content">
-  @if (!file && fileTitle()) {
-    <h3 class="subtitle">
-      <img src="assets/icons/settings_alert.svg" />
-      {{ fileTitle() }}
-    </h3>
-  }
-  @if (colorErrorMessage()) {
-    <div class="upload-errors">
-      <span class="error-message">{{ colorErrorMessage() }}</span>
-      <span class="error-instructions">{{ colorErrorInstructions() }}</span>
-    </div>
-  }
-  @if (nodesErrorMessage()) {
-    <div class="upload-errors">
-      <span class="error-message">{{ nodesErrorMessage() }}</span>
-      <span class="error-instructions">{{ nodesErrorInstructions() }}</span>
-    </div>
-  }
-  @if (file) {
-    <div class="upload-success">
-      <div class="filename">
-        @if (fileTitle()) {
-          <span class="subtitle-2">File Loaded:</span>
-        } @else {
-          <span class="loaded-label">File loaded:</span>
-        }
-        <span class="column-info-list mat-body-2 file-name">{{ file.name }}</span>
-      </div>
-      <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
-        <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-        Remove CSV
-      </button>
-    </div>
-  } @else {
-    <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
-      <mat-icon class="material-symbols-rounded">upload</mat-icon>
-      Upload CSV
-    </button>
-    <input
-      type="file"
-      style="display: none"
-      name="fileInput"
-      [attr.accept]="accept()"
-      (change)="load(fileInput)"
-      data-testid="file-upload"
-      #fileInput
-    />
-  }
-  <a
-    mat-button
-    class="use-template"
-    color="primary"
-    href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Use Template
-    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-  </a>
+@if (!file && actionNotification()) {
+  <h3 class="subtitle">
+    <mat-icon svgIcon="settings_alert"></mat-icon>
+    {{ actionNotification() }}
+  </h3>
+}
+
+<div class="upload-errors" [class.show]="errorMessage()">
+  <span class="error-message">{{ errorMessage() }}</span>
+  <span class="error-instructions">{{ errorActionMessage() }}</span>
 </div>
+
+@if (file) {
+  <div class="upload-success">
+    <div class="filename">
+      <span class="loaded-label">File loaded:</span>
+      <span class="column-info-list mat-body-2 file-name">{{ file.name }}</span>
+    </div>
+    <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
+      <mat-icon class="material-symbols-rounded">cancel</mat-icon>
+      Remove CSV
+    </button>
+  </div>
+} @else {
+  <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
+    <mat-icon class="material-symbols-rounded">upload</mat-icon>
+    Upload CSV
+  </button>
+  <input
+    type="file"
+    style="display: none"
+    name="fileInput"
+    [attr.accept]="accept()"
+    (change)="load(fileInput)"
+    data-testid="file-upload"
+    #fileInput
+  />
+}
+<a mat-button class="use-template" color="primary" [href]="templateUrl()" target="_blank" rel="noopener noreferrer">
+  Use Template
+  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+</a>

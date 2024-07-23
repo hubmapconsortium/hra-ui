@@ -55,8 +55,9 @@
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
       (loadErrored)="nodesLoadError = $event"
-      [nodesErrorMessage]="nodesErrorMessage"
-      [nodesErrorInstructions]="nodesErrorActionMessage"
+      [errorMessage]="nodesErrorMessage"
+      [errorActionMessage]="nodesErrorActionMessage"
+      templateUrl="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
       #nodesFileUpload
     >
     </cde-file-upload>
@@ -188,7 +189,7 @@
   <div class="color-config card">
     <h2 class="header">
       <span class="step-number">4</span>
-      <div class="card-title">Optional: Configure Color Map</div>
+      <div class="card-title">Optional: Configure Colors</div>
       <div class="filler"></div>
       <mat-icon
         class="info"
@@ -225,7 +226,7 @@
       <cde-file-upload
         class="upload-colormap"
         [class.uploaded]="hasValidCustomColorMap()"
-        [fileTitle]="'Action Required: Upload Color Map'"
+        [actionNotification]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
@@ -234,8 +235,9 @@
         (loadErrored)="customColorMapLoadError = $event"
         data-testid="color-map-upload"
         #customColorMapFileUpload
-        [colorErrorMessage]="colorErrorMessage"
-        [colorErrorInstructions]="colorErrorActionMessage"
+        [errorMessage]="colorErrorMessage"
+        [errorActionMessage]="colorErrorActionMessage"
+        templateUrl="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/color_map.csv"
       >
       </cde-file-upload>
     }

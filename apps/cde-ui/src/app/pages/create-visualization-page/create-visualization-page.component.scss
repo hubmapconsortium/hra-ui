@@ -53,7 +53,6 @@
     .header {
       grid-area: header;
       display: flex;
-      margin-bottom: 2rem;
 
       .step-number {
         display: flex;
@@ -82,11 +81,8 @@
       'header header header header'
       '. subheader-required-columns . subheader-optional-columns'
       '. required-columns . optional-columns'
-      '. upload-csv upload-csv upload-csv' / 3rem min-content 5rem min-content;
-
-    .header {
-      grid-area: header;
-    }
+      '. upload-csv upload-csv upload-csv' / 3rem min-content 5rem auto;
+    grid-template-rows: 4.25rem auto 4.5rem auto;
 
     .subheader-required-columns {
       grid-area: subheader-required-columns;
@@ -107,18 +103,21 @@
     .required-columns,
     .optional-columns {
       text-wrap: nowrap;
-      margin-bottom: 3rem;
     }
 
     ::ng-deep .upload-csv {
       grid-area: upload-csv;
+      display: grid;
+      grid:
+        'upload-errors upload-errors upload-errors'
+        'upload-button . use-template' / min-content 5rem auto;
 
-      .upload-success {
-        margin-bottom: 1.5rem;
-      }
+      &.uploaded {
+        grid: 'success' 'use-template';
 
-      .upload {
-        margin-right: 5rem;
+        .upload-success {
+          margin-bottom: 1.5rem;
+        }
       }
     }
   }
@@ -180,22 +179,20 @@
       margin-top: 3rem;
 
       &.uploaded {
-        .column-content {
-          display: grid;
-          grid:
-            '. success . .'
-            '. success . use-template' / 3rem auto 5rem auto;
+        display: grid;
+        grid:
+          '. success . .'
+          '. success . use-template' / 3rem auto 5rem auto;
 
-          .upload-success {
-            align-items: normal;
-            flex-direction: column;
-            gap: 1.5rem;
-          }
-          .use-template {
-            grid-area: use-template;
-            width: fit-content;
-            align-self: flex-end;
-          }
+        .upload-success {
+          align-items: normal;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .use-template {
+          grid-area: use-template;
+          width: fit-content;
+          align-self: flex-end;
         }
       }
 
@@ -206,7 +203,9 @@
       }
 
       .upload-errors {
-        margin-bottom: 2rem;
+        &.show {
+          margin-bottom: 2rem;
+        }
       }
     }
   }
