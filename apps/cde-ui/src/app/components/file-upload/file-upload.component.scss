@@ -20,8 +20,13 @@ $blue-theme: mat.m2-define-light-theme(
   @include mat.button-color($blue-theme);
 
   .layout-a {
+    .error,
     .upload {
-      margin-right: 5rem;
+      margin-left: 0;
+    }
+
+    .error {
+      margin-bottom: 3rem;
     }
 
     &.uploaded {
@@ -34,16 +39,21 @@ $blue-theme: mat.m2-define-light-theme(
 
       .upload-success {
         display: flex;
+        align-items: center;
+        gap: 5rem;
         margin-bottom: 1.5rem;
       }
     }
   }
 
   .layout-b {
-    .use-template {
-      &.loaded {
-        display: none;
-      }
+    .error,
+    .upload {
+      margin-left: 3rem;
+    }
+
+    .error {
+      margin-bottom: 2rem;
     }
 
     &.uploaded {
@@ -64,21 +74,7 @@ $blue-theme: mat.m2-define-light-theme(
 
       .use-template {
         align-self: flex-end;
-
-        &.loaded {
-          display: flex;
-        }
       }
-    }
-
-    .error,
-    .upload {
-      margin-left: 3rem;
-      margin-right: 5rem;
-    }
-
-    .error {
-      margin-bottom: 2rem;
     }
   }
 
@@ -91,8 +87,6 @@ $blue-theme: mat.m2-define-light-theme(
 
   .upload-success {
     display: none;
-    align-items: center;
-    gap: 5rem;
 
     .filename span {
       display: block;
@@ -116,19 +110,12 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .upload {
-    margin-left: 0;
-  }
-
-  .upload-colormap .loaded-label {
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 2.25rem;
+    margin-right: 5rem;
   }
 
   .error {
     display: flex;
     flex-direction: column;
-    margin-bottom: 3rem;
   }
 
   .action-required {
@@ -148,6 +135,5 @@ $blue-theme: mat.m2-define-light-theme(
     --mat-text-button-with-icon-horizontal-padding: 0rem;
     --mdc-text-button-label-text-tracking: 0.02em;
     --mat-text-button-icon-spacing: 0.25rem;
-    width: fit-content;
   }
 }
