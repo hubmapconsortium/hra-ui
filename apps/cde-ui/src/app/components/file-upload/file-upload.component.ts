@@ -43,6 +43,10 @@ export class FileUploadComponent<T, OptionsT> {
   /** Notification for action required */
   readonly actionNotification = input<string>();
 
+  readonly uploaded = input<boolean>();
+
+  readonly layout = input<'layout-a' | 'layout-b'>();
+
   /** Url for template data */
   readonly templateUrl = input<string>();
 

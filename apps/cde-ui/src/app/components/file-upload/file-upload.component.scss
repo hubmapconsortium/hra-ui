@@ -19,7 +19,7 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-filled-button-icon-spacing: 0.25rem;
   @include mat.button-color($blue-theme);
 
-  &.upload-csv {
+  .layout-a {
     .upload {
       margin-right: 5rem;
     }
@@ -27,7 +27,7 @@ $blue-theme: mat.m2-define-light-theme(
     &.uploaded {
       grid: 'success' 'use-template';
 
-      .upload-errors,
+      .error,
       .upload {
         display: none;
       }
@@ -39,8 +39,8 @@ $blue-theme: mat.m2-define-light-theme(
     }
   }
 
-  &.upload-colormap {
-    .subtitle {
+  .layout-b {
+    .action-required {
       display: flex;
     }
 
@@ -54,9 +54,9 @@ $blue-theme: mat.m2-define-light-theme(
       display: flex;
       margin-left: 3rem;
 
-      .upload-errors,
+      .error,
       .upload,
-      .subtitle {
+      .action-required {
         display: none;
       }
 
@@ -76,16 +76,14 @@ $blue-theme: mat.m2-define-light-theme(
       }
     }
 
-    .upload-errors,
+    .error,
     .upload {
       margin-left: 3rem;
       margin-right: 5rem;
     }
 
-    .upload-errors {
-      &.show {
-        margin-bottom: 2rem;
-      }
+    .error {
+      margin-bottom: 2rem;
     }
   }
 
@@ -132,17 +130,13 @@ $blue-theme: mat.m2-define-light-theme(
     line-height: 2.25rem;
   }
 
-  .upload-errors {
-    display: none;
+  .error {
+    display: flex;
     flex-direction: column;
     margin-bottom: 3rem;
-
-    &.show {
-      display: flex;
-    }
   }
 
-  .subtitle {
+  .action-required {
     display: none;
     align-items: center;
     gap: 1rem;
