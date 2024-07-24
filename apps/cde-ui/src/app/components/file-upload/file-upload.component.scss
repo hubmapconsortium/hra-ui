@@ -19,6 +19,76 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-filled-button-icon-spacing: 0.25rem;
   @include mat.button-color($blue-theme);
 
+  &.upload-csv {
+    .upload {
+      margin-right: 5rem;
+    }
+
+    &.uploaded {
+      grid: 'success' 'use-template';
+
+      .upload-errors,
+      .upload {
+        display: none;
+      }
+
+      .upload-success {
+        display: flex;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &.upload-colormap {
+    .subtitle {
+      display: flex;
+    }
+
+    .use-template {
+      &.loaded {
+        display: none;
+      }
+    }
+
+    &.uploaded {
+      display: flex;
+      margin-left: 3rem;
+
+      .upload-errors,
+      .upload,
+      .subtitle {
+        display: none;
+      }
+
+      .upload-success {
+        display: flex;
+        align-items: normal;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .use-template {
+        align-self: flex-end;
+
+        &.loaded {
+          display: flex;
+        }
+      }
+    }
+
+    .upload-errors,
+    .upload {
+      margin-left: 3rem;
+      margin-right: 5rem;
+    }
+
+    .upload-errors {
+      &.show {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
   mat-icon {
     --mat-filled-button-icon-offset: 0;
     font-size: 1.5rem;
