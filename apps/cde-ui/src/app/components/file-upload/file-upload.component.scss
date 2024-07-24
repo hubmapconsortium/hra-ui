@@ -19,18 +19,21 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-filled-button-icon-spacing: 0.25rem;
   @include mat.button-color($blue-theme);
 
+  mat-icon {
+    --mat-filled-button-icon-offset: 0;
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
   .upload-success {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 5rem;
-    grid-area: success;
-
-    .filename {
-      min-width: 151px;
-    }
 
     .filename span {
       display: block;
+      min-width: 145px;
     }
 
     .loaded-label {
@@ -45,12 +48,12 @@ $blue-theme: mat.m2-define-light-theme(
       --mdc-filled-button-label-text-color: #{mat.get-theme-color($blue-theme, primary, 900)};
       padding: 0.25rem 0.5rem;
       width: fit-content;
+      margin-right: 5rem;
     }
   }
 
   .upload {
-    grid-area: upload-button;
-    width: 8.625rem;
+    margin-left: 0;
   }
 
   .upload-colormap .loaded-label {
@@ -60,11 +63,9 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .upload-errors {
-    display: flex;
-    flex-direction: column;
-    grid-area: upload-errors;
-    margin-bottom: 3rem;
     display: none;
+    flex-direction: column;
+    margin-bottom: 3rem;
 
     &.show {
       display: flex;
@@ -72,7 +73,7 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .subtitle {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
@@ -88,14 +89,6 @@ $blue-theme: mat.m2-define-light-theme(
     --mat-text-button-with-icon-horizontal-padding: 0rem;
     --mdc-text-button-label-text-tracking: 0.02em;
     --mat-text-button-icon-spacing: 0.25rem;
-    grid-area: use-template;
     width: fit-content;
-
-    mat-icon {
-      --mat-filled-button-icon-offset: 0;
-      font-size: 1.5rem;
-      height: 1.5rem;
-      width: 1.5rem;
-    }
   }
 }

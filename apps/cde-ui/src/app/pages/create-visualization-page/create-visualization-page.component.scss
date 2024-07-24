@@ -107,15 +107,21 @@
 
     ::ng-deep .upload-csv {
       grid-area: upload-csv;
-      display: grid;
-      grid:
-        'upload-errors upload-errors upload-errors'
-        'upload-button . use-template' / min-content 5rem auto;
+
+      .upload {
+        margin-right: 5rem;
+      }
 
       &.uploaded {
         grid: 'success' 'use-template';
 
+        .upload-errors,
+        .upload {
+          display: none;
+        }
+
         .upload-success {
+          display: flex;
           margin-bottom: 1.5rem;
         }
       }
@@ -178,28 +184,46 @@
       grid-area: upload-colormap;
       margin-top: 3rem;
 
+      .subtitle {
+        display: flex;
+      }
+
+      .use-template {
+        &.loaded {
+          display: none;
+        }
+      }
+
       &.uploaded {
-        display: grid;
-        grid:
-          '. success . .'
-          '. success . use-template' / 3rem auto 5rem auto;
+        display: flex;
+        margin-left: 3rem;
+
+        .upload-errors,
+        .upload,
+        .subtitle {
+          display: none;
+        }
 
         .upload-success {
+          display: flex;
           align-items: normal;
           flex-direction: column;
           gap: 1.5rem;
         }
+
         .use-template {
-          grid-area: use-template;
-          width: fit-content;
           align-self: flex-end;
+
+          &.loaded {
+            display: flex;
+          }
         }
       }
 
       .upload-errors,
       .upload {
         margin-left: 3rem;
-        margin-right: 3rem;
+        margin-right: 5rem;
       }
 
       .upload-errors {

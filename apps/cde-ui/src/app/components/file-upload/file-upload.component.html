@@ -1,14 +1,14 @@
-@if (!file && actionNotification()) {
-  <h3 class="subtitle">
-    <mat-icon svgIcon="settings_alert"></mat-icon>
-    {{ actionNotification() }}
-  </h3>
-}
+<h3 class="subtitle">
+  <mat-icon svgIcon="settings_alert"></mat-icon>
+  {{ actionNotification() }}
+</h3>
 
-<div class="upload-errors" [class.show]="errorMessage()">
-  <span class="error-message">{{ errorMessage() }}</span>
-  <span class="error-instructions">{{ errorActionMessage() }}</span>
-</div>
+@if (errorMessage()) {
+  <div class="upload-errors" [class.show]="errorMessage()">
+    <span class="error-message">{{ errorMessage() }}</span>
+    <span class="error-instructions">{{ errorActionMessage() }}</span>
+  </div>
+}
 
 @if (file) {
   <div class="upload-success">
@@ -36,7 +36,15 @@
     #fileInput
   />
 }
-<a mat-button class="use-template" color="primary" [href]="templateUrl()" target="_blank" rel="noopener noreferrer">
+<a
+  mat-button
+  class="use-template"
+  [class.loaded]="file"
+  color="primary"
+  [href]="templateUrl()"
+  target="_blank"
+  rel="noopener noreferrer"
+>
   Use Template
   <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
 </a>
