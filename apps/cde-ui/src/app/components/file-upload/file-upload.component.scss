@@ -40,10 +40,6 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .layout-b {
-    .action-required {
-      display: flex;
-    }
-
     .use-template {
       &.loaded {
         display: none;
@@ -55,8 +51,7 @@ $blue-theme: mat.m2-define-light-theme(
       margin-left: 3rem;
 
       .error,
-      .upload,
-      .action-required {
+      .upload {
         display: none;
       }
 
@@ -137,7 +132,7 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .action-required {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;

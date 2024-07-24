@@ -3,10 +3,12 @@
   [class.layout-b]="layout() === 'layout-b'"
   [class.uploaded]="uploaded()"
 >
-  <h3 class="action-required">
-    <mat-icon class="alert">settings_alert</mat-icon>
-    {{ actionNotification() }}
-  </h3>
+  @if (!uploaded() && actionNotification()) {
+    <h3 class="action-required">
+      <mat-icon class="alert">settings_alert</mat-icon>
+      {{ actionNotification() }}
+    </h3>
+  }
 
   @if (errorMessage()) {
     <div class="error">
