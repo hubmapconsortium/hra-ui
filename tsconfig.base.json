@@ -11,118 +11,46 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "apps/human-atlas/src/app/components/*"
-      ],
-      "@hra-ui/cde-visualization": [
-        "libs/cde-visualization/src/index.ts"
-      ],
-      "@hra-ui/cdk": [
-        "libs/cdk/src/index.ts"
-      ],
-      "@hra-ui/cdk/app-href": [
-        "libs/cdk/app-href/src/index.ts"
-      ],
-      "@hra-ui/cdk/icons": [
-        "libs/cdk/icons/src/index.ts"
-      ],
-      "@hra-ui/cdk/injectors": [
-        "libs/cdk/injectors/src/index.ts"
-      ],
-      "@hra-ui/cdk/state": [
-        "libs/cdk/state/src/index.ts"
-      ],
-      "@hra-ui/components/atoms": [
-        "libs/components/atoms/src/index.ts"
-      ],
-      "@hra-ui/components/behavioral": [
-        "libs/components/behavioral/src/index.ts"
-      ],
-      "@hra-ui/components/molecules": [
-        "libs/components/molecules/src/index.ts"
-      ],
-      "@hra-ui/components/organisms": [
-        "libs/components/organisms/src/index.ts"
-      ],
-      "@hra-ui/dashboard": [
-        "libs/dashboard/src/index.ts"
-      ],
-      "@hra-ui/design-system": [
-        "libs/design-system/src/index.ts"
-      ],
-      "@hra-ui/design-system/footer": [
-        "libs/design-system/footer/src/index.ts"
-      ],
-      "@hra-ui/design-system/scroll-container": [
-        "libs/design-system/scroll-container/src/index.ts"
-      ],
-      "@hra-ui/services": [
-        "libs/services/src/index.ts"
-      ],
-      "@hra-ui/state": [
-        "libs/state/src/index.ts"
-      ],
-      "@hra-ui/theming": [
-        "libs/shared/theming/src/index.ts"
-      ],
-      "@hra-ui/utils": [
-        "libs/shared/utils/src/index.ts"
-      ],
-      "@hra-ui/utils/testing": [
-        "libs/shared/testing/src/index.ts"
-      ],
-      "@hra-ui/utils/types": [
-        "libs/shared/utils/types/src/index.ts"
-      ],
-      "@hra-ui/webcomponents": [
-        "libs/shared/webcomponents/src/index.ts"
-      ],
-      "ccf-body-ui": [
-        "libs/ccf-body-ui/src/public-api.ts"
-      ],
-      "ccf-scene-utils": [
-        "libs/ccf-scene-utils/src/index.ts"
-      ],
-      "ccf-shared": [
-        "libs/ccf-shared/src/public-api.ts"
-      ],
-      "ccf-shared/analytics": [
-        "libs/ccf-shared/analytics/src/public-api.ts"
-      ],
-      "ccf-shared/rxjs-ext": [
-        "libs/ccf-shared/rxjs-ext/src/public-api.ts"
-      ],
-      "ccf-shared/rxjs-ext/operators": [
-        "libs/ccf-shared/rxjs-ext/operators/src/public-api.ts"
-      ],
-      "ccf-shared/web-components": [
-        "libs/ccf-shared/web-components/src/public-api.ts"
-      ],
-      "cde-ui": [
-        "apps/cde-ui/src/index.ts"
-      ],
-      "stream": [
-        "./node_modules/stream-browserify"
-      ],
-      "swiper_angular": [
-        "node_modules/swiper/angular"
-      ],
-      "triple-store-utils": [
-        "libs/triple-store-utils/src/public-api.ts"
-      ]
+      "@components/*": ["apps/human-atlas/src/app/components/*"],
+      "@hra-ui/cde-visualization": ["libs/cde-visualization/src/index.ts"],
+      "@hra-ui/cdk": ["libs/cdk/src/index.ts"],
+      "@hra-ui/cdk/app-href": ["libs/cdk/app-href/src/index.ts"],
+      "@hra-ui/cdk/icons": ["libs/cdk/icons/src/index.ts"],
+      "@hra-ui/cdk/injectors": ["libs/cdk/injectors/src/index.ts"],
+      "@hra-ui/cdk/state": ["libs/cdk/state/src/index.ts"],
+      "@hra-ui/components/atoms": ["libs/components/atoms/src/index.ts"],
+      "@hra-ui/components/behavioral": ["libs/components/behavioral/src/index.ts"],
+      "@hra-ui/components/molecules": ["libs/components/molecules/src/index.ts"],
+      "@hra-ui/components/organisms": ["libs/components/organisms/src/index.ts"],
+      "@hra-ui/dashboard": ["libs/dashboard/src/index.ts"],
+      "@hra-ui/design-system": ["libs/design-system/src/index.ts"],
+      "@hra-ui/design-system/footer": ["libs/design-system/footer/src/index.ts"],
+      "@hra-ui/design-system/scroll-container": ["libs/design-system/scroll-container/src/index.ts"],
+      "@hra-ui/services": ["libs/services/src/index.ts"],
+      "@hra-ui/state": ["libs/state/src/index.ts"],
+      "@hra-ui/theming": ["libs/shared/theming/src/index.ts"],
+      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"],
+      "@hra-ui/utils/testing": ["libs/shared/testing/src/index.ts"],
+      "@hra-ui/utils/types": ["libs/shared/utils/types/src/index.ts"],
+      "@hra-ui/webcomponents": ["libs/shared/webcomponents/src/index.ts"],
+      "ccf-body-ui": ["libs/ccf-body-ui/src/public-api.ts"],
+      "ccf-scene-utils": ["libs/ccf-scene-utils/src/index.ts"],
+      "ccf-shared": ["libs/ccf-shared/src/public-api.ts"],
+      "ccf-shared/analytics": ["libs/ccf-shared/analytics/src/public-api.ts"],
+      "ccf-shared/rxjs-ext": ["libs/ccf-shared/rxjs-ext/src/public-api.ts"],
+      "ccf-shared/rxjs-ext/operators": ["libs/ccf-shared/rxjs-ext/operators/src/public-api.ts"],
+      "ccf-shared/web-components": ["libs/ccf-shared/web-components/src/public-api.ts"],
+      "cde-ui": ["apps/cde-ui/src/index.ts"],
+      "stream": ["./node_modules/stream-browserify"],
+      "swiper_angular": ["node_modules/swiper/angular"],
+      "triple-store-utils": ["libs/triple-store-utils/src/public-api.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
