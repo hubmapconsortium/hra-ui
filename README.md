@@ -18,8 +18,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/hubmapconsortium/hra-ui">
+    <img src="./apps/cde-ui/src/assets/logo/hra_small.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Human Reference Atlas (HRA) User Interfaces</h3>
@@ -30,7 +30,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-hra-ui">About HRA UI</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -50,11 +50,27 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## About HRA UI
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://apps.humanatlas.io/)
 
-This repository contains all the Human Reference Atlas (HRA) User Interfaces
+This repository contains all the Human Reference Atlas (HRA) User Interfaces.
+
+For detailed information, please refer to the documentation for each app.
+
+- [ASCT+B API](./apps/asctb-api/README.md) - Backend Server for ASCT+B Reporter.
+- [ASCT+B Reporter](./apps/asctb-reporter/README.md) - Visualization tool for displaying flattened ASCT+B tables.
+- [CCF Body UI Web Component](./apps/ccf-body-ui-wc/README.md) - A web component used in Exploration User Interface.
+- [Exploration User Interface](./apps/ccf-eui/README.md) - An interactive tool for exploring and validating spatially registered tissue blocks and cell-type populations.
+- [CCF Organ Info](./apps/ccf-organ-info/README.md) - User Interface for Organ Information.
+- [Registration User Interfce](./apps/ccf-rui/README.md) - An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms.
+- [Cell Distance Explorer](./apps/cde-ui/README.md) - Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more.
+- [Cell Distance Explorer Visualization Web Component](./apps/cde-visualization-wc/README.md) - A web component used in Cell Distance Explorer.
+- [HRA Dashboards](./apps/dashboard-ui/README.md) - Explore usage statistics of atlas data and code.
+- [FTU UI](./apps/ftu-ui/README.md) - Examine cell type abundance and biomarker expression values for functional tissue units (FTUs).
+- [FTU UI Small Web Component](./apps/ftu-ui-small-wc/README.md) - A web component used in FTU Explorer.
+- [Humanatlas](./apps/humanatlas.io/README.md) - 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage.
+- [Medical Illustration](./apps/medical-illustration/README.md) - A web component used in FTU Explorer.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,33 +111,17 @@ To get a local copy up follow these simple example steps.
 
 ## Usage
 
-To serve any app use this command
+To serve any app use this command:
 
 ```sh
 $ npx nx run app-name:serve
 ```
 
-For example, if the app name is **cde-ui**, use the following command
+For example, if the app name is **cde-ui**, use the following command:
 
 ```sh
 $ npx nx run cde-ui:serve
 ```
-
-For more examples, please refer to the documentation for each app
-
-- [ASCT+B API](./apps/asctb-api/README.md)
-- [ASCT+B Reporter](./apps/asctb-reporter/README.md)
-- [CCF Body UI Web Component](./apps/ccf-body-ui-wc/README.md)
-- [Exploration User Interface](./apps/ccf-eui/README.md)
-- [CCF Organ Info](./apps/ccf-organ-info/README.md)
-- [Registration User Interfce](./apps/ccf-rui/README.md)
-- [Cell Distance Explorer](./apps/cde-ui/README.md)
-- [Cell Distance Explorer Visualization Web Component](./apps/cde-visualization-wc/README.md)
-- [HRA Dashboards](./apps/dashboard-ui/README.md)
-- [FTU UI](./apps/ftu-ui/README.md)
-- [FTU UI Small Web Component](./apps/ftu-ui-small-wc/README.md)
-- [Humanatlas](./apps/humanatlas.io/README.md)
-- [Medical Illustration](./apps/medical-illustration/README.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
