@@ -53,6 +53,7 @@
     .header {
       grid-area: header;
       display: flex;
+      margin-bottom: 2rem;
 
       .step-number {
         display: flex;
@@ -81,7 +82,7 @@
       'header header header header'
       '. subheader-required-columns . subheader-optional-columns'
       '. required-columns . optional-columns'
-      '. upload-csv upload-csv upload-csv' / 3rem min-content 5rem auto;
+      '. upload-csv upload-csv upload-csv' / 3rem auto 5rem 1fr;
     grid-template-rows: 4.25rem auto 4.5rem auto;
 
     .subheader-required-columns {
@@ -100,13 +101,12 @@
       grid-area: optional-columns;
     }
 
-    .required-columns,
-    .optional-columns {
-      text-wrap: nowrap;
-    }
-
     .upload-csv {
       grid-area: upload-csv;
+
+      ::ng-deep .error {
+        margin-bottom: 3rem;
+      }
     }
   }
 
@@ -145,9 +145,9 @@
   .color-config {
     display: grid;
     grid:
-      'header'
-      'toggle'
-      'upload-colormap';
+      'header header'
+      'toggle toggle'
+      '. upload-colormap' / 3rem auto;
 
     mat-button-toggle-group {
       grid-area: toggle;
@@ -164,7 +164,7 @@
 
     .upload-colormap {
       grid-area: upload-colormap;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
   }
 

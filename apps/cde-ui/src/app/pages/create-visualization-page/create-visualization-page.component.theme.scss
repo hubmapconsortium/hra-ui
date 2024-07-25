@@ -4,7 +4,6 @@
 @use '../../../styles/breakpoints' as breakpoints;
 
 $gray-palette: map.get(palettes.$palettes, 'gray');
-$blue-palette: map.get(palettes.$palettes, 'blue');
 
 @mixin color($theme) {
   cde-create-visualization-page {
@@ -96,7 +95,7 @@ $blue-palette: map.get(palettes.$palettes, 'blue');
   }
 
   .visualize-notification {
-    color: #{map.get($blue-palette, 800)};
+    color: #4b4b5e;
   }
 
   .upload-errors {

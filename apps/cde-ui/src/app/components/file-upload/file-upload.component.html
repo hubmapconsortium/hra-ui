@@ -1,50 +1,52 @@
-<div
-  [class.layout-a]="layout() === 'layout-a'"
-  [class.layout-b]="layout() === 'layout-b'"
-  [class.uploaded]="uploaded()"
->
-  @if (!uploaded() && actionNotification()) {
-    <h3 class="action-required">
-      <mat-icon class="alert">settings_alert</mat-icon>
-      {{ actionNotification() }}
-    </h3>
-  }
+@if (!file && actionNotification()) {
+  <h3 class="action-required">
+    <mat-icon class="alert">settings_alert</mat-icon>
+    {{ actionNotification() }}
+  </h3>
+}
 
-  @if (errorMessage()) {
-    <div class="error">
-      <span class="message">{{ errorMessage() }}</span>
-      <span class="action">{{ errorActionMessage() }}</span>
-    </div>
-  }
+@if (!file && errorMessage()) {
+  <div class="error">
+    <span class="message">{{ errorMessage() }}</span>
+    <span class="action">{{ errorActionMessage() }}</span>
+  </div>
+}
 
-  @if (file && !errorMessage()) {
-    <div class="upload-success">
-      <div class="filename">
-        <span class="loaded-label">File loaded:</span>
-        <span class="column-info-list mat-body-2 file-name">{{ file.name }}</span>
-      </div>
-      <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
-        <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-        Remove CSV
-      </button>
+@if (file && !errorMessage()) {
+  <div class="upload-success">
+    <div class="filename">
+      <span class="loaded-label">File loaded:</span>
+      <span class="column-info-list mat-body-2 file-name">{{ file ? file.name : '' }}</span>
     </div>
-  } @else {
-    <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
-      <mat-icon class="material-symbols-rounded">upload</mat-icon>
-      Upload CSV
+    <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
+      <mat-icon class="material-symbols-rounded">cancel</mat-icon>
+      Remove CSV
     </button>
-    <input
-      type="file"
-      style="display: none"
-      name="fileInput"
-      [attr.accept]="accept()"
-      (change)="load(fileInput)"
-      data-testid="file-upload"
-      #fileInput
-    />
-  }
-  <a mat-button class="use-template" color="primary" [href]="templateUrl()" target="_blank" rel="noopener noreferrer">
-    Use Template
-    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-  </a>
-</div>
+  </div>
+} @else {
+  <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
+    <mat-icon class="material-symbols-rounded">upload</mat-icon>
+    Upload CSV
+  </button>
+  <input
+    type="file"
+    style="display: none"
+    name="fileInput"
+    [attr.accept]="accept()"
+    (change)="load(fileInput)"
+    data-testid="file-upload"
+    #fileInput
+  />
+}
+<a
+  mat-button
+  class="use-template"
+  [class.loaded]="file"
+  color="primary"
+  [href]="templateUrl()"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Use Template
+  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+</a>
