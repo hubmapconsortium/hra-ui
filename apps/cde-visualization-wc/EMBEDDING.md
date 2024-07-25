@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-This format of configuration only works with certain data types, namely strings and booleans.
+The following format of configuration only works with certain data types, namely strings and booleans.
 (Note that variables are kebab-case, not camel-case)
 
 ```html
