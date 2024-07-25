@@ -26,6 +26,6 @@ $ npx nx run cde-ui:serve
 
 ### Contribute
 
-- To make a new change on the app, make the change and create a pull request [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui)
+- To make a new change on the app, make the change [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui) and create a pull request.
 
 - To update the default visualization data, make the change [here](https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-ui/src/assets/data/examples/index.json) and create a pull request [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui)

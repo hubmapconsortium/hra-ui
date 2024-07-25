@@ -21,4 +21,4 @@ $ npx nx run cde-visualization-wc:serve
 
 ### Contribute
 
-To make a new change on the app, make the change and create a pull request [here](https://github.com/hubmapconsortium/hra-ui)
+- To make a new change on the app, make the change [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-visualization-wc) and create a pull request.

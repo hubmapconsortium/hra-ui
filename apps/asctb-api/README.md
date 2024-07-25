@@ -33,24 +33,24 @@ Since the ASCT+B API is a dynamic script, Heroku has been used to deploy the ser
 
 Visualization
 
-![Partonomy Tree](./src/assets/snippets/vis.png)
+![Partonomy Tree](../asctb-reporter/src/assets/snippets/vis.png)
 
 Hovering over a node
 
-![Node Hover](./src/assets/snippets/hover.png)
+![Node Hover](../asctb-reporter/src/assets/snippets/hover.png)
 
 Clicking on a node
 
-![Node Click](./src/assets/snippets/hover.png)
+![Node Click](../asctb-reporter/src/assets/snippets/hover.png)
 
 Report
 
-![Report](./src/assets/snippets/report.png)
+![Report](../asctb-reporter/src/assets/snippets/report.png)
 
 Indented List
 
-![Indented List](./src/assets/snippets/il.png)
+![Indented List](../asctb-reporter/src/assets/snippets/il.png)
 
 Info Sheet
 
-![Info Bottom Sheet](./src/assets/snippets/bottom.png)
+![Info Bottom Sheet](../asctb-reporter/src/assets/snippets/bottom.png)

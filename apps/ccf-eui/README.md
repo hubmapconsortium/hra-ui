@@ -27,4 +27,4 @@ $ npx nx run ccf-eui:serve
 
 ### Contribute
 
-- To make a new change on the app, make the change and create a pull request [here](https://github.com/hubmapconsortium/hra-ui/)
+- To make a new change on the app, make the change [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/ccf-eui) and create a pull request.

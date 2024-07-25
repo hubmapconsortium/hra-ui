@@ -26,6 +26,6 @@ $ npx nx run dashboard-ui:serve
 
 ### Contribute
 
-- To make a new change on the dashboards app, make the change and create a pull request [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/dashboard-ui)
+- To make a new change on the app, make the change [here](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/dashboard-ui) and create a pull request.
 
 - To update the content of the dashboard pages, make the change [here](https://github.com/x-atlas-consortia/hra-dashboard-data/tree/main/data/dashboards) and create a pull request [here](https://github.com/x-atlas-consortia/hra-dashboard-data)
