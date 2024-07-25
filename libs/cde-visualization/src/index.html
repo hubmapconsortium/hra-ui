@@ -4,26 +4,21 @@
     <meta charset="utf-8" />
     <title>CDE Visualization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const ftu = document.getElementById('cde');
-      const nodeClick = (nodeEntry) => {
-        console.log('node click', nodeEntry);
-      };
-      const nodeHover = (nodeEntry) => {
-        console.log('node hover', nodeEntry);
-      };
-      ftu.addEventListener('nodeClicked', nodeClick);
-      ftu.addEventListener('nodeHovered', nodeHover);
+      const cde = document.getElementById('cde');
+      cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
+      cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
     });
   </script>
   <body>
     <cde-visualization-wc
       id="cde"
-      home-link="https://apps.humanatlas.io/cde/"
+      home-link=""
       nodes=""
       node-target-key=""
       node-target-value=""
@@ -31,15 +26,14 @@
       max-edge-distance=""
       color-map=""
       color-map-key=""
-      color-map-value=""
+      color-map-value-key=""
       metadata=""
       title=""
       technology=""
       organ=""
       sex=""
-      age="50"
-      creation-date=""
-      creation-time=""
+      age=""
+      creation-timestamp=""
       thickness=""
       pixelSize=""
     >

@@ -12,15 +12,15 @@
     window.addEventListener('DOMContentLoaded', () => {
       const cde = document.getElementById('cde');
       cde.metadata = {
-        sourceData: 'CRC01002-nodes.csv',
         title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
+        sourceData: 'CRC01002-nodes.csv',
         organ: 'Colon',
         sex: 'Male',
         age: 30,
-        creationDate: '07/07/2023',
         thickness: 10,
         pixelSize: 5,
       };
+      cde.maxEdgeDistance = 1000;
       cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
       cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
     });
@@ -41,7 +41,6 @@
         node-target-key="Cell Type"
         node-target-value="Endothelial"
         edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"
-        max-edge-distance="1000"
       >
       </cde-visualization>
     </div>
