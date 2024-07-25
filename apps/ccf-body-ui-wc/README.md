@@ -17,6 +17,9 @@ $ npx nx run ccf-body-ui-wc:build
 
 # serve
 $ npx nx run ccf-body-ui-wc:serve
+
+#test
+$ npx nx run ccf-body-ui-wc:test
 ```
 
 ### Contribute

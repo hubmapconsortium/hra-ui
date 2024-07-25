@@ -19,10 +19,13 @@ Use the following commands to lint, build and run the app
 $ npx nx run asctb-api:lint
 
 # build
-$ npx nx run asctb-reporter:build
+$ npx nx run asctb-api:build
 
 # serve
-$ npx nx run asctb-reporter:serve
+$ npx nx run asctb-api:serve
+
+#test
+$ npx nx run asctb-api:test
 ```
 
 #### Deploying

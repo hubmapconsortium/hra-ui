@@ -14,6 +14,10 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+<br>
+[![Tests](https://github.com/hubmapconsortium/ccf-ui/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hubmapconsortium/hra-ui.svg)](https://github.com/hubmapconsortium/hra-ui/commits/develop)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hubmapconsortium_hra-ui&metric=alert_status)](https://sonarcloud.io/project/overview?id=hubmapconsortium_hra-ui)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -78,6 +82,7 @@ For detailed information, please refer to the documentation for each app.
 
 - [![Angular][Angular.io]][Angular-url]
 - [![Typescript][Typescript.io]][Typescript-url]
+- [![Nx][Nx.io]][Nx-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -168,3 +173,5 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Angular-url]: https://angular.io/
 [Typescript.io]: https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=for-the-badge&logoSize=amg
 [Typescript-url]: https://www.typescriptlang.org/
+[Nx.io]: https://img.shields.io/badge/nx-logo?style=for-the-badge&logo=nx&logoColor=white&labelColor=black&color=black
+[Nx-url]: https://nx.dev/

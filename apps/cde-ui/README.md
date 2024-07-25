@@ -22,6 +22,9 @@ $ npx nx run cde-ui:build
 
 # serve
 $ npx nx run cde-ui:serve
+
+#test
+$ npx nx run cde-ui:test
 ```
 
 ### Contribute

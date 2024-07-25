@@ -22,6 +22,9 @@ $ npx nx run dashboard-ui:build
 
 # serve
 $ npx nx run dashboard-ui:serve
+
+#test
+$ npx nx run dashboard-ui:test
 ```
 
 ### Contribute

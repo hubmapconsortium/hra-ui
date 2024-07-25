@@ -23,6 +23,9 @@ $ npx nx run ccf-eui:build
 
 # serve
 $ npx nx run ccf-eui:serve
+
+#test
+$ npx nx run ccf-eui:test
 ```
 
 ### Contribute

@@ -23,6 +23,9 @@ $ npx nx run ccf-rui:build
 
 # serve
 $ npx nx run ccf-rui:serve
+
+#test
+$ npx nx run ccf-rui:test
 ```
 
 ### Contribute

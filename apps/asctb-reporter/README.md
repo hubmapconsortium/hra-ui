@@ -25,6 +25,9 @@ $ npx nx run asctb-reporter:build
 
 # serve
 $ npx nx run asctb-reporter:serve
+
+#test
+$ npx nx run asctb-reporter:test
 ```
 
 ### Contribute

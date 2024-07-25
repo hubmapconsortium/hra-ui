@@ -17,6 +17,9 @@ $ npx nx run medical-illustration:build
 
 # serve
 $ npx nx run medical-illustration:serve
+
+#test
+$ npx nx run medical-illustration:test
 ```
 
 ### Contribute

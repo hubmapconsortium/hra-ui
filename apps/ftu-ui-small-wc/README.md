@@ -17,6 +17,9 @@ $ npx nx run ftu-ui-small-wc:build
 
 # serve
 $ npx nx run ftu-ui-small-wc:serve
+
+#test
+$ npx nx run ftu-ui-small-wc:test
 ```
 
 ### Contribute

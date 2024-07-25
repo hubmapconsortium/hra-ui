@@ -22,6 +22,9 @@ $ npx nx run humanatlas.io:build
 
 # serve
 $ npx nx run humanatlas.io:serve
+
+#test
+$ npx nx run humanatlas.io:test
 ```
 
 ### Contribute

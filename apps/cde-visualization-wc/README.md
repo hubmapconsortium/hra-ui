@@ -17,6 +17,9 @@ $ npx nx run cde-visualization-wc:build
 
 # serve
 $ npx nx run cde-visualization-wc:serve
+
+#test
+$ npx nx run cde-visualization-wc:test
 ```
 
 ### Contribute

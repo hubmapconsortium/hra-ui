@@ -23,6 +23,9 @@ $ npx nx run ftu-ui:build
 
 # serve
 $ npx nx run ftu-ui:serve
+
+#test
+$ npx nx run ftu-ui:test
 ```
 
 ### Contribute
