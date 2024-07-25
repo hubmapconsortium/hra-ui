@@ -40,9 +40,11 @@
 <ng-scrollbar
   class="table-overflow-container"
   externalViewport=".scroll-viewport"
-  externalContentWrapper=".scroll-viewport"
+  externalContentWrapper="tbody"
   externalSpacer="tbody"
   asyncDetection="auto"
+  hraScrollOverflowFade
+  [fadeBottomOffset]="36"
 >
   <div class="scroll-viewport">
     <table
