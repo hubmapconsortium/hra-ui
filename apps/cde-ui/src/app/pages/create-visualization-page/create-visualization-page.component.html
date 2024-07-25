@@ -47,7 +47,6 @@
 
     <cde-file-upload
       class="upload-csv"
-      layout="layout-a"
       accept="text/csv,.csv"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
@@ -225,7 +224,6 @@
     @if (useCustomColorMap) {
       <cde-file-upload
         class="upload-colormap"
-        layout="layout-b"
         [actionNotification]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
