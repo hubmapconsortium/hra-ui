@@ -106,11 +106,8 @@ export class CdeVisualizationComponent {
   /** Age of the subject */
   readonly age = input(undefined, { transform: numberAttribute() });
 
-  /** Creation date of the visualization */
-  readonly creationDate = input<string>();
-
-  /** Creation time of the visualization */
-  readonly creationTime = input<string>();
+  /** Creation timestamp (ms since 1/1/1970 UTC) */
+  readonly creationTimestamp = input<number>();
 
   /** Thickness of the sample */
   readonly thickness = input(undefined, { transform: numberAttribute() });
@@ -171,8 +168,7 @@ export class CdeVisualizationComponent {
       organ: this.organ(),
       sex: this.sex(),
       age: this.age(),
-      creationDate: this.creationDate(),
-      creationTime: this.creationTime(),
+      creationTimestamp: this.creationTimestamp(),
       thickness: this.thickness(),
       pixelSize: this.pixelSize(),
     }),
