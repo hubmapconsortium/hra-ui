@@ -2,112 +2,88 @@ import {
   ChangeDetectionStrategy,
   Component,
   Directive,
-  ElementRef,
-  InjectionToken,
-  Injector,
   Renderer2,
-  Signal,
-  ViewContainerRef,
-  computed,
+  ViewEncapsulation,
   effect,
   inject,
   input,
   numberAttribute,
 } from '@angular/core';
+import { registerStyleComponents } from '@hra-ui/cdk/styling';
 import { NG_SCROLLBAR } from 'ngx-scrollbar';
-import { endWith, interval, map, takeWhile } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
 
-type ScrollTimelineFunc = new (opts: { source: HTMLElement; axis: 'x' | 'y' }) => AnimationTimeline;
-
-const SCROLL_TIMELINE = new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {
-  providedIn: 'root',
-  factory: () => {
-    const globals = globalThis as unknown as { ScrollTimeline: ScrollTimelineFunc };
-    const check$ = interval(100).pipe(
-      takeWhile(() => !('ScrollTimeline' in globalThis)),
-      map(() => false),
-      endWith(true),
-      map((available) => (available ? globals.ScrollTimeline : null)),
-    );
-
-    return toSignal(check$, { initialValue: null });
+const GRADIENT_KEYFRAMES: Keyframe[] = [
+  {
+    top: 'calc(var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height))',
   },
-});
+  {
+    offset: 0.98,
+    opacity: 1,
+  },
+  {
+    top: 'calc(var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset))',
+    opacity: 0,
+  },
+];
 
 @Component({
-  selector: 'hra-scroll-overflow-fade',
+  selector: 'hra-scroll-overflow-fade-styles',
   standalone: true,
   template: '',
-  styleUrl: './scroll-overflow-fade.directive.scss',
+  styleUrls: ['./scroll-overflow-fade.directive.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[style.height.px]': 'dir.fadeHeight()',
-    '[style.background]': 'background()',
-  },
 })
-export class ScrollOverflowFadeComponent {
-  protected readonly dir = inject(ScrollOverflowFadeDirective);
-  protected readonly background = computed(() => `linear-gradient(to top, ${this.dir.fadeColor()}, transparent)`);
-
-  constructor() {
-    const element: HTMLElement = inject(ElementRef).nativeElement;
-    const viewport = inject(NG_SCROLLBAR).viewport;
-    const scrollTimeline = inject(SCROLL_TIMELINE)() as ScrollTimelineFunc;
-
-    effect((onCleanup) => {
-      const { fadeHeight, fadeTopOffset, fadeBottomOffset } = this.dir;
-      const animation = element.animate(
-        [
-          {
-            top: `calc(var(--viewport-height) * 1px + ${fadeTopOffset() - fadeHeight()}px)`,
-          },
-          {
-            offset: 0.98,
-            opacity: 1,
-          },
-          {
-            top: `calc(var(--content-height) * 1px + ${fadeBottomOffset() - fadeHeight()}px)`,
-            opacity: 0,
-          },
-        ],
-        {
-          fill: 'both',
-          easing: 'linear',
-          timeline: new scrollTimeline({ source: viewport.nativeElement, axis: 'y' }),
-        },
-      );
-
-      onCleanup(() => animation.cancel());
-    });
-  }
-}
+export class ScrollOverflowFadeStylesComponent {}
 
 @Directive({
   selector: '[hraScrollOverflowFade]',
   standalone: true,
+  host: {
+    '[style.--hra-scroll-overflow-fade-offset.px]': 'scrollOverflowFadeOffset()',
+  },
 })
 export class ScrollOverflowFadeDirective {
-  readonly fadeHeight = input(32, { transform: numberAttribute });
-  readonly fadeTopOffset = input(0, { transform: numberAttribute });
-  readonly fadeBottomOffset = input(0, { transform: numberAttribute });
-  readonly fadeColor = input('#ffffff');
+  readonly scrollOverflowFadeOffset = input(0, { transform: numberAttribute });
+
+  private readonly renderer = inject(Renderer2);
+  private readonly scrollbar = inject(NG_SCROLLBAR);
+  private readonly scrollTimeline = inject(SCROLL_TIMELINE);
 
   constructor() {
-    const viewport = inject(NG_SCROLLBAR).viewport;
-    const injector = inject(Injector);
-    const viewContainer = inject(ViewContainerRef);
-    const renderer = inject(Renderer2);
-    const scrollTimeline = inject(SCROLL_TIMELINE);
+    registerStyleComponents([ScrollOverflowFadeStylesComponent]);
 
     effect((onCleanup) => {
-      if (viewport.initialized() && scrollTimeline()) {
-        const componentRef = viewContainer.createComponent(ScrollOverflowFadeComponent, { injector });
-        renderer.appendChild(viewport.nativeElement, componentRef.location.nativeElement);
-        onCleanup(() => componentRef.destroy());
+      const scrollTimeline = this.scrollTimeline();
+      if (!this.scrollbar.viewport.initialized() || !scrollTimeline) {
+        return;
       }
-    });
 
-    console.log(this);
+      const viewport = this.scrollbar.viewport.nativeElement;
+      const el = this.createGradientElement();
+
+      this.renderer.appendChild(viewport, el);
+      const animation = this.animateGradient(scrollTimeline, el, viewport);
+
+      onCleanup(() => {
+        el.remove();
+        animation.cancel();
+      });
+    });
+  }
+
+  private createGradientElement(): HTMLElement {
+    const el: HTMLElement = this.renderer.createElement('div');
+    this.renderer.addClass(el, 'hra-scroll-overflow-fade-gradient');
+    return el;
+  }
+
+  private animateGradient(scrollTimeline: ScrollTimelineFunc, el: HTMLElement, source: HTMLElement): Animation {
+    return el.animate(GRADIENT_KEYFRAMES, {
+      fill: 'both',
+      easing: 'linear',
+      timeline: new scrollTimeline({ source, axis: 'y' }),
+    });
   }
 }

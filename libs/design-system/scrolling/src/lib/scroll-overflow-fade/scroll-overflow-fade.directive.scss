@@ -1,77 +1,15 @@
-:host {
+.hra-scroll-overflow-fade-gradient {
+  --_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);
+  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);
+
   display: block;
   position: absolute;
-  content: '';
   pointer-events: none;
-  z-index: 10;
+  z-index: 100;
   left: 0;
   right: 0;
   top: 100%;
   width: 100%;
-  // height: calc(var(--scroll-overflow-fade-height) * 1px);
-  // background: linear-gradient(to top, var(--scroll-overflow-fade-color), transparent);
+  height: var(--_hra-scroll-overflow-fade-height);
+  background: linear-gradient(to top, var(--_hra-scroll-overflow-fade-color), transparent);
 }
-
-// $height: var(--scroll-overflow-fade-height);
-// $height-px: calc($height * 1px);
-// $top-offset: var(--scroll-overflow-fade-top-offset);
-// $top-offset-px: calc($top-offset * 1px);
-// $bottom-offset: var(--scroll-overflow-fade-bottom-offset);
-// $bottom-offset-px: calc($bottom-offset * 1px);
-// $color: var(--scroll-overflow-fade-color);
-
-// .hra-scroll-overflow-fade[isVerticallyScrollable="true"] {
-//   // .ng-scroll-viewport::before {
-//   //   position: sticky;
-//   //   display: block;
-//   //   content: 'foo';
-//   //   z-index: 10;
-//   //   // inset: auto 0 0 0;
-//   //   height: 0;
-//   //   overflow: visible;
-//   // }
-
-//   // .ng-scroll-viewport::after {
-//   //   position: absolute;
-//   //   content: "";
-//   //   height: 32px;
-//   //   pointer-events: none;
-//   //   top: var(--viewport-height);
-//   //   left: 0;
-//   //   right: 0;
-//   // }
-//   .ng-scroll-viewport {
-//     position: relative;
-
-//     &::after {
-//       position: absolute;
-//       content: "";
-//       pointer-events: none;
-//       z-index: 10;
-//       left: 0;
-//       right: 0;
-//       width: 100%;
-//       height: $height-px;
-//       background: linear-gradient(to top, $color, transparent);
-//       // animation-name: scrollOverflowFadePosition;
-//       // animation-duration: 1ms;
-//       // animation-timing-function: linear;
-//       // animation-fill-mode: both;
-//       // A bit brittle since it relies on ngx-scrollbar internals
-//       // animation-timeline: var(--_animation-timeline-y);
-//     }
-//   }
-// }
-
-// @keyframes scrollOverflowFadePosition {
-//   0% {
-//     top: calc(var(--viewport-height) * 1px - $height-px + $top-offset-px);
-//   }
-//   98% {
-//     opacity: 1;
-//   }
-//   100% {
-//     top: calc(var(--content-height) * 1px - $height-px + $bottom-offset-px);
-//     opacity: 0;
-//   }
-// }
