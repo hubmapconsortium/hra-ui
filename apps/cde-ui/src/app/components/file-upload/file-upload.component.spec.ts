@@ -26,7 +26,7 @@ describe('FileUploadComponent', () => {
       fixture: { componentInstance: instance },
     } = await render(FileUploadComponent, {
       componentInputs: {
-        fileTitle: 'testTitle',
+        actionNotification: 'test',
         accept: 'csv',
         loader: loader,
         options: {},
@@ -34,7 +34,7 @@ describe('FileUploadComponent', () => {
     });
 
     instance.load({ files: mockFiles } as HTMLInputElement);
-    expect(screen.getByText(/testTitle/i)).toBeInTheDocument();
+    expect(screen.getByText(/test/i)).toBeInTheDocument();
   });
 
   it('should cancel load', async () => {
@@ -43,7 +43,7 @@ describe('FileUploadComponent', () => {
       fixture: { componentInstance: instance },
     } = await render(FileUploadComponent, {
       componentInputs: {
-        fileTitle: 'testTitle',
+        actionNotification: 'test',
         accept: 'csv',
         loader: loader,
         options: {},

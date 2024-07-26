@@ -14,6 +14,7 @@
     <h2 class="header">
       <span class="step-number">1</span>
       <span class="card-title">Format and Upload Data</span>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -39,10 +40,8 @@
         </p>
       </ng-template>
     </h2>
-
-    <h3 class="subheader-1">Upload Cell Type Table</h3>
-    <h4 class="subheader-required-columns">Required Columns</h4>
-    <h4 class="subheader-optional-columns">Optional Columns</h4>
+    <span class="subheader-required-columns">Required Columns:</span>
+    <span class="subheader-optional-columns">Optional Columns:</span>
     <span class="required-columns">X, Y, and Cell Type</span>
     <span class="optional-columns">Z and Cell Ontology ID</span>
 
@@ -55,37 +54,19 @@
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
       (loadErrored)="nodesLoadError = $event"
+      [errorMessage]="nodesErrorMessage"
+      [errorActionMessage]="nodesErrorActionMessage"
+      templateUrl="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
       #nodesFileUpload
     >
     </cde-file-upload>
-
-    @if (nodesErrorMessage) {
-      <div class="upload-errors">
-        <span>{{ nodesErrorMessage }}</span>
-        <span>Please upload a CSV file with the required columns.</span>
-      </div>
-    }
-
-    <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
-
-    <h3 class="subheader-2">Cell Type Table Template</h3>
-    <a
-      mat-button
-      class="use-template"
-      color="primary"
-      href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/nodes.csv"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Use Template
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
   </div>
 
   <div class="card anchor-selection">
     <h2 class="header">
       <span class="step-number">2</span>
       <span class="card-title">Optional: Select Anchor Cell Type</span>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -105,14 +86,14 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <div>
+        <p>
           The anchor cell type represents the cell type to which the nearest cell distance distributions should be
           computed and visualized. Euclidian distance is used to compute the distance between two cells.
-        </div>
-        <div>
+        </p>
+        <p>
           “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
           first listed cell type label is used as the anchor cell type.
-        </div>
+        </p>
       </ng-template>
     </h2>
 
@@ -135,6 +116,7 @@
     <h2 class="header">
       <span class="step-number">3</span>
       <div class="card-title">Optional: Add Metadata</div>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -153,10 +135,10 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <div>
+        <p>
           Information in these fields will not change the visualization output. Metadata may be helpful for taking
           screenshots of the uploaded data and resulting visualizations in the Visualization App.
-        </div>
+        </p>
       </ng-template>
     </h2>
 
@@ -206,7 +188,8 @@
   <div class="color-config card">
     <h2 class="header">
       <span class="step-number">4</span>
-      <div class="card-title">Optional: Configure Color Map</div>
+      <div class="card-title">Optional: Configure Colors</div>
+      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -226,22 +209,22 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <div>
+        <p>
           Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type
           colors may be changed individually while exploring the visualization in the Visualization App.
-        </div>
+        </p>
       </ng-template>
     </h2>
 
-    <mat-button-toggle-group [vertical]="useVerticalToggleButtons()" formControlName="colorMapType">
+    <mat-button-toggle-group formControlName="colorMapType">
       <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Custom Color Map</mat-button-toggle>
+      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
       <cde-file-upload
         class="upload-colormap"
-        [fileTitle]="'Action Required: Upload Color Map'"
+        [actionNotification]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
@@ -250,30 +233,11 @@
         (loadErrored)="customColorMapLoadError = $event"
         data-testid="color-map-upload"
         #customColorMapFileUpload
+        [errorMessage]="colorErrorMessage"
+        [errorActionMessage]="colorErrorActionMessage"
+        templateUrl="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
       >
       </cde-file-upload>
-
-      @if (colorErrorMessage) {
-        <div class="upload-errors">
-          <span>{{ colorErrorMessage }}</span>
-          <span>Please upload a CSV file with the required columns.</span>
-        </div>
-      }
-
-      <mat-divider class="divider" [vertical]="useVerticalDividers()"> </mat-divider>
-
-      <h3 class="template">Color Map Template</h3>
-      <a
-        mat-button
-        class="cta-button use-template"
-        color="primary"
-        href="https://github.com/hubmapconsortium/hra-ui/tree/cell-distance-explorer/apps/cde-ui/example-data/color_map.csv"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Use Template
-        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </a>
     }
   </div>
 
@@ -281,6 +245,7 @@
     <h2 class="header">
       <span class="step-number">5</span>
       <div class="card-title">Visualize Cell Distance Data</div>
+      <div class="filler"></div>
       <mat-icon
         class="material-symbols-rounded info"
         cdkOverlayOrigin
@@ -300,7 +265,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <div>Inputs on the Create Visualization page cannot be modified after a visualization is generated.</div>
+        <p>Inputs on the Create Visualization page cannot be modified after a visualization is generated.</p>
       </ng-template>
     </h2>
 
@@ -310,7 +275,7 @@
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </button>
     } @else {
-      <span>Please format and upload data to explore a visualization.</span>
+      <span class="visualize-notification">Please format and upload data to explore a visualization.</span>
     }
   </div>
 </form>
