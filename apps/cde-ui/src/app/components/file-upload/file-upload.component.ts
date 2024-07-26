@@ -40,8 +40,17 @@ export type FileLoadError = FileTypeError | FileParseError;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileUploadComponent<T, OptionsT> {
-  /** Title */
-  readonly fileTitle = input<string>();
+  /** Notification for action required */
+  readonly actionNotification = input<string>();
+
+  /** Url for template data */
+  readonly templateUrl = input<string>();
+
+  /** Upload error message */
+  readonly errorMessage = input<string>();
+  /** Upload error action message */
+  readonly errorActionMessage = input<string>();
+
   /** Accepted file types */
   readonly accept = input.required<string>();
   /** File loader */
