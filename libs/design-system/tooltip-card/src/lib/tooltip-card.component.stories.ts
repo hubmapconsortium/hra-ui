@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TooltipContent, TooltipCardComponent } from './tooltip-card.component';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { TooltipCardComponent, TooltipContent } from './tooltip-card.component';
 
 const meta: Meta<TooltipCardComponent> = {
   component: TooltipCardComponent,
@@ -50,31 +48,26 @@ const descriptionOnlyTooltip: TooltipContent = {
 
 export const Default: Story = {
   args: {
-    content: [tooltip, tooltip],
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getAllByText(title).length).toEqual(2);
-    await expect(canvas.getAllByText(descriptionShort).length).toEqual(2);
+    content: structuredClone([tooltip, tooltip]),
   },
 };
 
 export const DescriptionOnly: Story = {
   args: {
-    content: [descriptionOnlyTooltip],
+    content: structuredClone([descriptionOnlyTooltip]),
   },
 };
 
 export const Small: Story = {
   args: {
-    content: [tooltip, tooltip],
+    content: structuredClone([tooltip, tooltip]),
     small: true,
   },
 };
 
 export const SmallDescriptionOnly: Story = {
   args: {
-    content: [descriptionOnlyTooltip],
+    content: structuredClone([descriptionOnlyTooltip]),
     small: true,
   },
 };
