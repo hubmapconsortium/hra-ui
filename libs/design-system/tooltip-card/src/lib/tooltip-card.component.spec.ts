@@ -1,21 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { screen } from '@testing-library/dom';
 import { TooltipCardComponent } from './tooltip-card.component';
+import { render } from '@testing-library/angular';
 
 describe('TooltipCardComponent', () => {
-  let component: TooltipCardComponent;
-  let fixture: ComponentFixture<TooltipCardComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TooltipCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TooltipCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(TooltipCardComponent, {
+      componentInputs: {
+        info: [
+          {
+            title: 'Test Title',
+            description: 'Test Description',
+          },
+        ],
+      },
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render title and description', () => {
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+    expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 });
