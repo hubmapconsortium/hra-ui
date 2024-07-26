@@ -11,11 +11,22 @@ import {
   runInInjectionContext,
 } from '@angular/core';
 
+/** Map of component types to instances */
 type ComponentInstanceMap = Map<Type<unknown>, ComponentRef<unknown>>;
+
+/** Helper that turns an array of types into an array of component refs */
 type ComponentRefsFromTypes<Types extends Type<unknown>[]> = {
   [Index in keyof Types]: ComponentRef<InstanceType<Types[Index]>>;
 };
 
+/**
+ * Register style components. Each component is registered at most once.
+ * Must be called in an injection context or pass an injector in the options.
+ *
+ * @param components Component classes
+ * @param options Additional options
+ * @returns A component ref for each class
+ */
 export function registerStyleComponents<const Types extends Type<unknown>[]>(
   components: Types,
   options?: { injector?: Injector },
@@ -29,10 +40,21 @@ export function registerStyleComponents<const Types extends Type<unknown>[]>(
   return manager.registerStyleComponents(components, { injector });
 }
 
+/**
+ * Manager of global style components
+ */
 @Injectable({ providedIn: 'root' })
 export class StyleComponentManagerService {
+  /** Component instance registry */
   private readonly registry = new Map<ApplicationRef, ComponentInstanceMap>();
 
+  /**
+   * Register style components. Each component is registered at most once.
+   *
+   * @param components Component classes
+   * @param options Options object
+   * @returns Component instance references
+   */
   registerStyleComponents<const Types extends Type<unknown>[]>(
     components: Types,
     options: { injector: Injector },
@@ -47,6 +69,14 @@ export class StyleComponentManagerService {
     });
   }
 
+  /**
+   * Gets the component instance map for an application ref.
+   * The map is created if it doesn't already exist and
+   * is registered to cleanup when the application is destroyed.
+   *
+   * @param appRef Application reference
+   * @returns A component instance map
+   */
   private getInstanceMap(appRef: ApplicationRef): ComponentInstanceMap {
     let instanceMap = this.registry.get(appRef);
     if (!instanceMap) {
@@ -61,6 +91,14 @@ export class StyleComponentManagerService {
     return instanceMap;
   }
 
+  /**
+   * Gets or creates a component instance, adding it to the provided instance map.
+   *
+   * @param component Component class
+   * @param instanceMap Instance map to check
+   * @param environmentInjector The environment injector used when creating a new instance
+   * @returns A component ref to the existing or newly created instance
+   */
   private getInstance<T>(
     component: Type<T>,
     instanceMap: ComponentInstanceMap,

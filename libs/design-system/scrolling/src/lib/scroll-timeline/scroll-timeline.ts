@@ -3,8 +3,14 @@ import { InjectionToken, PLATFORM_ID, Signal, inject, signal } from '@angular/co
 import { toSignal } from '@angular/core/rxjs-interop';
 import { endWith, ignoreElements, interval, map, takeWhile } from 'rxjs';
 
+/** Basic signature of the ScrollTimeline constructor */
 export type ScrollTimelineFunc = new ({ source, axis }: { source: HTMLElement; axis: 'x' | 'y' }) => AnimationTimeline;
 
+/**
+ * Provides ScrollTimeline as a signal.
+ * If not natively implemented it will try to wait for a polyfill
+ * to provide the function.
+ */
 export const SCROLL_TIMELINE = new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {
   providedIn: 'root',
   factory: () => {

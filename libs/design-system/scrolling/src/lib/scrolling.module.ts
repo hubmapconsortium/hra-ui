@@ -4,6 +4,12 @@ import { NgScrollbarModule, NgScrollbarOptions, provideScrollbarOptions } from '
 import { ScrollOverflowFadeDirective } from './scroll-overflow-fade/scroll-overflow-fade.directive';
 import { ScrollbarStylesComponent } from './scrollbar-styles/scrollbar-styles.component';
 
+/**
+ * Provide scrolling functionality to an application.
+ *
+ * @param options Scrollbar options
+ * @returns An environment provider
+ */
 export function provideScrolling(options?: NgScrollbarOptions): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideStyleComponents(ScrollbarStylesComponent),
@@ -20,6 +26,7 @@ export function provideScrolling(options?: NgScrollbarOptions): EnvironmentProvi
   ]);
 }
 
+/** Module exporting ng-scrollbar and related scrolling utilities */
 @NgModule({
   imports: [ScrollOverflowFadeDirective],
   exports: [NgScrollbarModule, ScrollOverflowFadeDirective],

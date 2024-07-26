@@ -13,6 +13,7 @@ import { registerStyleComponents } from '@hra-ui/cdk/styling';
 import { NG_SCROLLBAR } from 'ngx-scrollbar';
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
 
+/** Keyframes for the top gradient */
 const GRADIENT_TOP_KEYFRAMES: Keyframe[] = [
   {
     top: 'var(--_hra-scroll-overflow-fade-gradient-top-start)',
@@ -27,6 +28,7 @@ const GRADIENT_TOP_KEYFRAMES: Keyframe[] = [
   },
 ];
 
+/** Keyframes for the bottom gradient */
 const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
   {
     top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-start)',
@@ -41,6 +43,7 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
   },
 ];
 
+/** Scroll overflow fade global styles component */
 @Component({
   selector: 'hra-scroll-overflow-fade-styles',
   standalone: true,
@@ -51,6 +54,11 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
 })
 export class ScrollOverflowFadeStylesComponent {}
 
+/**
+ * Directive that can be used along ng-scrollbar to apply a gradient
+ * to the top and bottom of the scroll area to indicate that there
+ * is additional content available through scrolling.
+ */
 @Directive({
   selector: '[hraScrollOverflowFade]',
   standalone: true,
@@ -59,12 +67,22 @@ export class ScrollOverflowFadeStylesComponent {}
   },
 })
 export class ScrollOverflowFadeDirective {
+  /**
+   * Additional offset to the gradient elements.
+   * Primarily useful when there are sticky headers on a table, etc.
+   */
   readonly scrollOverflowFadeOffset = input(0, { transform: numberAttribute });
 
+  /** Renderer instance */
   private readonly renderer = inject(Renderer2);
+  /** Nearest ng-scrollbar instance */
   private readonly scrollbar = inject(NG_SCROLLBAR);
+  /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
   private readonly scrollTimeline = inject(SCROLL_TIMELINE);
 
+  /**
+   * Initializes the directive, adding the gradient elements to the scroll area.
+   */
   constructor() {
     registerStyleComponents([ScrollOverflowFadeStylesComponent]);
 
@@ -84,6 +102,15 @@ export class ScrollOverflowFadeDirective {
     });
   }
 
+  /**
+   * Creates and attaches a gradient element to a scroll area.
+   *
+   * @param viewport The scroll area viewport
+   * @param placement Whether to place the gradient on top or bottom
+   * @param scrollTimeline Reference to ScrollTimeline
+   * @param keyframes Keyframes used to animate/move the gradient
+   * @returns A cleanup function
+   */
   private attachGradient(
     viewport: HTMLElement,
     placement: 'top' | 'bottom',
@@ -100,12 +127,27 @@ export class ScrollOverflowFadeDirective {
     };
   }
 
+  /**
+   * Creates a new gradient element.
+   *
+   * @param placement Whether it will be placed on the top or bottom
+   * @returns A new element
+   */
   private createGradientElement(placement: 'top' | 'bottom'): HTMLElement {
     const el: HTMLElement = this.renderer.createElement('div');
     this.renderer.addClass(el, `hra-scroll-overflow-fade-gradient-${placement}`);
     return el;
   }
 
+  /**
+   * Animates a gradient element using a scroll timeline.
+   *
+   * @param scrollTimeline Reference to ScrollTimeline
+   * @param el Element to animate
+   * @param source Scroll container element
+   * @param keyframes Keyframe specification
+   * @returns An animation
+   */
   private animateGradient(
     scrollTimeline: ScrollTimelineFunc,
     el: HTMLElement,

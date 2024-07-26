@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
+/** ng-scrollbar global styles component */
 @Component({
   selector: 'hra-scrollbar-styles',
   standalone: true,
