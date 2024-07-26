@@ -6,7 +6,7 @@ describe('TooltipCardComponent', () => {
   beforeEach(async () => {
     await render(TooltipCardComponent, {
       componentInputs: {
-        info: [
+        content: [
           {
             title: 'Test Title',
             description: 'Test Description',

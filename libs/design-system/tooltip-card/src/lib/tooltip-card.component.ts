@@ -1,8 +1,8 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-/** Interface for Tooltip Card */
-export interface Tooltip {
+/** Interface for Tooltip Card Content */
+export interface TooltipContent {
   /** Title of the card */
   title?: string;
   /** Description of the card */
@@ -25,7 +25,7 @@ export interface Tooltip {
 })
 export class TooltipCardComponent {
   /** Input for the card */
-  info = input.required<Tooltip[]>();
+  content = input.required<TooltipContent[]>();
 
   /** Flag to decide whether the card is small */
   readonly small = input(false, { transform: booleanAttribute });

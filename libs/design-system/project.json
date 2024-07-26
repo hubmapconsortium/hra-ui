@@ -68,7 +68,7 @@
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
-        "styles": []
+        "styles": ["libs/design-system/.storybook/preview-styles/index.scss"]
       },
       "configurations": {
         "ci": {
@@ -84,7 +84,7 @@
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
-        "styles": []
+        "styles": ["libs/design-system/.storybook/preview-styles/index.scss"]
       },
       "configurations": {
         "ci": {

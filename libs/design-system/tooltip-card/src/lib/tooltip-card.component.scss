@@ -1,6 +1,5 @@
 :host {
   display: block;
-  font-family: 'Metropolis';
   color: #4c4c58;
   font-weight: 500;
   max-width: 28rem;
@@ -8,7 +7,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
 
   &.small {
     max-width: 21rem;
