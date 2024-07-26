@@ -1,0 +1,8 @@
+@for (item of content(); track item) {
+  <div class="tooltip">
+    @if (item.title) {
+      <div class="title">{{ item.title }}</div>
+    }
+    <div class="description">{{ item.description }}</div>
+  </div>
+}
