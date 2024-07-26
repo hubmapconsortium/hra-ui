@@ -18,8 +18,6 @@ To embed _cde-visualization-wc_ the following code snippet should be used:
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const cde = document.getElementById('cde');
-      cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
-      cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
     });
   </script>
   <body>
@@ -72,6 +70,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
   cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
+  cde.addEventListener('edges', (event) => console.log('Edges ', event));
+  cde.addEventListener('colorMap', (event) => console.log('Color map ', event));
 });
 ```
 
@@ -110,19 +110,13 @@ Full CDE-VISUALIZATION-WC Example:
       };
       cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
       cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
+      cde.addEventListener('edges', (event) => console.log('Edges ', event));
+      cde.addEventListener('colorMap', (event) => console.log('Color map ', event));
     });
   </script>
   <body>
-    <cde-visualization
-      id="cde"
-      home-link="https://apps.humanatlas.io/cde/"
-      nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv"
-      node-target-key="Cell Type"
-      node-target-value="Endothelial"
-      edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"
-    >
-    </cde-visualization>
-  </div>
+    <cde-visualization id="cde" home-link="https://apps.humanatlas.io/cde/" nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv" node-target-key="Cell Type" node-target-value="Endothelial" edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"> </cde-visualization>
+  </body>
 </html>
 ```
 
@@ -179,3 +173,5 @@ The following events are available:
 
 - `nodeClick: () => Event` - Emits a node click event containing details of a clicked node
 - `nodeHover: () => Event` - Emits a node hover event containing details of a hovered node
+- `edges: () => string | EdgeEntry[]` - Returns current edge data or edge url
+- `colorMap: () => string | ColorMapEntry[]` - Return current color map or color map url

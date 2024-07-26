@@ -11,18 +11,20 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const cde = document.getElementById('cde');
+      cde.maxEdgeDistance = 1000;
       cde.metadata = {
-        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         sourceData: 'CRC01002-nodes.csv',
+        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         organ: 'Colon',
         sex: 'Male',
         age: 30,
         thickness: 10,
         pixelSize: 5,
       };
-      cde.maxEdgeDistance = 1000;
       cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
       cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
+      cde.addEventListener('edges', (event) => console.log('Edges ', event));
+      cde.addEventListener('colorMap', (event) => console.log('Color map ', event));
     });
   </script>
   <body>
