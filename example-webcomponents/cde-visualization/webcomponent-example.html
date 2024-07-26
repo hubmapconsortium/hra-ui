@@ -5,44 +5,35 @@
     <title>CDE Visualization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/cde-visualization-wc/main.js" type="module"></script>
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const cde = document.getElementById('cde');
+      cde.maxEdgeDistance = 1000;
       cde.metadata = {
-        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         sourceData: 'CRC01002-nodes.csv',
+        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         organ: 'Colon',
         sex: 'Male',
         age: 30,
         thickness: 10,
         pixelSize: 5,
       };
-      cde.maxEdgeDistance = 1000;
       cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
       cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
     });
   </script>
-  <style>
-    .wc-content {
-      min-width: 1280px;
-      min-height: 832px;
-      height: 100%;
-    }
-  </style>
   <body>
-    <div class="wc-content">
-      <cde-visualization
-        id="cde"
-        home-link="https://apps.humanatlas.io/cde/"
-        nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv"
-        node-target-key="Cell Type"
-        node-target-value="Endothelial"
-        edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"
-      >
-      </cde-visualization>
-    </div>
+    <cde-visualization
+      id="cde"
+      home-link="https://apps.humanatlas.io/cde/"
+      nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv"
+      node-target-key="Cell Type"
+      node-target-value="Endothelial"
+      edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"
+    >
+    </cde-visualization>
   </body>
 </html>

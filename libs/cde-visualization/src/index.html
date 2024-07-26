@@ -5,8 +5,8 @@
     <title>CDE Visualization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/cde-visualization-wc/main.js" type="module"></script>
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -16,27 +16,6 @@
     });
   </script>
   <body>
-    <cde-visualization-wc
-      id="cde"
-      home-link=""
-      nodes=""
-      node-target-key=""
-      node-target-value=""
-      edges=""
-      max-edge-distance=""
-      color-map=""
-      color-map-key=""
-      color-map-value-key=""
-      metadata=""
-      title=""
-      technology=""
-      organ=""
-      sex=""
-      age=""
-      creation-timestamp=""
-      thickness=""
-      pixelSize=""
-    >
-    </cde-visualization-wc>
+    <cde-visualization id="cde"></cde-visualization>
   </body>
 </html>

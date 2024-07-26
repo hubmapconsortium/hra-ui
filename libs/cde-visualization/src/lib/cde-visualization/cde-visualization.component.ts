@@ -94,11 +94,11 @@ export class CdeVisualizationComponent {
   /** Title of the visualization */
   readonly title = input<string>();
 
-  /** Technology used in the visualization */
-  readonly technology = input<string>();
-
   /** Organ being visualized */
   readonly organ = input<string>();
+
+  /** Technology used in the visualization */
+  readonly technology = input<string>();
 
   /** Sex of the subject */
   readonly sex = input<string>();
@@ -106,14 +106,14 @@ export class CdeVisualizationComponent {
   /** Age of the subject */
   readonly age = input(undefined, { transform: numberAttribute() });
 
-  /** Creation timestamp (ms since 1/1/1970 UTC) */
-  readonly creationTimestamp = input<number>();
-
   /** Thickness of the sample */
   readonly thickness = input(undefined, { transform: numberAttribute() });
 
   /** Pixel size in the visualization */
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
+
+  /** Creation timestamp (ms since 1/1/1970 UTC) */
+  readonly creationTimestamp = input<number>();
 
   /** Event emitted when a node is clicked */
   readonly nodeClick = output<NodeEntry>();

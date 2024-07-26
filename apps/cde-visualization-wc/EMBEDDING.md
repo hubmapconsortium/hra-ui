@@ -2,7 +2,7 @@
 
 ## Code
 
-To embed _CDE-VISUALIZATION-WC_ the following code snippet should be used:
+To embed _cde-visualization-wc_ the following code snippet should be used:
 
 ```html
 <!doctype html>
@@ -12,8 +12,8 @@ To embed _CDE-VISUALIZATION-WC_ the following code snippet should be used:
     <title>CDE Visualization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/cde-visualization-wc/main.js" type="module"></script>
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -30,11 +30,12 @@ To embed _CDE-VISUALIZATION-WC_ the following code snippet should be used:
 
 ## Configuration
 
-_CDE-VISUALIZATION-WC_ can be customized in the following ways:
+_cde-visualization-wc_ can be customized in the following ways:
 
 ```js
 window.addEventListener('DOMContentLoaded', () => {
   const cde = document.getElementById('cde');
+
   cde.homeLink = 'https://.....';
   cde.nodes = 'https://.....';
   cde.nodeTargetKey = 'Cell Type';
@@ -45,28 +46,24 @@ window.addEventListener('DOMContentLoaded', () => {
   cde.colorMapKey = 'cell_type';
   cde.colorMapValueKey = 'cell_color';
 
-  // Metadata object, some values can be set individually
+  // Metadata object, most values can also be set at the top level
   cde.metadata = {
+    sourceData: 'Source Data Filename',
+    colorMap: 'Color Map Filename'
     title: 'Title',
-    technology: 'Technology',
     organ: 'Organ Name',
+    technology: 'Technology',
     sex: 'Male',
     age: 30,
     thickness: 10,
     pixelSize: 5,
     creationTimestamp: 0,
-    sourceData: 'Source Data Filename',
-    colorMap: 'Color Map Filename',
-    sampleExtra: {
-      type: '2D',
-      organ: 'Organ',
-      sampleUrl: 'https://.....',
-      sourceDataUrl: 'https://.....'
-    }
   };
+
+  // Individual metadata attributes
   cde.title = 'Title';
-  cde.technology = 'Technology';
   cde.organ = 'Organ Name';
+  cde.technology = 'Technology';
   cde.sex = 'Male';
   cde.age = 30;
   cde.thickness = 10;
@@ -82,7 +79,7 @@ The following format of configuration only works with certain data types, namely
 (Note that variables are kebab-case, not camel-case)
 
 ```html
-<cde-visualization id="cde" home-link="https://....." nodes="https://....." node-target-key="Cell Type" node-target-value="Target Cell Type" edges="https://....." color-map="https://....." color-map-key="cell_type" color-map-value-key="cell_color" title="Title" technology="Technology" organ="Organ Name" sex="Male"> </cde-visualization>
+<cde-visualization id="cde" home-link="https://....." nodes="https://....." node-target-key="Cell Type" node-target-value="Target Cell Type" edges="https://....." color-map="https://....." color-map-key="cell_type" color-map-value-key="cell_color" title="Title" organ="Organ Name" technology="Technology" sex="Male"> </cde-visualization>
 ```
 
 Full CDE-VISUALIZATION-WC Example:
@@ -95,38 +92,37 @@ Full CDE-VISUALIZATION-WC Example:
     <title>CDE Visualization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/cde-visualization-wc/main.js" type="module"></script>
   </head>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const cde = document.getElementById('cde');
+      cde.maxEdgeDistance = 1000;
       cde.metadata = {
-        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         sourceData: 'CRC01002-nodes.csv',
+        title: 'colon-cycif-sorgerlab / CRC01002 (483,936 cells)',
         organ: 'Colon',
         sex: 'Male',
         age: 30,
         thickness: 10,
         pixelSize: 5,
       };
-      cde.maxEdgeDistance = 1000;
       cde.addEventListener('nodeClick', (event) => console.log('Node click on ', event.detail));
       cde.addEventListener('nodeHover', (event) => console.log('Node hover on ', event?.detail));
     });
   </script>
-  <style>
-    .wc-content {
-      min-width: 1280px;
-      min-height: 832px;
-      height: 100%;
-    }
-  </style>
   <body>
-    <div class="wc-content">
-      <cde-visualization id="cde" home-link="https://apps.humanatlas.io/cde/" nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv" node-target-key="Cell Type" node-target-value="Endothelial" edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"> </cde-visualization>
-    </div>
-  </body>
+    <cde-visualization
+      id="cde"
+      home-link="https://apps.humanatlas.io/cde/"
+      nodes="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-nodes.csv"
+      node-target-key="Cell Type"
+      node-target-value="Endothelial"
+      edges="https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv"
+    >
+    </cde-visualization>
+  </div>
 </html>
 ```
 
@@ -157,26 +153,22 @@ The following options are available for configuration:
     - `[value: string]: [red: number, green: number, blue: number]` - Key for the corresponding RGB color in the color map
 - `colorMapKey: string` - Key for color map type attribute
 - `colorMapValueKey: string` - Key for color map value attribute
+
 - `metadata: string | Metadata` - Input metadata, can be a url or a metadata object
   - Metadata - Sample metadata
-    - `title?: string` - Title of the visualization
     - `sourceData?: string` - Name of the source file
     - `colorMap?: string` - Name of the colormap file
+    - `title?: string` - Title of the visualization
     - `organ?: string` - Organ being visualized
     - `technology?: string` - Technology used in the visualization
-    - `sex?: string` - Sex of the subject
+    - `sex?: 'Both' | 'Female' | 'Male'` - Sex of the subject
     - `age?: number` - Age of the subject (years)
     - `thickness?: number` - Thickness of the sample (µm)
     - `pixelSize?: number` - Pixel size in the visualization (µm/pixel)
     - `creationTimestamp?: number` - Creation timestamp (ms since 1/1/1970 UTC); uses current time if blank
-    - `sampleExtra?: SampleMetadataExtra` - Extra metadata fields for example datasets
-      - `type: string` - Sample type, generally '2D' or '3D'
-      - `organ: string` - Organ name
-      - `sampleUrl: string` - Data file url
-      - `sourceDataUrl: string` - Source Data Sheet url
 - `title: string` - Title of the visualization
-- `technology: string` - Technology used in the visualization
 - `organ: string` - Organ being visualized
+- `technology: string` - Technology used in the visualization
 - `sex: 'Both' | 'Female' | 'Male'` - Sex of the subject
 - `age: number` - Age of the subject (years)
 - `thickness: number` - Thickness of the sample (µm)
