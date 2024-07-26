@@ -20,9 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { AsyncDetection, NgScrollbarModule } from 'ngx-scrollbar';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '../../models/color';
@@ -46,9 +45,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     ColorPickerModule,
     OverlayModule,
     ColorPickerLabelComponent,
-    NgScrollbarModule,
-    AsyncDetection,
-    ScrollOverflowFadeDirective,
+    ScrollingModule,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

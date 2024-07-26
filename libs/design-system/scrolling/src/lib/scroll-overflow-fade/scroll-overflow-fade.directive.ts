@@ -13,16 +13,30 @@ import { registerStyleComponents } from '@hra-ui/cdk/styling';
 import { NG_SCROLLBAR } from 'ngx-scrollbar';
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
 
-const GRADIENT_KEYFRAMES: Keyframe[] = [
+const GRADIENT_TOP_KEYFRAMES: Keyframe[] = [
   {
-    top: 'calc(var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height))',
+    top: 'var(--_hra-scroll-overflow-fade-gradient-top-start)',
+    opacity: 0,
+  },
+  {
+    offset: 0.02,
+    opacity: 1,
+  },
+  {
+    top: 'var(--_hra-scroll-overflow-fade-gradient-top-end)',
+  },
+];
+
+const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
+  {
+    top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-start)',
   },
   {
     offset: 0.98,
     opacity: 1,
   },
   {
-    top: 'calc(var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset))',
+    top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-end)',
     opacity: 0,
   },
 ];
@@ -61,26 +75,44 @@ export class ScrollOverflowFadeDirective {
       }
 
       const viewport = this.scrollbar.viewport.nativeElement;
-      const el = this.createGradientElement();
+      const cleanupFns = [
+        this.attachGradient(viewport, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
+        this.attachGradient(viewport, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
+      ];
 
-      this.renderer.appendChild(viewport, el);
-      const animation = this.animateGradient(scrollTimeline, el, viewport);
-
-      onCleanup(() => {
-        el.remove();
-        animation.cancel();
-      });
+      onCleanup(() => cleanupFns.forEach((fn) => fn()));
     });
   }
 
-  private createGradientElement(): HTMLElement {
+  private attachGradient(
+    viewport: HTMLElement,
+    placement: 'top' | 'bottom',
+    scrollTimeline: ScrollTimelineFunc,
+    keyframes: Keyframe[],
+  ): () => void {
+    const el = this.createGradientElement(placement);
+    this.renderer.appendChild(viewport, el);
+
+    const animation = this.animateGradient(scrollTimeline, el, viewport, keyframes);
+    return () => {
+      el.remove();
+      animation.cancel();
+    };
+  }
+
+  private createGradientElement(placement: 'top' | 'bottom'): HTMLElement {
     const el: HTMLElement = this.renderer.createElement('div');
-    this.renderer.addClass(el, 'hra-scroll-overflow-fade-gradient');
+    this.renderer.addClass(el, `hra-scroll-overflow-fade-gradient-${placement}`);
     return el;
   }
 
-  private animateGradient(scrollTimeline: ScrollTimelineFunc, el: HTMLElement, source: HTMLElement): Animation {
-    return el.animate(GRADIENT_KEYFRAMES, {
+  private animateGradient(
+    scrollTimeline: ScrollTimelineFunc,
+    el: HTMLElement,
+    source: HTMLElement,
+    keyframes: Keyframe[],
+  ): Animation {
+    return el.animate(keyframes, {
       fill: 'both',
       easing: 'linear',
       timeline: new scrollTimeline({ source, axis: 'y' }),

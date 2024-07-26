@@ -1,4 +1,5 @@
-.hra-scroll-overflow-fade-gradient {
+.hra-scroll-overflow-fade-gradient-top,
+.hra-scroll-overflow-fade-gradient-bottom {
   --_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);
   --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);
 
@@ -8,8 +9,35 @@
   z-index: 100;
   left: 0;
   right: 0;
-  top: 100%;
   width: 100%;
   height: var(--_hra-scroll-overflow-fade-height);
+}
+
+.hra-scroll-overflow-fade-gradient-top {
+  --_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);
+  --_hra-scroll-overflow-fade-gradient-top-end: calc(
+    (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px
+  );
+
+  top: calc(-1 * var(--_hra-scroll-overflow-fade-height));
+  background: linear-gradient(to bottom, var(--_hra-scroll-overflow-fade-color), transparent);
+}
+
+.hra-scroll-overflow-fade-gradient-bottom {
+  --_hra-scroll-overflow-fade-gradient-bottom-start: calc(
+    var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height)
+  );
+  --_hra-scroll-overflow-fade-gradient-bottom-end: calc(
+    var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset)
+  );
+
+  top: 100%;
   background: linear-gradient(to top, var(--_hra-scroll-overflow-fade-color), transparent);
+}
+
+ng-scrollbar[isVerticallyScrollable='false'] {
+  & .hra-scroll-overflow-fade-gradient-top,
+  & .hra-scroll-overflow-fade-gradient-bottom {
+    display: none;
+  }
 }

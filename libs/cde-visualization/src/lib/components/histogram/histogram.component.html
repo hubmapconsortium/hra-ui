@@ -51,7 +51,7 @@
 
     <div class="content">
       <div class="histogram" data-testid="histogram" #histogram></div>
-      <hra-scroll-container class="legend">
+      <ng-scrollbar hraScrollOverflowFade class="legend">
         <cde-color-picker-label
           [label]="totalCellTypeLabel"
           [(color)]="totalCellTypeColor"
@@ -67,7 +67,7 @@
             (colorChange)="updateColor(type, $event)"
           ></cde-color-picker-label>
         }
-      </hra-scroll-container>
+      </ng-scrollbar>
     </div>
   </mat-expansion-panel>
 </mat-accordion>
