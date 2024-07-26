@@ -20,7 +20,7 @@ export interface Tooltip {
   styleUrl: './tooltip-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.small]': 'small() ? "" : null',
+    '[class.small]': 'small()',
   },
 })
 export class TooltipCardComponent {

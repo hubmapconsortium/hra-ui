@@ -10,6 +10,12 @@
   font-size: 1rem;
   line-height: 1.5rem;
 
+  &.small {
+    max-width: 21rem;
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+  }
+
   .tooltip {
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -18,11 +24,5 @@
     .title {
       color: #201e3d;
     }
-  }
-
-  &[small] {
-    max-width: 21rem;
-    font-size: 0.875rem;
-    line-height: 1.3125rem;
   }
 }
