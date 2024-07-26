@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  height: fit-content;
+
+  .home {
+    height: 100%;
+    margin-left: 1rem;
+
+    > a {
+      height: 100%;
+      display: inline-block;
+    }
+
+    .hra-logo,
+    .cde-logo {
+      display: inline-flex;
+    }
+
+    .hra-logo {
+      margin-right: 0.25rem;
+    }
+
+    .cde-logo {
+      img {
+        margin-right: 0.75rem;
+      }
+
+      .cde-label {
+        margin: 0;
+        color: #201e3d;
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+      }
+
+      .preview-app {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.5px;
+        font-weight: 400;
+        color: #4b4b5e;
+      }
+    }
+  }
+
+  .large {
+    height: 49px;
+  }
+
+  .hra-logo {
+    color: black;
+  }
+}
