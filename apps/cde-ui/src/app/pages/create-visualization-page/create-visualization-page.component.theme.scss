@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use '../../../styles/constants/palettes' as palettes;
+@use '../../../styles/breakpoints' as breakpoints;
 
 $gray-palette: map.get(palettes.$palettes, 'gray');
 
@@ -11,10 +12,6 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
     h3,
     h4 {
       color: mat.get-theme-color($theme, accent, darker);
-    }
-
-    mat-form-field {
-      --mdc-filled-text-field-container-color: white;
     }
 
     .page-nav .nav {
@@ -75,12 +72,43 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
 
   .info-tooltip-panel {
     background-color: white;
+    color: map.get($gray-palette, 600);
+  }
+
+  mat-form-field {
+    --mdc-filled-text-field-container-color: #{mat.get-theme-color($theme, accent, lighter)};
+    --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
+    --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
+    --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
+    --mat-select-focused-arrow-color: #{mat.get-theme-color($theme, primary, darker)};
+  }
+
+  .mat-form-field-hide-placeholder {
+    --mdc-filled-text-field-container-color: white;
+  }
+
+  .select-panel {
+    --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, lighter)};
+    --mat-option-label-text-color: #{map.get($gray-palette, 700)};
+    --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, darker)};
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{mat.get-theme-color($theme, primary, 700)};
+  }
+
+  .visualize-notification {
+    color: #4b4b5e;
+  }
+
+  .upload-errors {
+    .error-message {
+      color: #{mat.get-theme-color($theme, primary, darker)};
+    }
+    .error-instructions {
+      color: #{map.get($gray-palette, 700)};
+    }
   }
 }
 
 @mixin typography($theme) {
-  cde-create-visualization-page {
-  }
 }
 
 @mixin theme($theme) {
