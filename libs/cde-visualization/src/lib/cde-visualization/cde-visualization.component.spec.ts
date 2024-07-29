@@ -51,8 +51,7 @@ const sampleData = {
   organ: 'Test Organ',
   sex: 'Test Sex',
   age: 30,
-  creationDate: 'Test Date',
-  creationTime: 'Test Time',
+  creationTimestamp: 0,
   thickness: 1,
   pixelSize: 1,
 };

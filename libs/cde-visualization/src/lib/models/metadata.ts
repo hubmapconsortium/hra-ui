@@ -2,12 +2,12 @@
  * Interface for Metadata
  */
 export interface Metadata {
-  /** Title of the visualization */
-  title?: string;
   /** Name of the source file */
   sourceData?: string;
   /** Name of the colormap file */
   colorMap?: string;
+  /** Title of the visualization */
+  title?: string;
   /** Name of the organ */
   organ?: string;
   /** Technology */
