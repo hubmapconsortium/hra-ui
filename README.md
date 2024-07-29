@@ -1,180 +1,177 @@
-# Human Reference Atlas (HRA) User Interfaces
+<a id="readme-top"></a>
 
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+<br>
 [![Tests](https://github.com/hubmapconsortium/ccf-ui/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/hubmapconsortium/hra-ui/actions/workflows/ci.yml)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hubmapconsortium/hra-ui.svg)](https://github.com/hubmapconsortium/hra-ui/commits/develop)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hubmapconsortium_hra-ui&metric=alert_status)](https://sonarcloud.io/project/overview?id=hubmapconsortium_hra-ui)
-[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=hubmapconsortium_hra-ui&metric=coverage)](https://sonarcloud.io/component_measures?metric=Coverage&id=hubmapconsortium_hra-ui)
 
-## Website Links
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/hubmapconsortium/hra-ui">
+    <img src="./apps/cde-ui/src/assets/logo/hra_small.svg" alt="Logo" width="80" height="80">
+  </a>
 
-- FTU User Interface (FTU)
-  - Production: <https://apps.humanatlas.io/ftu-explorer/>
-  - Staging: <https://hra-ui.netlify.app/apps/ftu-ui/>
+  <h3 align="center">Human Reference Atlas (HRA) User Interfaces</h3>
+</div>
 
-## Background and More Information
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-hra-ui">About HRA UI</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
-For more information about the Human Reference Atlas (HRA) and the Functional Tissue Unit Explorer (FTU), see the HuBMAP HRA Portal at <https://humanatlas.io>.
+<!-- ABOUT THE PROJECT -->
 
-## Change Log
+## About HRA UI
 
-See the [ChangeLog](CHANGELOG.md) for the latest developments.
+[![Product Name Screen Shot][product-screenshot]](https://apps.humanatlas.io/)
 
-## Credits
+This repository contains all the Human Reference Atlas (HRA) User Interfaces.
 
-This software is developed by the [Cyberinfrastructure for Network Science Center at Indiana University](http://cns.iu.edu/).
+For detailed information, please refer to the documentation for each app.
 
-# HuBMAP CCF ASCT+B Reporter
+- [ASCT+B API](./apps/asctb-api/README.md) - Backend Server for ASCT+B Reporter.
+- [ASCT+B Reporter](./apps/asctb-reporter/README.md) - Visualization tool for displaying flattened ASCT+B tables.
+- [CCF Body UI Web Component](./apps/ccf-body-ui-wc/README.md) - A web component used in Exploration User Interface.
+- [Exploration User Interface](./apps/ccf-eui/README.md) - An interactive tool for exploring and validating spatially registered tissue blocks and cell-type populations.
+- [CCF Organ Info](./apps/ccf-organ-info/README.md) - User Interface for Organ Information.
+- [Registration User Interfce](./apps/ccf-rui/README.md) - An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms.
+- [Cell Distance Explorer](./apps/cde-ui/README.md) - Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more.
+- [Cell Distance Explorer Visualization Web Component](./apps/cde-visualization-wc/README.md) - A web component used in Cell Distance Explorer.
+- [HRA Dashboards](./apps/dashboard-ui/README.md) - Explore usage statistics of atlas data and code.
+- [FTU UI](./apps/ftu-ui/README.md) - Examine cell type abundance and biomarker expression values for functional tissue units (FTUs).
+- [FTU UI Small Web Component](./apps/ftu-ui-small-wc/README.md) - A web component used in FTU Explorer.
+- [Humanatlas](./apps/humanatlas.io/README.md) - 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage.
+- [Medical Illustration](./apps/medical-illustration/README.md) - A web component used in FTU Explorer.
 
-The [CCF ASCT Reporter](https://hubmapconsortium.github.io/ccf-asct-reporter/) is a basic visualization tool for displaying the [flattened ASCT tables](https://docs.google.com/spreadsheets/u/1/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=2034682742) built using Angular 10.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/hubmapconsortium/ccf-asct-reporter)
-[![license](https://img.shields.io/github/license/hrishikeshpaul/portfolio-template?style=flat&logo=appveyor)](https://github.com/hubmapconsortium/ccf-asct-reporter/blob/master/LICENSE)
+### Built With
 
-![HuBMAP CCF Reporter](projects/asctb-reporter/src/assets/github_logo.png)
+- [![Angular][Angular.io]][Angular-url]
+- [![Typescript][Typescript.io]][Typescript-url]
+- [![Nx][Nx.io]][Nx-url]
 
-## Overview
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The [CCF ASCT+B Reporter](https://hubmapconsortium.github.io/ccf-asct-reporter/) includes a partonomy tree that presents relationships between various anatomical structures and substructures, that is combined with their respective cell types and biomarkers via a bimodal network. The reporter also presents an indented list tree for a more traditional look. Along with visualizing, the reporter has a report generator that enlists various meta data for the visualized ASCT table, which is download-able. There is also an in-house debug logger that lists any issues related to the data provided in the table. The reporter is also accompanied by a backend server, ASCT+B API.
+<!-- GETTING STARTED -->
 
-## Links
+## Getting Started
 
-- Production Site: <https://hubmapconsortium.github.io/ccf-asct-reporter/> ([staging](https://ccf-asct-reporter.netlify.app))
-- Documentation: <https://hubmapconsortium.github.io/ccf-asct-reporter/docs> ([staging](https://ccf-asct-reporter.netlify.app/docs))
-- ASCT+B API: <https://apps.humanatlas.io/asctb-api/> ([staging](https://apps.humanatlas.io/asctb-api--staging/))
-- Change Log: [CHANGELOG.md](CHANGELOG.md)
+To get a local copy up follow these simple example steps.
 
-## Installation
+### Prerequisites
 
-```shell
-$ git clone https://github.com/hubmapconsortium/ccf-asct-reporter
-$ cd ccf-asct-reporter
+- npm:
+  ```sh
+  npm install npm@latest -g
+  ```
 
-# Reporter
-$ npm install
-$ ng serve
-# linting
-$ ng lint
+### Installation
 
-# API
-$ cd asctb-api
-$ npm install
-$ npm start # default port is 5000
-# linting
-$ npm run lint
-$ npm run lint-fix
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/hubmapconsortium/hra-ui.git
+   ```
+2. Install NPM packages:
+   ```sh
+   npm install
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+To serve any app use this command:
+
+```sh
+$ npx nx run app-name:serve
 ```
 
-## Deployment
+For example, if the app name is **cde-ui**, use the following command:
 
-Deployment is accomplished via GitHub Actions based on the branch. The `main` branch deploys to production (both the web application and ASCT+B API server) and `develop` deploys to staging.
-
-## Details
-
-### Currently supported ASCT Tables
-
-Below are a list of ASCT+B tables supported by the Reporter:
-
-- [Bone Marrow & Blood](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1852470103)
-- [Brain](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=345174398)
-- [Heart](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1240281363)
-- [Intestine, Large](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1687995716)
-- [Kidney](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1760639962)
-- [Lung](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1824552484)
-- [Lymph Nodes](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=272157091)
-- [Skin](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=104836770)
-- [Spleen](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=22580074)
-- [Thymus](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=314238819)
-- [Vasculature](https://docs.google.com/spreadsheets/d/1F7D0y7pNPVIR3W4LjjtIMGg7rKTOxwyjVKzS-iiffz4/edit#gid=1896956438)
-
-### Features
-
-- Visualization
-- Compare
-- Playground
-- Indented List
-- Report Generator
-- Indented List
-- Search
-- Export
-- Visualization Functions
-- Visualization Controls
-
-### Documentation
-
-Click [here](https://ccf-asct-reporter.netlify.app/docs) to view the documentation.
-
-### ASCT+B API
-
-The reporter is also accompanied by a backend server ASCT+B API. In the event of Google Sheets blocking requests by the Reporter or any error, the Reporter fetches the data from the ASCT+B API which runs a simple Node script to fetch the data from Google Sheets. By supplying the SheetId and GID to the ASCT+B API, the data from the flattened tables can be retrieved. If for some reason the ASCT+B API also fails to retrieve the data, the Reporter falls to its system cache, which contains a snapshot of the flattened tables.
-
-The Miner can also be used as a stand-alone tool to retrieve the data from the flattened Google sheets. Below is the API that you'll have to use,
-
-```
-https://asctb-api.herokuapp.com/asctb-reporter/<sheetID>/<gid>
+```sh
+$ npx nx run cde-ui:serve
 ```
 
-This will either return the data, or will return a `500` HTTP code.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#### Deploying
-
-Since the ASCT+B API is a dynamic script, Heroku has been used to deploy the server. Heroky is free to use for this usage. Deployment is accomplished via GitHub Actions based on the branch. The `main` branch deploys to production and `develop` deploys to staging.
-
-## Screenshots of the ASCT+B Reporter
-
-Visualization
-
-![Partonomy Tree](projects/asctb-reporter/src/assets/snippets/vis.png)
-
-Hovering over a node
-
-![Node Hover](projects/asctb-reporter/src/assets/snippets/hover.png)
-
-Clicking on a node
-
-![Node Click](projects/asctb-reporter/src/assets/snippets/hover.png)
-
-Report
-
-![Report](projects/asctb-reporter/src/assets/snippets/report.png)
-
-Indented List
-
-![Indented List](projects/asctb-reporter/src/assets/snippets/il.png)
-
-Info Sheet
-
-![Info Bottom Sheet](projects/asctb-reporter/src/assets/snippets/bottom.png)
-
-Debug Log
-
-![Debug log](projects/asctb-reporter/src/assets/snippets/debug.png)
+<!-- CONTRIBUTING -->
 
 ## Contributing
 
-If you'd like to contribute, follow the steps below,
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-```shell
-$ git clone https://github.com/hubmapconsortium/ccf-asct-reporter
-$ cd ccf-asct-reporter
-$ git checkout -b <new_branch_name>
-```
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Commit the changes to the new feature branch and make a pull request!
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-# HRA Portal
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- Production URL: https://humanatlas.io/
-- Staging URL: https://humanatlas-io.netlify.app/
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-## Editing content on pages
-
-Steps to update content for pages on humanatlas.io is documented [here](apps/human-atlas/docs/editing-pages.md)
-
-**Video Tutorial**: Steps to update content for pages on humanatlas.io
-
-https://github.com/cns-iu/humanatlas.io/assets/53601863/7d1039f8-fd0f-4701-ae8e-df027b5ed032
+[contributors-shield]: https://img.shields.io/github/contributors/hubmapconsortium/hra-ui?style=for-the-badge
+[contributors-url]: https://github.com/hubmapconsortium/hra-ui/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/hubmapconsortium/hra-ui?style=for-the-badge
+[forks-url]: https://github.com/hubmapconsortium/hra-ui/network/members
+[stars-shield]: https://img.shields.io/github/stars/hubmapconsortium/hra-ui?style=for-the-badge
+[stars-url]: https://github.com/hubmapconsortium/hra-ui/stargazers
+[issues-shield]: https://img.shields.io/github/issues/hubmapconsortium/hra-ui?style=for-the-badge
+[issues-url]: https://github.com/hubmapconsortium/hra-ui/issues
+[license-shield]: https://img.shields.io/github/license/hubmapconsortium/hra-ui?style=for-the-badge
+[license-url]: https://github.com/hubmapconsortium/hra-ui/blob/main/LICENSE
+[product-screenshot]: images/screenshot.png
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Typescript.io]: https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=for-the-badge&logoSize=amg
+[Typescript-url]: https://www.typescriptlang.org/
+[Nx.io]: https://img.shields.io/badge/nx-logo?style=for-the-badge&logo=nx&logoColor=white&labelColor=black&color=black
+[Nx-url]: https://nx.dev/
