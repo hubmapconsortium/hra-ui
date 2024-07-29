@@ -1,1 +1,1 @@
-export * from './lib/logo.component.js';
+export * from './lib/logo.component';
