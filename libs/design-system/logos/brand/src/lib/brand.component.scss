@@ -1,0 +1,39 @@
+:host {
+  a {
+    display: flex;
+    align-items: center;
+    max-width: 15.375rem;
+    text-decoration: none;
+
+    &.small {
+      max-width: 7.25rem;
+
+      img {
+        height: 3rem;
+        width: 3rem;
+        margin-right: 0.375rem;
+      }
+
+      span {
+        max-width: 3.625rem;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+      }
+    }
+
+    img {
+      height: 6.375rem;
+      width: 6.375rem;
+      margin-right: 0.75rem;
+    }
+
+    span {
+      display: block;
+      font-size: 1.5625rem;
+      line-height: 2.25rem;
+      font-weight: 400;
+      letter-spacing: 0.1px;
+      max-width: 8rem;
+    }
+  }
+}
