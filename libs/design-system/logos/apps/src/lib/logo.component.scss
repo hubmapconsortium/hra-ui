@@ -1,0 +1,116 @@
+:host {
+  display: flex;
+  height: 2.375rem;
+
+  &[variant='fixed'] {
+    height: 3rem;
+
+    .hra-logo {
+      margin-right: 0.25rem;
+      width: unset;
+
+      .hra-logo-text {
+        display: none;
+      }
+    }
+
+    .app-logo {
+      img {
+        margin-right: 0.75rem;
+      }
+
+      .app-label {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+      }
+
+      .app-description {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  &[no-description='true'] {
+    .app-logo .app-description {
+      display: none;
+    }
+  }
+
+  > a {
+    height: 100%;
+    display: inline-block;
+  }
+
+  .hra-logo,
+  .app-logo {
+    display: inline-flex;
+    color: #201e3d;
+  }
+
+  .hra-logo {
+    margin-right: 0.25rem;
+    width: fit-content;
+
+    .hra-logo-text {
+      display: none;
+      font-size: 0.75rem;
+      line-height: 0.875rem;
+      width: min-content;
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
+
+  .app-logo {
+    font-weight: 500;
+
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    img {
+      margin-right: 0.5rem;
+    }
+
+    .app-label {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .app-description {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #4b4b5e;
+    }
+  }
+
+  @media (min-width: 1013px) {
+    height: 3rem;
+
+    .hra-logo {
+      width: 7.25rem;
+      margin-right: 0.5rem;
+
+      .hra-logo-text {
+        display: unset;
+      }
+    }
+
+    .app-logo {
+      img {
+        margin-right: 0.75rem;
+      }
+
+      .app-label {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+      }
+
+      .app-description {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<a class="hra-logo" href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
+  <img [attr.src]="'logo/hra_small.svg' | assetUrl" alt="Human Reference Atlas home" class="hra-small" />
+  <span class="hra-logo-text">Human Reference Atlas</span>
+</a>
+<a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer">
+  <img [attr.src]="appIcon() | assetUrl" [alt]="appTitle() + ' home'" />
+  <span>
+    <div class="mat-caption app-label">{{ appTitle() }}</div>
+    @if (appDescription()) {
+      <div class="mat-caption app-description">{{ appDescription() }}</div>
+    }
+  </span>
+</a>
