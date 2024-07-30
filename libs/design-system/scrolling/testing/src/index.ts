@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import type { ScrollTimelineFunc } from '@hra-ui/design-system/scrolling';
 
 /** Globals used by scrolling */
