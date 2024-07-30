@@ -1,21 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+
 import { BrandmarkComponent } from './brandmark.component';
 
 describe('BrandmarkComponent', () => {
-  let component: BrandmarkComponent;
-  let fixture: ComponentFixture<BrandmarkComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BrandmarkComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BrandmarkComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should render a large logo', async () => {
+    await render(BrandmarkComponent, {
+      componentInputs: {
+        small: false,
+      },
+    });
+    const logo = screen.getByAltText('Human Reference Atlas brandmark');
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveAttribute('src', 'logo/brandmark_default.svg');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render a small logo', async () => {
+    await render(BrandmarkComponent, {
+      componentInputs: {
+        small: true,
+      },
+    });
+    const logo = screen.getByAltText('Human Reference Atlas brandmark');
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveAttribute('src', 'logo/brandmark_small.svg');
   });
 });
