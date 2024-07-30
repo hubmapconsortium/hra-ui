@@ -14,7 +14,7 @@ describe('CellTypesComponent', () => {
   const cellTypesSelection = [cellTypes[0].name, cellTypes[1].name];
 
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
-    return await render(CellTypesComponent, {
+    return render(CellTypesComponent, {
       ...options,
       providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
     });

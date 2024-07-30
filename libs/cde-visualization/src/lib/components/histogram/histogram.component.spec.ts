@@ -36,7 +36,7 @@ describe('HistogramComponent', () => {
   const embedResult = mockDeep<Result>();
 
   async function setup(options?: RenderComponentOptions<HistogramComponent>) {
-    return await render(HistogramComponent, {
+    return render(HistogramComponent, {
       ...options,
       providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
     });

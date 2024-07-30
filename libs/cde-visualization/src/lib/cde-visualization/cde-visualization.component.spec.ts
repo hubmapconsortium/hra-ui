@@ -89,7 +89,7 @@ const embedResult = mockDeep<Result>();
 
 describe('CdeVisualizationComponent', () => {
   async function setup(options?: RenderComponentOptions<CdeVisualizationComponent>) {
-    return await render(CdeVisualizationComponent, {
+    return render(CdeVisualizationComponent, {
       ...options,
       providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
     });
