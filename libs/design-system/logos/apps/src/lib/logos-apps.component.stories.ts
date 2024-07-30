@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { LogoComponent } from './logo.component';
+import { LogosAppsComponent } from './logos-apps.component';
 
-const meta: Meta<LogoComponent> = {
-  component: LogoComponent,
-  title: 'LogoComponent',
+const meta: Meta<LogosAppsComponent> = {
+  component: LogosAppsComponent,
+  title: 'LogosAppsComponent',
   parameters: {
     design: {
       type: 'figma',
@@ -12,7 +12,7 @@ const meta: Meta<LogoComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<LogoComponent>;
+type Story = StoryObj<LogosAppsComponent>;
 
 export const DefaultFTU: Story = {
   args: {

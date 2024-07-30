@@ -11,15 +11,15 @@ export type LogosAppsVariant = 'default' | 'fixed';
   selector: 'hra-logos-apps',
   standalone: true,
   imports: [CommonModule, AssetUrlPipe],
-  templateUrl: './logo.component.html',
-  styleUrl: './logo.component.scss',
+  templateUrl: './logos-apps.component.html',
+  styleUrl: './logos-apps.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.variant]': 'variant()',
     '[attr.no-description]': '!appDescription()',
   },
 })
-export class LogoComponent {
+export class LogosAppsComponent {
   /** Variant of logo component */
   readonly variant = input<LogosAppsVariant>('default');
 
