@@ -1,16 +1,16 @@
+import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { render, screen } from '@testing-library/angular';
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
+import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
-
 import { CellTypeEntry } from '../../models/cell-type';
+import { Rgb } from '../../models/color';
 import { EdgeEntry } from '../../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
-import { WritableSignal } from '@angular/core';
-import { Rgb } from '../../models/color';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
@@ -35,6 +35,13 @@ describe('HistogramComponent', () => {
 
   const embedResult = mockDeep<Result>();
 
+  async function setup(options?: RenderComponentOptions<HistogramComponent>) {
+    return await render(HistogramComponent, {
+      ...options,
+      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+    });
+  }
+
   beforeEach(() => {
     if (document.fonts === undefined) {
       Object.defineProperty(document, 'fonts', {
@@ -52,7 +59,7 @@ describe('HistogramComponent', () => {
   });
 
   it('should render the histogram using vega', async () => {
-    const { fixture } = await render(HistogramComponent, {
+    const { fixture } = await setup({
       componentInputs: {
         nodes: sampleNodes,
         nodeTargetKey,
@@ -69,7 +76,7 @@ describe('HistogramComponent', () => {
   });
 
   it('should set empty data when nodes or edges are empty', async () => {
-    const { fixture } = await render(HistogramComponent, {
+    const { fixture } = await setup({
       componentInputs: {
         nodes: [],
         nodeTargetKey,
@@ -85,7 +92,7 @@ describe('HistogramComponent', () => {
   });
 
   it('should download in the specified format', async () => {
-    await render(HistogramComponent, {
+    await setup({
       componentInputs: {
         nodes: [],
         nodeTargetKey,
@@ -111,7 +118,7 @@ describe('HistogramComponent', () => {
   it('should updateColor', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(HistogramComponent, {
+    } = await setup({
       componentInputs: {
         nodes: [],
         nodeTargetKey: 'key',
@@ -129,7 +136,7 @@ describe('HistogramComponent', () => {
   it('should reset all cell colors', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(HistogramComponent, {
+    } = await setup({
       componentInputs: {
         nodes: [],
         nodeTargetKey,
