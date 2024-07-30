@@ -41,6 +41,9 @@
       "@hra-ui/cdk/state": [
         "libs/cdk/state/src/index.ts"
       ],
+      "@hra-ui/cdk/styling": [
+        "libs/cdk/styling/src/index.ts"
+      ],
       "@hra-ui/components/atoms": [
         "libs/components/atoms/src/index.ts"
       ],
@@ -61,6 +64,12 @@
       ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
+      ],
+      "@hra-ui/design-system/scrolling": [
+        "libs/design-system/scrolling/src/index.ts"
+      ],
+      "@hra-ui/design-system/scrolling/testing": [
+        "libs/design-system/scrolling/testing/src/index.ts"
       ],
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"
@@ -115,9 +124,6 @@
       ],
       "swiper_angular": [
         "node_modules/swiper/angular"
-      ],
-      "triple-store-utils": [
-        "libs/triple-store-utils/src/public-api.ts"
       ]
     }
   },
