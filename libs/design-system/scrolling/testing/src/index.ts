@@ -1,5 +1,4 @@
 import type { ScrollTimelineFunc } from '@hra-ui/design-system/scrolling';
-import { mock } from 'jest-mock-extended';
 
 /** Globals used by scrolling */
 interface ScrollingGlobals {
@@ -18,6 +17,11 @@ export function setupScrollTesting(): void {
   }
 
   if (typeof HTMLElement.prototype.animate !== 'function') {
-    HTMLElement.prototype.animate = jest.fn(() => mock());
+    HTMLElement.prototype.animate = jest.fn(
+      () =>
+        ({
+          cancel: jest.fn(),
+        }) as unknown as Animation,
+    );
   }
 }
