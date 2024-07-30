@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/design-system",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": ["./assets"]
 }

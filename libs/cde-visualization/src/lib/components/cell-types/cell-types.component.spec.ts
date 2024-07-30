@@ -1,8 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { ComponentFixture } from '@angular/core/testing';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { render, screen } from '@testing-library/angular';
-
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
+import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
 
@@ -14,8 +13,15 @@ describe('CellTypesComponent', () => {
   ];
   const cellTypesSelection = [cellTypes[0].name, cellTypes[1].name];
 
+  async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
+    return render(CellTypesComponent, {
+      ...options,
+      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+    });
+  }
+
   it('should render the component', async () => {
-    await render(CellTypesComponent, {
+    await setup({
       componentInputs: { cellTypes, cellTypesSelection },
     });
 
@@ -25,12 +31,11 @@ describe('CellTypesComponent', () => {
   });
 
   it('should toggle row selection', async () => {
-    const context = await render(CellTypesComponent, {
+    const { fixture } = await setup({
       componentInputs: { cellTypes, cellTypesSelection },
     });
 
-    const fixture: ComponentFixture<CellTypesComponent> = context.fixture;
-    const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+    const loader = TestbedHarnessEnvironment.loader(fixture);
     const checkboxHarness = await loader.getAllHarnesses(MatCheckboxHarness);
     const checkboxes = screen.getAllByRole('checkbox');
     const firstCheckbox = checkboxes[1];
@@ -47,7 +52,7 @@ describe('CellTypesComponent', () => {
   });
 
   it('toggles row', async () => {
-    const component = await render(CellTypesComponent, {
+    const component = await setup({
       componentInputs: { cellTypes: cellTypes, cellTypesSelection },
     });
 
@@ -57,7 +62,7 @@ describe('CellTypesComponent', () => {
   });
 
   it('updates row color', async () => {
-    const component = await render(CellTypesComponent, {
+    const component = await setup({
       componentInputs: { cellTypes: cellTypes, cellTypesSelection },
     });
 
@@ -66,7 +71,7 @@ describe('CellTypesComponent', () => {
   });
 
   it('resets sort', async () => {
-    const component = await render(CellTypesComponent, {
+    const component = await setup({
       componentInputs: { cellTypes: cellTypes, cellTypesSelection },
     });
 
@@ -75,7 +80,7 @@ describe('CellTypesComponent', () => {
 
   it('returns partial selection state', async () => {
     const fullSelection = cellTypes.map(({ name }) => name);
-    const component = await render(CellTypesComponent, {
+    const component = await setup({
       componentInputs: { cellTypes: cellTypes, cellTypesSelection: fullSelection },
     });
 
@@ -86,7 +91,7 @@ describe('CellTypesComponent', () => {
   });
 
   it('should return total cell count', async () => {
-    const { fixture } = await render(CellTypesComponent, {
+    const { fixture } = await setup({
       componentInputs: { cellTypes, cellTypesSelection: ['Cell Type 1'] },
     });
     fixture.autoDetectChanges();
