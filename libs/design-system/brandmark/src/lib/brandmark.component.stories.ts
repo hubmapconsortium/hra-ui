@@ -5,6 +5,12 @@ import type { Meta, StoryObj } from '@storybook/angular';
 const meta: Meta<BrandmarkComponent> = {
   component: BrandmarkComponent,
   title: 'BrandmarkComponent',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=82-776',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<BrandmarkComponent>;
