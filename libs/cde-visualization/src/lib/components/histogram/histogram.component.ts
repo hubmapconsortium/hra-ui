@@ -31,6 +31,7 @@ import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { emptyArrayEquals } from '../../shared/empty-array-equals';
 
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -124,6 +125,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
+    ScrollingModule,
   ],
   providers: [
     {
