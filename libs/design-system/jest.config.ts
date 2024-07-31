@@ -2,7 +2,7 @@
 export default {
   displayName: 'design-system',
   preset: '../../jest.preset.cjs',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/libs/design-system',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
