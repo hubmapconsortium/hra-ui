@@ -1,0 +1,9 @@
+@import '@fontsource/metropolis';
+
+* {
+  line-height: 1.5;
+}
+
+div.sidebar-item:not([data-selected='true']) svg {
+  color: #4b4b5e;
+}
