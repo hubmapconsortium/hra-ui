@@ -7,3 +7,6 @@ globalThis.ngJest = {
 };
 import 'jest-preset-angular/setup-jest';
 import '@testing-library/jest-dom';
+import { setupScrollTesting } from '@hra-ui/design-system/scrolling/testing';
+
+setupScrollTesting();

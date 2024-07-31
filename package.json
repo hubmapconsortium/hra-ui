@@ -80,6 +80,7 @@
     "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^18.0.0",
     "ngx-mat-select-search": "^7.0.6",
+    "ngx-scrollbar": "^15.1.0",
     "ngxs-reset-plugin": "^4.0.0",
     "ngxtension": "^3.5.5",
     "normalize.css": "^8.0.1",
