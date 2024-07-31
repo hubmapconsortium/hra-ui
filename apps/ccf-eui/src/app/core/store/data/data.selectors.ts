@@ -1,6 +1,6 @@
 import { Selector } from '@ngxs/store';
-import { Filter, OntologyTreeModel } from 'ccf-database';
 import { DataState, DataStateModel } from './data.state';
+import { Filter, OntologyTree } from '@hra-api/ng-client';
 
 export class DataStateSelectors {
   @Selector([DataState])
@@ -9,17 +9,17 @@ export class DataStateSelectors {
   }
 
   @Selector([DataState])
-  static anatomicalStructuresTreeModel(state: DataStateModel): OntologyTreeModel {
+  static anatomicalStructuresTreeModel(state: DataStateModel): OntologyTree {
     return state.anatomicalStructuresTreeModel ?? { root: '', nodes: {} };
   }
 
   @Selector([DataState])
-  static cellTypesTreeModel(state: DataStateModel): OntologyTreeModel {
+  static cellTypesTreeModel(state: DataStateModel): OntologyTree {
     return state.cellTypesTreeModel ?? { root: '', nodes: {} };
   }
 
   @Selector([DataState])
-  static biomarkersTreeModel(state: DataStateModel): OntologyTreeModel {
+  static biomarkersTreeModel(state: DataStateModel): OntologyTree {
     return state.biomarkersTreeModel ?? { root: '', nodes: {} };
   }
 }

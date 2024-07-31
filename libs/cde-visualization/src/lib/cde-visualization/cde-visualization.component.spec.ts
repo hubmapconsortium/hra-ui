@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { render, screen } from '@testing-library/angular';
+import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { rgbToHex } from '../models/color';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
@@ -51,8 +52,7 @@ const sampleData = {
   organ: 'Test Organ',
   sex: 'Test Sex',
   age: 30,
-  creationDate: 'Test Date',
-  creationTime: 'Test Time',
+  creationTimestamp: 0,
   thickness: 1,
   pixelSize: 1,
 };
@@ -88,6 +88,13 @@ const sampleColorMap = [
 const embedResult = mockDeep<Result>();
 
 describe('CdeVisualizationComponent', () => {
+  async function setup(options?: RenderComponentOptions<CdeVisualizationComponent>) {
+    return render(CdeVisualizationComponent, {
+      ...options,
+      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+    });
+  }
+
   beforeEach(() => {
     if (document.fonts === undefined) {
       Object.defineProperty(document, 'fonts', {
@@ -103,7 +110,7 @@ describe('CdeVisualizationComponent', () => {
   it('should update nodes when downloadNodes is called', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(CdeVisualizationComponent, {
+    } = await setup({
       componentInputs: {
         ...sampleData,
         nodes: sampleNodes,
@@ -121,7 +128,7 @@ describe('CdeVisualizationComponent', () => {
   it('should update edges when downloadEdges is called', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(CdeVisualizationComponent, {
+    } = await setup({
       componentInputs: {
         ...sampleData,
         edges: sampleEdges,
@@ -139,7 +146,7 @@ describe('CdeVisualizationComponent', () => {
   it('should update color map when downloadColorMap is called', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(CdeVisualizationComponent, {
+    } = await setup({
       componentInputs: {
         ...sampleData,
         nodes: sampleNodes,
@@ -162,7 +169,7 @@ describe('CdeVisualizationComponent', () => {
   it('should reset cell types and increase reset counter', async () => {
     const {
       fixture: { componentInstance: instance },
-    } = await render(CdeVisualizationComponent, {
+    } = await setup({
       componentInputs: {
         ...sampleData,
         nodes: sampleNodes,
@@ -178,7 +185,7 @@ describe('CdeVisualizationComponent', () => {
     it('should use the default node target key provided', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetKey: 'key',
@@ -190,7 +197,7 @@ describe('CdeVisualizationComponent', () => {
     it('should use the default node target key if node target key is not provided', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetKey: undefined,
@@ -204,7 +211,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set a default node target with nodeTargetValue', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetValue: 'Endothelial',
@@ -216,7 +223,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set a default node target if nodeTargetValue is not provided', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetValue: undefined,
@@ -230,7 +237,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set color map key', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           colorMapKey: 'key',
@@ -242,7 +249,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set color map key as node target key if colorMapKey is undefined and nodeTargetKey is provided', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetKey: 'key',
@@ -255,7 +262,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set a default color map key if colorMapKey and nodeTargetKey are undefined', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodeTargetKey: undefined,
@@ -270,7 +277,7 @@ describe('CdeVisualizationComponent', () => {
     it('should get cell types from nodes and set color from color map', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodes: [
@@ -317,7 +324,7 @@ describe('CdeVisualizationComponent', () => {
     it('should set default colors if color map not provided', async () => {
       const {
         fixture: { componentInstance: instance },
-      } = await render(CdeVisualizationComponent, {
+      } = await setup({
         componentInputs: {
           ...sampleData,
           nodes: sampleNodes,

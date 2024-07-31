@@ -1,37 +1,36 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
-import { Action, NgxsOnInit, State } from '@ngxs/store';
-import { bind } from 'bind-decorator';
 import {
-  AggregateResult,
+  AggregateCount,
   DatabaseStatus,
   Filter,
-  OntologyTreeModel,
+  FilterSexEnum,
+  OntologyTree,
   SpatialSceneNode,
-  TissueBlockResult,
-} from 'ccf-database';
+  TissueBlock,
+} from '@hra-api/ng-client';
+import { Action, NgxsOnInit, State } from '@ngxs/store';
 import { DataSourceService } from 'ccf-shared';
-import { combineLatest, defer, ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject } from 'rxjs';
+import { ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject, combineLatest, defer } from 'rxjs';
 import {
   delay,
   distinctUntilChanged,
-  filter as rxjsFilter,
   map,
   publishReplay,
   refCount,
   repeat,
+  filter as rxjsFilter,
   switchMap,
   take,
   takeWhile,
   tap,
 } from 'rxjs/operators';
-
 import { UpdateFilter } from './data.actions';
 
 /** Default values for filters. */
 export const DEFAULT_FILTER: Filter = {
-  sex: 'Both',
+  sex: FilterSexEnum.Both,
   ageRange: [1, 110],
   bmiRange: [13, 83],
   consortiums: [],
@@ -93,9 +92,9 @@ export interface DataStateModel {
   filter: Filter;
   status: 'Loading' | 'Ready' | 'Error';
   statusMessage: string;
-  anatomicalStructuresTreeModel?: OntologyTreeModel;
-  cellTypesTreeModel?: OntologyTreeModel;
-  biomarkersTreeModel?: OntologyTreeModel;
+  anatomicalStructuresTreeModel?: OntologyTree;
+  cellTypesTreeModel?: OntologyTree;
+  biomarkersTreeModel?: OntologyTree;
 }
 
 /**
@@ -140,6 +139,86 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   /** Keeping track of all cell type terms there is data for. */
   readonly cellTypeTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
   readonly biomarkerTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
+
+  /**
+   * Queries for tissue block data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly tissueBlockData = (filter: Filter): ObservableInput<TissueBlock[]> => {
+    this._tissueBlockDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getTissueBlockResults(filter)));
+  };
+
+  /**
+   * Queries for aggregate data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly aggregateData = (filter: Filter): ObservableInput<AggregateCount[]> => {
+    this._aggregateDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getAggregateResults(filter)));
+  };
+
+  /**
+   * Queries for ontology term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly ontologyTermOccurencesData = (filter: Filter): ObservableInput<Record<string, number>> => {
+    this._ontologyTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getOntologyTermOccurences(filter)));
+  };
+
+  /**
+   * Queries for cell type term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly cellTypeTermOccurencesData = (filter: Filter): ObservableInput<Record<string, number>> => {
+    this._cellTypeTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getCellTypeTermOccurences(filter)));
+  };
+
+  private readonly biomarkerTermOccurencesData = (filter: Filter): ObservableInput<Record<string, number>> => {
+    this._biomarkerTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getBiomarkerTermOccurences(filter)));
+  };
+
+  /**
+   * Queries for scene data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly sceneData = (filter: Filter): ObservableInput<SpatialSceneNode[]> => {
+    this._sceneDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getScene(filter)));
+  };
+
+  /**
+   * Queries for technology filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly technologyFilterData = (): ObservableInput<string[]> => {
+    this._technologyFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getDatasetTechnologyNames()));
+  };
+
+  /**
+   * Queries for provider filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly providerFilterData = (): ObservableInput<string[]> => {
+    this._providerFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getProviderNames()));
+  };
 
   /** Current filter. */
   readonly filter$ = this.state$.pipe(map((x) => x?.filter));
@@ -267,7 +346,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     defer(() => this.source.getDatabaseStatus())
       .pipe(
         tap((status) => this.updateStatus(status)),
-        delay(2000),
+        delay(500),
         take(1),
       )
       .pipe(
@@ -290,21 +369,21 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   }
 
   @DataAction()
-  updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       anatomicalStructuresTreeModel: model,
     });
   }
 
   @DataAction()
-  updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       cellTypesTreeModel: model,
     });
   }
 
   @DataAction()
-  updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTreeModel): void {
+  updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
       biomarkersTreeModel: model,
     });
@@ -334,92 +413,5 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   @Action(UpdateFilter)
   updateFilterHandler(_ctx: unknown, { filter }: UpdateFilter): void {
     this.updateFilter(filter);
-  }
-
-  /**
-   * Queries for tissue block data.
-   *
-   * @param filter The filter used during query.
-   * @returns The result of the query.
-   */
-  @bind
-  private tissueBlockData(filter: Filter): ObservableInput<TissueBlockResult[]> {
-    this._tissueBlockDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getTissueBlockResults(filter)));
-  }
-
-  /**
-   * Queries for aggregate data.
-   *
-   * @param filter The filter used during query.
-   * @returns The result of the query.
-   */
-  @bind
-  private aggregateData(filter: Filter): ObservableInput<AggregateResult[]> {
-    this._aggregateDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getAggregateResults(filter)));
-  }
-
-  /**
-   * Queries for ontology term occurences data.
-   *
-   * @param filter The filter used during query.
-   * @returns The result of the query.
-   */
-  @bind
-  private ontologyTermOccurencesData(filter: Filter): ObservableInput<Record<string, number>> {
-    this._ontologyTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getOntologyTermOccurences(filter)));
-  }
-
-  /**
-   * Queries for cell type term occurences data.
-   *
-   * @param filter The filter used during query.
-   * @returns The result of the query.
-   */
-  @bind
-  private cellTypeTermOccurencesData(filter: Filter): ObservableInput<Record<string, number>> {
-    this._cellTypeTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getCellTypeTermOccurences(filter)));
-  }
-  @bind
-  private biomarkerTermOccurencesData(filter: Filter): ObservableInput<Record<string, number>> {
-    this._biomarkerTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getBiomarkerTermOccurences(filter)));
-  }
-
-  /**
-   * Queries for scene data.
-   *
-   * @param filter The filter used during query.
-   * @returns The result of the query.
-   */
-  @bind
-  private sceneData(filter: Filter): ObservableInput<SpatialSceneNode[]> {
-    this._sceneDataQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getScene(filter)));
-  }
-
-  /**
-   * Queries for technology filter data.
-   *
-   * @returns The result of the query.
-   */
-  @bind
-  private technologyFilterData(): ObservableInput<string[]> {
-    this._technologyFilterQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getDatasetTechnologyNames()));
-  }
-
-  /**
-   * Queries for provider filter data.
-   *
-   * @returns The result of the query.
-   */
-  @bind
-  private providerFilterData(): ObservableInput<string[]> {
-    this._providerFilterQueryStatus$.next(DataQueryState.Running);
-    return this.databaseReady$.pipe(switchMap(() => this.source.getProviderNames()));
   }
 }

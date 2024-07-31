@@ -301,10 +301,6 @@ _CCF-EUI_ can be customized in the following ways:
 window.addEventListener('DOMContentLoaded', () => {
   const eui = document.querySelector('ccf-eui');
   eui.dataSources = ['https://.....jsonld', 'https://.....jsonld'];
-  eui.hubmapDataService = 'search-api';
-  eui.hubmapPortalUrl = 'https://.....';
-  eui.hubmapDataUrl = 'https://.....';
-  eui.hubmapAssetUrl = 'https://.....';
 });
 ```
 
@@ -331,22 +327,25 @@ Full EUI Example
     <link href="styles.css" rel="stylesheet" />
     <script src="wc.js" defer></script>
   </head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const eui = document.querySelector('ccf-eui');
+      eui.dataSources = ['https://purl.humanatlas.io/ds-graph/hubmap'];
+      eui.filter = {
+        sex: 'Female',
+      };
+    });
+  </script>
   <body class="mat-typography">
-    <ccf-eui hubmap-data-service="search-api" hubmap-portal-url="https://portal.test.hubmapconsortium.org/" hubmap-data-url="https://search.api.hubmapconsortium.org/v3/entities/search" hubmap-asset-url="https://assets.test.hubmapconsortium.org"></ccf-eui>
+    <ccf-eui></ccf-eui>
   </body>
 </html>
 ```
 
 The following options are available for configuration
 
-- `ccfOwlUrl: string` - A url to load data from.
-- `ccfContextUrl: string` - Context.
 - `dataSources: string[]` - A list of data sources (in .jsonld format)
-- `hubmapDataService: 'static' | 'search-api'` - Data service type.
-- `hubmapPortalUrl: string` - Hubmap Portal url.
-- `hubmapDataUrl: string` - Hubmap data url.
-- `hubmapAssetsUrl: string` - Hubmap assets api url.
-- `hubmapToken: string` - Hubmap service token.
+- `token: string` - Service token.
 - `selectedOrgans: string[]` - A list of organ IDs.
 
 The TypeScript definition for this configuration object is [here](projects/ccf-database/src/lib/ccf-database.ts).
@@ -392,7 +391,7 @@ window.addEventListener('DOMContentLoaded', () => {
   organInfo.hubmapDataService = 'search-api';
   organInfo.hubmapDataUrl = 'https://.....';
   organInfo.hubmapAssetUrl = 'https://.....';
-  organInfo.hubmapToken = 'token';
+  organInfo.token = 'token';
   organInfo.hubmapPortalUrl = 'https://.....';
   organInfo.useRemoteApi = true;
   organInfo.remoteApiEndpoint = 'https://.....';
@@ -410,7 +409,7 @@ This format of configuration only works with certain data types, namely strings 
 (Note that variables are kebab-case, not camel-case)
 
 ```html
-<ccf-organ-info organ-iri="http://purl.obolibrary.org/obo/UBERON_0004538" sex="Female" side="Right" data-sources="['https://.....jsonld', 'https://.....jsonld']" highlight-providers="['Provider1', 'Provider2']" hubmap-data-service="search-api" hubmap-data-url="https://...." hubmap-asset-url="https://...." hubmap-portal-url="https://...." hubmap-token="token" use-remote-api="true" remote-api-endpoint="https://....." donor-label="Sources" rui-url="https://...." eui-url="https://...." asctb-url="https://...." hra-portal-url="https://...." online-course-url="https://...." paper-url="https://...."></ccf-organ-info>
+<ccf-organ-info organ-iri="http://purl.obolibrary.org/obo/UBERON_0004538" sex="Female" side="Right" data-sources="['https://.....jsonld', 'https://.....jsonld']" highlight-providers="['Provider1', 'Provider2']" hubmap-data-service="search-api" hubmap-data-url="https://...." hubmap-asset-url="https://...." hubmap-portal-url="https://...." token="token" use-remote-api="true" remote-api-endpoint="https://....." donor-label="Sources" rui-url="https://...." eui-url="https://...." asctb-url="https://...." hra-portal-url="https://...." online-course-url="https://...." paper-url="https://...."></ccf-organ-info>
 ```
 
 Full ORGAN-INFO Example
@@ -444,7 +443,7 @@ The following options are available for configuration
 - `hubmapDataService: 'static' | 'search-api'` - Data service type.
 - `hubmapDataUrl: string` - Hubmap data url.
 - `hubmapAssetUrl: string` - Hubmap assets api url.
-- `hubmapToken: string` - Hubmap service token.
+- `token: string` - Service token.
 - `useRemoteApi: string | boolean` - Whether to use a remote api.
 - `remoteApiEndpoint: string` - Remote api url endpoint.
 - `donorLabel: string` - Label for Donors entry in organ statistics.

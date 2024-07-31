@@ -1,19 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, SpatialSearch, TissueBlock } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
-import { Action, Actions, ofActionDispatched, Selector, State, StateContext, Store } from '@ngxs/store';
-import {
-  Filter,
-  getOriginScene,
-  SpatialEntity,
-  SpatialSceneNode,
-  SpatialSearch,
-  TissueBlockResult,
-} from 'ccf-database';
+import { Action, Actions, Selector, State, StateContext, Store, ofActionDispatched } from '@ngxs/store';
+import { getOriginScene } from 'ccf-scene-utils';
 import { DataSourceService, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { debounceTime, mergeMap, take, tap } from 'rxjs/operators';
-
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { UpdateFilter } from '../data/data.actions';
 import { DataStateSelectors } from '../data/data.selectors';
@@ -65,7 +58,7 @@ export interface SpatialSearchUiModel {
   organScene?: SpatialSceneNode[];
 
   spatialSearchScene?: SpatialSceneNode[];
-  tissueBlocks?: TissueBlockResult[];
+  tissueBlocks?: TissueBlock[];
   anatomicalStructures?: Record<string, number>;
   cellTypes?: Record<string, number>;
 
@@ -163,7 +156,7 @@ export class SpatialSearchUiState {
       const globalFilter = this.store.selectSnapshot(DataStateSelectors.filter);
       const filter = {
         ...globalFilter,
-        sex: organ.sex,
+        sex: organ.sex as FilterSexEnum,
         ontologyTerms: [organId],
         spatialSearches: [],
       };
@@ -253,7 +246,7 @@ export class SpatialSearchUiState {
       const globalFilter = this.store.selectSnapshot(DataStateSelectors.filter);
       const filter: Filter = {
         ...globalFilter,
-        sex: organ.sex as 'Male' | 'Female',
+        sex: organ.sex as FilterSexEnum,
         ontologyTerms: [organId],
         spatialSearches: [
           {

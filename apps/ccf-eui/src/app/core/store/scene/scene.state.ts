@@ -1,13 +1,12 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
+import { SpatialEntity, SpatialSceneNode } from '@hra-api/ng-client';
 import { NgxsOnInit, Selector, State } from '@ngxs/store';
-import { NodeClickEvent, SpatialSceneNode } from 'ccf-body-ui';
-import { SpatialEntity } from 'ccf-database';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo } from 'ccf-shared';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, take, tap } from 'rxjs/operators';
-
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
 import { DataState } from '../data/data.state';
 import { ListResultsState } from '../list-results/list-results.state';

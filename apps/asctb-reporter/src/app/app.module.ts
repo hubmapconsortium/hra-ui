@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,7 +6,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
+import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
 
 import { environment } from '../environments/environment';
 import { ConfigService } from './app-config.service';
@@ -35,14 +35,13 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     NgxChartsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
     NgxsModule.forRoot([SheetState, TreeState, UIState, LogsState]),
-    NgxsResetPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),
@@ -68,7 +67,8 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
       deps: [ConfigService],
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
+    withNgxsResetPlugin(),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

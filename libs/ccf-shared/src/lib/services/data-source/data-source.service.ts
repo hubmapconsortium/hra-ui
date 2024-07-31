@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
-  AggregateResult,
+  AggregateCount,
   DatabaseStatus,
   Filter,
-  OntologyTreeModel,
+  OntologyTree,
   SpatialEntity,
   SpatialSceneNode,
-  TissueBlockResult,
-} from 'ccf-database';
+  TissueBlock,
+} from '@hra-api/ng-client';
 import { Observable } from 'rxjs';
-
 import { DataSource } from './data-source';
 
 @Injectable()
@@ -17,13 +16,13 @@ export abstract class DataSourceService implements DataSource {
   abstract getDatabaseStatus(): Observable<DatabaseStatus>;
   abstract getProviderNames(): Observable<string[]>;
   abstract getDatasetTechnologyNames(): Observable<string[]>;
-  abstract getOntologyTreeModel(): Observable<OntologyTreeModel>;
-  abstract getCellTypeTreeModel(): Observable<OntologyTreeModel>;
-  abstract getBiomarkerTreeModel(): Observable<OntologyTreeModel>;
+  abstract getOntologyTreeModel(): Observable<OntologyTree>;
+  abstract getCellTypeTreeModel(): Observable<OntologyTree>;
+  abstract getBiomarkerTreeModel(): Observable<OntologyTree>;
   abstract getReferenceOrgans(): Observable<SpatialEntity[]>;
 
-  abstract getTissueBlockResults(filter?: Filter): Observable<TissueBlockResult[]>;
-  abstract getAggregateResults(filter?: Filter): Observable<AggregateResult[]>;
+  abstract getTissueBlockResults(filter?: Filter): Observable<TissueBlock[]>;
+  abstract getAggregateResults(filter?: Filter): Observable<AggregateCount[]>;
   abstract getOntologyTermOccurences(filter?: Filter): Observable<Record<string, number>>;
   abstract getCellTypeTermOccurences(filter?: Filter): Observable<Record<string, number>>;
   abstract getBiomarkerTermOccurences(filter?: Filter): Observable<Record<string, number>>;

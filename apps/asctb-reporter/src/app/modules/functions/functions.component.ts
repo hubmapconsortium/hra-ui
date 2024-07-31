@@ -15,6 +15,7 @@ import {
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
 import { BimodalService } from '../../modules/tree/bimodal.service';
+import { SheetState } from '../../store/sheet.state';
 import { TreeState } from '../../store/tree.state';
 
 @Component({
@@ -55,13 +56,13 @@ export class FunctionsComponent {
   }
 
   updateBimodal() {
-    this.store.dispatch(new UpdateBimodalConfig(this.bimodalConfig)).subscribe((states) => {
-      const data = states.sheetState.data;
-      const treeData = states.treeState.treeData;
-      const bimodalConfig = states.treeState.bimodal.config;
-      const sheetConfig = states.sheetState.sheetConfig;
-      const omapConfig = states.treeState.omapConfig;
-      const filteredProtiens = states.sheetState.filteredProtiens;
+    this.store.dispatch(new UpdateBimodalConfig(this.bimodalConfig)).subscribe(() => {
+      const data = this.store.selectSnapshot(SheetState.getData);
+      const treeData = this.store.selectSnapshot(TreeState.getTreeData);
+      const bimodalConfig = this.store.selectSnapshot(TreeState.getBimodal).config;
+      const sheetConfig = this.store.selectSnapshot(SheetState.getSheetConfig);
+      const omapConfig = this.store.selectSnapshot(TreeState.getOmapConfig);
+      const filteredProtiens = this.store.selectSnapshot(SheetState.getFilteredProtiens);
       if (data.length) {
         this.bms.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);
       }

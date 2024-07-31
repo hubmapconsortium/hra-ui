@@ -2,8 +2,8 @@
 @use '@angular/material' as mat;
 @use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
 
-$blue: mat.define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
-$blue-theme: mat.define-light-theme(
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
+$blue-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $blue,
@@ -30,9 +30,10 @@ $blue-theme: mat.define-light-theme(
   align-items: start;
   row-gap: 0.75rem;
   overflow: hidden;
-  background-color: white;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-width: 0 2px 0px 0px;
+  border-style: solid;
+  border-color: map.get(map.get(palettes.$palettes, 'blue'), 600);
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   --mat-table-background-color: white;
   --mdc-checkbox-unselected-icon-color: #201e3d;
@@ -41,12 +42,18 @@ $blue-theme: mat.define-light-theme(
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
   --mdc-filled-button-container-height: 2rem;
+  --mat-table-header-container-height: 2rem;
 
   span.cell-types-label {
     grid-area: cell-types;
-    font-size: 0.9375rem;
+    font-size: 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
     mat-icon {
-      vertical-align: middle;
+      margin: 2px;
     }
   }
 
@@ -56,8 +63,11 @@ $blue-theme: mat.define-light-theme(
     padding: 0.3438rem 0.5rem;
 
     .mat-icon {
-      margin-right: 2px;
       margin-left: unset;
+      margin-right: 0.125rem;
+      font-size: 1.25rem;
+      height: 1.25rem;
+      width: 1.25rem;
     }
   }
 
@@ -73,8 +83,10 @@ $blue-theme: mat.define-light-theme(
 
   .total-cells {
     grid-area: total-cells;
+
     span {
       color: #4b4b5e;
+      text-align: right;
     }
   }
 
@@ -92,21 +104,17 @@ $blue-theme: mat.define-light-theme(
           }
 
           tr th:last-child > div {
+            --mat-sort-arrow-color: #4b4b5e;
             justify-content: flex-end;
-            margin-right: 0.75rem;
+            margin-right: 0.25rem;
+            color: #4b4b5e;
           }
         }
 
         tbody tr td.mdc-data-table__cell:last-child {
           text-align: end;
-          padding-right: 0.75rem;
+          padding-right: 0.25rem;
           color: #4b4b5e;
-        }
-
-        tbody {
-          td:not(:first-child, :last-child) {
-            color: #201e3d;
-          }
         }
 
         tr:has(.anchor) {
@@ -135,30 +143,31 @@ $blue-theme: mat.define-light-theme(
         }
       }
 
-      .mat-mdc-header-row {
-        height: unset;
-
-        & > * {
-          padding-bottom: 0.5rem;
+      tr {
+        th:first-child,
+        th:last-child {
+          padding-left: 0;
         }
 
         .mat-mdc-checkbox {
-          padding-right: 0.5rem;
+          height: 2rem;
+          width: 2rem;
+          align-items: center;
+          justify-content: center;
+          display: flex;
         }
       }
 
-      td.name {
-        font-size: 14px;
-        font-weight: 500;
+      .mat-mdc-header-row {
+        & > * {
+          padding-bottom: 0.25rem;
+          padding-left: 0.5rem;
+        }
       }
 
       .mdc-data-table__cell,
       .mdc-data-table__header-cell {
         padding: 0;
-      }
-
-      .mat-column-select {
-        padding-left: 0.3438rem;
       }
     }
   }

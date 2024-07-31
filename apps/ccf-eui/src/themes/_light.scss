@@ -3,7 +3,7 @@
 @use 'common/utility';
 
 $primary-colors: utility.add-colors(
-  mat.$gray-palette,
+  mat.$m2-gray-palette,
   (
     'white': white,
     'black': black,
@@ -17,7 +17,7 @@ $primary-colors: utility.add-colors(
 );
 
 $foreground: map-merge(
-  mat.$light-theme-foreground-palette,
+  mat.$m2-light-theme-foreground-palette,
   (
     logo: map-get($primary-colors, 'white'),
     button-border: map-get($primary-colors, 'black'),
@@ -43,7 +43,7 @@ $foreground: map-merge(
 );
 
 $background: map-merge(
-  mat.$light-theme-background-palette,
+  mat.$m2-light-theme-background-palette,
   (
     stage-background: map-get($primary-colors, 'black'),
     authentication: map-get($primary-colors, 'white'),

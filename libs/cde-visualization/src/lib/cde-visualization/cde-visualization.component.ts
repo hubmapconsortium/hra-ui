@@ -38,6 +38,9 @@ import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { mergeObjects } from '../shared/merge';
 
+/**
+ * CDE Visualization Root Component
+ */
 @Component({
   selector: 'cde-visualization-root',
   standalone: true,
@@ -54,62 +57,110 @@ import { mergeObjects } from '../shared/merge';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CdeVisualizationComponent {
+  /** Link to the home page */
   readonly homeLink = input<string>('https://apps.humanatlas.io/cde/');
 
+  /** Input nodes data, can be a url or array of node entry */
   readonly nodes = input<string | NodeEntry[]>();
+
+  /** Key for node target attribute */
   readonly nodeTargetKey = input(undefined, { transform: brandAttribute<string, NodeTargetKey>() });
+
+  /** Value for node target attribute */
   readonly nodeTargetValue = input<string>();
 
+  /** Input edges data */
   readonly edges = model<string | EdgeEntry[]>();
+
+  /** Maximum edge distance */
   readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, {
     transform: numberAttribute(DEFAULT_MAX_EDGE_DISTANCE),
   });
 
+  /** Input color map data */
   readonly colorMap = model<string | ColorMapEntry[]>();
+
+  /** Key for color map type attribute */
   readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
+
+  /** Key for color map value attribute */
   readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
     transform: brandAttribute<string, ColorMapColorKey>(),
   });
 
+  /** Input metadata */
   readonly metadata = input<string | Metadata>();
+
+  /** Title of the visualization */
   readonly title = input<string>();
-  readonly technology = input<string>();
+
+  /** Organ being visualized */
   readonly organ = input<string>();
+
+  /** Technology used in the visualization */
+  readonly technology = input<string>();
+
+  /** Sex of the subject */
   readonly sex = input<string>();
+
+  /** Age of the subject */
   readonly age = input(undefined, { transform: numberAttribute() });
-  readonly creationDate = input<string>();
-  readonly creationTime = input<string>();
+
+  /** Thickness of the sample */
   readonly thickness = input(undefined, { transform: numberAttribute() });
+
+  /** Pixel size in the visualization */
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
 
+  /** Creation timestamp (ms since 1/1/1970 UTC) */
+  readonly creationTimestamp = input<number>();
+
+  /** Event emitted when a node is clicked */
   readonly nodeClick = output<NodeEntry>();
+
+  /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** Injected data loader service */
   private readonly dataLoader = inject(DataLoaderService);
 
+  /** Loaded nodes data */
   readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
     papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
   });
+
+  /** Key for node type attribute */
   readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
+
+  /** Selected node target value */
   readonly selectedNodeTargetValue = computed(
     () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
   );
 
+  /** Loaded edges data */
   readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
     papaparse: { dynamicTyping: true },
   });
 
+  /** Loaded color map data */
   readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
     papaparse: { header: true },
   });
+
+  /** Key for color map type attribute */
   readonly colorMapTypeKey = computed(
     () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
   );
+
+  /** Lookup table for color map */
   private readonly colorMapLookup = computed(() =>
     colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
   );
 
+  /** Loaded metadata */
   readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
+
+  /** Merged metadata with input properties */
   readonly mergedMetadata = computed(() =>
     mergeObjects(this.loadedMetadata(), {
       title: this.title(),
@@ -117,16 +168,22 @@ export class CdeVisualizationComponent {
       organ: this.organ(),
       sex: this.sex(),
       age: this.age(),
-      creationDate: this.creationDate(),
-      creationTime: this.creationTime(),
+      creationTimestamp: this.creationTimestamp(),
       thickness: this.thickness(),
       pixelSize: this.pixelSize(),
     }),
   );
 
+  /** List of cell types */
   readonly cellTypes = signal<CellTypeEntry[]>([]);
+
+  /** List of selected cell types */
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+
+  /** Counter for resetting cell types */
   readonly cellTypesResetCounter = signal(0);
+
+  /** Computed cell types as color map entries */
   readonly cellTypesAsColorMap = computed(
     () => {
       const cellTypes = this.cellTypes();
@@ -143,6 +200,8 @@ export class CdeVisualizationComponent {
     },
     { equal: emptyArrayEquals },
   );
+
+  /** Computed cell types from loaded nodes */
   readonly cellTypesFromNodes = computed(() => {
     const nodes = this.loadedNodes();
     const targetKey = this.nodeTypeKey();
@@ -161,7 +220,11 @@ export class CdeVisualizationComponent {
 
     return Object.values(cellTypeByName);
   });
+
+  /** Computed selection of cell types from nodes */
   readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
+
+  /** Effect to create cell types */
   readonly cellTypesCreateRef = effect(
     () => {
       // Grab dependency on the reset counter
@@ -173,12 +236,15 @@ export class CdeVisualizationComponent {
     { allowSignalWrites: true },
   );
 
+  /** Reset cell types */
   resetCellTypes(): void {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
   }
 
+  /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
+  /** Download nodes data as CSV */
   downloadNodes(): void {
     const nodes = this.loadedNodes();
     if (nodes.length > 0) {
@@ -186,6 +252,7 @@ export class CdeVisualizationComponent {
     }
   }
 
+  /** Download edges data as CSV */
   downloadEdges(): void {
     const edges = this.loadedEdges();
     if (edges.length > 0) {
@@ -193,6 +260,7 @@ export class CdeVisualizationComponent {
     }
   }
 
+  /** Download color map as CSV */
   downloadColorMap(): void {
     const colorKey = this.colorMapValueKey();
     const colorMap = this.cellTypesAsColorMap();

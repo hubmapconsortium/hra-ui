@@ -1,11 +1,10 @@
 import { AmbientLight, Deck, LightingEffect, OrbitView, OrthographicView } from '@deck.gl/core/typed';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
-import { bind } from 'bind-decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 import { BodyUILayer } from './body-ui-layer';
-import { SpatialSceneNode } from './shared/spatial-scene-node';
 import { processSceneNodes } from './util/process-scene-nodes';
 
 interface BodyUIViewStateProps {
@@ -233,8 +232,7 @@ export class BodyUI {
     });
   }
 
-  @bind
-  private _onHover(e: { picked: boolean; object: SpatialSceneNode }): void {
+  private readonly _onHover = (e: { picked: boolean; object: SpatialSceneNode }): void => {
     const { lastHovered } = this;
     this.cursor = e.picked ? 'pointer' : undefined;
     if (e.picked && e.object?.['@id']) {
@@ -249,23 +247,21 @@ export class BodyUI {
       this.nodeHoverStopSubject.next(lastHovered);
       this.lastHovered = undefined;
     }
-  }
+  };
 
-  @bind
-  private _onClick(info: PickInfo<SpatialSceneNode>, e: { srcEvent: { ctrlKey: boolean } }): void {
+  private readonly _onClick = (info: PickInfo<SpatialSceneNode>, e: { srcEvent: { ctrlKey: boolean } }): void => {
     if (info.picked && info.object?.['@id']) {
       this.nodeClickSubject.next({
         node: info.object,
         ctrlClick: e?.srcEvent?.ctrlKey ?? undefined,
       });
     }
-  }
+  };
 
-  @bind
-  private _onViewStateChange(event: {
+  private readonly _onViewStateChange = (event: {
     interactionState: { isZooming: boolean };
     viewState: BodyUIViewStateProps;
-  }): void {
+  }): void => {
     if (event.interactionState?.isZooming) {
       const currentState = this.bodyUILayer.state as {
         zoomOpacity: number;
@@ -278,22 +274,19 @@ export class BodyUI {
     }
     this.deck.setProps({ viewState: { ...event.viewState } });
     this.sceneRotationSubject.next([event.viewState.rotationOrbit, event.viewState.rotationX]);
-  }
+  };
 
-  @bind
-  private _onDragStart(info: PickInfo<SpatialSceneNode>, e: MouseEvent): void {
+  private readonly _onDragStart = (info: PickInfo<SpatialSceneNode>, e: MouseEvent): void => {
     this._dragEvent(info, e, this.nodeDragStartSubject);
-  }
+  };
 
-  @bind
-  private _onDrag(info: PickInfo<SpatialSceneNode>, e: MouseEvent): void {
+  private readonly _onDrag = (info: PickInfo<SpatialSceneNode>, e: MouseEvent): void => {
     this._dragEvent(info, e, this.nodeDragSubject);
-  }
+  };
 
-  @bind
-  private _onDragEnd(info: PickInfo<SpatialSceneNode>, e: MouseEvent): void {
+  private readonly _onDragEnd = (info: PickInfo<SpatialSceneNode>, e: MouseEvent): void => {
     this._dragEvent(info, e, this.nodeDragEndSubject);
-  }
+  };
 
   private _dragEvent(info: PickInfo<SpatialSceneNode>, e: MouseEvent, subject: Subject<NodeDragEvent>): void {
     if (info?.object?.['@id']) {

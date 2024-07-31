@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Filter } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { BUILTIN_PARSERS, BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
-
-import { Filter } from 'ccf-database';
 import { environment } from '../environments/environment';
 
 function isNumber(value: unknown): value is number {
@@ -89,13 +88,7 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() dataSources!: string | string[];
   @Input() selectedOrgans!: string[];
 
-  @Input() hubmapDataService!: string;
-  @Input() hubmapDataUrl!: string;
-  @Input() hubmapAssetUrl!: string;
-  @Input() hubmapToken!: string;
-  @Input() hubmapPortalUrl!: string;
-
-  @Input() useRemoteApi!: string | boolean;
+  @Input() token!: string;
   @Input() remoteApiEndpoint!: string;
   @Input() theme!: string;
   @Input() header!: string | boolean;
@@ -117,10 +110,10 @@ export class AppWebComponent extends BaseWebComponent {
       },
       parse: {
         dataSources: parseDataSources,
-        useRemoteApi: BUILTIN_PARSERS.boolean,
         header: BUILTIN_PARSERS.boolean,
         loginDisabled: BUILTIN_PARSERS.boolean,
         filter: parseFilter,
+        selectedOrgans: BUILTIN_PARSERS.json,
       },
     });
   }

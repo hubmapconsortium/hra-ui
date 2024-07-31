@@ -9,8 +9,8 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { NodeClickEvent, SpatialSceneNode } from 'ccf-body-ui';
-import { Filter, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { BodyUiComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -26,7 +26,7 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
   @Input() organIri!: string;
   @Input() sex?: 'Male' | 'Female' | 'Both';
   @Input() side?: 'Left' | 'Right';
-  @Input() blocks?: TissueBlockResult[];
+  @Input() blocks?: TissueBlock[];
   @Input() filter?: Filter;
 
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
@@ -47,7 +47,8 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
   updateHighlighting(): void {
     const providerName = new Set<string>(this.filter?.tmc ?? []);
     this.filteredBlocks =
-      this.blocks?.filter((block) => providerName.has(block.donor.providerName)).map((block) => block['@id']) ?? [];
+      this.blocks?.filter((block) => providerName.has(block.donor?.providerName ?? '')).map((block) => block['@id']) ??
+      [];
     this.bodyUI.scene = this.bodyUI.scene.map(
       (node): SpatialSceneNode => ({
         ...node,

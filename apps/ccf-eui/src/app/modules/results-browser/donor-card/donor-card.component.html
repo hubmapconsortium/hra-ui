@@ -19,11 +19,11 @@
       <mat-icon class="icon-size icon-dark mr-5">person</mat-icon>
 
       <div class="donor-info">
-        <div class="title description">{{ tissueBlock.donor.label }}</div>
-        <div class="description">{{ tissueBlock.donor.description }}</div>
+        <div class="title description">{{ tissueBlock.donor?.label }}</div>
+        <div class="description">{{ tissueBlock.donor?.description }}</div>
       </div>
     </div>
-    <div class="hover-state mat-elevation-z4" (click)="linkHandler(tissueBlock.donor.link)">
+    <div class="hover-state mat-elevation-z4" (click)="linkHandler(tissueBlock.donor?.link ?? '')">
       <div class="hover-title">DONOR</div>
       <mat-icon class="icon-size hover-icon">open_in_new</mat-icon>
     </div>
@@ -50,9 +50,9 @@
     </div>
 
     <ccf-tissue-section-vis
-      *ngIf="tissueBlock.sections.length > 1"
-      [totalTissueSections]="tissueBlock.sectionCount"
-      [tissueSections]="tissueBlock.sections"
+      *ngIf="(tissueBlock.sections?.length ?? 0) > 1"
+      [totalTissueSections]="tissueBlock.sectionCount ?? 0"
+      [tissueSections]="tissueBlock.sections ?? []"
     ></ccf-tissue-section-vis>
 
     <ng-container *ngIf="tissueBlock.datasets.length > 0">

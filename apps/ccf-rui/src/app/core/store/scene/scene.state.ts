@@ -2,11 +2,12 @@ import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { AABB, Vec3 } from 'cannon-es';
-import { SpatialEntityJsonLd, SpatialSceneNode } from 'ccf-body-ui';
-import { SpatialEntity, SpatialPlacement, getOriginScene, getTissueBlockScene } from 'ccf-database';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
+import { getOriginScene, getTissueBlockScene } from 'ccf-scene-utils';
 import { GlobalConfigState } from 'ccf-shared';
 import { isEqual } from 'lodash';
 import { Observable, combineLatest, defer, of } from 'rxjs';
@@ -95,7 +96,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
             ...n,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
               .rotateY(toRadians(rotation))
-              .multiplyRight(n.transformMatrix),
+              .multiplyRight(n.transformMatrix ?? []),
           }));
         }
       }),

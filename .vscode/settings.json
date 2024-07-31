@@ -9,6 +9,8 @@
     "cdk",
     "dashboard",
     "ftu-ui",
-    "services"
+    "services",
+    "ccf-organ-info",
+    "design-system"
   ]
 }

@@ -1,5 +1,6 @@
 import { Shallow } from 'shallow-render';
 
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
 import { SpatialSearchUiModule } from './spatial-search-ui.module';
 
@@ -7,7 +8,7 @@ describe('SpatialSearchUiComponent', () => {
   let shallow: Shallow<SpatialSearchUiComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(SpatialSearchUiComponent, SpatialSearchUiModule);
+    shallow = new Shallow(SpatialSearchUiComponent, SpatialSearchUiModule).provide(provideHttpClientTesting());
   });
 
   it('creates', async () => {
@@ -31,6 +32,7 @@ describe('SpatialSearchUiComponent', () => {
           y: 0,
           z: 0,
         },
+        tissueBlocks: [],
       },
     });
     expect(instance).toBeDefined();

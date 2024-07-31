@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -9,24 +9,24 @@
 
   ccf-filters-content .button-container {
     button {
-      color: mat.get-color-from-palette($foreground, contrast-button-text);
-      background-color: mat.get-color-from-palette($background, button-bg);
-      border-color: mat.get-color-from-palette($foreground, button-border);
+      color: mat.m2-get-color-from-palette($foreground, contrast-button-text);
+      background-color: mat.m2-get-color-from-palette($background, button-bg);
+      border-color: mat.m2-get-color-from-palette($foreground, button-border);
 
       &:hover {
-        color: mat.get-color-from-palette($foreground, color-hover);
-        background-color: mat.get-color-from-palette($background, button-background-hover);
+        color: mat.m2-get-color-from-palette($foreground, color-hover);
+        background-color: mat.m2-get-color-from-palette($background, button-background-hover);
       }
     }
   }
 
   .popup-container {
-    background-color: mat.get-color-from-palette($background, modal);
-    border-color: mat.get-color-from-palette($foreground, modal-borders);
+    background-color: mat.m2-get-color-from-palette($background, modal);
+    border-color: mat.m2-get-color-from-palette($foreground, modal-borders);
   }
 
   .show-hide {
-    color: mat.get-color-from-palette($foreground, contrast-icon);
+    color: mat.m2-get-color-from-palette($foreground, contrast-icon);
 
     &:hover {
       background-color: map-get($background, icon-background-hover);

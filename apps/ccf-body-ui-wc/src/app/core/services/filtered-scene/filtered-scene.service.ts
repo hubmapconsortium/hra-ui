@@ -1,15 +1,14 @@
-import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
-import { Filter, SpatialEntity, SpatialSceneNode } from 'ccf-database';
+import { SpatialEntity, SpatialSceneNode, V1Service } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { Observable, combineLatest, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
+
 import { GlobalConfig } from '../../../app.component';
 import { FEMALE_SKIN_URL, HIGHLIGHT_YELLOW, MALE_SKIN_URL, SPATIAL_ENTITY_URL } from '../../constants';
 import { hightlight } from '../../highlight.operator';
 import { zoomTo } from '../../zoom-to.operator';
-import { DataSourceService } from '../data-source/data-source.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +20,10 @@ export class FilteredSceneService {
     .getOption('highlightID')
     .pipe(map((id) => `http://purl.org/ccf/1.5/entity/${id}`));
 
-  readonly referenceOrgans$ = this.source.getReferenceOrgans();
+  readonly referenceOrgans$ = this.api.referenceOrgans({});
 
-  readonly scene$ = combineLatest([this.data$, this.referenceOrgans$, this.source.dataSource]).pipe(
-    switchMap(([data, referenceOrgans, _]) => this.chooseScene(data, referenceOrgans)),
+  readonly scene$ = combineLatest([this.data$, this.referenceOrgans$]).pipe(
+    switchMap(([data, referenceOrgans]) => this.chooseScene(data, referenceOrgans)),
   );
 
   readonly organs$ = this.configState.getOption('data').pipe(
@@ -46,39 +45,30 @@ export class FilteredSceneService {
 
   constructor(
     private readonly configState: GlobalConfigState<GlobalConfig>,
-    private readonly source: DataSourceService,
+    private readonly api: V1Service,
   ) {}
 
   private chooseScene(data?: JsonLdObj[], organs?: SpatialEntity[]): Observable<SpatialSceneNode[]> {
-    const organUrls =
-      data?.map((obj) => {
-        const block: Any = obj[SPATIAL_ENTITY_URL];
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return block?.placement.target;
-      }) ?? [];
+    const organUrls = data?.map(this.getPlacementTarget) ?? [];
     const uniqueOrganUrls = new Set(organUrls);
 
     if (uniqueOrganUrls.size > 1) {
-      return this.source.getScene();
+      return this.api.scene({});
     } else if (organs) {
       const organ = organs.find((tempOrgan) => tempOrgan['@id'] === organUrls[0]);
       if (organ) {
-        return this.source.getOrganScene(organ.representation_of ?? '', {
-          ontologyTerms: [organ.reference_organ],
-          sex: organ.sex,
-        } as Filter);
+        return this.api.referenceOrganScene({
+          organIri: organ.representation_of ?? '',
+          ontologyTerms: [organ.reference_organ ?? ''],
+          sex: organ.sex as 'male' | 'female' | 'both' | undefined,
+        });
       }
     }
     return of([]);
   }
 
-  private selectOrgans(data: Any[] | undefined): Set<string> {
-    const selectOrgan = (item: Any) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      item[SPATIAL_ENTITY_URL].placement.target;
-
-    const organs = (data ?? []).map(selectOrgan);
-    return new Set(organs);
+  private selectOrgans(data: JsonLdObj[] | undefined): Set<string> {
+    return new Set(data?.map(this.getPlacementTarget)) as Set<string>;
   }
 
   private filterSceneNodes(
@@ -111,5 +101,11 @@ export class FilteredSceneService {
     });
 
     return [...skins];
+  }
+
+  private getPlacementTarget(this: never, obj: JsonLdObj): string | undefined {
+    type Block = { placement: { target: string } };
+    const block = obj[SPATIAL_ENTITY_URL] as Block | undefined;
+    return block?.placement.target;
   }
 }

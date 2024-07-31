@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { TissueBlockResult } from 'ccf-database';
+import { TissueBlock } from '@hra-api/ng-client';
 import { Shallow } from 'shallow-render';
 import { DonorCardComponent } from './donor-card.component';
 import { DonorCardModule } from './donor-card.module';
 
-const tissueBlock: TissueBlockResult = {
+const tissueBlock: TissueBlock = {
   '@id': 'http://dx.doi.org/10.1016/j.trsl.2017.07.006#TissueBlock',
   '@type': 'Sample',
   sections: [],

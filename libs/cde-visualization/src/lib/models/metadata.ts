@@ -1,10 +1,13 @@
+/**
+ * Interface for Metadata
+ */
 export interface Metadata {
-  /** Title of the visualization */
-  title?: string;
   /** Name of the source file */
   sourceData?: string;
   /** Name of the colormap file */
   colorMap?: string;
+  /** Title of the visualization */
+  title?: string;
   /** Name of the organ */
   organ?: string;
   /** Technology */
@@ -23,6 +26,9 @@ export interface Metadata {
   sampleExtra?: SampleMetadataExtra;
 }
 
+/**
+ * Interface for Extra Metadata fields
+ */
 export interface SampleMetadataExtra {
   /** Sample type, generally '2D' or '3D' */
   type: string;

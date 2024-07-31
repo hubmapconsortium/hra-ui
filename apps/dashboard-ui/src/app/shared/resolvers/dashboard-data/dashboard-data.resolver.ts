@@ -18,7 +18,7 @@ export function dashboardUrlResolver(
     const routeName = route.paramMap.get(routeParamKey) ?? '';
     const index$ = maybeAsyncToObservable(indexResolver(route, state));
     return index$.pipe(
-      map((spec) => spec.items),
+      map((spec) => (spec as IndexSpec).items),
       map((items) => items.find((item) => item.route === routeName)),
       map((item) => item?.url),
     );

@@ -6,6 +6,7 @@
 @use './themes/main' as main-theme;
 @use './typographies' as typographies;
 @use './landing-page-typographies' as landing-page-typographies;
+@use './creation-page-typographies' as creation-page-typographies;
 @use './breakpoints' as breakpoints;
 
 $_theme: main-theme.$theme;
@@ -33,39 +34,39 @@ $_theme: main-theme.$theme;
 // Typography
 @include breakpoints.breakpoint('xx-small') {
   @include main-section.typography(landing-page-typographies.$xx-small);
-  @include create-visualization-section.typography(typographies.$xx-small);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 @include breakpoints.breakpoint('x-small') {
   @include main-section.typography(landing-page-typographies.$x-small);
-  @include create-visualization-section.typography(typographies.$x-small);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 @include breakpoints.breakpoint('small', 'medium') {
   @include main-section.typography(landing-page-typographies.$small);
-  @include create-visualization-section.typography(typographies.$small);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 @include breakpoints.breakpoint('large') {
   @include main-section.typography(landing-page-typographies.$large);
-  @include create-visualization-section.typography(typographies.$large);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 @include breakpoints.breakpoint('x-large') {
   @include main-section.typography(landing-page-typographies.$x-large);
-  @include create-visualization-section.typography(typographies.$x-large);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 @include breakpoints.breakpoint('xx-large', 'xxx-large') {
   @include main-section.typography(landing-page-typographies.$xx-large);
-  @include create-visualization-section.typography(typographies.$xx-large);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
 }
 
 .mat-typography:has(cde-visualization-page) {
   @include main-section.typography(landing-page-typographies.$xx-large);
-  @include create-visualization-section.typography(landing-page-typographies.$xx-large);
+  @include create-visualization-section.typography(creation-page-typographies.$create-vis);
   @include mat.typography-hierarchy(
-    mat.define-light-theme(
+    mat.m2-define-light-theme(
       (
         typography: typographies.$xx-large,
         density: 0,

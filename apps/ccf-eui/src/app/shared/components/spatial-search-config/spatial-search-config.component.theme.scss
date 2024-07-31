@@ -1,39 +1,39 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   .organ-select {
-    background-color: mat.get-color-from-palette($background, modal);
-    border-color: mat.get-color-from-palette($foreground, modal-borders);
+    background-color: mat.m2-get-color-from-palette($background, modal);
+    border-color: mat.m2-get-color-from-palette($foreground, modal-borders);
     box-shadow: 0.2rem 0.2rem 1rem 0rem #0000003e;
 
     .organ-select-option {
-      background-color: mat.get-color-from-palette($background, modal);
-      border-color: mat.get-color-from-palette($foreground, borders);
-      color: mat.get-color-from-palette($foreground, text);
+      background-color: mat.m2-get-color-from-palette($background, modal);
+      border-color: mat.m2-get-color-from-palette($foreground, borders);
+      color: mat.m2-get-color-from-palette($foreground, text);
 
       &.mat-mdc-option-active {
-        background-color: mat.get-color-from-palette($background, mat-selected-option) !important;
+        background-color: mat.m2-get-color-from-palette($background, mat-selected-option) !important;
 
         .mdc-list-item__primary-text {
-          color: mat.get-color-from-palette($foreground, contrast-text) !important;
+          color: mat.m2-get-color-from-palette($foreground, contrast-text) !important;
         }
       }
 
       &:hover {
-        background-color: mat.get-color-from-palette($background, dropdown-hover);
+        background-color: mat.m2-get-color-from-palette($background, dropdown-hover);
       }
     }
   }
 
   .ccf-spatial-search-config {
-    background-color: mat.get-color-from-palette($background, modal);
-    border-color: mat.get-color-from-palette($foreground, modal-borders);
+    background-color: mat.m2-get-color-from-palette($background, modal);
+    border-color: mat.m2-get-color-from-palette($foreground, modal-borders);
     color: map-get($foreground, text);
 
     .mat-radio-checked {
@@ -44,41 +44,41 @@
 
     .form-field {
       .label {
-        color: mat.get-color-from-palette($foreground, text);
+        color: mat.m2-get-color-from-palette($foreground, text);
       }
 
       .mat-mdc-text-field-wrapper {
         .mdc-line-ripple {
-          background-color: mat.get-color-from-palette($foreground, text);
+          background-color: mat.m2-get-color-from-palette($foreground, text);
         }
       }
     }
 
     .mat-mdc-select-value {
-      color: mat.get-color-from-palette($foreground, text);
+      color: mat.m2-get-color-from-palette($foreground, text);
     }
 
     .mat-mdc-select-arrow {
-      color: mat.get-color-from-palette($foreground, contrast-icon);
+      color: mat.m2-get-color-from-palette($foreground, contrast-icon);
     }
 
     .info,
     .close {
-      color: mat.get-color-from-palette($foreground, main);
+      color: mat.m2-get-color-from-palette($foreground, main);
 
       &:hover {
-        background-color: mat.get-color-from-palette($background, icon-background-hover2) !important;
+        background-color: mat.m2-get-color-from-palette($background, icon-background-hover2) !important;
       }
     }
 
     .continue-button {
-      color: mat.get-color-from-palette($foreground, contrast-button-text);
-      background-color: mat.get-color-from-palette($background, button-bg);
-      border-color: mat.get-color-from-palette($foreground, button-border);
+      color: mat.m2-get-color-from-palette($foreground, contrast-button-text);
+      background-color: mat.m2-get-color-from-palette($background, button-bg);
+      border-color: mat.m2-get-color-from-palette($foreground, button-border);
 
       &:hover {
-        color: mat.get-color-from-palette($foreground, color-hover);
-        background-color: mat.get-color-from-palette($background, button-background-hover);
+        color: mat.m2-get-color-from-palette($foreground, color-hover);
+        background-color: mat.m2-get-color-from-palette($background, button-background-hover);
       }
     }
   }

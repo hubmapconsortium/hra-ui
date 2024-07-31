@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { OntologyTreeNode } from 'ccf-database';
+import { OntologyTreeNode } from '@hra-api/ng-client';
 import { get, sortBy } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { filter, map, startWith, switchMap } from 'rxjs/operators';
-
 import { OntologySearchService, SearchResult } from '../../../core/services/ontology-search/ontology-search.service';
 
 /**
@@ -95,7 +94,7 @@ export class OntologySearchComponent implements OnInit {
    * @returns lower case value of node label
    */
   sortLexically(this: void, entry: SearchResult): string {
-    return entry.node.label.toLowerCase();
+    return entry.node.label?.toLowerCase() ?? '';
   }
 
   /**

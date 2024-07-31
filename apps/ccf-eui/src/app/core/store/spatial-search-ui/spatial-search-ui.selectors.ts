@@ -1,8 +1,7 @@
+import { OntologyTree, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
-import { SpatialSceneNode } from 'ccf-body-ui';
-import { getProbingSphereScene, OntologyTreeModel, SpatialEntity, TissueBlockResult } from 'ccf-database';
+import { getProbingSphereScene } from 'ccf-scene-utils';
 import { OrganInfo } from 'ccf-shared';
-
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { DataStateSelectors } from '../data/data.selectors';
 import {
@@ -77,10 +76,14 @@ export class SpatialSearchUiSelectors {
   ])
   static scene(
     state: SpatialSearchUiModel,
-    organEntity: SpatialEntity,
+    organEntity: SpatialEntity | undefined,
     position: Position,
     radius: number,
   ): SpatialSceneNode[] {
+    if (organEntity === undefined) {
+      return [];
+    }
+
     const sphere = getProbingSphereScene(organEntity, {
       ...position,
       radius,
@@ -97,8 +100,8 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiState.organEntity])
-  static sceneBounds(organEntity: SpatialEntity): Position {
-    const { x_dimension: x, y_dimension: y, z_dimension: z } = organEntity;
+  static sceneBounds(organEntity: SpatialEntity | undefined): Position {
+    const { x_dimension: x = 0, y_dimension: y = 0, z_dimension: z = 0 } = organEntity ?? {};
     const margin = Math.max(x, y, z) * 0.42;
     return {
       x: (margin + x) / 1000,
@@ -108,27 +111,27 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiState.organEntity])
-  static sceneTarget(organEntity: SpatialEntity): [number, number, number] {
-    const { x_dimension: x, y_dimension: y, z_dimension: z } = organEntity;
+  static sceneTarget(organEntity: SpatialEntity | undefined): [number, number, number] {
+    const { x_dimension: x = 0, y_dimension: y = 0, z_dimension: z = 0 } = organEntity ?? {};
     return [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
   }
 
   @Selector([SpatialSearchUiState])
-  static tissueBlocks(state: SpatialSearchUiModel): TissueBlockResult[] {
+  static tissueBlocks(state: SpatialSearchUiModel): TissueBlock[] {
     return state.tissueBlocks ?? [];
   }
 
   @Selector([SpatialSearchUiState, DataStateSelectors.anatomicalStructuresTreeModel])
-  static anatomicalStructures(state: SpatialSearchUiModel, tree: OntologyTreeModel): TermResult[] {
+  static anatomicalStructures(state: SpatialSearchUiModel, tree: OntologyTree): TermResult[] {
     return this.getTermCounts(state.anatomicalStructures, tree);
   }
 
   @Selector([SpatialSearchUiState, DataStateSelectors.cellTypesTreeModel])
-  static cellTypes(state: SpatialSearchUiModel, tree: OntologyTreeModel): TermResult[] {
+  static cellTypes(state: SpatialSearchUiModel, tree: OntologyTree): TermResult[] {
     return this.getTermCounts(state.cellTypes, tree);
   }
 
-  private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTreeModel): TermResult[] {
+  private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTree): TermResult[] {
     return Object.entries(counts ?? {})
       .filter(([_, count]) => count > 0)
       .map(([term, count]) => ({

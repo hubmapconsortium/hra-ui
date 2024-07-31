@@ -3,7 +3,7 @@
   class="tree"
   [showtoggle]="showtoggle"
   [nodes]="[rootNode]"
-  [rootNode]="rootNode.id"
+  [rootNode]="rootNode.id ?? ''"
   [getChildren]="ontologySearchService.getChildren"
   (nodeSelected)="ontologySelection.emit($event)"
   [occurenceData]="occurenceData"

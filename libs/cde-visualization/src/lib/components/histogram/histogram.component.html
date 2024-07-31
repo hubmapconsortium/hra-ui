@@ -1,7 +1,7 @@
 <mat-accordion displayMode="flat">
   <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
     <mat-expansion-panel-header class="header">
-      <mat-panel-title class="title">
+      <mat-panel-title class="mat-caption title">
         <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
         Histogram
         <mat-icon
@@ -51,7 +51,7 @@
 
     <div class="content">
       <div class="histogram" data-testid="histogram" #histogram></div>
-      <div class="legend">
+      <ng-scrollbar hraScrollOverflowFade class="legend">
         <cde-color-picker-label
           [label]="totalCellTypeLabel"
           [(color)]="totalCellTypeColor"
@@ -67,7 +67,7 @@
             (colorChange)="updateColor(type, $event)"
           ></cde-color-picker-label>
         }
-      </div>
+      </ng-scrollbar>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

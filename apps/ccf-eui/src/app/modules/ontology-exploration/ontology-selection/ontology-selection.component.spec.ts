@@ -1,8 +1,7 @@
+import { OntologyTreeNode } from '@hra-api/ng-client';
 import { Store } from '@ngxs/store';
-import { OntologyTreeNode } from 'ccf-database';
 import { of } from 'rxjs';
 import { RecursivePartial, Shallow } from 'shallow-render';
-
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
 import { OntologySelectionComponent } from './ontology-selection.component';
