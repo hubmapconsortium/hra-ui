@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BrandComponent } from './brand.component';
-const meta: Meta<BrandComponent> = {
-  component: BrandComponent,
-  title: 'BrandComponent',
+import { BrandLogoComponent } from './brand-logo.component';
+const meta: Meta<BrandLogoComponent> = {
+  component: BrandLogoComponent,
+  title: 'BrandLogoComponent',
   parameters: {
     design: {
       type: 'figma',
@@ -11,7 +11,7 @@ const meta: Meta<BrandComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<BrandComponent>;
+type Story = StoryObj<BrandLogoComponent>;
 
 export const Primary: Story = {
   args: {},

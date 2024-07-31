@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  // color: var(--hra-brand-logo-color, red);
+  a {
+    display: block;
+    color: inherit;
+    max-height: 6.375rem;
+    max-width: 15.375rem;
+
+    &.small {
+      height: 3rem;
+      width: 7.25rem;
+    }
+  }
+}
