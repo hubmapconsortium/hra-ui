@@ -113,7 +113,7 @@ export class AppWebComponent extends BaseWebComponent {
         header: BUILTIN_PARSERS.boolean,
         loginDisabled: BUILTIN_PARSERS.boolean,
         filter: parseFilter,
-        selectedOrgans: BUILTIN_PARSERS.stringArray,
+        selectedOrgans: BUILTIN_PARSERS.json,
       },
     });
   }
