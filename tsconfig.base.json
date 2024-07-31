@@ -62,11 +62,11 @@
       "@hra-ui/design-system": [
         "libs/design-system/src/index.ts"
       ],
-      "@hra-ui/design-system/footer": [
-        "libs/design-system/footer/src/index.ts"
-      ],
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
+      ],
+      "@hra-ui/design-system/footer": [
+        "libs/design-system/footer/src/index.ts"
       ],
       "@hra-ui/design-system/scrolling": [
         "libs/design-system/scrolling/src/index.ts"

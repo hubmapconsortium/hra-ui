@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/angular';
-import { BrandComponent } from './brand.component';
+import { BrandLogoComponent } from './brand-logo.component';
 
-describe('BrandComponent', () => {
+describe('BrandLogoComponent', () => {
   beforeEach(async () => {
-    await render(BrandComponent);
+    await render(BrandLogoComponent);
   });
 
   it('should create', () => {
-    expect(screen.getByText('Human Reference Atlas')).toBeInTheDocument();
+    const brandLink = screen.getByRole('link');
+    expect(brandLink).toBeInTheDocument();
   });
 });
