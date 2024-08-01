@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -23,7 +24,7 @@ import { SetExecuteSearchOnGenerate } from '../../../core/store/spatial-search-u
   styleUrls: ['./filters-popover.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersPopoverComponent implements OnChanges {
+export class FiltersPopoverComponent implements OnChanges, AfterViewInit {
   /**
    * Allows the filters to be set from outside the component, and still render / function normally
    */
@@ -75,6 +76,12 @@ export class FiltersPopoverComponent implements OnChanges {
    */
   filtersVisible = false;
 
+  ngAfterViewInit() {
+    const el = this.containerRef.nativeElement as HTMLElement;
+    el.style.height = `0px`;
+    el.style.width = `0px`;
+  }
+
   /**
    * Updates popup height when spatial search filters changes
    * @param changes Changes
@@ -98,17 +105,18 @@ export class FiltersPopoverComponent implements OnChanges {
     const el = this.containerRef.nativeElement as HTMLElement;
     el.style.transitionDuration = '0.2s';
     this.filtersVisible = !this.filtersVisible;
-    if (!this.filtersVisible) {
-      el.style.overflow = 'hidden';
-    }
     if (this.filtersVisible) {
-      el.style.overflow = 'auto';
-      el.style.height = 'fit-content';
-      el.style.width = 'fit-content';
       setTimeout(() => {
-        el.style.height = `${el.clientHeight}px`;
-        el.style.width = `${el.clientWidth}px`;
-      }, 225);
+        el.style.overflow = 'auto';
+      }, 200);
+    } else {
+      el.style.overflow = 'hidden';
+      el.style.height = `${el.clientHeight}px`;
+      el.style.width = `${el.clientWidth}px`;
+      setTimeout(() => {
+        el.style.height = `0px`;
+        el.style.width = `0px`;
+      }, 1);
     }
     return new SetExecuteSearchOnGenerate(false);
   }

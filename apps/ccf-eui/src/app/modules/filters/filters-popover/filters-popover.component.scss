@@ -24,12 +24,14 @@
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   max-height: 80vh;
-  max-width: 60vw;
+  max-width: 80vw;
 
   &.visible {
     border-width: 1px;
     padding: 2rem;
     transition-delay: 0s;
+    height: fit-content !important;
+    width: fit-content !important;
 
     .popup-body {
       opacity: 1;
@@ -43,8 +45,6 @@
   &.hidden {
     border-width: 0;
     padding: 0;
-    width: 0 !important;
-    height: 0 !important;
     transition-delay: 0.3s;
 
     .popup-body {
