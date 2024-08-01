@@ -15,15 +15,10 @@ const meta: Meta<MaterialSymbolComponent> = {
 export default meta;
 type Story = StoryObj<MaterialSymbolComponent>;
 
-export const Default: Story = {
-  args: {
-    icon: 'search',
-  },
-};
+export const Default: Story = {};
 
 export const Small: Story = {
   args: {
     small: true,
-    icon: 'search',
   },
 };
