@@ -69,7 +69,7 @@
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
         "assets": [{ "input": "libs/design-system/assets", "glob": "**/*", "output": "./assets" }],
-        "styles": ["libs/design-system/.storybook/preview-styles/index.scss"]
+        "styles": ["libs/design-system/.storybook/styles/preview.scss"]
       },
       "configurations": {
         "ci": {
@@ -86,7 +86,7 @@
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
         "assets": [{ "input": "libs/design-system/assets", "glob": "**/*", "output": "./assets" }],
-        "styles": ["libs/design-system/.storybook/preview-styles/index.scss"]
+        "styles": ["libs/design-system/.storybook/styles/preview.scss"]
       },
       "configurations": {
         "ci": {
