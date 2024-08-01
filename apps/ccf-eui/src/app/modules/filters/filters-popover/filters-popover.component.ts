@@ -65,6 +65,9 @@ export class FiltersPopoverComponent implements OnChanges {
    */
   @Output() readonly spatialSearchRemoved = new EventEmitter<string>();
 
+  /**
+   * Popup container element ref
+   */
   @ViewChild('container', { static: false }) containerRef!: ElementRef;
 
   /**
@@ -72,44 +75,59 @@ export class FiltersPopoverComponent implements OnChanges {
    */
   filtersVisible = false;
 
+  /**
+   * Width of popup container
+   */
   containerWidth?: number;
 
+  /**
+   * Height of popup in px (minus spatial search list)
+   */
   get defaultHeight(): number {
     return Math.ceil(this.technologyFilters.length / 5) * 32 + Math.ceil(this.providerFilters.length / 3) * 32 + 289;
   }
 
   /**
-   * Calculate the popup height based on length of spatial search list
+   * Height of spatial search list in px
    */
   get spatialHeight(): number {
     return this.spatialSearchFilters.length > 0 ? (this.spatialSearchFilters.length + 1) * 48 : 0;
   }
 
+  /**
+   * Total popup height css value
+   */
+  get popupHeight(): string {
+    return `${this.defaultHeight + this.spatialHeight}px`;
+  }
+
+  /**
+   * Updates popup height when spatial search filters changes
+   * @param changes Changes
+   */
   ngOnChanges(changes: SimpleChanges) {
     if (this.containerRef && 'spatialSearchFilters' in changes) {
       const el = this.containerRef.nativeElement as HTMLElement;
-      el.style.transition = 'unset';
-      el.style.height = `${this.defaultHeight + this.spatialHeight}px`;
+      el.style.transitionDuration = '0s'; // Temporarily disable height transition
+      el.style.height = this.popupHeight;
     }
   }
 
   /**
-   * Toggles filter visible
+   * Toggles filter popup visibility
    */
   @Dispatch()
   toggleFilterVisible(): SetExecuteSearchOnGenerate {
     const el = this.containerRef.nativeElement as HTMLElement;
+    el.style.transitionDuration = '0.2s';
     this.filtersVisible = !this.filtersVisible;
-    if (!this.filtersVisible) {
-      el.style.transition = 'all 0.2s ease-in-out 0.3s';
-    } else {
-      el.style.transition = 'all 0.2s ease-in-out 0s';
+    if (this.filtersVisible) {
       setTimeout(() => {
-        el.style.height = `${this.defaultHeight + this.spatialHeight}px`;
+        // Save the popup width once it has expanded the first time
         if (!this.containerWidth) {
           this.containerWidth = el.clientWidth;
         }
-
+        el.style.height = this.popupHeight;
         el.style.width = `${this.containerWidth}px`;
       }, 200);
     }

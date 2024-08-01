@@ -20,11 +20,14 @@
   top: 1.2rem;
   left: 1.48rem;
   box-shadow: 0.2rem 0.2rem 1rem 0rem #00000058;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 
   &.visible {
     border-width: 1px;
     padding: 2rem;
-    transition: all 0.2s ease-in-out 0s;
+    transition-delay: 0s;
 
     .popup-body {
       opacity: 1;
@@ -37,7 +40,7 @@
     padding: 0;
     width: 0 !important;
     height: 0 !important;
-    transition: all 0.2s ease-in-out 0.3s;
+    transition-delay: 0.3s;
 
     .popup-body {
       opacity: 0;
