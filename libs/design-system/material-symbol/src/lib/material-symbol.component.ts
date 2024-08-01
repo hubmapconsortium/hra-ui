@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
   },
 })
 export class MaterialSymbolComponent {
+  /** All material icons used in HRA */
   readonly icons = [
     'arrow_drop_up',
     'arrow_drop_down',
