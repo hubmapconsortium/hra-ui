@@ -33,7 +33,7 @@
 
         For selected organs, 3D extraction site objects are provided. Some extraction sites resemble geometric objects (e.g., cuboids for heart) while others take the shape of one or more whole or partial anatomical structures (e.g., in spleen). The 3D extraction sites do not restrict registration to specific regions, instead they provide “expert defined landmarks” to help guide tissue registration. The extraction site objects are also used for automatic semantic annotation of tissue samples via collision detection during registration.
 
-        In the 65 3D Reference Objects of HRA v2.1, a total of 1,222 modeled 3D structures are tagged with an ontology ID in UBERON or FMA. The crosswalk that links 3D structures (called nodes in the crosswalk) to their ontology ID is available on the <a href="https://lod.humanatlas.io/ref-organ/asct-b-3d-models-crosswalk/latest/" target="_blank"><i>HRA LOD Server</i></a>. 
+        In the 65 3D Reference Objects of HRA v2.1, a total of 1,222 modeled 3D structures are tagged with an ontology ID in UBERON or FMA. The crosswalk that links 3D structures (called nodes in the crosswalk) to their ontology ID is available on the <a href="https://lod.humanatlas.io/ref-organ/asct-b-3d-models-crosswalk/latest/" target="_blank">HRA LOD Server</a>.
 
 - type: sop-links
   sopData:
