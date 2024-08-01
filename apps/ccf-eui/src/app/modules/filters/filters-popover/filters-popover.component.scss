@@ -24,8 +24,6 @@
   &.visible {
     border-width: 1px;
     padding: 2rem;
-    width: 56.5rem;
-    height: 40rem;
     transition: all 0.2s ease-in-out 0s;
 
     .popup-body {
@@ -37,7 +35,7 @@
   &.hidden {
     border-width: 0;
     padding: 0;
-    width: 0;
+    width: 0 !important;
     height: 0 !important;
     transition: all 0.2s ease-in-out 0.3s;
 
