@@ -20,26 +20,32 @@
   top: 1.2rem;
   left: 1.48rem;
   box-shadow: 0.2rem 0.2rem 1rem 0rem #00000058;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  max-height: 80vh;
+  max-width: 80vw;
 
   &.visible {
     border-width: 1px;
     padding: 2rem;
-    width: 56.5rem;
-    height: 40rem;
-    transition: all 0.2s ease-in-out 0s;
+    transition-delay: 0s;
+    height: fit-content !important;
+    width: fit-content !important;
 
     .popup-body {
       opacity: 1;
       transition: opacity 0.2s ease-in-out 0.3s;
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
     }
   }
 
   &.hidden {
     border-width: 0;
     padding: 0;
-    width: 0;
-    height: 0 !important;
-    transition: all 0.2s ease-in-out 0.3s;
+    transition-delay: 0.3s;
 
     .popup-body {
       opacity: 0;
