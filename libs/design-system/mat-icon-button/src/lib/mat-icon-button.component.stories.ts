@@ -14,4 +14,23 @@ const meta: Meta<MatIconButtonComponent> = {
 export default meta;
 type Story = StoryObj<MatIconButtonComponent>;
 
-export const Default: Story = {};
+export const Small: Story = {
+  args: {
+    size: 'small',
+    icon: 'keyboard_arrow_up',
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: 'medium',
+    icon: 'keyboard_arrow_up',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'large',
+    icon: 'keyboard_arrow_up',
+  },
+};

@@ -1,3 +1,27 @@
 :host {
-  display: block;
+  --mat-icon-button-hover-state-layer-opacity: 0.04;
+  --mat-icon-button-pressed-state-layer-opacity: 0.08;
+  --mat-icon-color: var(--sys-secondary);
+  --mat-icon-button-state-layer-color: var(--sys-secondary);
+
+  button {
+    &:focus {
+      --mat-icon-button-pressed-state-layer-opacity: 0.04;
+      outline: 1px solid rgba(32, 30, 61, 0.32);
+
+      ::ng-deep .mat-mdc-button-persistent-ripple::before {
+        opacity: var(--mat-icon-button-pressed-state-layer-opacity);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--sys-tertiary);
+    }
+
+    mat-icon {
+      height: var(--mdc-icon-button-icon-size);
+      width: var(--mdc-icon-button-icon-size);
+      font-size: var(--mdc-icon-button-icon-size);
+    }
+  }
 }
