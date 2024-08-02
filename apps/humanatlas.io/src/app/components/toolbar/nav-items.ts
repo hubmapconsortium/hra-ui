@@ -16,4 +16,5 @@ export interface NavItems {
   id?: string;
   /** ID of an element for the page to be navigated when clicked on the menu item */
   fragment?: string;
+  componentName?: string;
 }

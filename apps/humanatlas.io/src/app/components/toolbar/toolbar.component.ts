@@ -10,6 +10,8 @@ import { ConnectedPosition } from '@angular/cdk/overlay';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent {
+  newNavItems = [...NAVIGATION_ITEMS, { menuName: 'HuBMAP Tools and Applications', componentName: 'hubmap-nav' }];
+
   /** Menu items to be displayed on the toolbar */
   @Input() navigationItems: NavItems[] = NAVIGATION_ITEMS;
 

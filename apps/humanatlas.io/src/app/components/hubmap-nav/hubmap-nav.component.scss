@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+::ng-deep {
+  .mat-mdc-menu-panel {
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+  .mat-mdc-menu-panel.hubmap-menu-container {
+    max-width: 32.5rem;
+    --mat-menu-item-label-text-size: 14px;
+    --mat-menu-item-label-text-line-height: 21px;
+    --mat-menu-item-label-text-weight: 300;
+    --mat-menu-item-label-text-tracking: 0.005em;
+    .item-wrapper {
+      padding: 0.5rem 0.75rem;
+
+      &:not(:last-child) {
+        border-bottom: solid 1px#0000001F;
+      }
+
+      .menu-name {
+        margin-bottom: 2px;
+        margin-left: 0.5rem;
+        color: #444c65;
+      }
+
+      .app-card {
+        display: grid;
+        grid-template-columns: 3.5rem auto;
+        gap: 0.75rem;
+        padding: 4px 8px;
+
+        .app-title {
+          color: #444a65;
+        }
+
+        .app-description {
+          color: #212121;
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 300;
+          letter-spacing: 0.005em;
+        }
+      }
+    }
+  }
+}

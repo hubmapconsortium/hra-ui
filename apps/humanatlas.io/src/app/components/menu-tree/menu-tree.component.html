@@ -29,6 +29,9 @@
       <div *ngIf="node.route" [routerLink]="[node.route]" class="menu-name">
         {{ node.menuName }}
       </div>
+      <div *ngIf="node.componentName">
+        <hubmap-nav></hubmap-nav>
+      </div>
       <mat-divider *ngIf="node.divider" class="menu-tree-divider"></mat-divider>
       <div (click)="externalWindow(node.url!)" *ngIf="node.url" class="menu-name">
         {{ node.menuName }}
