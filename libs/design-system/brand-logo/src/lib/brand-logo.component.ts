@@ -1,14 +1,13 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
-import { HttpClientModule } from '@angular/common/http';
 
 /** Brand Logo Component */
 @Component({
-  selector: 'hra-brand',
+  selector: 'hra-brand-logo',
   standalone: true,
-  imports: [CommonModule, AssetUrlPipe, InlineSVGModule, HttpClientModule],
+  imports: [CommonModule, AssetUrlPipe, InlineSVGModule],
   templateUrl: './brand-logo.component.html',
   styleUrl: './brand-logo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +16,9 @@ export class BrandLogoComponent {
   /** Flag to check if the Logo is small */
   readonly small = input(false, { transform: booleanAttribute });
 
+  /** Computed logo path based on the logo size */
+  protected readonly logoPath = computed(() => `assets/logo/hra-logo-${this.small() ? 'small' : 'regular'}.svg`);
+
   /** SVG script eval mode */
-  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
+  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 }

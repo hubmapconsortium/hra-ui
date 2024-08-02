@@ -1,9 +1,10 @@
 <a
   href="https://humanatlas.io/"
   target="_blank"
-  [inlineSVG]="'assets/logo/hra-brand-logo.svg' | assetUrl"
+  [inlineSVG]="logoPath() | assetUrl"
   [evalScripts]="NEVER_EVAL_SCRIPTS"
-  aria-label="Visit Human Atlas"
+  aria-label="Visit Human Reference Atlas"
+  rel="noopener noreferrer"
   [class.small]="small()"
 >
 </a>
