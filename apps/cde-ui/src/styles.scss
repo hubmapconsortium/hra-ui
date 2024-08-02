@@ -2,6 +2,13 @@
 @use './styles/global/resets';
 @use './styles/global/fonts';
 @use './styles/material-theming';
+@use 'light-theme';
+@use 'theming';
+
+// TODO Update and switch to design system theming
+// html {
+//   @include theming.theme(light-theme.$theme);
+// }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
