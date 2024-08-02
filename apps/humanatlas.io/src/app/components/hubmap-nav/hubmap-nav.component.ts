@@ -12,7 +12,9 @@ import { HubmapNavItems } from './hubmap-nav';
 })
 export class HubmapNavComponent {
   /** Navigation Menu Items */
-  navItems = input<HubmapNavItems[]>([
+  navItems = input<HubmapNavItems[]>();
+
+  data = [
     {
       menuName: 'HuBMAP Tools & Applications',
     },
@@ -89,5 +91,5 @@ export class HubmapNavComponent {
         },
       ],
     },
-  ]);
+  ];
 }

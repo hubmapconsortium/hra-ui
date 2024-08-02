@@ -27,11 +27,28 @@
   .menu-tree-backdrop {
     margin-top: 4rem;
   }
+
+  .component-title {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-tree-panel {
+    .mat-mdc-icon-button.mat-mdc-button-base {
+      --mdc-icon-button-state-layer-size: 1.5rem;
+      padding: 0;
+    }
+
+    hubmap-nav {
+      margin-left: 1rem;
+    }
+  }
 }
 
 .mat-parent-node {
   display: flex;
   align-items: center;
+  gap: 0.25rem;
 }
 
 .mat-tree-node,
