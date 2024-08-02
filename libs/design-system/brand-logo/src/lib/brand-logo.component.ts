@@ -17,9 +17,6 @@ export class BrandLogoComponent {
   /** Flag to check if the Logo is small */
   readonly small = input(false, { transform: booleanAttribute });
 
-  /** Text color of the brand name */
-  readonly color = input('#201E3D');
-
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 }

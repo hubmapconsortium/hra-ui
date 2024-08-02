@@ -6,7 +6,7 @@ const meta: Meta<BrandLogoComponent> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/Design-System-Repository?node-id=5097-23013&t=mdJDmeklbfjt0jbX-4',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=84-802',
     },
   },
 };
@@ -18,9 +18,6 @@ export const Primary: Story = {
 };
 
 export const PrimaryWhite: Story = {
-  args: {
-    color: '#FFFFFF',
-  },
   parameters: {
     backgrounds: {
       default: 'dark',
@@ -37,7 +34,6 @@ export const Small: Story = {
 export const SmallWhite: Story = {
   args: {
     small: true,
-    color: '#FFFFFF',
   },
   parameters: {
     backgrounds: {
