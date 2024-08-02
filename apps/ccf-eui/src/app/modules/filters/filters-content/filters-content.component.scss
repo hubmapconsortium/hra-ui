@@ -9,10 +9,12 @@
   }
 
   ::ng-deep ccf-checkbox {
+    min-width: fit-content;
+    display: block;
+
     .options-container {
       position: relative;
       left: -0.5rem;
-      width: calc(100% + 0.5rem);
 
       .mdc-checkbox {
         padding: 0.5rem;
