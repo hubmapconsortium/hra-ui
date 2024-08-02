@@ -6,11 +6,12 @@ import { BodyUiModule } from 'ccf-shared';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { StoreModule } from './core/store/store.module';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [BrowserModule, StoreModule, BodyUiModule],
   declarations: [AppComponent, AppWebComponent],
-  providers: [],
+  providers: [provideHttpClient()],
 })
 export class AppModule implements DoBootstrap {
   constructor(private readonly injector: Injector) {}

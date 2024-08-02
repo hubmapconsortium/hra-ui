@@ -13,6 +13,10 @@
             "allow": [],
             "depConstraints": [
               {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
                 "sourceTag": "app",
                 "onlyDependOnLibsWithTags": ["*"]
               },
@@ -51,6 +55,14 @@
               {
                 "sourceTag": "ccf",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "project:cde",
+                "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "project:design-system",
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }
@@ -70,13 +82,18 @@
             "varsIgnorePattern": "^_",
             "caughtErrors": "all"
           }
-        ]
+        ],
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
       }
     },
     {
       "files": ["*.js", "*.mjs", "*.cjs", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.mjs", "*.spec.cjs", "*.spec.jsx"],

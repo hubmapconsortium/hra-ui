@@ -1,8 +1,9 @@
 @use '@angular/material' as mat;
 @use 'angular-material-css-vars' as mat-css;
 
-$default-typography-config: mat.define-typography-config(
+$default-typography-config: mat.m2-define-typography-config(
   $font-family: (
+    'Metropolis',
     'Inter',
     sans-serif,
   ),

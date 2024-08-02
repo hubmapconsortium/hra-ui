@@ -19,13 +19,9 @@
         "main": "apps/ccf-rui/src/main.ts",
         "polyfills": "apps/ccf-rui/src/polyfills.ts",
         "tsConfig": "apps/ccf-rui/tsconfig.app.json",
-        "assets": ["apps/ccf-rui/src/favicon.ico", "apps/ccf-rui/src/assets"],
+        "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
         "styles": ["apps/ccf-rui/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ],
+        "scripts": [],
         "vendorChunk": true,
         "extractLicenses": false,
         "buildOptimizer": false,
@@ -35,6 +31,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -62,6 +59,7 @@
           ]
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -127,7 +125,7 @@
         "polyfills": "apps/ccf-rui/src/polyfills.ts",
         "tsConfig": "apps/ccf-rui/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-rui/karma.conf.js",
-        "assets": ["apps/ccf-rui/src/favicon.ico", "apps/ccf-rui/src/assets"],
+        "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "apps/ccf-rui/src/test.ts",

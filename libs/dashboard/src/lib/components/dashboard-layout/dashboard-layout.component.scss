@@ -1,0 +1,114 @@
+:host {
+  display: block;
+  max-width: min(80rem, calc(100vw - 12rem));
+  margin: 0 auto;
+
+  ::ng-deep > :nth-child(n + 4) {
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 1012px) {
+      &:not(hra-dashboard-metrics-container) {
+        min-width: 42rem;
+      }
+    }
+  }
+
+  .title {
+    margin-bottom: 0.5rem;
+    color: #201e3d;
+  }
+
+  .description {
+    color: #464954;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+    max-width: 63.25rem;
+    font-weight: 400;
+  }
+
+  .read-btn {
+    --mdc-filled-button-container-height: 2.5rem;
+    margin-bottom: 4rem;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    width: max-content;
+    line-height: 1.5rem;
+    border-radius: 0;
+    letter-spacing: 0.75px;
+
+    mat-icon {
+      font-size: 1.5rem;
+      height: 1.5rem;
+      width: 1.5rem;
+      font-weight: 300;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    max-width: calc(100vw - 9rem);
+
+    .description {
+      max-width: 67rem;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    max-width: calc(100vw - 6rem);
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    .description {
+      max-width: unset;
+    }
+  }
+
+  @media (min-width: 548px) and (max-width: 1280px) {
+    max-width: calc(100vw - 6rem);
+  }
+
+  @media (min-width: 545px) and (max-width: 768px) {
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 3rem;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 544px) {
+    max-width: calc(100vw - 4rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 2rem;
+        display: inline-block;
+      }
+    }
+
+    .title {
+      font-size: 2.375rem;
+      line-height: 3.5625rem;
+      letter-spacing: -1.75px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    max-width: calc(100vw - 3rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    max-width: calc(100vw - 2rem);
+    ::ng-deep > :nth-child(n + 4) {
+      &:not(hra-dashboard-metrics-container) {
+        margin-right: 1rem;
+        display: inline-block;
+      }
+    }
+  }
+}

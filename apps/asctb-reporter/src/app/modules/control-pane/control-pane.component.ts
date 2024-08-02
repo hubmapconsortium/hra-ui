@@ -108,10 +108,10 @@ export class ControlPaneComponent implements OnInit {
   }
 
   showAllAS() {
-    this.store.dispatch(new ToggleShowAllAS()).subscribe((states) => {
-      const sheet = states.sheetState.sheet;
-      const selectedOrgans = states.sheetState.selectedOrgans;
-      const omapSelectedOrgans = states.sheetState.omapSelectedOrgans;
+    this.store.dispatch(new ToggleShowAllAS()).subscribe(() => {
+      const sheet = this.store.selectSnapshot(SheetState.getSheet);
+      const selectedOrgans = this.store.selectSnapshot(SheetState.getSelectedOrgans);
+      const omapSelectedOrgans = this.store.selectSnapshot(SheetState.getOMAPSelectedOrgans);
       this.store.dispatch(new FetchSelectedOrganData(sheet, selectedOrgans, omapSelectedOrgans));
     });
   }
@@ -241,12 +241,12 @@ export class ControlPaneComponent implements OnInit {
   }
 
   updateBimodal(config: SheetConfig) {
-    this.store.dispatch(new UpdateConfig(config)).subscribe((states) => {
-      const data = states.sheetState.data;
-      const treeData = states.treeState.treeData;
-      const bimodalConfig = states.treeState.bimodal.config;
-      const omapConfig = states.treeState.omapConfig;
-      const filteredProtiens = states.sheetState.filteredProtiens;
+    this.store.dispatch(new UpdateConfig(config)).subscribe(() => {
+      const data = this.store.selectSnapshot(SheetState.getData);
+      const treeData = this.store.selectSnapshot(TreeState.getTreeData);
+      const bimodalConfig = this.store.selectSnapshot(TreeState.getBimodal).config;
+      const omapConfig = this.store.selectSnapshot(TreeState.getOmapConfig);
+      const filteredProtiens = this.store.selectSnapshot(SheetState.getFilteredProtiens);
       if (data.length) {
         try {
           console.log('BM Call here');
@@ -267,18 +267,18 @@ export class ControlPaneComponent implements OnInit {
     const body = `Hi, thank you for wanting to contact us! This is an auto-generated body template.
       Below are a list of possible subjects, %0D%0A%0D%0A1. Issue/bug wit the Reporter%0D%0A%0D%0A2.
       Feature request for the reporter.%0D%0A%0D%0A3. General discussion about the Reporter.`;
-    const mailText = `mailto:infoccf@indiana.edu?subject=${subject}&body=${body}`;
+    const mailText = `mailto:infoccf@iu.edu?subject=${subject}&body=${body}`;
     window.location.href = mailText;
   }
 
   updateOmapConfig(event: OmapConfig) {
-    this.store.dispatch(new UpdateOmapConfig(event)).subscribe((states) => {
+    this.store.dispatch(new UpdateOmapConfig(event)).subscribe(() => {
       this.store.dispatch(
         new FetchSelectedOrganData(
-          states.sheetState.sheet,
-          states.sheetState.selectedOrgans,
-          states.sheetState.omapSelectedOrgans,
-          states.sheetState.compareSheets,
+          this.store.selectSnapshot(SheetState.getSheet),
+          this.store.selectSnapshot(SheetState.getSelectedOrgans),
+          this.store.selectSnapshot(SheetState.getOMAPSelectedOrgans),
+          this.store.selectSnapshot(SheetState.getCompareSheets),
         ),
       );
     });

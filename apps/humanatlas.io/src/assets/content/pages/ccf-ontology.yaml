@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: title
   title: Common Coordinate Framework Ontology
@@ -6,15 +6,15 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 6th Release of the Human Reference Atlas (v2.0) is now available! See what's new in HRA v2.0 in "
-      route: 'v2.0'
-      routeText: '6th Release Notes.'
+    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
+      route: 'v2.1'
+      routeText: '7th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
   description:
     - title: A <span class="hra-bold">Common Coordinate Framework (CCF)</span> for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
-    - title: A <span class="hra-bold">Human Reference Atlas (HRA)</span> is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+    - title: The <span class="hra-bold">Human Reference Atlas (HRA)</span> is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
 
 - type: margin
   bottom: 2.5rem

@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { FooterComponent } from '@hra-ui/components/molecules';
-import { DownloadActions, DownloadSelectors, LinkIds, ResourceIds as Ids, ScreenModeSelectors } from '@hra-ui/state';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
@@ -34,6 +33,9 @@ export class FooterBehaviorComponent {
   /** Metadata page link routing after clicking on Illustration */
   readonly illustrationMetadata = LinkIds.Illustration;
 
+  /** Input for about link for user click action. */
+  readonly aboutLink = LinkIds.About;
+
   /** Embed link routing after clicking on Embed */
   readonly embed = LinkIds.Embed;
 
@@ -41,18 +43,4 @@ export class FooterBehaviorComponent {
   readonly download = dispatch(DownloadActions.Download);
   /** Selects the current value of the available ScreenMode Size */
   readonly size = selectSnapshot(ScreenModeSelectors.size);
-
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
-  /** A function which opens the contact modal dialog box */
-  contact(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.dialog.open(ContactBehaviorComponent, dialogConfig);
-    this.ga.event('contact_open', 'modal');
-  }
 }

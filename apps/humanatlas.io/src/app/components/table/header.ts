@@ -14,6 +14,8 @@ export interface HeaderData {
   sorting?: boolean;
   /** Alignment of the column data */
   alignment?: string;
+  /** Label for Total column */
+  totalLabel?: string;
 }
 
 /** An interface representing the details of the additional data */

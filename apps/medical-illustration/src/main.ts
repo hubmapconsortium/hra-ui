@@ -1,7 +1,15 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideHttpClient } from '@angular/common/http';
+import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
+import { createCustomElement } from '@hra-ui/webcomponents';
+import { ReplaySubject } from 'rxjs';
+import { MedicalIllustrationComponent } from './app/medical-illustration.component';
 
-import { AppModule } from './app/app.module';
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+createCustomElement('hra-medical-illustration', MedicalIllustrationComponent, {
+  providers: [
+    provideHttpClient(),
+    {
+      provide: FTU_DATA_IMPL_ENDPOINTS,
+      useValue: new ReplaySubject(1),
+    },
+  ],
+});

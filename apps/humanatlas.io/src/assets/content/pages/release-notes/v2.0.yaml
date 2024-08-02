@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: menu-tree
   overlayClass: overlay-position-fifth-release
@@ -237,7 +237,7 @@
                     - <a href="https://apps.humanatlas.io/eui/" target="_blank">Exploration User Interface (EUI)</a>
                     - <a href="https://apps.humanatlas.io/rui/" target="_blank">Registration User Interface (RUI)</a>
                     - <a href='https://hubmapconsortium.github.io/hra-ui/apps/ftu-ui/' target="_blank">Functional Tissue Unit (FTU) Explorer</a>
-                    - <a href="https://humanatlas.io/organ-gallery-in-vr" target="_blank">Organ Gallery in VR</a>
+                    - <a href="https://humanatlas.io/hra-organ-gallery" target="_blank">Organ Gallery in VR</a>
 
             - type: divider
               styles:
@@ -377,7 +377,7 @@
               styles:
                 margin-bottom: 2rem
               text: Contact the HRA Team
-              url: mailto:infoccf@indiana.edu
+              url: mailto:infoccf@iu.edu
               icon: email
             - type: contact-card
               contactData:
@@ -385,13 +385,13 @@
                   name: Katy Börner
                   field: Research
                   role: MC-IU PI, CNS Director
-                  email: katy@indiana.edu
+                  email: katy@iu.edu
                   alt: Katy Borner profile image
                 - image: assets/images/bruce_herr.svg
                   name: Bruce W. Herr II
                   field: Development
                   role: Technical Director
-                  email: bherr@indiana.edu
+                  email: bherr@iu.edu
                   alt: Bruce Herr II profile image
                 - image: assets/images/andreas_bueckle.svg
                   name: Andreas Bueckle

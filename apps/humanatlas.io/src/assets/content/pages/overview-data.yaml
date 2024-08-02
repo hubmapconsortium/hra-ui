@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/cns-iu/humanatlas.io/main/apps/human-atlas/src/pages.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
 - type: title
   title: Human Reference Atlas Data
@@ -6,8 +6,8 @@
 
 - type: simple-tile
   description:
-    - title: A **Human Reference Atlas (HRA)** is a comprehensive, high-resolution, three-dimensional atlas of all the cells in the healthy human body. The Human Reference Atlas provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
-    - title: Interested in contributing to the Human Reference Atlas (HRA) effort? Please complete this online form to receive relevant information and meeting invites. For questions, please email infoccf@indiana.edu.
+    - title: The **Human Reference Atlas (HRA)** is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies.
+    - title: Interested in contributing to the Human Reference Atlas (HRA) effort? Please complete this online form to receive relevant information and meeting invites. For questions, please email infoccf@iu.edu.
 
 - type: margin
   bottom: 3.5rem
@@ -19,6 +19,11 @@
       body: Data tables containing hierarchical anatomical structures, cell types, and biomarkers
       route: asctb-tables
       alt: ASCT+B tables icon
+    - icon: assets/images/cell-type-annotations.svg
+      title: Cell Type Annotations
+      body: Crosswalks from cell types used in sc/snRNA-seq annotation tools to ASCT+B Tables
+      route: cell-type-annotations
+      alt: Cell Type Annotations icon
     - icon: assets/images/asctb_azimuth.svg
       title: ASCT+B Cell Types Data from Azimuth Reference Data with Summaries
       body: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data

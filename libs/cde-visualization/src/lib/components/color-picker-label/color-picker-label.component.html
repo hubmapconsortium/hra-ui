@@ -1,0 +1,69 @@
+<span
+  class="color-pick"
+  [style.background]="hexColor()"
+  [colorPicker]="hexColor()"
+  cpWidth="264px"
+  cpOutputFormat="hex"
+  cpPositionOffset="-17%"
+  [cpOKButton]="true"
+  cpOKButtonClass="accept-button"
+  cpOKButtonText="Accept"
+  [cpCancelButton]="true"
+  cpCancelButtonClass="cancel-button"
+  cpAlphaChannel="disabled"
+  (colorPickerOpen)="colorPickerOpen.emit(true)"
+  (colorPickerClose)="colorPickerOpen.emit(false)"
+  (colorPickerChange)="hexColor.set($event)"
+  (colorPickerSelect)="selectColor($event)"
+  data-testid="color-picker-button"
+></span>
+@if (isAnchor()) {
+  <mat-icon
+    class="material-symbols-rounded anchor"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="anchorOpen = true"
+    (mouseout)="anchorOpen = false"
+  >
+    anchor
+    <ng-container>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'anchor-tooltip']"
+        [cdkConnectedOverlayOrigin]="resetTrigger"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="anchorOpen"
+        [cdkConnectedOverlayOffsetX]="5"
+      >
+        <div>
+          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+          computed and visualized. The nearest cell distance is computed based on the Euclidian distance between two
+          cells.
+        </div>
+      </ng-template>
+    </ng-container>
+  </mat-icon>
+}
+<div
+  cdkOverlayOrigin
+  #resetTrigger="cdkOverlayOrigin"
+  class="label mat-caption"
+  (mouseover)="handleHover($event)"
+  (mouseout)="tooltipOpen = false"
+>
+  {{ label() }}
+  <ng-container>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'label-tooltip']"
+      [cdkConnectedOverlayOrigin]="resetTrigger"
+      [cdkConnectedOverlayPositions]="tooltipPosition"
+      [cdkConnectedOverlayOpen]="tooltipOpen"
+      [cdkConnectedOverlayOffsetX]="5"
+    >
+      <div>
+        {{ label() }}
+      </div>
+    </ng-template>
+  </ng-container>
+</div>

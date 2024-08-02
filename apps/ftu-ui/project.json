@@ -16,8 +16,8 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/ftu-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ftu-ui/src/favicon.ico", "apps/ftu-ui/src/assets"],
-        "styles": ["apps/ftu-ui/src/styles.scss"],
+        "assets": ["apps/ftu-ui/src/favicon.png", "apps/ftu-ui/src/assets"],
+        "styles": ["apps/ftu-ui/src/styles.scss", "apps/ftu-ui/src/assets/fonts/fonts.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
         },
@@ -25,7 +25,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/hra-ui/apps/ftu-ui/",
+          "baseHref": "/ui/ftu-ui/",
           "outputHashing": "none",
           "budgets": [
             {
@@ -36,7 +36,7 @@
             {
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumError": "4.5kb"
             }
           ]
         },
@@ -49,7 +49,7 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/apps/ftu-ui/",
+          "baseHref": "/ui--staging/ftu-ui/",
           "outputHashing": "none"
         },
         "preview": {

@@ -21,7 +21,7 @@
         "tsConfig": "apps/humanatlas.io/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "apps/humanatlas.io/src/favicon.ico",
+          "apps/humanatlas.io/src/favicon.png",
           "apps/humanatlas.io/src/assets",
           {
             "glob": "**/*",
@@ -37,6 +37,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/",
           "budgets": [
             {
               "type": "initial",
@@ -59,6 +60,7 @@
         },
         "development": {
           "buildOptimizer": false,
+          "baseHref": "/",
           "optimization": false,
           "vendorChunk": true,
           "extractLicenses": false,
@@ -66,7 +68,7 @@
           "namedChunks": true
         },
         "staging": {
-          "baseHref": "/apps/humanatlas.io/",
+          "baseHref": "/ui--staging/humanatlas.io/",
           "outputHashing": "none"
         },
         "preview": {

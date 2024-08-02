@@ -1,14 +1,15 @@
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
-import { ActiveFtuSelectors, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-import { calledWithFn } from 'jest-mock-extended';
+import { FtuDataService } from '@hra-ui/services';
+import { ActiveFtuSelectors, CellSummaryAggregate, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
+import { calledWithFn, mock } from 'jest-mock-extended';
+import { MarkdownModule } from 'ngx-markdown';
 import { Shallow } from 'shallow-render';
 import { BiomarkerDetailsComponent } from './biomarker-details.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MarkdownModule } from 'ngx-markdown';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -41,6 +42,7 @@ describe('BiomarkerDetailsComponent', () => {
   const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const selectQuerySnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const iriSpy = jest.fn((): string | undefined => 'test');
+  const dataService = mock<FtuDataService>();
   let shallow: Shallow<BiomarkerDetailsComponent>;
 
   beforeEach(() => {
@@ -57,7 +59,8 @@ describe('BiomarkerDetailsComponent', () => {
 
     shallow = new Shallow(BiomarkerDetailsComponent)
       .import(MarkdownModule.forRoot())
-      .dontMock(MatTableModule, HoverDirective, MatDialogModule);
+      .dontMock(MatTableModule, HoverDirective, MatDialogModule)
+      .provideMock({ provide: FtuDataService, useValue: dataService });
   });
 
   it('should create', async () => {
@@ -116,6 +119,15 @@ describe('BiomarkerDetailsComponent', () => {
     it('should get illustration ids', async () => {
       const { instance } = await shallow.render();
       expect(instance.illustrationIds).toEqual(['id1', 'id2']);
+    });
+  });
+
+  describe('trackByLabel(index, tab)', () => {
+    it('returns the tab label', async () => {
+      const { instance } = await shallow.render();
+      const label = 'foobar';
+      const value = instance.trackByLabel(0, { label } as CellSummaryAggregate);
+      expect(value).toEqual(label);
     });
   });
 });

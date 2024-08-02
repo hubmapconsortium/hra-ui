@@ -1,1 +1,16 @@
-{}
+{
+  "conventionalCommits.scopes": [
+    "molecules",
+    "medical-illustration",
+    "webcomponents",
+    "state",
+    "cde-visualization",
+    "cde",
+    "cdk",
+    "dashboard",
+    "ftu-ui",
+    "services",
+    "ccf-organ-info",
+    "design-system"
+  ]
+}

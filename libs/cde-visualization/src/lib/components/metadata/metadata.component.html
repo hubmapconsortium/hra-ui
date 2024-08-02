@@ -1,0 +1,112 @@
+<mat-accordion displayMode="flat" hideToggle>
+  <mat-expansion-panel expanded #panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-caption title">
+        <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
+        {{ metadata().sampleExtra ? 'Sample ' : '' }}Metadata
+        <mat-icon
+          class="material-symbols-rounded"
+          cdkOverlayOrigin
+          #resetTrigger="cdkOverlayOrigin"
+          (mouseover)="tooltipOpen = true"
+          (mouseout)="tooltipOpen = false"
+          >info</mat-icon
+        >
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+          [cdkConnectedOverlayPositions]="tooltipPosition"
+          [cdkConnectedOverlayOrigin]="resetTrigger"
+          [cdkConnectedOverlayOpen]="tooltipOpen"
+          [cdkConnectedOverlayOffsetX]="5"
+        >
+          <div>Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.</div>
+        </ng-template>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    @if (isFieldVisible('title')) {
+      <div class="mat-caption label">
+        {{ titleLabel() }}
+      </div>
+      @if (metadata().sampleExtra; as extra) {
+        <a [attr.href]="extra.sampleUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
+          metadata().title
+        }}</a>
+      } @else {
+        <span class="mat-caption user-title">{{ metadata().title | defaultTo: 'Unknown' }}</span>
+      }
+    }
+
+    <div class="metadata-details">
+      <div class="mat-caption">
+        Source Data
+        @if (metadata().sampleExtra; as extra) {
+          <a [attr.href]="extra.sourceDataUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
+            metadata().sourceData
+          }}</a>
+        } @else {
+          <span class="mat-caption user-source">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+        }
+      </div>
+      @if (isFieldVisible('colorMap')) {
+        <div class="mat-caption">
+          Color Map
+          <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('organ')) {
+        <div class="mat-caption">
+          Organ
+          <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('technology')) {
+        <div class="mat-caption">
+          Technology
+          <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('sex')) {
+        <div class="mat-caption">
+          Sex
+          <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('age')) {
+        <div class="mat-caption">
+          Age
+          <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('thickness')) {
+        <div class="mat-caption">
+          Thickness (µm)
+          <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      @if (isFieldVisible('pixelSize')) {
+        <div class="mat-caption">
+          Pixel Size (µm/pixel)
+          <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
+        </div>
+      }
+      <div class="mat-caption">
+        Creation Date
+        <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
+      <div class="mat-caption">
+        Creation Time
+        <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
+    </div>
+
+    @if (hasEmptyFields()) {
+      <div class="show-hide">
+        <button mat-button disableRipple class="mat-caption" color="primary" (click)="toggleEmptyFields()">
+          {{ showEmptyFields() ? 'Hide' : 'Show' }} empty metadata fields
+        </button>
+      </div>
+    }
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,5 @@
+@use '../../app/components/header/header.component.theme.scss' as header;
+
+@mixin theme($theme) {
+  @include header.theme($theme);
+}

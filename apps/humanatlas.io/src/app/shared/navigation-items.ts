@@ -20,6 +20,10 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
+        menuName: 'Cell Type Annotations',
+        route: 'cell-type-annotations',
+      },
+      {
         menuName: 'Anatomical Structures, Cell Types + Biomarkers (ASCT+B) Cell Types Data from Azimuth',
         route: 'asctb-azimuth',
         disabled: true,
@@ -53,27 +57,48 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
         url: 'https://portal.hubmapconsortium.org/',
       },
+      {
+        menuName: 'SenNet Data Portal',
+        disabled: true,
+        url: 'https://data.sennetconsortium.org/',
+      },
     ],
   },
   {
-    menuName: 'Use the HRA',
+    menuName: 'Use HRA Previews',
     children: [
       {
-        menuName: 'Overview: HRA Use Cases',
+        menuName: 'Overview: Use HRA Previews',
         route: 'overview-use-the-hra',
         divider: true,
       },
       {
-        menuName: 'Improve Cell Type Annotations',
+        menuName: 'Preview: Improve Cell Type Annotations',
         route: 'user-story/1',
       },
       {
-        menuName: 'Predict 3D Spatial Origin of Tissue Samples',
+        menuName: 'Preview: Predict 3D Spatial Origin of Tissue Samples',
         route: 'user-story/2',
       },
       {
-        menuName: 'Explore Biomarker Expressions for Cell Types',
+        menuName: 'Preview: Explore Biomarker Expressions for Cell Types',
         route: 'user-story/3',
+      },
+      {
+        menuName: 'Preview: Functional Tissue Unit Explorer',
+        route: 'user-story/4',
+      },
+      {
+        menuName: 'Preview: Cell Distance Explorer',
+        route: 'user-story/5',
+      },
+      {
+        menuName: 'Preview: Use Atlas Components',
+        route: 'user-story/6',
+      },
+      {
+        menuName: 'Preview: Track Atlas Evolution and Usage',
+        route: 'user-story/7',
       },
     ],
   },
@@ -92,11 +117,6 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
-        menuName: 'Cell Population Graphs',
-        route: 'cell-population-graphs',
-        disabled: true,
-      },
-      {
         menuName: 'Registration User Interface (RUI)',
         route: 'registration-user-interface',
         disabled: true,
@@ -107,21 +127,39 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
       },
       {
-        menuName: 'Functional Tissue Unit Explorer',
-        url: 'https://apps.humanatlas.io/ftu-explorer/#/',
+        menuName: 'HRA Organ Gallery',
+        route: 'hra-organ-gallery',
       },
       {
-        menuName: 'Organ Gallery in VR',
-        route: 'organ-gallery-in-vr',
+        menuName: 'HRA API',
+        route: 'api',
+        disabled: true,
+        divider: true,
       },
       {
-        menuName: 'Millitome',
-        route: 'millitome',
+        menuName: 'Preview: Functional Tissue Unit Explorer',
+        route: 'user-story/4',
+      },
+      {
+        menuName: 'Preview: Cell Distance Explorer',
+        route: 'user-story/5',
+      },
+      {
+        menuName: 'Preview: Atlas Components',
+        route: 'user-story/6',
+      },
+      {
+        menuName: 'Preview: HRA Dashboards',
+        route: 'user-story/7',
+      },
+      {
+        menuName: 'Preview: Cell Population Graphs',
+        route: 'cell-population-graphs',
         disabled: true,
       },
       {
-        menuName: 'Application Programming Interfaces (APIs)',
-        route: 'api',
+        menuName: 'Preview: Millitome',
+        route: 'millitome',
         disabled: true,
       },
     ],
@@ -144,10 +182,6 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         menuName: 'Standard Operating Procedures',
         route: 'standard-operating-procedures',
         disabled: true,
-      },
-      {
-        menuName: 'HRA User Stories',
-        url: 'https://docs.google.com/document/d/1I4gFPY47EBKEIDQ-hWTcxCUsGRxL7yJqKfCvlQAQe5Y/edit#heading=h.6n4dk68tke9a',
       },
       {
         menuName: 'Outreach',

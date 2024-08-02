@@ -13,11 +13,13 @@
       disableRipple="true"
       hideSingleSelectionIndicator="true"
     >
-      <mat-option *ngFor="let option of options" [value]="option">
-        <div class="{{ optionsVisible }}">
-          {{ option }}
-        </div>
-      </mat-option>
+      @for (option of options; track option) {
+        <mat-option [value]="option">
+          <div class="{{ optionsVisible }}">
+            {{ option }}
+          </div>
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
 </div>

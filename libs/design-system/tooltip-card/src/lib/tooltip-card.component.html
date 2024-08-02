@@ -1,0 +1,8 @@
+@for (item of content(); track item) {
+  <section class="section">
+    @if (item.title) {
+      <h4 class="title">{{ item.title }}</h4>
+    }
+    <p class="description">{{ item.description }}</p>
+  </section>
+}

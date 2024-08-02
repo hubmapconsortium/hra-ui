@@ -1,26 +1,43 @@
-import { copyFile } from 'node:fs/promises';
 import concat from 'concat';
-import { argv, exit } from 'node:process';
 import { glob } from 'glob';
+import { copyFile } from 'node:fs/promises';
+import { basename } from 'node:path';
+import { argv, exit } from 'node:process';
 
-async function build(app_name) {
-  const exampleHtmlFile = 'webcomponent-example.html';
-  const srcDir = `./apps/${app_name}/src`;
-  const distDir = `./dist/apps/${app_name}`;
+function getDirs(appName) {
+  return {
+    srcDir: `./apps/${appName}/src`,
+    distDir: `./dist/apps/${appName}`,
+  };
+}
+
+async function build(appName) {
+  const { distDir } = getDirs(appName);
   const jsFiles = await glob([
     `${distDir}/runtime*.js`,
     `${distDir}/polyfills*.js`,
     `${distDir}/scripts*.js`,
+    `${distDir}/vendor*.js`,
     `${distDir}/main*.js`,
   ]);
 
-  if (jsFiles.length !== 4) {
-    console.log('Failed to find all application js files');
+  if (jsFiles.length === 0) {
+    console.log('Failed to find application js files');
     exit(1);
   }
 
   await concat(jsFiles, `${distDir}/wc.js`);
-  await copyFile(`${srcDir}/${exampleHtmlFile}`, `${distDir}/${exampleHtmlFile}`);
+}
+
+async function copyExampleHtmlFiles(appName) {
+  const { srcDir, distDir } = getDirs(appName);
+  const exampleFiles = await glob(`${srcDir}/*-example.html`);
+
+  for (const path of exampleFiles) {
+    const fileName = basename(path);
+    const destPath = `${distDir}/${fileName}`;
+    await copyFile(path, destPath).catch(() => {});
+  }
 }
 
 async function main() {
@@ -30,7 +47,9 @@ async function main() {
     exit(1);
   }
 
-  await build(userArguments[0]);
+  const appName = userArguments[0];
+  await build(appName);
+  await copyExampleHtmlFiles(appName);
 }
 
 await main();

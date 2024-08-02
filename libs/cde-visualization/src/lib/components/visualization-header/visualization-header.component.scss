@@ -1,0 +1,125 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
+
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
+$blue-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $blue,
+      accent: $blue,
+    ),
+  )
+);
+
+:host {
+  @include mat.button-color($blue-theme);
+  --mat-divider-width: 2px;
+
+  display: flex;
+  align-items: center;
+  background-color: #fcfcfc;
+  justify-content: space-between;
+  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  height: 100%;
+
+  span.mat-caption {
+    font-size: 1rem;
+  }
+
+  .mat-divider-vertical {
+    height: 100%;
+  }
+
+  .info {
+    margin: 2px;
+  }
+
+  button,
+  .mdc-button {
+    --mdc-filled-button-label-text-color: #{button-text-color};
+    --mdc-filled-button-container-height: 2rem;
+    padding: 4px 8px;
+    font-weight: 500;
+
+    .mat-icon {
+      margin-right: 0.125rem;
+      margin-left: 0;
+      font-size: 1.25rem;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  .home {
+    height: 3rem;
+    margin-left: 1rem;
+
+    > a {
+      height: 100%;
+      display: inline-block;
+    }
+
+    .hra-logo {
+      margin-right: 0.25rem;
+    }
+
+    .cde-logo {
+      display: inline-flex;
+      img {
+        margin-right: 0.75rem;
+      }
+
+      .cde-label {
+        margin: 0;
+        color: #201e3d;
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+      }
+
+      .preview-app {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.5px;
+        font-weight: 400;
+        color: #4b4b5e;
+      }
+    }
+  }
+
+  .tools {
+    display: flex;
+    height: 100%;
+
+    div {
+      margin: 0.6875rem 1rem;
+    }
+
+    div:not(:last-child) {
+      a,
+      button:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .reset,
+    .embed,
+    .about {
+      span {
+        display: flex;
+        height: 28px;
+        align-items: center;
+        gap: 0.25rem;
+        padding-bottom: 2px;
+      }
+    }
+
+    .help {
+      button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9375rem;
+        margin-right: 0.75rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "container",
+  "config": {
+    "font": "Metropolis",
+    "padding": {
+      "top": 4,
+      "right": 16,
+      "bottom": 4,
+      "left": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 14,
+      "titleFontWeight": 500,
+      "labelFontWeight": 500,
+      "titleLineHeight": 21,
+      "labelLineHeight": 18,
+      "titleColor": "#201E3D",
+      "labelColor": "#4B4B5E",
+      "labelAngle": -45,
+      "ticks": false,
+      "domain": false,
+      "labelPadding": 8
+    },
+    "legend": {
+      "titleFontSize": 14,
+      "titleLineHeight": 21,
+      "titleColor": "#201E3D",
+      "titleFontWeight": 500,
+      "labelFontSize": 14,
+      "labelFontWeight": 500,
+      "labelColor": "#4B4B5E"
+    }
+  },
+  "data": {
+    "name": "data"
+  },
+  "params": [
+    {
+      "name": "yAxisTickCount",
+      "value": 5
+    },
+    {
+      "name": "colors",
+      "value": []
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "[datum.type, 'All Cells']",
+      "as": "type"
+    },
+    {
+      "flatten": ["type"]
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "interpolate": "step"
+  },
+  "encoding": {
+    "x": {
+      "field": "distance",
+      "title": "Distance (µm)",
+      "bandPosition": 0,
+      "bin": {
+        "step": 5
+      },
+      "scale": {
+        "domainMin": -5
+      },
+      "axis": {
+        "minExtent": 25,
+        "labelFlush": false,
+        "grid": true,
+        "labelAngle": 0,
+        "labelOverlap": true,
+        "labelSeparation": 4
+      }
+    },
+    "y": {
+      "aggregate": "count",
+      "title": "Number of Cells",
+      "axis": {
+        "minExtent": 70,
+        "tickCount": {
+          "expr": "yAxisTickCount"
+        }
+      }
+    },
+    "color": {
+      "field": "type",
+      "legend": null,
+      "scale": {
+        "range": [
+          {
+            "expr": "'Replaced/repeated in javascript' || color[0] || '#000'"
+          }
+        ]
+      }
+    },
+    "tooltip": {
+      "field": "type",
+      "type": "nominal"
+    }
+  }
+}

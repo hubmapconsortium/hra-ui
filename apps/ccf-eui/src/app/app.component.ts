@@ -1,3 +1,4 @@
+import { Immutable } from '@angular-ru/cdk/typings';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,22 +9,21 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { CCFDatabaseOptions, Filter, OntologyTreeModel } from 'ccf-database';
-import { BodyUiComponent, DataSourceService, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
+import { JsonLd } from 'jsonld/jsonld-spec';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Immutable } from '@angular-ru/common/typings';
 import { environment } from '../environments/environment';
 import { OntologySelection } from './core/models/ontology-selection';
 import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
 import { ThemingService } from './core/services/theming/theming.service';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
-import { DataQueryState, DataState } from './core/store/data/data.state';
+import { DataState } from './core/store/data/data.state';
 import { ListResultsState } from './core/store/list-results/list-results.state';
 import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
@@ -32,7 +32,11 @@ import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spat
 import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
 import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
 
-interface AppOptions extends CCFDatabaseOptions {
+interface AppOptions {
+  /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
+  dataSources: (string | JsonLd)[];
+  /** Service Token. */
+  token?: string;
   theme?: string;
   header?: boolean;
   homeUrl?: string;
@@ -58,13 +62,13 @@ export class AppComponent implements OnInit {
   @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;
 
   @Select(DataStateSelectors.cellTypesTreeModel)
-  readonly cellTypeTreeModel$!: Observable<OntologyTreeModel>;
+  readonly cellTypeTreeModel$!: Observable<OntologyTree>;
 
   @Select(DataStateSelectors.anatomicalStructuresTreeModel)
-  readonly ontologyTreeModel$!: Observable<OntologyTreeModel>;
+  readonly ontologyTreeModel$!: Observable<OntologyTree>;
 
   @Select(DataStateSelectors.biomarkersTreeModel)
-  readonly biomarkersTreeModel$!: Observable<OntologyTreeModel>;
+  readonly biomarkersTreeModel$!: Observable<OntologyTree>;
 
   @Select(SpatialSearchFilterSelectors.items)
   readonly selectableSearches$!: Observable<SpatialSearchFilterItem>;
@@ -121,7 +125,7 @@ export class AppComponent implements OnInit {
   }
 
   /** Emits true whenever the overlay spinner should activate. */
-  readonly spinnerActive$ = this.data.queryStatus$.pipe(map((state) => state === DataQueryState.Running));
+  readonly spinnerActive$ = this.data.state$.pipe(map((state) => state?.status !== 'Ready'));
 
   readonly loadingMessage$ = this.data.state$.pipe(map((x) => x?.statusMessage));
 
@@ -155,7 +159,6 @@ export class AppComponent implements OnInit {
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
     overlay: AppRootOverlayContainer,
-    readonly dataSource: DataSourceService,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
     cdr: ChangeDetectorRef,
   ) {
@@ -170,9 +173,9 @@ export class AppComponent implements OnInit {
     data.filter$.subscribe();
     data.technologyFilterData$.subscribe();
     data.providerFilterData$.subscribe();
-    this.ontologyTerms$ = data.filter$.pipe(map((x) => x?.ontologyTerms));
-    this.cellTypeTerms$ = data.filter$.pipe(map((x) => x?.cellTypeTerms));
-    this.biomarkerTerms$ = data.filter$.pipe(map((x) => x?.biomarkerTerms));
+    this.ontologyTerms$ = data.filter$.pipe(map((x) => x?.ontologyTerms ?? []));
+    this.cellTypeTerms$ = data.filter$.pipe(map((x) => x?.cellTypeTerms ?? []));
+    this.biomarkerTerms$ = data.filter$.pipe(map((x) => x?.biomarkerTerms ?? []));
     this.filter$.subscribe((filter = {}) => data.updateFilter(filter));
     this.baseHref$.subscribe((ref) => this.globalConfig.patchState({ baseHref: ref ?? '' }));
 
@@ -329,14 +332,6 @@ export class AppComponent implements OnInit {
    */
   closeiFrameViewer(): void {
     this.viewerOpen = false;
-  }
-
-  /**
-   * Gets login token
-   */
-  get loggedIn(): boolean {
-    const token = this.globalConfig.snapshot.hubmapToken ?? '';
-    return token.length > 0;
   }
 
   isItemSelected(item: string) {

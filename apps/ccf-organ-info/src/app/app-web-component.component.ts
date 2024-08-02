@@ -53,13 +53,8 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() dataSources!: string | string[];
   @Input() highlightProviders!: string | string[];
 
-  @Input() hubmapDataService!: string;
-  @Input() hubmapDataUrl!: string;
-  @Input() hubmapAssetUrl!: string;
-  @Input() hubmapToken!: string;
-  @Input() hubmapPortalUrl!: string;
+  @Input() token!: string;
 
-  @Input() useRemoteApi!: string | boolean;
   @Input() remoteApiEndpoint!: string;
 
   @Input() donorLabel!: string;
@@ -85,7 +80,6 @@ export class AppWebComponent extends BaseWebComponent {
       parse: {
         dataSources: parseDataSources,
         highlightProviders: parseStringArray,
-        useRemoteApi: BUILTIN_PARSERS.boolean,
       },
     });
   }

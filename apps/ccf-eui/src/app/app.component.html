@@ -5,7 +5,6 @@
     [class.hide]="(header$ | async) === false"
     [logoTooltip]="(logoTooltip$ | async) ?? ''"
     [homeUrl]="(homeUrl$ | async) ?? ''"
-    [loggedIn]="loggedIn"
     [loginDisabled]="(loginDisabled$ | async) ?? false"
     [baseRef]="(baseHref$ | async) ?? ''"
     *ngIf="(spinnerActive$ | async) === false"
@@ -164,6 +163,7 @@
           [organList]="$any(scene.referenceOrgans$ | async)"
           (organsChanged)="scene.setSelectedReferenceOrgans($event)"
           [selectedOrgans]="$any(scene.selectedReferenceOrgans$ | async)"
+          [expanded]="selector.expanded"
         >
         </ccf-organ-selector>
       </div>

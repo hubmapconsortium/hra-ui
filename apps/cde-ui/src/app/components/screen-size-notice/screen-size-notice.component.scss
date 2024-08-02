@@ -1,0 +1,68 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem 2rem;
+  max-width: 32.5rem;
+  box-shadow: 0px 5px 16px 0px #201e3d3d;
+
+  .header {
+    --mat-dialog-headline-padding: 0;
+    --mdc-dialog-subhead-weight: 500;
+    --mdc-dialog-subhead-size: 1.5rem;
+    --mdc-dialog-subhead-font: 'Metropolis';
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin-bottom: 0;
+
+    .header-close {
+      margin-left: auto;
+    }
+  }
+
+  mat-dialog-content {
+    --mdc-dialog-supporting-text-font: 'Nunito Sans';
+    --mat-dialog-with-actions-content-padding: 0;
+    --mdc-dialog-supporting-text-size: 1rem;
+    --mdc-dialog-supporting-text-line-height: 1.5rem;
+    --mdc-dialog-supporting-text-tracking: 0.5px;
+    --mdc-dialog-supporting-text-color: #4c4c58;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  mat-dialog-actions {
+    --mat-dialog-actions-padding: 0;
+    --mdc-filled-button-label-text-size: 0.875rem;
+    --mdc-text-button-label-text-size: 0.875rem;
+    --mat-dialog-actions-alignment: space-between;
+  }
+
+  .atlas-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: 'Metropolis';
+    height: 2.5rem;
+    letter-spacing: 0.5px;
+
+    .mat-icon {
+      margin-left: 0.75rem;
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  .btn-stroked {
+    --mat-text-button-horizontal-padding: 1rem;
+  }
+}
+
+::ng-deep {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    box-shadow: unset;
+    --mdc-dialog-container-shape: 1rem;
+  }
+}

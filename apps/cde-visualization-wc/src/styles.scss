@@ -1,0 +1,26 @@
+@use './styles/global/resets';
+@use './styles/global/fonts';
+@use './styles/material-theming';
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.selected {
+  box-shadow: 0 -2px 0 #e00d3a inset;
+}

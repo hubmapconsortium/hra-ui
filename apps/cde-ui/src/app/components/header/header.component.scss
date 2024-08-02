@@ -1,0 +1,123 @@
+@use 'sass:math';
+
+:host {
+  $logo-height: 3rem;
+  --mat-text-button-hover-state-layer-opacity: 0;
+
+  display: flex;
+  margin: 0 1rem;
+  align-items: center;
+  gap: 1rem;
+  height: 5.25rem;
+
+  .hra-home,
+  .cde-home {
+    height: $logo-height;
+    border-radius: 0.5rem;
+
+    img {
+      height: $logo-height;
+    }
+  }
+
+  .cde-home {
+    display: inline-flex;
+    img {
+      margin-right: 0.75rem;
+    }
+
+    .cde-label {
+      color: #201e3d;
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
+
+    .preview-app {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+      color: #4b4b5e;
+    }
+  }
+
+  .logo.small {
+    display: none;
+  }
+
+  .help {
+    --mdc-text-button-label-text-size: 11px;
+    --mdc-text-button-label-text-tracking: 0.2px;
+    line-height: 16.5px;
+    $border-width: 0.125rem;
+    $bottom-border-width: 0rem;
+    height: 1.75rem;
+    min-width: fit-content;
+
+    &:not(:focus-visible) {
+      border-bottom-style: solid;
+      border-bottom-width: $bottom-border-width;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:focus-visible {
+      padding: (0.5rem - $border-width) (5rem - $border-width) (0.5rem - $border-width + $bottom-border-width)
+        (0.25rem - $border-width);
+      border-style: solid;
+      border-width: $border-width;
+    }
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 544px) {
+    gap: 0.25rem;
+    .hra-home {
+      .large {
+        display: none;
+      }
+      .small {
+        display: block;
+      }
+      img {
+        height: 2.5rem;
+      }
+    }
+    .cde-home {
+      .cde-label {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
+      .preview-app {
+        font-size: 0.75rem;
+        line-height: 18px;
+      }
+
+      img {
+        height: 2.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 544px) {
+    .help {
+      --mdc-text-button-label-text-size: 0.875rem;
+      line-height: 21px;
+      padding: 0.75rem 1.5rem;
+      height: 45px;
+    }
+  }
+
+  @media (min-width: 1012px) {
+    .help {
+      border-bottom-width: 0.125rem !important;
+      padding: 0 5rem 0 0.25rem;
+      --mdc-text-button-label-text-size: 1.125rem;
+      line-height: 27px;
+    }
+  }
+}

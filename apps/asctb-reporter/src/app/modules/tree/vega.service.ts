@@ -12,6 +12,8 @@ import { Error } from '../../models/response.model';
 import { DOI, Sheet, SheetConfig } from '../../models/sheet.model';
 import { TNode } from '../../models/tree.model';
 import { OpenBottomSheetData } from '../../models/ui.model';
+import { SheetState } from '../../store/sheet.state';
+import { TreeState } from '../../store/tree.state';
 import { BimodalService } from './bimodal.service';
 import { Data } from './spec/data';
 import { Legends } from './spec/legends';
@@ -116,13 +118,13 @@ export class VegaService {
    * @param view vega view
    */
   makeBimodal(view: View) {
-    this.store.dispatch(new UpdateVegaView(view)).subscribe((states) => {
-      const data = states.sheetState.data;
-      const treeData = states.treeState.treeData;
-      const bimodalConfig = states.treeState.bimodal.config;
-      const sheetConfig = states.sheetState.sheetConfig;
-      const omapConfig = states.treeState.omapConfig;
-      const filteredProtiens = states.sheetState.filteredProtiens;
+    this.store.dispatch(new UpdateVegaView(view)).subscribe(() => {
+      const data = this.store.selectSnapshot(SheetState.getData);
+      const treeData = this.store.selectSnapshot(TreeState.getTreeData);
+      const bimodalConfig = this.store.selectSnapshot(TreeState.getBimodal).config;
+      const sheetConfig = this.store.selectSnapshot(SheetState.getSheetConfig);
+      const omapConfig = this.store.selectSnapshot(TreeState.getOmapConfig);
+      const filteredProtiens = this.store.selectSnapshot(SheetState.getFilteredProtiens);
 
       if (data.length) {
         this.bm.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);

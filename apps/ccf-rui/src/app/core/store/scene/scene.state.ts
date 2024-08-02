@@ -2,11 +2,12 @@ import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { AABB, Vec3 } from 'cannon-es';
-import { SpatialEntityJsonLd, SpatialSceneNode } from 'ccf-body-ui';
-import { SpatialEntity, SpatialPlacement, getOriginScene, getTissueBlockScene } from 'ccf-database';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
+import { getOriginScene, getTissueBlockScene } from 'ccf-scene-utils';
 import { GlobalConfigState } from 'ccf-shared';
 import { isEqual } from 'lodash';
 import { Observable, combineLatest, defer, of } from 'rxjs';
@@ -42,8 +43,6 @@ interface Collision {
 }
 
 const NODE_COLLISION_THROTTLE_DURATION = 10;
-
-const DEFAULT_COLLISIONS_ENDPOINT = 'https://pfn8zf2gtu.us-east-2.awsapprunner.com/get-collisions';
 
 function getNodeBbox(model: SpatialSceneNode): AABB {
   const mat = new Matrix4(model.transformMatrix);
@@ -97,7 +96,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
             ...n,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
               .rotateY(toRadians(rotation))
-              .multiplyRight(n.transformMatrix),
+              .multiplyRight(n.transformMatrix ?? []),
           }));
         }
       }),
@@ -360,10 +359,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
   private getCollisions(jsonld: unknown): Observable<Collision[] | undefined> {
     return this.globalConfig.getOption('collisionsEndpoint').pipe(
-      switchMap((endpoint = DEFAULT_COLLISIONS_ENDPOINT) =>
-        this.http.post<Collision[]>(endpoint, JSON.stringify(jsonld), {
-          headers: { 'Content-Type': 'application/json' },
-        }),
+      switchMap((endpoint) =>
+        endpoint
+          ? this.http.post<Collision[]>(endpoint, JSON.stringify(jsonld), {
+              headers: { 'Content-Type': 'application/json' },
+            })
+          : of(undefined),
       ),
       catchError(() => of(undefined)),
       take(1),

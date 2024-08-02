@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -10,19 +10,19 @@
   .ccf-labeled-slide-toggle {
     .mdc-switch__track::before,
     .mdc-switch__track::after {
-      background: mat.get-color-from-palette($foreground, donor-sex-bg) !important;
+      background: mat.m2-get-color-from-palette($foreground, donor-sex-bg) !important;
     }
 
     .mdc-switch__shadow {
-      background: mat.get-color-from-palette($foreground, donor-sex-toggle-nob) !important;
+      background: mat.m2-get-color-from-palette($foreground, donor-sex-toggle-nob) !important;
     }
 
     .slide-label {
-      color: mat.get-color-from-palette($foreground, inactive-sex);
+      color: mat.m2-get-color-from-palette($foreground, inactive-sex);
     }
 
     .highlighted {
-      color: mat.get-color-from-palette($foreground, active-sex);
+      color: mat.m2-get-color-from-palette($foreground, active-sex);
     }
   }
 }

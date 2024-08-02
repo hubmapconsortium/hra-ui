@@ -53,6 +53,7 @@ speed-measure-plugin*.json
 # misc
 /.angular/cache
 .nx/cache
+.nx/workspace-data
 /.sass-cache
 /connect.lock
 /coverage
@@ -66,3 +67,5 @@ svgo.config.js
 # System Files
 .DS_Store
 Thumbs.db
+
+.angular

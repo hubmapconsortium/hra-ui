@@ -1,0 +1,102 @@
+<span class="mat-caption cell-types-label">
+  Cell Types
+  <mat-icon
+    class="material-symbols-rounded"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="cellTypesInfoOpen = true"
+    (mouseout)="cellTypesInfoOpen = false"
+    >info</mat-icon
+  >
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'celltypes-panel']"
+    [cdkConnectedOverlayOrigin]="resetTrigger"
+    [cdkConnectedOverlayPositions]="tooltipPosition"
+    [cdkConnectedOverlayOpen]="cellTypesInfoOpen"
+    [cdkConnectedOverlayOffsetX]="5"
+  >
+    <div>
+      Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type
+      visualization colors by clicking the cell type's color legend button. Download a color map CSV file of the current
+      cell types and HEX codes.
+    </div>
+  </ng-template>
+</span>
+<button mat-flat-button class="mat-caption download-csv" color="primary" (click)="download.emit()">
+  <mat-icon class="material-symbols-rounded">download</mat-icon>
+  CSV
+</button>
+
+<div class="mat-caption total-ct-label">
+  Total Cell Types
+  <span>{{ selection().length }}</span>
+</div>
+<div class="mat-caption total-cells">
+  Total Cells
+  <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
+</div>
+
+<ng-scrollbar
+  class="table-overflow-container"
+  externalViewport=".scroll-viewport"
+  externalContentWrapper="tbody"
+  externalSpacer="tbody"
+  asyncDetection="auto"
+  hraScrollOverflowFade
+  [scrollOverflowFadeOffset]="36"
+>
+  <div class="scroll-viewport">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      [trackBy]="trackByName"
+      matSort
+      matSortDirection="desc"
+      matSortActive="count"
+      aria-label="Cell Types Count Table"
+    >
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="toggleAllRows()"
+            [checked]="selectionState() === 'full'"
+            [indeterminate]="selectionState() === 'partial'"
+            [aria-label]="getCheckboxLabel(selectionState() === 'full')"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row; let index = index">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="toggleRow(row)"
+            [checked]="isSelected(row)"
+            [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Name</th>
+        <td mat-cell *matCellDef="let element" class="mat-caption name">
+          <cde-color-picker-label
+            [label]="element.name"
+            [color]="element.color"
+            [isAnchor]="element.name === selectedCellType()"
+            (colorChange)="updateColor(element, $event)"
+          >
+          </cde-color-picker-label>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Count</th>
+        <td mat-cell *matCellDef="let element" class="mat-caption">{{ element.count.toLocaleString() }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+</ng-scrollbar>

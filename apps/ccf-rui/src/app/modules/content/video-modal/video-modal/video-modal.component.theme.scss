@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
@@ -11,13 +11,13 @@
     .video-modal.wrapper {
       .container {
         .content {
-          background-color: mat.get-color-from-palette($background, background);
+          background-color: mat.m2-get-color-from-palette($background, background);
         }
         .close-icon {
-          color: mat.get-color-from-palette($foreground, contrast-icon);
+          color: mat.m2-get-color-from-palette($foreground, contrast-icon);
 
           &:hover {
-            color: mat.get-color-from-palette($accent);
+            color: mat.m2-get-color-from-palette($accent);
           }
         }
       }

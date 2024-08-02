@@ -19,16 +19,12 @@
         "main": "apps/ccf-eui/src/main.ts",
         "polyfills": "apps/ccf-eui/src/polyfills.ts",
         "tsConfig": "apps/ccf-eui/tsconfig.app.json",
-        "assets": ["apps/ccf-eui/src/favicon.ico", "apps/ccf-eui/src/assets"],
+        "assets": ["apps/ccf-eui/src/favicon.png", "apps/ccf-eui/src/assets"],
         "styles": ["apps/ccf-eui/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/swiper"]
         },
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ],
+        "scripts": [],
         "webWorkerTsConfig": "apps/ccf-eui/tsconfig.worker.json",
         "vendorChunk": true,
         "extractLicenses": false,
@@ -39,6 +35,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-eui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-eui/src/environments/environment.ts",
@@ -66,6 +63,7 @@
           ]
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-eui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-eui/src/environments/environment.ts",
@@ -131,7 +129,7 @@
         "polyfills": "apps/ccf-eui/src/polyfills.ts",
         "tsConfig": "apps/ccf-eui/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-eui/karma.conf.js",
-        "assets": ["apps/ccf-eui/src/favicon.ico", "apps/ccf-eui/src/assets"],
+        "assets": ["apps/ccf-eui/src/favicon.png", "apps/ccf-eui/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",

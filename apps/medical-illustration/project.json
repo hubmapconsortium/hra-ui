@@ -15,7 +15,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/medical-illustration/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/medical-illustration/src/favicon.ico", "apps/medical-illustration/src/assets"],
+        "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
         "styles": ["apps/medical-illustration/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
@@ -24,6 +24,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/medical-illustration/",
           "budgets": [
             {
               "type": "initial",
@@ -36,7 +37,7 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "none"
         },
         "development": {
           "buildOptimizer": false,
@@ -45,9 +46,22 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/medical-illustration/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/medical-illustration/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -77,6 +91,9 @@
       "options": {
         "jestConfig": "apps/medical-illustration/jest.config.ts"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/build-webcomponent.mjs medical-illustration"
     }
   },
   "tags": ["app", "webcomponent"],

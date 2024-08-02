@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  max-width: 28rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
+  font: var(--sys-label-large);
+  letter-spacing: var(--sys-label-large-tracking);
+
+  .title {
+    margin: 0;
+    font-weight: inherit;
+    color: var(--sys-secondary);
+  }
+
+  .description {
+    margin: 0 0 1rem;
+    color: var(--sys-primary);
+  }
+
+  .section:last-child .description {
+    margin: 0;
+  }
+
+  &.small {
+    max-width: 21rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+  }
+}

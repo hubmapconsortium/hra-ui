@@ -1,4 +1,4 @@
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { ImmutablePatchValue, ImmutableStateValue } from '@angular-ru/ngxs/typings';

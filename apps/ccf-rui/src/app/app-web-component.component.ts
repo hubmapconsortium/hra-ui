@@ -7,6 +7,7 @@ import { ObservableInput } from 'rxjs';
 import { GlobalConfig } from './core/services/config/config';
 
 import { environment } from '../environments/environment';
+import { ViewSide, ViewType } from './core/store/model/model.state';
 
 export type User = NonNullable<GlobalConfig['user']>;
 export type Organ = NonNullable<GlobalConfig['organ']>;
@@ -30,6 +31,7 @@ function parseOrgan(value: unknown): string | Organ {
 export class AppWebComponent extends BaseWebComponent {
   @Input() baseHref!: string;
   @Input() useDownload!: string | boolean;
+  @Input() referenceData!: string;
   @Input() user!: string | User;
   @Input() organ!: string | Organ;
   @Input() editRegistration!: string | SpatialEntityJsonLd;
@@ -43,6 +45,8 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() logoTooltip!: string;
   @Input() organOptions!: string | string[];
   @Input() collisionsEndpoint!: string;
+  @Input() view!: ViewType;
+  @Input() viewSide!: ViewSide;
 
   constructor(configStore: GlobalConfigState<GlobalConfig>, cdr: ChangeDetectorRef) {
     const BP = BUILTIN_PARSERS;

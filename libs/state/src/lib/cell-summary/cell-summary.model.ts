@@ -16,13 +16,26 @@ export type CellSummaryAggregate = z.infer<typeof AGGREGATE>;
  * having the summaries and aggregrates
  */
 export interface CellSummaryModel {
+  /** Array of biomarker types */
+  biomarkerTypes: string[];
+
   /** Array of summaries of the Cell Summary */
   summaries: CellSummary[];
+
+  /** Summaries filtered by sources */
+  filteredSummaries: CellSummary[];
+
+  /** Summaries filtered by biomarker */
+  summariesByBiomarker: CellSummary[];
+
   /** Array of aggregates of the Cell Summary */
   aggregates: CellSummaryAggregate[];
 }
 
 export type Context = StateContext<CellSummaryModel>;
+
+/** Biomarker type labels */
+export const BIOMARKER_TYPES = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
 
 /**
  * The AGGREGATE_CELL is an object that contains the color, size and

@@ -891,6 +891,10 @@
                     "alignment": {
                       "type": "string",
                       "description": "Alignment of the data (start or end)"
+                    },
+                    "totalLabel": {
+                      "type": "string",
+                      "description": "Label for the first column in Total row"
                     }
                   },
                   "required": ["header", "columnDef"],

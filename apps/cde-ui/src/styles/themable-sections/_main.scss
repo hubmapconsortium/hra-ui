@@ -1,0 +1,11 @@
+@use '../../app/pages/landing-page/landing-page.component.theme.scss' as landing-page;
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  @include landing-page.theme($theme);
+}
+
+@mixin typography($typography) {
+  @include mat.typography-hierarchy($typography);
+  @include landing-page.typography($typography);
+}

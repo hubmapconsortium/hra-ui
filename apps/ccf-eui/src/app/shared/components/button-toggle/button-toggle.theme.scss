@@ -1,21 +1,21 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map-get($color-config, primary);
   $background: map-get($color-config, background);
   $foreground: map-get($color-config, foreground);
   $accent: map-get($color-config, accent);
 
   ccf-button-toggle {
-    color: mat.get-color-from-palette($foreground, text);
+    color: mat.m2-get-color-from-palette($foreground, text);
 
     .mat-button-toggle {
-      background: mat.get-color-from-palette($background, button-toggle-background);
+      background: mat.m2-get-color-from-palette($background, button-toggle-background);
     }
 
     .button-selected {
-      background-color: mat.get-color-from-palette($background, button-toggle-selected);
+      background-color: mat.m2-get-color-from-palette($background, button-toggle-selected);
     }
   }
 }

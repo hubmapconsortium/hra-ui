@@ -67,7 +67,7 @@ export class FiltersPopoverComponent {
     if (!this.filtersVisible) {
       return '0rem';
     } else {
-      return `${this.spatialSearchFilters.length > 0 ? 43 + this.spatialSearchFilters.length * 3 : 40}rem`;
+      return `${this.spatialSearchFilters.length > 0 ? 44 + this.spatialSearchFilters.length * 3 : 41}rem`;
     }
   }
 

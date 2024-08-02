@@ -23,16 +23,13 @@
         "polyfills": "apps/ccf-organ-info/src/polyfills.ts",
         "tsConfig": "apps/ccf-organ-info/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-organ-info/src/favicon.ico", "apps/ccf-organ-info/src/assets"],
+        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",
@@ -54,6 +51,7 @@
           "outputHashing": "none"
         },
         "staging": {
+          "baseHref": "/ui--staging/ccf-organ-info/",
           "budgets": [
             {
               "type": "initial",
@@ -92,7 +90,7 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -123,7 +121,7 @@
         "tsConfig": "apps/ccf-organ-info/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-organ-info/karma.conf.js",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-organ-info/src/favicon.ico", "apps/ccf-organ-info/src/assets"],
+        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",
@@ -133,11 +131,7 @@
           "**/*.module.ts"
         ],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       }
     },
     "lint": {

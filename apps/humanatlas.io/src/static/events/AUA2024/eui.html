@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Kidney, Ureter, Urinary Bladder, Prostate, and Uterus data mapped to the HRA</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <base href="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+    <script src="wc.js" async></script>
+  </head>
+
+  <body>
+    <ccf-eui
+      home-url="https://apps.humanatlas.io/"
+      use-remote-api="true"
+      remote-api-endpoint="https://apps.humanatlas.io/api/v1"
+      filter='{"ontologyTerms": ["http://purl.obolibrary.org/obo/UBERON_0002113", "http://purl.obolibrary.org/obo/UBERON_0002367", "http://purl.obolibrary.org/obo/UBERON_0000056", "http://purl.obolibrary.org/obo/UBERON_0001255", "http://purl.obolibrary.org/obo/UBERON_0000995"]}'
+      hubmap-data-url=""
+      login-disabled="true"
+      logo-tooltip=""
+    ></ccf-eui>
+  </body>
+</html>

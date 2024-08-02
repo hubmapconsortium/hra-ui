@@ -10,3 +10,8 @@ tsconfig.base.json
 
 # Ignore big asset files
 *.n3store.json
+
+/.nx/workspace-data
+
+# Ignore polyfills
+**/assets/polyfills/*

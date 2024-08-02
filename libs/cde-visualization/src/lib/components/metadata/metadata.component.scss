@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  --mat-text-button-hover-state-layer-opacity: 0;
+  --mat-text-button-pressed-state-layer-opacity: 0;
+
+  .mat-expansion-panel {
+    border-color: #d5dbe3;
+    border-width: 0 2px 2px 0px;
+    border-style: solid;
+    box-shadow: none;
+
+    .mat-expansion-panel-header {
+      padding: 0.75rem 1rem;
+
+      .title {
+        font-size: 1rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        mat-icon {
+          margin: 2px;
+        }
+      }
+    }
+
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        padding: 0 1rem 0.75rem 1rem;
+      }
+    }
+
+    .label {
+      & + span,
+      + a {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: #b20a2f;
+      }
+
+      & + span.user-title {
+        color: #4c4c58;
+      }
+    }
+
+    .metadata-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 0.75rem;
+      column-gap: 1rem;
+      margin-bottom: 0.75rem;
+
+      span {
+        display: block;
+      }
+
+      div.mat-caption {
+        &:not(:has(span.mat-caption)) {
+          span {
+            color: #4c4c58;
+          }
+        }
+
+        span.mat-caption {
+          color: #b20a2f;
+        }
+
+        span.user-source {
+          color: #4c4c58;
+        }
+
+        a.mat-caption {
+          display: block;
+          color: #b20a2f;
+        }
+      }
+    }
+
+    .show-hide {
+      height: 21px;
+      line-height: 21px;
+
+      .mdc-button {
+        --mdc-text-button-label-text-color: #b20a2f;
+        height: 100%;
+        padding: 0;
+      }
+    }
+  }
+}

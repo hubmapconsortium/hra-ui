@@ -19,7 +19,7 @@ export class Load extends Action('Load') {
  */
 export class SetHover extends Action('Set Selection on Hover') {
   /** Initializes the Mapping Item */
-  constructor(readonly selectedOnHover: IllustrationMappingItem) {
+  constructor(readonly selectedOnHover: IllustrationMappingItem | undefined) {
     super();
   }
 }

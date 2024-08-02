@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { SpatialSceneNode } from 'ccf-body-ui';
-import { TissueBlockResult } from 'ccf-database';
+import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { OrganInfo } from 'ccf-shared';
-
 import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 /**
@@ -46,7 +44,7 @@ export class SpatialSearchUiComponent {
   @Input() position!: Position;
 
   /** Tissue blocks within the sphere radius */
-  @Input() tissueBlocks!: TissueBlockResult[];
+  @Input() tissueBlocks!: TissueBlock[];
 
   /** Anatomical structures within the sphere radius */
   @Input() anatomicalStructures!: TermResult[];

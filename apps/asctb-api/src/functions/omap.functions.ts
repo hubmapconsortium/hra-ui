@@ -63,12 +63,12 @@ export class OmapDataTransformer {
     dataObject.forEach((data) => {
       const uniprots = data.uniprot_accession_number.split(', ');
       const hgncIds = data.HGNC_ID.split(', ');
-      const targetNames = data.target_name.split(', ');
+      const targetNames = data.target_symbol?.split(', ') ?? [];
       if (!(uniprots.length === hgncIds.length && hgncIds.length === targetNames.length)) {
         this.warnings.add(
           'WARNING: Number of entires in column uniprot_accession_number, HGNC_ID,' +
-            `target_name are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
-            `HGNC_ID: ${hgncIds.length}; target_name: ${targetNames.length}`,
+            `target_symbol are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
+            `HGNC_ID: ${hgncIds.length}; target_symbol: ${targetNames.length}`,
         );
       }
       let notes = `Extra information in "${title}", Row ${data.rowNo} \n`;
@@ -87,7 +87,12 @@ export class OmapDataTransformer {
           organUberonMissingWarningAdded = true;
         }
       }
-      if (data.uniprot_accession_number !== '' && data.HGNC_ID !== '' && data.target_name !== '') {
+      if (
+        data.uniprot_accession_number !== '' &&
+        data.HGNC_ID !== '' &&
+        data.target_symbol !== '' &&
+        data.target_symbol !== undefined
+      ) {
         const newrow = this.isLegacyOmap
           ? [organ.name, organ.rdfs_label, organ.id]
           : [data.organ, data.organ, data.organ_uberon];
@@ -132,7 +137,7 @@ export class OmapDataTransformer {
   }
 
   private createNotes(dataObject: Record<string, string>[]): Record<string, string>[] {
-    const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_name', 'rowNo'];
+    const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_symbol', 'rowNo'];
     dataObject.forEach((obj) => {
       const entries = Object.entries(obj);
       const formattedEntries = entries

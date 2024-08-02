@@ -11,6 +11,9 @@ const routes: Route[] = [
   },
   {
     path: 'ftu',
+    data: {
+      name: 'ftu',
+    },
     resolve: {
       id: ftuResolver,
     },

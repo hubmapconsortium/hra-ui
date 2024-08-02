@@ -23,16 +23,13 @@
         "polyfills": "apps/ccf-body-ui-wc/src/polyfills.ts",
         "tsConfig": "apps/ccf-body-ui-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-body-ui-wc/src/favicon.ico", "apps/ccf-body-ui-wc/src/assets"],
+        "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
         "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ccf-body-ui-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -53,6 +50,34 @@
           ],
           "outputHashing": "none"
         },
+        "staging": {
+          "baseHref": "/ui--staging/ccf-body-ui-wc/",
+          "fileReplacements": [
+            {
+              "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
+              "with": "apps/ccf-body-ui-wc/src/environments/environment.staging.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "none",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
@@ -71,7 +96,7 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -99,7 +124,7 @@
         "tsConfig": "apps/ccf-body-ui-wc/tsconfig.spec.json",
         "karmaConfig": "apps/ccf-body-ui-wc/karma.conf.js",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-body-ui-wc/src/favicon.ico", "apps/ccf-body-ui-wc/src/assets"],
+        "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",
@@ -109,11 +134,7 @@
           "**/*.module.ts"
         ],
         "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
+        "scripts": []
       }
     },
     "lint": {

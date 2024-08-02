@@ -1,0 +1,224 @@
+@use '../../../styles/cta' as cta;
+
+:host {
+  width: 100%;
+  display: block;
+  --mat-text-button-pressed-state-layer-opacity: 0;
+  --mat-text-button-hover-state-layer-opacity: 0;
+  --mdc-text-button-container-shape: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background-color: #d5dbe3;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 1rem;
+    height: 5.25rem;
+
+    .logos {
+      img {
+        max-height: 3rem;
+      }
+      .hra-logo {
+        margin-right: 1rem;
+      }
+
+      .hra-mini-logo {
+        display: none;
+        margin-right: 0.25rem;
+      }
+
+      .dashboards-home {
+        display: inline-flex;
+        img {
+          margin-right: 0.75rem;
+        }
+
+        .dashboards-label {
+          color: #201e3d;
+          margin: 0;
+          font-family: 'Metropolis';
+          font-weight: 500;
+        }
+
+        .preview-app {
+          font-weight: 500;
+          color: #4b4b5e;
+        }
+      }
+    }
+
+    .menu-btns {
+      display: flex;
+      column-gap: 2rem;
+
+      button {
+        padding: 0.25rem 0.5rem;
+        line-height: 1.5rem;
+        &:hover {
+          @include cta.flatHover();
+        }
+
+        &:active {
+          @include cta.flatActive();
+        }
+
+        &:focus-visible {
+          @include cta.flatFocus();
+        }
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 0;
+      height: 1.5rem;
+      width: 1.5rem;
+      min-width: auto;
+
+      .mat-icon {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .header {
+      .menu-btns {
+        gap: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .header {
+      .menu-btns {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  }
+
+  @media (max-width: 544px) {
+    .header {
+      height: 4rem;
+
+      .logos {
+        img {
+          max-height: 2.5rem;
+        }
+        .hra-logo {
+          display: none;
+        }
+
+        .hra-mini-logo {
+          display: inline;
+        }
+
+        .dashboards-label {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+
+        .preview-app {
+          font-size: 0.75rem;
+          line-height: 1.125rem;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    position: relative;
+    background-color: #e6eaf0;
+    padding: 2.5rem 3rem;
+    height: 100vh;
+    max-width: 100vw;
+    width: 100vw;
+    display: block;
+
+    .mat-mdc-menu-content {
+      padding: 0;
+      display: grid;
+      row-gap: 2.5rem;
+      top: 4.5rem;
+      position: relative;
+
+      .mat-mdc-menu-item {
+        width: fit-content;
+        --mat-menu-item-label-text-color: #201e3d;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-family: 'Metropolis';
+
+        &:hover {
+          @include cta.flatHover();
+        }
+
+        &:active {
+          @include cta.flatActive();
+        }
+
+        &:focus-visible {
+          @include cta.flatFocus();
+        }
+      }
+
+      .mat-mdc-menu-item-text {
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 544px) {
+    .cdk-overlay-pane .mat-mdc-menu-panel {
+      padding: 2rem;
+
+      .mat-mdc-menu-content {
+        row-gap: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 430px) {
+    .cdk-overlay-pane .mat-mdc-menu-panel {
+      padding: 2rem 1rem;
+
+      .mat-mdc-menu-content {
+        row-gap: 1.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    .cdk-overlay-pane .mat-mdc-menu-panel {
+      padding: 1rem;
+
+      .mat-mdc-menu-content {
+        row-gap: 1rem;
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .cdk-overlay-pane .mat-mdc-menu-panel {
+      display: none;
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-pane:has(.menu-panel) {
+    right: unset !important;
+    left: 0;
+  }
+}

@@ -17,8 +17,8 @@
         "main": "apps/ftu-ui-small-wc/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/ftu-ui-small-wc/tsconfig.app.json",
-        "assets": ["apps/ftu-ui-small-wc/src/favicon.ico", "apps/ftu-ui-small-wc/src/assets"],
-        "styles": ["apps/ftu-ui-small-wc/src/styles.scss"],
+        "assets": ["apps/ftu-ui-small-wc/src/favicon.png", "apps/ftu-ui-small-wc/src/assets"],
+        "styles": ["apps/ftu-ui-small-wc/src/styles.scss", "apps/ftu-ui-small-wc/src/assets/fonts/fonts.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
         },
@@ -26,6 +26,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/ftu-ui-small-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -35,12 +36,25 @@
             {
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumError": "4.5kb"
             }
           ],
           "outputHashing": "none"
         },
         "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/ftu-ui-small-wc/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/ftu-ui-small-wc/",
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
@@ -85,6 +99,9 @@
       "options": {
         "buildTarget": "ftu-ui-small-wc:build"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/build-webcomponent.mjs ftu-ui-small-wc"
     }
   }
 }

@@ -20,7 +20,7 @@
         "polyfills": "apps/asctb-reporter/src/polyfills.ts",
         "tsConfig": "apps/asctb-reporter/tsconfig.app.json",
         "assets": [
-          "apps/asctb-reporter/src/favicon.ico",
+          "apps/asctb-reporter/src/favicon.png",
           "apps/asctb-reporter/src/assets",
           "apps/asctb-reporter/src/_redirects"
         ],
@@ -35,6 +35,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/asctb-reporter/",
           "fileReplacements": [
             {
               "replace": "apps/asctb-reporter/src/environments/environment.ts",
@@ -62,6 +63,7 @@
           ]
         },
         "staging": {
+          "baseHref": "/ui--staging/asctb-reporter/",
           "fileReplacements": [
             {
               "replace": "apps/asctb-reporter/src/environments/environment.ts",
@@ -127,7 +129,7 @@
         "polyfills": "apps/asctb-reporter/src/polyfills.ts",
         "tsConfig": "apps/asctb-reporter/tsconfig.spec.json",
         "karmaConfig": "apps/asctb-reporter/karma.conf.js",
-        "assets": ["apps/asctb-reporter/src/favicon.ico", "apps/asctb-reporter/src/assets"],
+        "assets": ["apps/asctb-reporter/src/favicon.png", "apps/asctb-reporter/src/assets"],
         "codeCoverage": true,
         "codeCoverageExclude": [
           "**/e2e/**/*",
