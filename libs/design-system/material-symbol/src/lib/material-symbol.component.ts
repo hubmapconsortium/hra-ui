@@ -61,5 +61,6 @@ export class MaterialSymbolComponent {
   /** True if small size (20px) */
   readonly small = input<boolean>(false);
 
+  /** Icon to display */
   readonly icon = input.required<string>();
 }
