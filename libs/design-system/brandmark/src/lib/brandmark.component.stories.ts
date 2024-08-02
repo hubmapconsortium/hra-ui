@@ -1,6 +1,7 @@
-import { BrandmarkComponent } from './brandmark.component';
+import { provideHttpClient } from '@angular/common/http';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import type { Meta, StoryObj } from '@storybook/angular';
+import { BrandmarkComponent } from './brandmark.component';
 
 const meta: Meta<BrandmarkComponent> = {
   component: BrandmarkComponent,
@@ -11,28 +12,19 @@ const meta: Meta<BrandmarkComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=82-776',
     },
   },
+  decorators: [
+    applicationConfig({
+      providers: [provideHttpClient()],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj<BrandmarkComponent>;
 
-export const DefaultSmall: Story = {
-  args: {
-    small: true,
-  },
-};
+export const Default: Story = {};
 
-export const DefaultLarge: Story = {
-  args: {},
-};
-
-export const WhiteLarge: Story = {
+export const Contrast: Story = {
   args: {
-    color: 'white',
-  },
-};
-
-export const BlackLarge: Story = {
-  args: {
-    color: 'black',
+    contrast: true,
   },
 };
