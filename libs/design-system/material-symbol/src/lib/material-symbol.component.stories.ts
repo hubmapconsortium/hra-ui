@@ -1,10 +1,16 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { MaterialSymbolComponent } from './material-symbol.component';
+import { ALL_ICONS, MaterialSymbolComponent } from './material-symbol.component';
 
 const meta: Meta<MaterialSymbolComponent> = {
   component: MaterialSymbolComponent,
   title: 'MaterialSymbolComponent',
+  argTypes: {
+    icon: {
+      control: { type: 'select' },
+      options: ALL_ICONS,
+    },
+  },
   parameters: {
     design: {
       type: 'figma',
@@ -15,10 +21,15 @@ const meta: Meta<MaterialSymbolComponent> = {
 export default meta;
 type Story = StoryObj<MaterialSymbolComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    icon: 'search',
+  },
+};
 
 export const Small: Story = {
   args: {
+    icon: 'search',
     small: true,
   },
 };
