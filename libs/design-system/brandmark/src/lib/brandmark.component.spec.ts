@@ -1,27 +1,27 @@
+import { provideHttpClient } from '@angular/common/http';
 import { render, screen } from '@testing-library/angular';
 
 import { BrandmarkComponent } from './brandmark.component';
 
 describe('BrandmarkComponent', () => {
-  it('should render a large logo', async () => {
+  it('should render a normal logo', async () => {
     await render(BrandmarkComponent, {
-      componentInputs: {
-        small: false,
-      },
+      providers: [provideHttpClient()],
     });
-    const logo = screen.getByAltText('Human Reference Atlas brandmark');
+    const logo = screen.getByTestId('brandmark');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'logo/brandmark_default.svg');
+    expect(logo).toHaveAttribute('ng-reflect-inline-s-v-g', 'assets/logo/hra_brandmark.svg');
   });
 
-  it('should render a small logo', async () => {
+  it('should render a contrast logo', async () => {
     await render(BrandmarkComponent, {
       componentInputs: {
-        small: true,
+        contrast: true,
       },
+      providers: [provideHttpClient()],
     });
-    const logo = screen.getByAltText('Human Reference Atlas brandmark');
+    const logo = screen.getByTestId('brandmark');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'logo/brandmark_small.svg');
+    expect(logo).toHaveAttribute('ng-reflect-inline-s-v-g', 'assets/logo/hra_brandmark_cont');
   });
 });
