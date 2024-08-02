@@ -19,8 +19,8 @@ describe('LogosAppsComponent', () => {
   });
 
   it('should render the Human Reference Atlas logo', async () => {
-    const logo = screen.getByAltText('Human Reference Atlas home');
+    const logo = screen.getByAltText('HRA logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'logo/hra_small.svg');
+    expect(logo).toHaveAttribute('src', 'assets/logo/hra_small.svg');
   });
 });

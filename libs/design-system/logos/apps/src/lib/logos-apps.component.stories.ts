@@ -17,7 +17,7 @@ type Story = StoryObj<LogosAppsComponent>;
 export const DefaultFTU: Story = {
   args: {
     appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
-    appIcon: 'logo/ftu_logo.svg',
+    appIcon: 'assets/logo/ftu_logo.svg',
     appTitle: 'FTU Explorer',
     appDescription: 'HRA Preview Application',
   },
@@ -26,7 +26,7 @@ export const DefaultFTU: Story = {
 export const DefaultCDE: Story = {
   args: {
     appLink: 'https://apps.humanatlas.io/cde/',
-    appIcon: 'logo/cde_logo.svg',
+    appIcon: 'assets/logo/cde_logo.svg',
     appTitle: 'Cell Distance Explorer',
     appDescription: 'HRA Preview Application',
   },
@@ -35,7 +35,7 @@ export const DefaultCDE: Story = {
 export const DefaultDashboards: Story = {
   args: {
     appLink: 'https://apps.humanatlas.io/dashboard/',
-    appIcon: 'logo/dashboards_logo.svg',
+    appIcon: 'assets/logo/dashboards_logo.svg',
     appTitle: 'Dashboards',
     appDescription: 'HRA Preview Application',
   },
@@ -45,7 +45,7 @@ export const FixedFTU: Story = {
   args: {
     variant: 'fixed',
     appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
-    appIcon: 'logo/ftu_logo.svg',
+    appIcon: 'assets/logo/ftu_logo.svg',
     appTitle: 'FTU Explorer',
     appDescription: 'HRA Preview Application',
   },
@@ -55,7 +55,7 @@ export const FixedCDE: Story = {
   args: {
     variant: 'fixed',
     appLink: 'https://apps.humanatlas.io/cde/',
-    appIcon: 'logo/cde_logo.svg',
+    appIcon: 'assets/logo/cde_logo.svg',
     appTitle: 'Cell Distance Explorer',
     appDescription: 'HRA Preview Application',
   },
