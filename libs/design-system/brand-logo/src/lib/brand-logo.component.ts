@@ -17,7 +17,7 @@ export class BrandLogoComponent {
   readonly small = input(false, { transform: booleanAttribute });
 
   /** Computed logo path based on the logo size */
-  protected readonly logoPath = computed(() => `assets/logo/hra-logo-${this.small() ? 'small' : 'regular'}.svg`);
+  readonly logoPath = computed(() => `assets/logo/hra-logo-${this.small() ? 'small' : 'regular'}.svg`);
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
