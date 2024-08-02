@@ -7,4 +7,5 @@ interface AppCard {
   icon?: string;
   title?: string;
   description?: string;
+  url?: string;
 }

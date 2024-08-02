@@ -4,8 +4,10 @@
   <div style="flex-grow: 1"></div>
   <ccf-navbar [items]="navigationItems"></ccf-navbar>
   <menu-tree [treeItems]="newNavItems" [positions]="MENU_TREE_POSITIONS"></menu-tree>
-  <span class="material-symbols-rounded icon" [matMenuTriggerFor]="childMenu" #menuTrigger="matMenuTrigger">apps</span>
+  <span class="material-symbols-rounded apps-icon" [matMenuTriggerFor]="childMenu" #menuTrigger="matMenuTrigger"
+    >apps</span
+  >
   <mat-menu #childMenu="matMenu" class="hubmap-menu-container" xPosition="after" yPosition="above">
-    <hubmap-nav></hubmap-nav>
+    <hubmap-nav [navItems]="data"></hubmap-nav>
   </mat-menu>
 </mat-toolbar>

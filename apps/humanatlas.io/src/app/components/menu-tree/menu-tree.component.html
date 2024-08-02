@@ -29,7 +29,7 @@
       <div *ngIf="node.route" [routerLink]="[node.route]" class="menu-name">
         {{ node.menuName }}
       </div>
-      <div *ngIf="node.componentName">
+      <div *ngIf="node.componentName" class="component-wrapper">
         <span class="component-title">{{ node.menuName }}</span>
         <hubmap-nav [navItems]="hubmapData"></hubmap-nav>
       </div>

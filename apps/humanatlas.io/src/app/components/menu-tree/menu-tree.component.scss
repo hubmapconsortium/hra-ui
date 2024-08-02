@@ -31,16 +31,13 @@
   .component-title {
     display: inline-block;
     margin-bottom: 0.5rem;
+    margin-left: 1rem;
   }
 
   .menu-tree-panel {
     .mat-mdc-icon-button.mat-mdc-button-base {
       --mdc-icon-button-state-layer-size: 1.5rem;
       padding: 0;
-    }
-
-    hubmap-nav {
-      margin-left: 1rem;
     }
   }
 }
@@ -63,6 +60,10 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+}
+
+.mat-tree-node:last-child {
+  padding: 0.5rem 0;
 }
 
 .mat-nested-tree-node:not([aria-expanded='true']):hover,

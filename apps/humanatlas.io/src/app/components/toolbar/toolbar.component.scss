@@ -42,7 +42,8 @@
     display: none;
   }
 
-  .icon {
+  .apps-icon {
+    cursor: pointer;
     color: white;
     margin-top: 0.25rem;
   }
@@ -84,7 +85,7 @@
 
   @media (max-width: 62.5rem) {
     ccf-navbar,
-    .icon {
+    .apps-icon {
       display: none;
     }
 
@@ -95,9 +96,10 @@
 }
 
 ::ng-deep {
-  .hubmap-menu-container {
+  .mat-mdc-menu-panel.hubmap-menu-container {
     position: relative;
     top: 1rem;
+    max-width: 32.5rem;
   }
   .mat-nested-tree-node,
   .mat-tree-node {
