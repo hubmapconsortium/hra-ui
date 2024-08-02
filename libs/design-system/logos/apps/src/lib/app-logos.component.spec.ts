@@ -2,13 +2,13 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
-import { LogosAppsComponent } from './logos-apps.component';
+import { AppLogosComponent } from './app-logos.component';
 
-describe('LogosAppsComponent', () => {
+describe('AppLogosComponent', () => {
   const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
 
   beforeEach(async () => {
-    await render(LogosAppsComponent, {
+    await render(AppLogosComponent, {
       providers: globalProviders,
       componentInputs: {
         appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',

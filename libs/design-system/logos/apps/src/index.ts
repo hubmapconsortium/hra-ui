@@ -1,1 +1,1 @@
-export * from './lib/logos-apps.component';
+export * from './lib/app-logos.component';
