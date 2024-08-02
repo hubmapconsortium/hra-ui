@@ -13,7 +13,7 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
-  staticDirs: ['./assets'],
+  staticDirs: [{ from: './assets', to: 'assets' }],
   core: {
     disableTelemetry: true,
   },
