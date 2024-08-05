@@ -1,59 +1,23 @@
 :host {
   display: flex;
-  height: 2.375rem;
-
-  &[variant='fixed'] {
-    height: 3rem;
-
-    .hra-logo {
-      margin-right: 0.25rem;
-      width: unset;
-
-      .hra-logo-text {
-        display: none;
-      }
-    }
-
-    .app-logo {
-      img {
-        margin-right: 0.75rem;
-      }
-
-      .app-label {
-        font-size: 1.25rem;
-        line-height: 1.875rem;
-      }
-
-      .app-description {
-        font-size: 0.875rem;
-      }
-    }
-  }
-
-  &[no-description='true'] {
-    .app-logo .app-description {
-      display: none;
-    }
-  }
+  height: 3rem;
 
   > a {
-    height: 100%;
     display: inline-block;
   }
 
   .hra-logo,
   .app-logo {
     display: inline-flex;
-    color: #201e3d;
+    color: var(--sys-secondary);
   }
 
   .hra-logo {
-    margin-right: 0.25rem;
-    width: fit-content;
+    width: 7.25rem;
+    margin-right: 0.5rem;
 
     .hra-logo-text {
-      display: none;
-      font-size: 0.75rem;
+      font: var(--sys-label-small);
       line-height: 0.875rem;
       width: min-content;
       align-self: center;
@@ -62,8 +26,6 @@
   }
 
   .app-logo {
-    font-weight: 500;
-
     span {
       display: flex;
       flex-direction: column;
@@ -71,45 +33,55 @@
     }
 
     img {
-      margin-right: 0.5rem;
+      margin-right: 0.75rem;
     }
 
     .app-label {
-      font-size: 1rem;
-      line-height: 1.5rem;
+      font: var(--sys-title-medium);
     }
 
     .app-description {
-      font-size: 0.75rem;
-      font-weight: 500;
+      font: var(--sys-label-medium);
       color: #4b4b5e;
     }
   }
 
-  @media (min-width: 1013px) {
-    height: 3rem;
+  @media (max-width: 1012px) {
+    &[variant='default'] {
+      height: 2.375rem;
 
-    .hra-logo {
-      width: 7.25rem;
-      margin-right: 0.5rem;
+      .hra-logo {
+        width: fit-content;
+        margin-right: 0.25rem;
 
-      .hra-logo-text {
-        display: unset;
+        .hra-logo-text {
+          display: none;
+        }
+      }
+
+      .app-logo {
+        img {
+          margin-right: 0.5rem;
+        }
+
+        .app-label {
+          font: var(--sys-title-small);
+        }
+
+        .app-description {
+          font: var(--sys-label-small);
+        }
       }
     }
+  }
 
-    .app-logo {
-      img {
-        margin-right: 0.75rem;
-      }
+  &[variant='fixed'] {
+    .hra-logo {
+      width: fit-content;
+      margin-right: 0.25rem;
 
-      .app-label {
-        font-size: 1.25rem;
-        line-height: 1.875rem;
-      }
-
-      .app-description {
-        font-size: 0.875rem;
+      .hra-logo-text {
+        display: none;
       }
     }
   }

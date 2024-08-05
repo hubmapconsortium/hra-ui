@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 
 export type AppLogosVariant = 'default' | 'fixed';
@@ -16,7 +16,6 @@ export type AppLogosVariant = 'default' | 'fixed';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.variant]': 'variant()',
-    '[attr.no-description]': '!appDescription()',
   },
 })
 export class AppLogosComponent {

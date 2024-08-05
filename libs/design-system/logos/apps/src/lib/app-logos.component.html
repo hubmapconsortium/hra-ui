@@ -5,11 +5,11 @@
   rel="noopener noreferrer"
   aria-label="Visit Human Reference Atlas"
 >
-  <img [attr.src]="'assets/logo/hra_small.svg' | assetUrl" alt="HRA logo" class="hra-small" />
+  <img [attr.src]="'assets/logo/hra_small.svg' | assetUrl" [attr.alt]="'HRA logo'" class="hra-small" />
   <span class="hra-logo-text">Human Reference Atlas</span>
 </a>
 <a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer" aria-label="Return to app home">
-  <img [attr.src]="appIcon() | assetUrl" [alt]="appTitle() + ' logo'" />
+  <img [attr.src]="appIcon() | assetUrl" [attr.alt]="appTitle() + ' logo'" />
   <span>
     <div class="mat-caption app-label">{{ appTitle() }}</div>
     @if (appDescription()) {
