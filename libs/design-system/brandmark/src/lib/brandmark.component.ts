@@ -14,11 +14,11 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandmarkComponent {
+  /** Whether to use the contrast brandmark */
+  readonly contrast = input(false);
+
   /** Path to SVG */
   readonly svgPath = computed(() => {
     return `assets/logo/hra_brandmark${this.contrast() ? '_contrast' : ''}.svg`;
   });
-
-  /** Whether to use the contrast brandmark */
-  readonly contrast = input<boolean>(false);
 }
