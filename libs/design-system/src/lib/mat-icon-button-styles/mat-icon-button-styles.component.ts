@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
+/**
+ * Applies mat icon button styles globally
+ */
 @Component({
   selector: 'hra-mat-icon-button-styles',
   standalone: true,
