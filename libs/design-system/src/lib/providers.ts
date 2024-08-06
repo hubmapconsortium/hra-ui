@@ -1,18 +1,19 @@
+import { provideHttpClient } from '@angular/common/http';
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideIcons } from '@hra-ui/cdk/icons';
-import { provideStyleComponents } from '@hra-ui/cdk/styling';
-import { MatIconButtonStylesComponent } from './mat-icon-button-styles/mat-icon-button-styles.component';
+import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 
 /**
  * Returns design system providers
  */
 export function provideDesignSystem(): EnvironmentProviders {
   return makeEnvironmentProviders([
+    provideHttpClient(),
     provideIcons({
       fontIcons: {
         defaultClasses: ['material-symbols-rounded'],
       },
     }),
-    provideStyleComponents(MatIconButtonStylesComponent),
+    provideIconButtons(),
   ]);
 }

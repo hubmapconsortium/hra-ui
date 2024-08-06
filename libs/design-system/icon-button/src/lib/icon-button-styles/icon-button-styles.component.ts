@@ -4,11 +4,11 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
  * Applies mat icon button styles globally
  */
 @Component({
-  selector: 'hra-mat-icon-button-styles',
+  selector: 'hra-icon-button-styles',
   standalone: true,
   template: '',
-  styleUrls: ['./mat-icon-button-styles.component.scss'],
+  styleUrls: ['./icon-button-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatIconButtonStylesComponent {}
+export class IconButtonStylesComponent {}
