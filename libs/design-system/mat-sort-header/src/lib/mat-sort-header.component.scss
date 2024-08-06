@@ -1,0 +1,47 @@
+:host {
+  --mat-sort-arrow-color: var(--sys-secondary);
+
+  th,
+  tr {
+    font: var(--sys-label-medium);
+  }
+
+  th {
+    height: 2rem;
+    color: var(--sys-secondary);
+  }
+
+  tr {
+    color: black;
+  }
+
+  ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-stem {
+      border-radius: 0.25rem;
+      height: 12px;
+      position: absolute;
+      left: 4.5px;
+    }
+
+    .mat-sort-header-pointer-left,
+    .mat-sort-header-pointer-right {
+      width: 8px;
+      border-radius: 0.25rem;
+    }
+
+    .mat-sort-header-pointer-left {
+      left: -2px;
+    }
+
+    .mat-sort-header-pointer-right {
+      right: -2px;
+    }
+
+    .mat-sort-header-pointer-middle {
+      top: -0.5px;
+      left: 4.5px;
+      position: absolute;
+      border-radius: 30%;
+    }
+  }
+}
