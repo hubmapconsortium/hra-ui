@@ -163,6 +163,7 @@
           [organList]="$any(scene.referenceOrgans$ | async)"
           (organsChanged)="scene.setSelectedReferenceOrgans($event)"
           [selectedOrgans]="$any(scene.selectedReferenceOrgans$ | async)"
+          [expanded]="selector.expanded"
         >
         </ccf-organ-selector>
       </div>

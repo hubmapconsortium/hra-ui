@@ -1,0 +1,25 @@
+@use '@fontsource/material-symbols-outlined';
+@use '@fontsource/material-symbols-rounded';
+
+/* As per https://fontsource.org/docs/getting-started/material-symbols */
+.material-symbols-outlined,
+.material-symbols-rounded {
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.5rem;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+}
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+}

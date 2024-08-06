@@ -1,11 +1,29 @@
 {
   "name": "@hra-ui/design-system",
   "version": "0.0.1",
+  "exports": {
+    "./styles/fonts": {
+      "sass": "./styles/_fonts.scss"
+    },
+    "./styles/material-icons": {
+      "sass": "./styles/_icons.scss"
+    },
+    "./styles/resets": {
+      "sass": "./styles/_resets.scss"
+    },
+    "./styles/typography": {
+      "sass": "./styles/_typography.scss"
+    },
+    "./styles/themes/light": {
+      "sass": "./styles/_light-theme.scss"
+    }
+  },
   "peerDependencies": {
     "@angular/common": "18.0.7",
     "@angular/core": "18.0.7",
     "@hra-ui/cdk": "0.0.1",
     "@angular/material": "18.0.6",
+    "ng-inline-svg-2": "^15.0.1",
     "ngx-scrollbar": "^15.1.0",
     "rxjs": "7.8.0"
   },

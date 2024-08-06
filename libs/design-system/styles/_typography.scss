@@ -1,0 +1,100 @@
+$_brand: 'Metropolis';
+$_plain: 'Nunito Sans';
+
+$typography: (
+  brand-family: $_brand,
+  plain-family: $_plain,
+  medium-weight: 500,
+  regular-weight: 400,
+  use-system-variables: true,
+);
+
+$overrides: (
+  display-large: 500 2.625rem / 3.9375rem $_brand,
+  display-large-line-height: 3.9375rem,
+  display-large-size: 2.625rem,
+  display-large-tracking: -0.0781rem,
+  display-large-weight: 500,
+
+  display-medium: 500 2.375rem / 3.5625rem $_brand,
+  display-medium-line-height: 3.5625rem,
+  display-medium-size: 2.375rem,
+  display-medium-tracking: -0.1094rem,
+  display-medium-weight: 500,
+
+  display-small: 500 2rem / 3rem $_brand,
+  display-small-line-height: 3rem,
+  display-small-size: 2rem,
+  display-small-tracking: -0.0781rem,
+  display-small-weight: 500,
+
+  headline-large: 500 2rem / 3rem $_brand,
+  headline-large-line-height: 3rem,
+  headline-large-size: 2rem,
+  headline-large-tracking: 0rem,
+  headline-large-weight: 500,
+
+  headline-medium: 500 1.75rem / 2.625rem $_brand,
+  headline-medium-line-height: 2.625rem,
+  headline-medium-size: 1.75rem,
+  headline-medium-tracking: 0rem,
+  headline-medium-weight: 500,
+
+  headline-small: 500 1.5rem / 2rem $_brand,
+  headline-small-line-height: 2rem,
+  headline-small-size: 1.5rem,
+  headline-small-tracking: 0rem,
+  headline-small-weight: 500,
+
+  title-large: 500 1.5rem / 2rem $_brand,
+  title-large-font: $_brand,
+  title-large-line-height: 2rem,
+  title-large-size: 1.5rem,
+  title-large-tracking: 0rem,
+  title-large-weight: 500,
+
+  title-medium: 500 1.25rem / 1.875rem $_brand,
+  title-medium-font: $_brand,
+  title-medium-line-height: 1.875rem,
+  title-medium-size: 1.25rem,
+  title-medium-tracking: 0rem,
+  title-medium-weight: 500,
+
+  title-small: 500 1rem / 1.5rem $_brand,
+  title-small-font: $_brand,
+  title-small-line-height: 1.5rem,
+  title-small-size: 1rem,
+  title-small-tracking: 0rem,
+  title-small-weight: 500,
+
+  body-large-tracking: 0.0313rem,
+
+  body-medium: 500 0.875rem / 1.3125rem $_plain,
+  body-medium-line-height: 1.3125rem,
+  body-medium-tracking: 0.0313rem,
+
+  body-small: 500 0.75rem / 1.125rem $_plain,
+  body-small-line-height: 1.125rem,
+  body-small-tracking: 0.0313rem,
+
+  label-large: 500 1rem / 1.5rem $_brand,
+  label-large-font: $_brand,
+  label-large-line-height: 1.5rem,
+  label-large-size: 1rem,
+  label-large-tracking: 0rem,
+  label-large-weight: 500,
+
+  label-medium: 500 0.875rem / 1.3125rem $_brand,
+  label-medium-font: $_brand,
+  label-medium-line-height: 1.3125rem,
+  label-medium-size: 0.875rem,
+  label-medium-tracking: 0rem,
+  label-medium-weight: 500,
+
+  label-small: 500 0.75rem / 1.125rem $_brand,
+  label-small-font: $_brand,
+  label-small-line-height: 1.125rem,
+  label-small-size: 0.75rem,
+  label-small-tracking: 0rem,
+  label-small-weight: 500,
+);
