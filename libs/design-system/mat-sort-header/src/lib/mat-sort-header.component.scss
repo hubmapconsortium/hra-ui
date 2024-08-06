@@ -16,9 +16,13 @@
   }
 
   ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-indicator {
+      top: -1px;
+    }
+
     .mat-sort-header-stem {
       border-radius: 0.25rem;
-      height: 12px;
+      height: 11px;
       position: absolute;
       left: 4.5px;
     }
