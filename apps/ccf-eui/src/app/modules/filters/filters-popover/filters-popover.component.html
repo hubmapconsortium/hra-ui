@@ -7,12 +7,7 @@
       <mat-icon svgIcon="filter" class="icon funnel"></mat-icon>
     </ng-template>
   </button>
-  <div
-    class="popup-container"
-    [class.visible]="filtersVisible"
-    [class.hidden]="!filtersVisible"
-    [style.height]="popupHeight"
-  >
+  <div #container class="popup-container" [class.visible]="filtersVisible" [class.hidden]="!filtersVisible">
     <ccf-filters-content
       class="popup-body"
       [technologyFilters]="technologyFilters"

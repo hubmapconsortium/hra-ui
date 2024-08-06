@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
@@ -13,7 +24,7 @@ import { SetExecuteSearchOnGenerate } from '../../../core/store/spatial-search-u
   styleUrls: ['./filters-popover.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersPopoverComponent {
+export class FiltersPopoverComponent implements OnChanges, AfterViewInit {
   /**
    * Allows the filters to be set from outside the component, and still render / function normally
    */
@@ -56,27 +67,57 @@ export class FiltersPopoverComponent {
   @Output() readonly spatialSearchRemoved = new EventEmitter<string>();
 
   /**
+   * Popup container element ref
+   */
+  @ViewChild('container', { static: false }) containerRef!: ElementRef;
+
+  /**
    * Keeps track of whether or not the filters popover box is visible or not
    */
   filtersVisible = false;
 
+  ngAfterViewInit() {
+    const el = this.containerRef.nativeElement as HTMLElement;
+    el.style.height = `0px`;
+    el.style.width = `0px`;
+  }
+
   /**
-   * Calculate the popup height based on length of spatial search list
+   * Updates popup height when spatial search filters changes
+   * @param changes Changes
    */
-  get popupHeight(): string {
-    if (!this.filtersVisible) {
-      return '0rem';
-    } else {
-      return `${this.spatialSearchFilters.length > 0 ? 44 + this.spatialSearchFilters.length * 3 : 41}rem`;
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.containerRef && 'spatialSearchFilters' in changes) {
+      const el = this.containerRef.nativeElement as HTMLElement;
+      el.style.transitionDuration = '0s'; // Temporarily disable height transition
+      el.style.height = 'fit-content';
+      setTimeout(() => {
+        el.style.height = `${el.clientHeight}px`;
+      }, 1);
     }
   }
 
   /**
-   * Toggles filter visible
+   * Toggles filter popup visibility
    */
   @Dispatch()
   toggleFilterVisible(): SetExecuteSearchOnGenerate {
+    const el = this.containerRef.nativeElement as HTMLElement;
+    el.style.transitionDuration = '0.2s';
     this.filtersVisible = !this.filtersVisible;
+    if (this.filtersVisible) {
+      setTimeout(() => {
+        el.style.overflow = 'auto';
+      }, 200);
+    } else {
+      el.style.overflow = 'hidden';
+      el.style.height = `${el.clientHeight}px`;
+      el.style.width = `${el.clientWidth}px`;
+      setTimeout(() => {
+        el.style.height = `0px`;
+        el.style.width = `0px`;
+      }, 1);
+    }
     return new SetExecuteSearchOnGenerate(false);
   }
 
