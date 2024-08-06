@@ -85,7 +85,8 @@
 
   @media (max-width: 62.5rem) {
     ccf-navbar,
-    .apps-icon {
+    .apps-icon,
+    .mat-mdc-menu-panel.hubmap-menu-container {
       display: none;
     }
 
