@@ -1,3 +1,4 @@
+/** Details of Menu items and their card details with external link */
 export const HUBMAP_NAV_ITEMS = [
   {
     menuName: 'About',
