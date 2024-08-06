@@ -1,5 +1,5 @@
-const lint = 'npx nx affected:lint --uncommited --fix true';
-const format = 'npx nx format:write --uncommited';
+const lint = 'npx nx affected:lint --uncommitted --fix true';
+const format = 'npx nx format:write --uncommitted';
 
 export default {
   '*.{js,mjs,cjs,ts,html,scss,css}': [lint, format],
