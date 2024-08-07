@@ -46,7 +46,7 @@ export class MatSortHeaderComponent {
 
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
-      if (sort.active in this.columns) {
+      if (this.columns.includes(sort.active)) {
         return this.compare(a[sort.active], b[sort.active], isAsc);
       } else {
         return 0;

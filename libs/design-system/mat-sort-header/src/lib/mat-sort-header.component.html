@@ -1,4 +1,4 @@
-<table matSort (matSortChange)="sortData($event)">
+<table matSort (matSortChange)="sortData($event)" aria-label="Example table with sort function">
   <tr>
     @for (column of columns; track column) {
       <th [mat-sort-header]="column">{{ column }}</th>
