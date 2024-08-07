@@ -1,0 +1,88 @@
+:host {
+  display: flex;
+  height: 3rem;
+
+  > a {
+    display: inline-block;
+  }
+
+  .hra-logo,
+  .app-logo {
+    display: inline-flex;
+    color: var(--sys-secondary);
+  }
+
+  .hra-logo {
+    width: 7.25rem;
+    margin-right: 0.5rem;
+
+    .hra-logo-text {
+      font: var(--sys-label-small);
+      line-height: 0.875rem;
+      width: min-content;
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
+
+  .app-logo {
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    img {
+      margin-right: 0.75rem;
+    }
+
+    .app-label {
+      font: var(--sys-title-medium);
+    }
+
+    .app-description {
+      font: var(--sys-label-medium);
+      color: #4b4b5e;
+    }
+  }
+
+  @media (max-width: 1012px) {
+    &[variant='default'] {
+      height: 2.375rem;
+
+      .hra-logo {
+        width: fit-content;
+        margin-right: 0.25rem;
+
+        .hra-logo-text {
+          display: none;
+        }
+      }
+
+      .app-logo {
+        img {
+          margin-right: 0.5rem;
+        }
+
+        .app-label {
+          font: var(--sys-title-small);
+        }
+
+        .app-description {
+          font: var(--sys-label-small);
+        }
+      }
+    }
+  }
+
+  &[variant='fixed'] {
+    .hra-logo {
+      width: fit-content;
+      margin-right: 0.25rem;
+
+      .hra-logo-text {
+        display: none;
+      }
+    }
+  }
+}
