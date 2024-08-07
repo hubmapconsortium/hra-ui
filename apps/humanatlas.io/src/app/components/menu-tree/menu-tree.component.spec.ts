@@ -128,4 +128,13 @@ describe('MenuTreeComponent', () => {
       expect(treeControl.getChildren(treeItems[0])).toEqual(treeItems[0].children);
     });
   });
+
+  describe('isHubmapNav', () => {
+    it('should return true if hubmap nav is to be rendered', async () => {
+      const node: NavItems = { menuName: 'Test Menu', componentName: 'hubmap-nav' };
+      const { instance } = await shallow.render();
+      const isPresent = instance.isHubmapNav(1, node);
+      expect(isPresent).toBe(true);
+    });
+  });
 });
