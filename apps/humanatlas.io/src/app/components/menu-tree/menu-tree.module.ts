@@ -9,6 +9,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { RouterModule } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { HubmapNavModule } from '../hubmap-nav/hubmap-nav.module';
 
 @NgModule({
   declarations: [MenuTreeComponent],
@@ -22,6 +23,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     RouterModule,
     MatDividerModule,
     ScrollingModule,
+    HubmapNavModule,
   ],
   exports: [MenuTreeComponent],
 })

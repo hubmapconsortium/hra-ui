@@ -1,0 +1,16 @@
+@for (item of navItems(); track item) {
+  <div class="item-wrapper">
+    <div class="menu-name">{{ item.menuName }}</div>
+    @if (item.card) {
+      @for (appCard of item.card; track appCard) {
+        <a class="app-card" [href]="appCard.url" target="_blank" rel="noopener noreferrer">
+          <img [attr.src]="appCard.icon" [attr.alt]="appCard.title" />
+          <span>
+            <div class="app-title">{{ appCard.title }}</div>
+            <div class="app-description">{{ appCard.description }}</div>
+          </span>
+        </a>
+      }
+    }
+  </div>
+}
