@@ -1,3 +1,57 @@
 :host {
-  display: block;
+  --sys-wordmark-large: 25px/36px Metropolis;
+  --sys-wordmark-large-tracking: 0.1px;
+  --sys-wordmark-small: 12px/18px Metropolis;
+  --sys-wordmark-small-tracking: 0;
+  --sys-body-splash: 18px/27px Nunito Sans;
+  --sys-body-splash-tracking: 0.5px;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-secondary) r g b / 0.322);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    color: var(--sys-secondary);
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d5dbe3;
+    padding: 0 1.5rem 1rem 0;
+    gap: 0.5rem;
+    color: #4b4b5e;
+
+    .header-title {
+      font: var(--sys-headline-large);
+    }
+    .header-description {
+      font: var(--sys-title-medium);
+    }
+  }
+
+  .splash {
+    font: var(--hra-splash-font);
+    letter-spacing: var(--hra-splash-spacing);
+  }
+  .large {
+    font: var(--hra-large-font);
+    letter-spacing: var(--hra-large-spacing);
+  }
+  .medium {
+    font: var(--hra-medium-font);
+    letter-spacing: var(--hra-medium-spacing);
+  }
+  .small {
+    font: var(--hra-small-font);
+    letter-spacing: var(--hra-small-spacing);
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+  }
 }

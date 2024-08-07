@@ -1,1 +1,24 @@
-<p>font-styles works!</p>
+<div class="card">
+  <div class="header">
+    <span class="header-title">{{ fonts[typographyType()].title }}</span>
+    <span class="header-description">{{ fonts[typographyType()].description }}</span>
+  </div>
+
+  @if (typographyType() === 'wordmark') {
+    <div class="wordmark large">
+      <span>{{ fonts[typographyType()].typography.subheaderLarge }}</span>
+      <span>{{ fonts[typographyType()].typography.large }}</span>
+    </div>
+    <div class="wordmark small">
+      <span>{{ fonts[typographyType()].typography.subheaderSmall }}</span>
+      <span>{{ fonts[typographyType()].typography.small }}</span>
+    </div>
+  } @else {
+    @if (typographyType() === 'body') {
+      <span class="splash">{{ fonts[typographyType()].typography.splash }}</span>
+    }
+    <span class="large">{{ fonts[typographyType()].typography.large }}</span>
+    <span class="medium">{{ fonts[typographyType()].typography.medium }}</span>
+    <span class="small">{{ fonts[typographyType()].typography.small }}</span>
+  }
+</div>
