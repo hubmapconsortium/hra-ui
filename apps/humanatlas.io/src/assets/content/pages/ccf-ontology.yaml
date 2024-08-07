@@ -56,6 +56,8 @@
   pageData:
     - heading: References
       descriptions: |
-        [1] Herr, B. W. <i>et al</i>. Specimen, biological structure, and spatial ontologies in support of a Human Reference Atlas. <i>Sci. Data</i> <b>10</b>, 171 (2023)
+        [1] Herr, B. W. <i>et al</i>. Specimen, biological structure, and spatial ontologies in support of a Human Reference Atlas. <i>Sci. Data</i> <b>10</b>, 171 (2023).
+        doi: <a href="https://doi.org/10.1038/s41597-023-01993-8" target="_blank">https://doi.org/10.1038/s41597-023-01993-8</a>
 
         [2] Börner, K. <i>et al</i>. Tissue registration and exploration user interfaces in support of a human reference atlas. <i>Commun. Biol</i>. <b>5</b>, 1369 (2022).
+        doi: <a href="https://doi.org/10.1038/s42003-022-03644-x" target="_blank">https://doi.org/10.1038/s42003-022-03644-x</a>
