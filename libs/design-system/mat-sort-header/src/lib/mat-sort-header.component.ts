@@ -1,10 +1,12 @@
 import { Component, input } from '@angular/core';
 import { MatSortModule, Sort } from '@angular/material/sort';
 
+/** Example data type */
 export interface DataExample {
   [name: string]: string | number;
 }
 
+/** Example data */
 const exampleData: DataExample[] = [
   { name: 'Item 1', value: 3 },
   { name: 'Item 2', value: 2 },
