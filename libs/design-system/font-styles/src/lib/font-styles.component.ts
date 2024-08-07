@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type FontContent = {
+/** Content for font info card */
+type FontContent = {
   title: string;
   description: string;
   typography: {
@@ -14,6 +15,12 @@ export type FontContent = {
   };
 };
 
+/** Possible font sizes */
+type FontSize = 'small' | 'medium' | 'large' | 'splash';
+
+/**
+ * Font styles for HRA design system
+ */
 @Component({
   selector: 'hra-font-styles',
   standalone: true,
@@ -33,8 +40,10 @@ export type FontContent = {
   },
 })
 export class FontStylesComponent {
+  /** Typography type to display */
   typographyType = input<string>('headline');
 
+  /** All typography info */
   fonts: Record<string, FontContent> = {
     display: {
       title: 'Display',
@@ -94,11 +103,21 @@ export class FontStylesComponent {
     },
   };
 
-  getCssFont(size: string): string {
+  /**
+   * Gets font for typography
+   * @param size size of font
+   * @returns font value
+   */
+  getCssFont(size: FontSize): string {
     return `var(--sys-${this.typographyType()}-${size})`;
   }
 
-  getCssSpacing(size: string): string {
+  /**
+   * Gets letter spacing for typography
+   * @param size size of font
+   * @returns letter spacing for use in css
+   */
+  getCssSpacing(size: FontSize): string {
     return `var(--sys-${this.typographyType()}-${size}-tracking)`;
   }
 }

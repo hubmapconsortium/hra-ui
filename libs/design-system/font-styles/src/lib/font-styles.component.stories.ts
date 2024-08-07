@@ -3,7 +3,7 @@ import { FontStylesComponent } from './font-styles.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 const meta: Meta<FontStylesComponent> = {
   component: FontStylesComponent,
-  title: 'FontStylesComponent',
+  title: 'FontStyles',
   parameters: {
     design: {
       type: 'figma',
