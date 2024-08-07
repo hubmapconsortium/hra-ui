@@ -2,50 +2,59 @@
   --mat-sort-arrow-color: var(--sys-secondary);
 
   th,
-  tr {
+  tr > td {
+    padding: 0 0.5rem;
     font: var(--sys-label-medium);
   }
 
   th {
-    height: 2rem;
     color: var(--sys-secondary);
+    line-height: normal;
+    height: 2rem;
+
+    &:focus-visible {
+      outline: 2px solid var(--sys-tertiary);
+    }
   }
 
   tr {
     color: black;
   }
 
-  ::ng-deep .mat-sort-header-arrow {
-    .mat-sort-header-indicator {
-      top: -1px;
+  ::ng-deep .mat-sort-header-container {
+    height: 1.5rem;
+    border-bottom: 1px solid transparent;
+
+    &:focus {
+      border-color: var(--sys-secondary);
     }
 
-    .mat-sort-header-stem {
-      border-radius: 0.25rem;
-      height: 11px;
-      position: absolute;
-      left: 4.5px;
-    }
+    .mat-sort-header-arrow {
+      margin-right: 0.375rem;
 
-    .mat-sort-header-pointer-left,
-    .mat-sort-header-pointer-right {
-      width: 8px;
-      border-radius: 0.25rem;
-    }
+      .mat-sort-header-stem {
+        border-radius: 0.25rem;
+        height: 0.75rem;
+      }
 
-    .mat-sort-header-pointer-left {
-      left: -2px;
-    }
+      .mat-sort-header-pointer-left,
+      .mat-sort-header-pointer-right {
+        width: 7px;
+      }
 
-    .mat-sort-header-pointer-right {
-      right: -2px;
-    }
+      .mat-sort-header-pointer-left {
+        left: -1px;
+        border-radius: 0.25rem 0 0 0.25rem;
+      }
 
-    .mat-sort-header-pointer-middle {
-      top: -0.5px;
-      left: 4.5px;
-      position: absolute;
-      border-radius: 30%;
+      .mat-sort-header-pointer-right {
+        right: -1px;
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
+
+      .mat-sort-header-pointer-middle {
+        border-radius: 0.25rem;
+      }
     }
   }
 }

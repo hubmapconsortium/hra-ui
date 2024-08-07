@@ -1,11 +1,15 @@
 <table matSort (matSortChange)="sortData($event)">
   <tr>
-    <th mat-sort-header="name">Button</th>
+    @for (column of columns; track column) {
+      <th [mat-sort-header]="column">{{ column }}</th>
+    }
   </tr>
 
   @for (data of sortedData; track data) {
     <tr>
-      <td>{{ data.name }}</td>
+      @for (column of columns; track column) {
+        <td>{{ data[column] }}</td>
+      }
     </tr>
   }
 </table>
