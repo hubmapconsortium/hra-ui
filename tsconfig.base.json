@@ -11,10 +11,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
@@ -67,6 +64,9 @@
       ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
+      ],
+      "@hra-ui/design-system/icon-button": [
+        "libs/design-system/icon-button/src/index.ts"
       ],
       "@hra-ui/design-system/scrolling": [
         "libs/design-system/scrolling/src/index.ts"
@@ -130,8 +130,5 @@
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
