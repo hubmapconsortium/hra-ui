@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  .item-wrapper {
+    padding: 0.5rem 0;
+
+    &:not(:last-child) {
+      border-bottom: solid 1px#0000001F;
+    }
+
+    .menu-name {
+      margin-bottom: 2px;
+      margin-left: 1.5rem;
+      color: #444c65;
+    }
+
+    .app-card {
+      display: grid;
+      grid-template-columns: 3.5rem auto;
+      gap: 0.75rem;
+      padding: 0.25rem 1.25rem;
+      font-weight: inherit;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .app-title {
+        color: #444a65;
+      }
+
+      .app-description {
+        color: #212121;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        font-weight: 300;
+        letter-spacing: 0.005em;
+      }
+    }
+  }
+}
