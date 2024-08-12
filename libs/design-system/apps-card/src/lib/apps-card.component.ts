@@ -10,8 +10,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppsCardComponent {
-  title = input<string>('Human Reference Atlas');
-  description = input<string>(
-    'Use the HRA Portal to access atlas data, explore atlas functionality, and contribute to the Human Reference Atlas.',
-  );
+  icon = input.required<string>();
+  title = input.required<string>();
+  description = input.required<string>();
 }
