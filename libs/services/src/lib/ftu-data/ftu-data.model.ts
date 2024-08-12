@@ -88,14 +88,6 @@ export const CELL_SUMMARY = z.object({
     })
     .array(),
 });
-// z.object({
-//   label: z.string(),
-//   cellSource: z.string(),
-//   biomarkerType: z.string(),
-//   cells: CELL.array(),
-//   biomarkers: BIOMARKER.array(),
-//   summaries: CELL_SUMMARY_ROW.array(),
-// });
 
 /** Zod Schema for a DATA_FILE_REFERENCE */
 export const DATA_FILE_REFERENCE = z.object({
