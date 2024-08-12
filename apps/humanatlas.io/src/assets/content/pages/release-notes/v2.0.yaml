@@ -115,7 +115,8 @@
                   descriptions: |
                     **New & Revised Digital Objects**
 
-                    The Human Reference Atlas now includes 65 3D reference organs with 1,218 3D anatomical structures. Additionally, two 'United' files were published, which contain all organs by sex. If organs themselves and the United files are counted, the HRA now contains 1,285 3D anatomical structures.
+                    The Human Reference Atlas now includes 65 3D reference organs with 1,218 3D anatomical structures.
+                    <a href="https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ccf/#/default/get_as_3d_cnt" target="_blank">This SPARQL query</a> also counts the 65 organs themselves and the 2 United files (which contain all organs by sex). It thus returns 1,285 3D anatomical structures.
                     - 2 new ASCT+B Tables: anatomical systems, palatine tonsil
                     - 20 revised ASCT+B Tables: allen brain, fallopian tube, blood vasculature, bone marrow, heart, kidney, knee, liver, lung, lymph node, lymph vasculature, main bronchus,
                       muscular system, pancreas, peripheral nervous system, placenta full term, prostate, skeleton, skin, thymus
