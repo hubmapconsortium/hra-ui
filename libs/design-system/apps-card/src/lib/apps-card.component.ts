@@ -17,4 +17,6 @@ export class AppsCardComponent {
   title = input.required<string>();
   /** Description of the card */
   description = input.required<string>();
+  /** Link of the card */
+  link = input.required<string>();
 }

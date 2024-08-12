@@ -1,3 +1,5 @@
-<img class="icon" [src]="icon()" [alt]="title() + ' Icon'" />
-<span class="title">{{ title() }}</span>
-<span class="description">{{ description() }}</span>
+<a [href]="link()" target="_blank" rel="noopener noreferrer">
+  <img class="icon" [src]="icon()" [alt]="title() + ' Icon'" />
+  <span class="title">{{ title() }}</span>
+  <span class="description">{{ description() }}</span>
+</a>

@@ -8,15 +8,18 @@ describe('AppsCardComponent', () => {
         icon: 'test.svg',
         title: 'Test Title',
         description: 'Test Description',
+        link: 'https://www.example.com',
       },
     });
   });
 
   it('should create and render the card', async () => {
-    const brandLink = screen.getByRole('img');
-    expect(brandLink.getAttribute('alt')).toBe('Test Title Icon');
-    expect(brandLink.getAttribute('src')).toBe('test.svg');
+    const cardLink = screen.getByRole('link');
+    const cardImage = screen.getByRole('img');
+    expect(cardImage.getAttribute('alt')).toBe('Test Title Icon');
+    expect(cardImage.getAttribute('src')).toBe('test.svg');
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.getByText('Test Description')).toBeInTheDocument();
+    expect(cardLink.getAttribute('href')).toBe('https://www.example.com');
   });
 });
