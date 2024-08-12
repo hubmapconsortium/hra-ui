@@ -1,90 +1,9 @@
-import { Biomarker, Cell, CellSummary, CellSummaryRow, SourceReference } from '@hra-ui/services';
+import { CellSummary, Iri, SourceReference } from '@hra-ui/services';
+import { CellSummaryAggregate, CellSummaryAggregateCell, CellSummaryAggregateRow } from './cell-summary.model';
 
-import {
-  BIOMARKER_TYPES,
-  CellSummaryAggregate,
-  CellSummaryAggregateCell,
-  CellSummaryAggregateRow,
-} from './cell-summary.model';
-
-/**
- * This function gets the index of the column if it does not have any
- */
-export function getColumnIndex(indexById: Map<string, number>, id: string): number {
-  if (!indexById.has(id)) {
-    indexById.set(id, indexById.size + 2);
-  }
-
-  return indexById.get(id) as number;
-}
-
-/**
- * This function gets the index of the row if it does not have any
- */
-export function getRow(rowById: Map<string, CellSummaryAggregateRow>, id: string): CellSummaryAggregateRow {
-  if (!rowById.has(id)) {
-    rowById.set(id, ['', 0]);
-  }
-
-  return rowById.get(id) as CellSummaryAggregateRow;
-}
-
-/**
- * This function expands the current row length with undefined if its length is
- * less than the given length
- */
-export function expandRow(row: CellSummaryAggregateRow, length: number): void {
-  if (row.length < length) {
-    const fillStart = row.length;
-    row.length = length;
-    row.fill(undefined, fillStart);
-  }
-}
-
-/**
- * This function retrieves the label of an item from an array based on its ID,
- * and if not found, it returns a default string indicating the absence of a label for the specified item type.
- */
-export function getLabel<T extends { id: string; label: string }>(items: T[], id: string, what: string): string {
-  return items.find((item) => item.id === id)?.label ?? `<Unlabled ${what} '${id}'>`;
-}
-
-/**
- * This function calculates and returns the total count by iterating over a row array and summing
- * up the count property of each object entry, while ignoring non-object entries, with an initial value of 0.
- */
-// export function getTotalCount(row: CellSummaryAggregateRow): number {
-//   return row.reduce<number>((acc, entry) => acc + (typeof entry === 'object' ? entry.data.count : 0), 0);
-// }
-
-/**
- * The computeAggregate function takes a summary object and performs aggregation operations on its properties
- */
-export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
-  const { label, cells, biomarkers, summaries } = summary;
-  const columnIndexByBiomarker = new Map<string, number>();
-  const rowsByCell = new Map<string, CellSummaryAggregateRow>();
-
-  for (const summary of summaries) {
-    const { biomarker, cell } = summary;
-    const columnIndex = getColumnIndex(columnIndexByBiomarker, biomarker);
-    const row = getRow(rowsByCell, cell);
-
-    expandRow(row, columnIndex);
-    row[columnIndex] = {
-      color: summary.meanExpression,
-      size: summary.percentage,
-      data: summary,
-    };
-  }
-
-  for (const [cell, row] of rowsByCell.entries()) {
-    row[0] = getLabel(cells, cell, 'cell');
-    row[1] = row.find((item): item is CellSummaryAggregateCell => typeof item === 'object')?.data.count;
-  }
-
-  const columns = Array.from(columnIndexByBiomarker.keys()).map((id) => getLabel(biomarkers, id, 'biomarker'));
-  return { label, columns, rows: Array.from(rowsByCell.values()) };
+/** Capitalizes the first character */
+function capitalize(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
 }
 
 /**
@@ -92,80 +11,128 @@ export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
  */
 export function filterSummaries(summaries: CellSummary[], sources: SourceReference[]): CellSummary[] {
   const sourceIds = new Set<string>(sources.map((source) => source.id));
-  return summaries.filter((summary) => sourceIds.has(summary.cellSource));
+  return summaries.filter((summary) => sourceIds.has(summary.cell_source));
 }
 
-/**
- * Returns the number of times an id shows up in countsList array
- */
-export function calculateDatasetCount(id: string, countsList: Record<string, boolean>[]): number {
-  let result = 0;
-  for (const list of countsList) {
-    if (list[id]) {
-      result = result + 1;
-    }
+export function combineSummariesByBiomarkerType(summaries: CellSummary[], types: string[]): CellSummary[] {
+  const summariesByBiomarkerType: Record<string, CellSummary[]> = {};
+  for (const summary of summaries) {
+    summariesByBiomarkerType[summary.biomarker_type] ??= [];
+    summariesByBiomarkerType[summary.biomarker_type].push(summary);
   }
-  return result;
+
+  const results: CellSummary[] = [];
+  for (const type of types) {
+    const summaries = summariesByBiomarkerType[type] ?? [];
+    const items = summaries.reduce<CellSummary['summary']>((acc, { summary }) => acc.concat(summary), []);
+    results.push({
+      cell_source: `Aggregated by ${type}` as Iri,
+      biomarker_type: type,
+      summary: items,
+    });
+  }
+
+  return results;
 }
 
-/**
- * Merges summaries of each biomarker type and returns an array of summaries
- */
-export function combineSummaries(summaries: CellSummary[]): CellSummary[] {
-  return BIOMARKER_TYPES.map((type) => mergeCellSummaries(summaries, type));
-}
+type SummaryColumnObj = CellSummary['summary'][number]['genes'][number];
+type SummaryRowObj = CellSummary['summary'][number];
 
-/**
- * Merges cell summaries together into one cell summary
- * Calculates total dataset counts and mean expressions for summaries
- */
-export function mergeCellSummaries(summaries: CellSummary[], label: string): CellSummary {
-  const filteredSummaries = summaries.filter((summary) => summary.label === label);
-  const aggregateBiomarkers: Biomarker[] = [];
-  const aggregateCells: Cell[] = [];
-  const aggregateSummaries: CellSummaryRow[] = [];
-  const summariesList: CellSummaryRow[][] = [];
+class AggregateBuilderState {
+  private readonly columnIndex = new Map<string, number>();
+  private readonly rowIndex = new Map<string, number>();
+  private readonly columns: string[] = [];
+  private readonly rows: CellSummaryAggregateRow[] = [];
 
-  for (const summary of filteredSummaries) {
-    for (const biomarker of summary.biomarkers) {
-      aggregateBiomarkers.push(biomarker);
+  updateRowCount(rowObj: SummaryRowObj): void {
+    const row = this.getRow(rowObj);
+    (row[1] as number) += rowObj.count;
+  }
+
+  updateEntry(rowObj: SummaryRowObj, columnObj: SummaryColumnObj): void {
+    const row = this.getRow(rowObj);
+    const index = this.getColumnIndex(columnObj);
+    const entry = (row[index] ??= {
+      color: 0,
+      size: 0,
+      data: {
+        cell: rowObj.cell_id,
+        biomarker: columnObj.gene_id,
+        count: 0,
+        meanExpression: 0,
+        percentage: 0,
+        dataset_count: 0,
+      },
+    }) as CellSummaryAggregateCell;
+
+    // Update count
+    entry.data.count += rowObj.count;
+
+    // Update meanExpression
+    const { dataset_count: count = 0, meanExpression } = entry.data;
+    const cumulativeMeanExpression = (count * meanExpression + columnObj.mean_expression) / (count + 1);
+    entry.data.dataset_count = count + 1;
+    entry.data.meanExpression = cumulativeMeanExpression;
+    entry.color = cumulativeMeanExpression;
+  }
+
+  finalize(): { columns: string[]; rows: CellSummaryAggregateRow[] } {
+    const { columns, rows } = this;
+    const totalCount = rows.reduce((acc, row) => acc + (row[1] ?? 0), 0);
+    for (const entry of this.entries()) {
+      const percentage = entry.data.count / totalCount;
+      entry.size = entry.data.percentage = percentage;
     }
-    for (const cell of summary.cells) {
-      aggregateCells.push(cell);
+
+    return { columns, rows };
+  }
+
+  private getColumnIndex(obj: SummaryColumnObj): number {
+    const { columnIndex, columns } = this;
+    let index = columnIndex.get(obj.gene_id);
+    if (index === undefined) {
+      index = columnIndex.size + 2;
+      columnIndex.set(obj.gene_id, index);
+      columns.push(obj.gene_label);
     }
 
-    summariesList.push(summary.summaries);
-    const countsList: Record<string, boolean>[] = [];
-    for (const summaries of summariesList) {
-      const datasetCounts: Record<string, boolean> = {};
-      for (const sum of summaries) {
-        const id = sum.cell + sum.biomarker;
-        if (!datasetCounts[id]) {
-          datasetCounts[id] = true;
+    return index;
+  }
+
+  private getRow(obj: SummaryRowObj): CellSummaryAggregateRow {
+    const { rowIndex, rows } = this;
+    let index = rowIndex.get(obj.cell_id);
+    if (index === undefined) {
+      index = rows.length;
+      rowIndex.set(obj.cell_id, index);
+      rows.push([obj.cell_label, 0]);
+    }
+
+    return rows[index];
+  }
+
+  private *entries(): Generator<CellSummaryAggregateCell> {
+    for (const row of this.rows) {
+      for (let index = 2; index < row.length; index++) {
+        if (row[index] !== undefined) {
+          yield row[index] as CellSummaryAggregateCell;
         }
       }
-      countsList.push(datasetCounts);
     }
+  }
+}
 
-    for (const sum of summary.summaries) {
-      const match = aggregateSummaries.find((entry) => entry.biomarker === sum.biomarker && entry.cell === sum.cell);
-      if (match) {
-        const id = match.cell + match.biomarker;
-        match.count += sum.count;
-        match.meanExpression =
-          (match.count * match.meanExpression + sum.count * sum.meanExpression) / (match.count + sum.count);
-        match.dataset_count = calculateDatasetCount(id, countsList);
-      } else {
-        aggregateSummaries.push({ ...sum, dataset_count: 1 });
-      }
+export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
+  const state = new AggregateBuilderState();
+  for (const cell of summary.summary) {
+    state.updateRowCount(cell);
+    for (const gene of cell.genes) {
+      state.updateEntry(cell, gene);
     }
   }
 
   return {
-    label: label,
-    biomarkers: aggregateBiomarkers,
-    cells: aggregateCells,
-    summaries: aggregateSummaries,
-    cellSource: '',
+    label: `${capitalize(summary.biomarker_type)} Biomarkers`,
+    ...state.finalize(),
   };
 }
