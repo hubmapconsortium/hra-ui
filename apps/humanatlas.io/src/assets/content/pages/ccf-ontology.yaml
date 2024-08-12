@@ -23,14 +23,15 @@
   pageData:
     - heading: Overview
       descriptions: |
-        Using the Common Coordinate Framework (CCF) Ontology v2.3.0<sup>1</sup>, the HRA provides standard terminologies and data structures for describing specimens, biological structures,
+
+        The Common Coordinate Framework (CCF) Ontology<sup>1</sup> provides standard terminologies and data structures for describing specimens, biological structures,
         and spatial positions of tissue blocks and organs linked to existing ontologies.
 
-        CCF Ontology v2.3.0 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus embedded HRA v2.0 data used in HRA applications and interfaces<sup>2</sup>.
-
-        CCF Ontology v3.0 published in the 7th HRA release (June 2024) removes the embedded HRA data and cleanly describes the HRA vocabulary.
-        The HRA v2.1 (<a href="https://humanatlas.io/release-notes/v2.1" target="_blank">https://humanatlas.io/release-notes/v2.1</a>) uses the CCF Ontology v3.0 vocabulary with HRA-specific classes and instances from HRA-curated
+        With HRA v2.1 (<a href="https://humanatlas.io/release-notes/v2.1" target="_blank">https://humanatlas.io/release-notes/v2.1</a>, June 2024), CCF Ontology v3.0, the embedded HRA data was removed and the CCF Ontology now cleanly describes the HRA vocabulary.
+        Concretely, the HRA v2.1 uses the CCF Ontology v3.0 vocabulary with HRA-specific classes and instances from HRA-curated
         Digital Objects (DOs) resulting in the HRA (<a href="https://purl.humanatlas.io/collection/hra/v2.1" target="_blank">https://purl.humanatlas.io/collection/hra/v2.1</a>).
+
+        Prior to this (HRA v2.0), CCF Ontology v2.3.0 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus embedded HRA v2.0 data used in HRA applications and interfaces<sup>2</sup>. The same was true for all HRA versions prior to 2.0.
 
         CCF v3.0 details key vocabulary for six types of HRA-curated DOs (ASCT+B tables, OMAPs, 2D and 3D reference objects,
         Cell Type Annotation Crosswalks, vascular geometry, and dataset-graphs). About 10,000 experimental datasets have been linked to the HRA with the
