@@ -23,10 +23,10 @@
   pageData:
     - heading: Overview
       descriptions: |
-        Using the Common Coordinate Framework (CCF) Ontology v2.0.1<sup>1</sup>, the HRA provides standard terminologies and data structures for describing specimens, biological structures,
+        Using the Common Coordinate Framework (CCF) Ontology v2.3.0<sup>1</sup>, the HRA provides standard terminologies and data structures for describing specimens, biological structures,
         and spatial positions of tissue blocks and organs linked to existing ontologies.
 
-        The new CCF Ontology v2.0.1 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus embedded HRA v1.2 data used in HRA applications and interfaces<sup>2</sup>.
+        CCF Ontology v2.3.0 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus embedded HRA v2.0 data used in HRA applications and interfaces<sup>2</sup>.
 
         CCF Ontology v3.0 published in the 7th HRA release (June 2024) removes the embedded HRA data and cleanly describes the HRA vocabulary.
         The HRA v2.1 (<a href="https://humanatlas.io/release-notes/v2.1" target="_blank">https://humanatlas.io/release-notes/v2.1</a>) uses the CCF Ontology v3.0 vocabulary with HRA-specific classes and instances from HRA-curated
