@@ -27,7 +27,7 @@
   "@graph": [
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-nephron",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-nephron",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -3746,7 +3746,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-renal-corpuscle",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -6744,7 +6744,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-cortical-collecting-duct",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -9756,7 +9756,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-ascending-thin-loop-of-henle",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -11266,7 +11266,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_liver-liver-lobule",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -13485,7 +13485,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_lung-pulmonary-alveolus",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
@@ -16399,7 +16399,7 @@
     },
     {
       "@type": "CellSummary",
-      "cell_source": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
+      "cell_source": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_lung-bronchial-submucosal-gland",
       "annotation_method": "Aggregation",
       "biomarker_type": "gene",
       "summary": [
