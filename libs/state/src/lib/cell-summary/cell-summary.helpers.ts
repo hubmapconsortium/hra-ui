@@ -52,7 +52,7 @@ class AggregateBuilderState {
   updateEntry(rowObj: SummaryRowObj, columnObj: SummaryColumnObj): void {
     const row = this.getRow(rowObj);
     const index = this.getColumnIndex(columnObj);
-    const entry = (row[index] ??= {
+    row[index] ??= {
       color: 0,
       size: 0,
       data: {
@@ -63,7 +63,9 @@ class AggregateBuilderState {
         percentage: 0,
         dataset_count: 0,
       },
-    }) as CellSummaryAggregateCell;
+    };
+
+    const entry = row[index] as CellSummaryAggregateCell;
 
     // Update count
     entry.data.count += rowObj.count;
