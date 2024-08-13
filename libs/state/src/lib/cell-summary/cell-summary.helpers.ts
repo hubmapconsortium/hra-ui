@@ -48,7 +48,7 @@ type SummaryColumnObj = CellSummary['summary'][number]['genes'][number];
 type SummaryRowObj = CellSummary['summary'][number];
 
 /** Helper class for building aggregate summaries */
-class AggregateBuilderState {
+export class AggregateBuilder {
   /** Mapping from column id to index */
   private readonly columnIndex = new Map<string, number>();
   /** Mapping from row id to index */
@@ -175,7 +175,7 @@ class AggregateBuilderState {
  * @returns Aggregated cell summary rows
  */
 export function computeAggregate(summary: CellSummary): CellSummaryAggregate {
-  const state = new AggregateBuilderState();
+  const state = new AggregateBuilder();
   for (const cell of summary.summary) {
     state.updateRowCount(cell);
     for (const gene of cell.genes) {

@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 
 import { ActiveFtuSelectors } from '../active-ftu';
 import { FilterSummaries, Load } from './cell-summary.actions';
-import { CellSummaryModel } from './cell-summary.model';
+import { BIOMARKER_TYPES, CellSummaryModel } from './cell-summary.model';
 import { CellSummaryState } from './cell-summary.state';
 import { filterSummaries } from './cell-summary.helpers';
 
@@ -63,7 +63,7 @@ describe('CellSummaryState', () => {
     ctx.getState.mockReturnValue({
       summaries: [],
       aggregates: [],
-      biomarkerTypes: [],
+      biomarkerTypes: BIOMARKER_TYPES,
       filteredSummaries: [],
       summariesByBiomarker: [],
     });
@@ -104,9 +104,9 @@ describe('CellSummaryState', () => {
       state.combineSummariesByBiomarker(ctx);
       expect(ctx.patchState).toHaveBeenCalledWith({
         summariesByBiomarker: [
-          { biomarkers: [], cellSource: '', cells: [], label: 'Gene Biomarkers', summaries: [] },
-          { biomarkers: [], cellSource: '', cells: [], label: 'Protein Biomarkers', summaries: [] },
-          { biomarkers: [], cellSource: '', cells: [], label: 'Lipid Biomarkers', summaries: [] },
+          { biomarker_type: 'gene', cell_source: 'Aggregated by gene', summary: [] },
+          { biomarker_type: 'protein', cell_source: 'Aggregated by protein', summary: [] },
+          { biomarker_type: 'lipid', cell_source: 'Aggregated by lipid', summary: [] },
         ],
       });
     });

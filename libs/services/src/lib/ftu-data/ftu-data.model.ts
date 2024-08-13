@@ -76,7 +76,6 @@ export const CELL_SUMMARY = z.object({
       cell_label: z.string(),
       genes: z
         .object({
-          '@type': z.string(),
           gene_id: z.string(),
           gene_label: z.string(),
           mean_expression: z.number(),

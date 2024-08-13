@@ -1,149 +1,114 @@
-import { Biomarker, CellSummary, Iri } from '@hra-ui/services';
+import { CellSummary, Iri, SourceReference } from '@hra-ui/services';
+import { produce } from 'immer';
+import { combineSummariesByBiomarkerType, computeAggregate, filterSummaries } from './cell-summary.helpers';
 
-import { computeAggregate, expandRow, getColumnIndex, getRow, mergeCellSummaries } from './cell-summary.helpers';
-import { CellSummaryAggregate, CellSummaryAggregateRow } from './cell-summary.model';
+const source1: SourceReference = {
+  id: 'source1' as Iri,
+  label: '',
+  link: '',
+  title: '',
+  year: 2000,
+  authors: [],
+  doi: '',
+};
+const source2 = produce(source1, (draft) => {
+  draft.id = 'source2' as Iri;
+});
+
+const geneBiomarker = 'gene';
+const cell1 = 'cell1' as Iri;
+const cell2 = 'cell2' as Iri;
+const gene1 = 'gene1' as Iri;
+
+const summary1: CellSummary = {
+  biomarker_type: geneBiomarker,
+  cell_source: source1.id,
+  summary: [
+    {
+      cell_id: cell1,
+      cell_label: cell1,
+      count: 75,
+      percentage: 0.75,
+      genes: [
+        {
+          gene_id: gene1,
+          gene_label: gene1,
+          mean_expression: 0.2,
+        },
+      ],
+    },
+  ],
+};
+
+const summary2: CellSummary = {
+  biomarker_type: geneBiomarker,
+  cell_source: source2.id,
+  summary: [
+    {
+      cell_id: cell2,
+      cell_label: cell2,
+      count: 25,
+      percentage: 0.25,
+      genes: [
+        {
+          gene_id: gene1,
+          gene_label: gene1,
+          mean_expression: 0.6,
+        },
+      ],
+    },
+  ],
+};
+
+const summaries = [summary1, summary2];
 
 describe('Cell Summary Helpers', () => {
-  const mockBiomarkers: Biomarker[] = [
-    { id: 'biomarker1' as Iri, label: 'Biomarker 1' },
-    { id: 'biomarker2' as Iri, label: 'Biomarker 2' },
-  ];
-
-  const mockCells = [
-    { id: 'cell1' as Iri, label: 'Cell 1' },
-    { id: 'cell2' as Iri, label: 'Cell 2' },
-  ];
-
-  const mockSummary: CellSummary = {
-    label: 'Summary Label',
-    cellSource: '',
-    cells: mockCells,
-    biomarkers: mockBiomarkers,
-    summaries: [
-      {
-        biomarker: 'Biomarker1' as Iri,
-        cell: 'cell1' as Iri,
-        meanExpression: 0.4,
-        percentage: 50,
-        count: 10,
-        dataset_count: 1,
-      },
-      {
-        biomarker: 'Biomarker2' as Iri,
-        cell: 'cell1' as Iri,
-        meanExpression: 0.5,
-        percentage: 30,
-        count: 5,
-        dataset_count: 1,
-      },
-    ],
-  };
-
-  const mockSummary2: CellSummary = {
-    label: 'Label2',
-    cellSource: '',
-    cells: mockCells,
-    biomarkers: mockBiomarkers,
-    summaries: [
-      {
-        biomarker: 'Biomarker1' as Iri,
-        cell: 'cell1' as Iri,
-        meanExpression: 0.4,
-        percentage: 50,
-        count: 10,
-        dataset_count: 1,
-      },
-      {
-        biomarker: 'Biomarker2' as Iri,
-        cell: 'cell1' as Iri,
-        meanExpression: 0.5,
-        percentage: 30,
-        count: 5,
-        dataset_count: 1,
-      },
-    ],
-  };
-
-  const mockSummary3: CellSummary = {
-    label: 'Summary Label',
-    cellSource: '',
-    cells: mockCells,
-    biomarkers: mockBiomarkers,
-    summaries: [
-      {
-        biomarker: 'Biomarker1' as Iri,
-        cell: 'cell1' as Iri,
-        meanExpression: 0.4,
-        percentage: 50,
-        count: 10,
-        dataset_count: 1,
-      },
-    ],
-  };
-  describe('getColumnIndex', () => {
-    it('should return new index for the column for non-exisitng id', () => {
-      const indexById = new Map<string, number>();
-      const newIndex = getColumnIndex(indexById, '');
-
-      expect(newIndex).toEqual(2);
-    });
-    it('should return exisitng index for the column for existing id', () => {
-      const indexById = new Map<string, number>();
-      indexById.set('Biomarker1', 4);
-
-      const existingIndex = getColumnIndex(indexById, 'Biomarker1');
-      expect(existingIndex).toEqual(4);
+  describe('filterSummaries(summaries, sources)', () => {
+    it('returns summaries with the specified sources', () => {
+      const result = filterSummaries(summaries, [source1]);
+      expect(result).toEqual([summary1]);
     });
   });
 
-  describe('getRow', () => {
-    it('should return new index for the row for non-exisiting id', () => {
-      const rowById = new Map<string, CellSummaryAggregateRow>();
-      const newRowIndex = getRow(rowById, '');
-
-      expect(newRowIndex).toEqual(['', 0]);
+  describe('combineSummariesByBiomarkerType(summaries, types)', () => {
+    it('combines summaries for each biomarker type', () => {
+      const result = combineSummariesByBiomarkerType(summaries, [geneBiomarker]);
+      expect(result).toEqual([
+        {
+          cell_source: `Aggregated by ${geneBiomarker}`,
+          biomarker_type: geneBiomarker,
+          summary: [...summary1.summary, ...summary2.summary],
+        },
+      ]);
     });
   });
 
-  describe('expandRow', () => {
-    const mockRow = ['label', 999] as CellSummaryAggregateRow;
-    it('expands a row', () => {
-      expandRow(mockRow, 4);
-      expect(mockRow).toEqual(['label', 999, undefined, undefined]);
-    });
-  });
+  describe('computeAggregate(summary)', () => {
+    it('creates aggregate data for display in a table', () => {
+      const [summary] = combineSummariesByBiomarkerType(summaries, [geneBiomarker]);
+      const { rows, columns } = computeAggregate(summary);
+      expect(columns).toEqual([gene1]);
+      expect(rows.length).toBe(2);
 
-  describe('computeAggregate', () => {
-    it('should compute aggregate data correctly', () => {
-      const result: CellSummaryAggregate = computeAggregate(mockSummary);
-      expect(result.label).toEqual('Summary Label');
-    });
-  });
-
-  describe('mergeCellSummaries', () => {
-    const mergedResult = {
-      biomarkers: [
-        { id: 'biomarker1', label: 'Biomarker 1' },
-        { id: 'biomarker2', label: 'Biomarker 2' },
-        { id: 'biomarker1', label: 'Biomarker 1' },
-        { id: 'biomarker2', label: 'Biomarker 2' },
-      ],
-      cellSource: '',
-      cells: [
-        { id: 'cell1', label: 'Cell 1' },
-        { id: 'cell2', label: 'Cell 2' },
-        { id: 'cell1', label: 'Cell 1' },
-        { id: 'cell2', label: 'Cell 2' },
-      ],
-      label: 'Summary Label',
-      summaries: [
-        { biomarker: 'Biomarker1', cell: 'cell1', count: 20, dataset_count: 2, meanExpression: 0.4, percentage: 50 },
-        { biomarker: 'Biomarker2', cell: 'cell1', count: 5, dataset_count: 1, meanExpression: 0.5, percentage: 30 },
-      ],
-    };
-    it('should merge cell summaries', () => {
-      const mergedSummaries = mergeCellSummaries([mockSummary, mockSummary2, mockSummary3], 'Summary Label');
-      expect(mergedSummaries).toStrictEqual(mergedResult);
+      const [row1] = rows;
+      const [entry] = summary1.summary;
+      const [gene] = entry.genes;
+      expect(row1).toEqual([
+        cell1,
+        entry.count,
+        {
+          color: gene.mean_expression,
+          size: entry.percentage,
+          data: {
+            cell: entry.cell_id,
+            biomarker: gene.gene_id,
+            count: entry.count,
+            meanExpression: gene.mean_expression,
+            percentage: entry.percentage,
+            dataset_count: 1,
+          },
+        },
+      ]);
     });
   });
 });
