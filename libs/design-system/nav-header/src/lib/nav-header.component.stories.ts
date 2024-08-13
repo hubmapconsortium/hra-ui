@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
+import { provideDesignSystem } from '../../../src/index';
 import { NavHeaderComponent } from './nav-header.component';
 
 const apps: Record<string, Story['args']> = {
@@ -37,6 +38,11 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=0-1',
     },
   },
+  decorators: [
+    applicationConfig({
+      providers: [provideDesignSystem()],
+    }),
+  ],
   argTypes: {
     app: {
       control: 'select',
