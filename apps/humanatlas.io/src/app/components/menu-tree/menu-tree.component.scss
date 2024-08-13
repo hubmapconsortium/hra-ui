@@ -17,9 +17,14 @@
     border-radius: 0px 0px 8px 8px;
     height: auto;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0.5rem 0;
 
-    &:has(hubmap-nav) {
+    &:has(.mat-nested-tree-node[aria-expanded='true']) {
+      height: calc(100vh - 4rem);
+    }
+
+    &:has(> .mat-tree-node[aria-expanded='true']) {
       height: calc(100vh - 4rem);
     }
   }

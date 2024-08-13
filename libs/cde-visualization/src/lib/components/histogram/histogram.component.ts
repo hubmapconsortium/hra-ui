@@ -21,7 +21,7 @@ import {
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { produce } from 'immer';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 import { CellTypeEntry } from '../../models/cell-type';
@@ -166,8 +166,10 @@ export class HistogramComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
+  protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
+
   /** State indicating whether overflow is visible */
-  protected readonly overflowVisible = signal(false);
+  protected readonly overflowVisible = computed(() => !!this.colorPicker());
 
   /** List of filtered cell types based on selection */
   protected readonly filteredCellTypes = computed(
