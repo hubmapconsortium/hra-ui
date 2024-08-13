@@ -3,15 +3,7 @@ button[mat-icon-button] {
   --mat-icon-button-pressed-state-layer-opacity: 0.08;
   --mat-icon-color: var(--sys-secondary);
   --mat-icon-button-state-layer-color: var(--sys-secondary);
-
-  &:focus {
-    --mat-icon-button-pressed-state-layer-opacity: 0.04;
-    outline: 1px solid rgb(from var(--sys-secondary) r g b / 0.322);
-
-    .mat-mdc-button-persistent-ripple::before {
-      opacity: var(--mat-icon-button-pressed-state-layer-opacity);
-    }
-  }
+  --mat-icon-button-focus-state-layer-opacity: 0;
 
   &:focus-visible {
     outline: 2px solid var(--sys-tertiary);
