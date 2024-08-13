@@ -17,11 +17,6 @@
       background: rgb(from var(--sys-secondary) r g b / 0.08);
     }
 
-    &:focus {
-      background: rgb(from var(--sys-secondary) r g b / 0.04);
-      outline: solid rgb(from var(--sys-secondary) r g b / 0.32) 1px;
-    }
-
     &:focus-visible {
       outline: solid var(--sys-tertiary) 2px;
     }
