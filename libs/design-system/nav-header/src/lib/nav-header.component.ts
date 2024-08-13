@@ -1,23 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppLogosComponent, AppLogosVariant } from '../../../logos/apps/src/index';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-
-/**
- * Interface for Navigation Header
- */
-export interface NavInfo {
-  /** Variant of the header */
-  variant?: AppLogosVariant;
-  /** Link to the app */
-  link: string;
-  /** Icon for the app */
-  icon: string;
-  /** Name of the app */
-  title: string;
-  /** Desctiption of the app */
-  description?: string;
-}
+import { AppLogosComponent, AppLogosVariant } from '../../../logos/apps/src/index';
 
 /**
  * Navigation Header Component
@@ -31,6 +15,14 @@ export interface NavInfo {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavHeaderComponent {
-  /** Header details for navigation header */
-  navInfo = input.required<NavInfo>();
+  /** Variant of the header */
+  variant = input<AppLogosVariant>();
+  /** Link to the app */
+  link = input.required<string>();
+  /** Icon for the app */
+  icon = input.required<string>();
+  /** Name of the app */
+  title = input.required<string>();
+  /** Description of the app */
+  description = input<string>();
 }
