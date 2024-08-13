@@ -116,7 +116,7 @@
                     **New & Revised Digital Objects**
 
                     The Human Reference Atlas now includes 65 3D reference organs with 1,215 3D anatomical structures.
-                    <a href="https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ccf/#/default/get_as_3d_counts" target="_blank">This SPARQL query</a> also counts the 65 organs themselves. It thus returns 1,280 3D anatomical structures.
+                    <a href="https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ccf/#/default/get_as_3d_counts" target="_blank">This SPARQL query</a> returns all anatomical structures with an Uberon ID, i.e., it retrieves the 1,215 anatomical structures plus the 65 organs for a total of 1,280 items.
                     - 2 new ASCT+B Tables: anatomical systems, palatine tonsil
                     - 20 revised ASCT+B Tables: allen brain, fallopian tube, blood vasculature, bone marrow, heart, kidney, knee, liver, lung, lymph node, lymph vasculature, main bronchus,
                       muscular system, pancreas, peripheral nervous system, placenta full term, prostate, skeleton, skin, thymus
