@@ -2,30 +2,31 @@ import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '../../../src/index';
 import { NavHeaderComponent } from './nav-header.component';
 
+const APP_DESCRIPTION = 'HRA Preview Application';
 const apps: Record<string, Story['args']> = {
   'Cell Distance Explorer': {
     title: 'Cell Distance Explorer',
     icon: 'assets/logo/cde_logo.svg',
     link: 'https://apps.humanatlas.io/cde/',
-    description: 'HRA Preview Application',
+    description: APP_DESCRIPTION,
   },
   'FTU Explorer': {
     title: 'FTU Explorer',
     icon: 'assets/logo/ftu_logo.svg',
     link: 'https://apps.humanatlas.io/cde/',
-    description: 'HRA Preview Application',
+    description: APP_DESCRIPTION,
   },
   Dashboards: {
     title: 'Dashboards',
     icon: 'assets/logo/dashboards_logo.svg',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
-    description: 'HRA Preview Application',
+    description: APP_DESCRIPTION,
   },
   'Atlas Applications': {
     title: 'Atlas Applications',
     icon: 'assets/logo/atlas_apps.svg',
     link: 'https://apps.humanatlas.io/',
-    description: 'HRA Preview Application',
+    description: APP_DESCRIPTION,
   },
 };
 
