@@ -35,7 +35,7 @@
     .description {
       grid-area: description;
       font: var(--sys-label-medium);
-      color: #4b4b5e;
+      color: var(--sys-inverse-surface);
     }
   }
 }

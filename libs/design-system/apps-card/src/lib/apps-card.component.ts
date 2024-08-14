@@ -12,11 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class AppsCardComponent {
   /** URL for the icon */
-  icon = input.required<string>();
+  readonly icon = input.required<string>();
   /** Title of the card */
-  title = input.required<string>();
+  readonly title = input.required<string>();
   /** Description of the card */
-  description = input.required<string>();
+  readonly description = input.required<string>();
   /** Link of the card */
-  link = input.required<string>();
+  readonly link = input.required<string>();
 }
