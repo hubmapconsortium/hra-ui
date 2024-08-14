@@ -82,7 +82,7 @@ const meta: Meta = {
     },
   },
   args: {
-    app: apps['HuBMAP'],
+    app: apps['HuBMAP Consortium'],
   },
   render: (args) => ({
     props: args['app'],
