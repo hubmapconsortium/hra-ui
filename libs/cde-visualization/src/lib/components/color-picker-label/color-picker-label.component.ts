@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, model, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { Rgb, colorEquals, hexToRgb, rgbToHex } from '../../models/color';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
@@ -31,7 +31,7 @@ export class ColorPickerLabelComponent {
   readonly isAnchor = input<boolean>(false);
 
   /** Emits when the color picker is opened or closed */
-  readonly colorPickerOpen = output<boolean>();
+  readonly colorPickerOpen = output<ColorPickerDirective | null>();
 
   /** Hex representation of the color */
   readonly hexColor = signal('#000000');

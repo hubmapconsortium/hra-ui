@@ -133,7 +133,7 @@ export class OrganVersionComponent implements OnInit {
 
   /** Sets the ftu table data with necessary columns */
   setFtu(organName: OrganData['name']): void {
-    const data = this.dataService.getData('ftu-cell-count-5th-release.csv', this.displayedColumnsData);
+    const data = this.dataService.getData('ftu-cell-count-7th-release.csv', this.displayedColumnsData);
     this.tableData = data.pipe(
       map((result) => result.data),
       map((data) => data.filter((record) => this.iCaseEquals(record['Organ'] as string, organName))),
