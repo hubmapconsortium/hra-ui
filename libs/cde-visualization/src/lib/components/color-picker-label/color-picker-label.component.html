@@ -11,11 +11,13 @@
   [cpCancelButton]="true"
   cpCancelButtonClass="cancel-button"
   cpAlphaChannel="disabled"
-  (colorPickerOpen)="colorPickerOpen.emit(true)"
-  (colorPickerClose)="colorPickerOpen.emit(false)"
+  [cpUseRootViewContainer]="true"
+  (colorPickerOpen)="colorPickerOpen.emit(colorPicker)"
+  (colorPickerClose)="colorPickerOpen.emit(null)"
   (colorPickerChange)="hexColor.set($event)"
   (colorPickerSelect)="selectColor($event)"
   data-testid="color-picker-button"
+  #colorPicker="ngxColorPicker"
 ></span>
 @if (isAnchor()) {
   <mat-icon

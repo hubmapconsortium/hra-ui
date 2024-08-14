@@ -82,4 +82,12 @@ export class MenuTreeComponent {
   isHubmapNav(_: number, node: NavItems) {
     return node.componentName === 'hubmap-nav';
   }
+
+  collapseNonActiveNodes(node: NavItems) {
+    const isExpanded = this.treeControl.isExpanded(node);
+    this.treeControl.collapseAll();
+    if (isExpanded) {
+      this.treeControl.expand(node);
+    }
+  }
 }
