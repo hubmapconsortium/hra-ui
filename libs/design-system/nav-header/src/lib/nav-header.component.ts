@@ -18,13 +18,13 @@ import { AppLogosComponent, AppLogosVariant } from '@hra-ui/design-system/app-lo
 })
 export class NavHeaderComponent {
   /** Variant of the header */
-  variant = input<AppLogosVariant>('default');
+  readonly variant = input<AppLogosVariant>('default');
   /** Link to the app */
-  link = input.required<string>();
+  readonly link = input.required<string>();
   /** Icon for the app */
-  icon = input.required<string>();
+  readonly icon = input.required<string>();
   /** Name of the app */
-  title = input.required<string>();
+  readonly title = input.required<string>();
   /** Description of the app */
-  description = input<string>();
+  readonly description = input<string>();
 }

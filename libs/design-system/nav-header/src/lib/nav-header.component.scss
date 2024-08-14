@@ -3,7 +3,7 @@
   align-items: center;
   height: 4.5rem;
   padding: 0 0.75rem 0 1rem;
-  background-color: #eff2f5;
+  background-color: var(--sys-surface-container);
 
   .filler {
     flex-grow: 1;
