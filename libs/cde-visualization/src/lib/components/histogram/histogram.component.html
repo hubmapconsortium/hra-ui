@@ -51,11 +51,11 @@
 
     <div class="content">
       <div class="histogram" data-testid="histogram" #histogram></div>
-      <ng-scrollbar hraScrollOverflowFade class="legend">
+      <ng-scrollbar hraScrollOverflowFade class="legend" (scroll)="colorPicker()?.closeDialog()">
         <cde-color-picker-label
           [label]="totalCellTypeLabel"
           [(color)]="totalCellTypeColor"
-          (colorPickerOpen)="overflowVisible.set($event)"
+          (colorPickerOpen)="colorPicker.set($event)"
         >
         </cde-color-picker-label>
         @for (type of filteredCellTypes(); track type.name) {
@@ -63,7 +63,7 @@
             [label]="type.name"
             [color]="type.color"
             [isAnchor]="type.name === selectedCellType()"
-            (colorPickerOpen)="overflowVisible.set($event)"
+            (colorPickerOpen)="colorPicker.set($event)"
             (colorChange)="updateColor(type, $event)"
           ></cde-color-picker-label>
         }

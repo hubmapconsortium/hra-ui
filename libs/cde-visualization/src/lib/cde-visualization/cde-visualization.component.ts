@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -9,6 +10,7 @@ import {
   model,
   output,
   signal,
+  ViewContainerRef,
 } from '@angular/core';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
@@ -235,6 +237,16 @@ export class CdeVisualizationComponent {
     },
     { allowSignalWrites: true },
   );
+
+  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
+  readonly vcRef = inject(ViewContainerRef);
+
+  /** Setup component */
+  constructor() {
+    // Workaround for getting ngx-color-picker to attach to the root view
+    // Not populated for standalone/custom components so we forcefully insert ourself
+    inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
+  }
 
   /** Reset cell types */
   resetCellTypes(): void {
