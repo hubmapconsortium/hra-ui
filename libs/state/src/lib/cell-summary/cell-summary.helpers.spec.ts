@@ -90,7 +90,7 @@ describe('Cell Summary Helpers', () => {
     it('creates aggregate data for display in a table', () => {
       const [summary] = combineSummariesByBiomarkerType(summaries, [geneBiomarker]);
       const { rows, columns } = computeAggregate(summary);
-      expect(columns).toEqual([gene1]);
+      expect(columns).toEqual([`${gene1} [${ensembleId1}]`]);
       expect(rows.length).toBe(2);
 
       const [row1] = rows;
