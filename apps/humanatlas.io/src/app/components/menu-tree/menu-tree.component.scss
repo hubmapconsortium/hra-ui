@@ -21,7 +21,7 @@
     padding: 0.5rem 0;
 
     &:has(.mat-nested-tree-node[aria-expanded='true']) {
-      height: calc(100vh - 4rem);
+      height: calc(100% - 4rem);
     }
 
     &:has(> .mat-tree-node[aria-expanded='true']) {
