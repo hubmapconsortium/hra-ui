@@ -35,7 +35,7 @@ export interface CellSummaryModel {
 export type Context = StateContext<CellSummaryModel>;
 
 /** Biomarker type labels */
-export const BIOMARKER_TYPES = ['Gene Biomarkers', 'Protein Biomarkers', 'Lipid Biomarkers'];
+export const BIOMARKER_TYPES = ['gene', 'protein', 'lipid'];
 
 /**
  * The AGGREGATE_CELL is an object that contains the color, size and

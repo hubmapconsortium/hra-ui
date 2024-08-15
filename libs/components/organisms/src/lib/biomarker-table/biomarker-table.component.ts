@@ -170,7 +170,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
-    this.checkDisplayedColumns();
+    this.checkDisplayedColumns('columns' in changes);
     if ('data' in changes || 'illustrationIds' in changes) {
       this.dataSource.data = this.sortTableData(this.data);
     }
@@ -194,11 +194,11 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /**
    * Checks to see if columns should be updated
    */
-  checkDisplayedColumns(): void {
+  checkDisplayedColumns(forceUpdate = false): void {
     const scrollable = this.vscroll.scrollable;
     const size = scrollable.measureViewportSize('horizontal');
     const offset = scrollable.measureScrollOffset('start');
-    let shouldUpdate = false;
+    let shouldUpdate = forceUpdate;
 
     if (size !== this.horizontalViewportSize) {
       this.updateHorizontalViewportSize(size);

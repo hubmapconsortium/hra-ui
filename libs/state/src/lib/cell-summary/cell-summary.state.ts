@@ -4,7 +4,7 @@ import { Action, State } from '@ngxs/store';
 import { Observable, switchMap, tap } from 'rxjs';
 import { SourceRefsActions } from '../source-refs';
 import { CombineSummariesByBiomarker, ComputeAggregates, FilterSummaries, Load, Reset } from './cell-summary.actions';
-import { combineSummaries, computeAggregate, filterSummaries } from './cell-summary.helpers';
+import { combineSummariesByBiomarkerType, computeAggregate, filterSummaries } from './cell-summary.helpers';
 import { BIOMARKER_TYPES, CellSummaryModel, Context } from './cell-summary.model';
 
 /** State handling cell summary data */
@@ -57,8 +57,8 @@ export class CellSummaryState {
    */
   @Action(CombineSummariesByBiomarker)
   combineSummariesByBiomarker({ getState, patchState, dispatch }: Context): Observable<void> {
-    const { filteredSummaries: summaries } = getState();
-    const summariesByBiomarker = combineSummaries(summaries);
+    const { filteredSummaries, biomarkerTypes } = getState();
+    const summariesByBiomarker = combineSummariesByBiomarkerType(filteredSummaries, biomarkerTypes);
 
     patchState({ summariesByBiomarker });
     return dispatch(new ComputeAggregates());
