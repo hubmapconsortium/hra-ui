@@ -4,11 +4,9 @@
 :host {
   display: block;
 
-  @media (min-height: 60.75rem) {
-    .table th,
-    .table th div {
-      height: 6.5rem !important;
-    }
+  .table th,
+  .table th div {
+    height: 6.5rem !important;
   }
 
   cdk-virtual-scroll-viewport {
