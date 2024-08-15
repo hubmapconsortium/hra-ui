@@ -52,14 +52,14 @@ export const CELL = z.object({
 
 /** Zod Schema for a BIOMARKER */
 export const BIOMARKER = z.object({
-  id: IRI,
+  id: z.string(),
   label: z.string(),
 });
 
 /** Zod Schema for a CELL_SUMMARY_ROW */
 export const CELL_SUMMARY_ROW = z.object({
   cell: IRI,
-  biomarker: IRI,
+  biomarker: z.string(),
   count: COUNT,
   percentage: PERCENTAGE,
   meanExpression: PERCENTAGE,
@@ -68,11 +68,25 @@ export const CELL_SUMMARY_ROW = z.object({
 
 /** Zod Schema for a CELL_SUMMARY */
 export const CELL_SUMMARY = z.object({
-  label: z.string(),
-  cellSource: z.string(),
-  cells: CELL.array(),
-  biomarkers: BIOMARKER.array(),
-  summaries: CELL_SUMMARY_ROW.array(),
+  cell_source: IRI,
+  biomarker_type: z.string(),
+  summary: z
+    .object({
+      cell_id: IRI,
+      cell_label: z.string(),
+      genes: z
+        .object({
+          gene_id: z.string(),
+          gene_label: z.string(),
+          ensemble_id: z.string(),
+          mean_expression: z.number(),
+        })
+        .array(),
+      count: z.number(),
+      percentage: z.number(),
+      dataset_count: z.number().optional(),
+    })
+    .array(),
 });
 
 /** Zod Schema for a DATA_FILE_REFERENCE */
@@ -155,29 +169,7 @@ export const RAW_DATASETS = z.object({
 
 /** CELL_SUMMARIES zod object reflecting the format in the file*/
 export const RAW_CELL_SUMMARIES = z.object({
-  '@graph': z
-    .object({
-      cell_source: IRI,
-      biomarker_type: z.string(),
-      summary: z
-        .object({
-          cell_id: z.string(),
-          cell_label: z.string(),
-          genes: z
-            .object({
-              '@type': z.string(),
-              gene_id: z.string(),
-              gene_label: z.string(),
-              mean_expression: z.number(),
-            })
-            .array(),
-          count: z.number(),
-          percentage: z.number(),
-          dataset_count: z.number().optional(),
-        })
-        .array(),
-    })
-    .array(),
+  '@graph': CELL_SUMMARY.array(),
 });
 
 // ---------------------------------------
