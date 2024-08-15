@@ -5,8 +5,9 @@
   display: block;
 
   @media (min-height: 60.75rem) {
-    .table th {
-      height: 4.5rem !important;
+    .table th,
+    .table th div {
+      height: 6.5rem !important;
     }
   }
 
@@ -104,10 +105,13 @@
 
   .icon-header {
     .header-column-text {
-      transform: rotate(-45deg);
+      // transform: rotate(-90deg);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin: 0.5rem auto;
     }
   }
 

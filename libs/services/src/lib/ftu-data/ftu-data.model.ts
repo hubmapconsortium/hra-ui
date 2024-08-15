@@ -78,6 +78,7 @@ export const CELL_SUMMARY = z.object({
         .object({
           gene_id: z.string(),
           gene_label: z.string(),
+          ensemble_id: z.string(),
           mean_expression: z.number(),
         })
         .array(),

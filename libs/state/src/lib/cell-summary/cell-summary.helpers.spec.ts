@@ -19,6 +19,7 @@ const geneBiomarker = 'gene';
 const cell1 = 'cell1' as Iri;
 const cell2 = 'cell2' as Iri;
 const gene1 = 'gene1' as Iri;
+const ensembleId1 = 'ensemble1';
 
 const summary1: CellSummary = {
   biomarker_type: geneBiomarker,
@@ -33,6 +34,7 @@ const summary1: CellSummary = {
         {
           gene_id: gene1,
           gene_label: gene1,
+          ensemble_id: ensembleId1,
           mean_expression: 0.2,
         },
       ],
@@ -53,6 +55,7 @@ const summary2: CellSummary = {
         {
           gene_id: gene1,
           gene_label: gene1,
+          ensemble_id: ensembleId1,
           mean_expression: 0.6,
         },
       ],

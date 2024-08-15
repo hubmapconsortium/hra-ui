@@ -108,7 +108,8 @@ export class AggregateBuilder {
    * @returns The finalized rows and columns
    */
   finalize(): { columns: string[]; rows: CellSummaryAggregateRow[] } {
-    const { columns, rows } = this;
+    const { columns, order } = this.sortColumns();
+    const rows = this.sortRows(order);
     const totalCount = rows.reduce((acc, row) => acc + (row[1] ?? 0), 0);
     for (const entry of this.entries()) {
       const percentage = entry.data.count / totalCount;
@@ -126,11 +127,12 @@ export class AggregateBuilder {
    */
   private getColumnIndex(obj: SummaryColumnObj): number {
     const { columnIndex, columns } = this;
-    let index = columnIndex.get(obj.gene_id);
+    const id = `${obj.gene_id}/${obj.ensemble_id}`;
+    let index = columnIndex.get(id);
     if (index === undefined) {
       index = columnIndex.size + 2;
-      columnIndex.set(obj.gene_id, index);
-      columns.push(obj.gene_label);
+      columnIndex.set(id, index);
+      columns.push(`${obj.gene_label} [${obj.ensemble_id}]`);
     }
 
     return index;
@@ -152,6 +154,41 @@ export class AggregateBuilder {
     }
 
     return rows[index];
+  }
+
+  /**
+   * Sorts the columns
+   *
+   * @returns The sorted columns and an array with the new index order
+   */
+  private sortColumns(): { columns: string[]; order: number[] } {
+    const { columns } = this;
+    const indexedColumns = columns.map((col, index) => [index + 2, col] as const);
+    indexedColumns.sort((a, b) => (a[1] <= b[1] ? -1 : 1));
+    return {
+      columns: indexedColumns.map((item) => item[1]),
+      order: indexedColumns.map((item) => item[0]),
+    };
+  }
+
+  /**
+   * Sorts the row data
+   *
+   * @param order The new column order
+   * @returns Rows with data sorted in the new column order
+   */
+  private sortRows(order: number[]): CellSummaryAggregateRow[] {
+    return this.rows.map((row) => {
+      const sorted: CellSummaryAggregateRow = [row[0], row[1]];
+      for (let index = 2; index < row.length; index++) {
+        if (row[index] !== undefined) {
+          const newIndex = order[index - 2];
+          sorted[newIndex] = row[index];
+        }
+      }
+
+      return sorted;
+    });
   }
 
   /**
