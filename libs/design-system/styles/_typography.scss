@@ -98,3 +98,28 @@ $overrides: (
   label-small-tracking: 0rem,
   label-small-weight: 500,
 );
+
+@mixin custom-variants() {
+  // Body splash
+  --sys-body-splash: 400 1.125rem / 1.6875rem #{$_plain};
+  --sys-body-splash-font: #{$_plain};
+  --sys-body-splash-line-height: 1.6875rem;
+  --sys-body-splash-size: 1.125rem;
+  --sys-body-splash-tracking: 0.0313rem;
+  --sys-body-splash-weight: 400;
+
+  // Wordmark
+  --sys-wordmark-large: 400 1.5625rem / 2.25rem #{$_brand};
+  --sys-wordmark-large-font: #{$_brand};
+  --sys-wordmark-large-line-height: 2.25rem;
+  --sys-wordmark-large-size: 1.5625rem;
+  --sys-wordmark-large-tracking: 0.00625rem;
+  --sys-wordmark-large-weight: 400;
+
+  --sys-wordmark-small: 400 0.75rem / 1.125rem #{$_brand};
+  --sys-wordmark-small-font: #{$_brand};
+  --sys-wordmark-small-line-height: 1.125rem;
+  --sys-wordmark-small-size: 0.75rem;
+  --sys-wordmark-small-tracking: 0rem;
+  --sys-wordmark-small-weight: 400;
+}
