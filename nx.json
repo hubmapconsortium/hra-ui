@@ -81,11 +81,7 @@
           "params": "forward"
         }
       ],
-      "inputs": [
-        "production",
-        "^production",
-        "{projectRoot}/src/webcomponent-example.html"
-      ],
+      "inputs": ["production", "^production", "{projectRoot}/src/webcomponent-example.html"],
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}/wc.js",
         "{workspaceRoot}/dist/{projectRoot}/webcomponent-example.html"
