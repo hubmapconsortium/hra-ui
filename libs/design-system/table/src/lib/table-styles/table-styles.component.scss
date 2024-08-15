@@ -1,5 +1,8 @@
-:host {
+table[matSort] {
   --mat-sort-arrow-color: var(--sys-secondary);
+  --mat-table-background-color: white;
+  --mat-table-header-container-height: 2rem;
+  --mat-table-row-item-container-height: 2rem;
 
   th,
   tr > td {
@@ -10,7 +13,6 @@
   th {
     color: var(--sys-secondary);
     line-height: normal;
-    height: 2rem;
 
     &:focus-visible {
       outline: 2px solid var(--sys-tertiary);
@@ -21,9 +23,10 @@
     color: black;
   }
 
-  ::ng-deep .mat-sort-header-container {
+  .mat-sort-header-container {
     height: 1.5rem;
     border-bottom: 1px solid transparent;
+    max-width: 70px;
 
     &:focus-visible {
       border-color: var(--sys-secondary);
