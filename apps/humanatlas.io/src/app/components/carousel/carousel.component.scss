@@ -57,7 +57,7 @@
     width: unset;
     left: 20px;
     bottom: 0px;
-    position: relative;
+    position: absolute;
     display: inline-flex;
     z-index: 2;
   }
@@ -199,7 +199,6 @@
     .swiper-pagination-bullets.swiper-pagination-horizontal {
       width: unset;
       left: 19px;
-      top: 35rem;
     }
   }
 
@@ -218,7 +217,7 @@
     .swiper-pagination-bullets.swiper-pagination-horizontal {
       width: unset;
       left: 29px;
-      bottom: 0px;
+      bottom: 3px;
     }
   }
 }
