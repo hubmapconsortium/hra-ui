@@ -3,12 +3,12 @@
   [dataSource]="dataSource || null"
   matSort
   (matSortChange)="sortData($event)"
-  aria-label="Example table with sort function"
+  aria-label="Table with sort function"
 >
   @for (column of columns; track column) {
     <ng-container [matColumnDef]="column">
       <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by ' + column">
-        {{ column.charAt(0).toLocaleUpperCase() + column.slice(1) }}
+        {{ column | titlecase }}
       </th>
       <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
     </ng-container>

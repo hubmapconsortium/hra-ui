@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, input, ViewChild } from '@angular/core';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -14,7 +15,7 @@ export interface TableData {
   selector: 'hra-table',
   templateUrl: 'table.component.html',
   standalone: true,
-  imports: [MatTableModule, MatSortModule],
+  imports: [MatTableModule, MatSortModule, CommonModule],
 })
 export class TableComponent implements AfterViewInit {
   /** Unsorted data */
