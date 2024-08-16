@@ -324,25 +324,7 @@ const sourceReferences: SourceReference[] = [
 /**
  * Dummy data extract om Mock Data of tissue mock
  */
-const CELL_SUMMARY_DATA: CellSummary[] = Object.values(MOCK_SUMMARIES).map((summary) => ({
-  label: summary.label,
-  cellSource: summary.cellSource,
-  cells: summary.entries.map((entry) => ({
-    id: entry.cell.id as Iri,
-    label: entry.cell.label,
-  })),
-  biomarkers: summary.entries.map((entry) => ({
-    id: entry.biomarker.id as Iri,
-    label: entry.biomarker.label,
-  })),
-  summaries: summary.entries.map((entry) => ({
-    cell: entry.cell.id as Iri,
-    biomarker: entry.biomarker.id as Iri,
-    count: entry.count,
-    percentage: entry.percentage,
-    meanExpression: entry.meanExpression,
-  })),
-}));
+const CELL_SUMMARY_DATA: CellSummary[] = [];
 
 /**
 This class represents a mock implementation of the FtuDataService class.
