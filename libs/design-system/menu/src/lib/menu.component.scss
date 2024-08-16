@@ -1,5 +1,94 @@
-.hra-menu {
+.hra-nested-menu {
   --mat-menu-container-color: white;
   --mat-menu-container-shape: 0.5rem;
   --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-secondary) r g b / 0.16);
+  --mat-menu-item-with-icon-leading-spacing: 1rem;
+  --mat-menu-item-with-icon-trailing-spacing: 1rem;
+  --mat-menu-item-label-text-color: #464954;
+  --mat-menu-item-icon-color: #464954;
+  --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
+  --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
+
+  button {
+    min-width: 12rem;
+  }
+
+  .expand-arrow {
+    --mat-menu-item-spacing: 1rem;
+    position: absolute;
+    right: 0;
+  }
+
+  .mat-mdc-menu-submenu-icon {
+    display: none;
+  }
+
+  .mat-mdc-menu-item-highlighted {
+    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);
+    border-left: none;
+    border-right: none;
+  }
+
+  &.small {
+    --mat-menu-item-label-text-tracking: var(--sys-label-small-tracking);
+    --mat-menu-item-label-text-weight: var(--sys-label-small-weight);
+    --mat-menu-item-label-text-size: var(--sys-label-small-size);
+    --mat-menu-item-label-text-line-height: var(--sys-label-small-line-height);
+    --mat-menu-item-spacing: 0.5rem;
+    --mat-menu-item-icon-size: 1.25rem;
+
+    mat-icon {
+      font-size: 1.25rem;
+    }
+
+    .mat-mdc-menu-content {
+      padding: 0.25rem 0;
+    }
+
+    button {
+      min-height: 2.5rem;
+
+      &.expanded {
+        min-width: 10.5rem;
+      }
+    }
+  }
+
+  &.medium {
+    --mat-menu-item-label-text-tracking: var(--sys-label-medium-tracking);
+    --mat-menu-item-label-text-weight: var(--sys-label-medium-weight);
+    --mat-menu-item-label-text-size: var(--sys-label-medium-size);
+    --mat-menu-item-label-text-line-height: var(--sys-label-medium-line-height);
+
+    .mat-mdc-menu-content {
+      padding: 0.5rem 0;
+    }
+
+    button {
+      min-height: 3rem;
+
+      &.expanded {
+        min-width: 12.25rem;
+      }
+    }
+  }
+
+  &.large {
+    --mat-menu-item-label-text-tracking: var(--sys-label-large-tracking);
+    --mat-menu-item-label-text-weight: var(--sys-label-large-weight);
+    --mat-menu-item-label-text-size: var(--sys-label-large-size);
+    --mat-menu-item-label-text-line-height: var(--sys-label-large-line-height);
+
+    .mat-mdc-menu-content {
+      padding: 0.75rem 0;
+    }
+
+    button {
+      min-height: 3.5rem;
+
+      &.expanded {
+        min-width: 12.75rem;
+      }
+    }
+  }
 }

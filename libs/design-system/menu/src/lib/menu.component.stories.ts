@@ -2,7 +2,52 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { MenuComponent } from './menu.component';
+import { MenuComponent, MenuOption } from './menu.component';
+
+const exampleOptions: MenuOption[] = [
+  {
+    title: 'Downloads',
+    icon: 'download',
+    expandedOptions: [
+      {
+        title: 'Cells CSV',
+        icon: 'download',
+      },
+      {
+        title: 'Cell Links CSV',
+        icon: 'download',
+      },
+      {
+        title: 'Cells & Cell Links ZIP',
+        icon: 'download',
+      },
+      {
+        title: 'Color Map CSV',
+        icon: 'download',
+      },
+      {
+        title: 'Help',
+        icon: 'info',
+      },
+    ],
+  },
+  {
+    title: 'Full Screen',
+    icon: 'fullscreen',
+  },
+  {
+    title: 'Hide Cell Links',
+    icon: 'visibility_off',
+  },
+  {
+    title: 'Embed App',
+    icon: 'code',
+  },
+  {
+    title: 'Help',
+    icon: 'info',
+  },
+];
 
 const meta: Meta = {
   component: MenuComponent,
@@ -18,6 +63,16 @@ const meta: Meta = {
       providers: [provideAnimations(), provideDesignSystem()],
     }),
   ],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+    },
+  },
+  args: {
+    size: 'medium',
+    menuOptions: exampleOptions,
+  },
 };
 
 export default meta;

@@ -1,54 +1,41 @@
 <button
   mat-icon-button
   [matMenuTriggerFor]="options"
-  hraIconButtonSize="medium"
-  aria-label="Example icon-button with a menu"
+  [hraIconButtonSize]="size()"
+  aria-label="Icon to open nested menu"
 >
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<mat-menu #options="matMenu" class="hra-menu">
-  <button mat-menu-item [matMenuTriggerFor]="downloads">
-    <mat-icon>download</mat-icon>
-    Downloads
-  </button>
-  <button mat-menu-item>
-    <mat-icon>fullscreen</mat-icon>
-    Full Screen
-  </button>
-  <button mat-menu-item>
-    <mat-icon>visibility_off</mat-icon>
-    Hide Cell Links
-  </button>
-  <button mat-menu-item>
-    <mat-icon>code</mat-icon>
-    Embed App
-  </button>
-  <button mat-menu-item>
-    <mat-icon>info</mat-icon>
-    Help
-  </button>
+<mat-menu #options="matMenu" [class]="'hra-nested-menu ' + size()">
+  @for (option of menuOptions(); track option) {
+    @if (option.expandedOptions) {
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="submenu"
+        (mouseover)="setSubmenuOptions(option.expandedOptions)"
+        class="expanded"
+        matRipple
+        matRippleColor="#201E3D14"
+      >
+        <mat-icon>{{ option.icon }}</mat-icon>
+        <span>{{ option.title }}</span>
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+    } @else {
+      <button mat-menu-item>
+        <mat-icon>{{ option.icon }}</mat-icon>
+        <span>{{ option.title }}</span>
+      </button>
+    }
+  }
 </mat-menu>
 
-<mat-menu #downloads="matMenu" class="hra-menu">
-  <button mat-menu-item>
-    <mat-icon>download</mat-icon>
-    Cells CSV
-  </button>
-  <button mat-menu-item>
-    <mat-icon>download</mat-icon>
-    Cell Links CSV
-  </button>
-  <button mat-menu-item>
-    <mat-icon>download</mat-icon>
-    Cells & Cell Links ZIP
-  </button>
-  <button mat-menu-item>
-    <mat-icon>download</mat-icon>
-    Color Map CSV
-  </button>
-  <button mat-menu-item>
-    <mat-icon>info</mat-icon>
-    <span>Help</span>
-  </button>
+<mat-menu #submenu="matMenu" [class]="'hra-nested-menu ' + size()">
+  @for (suboption of suboptions; track suboption) {
+    <button mat-menu-item>
+      <mat-icon>{{ suboption.icon }}</mat-icon>
+      <span>{{ suboption.title }}</span>
+    </button>
+  }
 </mat-menu>
