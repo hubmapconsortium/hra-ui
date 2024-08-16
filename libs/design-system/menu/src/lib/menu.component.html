@@ -7,7 +7,7 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<mat-menu #options="matMenu">
+<mat-menu #options="matMenu" class="hra-menu">
   <button mat-menu-item [matMenuTriggerFor]="downloads">
     <mat-icon>download</mat-icon>
     Downloads
@@ -30,7 +30,7 @@
   </button>
 </mat-menu>
 
-<mat-menu #downloads="matMenu">
+<mat-menu #downloads="matMenu" class="hra-menu">
   <button mat-menu-item>
     <mat-icon>download</mat-icon>
     Cells CSV
