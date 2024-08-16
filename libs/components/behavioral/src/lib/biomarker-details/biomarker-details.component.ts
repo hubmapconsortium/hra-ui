@@ -69,7 +69,7 @@ export class BiomarkerDetailsComponent {
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
   /** Table tabs */
-  readonly tabs = selectSnapshot(CellSummarySelectors.aggregates);
+  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);
 
   /** Info to be shown on the tooltip for Gradient Legend */
   readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
@@ -112,6 +112,15 @@ export class BiomarkerDetailsComponent {
 
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
+
+  /** Table tabs */
+  get tabs(): CellSummaryAggregate[] {
+    const tabs = this.getTabs();
+    if (tabs.length !== 0) {
+      this.tabs_ = tabs;
+    }
+    return this.tabs_;
+  }
 
   /**
    * Gets tissue title from the list of tissues
@@ -159,6 +168,8 @@ export class BiomarkerDetailsComponent {
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Table tabs */
+  private tabs_: CellSummaryAggregate[] = [];
   /** Mapping items reference */
   private mapping_: IllustrationMappingItem[] = [];
   /** Illustration ids reference */
