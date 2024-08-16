@@ -6,45 +6,45 @@ import { MenuComponent, MenuOption } from './menu.component';
 
 const exampleOptions: MenuOption[] = [
   {
-    title: 'Downloads',
+    name: 'Downloads',
     icon: 'download',
     expandedOptions: [
       {
-        title: 'Cells CSV',
+        name: 'Cells CSV',
         icon: 'download',
       },
       {
-        title: 'Cell Links CSV',
+        name: 'Cell Links CSV',
         icon: 'download',
       },
       {
-        title: 'Cells & Cell Links ZIP',
+        name: 'Cells & Cell Links ZIP',
         icon: 'download',
       },
       {
-        title: 'Color Map CSV',
+        name: 'Color Map CSV',
         icon: 'download',
       },
       {
-        title: 'Help',
+        name: 'Help',
         icon: 'info',
       },
     ],
   },
   {
-    title: 'Full Screen',
+    name: 'Full Screen',
     icon: 'fullscreen',
   },
   {
-    title: 'Hide Cell Links',
+    name: 'Hide Cell Links',
     icon: 'visibility_off',
   },
   {
-    title: 'Embed App',
+    name: 'Embed App',
     icon: 'code',
   },
   {
-    title: 'Help',
+    name: 'Help',
     icon: 'info',
   },
 ];

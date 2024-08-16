@@ -11,21 +11,21 @@
   @for (option of menuOptions(); track option) {
     @if (option.expandedOptions) {
       <button
-        mat-menu-item
-        [matMenuTriggerFor]="submenu"
-        (mouseover)="setSubmenuOptions(option.expandedOptions)"
         class="expanded"
+        mat-menu-item
         matRipple
         matRippleColor="#201E3D14"
+        [matMenuTriggerFor]="submenu"
+        (mouseover)="suboptions = option.expandedOptions"
       >
         <mat-icon>{{ option.icon }}</mat-icon>
-        <span>{{ option.title }}</span>
+        <span>{{ option.name }}</span>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
     } @else {
       <button mat-menu-item>
         <mat-icon>{{ option.icon }}</mat-icon>
-        <span>{{ option.title }}</span>
+        <span>{{ option.name }}</span>
       </button>
     }
   }
@@ -35,7 +35,7 @@
   @for (suboption of suboptions; track suboption) {
     <button mat-menu-item>
       <mat-icon>{{ suboption.icon }}</mat-icon>
-      <span>{{ suboption.title }}</span>
+      <span>{{ suboption.name }}</span>
     </button>
   }
 </mat-menu>

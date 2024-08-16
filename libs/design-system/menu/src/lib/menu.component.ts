@@ -5,12 +5,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSize, IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
+/** Menu option interface */
 export interface MenuOption {
-  title: string;
+  /** Name of option */
+  name: string;
+  /** Material icon name */
   icon: string;
+  /** Options to open in a second menu */
   expandedOptions?: MenuOption[];
 }
 
+/**
+ * Nested Angular Material menu component
+ */
 @Component({
   selector: 'hra-menu',
   standalone: true,
@@ -21,13 +28,12 @@ export interface MenuOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
+  /** Menu size */
   readonly size = input<IconButtonSize>('medium');
 
+  /** List of menu options */
   readonly menuOptions = input<MenuOption[]>([]);
 
+  /** List of suboptions to display in the second menu */
   suboptions: MenuOption[] = [];
-
-  setSubmenuOptions(options: MenuOption[]) {
-    this.suboptions = options;
-  }
 }
