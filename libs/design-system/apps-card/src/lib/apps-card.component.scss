@@ -1,4 +1,5 @@
 :host {
+  display: block;
   a {
     display: grid;
     grid-template-areas: 'icon title' 'icon description';

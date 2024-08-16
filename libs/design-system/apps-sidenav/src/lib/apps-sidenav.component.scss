@@ -1,0 +1,31 @@
+:host {
+  display: block;
+
+  .container {
+    width: 640px;
+    height: auto;
+    font: var(--sys-headline-small);
+    --mat-sidenav-content-background-color: #ffffff;
+    --mat-sidenav-container-background-color: var(--mat-sidenav-content-background-color);
+    height: calc(100vw - 30rem);
+
+    .sidenav-title {
+      vertical-align: text-bottom;
+    }
+  }
+
+  .mat-sidenav-content {
+    overflow: hidden;
+  }
+
+  .apps-sidenav {
+    --mat-sidenav-container-width: 564px;
+    padding: 1rem;
+    border-radius: 0;
+
+    .card-category {
+      font: var(--sys-title-medium);
+      margin-top: 1rem;
+    }
+  }
+}
