@@ -30,15 +30,15 @@
   }
 
   &.small {
+    --mat-menu-item-icon-size: 1.25rem;
+    --mat-menu-item-spacing: 0.5rem;
     --mat-menu-item-label-text-tracking: var(--sys-label-small-tracking);
     --mat-menu-item-label-text-weight: var(--sys-label-small-weight);
     --mat-menu-item-label-text-size: var(--sys-label-small-size);
-    --mat-menu-item-label-text-line-height: var(--sys-label-small-line-height);
-    --mat-menu-item-spacing: 0.5rem;
-    --mat-menu-item-icon-size: 1.25rem;
+    --mat-menu-item-label-text-line-height: var(--mat-menu-item-icon-size);
 
     mat-icon {
-      font-size: 1.25rem;
+      font-size: var(--mat-menu-item-icon-size);
     }
 
     .mat-mdc-menu-content {

@@ -19,13 +19,13 @@
         (mouseover)="suboptions = option.expandedOptions"
       >
         <mat-icon>{{ option.icon }}</mat-icon>
-        <span>{{ option.name }}</span>
+        {{ option.name }}
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
     } @else {
       <button mat-menu-item>
         <mat-icon>{{ option.icon }}</mat-icon>
-        <span>{{ option.name }}</span>
+        {{ option.name }}
       </button>
     }
   }
