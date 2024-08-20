@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
+import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,6 +57,7 @@ import { initFactory } from './app.init';
       useValue: new ReplaySubject(1),
     },
     provideHttpClient(withInterceptorsFromDi()),
+    provideNothrowPlatformLocation(),
   ],
 })
 export class AppModule implements DoBootstrap {
