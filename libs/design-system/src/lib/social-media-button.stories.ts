@@ -56,7 +56,10 @@ export const SocialButton: Story = {
   render: (args) => ({
     props: args,
     template: `<a href="${SOCIAL_LINKS[args['name']]}" target="_blank" rel="noopener noreferrer">
-      <mat-icon [class.small]="${args['useSmall']}" svgIcon=social:${args['name'] + (args['useSmall'] ? '' : '_large')}></mat-icon>
+      <mat-icon
+        [class.small]="${args['useSmall']}"
+        svgIcon=social:${args['name'] + (args['useSmall'] ? '' : '_large')}
+      ></mat-icon>
     </a>`,
     styles: [
       `mat-icon {
@@ -72,28 +75,45 @@ export const SocialButton: Story = {
       }`,
       `a {
         --mat-icon-color: var(--sys-tertiary);
+
         &:hover {
           mat-icon {
             color: rgb(from var(--mat-icon-color) r g b / 0.92);
           }
         }
+
         &:active {
           mat-icon {
             color: rgb(from var(--mat-icon-color) r g b / 0.84);
           }
         }
+
         &:focus-visible {
           --mat-icon-color: white;
           outline: none;
 
           mat-icon {
-            border: 4px solid var(--sys-tertiary);
-
-            &.small {
-              border: 2px solid var(--sys-tertiary);
+            border: 0.25rem solid var(--sys-tertiary);
+            svg {
+              position: relative;
+              height: 3rem;
+              width: 3rem;
+              right: 0.25rem;
+              bottom: 0.25rem;
             }
           }
-          .has-contrast {
+
+          mat-icon.small {
+            border: 0.125rem solid var(--sys-tertiary);
+            svg {
+              height: 2.25rem;
+              width: 2.25rem;
+              right: 0.125rem;
+              bottom: 0.125rem;
+            }
+          }
+
+          .fill-contrast {
             fill: var(--sys-secondary);
           }
         }

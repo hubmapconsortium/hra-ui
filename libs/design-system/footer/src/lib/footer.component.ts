@@ -21,7 +21,7 @@ const SMALL_LOGO_THRESHOLD = 768;
 })
 export class FooterComponent {
   /** HRA Logo url */
-  readonly logo = input<string>('assets/logo/hra_logo.svg');
+  readonly logo = input<string>('assets/logo/hra_logo_contrast.svg');
 
   /** Uses smaller icons when screen is extra small */
   isExtraSmall = false;
