@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
+import { AppsCardComponent } from '../../../apps-card/src/index';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /** HuBMAP cards data */
