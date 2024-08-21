@@ -52,7 +52,7 @@ export class LinkCardsComponent implements OnInit {
     {
       body: '',
       buttonTitle: 'Paper',
-      buttonUrl: 'https://www.nature.com/articles/s41556-021-00788-6',
+      buttonUrl: 'https://www.biorxiv.org/content/10.1101/2024.03.27.587041',
     },
   ];
 
