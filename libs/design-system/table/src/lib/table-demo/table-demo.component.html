@@ -1,10 +1,4 @@
-<table
-  mat-table
-  [dataSource]="dataSource || null"
-  matSort
-  (matSortChange)="sortData($event)"
-  aria-label="Table with sort function"
->
+<table mat-table [dataSource]="dataSource" matSort aria-label="Table with sort function">
   @for (column of columns; track column) {
     <ng-container [matColumnDef]="column">
       <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by ' + column">

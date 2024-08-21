@@ -1,2 +1,2 @@
-export * from './lib/table.component';
+export * from './lib/table-demo/table-demo.component';
 export * from './lib/providers';

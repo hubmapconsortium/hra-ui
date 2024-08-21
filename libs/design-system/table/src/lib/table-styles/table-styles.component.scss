@@ -21,8 +21,8 @@ table[matSort] {
 
   .mat-sort-header-container {
     height: 1.5rem;
-    border-bottom: 1px solid transparent;
-    max-width: 70px;
+    border-bottom: 0.0625rem solid transparent;
+    max-width: 4.375rem;
 
     &:focus-visible {
       border-color: var(--sys-secondary);
@@ -38,16 +38,16 @@ table[matSort] {
 
       .mat-sort-header-pointer-left,
       .mat-sort-header-pointer-right {
-        width: 7px;
+        width: 0.4375rem;
       }
 
       .mat-sort-header-pointer-left {
-        left: -1px;
+        left: -0.0625rem;
         border-radius: 0.25rem 0 0 0.25rem;
       }
 
       .mat-sort-header-pointer-right {
-        right: -1px;
+        right: -0.0625rem;
         border-radius: 0 0.25rem 0.25rem 0;
       }
 
