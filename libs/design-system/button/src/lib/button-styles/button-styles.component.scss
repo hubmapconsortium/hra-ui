@@ -1,9 +1,12 @@
+@use '../../../../styles/icons';
+
 $corner-width: 0.9375rem;
 $corner-height: 0.8125rem;
 $border-width: 0.15rem;
 $x-multiplier: 0.373;
 $y-multiplier: 0.4566;
 
+a[mat-button],
 button[mat-button] {
   font: var(--sys-title-small);
   --mdc-text-button-label-text-color: #b20a2f;
@@ -21,11 +24,13 @@ button[mat-button] {
   }
 }
 
+a[mat-button].secondary-button,
 button[mat-button].secondary-button {
   --mat-text-button-state-layer-color: var(--sys-secondary);
   --mdc-text-button-label-text-color: var(--sys-secondary);
 }
 
+a[mat-flat-button],
 button[mat-flat-button] {
   font: var(--sys-title-small);
   --mdc-filled-button-container-shape: 0.25rem;
@@ -41,12 +46,14 @@ button[mat-flat-button] {
   }
 }
 
+a[mat-flat-button].secondary-button,
 button[mat-flat-button].secondary-button {
   --mdc-filled-button-label-text-color: #b20a2f;
   --mdc-filled-button-container-color: var(--sys-primary-container);
   --mat-filled-button-hover-state-layer-opacity: 0.08;
   --mat-filled-button-pressed-state-layer-opacity: 0.16;
   --mat-filled-button-state-layer-color: #b20a2f;
+  outline: solid 1px var(--sys-tertiary);
 
   &:focus-visible {
     --mat-filled-button-state-layer-color: var(--sys-primary-container);
@@ -54,6 +61,7 @@ button[mat-flat-button].secondary-button {
   }
 }
 
+a[mat-flat-button]:not(.secondary-button).cta-button,
 button[mat-flat-button]:not(.secondary-button).cta-button {
   --mdc-filled-button-container-shape: 0;
   clip-path: polygon(
@@ -84,12 +92,79 @@ button[mat-flat-button]:not(.secondary-button).cta-button {
   }
 }
 
-button[mat-flat-button].cta-button.secondary-button {
+:is(a, button)[mat-flat-button].cta-button.secondary-button {
   clip-path: unset;
   outline: unset;
   --mdc-filled-button-container-shape: 0;
 
   &:focus-visible {
     outline: solid 2px var(--sys-tertiary);
+  }
+}
+
+// Toggle Button
+mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-checked:not(.nav-cat-button)
+  .mat-button-toggle-label-content::before {
+  @extend .material-symbols-outlined;
+  content: 'check';
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  --mat-standard-button-toggle-shape: 0;
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;
+  --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+  border: none;
+  font: var(--sys-title-small);
+
+  .mat-button-toggle-label-content {
+    padding: 0 1rem;
+  }
+
+  &:active {
+    .mat-button-toggle-focus-overlay {
+      opacity: 0.08;
+    }
+  }
+
+  &:focus-visible,
+  &.cdk-keyboard-focused {
+    --mat-standard-button-toggle-focus-state-layer-opacity: 0;
+    outline: solid 2px var(--sys-tertiary);
+  }
+
+  &.mat-button-toggle-checked:not(.nav-cat-button) {
+    --mat-standard-button-toggle-selected-state-text-color: var(--sys-on-primary);
+    background-color: var(--sys-tertiary);
+  }
+}
+
+// nav cat button
+mat-button-toggle.mat-button-toggle-standalone.nav-cat-button .mat-button-toggle-label-content::after {
+  @extend .material-symbols-outlined;
+  content: 'keyboard_arrow_down';
+  vertical-align: middle;
+}
+
+// nav cat button
+mat-button-toggle.mat-button-toggle-checked.nav-cat-button .mat-button-toggle-label-content::after {
+  transform: rotate(180deg);
+}
+
+// nav cat button
+mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
+  font: var(--sys-title-small);
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0;
+  :is(:hover, :active) {
+    .label {
+      border-bottom: solid 1px var(--sys-tertiary);
+    }
+  }
+
+  &:active {
+    .mat-button-toggle-focus-overlay {
+      opacity: 0;
+    }
   }
 }

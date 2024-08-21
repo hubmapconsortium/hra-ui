@@ -1,7 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideButtons } from '../../button/src/lib/providers';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
 
 /**
  * Returns design system providers
@@ -14,6 +16,8 @@ export function provideDesignSystem(): EnvironmentProviders {
         defaultClasses: ['material-symbols-rounded'],
       },
     }),
+    provideButtons(),
     provideIconButtons(),
+    provideScrolling(),
   ]);
 }
