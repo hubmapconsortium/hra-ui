@@ -1,6 +1,5 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, DoBootstrap, Injector, NgModule } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +12,6 @@ import { NgxsModule } from '@ngxs/store';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
 import { ReplaySubject } from 'rxjs';
-
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,14 +56,4 @@ import { initFactory } from './app.init';
     provideHttpClient(withInterceptorsFromDi()),
   ],
 })
-export class AppModule implements DoBootstrap {
-  constructor(private readonly injector: Injector) {}
-
-  ngDoBootstrap(): void {
-    const FtuWebComponent = createCustomElement(AppComponent, {
-      injector: this.injector,
-    });
-
-    customElements.define('hra-ftu-ui', FtuWebComponent);
-  }
-}
+export class AppModule {}

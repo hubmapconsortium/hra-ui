@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { FooterComponent } from '@hra-ui/design-system/footer';
+import { HeaderComponent } from './components/header/header.component';
 
 /**
  * App Component
@@ -13,4 +13,9 @@ import { FooterComponent } from '@hra-ui/design-system/footer';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  /** Initialize app */
+  constructor() {
+    inject(Router).initialNavigation();
+  }
+}
