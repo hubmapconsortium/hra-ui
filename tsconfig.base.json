@@ -86,6 +86,9 @@
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"
       ],
+      "@hra-ui/design-system/tree": [
+        "libs/design-system/tree/src/index.ts"
+      ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
       ],

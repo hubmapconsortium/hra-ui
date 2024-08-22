@@ -1,0 +1,53 @@
+mat-tree {
+  --mat-tree-node-text-font: 'Metropolis';
+  --mat-tree-node-text-weight: 500;
+  width: 248px;
+  --mat-tree-container-background-color: white;
+}
+
+.tree-invisible {
+  display: none;
+}
+
+mat-tree ul,
+mat-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+* This padding sets alignment of the nested nodes.
+*/
+mat-tree .mat-nested-tree-node > div[role='group'] {
+  padding-left: var(--nest-padding);
+}
+
+div[role='group'] > .mat-tree-node {
+  padding-left: var(--node-padding-left);
+}
+
+mat-tree-node,
+.mat-tree-node {
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  &.selected {
+    color: white;
+    background: var(--sys-tertiary) !important;
+
+    mat-icon {
+      --mat-icon-color: white;
+    }
+  }
+  &:hover {
+    background: rgb(from var(--sys-secondary) r g b / 0.04);
+  }
+  &:active {
+    background: rgb(from var(--sys-secondary) r g b / 0.08);
+  }
+  &:focus {
+    background: rgb(from var(--sys-secondary) r g b / 0.04);
+    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);
+  }
+}
