@@ -41,7 +41,7 @@ const TREE_DATA: FoodNode[] = [
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <div class="mat-tree-node" matTreeNodeToggle>
           <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
+            <mat-icon>
               {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
           </button>

@@ -1,7 +1,6 @@
 mat-tree {
   --mat-tree-node-text-font: 'Metropolis';
   --mat-tree-node-text-weight: 500;
-  width: 248px;
   --mat-tree-container-background-color: white;
 }
 
@@ -24,7 +23,7 @@ mat-tree .mat-nested-tree-node > div[role='group'] {
 }
 
 div[role='group'] > .mat-tree-node {
-  padding-left: var(--node-padding-left);
+  padding-left: var(--leaf-padding-left);
 }
 
 mat-tree-node,
