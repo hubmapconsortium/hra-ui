@@ -9,7 +9,7 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     '@storybook/addon-designs',
     'storybook-addon-pseudo-states',
-    '@chromatic-com/storybook'
+    '@chromatic-com/storybook',
   ],
 
   framework: {
@@ -23,7 +23,7 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
 
-  docs: {}
+  docs: {},
 };
 
 export default config;
