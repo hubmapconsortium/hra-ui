@@ -1,12 +1,12 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" [hraTreeSize]="size()">
-  <mat-tree-node *matTreeNodeDef="let node" [class.selected]="activeNode === node" (click)="selectNode(node)">
+  <mat-tree-node *matTreeNodeDef="let node" [class.selected]="activeNode === node" (click)="activeNode = node">
     {{ node.name }}
   </mat-tree-node>
 
   <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <div class="mat-tree-node" matTreeNodeToggle [cdkTreeNodeTypeaheadLabel]="node.name">
+    <div class="mat-tree-node" matTreeNodeToggle>
       <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name">
-        <mat-icon> {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }} </mat-icon>
+        <mat-icon> {{ treeControl.isExpanded(node) ? 'expand_more' : 'expand_less' }} </mat-icon>
       </button>
       {{ node.name }}
     </div>
