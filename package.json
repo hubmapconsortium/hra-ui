@@ -36,7 +36,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@google/model-viewer": "^3.5.0",
-    "@hra-api/ng-client": "^0.8.1",
+    "@hra-api/ng-client": "^0.10.0",
     "@loaders.gl/3d-tiles": "~3.2.10",
     "@loaders.gl/core": "~3.2.10",
     "@loaders.gl/draco": "~3.2.10",
