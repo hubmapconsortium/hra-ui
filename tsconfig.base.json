@@ -38,6 +38,9 @@
       "@hra-ui/cdk/injectors": [
         "libs/cdk/injectors/src/index.ts"
       ],
+      "@hra-ui/cdk/platform-location": [
+        "libs/cdk/platform-location/src/index.ts"
+      ],
       "@hra-ui/cdk/state": [
         "libs/cdk/state/src/index.ts"
       ],
