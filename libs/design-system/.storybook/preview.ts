@@ -1,7 +1,7 @@
 import { Preview } from '@storybook/angular';
 
 const preview: Preview = {
-  tags: ['autodocs', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {
     backgrounds: {
       values: [
