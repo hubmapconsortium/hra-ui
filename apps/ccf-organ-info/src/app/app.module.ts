@@ -1,7 +1,5 @@
-import { DoBootstrap, Injector, NgModule } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -14,14 +12,4 @@ import { StatsListModule } from './modules/stats-list/stats-list.module';
   declarations: [AppComponent, AppWebComponent],
   providers: [],
 })
-export class AppModule implements DoBootstrap {
-  constructor(private readonly injector: Injector) {}
-
-  ngDoBootstrap(): void {
-    const appElement = createCustomElement(AppWebComponent, {
-      injector: this.injector,
-    });
-
-    customElements.define('ccf-organ-info', appElement);
-  }
-}
+export class AppModule {}

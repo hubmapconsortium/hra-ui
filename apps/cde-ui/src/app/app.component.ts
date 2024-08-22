@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
@@ -27,4 +27,9 @@ export class AppComponent {
     width: SCREEN_SIZE_NOTICE_MAX_WIDTH,
     height: SCREEN_SIZE_NOTICE_MAX_HEIGHT,
   });
+
+  /** Initialize app */
+  constructor() {
+    inject(Router).initialNavigation();
+  }
 }

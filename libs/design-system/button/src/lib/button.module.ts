@@ -6,6 +6,8 @@ import { CallToActionButtonDirective } from './directives/call-to-action-button.
 import { PrimaryButtonDirective } from './directives/primary-button.directive';
 import { SecondaryButtonDirective } from './directives/secondary-button.directive';
 import { NavigationCategoryButtonDirective } from './directives/navigation-category-button.directive';
+import { NavigationItemButtonDirective } from './directives/nav-item-button.directive';
+import { ButtonSizeDirective } from './button-size/button-size.directive';
 
 /** Module exporting button and related utilities */
 @NgModule({
@@ -14,6 +16,8 @@ import { NavigationCategoryButtonDirective } from './directives/navigation-categ
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
+    NavigationItemButtonDirective,
+    ButtonSizeDirective,
   ],
   exports: [
     MatButtonModule,
@@ -22,6 +26,8 @@ import { NavigationCategoryButtonDirective } from './directives/navigation-categ
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
+    NavigationItemButtonDirective,
+    ButtonSizeDirective,
   ],
 })
 export class ButtonModule {}

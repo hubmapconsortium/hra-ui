@@ -23,47 +23,105 @@ export default meta;
 type Story = StoryObj;
 
 export const BasicPrimary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <a mat-button disableRipple href="https://humanatlas.io" target="_blank">Button
+    <a mat-button disableRipple href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}"
+    >Button
     </a>
     `,
   }),
 };
 
 export const BasicSecondary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <a mat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank">Button
+    <a mat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}">Button
     </a>
     `,
   }),
 };
 
 export const FlatPrimary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <a mat-flat-button disableRipple hraPrimaryButton href="https://humanatlas.io" target="_blank">Button
+    <a mat-flat-button disableRipple hraPrimaryButton href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}"
+    >Button
     </a>
     `,
   }),
 };
 
 export const FlatSecondary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <a mat-flat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank">Button
+    <a mat-flat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}"
+    >Button
     </a>
     `,
   }),
 };
 
 export const CtaFlatPrimary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
     <a mat-flat-button disableRipple hraCallToActionButton hraPrimaryButton
-    href="https://humanatlas.io" target="_blank">Button
-    <mat-icon class="material-symbols-outlined" iconPositionEnd>arrow_forward</mat-icon>
+    href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}">Button
+    <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
     `,
     styles: [
@@ -75,11 +133,22 @@ export const CtaFlatPrimary: Story = {
 };
 
 export const CtaFlatSecondary: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
     <button mat-flat-button disableRipple hraCallToActionButton hraSecondaryButton
-    href="https://humanatlas.io" target="_blank">Button
-    <mat-icon class="material-symbols-outlined" iconPositionEnd>arrow_forward</mat-icon>
+    href="https://humanatlas.io" target="_blank"
+    hraButtonSize="${args['size']}">Button
+    <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
     styles: [
@@ -91,10 +160,17 @@ export const CtaFlatSecondary: Story = {
 };
 
 export const ToggleButton: Story = {
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
-      <mat-button-toggle value="bold" disableRipple [disabled]=disabled>
+      <mat-button-toggle value="bold" disableRipple [disabled]=disabled
+      hraButtonSize="${args['size']}">
       Button
       </mat-button-toggle>
     `,
@@ -106,6 +182,7 @@ export const ToggleButton: Story = {
   }),
   args: {
     disabled: false,
+    size: 'large',
   },
 };
 
@@ -122,5 +199,28 @@ export const NavigationCategoryButton: Story = {
         margin-right: 0.25rem;
       }`,
     ],
+  }),
+};
+
+export const NavigationItemButton: Story = {
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['large', 'medium'],
+    },
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button mat-button disableRipple hraNavItemButton
+      hraButtonSize="${args['size']}">
+        <span class="label">
+          Button
+        </span>
+      </button>
+    `,
   }),
 };
