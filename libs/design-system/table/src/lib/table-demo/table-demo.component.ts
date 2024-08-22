@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, effect, input, viewChild } from '@angular/core';
+import { Component, effect, input, viewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
@@ -20,32 +20,24 @@ export interface TableDemoData {
   standalone: true,
   imports: [MatTableModule, MatSortModule, CommonModule],
 })
-export class TableDemoComponent implements AfterViewInit {
+export class TableDemoComponent {
   /** Unsorted data */
   readonly data = input<TableDemoData[]>([]);
 
-  /** Table data source */
-  dataSource = new MatTableDataSource(this.data());
-
-  /** Sorted data */
-  sortedData = this.data();
-
   /** Columns in table */
-  columns: string[] = [];
+  readonly columns: string[] = ['name', 'value'];
 
   /** Mat sort element */
-  sort = viewChild.required(MatSort);
+  readonly sort = viewChild.required(MatSort);
+
+  /** Table data source */
+  readonly dataSource = new MatTableDataSource<TableDemoData>([]);
 
   /** Sort data on load */
   constructor() {
     effect(() => {
+      this.dataSource.data = this.data();
       this.dataSource.sort = this.sort();
     });
-  }
-
-  /** Sets data source and gets column names after view init */
-  ngAfterViewInit() {
-    this.dataSource.data = this.data();
-    this.columns = Object.keys(this.data()[0]);
   }
 }
