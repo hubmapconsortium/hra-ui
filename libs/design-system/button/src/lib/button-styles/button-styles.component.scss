@@ -164,8 +164,14 @@ mat-button-toggle.mat-button-toggle-standalone.nav-cat-button .mat-button-toggle
   vertical-align: middle;
 }
 
-mat-button-toggle.mat-button-toggle-checked.nav-cat-button .mat-button-toggle-label-content::after {
-  transform: rotate(180deg);
+mat-button-toggle.mat-button-toggle-checked.nav-cat-button {
+  .mat-button-toggle-label-content::after {
+    transform: rotate(180deg);
+  }
+
+  .label {
+    border-bottom: solid 1px var(--sys-tertiary);
+  }
 }
 
 mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
