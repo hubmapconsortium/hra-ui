@@ -1,19 +1,17 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { DoBootstrap, Injector, NgModule } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
+import { NgModule } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
-import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
-
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DEFAULT_THEME } from '../app/core/services/theming/theming.service';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
 import { ResultsBrowserModule } from './modules/results-browser/results-browser/results-browser.module';
@@ -54,14 +52,4 @@ import { ViewerModule } from './shared/components/viewer/viewer.module';
     { provide: OverlayContainer, useExisting: AppRootOverlayContainer },
   ],
 })
-export class AppModule implements DoBootstrap {
-  constructor(private readonly injector: Injector) {}
-
-  ngDoBootstrap(): void {
-    const appElement = createCustomElement(AppWebComponent, {
-      injector: this.injector,
-    });
-
-    customElements.define('ccf-eui', appElement);
-  }
-}
+export class AppModule {}
