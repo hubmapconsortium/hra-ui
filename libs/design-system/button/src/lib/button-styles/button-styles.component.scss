@@ -21,8 +21,8 @@ $y-multiplier: 0.4566;
 :is(a, button)[mat-button] {
   min-width: unset;
   font: var(--sys-title-small);
-  --mdc-text-button-label-text-color: #b20a2f;
-  --mat-text-button-state-layer-color: #b20a2f;
+  --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
+  --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
   --mat-text-button-hover-state-layer-opacity: 0.04;
   --mat-text-button-pressed-state-layer-opacity: 0.08;
   --mat-text-button-focus-state-layer-opacity: 0;
@@ -51,17 +51,17 @@ $y-multiplier: 0.4566;
   padding: 0.5rem var(--mat-filled-button-horizontal-padding);
 
   &:focus-visible {
-    --mdc-filled-button-container-color: #ffffff;
+    --mdc-filled-button-container-color: var(--sys-on-primary);
     --mdc-filled-button-label-text-color: var(--sys-secondary);
     outline: solid 2px var(--sys-tertiary);
   }
 
   &.secondary-button {
-    --mdc-filled-button-label-text-color: #b20a2f;
+    --mdc-filled-button-label-text-color: var(--sys-on-tertiary-fixed);
     --mdc-filled-button-container-color: var(--sys-primary-container);
     --mat-filled-button-hover-state-layer-opacity: 0.08;
     --mat-filled-button-pressed-state-layer-opacity: 0.16;
-    --mat-filled-button-state-layer-color: #b20a2f;
+    --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
     outline: solid 2px var(--sys-tertiary);
 
     &:focus-visible {
@@ -89,7 +89,7 @@ $y-multiplier: 0.4566;
   &:focus-visible::after {
     content: '';
     position: absolute;
-    background-color: white;
+    background-color: var(--sys-on-primary);
     inset: 0;
     z-index: -1;
     clip-path: polygon(
@@ -171,7 +171,7 @@ mat-button-toggle.mat-button-toggle-checked.nav-cat-button .mat-button-toggle-la
 mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
   font: var(--sys-title-small);
   --mat-standard-button-toggle-hover-state-layer-opacity: 0;
-  --mat-standard-button-toggle-selected-state-background-color: white;
+  --mat-standard-button-toggle-selected-state-background-color: var(--sys-on-primary);
   :is(:hover, :active) {
     .label {
       border-bottom: solid 1px var(--sys-tertiary);
