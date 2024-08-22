@@ -38,6 +38,9 @@
       "@hra-ui/cdk/injectors": [
         "libs/cdk/injectors/src/index.ts"
       ],
+      "@hra-ui/cdk/platform-location": [
+        "libs/cdk/platform-location/src/index.ts"
+      ],
       "@hra-ui/cdk/state": [
         "libs/cdk/state/src/index.ts"
       ],
@@ -64,6 +67,9 @@
       ],
       "@hra-ui/design-system/app-logos": [
         "libs/design-system/app-logos/src/index.ts"
+      ],
+      "@hra-ui/design-system/apps-sidenav": [
+        "libs/design-system/apps-sidenav/src/index.ts"
       ],
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
