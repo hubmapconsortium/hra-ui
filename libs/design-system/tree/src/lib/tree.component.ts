@@ -37,8 +37,8 @@ export class TreeComponent implements AfterViewInit {
   /** Data source for nested tree */
   dataSource = new MatTreeNestedDataSource<TreeNode>();
 
-  /** Current active node */
-  activeNode?: TreeNode;
+  /** Current selected node */
+  selectedNode?: TreeNode;
 
   /** Checks if a node has children */
   hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;

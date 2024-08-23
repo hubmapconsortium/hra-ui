@@ -2,17 +2,11 @@ mat-tree {
   --mat-tree-node-text-font: 'Metropolis';
   --mat-tree-node-text-weight: 500;
   --mat-tree-container-background-color: white;
+  user-select: none;
 }
 
 .tree-invisible {
   display: none;
-}
-
-mat-tree ul,
-mat-tree li {
-  margin-top: 0;
-  margin-bottom: 0;
-  list-style-type: none;
 }
 
 /*
@@ -20,6 +14,18 @@ mat-tree li {
 */
 mat-tree .mat-nested-tree-node > div[role='group'] {
   padding-left: var(--nest-padding);
+}
+
+div[role='group'],
+mat-nested-tree-node,
+.mat-tree-node {
+  &:focus {
+    outline: rgb(from var(--sys-secondary) r g b / 0.32) auto 1px;
+  }
+
+  &:focus-visible {
+    outline: var(--sys-tertiary) auto 1px;
+  }
 }
 
 div[role='group'] > .mat-tree-node {
@@ -47,6 +53,5 @@ mat-tree-node,
   }
   &:focus {
     background: rgb(from var(--sys-secondary) r g b / 0.04);
-    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);
   }
 }
