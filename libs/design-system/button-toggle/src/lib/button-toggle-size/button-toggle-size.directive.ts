@@ -3,8 +3,11 @@ import { computed, Directive, input } from '@angular/core';
 /** Input options for icon button size */
 export type IconButtonSize = 'medium' | 'large';
 
+/** Interface for ButtonToggle Config */
 interface ButtonToggleConfig {
+  /** Line height of the button */
   lineHeight: number;
+  /** Font variable of the button toggle */
   font: string;
 }
 
