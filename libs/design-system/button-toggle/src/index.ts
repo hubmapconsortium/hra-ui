@@ -1,1 +1,1 @@
-export * from './lib/button-toggle.component';
+export * from './lib/providers';
