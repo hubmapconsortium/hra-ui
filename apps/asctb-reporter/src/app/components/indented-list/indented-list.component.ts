@@ -81,7 +81,7 @@ export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.indentTree) {
-      this.indentTree.treeControl.expandAll();
+      this.indentTree.treeControl?.expandAll();
     }
   }
 

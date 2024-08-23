@@ -23,7 +23,7 @@ export class DataLoaderService {
     initialValue: T,
     loaderToken: LoaderT,
     loaderOptions: FileLoaderOptions<InstanceType<LoaderT>>,
-    options?: Omit<ToSignalOptions, 'initialValue'>,
+    options?: Omit<ToSignalOptions<T>, 'initialValue'>,
   ): Signal<T> {
     const injector = options?.injector ?? inject(Injector);
     return runInInjectionContext(injector, () => {
