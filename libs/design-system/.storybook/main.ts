@@ -1,22 +1,29 @@
 import type { StorybookConfig } from '@storybook/angular';
 
 const config: StorybookConfig = {
-  stories: ['../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
+
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@storybook/addon-designs',
     'storybook-addon-pseudo-states',
+    '@chromatic-com/storybook',
   ],
+
   framework: {
     name: '@storybook/angular',
     options: {},
   },
+
   staticDirs: [{ from: './assets', to: 'assets' }],
+
   core: {
     disableTelemetry: true,
   },
+
+  docs: {},
 };
 
 export default config;
