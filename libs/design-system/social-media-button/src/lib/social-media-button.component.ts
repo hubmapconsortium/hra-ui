@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+
+/** Social media name type */
+export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email';
+/** Button size type */
+export type SocialMediaButtonSize = 'small' | 'large';
 
 /** All CNS links */
 const SOCIAL_LINKS: Record<string, string> = {
@@ -24,10 +29,15 @@ const SOCIAL_LINKS: Record<string, string> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {
-  /** Links to use */
-  readonly links = SOCIAL_LINKS;
   /** Button name */
-  name = input.required<string>();
-  /** If the button is small size */
-  isSmall = input.required<boolean>();
+  readonly name = input.required<SocialMediaName>();
+
+  /** Button size */
+  readonly size = input.required<SocialMediaButtonSize>();
+
+  /** Icon to display */
+  protected icon = computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`);
+
+  /** External link for button */
+  protected link = computed(() => SOCIAL_LINKS[this.name()]);
 }

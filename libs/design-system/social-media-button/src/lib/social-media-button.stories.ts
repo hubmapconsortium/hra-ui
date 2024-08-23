@@ -25,15 +25,16 @@ type Story = StoryObj<SocialMediaButtonComponent>;
 export const Default: Story = {
   args: {
     name: 'email',
-    isSmall: false,
+    size: 'large',
   },
   argTypes: {
     name: {
       control: 'select',
       options: ['email', 'facebook', 'instagram', 'linkedin', 'x', 'youtube'],
     },
-    isSmall: {
-      control: 'boolean',
+    size: {
+      control: 'select',
+      options: ['small', 'large'],
     },
   },
 };

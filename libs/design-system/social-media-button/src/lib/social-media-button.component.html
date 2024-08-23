@@ -1,3 +1,3 @@
-<a [href]="links[name()]" target="_blank" rel="noopener noreferrer">
-  <mat-icon [class.small]="isSmall()" [svgIcon]="'social:' + name() + (isSmall() ? '' : '_large')"></mat-icon>
+<a [href]="link()" target="_blank" rel="noopener noreferrer">
+  <mat-icon [class.small]="size() === 'small'" [svgIcon]="icon()"></mat-icon>
 </a>
