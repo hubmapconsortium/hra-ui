@@ -1,6 +1,7 @@
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { provideButtonToggle } from './providers';
+import { ToggleButtonSizeDirective } from './button-toggle-size/button-toggle-size.directive';
 const meta: Meta = {
   title: 'ButtonToggleComponent',
   parameters: {
@@ -14,7 +15,7 @@ const meta: Meta = {
       providers: [provideButtonToggle()],
     }),
     moduleMetadata({
-      imports: [MatButtonToggleModule],
+      imports: [MatButtonToggleModule, ToggleButtonSizeDirective],
     }),
   ],
 };
@@ -22,17 +23,29 @@ export default meta;
 type Story = StoryObj;
 
 export const SingleSelect: Story = {
-  render: () => ({
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['medium', 'large'],
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
     <h2>Single Select</h2>
-      <mat-button-toggle-group name="singleSelect" aria-label="Single Select">
+      <mat-button-toggle-group name="singleSelect" aria-label="Single Select"
+      hraButtonToggleSize="${args['size']}">
         <mat-button-toggle value="button1" checked>Button</mat-button-toggle>
         <mat-button-toggle value="button2">Button</mat-button-toggle>
         <mat-button-toggle value="button3">Button</mat-button-toggle>
       </mat-button-toggle-group>
 
       <h2>Multi Select</h2>
-      <mat-button-toggle-group multiple name="multiSelect" aria-label="Multi Select">
+      <mat-button-toggle-group multiple name="multiSelect" aria-label="Multi Select"
+      hraButtonToggleSize="${args['size']}">
         <mat-button-toggle value="button1" checked>Button</mat-button-toggle>
         <mat-button-toggle value="button2">Button</mat-button-toggle>
         <mat-button-toggle value="button3">Button</mat-button-toggle>
