@@ -2,14 +2,14 @@
   "name": "@hra-ui/dashboard",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "18.0.7",
-    "@angular/core": "18.0.7",
+    "@angular/common": "18.2.1",
+    "@angular/core": "18.2.1",
     "zod": "^3.22.4",
-    "@angular/material": "18.0.6",
-    "@angular/cdk": "18.0.6",
-    "@angular/router": "18.0.7",
+    "@angular/material": "18.2.1",
+    "@angular/cdk": "18.2.1",
+    "@angular/router": "18.2.1",
     "vega-embed": "^6.14.2",
-    "@angular/platform-browser": "18.0.7"
+    "@angular/platform-browser": "18.2.1"
   },
   "dependencies": {},
   "sideEffects": false
