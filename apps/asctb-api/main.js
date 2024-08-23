@@ -75,7 +75,7 @@ module.exports = require("path");
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupCSVRoutes = void 0;
+exports.setupCSVRoutes = setupCSVRoutes;
 const tslib_1 = __webpack_require__(1);
 const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
 const jsonld_1 = __webpack_require__(8);
@@ -210,7 +210,6 @@ function setupCSVRoutes(app) {
         console.log();
     }));
 }
-exports.setupCSVRoutes = setupCSVRoutes;
 
 
 /***/ }),
@@ -237,7 +236,12 @@ module.exports = require("papaparse");
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeASCTBDataWork = exports.makeASCTBData = exports.getHeaderRow = exports.findHeaderIndex = exports.buildMetadata = exports.normalizeCsvUrl = void 0;
+exports.buildMetadata = void 0;
+exports.normalizeCsvUrl = normalizeCsvUrl;
+exports.findHeaderIndex = findHeaderIndex;
+exports.getHeaderRow = getHeaderRow;
+exports.makeASCTBData = makeASCTBData;
+exports.makeASCTBDataWork = makeASCTBDataWork;
 const api_model_1 = __webpack_require__(11);
 const warnings_1 = __webpack_require__(12);
 const lookup_functions_1 = __webpack_require__(13);
@@ -253,7 +257,6 @@ function normalizeCsvUrl(url) {
     }
     return url;
 }
-exports.normalizeCsvUrl = normalizeCsvUrl;
 function setData(column, _columnNumber, row, value, warnings) {
     if (column.length > 1) {
         const arrayName = api_model_1.arrayNameMap[column[0]];
@@ -362,7 +365,6 @@ function findHeaderIndex(headerRow, data, firstColumnName) {
     }
     return headerRow;
 }
-exports.findHeaderIndex = findHeaderIndex;
 function validateHeaderRow(headerData, rowIndex, warnings) {
     let columnIndex = 0;
     headerData.forEach((value) => {
@@ -445,7 +447,6 @@ function getHeaderRow(data, omapHeader, asctbHeader, legacyOmapHeader) {
     }
     return undefined;
 }
-exports.getHeaderRow = getHeaderRow;
 function makeASCTBData(data) {
     const header = getHeaderRow(data, api_model_1.OMAP_HEADER_FIRST_COLUMN, api_model_1.ASCT_HEADER_FIRST_COLUMN, api_model_1.LEGACY_OMAP_HEADER_FIRST_COLUMN);
     if (header[0] === api_model_1.LEGACY_OMAP_HEADER_FIRST_COLUMN) {
@@ -468,7 +469,6 @@ function makeASCTBData(data) {
         throw new Error(`Header row, first column should be : ${api_model_1.ASCT_HEADER_FIRST_COLUMN} or ${api_model_1.OMAP_HEADER_FIRST_COLUMN}`);
     }
 }
-exports.makeASCTBData = makeASCTBData;
 function makeASCTBDataWork(data) {
     const headerRow = findHeaderIndex(0, data, api_model_1.ASCT_HEADER_FIRST_COLUMN);
     const columns = data[headerRow].map((col) => col
@@ -498,7 +498,6 @@ function makeASCTBDataWork(data) {
         warnings: [...warnings],
     };
 }
-exports.makeASCTBDataWork = makeASCTBDataWork;
 
 
 /***/ }),
@@ -507,7 +506,8 @@ exports.makeASCTBDataWork = makeASCTBDataWork;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Row = exports.Structure = exports.Reference = exports.createObject = exports.objectFieldMap = exports.arrayNameMap = exports.OMAP_HEADER_FIRST_COLUMN = exports.LEGACY_OMAP_HEADER_FIRST_COLUMN = exports.ASCT_HEADER_FIRST_COLUMN = exports.PROTEIN_PRESENCE = exports.OMAP_ORGAN = exports.BM_TYPE = exports.metadataNameMap = exports.metadataArrayFields = exports.TITLE_ROW_INDEX = exports.DELIMETER = void 0;
+exports.Row = exports.Structure = exports.Reference = exports.objectFieldMap = exports.arrayNameMap = exports.OMAP_HEADER_FIRST_COLUMN = exports.LEGACY_OMAP_HEADER_FIRST_COLUMN = exports.ASCT_HEADER_FIRST_COLUMN = exports.PROTEIN_PRESENCE = exports.OMAP_ORGAN = exports.BM_TYPE = exports.metadataNameMap = exports.metadataArrayFields = exports.TITLE_ROW_INDEX = exports.DELIMETER = void 0;
+exports.createObject = createObject;
 /* tslint:disable:variable-name */
 exports.DELIMETER = ';';
 exports.TITLE_ROW_INDEX = 0;
@@ -643,7 +643,6 @@ function createObject(name, structureType) {
             return new Structure(name, structureType);
     }
 }
-exports.createObject = createObject;
 class Reference {
     constructor(id) {
         this.id = id;
@@ -775,28 +774,29 @@ exports.WarningLabels = {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.guessIri = exports.fixOntologyId = exports.buildHGNCLink = exports.buildEntrezLink = exports.buildUniprotLink = exports.buildHGNCApiUrl = exports.buildASCTApiUrl = void 0;
+exports.buildASCTApiUrl = buildASCTApiUrl;
+exports.buildHGNCApiUrl = buildHGNCApiUrl;
+exports.buildUniprotLink = buildUniprotLink;
+exports.buildEntrezLink = buildEntrezLink;
+exports.buildHGNCLink = buildHGNCLink;
+exports.fixOntologyId = fixOntologyId;
+exports.guessIri = guessIri;
 const lookup_model_1 = __webpack_require__(14);
 function buildASCTApiUrl(id) {
     return `http://www.ebi.ac.uk/ols/api/terms/findByIdAndIsDefiningOntology?obo_id=${id}`;
 }
-exports.buildASCTApiUrl = buildASCTApiUrl;
 function buildHGNCApiUrl(id) {
     return `https://rest.genenames.org/fetch/hgnc_id/${id}`;
 }
-exports.buildHGNCApiUrl = buildHGNCApiUrl;
 function buildUniprotLink(id) {
     return `https://www.uniprot.org/uniprot/${id}`;
 }
-exports.buildUniprotLink = buildUniprotLink;
 function buildEntrezLink(id) {
     return `https://www.ncbi.nlm.nih.gov/gene/?term=${id}`;
 }
-exports.buildEntrezLink = buildEntrezLink;
 function buildHGNCLink(id) {
     return `http://identifiers.org/hgnc/${id}`;
 }
-exports.buildHGNCLink = buildHGNCLink;
 function fixOntologyId(id) {
     if ((id === null || id === void 0 ? void 0 : id.toLowerCase()) === 'n/a' || (id === null || id === void 0 ? void 0 : id.toLowerCase()) === 'not found') {
         return '';
@@ -813,7 +813,6 @@ function fixOntologyId(id) {
     id = id.replace(/[^A-Z0-9_:]+/g, '');
     return id;
 }
-exports.fixOntologyId = fixOntologyId;
 function guessIri(id) {
     const [code, idNumber] = id.split(':');
     if (idNumber) {
@@ -836,7 +835,6 @@ function guessIri(id) {
         return undefined;
     }
 }
-exports.guessIri = guessIri;
 
 
 /***/ }),
@@ -1007,7 +1005,7 @@ exports.OmapDataTransformer = OmapDataTransformer;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeJsonLdData = void 0;
+exports.makeJsonLdData = makeJsonLdData;
 const graph_model_1 = __webpack_require__(17);
 const lookup_functions_1 = __webpack_require__(13);
 var OwlType;
@@ -1257,7 +1255,6 @@ function makeJsonLdData(data, withSubclasses = true) {
         ],
     };
 }
-exports.makeJsonLdData = makeJsonLdData;
 
 
 /***/ }),
@@ -1335,7 +1332,7 @@ exports.Metadata = Metadata;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeOwlData = void 0;
+exports.makeOwlData = makeOwlData;
 const tslib_1 = __webpack_require__(1);
 const stream_1 = __webpack_require__(19);
 function makeOwlData(data) {
@@ -1363,7 +1360,6 @@ function makeOwlData(data) {
         });
     });
 }
-exports.makeOwlData = makeOwlData;
 
 
 /***/ }),
@@ -1384,7 +1380,10 @@ module.exports = require("@rdfjs-elements/formats-pretty");
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeGraphData = exports.buildgraphBM = exports.buildgraphCT = exports.buildgraphAS = void 0;
+exports.buildgraphAS = buildgraphAS;
+exports.buildgraphCT = buildgraphCT;
+exports.buildgraphBM = buildgraphBM;
+exports.makeGraphData = makeGraphData;
 const graph_model_1 = __webpack_require__(17);
 function buildgraphAS(data, graphData) {
     let id = -1;
@@ -1428,7 +1427,6 @@ function buildgraphAS(data, graphData) {
     delete graphData.nodes[0].parent;
     return id;
 }
-exports.buildgraphAS = buildgraphAS;
 function buildgraphCT(data, graphData, id) {
     data.forEach((row) => {
         const parentIndex = graphData.nodes.findIndex((i) => i.metadata.name === row.anatomical_structures[row.anatomical_structures.length - 1].name);
@@ -1461,7 +1459,6 @@ function buildgraphCT(data, graphData, id) {
     });
     return id;
 }
-exports.buildgraphCT = buildgraphCT;
 function buildgraphBM(data, graphData, id) {
     data.forEach((row) => {
         row.cell_types.forEach((structure) => {
@@ -1496,7 +1493,6 @@ function buildgraphBM(data, graphData, id) {
     });
     return id;
 }
-exports.buildgraphBM = buildgraphBM;
 function makeGraphData(data) {
     const graphData = { nodes: [], edges: [] };
     for (const row of data) {
@@ -1519,7 +1515,6 @@ function makeGraphData(data) {
     });
     return graphData;
 }
-exports.makeGraphData = makeGraphData;
 
 
 /***/ }),
@@ -1528,7 +1523,7 @@ exports.makeGraphData = makeGraphData;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeValidationReport = void 0;
+exports.makeValidationReport = makeValidationReport;
 const warnings_1 = __webpack_require__(12);
 function makeValidationReport(data) {
     // Output lines/data will be added here
@@ -1567,7 +1562,6 @@ function makeValidationReport(data) {
     }
     return lines.join('\n');
 }
-exports.makeValidationReport = makeValidationReport;
 
 
 /***/ }),
@@ -1576,7 +1570,7 @@ exports.makeValidationReport = makeValidationReport;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupGoogleSheetRoutes = void 0;
+exports.setupGoogleSheetRoutes = setupGoogleSheetRoutes;
 const tslib_1 = __webpack_require__(1);
 const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
 const papaparse_1 = tslib_1.__importDefault(__webpack_require__(9));
@@ -1649,7 +1643,6 @@ function setupGoogleSheetRoutes(app) {
         }
     }));
 }
-exports.setupGoogleSheetRoutes = setupGoogleSheetRoutes;
 
 
 /***/ }),
@@ -1685,7 +1678,7 @@ AS/1,AS/1/LABEL,AS/1/ID,AS/2.1,AS/2.1/LABEL,AS/2/ID,AS/3.2,AS/3.2/LABEL,AS/3.2/I
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupOntologyLookupRoutes = void 0;
+exports.setupOntologyLookupRoutes = setupOntologyLookupRoutes;
 const tslib_1 = __webpack_require__(1);
 const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
 const lookup_functions_1 = __webpack_require__(13);
@@ -1745,7 +1738,6 @@ function setupOntologyLookupRoutes(app) {
         }
     }));
 }
-exports.setupOntologyLookupRoutes = setupOntologyLookupRoutes;
 
 
 /***/ }),
@@ -1754,7 +1746,8 @@ exports.setupOntologyLookupRoutes = setupOntologyLookupRoutes;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupOpenApiSpecRoutes = exports.openApiRoute = exports.browserRoute = void 0;
+exports.openApiRoute = exports.browserRoute = void 0;
+exports.setupOpenApiSpecRoutes = setupOpenApiSpecRoutes;
 const browserRoute = (_req, res, _next) => {
     res.send(`<!doctype html>
     <html lang="en">
@@ -1782,7 +1775,6 @@ function setupOpenApiSpecRoutes(app) {
     app.get('/index.html', exports.browserRoute);
     app.get('/asctb-api-spec.yaml', exports.openApiRoute);
 }
-exports.setupOpenApiSpecRoutes = setupOpenApiSpecRoutes;
 
 
 /***/ }),
@@ -1791,7 +1783,7 @@ exports.setupOpenApiSpecRoutes = setupOpenApiSpecRoutes;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupPlaygroundRoutes = void 0;
+exports.setupPlaygroundRoutes = setupPlaygroundRoutes;
 const tslib_1 = __webpack_require__(1);
 const papaparse_1 = tslib_1.__importDefault(__webpack_require__(9));
 const const_1 = __webpack_require__(24);
@@ -1845,7 +1837,6 @@ function setupPlaygroundRoutes(app) {
         }
     }));
 }
-exports.setupPlaygroundRoutes = setupPlaygroundRoutes;
 
 
 /***/ }),
@@ -1854,7 +1845,7 @@ exports.setupPlaygroundRoutes = setupPlaygroundRoutes;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupStaticPageRoutes = void 0;
+exports.setupStaticPageRoutes = setupStaticPageRoutes;
 function setupStaticPageRoutes(app) {
     app.get('/graph', (_req, res) => {
         res.sendFile('assets/graph-vis/index.html', {
@@ -1867,7 +1858,6 @@ function setupStaticPageRoutes(app) {
         });
     });
 }
-exports.setupStaticPageRoutes = setupStaticPageRoutes;
 
 
 /***/ }),
@@ -1876,7 +1866,7 @@ exports.setupStaticPageRoutes = setupStaticPageRoutes;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.routeCache = void 0;
+exports.routeCache = routeCache;
 const tslib_1 = __webpack_require__(1);
 const memory_cache_1 = tslib_1.__importDefault(__webpack_require__(30));
 function routeCache(duration) {
@@ -1906,7 +1896,6 @@ function routeCache(duration) {
         }
     };
 }
-exports.routeCache = routeCache;
 
 
 /***/ }),
