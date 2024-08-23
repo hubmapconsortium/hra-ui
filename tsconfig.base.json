@@ -89,6 +89,9 @@
       "@hra-ui/design-system/scrolling/testing": [
         "libs/design-system/scrolling/testing/src/index.ts"
       ],
+      "@hra-ui/design-system/table": [
+        "libs/design-system/table/src/index.ts"
+      ],
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"
       ],
