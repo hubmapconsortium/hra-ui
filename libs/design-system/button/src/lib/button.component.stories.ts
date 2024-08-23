@@ -35,10 +35,7 @@ export const BasicPrimary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <a mat-button disableRipple href="https://humanatlas.io" target="_blank"
-    hraButtonSize="${args['size']}"
-    >Button
-    </a>
+      <button mat-button disableRipple hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
@@ -56,9 +53,7 @@ export const BasicSecondary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <a mat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank"
-    hraButtonSize="${args['size']}">Button
-    </a>
+      <button mat-button disableRipple hraSecondaryButton hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
@@ -76,10 +71,8 @@ export const FlatPrimary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <a mat-flat-button disableRipple hraPrimaryButton href="https://humanatlas.io" target="_blank"
-    hraButtonSize="${args['size']}"
-    >Button
-    </a>
+    <button mat-flat-button disableRipple
+    hraPrimaryButton hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
@@ -97,10 +90,8 @@ export const FlatSecondary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <a mat-flat-button disableRipple hraSecondaryButton href="https://humanatlas.io" target="_blank"
-    hraButtonSize="${args['size']}"
-    >Button
-    </a>
+    <button mat-flat-button disableRipple hraSecondaryButton
+    hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
@@ -118,11 +109,10 @@ export const CtaFlatPrimary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <a mat-flat-button disableRipple hraCallToActionButton hraPrimaryButton
-    href="https://humanatlas.io" target="_blank"
+    <button mat-flat-button disableRipple hraCallToActionButton hraPrimaryButton
     hraButtonSize="${args['size']}">Button
-    <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
     `,
     styles: [
       `mat-icon {
@@ -146,9 +136,8 @@ export const CtaFlatSecondary: Story = {
     props: args,
     template: `
     <button mat-flat-button disableRipple hraCallToActionButton hraSecondaryButton
-    href="https://humanatlas.io" target="_blank"
     hraButtonSize="${args['size']}">Button
-    <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
     styles: [
@@ -171,7 +160,7 @@ export const ToggleButton: Story = {
     template: `
       <mat-button-toggle value="bold" disableRipple [disabled]=disabled
       hraButtonSize="${args['size']}">
-      Button
+        Button
       </mat-button-toggle>
     `,
     styles: [
@@ -191,7 +180,7 @@ export const NavigationCategoryButton: Story = {
     props: args,
     template: `
       <mat-button-toggle value="bold" disableRipple hraNavCatButton>
-      <span class="label">Button</span>
+        <span class="label">Button</span>
       </mat-button-toggle>
     `,
     styles: [

@@ -62,11 +62,12 @@ $y-multiplier: 0.4566;
     --mat-filled-button-hover-state-layer-opacity: 0.08;
     --mat-filled-button-pressed-state-layer-opacity: 0.16;
     --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
-    outline: solid 2px var(--sys-tertiary);
+    outline: solid 1px var(--sys-tertiary);
 
     &:focus-visible {
       --mat-filled-button-state-layer-color: var(--sys-primary-container);
       --mdc-filled-button-label-text-color: var(--sys-secondary);
+      outline: solid 2px var(--sys-tertiary);
     }
   }
 }

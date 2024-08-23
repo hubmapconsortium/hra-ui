@@ -4,7 +4,7 @@ import { computed, Directive, input } from '@angular/core';
 export type ButtonSize = 'small' | 'medium' | 'large';
 
 /** Interface for button size and font variable */
-interface ButtonSizeAndFont {
+interface ButtonConfig {
   /** Size of the button */
   size: number;
   /** Font variable for the button */
@@ -14,7 +14,7 @@ interface ButtonSizeAndFont {
 }
 
 /** Record of button sizes (number in rem) */
-const BUTTON_SIZES: Record<string, ButtonSizeAndFont> = {
+const BUTTON_CONFIG: Record<ButtonSize, ButtonConfig> = {
   small: {
     size: 1.75,
     font: '--sys-label-small',
@@ -52,11 +52,11 @@ export class ButtonSizeDirective {
   readonly size = input.required<ButtonSize>({ alias: 'hraButtonSize' });
 
   /** Gets size of button in rem */
-  protected readonly buttonSize = computed(() => BUTTON_SIZES[this.size()].size);
+  protected readonly buttonSize = computed(() => BUTTON_CONFIG[this.size()].size);
 
   /** Gets the font variable for the current button size */
-  protected readonly fontVar = computed(() => `var(${BUTTON_SIZES[this.size()].font})`);
+  protected readonly fontVar = computed(() => `var(${BUTTON_CONFIG[this.size()].font})`);
 
   /** Gets the horizontal padding for the current button size */
-  protected readonly padding = computed(() => BUTTON_SIZES[this.size()].horizontalPadding);
+  protected readonly padding = computed(() => BUTTON_CONFIG[this.size()].horizontalPadding);
 }
