@@ -17,18 +17,26 @@ const meta: Meta = {
       imports: [MatButtonToggleModule],
     }),
   ],
+};
+export default meta;
+type Story = StoryObj;
+
+export const SingleSelect: Story = {
   render: () => ({
     template: `
-      <mat-button-toggle-group name="buttonCheck" aria-label="Font Style">
+    <h2>Single Select</h2>
+      <mat-button-toggle-group name="singleSelect" aria-label="Single Select">
         <mat-button-toggle value="button1" checked>Button</mat-button-toggle>
         <mat-button-toggle value="button2">Button</mat-button-toggle>
         <mat-button-toggle value="button3">Button</mat-button-toggle>
       </mat-button-toggle-group>
 
+      <h2>Multi Select</h2>
+      <mat-button-toggle-group multiple name="multiSelect" aria-label="Multi Select">
+        <mat-button-toggle value="button1" checked>Button</mat-button-toggle>
+        <mat-button-toggle value="button2">Button</mat-button-toggle>
+        <mat-button-toggle value="button3">Button</mat-button-toggle>
+      </mat-button-toggle-group>
     `,
   }),
 };
-export default meta;
-type Story = StoryObj;
-
-export const Default: Story = {};
