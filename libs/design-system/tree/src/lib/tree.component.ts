@@ -1,21 +1,28 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { AfterViewInit, ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ArrayDataSource } from '@angular/cdk/collections';
+import { AfterViewInit, ChangeDetectionStrategy, Component, computed, input, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
+import { MatTree, MatTreeModule } from '@angular/material/tree';
 
 import { TreeSize, TreeSizeDirective } from './tree-size/tree-size.directive';
 
-/** Tree node data */
-export interface TreeNode {
+/** Nested tree node data */
+export interface NestedNode {
   /** Name of node */
   name: string;
   /** List of child nodes */
-  children?: TreeNode[];
+  children?: NestedNode[];
 }
 
+/** Padding indents for each tree size (px) */
+const PADDING: Record<TreeSize, number> = {
+  small: 32,
+  medium: 36,
+  large: 40,
+};
+
 /**
- * Angular Material Tree component with HRA styles
+ * Angular Material nested tree component with HRA styles
  */
 @Component({
   selector: 'hra-tree',
@@ -25,26 +32,48 @@ export interface TreeNode {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent implements AfterViewInit {
-  /** Nested tree control */
-  readonly treeControl = new NestedTreeControl<TreeNode>((node) => node.children);
+  /** ViewChild for tree component */
+  @ViewChild(MatTree) tree!: MatTree<NestedNode>;
 
   /** Tree node data */
-  readonly treeData = input<TreeNode[]>([]);
+  readonly treeData = input<NestedNode[]>([]);
 
   /** Size of tree to use */
   readonly size = input<TreeSize>('medium');
 
-  /** Data source for nested tree */
-  dataSource = new MatTreeNestedDataSource<TreeNode>();
+  /** Padding indents */
+  protected readonly padding = computed(() => PADDING[this.size()]);
+
+  /** Data source */
+  dataSource = new ArrayDataSource<NestedNode>([]);
 
   /** Current selected node */
-  selectedNode?: TreeNode;
+  selectedNode?: NestedNode;
 
-  /** Checks if a node has children */
-  hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;
+  /** Gets the children of a node */
+  childrenAccessor = (dataNode: NestedNode) => dataNode.children ?? [];
 
-  /** Sets datasource data after view init */
+  /** If the node has a child */
+  hasChild = (_: number, node: NestedNode) => !!node.children?.length;
+
+  /** Sets dataSource data after view init */
   ngAfterViewInit() {
-    this.dataSource.data = this.treeData();
+    this.dataSource = new ArrayDataSource<NestedNode>(this.treeData());
+  }
+
+  /** Renders node if it is a root node or if all of its ancestors are expanded */
+  shouldRender(node: NestedNode): boolean {
+    const parent = this.getParentNode(node);
+    return !parent || (!!this.tree?.isExpanded(parent) && this.shouldRender(parent));
+  }
+
+  /** Gets parent of a node */
+  private getParentNode(node: NestedNode): NestedNode | undefined {
+    for (const parent of this.treeData()) {
+      if (parent.children?.includes(node)) {
+        return parent;
+      }
+    }
+    return undefined;
   }
 }

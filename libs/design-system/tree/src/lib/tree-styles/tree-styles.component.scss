@@ -5,53 +5,47 @@ mat-tree {
   user-select: none;
 }
 
-.tree-invisible {
-  display: none;
-}
-
-/*
-* This padding sets alignment of the nested nodes.
-*/
-mat-tree .mat-nested-tree-node > div[role='group'] {
-  padding-left: var(--nest-padding);
-}
-
-div[role='group'],
-mat-nested-tree-node,
-.mat-tree-node {
-  &:focus {
-    outline: rgb(from var(--sys-secondary) r g b / 0.32) auto 1px;
-  }
-
-  &:focus-visible {
-    outline: var(--sys-tertiary) auto 1px;
-  }
-}
-
-div[role='group'] > .mat-tree-node {
-  padding-left: var(--leaf-padding-left);
-}
-
-mat-tree-node,
-.mat-tree-node {
+mat-tree-node {
   border-radius: 0.25rem;
   cursor: pointer;
 
+  &:focus-visible {
+    outline: none;
+
+    .node-content {
+      outline: var(--sys-tertiary) auto 1px;
+      background: white !important;
+    }
+  }
+}
+
+.node-content {
+  display: flex;
+  height: var(--mat-tree-node-min-height);
+  line-height: var(--mat-tree-node-min-height);
+  border-radius: 0.25rem;
+  width: 100%;
+
+  &.leaf {
+    padding-left: var(--node-margin);
+  }
+
+  &:hover {
+    background: rgb(from var(--sys-secondary) r g b / 0.04);
+  }
+  &:active {
+    color: var(--sys-secondary) !important;
+    background: rgb(from var(--sys-secondary) r g b / 0.08) !important;
+  }
+  &:focus {
+    background: rgb(from var(--sys-secondary) r g b / 0.04);
+  }
   &.selected {
-    color: white;
+    color: white !important;
     background: var(--sys-tertiary) !important;
 
     mat-icon {
       --mat-icon-color: white;
     }
-  }
-  &:hover {
-    background: rgb(from var(--sys-secondary) r g b / 0.04);
-  }
-  &:active {
-    background: rgb(from var(--sys-secondary) r g b / 0.08);
-  }
-  &:focus {
-    background: rgb(from var(--sys-secondary) r g b / 0.04);
   }
 }

@@ -1,9 +1,9 @@
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '@hra-ui/design-system';
 
-import { TreeComponent, TreeNode } from './tree.component';
+import { NestedNode, TreeComponent } from './tree.component';
 
-const TREE_DATA: TreeNode[] = [
+const NESTED_DATA: NestedNode[] = [
   {
     name: 'Fruit',
     children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
@@ -39,7 +39,7 @@ const meta: Meta<TreeComponent> = {
   ],
   args: {
     size: 'large',
-    treeData: TREE_DATA,
+    treeData: NESTED_DATA,
   },
   argTypes: {
     size: {
