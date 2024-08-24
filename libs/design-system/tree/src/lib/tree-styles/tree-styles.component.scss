@@ -14,6 +14,7 @@ mat-tree-node {
 
     .node-content {
       outline: var(--sys-tertiary) auto 1px;
+      color: var(--sys-secondary) !important;
       background: white !important;
     }
   }
