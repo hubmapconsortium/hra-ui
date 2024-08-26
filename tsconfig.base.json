@@ -83,6 +83,9 @@
       "@hra-ui/design-system/icon-button": [
         "libs/design-system/icon-button/src/index.ts"
       ],
+      "@hra-ui/design-system/input": [
+        "libs/design-system/input/src/index.ts"
+      ],
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
       ],
