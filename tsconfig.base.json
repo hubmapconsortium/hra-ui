@@ -74,6 +74,9 @@
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
       ],
+      "@hra-ui/design-system/button": [
+        "libs/design-system/button/src/index.ts"
+      ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
@@ -91,6 +94,9 @@
       ],
       "@hra-ui/design-system/scrolling/testing": [
         "libs/design-system/scrolling/testing/src/index.ts"
+      ],
+      "@hra-ui/design-system/table": [
+        "libs/design-system/table/src/index.ts"
       ],
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"

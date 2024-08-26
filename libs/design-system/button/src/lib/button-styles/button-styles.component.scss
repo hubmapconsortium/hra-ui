@@ -1,0 +1,215 @@
+$corner-width: 0.9375rem;
+$corner-height: 0.8125rem;
+$border-width: 0.15rem;
+$x-multiplier: 0.373;
+$y-multiplier: 0.4566;
+
+@mixin material-symbols-rounded() {
+  font-family: 'Material Symbols Rounded';
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.5rem;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+// Basic Primary & Secondary
+:is(a, button)[mat-button] {
+  min-width: unset;
+  font: var(--sys-title-small);
+  --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
+  --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
+  --mat-text-button-hover-state-layer-opacity: 0.04;
+  --mat-text-button-pressed-state-layer-opacity: 0.08;
+  --mat-text-button-focus-state-layer-opacity: 0;
+  --mdc-text-button-container-shape: 0.25rem;
+  --mat-text-button-horizontal-padding: 1rem;
+  padding: 0.25rem var(--mat-text-button-horizontal-padding);
+
+  &:focus-visible {
+    outline: solid 2px var(--sys-tertiary);
+    --mdc-text-button-label-text-color: var(--sys-secondary);
+  }
+
+  &.secondary-button {
+    --mat-text-button-state-layer-color: var(--sys-secondary);
+    --mdc-text-button-label-text-color: var(--sys-secondary);
+  }
+}
+
+// Flat Primary & Secondary
+:is(a, button)[mat-flat-button] {
+  font: var(--sys-title-small);
+  --mdc-filled-button-container-shape: 0.25rem;
+  --mdc-filled-button-container-color: var(--sys-tertiary);
+  --mat-filled-button-horizontal-padding: 1rem;
+  --mat-filled-button-pressed-state-layer-opacity: 0.16;
+  padding: 0.5rem var(--mat-filled-button-horizontal-padding);
+
+  &:focus-visible {
+    --mdc-filled-button-container-color: var(--sys-on-primary);
+    --mdc-filled-button-label-text-color: var(--sys-secondary);
+    outline: solid 2px var(--sys-tertiary);
+  }
+
+  &.secondary-button {
+    --mdc-filled-button-label-text-color: var(--sys-on-tertiary-fixed);
+    --mdc-filled-button-container-color: var(--sys-primary-container);
+    --mat-filled-button-hover-state-layer-opacity: 0.08;
+    --mat-filled-button-pressed-state-layer-opacity: 0.16;
+    --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
+    outline: solid 1px var(--sys-tertiary);
+
+    &:focus-visible {
+      --mat-filled-button-state-layer-color: var(--sys-primary-container);
+      --mdc-filled-button-label-text-color: var(--sys-secondary);
+      outline: solid 2px var(--sys-tertiary);
+    }
+  }
+}
+
+// CTA Primary
+:is(a, button)[mat-flat-button]:not(.secondary-button).cta-button {
+  --mdc-filled-button-container-shape: 0;
+  clip-path: polygon(
+    /* Bottom left */ 0 100%,
+    /* Top left */ 0 0,
+    /* Top right */ 100% 0%,
+    /* Bottom right y-axis */ 100% calc(100% - $corner-height),
+    /* Bottom right x-axis */ calc(100% - $corner-width) 100%
+  );
+
+  &:focus-visible {
+    --mdc-filled-button-container-color: var(--sys-tertiary);
+  }
+
+  &:focus-visible::after {
+    content: '';
+    position: absolute;
+    background-color: var(--sys-on-primary);
+    inset: 0;
+    z-index: -1;
+    clip-path: polygon(
+      /* Bottom left */ $border-width calc(100% - $border-width),
+      /* Top left */ $border-width $border-width,
+      /* Top right */ calc(100% - $border-width) $border-width,
+      /* Bottom right y-axis */ calc(100% - $border-width) calc(100% - $corner-height - $border-width * $y-multiplier),
+      /* Bottom right x-axis */ calc(100% - $corner-width - $border-width * $x-multiplier) calc(100% - $border-width)
+    );
+  }
+}
+
+// CTA Secondary
+:is(a, button)[mat-flat-button].cta-button.secondary-button {
+  clip-path: unset;
+  outline: unset;
+  --mdc-filled-button-container-shape: 0;
+
+  &:focus-visible {
+    outline: solid 2px var(--sys-tertiary);
+  }
+}
+
+// Toggle
+mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-checked:not(.nav-cat-button)
+  .mat-button-toggle-label-content::before {
+  @include material-symbols-rounded();
+  content: 'check';
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  --mat-standard-button-toggle-shape: 0;
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;
+  --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+  border: none;
+  font: var(--sys-label-large);
+
+  .mat-button-toggle-label-content {
+    padding: 0 1rem;
+  }
+
+  &[hraButtonSize='medium'] {
+    .mat-button-toggle-label-content {
+      padding: 0 0.5rem;
+    }
+  }
+
+  &:active {
+    .mat-button-toggle-focus-overlay {
+      opacity: 0.08;
+    }
+  }
+
+  &:focus-visible,
+  &.cdk-keyboard-focused {
+    --mat-standard-button-toggle-focus-state-layer-opacity: 0;
+    outline: solid 2px var(--sys-tertiary);
+  }
+
+  &.mat-button-toggle-checked:not(.nav-cat-button) {
+    --mat-standard-button-toggle-selected-state-text-color: var(--sys-on-primary);
+    background-color: var(--sys-tertiary);
+  }
+}
+
+// Nav Cat
+mat-button-toggle.mat-button-toggle-standalone.nav-cat-button .mat-button-toggle-label-content::after {
+  @include material-symbols-rounded();
+  content: 'keyboard_arrow_down';
+  vertical-align: middle;
+}
+
+mat-button-toggle.mat-button-toggle-checked.nav-cat-button {
+  .mat-button-toggle-label-content::after {
+    transform: rotate(180deg);
+  }
+
+  .label {
+    border-bottom: solid 1px var(--sys-tertiary);
+  }
+}
+
+mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
+  font: var(--sys-title-small);
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0;
+  --mat-standard-button-toggle-selected-state-background-color: var(--sys-on-primary);
+  :is(:hover, :active) {
+    .label {
+      border-bottom: solid 1px var(--sys-tertiary);
+    }
+  }
+
+  .mat-button-toggle-label-content {
+    padding: 0 0.5rem;
+  }
+
+  &:active {
+    .mat-button-toggle-focus-overlay {
+      opacity: 0;
+    }
+  }
+}
+
+// Nav Item
+button[mat-button].nav-item-button {
+  --mat-text-button-hover-state-layer-opacity: 0;
+  --mat-text-button-pressed-state-layer-opacity: 0;
+  --mdc-text-button-container-shape: 0;
+  --mdc-text-button-label-text-color: var(--sys-secondary);
+
+  &:is(:hover, :active) {
+    .label {
+      border-bottom: solid 1px var(--sys-tertiary);
+    }
+  }
+
+  &:focus-visible {
+    outline: solid 2px var(--sys-tertiary);
+  }
+}
