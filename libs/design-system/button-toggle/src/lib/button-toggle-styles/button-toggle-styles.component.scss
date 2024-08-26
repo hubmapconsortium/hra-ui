@@ -3,6 +3,7 @@ mat-button-toggle-group {
   --mat-standard-button-toggle-divider-color: var(--sys-primary);
   --mat-standard-button-toggle-selected-state-background-color: var(--sys-tertiary);
   --mat-standard-button-toggle-selected-state-text-color: var(--sys-on-primary);
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;
   width: 100%;
 
   &.mat-button-toggle-group-appearance-standard {
@@ -12,11 +13,9 @@ mat-button-toggle-group {
 
   .mat-button-toggle {
     width: 100%;
-  }
 
-  &[hraButtonToggleSize='medium'] {
-    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
-      padding: 0.3438rem 1.15rem;
+    &:active {
+      --mat-standard-button-toggle-hover-state-layer-opacity: 0.08;
     }
   }
 
@@ -24,12 +23,21 @@ mat-button-toggle-group {
     padding: 0.5rem 1.15rem;
   }
 
+  .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
+    padding: 0.5rem 0.2rem;
+  }
+
   &[hraButtonToggleSize='medium'] {
+    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
+      padding: 0.3438rem 1.15rem;
+    }
+
     .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
       padding: 0.3438rem 0.2rem;
     }
-  }
-  .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
-    padding: 0.5rem 0.2rem;
+
+    .mat-button-toggle .mat-button-toggle-label-content {
+      vertical-align: middle;
+    }
   }
 }
