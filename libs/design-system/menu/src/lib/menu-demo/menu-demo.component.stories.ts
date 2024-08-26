@@ -2,9 +2,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { MenuComponent, MenuOption } from './menu.component';
+import { MenuDemoComponent, MenuDemoOption } from './menu-demo.component';
 
-const exampleOptions: MenuOption[] = [
+const exampleOptions: MenuDemoOption[] = [
   {
     name: 'Downloads',
     icon: 'download',
@@ -49,9 +49,9 @@ const exampleOptions: MenuOption[] = [
   },
 ];
 
-const meta: Meta = {
-  component: MenuComponent,
-  title: 'MenuComponent',
+const meta: Meta<MenuDemoComponent> = {
+  component: MenuDemoComponent,
+  title: 'Menu',
   parameters: {
     design: {
       type: 'figma',
@@ -76,6 +76,6 @@ const meta: Meta = {
 };
 
 export default meta;
-type Story = StoryObj<MenuComponent>;
+type Story = StoryObj<MenuDemoComponent>;
 
 export const Primary: Story = {};
