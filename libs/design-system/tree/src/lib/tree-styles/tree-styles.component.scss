@@ -36,6 +36,7 @@ mat-tree-node {
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
+  color: var(--sys-secondary);
 
   &.leaf {
     padding-left: var(--node-margin);
@@ -46,8 +47,8 @@ mat-tree-node {
   }
 
   &:active {
-    color: var(--sys-secondary);
-    background: rgb(from var(--sys-secondary) r g b / 0.08);
+    background: rgb(from var(--sys-secondary) r g b / 0.08) !important;
+    border-color: transparent !important;
   }
 
   &.selected {
