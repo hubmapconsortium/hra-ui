@@ -19,28 +19,45 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Primary: Story = {
+export const FloatingFill: Story = {
   args: {},
   render: () => ({
     template: `
-      <h2>Floating Fill</h2>
       <mat-form-field>
         <mat-label>Input</mat-label>
         <input matInput>
       </mat-form-field>
+    `,
+  }),
+};
 
-      <h2>Floating Outlined</h2>
+export const FloatingOutlined: Story = {
+  args: {},
+  render: () => ({
+    template: `
       <mat-form-field appearance="outline">
         <mat-label>Input</mat-label>
         <input matInput>
       </mat-form-field>
+    `,
+  }),
+};
 
-      <h2>Non Floating Fill</h2>
+export const NonFloatingFill: Story = {
+  args: {},
+  render: () => ({
+    template: `
       <mat-form-field [placeHolder]="'Test'">
         <input matInput placeholder="Placeholder">
       </mat-form-field>
+    `,
+  }),
+};
 
-      <h2>Non Floating Outlined</h2>
+export const NonFloatingOutlined: Story = {
+  args: {},
+  render: () => ({
+    template: `
       <mat-form-field appearance="outline">
         <input matInput placeholder="Placeholder">
       </mat-form-field>

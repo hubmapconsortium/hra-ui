@@ -1,0 +1,41 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="options"
+  [hraIconButtonSize]="size()"
+  aria-label="Icon to open nested menu"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #options="matMenu" [class]="'hra-nested-menu ' + size()">
+  @for (option of menuOptions(); track option) {
+    @if (option.expandedOptions) {
+      <button
+        class="expanded"
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        [matMenuTriggerFor]="submenu"
+        (mouseover)="suboptions = option.expandedOptions"
+      >
+        <mat-icon>{{ option.icon }}</mat-icon>
+        {{ option.name }}
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+    } @else {
+      <button mat-menu-item>
+        <mat-icon>{{ option.icon }}</mat-icon>
+        {{ option.name }}
+      </button>
+    }
+  }
+</mat-menu>
+
+<mat-menu #submenu="matMenu" [class]="'hra-nested-menu ' + size()">
+  @for (suboption of suboptions; track suboption) {
+    <button mat-menu-item>
+      <mat-icon>{{ suboption.icon }}</mat-icon>
+      <span>{{ suboption.name }}</span>
+    </button>
+  }
+</mat-menu>

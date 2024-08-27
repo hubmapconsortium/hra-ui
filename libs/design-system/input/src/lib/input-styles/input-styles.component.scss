@@ -1,5 +1,5 @@
-.mat-mdc-form-field {
-  font-family: 'Metropolis';
+mat-form-field.mat-mdc-form-field {
+  font-family: var(--sys-title-small-font);
   --mdc-filled-text-field-container-color: var(--sys-surface-container);
   --mdc-outlined-text-field-outline-color: var(--sys-outline-variant);
   --mdc-outlined-text-field-focus-outline-color: var(--sys-tertiary);
