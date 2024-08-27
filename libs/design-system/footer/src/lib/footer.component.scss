@@ -45,7 +45,6 @@
       justify-content: space-between;
       column-gap: 6rem;
       row-gap: 2rem;
-      max-width: 57.75rem;
       margin-bottom: 2rem;
 
       .social-media {
@@ -57,6 +56,9 @@
       }
 
       .funded-by {
+        width: 100%;
+        max-width: 448px;
+
         span {
           display: block;
           font: var(--sys-label-large);
@@ -66,11 +68,12 @@
 
         .funded-logo {
           display: flex;
-          align-items: center;
-          gap: 2rem;
+          justify-content: space-between;
 
-          img {
+          img,
+          .spacer {
             height: 3rem;
+            width: 3rem;
           }
         }
       }
@@ -106,6 +109,64 @@
 
       .disclaimer {
         margin: 2rem 2rem 2.5rem 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 430px) {
+    .footer-left {
+      .footer-left-content {
+        padding: 2rem max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
+        row-gap: max(16px, calc((8 * (100vw - 320px)) / 110 + 16px));
+      }
+
+      .copyright {
+        font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
+        line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
+      }
+
+      img {
+        width: max(208px, calc((38 * (100vw - 320px)) / 110 + 208px));
+      }
+    }
+
+    .footer-right {
+      .social-funded {
+        flex-direction: column;
+        margin: max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px))
+          0 max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
+
+        ::ng-deep hra-social-media-button {
+          mat-icon,
+          mat-icon > svg {
+            height: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+            width: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+          }
+        }
+
+        .funded-by {
+          span {
+            font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
+            line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
+            margin-bottom: max(8px, calc((4 * (100vw - 320px)) / 110 + 8px));
+          }
+
+          .funded-logo {
+            width: 100%;
+            img,
+            .spacer {
+              height: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+              width: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+            }
+          }
+        }
+      }
+
+      .disclaimer {
+        margin: max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px))
+          max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
+        font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
+        line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
       }
     }
   }
