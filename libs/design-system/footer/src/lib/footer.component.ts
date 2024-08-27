@@ -2,12 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
-
-import {
-  SOCIAL_LINKS,
-  SocialMediaButtonComponent,
-  SocialMediaName,
-} from '../../../social-media-button/src/lib/social-media-button.component';
+import { SOCIAL_LINKS, SocialMediaButtonComponent, SocialMediaName } from '@hra-ui/design-system/social-media-button';
 
 /**
  * Component for footer
