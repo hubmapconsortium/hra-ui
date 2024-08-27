@@ -3,8 +3,12 @@ import { ChangeDetectionStrategy, Component, HostListener, input } from '@angula
 import { MatIconModule } from '@angular/material/icon';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 
-/** Below this size, use smaller icons */
-const EXTRA_SMALL_THRESHOLD = 430;
+import {
+  SOCIAL_LINKS,
+  SocialMediaButtonComponent,
+  SocialMediaName,
+} from '../../../social-media-button/src/lib/social-media-button.component';
+
 /** Below this size, use smaller logo */
 const SMALL_LOGO_THRESHOLD = 768;
 
@@ -14,7 +18,7 @@ const SMALL_LOGO_THRESHOLD = 768;
 @Component({
   selector: 'hra-footer',
   standalone: true,
-  imports: [CommonModule, MatIconModule, AssetUrlPipe],
+  imports: [CommonModule, MatIconModule, SocialMediaButtonComponent, AssetUrlPipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,16 +27,17 @@ export class FooterComponent {
   /** HRA Logo url */
   readonly logo = input<string>('assets/logo/hra_logo_contrast.svg');
 
-  /** Uses smaller icons when screen is extra small */
-  isExtraSmall = false;
   /** Use the smaller HRA logo when screen is smaller */
   useSmallerLogo = false;
+
+  socialLinks: SocialMediaName[];
 
   /**
    * Sets initial values for isExtraSmall and useSmallerLogo
    */
   constructor() {
     this.onResize();
+    this.socialLinks = Object.keys(SOCIAL_LINKS) as SocialMediaName[];
   }
 
   /**
@@ -40,7 +45,6 @@ export class FooterComponent {
    */
   @HostListener('window:resize')
   onResize() {
-    this.isExtraSmall = window.innerWidth < EXTRA_SMALL_THRESHOLD;
     this.useSmallerLogo = window.innerWidth < SMALL_LOGO_THRESHOLD;
   }
 }
