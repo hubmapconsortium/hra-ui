@@ -1,0 +1,80 @@
+mat-form-field {
+  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+  --mat-select-focused-arrow-color: var(--sys-tertiary);
+
+  mat-label {
+    font: var(--sys-label-large);
+    color: var(--sys-primary-fixed);
+  }
+
+  &.mat-focused {
+    mat-label {
+      color: var(--sys-tertiary);
+    }
+
+    .mdc-line-ripple::after {
+      --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);
+    }
+
+    mat-select {
+      .mat-mdc-select-value-text .mat-mdc-select-min-line {
+        color: var(--sys-primary-fixed);
+      }
+    }
+  }
+
+  mat-select {
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-large);
+    }
+  }
+
+  &[hraSelectSize='medium'] {
+    --mat-form-field-container-height: 48px;
+    --mat-form-field-filled-with-label-container-padding-top: 20px;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+
+    mat-label,
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-medium);
+    }
+  }
+
+  &[hraSelectSize='small'] {
+    --mat-form-field-container-height: 40px;
+    --mat-form-field-filled-with-label-container-padding-top: 16px;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+
+    mat-label,
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-small);
+    }
+  }
+}
+
+mat-form-field.mat-focused {
+  &:is([hraSelectSize='medium'], [hraSelectSize='small']) {
+    .mdc-floating-label.mat-mdc-floating-label {
+      top: calc(var(--mat-form-field-container-height) / 2 + 2px);
+    }
+  }
+}
+
+.options-container {
+  --mat-select-panel-background-color: var(--sys-on-primary);
+  --mat-option-selected-state-label-text-color: var(--sys-secondary);
+  --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
+  --mat-select-container-elevation-shadow: 0px 5px 4px 0px #201e3d29;
+
+  mat-option.mat-mdc-option {
+    font: var(--sys-label-large);
+    &:active {
+      --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);
+    }
+
+    &.mdc-list-item--selected.mat-mdc-option-active {
+      background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);
+      --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);
+    }
+  }
+}
