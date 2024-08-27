@@ -1,9 +1,9 @@
 import { MatSortModule } from '@angular/material/sort';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { provideTable } from '../providers';
-import { TableDemoData, TableDemoComponent } from './table-demo.component';
+import { TableDemoComponent, TableDemoData } from './table-demo.component';
 
 /** Example data */
 const exampleData: TableDemoData[] = [
@@ -23,7 +23,7 @@ const meta: Meta<TableDemoComponent> = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideAnimations(), provideTable()],
+      providers: [provideAnimations(), provideDesignSystem()],
     }),
     moduleMetadata({
       imports: [MatSortModule, TableDemoComponent],
