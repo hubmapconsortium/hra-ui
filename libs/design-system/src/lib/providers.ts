@@ -4,6 +4,7 @@ import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/button';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideMenu } from '@hra-ui/design-system/menu';
+import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { provideTable } from '@hra-ui/design-system/table';
 
@@ -20,6 +21,7 @@ export function provideDesignSystem(): EnvironmentProviders {
     }),
     provideButtons(),
     provideIconButtons(),
+    provideTrees(),
     provideScrolling(),
     provideMenu(),
     provideTable(),
