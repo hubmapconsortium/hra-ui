@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTree, MatTreeModule } from '@angular/material/tree';
 
-import { TreeSize, TreeSizeDirective } from './tree-size/tree-size.directive';
+import { TreeSize, TreeSizeDirective } from '../tree-size/tree-size.directive';
 
 /** Nested tree node data */
 export interface NestedNode {
@@ -25,13 +25,13 @@ const PADDING: Record<TreeSize, number> = {
  * Angular Material nested tree component with HRA styles
  */
 @Component({
-  selector: 'hra-tree',
-  templateUrl: 'tree.component.html',
+  selector: 'hra-tree-demo',
+  templateUrl: 'tree-demo.component.html',
   standalone: true,
   imports: [MatTreeModule, MatButtonModule, MatIconModule, TreeSizeDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreeComponent implements AfterViewInit {
+export class TreeDemoComponent implements AfterViewInit {
   /** ViewChild for tree component */
   @ViewChild(MatTree) tree!: MatTree<NestedNode>;
 

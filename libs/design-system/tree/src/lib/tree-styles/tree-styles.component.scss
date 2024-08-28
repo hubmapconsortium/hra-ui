@@ -1,20 +1,14 @@
 mat-tree {
-  --mat-tree-node-text-font: 'Metropolis';
-  --mat-tree-node-text-weight: 500;
-  --mat-tree-container-background-color: white;
+  --mat-tree-node-text-font: var(--sys-label-medium-font);
+  --mat-tree-node-text-weight: var(--sys-label-medium-weight);
+  --mat-tree-container-background-color: var(--sys-primary-container);
+  --node-margin: 0.5rem;
   user-select: none;
 }
 
 mat-tree-node {
   border-radius: 0.25rem;
   cursor: pointer;
-
-  &:focus {
-    .node-content {
-      background: rgb(from var(--sys-secondary) r g b / 0.04);
-      border-color: rgb(from var(--sys-secondary) r g b / 0.32);
-    }
-  }
 
   &:focus-visible {
     outline: none;

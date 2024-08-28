@@ -1,7 +1,7 @@
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '@hra-ui/design-system';
 
-import { NestedNode, TreeComponent } from './tree.component';
+import { NestedNode, TreeDemoComponent } from './tree-demo.component';
 
 const NESTED_DATA: NestedNode[] = [
   {
@@ -23,8 +23,8 @@ const NESTED_DATA: NestedNode[] = [
   },
 ];
 
-const meta: Meta<TreeComponent> = {
-  component: TreeComponent,
+const meta: Meta<TreeDemoComponent> = {
+  component: TreeDemoComponent,
   title: 'Tree',
   parameters: {
     design: {
@@ -49,6 +49,6 @@ const meta: Meta<TreeComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<TreeComponent>;
+type Story = StoryObj<TreeDemoComponent>;
 
 export const Primary: Story = {};

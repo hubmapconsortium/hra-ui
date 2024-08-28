@@ -35,7 +35,6 @@ const NODE_HEIGHTS: Record<TreeSize, number> = {
     '[style.--mat-tree-node-min-height.rem]': 'nodeHeight()',
     '[style.--mdc-icon-button-state-layer-size.rem]': 'nodeHeight()',
     '[style.--mdc-icon-button-icon-size.rem]': 'iconSize()',
-    '[style.--node-margin.rem]': '0.5',
   },
 })
 export class TreeSizeDirective {
