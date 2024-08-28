@@ -30,7 +30,7 @@ const meta: Meta = {
     template: `
       <mat-form-field hraSelectSize="${args['size']}">
         <mat-label>Choose an option</mat-label>
-        <mat-select disableRipple panelClass="options-container">
+        <mat-select disableRipple [panelClass]="['options-container', 'options-container-${args['size']}']">
           <mat-option value="option1">Option 1</mat-option>
           <mat-option value="option2">Option 2</mat-option>
           <mat-option value="option3">Option 3</mat-option>
