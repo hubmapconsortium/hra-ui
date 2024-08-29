@@ -1,19 +1,29 @@
+@use 'sass:math';
+
+@function strip-units($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+@function create-scale($from, $to) {
+  @return calc((100vw - $from) / strip-units($to - $from));
+}
+
+@function scale-value($from, $to, $scale) {
+  @return max($from, strip-units($to - $from) * $scale + $from);
+}
+
 :host {
   display: flex;
   min-width: 320px;
 
   .footer-left {
     display: flex;
-    align-items: center;
     background-color: var(--sys-inverse-surface);
-
-    .footer-left-content {
-      row-gap: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      width: 336px;
-      padding: 2rem;
-    }
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    row-gap: 1.5rem;
+    min-width: 336px;
 
     img {
       width: 246px;
@@ -43,7 +53,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      column-gap: 6rem;
+      column-gap: 3.5rem;
       row-gap: 2rem;
       margin-bottom: 2rem;
 
@@ -114,59 +124,66 @@
   }
 
   @media (max-width: 430px) {
+    $scale: create-scale(320px, 430px);
+
+    --_hra-footer-scale_16px_32px: #{scale-value(16px, 32px, $scale)};
+    --_hra-footer-scale_32px_40px: #{scale-value(32px, 40px, $scale)};
+    --_hra-footer-scale_36px_48px: #{scale-value(36px, 48px, $scale)};
+    --_hra-footer-scale_font-size: #{scale-value(14px, 16px, $scale)};
+    --_hra-footer-scale_line-height: #{scale-value(21px, 24px, $scale)};
+
     .footer-left {
-      .footer-left-content {
-        padding: 2rem max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
-        row-gap: max(16px, calc((8 * (100vw - 320px)) / 110 + 16px));
-      }
+      padding: 2rem 2rem 2rem var(--_hra-footer-scale_16px_32px);
+      row-gap: scale-value(16px, 24px, $scale);
+      min-width: unset;
 
       .copyright {
-        font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
-        line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
+        font-size: var(--_hra-footer-scale_font-size);
+        line-height: var(--_hra-footer-scale_line-height);
       }
 
       img {
-        width: max(208px, calc((38 * (100vw - 320px)) / 110 + 208px));
+        width: scale-value(208px, 246px, $scale);
       }
     }
 
     .footer-right {
       .social-funded {
         flex-direction: column;
-        margin: max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px))
-          0 max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
+        margin: var(--_hra-footer-scale_32px_40px) var(--_hra-footer-scale_16px_32px) 0
+          var(--_hra-footer-scale_16px_32px);
 
         ::ng-deep hra-social-media-button {
           mat-icon,
           mat-icon > svg {
-            height: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
-            width: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+            height: var(--_hra-footer-scale_36px_48px);
+            width: var(--_hra-footer-scale_36px_48px);
           }
         }
 
         .funded-by {
           span {
-            font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
-            line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
-            margin-bottom: max(8px, calc((4 * (100vw - 320px)) / 110 + 8px));
+            font-size: var(--_hra-footer-scale_font-size);
+            line-height: var(--_hra-footer-scale_line-height);
+            margin-bottom: scale-value(8px, 12px, $scale);
           }
 
           .funded-logo {
             width: 100%;
+
             img,
             .spacer {
-              height: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
-              width: max(36px, calc((12 * (100vw - 320px)) / 110 + 36px));
+              height: var(--_hra-footer-scale_36px_48px);
+              width: var(--_hra-footer-scale_36px_48px);
             }
           }
         }
       }
 
       .disclaimer {
-        margin: max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px))
-          max(32px, calc((8 * (100vw - 320px)) / 110 + 32px)) max(16px, calc((16 * (100vw - 320px)) / 110 + 16px));
-        font-size: max(14px, calc((2 * (100vw - 320px)) / 110 + 14px));
-        line-height: max(21px, calc((3 * (100vw - 320px)) / 110 + 21px));
+        margin: var(--_hra-footer-scale_32px_40px) var(--_hra-footer-scale_16px_32px);
+        font-size: var(--_hra-footer-scale_font-size);
+        line-height: var(--_hra-footer-scale_line-height);
       }
     }
   }

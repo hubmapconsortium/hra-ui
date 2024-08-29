@@ -20,5 +20,5 @@ export class FooterComponent {
   readonly logo = input<string>('assets/logo/hra_logo_contrast.svg');
 
   /** List of social links to use in the footer */
-  socialLinks = Object.keys(SOCIAL_LINKS) as SocialMediaName[];
+  protected readonly socialMediaNames = Object.keys(SOCIAL_LINKS) as SocialMediaName[];
 }
