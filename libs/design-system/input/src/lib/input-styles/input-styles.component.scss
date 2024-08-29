@@ -1,0 +1,35 @@
+mat-form-field.mat-mdc-form-field {
+  font-family: var(--sys-title-small-font);
+  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+  --mdc-outlined-text-field-outline-color: var(--sys-outline-variant);
+  --mdc-outlined-text-field-focus-outline-color: var(--sys-tertiary);
+  --mdc-outlined-text-field-input-text-color: var(--sys-primary-fixed);
+
+  mat-label {
+    font: var(--sys-title-small);
+    color: var(--sys-primary-fixed);
+  }
+
+  input.mat-mdc-form-field-input-control {
+    font: var(--sys-title-small);
+  }
+
+  &.mat-focused {
+    --mdc-filled-text-field-focus-label-text-color: var(--sys-tertiary);
+    --mdc-filled-text-field-active-indicator-color: var(--sys-tertiary);
+    --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);
+    --mdc-filled-text-field-focus-active-indicator-height: 1px;
+
+    mat-label {
+      color: var(--sys-tertiary);
+    }
+  }
+}
+
+mat-form-field[appearance='outline'] {
+  --mdc-outlined-text-field-outline-width: 1px;
+  .mdc-text-field:hover {
+    --mdc-outlined-text-field-outline-width: 2px;
+    --mdc-outlined-text-field-hover-outline-color: var(--sys-outline-variant);
+  }
+}
