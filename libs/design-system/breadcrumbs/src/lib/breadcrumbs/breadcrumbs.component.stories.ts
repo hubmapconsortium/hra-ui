@@ -1,20 +1,11 @@
 import { provideDesignSystem } from '../../../../src/lib/providers';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
-import { BreadcrumbsDemoComponent } from './breadcrumbs-demo.component';
+import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { BreadcrumbsSizeDirective } from '../breadcrumbs-size/breadcrumbs-size.directive';
 
 const meta: Meta = {
   title: 'Breadcrumbs',
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-  },
   parameters: {
     design: {
       type: 'figma',
@@ -26,13 +17,22 @@ const meta: Meta = {
       providers: [provideDesignSystem()],
     }),
     moduleMetadata({
-      imports: [BreadcrumbsDemoComponent, BreadcrumbsSizeDirective],
+      imports: [BreadcrumbsComponent, BreadcrumbsSizeDirective],
     }),
   ],
+  args: {
+    size: 'large',
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
-      <hra-breadcrumbs-demo hraBreadcrumbSize="${args['size']}"></hra-breadcrumbs-demo>
+      <hra-breadcrumbs hraBreadcrumbSize="${args['size']}"></hra-breadcrumbs>
     `,
   }),
 };

@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  align-items: center;
+  color: #464954;
+
+  button {
+    --mat-text-button-horizontal-padding: inherit;
+    font: inherit;
+  }
+
+  span {
+    padding: 0 var(--mat-text-button-horizontal-padding);
+  }
+}
