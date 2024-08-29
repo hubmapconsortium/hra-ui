@@ -1,1 +1,1 @@
-export * from './micro-tooltip-styles/micro-tooltip-styles.component';
+export * from './micro-tooltip.directive';
