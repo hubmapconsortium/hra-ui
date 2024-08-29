@@ -1,0 +1,16 @@
+:host {
+  --mdc-text-button-container-height: 24px;
+  font: var(--breadcrumbs-font);
+  display: flex;
+  align-items: center;
+  color: #464954;
+
+  a {
+    height: 1.5rem;
+  }
+
+  button {
+    font: var(--breadcrumbs-font);
+    padding: 2px 4px;
+  }
+}
