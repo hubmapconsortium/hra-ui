@@ -3,12 +3,8 @@
   align-items: center;
   color: #464954;
 
+  span,
   button {
-    --mat-text-button-horizontal-padding: inherit;
-    font: inherit;
-  }
-
-  span {
-    padding: 0 var(--mat-text-button-horizontal-padding);
+    --mat-text-button-horizontal-padding: 0.25rem;
   }
 }

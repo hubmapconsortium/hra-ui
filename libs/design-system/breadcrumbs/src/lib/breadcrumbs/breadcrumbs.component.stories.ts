@@ -1,10 +1,13 @@
-import { provideDesignSystem } from '../../../../src/lib/providers';
-import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
-import { BreadcrumbsSizeDirective } from '../breadcrumbs-size/breadcrumbs-size.directive';
+import { provideRouter } from '@angular/router';
 
-const meta: Meta = {
+const sampleItem = { name: 'Button', route: 'A/B/C' };
+
+const meta: Meta<BreadcrumbsComponent> = {
+  component: BreadcrumbsComponent,
   title: 'Breadcrumbs',
   parameters: {
     design: {
@@ -14,10 +17,7 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-    moduleMetadata({
-      imports: [BreadcrumbsComponent, BreadcrumbsSizeDirective],
+      providers: [provideDesignSystem(), provideRouter([])],
     }),
   ],
   args: {
@@ -29,14 +29,18 @@ const meta: Meta = {
       options: ['small', 'medium', 'large'],
     },
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <hra-breadcrumbs hraBreadcrumbSize="${args['size']}"></hra-breadcrumbs>
-    `,
-  }),
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<BreadcrumbsComponent>;
 
-export const Default: Story = {};
+export const Short: Story = {
+  args: {
+    crumbs: [sampleItem, { name: 'Current Page' }],
+  },
+};
+
+export const Long: Story = {
+  args: {
+    crumbs: [sampleItem, sampleItem, sampleItem, { name: 'Current Page' }],
+  },
+};
