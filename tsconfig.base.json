@@ -77,11 +77,17 @@
       "@hra-ui/design-system/button": [
         "libs/design-system/button/src/index.ts"
       ],
+      "@hra-ui/design-system/button-toggle": [
+        "libs/design-system/button-toggle/src/index.ts"
+      ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
       "@hra-ui/design-system/icon-button": [
         "libs/design-system/icon-button/src/index.ts"
+      ],
+      "@hra-ui/design-system/input": [
+        "libs/design-system/input/src/index.ts"
       ],
       "@hra-ui/design-system/menu": [
         "libs/design-system/menu/src/index.ts"
@@ -103,6 +109,9 @@
       ],
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"
+      ],
+      "@hra-ui/design-system/tree": [
+        "libs/design-system/tree/src/index.ts"
       ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
