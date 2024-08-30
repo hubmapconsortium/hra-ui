@@ -1,3 +1,23 @@
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
+  font: var(--sys-label-medium);
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+::ng-deep .hra-snackbar-panel {
+  --mdc-snackbar-container-color: var(--sys-surface-container);
+  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+
+  .mat-mdc-snackbar-surface {
+    padding: 0;
+    box-shadow: 0px 5px 16px 0px #201e3d3d;
+
+    .mat-mdc-snack-bar-label {
+      padding: 1rem;
+    }
+  }
 }

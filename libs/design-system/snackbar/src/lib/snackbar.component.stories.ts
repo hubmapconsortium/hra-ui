@@ -1,29 +1,20 @@
 import { Component, importProvidersFrom, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { SnackbarComponent } from './snackbar.component';
+import { SnackbarService } from './snackbar.service';
 
 @Component({
   selector: 'hra-snackbar-demo',
   standalone: true,
-  template: ` <button (click)="openSnackbar()">Open Snackbar</button> `,
+  imports: [MatButtonModule],
+  template: ` <button mat-flat-button (click)="snackbar.open(message(), action(), true)">Open Snackbar</button> `,
 })
 class SnackbarDemoComponent {
-  readonly message = input('');
-
-  private readonly snackbar = inject(MatSnackBar);
-
-  openSnackbar(): void {
-    this.snackbar.openFromComponent(SnackbarComponent, {
-      data: {
-        message: this.message(),
-        action: '',
-        close: true,
-      },
-    });
-  }
+  readonly message = input<string>('');
+  readonly action = input<string>('');
+  readonly snackbar = inject(SnackbarService);
 }
 
 const meta: Meta<SnackbarDemoComponent> = {
@@ -33,9 +24,13 @@ const meta: Meta<SnackbarDemoComponent> = {
     message: {
       type: 'string',
     },
+    action: {
+      type: 'string',
+    },
   },
   args: {
-    message: 'test',
+    message: 'test message',
+    action: 'test action',
   },
   decorators: [
     applicationConfig({

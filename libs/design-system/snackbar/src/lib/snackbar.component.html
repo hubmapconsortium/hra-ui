@@ -1,1 +1,10 @@
-fooo
+<span matSnackbarLabel>{{ data.message }}</span>
+<div style="flex-grow: 1"></div>
+<span matSnackBarActions>
+  <button mat-button disableRipple hraButtonSize="medium" matSnackBarAction (click)="snackbarRef.dismissWithAction()">
+    {{ data.action }}
+  </button>
+</span>
+@if (data.close) {
+  <button mat-icon-button class="material-symbols-rounded" (click)="snackbarRef.dismiss()">close</button>
+}
