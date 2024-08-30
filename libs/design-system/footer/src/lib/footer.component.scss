@@ -14,7 +14,7 @@
 
 :host {
   display: flex;
-  min-width: 320px;
+  min-width: 20rem;
 
   .footer-left {
     display: flex;
@@ -23,10 +23,10 @@
     justify-content: center;
     padding: 2rem;
     row-gap: 1.5rem;
-    min-width: 336px;
+    min-width: 21rem;
 
     img {
-      width: 246px;
+      width: 15.375rem;
     }
 
     .copyright {
@@ -63,12 +63,12 @@
         align-items: flex-end;
         width: 100%;
         justify-content: space-between;
-        max-width: 448px;
+        max-width: 28rem;
       }
 
       .funded-by {
         width: 100%;
-        max-width: 448px;
+        max-width: 28rem;
 
         span {
           display: block;
@@ -92,7 +92,7 @@
     }
 
     .disclaimer {
-      color: #464954;
+      color: var(--sys-on-primary-fixed);
       font: var(--sys-label-large);
       letter-spacing: var(--sys-label-large-tracking);
     }
