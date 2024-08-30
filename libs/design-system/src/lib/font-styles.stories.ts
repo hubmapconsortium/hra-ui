@@ -99,9 +99,11 @@ const fontContent: Record<string, FontStyles> = {
 
       .header-title {
         font: var(--sys-headline-large);
+        letter-spacing: var(--sys-headline-large-tracking);
       }
       .header-description {
         font: var(--sys-title-medium);
+        letter-spacing: var(--sys-title-medium-tracking);
       }
     }
   `,
