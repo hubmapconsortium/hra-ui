@@ -1,7 +1,7 @@
 mat-tree-node {
   --mat-tree-node-text-font: var(--sys-label-medium-font);
   --mat-tree-node-text-weight: var(--sys-label-medium-weight);
-  --mat-tree-node-text-color: var(--sys-on-background);
+  --mat-tree-node-text-color: var(--sys-secondary);
 
   letter-spacing: var(--sys-label-medium-tracking);
   cursor: pointer;
@@ -14,6 +14,11 @@ mat-tree-node {
 }
 
 .node-content {
+  button {
+    --mat-icon-button-hover-state-layer-opacity: 0;
+    --mat-icon-button-pressed-state-layer-opacity: 0;
+  }
+
   display: flex;
   height: var(--mat-tree-node-min-height);
   line-height: var(--mat-tree-node-min-height);

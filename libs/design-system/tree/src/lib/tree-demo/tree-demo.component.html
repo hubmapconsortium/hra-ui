@@ -24,7 +24,7 @@
     [isExpandable]="true"
   >
     <div class="node-content">
-      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+      <button mat-icon-button matTreeNodeToggle disableRipple [attr.aria-label]="'Toggle ' + node.name">
         <mat-icon class="mat-icon-rtl-mirror">
           {{ tree.isExpanded(node) ? 'expand_more' : 'expand_less' }}
         </mat-icon>
