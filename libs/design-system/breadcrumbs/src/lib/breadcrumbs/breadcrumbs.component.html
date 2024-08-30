@@ -1,6 +1,6 @@
 @for (crumb of crumbs(); track crumb; let last = $last) {
   @if (!last) {
-    <a [routerLink]="['', crumb.route]">
+    <a [routerLink]="crumb.route">
       <button mat-button disableRipple [hraBreadcrumbSize]="size()">{{ crumb.name }}</button>
     </a>
     <mat-icon>chevron_right</mat-icon>
