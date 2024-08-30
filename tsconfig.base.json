@@ -92,6 +92,9 @@
       "@hra-ui/design-system/menu": [
         "libs/design-system/menu/src/index.ts"
       ],
+      "@hra-ui/design-system/micro-tooltip": [
+        "libs/design-system/micro-tooltip/src/index.ts"
+      ],
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
       ],
