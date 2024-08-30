@@ -31,6 +31,7 @@
 
     .copyright {
       font: var(--sys-label-large);
+      letter-spacing: var(--sys-label-large-tracking);
       color: var(--sys-on-primary);
 
       mat-icon {
@@ -72,6 +73,7 @@
         span {
           display: block;
           font: var(--sys-label-large);
+          letter-spacing: var(--sys-label-large-tracking);
           margin-bottom: 0.75rem;
           color: var(--sys-primary);
         }
@@ -92,6 +94,7 @@
     .disclaimer {
       color: #464954;
       font: var(--sys-label-large);
+      letter-spacing: var(--sys-label-large-tracking);
     }
   }
 
