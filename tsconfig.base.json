@@ -101,6 +101,9 @@
       "@hra-ui/design-system/scrolling/testing": [
         "libs/design-system/scrolling/testing/src/index.ts"
       ],
+      "@hra-ui/design-system/snackbar": [
+        "libs/design-system/snackbar/src/index.ts"
+      ],
       "@hra-ui/design-system/table": [
         "libs/design-system/table/src/index.ts"
       ],
