@@ -109,6 +109,13 @@
               link: https://cdn.humanatlas.io/digital-objects/asct-b/muscular-system/v1.2/assets/asct-b-vh-muscular-system.csv
           releaseVersion: v1.2
           dot: ASCT+B Table
+        - label: Peripheral Nervous System to Organ Crosswalk
+          url: https://lod.humanatlas.io/asct-b/peripheral-nervous-system-organ-crosswalk/
+          links:
+            - label: CSV
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/peripheral-nervous-system-organ-crosswalk/v1.0/assets/peripheral-nervous-system-organ-crosswalk.csv
+          releaseVersion: v1.0
+          dot: Crosswalk
         - label: Skeleton
           url: https://purl.humanatlas.io/asct-b/skeleton/v1.2
           links:
