@@ -1,5 +1,5 @@
 :root {
-  --scrollbar-thumb-color: #4c4c58b8;
+  --scrollbar-thumb-color: rgb(from var(--sys-primary) r g b / 0.72);
   --scrollbar-border-radius: 1rem;
   --scrollbar-thickness: 8;
   font: var(--sys-body-medium);
