@@ -1,27 +1,24 @@
-mat-tree {
+mat-tree-node {
   --mat-tree-node-text-font: var(--sys-label-medium-font);
   --mat-tree-node-text-weight: var(--sys-label-medium-weight);
-  --mat-tree-container-background-color: var(--sys-primary-container);
-  --node-margin: 0.5rem;
-  user-select: none;
-}
+  --mat-tree-node-text-color: var(--sys-secondary);
 
-mat-tree-node {
-  border-radius: 0.25rem;
+  letter-spacing: var(--sys-label-medium-tracking);
   cursor: pointer;
+  user-select: none;
+  outline: none;
 
-  &:focus-visible {
-    outline: none;
-
-    .node-content {
-      border-color: var(--sys-tertiary);
-      color: var(--sys-secondary);
-      background: white;
-    }
+  &:focus-visible .node-content {
+    border-color: var(--sys-tertiary);
   }
 }
 
 .node-content {
+  button {
+    --mat-icon-button-hover-state-layer-opacity: 0;
+    --mat-icon-button-pressed-state-layer-opacity: 0;
+  }
+
   display: flex;
   height: var(--mat-tree-node-min-height);
   line-height: var(--mat-tree-node-min-height);
@@ -30,10 +27,9 @@ mat-tree-node {
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
-  color: var(--sys-secondary);
 
   &.leaf {
-    padding-left: var(--node-margin);
+    padding-left: 0.5rem;
   }
 
   &:hover {
@@ -41,16 +37,12 @@ mat-tree-node {
   }
 
   &:active {
-    background: rgb(from var(--sys-secondary) r g b / 0.08) !important;
-    border-color: transparent !important;
+    background: rgb(from var(--sys-secondary) r g b / 0.08);
+    border-color: transparent;
   }
 
   &.selected {
-    color: white !important;
-    background: var(--sys-tertiary) !important;
-
-    mat-icon {
-      --mat-icon-color: white;
-    }
+    background: var(--sys-tertiary);
+    color: var(--sys-on-tertiary);
   }
 }

@@ -1,11 +1,11 @@
 .hra-nested-menu {
   --mat-menu-container-color: white;
   --mat-menu-container-shape: 0.5rem;
-  --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-secondary) r g b / 0.16);
+  --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.16);
   --mat-menu-item-with-icon-leading-spacing: 1rem;
   --mat-menu-item-with-icon-trailing-spacing: 1rem;
-  --mat-menu-item-label-text-color: #464954;
-  --mat-menu-item-icon-color: #464954;
+  --mat-menu-item-label-text-color: var(--sys-on-primary-fixed);
+  --mat-menu-item-icon-color: var(--sys-on-primary-fixed);
   --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
   --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
 
