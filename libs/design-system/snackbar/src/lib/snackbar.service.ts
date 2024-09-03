@@ -1,20 +1,29 @@
 import { inject, Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
-import { SnackbarComponent, SnackbarData } from './snackbar.component';
+import { ButtonPosition, SnackbarComponent, SnackbarData } from './snackbar.component';
 
 export type SnackbarConfig = Omit<MatSnackBarConfig, 'data' | 'panelClass'>;
 
+/** Service for snackbar. Opens the snackbar and configures it */
 @Injectable({
   providedIn: 'root',
 })
 export class SnackbarService {
+  /** Reference to the MatSnackbar */
   readonly matSnackbar = inject(MatSnackBar);
 
-  open(message: string, action: string, close = false, config?: SnackbarConfig): MatSnackBarRef<SnackbarComponent> {
+  /** Opens the snackbar with provided config */
+  open(
+    message: string,
+    action: string,
+    close = false,
+    actionButtonPosition: ButtonPosition = 'start',
+    config?: SnackbarConfig,
+  ): MatSnackBarRef<SnackbarComponent> {
     return this.matSnackbar.openFromComponent(SnackbarComponent, {
       announcementMessage: message,
       ...config,
-      data: { message, action, close } satisfies SnackbarData,
+      data: { message, action, close, actionButtonPosition } satisfies SnackbarData,
       panelClass: ['hra-snackbar-panel'],
     });
   }

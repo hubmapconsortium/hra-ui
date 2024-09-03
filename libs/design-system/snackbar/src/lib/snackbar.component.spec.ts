@@ -1,21 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SnackbarComponent } from './snackbar.component';
+import { TestBed } from '@angular/core/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { screen } from '@testing-library/angular';
+import { SnackbarService } from './snackbar.service';
 
 describe('SnackbarComponent', () => {
-  let component: SnackbarComponent;
-  let fixture: ComponentFixture<SnackbarComponent>;
+  let service: SnackbarService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SnackbarComponent],
-    }).compileComponents();
+    TestBed.configureTestingModule({
+      providers: [provideNoopAnimations()],
+    });
 
-    fixture = TestBed.createComponent(SnackbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = TestBed.inject(SnackbarService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should open snackbar and show details', async () => {
+    service.open('Test message', 'Action', true, 'end');
+    const label = screen.findAllByText('Test message');
+    const action = screen.findAllByText('Action');
+    expect(label).resolves.toBeInTheDocument();
+    expect(action).resolves.toBeInTheDocument();
   });
 });

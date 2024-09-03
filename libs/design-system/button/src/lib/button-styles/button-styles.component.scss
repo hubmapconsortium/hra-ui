@@ -20,6 +20,7 @@ $y-multiplier: 0.4566;
 // Basic Primary & Secondary
 :is(a, button)[mat-button] {
   min-width: unset;
+  white-space: nowrap;
   font: var(--sys-title-small);
   --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
   --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);

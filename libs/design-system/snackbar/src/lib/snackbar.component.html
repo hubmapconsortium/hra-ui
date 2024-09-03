@@ -1,10 +1,22 @@
-<span matSnackbarLabel>{{ data.message }}</span>
+<span matSnackbarLabel class="label">{{ data.message }}</span>
 <div style="flex-grow: 1"></div>
-<span matSnackBarActions>
-  <button mat-button disableRipple hraButtonSize="medium" matSnackBarAction (click)="snackbarRef.dismissWithAction()">
-    {{ data.action }}
-  </button>
-</span>
-@if (data.close) {
-  <button mat-icon-button class="material-symbols-rounded" (click)="snackbarRef.dismiss()">close</button>
-}
+<div class="actions">
+  @if (data.action) {
+    <span matSnackBarActions [class.position-end]="data.actionButtonPosition === 'end'">
+      <button
+        mat-button
+        disableRipple
+        hraButtonSize="medium"
+        matSnackBarAction
+        (click)="snackbarRef.dismissWithAction()"
+      >
+        {{ data.action }}
+      </button>
+    </span>
+  }
+  @if (data.close) {
+    <button mat-icon-button hraIconButtonSize="large" (click)="snackbarRef.dismiss()">
+      <mat-icon> close </mat-icon>
+    </button>
+  }
+</div>

@@ -2,22 +2,73 @@
   display: flex;
   align-items: center;
   font: var(--sys-label-medium);
+  gap: 0.25rem;
 
-  mat-icon {
-    cursor: pointer;
+  .label {
+    padding: 1rem;
+  }
+
+  &:has([matSnackBarActions]) {
+    .label {
+      padding: 0.875rem 0.25rem 0.875rem 1rem;
+    }
+
+    &:has(.position-end) {
+      .label {
+        padding: 0.875rem 1rem 0.5rem 1rem;
+      }
+    }
+  }
+
+  &:has(button[mat-icon-button]) {
+    .label {
+      padding: 0.8438rem 1rem;
+    }
+  }
+
+  &:has(.position-end) {
+    flex-direction: column;
+    gap: 0.875rem;
+
+    [matSnackBarActions] {
+      margin-bottom: 0.25rem;
+    }
+
+    [matSnackBarLabel] {
+      padding-top: 0.875rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .actions {
+      align-self: flex-end;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+
+    .position-end {
+      align-self: flex-end;
+    }
+
+    [matSnackBarActions]:not(:has(+ button[mat-icon-button])) {
+      margin-right: 0.5rem;
+    }
   }
 }
 
 ::ng-deep .hra-snackbar-panel {
   --mdc-snackbar-container-color: var(--sys-surface-container);
   --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+  max-width: 21.5rem;
 
   .mat-mdc-snackbar-surface {
     padding: 0;
     box-shadow: 0px 5px 16px 0px #201e3d3d;
 
     .mat-mdc-snack-bar-label {
-      padding: 1rem;
+      padding: 0;
     }
   }
 }
