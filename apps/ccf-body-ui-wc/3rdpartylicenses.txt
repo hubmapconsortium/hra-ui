@@ -169,6 +169,8 @@ THE SOFTWARE.
 @hra-api/ng-client
 Unlicense
 
+@hra-ui/webcomponents
+
 @loaders.gl/core
 MIT
 Copyright (c) 2015 Uber Technologies, Inc.
@@ -1438,7 +1440,7 @@ zone.js
 MIT
 The MIT License
 
-Copyright (c) 2010-2023 Google LLC. https://angular.io/license
+Copyright (c) 2010-2024 Google LLC. https://angular.io/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

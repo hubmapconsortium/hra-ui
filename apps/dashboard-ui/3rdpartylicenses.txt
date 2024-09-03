@@ -254,17 +254,17 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 --------------------------------------------------------------------------------
+Package: @angular/elements
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
 Package: @angular/common
 License: "MIT"
 
 
 --------------------------------------------------------------------------------
 Package: @angular/platform-browser
-License: "MIT"
-
-
---------------------------------------------------------------------------------
-Package: @angular/animations
 License: "MIT"
 
 
@@ -327,6 +327,11 @@ THE SOFTWARE.
 
 --------------------------------------------------------------------------------
 Package: ngxtension
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
+Package: @angular/animations
 License: "MIT"
 
 
@@ -2073,7 +2078,7 @@ License: "MIT"
 
 The MIT License
 
-Copyright (c) 2010-2023 Google LLC. https://angular.io/license
+Copyright (c) 2010-2024 Google LLC. https://angular.io/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
