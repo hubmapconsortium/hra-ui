@@ -38,6 +38,9 @@
       "@hra-ui/cdk/injectors": [
         "libs/cdk/injectors/src/index.ts"
       ],
+      "@hra-ui/cdk/platform-location": [
+        "libs/cdk/platform-location/src/index.ts"
+      ],
       "@hra-ui/cdk/state": [
         "libs/cdk/state/src/index.ts"
       ],
@@ -65,14 +68,32 @@
       "@hra-ui/design-system/app-logos": [
         "libs/design-system/app-logos/src/index.ts"
       ],
+      "@hra-ui/design-system/apps-sidenav": [
+        "libs/design-system/apps-sidenav/src/index.ts"
+      ],
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
+      ],
+      "@hra-ui/design-system/button": [
+        "libs/design-system/button/src/index.ts"
+      ],
+      "@hra-ui/design-system/button-toggle": [
+        "libs/design-system/button-toggle/src/index.ts"
       ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
       "@hra-ui/design-system/icon-button": [
         "libs/design-system/icon-button/src/index.ts"
+      ],
+      "@hra-ui/design-system/input": [
+        "libs/design-system/input/src/index.ts"
+      ],
+      "@hra-ui/design-system/menu": [
+        "libs/design-system/menu/src/index.ts"
+      ],
+      "@hra-ui/design-system/micro-tooltip": [
+        "libs/design-system/micro-tooltip/src/index.ts"
       ],
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
@@ -83,8 +104,17 @@
       "@hra-ui/design-system/scrolling/testing": [
         "libs/design-system/scrolling/testing/src/index.ts"
       ],
+      "@hra-ui/design-system/select": [
+        "libs/design-system/select/src/index.ts"
+      ],
+      "@hra-ui/design-system/table": [
+        "libs/design-system/table/src/index.ts"
+      ],
       "@hra-ui/design-system/tooltip-card": [
         "libs/design-system/tooltip-card/src/index.ts"
+      ],
+      "@hra-ui/design-system/tree": [
+        "libs/design-system/tree/src/index.ts"
       ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"

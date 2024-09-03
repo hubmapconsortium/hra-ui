@@ -82,7 +82,7 @@ const fontContent: Record<string, FontStyles> = {
       display: flex;
       flex-direction: column;
       width: fit-content;
-      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-secondary) r g b / 0.322);
+      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.322);
       border-radius: 1rem;
       padding: 1.5rem;
       gap: 1.5rem;
@@ -92,16 +92,18 @@ const fontContent: Record<string, FontStyles> = {
     .header {
       display: flex;
       flex-direction: column;
-      border-bottom: 1px solid #d5dbe3;
+      border-bottom: 1px solid var(--sys-outline-variant);
       padding: 0 1.5rem 1rem 0;
       gap: 0.5rem;
-      color: #4b4b5e;
+      color: var(--sys-on-secondary-fixed);
 
       .header-title {
         font: var(--sys-headline-large);
+        letter-spacing: var(--sys-headline-large-tracking);
       }
       .header-description {
         font: var(--sys-title-medium);
+        letter-spacing: var(--sys-title-medium-tracking);
       }
     }
   `,

@@ -1,0 +1,121 @@
+mat-form-field {
+  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+  --mat-select-focused-arrow-color: var(--sys-tertiary);
+
+  .mat-mdc-form-field-infix {
+    width: 14.625rem;
+  }
+
+  mat-label {
+    font: var(--sys-label-large);
+    color: var(--sys-primary-fixed);
+  }
+
+  &.mat-focused {
+    mat-label {
+      color: var(--sys-tertiary);
+    }
+
+    .mdc-line-ripple::after {
+      --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);
+    }
+
+    mat-select {
+      .mat-mdc-select-value-text .mat-mdc-select-min-line {
+        color: var(--sys-primary-fixed);
+      }
+    }
+  }
+
+  .mat-mdc-text-field-wrapper:not(:has(.mat-mdc-select-placeholder)) {
+    .mdc-floating-label.mat-mdc-floating-label {
+      top: calc(var(--mat-form-field-container-height) / 2 + 2px);
+    }
+  }
+
+  mat-select {
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-large);
+    }
+  }
+
+  &[hraSelectSize='medium'] {
+    --mat-form-field-container-height: 48px;
+    --mat-form-field-filled-with-label-container-padding-top: 20px;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+
+    mat-label,
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-medium);
+    }
+
+    .mat-mdc-form-field-infix {
+      width: 13.25rem;
+    }
+  }
+
+  &[hraSelectSize='small'] {
+    --mat-form-field-container-height: 40px;
+    --mat-form-field-filled-with-label-container-padding-top: 0.875rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+
+    mat-label,
+    .mat-mdc-select-value-text .mat-mdc-select-min-line {
+      font: var(--sys-label-small);
+    }
+
+    .mat-mdc-text-field-wrapper {
+      padding: 0 0.75rem;
+    }
+
+    .mat-mdc-form-field-infix {
+      width: 12.25rem;
+    }
+  }
+}
+
+.options-container {
+  --mat-select-panel-background-color: var(--sys-on-primary);
+  --mat-option-selected-state-label-text-color: var(--sys-secondary);
+  --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
+  --mat-select-container-elevation-shadow: 0px 5px 4px 0px rgb(from var(--sys-shadow) r g b / 0.16);
+  --mat-option-label-text-color: var(--sys-primary-container);
+  --mat-option-focus-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
+
+  mat-option.mat-mdc-option {
+    font: var(--sys-label-large);
+    margin-bottom: 0.5px;
+    min-height: 3.5rem;
+
+    &:active {
+      --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--sys-tertiary);
+    }
+
+    &.mdc-list-item--selected.mat-mdc-option-active {
+      --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);
+      background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);
+    }
+
+    &.mat-mdc-option-active {
+      outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);
+    }
+  }
+
+  &.options-container-medium {
+    mat-option.mat-mdc-option {
+      min-height: 3rem;
+      font: var(--sys-label-medium);
+    }
+  }
+
+  &.options-container-small {
+    mat-option.mat-mdc-option {
+      min-height: 2.5rem;
+      font: var(--sys-label-small);
+    }
+  }
+}

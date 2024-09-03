@@ -3,6 +3,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { ROUTES } from './app.routes';
 
 /**
@@ -10,6 +11,7 @@ import { ROUTES } from './app.routes';
  */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideNothrowPlatformLocation(),
     provideRouter(
       ROUTES,
       withComponentInputBinding(),

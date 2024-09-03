@@ -1,4 +1,5 @@
 :host {
+  display: block;
   a {
     display: grid;
     grid-template-areas: 'icon title' 'icon description';
@@ -29,12 +30,14 @@
 
     .title {
       font: var(--sys-label-large);
+      letter-spacing: var(--sys-label-large-tracking);
       color: var(--sys-secondary);
     }
 
     .description {
       grid-area: description;
       font: var(--sys-label-medium);
+      letter-spacing: var(--sys-label-medium-tracking);
       color: var(--sys-inverse-surface);
     }
   }

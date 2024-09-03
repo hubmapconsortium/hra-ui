@@ -1,14 +1,8 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import { importProvidersFrom } from '@angular/core';
+import { createCustomElement } from '@hra-ui/webcomponents';
+import { AppWebComponent } from './app/app-web-component.component';
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  // eslint-disable-next-line no-console
-  .catch((err) => console.error(err));
+createCustomElement('ccf-organ-info', AppWebComponent, {
+  providers: [importProvidersFrom(AppModule)],
+});
