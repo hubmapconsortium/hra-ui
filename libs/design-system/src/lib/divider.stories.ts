@@ -32,6 +32,8 @@ export const Divider: Story = {
       `div.container {
         display: flex;
         flex-direction: column;
+        font: var(--sys-body-medium);
+        letter-spacing: var(--sys-body-medium-tracking);
       }`,
       `div.container.vertical {
         flex-direction: row;
