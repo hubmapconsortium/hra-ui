@@ -18,6 +18,7 @@
 
     .hra-logo-text {
       font: var(--sys-label-small);
+      letter-spacing: var(--sys-label-small-tracking);
       line-height: 0.875rem;
       width: min-content;
       align-self: center;
@@ -38,11 +39,13 @@
 
     .app-label {
       font: var(--sys-title-medium);
+      letter-spacing: var(--sys-title-medium-tracking);
     }
 
     .app-description {
       font: var(--sys-label-medium);
-      color: #4b4b5e;
+      letter-spacing: var(--sys-label-medium-tracking);
+      color: var(--sys-on-secondary-fixed);
     }
   }
 
@@ -66,10 +69,12 @@
 
         .app-label {
           font: var(--sys-title-small);
+          letter-spacing: var(--sys-title-small-tracking);
         }
 
         .app-description {
           font: var(--sys-label-small);
+          letter-spacing: var(--sys-label-small-tracking);
         }
       }
     }

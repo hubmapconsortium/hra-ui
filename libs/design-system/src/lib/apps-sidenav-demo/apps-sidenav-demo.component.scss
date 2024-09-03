@@ -5,6 +5,7 @@
     width: 40rem;
     height: auto;
     font: var(--sys-headline-small);
+    letter-spacing: var(--sys-headline-small-tracking);
     --mat-sidenav-content-background-color: #ffffff;
     --mat-sidenav-container-background-color: var(--mat-sidenav-content-background-color);
     height: calc(100vh - 3rem);
@@ -37,6 +38,7 @@
 
     .card-category {
       font: var(--sys-title-medium);
+      letter-spacing: var(--sys-title-medium-tracking);
       margin-top: 1rem;
       color: var(--sys-secondary);
     }
