@@ -7,11 +7,13 @@ mat-form-field.mat-mdc-form-field {
 
   mat-label {
     font: var(--sys-title-small);
+    letter-spacing: var(--sys-title-small-tracking);
     color: var(--sys-primary-fixed);
   }
 
   input.mat-mdc-form-field-input-control {
     font: var(--sys-title-small);
+    letter-spacing: var(--sys-title-small-tracking);
   }
 
   &.mat-focused {
