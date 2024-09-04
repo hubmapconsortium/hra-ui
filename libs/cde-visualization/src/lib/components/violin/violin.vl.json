@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 120,
+  "spacing": 0,
+  "config": {
+    "font": "Metropolis",
+    "padding": {
+      "top": 4,
+      "right": 16,
+      "bottom": 4,
+      "left": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 14,
+      "titleFontWeight": 500,
+      "labelFontWeight": 500,
+      "titleLineHeight": 21,
+      "labelLineHeight": 18,
+      "titleColor": "#201E3D",
+      "labelColor": "#4B4B5E",
+      "labelAngle": -45,
+      "ticks": false,
+      "domain": false,
+      "labelPadding": 8
+    }
+  },
+  "data": {
+    "name": "data"
+  },
+  "params": [
+    {
+      "name": "colors",
+      "value": []
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "[datum.type, 'All Cells']",
+      "as": "type"
+    },
+    {
+      "flatten": ["type"]
+    },
+    {
+      "density": "distance",
+      "bandwidth": 0,
+      "groupby": ["type"]
+    }
+  ],
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Distance (µm)",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "density",
+      "type": "quantitative",
+      "stack": "center",
+      "impute": null,
+      "title": null,
+      "axis": null
+    },
+    "row": {
+      "field": "type",
+      "title": "Cell Types"
+    },
+    "color": {
+      "field": "type",
+      "legend": null,
+      "scale": {
+        "range": [
+          {
+            "expr": "'Replaced/repeated in javascript' || color[0] || '#000'"
+          }
+        ]
+      }
+    },
+    "tooltip": {
+      "field": "type",
+      "type": "nominal"
+    }
+  }
+}

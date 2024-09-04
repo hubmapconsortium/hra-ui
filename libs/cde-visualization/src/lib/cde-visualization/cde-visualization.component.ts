@@ -12,20 +12,22 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
+
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ViolinComponent } from '../components/violin/violin.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
 import { rgbToHex } from '../models/color';
 import {
   ColorMapColorKey,
   ColorMapEntry,
+  colorMapToLookup,
   ColorMapTypeKey,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  colorMapToLookup,
 } from '../models/color-map';
 import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
 import { Metadata } from '../models/metadata';
@@ -53,6 +55,7 @@ import { mergeObjects } from '../shared/merge';
     CellTypesComponent,
     NodeDistVisualizationComponent,
     HistogramComponent,
+    ViolinComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
