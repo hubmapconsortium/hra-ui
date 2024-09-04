@@ -74,6 +74,9 @@
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
       ],
+      "@hra-ui/design-system/breadcrumbs": [
+        "libs/design-system/breadcrumbs/src/index.ts"
+      ],
       "@hra-ui/design-system/button": [
         "libs/design-system/button/src/index.ts"
       ],
@@ -106,6 +109,9 @@
       ],
       "@hra-ui/design-system/select": [
         "libs/design-system/select/src/index.ts"
+      ],
+      "@hra-ui/design-system/social-media-button": [
+        "libs/design-system/social-media-button/src/index.ts"
       ],
       "@hra-ui/design-system/table": [
         "libs/design-system/table/src/index.ts"
