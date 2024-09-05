@@ -28,7 +28,7 @@
 
   &:has(.position-end) {
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 0;
 
     [matSnackBarActions] {
       margin-bottom: 0.25rem;

@@ -21,4 +21,17 @@ describe('SnackbarComponent', () => {
     expect(label).resolves.toBeInTheDocument();
     expect(action).resolves.toBeInTheDocument();
   });
+
+  it('should open snackbar with close button hidden', async () => {
+    service.open('Test message', 'Action');
+    await screen.findByText('Test message');
+    const closeButton = screen.queryByTestId('close-btn');
+    expect(closeButton).not.toBeInTheDocument();
+
+    const actionButton = screen.getByText('Action');
+    expect(actionButton).toBeInTheDocument();
+
+    const actionsContainer = actionButton.closest('.actions');
+    expect(actionsContainer).not.toHaveStyle('align-self: flex-end');
+  });
 });

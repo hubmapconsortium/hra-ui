@@ -8,7 +8,7 @@ export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'link
 export type SocialMediaButtonSize = 'small' | 'large';
 
 /** All CNS links */
-const SOCIAL_LINKS: Record<string, string> = {
+export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
   x: 'https://twitter.com/cnscenter',
   facebook: 'https://www.facebook.com/cnscenter/',
   instagram: 'https://www.instagram.com/cns_at_iu/',

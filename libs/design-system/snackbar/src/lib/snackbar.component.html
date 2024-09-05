@@ -15,7 +15,7 @@
     </span>
   }
   @if (data.close) {
-    <button mat-icon-button hraIconButtonSize="large" (click)="snackbarRef.dismiss()">
+    <button mat-icon-button hraIconButtonSize="large" (click)="snackbarRef.dismiss()" data-testid="close-btn">
       <mat-icon> close </mat-icon>
     </button>
   }
