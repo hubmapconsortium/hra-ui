@@ -39,12 +39,13 @@ const BUTTON_CONFIG: Record<ButtonSize, ButtonConfig> = {
   selector: '[hraButtonSize]',
   standalone: true,
   host: {
-    '[style.--mdc-text-button-container-height.rem]': 'buttonSize()',
-    '[style.font]': 'fontVar()',
-    '[style.--mat-text-button-horizontal-padding.rem]': 'padding()',
-    '[style.--mdc-filled-button-container-height.rem]': 'buttonSize()',
-    '[style.--mat-filled-button-horizontal-padding.rem]': 'padding()',
-    '[style.--mat-standard-button-toggle-height.rem]': 'buttonSize()',
+    // '[style.--mdc-text-button-container-height.rem]': 'buttonSize()',
+    // '[style.font]': 'fontVar()',
+    // '[style.--mat-text-button-horizontal-padding.rem]': 'padding()',
+    // '[style.--mdc-filled-button-container-height.rem]': 'buttonSize()',
+    // '[style.--mat-filled-button-horizontal-padding.rem]': 'padding()',
+    // '[style.--mat-standard-button-toggle-height.rem]': 'buttonSize()',
+    '[class]': '"button-size-"+size()',
   },
 })
 export class ButtonSizeDirective {
