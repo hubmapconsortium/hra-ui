@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  align-items: center;
+  color: var(--sys-on-primary-fixed);
+
+  span,
+  button {
+    --mat-text-button-horizontal-padding: 0.25rem;
+  }
+}

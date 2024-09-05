@@ -25,7 +25,7 @@ import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb, colorEquals, rgbToHex } from '../../models/color';
+import { Rgb, colorEquals, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { EdgeEntry, EdgeIndex, edgeDistance } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
