@@ -4,6 +4,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Router } from '@angular/router';
+import { HUBMAP_NAV_ITEMS } from '../../shared/hubmap-navigation-items';
 import { NavItems } from '../toolbar/nav-items';
 
 /** Displays a menu overlay on smaller screens */
@@ -45,6 +46,9 @@ export class MenuTreeComponent {
   /** Scroll strategy for the overlay */
   scrollStrategy = this.overlay.scrollStrategies.block();
 
+  /** Hubmap nav Data */
+  hubmapNavData = HUBMAP_NAV_ITEMS;
+
   /** Creates instance of Router, ViewportScroller and Overlay */
   constructor(
     private readonly router: Router,
@@ -71,6 +75,19 @@ export class MenuTreeComponent {
     if (this.scrollToId) {
       this.scroller.scrollToAnchor(this.scrollToId);
       this.scrollToId = undefined;
+    }
+  }
+
+  /** Returns true if hubmap-nav component is to be rendered */
+  isHubmapNav(_: number, node: NavItems) {
+    return node.componentName === 'hubmap-nav';
+  }
+
+  collapseNonActiveNodes(node: NavItems) {
+    const isExpanded = this.treeControl.isExpanded(node);
+    this.treeControl.collapseAll();
+    if (isExpanded) {
+      this.treeControl.expand(node);
     }
   }
 }

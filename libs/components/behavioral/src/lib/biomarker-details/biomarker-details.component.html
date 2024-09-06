@@ -12,7 +12,7 @@
   disableRipple="true"
 >
   <mat-tab
-    *ngFor="let tab of tabs(); trackBy: trackByLabel"
+    *ngFor="let tab of tabs; trackBy: trackByLabel"
     labelClass="table-tab-header"
     [label]="'Cell Types by ' + tab.label"
   >

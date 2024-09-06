@@ -1,15 +1,15 @@
-import { Shallow } from 'shallow-render';
+import { render, screen } from '@testing-library/angular';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarModule } from './toolbar.module';
 
 describe('ToolbarComponent', () => {
-  let shallow: Shallow<ToolbarComponent>;
-
   beforeEach(async () => {
-    shallow = new Shallow(ToolbarComponent, ToolbarModule);
+    await render(ToolbarComponent, {
+      imports: [ToolbarModule],
+    });
   });
 
-  it('should be', async () => {
-    await expect(shallow.render()).resolves.toBeDefined();
+  it('should render toolbar', () => {
+    expect(screen.getByText('Human Reference Atlas')).toBeDefined();
   });
 });

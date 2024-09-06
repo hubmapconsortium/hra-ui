@@ -78,6 +78,9 @@ describe('MenuTreeComponent', () => {
         })
         .mock(ViewportScroller as never as Type<ViewportScroller>, {
           scrollToAnchor: jest.fn(),
+        })
+        .mock(NestedTreeControl, {
+          collapseAll: jest.fn(),
         });
     });
 
@@ -101,7 +104,7 @@ describe('MenuTreeComponent', () => {
   });
 
   describe('scrollAfterDetach()', () => {
-    it('TODO', async () => {
+    it('should scroll to anchor element', async () => {
       const { instance, inject } = await shallow.render();
       const scroller = inject(ViewportScroller);
       const spy = jest.spyOn(scroller, 'scrollToAnchor');
@@ -126,6 +129,42 @@ describe('MenuTreeComponent', () => {
       const treeControl = instance.treeControl;
       expect(treeControl).toBeInstanceOf(NestedTreeControl);
       expect(treeControl.getChildren(treeItems[0])).toEqual(treeItems[0].children);
+    });
+  });
+
+  describe('isHubmapNav', () => {
+    it('should return true if hubmap nav is to be rendered', async () => {
+      const node: NavItems = { menuName: 'Test Menu', componentName: 'hubmap-nav' };
+      const { instance } = await shallow.render();
+      const isPresent = instance.isHubmapNav(1, node);
+      expect(isPresent).toBe(true);
+    });
+  });
+
+  describe('collapseNonActiveNodes', () => {
+    const navItem: NavItems = { menuName: 'Test' };
+    it('should collapse other nodes when we expand a single node', async () => {
+      const { instance } = await shallow.render();
+      const treeControl = instance.treeControl;
+      const spy = jest.spyOn(treeControl, 'collapseAll');
+      instance.collapseNonActiveNodes(navItem);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('collapseNonActiveNodes when trying to close already open node', () => {
+    it('should collapse the node if it is already open', async () => {
+      const { instance } = await shallow.render();
+      const { treeControl, hubmapNavData } = instance;
+
+      treeControl.expand(hubmapNavData[0]);
+      instance.collapseNonActiveNodes(hubmapNavData[0]);
+      expect(treeControl.isExpanded(hubmapNavData[0])).toBeTruthy();
+
+      treeControl.expand(hubmapNavData[1]);
+      instance.collapseNonActiveNodes(hubmapNavData[1]);
+      expect(treeControl.isExpanded(hubmapNavData[0])).toBeFalsy();
+      expect(treeControl.isExpanded(hubmapNavData[1])).toBeTruthy();
     });
   });
 });

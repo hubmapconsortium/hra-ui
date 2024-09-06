@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { FtuDataService } from '@hra-ui/services';
 import { Action, State } from '@ngxs/store';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { SourceRefsActions } from '../source-refs';
 import { CombineSummariesByBiomarker, ComputeAggregates, FilterSummaries, Load, Reset } from './cell-summary.actions';
-import { combineSummaries, computeAggregate, filterSummaries } from './cell-summary.helpers';
+import { combineSummariesByBiomarkerType, computeAggregate, filterSummaries } from './cell-summary.helpers';
 import { BIOMARKER_TYPES, CellSummaryModel, Context } from './cell-summary.model';
 
 /** State handling cell summary data */
@@ -28,12 +28,11 @@ export class CellSummaryState {
    * the state and cancels uncompleted action if any
    */
   @Action(Load, { cancelUncompleted: true })
-  load({ patchState, dispatch }: Context, { iri }: Load): Observable<unknown> {
+  load({ patchState }: Context, { iri }: Load): Observable<unknown> {
     return this.dataService.getCellSummaries(iri).pipe(
       tap((summaries) => {
         patchState({ summaries, filteredSummaries: summaries, summariesByBiomarker: [], aggregates: [] });
       }),
-      switchMap(() => dispatch(new CombineSummariesByBiomarker())),
     );
   }
 
@@ -57,8 +56,8 @@ export class CellSummaryState {
    */
   @Action(CombineSummariesByBiomarker)
   combineSummariesByBiomarker({ getState, patchState, dispatch }: Context): Observable<void> {
-    const { filteredSummaries: summaries } = getState();
-    const summariesByBiomarker = combineSummaries(summaries);
+    const { filteredSummaries, biomarkerTypes } = getState();
+    const summariesByBiomarker = combineSummariesByBiomarkerType(filteredSummaries, biomarkerTypes);
 
     patchState({ summariesByBiomarker });
     return dispatch(new ComputeAggregates());

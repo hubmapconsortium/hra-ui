@@ -1,13 +1,8 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import { importProvidersFrom } from '@angular/core';
+import { createCustomElement } from '@hra-ui/webcomponents';
+import { AppWebComponent } from './app/app-web-component.component';
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+createCustomElement('ccf-eui', AppWebComponent, {
+  providers: [importProvidersFrom(AppModule)],
+});

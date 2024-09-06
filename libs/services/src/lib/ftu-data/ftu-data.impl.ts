@@ -11,7 +11,6 @@ import {
   RAW_CELL_SUMMARIES,
   RAW_DATASETS,
   RAW_ILLUSTRATIONS_JSONLD,
-  RawCellSummary,
   RawDatasets,
   RawIllustrationFile,
   RawIllustrationsJsonld,
@@ -58,11 +57,6 @@ const EMPTY_TISSUE_LIBRARY: TissueLibrary = {
   root: '' as Iri,
   nodes: {},
 };
-
-/** Capitalizes the first character */
-function capitalize(str: string): string {
-  return str.slice(0, 1).toUpperCase() + str.slice(1);
-}
 
 /** Converts case to title case for organ name */
 function titleCase(name: string) {
@@ -139,10 +133,7 @@ export class FtuDataImplService extends FtuDataService {
   @returns An Observable that emits an CellSummary array.
   */
   override getCellSummaries(iri: Iri): Observable<CellSummary[]> {
-    return this.fetchData(iri, 'summaries', RAW_CELL_SUMMARIES).pipe(
-      map((data) => data?.['@graph']),
-      map((data) => (data ? this.constructCellSummaries(data) : [])),
-    );
+    return this.fetchData(iri, 'summaries', RAW_CELL_SUMMARIES).pipe(map((data) => data?.['@graph'] ?? []));
   }
 
   /**
@@ -287,68 +278,6 @@ export class FtuDataImplService extends FtuDataService {
       results.push({ id, label, link, title: description, authors, year, doi });
     }
     return results;
-  }
-
-  /**
-   * constructCellSummaries : Formates Cell Summary after fetching the data
-   * @param data
-   * @returns
-   */
-  private constructCellSummaries(data: RawCellSummary['@graph']): CellSummary[] {
-    type SummaryItem = RawCellSummary['@graph'][number]['summary'][number];
-    const cellSummaries: CellSummary[] = [];
-    const defaultBiomarkerLables = ['gene', 'protein', 'lipid'];
-    const biomarkersPresent = new Set(data.map((summary) => summary.biomarker_type.toLowerCase()));
-    const expandGenes = (summary: SummaryItem) =>
-      summary.genes.map((gene) => ({
-        ...summary,
-        ...gene,
-      }));
-
-    data.forEach((summaryGroup) => {
-      const nestedSummaries = summaryGroup.summary.map(expandGenes);
-      const summary = nestedSummaries.reduce((acc, items) => acc.concat(items), [] as (typeof nestedSummaries)[number]);
-
-      const cells = summary.map((entry) => ({
-        id: entry.cell_id as Iri,
-        label: entry.cell_label,
-      }));
-
-      const biomarkers = summary.map((entry) => ({
-        id: entry.gene_id as Iri,
-        label: entry.gene_label,
-      }));
-
-      const summaries = summary.map((entry) => ({
-        cell: entry.cell_id as Iri,
-        biomarker: entry.gene_id as Iri,
-        count: entry.count,
-        percentage: entry.percentage,
-        meanExpression: entry.mean_expression,
-      }));
-
-      cellSummaries.push({
-        label: `${capitalize(summaryGroup.biomarker_type)} Biomarkers`,
-        cellSource: summaryGroup.cell_source,
-        cells,
-        biomarkers,
-        summaries,
-      });
-    });
-
-    defaultBiomarkerLables.forEach((defaultLabel) => {
-      if (!biomarkersPresent.has(defaultLabel)) {
-        cellSummaries.push({
-          label: `${capitalize(defaultLabel)} Biomarkers`,
-          cellSource: '',
-          cells: [],
-          biomarkers: [],
-          summaries: [],
-        });
-      }
-    });
-
-    return cellSummaries;
   }
 
   /**

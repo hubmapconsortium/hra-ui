@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   displayName: 'design-system',
-  preset: '../../jest.preset.cjs',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/libs/design-system',
   transform: {

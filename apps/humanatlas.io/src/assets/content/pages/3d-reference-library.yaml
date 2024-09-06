@@ -14,10 +14,6 @@
       routeText: '7th Release Notes.'
       emoji: '🎉'
 
-- type: announcement
-  announcementCard:
-    - message: 'Warning: DOI registration in progress. HRA v2.1 DOI URLs will not work until further notice.'
-
 - type: margin
   bottom: 3.5rem
 
@@ -32,6 +28,8 @@
         On March 12, 2021, a total of 11 reference organs became available in GLB format. Each organ can be viewed and explored using free web browsers such as Babylon.js. Screenshots and major properties of the nested reference organ objects are given in the table below.
 
         For selected organs, 3D extraction site objects are provided. Some extraction sites resemble geometric objects (e.g., cuboids for heart) while others take the shape of one or more whole or partial anatomical structures (e.g., in spleen). The 3D extraction sites do not restrict registration to specific regions, instead they provide “expert defined landmarks” to help guide tissue registration. The extraction site objects are also used for automatic semantic annotation of tissue samples via collision detection during registration.
+
+        In the 65 3D Reference Objects of HRA v2.1, a total of 1,222 modeled 3D structures are tagged with an ontology ID in UBERON or FMA. The crosswalk that links 3D structures (called nodes in the crosswalk) to their ontology ID is available on the <a href="https://lod.humanatlas.io/ref-organ/asct-b-3d-models-crosswalk/latest/" target="_blank">HRA LOD Server</a>.
 
 - type: sop-links
   sopData:

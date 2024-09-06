@@ -172,7 +172,7 @@ describe('OrganVersionComponent', () => {
       instance.setFtu(testOrganName);
       const data = await firstValueFrom(instance.tableData);
       const columns = await firstValueFrom(instance.columns);
-      expect(service.getData).toHaveBeenCalledWith('ftu-cell-count-5th-release.csv', displayedColumnsData);
+      expect(service.getData).toHaveBeenCalledWith('ftu-cell-count-7th-release.csv', displayedColumnsData);
       expect(data).toEqual(expectedTableData);
       expect(columns).toEqual(expectedColumns);
     });

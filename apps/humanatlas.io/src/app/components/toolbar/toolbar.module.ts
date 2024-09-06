@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { HubmapNavModule } from '../hubmap-nav/hubmap-nav.module';
 
 @NgModule({
   declarations: [ToolbarComponent, NavbarComponent],
@@ -21,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
+    HubmapNavModule,
   ],
   exports: [ToolbarComponent],
 })

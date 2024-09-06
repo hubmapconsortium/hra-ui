@@ -1,0 +1,35 @@
+<mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor" [hraTreeSize]="size()">
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodePadding
+    [matTreeNodePaddingIndent]="padding()"
+    [style.display]="shouldRender(node) ? 'flex' : 'none'"
+    [isDisabled]="!shouldRender(node)"
+    (activation)="selectedNode = node"
+    (click)="selectedNode = node"
+  >
+    <div class="node-content leaf" [class.selected]="selectedNode === node">
+      {{ node.name }}
+    </div>
+  </mat-tree-node>
+
+  <mat-tree-node
+    *matTreeNodeDef="let node; when: hasChild"
+    matTreeNodeToggle
+    matTreeNodePadding
+    [matTreeNodePaddingIndent]="padding()"
+    [cdkTreeNodeTypeaheadLabel]="node.name"
+    [style.display]="shouldRender(node) ? 'flex' : 'none'"
+    [isDisabled]="!shouldRender(node)"
+    [isExpandable]="true"
+  >
+    <div class="node-content">
+      <button mat-icon-button matTreeNodeToggle disableRipple [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ tree.isExpanded(node) ? 'expand_more' : 'expand_less' }}
+        </mat-icon>
+      </button>
+      {{ node.name }}
+    </div>
+  </mat-tree-node>
+</mat-tree>

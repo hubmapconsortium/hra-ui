@@ -39,7 +39,12 @@
       <mat-divider *ngIf="node.id"></mat-divider>
     </mat-tree-node>
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-      <div class="mat-parent-node" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.menuName">
+      <div
+        class="mat-parent-node"
+        matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + node.menuName"
+        (click)="collapseNonActiveNodes(node)"
+      >
         {{ node.menuName }}
         <button mat-icon-button>
           <mat-icon [class.inverse]="treeControl.isExpanded(node)">arrow_drop_down</mat-icon>
@@ -49,5 +54,21 @@
         <ng-container matTreeNodeOutlet></ng-container>
       </div>
     </mat-nested-tree-node>
+    <mat-tree-node *matTreeNodeDef="let node; when: isHubmapNav" class="hubmap-nav-menu-node">
+      <div
+        [attr.aria-label]="'Toggle ' + node.menuName"
+        class="mat-parent-node"
+        matTreeNodeToggle
+        (click)="collapseNonActiveNodes(node)"
+      >
+        {{ node.menuName }}
+        <button mat-icon-button>
+          <mat-icon [class.inverse]="treeControl.isExpanded(node)">arrow_drop_down</mat-icon>
+        </button>
+      </div>
+      @if (treeControl.isExpanded(node)) {
+        <hubmap-nav [navItems]="hubmapNavData"></hubmap-nav>
+      }
+    </mat-tree-node>
   </mat-tree>
 </ng-template>
