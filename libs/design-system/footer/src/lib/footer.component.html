@@ -1,44 +1,19 @@
-<div class="footer-wrapper">
-  <div class="footer-left">
-    <a href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
-      <img [attr.src]="logo() | assetUrl" alt="Human Reference Atlas Logo" />
-    </a>
-    <span class="copyright">
-      <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
-      2024 CNS at Indiana University
-    </span>
-  </div>
-  <div class="footer-right">
+<div class="footer-left">
+  <a href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
+    <img [attr.src]="logo() | assetUrl" alt="Human Reference Atlas Logo" />
+  </a>
+  <span class="copyright">
+    <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
+    2024 CNS at Indiana University
+  </span>
+</div>
+<div class="footer-right">
+  <div class="footer-right-content">
     <div class="social-funded">
       <div class="social-media">
-        <a href="https://twitter.com/cnscenter" target="_blank" rel="noopener noreferrer">
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:x"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:x_large"></mat-icon>
-        </a>
-        <a href="https://www.facebook.com/cnscenter/" target="_blank" rel="noopener noreferrer">
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:facebook"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:facebook_large"></mat-icon>
-        </a>
-        <a href="https://www.instagram.com/cns_at_iu/" target="_blank" rel="noopener noreferrer">
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:instagram"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:instagram_large"></mat-icon>
-        </a>
-        <a href="https://www.youtube.com/@CNSCenter/" target="_blank" rel="noopener noreferrer">
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:youtube"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:youtube_large"></mat-icon>
-        </a>
-        <a
-          href="https://www.linkedin.com/company/cns-indiana-university-bloomington"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:linkedin"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:linkedin_large"></mat-icon>
-        </a>
-        <a href="mailto:infoccf@iu.edu" rel="noopener noreferrer">
-          <mat-icon *ngIf="isExtraSmall" svgIcon="social:email"></mat-icon>
-          <mat-icon *ngIf="!isExtraSmall" svgIcon="social:email_large"></mat-icon>
-        </a>
+        @for (link of socialMediaNames; track link) {
+          <hra-social-media-button size="large" [name]="link"></hra-social-media-button>
+        }
       </div>
       <div class="funded-by">
         <span>Funded By:</span>
@@ -52,6 +27,9 @@
           <a href="https://cifar.ca/" target="_blank" rel="noopener noreferrer">
             <img [attr.src]="'assets/logo/cifar.svg' | assetUrl" alt="CIFAR Logo" />
           </a>
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <div class="spacer"></div>
         </div>
       </div>
     </div>
