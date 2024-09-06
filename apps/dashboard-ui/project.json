@@ -16,8 +16,19 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/dashboard-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/dashboard-ui/src/favicon.png", "apps/dashboard-ui/src/assets"],
+        "assets": [
+          "apps/dashboard-ui/src/favicon.png",
+          "apps/dashboard-ui/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "styles": ["apps/dashboard-ui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
+        },
         "scripts": []
       },
       "configurations": {

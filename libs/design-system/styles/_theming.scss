@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@use './fonts';
+@use './icons';
+@use './resets';
+@use './typography';
+
+@mixin theme($theme, $overrides: typography.$overrides) {
+  @at-root {
+    @include mat.core();
+  }
+
+  @include mat.system-level-colors($theme);
+  @include mat.system-level-typography($theme, $overrides);
+  @include typography.custom-variants();
+  @include mat.all-component-themes($theme);
+}
