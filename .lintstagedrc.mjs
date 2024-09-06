@@ -1,4 +1,4 @@
-const lint = 'npx nx affected:lint --uncommitted --fix true';
+const lint = 'npx nx affected:lint --fix true';
 const format = 'npx nx format:write --uncommitted';
 
 export default {
