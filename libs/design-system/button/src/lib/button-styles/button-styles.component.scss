@@ -54,14 +54,14 @@ $y-multiplier: 0.4566;
     --mat-text-button-horizontal-padding: 0.75rem;
     --mdc-text-button-container-height: 2rem;
     font: var(--sys-label-medium);
-    padding: 5.5px var(--mat-text-button-horizontal-padding);
+    padding: 0.3438rem var(--mat-text-button-horizontal-padding);
   }
 
   &.button-size-small {
     --mat-text-button-horizontal-padding: 0.5rem;
     --mdc-text-button-container-height: 1.75rem;
     font: var(--sys-label-small);
-    padding: 5px var(--mat-text-button-horizontal-padding);
+    padding: 0.3125rem var(--mat-text-button-horizontal-padding);
   }
 }
 
@@ -87,7 +87,7 @@ $y-multiplier: 0.4566;
     --mat-filled-button-pressed-state-layer-opacity: 0.16;
     --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
     outline: solid 1px var(--sys-on-tertiary-fixed);
-    padding: 7.5px var(--mat-filled-button-horizontal-padding);
+    padding: 0.4688rem var(--mat-filled-button-horizontal-padding);
 
     &:focus-visible {
       --mat-filled-button-state-layer-color: var(--sys-on-primary);
@@ -110,7 +110,7 @@ $y-multiplier: 0.4566;
     --mat-filled-button-horizontal-padding: 0.75rem;
     --mdc-filled-button-container-height: 2rem;
     font: var(--sys-label-medium);
-    padding: 5.5px var(--mat-filled-button-horizontal-padding);
+    padding: 0.3438rem var(--mat-filled-button-horizontal-padding);
   }
 }
 
@@ -183,7 +183,7 @@ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-stan
     --mat-standard-button-toggle-height: 1.3125rem;
     font: var(--sys-label-medium);
     .mat-button-toggle-label-content {
-      padding: 5.5px 0.5rem;
+      padding: 0.3438rem 0.5rem;
     }
   }
 
