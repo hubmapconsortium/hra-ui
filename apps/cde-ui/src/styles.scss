@@ -9,6 +9,10 @@
 // html {
 //   @include theming.theme(light-theme.$theme);
 // }
+// Only enabled for the footer at the moment
+hra-footer {
+  @include theming.theme(light-theme.$theme);
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

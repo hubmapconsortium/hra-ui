@@ -17,7 +17,7 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  staticDirs: [{ from: './assets', to: 'assets' }],
+  staticDirs: [{ from: '../assets', to: 'assets' }],
 
   core: {
     disableTelemetry: true,
