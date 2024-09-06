@@ -172,13 +172,18 @@ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-stan
   border: none;
   font: var(--sys-label-large);
 
-  .mat-button-toggle-label-content {
-    padding: 0 1rem;
+  &.button-size-large {
+    --mat-standard-button-toggle-height: 1.5rem;
+    .mat-button-toggle-label-content {
+      padding: 0.5rem 1rem;
+    }
   }
 
-  &[hraButtonSize='medium'] {
+  &.button-size-medium {
+    --mat-standard-button-toggle-height: 1.3125rem;
+    font: var(--sys-label-medium);
     .mat-button-toggle-label-content {
-      padding: 0 0.5rem;
+      padding: 5.5px 0.5rem;
     }
   }
 
