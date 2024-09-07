@@ -23,7 +23,7 @@ $blue-theme: mat.m2-define-light-theme(
   align-items: start;
   row-gap: 0.75rem;
   overflow: hidden;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.5rem;
   border-width: 0px 0px 2px 2px;
   border-style: solid;
   border-color: map.get(map.get(palettes.$palettes, 'blue'), 600);
@@ -37,10 +37,12 @@ $blue-theme: mat.m2-define-light-theme(
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    padding-left: 0.5rem;
   }
 
   .download {
     grid-area: download;
+    padding-right: 0.5rem;
   }
 
   .violin {

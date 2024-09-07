@@ -18,12 +18,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { produce } from 'immer';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 import { CellTypeEntry } from '../../models/cell-type';
-import { colorEquals, Rgb, rgbToHex } from '../../models/color';
+import { Rgb, rgbToHex } from '../../models/color';
 import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
 import { NodeEntry, NodeTargetKey } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
@@ -51,30 +50,41 @@ interface ModifiableViolinSpec {
       left: number;
     };
   };
-  /** Width of the violin */
-  width: string | number;
-  /** Height of the violin */
-  height: string | number;
+
   /** Data values for the violin */
   data: {
     values?: unknown[];
   };
   /** Encoding configuration for the violin */
-  encoding: {
-    color: {
-      legend: unknown;
-      scale: {
-        range: unknown[];
-      };
-    };
+  spec: {
+    /** Width of the violin */
+    width: string | number;
+    /** Height of the violin */
+    height: string | number;
+    layer: [
+      {
+        encoding: {
+          color: {
+            legend: unknown;
+            scale: {
+              range: unknown[];
+            };
+          };
+        };
+      },
+      {
+        encoding: {
+          color: {
+            value: unknown;
+          };
+        };
+      },
+    ];
   };
 }
 
 /** Fonts used in the violin */
 const VIOLIN_FONTS = ['12px Metropolis', '14px Metropolis'];
-
-/** Label for all cell types */
-const ALL_CELLS_TYPE = 'All Cells';
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH = 1000;
@@ -118,7 +128,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
@@ -152,11 +161,6 @@ export class ViolinComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
-  protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
-
-  /** State indicating whether overflow is visible */
-  protected readonly overflowVisible = computed(() => !!this.colorPicker());
-
   /** List of filtered cell types based on selection */
   protected readonly filteredCellTypes = computed(
     () => {
@@ -167,12 +171,6 @@ export class ViolinComponent {
     },
     { equal: emptyArrayEquals },
   );
-
-  /** Label for the total cell type */
-  protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
-
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
 
   /** Computed distances between nodes */
   private readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
@@ -213,10 +211,12 @@ export class ViolinComponent {
       const el = this.violinEl().nativeElement;
       await this.ensureFontsLoaded();
 
-      const spec = produce(VIOLIN_SPEC, (draft) => {
-        draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+      const spec = produce(VIOLIN_SPEC as unknown as ModifiableViolinSpec, (draft) => {
+        if (draft.spec.layer.length === 2) {
+          draft.spec.layer[0].encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+        }
       });
-      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+      const { finalize, view } = await embed(el, spec as unknown as VisualizationSpec, {
         actions: false,
       });
 
@@ -228,20 +228,22 @@ export class ViolinComponent {
 
   /** Download the violin as an image in the specified format */
   async download(format: string): Promise<void> {
-    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
-      draft.width = EXPORT_IMAGE_WIDTH;
-      draft.height = EXPORT_IMAGE_HEIGHT;
+    const spec = produce(VIOLIN_SPEC as unknown as ModifiableViolinSpec, (draft) => {
+      draft.spec.width = EXPORT_IMAGE_WIDTH;
+      draft.spec.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.spec.layer[0].encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
       draft.data.values = this.data();
-      draft.encoding.color.scale.range = this.colors();
+      draft.spec.layer[0].encoding.color.scale.range = this.colors();
     });
 
+    console.log(spec);
+
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+    const { view, finalize } = await embed(el, spec as unknown as VisualizationSpec, {
       actions: false,
     });
 
@@ -258,11 +260,6 @@ export class ViolinComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
-  }
-
-  /** Reset the color of the total cell type */
-  resetAllCellsColor(): void {
-    this.totalCellTypeColor.set([0, 0, 0]);
   }
 
   /** Ensure required fonts are loaded for the violin */
@@ -305,8 +302,7 @@ export class ViolinComponent {
 
   /** Compute colors for the violin visualization */
   private computeColors(): string[] {
-    const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
-    return [totalCellType, ...this.filteredCellTypes()]
+    return this.filteredCellTypes()
       .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
       .map(({ color }) => rgbToHex(color));
   }

@@ -1,19 +1,20 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 400,
-  "height": 120,
-  "spacing": 0,
+  "spacing": -2,
   "config": {
     "font": "Metropolis",
     "padding": {
-      "top": 4,
-      "right": 16,
-      "bottom": 4,
-      "left": 4
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "view": {
+      "stroke": "transparent"
     },
     "axis": {
       "labelFontSize": 12,
-      "titleFontSize": 14,
+      "titleFontSize": 12,
       "titleFontWeight": 500,
       "labelFontWeight": 500,
       "titleLineHeight": 21,
@@ -22,8 +23,16 @@
       "labelColor": "#4B4B5E",
       "labelAngle": -45,
       "ticks": false,
-      "domain": false,
       "labelPadding": 8
+    },
+    "legend": {
+      "titleFontSize": 14,
+      "titleLineHeight": 21,
+      "titleColor": "#201E3D",
+      "titleFontWeight": 500,
+      "labelFontSize": 14,
+      "labelFontWeight": 500,
+      "labelColor": "#4B4B5E"
     }
   },
   "data": {
@@ -35,56 +44,114 @@
       "value": []
     }
   ],
-  "transform": [
-    {
-      "calculate": "[datum.type, 'All Cells']",
-      "as": "type"
-    },
-    {
-      "flatten": ["type"]
-    },
-    {
-      "density": "distance",
-      "bandwidth": 0,
-      "groupby": ["type"]
-    }
-  ],
-  "mark": "area",
-  "encoding": {
-    "x": {
-      "field": "value",
-      "type": "quantitative",
-      "title": "Distance (µm)",
-      "axis": {
-        "labelAngle": 0
-      }
-    },
-    "y": {
-      "field": "density",
-      "type": "quantitative",
-      "stack": "center",
-      "impute": null,
-      "title": null,
-      "axis": null
-    },
+  "facet": {
     "row": {
       "field": "type",
-      "title": "Cell Types"
-    },
-    "color": {
-      "field": "type",
-      "legend": null,
-      "scale": {
-        "range": [
-          {
-            "expr": "'Replaced/repeated in javascript' || color[0] || '#000'"
-          }
-        ]
+      "title": "Cell Types",
+      "header": {
+        "labelAngle": 0,
+        "labelPadding": 4,
+        "labelAlign": "left",
+        "labelLimit": 65,
+        "labelBaseline": "middle",
+        "titlePadding": 8,
+        "labelFontSize": 12,
+        "titleFontSize": 12,
+        "titleFontWeight": 500,
+        "labelFontWeight": 500
       }
-    },
-    "tooltip": {
-      "field": "type",
-      "type": "nominal"
     }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "spec": {
+    "height": 80,
+    "width": 350,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "stroke": "black",
+          "strokeWidth": 0.5
+        },
+        "transform": [
+          {
+            "density": "distance",
+            "bandwidth": 0,
+            "groupby": ["type"]
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Distance (µm)",
+            "scale": {
+              "domainMin": -50
+            },
+            "axis": {
+              "labelFlush": false,
+              "grid": true,
+              "labelAngle": 0,
+              "labelOverlap": true,
+              "labelSeparation": 4
+            }
+          },
+          "y": {
+            "field": "density",
+            "type": "quantitative",
+            "stack": "center",
+            "impute": null,
+            "title": null,
+            "axis": {
+              "labels": false,
+              "grid": false
+            },
+            "scale": {
+              "nice": false,
+              "padding": 12
+            }
+          },
+          "color": {
+            "field": "type",
+            "legend": null,
+            "scale": {
+              "range": [
+                {
+                  "expr": "'Replaced/repeated in javascript' || 'color[0] || '#000'"
+                }
+              ]
+            }
+          },
+          "tooltip": {
+            "field": "type",
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "boxplot",
+          "extent": "min-max",
+          "size": 4
+        },
+        "encoding": {
+          "x": {
+            "field": "distance",
+            "type": "quantitative",
+            "title": "Distance (µm)",
+            "scale": {
+              "domainMin": -50
+            }
+          },
+          "color": {
+            "value": "black"
+          }
+        }
+      }
+    ]
   }
 }

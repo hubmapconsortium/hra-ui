@@ -83,12 +83,12 @@
       border-width: 0 0 2px 0;
       border-style: solid;
       height: 100%;
-      width: 60%;
+      width: calc(100% - 488px);
     }
 
     cde-violin {
       height: 100%;
-      width: 40%;
+      width: 488px;
     }
   }
 }
