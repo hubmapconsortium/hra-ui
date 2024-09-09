@@ -17,12 +17,15 @@ import {
   FtuDataImplEndpoints,
   FtuDataImplService,
   IllustrationMappingItem,
+  illustrationsInput,
   Iri,
   RAW_ILLUSTRATION,
   RawCellEntry,
+  rawCellEntryInput,
   RawIllustration,
   RawIllustrationFile,
   RawIllustrationsJsonld,
+  selectedIllustrationInput,
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import { z } from 'zod';
@@ -65,13 +68,16 @@ function selectData<T, Z extends z.ZodTypeAny>(
 })
 export class MedicalIllustrationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
-  @Input() selectedIllustration?: string | RawIllustration;
+  @Input({ transform: selectedIllustrationInput })
+  selectedIllustration?: string | RawIllustration;
 
   /** Optional set of all illustrations. Used when selectedIllustration is an iri */
-  @Input() illustrations: string | RawIllustrationsJsonld = '';
+  @Input({ transform: illustrationsInput })
+  illustrations: string | RawIllustrationsJsonld = '';
 
   /** A cell or id to highlight in the illustration */
-  @Input() highlight?: string | RawCellEntry;
+  @Input({ transform: rawCellEntryInput })
+  highlight?: string | RawCellEntry;
 
   /** Base href */
   @Input() baseHref = '';

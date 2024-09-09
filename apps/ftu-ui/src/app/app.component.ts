@@ -29,10 +29,14 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  illustrationsInput,
+  rawCellSummariesInput,
   RawCellSummary,
   RawDatasets,
+  rawDatasetsInput,
   RawIllustration,
   RawIllustrationsJsonld,
+  selectedIllustrationInput,
   setUrl,
 } from '@hra-ui/services';
 import {
@@ -96,14 +100,22 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   /** Illustration to display (choosen automatically if not provided) */
-  @Input() selectedIllustration?: string | RawIllustration;
+  @Input({ transform: selectedIllustrationInput })
+  selectedIllustration?: string | RawIllustration;
+
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld =
+  @Input({ transform: illustrationsInput })
+  illustrations: string | RawIllustrationsJsonld =
     'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+
   /** Cell summaries to display in tables */
-  @Input() summaries: string | RawCellSummary = '';
+  @Input({ transform: rawCellSummariesInput })
+  summaries: string | RawCellSummary = '';
+
   /** Datasets to display in the sources tab */
-  @Input() datasets: string | RawDatasets = '';
+  @Input({ transform: rawDatasetsInput })
+  datasets: string | RawDatasets = '';
+
   /** Base href if different from the page */
   @Input() baseHref = '';
 
