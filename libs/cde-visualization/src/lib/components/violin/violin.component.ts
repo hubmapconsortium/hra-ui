@@ -61,25 +61,17 @@ interface ModifiableViolinSpec {
     width: string | number;
     /** Height of the violin */
     height: string | number;
-    layer: [
-      {
-        encoding: {
-          color: {
-            legend: unknown;
-            scale: {
-              range: unknown[];
-            };
+    layer: {
+      encoding: {
+        color: {
+          legend?: unknown;
+          scale: {
+            range: unknown[];
           };
+          value?: string;
         };
-      },
-      {
-        encoding: {
-          color: {
-            value: unknown;
-          };
-        };
-      },
-    ];
+      };
+    }[];
   };
 }
 
@@ -90,7 +82,7 @@ const VIOLIN_FONTS = ['12px Metropolis', '14px Metropolis'];
 const EXPORT_IMAGE_WIDTH = 1000;
 
 /** Height of the exported image */
-const EXPORT_IMAGE_HEIGHT = 500;
+const EXPORT_IMAGE_HEIGHT = 100;
 
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
@@ -107,6 +99,8 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
   titleFontWeight: 500,
   labelFontWeight: 500,
   labelColor: '#4B4B5E',
+  symbolStrokeColor: 'type',
+  symbolSize: 400,
 };
 
 /** Length of the dynamic color range */
@@ -211,12 +205,15 @@ export class ViolinComponent {
       const el = this.violinEl().nativeElement;
       await this.ensureFontsLoaded();
 
-      const spec = produce(VIOLIN_SPEC as unknown as ModifiableViolinSpec, (draft) => {
-        if (draft.spec.layer.length === 2) {
-          draft.spec.layer[0].encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+      const spec = produce(VIOLIN_SPEC, (draft) => {
+        for (const layer of draft.spec.layer) {
+          if (layer.encoding.color.legend === null) {
+            layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
+          }
         }
       });
-      const { finalize, view } = await embed(el, spec as unknown as VisualizationSpec, {
+
+      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
         actions: false,
       });
 
@@ -228,22 +225,24 @@ export class ViolinComponent {
 
   /** Download the violin as an image in the specified format */
   async download(format: string): Promise<void> {
-    const spec = produce(VIOLIN_SPEC as unknown as ModifiableViolinSpec, (draft) => {
+    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
       draft.spec.width = EXPORT_IMAGE_WIDTH;
+      for (const layer of draft.spec.layer) {
+        if (layer.encoding.color.legend === null) {
+          layer.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+          layer.encoding.color.scale = { range: this.colors() };
+        }
+      }
       draft.spec.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.spec.layer[0].encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
       draft.data.values = this.data();
-      draft.spec.layer[0].encoding.color.scale.range = this.colors();
     });
 
-    console.log(spec);
-
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as unknown as VisualizationSpec, {
+    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
       actions: false,
     });
 
