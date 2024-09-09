@@ -1,5 +1,6 @@
 :host {
   --mat-icon-color: var(--sys-tertiary);
+  line-height: 0;
 
   mat-icon {
     border-radius: 100%;
@@ -21,7 +22,7 @@
   }
 
   ::ng-deep a:focus-visible {
-    --mat-icon-color: white;
+    --mat-icon-color: var(--sys-on-tertiary);
     outline: none;
 
     mat-icon {
