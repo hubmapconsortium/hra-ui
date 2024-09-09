@@ -101,21 +101,17 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 })
 export class AppComponent implements OnInit, OnChanges {
   /** Illustration to display (choosen automatically if not provided) */
-  @Input({ transform: selectedIllustrationInput })
-  selectedIllustration?: string | RawIllustration;
+  @Input() selectedIllustration?: string | RawIllustration;
 
   /** Set of all illustrations */
-  @Input({ transform: illustrationsInput })
-  illustrations: string | RawIllustrationsJsonld =
+  @Input() illustrations: string | RawIllustrationsJsonld =
     'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
 
   /** Cell summaries to display in tables */
-  @Input({ transform: rawCellSummariesInput })
-  summaries: string | RawCellSummary = '';
+  @Input() summaries: string | RawCellSummary = '';
 
   /** Datasets to display in the sources tab */
-  @Input({ transform: rawDatasetsInput })
-  datasets: string | RawDatasets = '';
+  @Input() datasets: string | RawDatasets = '';
 
   /** Base href if different from the page */
   @Input() baseHref = '';
@@ -209,9 +205,9 @@ export class AppComponent implements OnInit, OnChanges {
       if (!endpointsUpdated) {
         const { illustrations, datasets, summaries, baseHref } = this;
         this.endpoints.next({
-          illustrations,
-          datasets,
-          summaries,
+          illustrations: illustrationsInput(illustrations) ?? '',
+          datasets: rawDatasetsInput(datasets) ?? '',
+          summaries: rawCellSummariesInput(summaries) ?? '',
           baseHref,
         });
         endpointsUpdated = true;
@@ -249,7 +245,10 @@ export class AppComponent implements OnInit, OnChanges {
    * Updates the selected illustration using a default if not provided
    */
   private updateSelectedIllustration(): void {
-    const { selectedIllustration: selected } = this;
+    const { selectedIllustration } = this;
+    console.log('fooo', selectedIllustration);
+    const selected = selectedIllustrationInput(selectedIllustration);
+    console.log('bar');
     if (selected === undefined || selected === '') {
       this.setDefaultSelectedIllustration();
     } else {

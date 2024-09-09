@@ -1,11 +1,23 @@
 import { z } from 'zod';
-import {
-  RAW_CELL_ENTRY,
-  RAW_CELL_SUMMARIES,
-  RAW_DATASETS,
-  RAW_ILLUSTRATION,
-  RAW_ILLUSTRATIONS_JSONLD,
-} from './ftu-data.model';
+import { RAW_CELL_SUMMARIES, RAW_DATASETS, RAW_ILLUSTRATION, RAW_ILLUSTRATIONS_JSONLD } from './ftu-data.model';
+
+/**
+ * Tries to parse a value as json. Returns the original value if it could not be parsed.
+ *
+ * @param value Value to parse
+ * @returns Parsed json value or the original value
+ */
+export function tryParseJson<R = unknown>(value: unknown): R {
+  try {
+    if (typeof value === 'string') {
+      return JSON.parse(value);
+    }
+  } catch {
+    // Ignore errors
+  }
+
+  return value as R;
+}
 
 /**
  * Tests whether a value is path like
@@ -14,7 +26,16 @@ import {
  * @returns True if the value is path like
  */
 function isPath(value: unknown): boolean {
-  return typeof value === 'string' && URL.canParse(value, 'https://example.com/');
+  try {
+    if (typeof value === 'string') {
+      new URL(value, 'https://base.url/');
+      return true;
+    }
+  } catch {
+    // Ignore errors
+  }
+
+  return false;
 }
 
 /**
@@ -26,17 +47,7 @@ function isPath(value: unknown): boolean {
  */
 function createInputValidation<T extends z.ZodTypeAny>(schema: T) {
   return z.preprocess(
-    (value) => {
-      try {
-        if (typeof value === 'string') {
-          return JSON.parse(value);
-        }
-      } catch {
-        // Ignore errors
-      }
-
-      return value;
-    },
+    tryParseJson,
     z.union([
       z.string().url().optional(),
       z.literal(''),
@@ -88,19 +99,6 @@ export const ILLUSTRATIONS_INPUT = createInputValidation(RAW_ILLUSTRATIONS_JSONL
  */
 export function illustrationsInput(value: unknown) {
   return parseInput(ILLUSTRATIONS_INPUT, value);
-}
-
-/** Cell entry input schema */
-export const RAW_CELL_ENTRY_INPUT = createInputValidation(RAW_CELL_ENTRY).describe('cell entry');
-
-/**
- * Parses cell entry input
- *
- * @param value Value to parse
- * @returns Parsed input
- */
-export function rawCellEntryInput(value: unknown) {
-  return parseInput(RAW_CELL_ENTRY_INPUT, value);
 }
 
 /** Cell summaries input schema */

@@ -21,11 +21,11 @@ import {
   Iri,
   RAW_ILLUSTRATION,
   RawCellEntry,
-  rawCellEntryInput,
   RawIllustration,
   RawIllustrationFile,
   RawIllustrationsJsonld,
   selectedIllustrationInput,
+  tryParseJson,
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import { z } from 'zod';
@@ -68,16 +68,13 @@ function selectData<T, Z extends z.ZodTypeAny>(
 })
 export class MedicalIllustrationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
-  @Input({ transform: selectedIllustrationInput })
-  selectedIllustration?: string | RawIllustration;
+  @Input() selectedIllustration?: string | RawIllustration;
 
   /** Optional set of all illustrations. Used when selectedIllustration is an iri */
-  @Input({ transform: illustrationsInput })
-  illustrations: string | RawIllustrationsJsonld = '';
+  @Input() illustrations?: string | RawIllustrationsJsonld;
 
   /** A cell or id to highlight in the illustration */
-  @Input({ transform: rawCellEntryInput })
-  highlight?: string | RawCellEntry;
+  @Input() highlight?: string | RawCellEntry;
 
   /** Base href */
   @Input() baseHref = '';
@@ -91,11 +88,12 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
   /** Get the normalized id for the highlight input */
   get highlightId(): string | undefined {
     const { highlight } = this;
-    if (typeof highlight === 'object') {
-      return highlight.representation_of;
+    const parsed = tryParseJson<string | RawCellEntry>(highlight);
+    if (typeof parsed === 'object') {
+      return parsed.representation_of;
     }
 
-    return highlight;
+    return parsed;
   }
 
   /** Data endpoints */
@@ -147,14 +145,14 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
       const { baseHref, illustrations } = this;
       this.endpoints.next({
         baseHref,
-        illustrations,
+        illustrations: illustrationsInput(illustrations) ?? '',
         datasets: '',
         summaries: '',
       });
     }
 
     if ('selectedIllustration' in changes) {
-      this.illustration$.next(this.selectedIllustration);
+      this.illustration$.next(selectedIllustrationInput(this.selectedIllustration));
     }
 
     this.initialized = true;
