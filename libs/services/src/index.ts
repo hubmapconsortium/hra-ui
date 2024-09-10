@@ -10,3 +10,4 @@ export * from './lib/service.module';
 export * from './lib/shared/common.model';
 
 export * as FtuDataSchemas from './lib/ftu-data/ftu-data.model';
+export * from './lib/ftu-data/ftu-data.transformers';
