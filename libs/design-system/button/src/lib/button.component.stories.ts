@@ -77,40 +77,11 @@ export const FlatPrimary: Story = {
   }),
 };
 
-export const FlatSecondary: Story = {
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['large', 'medium'],
-    },
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-    <button mat-flat-button disableRipple hraSecondaryButton
-    hraButtonSize="${args['size']}">Button</button>
-    `,
-  }),
-};
-
 export const CtaFlatPrimary: Story = {
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['large', 'medium'],
-    },
-  },
-  render: (args) => ({
-    props: args,
+  render: () => ({
     template: `
     <button mat-flat-button disableRipple hraCallToActionButton hraPrimaryButton
-    hraButtonSize="${args['size']}">Button
+    hraButtonSize="large">Button
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
@@ -123,20 +94,10 @@ export const CtaFlatPrimary: Story = {
 };
 
 export const CtaFlatSecondary: Story = {
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['large', 'medium'],
-    },
-  },
-  render: (args) => ({
-    props: args,
+  render: () => ({
     template: `
     <button mat-flat-button disableRipple hraCallToActionButton hraSecondaryButton
-    hraButtonSize="${args['size']}">Button
+    hraButtonSize="large">Button
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
