@@ -1,20 +1,13 @@
-import { provideHttpClient } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
-import { provideIcons } from '@hra-ui/cdk/icons';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
+import { provideDesignSystem } from './providers';
 
 const meta: Meta = {
   title: 'MaterialSymbols',
   decorators: [
     applicationConfig({
-      providers: [
-        provideHttpClient(),
-        provideIcons({
-          fontIcons: {
-            defaultClasses: ['material-symbols-rounded'],
-          },
-        }),
-      ],
+      providers: [provideDesignSystem()],
     }),
     moduleMetadata({
       imports: [MatIconModule],
@@ -68,5 +61,38 @@ export const CustomSymbols: Story = {
   render: (args) => ({
     props: args,
     template: `<mat-icon svgIcon=${args['name']}></mat-icon>`,
+  }),
+};
+
+export const OrganIcons: Story = {
+  args: {
+    name: 'organ:blood',
+    color: 'blue',
+    size: 4,
+  },
+  argTypes: {
+    name: {
+      control: 'select',
+      options: ['organ:bladder', 'organ:blood'],
+    },
+    color: {
+      control: 'select',
+      options: ['red', 'blue', 'green'],
+    },
+    size: {
+      control: 'select',
+      options: [2, 4, 6],
+    },
+  },
+  render: (args) => ({
+    props: args,
+    template: `<mat-icon svgIcon=${args['name']}></mat-icon>`,
+    styles: [
+      `mat-icon {
+        --mat-icon-color: ${args['color']};
+        height: ${args['size']}rem;
+        width: ${args['size']}rem;
+      }`,
+    ],
   }),
 };
