@@ -29,10 +29,14 @@ import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  illustrationsInput,
+  rawCellSummariesInput,
   RawCellSummary,
   RawDatasets,
+  rawDatasetsInput,
   RawIllustration,
   RawIllustrationsJsonld,
+  selectedIllustrationInput,
   setUrl,
 } from '@hra-ui/services';
 import {
@@ -97,13 +101,17 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
+
   /** Set of all illustrations */
   @Input() illustrations: string | RawIllustrationsJsonld =
     'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';
+
   /** Datasets to display in the sources tab */
   @Input() datasets: string | RawDatasets = '';
+
   /** Base href if different from the page */
   @Input() baseHref = '';
 
@@ -203,9 +211,9 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
       if (!endpointsUpdated) {
         const { illustrations, datasets, summaries, baseHref } = this;
         this.endpoints.next({
-          illustrations,
-          datasets,
-          summaries,
+          illustrations: illustrationsInput(illustrations) ?? '',
+          datasets: rawDatasetsInput(datasets) ?? '',
+          summaries: rawCellSummariesInput(summaries) ?? '',
           baseHref,
         });
         endpointsUpdated = true;
@@ -248,7 +256,8 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
    * Updates the selected illustration using a default if not provided
    */
   private updateSelectedIllustration(): void {
-    const { selectedIllustration: selected } = this;
+    const { selectedIllustration } = this;
+    const selected = selectedIllustrationInput(selectedIllustration);
     if (selected) {
       const iri = typeof selected === 'string' ? selected : selected['@id'];
       this.updateLink(LinkIds.ExploreFTU, {
