@@ -31,7 +31,7 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
 
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
-  @Output() readonly nodeClick = new EventEmitter();
+  @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
 
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
 
