@@ -27,7 +27,7 @@
         ],
         "styles": ["apps/cde-ui/src/styles.scss"],
         "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
         },
         "scripts": []
       },
