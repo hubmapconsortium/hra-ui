@@ -36,6 +36,7 @@ export const SingleSelect: Story = {
     props: args,
     template: `
       <mat-button-toggle-group name="singleSelect" aria-label="Single Select"
+      hideSingleSelectionIndicator
       hraButtonToggleSize="${args['size']}">
         <mat-button-toggle disableRipple value="button1" checked>Button</mat-button-toggle>
         <mat-button-toggle disableRipple value="button2">Button</mat-button-toggle>
@@ -59,6 +60,7 @@ export const MultiSelect: Story = {
     props: args,
     template: `
       <mat-button-toggle-group multiple name="multiSelect" aria-label="Multi Select"
+      hideMultipleSelectionIndicator
       hraButtonToggleSize="${args['size']}">
         <mat-button-toggle disableRipple value="button1" checked>Button</mat-button-toggle>
         <mat-button-toggle disableRipple value="button2">Button</mat-button-toggle>
