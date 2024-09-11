@@ -1,0 +1,53 @@
+:host {
+  --mdc-dialog-container-color: white;
+  display: block;
+  min-width: 20rem;
+  max-width: 29.5rem;
+
+  &:has(.action) {
+    --mat-dialog-actions-alignment: space-between;
+  }
+
+  .mat-mdc-dialog-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 1rem;
+
+    .title {
+      margin-top: 1.75rem;
+      margin-left: 2rem;
+    }
+
+    button[mat-icon-button] {
+      margin: 0.875rem;
+    }
+  }
+
+  .mat-mdc-dialog-title::before {
+    display: none;
+  }
+
+  .mat-mdc-dialog-content {
+    --mdc-dialog-supporting-text-tracking: var(--sys-body-large-tracking);
+    padding: 0 2rem;
+    font: var(--sys-body-large);
+    color: var(--sys-primary);
+  }
+
+  .mat-mdc-dialog-actions {
+    padding: 1rem 2rem;
+    min-height: auto;
+  }
+}
+
+::ng-deep {
+  .hra-dialog-panel {
+    .mat-mdc-dialog-surface {
+      --mdc-dialog-container-color: var(--sys-on-primary);
+      --mdc-dialog-container-shape: 0;
+      border-radius: 0.5rem;
+    }
+  }
+}

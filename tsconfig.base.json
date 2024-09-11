@@ -83,6 +83,9 @@
       "@hra-ui/design-system/button-toggle": [
         "libs/design-system/button-toggle/src/index.ts"
       ],
+      "@hra-ui/design-system/dialog": [
+        "libs/design-system/dialog/src/index.ts"
+      ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
@@ -109,6 +112,9 @@
       ],
       "@hra-ui/design-system/select": [
         "libs/design-system/select/src/index.ts"
+      ],
+      "@hra-ui/design-system/snackbar": [
+        "libs/design-system/snackbar/src/index.ts"
       ],
       "@hra-ui/design-system/social-media-button": [
         "libs/design-system/social-media-button/src/index.ts"
