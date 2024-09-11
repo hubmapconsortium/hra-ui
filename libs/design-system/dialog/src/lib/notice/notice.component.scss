@@ -30,7 +30,7 @@
   }
 
   .mat-mdc-dialog-content {
-    --mdc-dialog-supporting-text-tracking: 0.5px;
+    --mdc-dialog-supporting-text-tracking: var(--sys-body-large-tracking);
     padding: 0 2rem;
     font: var(--sys-body-large);
     color: var(--sys-primary);
