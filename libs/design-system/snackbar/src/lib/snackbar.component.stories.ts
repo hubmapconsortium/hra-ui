@@ -12,7 +12,10 @@ import { ButtonPosition, SnackbarData } from './snackbar.component';
   standalone: true,
   imports: [MatButtonModule],
   template: `
-    <button mat-flat-button (click)="snackbar.open(message(), action(), close(), actionButtonPosition())">
+    <button
+      mat-flat-button
+      (click)="snackbar.open(message(), action(), close(), actionButtonPosition(), getSnackBarConfig())"
+    >
       Open Snackbar
     </button>
   `,
@@ -22,7 +25,18 @@ class SnackbarDemoComponent {
   readonly action = input<string>('');
   readonly close = input<boolean>(false);
   readonly actionButtonPosition = input<ButtonPosition>('start');
+  readonly duration = input<number>();
   readonly snackbar = inject(SnackbarService);
+
+  getSnackBarConfig() {
+    if (this.close() === false) {
+      return {
+        duration: this.duration(),
+      };
+    } else {
+      return {};
+    }
+  }
 }
 
 const meta: Meta<SnackbarDemoComponent> = {
@@ -35,10 +49,14 @@ const meta: Meta<SnackbarDemoComponent> = {
     action: {
       type: 'string',
     },
+    duration: {
+      type: 'number',
+    },
   },
   args: {
     message: 'test message',
     action: 'test action',
+    duration: 6000,
   },
   decorators: [
     applicationConfig({

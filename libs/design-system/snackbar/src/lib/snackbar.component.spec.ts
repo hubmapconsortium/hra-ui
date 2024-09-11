@@ -5,7 +5,7 @@ import { SnackbarService } from './snackbar.service';
 
 describe('SnackbarComponent', () => {
   let service: SnackbarService;
-
+  const MESSAGE = 'Test message';
   beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [provideNoopAnimations()],
@@ -15,16 +15,16 @@ describe('SnackbarComponent', () => {
   });
 
   it('should open snackbar and show details', async () => {
-    service.open('Test message', 'Action', true, 'end');
-    const label = screen.findAllByText('Test message');
+    service.open(MESSAGE, 'Action', true, 'end');
+    const label = screen.findAllByText(MESSAGE);
     const action = screen.findAllByText('Action');
     expect(label).resolves.toBeInTheDocument();
     expect(action).resolves.toBeInTheDocument();
   });
 
   it('should open snackbar with close button hidden', async () => {
-    service.open('Test message', 'Action');
-    await screen.findByText('Test message');
+    service.open(MESSAGE, 'Action');
+    await screen.findByText(MESSAGE);
     const closeButton = screen.queryByTestId('close-btn');
     expect(closeButton).not.toBeInTheDocument();
 
