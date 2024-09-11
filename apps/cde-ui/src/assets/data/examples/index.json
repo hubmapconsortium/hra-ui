@@ -15,6 +15,7 @@
       "pixelSize": "0.65",
       "creationDate": "March 14, 2024",
       "creationTime": "UTC 7:03:23",
+      "creationTimestamp": 1710399803000,
       "sampleExtra": {
         "type": "2D",
         "organ": "Large Intestine",
@@ -39,6 +40,7 @@
       "pixelSize": "0.325",
       "creationDate": "March 14, 2024",
       "creationTime": "UTC 7:03:23",
+      "creationTimestamp": 1710399803000,
       "sampleExtra": {
         "type": "3D",
         "organ": "Skin",
