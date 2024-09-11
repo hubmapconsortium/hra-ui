@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable, combineLatest, of } from 'rxjs';
@@ -43,7 +44,7 @@ export class AppComponent implements AfterViewInit {
 
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
-  @Output() readonly nodeClicked = new EventEmitter();
+  @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
   readonly sex$ = this.configState.getOption('sex');
   readonly side$ = this.configState.getOption('side');
   readonly filter$ = this.configState
