@@ -29,6 +29,14 @@ export class DataLoaderService {
     return runInInjectionContext(injector, () => {
       const loader = inject<InstanceType<LoaderT>>(loaderToken);
       const load = (sourceValue: string | T | undefined): Observable<T> => {
+        try {
+          if (typeof sourceValue === 'string') {
+            sourceValue = JSON.parse(sourceValue);
+          }
+        } catch {
+          // Ignore errors
+        }
+
         if (typeof sourceValue !== 'string') {
           return of(sourceValue ?? initialValue);
         }

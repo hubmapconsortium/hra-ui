@@ -1,16 +1,6 @@
-@use '@angular/material' as mat;
-@use '../../styles/resets';
-@use '../../styles/fonts';
-@use '../../styles/icons';
 @use '../../styles/light-theme';
-@use '../../styles/typography';
-@use 'sass:map';
-
-@include mat.core();
+@use '../../styles/theming';
 
 html {
-  @include mat.system-level-colors(light-theme.$theme);
-  @include mat.system-level-typography(light-theme.$theme, $overrides: typography.$overrides);
-  @include typography.custom-variants();
-  @include mat.all-component-themes(light-theme.$theme);
+  @include theming.theme(light-theme.$theme);
 }

@@ -68,8 +68,8 @@
       "@hra-ui/design-system/app-logos": [
         "libs/design-system/app-logos/src/index.ts"
       ],
-      "@hra-ui/design-system/apps-sidenav": [
-        "libs/design-system/apps-sidenav/src/index.ts"
+      "@hra-ui/design-system/apps-card": [
+        "libs/design-system/apps-card/src/index.ts"
       ],
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"

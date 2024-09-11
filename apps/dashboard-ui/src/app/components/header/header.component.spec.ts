@@ -1,3 +1,4 @@
+import { MatMenuTrigger } from '@angular/material/menu';
 import { HeaderComponent } from './header.component';
 import { render, screen } from '@testing-library/angular';
 
@@ -37,7 +38,7 @@ describe('HeaderComponent', () => {
     const menuTriggerMock = {
       closeMenu: jest.fn(),
     };
-    component.menuTrigger = menuTriggerMock as any;
+    component.menuTrigger = menuTriggerMock as unknown as MatMenuTrigger;
 
     component.closeMenu();
 

@@ -11,6 +11,9 @@
     "./styles/resets": {
       "sass": "./styles/_resets.scss"
     },
+    "./styles/theming": {
+      "sass": "./styles/_theming.scss"
+    },
     "./styles/typography": {
       "sass": "./styles/_typography.scss"
     },
@@ -26,8 +29,8 @@
     "@angular/core": "18.2.1",
     "@angular/material": "18.2.1",
     "ngx-scrollbar": "^15.1.0",
-    "@angular/router": "18.2.1",
-    "@angular/cdk": "18.2.1"
+    "@angular/cdk": "18.2.1",
+    "@angular/router": "18.2.1"
   },
   "dependencies": {},
   "sideEffects": false
