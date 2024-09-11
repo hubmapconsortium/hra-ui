@@ -1,0 +1,17 @@
+<div mat-dialog-title>
+  <div class="title">
+    {{ data.title }}
+  </div>
+  <button mat-icon-button mat-dialog-close disableRipple hraIconButtonSize="medium" data-testid="close-icon">
+    <mat-icon class="material-symbols-rounded">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>{{ data.message }}</mat-dialog-content>
+<mat-dialog-actions>
+  @if (data.action) {
+    <button mat-button disableRipple hraButtonSize="medium" class="action" (click)="data.action.callback()">
+      {{ data.action.label }}
+    </button>
+  }
+  <button mat-button disableRipple mat-dialog-close hraButtonSize="medium" class="dismiss">Dismiss</button>
+</mat-dialog-actions>
