@@ -7,6 +7,8 @@ import userEvent from '@testing-library/user-event';
 
 describe('DialogComponent', () => {
   let service: DialogService;
+  const TITLE = 'Test Title';
+  const MESSAGE = 'Test Message';
   beforeEach(async () => {
     await render(NoticeComponent, {
       providers: [
@@ -19,12 +21,12 @@ describe('DialogComponent', () => {
   });
 
   it('Title and Message should be present when dialog is opened', async () => {
-    service.openNotice('Test Title', 'Test Message');
+    service.openNotice(TITLE, MESSAGE);
 
-    const title = await screen.findByText('Test Title');
+    const title = await screen.findByText(TITLE);
     expect(title).toBeInTheDocument();
 
-    const message = await screen.findByText('Test Message');
+    const message = await screen.findByText(MESSAGE);
     expect(message).toBeInTheDocument();
 
     const dismiss = await screen.findByRole('button', { name: 'Dismiss' });
@@ -32,7 +34,7 @@ describe('DialogComponent', () => {
   });
 
   it('Action button should be visible', async () => {
-    service.openNotice('Test Title', 'Test Message', {
+    service.openNotice(TITLE, MESSAGE, {
       label: 'Action Button',
       callback: () => {
         ('');
@@ -45,9 +47,9 @@ describe('DialogComponent', () => {
 
   it('Dialog should close when clicked on dismiss button', async () => {
     const user = userEvent.setup();
-    service.openNotice('Test Title', 'Test Message');
+    service.openNotice(TITLE, MESSAGE);
 
-    const dialogTitle = await screen.findByText('Test Title');
+    const dialogTitle = await screen.findByText(TITLE);
 
     const dismiss = await screen.findByRole('button', { name: 'Dismiss' });
     await user.click(dismiss);
@@ -57,9 +59,9 @@ describe('DialogComponent', () => {
 
   it('Dialog should close when clicked on close button', async () => {
     const user = userEvent.setup();
-    service.openNotice('Test Title', 'Test Message');
+    service.openNotice(TITLE, MESSAGE);
 
-    const dialogTitle = await screen.findByText('Test Title');
+    const dialogTitle = await screen.findByText(TITLE);
 
     const dismiss = await screen.findAllByTestId('close-icon');
     await user.click(dismiss[1]);
