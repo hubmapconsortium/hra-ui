@@ -34,15 +34,17 @@ describe('DialogComponent', () => {
   });
 
   it('Action button should be visible', async () => {
+    const callback = jest.fn();
     service.openNotice(TITLE, MESSAGE, {
       label: 'Action Button',
-      callback: () => {
-        ('');
-      },
+      callback: callback,
     });
 
-    const dismiss = await screen.findByRole('button', { name: 'Action Button' });
-    expect(dismiss).toBeInTheDocument();
+    const actionButton = await screen.findByRole('button', { name: 'Action Button' });
+    expect(actionButton).toBeInTheDocument();
+
+    await userEvent.click(actionButton);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 
   it('Dialog should close when clicked on dismiss button', async () => {
