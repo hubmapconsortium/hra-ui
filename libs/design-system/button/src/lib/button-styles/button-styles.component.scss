@@ -117,7 +117,8 @@ $y-multiplier: 0.4566;
 
 // Flat Round
 :is(a, button)[mat-flat-button] {
-  font: var(--sys-title-small);
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
   --mdc-filled-button-container-shape: 0.25rem;
   --mat-filled-button-horizontal-padding: 1rem;
   --mdc-filled-button-container-height: 2rem;
@@ -139,6 +140,7 @@ $y-multiplier: 0.4566;
     --mat-filled-button-horizontal-padding: 1rem;
     --mdc-filled-button-container-height: 2.5rem;
     font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
     padding: 0.5rem var(--mat-filled-button-horizontal-padding);
   }
 }
@@ -146,7 +148,8 @@ $y-multiplier: 0.4566;
 // Basic Primary & Secondary
 :is(a, button)[mat-button] {
   min-width: unset;
-  font: var(--sys-label-large);
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
   --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
   --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
   --mdc-text-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
@@ -179,6 +182,7 @@ $y-multiplier: 0.4566;
     --mat-text-button-horizontal-padding: 1rem;
     --mdc-text-button-container-height: 2.5rem;
     font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
     padding: 0.5rem var(--mat-text-button-horizontal-padding);
   }
 
@@ -186,6 +190,7 @@ $y-multiplier: 0.4566;
     --mat-text-button-horizontal-padding: 0.5rem;
     --mdc-text-button-container-height: 1.75rem;
     font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
     padding: 0.3125rem var(--mat-text-button-horizontal-padding);
   }
 }
@@ -203,6 +208,7 @@ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-stan
   );
   border: none;
   font: var(--sys-label-large);
+  letter-spacing: var(--sys-label-large-tracking);
 
   &.button-size-large {
     --mat-standard-button-toggle-height: 1.5rem;
@@ -214,6 +220,7 @@ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-stan
   &.button-size-medium {
     --mat-standard-button-toggle-height: 1.3125rem;
     font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
     .mat-button-toggle-label-content {
       padding: 0.3438rem 0.5rem;
     }
@@ -255,6 +262,7 @@ mat-button-toggle.mat-button-toggle-checked.nav-cat-button {
 
 mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
   font: var(--sys-label-large);
+  letter-spacing: var(--sys-label-large-tracking);
   --mat-standard-button-toggle-hover-state-layer-opacity: 0;
   --mat-standard-button-toggle-selected-state-background-color: var(--sys-on-primary);
   :is(:hover, :active) {
