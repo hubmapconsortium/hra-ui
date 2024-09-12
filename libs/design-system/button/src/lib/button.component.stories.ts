@@ -24,64 +24,101 @@ type Story = StoryObj;
 
 export const BasicPrimary: Story = {
   args: {
-    size: 'large',
+    size: 'medium',
+    disabled: false,
   },
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'medium'],
+    },
+    disabled: {
+      control: 'boolean',
     },
   },
   render: (args) => ({
     props: args,
     template: `
-      <button mat-button disableRipple hraButtonSize="${args['size']}">Button</button>
+      <button mat-button [disabled]="${args['disabled']}" hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
 
 export const BasicSecondary: Story = {
   args: {
-    size: 'large',
+    size: 'medium',
+    disabled: false,
   },
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'medium'],
     },
   },
   render: (args) => ({
     props: args,
     template: `
-      <button mat-button disableRipple hraSecondaryButton hraButtonSize="${args['size']}">Button</button>
+      <button mat-button [disabled]="${args['disabled']}" hraSecondaryButton hraButtonSize="${args['size']}">Button</button>
     `,
   }),
 };
 
-export const FlatPrimary: Story = {
+export const BasicIcon: Story = {
   args: {
-    size: 'large',
+    disabled: false,
+    iconName: 'download',
   },
   argTypes: {
-    size: {
+    disabled: {
+      control: 'boolean',
+    },
+    iconName: {
       control: 'select',
-      options: ['large', 'medium'],
+      options: ['upload'],
     },
   },
   render: (args) => ({
     props: args,
     template: `
-    <button mat-flat-button disableRipple
-    hraPrimaryButton hraButtonSize="${args['size']}">Button</button>
+      <button mat-button [disabled]="${args['disabled']}" hraButtonSize="large">Button
+      <mat-icon class="material-symbols-rounded">${args['iconName']}</mat-icon>
+      </button>
+    `,
+  }),
+};
+
+export const FlatRound: Story = {
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+    },
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <button mat-flat-button
+    hraPrimaryButton hraButtonSize="large" [disabled]="${args['disabled']}">Button</button>
     `,
   }),
 };
 
 export const CtaFlatPrimary: Story = {
-  render: () => ({
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <button mat-flat-button disableRipple hraCallToActionButton hraPrimaryButton
-    hraButtonSize="large">Button
+    <button mat-flat-button  hraCallToActionButton hraPrimaryButton
+    hraButtonSize="large" [disabled]="${args['disabled']}">Button
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
@@ -94,10 +131,19 @@ export const CtaFlatPrimary: Story = {
 };
 
 export const CtaFlatSecondary: Story = {
-  render: () => ({
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+    },
+  },
+  render: (args) => ({
+    props: args,
     template: `
-    <button mat-flat-button disableRipple hraCallToActionButton hraSecondaryButton
-    hraButtonSize="large">Button
+    <button mat-flat-button hraCallToActionButton hraSecondaryButton
+    hraButtonSize="large" [disabled]="${args['disabled']}">Button
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
     `,
@@ -119,7 +165,7 @@ export const ToggleButton: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <mat-button-toggle value="bold" disableRipple [disabled]=disabled
+      <mat-button-toggle value="bold" [disabled]=disabled
       hraButtonSize="${args['size']}">
         Button
       </mat-button-toggle>
@@ -140,7 +186,7 @@ export const NavigationCategoryButton: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <mat-button-toggle value="bold" disableRipple hraNavCatButton>
+      <mat-button-toggle value="bold" hraNavCatButton>
         <span class="label">Button</span>
       </mat-button-toggle>
     `,
@@ -149,28 +195,5 @@ export const NavigationCategoryButton: Story = {
         margin-right: 0.25rem;
       }`,
     ],
-  }),
-};
-
-export const NavigationItemButton: Story = {
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['large', 'medium'],
-    },
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <button mat-button disableRipple hraNavItemButton
-      hraButtonSize="${args['size']}">
-        <span class="label">
-          Button
-        </span>
-      </button>
-    `,
   }),
 };

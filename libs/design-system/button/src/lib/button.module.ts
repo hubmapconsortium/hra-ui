@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
+import { ButtonSizeDirective } from './button-size/button-size.directive';
 import { CallToActionButtonDirective } from './directives/call-to-action-button.directive';
+import { NavigationCategoryButtonDirective } from './directives/navigation-category-button.directive';
 import { PrimaryButtonDirective } from './directives/primary-button.directive';
 import { SecondaryButtonDirective } from './directives/secondary-button.directive';
-import { NavigationCategoryButtonDirective } from './directives/navigation-category-button.directive';
-import { NavigationItemButtonDirective } from './directives/nav-item-button.directive';
-import { ButtonSizeDirective } from './button-size/button-size.directive';
 
 /** Module exporting button and related utilities */
 @NgModule({
@@ -16,7 +15,6 @@ import { ButtonSizeDirective } from './button-size/button-size.directive';
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
-    NavigationItemButtonDirective,
     ButtonSizeDirective,
   ],
   exports: [
@@ -26,7 +24,6 @@ import { ButtonSizeDirective } from './button-size/button-size.directive';
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
-    NavigationItemButtonDirective,
     ButtonSizeDirective,
   ],
 })
