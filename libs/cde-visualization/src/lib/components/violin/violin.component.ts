@@ -82,7 +82,7 @@ const VIOLIN_FONTS = ['12px Metropolis', '14px Metropolis'];
 const EXPORT_IMAGE_WIDTH = 1000;
 
 /** Height of the exported image */
-const EXPORT_IMAGE_HEIGHT = 100;
+const EXPORT_IMAGE_HEIGHT = 40;
 
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;

@@ -14,7 +14,7 @@
     },
     "axis": {
       "labelFontSize": 12,
-      "titleFontSize": 12,
+      "titleFontSize": 14,
       "titleFontWeight": 500,
       "labelFontWeight": 500,
       "titleLineHeight": 21,
@@ -24,7 +24,8 @@
       "labelAngle": -45,
       "ticks": false,
       "labelPadding": 8
-    }
+    },
+    "scale": { "continuousPadding": 20 }
   },
   "data": {
     "name": "data"
@@ -43,11 +44,11 @@
         "labelAngle": 0,
         "labelPadding": 4,
         "labelAlign": "left",
-        "labelLimit": 65,
+        "labelLimit": 100,
         "labelBaseline": "middle",
         "titlePadding": 8,
         "labelFontSize": 12,
-        "titleFontSize": 12,
+        "titleFontSize": 14,
         "titleFontWeight": 500,
         "labelFontWeight": 500
       }
@@ -59,8 +60,8 @@
     }
   },
   "spec": {
-    "height": 80,
-    "width": 350,
+    "height": 40,
+    "width": 300,
     "layer": [
       {
         "mark": {
@@ -80,15 +81,16 @@
             "field": "value",
             "type": "quantitative",
             "title": "Distance (µm)",
-            "scale": {
-              "domainMin": -50
-            },
             "axis": {
+              "minExtent": 25,
               "labelFlush": false,
               "grid": true,
               "labelAngle": 0,
               "labelOverlap": true,
               "labelSeparation": 4
+            },
+            "scale": {
+              "domainMin": 0
             }
           },
           "y": {
@@ -103,7 +105,7 @@
             },
             "scale": {
               "nice": false,
-              "padding": 12
+              "padding": 4
             }
           },
           "color": {
@@ -135,7 +137,7 @@
             "type": "quantitative",
             "title": "Distance (µm)",
             "scale": {
-              "domainMin": -50
+              "domainMin": 0
             }
           },
           "color": {
