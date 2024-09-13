@@ -128,6 +128,9 @@
       "@hra-ui/design-system/tree": [
         "libs/design-system/tree/src/index.ts"
       ],
+      "@hra-ui/node-dist-vis": [
+        "libs/node-dist-vis/src/index.ts"
+      ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
       ],
