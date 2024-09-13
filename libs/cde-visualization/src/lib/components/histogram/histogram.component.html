@@ -64,7 +64,7 @@
             [color]="type.color"
             [isAnchor]="type.name === selectedCellType()"
             (colorPickerOpen)="colorPicker.set($event)"
-            (colorChange)="updateColor(type, $event)"
+            (colorChange)="updateColor.emit({ type, color: $event })"
           ></cde-color-picker-label>
         }
       </ng-scrollbar>

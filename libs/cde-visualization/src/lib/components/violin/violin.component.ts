@@ -3,12 +3,10 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   effect,
   ElementRef,
   inject,
   input,
-  model,
   Renderer2,
   signal,
   viewChild,
@@ -21,23 +19,11 @@ import { produce } from 'immer';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
-import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb, rgbToHex } from '../../models/color';
-import { edgeDistance, EdgeEntry, EdgeIndex } from '../../models/edge';
-import { NodeEntry, NodeTargetKey } from '../../models/node';
+import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { emptyArrayEquals } from '../../shared/empty-array-equals';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
-
-/** Interface for representing the distance entry */
-interface DistanceEntry {
-  /** Type of the entry */
-  type: string;
-  /** Distance value of the entry */
-  distance: number;
-}
 
 /** Interface for modifying the violin specification */
 interface ModifiableViolinSpec {
@@ -131,49 +117,20 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViolinComponent {
-  /** List of nodes used in the violin */
-  readonly nodes = input.required<NodeEntry[]>();
-
-  /** Key used to target specific node properties */
-  readonly nodeTargetKey = input.required<NodeTargetKey>();
-
-  /** List of edges connecting nodes */
-  readonly edges = input.required<EdgeEntry[]>();
-
-  /** Currently selected cell type */
-  readonly selectedCellType = input.required<string>();
-
-  /** List of all cell types */
-  readonly cellTypes = model.required<CellTypeEntry[]>();
-
-  /** List of selected cell types */
-  readonly cellTypesSelection = input.required<string[]>();
-
   /** Tooltip position configuration */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
-  /** List of filtered cell types based on selection */
-  protected readonly filteredCellTypes = computed(
-    () => {
-      const selection = new Set(this.cellTypesSelection());
-      selection.delete(this.selectedCellType());
-      const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
-      return filtered.sort((a, b) => b.count - a.count);
-    },
-    { equal: emptyArrayEquals },
-  );
-
   /** Computed distances between nodes */
-  private readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
+  readonly computedDistances = input.required<DistanceEntry[]>();
 
   /** Data for the violin visualization */
-  private readonly data = computed(() => this.computeData(), { equal: emptyArrayEquals });
+  readonly computedData = input.required<DistanceEntry[]>();
 
   /** Colors for the violin visualization */
-  private readonly colors = computed(() => this.computeColors(), { equal: emptyArrayEquals });
+  readonly computedColors = input.required<string[]>();
 
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
@@ -191,11 +148,11 @@ export class ViolinComponent {
   private readonly view = signal<View | undefined>(undefined);
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
+  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.computedData()).run());
 
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {
-    this.view()?.signal('colors', this.colors()).run();
+    this.view()?.signal('colors', this.computedColors()).run();
     this.view()?.resize();
   });
 
@@ -230,7 +187,7 @@ export class ViolinComponent {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
           layer.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
-          layer.encoding.color.scale = { range: this.colors() };
+          layer.encoding.color.scale = { range: this.computedColors() };
         }
       }
       draft.spec.height = EXPORT_IMAGE_HEIGHT;
@@ -238,7 +195,7 @@ export class ViolinComponent {
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.data.values = this.data();
+      draft.data.values = this.computedData();
     });
 
     const el = this.renderer.createElement('div');
@@ -251,58 +208,9 @@ export class ViolinComponent {
     finalize();
   }
 
-  /** Update the color of a specific cell type entry */
-  updateColor(entry: CellTypeEntry, color: Rgb): void {
-    const entries = this.cellTypes();
-    const index = entries.indexOf(entry);
-    const copy = [...entries];
-
-    copy[index] = { ...copy[index], color };
-    this.cellTypes.set(copy);
-  }
-
   /** Ensure required fonts are loaded for the violin */
   private async ensureFontsLoaded(): Promise<void> {
     const loadPromises = VIOLIN_FONTS.map((font) => this.document.fonts.load(font));
     await Promise.all(loadPromises);
-  }
-
-  /** Compute distances between nodes based on edges */
-  private computeDistances(): DistanceEntry[] {
-    const nodes = this.nodes();
-    const edges = this.edges();
-    if (nodes.length === 0 || edges.length === 0) {
-      return [];
-    }
-
-    const nodeTargetKey = this.nodeTargetKey();
-    const selectedCellType = this.selectedCellType();
-    const distances: DistanceEntry[] = [];
-    for (const edge of edges) {
-      const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
-      const type = sourceNode[nodeTargetKey];
-      if (type !== selectedCellType) {
-        distances.push({ type, distance: edgeDistance(edge) });
-      }
-    }
-
-    return distances;
-  }
-
-  /** Compute data for the violin visualization */
-  private computeData(): DistanceEntry[] {
-    const selection = new Set(this.cellTypesSelection());
-    if (selection.size === 0) {
-      return [];
-    }
-
-    return this.distances().filter(({ type }) => selection.has(type));
-  }
-
-  /** Compute colors for the violin visualization */
-  private computeColors(): string[] {
-    return this.filteredCellTypes()
-      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
-      .map(({ color }) => rgbToHex(color));
   }
 }

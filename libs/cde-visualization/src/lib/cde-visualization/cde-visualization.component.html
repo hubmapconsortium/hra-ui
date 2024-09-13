@@ -38,23 +38,21 @@
     ></cde-node-dist-visualization>
 
     <cde-violin
-      [nodes]="loadedNodes()"
-      [nodeTargetKey]="nodeTypeKey()"
-      [edges]="loadedEdges()"
-      [selectedCellType]="selectedNodeTargetValue()"
-      [(cellTypes)]="cellTypes"
-      [cellTypesSelection]="cellTypesSelection()"
+      [computedColors]="colors()"
+      [computedDistances]="distances()"
+      [computedData]="data()"
       #violin
     ></cde-violin>
   </div>
 
   <cde-histogram
-    [nodes]="loadedNodes()"
-    [nodeTargetKey]="nodeTypeKey()"
-    [edges]="loadedEdges()"
+    [computedColors]="colors()"
+    [computedDistances]="distances()"
+    [computedData]="data()"
+    [filteredCellTypes]="filteredCellTypes()"
+    [cellTypes]="cellTypes()"
     [selectedCellType]="selectedNodeTargetValue()"
-    [(cellTypes)]="cellTypes"
-    [cellTypesSelection]="cellTypesSelection()"
+    (updateColor)="updateColor($event.type, $event.color)"
     #histogram
   ></cde-histogram>
 </div>
