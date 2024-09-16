@@ -13,8 +13,7 @@
   <div class="card data-upload">
     <h2 class="header">
       <span class="step-number">1</span>
-      <span class="card-title">Format and Upload Data</span>
-      <div class="filler"></div>
+      <span class="card-title">Upload Data</span>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -39,11 +38,43 @@
           coordinates should be in micrometers. Damage and proliferation markers can be included.
         </p>
       </ng-template>
+      <div class="filler"></div>
+      <a
+        mat-button
+        class="use-template"
+        color="primary"
+        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Use Template
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
     </h2>
-    <span class="subheader-required-columns">Required Columns:</span>
+    <!-- <span class="subheader-required-columns">Required Columns:</span>
     <span class="subheader-optional-columns">Optional Columns:</span>
     <span class="required-columns">X, Y, and Cell Type</span>
-    <span class="optional-columns">Z and Cell Ontology ID</span>
+    <span class="optional-columns">Z and Cell Ontology ID</span> -->
+    <table>
+      <tr>
+        <th>Required Columns</th>
+        <th>Optional Columns</th>
+        <th>Supported Format</th>
+      </tr>
+
+      <tr>
+        <td>• <span>X</span></td>
+        <td>• <span>Z</span></td>
+        <td>• <span>CSV</span></td>
+      </tr>
+      <tr>
+        <td>• <span>Y</span></td>
+        <td>• <span>Cell Ontology ID</span></td>
+      </tr>
+      <tr>
+        <td>• <span>Cell Type</span></td>
+      </tr>
+    </table>
 
     <cde-file-upload
       class="upload-csv"

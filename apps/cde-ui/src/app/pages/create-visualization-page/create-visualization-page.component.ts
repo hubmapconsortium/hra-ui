@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
 import {
   ColorMapEntry,
@@ -65,6 +66,7 @@ function optionalValue<T>(): T | null {
     MatIconModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,
 
     FileUploadComponent,
     FooterComponent,
