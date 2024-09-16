@@ -246,9 +246,7 @@ export class AppComponent implements OnInit, OnChanges {
    */
   private updateSelectedIllustration(): void {
     const { selectedIllustration } = this;
-    console.log('fooo', selectedIllustration);
     const selected = selectedIllustrationInput(selectedIllustration);
-    console.log('bar');
     if (selected === undefined || selected === '') {
       this.setDefaultSelectedIllustration();
     } else {
