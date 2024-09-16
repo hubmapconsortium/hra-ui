@@ -137,16 +137,11 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistogramComponent {
-  /** Computed distances between nodes */
-  readonly computedDistances = input.required<DistanceEntry[]>();
-
   /** Data for the violin visualization */
   readonly computedData = input.required<DistanceEntry[]>();
 
   /** Colors for the violin visualization */
   readonly computedColors = input.required<string[]>();
-
-  readonly cellTypes = input.required<CellTypeEntry[]>();
 
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
 

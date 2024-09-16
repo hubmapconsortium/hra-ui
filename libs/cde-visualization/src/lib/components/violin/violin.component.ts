@@ -123,9 +123,6 @@ export class ViolinComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
-  /** Computed distances between nodes */
-  readonly computedDistances = input.required<DistanceEntry[]>();
-
   /** Data for the violin visualization */
   readonly computedData = input.required<DistanceEntry[]>();
 
