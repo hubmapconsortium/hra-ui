@@ -77,7 +77,7 @@
     grid:
       'header header'
       'table table'
-      'upload-csv upload-csv' / 1fr;
+      'upload-csv .' / auto 1fr;
     grid-template-rows: auto auto auto;
     row-gap: 2rem;
 
@@ -91,10 +91,18 @@
     }
 
     .use-template {
-      --mdc-text-button-label-text-size: 1rem;
-      --mat-text-button-with-icon-horizontal-padding: 0rem;
+      --mdc-text-button-label-text-size: 14px;
+      --mat-text-button-with-icon-horizontal-padding: 1rem;
       --mdc-text-button-label-text-tracking: 0.02em;
-      --mat-text-button-icon-spacing: 0.25rem;
+      --mat-text-button-icon-offset: 0.75rem;
+      --mdc-text-button-container-height: 2.5rem;
+
+      mat-icon {
+        font-size: 1.5rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-left: 0;
+      }
     }
 
     th,
@@ -116,10 +124,6 @@
 
     .upload-csv {
       grid-area: upload-csv;
-
-      ::ng-deep .error {
-        margin-bottom: 3rem;
-      }
     }
   }
 

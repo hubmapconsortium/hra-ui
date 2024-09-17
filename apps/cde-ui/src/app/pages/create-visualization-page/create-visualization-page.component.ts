@@ -389,7 +389,7 @@ export class CreateVisualizationPageComponent {
       case 'type-error':
         return `Please upload a ${fileDescription} CSV file.`;
       default:
-        return 'Please upload a CSV file with the required columns.';
+        return 'Please upload a file with the required columns.';
     }
   }
 }

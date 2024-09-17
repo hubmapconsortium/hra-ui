@@ -4,6 +4,7 @@
 @use '../../../styles/breakpoints' as breakpoints;
 
 $gray-palette: map.get(palettes.$palettes, 'gray');
+$blue-palette: map.get(palettes.$palettes, 'blue');
 
 @mixin color($theme) {
   cde-create-visualization-page {
@@ -30,24 +31,19 @@ $gray-palette: map.get(palettes.$palettes, 'gray');
 
       .header {
         .step-number {
-          background-color: map.get($gray-palette, 700);
+          background-color: map.get($blue-palette, 800);
           color: white;
         }
 
-        mat-icon {
-          color: mat.get-theme-color($theme, accent, darker);
+        .use-template {
+          color: mat.get-theme-color($theme, primary, 700);
         }
       }
     }
 
     .data-upload {
-      .required-columns,
-      .optional-columns {
-        color: mat.get-theme-color($theme, accent, 800);
-      }
-
-      .use-template {
-        color: mat.get-theme-color($theme, primary, 700);
+      td {
+        color: map.get($gray-palette, 700);
       }
     }
 

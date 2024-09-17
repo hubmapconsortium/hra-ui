@@ -2,12 +2,31 @@
 @use '@angular/material' as mat;
 @use '../../../styles/constants/palettes' as palettes;
 
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 800, 900);
+$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 500, 600, 800, 900);
 $blue-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $blue,
       accent: $blue,
+    ),
+  )
+);
+
+$gray: mat.m2-define-palette(map.get(palettes.$palettes, 'gray'), 500, 600, 700);
+$gray-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $gray,
+      accent: $gray,
+    ),
+  )
+);
+$red: mat.m2-define-palette(map.get(palettes.$palettes, 'red'), 500, 600, 700);
+$red-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $red,
+      accent: $red,
     ),
   )
 );
@@ -19,47 +38,58 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-filled-button-icon-spacing: 0.25rem;
   @include mat.button-color($blue-theme);
 
-  mat-icon {
-    --mat-filled-button-icon-offset: 0;
-    font-size: 1.5rem;
-    height: 1.5rem;
-    width: 1.5rem;
+  .upload {
+    --mat-filled-button-horizontal-padding: 1rem;
+    --mdc-filled-button-label-text-size: 14px;
+    background: mat.get-theme-color($red-theme, primary, 600);
+    color: white;
+  }
+
+  .upload,
+  .upload-success {
+    height: 2.5rem;
   }
 
   .upload-success {
     display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background: mat.get-theme-color($blue-theme, primary, 500);
+    gap: 0.5rem;
+    border-radius: 1rem;
 
     .filename {
       display: flex;
-      flex-direction: column;
-      width: 15.25rem;
-      margin-right: 5rem;
-    }
-
-    .loaded-label {
-      color: mat.get-theme-color($blue-theme, primary, 900);
     }
 
     .file-name {
-      color: mat.get-theme-color($blue-theme, primary, 800);
+      color: mat.get-theme-color($gray-theme, primary, 600);
     }
 
     .remove-file {
-      --mdc-filled-button-label-text-color: #{mat.get-theme-color($blue-theme, primary, 900)};
-      padding: 0.25rem 0.5rem;
-      width: fit-content;
-      margin-right: 5rem;
+      color: mat.get-theme-color($blue-theme, primary, 900);
+      cursor: pointer;
     }
-  }
-
-  .upload {
-    margin-right: 5rem;
   }
 
   .error {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 2rem;
+    background-color: rgb(from #ffdcc4 r g b / 0.8);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+
+    .alert {
+      color: #bc4f00;
+    }
+
+    .error-messages {
+      display: flex;
+      flex-direction: column;
+      color: #2f1400;
+    }
   }
 
   .action-required {
