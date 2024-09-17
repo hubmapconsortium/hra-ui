@@ -74,6 +74,7 @@
             border-radius: 0.25rem;
             border-color: var(--sys-outline-variant);
             max-width: 2.25rem;
+            height: 2rem;
           }
 
           &:not(:has(input)) {
@@ -100,6 +101,7 @@
       .rgba-text,
       .hsla-text {
         padding-left: 1.5rem;
+        padding-top: 0;
       }
 
       .button-area {
