@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState } from 'ccf-shared';
 import { BaseWebComponent, BUILTIN_PARSERS, GenericGlobalConfig } from 'ccf-shared/web-components';
-
 import { environment } from '../environments/environment';
 
 function parseDataSources(value: unknown): string[] {
@@ -42,8 +42,12 @@ function parseStringArray(value: unknown): string[] {
 
 @Component({
   selector: 'ccf-root-wc',
-  template:
-    '<ccf-root (sexChange)="sexChange.emit($event)" (nodeClick)="nodeClicked.emit($event)" (sideChange)="sideChange.emit($event)" *ngIf="initialized"></ccf-root>',
+  template: `<ccf-root
+    *ngIf="initialized"
+    (sexChange)="sexChange.emit($event)"
+    (nodeClicked)="nodeClicked.emit($event)"
+    (sideChange)="sideChange.emit($event)"
+  ></ccf-root>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
@@ -67,7 +71,7 @@ export class AppWebComponent extends BaseWebComponent {
 
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
-  @Output() readonly nodeClicked = new EventEmitter();
+  @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
 
   constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
     super(configStore, cdr, {

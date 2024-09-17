@@ -11,6 +11,9 @@
     "./styles/resets": {
       "sass": "./styles/_resets.scss"
     },
+    "./styles/theming": {
+      "sass": "./styles/_theming.scss"
+    },
     "./styles/typography": {
       "sass": "./styles/_typography.scss"
     },

@@ -20,6 +20,7 @@ $y-multiplier: 0.4566;
 // Basic Primary & Secondary
 :is(a, button)[mat-button] {
   min-width: unset;
+  white-space: nowrap;
   font: var(--sys-title-small);
   --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
   --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
@@ -115,14 +116,6 @@ $y-multiplier: 0.4566;
 }
 
 // Toggle
-mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-checked:not(.nav-cat-button)
-  .mat-button-toggle-label-content::before {
-  @include material-symbols-rounded();
-  content: 'check';
-  vertical-align: middle;
-  margin-right: 0.5rem;
-}
-
 mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
   --mat-standard-button-toggle-shape: 0;
   --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;

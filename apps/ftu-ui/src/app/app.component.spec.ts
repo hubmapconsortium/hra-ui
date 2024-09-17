@@ -12,7 +12,7 @@ import {
   selectSnapshot,
 } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { FTU_DATA_IMPL_ENDPOINTS, IllustrationMappingItem } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, IllustrationMappingItem, Iri, RawIllustration } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   IllustratorActions,
@@ -71,8 +71,16 @@ describe('AppComponent', () => {
   });
 
   describe('.selectedIllustration', () => {
-    const iri = 'foo/bar';
-    const illustration = { '@id': iri };
+    const iri = 'https://foo.bar/';
+    const illustration: RawIllustration = {
+      '@id': iri as Iri,
+      label: '',
+      organ_id: '',
+      organ_label: '',
+      representation_of: '',
+      mapping: [],
+      illustration_files: [],
+    };
 
     it('accepts an iri string', async () => {
       await shallow.render({ bind: { selectedIllustration: iri } });

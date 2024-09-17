@@ -23,10 +23,14 @@ import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-u
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  illustrationsInput,
+  rawCellSummariesInput,
   RawCellSummary,
   RawDatasets,
+  rawDatasetsInput,
   RawIllustration,
   RawIllustrationsJsonld,
+  selectedIllustrationInput,
   setUrl,
 } from '@hra-ui/services';
 import {
@@ -98,13 +102,17 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 export class AppComponent implements OnInit, OnChanges {
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
+
   /** Set of all illustrations */
   @Input() illustrations: string | RawIllustrationsJsonld =
     'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';
+
   /** Datasets to display in the sources tab */
   @Input() datasets: string | RawDatasets = '';
+
   /** Base href if different from the page */
   @Input() baseHref = '';
 
@@ -197,9 +205,9 @@ export class AppComponent implements OnInit, OnChanges {
       if (!endpointsUpdated) {
         const { illustrations, datasets, summaries, baseHref } = this;
         this.endpoints.next({
-          illustrations,
-          datasets,
-          summaries,
+          illustrations: illustrationsInput(illustrations) ?? '',
+          datasets: rawDatasetsInput(datasets) ?? '',
+          summaries: rawCellSummariesInput(summaries) ?? '',
           baseHref,
         });
         endpointsUpdated = true;
@@ -237,7 +245,8 @@ export class AppComponent implements OnInit, OnChanges {
    * Updates the selected illustration using a default if not provided
    */
   private updateSelectedIllustration(): void {
-    const { selectedIllustration: selected } = this;
+    const { selectedIllustration } = this;
+    const selected = selectedIllustrationInput(selectedIllustration);
     if (selected === undefined || selected === '') {
       this.setDefaultSelectedIllustration();
     } else {
