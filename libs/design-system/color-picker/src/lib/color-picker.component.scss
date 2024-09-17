@@ -28,11 +28,8 @@
       }
 
       .hex-text {
-        display: flex !important;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        gap: 0.25rem;
         padding: 0 0.75rem 1rem 0.75rem;
+        width: 86%;
 
         .box {
           width: 100%;
@@ -42,13 +39,11 @@
             padding: 0;
             width: auto;
             div {
+              --sys-label-small-tracking: 0.005em;
+              font: var(--sys-label-small);
+              color: var(--sys-secondary);
               margin: 0 1.5rem;
-              font-size: 0.75rem;
-              font-family: 'Metropolis';
-              line-height: 1.375rem;
-              letter-spacing: 0.005em;
-              color: #201e3d;
-              font-weight: 500;
+              margin-top: 0.25rem;
               text-transform: uppercase;
             }
           }
@@ -59,19 +54,52 @@
           }
 
           input {
-            border: none;
-            height: 2.5rem;
+            border-radius: 0.25rem;
+            height: 2rem;
             padding: 0.5625rem 0;
             font: var(--sys-label-small);
-            border-bottom: solid 1px var(--sys-secondary);
-            background-color: var(--sys-surface-container);
+            color: var(--sys-primary-fixed);
+            width: 90%;
+            border: solid 1px var(--sys-outline-variant);
+            text-transform: uppercase;
           }
         }
       }
 
-      .arrow.arrow-right,
+      .rgba-text,
+      .hsla-text {
+        .box {
+          padding-bottom: 0.25rem;
+          input {
+            border-radius: 0.25rem;
+            border-color: var(--sys-outline-variant);
+            max-width: 2.25rem;
+          }
+
+          &:not(:has(input)) {
+            div {
+              max-width: 2.25rem;
+              font: var(--sys-label-small);
+              color: var(--sys-secondary);
+            }
+          }
+
+          input {
+            font: var(--sys-label-small);
+            color: var(--sys-primary-fixed);
+          }
+        }
+      }
+
       .type-policy {
-        display: none;
+        top: 13.25rem;
+        right: 1.5625rem;
+      }
+
+      .hex-text,
+      .rgba-text,
+      .hsla-text {
+        padding-left: 1.5rem;
       }
 
       .button-area {
@@ -82,18 +110,14 @@
 
         .accept-button,
         .cancel-button {
+          --sys-label-medium-tracking: 0.005em;
+          font: var(--sys-label-medium);
           margin: 0;
           border-radius: 0.25rem;
           cursor: pointer;
           border: none;
           background-color: transparent;
-          font-size: 0.875rem;
-          letter-spacing: 0.005em;
-          line-height: 1.3125rem;
-          font-family: 'Metropolis';
-          padding: 0.25rem 0.5rem;
-          font-weight: 500;
-          color: #201e3d;
+          padding: 0.3438rem 0.5rem;
           &:focus-visible {
             outline: solid 2px var(--sys-tertiary);
           }
