@@ -45,7 +45,7 @@
 // }
 
 // export function* distanceEdges(nodes: any[], type_field: string, target_type: string, maxDist: number) {
-//   console.log(nodes, type_field, target_type, maxDist)
+//   console.log(nodes, type_field, target_type, maxDist);
 //   const source_cells: any = {};
 //   const target_cells: any = {};
 //   for (const [node_index, node] of nodes.entries()) {

@@ -1,77 +1,95 @@
-// import { computed, Injectable } from '@angular/core';
-// import { toSignal } from '@angular/core/rxjs-interop';
-// import { distinctUntilChanged, map, ObservableInput, of, Subject, switchMap, zip } from 'rxjs';
-// import { NodeEntry, NodeTargetKey } from '../models/nodes';
-// import { fetchCsv } from '../utils/helper';
+import { computed, DestroyRef, inject, Injectable, signal } from '@angular/core';
+import { CsvFileLoaderService } from '@hra-ui/utils/file-loaders';
+import { Subscription } from 'rxjs';
+import { NodeEntry, NodeTargetKey } from '../models/nodes';
 
-// export type NodesInput = string | NodeEntry[] | undefined;
+export type NodesInput = string | NodeEntry[] | undefined;
 
-// export interface NodesData {
-//   nodes: NodeEntry[];
-//   key: NodeTargetKey;
-//   value: string;
-// }
+export interface NodesData {
+  nodes: NodeEntry[];
+  key: NodeTargetKey;
+  value: string;
+}
 
-// const EMPTY_DATA: NodesData = {
-//   nodes: [],
-//   key: '' as NodeTargetKey,
-//   value: '',
-// };
+const EMPTY_DATA: NodesData = {
+  nodes: [],
+  key: '' as NodeTargetKey,
+  value: '',
+};
 
-// // function compareNodesInput(prev: NodesInput, curr: NodesInput): boolean {
-// //   return (
-// //     (prev.input === curr.input ||
-// //       (Array.isArray(prev.input) && prev.input.length === 0 && Array.isArray(curr.input) && curr.input.length === 0)) &&
-// //     prev.key === curr.key &&
-// //     prev.value === prev.value
-// //   );
-// // }
+@Injectable()
+export class NodeDataService {
+  private url?: string;
+  private data?: NodeEntry[];
+  private key = EMPTY_DATA.key;
+  private value = EMPTY_DATA.value;
+  private subscription?: Subscription;
+  private readonly csvFileLoader = inject(CsvFileLoaderService);
+  private readonly nodeDataMut = signal(EMPTY_DATA);
+  readonly nodeData = this.nodeDataMut.asReadonly();
+  readonly nodes = computed(() => this.nodeData().nodes);
 
-// @Injectable()
-// export class NodeDataService {
-//   private readonly nodesInput$ = new Subject<NodesInput>();
-//   private readonly nodesKey$ = new Subject<NodeTargetKey>();
-//   private readonly nodesValue$ = new Subject<string>();
-//   private readonly nodes$ = this.nodesInput$.pipe(
-//     distinctUntilChanged(),
-//     switchMap((data) => this.loadNodes(data)),
-//     map((nodes) => this.setPositions(nodes)),
-//   );
+  constructor() {
+    inject(DestroyRef).onDestroy(() => this.clear());
+  }
 
-//   readonly nodesData = toSignal(
-//     zip(this.nodes$, this.nodesKey$, this.nodesValue$).pipe(
-//       map(([nodes, key, value]): NodesData => ({ nodes, key, value })),
-//     ),
-//     { initialValue: EMPTY_DATA },
-//   );
-//   readonly nodes = computed(() => this.nodesData().nodes);
+  setInput(input: NodesInput, key: NodeTargetKey, value: string): void {
+    if (input === undefined || Array.isArray(input)) {
+      input ??= [];
+      this.clear();
+      this.setPositions(input);
+      this.emit(input, key, value);
+    } else if (input !== this.url) {
+      this.clear();
+      this.url = input;
+      this.key = key;
+      this.value = value;
+      this.load(input);
+    } else if (this.data) {
+      this.emit(this.data, key, value);
+    } else {
+      this.key = key;
+      this.value = value;
+    }
+  }
 
-//   setInput(input: NodesInput, key: NodeTargetKey, value: string): void {
-//     this.nodesInput$.next(input);
-//     this.nodesKey$.next(key);
-//     this.nodesValue$.next(value);
-//   }
+  private emit(nodes: NodeEntry[], key: NodeTargetKey, value: string): void {
+    this.nodeDataMut.set({ nodes, key, value });
+  }
 
-//   private loadNodes(data: NodesInput): ObservableInput<NodeEntry[]> {
-//     if (Array.isArray(data)) {
-//       return of(data);
-//     } else if (typeof data === 'string') {
-//       const nodeData = this.loadNodesFromCsv(data);
-//       nodeData.then((response)=>of(response))
-//     }
-//     return of([])
-//   }
+  private load(url: string): void {
+    this.subscription = this.csvFileLoader
+      .load(url, {
+        papaparse: {
+          header: true,
+          dynamicTyping: {
+            x: true,
+            y: true,
+            z: true,
+          },
+        },
+      })
+      .subscribe((event) => {
+        if (event.type === 'data') {
+          this.data = event.data;
+          this.setPositions(this.data);
+          this.emit(this.data, this.key, this.value);
+        }
+      });
+  }
 
-//   private async loadNodesFromCsv(url: string): Promise<NodeEntry[]> {
-//     const nodeData = await fetchCsv(url);
-//     return nodeData;
-//   }
+  private setPositions(nodes: NodeEntry[]): void {
+    for (const node of nodes) {
+      node.position = [node.x ?? 0, node.y ?? 0, node.z ?? 0];
+    }
+  }
 
-//   private setPositions(nodes: NodeEntry[]): NodeEntry[] {
-//     for (const node of nodes) {
-//       node.position = [node.x ?? 0, node.y ?? 0, node.z ?? 0];
-//     }
-
-//     return nodes;
-//   }
-// }
+  private clear(): void {
+    this.subscription?.unsubscribe();
+    this.url = undefined;
+    this.data = undefined;
+    this.key = EMPTY_DATA.key;
+    this.value = EMPTY_DATA.value;
+    this.subscription = undefined;
+  }
+}

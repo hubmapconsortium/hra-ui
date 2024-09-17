@@ -1,3 +1,4 @@
+// /// <reference lib="webworker" />
 // import { NodeEntry } from '../models/nodes';
 // import { distanceEdges } from '../utils/distance-edges';
 

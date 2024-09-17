@@ -143,6 +143,9 @@
       "@hra-ui/utils": [
         "libs/shared/utils/src/index.ts"
       ],
+      "@hra-ui/utils/file-loaders": [
+        "libs/shared/utils/file-loaders/src/index.ts"
+      ],
       "@hra-ui/utils/testing": [
         "libs/shared/testing/src/index.ts"
       ],
