@@ -55,7 +55,6 @@
         "preview": {
           "baseHref": "/apps/cde-visualization-wc/",
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
