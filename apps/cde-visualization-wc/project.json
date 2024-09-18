@@ -24,7 +24,8 @@
         "scripts": [],
         "define": {
           "define": "undefined"
-        }
+        },
+        "outputHashing": "none"
       },
       "configurations": {
         "production": {
@@ -40,8 +41,7 @@
               "maximumWarning": "2kb",
               "maximumError": "10kb"
             }
-          ],
-          "outputHashing": "none"
+          ]
         },
         "development": {
           "optimization": false,
@@ -49,8 +49,7 @@
           "sourceMap": true
         },
         "staging": {
-          "baseHref": "/ui--staging/cde-visualization-wc/",
-          "outputHashing": "none"
+          "baseHref": "/ui--staging/cde-visualization-wc/"
         },
         "preview": {
           "baseHref": "/apps/cde-visualization-wc/",
