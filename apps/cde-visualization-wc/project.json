@@ -7,18 +7,24 @@
   "tags": ["app", "cde", "webcomponent"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser-esbuild",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/cde-visualization-wc",
+        "outputPath": {
+          "base": "dist/apps/cde-visualization-wc",
+          "browser": "."
+        },
         "index": "apps/cde-visualization-wc/src/index.html",
-        "main": "apps/cde-visualization-wc/src/main.ts",
+        "browser": "apps/cde-visualization-wc/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/cde-visualization-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cde-visualization-wc/src/favicon.png", "apps/cde-visualization-wc/src/assets"],
         "styles": ["apps/cde-visualization-wc/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "define": {
+          "define": "undefined"
+        }
       },
       "configurations": {
         "production": {
@@ -48,7 +54,6 @@
         },
         "preview": {
           "baseHref": "/apps/cde-visualization-wc/",
-          "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
           "extractLicenses": false,
