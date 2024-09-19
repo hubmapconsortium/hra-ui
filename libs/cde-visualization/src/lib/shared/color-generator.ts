@@ -1,4 +1,4 @@
-import { Rgb, hexToRgb } from '../models/color';
+import { Rgb, hexToRgb } from '@hra-ui/design-system/color-picker';
 
 /** Array of predefined colors in RGB format */
 const COLORS: Rgb[] = [

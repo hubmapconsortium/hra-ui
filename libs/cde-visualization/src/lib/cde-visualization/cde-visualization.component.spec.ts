@@ -5,7 +5,7 @@ import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
-import { rgbToHex } from '../models/color';
+import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
