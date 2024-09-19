@@ -66,6 +66,10 @@
         font-size: 1rem;
       }
 
+      .card-title {
+        margin-right: 0.75rem;
+      }
+
       .info {
         margin: 0.25rem;
       }
@@ -96,13 +100,6 @@
       --mdc-text-button-label-text-tracking: 0.02em;
       --mat-text-button-icon-offset: 0.75rem;
       --mdc-text-button-container-height: 2.5rem;
-
-      mat-icon {
-        font-size: 1.5rem;
-        height: 1.5rem;
-        width: 1.5rem;
-        margin-left: 0;
-      }
     }
 
     th,
@@ -118,35 +115,70 @@
       padding-left: 1.5rem;
     }
 
-    span {
-      margin-right: 0.75rem;
-    }
-
     .upload-csv {
       grid-area: upload-csv;
     }
   }
 
-  .anchor-selection {
-    .header {
-      margin-bottom: 0.5rem;
+  // .anchor-selection {
+  //   .header {
+  //     margin-bottom: 0.5rem;
+  //   }
+
+  //   .select-form {
+  //     width: calc(100% - 6rem);
+  //     margin: 1.5rem 3rem;
+  //   }
+  // }
+
+  .organize-data {
+    .required-headers,
+    .optional-headers {
+      display: grid;
     }
 
-    .select-form {
-      width: calc(100% - 6rem);
-      margin: 1.5rem 3rem;
+    .required-headers {
+      grid: 'subheader subheader';
+    }
+    .optional-headers {
+      grid: 'subheader subheader';
+    }
+
+    .subheader {
+      grid-area: subheader;
+    }
+
+    .error {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background-color: rgb(from #ffdcc4 r g b / 0.8);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+
+      .alert {
+        color: #bc4f00;
+      }
+
+      .error-messages {
+        display: flex;
+        flex-direction: column;
+        color: #2f1400;
+      }
+    }
+
+    mat-form-field {
+      margin: 1.5rem 0;
+      max-width: 17.5rem;
     }
   }
 
   .metadata {
     display: grid;
-    grid: 'header';
     gap: 0.5rem;
     column-gap: 2.5rem;
-
-    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large', 'xxx-large') {
-      grid: 'header header';
-    }
+    grid: 'header header';
 
     .header {
       grid-area: header;

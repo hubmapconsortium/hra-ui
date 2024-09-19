@@ -43,9 +43,6 @@ export class FileUploadComponent<T, OptionsT> {
   /** Notification for action required */
   readonly actionNotification = input<string>();
 
-  /** Url for template data */
-  readonly templateUrl = input<string>();
-
   /** Upload error message */
   readonly errorMessage = input<string>();
   /** Upload error action message */

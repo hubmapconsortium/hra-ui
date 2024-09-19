@@ -34,8 +34,8 @@
         [cdkConnectedOverlayPush]="true"
       >
         <p>
-          Format single-cell spatial feature tables into the Cell Type Table template to upload and explore data. Cell
-          coordinates should be in micrometers. Damage and proliferation markers can be included.
+          Use the template to format single-cell spatial feature tables for exploration. The cell type column can
+          include damage and proliferation markers.
         </p>
       </ng-template>
       <div class="filler"></div>
@@ -47,7 +47,6 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <mat-icon class="material-symbols-rounded">download</mat-icon>
         Template
       </a>
     </h2>
@@ -83,13 +82,12 @@
       (loadErrored)="nodesLoadError = $event"
       [errorMessage]="nodesErrorMessage"
       [errorActionMessage]="nodesErrorActionMessage"
-      templateUrl="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
       #nodesFileUpload
     >
     </cde-file-upload>
   </div>
 
-  <div class="card anchor-selection">
+  <!-- <div class="card anchor-selection">
     <h2 class="header">
       <span class="step-number">2</span>
       <span class="card-title">Optional: Select Anchor Cell Type</span>
@@ -137,6 +135,111 @@
         }
       </mat-select>
     </mat-form-field>
+  </div> -->
+
+  <div class="card organize-data" formGroupName="headers">
+    <h2 class="header">
+      <span class="step-number">2</span>
+      <span class="card-title">Organize Data</span>
+      <div class="filler"></div>
+      <mat-icon
+        class="info"
+        cdkOverlayOrigin
+        #organizeDataTrigger="cdkOverlayOrigin"
+        (mouseover)="organizeDataOpen = true"
+        (mouseout)="organizeDataOpen = false"
+      >
+        info
+      </mat-icon>
+
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'organize-data-tooltip']"
+        [cdkConnectedOverlayOrigin]="organizeDataTrigger"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="organizeDataOpen"
+        [cdkConnectedOverlayViewportMargin]="8"
+        [cdkConnectedOverlayPush]="true"
+      >
+        <p>Verify column headers and edit as needed. Select optional column headers.</p>
+      </ng-template>
+    </h2>
+
+    <!-- <mat-form-field class="select-form">
+      <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
+      <mat-select
+        class="select mat-body-2"
+        formControlName="nodeTargetValue"
+        panelClass="select-panel"
+        cdeMarkEmptyFormControl
+      >
+        @for (type of cellTypes; track type) {
+          <mat-option [value]="type">{{ type }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field> -->
+
+    <div class="required-headers">
+      <span class="subheader">Required: Verify column headers</span>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">X Axis</mat-label>
+        <mat-select class="mat-body-2" formControlName="xAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Y Axis</mat-label>
+        <mat-select class="mat-body-2" formControlName="yAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Cell Type</mat-label>
+        <mat-select class="mat-body-2" formControlName="cellType" panelClass="select-panel" cdeMarkEmptyFormControl>
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (columnErrorActionMessage) {
+      <div class="error">
+        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
+        <div class="error-messages">
+          <span>{{ columnErrorActionMessage }}</span>
+        </div>
+      </div>
+    }
+
+    <div class="optional-headers">
+      <span class="subheader">Optional: Add column headers</span>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Z Axis</mat-label>
+        <mat-select class="mat-body-2" formControlName="zAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Cell Ontology ID</mat-label>
+        <mat-select class="mat-body-2" formControlName="ontologyId" panelClass="select-panel" cdeMarkEmptyFormControl>
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
   <div class="card metadata" formGroupName="metadata">
@@ -206,10 +309,10 @@
       <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
     </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
+    <!-- <mat-form-field subscriptSizing="dynamic">
       <mat-label class="mat-body-2">Pixel size (µm/pixel)</mat-label>
       <input matInput type="number" formControlName="pixelSize" min="0" cdeMarkEmptyFormControl />
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
 
   <div class="color-config card">

@@ -98,7 +98,32 @@ export class CreateVisualizationPageComponent {
 
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
+    // nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
+    // metadata: this.fb.group({
+    //   title: [optionalValue<string>()],
+    //   technology: [optionalValue<string>()],
+    //   organ: [optionalValue<OrganEntry>()],
+    //   sex: [optionalValue<string>()],
+    //   age: [optionalValue<number>(), [Validators.min(0), Validators.max(120), validateInteger()]],
+    //   thickness: [optionalValue<number>(), Validators.min(0)],
+    //   pixelSize: [optionalValue<number>(), Validators.min(0)],
+    // }),
+    // colorMapType: ['default'],
     nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
+    headers: this.fb.group({
+      xAxis: [optionalValue<string>()],
+      yAxis: [optionalValue<string>()],
+      cellType: [optionalValue<string>()],
+      zAxis: [optionalValue<string>()],
+      ontologyId: [optionalValue<string>()],
+    }),
+    parameters: this.fb.group({
+      anchorCellType: [optionalValue<string>()],
+      distanceThreshold: [optionalValue<number>()],
+      pixelSizeX: [optionalValue<number>(), Validators.min(0)],
+      pixelSizeY: [optionalValue<number>(), Validators.min(0)],
+      pixelSizeZ: [optionalValue<number>(), Validators.min(0)],
+    }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
       technology: [optionalValue<string>()],
@@ -106,7 +131,6 @@ export class CreateVisualizationPageComponent {
       sex: [optionalValue<string>()],
       age: [optionalValue<number>(), [Validators.min(0), Validators.max(120), validateInteger()]],
       thickness: [optionalValue<number>(), Validators.min(0)],
-      pixelSize: [optionalValue<number>(), Validators.min(0)],
     }),
     colorMapType: ['default'],
   });
@@ -145,8 +169,8 @@ export class CreateVisualizationPageComponent {
 
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;
-  /** Whether to show anchor info tooltip */
-  anchorInfoOpen = false;
+  /** Whether to show organize data tooltip */
+  organizeDataOpen = false;
   /** Whether to show metadata info tooltip */
   metadataInfoOpen = false;
   /** Whether to show color map info tooltip */
@@ -156,6 +180,8 @@ export class CreateVisualizationPageComponent {
 
   /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
+
+  dataHeaders: string[] = [];
 
   /** Node CSV load error */
   nodesLoadError?: ExtendedFileLoadError;
@@ -181,6 +207,20 @@ export class CreateVisualizationPageComponent {
     return this.getErrorActionMessage(this.customColorMapLoadError, 'color map');
   }
 
+  get columnErrorActionMessage(): string | undefined {
+    const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
+    const xError = xAxis ? undefined : 'X Axis';
+    const yError = yAxis ? undefined : 'Y Axis';
+    const ctError = cellType ? undefined : 'Cell Type';
+    const errorColumns = [xError, yError, ctError].filter((e) => !!e);
+
+    const columnErrorMessage =
+      errorColumns.length > 0
+        ? `Please select the required column headers: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+        : undefined;
+    return columnErrorMessage;
+  }
+
   /** Current nodes */
   private nodes?: NodeEntry[];
   /** Current color map */
@@ -191,11 +231,13 @@ export class CreateVisualizationPageComponent {
    * @param nodes Nodes to set
    */
   setNodes(nodes: NodeEntry[]): void {
-    this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
-    if (this.nodesLoadError) {
-      this.nodesFileUpload().reset();
-      return;
-    }
+    // this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
+    // if (this.nodesLoadError) {
+    //   this.nodesFileUpload().reset();
+    //   return;
+    // }
+
+    this.setHeaders(nodes);
 
     const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
     this.nodes = nodes;
@@ -207,6 +249,42 @@ export class CreateVisualizationPageComponent {
     this.visualizationForm.patchValue({
       nodeTargetValue: defaultCellType,
     });
+  }
+
+  setHeaders(nodes: NodeEntry[]): void {
+    this.dataHeaders = Object.keys(nodes[0]);
+    this.visualizationForm.controls['headers'].setValue({
+      xAxis: this.preSelectedHeader(this.dataHeaders, 'x'),
+      yAxis: this.preSelectedHeader(this.dataHeaders, 'y'),
+      cellType: this.preSelectedHeader(this.dataHeaders, 'cellType'),
+      zAxis: this.preSelectedHeader(this.dataHeaders, 'z'),
+      ontologyId: this.preSelectedHeader(this.dataHeaders, 'ontologyId'),
+    });
+  }
+
+  preSelectedHeader(headers: string[], field: string): string | null {
+    const acceptableCellTypeHeaders = ['celltype', 'cell type', 'cell_type'];
+    const acceptableOntologyHeaders = [
+      'ontologyid',
+      'cellontologyid',
+      'ontology id',
+      'cell ontology id',
+      'ontology_id',
+      'cell_ontology_id',
+    ];
+    if (field === 'x') {
+      return headers.find((h) => h.toLowerCase() === 'x') || null;
+    } else if (field === 'y') {
+      return headers.find((h) => h.toLowerCase() === 'y') || null;
+    } else if (field === 'z') {
+      return headers.find((h) => h.toLowerCase() === 'z') || null;
+    } else if (field === 'cellType') {
+      return headers.find((h) => acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
+    } else if (field === 'ontologyId') {
+      return headers.find((h) => acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -333,8 +411,8 @@ export class CreateVisualizationPageComponent {
    */
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
-      case 'missing-key-error':
-        return `Required columns missing: ${error.keys.join(', ')}`;
+      // case 'missing-key-error':
+      //   return `Required columns missing: ${error.keys.join(', ')}`;
 
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
