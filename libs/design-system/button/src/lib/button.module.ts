@@ -4,7 +4,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { ButtonSizeDirective } from './button-size/button-size.directive';
 import { CallToActionButtonDirective } from './directives/call-to-action-button.directive';
-import { NavigationItemButtonDirective } from './directives/nav-item-button.directive';
 import { NavigationCategoryButtonDirective } from './directives/navigation-category-button.directive';
 import { PrimaryButtonDirective } from './directives/primary-button.directive';
 import { SecondaryButtonDirective } from './directives/secondary-button.directive';
@@ -16,7 +15,6 @@ import { SecondaryButtonDirective } from './directives/secondary-button.directiv
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
-    NavigationItemButtonDirective,
     ButtonSizeDirective,
   ],
   exports: [
@@ -26,7 +24,6 @@ import { SecondaryButtonDirective } from './directives/secondary-button.directiv
     PrimaryButtonDirective,
     SecondaryButtonDirective,
     NavigationCategoryButtonDirective,
-    NavigationItemButtonDirective,
     ButtonSizeDirective,
   ],
 })
