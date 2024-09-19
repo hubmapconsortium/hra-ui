@@ -8,50 +8,80 @@
 //   input,
 //   Input,
 //   output,
-//   ViewChild
+//   ViewChild,
 // } from '@angular/core';
 // import { EdgeEntry } from '../models/edges';
-// import { NodeEntry } from '../models/nodes';
-// import { EdgeDataService } from '../services/edge-data.service';
+// import { NodeEntry, NodeTargetKey } from '../models/nodes';
+// // import { EdgeDataService } from '../services/edge-data.service';
 // import { NodeDataService } from '../services/node-data.service';
+// import { DeckGlVisualizationComponent } from '../deck-gl-visualization/deck-gl-visualization.component';
 
 // @Component({
 //   selector: 'hra-node-dist-vis',
 //   standalone: true,
-//   imports: [CommonModule],
-//   providers: [NodeDataService, EdgeDataService],
+//   imports: [CommonModule, DeckGlVisualizationComponent],
+//   providers: [NodeDataService],
 //   templateUrl: './node-dist-vis.component.html',
 //   styleUrl: './node-dist-vis.component.scss',
 //   changeDetection: ChangeDetectionStrategy.OnPush,
 // })
 // export class NodeDistVisComponent {
-//   readonly nodes = input<string | NodeEntry[]>();
-//   readonly edges = input<string | EdgeEntry[]>();
+//   readonly nodeTargetKey: NodeTargetKey = 'Cell Type' as NodeTargetKey;
 
-//   nodesUrl = input<string>();
-//   nodesData = input<NodeEntry[]>();
-//   edgesUrl = input<string>();
-//   edgesData = input<EdgeEntry[]>();
-//   colorMapUrl = input<string>();
-//   colorMapKey = input<string>('cell_type');
-//   colorMapValue = input<string>('cell_color');
-//   nodeTargetKey = input<string>();
-//   nodeTargetValue = input<string>();
-//   maxEdgeDistance = input<number>();
-//   dispatchEvent = output<Event>();
-//   @Input() selection?: any[];
-//   @ViewChild('visCanvas', { static: true }) visCanvas!: ElementRef<HTMLCanvasElement>;
+//   readonly nodes: NodeEntry[] = [
+//     { x: 659, y: 72, position: [659, 72, 0], [this.nodeTargetKey]: 'T-Helper' },
+//     { x: 178, y: 73, position: [178, 73, 0], [this.nodeTargetKey]: 'T-Helper' },
+//     { x: 170, y: 74, position: [170, 74, 0], [this.nodeTargetKey]: 'T-Helper' },
+//     { x: 173, y: 75, position: [173, 75, 0], [this.nodeTargetKey]: 'T-Helper' },
+//     { x: 174, y: 76, position: [174, 76, 0], [this.nodeTargetKey]: 'T-Helper' },
+//   ] as NodeEntry[];
 
-//   toDispose: EffectRef[] = [];
-//   initialized = false;
-//   edgesVersion = 0;
+//   readonly edges: EdgeEntry[] = [
+//     [0, 659, 72, 0, 630, 105, 5],
+//     [1, 178, 73, 0, 177, 71, 2],
+//     [2, 170, 74, 0, 166, 79, 2],
+//     [3, 173, 74, 0, 177, 71, 2],
+//     [4, 174, 75, 0, 177, 71, 2],
+//   ];
 
-//   private readonly nodeDataService = inject(NodeDataService);
-//   private readonly edgeDataService = inject(EdgeDataService);
+//   readonly selection: string[] = ['T-Helper'];
+//   readonly colorMap: { domain: string[]; range: [[number, number, number]] } = {
+//     domain: ['T-Helper'],
+//     range: [[112, 165, 168]],
+//   };
 
-//   constructor() {
-//     console.log(this)
-//   }
+//   // log<T>(label: string, value: T): T {
+//   //   console.log(label, value);
+//   //   return value;
+//   // }
+
+//   // readonly nodes = input<string | NodeEntry[]>();
+//   // readonly edges = input<string | EdgeEntry[]>();
+
+//   // nodesUrl = input<string>();
+//   // nodesData = input<NodeEntry[]>();
+//   // edgesUrl = input<string>();
+//   // edgesData = input<EdgeEntry[]>();
+//   // colorMapUrl = input<string>();
+//   // colorMapKey = input<string>('cell_type');
+//   // colorMapValue = input<string>('cell_color');
+//   // nodeTargetKey = input<string>();
+//   // nodeTargetValue = input<string>();
+//   // maxEdgeDistance = input<number>();
+//   // dispatchEvent = output<Event>();
+//   // @Input() selection?: any[];
+//   // @ViewChild('visCanvas', { static: true }) visCanvas!: ElementRef<HTMLCanvasElement>;
+
+//   // toDispose: EffectRef[] = [];
+//   // initialized = false;
+//   // edgesVersion = 0;
+
+//   // private readonly nodeDataService = inject(NodeDataService);
+//   // private readonly edgeDataService = inject(EdgeDataService);
+
+//   // constructor() {
+//   //   console.log(this)
+//   // }
 
 //   // constructor() {
 //   //   effect(() => {

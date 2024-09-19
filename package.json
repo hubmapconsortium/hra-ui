@@ -24,6 +24,7 @@
     "@angular/youtube-player": "^18.0.6",
     "@deck.gl/carto": "~8.8.20",
     "@deck.gl/core": "~8.8.20",
+    "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/geo-layers": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@deck.gl/mesh-layers": "~8.8.20",
