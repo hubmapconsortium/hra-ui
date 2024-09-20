@@ -72,15 +72,11 @@ $blue-palette: map.get(palettes.$palettes, 'blue');
   }
 
   mat-form-field {
-    --mdc-filled-text-field-container-color: #{mat.get-theme-color($theme, accent, lighter)};
+    --mdc-filled-text-field-container-color: #{map.get($blue-palette, 500)};
     --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
     --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
     --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
     --mat-select-focused-arrow-color: #{mat.get-theme-color($theme, primary, darker)};
-  }
-
-  .mat-form-field-hide-placeholder {
-    --mdc-filled-text-field-container-color: white;
   }
 
   .select-panel {

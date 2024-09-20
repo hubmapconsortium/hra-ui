@@ -87,67 +87,16 @@
     </cde-file-upload>
   </div>
 
-  <!-- <div class="card anchor-selection">
-    <h2 class="header">
-      <span class="step-number">2</span>
-      <span class="card-title">Optional: Select Anchor Cell Type</span>
-      <div class="filler"></div>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #anchorSelectionInfoTrigger="cdkOverlayOrigin"
-        (mouseover)="anchorInfoOpen = true"
-        (mouseout)="anchorInfoOpen = false"
-      >
-        info
-      </mat-icon>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'anchor-tooltip']"
-        [cdkConnectedOverlayOrigin]="anchorSelectionInfoTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="anchorInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <p>
-          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-          computed and visualized. Euclidian distance is used to compute the distance between two cells.
-        </p>
-        <p>
-          “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
-          first listed cell type label is used as the anchor cell type.
-        </p>
-      </ng-template>
-    </h2>
-
-    <mat-form-field class="select-form">
-      <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
-      <mat-select
-        class="select mat-body-2"
-        formControlName="nodeTargetValue"
-        panelClass="select-panel"
-        cdeMarkEmptyFormControl
-      >
-        @for (type of cellTypes; track type) {
-          <mat-option [value]="type">{{ type }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </div> -->
-
   <div class="card organize-data" formGroupName="headers">
     <h2 class="header">
       <span class="step-number">2</span>
       <span class="card-title">Organize Data</span>
-      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
         #organizeDataTrigger="cdkOverlayOrigin"
-        (mouseover)="organizeDataOpen = true"
-        (mouseout)="organizeDataOpen = false"
+        (mouseover)="organizeDataInfoOpen = true"
+        (mouseout)="organizeDataInfoOpen = false"
       >
         info
       </mat-icon>
@@ -157,27 +106,13 @@
         [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'organize-data-tooltip']"
         [cdkConnectedOverlayOrigin]="organizeDataTrigger"
         [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="organizeDataOpen"
+        [cdkConnectedOverlayOpen]="organizeDataInfoOpen"
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
         <p>Verify column headers and edit as needed. Select optional column headers.</p>
       </ng-template>
     </h2>
-
-    <!-- <mat-form-field class="select-form">
-      <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
-      <mat-select
-        class="select mat-body-2"
-        formControlName="nodeTargetValue"
-        panelClass="select-panel"
-        cdeMarkEmptyFormControl
-      >
-        @for (type of cellTypes; track type) {
-          <mat-option [value]="type">{{ type }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field> -->
 
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
@@ -242,9 +177,89 @@
     </div>
   </div>
 
-  <div class="card metadata" formGroupName="metadata">
+  <div class="card parameters" formGroupName="parameters">
     <h2 class="header">
       <span class="step-number">3</span>
+      <div class="card-title">Configure Parameters</div>
+      <mat-icon
+        class="info"
+        cdkOverlayOrigin
+        #parametersTrigger="cdkOverlayOrigin"
+        (mouseover)="parametersInfoOpen = true"
+        (mouseout)="parametersInfoOpen = false"
+      >
+        info
+      </mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="parametersTrigger"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="parametersInfoOpen"
+        [cdkConnectedOverlayViewportMargin]="8"
+        [cdkConnectedOverlayPush]="true"
+      >
+        <p>Anchor Cell Type</p>
+        <p>
+          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+          computed and visualized. Euclidian distance is used to compute the distance between two cells.
+        </p>
+        <p>
+          “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
+          first listed cell type label is used as the anchor cell type.
+        </p>
+        <p>Distance Threshold (µm)</p>
+        <p>Configure the distance threshold to modify visualizations for analysis.</p>
+        <p>Pixel Size (µm/pixel)</p>
+        <p>
+          Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
+          in micrometers.
+        </p>
+      </ng-template>
+    </h2>
+
+    <div class="parameters-1">
+      <mat-form-field class="select-form">
+        <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
+        <mat-select
+          class="select mat-body-2"
+          formControlName="nodeTargetValue"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
+          @for (type of cellTypes; track type) {
+            <mat-option [value]="type">{{ type }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Distance Threshold</mat-label>
+        <input matInput formControlName="distanceThreshold" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
+
+    <div class="parameters-2">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Pixel size (X) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeX" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Pixel size (Y) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeY" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="mat-body-2">Pixel size (Z) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeZ" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="card metadata" formGroupName="metadata">
+    <h2 class="header">
+      <span class="step-number">4</span>
       <div class="card-title">Optional: Add Metadata</div>
       <div class="filler"></div>
       <mat-icon
@@ -317,7 +332,7 @@
 
   <div class="color-config card">
     <h2 class="header">
-      <span class="step-number">4</span>
+      <span class="step-number">5</span>
       <div class="card-title">Optional: Configure Colors</div>
       <div class="filler"></div>
       <mat-icon
@@ -373,7 +388,7 @@
 
   <div class="card visualize">
     <h2 class="header">
-      <span class="step-number">5</span>
+      <span class="step-number">6</span>
       <div class="card-title">Visualize Cell Distance Data</div>
       <div class="filler"></div>
       <mat-icon
@@ -395,7 +410,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>Inputs on the Create Visualization page cannot be modified after a visualization is generated.</p>
+        <p>Data on the Create Visualization page cannot be modified after a visualization is generated.</p>
       </ng-template>
     </h2>
 

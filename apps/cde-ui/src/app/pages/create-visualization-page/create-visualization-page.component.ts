@@ -109,20 +109,20 @@ export class CreateVisualizationPageComponent {
     //   pixelSize: [optionalValue<number>(), Validators.min(0)],
     // }),
     // colorMapType: ['default'],
-    nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
     headers: this.fb.group({
-      xAxis: [optionalValue<string>()],
-      yAxis: [optionalValue<string>()],
-      cellType: [optionalValue<string>()],
+      xAxis: [''],
+      yAxis: [''],
+      cellType: [''],
       zAxis: [optionalValue<string>()],
       ontologyId: [optionalValue<string>()],
     }),
     parameters: this.fb.group({
-      anchorCellType: [optionalValue<string>()],
-      distanceThreshold: [optionalValue<number>()],
-      pixelSizeX: [optionalValue<number>(), Validators.min(0)],
-      pixelSizeY: [optionalValue<number>(), Validators.min(0)],
-      pixelSizeZ: [optionalValue<number>(), Validators.min(0)],
+      nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
+      // anchorCellType: [optionalValue<string>()],
+      distanceThreshold: [1000],
+      pixelSizeX: [1, Validators.min(1)],
+      pixelSizeY: [1, Validators.min(1)],
+      pixelSizeZ: [1, Validators.min(1)],
     }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
@@ -170,11 +170,16 @@ export class CreateVisualizationPageComponent {
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;
   /** Whether to show organize data tooltip */
-  organizeDataOpen = false;
+  organizeDataInfoOpen = false;
+
+  parametersInfoOpen = false;
+
   /** Whether to show metadata info tooltip */
   metadataInfoOpen = false;
+
   /** Whether to show color map info tooltip */
   colorInfoOpen = false;
+
   /** Whether to show visualize info tooltip */
   visualizeInfoOpen = false;
 
@@ -246,7 +251,7 @@ export class CreateVisualizationPageComponent {
     const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
       ? DEFAULT_NODE_TARGET_VALUE
       : this.cellTypes[0];
-    this.visualizationForm.patchValue({
+    this.visualizationForm.controls['parameters'].patchValue({
       nodeTargetValue: defaultCellType,
     });
   }
@@ -348,7 +353,11 @@ export class CreateVisualizationPageComponent {
     }
 
     const { nodes, customColorMap, visualizationForm } = this;
-    const { nodeTargetValue, colorMapType, metadata } = visualizationForm.value;
+    const { colorMapType, metadata } = visualizationForm.value;
+
+    const nodeTargetValue = visualizationForm.value.parameters
+      ? visualizationForm.value.parameters.nodeTargetValue
+      : undefined;
     const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
