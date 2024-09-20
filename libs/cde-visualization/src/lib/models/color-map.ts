@@ -1,5 +1,5 @@
 import { Brand } from './brand';
-import { Rgb } from './color';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 
 /** Type representing a key for color map types, enhanced with a branding mechanism */
 export type ColorMapTypeKey = string & Brand<'ColorMapTypeKey'>;
