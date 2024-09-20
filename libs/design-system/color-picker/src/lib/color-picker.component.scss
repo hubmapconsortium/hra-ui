@@ -1,0 +1,192 @@
+:host {
+  display: flex;
+  height: 2rem;
+  align-items: center;
+
+  .color-pick {
+    height: 1.25rem;
+    width: 1.25rem;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0.25rem 0.5rem 0.25rem 0.25rem;
+    position: relative;
+    cursor: pointer;
+  }
+}
+
+::ng-deep {
+  color-picker {
+    div.color-picker {
+      border-radius: 0.5rem;
+      border: none;
+      box-shadow: 0px 5px 16px 0px #201e3d3d;
+
+      .saturation-lightness {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+
+      .hex-text {
+        padding: 0 0.75rem 1rem 0.75rem;
+        width: 86%;
+
+        .box {
+          width: 100%;
+          align-items: center;
+
+          &:not(:has(input)) {
+            padding: 0;
+            width: auto;
+            div {
+              --sys-label-small-tracking: 0.005em;
+              font: var(--sys-label-small);
+              color: var(--sys-secondary);
+              margin: 0 1.5rem;
+              margin-top: 0.25rem;
+              text-transform: uppercase;
+            }
+          }
+
+          &:has(input) {
+            padding: 0;
+            margin-right: 0;
+          }
+
+          input {
+            border-radius: 0.25rem;
+            height: 2rem;
+            padding: 0.5625rem 0;
+            font: var(--sys-label-small);
+            color: var(--sys-primary-fixed);
+            width: 90%;
+            border: solid 1px var(--sys-outline-variant);
+            text-transform: uppercase;
+          }
+        }
+      }
+
+      .rgba-text,
+      .hsla-text {
+        .box {
+          padding-bottom: 0.25rem;
+          input {
+            border-radius: 0.25rem;
+            border-color: var(--sys-outline-variant);
+            max-width: 2.25rem;
+            height: 2rem;
+          }
+
+          &:not(:has(input)) {
+            div {
+              max-width: 2.25rem;
+              font: var(--sys-label-small);
+              color: var(--sys-secondary);
+            }
+          }
+
+          input {
+            font: var(--sys-label-small);
+            color: var(--sys-primary-fixed);
+          }
+        }
+      }
+
+      .type-policy {
+        top: 13.25rem;
+        right: 1.5625rem;
+      }
+
+      .hex-text,
+      .rgba-text,
+      .hsla-text {
+        padding-left: 1.5rem;
+        padding-top: 0;
+      }
+
+      .button-area {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0 0.75rem 0.75rem 0.75rem;
+
+        .accept-button,
+        .cancel-button {
+          --sys-label-medium-tracking: 0.005em;
+          font: var(--sys-label-medium);
+          margin: 0;
+          border-radius: 0.25rem;
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          padding: 0.3438rem 0.5rem;
+          &:focus-visible {
+            outline: solid 2px var(--sys-tertiary);
+          }
+        }
+
+        .cancel-button {
+          &:hover {
+            background-color: color-mix(in srgb, var(--sys-secondary) 4%, transparent);
+          }
+
+          &:active {
+            background-color: color-mix(in srgb, var(--sys-secondary) 8%, transparent);
+          }
+        }
+
+        .accept-button {
+          color: var(--sys-on-tertiary-fixed);
+
+          &:hover {
+            background-color: color-mix(in srgb, var(--sys-on-tertiary-fixed) 4%, transparent);
+          }
+
+          &:active {
+            background-color: color-mix(in srgb, var(--sys-on-tertiary-fixed) 8%, transparent);
+          }
+
+          &:focus-visible {
+            color: var(--sys-secondary);
+          }
+        }
+      }
+      .cursor {
+        border-color: white;
+        border-width: 0.25rem;
+        box-shadow: 0px 5px 16px 0px #201e3d3d;
+      }
+
+      .selected-color {
+        border: none;
+        box-shadow: 1px 1px 4px 0px #201e3d3d;
+        top: 0;
+        left: 0;
+      }
+
+      .hue-alpha {
+        padding: 0;
+        margin: 1rem 1.125rem;
+
+        .left {
+          padding: 0;
+        }
+
+        .right {
+          padding: 0.375rem 0 0.375rem 0.5rem;
+        }
+
+        .cursor {
+          height: 0.5rem;
+          width: 0.5rem;
+          border-width: 0.125rem;
+        }
+        .hue,
+        .alpha {
+          border-radius: 0.25rem;
+          height: 0.5rem;
+        }
+      }
+    }
+  }
+}

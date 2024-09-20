@@ -18,7 +18,7 @@ import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { rgbToHex } from '../models/color';
+import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,

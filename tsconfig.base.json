@@ -83,6 +83,9 @@
       "@hra-ui/design-system/button-toggle": [
         "libs/design-system/button-toggle/src/index.ts"
       ],
+      "@hra-ui/design-system/color-picker": [
+        "libs/design-system/color-picker/src/index.ts"
+      ],
       "@hra-ui/design-system/dialog": [
         "libs/design-system/dialog/src/index.ts"
       ],

@@ -17,64 +17,16 @@ $y-multiplier: 0.4566;
   white-space: nowrap;
   direction: ltr;
 }
-// Basic Primary & Secondary
-:is(a, button)[mat-button] {
-  min-width: unset;
-  white-space: nowrap;
-  font: var(--sys-title-small);
-  --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
-  --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
-  --mat-text-button-hover-state-layer-opacity: 0.04;
-  --mat-text-button-pressed-state-layer-opacity: 0.08;
-  --mat-text-button-focus-state-layer-opacity: 0;
-  --mdc-text-button-container-shape: 0.25rem;
-  --mat-text-button-horizontal-padding: 1rem;
-  padding: 0.25rem var(--mat-text-button-horizontal-padding);
 
-  &:focus-visible {
-    outline: solid 2px var(--sys-tertiary);
-    --mdc-text-button-label-text-color: var(--sys-secondary);
-  }
-
-  &.secondary-button {
-    --mat-text-button-state-layer-color: var(--sys-secondary);
-    --mdc-text-button-label-text-color: var(--sys-secondary);
-  }
-}
-
-// Flat Primary & Secondary
-:is(a, button)[mat-flat-button] {
-  font: var(--sys-title-small);
-  --mdc-filled-button-container-shape: 0.25rem;
-  --mdc-filled-button-container-color: var(--sys-tertiary);
-  --mat-filled-button-horizontal-padding: 1rem;
+* {
   --mat-filled-button-pressed-state-layer-opacity: 0.16;
-  padding: 0.5rem var(--mat-filled-button-horizontal-padding);
-
-  &:focus-visible {
-    --mdc-filled-button-container-color: var(--sys-on-primary);
-    --mdc-filled-button-label-text-color: var(--sys-secondary);
-    outline: solid 2px var(--sys-tertiary);
-  }
-
-  &.secondary-button {
-    --mdc-filled-button-label-text-color: var(--sys-on-tertiary-fixed);
-    --mdc-filled-button-container-color: var(--sys-on-primary);
-    --mat-filled-button-hover-state-layer-opacity: 0.08;
-    --mat-filled-button-pressed-state-layer-opacity: 0.16;
-    --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
-    outline: solid 1px var(--sys-on-tertiary-fixed);
-
-    &:focus-visible {
-      --mat-filled-button-state-layer-color: var(--sys-on-primary);
-      --mdc-filled-button-label-text-color: var(--sys-secondary);
-      outline: solid 2px var(--sys-tertiary);
-    }
-  }
+  --mdc-filled-button-container-color: var(--sys-tertiary);
+  --mdc-filled-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
 }
 
 // CTA Primary
 :is(a, button)[mat-flat-button]:not(.secondary-button).cta-button {
+  --mdc-filled-button-container-color: var(--sys-tertiary);
   --mdc-filled-button-container-shape: 0;
   clip-path: polygon(
     /* Bottom left */ 0 100%,
@@ -84,8 +36,31 @@ $y-multiplier: 0.4566;
     /* Bottom right x-axis */ calc(100% - $corner-width) 100%
   );
 
+  &:hover {
+    background-color: transparent;
+    clip-path: unset;
+    box-shadow: unset;
+    filter: drop-shadow(0px 0px 16px color-mix(in srgb, var(--sys-tertiary) 56%, transparent));
+
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: var(--mdc-filled-button-container-color);
+      clip-path: polygon(
+        /* Bottom left */ 0 100%,
+        /* Top left */ 0 0,
+        /* Top right */ 100% 0%,
+        /* Bottom right y-axis */ 100% calc(100% - $corner-height),
+        /* Bottom right x-axis */ calc(100% - $corner-width) 100%
+      );
+    }
+  }
+
   &:focus-visible {
-    --mdc-filled-button-container-color: var(--sys-tertiary);
+    --mdc-filled-button-label-text-color: var(--sys-secondary);
+    outline: unset;
   }
 
   &:focus-visible::after {
@@ -106,36 +81,154 @@ $y-multiplier: 0.4566;
 
 // CTA Secondary
 :is(a, button)[mat-flat-button].cta-button.secondary-button {
-  clip-path: unset;
-  outline: unset;
+  --mdc-filled-button-container-color: var(--sys-on-primary);
+  --mdc-filled-button-label-text-color: var(--sys-on-tertiary-fixed);
+  --mat-filled-button-hover-state-layer-opacity: 0.08;
+  --mat-filled-button-pressed-state-layer-opacity: 0.16;
+  --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
   --mdc-filled-button-container-shape: 0;
+  --mdc-filled-button-disabled-container-color: var(--sys-on-primary);
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    --mat-filled-button-state-layer-color: var(--sys-on-primary);
+    --mdc-filled-button-label-text-color: var(--sys-secondary);
+    outline: solid 2px var(--sys-tertiary);
+  }
+}
+
+// This css clips the focus, hover, ripple states of the button for the Primary CTA
+.mat-mdc-unelevated-button.cta-button:not(.secondary-button) {
+  .mat-mdc-button-persistent-ripple,
+  .mat-mdc-button-ripple,
+  &:hover .mat-mdc-button-persistent-ripple::before {
+    clip-path: polygon(
+      /* Bottom left */ 0 100%,
+      /* Top left */ 0 0,
+      /* Top right */ 100% 0%,
+      /* Bottom right y-axis */ 100% calc(100% - $corner-height),
+      /* Bottom right x-axis */ calc(100% - $corner-width) 100%
+    );
+  }
+}
+
+// Flat Round
+:is(a, button)[mat-flat-button] {
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
+  --mdc-filled-button-container-shape: 0.25rem;
+  --mat-filled-button-horizontal-padding: 1rem;
+  --mdc-filled-button-container-height: 2rem;
+
+  &:hover {
+    box-shadow: 1px 2px 16px 0px rgb(from var(--sys-tertiary) r g b / 0.56);
+  }
+
+  &:focus-visible {
+    --mdc-filled-button-container-color: var(--sys-on-primary);
+    --mdc-filled-button-label-text-color: var(--sys-secondary);
+    outline: solid 2px var(--sys-tertiary);
+  }
+}
+
+// Custom class for Flat primary & Seconday
+:is(a, button)[mat-flat-button] {
+  &.button-size-large {
+    --mat-filled-button-horizontal-padding: 1rem;
+    --mdc-filled-button-container-height: 2.5rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+    padding: 0.5rem var(--mat-filled-button-horizontal-padding);
+  }
+}
+
+// Basic Primary & Secondary
+:is(a, button)[mat-button] {
+  min-width: unset;
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
+  --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
+  --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
+  --mdc-text-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
+  --mat-text-button-pressed-state-layer-opacity: 0.16;
+  --mat-text-button-focus-state-layer-opacity: 0;
+  --mdc-text-button-container-shape: 0.25rem;
+  --mat-text-button-horizontal-padding: 1rem;
 
   &:focus-visible {
     outline: solid 2px var(--sys-tertiary);
+    --mdc-text-button-label-text-color: var(--sys-secondary);
+  }
+
+  &.secondary-button {
+    --mat-text-button-state-layer-color: var(--sys-secondary);
+    --mdc-text-button-label-text-color: var(--sys-secondary);
+  }
+
+  &:has(mat-icon).mat-mdc-button {
+    padding: 0 1rem 0 0.75rem;
+    mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+// Custom Class for basic primary and secondary
+:is(a, button)[mat-button] {
+  &.button-size-medium {
+    --mat-text-button-horizontal-padding: 1rem;
+    --mdc-text-button-container-height: 2.5rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+    padding: 0.5rem var(--mat-text-button-horizontal-padding);
+  }
+
+  &.button-size-small {
+    --mat-text-button-horizontal-padding: 0.5rem;
+    --mdc-text-button-container-height: 1.75rem;
+    font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
+    padding: 0.3125rem var(--mat-text-button-horizontal-padding);
   }
 }
 
 // Toggle
 mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
   --mat-standard-button-toggle-shape: 0;
-  --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;
+  --mat-standard-button-toggle-hover-state-layer-opacity: 0.08;
   --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+  --mat-standard-button-toggle-disabled-state-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
+  --mat-standard-button-toggle-disabled-state-background-color: color-mix(
+    in srgb,
+    var(--sys-on-surface) 12%,
+    transparent
+  );
   border: none;
   font: var(--sys-label-large);
+  letter-spacing: var(--sys-label-large-tracking);
 
-  .mat-button-toggle-label-content {
-    padding: 0 1rem;
+  &.button-size-large {
+    --mat-standard-button-toggle-height: 1.5rem;
+    .mat-button-toggle-label-content {
+      padding: 0.5rem 1rem;
+    }
   }
 
-  &[hraButtonSize='medium'] {
+  &.button-size-medium {
+    --mat-standard-button-toggle-height: 1.3125rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
     .mat-button-toggle-label-content {
-      padding: 0 0.5rem;
+      padding: 0.3438rem 0.5rem;
     }
   }
 
   &:active {
     .mat-button-toggle-focus-overlay {
-      opacity: 0.08;
+      opacity: 0.16;
     }
   }
 
@@ -146,8 +239,7 @@ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-appearance-stan
   }
 
   &.mat-button-toggle-checked:not(.nav-cat-button) {
-    --mat-standard-button-toggle-selected-state-text-color: var(--sys-on-primary);
-    background-color: var(--sys-tertiary);
+    background-color: color-mix(in srgb, var(--sys-tertiary) 24%, transparent);
   }
 }
 
@@ -169,7 +261,8 @@ mat-button-toggle.mat-button-toggle-checked.nav-cat-button {
 }
 
 mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
-  font: var(--sys-title-small);
+  font: var(--sys-label-large);
+  letter-spacing: var(--sys-label-large-tracking);
   --mat-standard-button-toggle-hover-state-layer-opacity: 0;
   --mat-standard-button-toggle-selected-state-background-color: var(--sys-on-primary);
   :is(:hover, :active) {
@@ -186,23 +279,5 @@ mat-button-toggle.mat-button-toggle-standalone.nav-cat-button {
     .mat-button-toggle-focus-overlay {
       opacity: 0;
     }
-  }
-}
-
-// Nav Item
-button[mat-button].nav-item-button {
-  --mat-text-button-hover-state-layer-opacity: 0;
-  --mat-text-button-pressed-state-layer-opacity: 0;
-  --mdc-text-button-container-shape: 0;
-  --mdc-text-button-label-text-color: var(--sys-secondary);
-
-  &:is(:hover, :active) {
-    .label {
-      border-bottom: solid 1px var(--sys-tertiary);
-    }
-  }
-
-  &:focus-visible {
-    outline: solid 2px var(--sys-tertiary);
   }
 }
