@@ -76,6 +76,18 @@
     }
   }
 
+  .filler {
+    flex-grow: 1;
+  }
+
+  .use-template {
+    --mdc-text-button-label-text-size: 14px;
+    --mat-text-button-with-icon-horizontal-padding: 1rem;
+    --mdc-text-button-label-text-tracking: 0.02em;
+    --mat-text-button-icon-offset: 0.75rem;
+    --mdc-text-button-container-height: 2.5rem;
+  }
+
   .data-upload {
     display: grid;
     grid:
@@ -88,18 +100,6 @@
     table {
       grid-area: table;
       margin: 0.5rem 0;
-    }
-
-    .filler {
-      flex-grow: 1;
-    }
-
-    .use-template {
-      --mdc-text-button-label-text-size: 14px;
-      --mat-text-button-with-icon-horizontal-padding: 1rem;
-      --mdc-text-button-label-text-tracking: 0.02em;
-      --mat-text-button-icon-offset: 0.75rem;
-      --mdc-text-button-container-height: 2.5rem;
     }
 
     th,
@@ -201,7 +201,6 @@
       grid-area: toggle;
       --mat-standard-button-toggle-label-text-size: 1rem;
       --mat-standard-button-toggle-height: 2.5rem;
-      --mat-standard-button-toggle-shape: 1rem;
       --mat-standard-button-toggle-label-text-weight: 500;
 
       mat-button-toggle {
@@ -241,6 +240,15 @@
   --mat-form-field-container-height: 3rem;
   --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
   --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
+  --mat-form-field-container-text-size: 14px;
+  --mat-form-field-container-text-line-height: 21px;
+  --mdc-filled-text-field-label-text-size: 14px;
+  --mdc-filled-text-field-label-text-weight: 500;
+
+  .mdc-floating-label {
+    line-height: 18px !important;
+  }
+
   // box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
   // border-radius: 1rem;
 

@@ -118,7 +118,7 @@
       <span class="subheader">Required: Verify column headers</span>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">X Axis</mat-label>
+        <mat-label>X Axis</mat-label>
         <mat-select class="mat-body-2" formControlName="xAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
@@ -127,7 +127,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Y Axis</mat-label>
+        <mat-label>Y Axis</mat-label>
         <mat-select class="mat-body-2" formControlName="yAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
@@ -136,7 +136,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Cell Type</mat-label>
+        <mat-label>Cell Type</mat-label>
         <mat-select class="mat-body-2" formControlName="cellType" panelClass="select-panel" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
@@ -158,7 +158,7 @@
       <span class="subheader">Optional: Add column headers</span>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Z Axis</mat-label>
+        <mat-label>Z Axis</mat-label>
         <mat-select class="mat-body-2" formControlName="zAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
@@ -167,7 +167,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Cell Ontology ID</mat-label>
+        <mat-label>Cell Ontology ID</mat-label>
         <mat-select class="mat-body-2" formControlName="ontologyId" panelClass="select-panel" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
@@ -220,7 +220,7 @@
 
     <div class="parameters-1">
       <mat-form-field class="select-form">
-        <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
+        <mat-label>Anchor Cell Type</mat-label>
         <mat-select
           class="select mat-body-2"
           formControlName="nodeTargetValue"
@@ -234,24 +234,24 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Distance Threshold</mat-label>
+        <mat-label>Distance Threshold</mat-label>
         <input matInput formControlName="distanceThreshold" cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
 
     <div class="parameters-2">
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Pixel size (X) (µm/pixel)</mat-label>
+        <mat-label>Pixel size (X) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeX" min="0" cdeMarkEmptyFormControl />
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Pixel size (Y) (µm/pixel)</mat-label>
+        <mat-label>Pixel size (Y) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeY" min="0" cdeMarkEmptyFormControl />
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label class="mat-body-2">Pixel size (Z) (µm/pixel)</mat-label>
+        <mat-label>Pixel size (Z) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeZ" min="0" cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
@@ -288,17 +288,17 @@
     </h2>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Visualization Title</mat-label>
+      <mat-label>Visualization Title</mat-label>
       <input matInput formControlName="title" cdeMarkEmptyFormControl />
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Imaging Technology</mat-label>
+      <mat-label>Imaging Technology</mat-label>
       <input matInput formControlName="technology" cdeMarkEmptyFormControl />
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Organ</mat-label>
+      <mat-label>Organ</mat-label>
       <mat-select class="mat-body-2" formControlName="organ" panelClass="select-panel" cdeMarkEmptyFormControl>
         @for (organ of organs(); track organ) {
           <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
@@ -307,7 +307,7 @@
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Sex</mat-label>
+      <mat-label>Sex</mat-label>
       <mat-select class="mat-body-2" formControlName="sex" panelClass="select-panel" cdeMarkEmptyFormControl>
         <mat-option value="Male">Male</mat-option>
         <mat-option value="Female">Female</mat-option>
@@ -315,12 +315,12 @@
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Age</mat-label>
+      <mat-label>Age</mat-label>
       <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Thickness (µm)</mat-label>
+      <mat-label>Thickness (µm)</mat-label>
       <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
     </mat-form-field>
 
@@ -334,7 +334,6 @@
     <h2 class="header">
       <span class="step-number">5</span>
       <div class="card-title">Optional: Configure Colors</div>
-      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -359,9 +358,20 @@
           colors may be changed individually while exploring the visualization in the Visualization App.
         </p>
       </ng-template>
+      <div class="filler"></div>
+      <a
+        mat-button
+        class="use-template"
+        color="primary"
+        href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Template
+      </a>
     </h2>
 
-    <mat-button-toggle-group formControlName="colorMapType">
+    <mat-button-toggle-group formControlName="colorMapType" hideSingleSelectionIndicator>
       <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
       <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
@@ -369,7 +379,6 @@
     @if (useCustomColorMap) {
       <cde-file-upload
         class="upload-colormap"
-        [actionNotification]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
