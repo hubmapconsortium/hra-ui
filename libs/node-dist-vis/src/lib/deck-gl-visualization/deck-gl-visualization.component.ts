@@ -28,6 +28,7 @@ const SELECTION_RANGE: [number, number] = [0, 10];
 const SELECTION_VALUE_INSIDE_RANGE = 5;
 const SELECTION_VALUE_OUT_OF_RANGE = 100;
 
+/** DeckGl Visualization Component */
 @Component({
   selector: 'hra-deck-gl-visualization',
   standalone: true,
@@ -37,21 +38,33 @@ const SELECTION_VALUE_OUT_OF_RANGE = 100;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeckGlVisualizationComponent {
+  /** Nodes for the visualization */
   readonly nodes = input.required<NodeEntry[]>();
+  /** Edges for the visualization */
   readonly edges = input.required<EdgeEntry[]>();
+  /** Selection for the visualization */
   readonly selection = input.required<string[] | undefined>();
+  /** Colormap for the visualization */
   readonly colorMap = input.required<{ domain: string[]; range: Color[] }>();
+  /** Node target key for the visualization */
   readonly nodeTargetKey = input.required<NodeTargetKey>();
 
+  /** Event for click on the node */
   readonly nodeClick = output<NodeEntry>();
+  /** Event for hover on the node */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** Reference to the canvas element */
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
+  /** Configuration of the view state of the deck gl */
   private readonly viewState = signal<object>(this.getInitialViewState());
+  /**  */
   private readonly activeHover = signal<NodeEntry | typeof NO_HOVER | undefined>(NO_HOVER);
 
+  /** Counter for view state version */
   private viewStateVersionCounter = 0;
 
+  /** Computed dimensions based on current node position */
   private readonly dimensions = computed(() => {
     let minDimSize = Number.MAX_VALUE;
     let maxDimSize = Number.MIN_VALUE;
@@ -63,12 +76,14 @@ export class DeckGlVisualizationComponent {
     return [minDimSize, maxDimSize] as const;
   });
 
+  /**  */
   private readonly scaleFn = computed(() => {
     const [min, max] = this.dimensions();
     const diff = max - min;
     return ([x, y, z]: Position): Position => [(x - min) / diff, 1 - (y - min) / diff, (z - min) / diff];
   });
 
+  /** Computed nodes layer required to render deckgl */
   private readonly nodesLayer = computed(() => {
     type ExtraProps = DataFilterExtensionProps<NodeEntry>;
 
@@ -92,6 +107,7 @@ export class DeckGlVisualizationComponent {
     });
   });
 
+  /** Computed edges layer required to render deckgl */
   private readonly edgesLayer = computed(() => {
     const nodes = this.nodes();
     const targetKey = this.nodeTargetKey();
@@ -121,6 +137,7 @@ export class DeckGlVisualizationComponent {
     });
   });
 
+  /** Computed scale bar layer required to render deckgl */
   private readonly scaleBarLayer = computed(() => {
     type Props = ConstructorParameters<typeof ScaleBarLayer>[0];
     const { width, height } = this.canvas().nativeElement;
@@ -139,6 +156,7 @@ export class DeckGlVisualizationComponent {
     } as Props);
   });
 
+  /** Deck initialization */
   private readonly deck = computed(
     () =>
       new Deck({
@@ -154,6 +172,7 @@ export class DeckGlVisualizationComponent {
       }),
   );
 
+  /** Set properties to the deck */
   constructor() {
     effect(() => {
       const deck = this.deck();
@@ -168,6 +187,7 @@ export class DeckGlVisualizationComponent {
     });
   }
 
+  /** Reset the deck view */
   resetView() {
     this.deck().setProps({ initialViewState: this.getInitialViewState() });
   }
@@ -199,6 +219,7 @@ export class DeckGlVisualizationComponent {
     }) as AccessorFunction<T, Color>;
   }
 
+  /** Initial view state config */
   private getInitialViewState() {
     return {
       version: this.viewStateVersionCounter++,
@@ -214,6 +235,7 @@ export class DeckGlVisualizationComponent {
     };
   }
 
+  /** Gets the current cursor state */
   private getCursor(...[state]: DeckCallbackParameters<'getCursor'>): string {
     if (this.activeHover()) {
       return 'pointer';
@@ -224,16 +246,19 @@ export class DeckGlVisualizationComponent {
     }
   }
 
+  /** Updates the deck gl view state with current view state */
   private onViewStateChange(...[params]: DeckCallbackParameters<'onViewStateChange'>): void {
     this.viewState.set(params.viewState);
   }
 
+  /** Emits node information when clicked on the node */
   private onClick(...[info]: DeckCallbackParameters<'onClick'>): void {
     if (info.picked) {
       this.nodeClick.emit(info.object);
     }
   }
 
+  /** Emits hover information when hovered on the node */
   private onHover(...[info]: DeckCallbackParameters<'onHover'>): void {
     this.activeHover.set(info.picked ? info.object : undefined);
   }

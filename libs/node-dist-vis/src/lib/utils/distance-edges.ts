@@ -35,6 +35,8 @@ function* getClosest(sources: number[][], sourceIndexes: number[], targets: numb
 }
 
 function addToCell(node: any, cells: any) {
+  console.log(node, 'node');
+  console.log(cells, 'cells');
   const cx = (cells[node.cell[0]] = cells[node.cell[0]] || {});
   const cy = (cx[node.cell[1]] = cx[node.cell[1]] || {
     nodes: [],
