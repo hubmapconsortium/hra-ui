@@ -20,7 +20,7 @@ import { NodeDistVisualizationComponent } from '../components/node-dist-visualiz
 import { ViolinComponent } from '../components/violin/violin.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { Rgb, rgbToHex } from '../models/color';
+import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,

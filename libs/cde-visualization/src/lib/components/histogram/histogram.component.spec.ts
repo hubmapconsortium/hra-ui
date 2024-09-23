@@ -1,12 +1,12 @@
 import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
-import { Rgb } from '../../models/color';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';

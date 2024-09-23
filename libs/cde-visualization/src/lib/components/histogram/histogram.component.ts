@@ -20,6 +20,7 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { produce } from 'immer';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
@@ -28,7 +29,6 @@ import embed, { VisualizationSpec } from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
-import { colorEquals, Rgb } from '../../models/color';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
