@@ -6,6 +6,12 @@ import { z } from 'zod';
 import { SceneDataService, SPATIAL_SCENE_NODE_ARRAY } from './scene-data.service';
 import { SpatialSceneNode } from '@hra-api/ng-client';
 
+export interface XYZTriplet<T = number> {
+  x: T;
+  y: T;
+  z: T;
+}
+
 function tryParseJson(value: unknown): unknown {
   try {
     if (typeof value === 'string') {
@@ -29,14 +35,22 @@ const SCENE_INPUT = z.preprocess(tryParseJson, z.union([z.literal(''), z.string(
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  /** Scene can be a url or a json encoded string (TODO) */
   readonly scene = input(undefined, { transform: SCENE_INPUT.parse.bind(SCENE_INPUT) });
 
+  readonly rotation = input<number>();
+  readonly rotationX = input<number>();
+  readonly zoom = input<number>();
+  readonly target = input<[number, number, number]>();
+  readonly bounds = input<XYZTriplet>();
+  readonly camera = input<string>();
+  readonly interactive = input<boolean>();
+
+  readonly rotationChange = output<[number, number]>();
   readonly nodeClick = output<NodeClickEvent>();
   readonly nodeDrag = output<NodeDragEvent>();
   readonly nodeHoverStart = output<SpatialSceneNode>();
   readonly nodeHoverStop = output<SpatialSceneNode>();
-  readonly rotationChange = output<[number, number]>();
+  readonly initialized = output<void>();
 
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
   private readonly deck = computed(() => {
@@ -75,6 +89,19 @@ export class AppComponent {
       this.deck().sceneRotation$.subscribe((event) => this.rotationChange.emit(event));
     });
 
+    effect(() => {
+      // if (this.deck()) {
+      //   this.deck().setRotation(this.rotation() ?? 0);
+      //   this.deck().setRotationX(this.rotationX() ?? 0);
+      //   this.deck().setZoom(this.zoom() ?? 0);
+      //   this.deck().setTarget(this.target() ?? [0, 0, 0]);
+      //   const currentBounds = this.bounds();
+      //   if (currentBounds) {
+      //     this.zoomToBounds(currentBounds);
+      //   }
+      // }
+    });
+
     inject(DestroyRef).onDestroy(() => {
       this.deck().finalize();
     });
@@ -85,5 +112,18 @@ export class AppComponent {
       switchMap((deck) => deck.initialize()),
       map(() => true),
     );
+  }
+
+  private zoomToBounds(bounds: XYZTriplet, margin = { x: 48, y: 48 }): void {
+    if (this.canvas()) {
+      const { width, height } = this.canvas().nativeElement;
+      const pxRatio = window.devicePixelRatio;
+      const newZoom = Math.min(
+        Math.log2((width - margin.x) / pxRatio / bounds.x),
+        Math.log2((height - margin.y) / pxRatio / bounds.y),
+      );
+      console.log(newZoom);
+      // this.zoom?.set(newZoom);
+    }
   }
 }
