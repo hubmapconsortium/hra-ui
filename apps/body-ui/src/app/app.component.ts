@@ -1,9 +1,10 @@
 import { Component, computed, DestroyRef, effect, ElementRef, inject, input, output, viewChild } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { BodyUI } from 'ccf-body-ui';
+import { BodyUI, NodeClickEvent, NodeDragEvent } from 'ccf-body-ui';
 import { map, Observable, switchMap } from 'rxjs';
 import { z } from 'zod';
 import { SceneDataService, SPATIAL_SCENE_NODE_ARRAY } from './scene-data.service';
+import { SpatialSceneNode } from '@hra-api/ng-client';
 
 function tryParseJson(value: unknown): unknown {
   try {
@@ -31,9 +32,11 @@ export class AppComponent {
   /** Scene can be a url or a json encoded string (TODO) */
   readonly scene = input(undefined, { transform: SCENE_INPUT.parse.bind(SCENE_INPUT) });
 
-  readonly onMouseEnter = output<string>();
-  readonly onMouseLeave = output<string>();
-  readonly onClick = output<string>();
+  readonly nodeClick = output<NodeClickEvent>();
+  readonly nodeDrag = output<NodeDragEvent>();
+  readonly nodeHoverStart = output<SpatialSceneNode>();
+  readonly nodeHoverStop = output<SpatialSceneNode>();
+  readonly rotationChange = output<[number, number]>();
 
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
   private readonly deck = computed(() => {
@@ -62,6 +65,14 @@ export class AppComponent {
       if (this.deckInitialized()) {
         this.deck().setScene(this.sceneDataService.scene());
       }
+    });
+
+    effect(() => {
+      this.deck().nodeClick$.subscribe((event) => this.nodeClick.emit(event));
+      this.deck().nodeDrag$.subscribe((event) => this.nodeDrag.emit(event));
+      this.deck().nodeHoverStart$.subscribe((event) => this.nodeHoverStart.emit(event));
+      this.deck().nodeHoverStop$.subscribe((event) => this.nodeHoverStop.emit(event));
+      this.deck().sceneRotation$.subscribe((event) => this.rotationChange.emit(event));
     });
 
     inject(DestroyRef).onDestroy(() => {
