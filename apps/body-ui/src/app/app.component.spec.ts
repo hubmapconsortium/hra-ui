@@ -1,24 +1,33 @@
-import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { render, screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+
+jest.mock('ccf-body-ui', () => ({
+  BodyUI: jest.fn().mockImplementation(() => ({
+    deck: {
+      setProps: jest.fn(),
+      finalize: jest.fn(),
+    },
+    initialize: jest.fn().mockResolvedValue(undefined),
+    finalize: jest.fn(),
+    setScene: jest.fn(),
+    nodeClick$: { pipe: jest.fn().mockReturnThis(), subscribe: jest.fn() },
+    nodeHoverStart$: { pipe: jest.fn().mockReturnThis(), subscribe: jest.fn() },
+    nodeHoverStop$: { pipe: jest.fn().mockReturnThis(), subscribe: jest.fn() },
+    sceneRotation$: { pipe: jest.fn().mockReturnThis(), subscribe: jest.fn() },
+    nodeDrag$: { pipe: jest.fn().mockReturnThis(), subscribe: jest.fn() },
+  })),
+}));
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent],
-    }).compileComponents();
-  });
+  it('should render a canvas element', async () => {
+    await render(AppComponent, {
+      providers: [provideHttpClient()],
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome body-ui');
-  });
+    const canvasElement = screen.getByRole('img');
 
-  it(`should have as title 'body-ui'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('body-ui');
+    expect(canvasElement).toBeTruthy();
+    expect(canvasElement.tagName.toLowerCase()).toBe('canvas');
   });
 });
