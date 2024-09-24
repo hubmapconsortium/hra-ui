@@ -96,19 +96,18 @@ export class CreateVisualizationPageComponent {
   /** Visualization data service */
   private readonly dataService = inject(VisualizationDataService);
 
+  private readonly acceptableCellTypeHeaders = ['celltype', 'cell type', 'cell_type'];
+  private readonly acceptableOntologyHeaders = [
+    'ontologyid',
+    'cellontologyid',
+    'ontology id',
+    'cell ontology id',
+    'ontology_id',
+    'cell_ontology_id',
+  ];
+
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
-    // nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
-    // metadata: this.fb.group({
-    //   title: [optionalValue<string>()],
-    //   technology: [optionalValue<string>()],
-    //   organ: [optionalValue<OrganEntry>()],
-    //   sex: [optionalValue<string>()],
-    //   age: [optionalValue<number>(), [Validators.min(0), Validators.max(120), validateInteger()]],
-    //   thickness: [optionalValue<number>(), Validators.min(0)],
-    //   pixelSize: [optionalValue<number>(), Validators.min(0)],
-    // }),
-    // colorMapType: ['default'],
     headers: this.fb.group({
       xAxis: [''],
       yAxis: [''],
@@ -236,11 +235,12 @@ export class CreateVisualizationPageComponent {
    * @param nodes Nodes to set
    */
   setNodes(nodes: NodeEntry[]): void {
-    // this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
-    // if (this.nodesLoadError) {
-    //   this.nodesFileUpload().reset();
-    //   return;
-    // }
+    this.nodesLoadError = this.checkRequiredNodeKeys(nodes);
+    if (this.nodesLoadError) {
+      this.nodesFileUpload().reset();
+      this.setHeaders([]);
+      return;
+    }
 
     this.setHeaders(nodes);
 
@@ -257,7 +257,7 @@ export class CreateVisualizationPageComponent {
   }
 
   setHeaders(nodes: NodeEntry[]): void {
-    this.dataHeaders = Object.keys(nodes[0]);
+    this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
       xAxis: this.preSelectedHeader(this.dataHeaders, 'x'),
       yAxis: this.preSelectedHeader(this.dataHeaders, 'y'),
@@ -268,25 +268,12 @@ export class CreateVisualizationPageComponent {
   }
 
   preSelectedHeader(headers: string[], field: string): string | null {
-    const acceptableCellTypeHeaders = ['celltype', 'cell type', 'cell_type'];
-    const acceptableOntologyHeaders = [
-      'ontologyid',
-      'cellontologyid',
-      'ontology id',
-      'cell ontology id',
-      'ontology_id',
-      'cell_ontology_id',
-    ];
-    if (field === 'x') {
-      return headers.find((h) => h.toLowerCase() === 'x') || null;
-    } else if (field === 'y') {
-      return headers.find((h) => h.toLowerCase() === 'y') || null;
-    } else if (field === 'z') {
-      return headers.find((h) => h.toLowerCase() === 'z') || null;
+    if (field === 'x' || field === 'y' || field === 'z') {
+      return headers.find((h) => h.toLowerCase() === field) || null;
     } else if (field === 'cellType') {
-      return headers.find((h) => acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
+      return headers.find((h) => this.acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
     } else if (field === 'ontologyId') {
-      return headers.find((h) => acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
+      return headers.find((h) => this.acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
     } else {
       return null;
     }
@@ -298,6 +285,7 @@ export class CreateVisualizationPageComponent {
   clearNodes(): void {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
+    this.setHeaders([]);
   }
 
   /**
@@ -307,6 +295,22 @@ export class CreateVisualizationPageComponent {
   hasValidNodes(): boolean {
     const { nodes } = this;
     return !!(nodes && nodes.length > 0 && DEFAULT_NODE_TARGET_KEY in nodes[0]);
+  }
+
+  hasValidData(): boolean {
+    const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
+    const { nodeTargetValue, pixelSizeX, pixelSizeY, pixelSizeZ, distanceThreshold } =
+      this.visualizationForm.controls['parameters'].value;
+    return (
+      !!xAxis &&
+      !!yAxis &&
+      !!cellType &&
+      !!nodeTargetValue &&
+      !!pixelSizeX &&
+      !!pixelSizeY &&
+      !!pixelSizeZ &&
+      !!distanceThreshold
+    );
   }
 
   /**
@@ -413,6 +417,25 @@ export class CreateVisualizationPageComponent {
     return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
   }
 
+  private checkRequiredNodeKeys(data: object[]): MissingKeyError | undefined {
+    const missingKeys = [];
+    const typeKeyMissing =
+      Object.keys(data[0]).filter((x) => this.acceptableCellTypeHeaders.includes(x.toLowerCase())).length === 0;
+    const xKeyMissing = Object.keys(data[0]).filter((k) => k.toLowerCase() === 'x').length === 0;
+    const yKeyMissing = Object.keys(data[0]).filter((k) => k.toLowerCase() === 'y').length === 0;
+
+    if (typeKeyMissing) {
+      missingKeys.push('Cell Type');
+    }
+    if (xKeyMissing) {
+      missingKeys.push('X');
+    }
+    if (yKeyMissing) {
+      missingKeys.push('Y');
+    }
+    return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
+  }
+
   /**
    * Formats error message according to the error type
    * @param error Error
@@ -420,8 +443,8 @@ export class CreateVisualizationPageComponent {
    */
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
-      // case 'missing-key-error':
-      //   return `Required columns missing: ${error.keys.join(', ')}`;
+      case 'missing-key-error':
+        return `Required columns missing: ${error.keys.join(', ')}`;
 
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
@@ -430,7 +453,7 @@ export class CreateVisualizationPageComponent {
         if (Array.isArray(error.cause)) {
           return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return 'Required columns missing: cell_color';
+          return 'Required color format not detected. Please use [R, G, B].';
         }
 
         return 'Invalid file: too many invalid rows.';

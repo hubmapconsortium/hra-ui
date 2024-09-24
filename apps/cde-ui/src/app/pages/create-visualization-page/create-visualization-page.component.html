@@ -377,6 +377,19 @@
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
+      <table>
+        <tr>
+          <th>Required Columns</th>
+          <th>Supported Format</th>
+        </tr>
+        <tr>
+          <td>• <span>Cell Type</span></td>
+          <td>• <span>CSV</span></td>
+        </tr>
+        <tr>
+          <td>• <span>HEX</span></td>
+        </tr>
+      </table>
       <cde-file-upload
         class="upload-colormap"
         accept="text/csv,.csv"
@@ -385,11 +398,10 @@
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
         (loadErrored)="customColorMapLoadError = $event"
-        data-testid="color-map-upload"
-        #customColorMapFileUpload
         [errorMessage]="colorErrorMessage"
         [errorActionMessage]="colorErrorActionMessage"
-        templateUrl="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
+        #customColorMapFileUpload
+        data-testid="color-map-upload"
       >
       </cde-file-upload>
     }
@@ -399,7 +411,6 @@
     <h2 class="header">
       <span class="step-number">6</span>
       <div class="card-title">Visualize Cell Distance Data</div>
-      <div class="filler"></div>
       <mat-icon
         class="material-symbols-rounded info"
         cdkOverlayOrigin
@@ -423,13 +434,15 @@
       </ng-template>
     </h2>
 
-    @if (hasValidNodes()) {
+    @if (hasValidNodes() && hasValidData()) {
       <button mat-flat-button type="submit" class="visualize-button cta-filled" color="primary" data-testid="visualize">
         Visualize
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </button>
     } @else {
-      <span class="visualize-notification">Please format and upload data to explore a visualization.</span>
+      <!-- <span class="visualize-notification">Please format and upload data to explore a visualization.</span> -->
+      <mat-icon class="material-symbols-rounded alert">error</mat-icon>
+      <span>Please upload a dataset.</span>
     }
   </div>
 </form>

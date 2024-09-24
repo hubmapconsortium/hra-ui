@@ -80,6 +80,24 @@
     flex-grow: 1;
   }
 
+  table {
+    grid-area: table;
+    margin: 0.5rem 0;
+
+    th,
+    td {
+      font-weight: 500;
+      padding-left: 1rem;
+      text-align: left;
+      min-width: 216px;
+      height: 1.5rem;
+    }
+
+    td {
+      padding-left: 1.5rem;
+    }
+  }
+
   .use-template {
     --mdc-text-button-label-text-size: 14px;
     --mat-text-button-with-icon-horizontal-padding: 1rem;
@@ -96,24 +114,6 @@
       'upload-csv .' / auto 1fr;
     grid-template-rows: auto auto auto;
     row-gap: 2rem;
-
-    table {
-      grid-area: table;
-      margin: 0.5rem 0;
-    }
-
-    th,
-    td {
-      font-weight: 500;
-      padding-left: 1rem;
-      text-align: left;
-      min-width: 216px;
-      height: 1.5rem;
-    }
-
-    td {
-      padding-left: 1.5rem;
-    }
 
     .upload-csv {
       grid-area: upload-csv;
@@ -195,7 +195,10 @@
     grid:
       'header header'
       'toggle toggle'
-      '. upload-colormap' / 3rem auto;
+      'table table'
+      'upload-colormap .' / auto 1fr;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 2rem;
 
     mat-button-toggle-group {
       grid-area: toggle;
@@ -211,7 +214,6 @@
 
     .upload-colormap {
       grid-area: upload-colormap;
-      margin-top: 2rem;
     }
   }
 
