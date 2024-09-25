@@ -120,23 +120,16 @@
     }
   }
 
-  // .anchor-selection {
-  //   .header {
-  //     margin-bottom: 0.5rem;
-  //   }
-
-  //   .select-form {
-  //     width: calc(100% - 6rem);
-  //     margin: 1.5rem 3rem;
-  //   }
-  // }
-
   .organize-data {
     .required-headers,
     .optional-headers {
       display: grid;
       grid: 'subheader subheader';
       column-gap: 1.5rem;
+    }
+
+    .required-headers {
+      margin-bottom: 1rem;
     }
 
     .subheader {
@@ -192,13 +185,27 @@
 
   .color-config {
     display: grid;
+    row-gap: 2rem;
     grid:
       'header header'
-      'toggle toggle'
-      'table table'
-      'upload-colormap .' / auto 1fr;
-    grid-template-rows: auto auto auto auto;
-    row-gap: 2rem;
+      'toggle toggle' / auto 1fr;
+
+    &.custom {
+      grid:
+        'header header'
+        'toggle toggle'
+        'table table'
+        'upload-colormap .' / auto 1fr;
+    }
+
+    table {
+      width: 66%;
+
+      th,
+      td {
+        min-width: 0;
+      }
+    }
 
     mat-button-toggle-group {
       grid-area: toggle;
@@ -208,7 +215,12 @@
 
       mat-button-toggle {
         width: 50%;
-        border: none;
+        border-width: 0;
+
+        &:first-child {
+          border-right-width: 1px;
+          border-style: solid;
+        }
       }
     }
 
@@ -218,15 +230,34 @@
   }
 
   .visualize {
-    .visualize-notification,
+    .visualize-notification {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem 0;
+      background-color: rgb(from #ffdcc4 r g b / 0.8);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+
+      .alert {
+        color: #bc4f00;
+      }
+
+      .span {
+        display: flex;
+        flex-direction: column;
+        color: #2f1400;
+      }
+    }
+
     .visualize-button {
       display: flex;
-      margin-left: 3rem;
       --mdc-filled-button-label-text-size: 1rem;
       --mat-filled-button-horizontal-padding: 1.5rem;
       --mdc-filled-button-label-text-tracking: 0.02em;
       --mat-filled-button-icon-spacing: 0.75rem;
       --mat-filled-button-icon-offset: -0.375rem;
+      margin-top: 2rem;
 
       mat-icon {
         font-size: 1.5rem;
@@ -251,9 +282,6 @@
     line-height: 18px !important;
   }
 
-  // box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
-  // border-radius: 1rem;
-
   .mat-mdc-text-field-wrapper {
     border-radius: 4px 4px 0 0;
     padding: 0 1rem;
@@ -262,13 +290,6 @@
   .mat-mdc-form-field-subscript-wrapper {
     display: none;
   }
-
-  // .mdc-line-ripple {
-  //   &::before,
-  //   &::after {
-  //     display: none;
-  //   }
-  // }
 }
 
 ::ng-deep .info-tooltip-panel {

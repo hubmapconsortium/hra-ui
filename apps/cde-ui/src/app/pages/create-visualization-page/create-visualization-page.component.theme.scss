@@ -49,11 +49,17 @@ $blue-palette: map.get(palettes.$palettes, 'blue');
 
     .color-config {
       mat-button-toggle-group {
-        border-color: map.get($gray-palette, 700);
+        border-color: map.get($gray-palette, 600);
         --mat-standard-button-toggle-text-color: #{mat.get-theme-color($theme, accent, darker)};
         --mat-standard-button-toggle-selected-state-background-color: rgb(
           from #{mat.get-theme-color($theme, primary, 600)} r g b / 0.24
         );
+      }
+
+      mat-button-toggle {
+        &:first-child {
+          border-color: map.get($gray-palette, 600);
+        }
       }
 
       .use-template {

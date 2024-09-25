@@ -212,6 +212,9 @@ export class CreateVisualizationPageComponent {
   }
 
   get columnErrorActionMessage(): string | undefined {
+    if (!this.nodes) {
+      return undefined;
+    }
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
     const xError = xAxis ? undefined : 'X Axis';
     const yError = yAxis ? undefined : 'Y Axis';
@@ -235,12 +238,13 @@ export class CreateVisualizationPageComponent {
    * @param nodes Nodes to set
    */
   setNodes(nodes: NodeEntry[]): void {
-    this.nodesLoadError = this.checkRequiredNodeKeys(nodes);
-    if (this.nodesLoadError) {
-      this.nodesFileUpload().reset();
-      this.setHeaders([]);
-      return;
-    }
+    const columnsError = this.checkRequiredNodeKeys(nodes);
+    console.log(columnsError);
+    // if (columnsError) {
+    //   this.nodesFileUpload().reset();
+    //   this.setHeaders([]);
+    //   return;
+    // }
 
     this.setHeaders(nodes);
 
