@@ -20,6 +20,7 @@ import {
   DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
+  NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { FooterComponent } from '@hra-ui/design-system/footer';
@@ -368,19 +369,36 @@ export class CreateVisualizationPageComponent {
       creationTimestamp: Date.now(),
     });
 
-    this.dataService.setData(
-      this.removeNullishValues({
-        nodes,
-        nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-        nodeTargetValue,
+    const nullishRemovedData = this.removeNullishValues({
+      nodes,
+      nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
+      nodeTargetValue,
 
-        colorMap,
-        colorMapKey: DEFAULT_COLOR_MAP_KEY,
-        colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
+      colorMap,
+      colorMapKey: DEFAULT_COLOR_MAP_KEY,
+      colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
 
-        metadata: normalizedMetadata,
-      }),
-    );
+      metadata: normalizedMetadata,
+    });
+    const headers = visualizationForm.value.headers;
+    const xKey = (headers?.xAxis || '') as NodeTargetKey;
+    const yKey = (headers?.yAxis || '') as NodeTargetKey;
+    const zKey = (headers?.zAxis || '') as NodeTargetKey;
+    const ctKey = (headers?.cellType || '') as NodeTargetKey;
+
+    const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
+      ? nullishRemovedData.nodes.map(
+          (node) =>
+            ({
+              x: node[xKey] as unknown as number,
+              y: node[yKey] as unknown as number,
+              z: node[zKey] as unknown as number,
+              'Cell Type': node[ctKey],
+            }) as NodeEntry,
+        )
+      : []);
+    nullishRemovedData.nodes = convertedHeaderNodes;
+    this.dataService.setData(nullishRemovedData);
 
     this.router.navigate(['/visualize']);
   }
@@ -420,6 +438,9 @@ export class CreateVisualizationPageComponent {
    */
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
+      case 'missing-key-error':
+        return `Required columns missing: ${error.keys.join(', ')}`;
+
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
 
