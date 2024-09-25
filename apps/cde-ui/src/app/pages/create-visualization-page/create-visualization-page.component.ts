@@ -238,14 +238,6 @@ export class CreateVisualizationPageComponent {
    * @param nodes Nodes to set
    */
   setNodes(nodes: NodeEntry[]): void {
-    const columnsError = this.checkRequiredNodeKeys(nodes);
-    console.log(columnsError);
-    // if (columnsError) {
-    //   this.nodesFileUpload().reset();
-    //   this.setHeaders([]);
-    //   return;
-    // }
-
     this.setHeaders(nodes);
 
     const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
@@ -421,25 +413,6 @@ export class CreateVisualizationPageComponent {
     return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
   }
 
-  private checkRequiredNodeKeys(data: object[]): MissingKeyError | undefined {
-    const missingKeys = [];
-    const typeKeyMissing =
-      Object.keys(data[0]).filter((x) => this.acceptableCellTypeHeaders.includes(x.toLowerCase())).length === 0;
-    const xKeyMissing = Object.keys(data[0]).filter((k) => k.toLowerCase() === 'x').length === 0;
-    const yKeyMissing = Object.keys(data[0]).filter((k) => k.toLowerCase() === 'y').length === 0;
-
-    if (typeKeyMissing) {
-      missingKeys.push('Cell Type');
-    }
-    if (xKeyMissing) {
-      missingKeys.push('X');
-    }
-    if (yKeyMissing) {
-      missingKeys.push('Y');
-    }
-    return missingKeys.length > 0 ? { type: 'missing-key-error', keys: missingKeys } : undefined;
-  }
-
   /**
    * Formats error message according to the error type
    * @param error Error
@@ -447,9 +420,6 @@ export class CreateVisualizationPageComponent {
    */
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
-      case 'missing-key-error':
-        return `Required columns missing: ${error.keys.join(', ')}`;
-
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
 
