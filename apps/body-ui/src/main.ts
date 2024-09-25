@@ -1,5 +1,8 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideZoneChangeDetection } from '@angular/core';
 import { createCustomElement } from '@hra-ui/webcomponents';
-import { AppComponent } from './app/app.component';
-import { appConfig } from './app/app.config';
+import { BodyUiComponent } from 'ccf-body-ui';
 
-createCustomElement('hra-body-ui', AppComponent, appConfig);
+createCustomElement('hra-body-ui', BodyUiComponent, {
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideHttpClient()],
+});

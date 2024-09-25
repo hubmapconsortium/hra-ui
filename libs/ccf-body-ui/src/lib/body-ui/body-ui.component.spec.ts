@@ -1,8 +1,8 @@
 import { provideHttpClient } from '@angular/common/http';
 import { render, screen } from '@testing-library/angular';
-import { AppComponent } from './app.component';
+import { BodyUiComponent } from './body-ui.component';
 
-jest.mock('ccf-body-ui', () => ({
+jest.mock('../body-ui.ts', () => ({
   BodyUI: jest.fn().mockImplementation(() => ({
     deck: {
       setProps: jest.fn(),
@@ -19,9 +19,9 @@ jest.mock('ccf-body-ui', () => ({
   })),
 }));
 
-describe('AppComponent', () => {
+describe('BodyUiComponent', () => {
   it('should render a canvas element', async () => {
-    await render(AppComponent, {
+    await render(BodyUiComponent, {
       providers: [provideHttpClient()],
     });
 
