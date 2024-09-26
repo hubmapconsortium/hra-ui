@@ -1,0 +1,1986 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>components-behavioral</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">components-behavioral</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BiomarkerDetailsWcComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/biomarker-details-wc/biomarker-details-wc.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for Biomarker Table Details Web component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ftu-wc-biomarker-details</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatTabsModule</code>
+                            <code>BiomarkerTableComponent</code>
+                            <code>BiomarkerTableDataCardComponent</code>
+                            <code>GradientLegendComponent</code>
+                            <code>HoverDirective</code>
+                            <code>LabelBoxComponent</code>
+                            <code>SizeLegendComponent</code>
+                            <code>SourceListComponent</code>
+                            <code>EmptyBiomarkerComponent</code>
+                            <code>InteractiveSvgComponent</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./biomarker-details-wc.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./biomarker-details-wc.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#collaborateText" >collaborateText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentUrl" >currentUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#getTabs" >getTabs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#gradientHoverInfo" >gradientHoverInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#gradients" >gradients</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#iri" >iri</a>
+                            </li>
+                            <li>
+                                <a href="#isTableFullScreen" >isTableFullScreen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mapping" >mapping</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#message" >message</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#setSelectedSources" >setSelectedSources</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sizeHoverInfo" >sizeHoverInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sizes" >sizes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#source" >source</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#table" >table</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tissues" >tissues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#updateNodeOnClicked" >updateNodeOnClicked</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#updateNodeOnHover" >updateNodeOnHover</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#collaborate" >collaborate</a>
+                            </li>
+                            <li>
+                                <a href="#logTabChange" >logTabChange</a>
+                            </li>
+                            <li>
+                                <a href="#toggleFullscreen" >toggleFullscreen</a>
+                            </li>
+                            <li>
+                                <a href="#trackByIndex" >trackByIndex</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#tissueTitle" >tissueTitle</a>
+                                </li>
+                                <li>
+                                    <a href="#tissueInfo" >tissueInfo</a>
+                                </li>
+                                <li>
+                                    <a href="#tabs" >tabs</a>
+                                </li>
+                                <li>
+                                    <a href="#illustrationIds" >illustrationIds</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collaborate"></a>
+                    <span class="name">
+                        <span ><b>collaborate</b></span>
+                        <a href="#collaborate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>collaborate()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>A function which opens the contact modal dialog box</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logTabChange"></a>
+                    <span class="name">
+                        <span ><b>logTabChange</b></span>
+                        <a href="#logTabChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logTabChange(event: MatTabChangeEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:237</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Logs tab change event</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatTabChangeEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>tab change event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleFullscreen"></a>
+                    <span class="name">
+                        <span ><b>toggleFullscreen</b></span>
+                        <a href="#toggleFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleFullscreen()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>A function that toggles isTableFullScreen and
+calls the setScreenMode function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByIndex"></a>
+                    <span class="name">
+                        <span ><b>trackByIndex</b></span>
+                        <a href="#trackByIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByIndex(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns the index number</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collaborateText"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>collaborateText</b></span>
+                        <a href="#collaborateText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Collaborate with the HRA Team&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>button text of empty biomarker component.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentUrl</b></span>
+                        <a href="#currentUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.url)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current illustration url</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTabs"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>getTabs</b></span>
+                        <a href="#getTabs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(CellSummarySelectors.aggregates)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table tabs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradientHoverInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>gradientHoverInfo</b></span>
+                        <a href="#gradientHoverInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Info to be shown on the tooltip for Gradient Legend</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradients"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>gradients</b></span>
+                        <a href="#gradients"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, &#x27;points&#x27; as const, [])&lt;
+    GradientPoint[]
+  &gt;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gradient colors along with their stop points</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="iri"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>iri</b></span>
+                        <a href="#iri"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(ActiveFtuSelectors.iri)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Iri  of medical illustration behavior component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTableFullScreen"></a>
+                    <span class="name">
+                        <span ><b>isTableFullScreen</b></span>
+                        <a href="#isTableFullScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates if the table is fully shown, defaults to false</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapping"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mapping</b></span>
+                        <a href="#mapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(IllustratorSelectors.mapping)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current mapping file</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="message"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>message</b></span>
+                        <a href="#message"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;We currently do not have cell type data for this biomarker.
+&lt;br&gt;&lt;br&gt; Please contact us to discuss your dataset.&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:186</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>message markdown of empty biomarker component.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSelectedSources"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>setSelectedSources</b></span>
+                        <a href="#setSelectedSources"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(SourceRefsActions.SetSelectedSources)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets currently selected sources</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sizeHoverInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sizeHoverInfo</b></span>
+                        <a href="#sizeHoverInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Info to be shown on the tooltip for Size Legend</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sizes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sizes</b></span>
+                        <a href="#sizes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, &#x27;sizes&#x27; as const, [])&lt;SizeLegend[]&gt;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Taking input for the radius of the circle and the label to be displayed.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="source"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>source</b></span>
+                        <a href="#source"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(SourceRefsSelectors.sourceReferences)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of sources with titles and links displayed to the user</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="table"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>table</b></span>
+                        <a href="#table"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BiomarkerTableComponent&lt;DataCell&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;table&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference to the biomarker table component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tissues"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tissues</b></span>
+                        <a href="#tissues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(TissueLibrarySelectors.tissues)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all tissues</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNodeOnClicked"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>updateNodeOnClicked</b></span>
+                        <a href="#updateNodeOnClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(IllustratorActions.SetClicked)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the active node on node click</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNodeOnHover"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>updateNodeOnHover</b></span>
+                        <a href="#updateNodeOnHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(IllustratorActions.SetHover)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the active node on node hover</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tissueTitle"></a>
+                        <span class="name"><b>tissueTitle</b><a href="#tissueTitle"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tissueTitle()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:101</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets tissue title from the list of tissues</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tissueInfo"></a>
+                        <span class="name"><b>tissueInfo</b><a href="#tissueInfo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tissueInfo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:143</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets tissue title from the list of tissues</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>TissueInfo</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabs"></a>
+                        <span class="name"><b>tabs</b><a href="#tabs"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tabs()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:156</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets tabs containing cell summary aggregate data</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>CellSummaryAggregate[]</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="illustrationIds"></a>
+                        <span class="name"><b>illustrationIds</b><a href="#illustrationIds"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>illustrationIds()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/lib/biomarker-details-wc/biomarker-details-wc.component.ts:168</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets ids for cells in the illustration</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string[]</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from &#x27;@angular/core&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatTabChangeEvent, MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
+import { HoverDirective } from &#x27;@hra-ui/cdk&#x27;;
+import { dispatch, selectQuerySnapshot, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { ResourceRegistrySelectors as RR } from &#x27;@hra-ui/cdk/state&#x27;;
+import {
+  EmptyBiomarkerComponent,
+  GradientLegendComponent,
+  GradientPoint,
+  LabelBoxComponent,
+  SizeLegend,
+  SizeLegendComponent,
+} from &#x27;@hra-ui/components/atoms&#x27;;
+import {
+  BiomarkerTableDataCardComponent,
+  InteractiveSvgComponent,
+  SourceListComponent,
+} from &#x27;@hra-ui/components/molecules&#x27;;
+import { BiomarkerTableComponent, DataCell, TissueInfo } from &#x27;@hra-ui/components/organisms&#x27;;
+import { IllustrationMappingItem } from &#x27;@hra-ui/services&#x27;;
+import {
+  ActiveFtuSelectors,
+  CellSummaryAggregate,
+  CellSummarySelectors,
+  IllustratorActions,
+  IllustratorSelectors,
+  ResourceIds as Ids,
+  ResourceTypes as RTypes,
+  ScreenModeAction,
+  SourceRefsActions,
+  SourceRefsSelectors,
+  TissueLibrarySelectors,
+} from &#x27;@hra-ui/state&#x27;;
+import { GoogleAnalyticsService } from &#x27;ngx-google-analytics&#x27;;
+
+import { ContactBehaviorComponent } from &#x27;../contact-behavior/contact-behavior.component&#x27;;
+
+/**
+ * PlaceHolder for Empty Tissue Info
+ */
+const EMPTY_TISSUE_INFO: TissueInfo &#x3D; {
+  id: &#x27;&#x27;,
+  label: &#x27;&#x27;,
+};
+
+/** Component for Biomarker Table Details Web component */
+@Component({
+  selector: &#x27;ftu-wc-biomarker-details&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTabsModule,
+
+    BiomarkerTableComponent,
+    BiomarkerTableDataCardComponent,
+    GradientLegendComponent,
+    HoverDirective,
+    LabelBoxComponent,
+    SizeLegendComponent,
+    SourceListComponent,
+    EmptyBiomarkerComponent,
+    InteractiveSvgComponent,
+  ],
+  templateUrl: &#x27;./biomarker-details-wc.component.html&#x27;,
+  styleUrls: [&#x27;./biomarker-details-wc.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BiomarkerDetailsWcComponent {
+  /**
+   * Reference to the biomarker table component
+   */
+  @ViewChild(&#x27;table&#x27;) table!: BiomarkerTableComponent&lt;DataCell&gt;;
+
+  /**
+   * Current illustration url
+   */
+  readonly currentUrl &#x3D; selectSnapshot(IllustratorSelectors.url);
+
+  /**
+   * Current mapping file
+   */
+  readonly mapping &#x3D; selectSnapshot(IllustratorSelectors.mapping);
+
+  /**
+   * Iri  of medical illustration behavior component
+   */
+  readonly iri &#x3D; selectSnapshot(ActiveFtuSelectors.iri);
+
+  /**
+   * Get all tissues
+   */
+  readonly tissues &#x3D; selectSnapshot(TissueLibrarySelectors.tissues);
+
+  /**
+   * Gets tissue title from the list of tissues
+   */
+  get tissueTitle(): string {
+    const iri &#x3D; this.iri();
+    const tissues &#x3D; this.tissues();
+    return iri ? tissues[iri].label : &#x27;&#x27;;
+  }
+
+  /**
+   * Updates the active node on node hover
+   */
+  readonly updateNodeOnHover &#x3D; dispatch(IllustratorActions.SetHover);
+
+  /**
+   * Updates the active node on node click
+   */
+  readonly updateNodeOnClicked &#x3D; dispatch(IllustratorActions.SetClicked);
+
+  /** Table tabs */
+  readonly getTabs &#x3D; selectSnapshot(CellSummarySelectors.aggregates);
+
+  /** Info to be shown on the tooltip for Gradient Legend */
+  readonly gradientHoverInfo &#x3D; selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);
+
+  /** Info to be shown on the tooltip for Size Legend */
+  readonly sizeHoverInfo &#x3D; selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);
+
+  /** Indicates if the table is fully shown, defaults to false*/
+  isTableFullScreen &#x3D; false;
+
+  /** Gradient colors along with their stop points */
+  readonly gradients &#x3D; selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, &#x27;points&#x27; as const, [])&lt;
+    GradientPoint[]
+  &gt;;
+
+  /** Taking input for the radius of the circle and the label to be displayed. */
+  readonly sizes &#x3D; selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, &#x27;sizes&#x27; as const, [])&lt;SizeLegend[]&gt;;
+
+  /** List of sources with titles and links displayed to the user */
+  readonly source &#x3D; selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  /**
+   * Gets tissue title from the list of tissues
+   */
+  get tissueInfo(): TissueInfo {
+    const iri &#x3D; this.iri();
+    const tissues &#x3D; this.tissues();
+    if (iri &#x3D;&#x3D;&#x3D; undefined) {
+      return EMPTY_TISSUE_INFO;
+    }
+    const { id, label } &#x3D; tissues[iri];
+    return { id, label };
+  }
+
+  /**
+   * Gets tabs containing cell summary aggregate data
+   */
+  get tabs(): CellSummaryAggregate[] {
+    const tabs &#x3D; this.getTabs();
+    if (tabs !&#x3D;&#x3D; this.tabs_ &amp;&amp; tabs.length !&#x3D;&#x3D; 0) {
+      this.tabs_ &#x3D; tabs;
+    }
+
+    return this.tabs_;
+  }
+
+  /**
+   * Gets ids for cells in the illustration
+   */
+  get illustrationIds(): string[] {
+    const mapping &#x3D; this.mapping();
+    if (mapping !&#x3D;&#x3D; this.mapping_) {
+      this.mapping_ &#x3D; mapping;
+      this.illustrationIds_ &#x3D; Array.from(new Set(this.mapping().map((data) &#x3D;&gt; data.ontologyId)));
+    }
+
+    return this.illustrationIds_;
+  }
+
+  /**
+   * button text of empty biomarker component.
+   */
+  readonly collaborateText &#x3D; &#x27;Collaborate with the HRA Team&#x27;;
+
+  /**
+   * message markdown of empty biomarker component.
+   */
+  readonly message &#x3D; &#x60;We currently do not have cell type data for this biomarker.
+&lt;br&gt;&lt;br&gt; Please contact us to discuss your dataset.&#x60;;
+
+  /** Sets currently selected sources */
+  readonly setSelectedSources &#x3D; dispatch(SourceRefsActions.SetSelectedSources);
+
+  /** A dispatcher function to set the screen mode */
+  private readonly setScreenMode &#x3D; dispatch(ScreenModeAction.Set);
+
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog &#x3D; inject(MatDialog);
+
+  /** Google analytics tracking service */
+  private readonly ga &#x3D; inject(GoogleAnalyticsService);
+
+  /** Mapping item reference */
+  private mapping_: IllustrationMappingItem[] &#x3D; [];
+  /** Illustration ids reference */
+  private illustrationIds_: string[] &#x3D; [];
+  /** Tabs reference */
+  private tabs_: CellSummaryAggregate[] &#x3D; [];
+
+  /** Returns the index number */
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  /** A function that toggles isTableFullScreen and
+   * calls the setScreenMode function.
+   */
+  toggleFullscreen(): void {
+    setTimeout(() &#x3D;&gt; {
+      this.table.checkDisplayedColumns();
+    }, 250);
+
+    this.isTableFullScreen &#x3D; !this.isTableFullScreen;
+    this.setScreenMode(this.isTableFullScreen);
+  }
+
+  /** A function which opens the contact modal dialog box */
+  collaborate(): void {
+    const dialogConfig &#x3D; new MatDialogConfig();
+    dialogConfig.disableClose &#x3D; true;
+    this.ga.event(&#x27;contact_open&#x27;, &#x27;modal&#x27;);
+    this.dialog.open(ContactBehaviorComponent, dialogConfig);
+  }
+
+  /**
+   * Logs tab change event
+   * @param event tab change event
+   */
+  logTabChange(event: MatTabChangeEvent) {
+    this.ga.event(&#x27;biomarker_tab_change&#x27;, event.tab ? event.tab.textLabel : &#x27;&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;hra-label-box class&#x3D;&quot;table-header&quot;&gt;
+  {{ tissueTitle }}: FTU Illustration
+  &lt;span (click)&#x3D;&quot;toggleFullscreen()&quot; class&#x3D;&quot;end material-symbols-outlined cursor&quot;&gt;
+    {{ isTableFullScreen ? &#x27;close_fullscreen&#x27; : &#x27;open_in_full&#x27; }}
+  &lt;/span&gt;
+&lt;/hra-label-box&gt;
+
+&lt;mat-tab-group
+  class&#x3D;&quot;table&quot;
+  [class.table-fullscreen]&#x3D;&quot;isTableFullScreen&quot;
+  mat-stretch-tabs&#x3D;&quot;true&quot;
+  color&#x3D;&quot;accent&quot;
+  (selectedTabChange)&#x3D;&quot;logTabChange($event)&quot;
+  disablePagination&#x3D;&quot;true&quot;
+  disableRipple&#x3D;&quot;true&quot;
+&gt;
+  &lt;mat-tab labelClass&#x3D;&quot;extraTab&quot; label&#x3D;&quot;FTU Illustration&quot;&gt;
+    &lt;hra-interactive-svg
+      [url]&#x3D;&quot;currentUrl()&quot;
+      [mapping]&#x3D;&quot;mapping()&quot;
+      (nodeHover)&#x3D;&quot;updateNodeOnHover($event)&quot;
+      (nodeClick)&#x3D;&quot;updateNodeOnClicked($event)&quot;
+    &gt;
+    &lt;/hra-interactive-svg&gt;
+  &lt;/mat-tab&gt;
+  &lt;mat-tab
+    *ngFor&#x3D;&quot;let tab of tabs; trackBy: trackByIndex&quot;
+    labelClass&#x3D;&quot;table-tab-header&quot;
+    [label]&#x3D;&quot;&#x27;Cell Types by &#x27; + tab.label&quot;
+  &gt;
+    &lt;ng-template matTabContent&gt;
+      &lt;hra-biomarker-table
+        *ngIf&#x3D;&quot;tab.rows.length !&#x3D;&#x3D; 0&quot;
+        [data]&#x3D;&quot;$any(tab.rows)&quot;
+        [columns]&#x3D;&quot;tab.columns&quot;
+        [gradient]&#x3D;&quot;gradients()&quot;
+        [sizes]&#x3D;&quot;sizes()&quot;
+        [tissueInfo]&#x3D;&quot;tissueInfo&quot;
+        [illustrationIds]&#x3D;&quot;illustrationIds&quot;
+        [dataSources]&#x3D;&quot;source()&quot;
+      &gt;&lt;/hra-biomarker-table&gt;
+
+      &lt;div *ngIf&#x3D;&quot;tab.rows.length !&#x3D;&#x3D; 0&quot; class&#x3D;&quot;legends&quot;&gt;
+        &lt;div class&#x3D;&quot;legends-left&quot;&gt;
+          &lt;hra-label-box class&#x3D;&quot;legend-header gradient&quot;&gt;
+            &lt;mat-icon class&#x3D;&quot;icon&quot; [hraHover]&#x3D;&quot;infoTooltip&quot; [hraHoverData]&#x3D;&quot;gradientHoverInfo()&quot;
+              &gt;info_outlined&lt;/mat-icon
+            &gt;
+            Biomarker Expression Mean in FTU
+          &lt;/hra-label-box&gt;
+          &lt;div class&#x3D;&quot;legend gradient&quot;&gt;
+            &lt;hra-gradient-legend [gradient]&#x3D;&quot;gradients()&quot; class&#x3D;&quot;content&quot;&gt;&lt;/hra-gradient-legend&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;legends-right&quot;&gt;
+          &lt;hra-label-box class&#x3D;&quot;legend-header size&quot;&gt;
+            &lt;mat-icon class&#x3D;&quot;icon&quot; [hraHover]&#x3D;&quot;infoTooltip&quot; [hraHoverData]&#x3D;&quot;sizeHoverInfo()&quot;&gt;info_outlined&lt;/mat-icon&gt;
+            Percentage of Cells in FTU
+          &lt;/hra-label-box&gt;
+          &lt;div class&#x3D;&quot;legend size&quot;&gt;
+            &lt;hra-size-legend [sizes]&#x3D;&quot;sizes()&quot; class&#x3D;&quot;content&quot;&gt;&lt;/hra-size-legend&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;hra-empty-biomarker
+        *ngIf&#x3D;&quot;tab.rows.length &#x3D;&#x3D;&#x3D; 0&quot;
+        [collaborateText]&#x3D;&quot;collaborateText&quot;
+        [message]&#x3D;&quot;message&quot;
+        (collaborateClick)&#x3D;&quot;collaborate()&quot;
+      &gt;&lt;/hra-empty-biomarker&gt;
+    &lt;/ng-template&gt;
+  &lt;/mat-tab&gt;
+  &lt;mat-tab labelClass&#x3D;&quot;extraTab&quot; label&#x3D;&quot;Source Data&quot;&gt;
+    &lt;div class&#x3D;&quot;source-list&quot;&gt;
+      &lt;hra-source-list
+        [collaborateText]&#x3D;&quot;collaborateText&quot;
+        [message]&#x3D;&quot;message&quot;
+        (collaborateClick)&#x3D;&quot;collaborate()&quot;
+        [sources]&#x3D;&quot;source()&quot;
+        (selectionChanged)&#x3D;&quot;setSelectedSources($event)&quot;
+        class&#x3D;&quot;content&quot;
+      &gt;&lt;/hra-source-list&gt;
+    &lt;/div&gt;
+
+    &lt;ng-template #infoTooltip let-tooltip&gt;
+      &lt;div class&#x3D;&quot;biomarker-details info-tooltip&quot;&gt;
+        {{ tooltip }}
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/mat-tab&gt;
+&lt;/mat-tab-group&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./biomarker-details-wc.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;variables&#x27; as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep .extraTab {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    letter-spacing: 0;
+    font-weight: 500;
+
+    &amp;:last-child {
+      border-right: 1px solid rgba(vars.$light-dividers);
+      border-left: 1px solid rgba(vars.$light-dividers);
+    }
+
+    &amp;.mdc-tab-indicator--active {
+      background-color: rgba(vars.$primary-lighter);
+    }
+
+    &amp;:hover {
+      background-color: rgba(vars.$primary-lighter);
+    }
+    .mat-tab__text-label {
+      --palette-accent-500-rgb: #243142;
+    }
+  }
+
+  .table-header {
+    grid-area: table-header;
+    border: 1px solid rgba(vars.$light-dividers);
+    border-bottom: none;
+    width: 43rem;
+    height: 2.5rem;
+
+    @media (min-height: 49.5rem) {
+      height: 3rem;
+    }
+
+    @media (min-height: 60.75rem) {
+      font-size: 1.25rem;
+    }
+
+    span {
+      cursor: pointer;
+      padding: 0.4rem;
+      &amp;:hover {
+        background-color: rgba(vars.$light-dividers);
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .table {
+    grid-area: table;
+    max-width: 100%;
+    overflow: auto;
+    border: 1px solid rgba(vars.$light-dividers);
+    flex-grow: 1;
+
+    ::ng-deep .table-tab-header {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-left: 1px solid rgba(vars.$light-dividers);
+      background-color: white;
+      font-weight: 500;
+      letter-spacing: 0;
+
+      &amp;:last-child {
+        border-right: 1px solid rgba(vars.$light-dividers);
+      }
+
+      &amp;.mdc-tab-indicator--active {
+        background-color: rgba(vars.$primary-lighter);
+      }
+
+      &amp;:hover {
+        background-color: rgba(vars.$primary-lighter);
+      }
+    }
+  }
+
+  hra-interactive-svg {
+    display: block;
+    height: calc(100% - 3px);
+  }
+
+  hra-biomarker-table {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .legends {
+    display: inline-flex;
+    width: 100%;
+    height: 8rem;
+
+    .legends-right {
+      width: 50%;
+    }
+    .legends-left {
+      width: 50%;
+    }
+  }
+
+  .legend-header {
+    color: vars.$dark-primary-text;
+    border-bottom: 1px solid rgba(vars.$light-dividers);
+    gap: 0.5rem;
+    min-width: max-content;
+    line-height: normal;
+    height: 3rem;
+
+    &amp;.gradient {
+      grid-area: gradient-legend-header;
+      border-right: 1px solid rgba(vars.$light-dividers);
+    }
+
+    &amp;.size {
+      grid-area: size-legend-header;
+    }
+
+    .icon {
+      font-size: 1.125rem;
+      height: 1.125rem;
+      width: 1.125rem;
+    }
+  }
+
+  .legend {
+    padding: 1rem 1.5rem;
+    height: 5rem;
+
+    &amp;.gradient {
+      grid-area: gradient-legend-header;
+      border-right: 1px solid rgba(vars.$light-dividers);
+
+      hra-gradient-legend {
+        width: 10rem !important;
+      }
+    }
+
+    &amp;.size {
+      grid-area: size-legend;
+      font-size: 0.75rem;
+    }
+
+    .icon {
+      margin-left: 0.6rem;
+      width: unset;
+    }
+  }
+
+  .source-list {
+    grid-area: source-list;
+
+    .content {
+      width: min-content;
+    }
+  }
+  .cursor {
+    cursor: default;
+  }
+}
+
+::ng-deep .biomarker-details.info-tooltip {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+  max-width: 21rem;
+  font-family: Metropolis;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
+}
+
+::ng-deep {
+  .table-tab-header,
+  .extraTab &gt; .mdc-tab__content &gt; span {
+    color: rgba(vars.$primary-600);
+    user-select: none;
+    font-weight: 500;
+  }
+
+  mat-tab-header {
+    border-bottom: 1px solid rgba(vars.$light-dividers);
+  }
+
+  .mat-mdc-tab-body-wrapper {
+    height: calc(100% - 3rem);
+  }
+
+  .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: vars.$primary;
+  }
+
+  .mdc-tab__text-label {
+    color: rgba(vars.$primary-600) !important;
+  }
+
+  .mdc-tab-indicator__content--underline {
+    border-color: rgba(vars.$accent-lighter) !important;
+  }
+
+  .mdc-tab__ripple::before {
+    opacity: 0 !important;
+  }
+
+  cdk-virtual-scroll-viewport {
+    height: 100% !important;
+  }
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  background-color: vars.$primary-contrast-rgb;
+  overflow: auto;
+  max-width: fit-content;
+  font-family: Metropolis;
+  font-size: 0.75rem;
+
+  &amp;.empty {
+    display: none;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><hra-label-box class="table-header">  {{ tissueTitle }}: FTU Illustration  <span (click)="toggleFullscreen()" class="end material-symbols-outlined cursor">    {{ isTableFullScreen ? \'close_fullscreen\' : \'open_in_full\' }}  </span></hra-label-box><mat-tab-group  class="table"  [class.table-fullscreen]="isTableFullScreen"  mat-stretch-tabs="true"  color="accent"  (selectedTabChange)="logTabChange($event)"  disablePagination="true"  disableRipple="true">  <mat-tab labelClass="extraTab" label="FTU Illustration">    <hra-interactive-svg      [url]="currentUrl()"      [mapping]="mapping()"      (nodeHover)="updateNodeOnHover($event)"      (nodeClick)="updateNodeOnClicked($event)"    >    </hra-interactive-svg>  </mat-tab>  <mat-tab    *ngFor="let tab of tabs; trackBy: trackByIndex"    labelClass="table-tab-header"    [label]="\'Cell Types by \' + tab.label"  >    <ng-template matTabContent>      <hra-biomarker-table        *ngIf="tab.rows.length !== 0"        [data]="$any(tab.rows)"        [columns]="tab.columns"        [gradient]="gradients()"        [sizes]="sizes()"        [tissueInfo]="tissueInfo"        [illustrationIds]="illustrationIds"        [dataSources]="source()"      ></hra-biomarker-table>      <div *ngIf="tab.rows.length !== 0" class="legends">        <div class="legends-left">          <hra-label-box class="legend-header gradient">            <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()"              >info_outlined</mat-icon            >            Biomarker Expression Mean in FTU          </hra-label-box>          <div class="legend gradient">            <hra-gradient-legend [gradient]="gradients()" class="content"></hra-gradient-legend>          </div>        </div>        <div class="legends-right">          <hra-label-box class="legend-header size">            <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon>            Percentage of Cells in FTU          </hra-label-box>          <div class="legend size">            <hra-size-legend [sizes]="sizes()" class="content"></hra-size-legend>          </div>        </div>      </div>      <hra-empty-biomarker        *ngIf="tab.rows.length === 0"        [collaborateText]="collaborateText"        [message]="message"        (collaborateClick)="collaborate()"      ></hra-empty-biomarker>    </ng-template>  </mat-tab>  <mat-tab labelClass="extraTab" label="Source Data">    <div class="source-list">      <hra-source-list        [collaborateText]="collaborateText"        [message]="message"        (collaborateClick)="collaborate()"        [sources]="source()"        (selectionChanged)="setSelectedSources($event)"        class="content"      ></hra-source-list>    </div>    <ng-template #infoTooltip let-tooltip>      <div class="biomarker-details info-tooltip">        {{ tooltip }}      </div>    </ng-template>  </mat-tab></mat-tab-group></div>'
+    var COMPONENTS = [{'name': 'BiomarkerDetailsComponent', 'selector': 'ftu-biomarker-details'},{'name': 'BiomarkerDetailsWcComponent', 'selector': 'ftu-wc-biomarker-details'},{'name': 'ContactBehaviorComponent', 'selector': 'ftu-contact-behavior'},{'name': 'FooterBehaviorComponent', 'selector': 'ftu-footer-behavior'},{'name': 'HeaderBehaviorComponent', 'selector': 'ftu-header-behavior'},{'name': 'HraLandingPageIntroWcBehaviourComponent', 'selector': 'ftu-wc-intro'},{'name': 'LandingPageContentComponent', 'selector': 'ftu-landing-page-content'},{'name': 'MedicalIllustrationBehaviorComponent', 'selector': 'ftu-medical-illustration-behavior'},{'name': 'ScreenNoticeBehaviorComponent', 'selector': 'ftu-ui-screen-notice-behavior'},{'name': 'TissueLibraryBehaviorComponent', 'selector': 'ftu-tissue-library-behavior'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BiomarkerDetailsWcComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BiomarkerDetailsWcComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
