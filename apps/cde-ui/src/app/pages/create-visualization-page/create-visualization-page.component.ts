@@ -118,7 +118,6 @@ export class CreateVisualizationPageComponent {
     }),
     parameters: this.fb.group({
       nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
-      // anchorCellType: [optionalValue<string>()],
       distanceThreshold: [1000],
       pixelSizeX: [1, Validators.min(1)],
       pixelSizeY: [1, Validators.min(1)],
@@ -241,7 +240,8 @@ export class CreateVisualizationPageComponent {
   setNodes(nodes: NodeEntry[]): void {
     this.setHeaders(nodes);
 
-    const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader]));
     this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
@@ -290,8 +290,14 @@ export class CreateVisualizationPageComponent {
    * @returns boolean
    */
   hasValidNodes(): boolean {
+    // Set the cell type header value when valid nodes checked
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    if (cellTypeHeader && this.nodes) {
+      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader]));
+      this.cellTypes = Array.from(uniqueCellTypes);
+    }
     const { nodes } = this;
-    return !!(nodes && nodes.length > 0 && DEFAULT_NODE_TARGET_KEY in nodes[0]);
+    return !!(nodes && nodes.length > 0 && cellTypeHeader in nodes[0]);
   }
 
   hasValidData(): boolean {
@@ -380,6 +386,7 @@ export class CreateVisualizationPageComponent {
 
       metadata: normalizedMetadata,
     });
+    const ntKey = nullishRemovedData.nodeTargetKey as string;
     const headers = visualizationForm.value.headers;
     const xKey = (headers?.xAxis || '') as NodeTargetKey;
     const yKey = (headers?.yAxis || '') as NodeTargetKey;
@@ -393,7 +400,7 @@ export class CreateVisualizationPageComponent {
               x: node[xKey] as unknown as number,
               y: node[yKey] as unknown as number,
               z: node[zKey] as unknown as number,
-              'Cell Type': node[ctKey],
+              [ntKey]: node[ctKey],
             }) as NodeEntry,
         )
       : []);
