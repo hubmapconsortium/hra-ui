@@ -97,7 +97,9 @@ export class CreateVisualizationPageComponent {
   /** Visualization data service */
   private readonly dataService = inject(VisualizationDataService);
 
+  /** Cell type headers to match for preselection */
   private readonly acceptableCellTypeHeaders = ['celltype', 'cell type', 'cell_type'];
+  /** Ontology ID headers to match for preselection */
   private readonly acceptableOntologyHeaders = [
     'ontologyid',
     'cellontologyid',
@@ -171,6 +173,7 @@ export class CreateVisualizationPageComponent {
   /** Whether to show organize data tooltip */
   organizeDataInfoOpen = false;
 
+  /** Whether to show parameters tooltip */
   parametersInfoOpen = false;
 
   /** Whether to show metadata info tooltip */
@@ -185,6 +188,7 @@ export class CreateVisualizationPageComponent {
   /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
 
+  /** Headers for node data */
   dataHeaders: string[] = [];
 
   /** Node CSV load error */
@@ -211,6 +215,7 @@ export class CreateVisualizationPageComponent {
     return this.getErrorActionMessage(this.customColorMapLoadError, 'color map');
   }
 
+  /** Error message for missing data columns */
   get columnErrorActionMessage(): string | undefined {
     if (!this.nodes) {
       return undefined;
@@ -253,6 +258,10 @@ export class CreateVisualizationPageComponent {
     });
   }
 
+  /**
+   * Sets node data headers for visualization form
+   * @param nodes Node data entries
+   */
   private setHeaders(nodes: NodeEntry[]): void {
     this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
@@ -264,6 +273,12 @@ export class CreateVisualizationPageComponent {
     });
   }
 
+  /**
+   * If a header in the data matches one of the preselected options for a field, return that header
+   * @param headers Headers in uploaded data
+   * @param field Field to look for matches
+   * @returns selected header
+   */
   private preSelectedHeader(headers: string[], field: string): string | null {
     if (field === 'x' || field === 'y' || field === 'z') {
       return headers.find((h) => h.toLowerCase() === field) || null;
@@ -300,6 +315,10 @@ export class CreateVisualizationPageComponent {
     return !!(nodes && nodes.length > 0 && cellTypeHeader in nodes[0]);
   }
 
+  /**
+   * Determines whether all required fields have been provided
+   * @returns true if all required data has been filled in
+   */
   hasValidData(): boolean {
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
     const { nodeTargetValue, pixelSizeX, pixelSizeY, pixelSizeZ, distanceThreshold } =

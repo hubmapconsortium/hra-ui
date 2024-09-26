@@ -156,6 +156,13 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
+  describe('hasValidData()', () => {
+    it('checks for valid data', async () => {
+      instance.setNodes(sampleNodes);
+      expect(instance.hasValidData()).toBeTruthy();
+    });
+  });
+
   describe('setCustomColorMap()', () => {
     it('shows error if invalid color map file type', async () => {
       const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
