@@ -1,4 +1,4 @@
-import { Rgb } from './color';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 
 /** Interface representing a cell type entry */
 export interface CellTypeEntry {

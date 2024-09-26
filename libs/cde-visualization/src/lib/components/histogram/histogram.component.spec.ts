@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '../../models/color';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { EdgeEntry } from '../../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
