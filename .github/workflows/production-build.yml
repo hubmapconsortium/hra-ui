@@ -25,7 +25,6 @@ jobs:
           app-configuration: production
           nx-command: run-many
           build-compodoc: false
-          build-storybook: false
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
