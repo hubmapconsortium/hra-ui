@@ -38,17 +38,17 @@ const sampleNodes = [
   createNodeEntry(nodeTargetKey, 'c', 0, 4),
 ];
 const processedSampleData = {
-  colorMapKey: 'cell_type',
-  colorMapValueKey: 'cell_color',
+  colorMapKey: 'Cell Type',
+  colorMapValueKey: 'HEX',
   metadata: {
     creationTimestamp: 0,
   } satisfies Metadata,
   nodeTargetKey: 'Cell Type',
   nodeTargetValue: 'a',
   nodes: [
-    { 'Cell Type': 'a', x: 0, y: 0 },
-    { 'Cell Type': 'b', x: 0, y: 2 },
-    { 'Cell Type': 'c', x: 0, y: 4 },
+    { 'Cell Type': 'a', x: 0, y: 0, z: undefined },
+    { 'Cell Type': 'b', x: 0, y: 2, z: undefined },
+    { 'Cell Type': 'c', x: 0, y: 4, z: undefined },
   ],
 };
 
@@ -82,13 +82,13 @@ const csvNodeDataMissingValues = `Cell Type,x,y
   a,0
   b,1,2`;
 
-const csvColorMap = `cell_id,cell_type,cell_color
-  0,cell1,[0,0,0]
-  1,cell2,[1,1,1]`;
+const csvColorMap = `cell_id,Cell Type,HEX
+  0,cell1,"[0,0,0]"
+  1,cell2,"[1,1,1]"`;
 
 const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
-  0,cell1,[0,0,0]
-  1,cell2,[1,1,1]`;
+  0,cell1,"[0,0,0]"
+  1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
   let instance: CreateVisualizationPageComponent;
@@ -110,7 +110,7 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('setNodes()', () => {
-    it('checks for required keys, if missing do not update data', async () => {
+    it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
       const data = new File([csvNodeDataWrongKeys], 'blah.csv', { type: 'text/csv' });
       const spy = jest.spyOn(instance.visualizationForm, 'patchValue');
@@ -118,7 +118,7 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.nodesErrorMessage).toMatch(/Required columns missing/);
+      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column headers: Cell Type/);
     });
 
     it('sets nodes', async () => {
@@ -134,7 +134,9 @@ describe('CreateVisualizationPageComponent', () => {
         createNodeEntry(nodeTargetKey, DEFAULT_NODE_TARGET_VALUE, 0, 4),
       ];
       instance.setNodes(sampleNodes2);
-      expect(instance.visualizationForm.value.nodeTargetValue).toEqual(DEFAULT_NODE_TARGET_VALUE);
+      expect(instance.visualizationForm.controls['parameters'].value.nodeTargetValue).toEqual(
+        DEFAULT_NODE_TARGET_VALUE,
+      );
     });
   });
 
@@ -285,7 +287,9 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: new Error(),
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Required columns missing/);
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(
+        'Required color format not detected. Please use [R, G, B].',
+      );
     });
 
     it('shows parse errors (cause is some other type)', async () => {

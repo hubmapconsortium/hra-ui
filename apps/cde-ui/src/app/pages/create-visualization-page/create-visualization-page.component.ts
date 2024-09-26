@@ -253,7 +253,7 @@ export class CreateVisualizationPageComponent {
     });
   }
 
-  setHeaders(nodes: NodeEntry[]): void {
+  private setHeaders(nodes: NodeEntry[]): void {
     this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
       xAxis: this.preSelectedHeader(this.dataHeaders, 'x'),
@@ -264,7 +264,7 @@ export class CreateVisualizationPageComponent {
     });
   }
 
-  preSelectedHeader(headers: string[], field: string): string | null {
+  private preSelectedHeader(headers: string[], field: string): string | null {
     if (field === 'x' || field === 'y' || field === 'z') {
       return headers.find((h) => h.toLowerCase() === field) || null;
     } else if (field === 'cellType') {
@@ -455,7 +455,7 @@ export class CreateVisualizationPageComponent {
         if (Array.isArray(error.cause)) {
           return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return 'Required color format not detected. Please use [R, G, B].';
+          return `Required color format not detected. Please use [R, G, B].`;
         }
 
         return 'Invalid file: too many invalid rows.';
