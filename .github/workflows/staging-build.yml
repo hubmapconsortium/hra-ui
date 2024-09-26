@@ -37,6 +37,7 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync --delete deploy/apps/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ui--staging/
+          aws s3 sync deploy/storybook/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ui--staging/storybook/
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/ui--staging/*"
 
       - name: Publish
