@@ -28,6 +28,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/ui/body-ui/",
           "budgets": [
             {
               "type": "initial",
@@ -43,9 +44,14 @@
           "outputHashing": "all"
         },
         "development": {
+          "baseHref": "/",
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/body-ui/",
+          "outputHashing": "none"
         },
         "preview": {
           "baseHref": "/apps/body-ui/",
