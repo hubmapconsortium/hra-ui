@@ -45,6 +45,13 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "preview": {
+          "baseHref": "/apps/body-ui/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
