@@ -12,20 +12,22 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
+import { rgbToHex } from '@hra-ui/design-system/color-picker';
+import { startCase } from 'lodash';
+
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,
+  colorMapToLookup,
   ColorMapTypeKey,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  colorMapToLookup,
 } from '../models/color-map';
 import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
 import { Metadata } from '../models/metadata';
@@ -260,7 +262,7 @@ export class CdeVisualizationComponent {
   downloadNodes(): void {
     const nodes = this.loadedNodes();
     if (nodes.length > 0) {
-      this.fileSaver.saveCsv(nodes, 'nodes.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
     }
   }
 
@@ -268,8 +270,21 @@ export class CdeVisualizationComponent {
   downloadEdges(): void {
     const edges = this.loadedEdges();
     if (edges.length > 0) {
-      this.fileSaver.saveCsv(edges, 'edges.csv');
+      this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
     }
+  }
+
+  // Add appropriate headers to edge data
+  addEdgeHeaders(edges: EdgeEntry[]) {
+    return edges.map((item) => ({
+      SourceNodeIndex: item[0],
+      X0: item[1],
+      Y0: item[2],
+      Z0: item[3],
+      X1: item[4],
+      Y1: item[5],
+      Z1: item[6],
+    }));
   }
 
   /** Download color map as CSV */
@@ -278,7 +293,16 @@ export class CdeVisualizationComponent {
     const colorMap = this.cellTypesAsColorMap();
     const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
     if (data.length > 0) {
-      this.fileSaver.saveCsv(data, 'color-map.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
     }
+  }
+
+  /** Convert headers in an array of objects to title case */
+  capitalizeHeaders(data: object[]): object[] {
+    return data.map((item) => {
+      const entries = Object.entries(item);
+      const capsEntries = entries.map((entry) => [startCase(entry[0][0]) + entry[0].slice(1), entry[1]]);
+      return Object.fromEntries(capsEntries);
+    });
   }
 }

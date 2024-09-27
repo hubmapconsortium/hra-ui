@@ -122,7 +122,7 @@ describe('CdeVisualizationComponent', () => {
 
     const downloadNodesButton = screen.getByText('Nodes');
     await userEvent.click(downloadNodesButton);
-    expect(fileSaveSpy).toHaveBeenCalledWith(instance.loadedNodes(), 'nodes.csv');
+    expect(fileSaveSpy).toHaveBeenCalledWith(instance.capitalizeHeaders(instance.loadedNodes()), 'nodes.csv');
   });
 
   it('should update edges when downloadEdges is called', async () => {
@@ -140,7 +140,7 @@ describe('CdeVisualizationComponent', () => {
 
     const downloadEdgesButton = screen.getByText('Edges');
     await userEvent.click(downloadEdgesButton);
-    expect(fileSaveSpy).toHaveBeenCalledWith(instance.loadedEdges(), 'edges.csv');
+    expect(fileSaveSpy).toHaveBeenCalledWith(instance.addEdgeHeaders(instance.loadedEdges()), 'edges.csv');
   });
 
   it('should update color map when downloadColorMap is called', async () => {
@@ -163,7 +163,7 @@ describe('CdeVisualizationComponent', () => {
 
     const downloadColorMapButton = screen.getByText('CSV');
     await userEvent.click(downloadColorMapButton);
-    expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
+    expect(fileSaveSpy).toHaveBeenCalledWith(instance.capitalizeHeaders(processedColorMap), 'color-map.csv');
   });
 
   it('should reset cell types and increase reset counter', async () => {
