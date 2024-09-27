@@ -63,7 +63,6 @@ export class AppComponent {
     }
 
     this.cdr.detectChanges();
-    console.log(this.sceneSource);
     this.sceneSource.filteredScene$.subscribe((d) => console.log(d));
   }
 }

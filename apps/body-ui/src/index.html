@@ -6,41 +6,6 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <script>
-      const API_URLS = [
-        'https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0000059&sex=male',
-        'https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0004549&sex=male',
-        'https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0000955&sex=male',
-        'https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0002182&sex=female',
-      ];
-      window.addEventListener('DOMContentLoaded', () => {
-        const bodyUi = document.getElementById('body-ui');
-
-        setTimeout(() => {
-          bodyUi.setAttribute('scene', API_URLS[2]);
-        }, 3000);
-
-        bodyUi.addEventListener('nodeClick', (e) => {
-          console.log('Node Click Event', e);
-        });
-
-        bodyUi.addEventListener('nodeDrag', (e) => {
-          console.log('Node Drag Event', e);
-        });
-
-        bodyUi.addEventListener('nodeHoverStart', (e) => {
-          console.log('Node Hover Start Event', e);
-        });
-
-        bodyUi.addEventListener('nodeHoverStop', (e) => {
-          console.log('Node Hover End Event', e);
-        });
-
-        bodyUi.addEventListener('rotationChange', (e) => {
-          console.log('Scene Rotation Event', e);
-        });
-      });
-    </script>
   </head>
   <body>
     <hra-body-ui

@@ -20,6 +20,7 @@ import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { z } from 'zod';
 import { BodyUI, NodeClickEvent, NodeDragEvent } from '../body-ui';
 
+/** Interface for bounds */
 export interface XYZTriplet<T = number> {
   x: T;
   y: T;
@@ -80,6 +81,12 @@ const TARGET_INPUT = z.preprocess(tryParseJson, z.tuple([z.number(), z.number(),
 /** Bind target input */
 const parseTargetInput = TARGET_INPUT.parse.bind(TARGET_INPUT);
 
+/** Preprocess the bounds input */
+const BOUNDS_INPUT = z.preprocess(tryParseJson, z.object({ x: z.number(), y: z.number(), z: z.number() }));
+
+/** Bind the bounds input */
+const parseBoundsInput = BOUNDS_INPUT.parse.bind(BOUNDS_INPUT);
+
 /** HRA Body UI Component */
 @Component({
   standalone: true,
@@ -101,7 +108,7 @@ export class BodyUiComponent {
   /** Target for the deck gl */
   readonly target = input(undefined, { transform: parseTargetInput });
   /** Bounds for the deck gl */
-  readonly bounds = input<XYZTriplet>();
+  readonly bounds = input(undefined, { transform: parseBoundsInput });
   /** Camera for the deck gl */
   readonly camera = input<string>();
   /** Flag for the interactive for deck gl */
