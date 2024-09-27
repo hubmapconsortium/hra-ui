@@ -263,27 +263,26 @@ export class CreateVisualizationPageComponent {
   private setHeaders(nodes: NodeEntry[]): void {
     this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
-      xAxis: this.preSelectedHeader(this.dataHeaders, 'x'),
-      yAxis: this.preSelectedHeader(this.dataHeaders, 'y'),
-      cellType: this.preSelectedHeader(this.dataHeaders, 'cellType'),
-      zAxis: this.preSelectedHeader(this.dataHeaders, 'z'),
-      ontologyId: this.preSelectedHeader(this.dataHeaders, 'ontologyId'),
+      xAxis: this.preSelectedHeader('x'),
+      yAxis: this.preSelectedHeader('y'),
+      cellType: this.preSelectedHeader('cellType'),
+      zAxis: this.preSelectedHeader('z'),
+      ontologyId: this.preSelectedHeader('ontologyId'),
     });
   }
 
   /**
    * If a header in the data matches one of the preselected options for a field, return that header
-   * @param headers Headers in uploaded data
    * @param field Field to look for matches
    * @returns selected header
    */
-  private preSelectedHeader(headers: string[], field: string): string | null {
-    if (field === 'x' || field === 'y' || field === 'z') {
-      return headers.find((h) => h.toLowerCase() === field) || null;
+  private preSelectedHeader(field: string): string | null {
+    if (['x', 'y', 'z'].includes(field)) {
+      return this.dataHeaders.find((h) => h.toLowerCase() === field) || null;
     } else if (field === 'cellType') {
-      return headers.find((h) => this.acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
+      return this.dataHeaders.find((h) => this.acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
     } else if (field === 'ontologyId') {
-      return headers.find((h) => this.acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
+      return this.dataHeaders.find((h) => this.acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
     } else {
       return null;
     }
@@ -409,6 +408,7 @@ export class CreateVisualizationPageComponent {
     const yKey = (headers?.yAxis || '') as NodeTargetKey;
     const zKey = (headers?.zAxis || '') as NodeTargetKey;
     const ctKey = (headers?.cellType || '') as NodeTargetKey;
+    const idKey = (headers?.ontologyId || '') as NodeTargetKey;
 
     const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
       ? nullishRemovedData.nodes.map(
@@ -418,6 +418,7 @@ export class CreateVisualizationPageComponent {
               y: node[yKey] as unknown as number,
               z: node[zKey] as unknown as number,
               [ntKey]: node[ctKey],
+              [idKey]: node[idKey],
             }) as NodeEntry,
         )
       : []);
