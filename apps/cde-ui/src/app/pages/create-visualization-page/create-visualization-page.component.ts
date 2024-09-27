@@ -226,11 +226,9 @@ export class CreateVisualizationPageComponent {
     const ctError = cellType ? undefined : 'Cell Type';
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
-    const columnErrorMessage =
-      errorColumns.length > 0
-        ? `Please select the required column headers: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
-        : undefined;
-    return columnErrorMessage;
+    return errorColumns.length > 0
+      ? `Please select the required column headers: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+      : undefined;
   }
 
   /** Current nodes */
