@@ -90,7 +90,7 @@
       "options": {
         "buildTarget": "body-ui:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/body-ui",
+        "staticFilePath": "dist/apps/body-ui/browser",
         "spa": true
       }
     }
