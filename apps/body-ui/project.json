@@ -1,0 +1,104 @@
+{
+  "name": "body-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/body-ui/src",
+  "tags": ["type:app"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "buildOptimizer": false,
+        "outputPath": "dist/apps/body-ui",
+        "index": "apps/body-ui/src/index.html",
+        "main": "apps/body-ui/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/body-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/body-ui/public"
+          }
+        ],
+        "styles": ["apps/body-ui/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "baseHref": "/ui/body-ui/",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "baseHref": "/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/body-ui/",
+          "outputHashing": "none"
+        },
+        "preview": {
+          "baseHref": "/apps/body-ui/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "body-ui:build:production"
+        },
+        "development": {
+          "buildTarget": "body-ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "body-ui:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/body-ui/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "body-ui:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/body-ui/browser",
+        "spa": true
+      }
+    }
+  }
+}
