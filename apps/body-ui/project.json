@@ -12,7 +12,7 @@
       "options": {
         "outputPath": "dist/apps/body-ui",
         "index": "apps/body-ui/src/index.html",
-        "browser": "apps/body-ui/src/main.ts",
+        "main": "apps/body-ui/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/body-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
