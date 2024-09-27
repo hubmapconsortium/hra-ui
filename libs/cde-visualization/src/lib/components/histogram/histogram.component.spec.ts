@@ -59,8 +59,8 @@ describe('HistogramComponent', () => {
   it('should render the histogram using vega', async () => {
     const { fixture } = await setup({
       componentInputs: {
-        computedData: sampleData,
-        computedColors: [],
+        data: sampleData,
+        colors: [],
         filteredCellTypes: [],
         selectedCellType: sampleNodes[0][nodeTargetKey],
       },
@@ -74,8 +74,8 @@ describe('HistogramComponent', () => {
   it('should set empty data when input data is empty', async () => {
     const { fixture } = await setup({
       componentInputs: {
-        computedData: [],
-        computedColors: [],
+        data: [],
+        colors: [],
         filteredCellTypes: [],
         selectedCellType: sampleNodes[0][nodeTargetKey],
       },
@@ -88,8 +88,8 @@ describe('HistogramComponent', () => {
   it('should download in the specified format', async () => {
     await setup({
       componentInputs: {
-        computedData: [],
-        computedColors: [],
+        data: [],
+        colors: [],
         filteredCellTypes: [],
         selectedCellType: '',
       },
@@ -112,8 +112,8 @@ describe('HistogramComponent', () => {
       fixture: { componentInstance: instance },
     } = await setup({
       componentInputs: {
-        computedData: [],
-        computedColors: [],
+        data: [],
+        colors: [],
         filteredCellTypes: [],
         selectedCellType: '',
       },

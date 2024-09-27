@@ -124,10 +124,10 @@ export class ViolinComponent {
   infoOpen = false;
 
   /** Data for the violin visualization */
-  readonly computedData = input.required<DistanceEntry[]>();
+  readonly data = input.required<DistanceEntry[]>();
 
   /** Colors for the violin visualization */
-  readonly computedColors = input.required<string[]>();
+  readonly colors = input.required<string[]>();
 
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
@@ -145,11 +145,11 @@ export class ViolinComponent {
   private readonly view = signal<View | undefined>(undefined);
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.computedData()).run());
+  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
 
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {
-    this.view()?.signal('colors', this.computedColors()).run();
+    this.view()?.signal('colors', this.colors()).run();
     this.view()?.resize();
   });
 
@@ -184,7 +184,7 @@ export class ViolinComponent {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
           layer.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
-          layer.encoding.color.scale = { range: this.computedColors() };
+          layer.encoding.color.scale = { range: this.colors() };
         }
       }
       draft.spec.height = EXPORT_IMAGE_HEIGHT;
@@ -192,7 +192,7 @@ export class ViolinComponent {
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.data.values = this.computedData();
+      draft.data.values = this.data();
     });
 
     const el = this.renderer.createElement('div');

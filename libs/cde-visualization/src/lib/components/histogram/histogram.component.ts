@@ -35,7 +35,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 interface UpdateColorData {
-  type: CellTypeEntry;
+  entry: CellTypeEntry;
   color: Rgb;
 }
 
@@ -138,10 +138,10 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
 })
 export class HistogramComponent {
   /** Data for the violin visualization */
-  readonly computedData = input.required<DistanceEntry[]>();
+  readonly data = input.required<DistanceEntry[]>();
 
   /** Colors for the violin visualization */
-  readonly computedColors = input.required<string[]>();
+  readonly colors = input.required<string[]>();
 
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
 
@@ -162,6 +162,9 @@ export class HistogramComponent {
   /** Label for the total cell type */
   protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
 
+  /** Color for the total cell type */
+  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
+
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
 
@@ -180,10 +183,10 @@ export class HistogramComponent {
   readonly updateColor = output<UpdateColorData>();
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.computedData()).run());
+  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.computedColors()).run());
+  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.colors()).run());
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
@@ -214,8 +217,8 @@ export class HistogramComponent {
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
       draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
-      draft.data.values = this.computedData();
-      draft.encoding.color.scale.range = this.computedColors();
+      draft.data.values = this.data();
+      draft.encoding.color.scale.range = this.colors();
     });
 
     const el = this.renderer.createElement('div');
@@ -233,9 +236,6 @@ export class HistogramComponent {
     const loadPromises = HISTOGRAM_FONTS.map((font) => this.document.fonts.load(font));
     await Promise.all(loadPromises);
   }
-
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
 
   /** Reset the color of the total cell type */
   resetAllCellsColor(): void {

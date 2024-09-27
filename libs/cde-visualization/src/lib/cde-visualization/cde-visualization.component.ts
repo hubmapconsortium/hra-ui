@@ -264,13 +264,13 @@ export class CdeVisualizationComponent {
   );
 
   /** Computed distances between nodes */
-  readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
+  protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
   /** Data for the histogram visualization */
-  readonly data = computed(() => this.computeData(), { equal: emptyArrayEquals });
+  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
 
   /** Colors for the histogram visualization */
-  readonly colors = computed(() => this.computeColors(), { equal: emptyArrayEquals });
+  protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
 
   /** Setup component */
   constructor() {
@@ -314,7 +314,7 @@ export class CdeVisualizationComponent {
   }
 
   /** Compute distances between nodes based on edges */
-  computeDistances(): DistanceEntry[] {
+  private computeDistances(): DistanceEntry[] {
     const nodes = this.loadedNodes();
     const edges = this.loadedEdges();
     if (nodes.length === 0 || edges.length === 0) {
@@ -336,17 +336,17 @@ export class CdeVisualizationComponent {
   }
 
   /** Compute data for the violin visualization */
-  computeData(): DistanceEntry[] {
+  private computeFilteredDistances(): DistanceEntry[] {
     const selection = new Set(this.cellTypesSelection());
     if (selection.size === 0) {
       return [];
     }
 
-    return this.computeDistances().filter(({ type }) => selection.has(type));
+    return this.distances().filter(({ type }) => selection.has(type));
   }
 
   /** Compute colors for the violin visualization */
-  computeColors(): string[] {
+  private computeFilteredColors(): string[] {
     return this.filteredCellTypes()
       .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
       .map(({ color }) => rgbToHex(color));

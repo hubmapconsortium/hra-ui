@@ -37,15 +37,15 @@
       #visualization
     ></cde-node-dist-visualization>
 
-    <cde-violin [computedColors]="colors()" [computedData]="data()" #violin></cde-violin>
+    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
   </div>
 
   <cde-histogram
-    [computedColors]="colors()"
-    [computedData]="data()"
+    [colors]="filteredColors()"
+    [data]="filteredDistances()"
     [filteredCellTypes]="filteredCellTypes()"
     [selectedCellType]="selectedNodeTargetValue()"
-    (updateColor)="updateColor($event.type, $event.color)"
+    (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>
 </div>
