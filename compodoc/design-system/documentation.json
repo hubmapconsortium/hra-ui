@@ -2154,6 +2154,69 @@
             "templateData": "<span\n  class=\"color-pick\"\n  [style.background]=\"hexColor()\"\n  [colorPicker]=\"hexColor()\"\n  cpWidth=\"252px\"\n  cpOutputFormat=\"hex\"\n  cpPositionOffset=\"-17%\"\n  [cpOKButton]=\"true\"\n  cpOKButtonClass=\"accept-button\"\n  cpOKButtonText=\"Accept\"\n  [cpCancelButton]=\"true\"\n  cpCancelButtonClass=\"cancel-button\"\n  cpAlphaChannel=\"always\"\n  [cpUseRootViewContainer]=\"true\"\n  (colorPickerOpen)=\"colorPickerOpen.emit(colorPicker)\"\n  (colorPickerClose)=\"colorPickerOpen.emit(null)\"\n  (colorPickerChange)=\"this.hexColor.set($event)\"\n  (colorPickerSelect)=\"selectColor($event)\"\n  data-testid=\"color-picker-button\"\n  #colorPicker=\"ngxColorPicker\"\n></span>\n"
         },
         {
+            "name": "ErrorIndicatorComponent",
+            "id": "component-ErrorIndicatorComponent-6f70f3ccc35c6cfc12d31e1651c05e16f103867487d2b01ae58d28fe7e09138aec93f3571b55f813e99804f7a8325d2fe178f4a66649aee75cb1e6dd47bad607",
+            "file": "error-indicator/src/lib/error-indicator.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-error-indicator",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./error-indicator.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "errors",
+                    "defaultValue": "input<string[]>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>List of errors to be shown in the indicator</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nList of errors to be shown in the indicator",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Error Indicator component</p>\n",
+            "rawdescription": "\nError Indicator component",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatIconModule } from '@angular/material/icon';\n\n/** Error Indicator component */\n@Component({\n  selector: 'hra-error-indicator',\n  standalone: true,\n  imports: [CommonModule, MatIconModule],\n  templateUrl: './error-indicator.component.html',\n  styleUrl: './error-indicator.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ErrorIndicatorComponent {\n  /** List of errors to be shown in the indicator */\n  readonly errors = input<string[]>();\n}\n",
+            "styleUrl": "./error-indicator.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<mat-icon>error</mat-icon>\n<div class=\"errors\">\n  @for (error of errors(); track error) {\n    <div class=\"error\">{{ error }}</div>\n  }\n</div>\n"
+        },
+        {
             "name": "FooterComponent",
             "id": "component-FooterComponent-d0ab81e70404c3ef0d05c9463838702d6b1f9961526933a3476427a47992a760dfb220e603ab3a9a489b5afe0cbb35253700c7d7c550bd6c8b62587472153202",
             "file": "footer/src/lib/footer.component.ts",

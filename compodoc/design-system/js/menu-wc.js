@@ -139,6 +139,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ColorPickerComponent.html" data-type="entity-link" >ColorPickerComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ErrorIndicatorComponent.html" data-type="entity-link" >ErrorIndicatorComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
                             </li>
                             <li class="link">

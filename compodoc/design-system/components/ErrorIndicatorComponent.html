@@ -89,7 +89,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  AppsSidenavDemoComponent</li>
+  ErrorIndicatorComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,7 +116,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/apps-sidenav-demo/apps-sidenav-demo.component.ts</code>
+    <code>error-indicator/src/lib/error-indicator.component.ts</code>
 </p>
 
 
@@ -124,7 +124,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Apps Sidenav component</p>
+        <p>Error Indicator component</p>
 
     </p>
 
@@ -153,7 +153,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>hra-apps-sidenav</code></td>
+                <td class="col-md-9"><code>hra-error-indicator</code></td>
             </tr>
 
             <tr>
@@ -165,11 +165,7 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>CommonModule</code>
-                            <code>MatSidenavModule</code>
-                                <code><a href="../components/AppsCardComponent.html" target="_self" >AppsCardComponent</a></code>
                             <code>MatIconModule</code>
-                                <code><a href="../modules/ButtonModule.html" target="_self" >MatButtonModule</a></code>
-                                <code><a href="../modules/ScrollingModule.html" target="_self" >ScrollingModule</a></code>
                 </td>
             </tr>
 
@@ -178,14 +174,14 @@
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./apps-sidenav-demo.component.html</code></td>
+                <td class="col-md-9"><code>./error-indicator.component.html</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./apps-sidenav-demo.component.scss</code></td>
+                <td class="col-md-9"><code>./error-indicator.component.scss</code></td>
             </tr>
 
 
@@ -210,7 +206,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#data" >data</a>
+                                <a href="#errors" >errors</a>
                             </li>
                         </ul>
                     </td>
@@ -240,28 +236,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="data"></a>
+                    <a name="errors"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>data</b></span>
-                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>errors</b></span>
+                        <a href="#errors"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>HUBMAP_CARDS_DATA</code>
+                        <i>Default value : </i><code>input&lt;string[]&gt;()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/lib/apps-sidenav-demo/apps-sidenav-demo.component.ts:115</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">error-indicator/src/lib/error-indicator.component.ts:16</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>data to render the cards inside the sidenav</p>
+                    <div class="io-description"><p>List of errors to be shown in the indicator</p>
 </div>
                 </td>
             </tr>
@@ -274,161 +270,33 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
-import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
-import { AppsCardComponent } from &#x27;../../../apps-card/src/index&#x27;;
-import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 
-/** HuBMAP cards data */
-export const HUBMAP_CARDS_DATA &#x3D; [
-  {
-    category: &#x27;About&#x27;,
-    cards: [
-      {
-        name: &#x27;HuBMAP Consortium&#x27;,
-        icon: &#x27;assets/logo/hubmap.svg&#x27;,
-        title: &#x27;HuBMAP Consortium&#x27;,
-        description:
-          &#x27;HuBMAP all access: Learn about us, our policies, data, and tools. Explore our publications and how to work with us.&#x27;,
-        link: &#x27;https://hubmapconsortium.org/&#x27;,
-      },
-    ],
-  },
-  {
-    category: &#x27;Data&#x27;,
-    cards: [
-      {
-        name: &#x27;HubMAP Data Portal&#x27;,
-        icon: &#x27;assets/logo/data_portal.svg&#x27;,
-        title: &#x27;HuBMAP Data Portal&#x27;,
-        description:
-          &#x27;Explore, visualize and download consortium-generated spatial and single cell data for the human body.&#x27;,
-        link: &#x27;https://portal.hubmapconsortium.org/&#x27;,
-      },
-      {
-        name: &#x27;Data Portal Workspaces&#x27;,
-        icon: &#x27;assets/logo/data_portal.svg&#x27;,
-        title: &#x27;Data Portal Workspaces&#x27;,
-        description:
-          &#x27;Access HuBMAP data in a lightweight exploration platform and perform analyses directly within the portal.&#x27;,
-        link: &#x27;https://portal.hubmapconsortium.org/workspaces&#x27;,
-      },
-    ],
-  },
-  {
-    category: &#x27;Atlas&#x27;,
-    cards: [
-      {
-        name: &#x27;Human Reference Atlas&#x27;,
-        icon: &#x27;assets/logo/hra_small.svg&#x27;,
-        title: &#x27;Human Reference Atlas&#x27;,
-        description:
-          &#x27;Use the HRA Portal to access atlas data, explore atlas functionality, and contribute to the Human Reference Atlas.&#x27;,
-        link: &#x27;https://humanatlas.io/&#x27;,
-      },
-      {
-        name: &#x27;Exploration User Interface&#x27;,
-        icon: &#x27;assets/logo/eui.svg&#x27;,
-        title: &#x27;Exploration User Interface&#x27;,
-        description:
-          &#x27;Explore and validate spatially registered single-cell datasets in three-dimensions across organs.&#x27;,
-        link: &#x27;https://apps.humanatlas.io/eui/&#x27;,
-      },
-      {
-        name: &#x27;ASCT+B Reporter&#x27;,
-        icon: &#x27;assets/logo/asctb-reporter.svg&#x27;,
-        title: &#x27;ASCT+B Reporter&#x27;,
-        description:
-          &#x27;Explore and compare ASCT+B tables and construct validated panels for multiplexed antibody-based imaging (OMAPs) tables.&#x27;,
-        link: &#x27;https://hubmapconsortium.github.io/ccf-asct-reporter/&#x27;,
-      },
-    ],
-  },
-  {
-    category: &#x27;Analytics Tools&#x27;,
-    cards: [
-      {
-        name: &#x27;Azimuth&#x27;,
-        icon: &#x27;assets/logo/azimuth.svg&#x27;,
-        title: &#x27;Azimuth&#x27;,
-        description:
-          &#x27;Azimuth uses a reference dataset to process, analyze, and interpret single-cell RNA-seq or ATAC-seq experiments.&#x27;,
-        link: &#x27;https://azimuth.hubmapconsortium.org/&#x27;,
-      },
-      {
-        name: &#x27;FUSION&#x27;,
-        icon: &#x27;assets/logo/fusion.svg&#x27;,
-        title: &#x27;FUSION&#x27;,
-        description: &#x27;Functional Unit State Identification and Navigation with WSI.&#x27;,
-        link: &#x27;http://fusion.hubmapconsortium.org/?utm_source&#x3D;hubmap&#x27;,
-      },
-      {
-        name: &#x27;Antibody Validation Reports&#x27;,
-        icon: &#x27;assets/logo/antibody-validation-reports.svg&#x27;,
-        title: &#x27;Antibody Validation Reports&#x27;,
-        description:
-          &#x27;Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.&#x27;,
-        link: &#x27;https://avr.hubmapconsortium.org/&#x27;,
-      },
-    ],
-  },
-];
-
-/** Apps Sidenav component */
+/** Error Indicator component */
 @Component({
-  selector: &#x27;hra-apps-sidenav&#x27;,
+  selector: &#x27;hra-error-indicator&#x27;,
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, AppsCardComponent, MatIconModule, MatButtonModule, ScrollingModule],
-  templateUrl: &#x27;./apps-sidenav-demo.component.html&#x27;,
-  styleUrl: &#x27;./apps-sidenav-demo.component.scss&#x27;,
+  imports: [CommonModule, MatIconModule],
+  templateUrl: &#x27;./error-indicator.component.html&#x27;,
+  styleUrl: &#x27;./error-indicator.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppsSidenavDemoComponent {
-  /** data to render the cards inside the sidenav */
-  readonly data &#x3D; HUBMAP_CARDS_DATA;
+export class ErrorIndicatorComponent {
+  /** List of errors to be shown in the indicator */
+  readonly errors &#x3D; input&lt;string[]&gt;();
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-sidenav-container class&#x3D;&quot;container&quot;&gt;
-  &lt;mat-sidenav #sidenav mode&#x3D;&quot;over&quot; class&#x3D;&quot;apps-sidenav headline-small&quot; [position]&#x3D;&quot;&#x27;end&#x27;&quot; [fixedInViewport]&#x3D;&quot;false&quot;&gt;
-    &lt;ng-scrollbar&gt;
-      &lt;div class&#x3D;&quot;header&quot;&gt;
-        &lt;span class&#x3D;&quot;sidenav-title&quot;&gt; HuBMAP Tools &amp; Applications &lt;/span&gt;
-        &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
-        &lt;button mat-icon-button hraIconButtonSize&#x3D;&quot;large&quot; disableRipple (click)&#x3D;&quot;sidenav.toggle()&quot;&gt;
-          &lt;mat-icon&gt;close&lt;/mat-icon&gt;
-        &lt;/button&gt;
-      &lt;/div&gt;
-
-      @for (item of data; track item) {
-        &lt;div class&#x3D;&quot;card-category&quot;&gt;{{ item.category }}&lt;/div&gt;
-        @for (card of item.cards; track card) {
-          &lt;hra-apps-card
-            [icon]&#x3D;&quot;card.icon&quot;
-            [title]&#x3D;&quot;card.name&quot;
-            [description]&#x3D;&quot;card.description&quot;
-            [link]&#x3D;&quot;card.link&quot;
-          &gt;&lt;/hra-apps-card&gt;
-        }
-      }
-    &lt;/ng-scrollbar&gt;
-  &lt;/mat-sidenav&gt;
-
-  &lt;mat-sidenav-content&gt;
-    &lt;div class&#x3D;&quot;main&quot;&gt;
-      Sidenav Demonstration
-      &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
-      &lt;button mat-icon-button hraIconButtonSize&#x3D;&quot;large&quot; disableRipple (click)&#x3D;&quot;sidenav.toggle()&quot;&gt;
-        &lt;mat-icon&gt;apps&lt;/mat-icon&gt;
-      &lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/mat-sidenav-content&gt;
-&lt;/mat-sidenav-container&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-icon&gt;error&lt;/mat-icon&gt;
+&lt;div class&#x3D;&quot;errors&quot;&gt;
+  @for (error of errors(); track error) {
+    &lt;div class&#x3D;&quot;error&quot;&gt;{{ error }}&lt;/div&gt;
+  }
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -458,10 +326,10 @@ export class AppsSidenavDemoComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="container">  <mat-sidenav #sidenav mode="over" class="apps-sidenav headline-small" [position]="\'end\'" [fixedInViewport]="false">    <ng-scrollbar>      <div class="header">        <span class="sidenav-title"> HuBMAP Tools & Applications </span>        <div style="flex-grow: 1"></div>        <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">          <mat-icon>close</mat-icon>        </button>      </div>      @for (item of data; track item) {        <div class="card-category">{{ item.category }}</div>        @for (card of item.cards; track card) {          <hra-apps-card            [icon]="card.icon"            [title]="card.name"            [description]="card.description"            [link]="card.link"          ></hra-apps-card>        }      }    </ng-scrollbar>  </mat-sidenav>  <mat-sidenav-content>    <div class="main">      Sidenav Demonstration      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>apps</mat-icon>      </button>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-icon>error</mat-icon><div class="errors">  @for (error of errors(); track error) {    <div class="error">{{ error }}</div>  }</div></div>'
     var COMPONENTS = [{'name': 'AppLogosComponent', 'selector': 'hra-app-logos'},{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'}];
     var DIRECTIVES = [{'name': 'BreadcrumbsSizeDirective', 'selector': '[hraBreadcrumbSize]'},{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SelectSizeDirective', 'selector': '[hraSelectSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'}];
-    var ACTUAL_COMPONENT = {'name': 'AppsSidenavDemoComponent'};
+    var ACTUAL_COMPONENT = {'name': 'ErrorIndicatorComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -507,7 +375,7 @@ export class AppsSidenavDemoComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppsSidenavDemoComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ErrorIndicatorComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
