@@ -310,6 +310,7 @@ import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { IconButtonSize, IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
+import { MenuSizeDirective } from &#x27;../directives/menu-size.directive&#x27;;
 
 /** Menu option interface */
 export interface MenuDemoOption {
@@ -327,7 +328,7 @@ export interface MenuDemoOption {
 @Component({
   selector: &#x27;hra-menu&#x27;,
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective, MenuSizeDirective],
   templateUrl: &#x27;./menu-demo.component.html&#x27;,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
