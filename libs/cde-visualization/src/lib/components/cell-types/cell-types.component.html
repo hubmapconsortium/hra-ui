@@ -1,32 +1,57 @@
 <span class="mat-caption cell-types-label">
   Cell Types
-  <mat-icon
-    class="material-symbols-rounded"
-    cdkOverlayOrigin
-    #resetTrigger="cdkOverlayOrigin"
-    (mouseover)="cellTypesInfoOpen = true"
-    (mouseout)="cellTypesInfoOpen = false"
-    >info</mat-icon
-  >
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'celltypes-panel']"
-    [cdkConnectedOverlayOrigin]="resetTrigger"
-    [cdkConnectedOverlayPositions]="tooltipPosition"
-    [cdkConnectedOverlayOpen]="cellTypesInfoOpen"
-    [cdkConnectedOverlayOffsetX]="5"
-  >
-    <div>
-      Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type
-      visualization colors by clicking the cell type's color legend button. Download a color map CSV file of the current
-      cell types and HEX codes.
-    </div>
-  </ng-template>
+  <button mat-icon-button [matMenuTriggerFor]="menu" [hraIconButtonSize]="'medium'">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="hra-nested-menu medium">
+    <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
+      <mat-icon>info</mat-icon>
+      <span>Info</span>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="downloadSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
+      <mat-icon>download</mat-icon>
+      <span>Download</span>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>visibility</mat-icon>
+      Show Cell Link Data
+    </button>
+    <button mat-menu-item>
+      <mat-icon>restart_alt</mat-icon>
+      Reset All Colors
+    </button>
+    <button mat-menu-item>
+      <mat-icon>code</mat-icon>
+      Embed App
+    </button>
+  </mat-menu>
+  <mat-menu #infoSubMenu="matMenu" class="hra-nested-menu medium">
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>Icon 1</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>Icon 2</span>
+    </button>
+  </mat-menu>
+  <mat-menu #downloadSubMenu="matMenu" class="hra-nested-menu medium">
+    <button mat-menu-item>
+      <mat-icon>download</mat-icon>
+      <span>Cells CSV</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>download</mat-icon>
+      <span>Cell Links CSV</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>download</mat-icon>
+      <span>Cell Color Map CSV</span>
+    </button>
+  </mat-menu>
 </span>
-<button mat-flat-button class="mat-caption download-csv" color="primary" (click)="download.emit()">
-  <mat-icon class="material-symbols-rounded">download</mat-icon>
-  CSV
-</button>
 
 <div class="mat-caption total-ct-label">
   Total Cell Types

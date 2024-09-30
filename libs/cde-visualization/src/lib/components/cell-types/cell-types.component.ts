@@ -18,15 +18,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
 /**
  * Cell Type Component
@@ -46,6 +48,8 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     OverlayModule,
     ColorPickerLabelComponent,
     ScrollingModule,
+    MatMenuModule,
+    IconButtonSizeDirective,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
