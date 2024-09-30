@@ -29,6 +29,7 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /**
  * Cell Type Component
@@ -50,6 +51,7 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
     ScrollingModule,
     MatMenuModule,
     IconButtonSizeDirective,
+    TooltipCardComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -75,6 +77,14 @@ export class CellTypesComponent {
 
   /** Reference to MatSort directive */
   protected readonly sort = viewChild.required(MatSort);
+
+  /** Content for Info Tooltip card */
+  protected readonly infoToolTip: TooltipContent[] = [
+    {
+      description:
+        'Show/hide cell types in the visualization and plots. Hide cell links from this table view. Update colors for individual cell types. Download CSVs for the current configurations of cell types, cell links, and cell type color map formatting.',
+    },
+  ];
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));

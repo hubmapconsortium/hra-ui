@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  color: var(--sys-on-error-container);
+  background-color: color-mix(in srgb, var(--sys-error-container) 80%, transparent);
+
+  mat-icon {
+    margin-right: 0.5rem;
+    color: var(--sys-error);
+  }
+  .error {
+    font: var(--sys-label-large);
+    letter-spacing: var(--sys-label-large-text-tracking);
+  }
+}

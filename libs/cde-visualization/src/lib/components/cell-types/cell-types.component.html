@@ -28,14 +28,7 @@
     </button>
   </mat-menu>
   <mat-menu #infoSubMenu="matMenu" class="hra-nested-menu medium">
-    <button mat-menu-item>
-      <mat-icon>info</mat-icon>
-      <span>Icon 1</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>info</mat-icon>
-      <span>Icon 2</span>
-    </button>
+    <hra-tooltip-card [content]="infoToolTip" [small]="true"></hra-tooltip-card>
   </mat-menu>
   <mat-menu #downloadSubMenu="matMenu" class="hra-nested-menu medium">
     <button mat-menu-item>
@@ -46,7 +39,7 @@
       <mat-icon>download</mat-icon>
       <span>Cell Links CSV</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="download.emit()">
       <mat-icon>download</mat-icon>
       <span>Cell Color Map CSV</span>
     </button>
