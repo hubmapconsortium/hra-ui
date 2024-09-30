@@ -7,13 +7,15 @@
   "tags": ["type:app"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser-esbuild",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:application",
+      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "buildOptimizer": false,
-        "outputPath": "dist/apps/body-ui",
+        "outputPath": {
+          "base": "dist/apps/body-ui",
+          "browser": "."
+        },
         "index": "apps/body-ui/src/index.html",
-        "main": "apps/body-ui/src/main.ts",
+        "browser": "apps/body-ui/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/body-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -24,7 +26,12 @@
           }
         ],
         "styles": ["apps/body-ui/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "define": {
+          "define": "undefined"
+        },
+        "outputHashing": "none",
+        "allowedCommonJsDependencies": ["*"]
       },
       "configurations": {
         "production": {
@@ -32,16 +39,15 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
               "maximumError": "4kb"
             }
-          ],
-          "outputHashing": "all"
+          ]
         },
         "development": {
           "baseHref": "/",
@@ -50,8 +56,7 @@
           "sourceMap": true
         },
         "staging": {
-          "baseHref": "/ui--staging/body-ui/",
-          "outputHashing": "none"
+          "baseHref": "/ui--staging/body-ui/"
         },
         "preview": {
           "baseHref": "/apps/body-ui/",
@@ -64,7 +69,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "body-ui:build:production"
