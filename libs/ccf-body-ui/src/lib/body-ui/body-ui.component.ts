@@ -13,6 +13,7 @@ import {
   OutputEmitterRef,
   Signal,
   viewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { SpatialSceneNode } from '@hra-api/ng-client';
 import { derivedAsync } from 'ngxtension/derived-async';
@@ -94,6 +95,7 @@ const parseBoundsInput = BOUNDS_INPUT.parse.bind(BOUNDS_INPUT);
   selector: 'hra-body-ui',
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class BodyUiComponent {
   /** Scene for the deck gl */
