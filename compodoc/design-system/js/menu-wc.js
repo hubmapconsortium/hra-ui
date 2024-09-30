@@ -221,6 +221,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/IconButtonSizeDirective.html" data-type="entity-link" >IconButtonSizeDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/MenuSizeDirective.html" data-type="entity-link" >MenuSizeDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/MicroTooltipDirective.html" data-type="entity-link" >MicroTooltipDirective</a>
                                 </li>
                                 <li class="link">

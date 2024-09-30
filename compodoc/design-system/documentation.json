@@ -161,12 +161,12 @@
         },
         {
             "name": "MenuDemoOption",
-            "id": "interface-MenuDemoOption-ca3f947e9aace44532e9bcc03a99a5de685993e96fbfd95598e669a909b0252378ee73e0cef66ba243939fcac0d322dda2eb2bd6b19da87f34c448bc12b9cefb",
+            "id": "interface-MenuDemoOption-fde9eb20615c15ad94bf27523a8acf39783e52e22fef0d0405489438128ab266f4ffa9783adb2f81fe2c269a49ef0906f484b977759cb01d897397bd9b39a5cb",
             "file": "menu/src/lib/menu-demo/menu-demo.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { IconButtonSize, IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\n\n/** Menu option interface */\nexport interface MenuDemoOption {\n  /** Name of option */\n  name: string;\n  /** Material icon name */\n  icon: string;\n  /** Options to open in a second menu */\n  expandedOptions?: MenuDemoOption[];\n}\n\n/**\n * Nested Angular Material menu component\n */\n@Component({\n  selector: 'hra-menu',\n  standalone: true,\n  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective],\n  templateUrl: './menu-demo.component.html',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MenuDemoComponent {\n  /** Menu size */\n  readonly size = input<IconButtonSize>('medium');\n\n  /** List of menu options */\n  readonly menuOptions = input<MenuDemoOption[]>([]);\n\n  /** List of suboptions to display in the second menu */\n  suboptions: MenuDemoOption[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { IconButtonSize, IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { MenuSizeDirective } from '../directives/menu-size.directive';\n\n/** Menu option interface */\nexport interface MenuDemoOption {\n  /** Name of option */\n  name: string;\n  /** Material icon name */\n  icon: string;\n  /** Options to open in a second menu */\n  expandedOptions?: MenuDemoOption[];\n}\n\n/**\n * Nested Angular Material menu component\n */\n@Component({\n  selector: 'hra-menu',\n  standalone: true,\n  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective, MenuSizeDirective],\n  templateUrl: './menu-demo.component.html',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MenuDemoComponent {\n  /** Menu size */\n  readonly size = input<IconButtonSize>('medium');\n\n  /** List of menu options */\n  readonly menuOptions = input<MenuDemoOption[]>([]);\n\n  /** List of suboptions to display in the second menu */\n  suboptions: MenuDemoOption[] = [];\n}\n",
             "properties": [
                 {
                     "name": "expandedOptions",
@@ -175,7 +175,7 @@
                     "type": "MenuDemoOption[]",
                     "optional": true,
                     "description": "<p>Options to open in a second menu</p>\n",
-                    "line": 15,
+                    "line": 16,
                     "rawdescription": "\nOptions to open in a second menu"
                 },
                 {
@@ -185,7 +185,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Material icon name</p>\n",
-                    "line": 13,
+                    "line": 14,
                     "rawdescription": "\nMaterial icon name"
                 },
                 {
@@ -195,7 +195,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Name of option</p>\n",
-                    "line": 11,
+                    "line": 12,
                     "rawdescription": "\nName of option"
                 }
             ],
@@ -832,6 +832,67 @@
             ],
             "methodsClass": [],
             "extends": []
+        },
+        {
+            "name": "MenuSizeDirective",
+            "id": "directive-MenuSizeDirective-91b36a1d4b60683974a5ab5ac5e62a570e5382547c6bf54173e27cc1213ee2135882406c357ef723e86fefc99ab6197e0f73d5baf6e09da9a757cb85e1160f1e",
+            "file": "menu/src/lib/directives/menu-size.directive.ts",
+            "type": "directive",
+            "description": "<p>Menu Size Directive</p>\n",
+            "rawdescription": "\nMenu Size Directive",
+            "sourceCode": "import { Directive, effect, inject, input } from '@angular/core';\nimport { MatMenu } from '@angular/material/menu';\n\n/** Type for Menu Sizes */\nexport type MenuSize = 'small' | 'medium' | 'large';\n\n/** Menu Size Directive */\n@Directive({\n  selector: '[hraMenuSize]',\n  standalone: true,\n})\nexport class MenuSizeDirective {\n  /** Size of menu to use */\n  readonly size = input<MenuSize>('medium', { alias: 'hraMenuSize' });\n\n  /** Instance of Mat Menu */\n  protected readonly menu = inject(MatMenu);\n\n  /** Cleanup the previous panel class and assign the current */\n  constructor() {\n    effect((onCleanup) => {\n      const { menu } = this;\n      const cls = ` ${this.size()}`;\n      menu.panelClass = this.getPanelClass() + cls;\n\n      onCleanup(() => (menu.panelClass = this.getPanelClass().replace(cls, '')));\n    });\n  }\n\n  /** Utility function to get the panel class because they dont have the getter for panelClass in mat menu */\n  private getPanelClass(): string {\n    // WARNING: Pulling from internals since panelClass doesn't have a getter.\n    // May break in the future!\n    return (this.menu as unknown as { _previousPanelClass: string })._previousPanelClass;\n  }\n}\n",
+            "selector": "[hraMenuSize]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "menu",
+                    "defaultValue": "inject(MatMenu)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Instance of Mat Menu</p>\n",
+                    "line": 17,
+                    "rawdescription": "\nInstance of Mat Menu",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "input<MenuSize>('medium', { alias: 'hraMenuSize' })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Size of menu to use</p>\n",
+                    "line": 14,
+                    "rawdescription": "\nSize of menu to use",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "extends": [],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Cleanup the previous panel class and assign the current</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 17,
+                "rawdescription": "\nCleanup the previous panel class and assign the current"
+            }
         },
         {
             "name": "MicroTooltipDirective",
@@ -2393,7 +2454,7 @@
         },
         {
             "name": "MenuDemoComponent",
-            "id": "component-MenuDemoComponent-ca3f947e9aace44532e9bcc03a99a5de685993e96fbfd95598e669a909b0252378ee73e0cef66ba243939fcac0d322dda2eb2bd6b19da87f34c448bc12b9cefb",
+            "id": "component-MenuDemoComponent-fde9eb20615c15ad94bf27523a8acf39783e52e22fef0d0405489438128ab266f4ffa9783adb2f81fe2c269a49ef0906f484b977759cb01d897397bd9b39a5cb",
             "file": "menu/src/lib/menu-demo/menu-demo.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -2422,7 +2483,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>List of menu options</p>\n",
-                    "line": 34,
+                    "line": 35,
                     "rawdescription": "\nList of menu options",
                     "modifierKind": [
                         148
@@ -2436,7 +2497,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Menu size</p>\n",
-                    "line": 31,
+                    "line": 32,
                     "rawdescription": "\nMenu size",
                     "modifierKind": [
                         148
@@ -2450,7 +2511,7 @@
                     "type": "MenuDemoOption[]",
                     "optional": false,
                     "description": "<p>List of suboptions to display in the second menu</p>\n",
-                    "line": 37,
+                    "line": 38,
                     "rawdescription": "\nList of suboptions to display in the second menu"
                 }
             ],
@@ -2480,17 +2541,21 @@
                 {
                     "name": "IconButtonSizeDirective",
                     "type": "directive"
+                },
+                {
+                    "name": "MenuSizeDirective",
+                    "type": "directive"
                 }
             ],
             "description": "<p>Nested Angular Material menu component</p>\n",
             "rawdescription": "\n\nNested Angular Material menu component\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { IconButtonSize, IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\n\n/** Menu option interface */\nexport interface MenuDemoOption {\n  /** Name of option */\n  name: string;\n  /** Material icon name */\n  icon: string;\n  /** Options to open in a second menu */\n  expandedOptions?: MenuDemoOption[];\n}\n\n/**\n * Nested Angular Material menu component\n */\n@Component({\n  selector: 'hra-menu',\n  standalone: true,\n  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective],\n  templateUrl: './menu-demo.component.html',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MenuDemoComponent {\n  /** Menu size */\n  readonly size = input<IconButtonSize>('medium');\n\n  /** List of menu options */\n  readonly menuOptions = input<MenuDemoOption[]>([]);\n\n  /** List of suboptions to display in the second menu */\n  suboptions: MenuDemoOption[] = [];\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { IconButtonSize, IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { MenuSizeDirective } from '../directives/menu-size.directive';\n\n/** Menu option interface */\nexport interface MenuDemoOption {\n  /** Name of option */\n  name: string;\n  /** Material icon name */\n  icon: string;\n  /** Options to open in a second menu */\n  expandedOptions?: MenuDemoOption[];\n}\n\n/**\n * Nested Angular Material menu component\n */\n@Component({\n  selector: 'hra-menu',\n  standalone: true,\n  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule, IconButtonSizeDirective, MenuSizeDirective],\n  templateUrl: './menu-demo.component.html',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MenuDemoComponent {\n  /** Menu size */\n  readonly size = input<IconButtonSize>('medium');\n\n  /** List of menu options */\n  readonly menuOptions = input<MenuDemoOption[]>([]);\n\n  /** List of suboptions to display in the second menu */\n  suboptions: MenuDemoOption[] = [];\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<button\n  mat-icon-button\n  [matMenuTriggerFor]=\"options\"\n  [hraIconButtonSize]=\"size()\"\n  aria-label=\"Icon to open nested menu\"\n>\n  <mat-icon>more_vert</mat-icon>\n</button>\n\n<mat-menu #options=\"matMenu\" [class]=\"'hra-nested-menu ' + size()\">\n  @for (option of menuOptions(); track option) {\n    @if (option.expandedOptions) {\n      <button\n        class=\"expanded\"\n        mat-menu-item\n        matRipple\n        matRippleColor=\"#201E3D14\"\n        [matMenuTriggerFor]=\"submenu\"\n        (mouseover)=\"suboptions = option.expandedOptions\"\n      >\n        <mat-icon>{{ option.icon }}</mat-icon>\n        {{ option.name }}\n        <mat-icon class=\"expand-arrow\">arrow_right</mat-icon>\n      </button>\n    } @else {\n      <button mat-menu-item>\n        <mat-icon>{{ option.icon }}</mat-icon>\n        {{ option.name }}\n      </button>\n    }\n  }\n</mat-menu>\n\n<mat-menu #submenu=\"matMenu\" [class]=\"'hra-nested-menu ' + size()\">\n  @for (suboption of suboptions; track suboption) {\n    <button mat-menu-item>\n      <mat-icon>{{ suboption.icon }}</mat-icon>\n      <span>{{ suboption.name }}</span>\n    </button>\n  }\n</mat-menu>\n"
+            "templateData": "<button\n  mat-icon-button\n  [matMenuTriggerFor]=\"options\"\n  [hraIconButtonSize]=\"size()\"\n  aria-label=\"Icon to open nested menu\"\n>\n  <mat-icon>more_vert</mat-icon>\n</button>\n\n<mat-menu #options=\"matMenu\">\n  @for (option of menuOptions(); track option) {\n    @if (option.expandedOptions) {\n      <button\n        class=\"expanded\"\n        mat-menu-item\n        matRipple\n        matRippleColor=\"#201E3D14\"\n        [matMenuTriggerFor]=\"submenu\"\n        (mouseover)=\"suboptions = option.expandedOptions\"\n      >\n        <mat-icon>{{ option.icon }}</mat-icon>\n        {{ option.name }}\n        <mat-icon class=\"expand-arrow\">arrow_right</mat-icon>\n      </button>\n    } @else {\n      <button mat-menu-item>\n        <mat-icon>{{ option.icon }}</mat-icon>\n        {{ option.name }}\n      </button>\n    }\n  }\n</mat-menu>\n\n<mat-menu #submenu=\"matMenu\">\n  @for (suboption of suboptions; track suboption) {\n    <button mat-menu-item>\n      <mat-icon>{{ suboption.icon }}</mat-icon>\n      <span>{{ suboption.name }}</span>\n    </button>\n  }\n</mat-menu>\n"
         },
         {
             "name": "MenuStylesComponent",
@@ -2530,7 +2595,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".hra-nested-menu {\n  --mat-menu-container-color: white;\n  --mat-menu-container-shape: 0.5rem;\n  --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.16);\n  --mat-menu-item-with-icon-leading-spacing: 1rem;\n  --mat-menu-item-with-icon-trailing-spacing: 1rem;\n  --mat-menu-item-label-text-color: var(--sys-on-primary-fixed);\n  --mat-menu-item-icon-color: var(--sys-on-primary-fixed);\n  --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);\n  --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);\n\n  button {\n    min-width: 12rem;\n  }\n\n  .expand-arrow {\n    --mat-menu-item-spacing: 1rem;\n    position: absolute;\n    right: 0;\n  }\n\n  .mat-mdc-menu-submenu-icon {\n    display: none;\n  }\n\n  .mat-mdc-menu-item-highlighted {\n    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);\n    border-left: none;\n    border-right: none;\n  }\n\n  &.small {\n    --mat-menu-item-icon-size: 1.25rem;\n    --mat-menu-item-spacing: 0.5rem;\n    --mat-menu-item-label-text-tracking: var(--sys-label-small-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-small-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-small-size);\n    --mat-menu-item-label-text-line-height: var(--mat-menu-item-icon-size);\n\n    mat-icon {\n      font-size: var(--mat-menu-item-icon-size);\n    }\n\n    .mat-mdc-menu-content {\n      padding: 0.25rem 0;\n    }\n\n    button {\n      min-height: 2.5rem;\n\n      &.expanded {\n        min-width: 10.5rem;\n      }\n    }\n  }\n\n  &.medium {\n    --mat-menu-item-label-text-tracking: var(--sys-label-medium-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-medium-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-medium-size);\n    --mat-menu-item-label-text-line-height: var(--sys-label-medium-line-height);\n\n    .mat-mdc-menu-content {\n      padding: 0.5rem 0;\n    }\n\n    button {\n      min-height: 3rem;\n\n      &.expanded {\n        min-width: 12.25rem;\n      }\n    }\n  }\n\n  &.large {\n    --mat-menu-item-label-text-tracking: var(--sys-label-large-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-large-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-large-size);\n    --mat-menu-item-label-text-line-height: var(--sys-label-large-line-height);\n\n    .mat-mdc-menu-content {\n      padding: 0.75rem 0;\n    }\n\n    button {\n      min-height: 3.5rem;\n\n      &.expanded {\n        min-width: 12.75rem;\n      }\n    }\n  }\n}\n",
+                    "data": ".mat-mdc-menu-panel {\n  --mat-menu-container-color: white;\n  --mat-menu-container-shape: 0.5rem;\n  --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.16);\n  --mat-menu-item-with-icon-leading-spacing: 1rem;\n  --mat-menu-item-with-icon-trailing-spacing: 1rem;\n  --mat-menu-item-label-text-color: var(--sys-on-primary-fixed);\n  --mat-menu-item-icon-color: var(--sys-on-primary-fixed);\n  --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);\n  --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);\n\n  button {\n    min-width: 12rem;\n  }\n\n  .expand-arrow {\n    --mat-menu-item-spacing: 1rem;\n    position: absolute;\n    right: 0;\n  }\n\n  .mat-mdc-menu-submenu-icon {\n    display: none;\n  }\n\n  .mat-mdc-menu-item-highlighted {\n    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);\n    border-left: none;\n    border-right: none;\n  }\n\n  &,\n  &.medium {\n    --mat-menu-item-label-text-tracking: var(--sys-label-medium-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-medium-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-medium-size);\n    --mat-menu-item-label-text-line-height: var(--sys-label-medium-line-height);\n\n    .mat-mdc-menu-content {\n      padding: 0.5rem 0;\n    }\n\n    button {\n      min-height: 3rem;\n\n      &.expanded {\n        min-width: 12.25rem;\n      }\n    }\n  }\n\n  &.small {\n    --mat-menu-item-icon-size: 1.25rem;\n    --mat-menu-item-spacing: 0.5rem;\n    --mat-menu-item-label-text-tracking: var(--sys-label-small-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-small-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-small-size);\n    --mat-menu-item-label-text-line-height: var(--mat-menu-item-icon-size);\n\n    mat-icon {\n      font-size: var(--mat-menu-item-icon-size);\n    }\n\n    .mat-mdc-menu-content {\n      padding: 0.25rem 0;\n    }\n\n    button {\n      min-height: 2.5rem;\n\n      &.expanded {\n        min-width: 10.5rem;\n      }\n    }\n  }\n\n  &.large {\n    --mat-menu-item-label-text-tracking: var(--sys-label-large-tracking);\n    --mat-menu-item-label-text-weight: var(--sys-label-large-weight);\n    --mat-menu-item-label-text-size: var(--sys-label-large-size);\n    --mat-menu-item-label-text-line-height: var(--sys-label-large-line-height);\n\n    .mat-mdc-menu-content {\n      padding: 0.75rem 0;\n    }\n\n    button {\n      min-height: 3.5rem;\n\n      &.expanded {\n        min-width: 12.75rem;\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./menu-styles.component.scss"
                 }
             ],
@@ -4399,6 +4464,17 @@
                 "kind": 192
             },
             {
+                "name": "MenuSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\"",
+                "file": "menu/src/lib/directives/menu-size.directive.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Type for Menu Sizes</p>\n",
+                "kind": 192
+            },
+            {
                 "name": "MicroTooltipSize",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -5063,6 +5139,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Input options for icon button size</p>\n",
+                    "kind": 192
+                }
+            ],
+            "menu/src/lib/directives/menu-size.directive.ts": [
+                {
+                    "name": "MenuSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\"",
+                    "file": "menu/src/lib/directives/menu-size.directive.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Type for Menu Sizes</p>\n",
                     "kind": 192
                 }
             ],
