@@ -1,9 +1,9 @@
 <span class="mat-caption cell-types-label">
   Cell Types
-  <button mat-icon-button [matMenuTriggerFor]="menu" [hraIconButtonSize]="'medium'">
+  <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="medium">
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" class="hra-nested-menu medium">
+  <mat-menu #menu="matMenu">
     <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
       <mat-icon>info</mat-icon>
       <span>Info</span>
@@ -27,10 +27,10 @@
       Embed App
     </button>
   </mat-menu>
-  <mat-menu #infoSubMenu="matMenu" class="hra-nested-menu medium">
+  <mat-menu #infoSubMenu="matMenu">
     <hra-tooltip-card [content]="infoToolTip" [small]="true"></hra-tooltip-card>
   </mat-menu>
-  <mat-menu #downloadSubMenu="matMenu" class="hra-nested-menu medium">
+  <mat-menu #downloadSubMenu="matMenu">
     <button mat-menu-item>
       <mat-icon>download</mat-icon>
       <span>Cells CSV</span>
