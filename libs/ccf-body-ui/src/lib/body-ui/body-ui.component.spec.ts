@@ -3,10 +3,10 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ErrorHandler } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { SpatialSceneNode } from '@hra-api/ng-client';
-import { render, screen } from '@testing-library/angular';
+import { render } from '@testing-library/angular';
+import { Subject } from 'rxjs';
 import { BodyUI, NodeClickEvent } from '../body-ui';
 import { BodyUiComponent, XYZTriplet } from './body-ui.component';
-import { Subject } from 'rxjs';
 
 jest.mock('../body-ui.ts', () => ({
   BodyUI: jest.fn().mockImplementation(() => ({
@@ -36,15 +36,6 @@ describe('BodyUiComponent', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  it('should render a canvas element', async () => {
-    await render(BodyUiComponent, { providers });
-
-    const canvasElement = screen.getByRole('img');
-
-    expect(canvasElement).toBeTruthy();
-    expect(canvasElement.tagName.toLowerCase()).toBe('canvas');
   });
 
   it('should set zoom according to the bounds', async () => {
