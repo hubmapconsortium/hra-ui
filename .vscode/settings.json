@@ -12,6 +12,7 @@
     "services",
     "ccf-organ-info",
     "design-system",
-    "body-ui"
+    "body-ui",
+    "eui"
   ]
 }
