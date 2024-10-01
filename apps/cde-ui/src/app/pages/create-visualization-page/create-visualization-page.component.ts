@@ -35,6 +35,9 @@ import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { SelectSizeDirective } from '@hra-ui/design-system/select';
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -80,6 +83,9 @@ function optionalValue<T>(): T | null {
     BreadcrumbsComponent,
     StepIndicatorComponent,
     TooltipCardComponent,
+    ToggleButtonSizeDirective,
+    SelectSizeDirective,
+    NavHeaderComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',

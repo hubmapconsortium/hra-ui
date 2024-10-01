@@ -1,16 +1,7 @@
-// @use './styles/cta' as cta;
-// @use './styles/global/resets';
-// @use './styles/global/fonts';
-// @use './styles/material-theming';
 @use 'light-theme';
 @use 'theming';
 @use '../src/app/pages/create-visualization-page/create-visualization-page.component.theme.scss' as create-visualization;
 
-// @mixin theme($theme) {
-//   @include create-visualization.theme($theme);
-// }
-
-// TODO Update and switch to design system theming
 html {
   @include theming.theme(light-theme.$theme);
 }
@@ -25,52 +16,3 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
-
-// body {
-//   margin: 0;
-// }
-
-// a {
-//   text-decoration: none;
-// }
-
-// .cta-filled {
-//   @include cta.filledDefault();
-
-//   &:hover {
-//     @include cta.filledHover();
-//   }
-
-//   &:active {
-//     @include cta.filledActive();
-//   }
-
-//   &:focus-visible {
-//     --mdc-filled-button-label-text-color: rgba(32, 30, 61, 1);
-//     color: var(--mdc-filled-button-label-text-color);
-//   }
-
-//   &:focus-visible::after {
-//     @include cta.filledFocus();
-//   }
-// }
-
-// .cta-flat {
-//   @include cta.flatDefault();
-
-//   &:hover {
-//     @include cta.flatHover();
-//   }
-
-//   &:active {
-//     @include cta.flatActive();
-//   }
-
-//   &:focus-visible {
-//     @include cta.flatFocus();
-//   }
-// }
-
-// .selected {
-//   box-shadow: 0 -2px 0 #e00d3a inset;
-// }

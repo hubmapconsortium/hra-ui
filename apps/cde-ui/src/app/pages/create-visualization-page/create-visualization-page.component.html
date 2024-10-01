@@ -1,4 +1,9 @@
-<cde-header></cde-header>
+<hra-nav-header
+  title="Cell Distance Explorer"
+  icon="assets/logo/cde_logo.svg"
+  link="https://apps.humanatlas.io/cde/"
+  description="Beta"
+></hra-nav-header>
 <form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
   <div class="page-nav">
     <hra-breadcrumbs
@@ -37,7 +42,7 @@
         <hra-tooltip-card [content]="tooltips[0]"> </hra-tooltip-card>
       </ng-template>
       <div class="filler"></div>
-      <button
+      <a
         mat-button
         class="use-template"
         color="primary"
@@ -47,7 +52,7 @@
         hraButtonSize="medium"
       >
         Template
-      </button>
+      </a>
     </h2>
     <table aria-label="data upload requirements">
       <tr>
@@ -116,13 +121,12 @@
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>X Axis</mat-label>
         <mat-select
           disableRipple
-          class="mat-body-2"
           formControlName="xAxis"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (option of dataHeaders; track option) {
@@ -131,13 +135,12 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Y Axis</mat-label>
         <mat-select
           disableRipple
-          class="mat-body-2"
           formControlName="yAxis"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (option of dataHeaders; track option) {
@@ -146,13 +149,13 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Cell Type</mat-label>
         <mat-select
           disableRipple
           class="mat-body-2"
           formControlName="cellType"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (option of dataHeaders; track option) {
@@ -172,13 +175,12 @@
     <div class="optional-headers">
       <span class="subheader">Optional: Add column headers</span>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Z Axis</mat-label>
         <mat-select
           disableRipple
-          class="mat-body-2"
           formControlName="zAxis"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (option of dataHeaders; track option) {
@@ -187,13 +189,12 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Cell Ontology ID</mat-label>
         <mat-select
           disableRipple
-          class="mat-body-2"
           formControlName="ontologyId"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (option of dataHeaders; track option) {
@@ -231,13 +232,12 @@
     </h2>
 
     <div class="parameters-1">
-      <mat-form-field class="select-form">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Anchor Cell Type</mat-label>
         <mat-select
           disableRipple
-          class="select mat-body-2"
           formControlName="nodeTargetValue"
-          panelClass="select-panel"
+          [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl
         >
           @for (type of cellTypes; track type) {
@@ -306,13 +306,12 @@
       <input matInput formControlName="technology" cdeMarkEmptyFormControl />
     </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
+    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
       <mat-label>Organ</mat-label>
       <mat-select
         disableRipple
-        class="mat-body-2"
         formControlName="organ"
-        panelClass="select-panel"
+        [panelClass]="['options-container', 'options-container-medium']"
         cdeMarkEmptyFormControl
       >
         @for (organ of organs(); track organ) {
@@ -321,13 +320,12 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
+    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
       <mat-label>Sex</mat-label>
       <mat-select
         disableRipple
-        class="mat-body-2"
         formControlName="sex"
-        panelClass="select-panel"
+        [panelClass]="['options-container', 'options-container-medium']"
         cdeMarkEmptyFormControl
       >
         <mat-option value="Male">Male</mat-option>
@@ -386,9 +384,10 @@
 
     <mat-button-toggle-group
       formControlName="colorMapType"
+      name="singleSelect"
       aria-label="Single Select"
-      hraButtonToggleSize="medium"
       hideSingleSelectionIndicator
+      hraButtonToggleSize="large"
     >
       <mat-button-toggle disableRipple value="default">Use Default Colors</mat-button-toggle>
       <mat-button-toggle disableRipple value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
