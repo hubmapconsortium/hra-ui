@@ -6,9 +6,9 @@
 @use 'theming';
 @use '../src/app/pages/create-visualization-page/create-visualization-page.component.theme.scss' as create-visualization;
 
-@mixin theme($theme) {
-  @include create-visualization.theme($theme);
-}
+// @mixin theme($theme) {
+//   @include create-visualization.theme($theme);
+// }
 
 // TODO Update and switch to design system theming
 html {
@@ -26,13 +26,13 @@ input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
 
-body {
-  margin: 0;
-}
+// body {
+//   margin: 0;
+// }
 
-a {
-  text-decoration: none;
-}
+// a {
+//   text-decoration: none;
+// }
 
 // .cta-filled {
 //   @include cta.filledDefault();

@@ -1,73 +1,63 @@
 @use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../styles/constants/palettes' as palettes;
+// @use '@angular/material' as mat;
+// @use '../../../styles/constants/palettes' as palettes;
 
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 500, 600, 800, 900);
-$blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
+// $blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 500, 600, 800, 900);
+// $blue-theme: mat.m2-define-light-theme(
+//   (
+//     color: (
+//       primary: $blue,
+//       accent: $blue,
+//     ),
+//   )
+// );
 
-$gray: mat.m2-define-palette(map.get(palettes.$palettes, 'gray'), 500, 600, 700);
-$gray-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $gray,
-      accent: $gray,
-    ),
-  )
-);
-$red: mat.m2-define-palette(map.get(palettes.$palettes, 'red'), 500, 600, 700);
-$red-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $red,
-      accent: $red,
-    ),
-  )
-);
+// $gray: mat.m2-define-palette(map.get(palettes.$palettes, 'gray'), 500, 600, 700);
+// $gray-theme: mat.m2-define-light-theme(
+//   (
+//     color: (
+//       primary: $gray,
+//       accent: $gray,
+//     ),
+//   )
+// );
+// $red: mat.m2-define-palette(map.get(palettes.$palettes, 'red'), 500, 600, 700);
+// $red-theme: mat.m2-define-light-theme(
+//   (
+//     color: (
+//       primary: $red,
+//       accent: $red,
+//     ),
+//   )
+// );
 
 :host {
-  --mdc-filled-button-label-text-size: 1rem;
-  --mat-filled-button-horizontal-padding: 0.5rem;
-  --mdc-filled-button-label-text-tracking: 0.02em;
-  --mat-filled-button-icon-spacing: 0.25rem;
-  @include mat.button-color($blue-theme);
+  // --mdc-filled-button-label-text-size: 1rem;
+  // --mat-filled-button-horizontal-padding: 0.5rem;
+  // --mdc-filled-button-label-text-tracking: 0.02em;
+  // --mat-filled-button-icon-spacing: 0.25rem;
+  // @include mat.button-color($blue-theme);
 
-  .upload {
-    --mat-filled-button-horizontal-padding: 1rem;
-    --mdc-filled-button-label-text-size: 14px;
-    background: mat.get-theme-color($red-theme, primary, 600);
-    color: white;
-  }
-
-  .upload,
   .upload-success {
     height: 2.5rem;
-  }
-
-  .upload-success {
     display: flex;
     align-items: center;
     padding: 0 1rem;
-    background: mat.get-theme-color($blue-theme, primary, 500);
+    background: var(--sys-surface-container);
     gap: 0.5rem;
     border-radius: 1rem;
+    font: var(--sys-label-large);
 
     .filename {
       display: flex;
     }
 
     .file-name {
-      color: mat.get-theme-color($gray-theme, primary, 600);
+      color: var(--sys-primary);
     }
 
     .remove-file {
-      color: mat.get-theme-color($blue-theme, primary, 900);
+      color: var(--sys-secondary);
       cursor: pointer;
     }
   }
@@ -108,10 +98,10 @@ $red-theme: mat.m2-define-light-theme(
   }
 
   .use-template {
-    --mdc-text-button-label-text-size: 1rem;
-    --mat-text-button-with-icon-horizontal-padding: 0rem;
-    --mdc-text-button-label-text-tracking: 0.02em;
-    --mat-text-button-icon-spacing: 0.25rem;
+    // --mdc-text-button-label-text-size: 1rem;
+    // --mat-text-button-with-icon-horizontal-padding: 0rem;
+    // --mdc-text-button-label-text-tracking: 0.02em;
+    // --mat-text-button-icon-spacing: 0.25rem;
 
     &.loaded {
       margin-top: 1.5rem;

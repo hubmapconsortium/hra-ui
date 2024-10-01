@@ -23,7 +23,9 @@
     <mat-icon class="material-symbols-rounded remove-file" (click)="cancelLoad()">delete</mat-icon>
   </div>
 } @else {
-  <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">Upload CSV</button>
+  <button mat-flat-button class="upload" (click)="fileInput.click()" hraPrimaryButton hraButtonSize="large">
+    Upload CSV
+  </button>
   <input
     type="file"
     style="display: none"

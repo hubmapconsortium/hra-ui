@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +22,8 @@ import {
   NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
+import { ButtonModule } from '@hra-ui/design-system/button';
 import { FooterComponent } from '@hra-ui/design-system/footer';
 import { ParseError } from 'papaparse';
 
@@ -32,6 +33,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
+import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -61,7 +64,6 @@ function optionalValue<T>(): T | null {
     ReactiveFormsModule,
     RouterModule,
 
-    MatButtonModule,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
@@ -74,6 +76,10 @@ function optionalValue<T>(): T | null {
     HeaderComponent,
     MarkEmptyFormControlDirective,
     OverlayModule,
+    ButtonModule,
+    BreadcrumbsComponent,
+    StepIndicatorComponent,
+    TooltipCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -167,6 +173,53 @@ export class CreateVisualizationPageComponent {
 
   /** Tooltip position config */
   readonly tooltipPosition = TOOLTIP_POSITION_BELOW;
+
+  readonly tooltips: TooltipContent[][] = [
+    [
+      {
+        description:
+          'Use the template to format single-cell spatial feature tables for exploration. The cell type column can include damage and proliferation markers.',
+      },
+    ],
+    [
+      {
+        description: 'Verify column headers and edit as needed. Select optional column headers.',
+      },
+    ],
+    [
+      {
+        title: 'Anchor Cell Type',
+        description:
+          'The anchor cell type represents the cell type to which the nearest cell distance distributions should be computed and visualized. Euclidian distance is used to compute the distance between two cells. \n“Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the first listed cell type label is used as the anchor cell type.',
+      },
+      {
+        title: 'Distance Threshold (µm)',
+        description: 'Configure the distance threshold to modify visualizations for analysis.',
+      },
+      {
+        title: 'Pixel Size (µm/pixel)',
+        description:
+          'Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already in micrometers.',
+      },
+    ],
+    [
+      {
+        description:
+          'Information in these fields will not change the visualization output. Metadata may be helpful for taking screenshots of the uploaded data and resulting visualizations in the Visualization App.',
+      },
+    ],
+    [
+      {
+        description:
+          'Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors may be changed individually while exploring the visualization in the Visualization App.',
+      },
+    ],
+    [
+      {
+        description: 'Data on the Create Visualization page cannot be modified after a visualization is generated.',
+      },
+    ],
+  ];
 
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;

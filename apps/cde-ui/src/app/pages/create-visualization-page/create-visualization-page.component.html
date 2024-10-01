@@ -1,18 +1,19 @@
 <cde-header></cde-header>
 <form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
   <div class="page-nav">
-    <div class="nav">
-      <a routerLink="/">Home</a>
-      <mat-icon>chevron_right</mat-icon>
-      <span>Create Visualization</span>
-    </div>
+    <hra-breadcrumbs
+      class="nav"
+      size="large"
+      [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]"
+    >
+    </hra-breadcrumbs>
 
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
   <div class="card data-upload">
     <h2 class="header">
-      <span class="step-number">1</span>
+      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
       <mat-icon
         class="info"
@@ -33,22 +34,20 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Use the template to format single-cell spatial feature tables for exploration. The cell type column can
-          include damage and proliferation markers.
-        </p>
+        <hra-tooltip-card [content]="tooltips[0]"> </hra-tooltip-card>
       </ng-template>
       <div class="filler"></div>
-      <a
+      <button
         mat-button
         class="use-template"
         color="primary"
         href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
         target="_blank"
         rel="noopener noreferrer"
+        hraButtonSize="medium"
       >
         Template
-      </a>
+      </button>
     </h2>
     <table aria-label="data upload requirements">
       <tr>
@@ -89,7 +88,7 @@
 
   <div class="card organize-data" formGroupName="headers">
     <h2 class="header">
-      <span class="step-number">2</span>
+      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
       <mat-icon
         class="info"
@@ -110,7 +109,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>Verify column headers and edit as needed. Select optional column headers.</p>
+        <hra-tooltip-card [content]="tooltips[1]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
@@ -119,7 +118,13 @@
 
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>X Axis</mat-label>
-        <mat-select class="mat-body-2" formControlName="xAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          class="mat-body-2"
+          formControlName="xAxis"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -128,7 +133,13 @@
 
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Y Axis</mat-label>
-        <mat-select class="mat-body-2" formControlName="yAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          class="mat-body-2"
+          formControlName="yAxis"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -137,7 +148,13 @@
 
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Cell Type</mat-label>
-        <mat-select class="mat-body-2" formControlName="cellType" panelClass="select-panel" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          class="mat-body-2"
+          formControlName="cellType"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -148,9 +165,7 @@
     @if (columnErrorActionMessage) {
       <div class="error">
         <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-        <div class="error-messages">
-          <span>{{ columnErrorActionMessage }}</span>
-        </div>
+        <span>{{ columnErrorActionMessage }}</span>
       </div>
     }
 
@@ -159,7 +174,13 @@
 
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Z Axis</mat-label>
-        <mat-select class="mat-body-2" formControlName="zAxis" panelClass="select-panel" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          class="mat-body-2"
+          formControlName="zAxis"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -168,7 +189,13 @@
 
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Cell Ontology ID</mat-label>
-        <mat-select class="mat-body-2" formControlName="ontologyId" panelClass="select-panel" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          class="mat-body-2"
+          formControlName="ontologyId"
+          panelClass="select-panel"
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -179,7 +206,7 @@
 
   <div class="card parameters" formGroupName="parameters">
     <h2 class="header">
-      <span class="step-number">3</span>
+      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
       <mat-icon
         class="info"
@@ -199,22 +226,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>Anchor Cell Type</p>
-        <p>
-          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-          computed and visualized. Euclidian distance is used to compute the distance between two cells.
-        </p>
-        <p>
-          “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
-          first listed cell type label is used as the anchor cell type.
-        </p>
-        <p>Distance Threshold (µm)</p>
-        <p>Configure the distance threshold to modify visualizations for analysis.</p>
-        <p>Pixel Size (µm/pixel)</p>
-        <p>
-          Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
-          in micrometers.
-        </p>
+        <hra-tooltip-card [content]="tooltips[2]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
@@ -222,6 +234,7 @@
       <mat-form-field class="select-form">
         <mat-label>Anchor Cell Type</mat-label>
         <mat-select
+          disableRipple
           class="select mat-body-2"
           formControlName="nodeTargetValue"
           panelClass="select-panel"
@@ -259,7 +272,7 @@
 
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
-      <span class="step-number">4</span>
+      <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
       <mat-icon
         class="info"
@@ -279,10 +292,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Information in these fields will not change the visualization output. Metadata may be helpful for taking
-          screenshots of the uploaded data and resulting visualizations in the Visualization App.
-        </p>
+        <hra-tooltip-card [content]="tooltips[3]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
@@ -298,7 +308,13 @@
 
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Organ</mat-label>
-      <mat-select class="mat-body-2" formControlName="organ" panelClass="select-panel" cdeMarkEmptyFormControl>
+      <mat-select
+        disableRipple
+        class="mat-body-2"
+        formControlName="organ"
+        panelClass="select-panel"
+        cdeMarkEmptyFormControl
+      >
         @for (organ of organs(); track organ) {
           <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
         }
@@ -307,7 +323,13 @@
 
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Sex</mat-label>
-      <mat-select class="mat-body-2" formControlName="sex" panelClass="select-panel" cdeMarkEmptyFormControl>
+      <mat-select
+        disableRipple
+        class="mat-body-2"
+        formControlName="sex"
+        panelClass="select-panel"
+        cdeMarkEmptyFormControl
+      >
         <mat-option value="Male">Male</mat-option>
         <mat-option value="Female">Female</mat-option>
       </mat-select>
@@ -326,7 +348,7 @@
 
   <div class="color-config card" [class.custom]="useCustomColorMap">
     <h2 class="header">
-      <span class="step-number">5</span>
+      <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
       <mat-icon
         class="info"
@@ -347,10 +369,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type
-          colors may be changed individually while exploring the visualization in the Visualization App.
-        </p>
+        <hra-tooltip-card [content]="tooltips[4]"> </hra-tooltip-card>
       </ng-template>
       <div class="filler"></div>
       <a
@@ -365,9 +384,14 @@
       </a>
     </h2>
 
-    <mat-button-toggle-group formControlName="colorMapType" hideSingleSelectionIndicator>
-      <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
+    <mat-button-toggle-group
+      formControlName="colorMapType"
+      aria-label="Single Select"
+      hraButtonToggleSize="medium"
+      hideSingleSelectionIndicator
+    >
+      <mat-button-toggle disableRipple value="default">Use Default Colors</mat-button-toggle>
+      <mat-button-toggle disableRipple value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
@@ -405,7 +429,7 @@
 
   <div class="card visualize">
     <h2 class="header">
-      <span class="step-number">6</span>
+      <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
       <mat-icon
         class="material-symbols-rounded info"
@@ -426,7 +450,7 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>Data on the Create Visualization page cannot be modified after a visualization is generated.</p>
+        <hra-tooltip-card [content]="tooltips[5]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
@@ -439,14 +463,14 @@
 
     <button
       mat-flat-button
-      type="submit"
-      class="visualize-button cta-filled"
+      hraCallToActionButton
+      hraPrimaryButton
+      hraButtonSize="large"
       [disabled]="!hasValidNodes() || !hasValidData()"
-      color="primary"
       data-testid="visualize"
     >
       Visualize
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
   </div>
 </form>

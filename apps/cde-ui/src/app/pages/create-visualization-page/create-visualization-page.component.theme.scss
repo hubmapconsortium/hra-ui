@@ -1,120 +1,49 @@
-// @use 'sass:map';
-// @use '@angular/material' as mat;
-// @use '../../../styles/constants/palettes' as palettes;
-// @use '../../../styles/breakpoints' as breakpoints;
-
-// $gray-palette: map.get(palettes.$palettes, 'gray');
-// $blue-palette: map.get(palettes.$palettes, 'blue');
-
-// @mixin color($theme) {
 cde-create-visualization-page {
-  h1,
-  h2,
-  h3,
-  h4 {
-    // color: mat.get-theme-color($theme, accent, darker);
-  }
-
-  .page-nav .nav {
-    a {
-      color: var(--sys-on-background);
-    }
-
-    mat-icon,
-    span {
-      // color: map.get($gray-palette, 700);
+  .page-nav {
+    .title {
+      color: var(--sys-secondary);
     }
   }
 
   .card {
-    background-color: white;
-
-    .header {
-      .step-number {
-        // background-color: map.get($blue-palette, 800);
-        color: white;
-      }
-
-      .use-template {
-        // color: mat.get-theme-color($theme, primary, 700);
-      }
-    }
+    background-color: var(--sys-surface-container-low);
   }
 
   .data-upload {
+    th {
+      color: var(--sys-secondary);
+    }
     td {
-      // color: map.get($gray-palette, 700);
+      color: var(--sys-primary);
     }
   }
 
   .color-config {
     mat-button-toggle-group {
-      // border-color: map.get($gray-palette, 600);
-      // --mat-standard-button-toggle-text-color: #{mat.get-theme-color($theme, accent, darker)};
-      // --mat-standard-button-toggle-selected-state-background-color: rgb(
-      //   from #{mat.get-theme-color($theme, primary, 600)} r g b / 0.24
-      // );
+      border-color: var(--sys-primary);
+      --mat-standard-button-toggle-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-background-color: rgb(from var(--sys-tertiary) r g b / 0.2);
     }
 
     mat-button-toggle {
       &:first-child {
-        // border-color: map.get($gray-palette, 600);
+        border-color: var(--sys-primary);
       }
     }
-
-    .use-template {
-      // color: mat.get-theme-color($theme, primary, 700);
-    }
-  }
-
-  .metadata {
-    // --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
   }
 }
 
 .info-tooltip-panel {
-  background-color: white;
-  // color: map.get($gray-palette, 600);
+  background-color: var(--sys-on-primary);
 }
 
-mat-form-field {
-  //   --mdc-filled-text-field-container-color: #{map.get($blue-palette, 500)};
-  //   --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
-  //   --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
-  //   --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
-  //   --mat-select-focused-arrow-color: #{mat.get-theme-color($theme, primary, darker)};
-  // }
+.visualize-notification,
+.error {
+  color: var(--sys-on-error-container);
+  background-color: rgb(from var(--sys-error-container) r g b / 0.8);
 
-  .select-panel {
-    // --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, lighter)};
-    // --mat-option-label-text-color: #{map.get($gray-palette, 700)};
-    // --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, darker)};
-    // --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{mat.get-theme-color($theme, primary, 700)};
+  .alert {
+    color: var(--sys-error);
   }
-
-  .visualize-notification {
-    color: #4b4b5e;
-  }
-
-  .upload-errors {
-    .error-message {
-      // color: #{mat.get-theme-color($theme, primary, darker)};
-    }
-    .error-instructions {
-      // color: #{map.get($gray-palette, 700)};
-    }
-  }
-  // }
-
-  // @mixin typography($theme) {
-  // }
-
-  // @mixin theme($theme) {
-  //   @if mat.theme-has($theme, color) {
-  //     @include color($theme);
-  //   }
-
-  //   @if mat.theme-has($theme, typography) {
-  //     @include typography($theme);
-  //   }
 }

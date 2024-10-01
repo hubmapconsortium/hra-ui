@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
+import { ButtonModule } from '@hra-ui/design-system/button';
 import { reduce, Subscription } from 'rxjs';
 
 /**
@@ -34,7 +34,7 @@ export type FileLoadError = FileTypeError | FileParseError;
 @Component({
   selector: 'cde-file-upload',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatIconModule, ButtonModule],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
