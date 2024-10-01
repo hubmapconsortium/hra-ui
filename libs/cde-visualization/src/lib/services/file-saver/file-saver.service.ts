@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { unparse, UnparseConfig, UnparseObject } from 'papaparse';
 
 /**
@@ -14,7 +14,7 @@ export class FileSaverService {
   private readonly document = inject(DOCUMENT);
 
   /** Injects the MatSnackBar service for notifications */
-  private readonly snackbar = inject(MatSnackBar);
+  private readonly snackbar = inject(SnackbarService);
 
   /** Saves a file from a URL with a given filename */
   save(url: string, filename: string): void {
@@ -28,7 +28,7 @@ export class FileSaverService {
     document.body.appendChild(linkEl);
     linkEl.dispatchEvent(new MouseEvent('click'));
     document.body.removeChild(linkEl);
-    this.snackbar.open('File downloaded', undefined, { duration: 1000, panelClass: 'download-snackbar-panel' });
+    this.snackbar.open('File downloaded', '', false, 'end', { duration: 1000 });
   }
 
   /** Saves a Blob as a file with a given filename */

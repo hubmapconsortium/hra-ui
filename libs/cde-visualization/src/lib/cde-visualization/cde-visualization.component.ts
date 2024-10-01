@@ -12,22 +12,22 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
+import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,
+  colorMapToLookup,
   ColorMapTypeKey,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  colorMapToLookup,
 } from '../models/color-map';
-import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
+import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry, EdgeIndex } from '../models/edge';
 import { Metadata } from '../models/metadata';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
 import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
@@ -206,6 +206,7 @@ export class CdeVisualizationComponent {
   /** Computed cell types from loaded nodes */
   readonly cellTypesFromNodes = computed(() => {
     const nodes = this.loadedNodes();
+    const edges = this.loadedEdges();
     const targetKey = this.nodeTypeKey();
     const defaultColorGenerator = createColorGenerator();
     const cellTypeByName: Record<string, CellTypeEntry> = {};
@@ -215,9 +216,16 @@ export class CdeVisualizationComponent {
       cellTypeByName[name] ??= {
         name,
         count: 0,
+        outgoingEdgeCount: 0,
         color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
       };
       cellTypeByName[name].count += 1;
+    }
+
+    for (const edge of edges) {
+      const node = nodes[edge[EdgeIndex.SourceNode]];
+      const name = node[targetKey];
+      cellTypeByName[name].outgoingEdgeCount += 1;
     }
 
     return Object.values(cellTypeByName);

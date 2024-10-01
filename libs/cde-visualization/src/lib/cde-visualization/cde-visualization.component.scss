@@ -44,7 +44,7 @@
 :host {
   width: 100%;
   display: grid;
-  grid-template-columns: 21rem minmax(59rem, calc(100vw - 21rem));
+  grid-template-columns: 22.75rem minmax(59rem, calc(100vw - 21rem));
   grid-template-rows: 5.25rem minmax(calc(900px - 5.25rem), calc(100vh - 5.25rem));
   grid-template-areas:
     'header header'

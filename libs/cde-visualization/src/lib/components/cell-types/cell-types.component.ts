@@ -19,17 +19,18 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Rgb } from '@hra-ui/design-system/color-picker';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /**
  * Cell Type Component
@@ -52,6 +53,7 @@ import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tool
     MatMenuModule,
     IconButtonSizeDirective,
     TooltipCardComponent,
+    MatSnackBarModule,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -66,11 +68,20 @@ export class CellTypesComponent {
   /** Currently selected cell type */
   readonly selectedCellType = input<string>('');
 
-  /** Output event for download action */
-  readonly download = output();
+  /** Output event for download colormap action */
+  readonly downloadColorMap = output();
+
+  /** Output event for download edges action */
+  readonly downloadNodes = output();
+
+  /** Output event for download edges action */
+  readonly downloadEdges = output();
+
+  /** Output event for reset color */
+  readonly resetAllColors = output();
 
   /** Columns to be displayed in the table */
-  protected readonly columns = ['select', 'name', 'count'];
+  protected readonly columns = ['select', 'cellType', 'count', 'links'];
 
   /** Tooltip position configuration */
   protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
@@ -86,6 +97,9 @@ export class CellTypesComponent {
     },
   ];
 
+  /** Flag to toggle cell links row visibility */
+  hideCellLinkData = false;
+
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
 
@@ -98,6 +112,7 @@ export class CellTypesComponent {
   /** Bind data source to cell types */
   protected readonly dataSourceBindRef = effect(() => {
     this.dataSource.data = this.cellTypes();
+    console.log(this.cellTypes());
     this.cdr.markForCheck();
   });
 
