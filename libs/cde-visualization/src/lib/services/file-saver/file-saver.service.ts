@@ -28,7 +28,7 @@ export class FileSaverService {
     document.body.appendChild(linkEl);
     linkEl.dispatchEvent(new MouseEvent('click'));
     document.body.removeChild(linkEl);
-    this.snackbar.open('File downloaded', '', false, 'end', { duration: 1000 });
+    this.snackbar.open('File downloaded', '', false, 'end', { duration: 5000 });
   }
 
   /** Saves a Blob as a file with a given filename */
