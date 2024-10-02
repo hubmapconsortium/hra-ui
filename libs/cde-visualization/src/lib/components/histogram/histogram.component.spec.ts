@@ -1,13 +1,12 @@
 import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
-import { RenderComponentOptions, render, screen } from '@testing-library/angular';
+import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
-import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '@hra-ui/design-system/color-picker';
-import { EdgeEntry } from '../../models/edge';
+
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
@@ -21,17 +20,16 @@ describe('HistogramComponent', () => {
   }
 
   const sampleNodes = [createNodeEntry('a', 0, 0), createNodeEntry('b', 0, 2), createNodeEntry('c', 0, 4)];
-  const sampleEdges: EdgeEntry[] = [
-    [0, 0, 0, 3, 4, 5, 6],
-    [1, 0, 2, 3, 4, 5, 6],
-    [2, 0, 4, 3, 4, 5, 6],
+  const sampleData = [
+    {
+      type: 'A',
+      distance: 5,
+    },
+    {
+      type: 'B',
+      distance: 7,
+    },
   ];
-  const sampleCellTypes: CellTypeEntry[] = [
-    { name: 'a', count: 2, color: [0, 0, 0], outgoingEdgeCount: 0 },
-    { name: 'b', count: 4, color: [0, 1, 2], outgoingEdgeCount: 0 },
-    { name: 'c', count: 6, color: [0, 1, 3], outgoingEdgeCount: 0 },
-  ];
-  const sampleCellTypesSelection: string[] = [sampleCellTypes[0].name, sampleCellTypes[1].name];
 
   const embedResult = mockDeep<Result>();
 
@@ -61,12 +59,10 @@ describe('HistogramComponent', () => {
   it('should render the histogram using vega', async () => {
     const { fixture } = await setup({
       componentInputs: {
-        nodes: sampleNodes,
-        nodeTargetKey,
-        edges: sampleEdges,
+        data: sampleData,
+        colors: [],
+        filteredCellTypes: [],
         selectedCellType: sampleNodes[0][nodeTargetKey],
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
       },
     });
     await fixture.whenStable();
@@ -75,15 +71,13 @@ describe('HistogramComponent', () => {
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
   });
 
-  it('should set empty data when nodes or edges are empty', async () => {
+  it('should set empty data when input data is empty', async () => {
     const { fixture } = await setup({
       componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
         selectedCellType: sampleNodes[0][nodeTargetKey],
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
       },
     });
     await fixture.whenStable();
@@ -94,12 +88,10 @@ describe('HistogramComponent', () => {
   it('should download in the specified format', async () => {
     await setup({
       componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
         selectedCellType: '',
-        cellTypes: [],
-        cellTypesSelection: [],
       },
     });
 
@@ -115,35 +107,15 @@ describe('HistogramComponent', () => {
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
   });
 
-  it('should updateColor', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await setup({
-      componentInputs: {
-        nodes: [],
-        nodeTargetKey: 'key',
-        edges: [],
-        selectedCellType: 'type',
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
-      },
-    });
-
-    instance.updateColor(sampleCellTypes[0], [255, 255, 255]);
-    expect(instance.cellTypes()[0].color).toEqual([255, 255, 255]);
-  });
-
   it('should reset all cell colors', async () => {
     const {
       fixture: { componentInstance: instance },
     } = await setup({
       componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
         selectedCellType: '',
-        cellTypes: [],
-        cellTypesSelection: [],
       },
     });
 
