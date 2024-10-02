@@ -11,6 +11,7 @@ import {
   input,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -25,7 +26,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
@@ -80,11 +81,14 @@ export class CellTypesComponent {
   /** Output event for reset color */
   readonly resetAllColors = output();
 
-  /** Base columns to be displayed in the table */
-  private readonly baseColumns = ['select', 'cellType', 'count'];
-
   /** Columns to be displayed in the table */
-  protected columns = [...this.baseColumns, 'links'];
+  protected readonly columns = computed(() => {
+    if (this.hideCellLinkData()) {
+      return ['select', 'cellType', 'count'];
+    } else {
+      return ['select', 'cellType', 'count', 'links'];
+    }
+  });
 
   /** Tooltip position configuration */
   protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
@@ -93,15 +97,11 @@ export class CellTypesComponent {
   protected readonly sort = viewChild.required(MatSort);
 
   /** Content for Info Tooltip card */
-  protected readonly infoToolTip: TooltipContent[] = [
-    {
-      description:
-        'Show/hide cell types in the visualization and plots. Hide cell links from this table view. Update colors for individual cell types. Download CSVs for the current configurations of cell types, cell links, and cell type color map formatting.',
-    },
-  ];
+  protected readonly infoToolTipDescription: string =
+    'Show/hide cell types in the visualization and plots. Hide cell links from this table view. Update colors for individual cell types. Download CSVs for the current configurations of cell types, cell links, and cell type color map formatting.';
 
   /** Flag to toggle cell links row visibility */
-  protected hideCellLinkData = false;
+  protected hideCellLinkData = signal(false);
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -223,16 +223,7 @@ export class CellTypesComponent {
     }
   }
 
-  private updateColumns() {
-    if (this.hideCellLinkData) {
-      this.columns = this.columns.filter((column) => column !== 'links');
-    } else if (!this.columns.includes('links')) {
-      this.columns = [...this.baseColumns, 'links'];
-    }
-  }
-
   toggleLinksColumn(): void {
-    this.hideCellLinkData = !this.hideCellLinkData;
-    this.updateColumns();
+    this.hideCellLinkData.set(!this.hideCellLinkData);
   }
 }

@@ -48,6 +48,14 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-table-header-container-height: 2rem;
   --mat-menu-item-label-text-color: var(--sys-primary);
 
+  &:not(:has(.total-cell-links)) {
+    grid:
+      'cell-types . download'
+      'total-cell-types . total-cells'
+      'table table table' 1fr
+      / auto 1fr auto;
+  }
+
   span.cell-types-label {
     font: var(--sys-label-medium);
     letter-spacing: var(--sys-label-medium-tracking);
@@ -219,6 +227,16 @@ $blue-theme: mat.m2-define-light-theme(
   }
 }
 
-::ng-deep .mat-mdc-menu-content button {
-  color: var(--sys-primary);
+::ng-deep {
+  .mat-mdc-menu-content button {
+    color: var(--sys-primary);
+  }
+
+  div.mat-mdc-menu-panel {
+    max-width: 308px;
+    &.info-sub-menu .mat-mdc-menu-content {
+      padding: 1rem 1rem;
+      color: var(--sys-primary);
+    }
+  }
 }
