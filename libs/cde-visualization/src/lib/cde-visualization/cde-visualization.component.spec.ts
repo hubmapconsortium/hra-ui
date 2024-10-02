@@ -307,16 +307,19 @@ describe('CdeVisualizationComponent', () => {
           name: 'a',
           count: 1,
           color: [0, 0, 0],
+          outgoingEdgeCount: 0,
         },
         {
           name: 'b',
           count: 1,
           color: [0, 0, 1],
+          outgoingEdgeCount: 0,
         },
         {
           name: 'c',
           count: 1,
           color: [0, 0, 2],
+          outgoingEdgeCount: 0,
         },
       ]);
     });
@@ -336,16 +339,19 @@ describe('CdeVisualizationComponent', () => {
           name: 'a',
           count: 1,
           color: [112, 165, 168],
+          outgoingEdgeCount: 0,
         },
         {
           name: 'b',
           count: 2,
           color: [205, 132, 144],
+          outgoingEdgeCount: 0,
         },
         {
           name: 'c',
           count: 1,
           color: [116, 149, 174],
+          outgoingEdgeCount: 0,
         },
       ]);
     });

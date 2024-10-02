@@ -58,7 +58,7 @@
   <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
   Total Cells
 </div>
-@if (!hideCellLinkData) {
+@if (!hideCellLinkData()) {
   <div class="total-cell-links">
     <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
     Total Cell Links

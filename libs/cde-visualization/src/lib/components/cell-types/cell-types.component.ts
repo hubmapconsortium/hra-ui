@@ -97,8 +97,9 @@ export class CellTypesComponent {
   protected readonly sort = viewChild.required(MatSort);
 
   /** Content for Info Tooltip card */
-  protected readonly infoToolTipDescription: string =
-    'Show/hide cell types in the visualization and plots. Hide cell links from this table view. Update colors for individual cell types. Download CSVs for the current configurations of cell types, cell links, and cell type color map formatting.';
+  protected readonly infoToolTipDescription: string = `Show/hide cell types in the visualization and plots. Hide cell links from this table view.
+    Update colors for individual cell types. Download CSVs for the current configurations of
+    cell types, cell links, and cell type color map formatting.`;
 
   /** Flag to toggle cell links row visibility */
   protected hideCellLinkData = signal(false);
@@ -224,6 +225,6 @@ export class CellTypesComponent {
   }
 
   toggleLinksColumn(): void {
-    this.hideCellLinkData.set(!this.hideCellLinkData);
+    this.hideCellLinkData.set(!this.hideCellLinkData());
   }
 }
