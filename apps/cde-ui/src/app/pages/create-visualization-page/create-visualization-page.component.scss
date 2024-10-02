@@ -7,13 +7,14 @@
 
   hra-nav-header {
     border-bottom: 1px solid var(--sys-outline);
+    height: 5rem;
   }
 
   ::ng-deep .app-logo .app-description {
-    border-radius: 2px;
+    border-radius: 0.125rem;
     width: fit-content;
-    padding: 0 4px;
-    font: 500 10px/1rem Metropolis !important;
+    padding: 0 0.25rem;
+    font: 500 0.625rem/1rem Metropolis !important;
   }
 
   .content {
@@ -83,7 +84,7 @@
       font-weight: var(--sys-label-large-weight);
       padding-left: 1rem;
       text-align: left;
-      min-width: 216px;
+      min-width: 13.5rem;
       height: 1.5rem;
     }
 
@@ -103,9 +104,10 @@
     width: fit-content;
   }
 
-  // mat-form-field {
-  //   margin: 1rem 0;
-  // }
+  mat-form-field {
+    --mat-form-field-container-height: 3rem;
+    height: 3rem;
+  }
 
   .data-upload {
     display: grid;
@@ -142,6 +144,10 @@
       grid-area: subheader;
       margin-bottom: 1rem;
     }
+
+    .cell-type-select {
+      margin-top: 1.5rem;
+    }
   }
 
   .parameters {
@@ -161,11 +167,13 @@
 
   .metadata {
     display: grid;
+    gap: 2rem;
     column-gap: 1.5rem;
     grid: 'header header';
 
     .header {
       grid-area: header;
+      margin-bottom: 0;
     }
   }
 

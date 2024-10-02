@@ -149,11 +149,10 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field class="cell-type-select" hraSelectSize="medium" subscriptSizing="dynamic">
         <mat-label>Cell Type</mat-label>
         <mat-select
           disableRipple
-          class="mat-body-2"
           formControlName="cellType"
           [panelClass]="['options-container', 'options-container-medium']"
           cdeMarkEmptyFormControl

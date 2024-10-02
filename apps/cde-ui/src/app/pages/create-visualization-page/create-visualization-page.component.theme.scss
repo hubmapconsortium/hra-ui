@@ -1,8 +1,8 @@
 cde-create-visualization-page {
-  .page-nav {
-    .title {
-      color: var(--sys-secondary);
-    }
+  color: var(--sys-secondary);
+
+  hra-nav-header {
+    background-color: var(--sys-surface-container-high) !important;
   }
 
   .app-description {
@@ -12,11 +12,12 @@ cde-create-visualization-page {
 
   .card {
     background-color: var(--sys-surface-container-low);
+
+    .header {
+      --mat-icon-color: var(--sys-secondary);
+    }
   }
 
-  th {
-    color: var(--sys-secondary);
-  }
   td {
     color: var(--sys-primary);
   }

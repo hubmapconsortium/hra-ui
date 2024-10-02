@@ -24,7 +24,12 @@ import {
 } from '@hra-ui/cde-visualization';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
 import { ButtonModule } from '@hra-ui/design-system/button';
+import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { FooterComponent } from '@hra-ui/design-system/footer';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { SelectSizeDirective } from '@hra-ui/design-system/select';
+import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { ParseError } from 'papaparse';
 
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
@@ -33,11 +38,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
-import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
-import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
-import { SelectSizeDirective } from '@hra-ui/design-system/select';
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -74,18 +74,18 @@ function optionalValue<T>(): T | null {
     MatSelectModule,
     MatTableModule,
 
+    BreadcrumbsComponent,
+    ButtonModule,
     FileUploadComponent,
     FooterComponent,
     HeaderComponent,
     MarkEmptyFormControlDirective,
-    OverlayModule,
-    ButtonModule,
-    BreadcrumbsComponent,
-    StepIndicatorComponent,
-    TooltipCardComponent,
-    ToggleButtonSizeDirective,
-    SelectSizeDirective,
     NavHeaderComponent,
+    OverlayModule,
+    SelectSizeDirective,
+    StepIndicatorComponent,
+    ToggleButtonSizeDirective,
+    TooltipCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -180,6 +180,7 @@ export class CreateVisualizationPageComponent {
   /** Tooltip position config */
   readonly tooltipPosition = TOOLTIP_POSITION_BELOW;
 
+  /** Tooltip content */
   readonly tooltips: TooltipContent[][] = [
     [
       {
@@ -286,7 +287,7 @@ export class CreateVisualizationPageComponent {
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
     return errorColumns.length > 0
-      ? `Please select the required column headers: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+      ? `Please select the required column header${errorColumns.length === 1 ? '' : 's'}: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
       : undefined;
   }
 
@@ -523,7 +524,7 @@ export class CreateVisualizationPageComponent {
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case 'missing-key-error':
-        return `Required columns missing: ${error.keys.join(', ')}`;
+        return `Required column${error.keys.length === 1 ? '' : 's'} missing: ${error.keys.join(', ')}`;
 
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;

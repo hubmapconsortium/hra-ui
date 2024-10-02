@@ -118,7 +118,7 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column headers: Cell Type/);
+      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: Cell Type/);
     });
 
     it('sets nodes', async () => {
