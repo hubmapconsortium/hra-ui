@@ -20,29 +20,32 @@
 </div>
 
 <div class="visualizations">
-  <cde-node-dist-visualization
-    [nodes]="loadedNodes()"
-    [nodeTargetKey]="nodeTypeKey()"
-    [nodeTargetValue]="selectedNodeTargetValue()"
-    [edges]="loadedEdges()"
-    [maxEdgeDistance]="maxEdgeDistance()"
-    [colorMap]="cellTypesAsColorMap()"
-    [colorMapKey]="colorMapTypeKey()"
-    [colorMapValueKey]="colorMapValueKey()"
-    [cellTypesSelection]="cellTypesSelection()"
-    (nodeClick)="nodeClick.emit($event)"
-    (nodeHover)="nodeHover.emit($event)"
-    (edgesChange)="edges.set($event)"
-    #visualization
-  ></cde-node-dist-visualization>
+  <div class="top">
+    <cde-node-dist-visualization
+      [nodes]="loadedNodes()"
+      [nodeTargetKey]="nodeTypeKey()"
+      [nodeTargetValue]="selectedNodeTargetValue()"
+      [edges]="loadedEdges()"
+      [maxEdgeDistance]="maxEdgeDistance()"
+      [colorMap]="cellTypesAsColorMap()"
+      [colorMapKey]="colorMapTypeKey()"
+      [colorMapValueKey]="colorMapValueKey()"
+      [cellTypesSelection]="cellTypesSelection()"
+      (nodeClick)="nodeClick.emit($event)"
+      (nodeHover)="nodeHover.emit($event)"
+      (edgesChange)="edges.set($event)"
+      #visualization
+    ></cde-node-dist-visualization>
+
+    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
+  </div>
 
   <cde-histogram
-    [nodes]="loadedNodes()"
-    [nodeTargetKey]="nodeTypeKey()"
-    [edges]="loadedEdges()"
+    [colors]="filteredColors()"
+    [data]="filteredDistances()"
+    [filteredCellTypes]="filteredCellTypes()"
     [selectedCellType]="selectedNodeTargetValue()"
-    [(cellTypes)]="cellTypes"
-    [cellTypesSelection]="cellTypesSelection()"
+    (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>
 </div>

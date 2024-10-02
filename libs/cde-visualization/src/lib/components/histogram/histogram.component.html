@@ -58,13 +58,13 @@
           (colorPickerOpen)="colorPicker.set($event)"
         >
         </cde-color-picker-label>
-        @for (type of filteredCellTypes(); track type.name) {
+        @for (entry of filteredCellTypes(); track entry.name) {
           <cde-color-picker-label
-            [label]="type.name"
-            [color]="type.color"
-            [isAnchor]="type.name === selectedCellType()"
+            [label]="entry.name"
+            [color]="entry.color"
+            [isAnchor]="entry.name === selectedCellType()"
             (colorPickerOpen)="colorPicker.set($event)"
-            (colorChange)="updateColor(type, $event)"
+            (colorChange)="updateColor.emit({ entry, color: $event })"
           ></cde-color-picker-label>
         }
       </ng-scrollbar>
