@@ -7,6 +7,9 @@ import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { provideTable } from '@hra-ui/design-system/table';
+import { provideSelect } from '@hra-ui/design-system/select';
+import { provideInput } from '@hra-ui/design-system/input';
+import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 
 /**
  * Returns design system providers
@@ -25,5 +28,8 @@ export function provideDesignSystem(): EnvironmentProviders {
     provideScrolling(),
     provideMenu(),
     provideTable(),
+    provideSelect(),
+    provideInput(),
+    provideButtonToggle(),
   ]);
 }

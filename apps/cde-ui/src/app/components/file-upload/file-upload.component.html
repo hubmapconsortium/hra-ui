@@ -7,25 +7,23 @@
 
 @if (!file && errorMessage()) {
   <div class="error">
-    <span class="message">{{ errorMessage() }}</span>
-    <span class="action">{{ errorActionMessage() }}</span>
+    <mat-icon class="material-symbols-rounded alert">error</mat-icon>
+    <div class="error-messages">
+      <span class="message">{{ errorMessage() }}</span>
+      <span class="action">{{ errorActionMessage() }}</span>
+    </div>
   </div>
 }
 
 @if (file && !errorMessage()) {
   <div class="upload-success">
     <div class="filename">
-      <span class="loaded-label">File loaded:</span>
       <span class="column-info-list mat-body-2 file-name">{{ file ? file.name : '' }}</span>
     </div>
-    <button mat-flat-button class="remove-file" type="button" color="primary" (click)="cancelLoad()">
-      <mat-icon class="material-symbols-rounded">cancel</mat-icon>
-      Remove CSV
-    </button>
+    <mat-icon class="material-symbols-rounded remove-file" (click)="cancelLoad()">delete</mat-icon>
   </div>
 } @else {
-  <button mat-flat-button class="upload" type="button" color="primary" (click)="fileInput.click()">
-    <mat-icon class="material-symbols-rounded">upload</mat-icon>
+  <button mat-flat-button class="upload" (click)="fileInput.click()" hraPrimaryButton hraButtonSize="large">
     Upload CSV
   </button>
   <input
@@ -38,15 +36,3 @@
     #fileInput
   />
 }
-<a
-  mat-button
-  class="use-template"
-  [class.loaded]="file"
-  color="primary"
-  [href]="templateUrl()"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Use Template
-  <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-</a>
