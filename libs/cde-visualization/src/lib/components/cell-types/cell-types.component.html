@@ -14,7 +14,7 @@
       <span>Download</span>
       <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
-    <button mat-menu-item (click)="hideCellLinkData = !hideCellLinkData">
+    <button mat-menu-item (click)="toggleLinksColumn()">
       <mat-icon>{{ hideCellLinkData ? 'visibility' : 'visibility_off' }}visibility</mat-icon>
       {{ hideCellLinkData ? 'Show' : 'Hide' }} Cell Link Data
     </button>
@@ -58,6 +58,10 @@
   <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
   Total Cells
 </div>
+<div class="total-cell-links">
+  <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
+  Total Cell Links
+</div>
 
 <ng-scrollbar
   class="table-overflow-container"
@@ -100,8 +104,8 @@
       </ng-container>
 
       <ng-container matColumnDef="cellType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc" class="mat-caption">Cell Type</th>
-        <td mat-cell *matCellDef="let element" class="mat-caption name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">Cell Type</th>
+        <td mat-cell *matCellDef="let element" class="name">
           <cde-color-picker-label
             [label]="element.name"
             [color]="element.color"
@@ -113,7 +117,7 @@
       </ng-container>
 
       <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef start="desc">#Cells</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header start="desc">#Cells</th>
         <td mat-cell *matCellDef="let element">{{ element.count.toLocaleString() }}</td>
       </ng-container>
 

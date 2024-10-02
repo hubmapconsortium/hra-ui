@@ -24,7 +24,7 @@ $blue-theme: mat.m2-define-light-theme(
   display: grid;
   grid:
     'cell-types . download'
-    'total-cell-types . total-cells'
+    'total-cell-types total-cells total-cell-links'
     'table table table' 1fr
     / auto 1fr auto;
   align-items: start;
@@ -72,7 +72,8 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   .total-ct-label,
-  .total-cells {
+  .total-cells,
+  .total-cell-links {
     font: var(--sys-label-small);
     letter-spacing: var(--sys-label-medium-tracking);
 
@@ -90,6 +91,11 @@ $blue-theme: mat.m2-define-light-theme(
 
   .total-cells {
     grid-area: total-cells;
+    justify-self: center;
+  }
+
+  .total-cell-links {
+    grid-area: total-cell-links;
   }
 
   .table-overflow-container {
@@ -133,9 +139,9 @@ $blue-theme: mat.m2-define-light-theme(
           }
         }
 
-        tbody tr td.mdc-data-table__cell:last-child {
+        tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
-          padding-right: 1.65rem;
+          padding-right: 1.5rem;
           color: var(--sys-primary);
           font: var(--sys-label-small);
         }

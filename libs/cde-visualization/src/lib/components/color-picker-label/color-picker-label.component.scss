@@ -34,7 +34,7 @@
     cursor: pointer;
     display: block;
     white-space: nowrap;
-    max-width: 8.25rem;
+    max-width: calc(100% - 3.5rem);
     text-overflow: ellipsis;
     overflow: hidden;
     flex-grow: 0;

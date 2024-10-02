@@ -80,8 +80,11 @@ export class CellTypesComponent {
   /** Output event for reset color */
   readonly resetAllColors = output();
 
+  /** Base columns to be displayed in the table */
+  private readonly baseColumns = ['select', 'cellType', 'count'];
+
   /** Columns to be displayed in the table */
-  protected readonly columns = ['select', 'cellType', 'count', 'links'];
+  protected columns = [...this.baseColumns, 'links'];
 
   /** Tooltip position configuration */
   protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
@@ -98,7 +101,7 @@ export class CellTypesComponent {
   ];
 
   /** Flag to toggle cell links row visibility */
-  hideCellLinkData = false;
+  protected hideCellLinkData = false;
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -112,7 +115,6 @@ export class CellTypesComponent {
   /** Bind data source to cell types */
   protected readonly dataSourceBindRef = effect(() => {
     this.dataSource.data = this.cellTypes();
-    console.log(this.cellTypes());
     this.cdr.markForCheck();
   });
 
@@ -147,17 +149,25 @@ export class CellTypesComponent {
     }
   });
 
+  /** Helper function to calculate the number of nodes or edges */
+  protected readonly sumCounts = (count: number, entry: CellTypeEntry, key: 'count' | 'outgoingEdgeCount') => {
+    const value = this.isSelected(entry) ? entry[key] : 0;
+    return count + value;
+  };
+
   /** Computed total cell count based on selection */
   protected totalCellCount = computed(() => {
-    const sumCounts = (count: number, entry: CellTypeEntry) => {
-      const value = this.isSelected(entry) ? entry.count : 0;
-      return count + value;
-    };
-
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 
-    return this.cellTypes().reduce(sumCounts, 0);
+    return this.cellTypes().reduce((count, entry) => this.sumCounts(count, entry, 'count'), 0);
+  });
+
+  protected totalCellLinksCount = computed(() => {
+    // Grab dependency on current selection since selectionModel is used indirectly
+    this.selection();
+
+    return this.cellTypes().reduce((count, entry) => this.sumCounts(count, entry, 'outgoingEdgeCount'), 0);
   });
 
   /** Toggle state for cell types info */
@@ -211,5 +221,18 @@ export class CellTypesComponent {
         sorter.sort(sortable);
       } while (sorter.direction !== 'desc');
     }
+  }
+
+  private updateColumns() {
+    if (this.hideCellLinkData) {
+      this.columns = this.columns.filter((column) => column !== 'links');
+    } else if (!this.columns.includes('links')) {
+      this.columns = [...this.baseColumns, 'links'];
+    }
+  }
+
+  toggleLinksColumn(): void {
+    this.hideCellLinkData = !this.hideCellLinkData;
+    this.updateColumns();
   }
 }
