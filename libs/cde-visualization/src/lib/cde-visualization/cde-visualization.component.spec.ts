@@ -4,8 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatMenuHarness } from '@angular/material/menu/testing';
 import { rgbToHex } from '@hra-ui/design-system/color-picker';
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
@@ -144,9 +146,7 @@ describe('CdeVisualizationComponent', () => {
   });
 
   it('should update color map when downloadColorMap is called', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await setup({
+    const { fixture } = await setup({
       componentInputs: {
         ...sampleData,
         nodes: sampleNodes,
@@ -154,6 +154,7 @@ describe('CdeVisualizationComponent', () => {
       },
     });
 
+    const instance = fixture.componentInstance;
     const processedColorMap = instance
       .cellTypesAsColorMap()
       .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
@@ -161,8 +162,10 @@ describe('CdeVisualizationComponent', () => {
     const fileSaver = TestBed.inject(FileSaverService);
     const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
 
-    const downloadColorMapButton = screen.getByText('CSV');
-    await userEvent.click(downloadColorMapButton);
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
     expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
   });
 
