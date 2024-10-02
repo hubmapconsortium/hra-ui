@@ -1,0 +1,46 @@
+<span class="mat-caption violin-label">
+  Violin Graph
+  <mat-icon
+    class="material-symbols-rounded"
+    cdkOverlayOrigin
+    #resetTrigger="cdkOverlayOrigin"
+    (mouseover)="infoOpen = true"
+    (mouseout)="infoOpen = false"
+    >info</mat-icon
+  >
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+    [cdkConnectedOverlayOrigin]="resetTrigger"
+    [cdkConnectedOverlayPositions]="tooltipPosition"
+    [cdkConnectedOverlayOpen]="infoOpen"
+    [cdkConnectedOverlayOffsetX]="5"
+  >
+    <div>Violin plot</div>
+  </ng-template>
+</span>
+
+<div class="download">
+  <button
+    mat-flat-button
+    color="accent"
+    class="mat-caption download"
+    (click)="$event.stopPropagation(); download('svg')"
+  >
+    <mat-icon class="material-symbols-rounded">download</mat-icon>
+    SVG
+  </button>
+  <button
+    mat-flat-button
+    color="accent"
+    class="mat-caption download"
+    (click)="$event.stopPropagation(); download('png')"
+  >
+    <mat-icon class="material-symbols-rounded">download</mat-icon>
+    PNG
+  </button>
+</div>
+
+<ng-scrollbar hraScrollOverflowFade class="violin">
+  <div data-testid="violin" #violin></div>
+</ng-scrollbar>
