@@ -83,8 +83,14 @@
       "@hra-ui/design-system/button-toggle": [
         "libs/design-system/button-toggle/src/index.ts"
       ],
+      "@hra-ui/design-system/color-picker": [
+        "libs/design-system/color-picker/src/index.ts"
+      ],
       "@hra-ui/design-system/dialog": [
         "libs/design-system/dialog/src/index.ts"
+      ],
+      "@hra-ui/design-system/error-indicator": [
+        "libs/design-system/error-indicator/src/index.ts"
       ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
@@ -118,6 +124,9 @@
       ],
       "@hra-ui/design-system/social-media-button": [
         "libs/design-system/social-media-button/src/index.ts"
+      ],
+      "@hra-ui/design-system/step-indicator": [
+        "libs/design-system/step-indicator/src/index.ts"
       ],
       "@hra-ui/design-system/table": [
         "libs/design-system/table/src/index.ts"

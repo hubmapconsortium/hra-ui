@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, model, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
-import { Rgb, colorEquals, hexToRgb, rgbToHex } from '../../models/color';
+import { Rgb, colorEquals, hexToRgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
 /** Maximum cell width for the cell type label */

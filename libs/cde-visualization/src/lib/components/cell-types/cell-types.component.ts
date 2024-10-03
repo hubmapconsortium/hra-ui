@@ -24,7 +24,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '../../models/color';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 

@@ -65,7 +65,7 @@
     "express-fileupload": "^1.4.0",
     "file-saver": "^2.0.5",
     "helmet": "^7.1.0",
-    "hra-node-dist-vis": "github:cns-iu/hra-node-dist-vis#8bcf91002633fe0fd2edb663b65bf927bb4a323f",
+    "hra-node-dist-vis": "github:cns-iu/hra-node-dist-vis#47342cbf0460e95b59d710d00af266ababc2d6f4",
     "immer": "^10.1.1",
     "js-yaml": "^4.1.0",
     "jsonld": "^8.3.2",

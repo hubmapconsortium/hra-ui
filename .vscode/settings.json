@@ -11,6 +11,8 @@
     "ftu-ui",
     "services",
     "ccf-organ-info",
-    "design-system"
+    "design-system",
+    "body-ui",
+    "eui"
   ]
 }
