@@ -6,6 +6,11 @@
   align-items: center;
   padding-top: 3.5rem;
   overflow: auto;
+  transition: padding-top 0.5s ease-out;
+
+  &:has(.notice.visible) {
+    padding-top: 5.5rem;
+  }
 
   .filler {
     flex-grow: 1;
