@@ -1,17 +1,3 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
-
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
-$blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
-
 ::ng-deep {
   .celltypes-panel {
     max-width: 21rem;
@@ -19,8 +5,6 @@ $blue-theme: mat.m2-define-light-theme(
 }
 
 :host {
-  @include mat.button-color($blue-theme);
-
   display: grid;
   grid:
     'cell-types . download'
@@ -33,11 +17,10 @@ $blue-theme: mat.m2-define-light-theme(
   padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
   border-style: solid;
-  border-color: map.get(map.get(palettes.$palettes, 'blue'), 600);
-  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  border-color: var(--sys-outline-variant);
   --mat-table-background-color: white;
-  --mdc-checkbox-unselected-icon-color: #201e3d;
-  --mat-sort-arrow-color: #201e3d;
+  --mdc-checkbox-unselected-icon-color: var(--sys-secondary);
+  --mat-sort-arrow-color: var(--sys-secondary);
   --mat-table-row-item-container-height: 1.75rem;
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
@@ -46,7 +29,7 @@ $blue-theme: mat.m2-define-light-theme(
 
   span.cell-types-label {
     grid-area: cell-types;
-    font-size: 1rem;
+    font: var(--sys-label-medium);
     height: 2rem;
     display: flex;
     align-items: center;
@@ -58,7 +41,6 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   button.download-csv {
-    --mdc-filled-button-label-text-color: #{button-text-color};
     grid-area: download;
     padding: 0.3438rem 0.5rem;
 
@@ -74,10 +56,12 @@ $blue-theme: mat.m2-define-light-theme(
   .mat-caption,
   .total-ct-label {
     grid-area: total-cell-types;
+    font: var(--sys-label-small);
 
     span {
       display: block;
-      color: #4b4b5e;
+      color: var(--sys-primary);
+      font: var(--sys-label-medium);
     }
   }
 
@@ -85,7 +69,7 @@ $blue-theme: mat.m2-define-light-theme(
     grid-area: total-cells;
 
     span {
-      color: #4b4b5e;
+      color: var(--sys-primary);
       text-align: right;
     }
   }
@@ -104,17 +88,16 @@ $blue-theme: mat.m2-define-light-theme(
           }
 
           tr th:last-child > div {
-            --mat-sort-arrow-color: #4b4b5e;
             justify-content: flex-end;
             margin-right: 0.25rem;
-            color: #4b4b5e;
+            color: var(--sys-secondary);
           }
         }
 
         tbody tr td.mdc-data-table__cell:last-child {
           text-align: end;
           padding-right: 0.25rem;
-          color: #4b4b5e;
+          color: var(--sys-primary);
         }
 
         tr:has(.anchor) {
@@ -123,22 +106,22 @@ $blue-theme: mat.m2-define-light-theme(
           td:first-child {
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
-            border-top: solid #d5dbe3 0.0625rem;
-            border-left: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-left: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
 
           td:not(:first-child, :last-child) {
-            border-top: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
 
           td:last-child {
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            border-top: solid #d5dbe3 0.0625rem;
-            border-right: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-right: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
         }
       }

@@ -1,39 +1,22 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
-
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
-$blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
-
 :host {
-  @include mat.button-color($blue-theme);
   display: grid;
   grid:
     'violin . download'
     'plot plot plot' 1fr
     / auto 1fr auto;
-  grid-template-rows: 2rem calc(100% - 2rem);
-  align-items: start;
+  grid-template-rows: 4rem calc(100% - 4rem);
+  align-items: center;
   row-gap: 0.75rem;
   overflow: hidden;
   padding: 0.75rem 0.5rem;
   border-width: 0px 0px 2px 2px;
   border-style: solid;
-  border-color: map.get(map.get(palettes.$palettes, 'blue'), 600);
-  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
+  border-color: var(--sys-outline-variant);
   --mdc-filled-button-container-height: 2rem;
 
   span.violin-label {
+    font: var(--sys-label-medium);
     grid-area: violin;
-    font-size: 1rem;
-    height: 2rem;
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -43,6 +26,7 @@ $blue-theme: mat.m2-define-light-theme(
   .download {
     grid-area: download;
     padding-right: 0.5rem;
+    font: var(--sys-label-small);
   }
 
   .violin {
@@ -52,7 +36,6 @@ $blue-theme: mat.m2-define-light-theme(
   }
 
   button {
-    --mdc-filled-button-label-text-color: #201e3d;
     padding: 0.375rem 0.5rem;
     margin-left: 0.5rem;
 
@@ -72,7 +55,7 @@ $blue-theme: mat.m2-define-light-theme(
     font-weight: 500;
     font-size: 0.75rem;
     line-height: 1.125rem;
-    color: #201e3d;
+    color: var(--sys-secondary);
     padding: 0.5rem;
     max-width: 22.5rem;
     box-shadow: 0px 5px 16px 0px #201e3d3d;

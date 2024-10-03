@@ -12,15 +12,15 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
+import { AppLogosComponent } from '@hra-ui/design-system/app-logos';
+import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
-import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,
@@ -58,12 +58,12 @@ export interface DistanceEntry {
   standalone: true,
   imports: [
     CommonModule,
-    VisualizationHeaderComponent,
     MetadataComponent,
     CellTypesComponent,
     NodeDistVisualizationComponent,
     HistogramComponent,
     ViolinComponent,
+    AppLogosComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
