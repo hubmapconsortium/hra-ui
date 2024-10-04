@@ -6,6 +6,17 @@
   align-items: center;
   padding-top: 3.5rem;
   overflow: auto;
+  transition: padding-top 0.5s ease-out;
+
+  &:has(.notice.visible) {
+    padding-top: 8.5rem;
+
+    ::ng-deep {
+      menu-tree.menu {
+        margin-top: 6rem !important;
+      }
+    }
+  }
 
   .filler {
     flex-grow: 1;

@@ -1,7 +1,9 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
@@ -12,8 +14,6 @@ import { PageRendererModule } from './components/page-renderer/page-renderer.mod
 import { PageModule } from './components/page/page.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TissueInfoPageModule } from './pages/tissue-info-page/tissue-info-page.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { gfmHeadingId } from 'marked-gfm-heading-id';
 
 @NgModule({
   declarations: [AppComponent],

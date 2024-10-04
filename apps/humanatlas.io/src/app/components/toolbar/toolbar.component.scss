@@ -94,6 +94,57 @@
       display: unset;
     }
   }
+
+  .notice {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e3f7ff;
+    transition: max-height 0.5s ease-out;
+    max-height: 6.25rem;
+
+    .inner-notice {
+      display: flex;
+      width: 97%;
+      max-width: 77rem;
+      align-items: center;
+
+      .info {
+        margin: 0.5rem;
+        min-width: 1.5rem;
+      }
+
+      .message {
+        margin: 0.5rem 0;
+      }
+
+      .register {
+        margin-left: 0.25rem;
+        text-decoration: underline;
+      }
+
+      button[mat-icon-button] {
+        --mdc-icon-button-state-layer-size: 2.5rem;
+        padding: 0.5rem;
+        align-self: flex-start;
+      }
+    }
+
+    &:not(.visible) {
+      max-height: 0rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 541px) {
+      .inner-notice {
+        .register {
+          display: block;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
 ::ng-deep {
