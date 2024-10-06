@@ -24,6 +24,7 @@ import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -73,7 +74,7 @@ function isNonEmptyArray<T>(array: T[]): boolean {
 @Component({
   selector: 'cde-node-dist-visualization',
   standalone: true,
-  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule, TooltipCardComponent],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -115,6 +116,22 @@ export class NodeDistVisualizationComponent {
 
   /** Tooltip position constant */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      title: 'Zoom Options',
+      description: '• Mouse pinwheel \n• Trackpad Pinch',
+    },
+    {
+      title: 'Pan Options',
+      description: '• CTRL/CMD + mouse drag \n• Right click + mouse drag \n• Keyboard arrows',
+    },
+    {
+      title: 'Rotation Options for 3D Visualizations',
+      description: '• CTRL/CMD + keyboard arrows \n• Mouse Drag',
+    },
+  ];
 
   /** Flag to check if the tooltip is open */
   tooltipOpen = false;

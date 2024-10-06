@@ -16,11 +16,16 @@
     [cdkConnectedOverlayOpen]="cellTypesInfoOpen"
     [cdkConnectedOverlayOffsetX]="5"
   >
-    <div>
-      Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type
-      visualization colors by clicking the cell type's color legend button. Download a color map CSV file of the current
-      cell types and HEX codes.
-    </div>
+    <hra-tooltip-card
+      small
+      [content]="[
+        {
+          description:
+            'Show/hide specific cell types in the visualizations by clicking the checkboxes. Update individual cell type visualization colors by clicking the cell type\'s color legend button. Download a color map CSV file of the current cell types and HEX codes.',
+        },
+      ]"
+    >
+    </hra-tooltip-card>
   </ng-template>
 </span>
 <button mat-flat-button class="mat-caption download-csv" color="primary" (click)="download.emit()">

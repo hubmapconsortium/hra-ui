@@ -1,14 +1,9 @@
 :host {
   display: block;
-  min-width: 545px;
+  min-width: 80rem;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-position: center;
   background-size: cover;
-
-  hra-nav-header {
-    border-bottom: 1px solid var(--sys-outline);
-    height: 5rem;
-  }
 
   .content {
     display: flex;

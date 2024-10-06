@@ -33,6 +33,7 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -121,6 +122,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
+    TooltipCardComponent,
   ],
   providers: [
     {

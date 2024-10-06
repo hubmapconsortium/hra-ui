@@ -41,6 +41,10 @@
   }
 
   button.download-csv {
+    --mdc-filled-button-container-height: 2rem;
+    --mdc-filled-button-container-color: #d5dbe3;
+    --mdc-filled-button-label-text-color: #201e3d;
+
     grid-area: download;
     padding: 0.3438rem 0.5rem;
 

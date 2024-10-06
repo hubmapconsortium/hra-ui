@@ -27,6 +27,7 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
 
 /**
  * Cell Type Component
@@ -46,6 +47,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     OverlayModule,
     ColorPickerLabelComponent,
     ScrollingModule,
+    TooltipCardComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
