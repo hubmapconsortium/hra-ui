@@ -1,6 +1,7 @@
 @use 'light-theme';
 @use 'theming';
 @use '../src/app/pages/create-visualization-page/create-visualization-page.component.theme.scss' as create-visualization;
+@use '../src/app/pages/landing-page/landing-page.component.theme.scss' as landing-page;
 
 html {
   @include theming.theme(light-theme.$theme);
