@@ -1,112 +1,123 @@
 <mat-accordion displayMode="flat" hideToggle>
   <mat-expansion-panel expanded #panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title class="mat-caption title">
-        <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
+    <mat-expansion-panel-header (click)="togglePanel($event, panel)">
+      <mat-panel-title class="title">
+        <button mat-icon-button hraIconButtonSize="medium">
+          <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
+        </button>
         {{ metadata().sampleExtra ? 'Sample ' : '' }}Metadata
-        <mat-icon
-          class="material-symbols-rounded"
-          cdkOverlayOrigin
-          #resetTrigger="cdkOverlayOrigin"
-          (mouseover)="tooltipOpen = true"
-          (mouseout)="tooltipOpen = false"
-          >info</mat-icon
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [hraIconButtonSize]="'medium'"
+          aria-label="Icon to open nested menu"
+          (click)="$event.stopPropagation()"
         >
-        <ng-template
-          cdkConnectedOverlay
-          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-          [cdkConnectedOverlayPositions]="tooltipPosition"
-          [cdkConnectedOverlayOrigin]="resetTrigger"
-          [cdkConnectedOverlayOpen]="tooltipOpen"
-          [cdkConnectedOverlayOffsetX]="5"
-        >
-          <div>Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.</div>
-        </ng-template>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [class]="'metadata-overlay'">
+          <button
+            mat-menu-item
+            [matMenuTriggerFor]="infoSubMenu"
+            class="expanded"
+            matRipple
+            matRippleColor="#201E3D14"
+            (click)="$event.stopImmediatePropagation()"
+          >
+            <mat-icon>info</mat-icon>
+            <span>Info</span>
+          </button>
+          <button mat-menu-item (click)="toggleEmptyFields()">
+            <mat-icon>{{ showEmptyFields() ? 'visibility_off' : 'visibility' }}visibility</mat-icon>
+            {{ showEmptyFields() ? 'Hide' : 'Show' }} Unknown Metadata
+          </button>
+          <button mat-menu-item>
+            <mat-icon>code</mat-icon>
+            Embed App
+          </button>
+          <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+            Visualization metadata for the sample dataset.
+          </mat-menu>
+        </mat-menu>
       </mat-panel-title>
     </mat-expansion-panel-header>
-
-    @if (isFieldVisible('title')) {
-      <div class="mat-caption label">
-        {{ titleLabel() }}
-      </div>
-      @if (metadata().sampleExtra; as extra) {
-        <a [attr.href]="extra.sampleUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
-          metadata().title
-        }}</a>
-      } @else {
-        <span class="mat-caption user-title">{{ metadata().title | defaultTo: 'Unknown' }}</span>
-      }
-    }
-
     <div class="metadata-details">
-      <div class="mat-caption">
-        Source Data
-        @if (metadata().sampleExtra; as extra) {
-          <a [attr.href]="extra.sourceDataUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
-            metadata().sourceData
-          }}</a>
-        } @else {
-          <span class="mat-caption user-source">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+      <div>
+        @if (isFieldVisible('title')) {
+          <span>
+            {{ titleLabel() }}
+          </span>
+          <span>
+            @if (metadata().sampleExtra; as extra) {
+              <a [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">{{ metadata().title }}</a>
+            } @else {
+              <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
+            }
+          </span>
         }
       </div>
+      <div>
+        <span>Source Data</span>
+        <span>
+          @if (metadata().sampleExtra; as extra) {
+            <a [attr.href]="extra.sourceDataUrl" target="_blank" rel="noreferrer noopener">{{
+              metadata().sourceData
+            }}</a>
+          } @else {
+            <span>{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+          }
+        </span>
+      </div>
       @if (isFieldVisible('colorMap')) {
-        <div class="mat-caption">
-          Color Map
+        <div>
+          <span>Color Map</span>
           <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
         </div>
       }
       @if (isFieldVisible('organ')) {
-        <div class="mat-caption">
-          Organ
+        <div>
+          <span>Organ</span>
           <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('technology')) {
-        <div class="mat-caption">
-          Technology
+        <div>
+          <span>Technology</span>
           <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('sex')) {
-        <div class="mat-caption">
-          Sex
+        <div>
+          <span>Sex</span>
           <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('age')) {
-        <div class="mat-caption">
-          Age
+        <div>
+          <span>Age</span>
           <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('thickness')) {
-        <div class="mat-caption">
-          Thickness (µm)
+        <div>
+          <span>Thickness (µm)</span>
           <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
         </div>
       }
       @if (isFieldVisible('pixelSize')) {
-        <div class="mat-caption">
-          Pixel Size (µm/pixel)
+        <div>
+          <span>Pixel Size (µm/pixel)</span>
           <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
         </div>
       }
-      <div class="mat-caption">
-        Creation Date
+      <div>
+        <span>Creation Date</span>
         <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
       </div>
-      <div class="mat-caption">
-        Creation Time
+      <div>
+        <span>Creation Time</span>
         <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
       </div>
     </div>
-
-    @if (hasEmptyFields()) {
-      <div class="show-hide">
-        <button mat-button disableRipple class="mat-caption" color="primary" (click)="toggleEmptyFields()">
-          {{ showEmptyFields() ? 'Hide' : 'Show' }} empty metadata fields
-        </button>
-      </div>
-    }
   </mat-expansion-panel>
 </mat-accordion>

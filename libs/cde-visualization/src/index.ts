@@ -5,6 +5,7 @@ import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 export * from './lib/cde-visualization/cde-visualization.component';
 export * from './lib/models/color-map';
@@ -30,5 +31,11 @@ export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualization
 
 /** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
-  providers: [provideHttpClient(), provideAnimations(), provideScrolling(), importProvidersFrom(ColorPickerModule)],
+  providers: [
+    provideHttpClient(),
+    provideAnimations(),
+    provideScrolling(),
+    importProvidersFrom(ColorPickerModule),
+    provideDesignSystem(),
+  ],
 });
