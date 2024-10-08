@@ -33,6 +33,9 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import { MatMenuModule } from '@angular/material/menu';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -121,6 +124,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    MicroTooltipDirective,
   ],
   providers: [
     {

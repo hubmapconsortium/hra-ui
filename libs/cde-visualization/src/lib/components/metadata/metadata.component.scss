@@ -81,24 +81,3 @@
     }
   }
 }
-
-::ng-deep {
-  .metadata-overlay {
-    .mat-mdc-menu-content {
-      background-color: var(--sys-on-primary);
-      .mat-mdc-menu-item {
-        --mat-menu-item-with-icon-leading-spacing: 1rem;
-        --mat-menu-item-with-icon-trailing-spacing: 1rem;
-      }
-    }
-  }
-
-  div.mat-mdc-menu-panel {
-    max-width: 260px;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 1rem 1rem;
-      color: var(--sys-primary);
-      background-color: var(--sys-on-primary);
-    }
-  }
-}

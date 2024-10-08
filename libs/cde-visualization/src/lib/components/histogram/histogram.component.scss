@@ -1,13 +1,14 @@
 :host {
-  background-color: white;
   border-radius: 0.5rem;
   height: fit-content;
   position: sticky;
   --mdc-filled-button-container-height: 2rem;
+  --mat-expansion-container-background-color: var(--sys-on-primary);
+  --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
 
   .header {
-    padding: 0 1rem;
+    padding: 0 0.75rem;
 
     .title {
       display: flex;
@@ -36,13 +37,17 @@
     }
   }
 
+  .mat-expansion-panel-body {
+    padding: 0 1rem 0.5rem 0.75rem;
+  }
+
   .content {
     height: 18rem;
     display: flex;
     gap: 1rem;
 
     .histogram {
-      width: calc(100% - 14rem);
+      width: 100%;
     }
 
     .legend {

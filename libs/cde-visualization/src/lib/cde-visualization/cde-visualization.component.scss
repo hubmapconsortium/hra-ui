@@ -92,3 +92,35 @@
     }
   }
 }
+
+::ng-deep {
+  .metadata-overlay,
+  .histogram-overlay {
+    .mat-mdc-menu-content {
+      background-color: var(--sys-on-primary);
+      .mat-mdc-menu-item {
+        --mat-menu-item-with-icon-leading-spacing: 1rem;
+        --mat-menu-item-with-icon-trailing-spacing: 1rem;
+
+        .mat-mdc-menu-item-text {
+          font: var(--sys-label-medium);
+        }
+      }
+    }
+  }
+
+  div.mat-mdc-menu-panel {
+    max-width: 260px;
+    min-width: 208px;
+    &.info-sub-menu .mat-mdc-menu-content {
+      padding: 1rem 1rem;
+      color: var(--sys-primary);
+      background-color: var(--sys-on-primary);
+    }
+
+    &.download-sub-menu .mat-mdc-menu-content {
+      color: var(--sys-primary);
+      background-color: var(--sys-on-primary);
+    }
+  }
+}
