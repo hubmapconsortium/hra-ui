@@ -8,6 +8,8 @@ import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { ButtonSizeDirective } from '@hra-ui/design-system/button';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -49,6 +51,8 @@ export class DefaultToPipe implements PipeTransform {
     MatMenuModule,
     IconButtonSizeDirective,
     IconButtonSizeDirective,
+    MicroTooltipDirective,
+    ButtonSizeDirective,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',

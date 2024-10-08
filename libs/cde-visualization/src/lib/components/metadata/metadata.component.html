@@ -2,7 +2,7 @@
   <mat-expansion-panel expanded #panel>
     <mat-expansion-panel-header (click)="togglePanel($event, panel)">
       <mat-panel-title class="title">
-        <button mat-icon-button hraIconButtonSize="medium">
+        <button mat-icon-button hraIconButtonSize="medium" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
           <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
         </button>
         {{ metadata().sampleExtra ? 'Sample ' : '' }}Metadata
@@ -11,6 +11,7 @@
           [matMenuTriggerFor]="menu"
           [hraIconButtonSize]="'medium'"
           aria-label="Icon to open nested menu"
+          hraMicroTooltip="More"
           (click)="$event.stopPropagation()"
         >
           <mat-icon>more_vert</mat-icon>
@@ -49,7 +50,14 @@
           </span>
           <span>
             @if (metadata().sampleExtra; as extra) {
-              <a [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">{{ metadata().title }}</a>
+              <a
+                mat-button
+                hraButtonSize="small"
+                [attr.href]="extra.sampleUrl"
+                target="_blank"
+                rel="noreferrer noopener"
+                >{{ metadata().title }}</a
+              >
             } @else {
               <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
             }
@@ -60,9 +68,14 @@
         <span>Source Data</span>
         <span>
           @if (metadata().sampleExtra; as extra) {
-            <a [attr.href]="extra.sourceDataUrl" target="_blank" rel="noreferrer noopener">{{
-              metadata().sourceData
-            }}</a>
+            <a
+              mat-button
+              hraButtonSize="small"
+              [attr.href]="extra.sourceDataUrl"
+              target="_blank"
+              rel="noreferrer noopener"
+              >{{ metadata().sourceData }}</a
+            >
           } @else {
             <span>{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
           }
