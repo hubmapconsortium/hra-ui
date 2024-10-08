@@ -6,9 +6,7 @@
     / auto 1fr auto;
   grid-template-rows: 4rem calc(100% - 4rem);
   align-items: center;
-  row-gap: 0.75rem;
   overflow: hidden;
-  padding: 0.75rem 0.5rem;
   border-width: 0px 0px 2px 2px;
   border-style: solid;
   border-color: var(--sys-outline-variant);
@@ -33,6 +31,7 @@
     grid-area: plot;
     height: 100%;
     overflow-y: scroll;
+    padding: 0 0.5rem;
   }
 
   button {
@@ -49,18 +48,5 @@
       height: 1.25rem;
       width: 1.25rem;
     }
-  }
-}
-
-::ng-deep {
-  #vg-tooltip-element.vg-tooltip {
-    font-family: 'Metropolis';
-    font-weight: 500;
-    font-size: 0.75rem;
-    line-height: 1.125rem;
-    color: var(--sys-secondary);
-    padding: 0.5rem;
-    max-width: 22.5rem;
-    box-shadow: 0px 5px 16px 0px #201e3d3d;
   }
 }
