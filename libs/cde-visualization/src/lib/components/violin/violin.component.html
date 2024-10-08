@@ -16,7 +16,16 @@
     [cdkConnectedOverlayOpen]="infoOpen"
     [cdkConnectedOverlayOffsetX]="5"
   >
-    <div>Violin plot</div>
+    <hra-tooltip-card
+      small
+      [content]="[
+        {
+          description:
+            'The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.',
+        },
+      ]"
+    >
+    </hra-tooltip-card>
   </ng-template>
 </span>
 
