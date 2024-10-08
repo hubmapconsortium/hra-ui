@@ -32,7 +32,7 @@ import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 /**
  * Cell Type Component
  */
@@ -55,6 +55,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     IconButtonSizeDirective,
     TooltipCardComponent,
     MatSnackBarModule,
+    MicroTooltipDirective,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

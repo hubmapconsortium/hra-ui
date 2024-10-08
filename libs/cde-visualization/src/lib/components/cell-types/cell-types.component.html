@@ -1,6 +1,12 @@
 <span class="cell-types-label">
   Cell Types
-  <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="medium" data-testid="trigger">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    hraMicroTooltip="More"
+    hraIconButtonSize="medium"
+    data-testid="trigger"
+  >
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -19,7 +25,7 @@
       {{ hideCellLinkData() ? 'Show' : 'Hide' }} Cell Link Data
     </button>
     <button mat-menu-item (click)="resetAllColors.emit()">
-      <mat-icon>restart_alt</mat-icon>
+      <mat-icon>reset_wrench</mat-icon>
       Reset All Colors
     </button>
     <a
