@@ -14,7 +14,10 @@
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="selectedNodeTargetValue()"
-    (download)="downloadColorMap()"
+    (downloadColorMap)="downloadColorMap()"
+    (downloadNodes)="downloadNodes()"
+    (downloadEdges)="downloadEdges()"
+    (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
 </div>

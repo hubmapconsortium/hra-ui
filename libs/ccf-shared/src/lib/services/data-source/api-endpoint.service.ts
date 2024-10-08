@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   AggregateCount,
-  Filter as ApiFilter,
   DatabaseStatus,
   Filter,
   MinMax,
@@ -13,15 +12,17 @@ import {
   V1Service,
 } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
-import { Observable, ReplaySubject, Subject, combineLatest, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import {
   debounceTime,
   delay,
+  distinctUntilChanged,
   endWith,
   filter,
   ignoreElements,
   map,
   repeat,
+  shareReplay,
   switchMap,
   take,
   tap,
@@ -107,28 +108,34 @@ function filterToParams(filter?: Filter): FilterParams {
   };
 }
 
+function compareConfig(x: ApiEndpointDataSourceOptions, y: ApiEndpointDataSourceOptions): boolean {
+  if (x.remoteApiEndpoint !== y.remoteApiEndpoint || x.token !== y.token) {
+    return false;
+  } else if (x.token !== undefined) {
+    return true;
+  } else {
+    // Deep compare?
+    return x.filter === y.filter && x.dataSources === y.dataSources;
+  }
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class ApiEndpointDataSourceService implements DataSource {
-  private readonly initialized = new ReplaySubject<void>(1);
+  private readonly api = inject(V1Service);
+  private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions> = inject(GlobalConfigState);
+  private readonly config$ = this.globalConfig.config$.pipe(
+    map(cast<ApiEndpointDataSourceOptions>()),
+    distinctUntilChanged(compareConfig),
+    debounceTime(10),
+    switchMap((config) => this.getSessionToken(config)),
+    tap(() => buster$.next(null)),
+    shareReplay(1),
+  );
 
-  constructor(
-    private readonly api: V1Service,
-    private readonly globalConfig: GlobalConfigState<ApiEndpointDataSourceOptions>,
-  ) {
-    this.getSessionToken()
-      .pipe(
-        tap((token) => globalConfig.patchConfig({ token })),
-        tap(buster$),
-        debounceTime(1),
-      )
-      .subscribe(() => {
-        if (!this.initialized.closed) {
-          this.initialized.next();
-          this.initialized.complete();
-        }
-      });
+  constructor() {
+    this.config$.subscribe();
   }
 
   getDatabaseStatus(): Observable<DatabaseStatus> {
@@ -222,18 +229,14 @@ export class ApiEndpointDataSourceService implements DataSource {
     params?: P,
     reviver?: DataReviver<unknown, unknown>,
   ): Observable<unknown> {
-    const { api, globalConfig } = this;
+    const { api, config$ } = this;
     const requestParams: Record<string, unknown> = { ...filterToParams(filter), ...params };
 
-    return combineLatest([
-      globalConfig.getOption('remoteApiEndpoint'),
-      globalConfig.getOption('token'),
-      this.initialized,
-    ]).pipe(
-      debounceTime(1),
+    return config$.pipe(
+      debounceTime(50),
       take(1),
-      tap(([endpoint, token]) => {
-        api.configuration.basePath = endpoint;
+      tap(({ remoteApiEndpoint, token }) => {
+        api.configuration.basePath = remoteApiEndpoint;
         if (token) {
           requestParams['token'] = token;
         }
@@ -243,35 +246,23 @@ export class ApiEndpointDataSourceService implements DataSource {
     );
   }
 
-  private getSessionToken(): Observable<string | undefined> {
-    const { globalConfig } = this;
-    const dataSources = globalConfig.getOption('dataSources');
-    const filter = globalConfig.getOption('filter');
-    return combineLatest([dataSources, filter]).pipe(
-      debounceTime(50),
-      switchMap((args) => this.getSessionTokenImpl(...args)),
-      switchMap((token) => this.ensureDatabaseReady(token)),
-    );
-  }
-
-  private getSessionTokenImpl(
-    dataSources: string[] | undefined,
-    filter: Filter | undefined,
-  ): Observable<string | undefined> {
-    if ((dataSources === undefined || dataSources.length === 0) && filter === undefined) {
-      return of(undefined);
+  private getSessionToken(config: ApiEndpointDataSourceOptions): Observable<ApiEndpointDataSourceOptions> {
+    if (config.token) {
+      return of(config);
     }
 
-    const { api, globalConfig } = this;
-    const sessionTokenRequest = {
-      dataSources: dataSources ?? [],
-      filter: filter as ApiFilter,
-    };
+    const { remoteApiEndpoint, dataSources = [], filter } = config;
+    if (dataSources.length === 0 && filter === undefined) {
+      return of(config);
+    }
 
-    return globalConfig.getOption('remoteApiEndpoint').pipe(
-      tap((endpoint) => (api.configuration.basePath = endpoint)),
-      switchMap(() => api.sessionToken({ sessionTokenRequest })),
-      map(({ token }) => token),
+    const { api } = this;
+    const sessionTokenRequest = { dataSources, filter };
+    api.configuration.basePath = remoteApiEndpoint;
+
+    return api.sessionToken({ sessionTokenRequest }).pipe(
+      switchMap(({ token }) => this.ensureDatabaseReady(token)),
+      map((token) => ({ ...config, token })),
     );
   }
 

@@ -7,7 +7,7 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<mat-menu #options="matMenu" [class]="'hra-nested-menu ' + size()">
+<mat-menu #options="matMenu">
   @for (option of menuOptions(); track option) {
     @if (option.expandedOptions) {
       <button
@@ -31,7 +31,7 @@
   }
 </mat-menu>
 
-<mat-menu #submenu="matMenu" [class]="'hra-nested-menu ' + size()">
+<mat-menu #submenu="matMenu">
   @for (suboption of suboptions; track suboption) {
     <button mat-menu-item>
       <mat-icon>{{ suboption.icon }}</mat-icon>

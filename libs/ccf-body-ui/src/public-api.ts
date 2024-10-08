@@ -7,6 +7,7 @@
  */
 export * from './lib/body-ui-layer';
 export * from './lib/body-ui';
+export * from './lib/body-ui/body-ui.component';
 export * from './lib/shared/spatial-scene-node';
 export * from './lib/shared/ccf-spatial-jsonld';
 

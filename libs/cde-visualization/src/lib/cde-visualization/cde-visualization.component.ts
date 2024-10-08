@@ -217,6 +217,7 @@ export class CdeVisualizationComponent {
   /** Computed cell types from loaded nodes */
   readonly cellTypesFromNodes = computed(() => {
     const nodes = this.loadedNodes();
+    const edges = this.loadedEdges();
     const targetKey = this.nodeTypeKey();
     const defaultColorGenerator = createColorGenerator();
     const cellTypeByName: Record<string, CellTypeEntry> = {};
@@ -226,9 +227,16 @@ export class CdeVisualizationComponent {
       cellTypeByName[name] ??= {
         name,
         count: 0,
+        outgoingEdgeCount: 0,
         color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
       };
       cellTypeByName[name].count += 1;
+    }
+
+    for (const edge of edges) {
+      const node = nodes[edge[EdgeIndex.SourceNode]];
+      const name = node[targetKey];
+      cellTypeByName[name].outgoingEdgeCount += 1;
     }
 
     return Object.values(cellTypeByName);
