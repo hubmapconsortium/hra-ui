@@ -44,8 +44,8 @@
 :host {
   width: 100%;
   display: grid;
-  grid-template-columns: 22.75rem minmax(59rem, calc(100vw - 21rem));
-  grid-template-rows: 5.25rem minmax(calc(900px - 5.25rem), calc(100vh - 5.25rem));
+  grid-template-columns: 22.75rem minmax(57.1875rem, calc(100vw - 22.75rem));
+  grid-template-rows: 4rem minmax(calc(46.5rem - 4rem), calc(100vh - 5.25rem));
   grid-template-areas:
     'header header'
     'metadata visualization';
@@ -116,11 +116,17 @@
       padding: 1rem 1rem;
       color: var(--sys-primary);
       background-color: var(--sys-on-primary);
+      font: var(--sys-label-medium);
     }
 
     &.download-sub-menu .mat-mdc-menu-content {
       color: var(--sys-primary);
       background-color: var(--sys-on-primary);
+      font: var(--sys-label-medium);
+
+      .mat-mdc-menu-item-text {
+        font: var(--sys-label-medium);
+      }
     }
   }
 }

@@ -8,14 +8,14 @@
   max-height: 22.5rem;
 
   .header {
-    padding: 0 0.75rem;
+    padding: 0.5rem 1rem 0.25rem 0.75rem;
+    height: auto !important;
 
     .title {
       display: flex;
       margin: 0;
       gap: 0.25rem;
-      font-size: 1rem;
-      line-height: 1.5rem;
+      font: var(--sys-label-medium);
 
       mat-icon {
         margin: 2px;
@@ -37,12 +37,8 @@
     }
   }
 
-  .mat-expansion-panel-body {
-    padding: 0 1rem 0.5rem 0.75rem;
-  }
-
   .content {
-    height: 18rem;
+    height: 11.25rem;
     display: flex;
     gap: 1rem;
 
@@ -65,10 +61,22 @@
   .filler {
     flex-grow: 1;
   }
-}
 
-::ng-deep .mat-expansion-panel-body {
-  padding-right: 1rem !important;
+  ::ng-deep {
+    .mat-expansion-panel {
+      .mat-expansion-panel-header {
+        cde-color-picker-label {
+          .label {
+            font: var(--sys-label-small);
+          }
+        }
+      }
+
+      .mat-expansion-panel-body {
+        padding: 0 1rem 0.5rem 0.75rem;
+      }
+    }
+  }
 }
 
 ::ng-deep .mat-content-hide-toggle {

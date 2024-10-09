@@ -1,7 +1,7 @@
 <mat-accordion displayMode="flat">
   <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
     <mat-expansion-panel-header class="header">
-      <mat-panel-title class="mat-caption title">
+      <mat-panel-title class="title">
         <button mat-icon-button hraIconButtonSize="medium" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
           <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
         </button>
