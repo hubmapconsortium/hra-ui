@@ -18,6 +18,9 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
 import { ColorMapEntry } from '../../models/color-map';
 import { EdgeEntry } from '../../models/edge';
@@ -73,7 +76,15 @@ function isNonEmptyArray<T>(array: T[]): boolean {
 @Component({
   selector: 'cde-node-dist-visualization',
   standalone: true,
-  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    OverlayModule,
+    MatButtonModule,
+    MatIconModule,
+    MicroTooltipDirective,
+    IconButtonSizeDirective,
+    MatMenuModule,
+  ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

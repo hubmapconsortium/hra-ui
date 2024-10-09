@@ -6,6 +6,7 @@ import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 
 export * from './lib/cde-visualization/cde-visualization.component';
 export * from './lib/models/color-map';
@@ -37,5 +38,6 @@ export const CdeVisualizationElement = createCustomElement('cde-visualization', 
     provideScrolling(),
     importProvidersFrom(ColorPickerModule),
     provideDesignSystem(),
+    provideButtonToggle(),
   ],
 });
