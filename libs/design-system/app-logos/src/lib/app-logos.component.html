@@ -1,19 +1,26 @@
-<a
-  class="hra-logo"
-  href="https://humanatlas.io"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Visit Human Reference Atlas"
->
-  <img [attr.src]="'assets/logo/hra_small.svg' | assetUrl" [attr.alt]="'HRA logo'" class="hra-small" />
-  <span class="hra-logo-text">Human Reference Atlas</span>
-</a>
-<a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer" aria-label="Return to app home">
-  <img [attr.src]="appIcon() | assetUrl" [attr.alt]="appTitle() + ' logo'" />
-  <span>
-    <div class="mat-caption app-label">{{ appTitle() }}</div>
-    @if (appDescription()) {
-      <div class="mat-caption app-description">{{ appDescription() }}</div>
-    }
-  </span>
-</a>
+@if (brandmark()) {
+  <a
+    class="hra-logo"
+    href="https://humanatlas.io"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Visit Human Reference Atlas"
+  >
+    <hra-brandmark></hra-brandmark>
+  </a>
+}
+<img class="app-logo" [attr.src]="appIcon() | assetUrl" [attr.alt]="appTitle() + ' logo'" />
+<span class="logos-text">
+  @if (variant() === 'sidenav') {
+    <mat-button-toggle class="app-name-nav" value="bold" hraNavCatButton hraButtonSize="small" disableRipple>
+      <span class="label">{{ appTitle() }}</span>
+    </mat-button-toggle>
+  } @else {
+    <a class="app-name" [href]="appLink()" target="_blank" rel="noopener noreferrer" aria-label="Return to app home">
+      <span class="app-label">{{ appTitle() }}</span>
+    </a>
+  }
+  @if (appStatus()) {
+    <div class="app-description">{{ appStatus() }}</div>
+  }
+</span>

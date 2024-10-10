@@ -1,9 +1,19 @@
 import { AppLogosComponent } from './app-logos.component';
 
-import type { Meta, StoryObj } from '@storybook/angular';
+import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { ButtonModule } from '@hra-ui/design-system/button';
 const meta: Meta<AppLogosComponent> = {
   component: AppLogosComponent,
   title: 'AppLogosComponent',
+  decorators: [
+    applicationConfig({
+      providers: [provideDesignSystem()],
+    }),
+    moduleMetadata({
+      imports: [ButtonModule],
+    }),
+  ],
   parameters: {
     design: {
       type: 'figma',
@@ -27,21 +37,28 @@ const meta: Meta<AppLogosComponent> = {
       control: 'select',
       options: ['FTU Explorer', 'Cell Distance Explorer', 'Dashboards'],
     },
+    variant: {
+      control: 'select',
+      options: ['basic', 'sidenav'],
+    },
+    brandmark: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
     appIcon: 'assets/logo/ftu_logo.svg',
     appTitle: 'FTU Explorer',
-    appDescription: 'HRA Preview Application',
+    appStatus: 'Beta',
   },
 };
 export default meta;
 type Story = StoryObj<AppLogosComponent>;
 
-export const Default: Story = {};
-
-export const Fixed: Story = {
+export const Default: Story = {
   args: {
-    variant: 'fixed',
+    variant: 'sidenav',
+    brandmark: true,
   },
 };
