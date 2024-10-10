@@ -1,45 +1,60 @@
-<span class="mat-caption violin-label">
+<span class="violin-label">
   Violin Graph
-  <mat-icon
-    class="material-symbols-rounded"
-    cdkOverlayOrigin
-    #resetTrigger="cdkOverlayOrigin"
-    (mouseover)="infoOpen = true"
-    (mouseout)="infoOpen = false"
-    >info</mat-icon
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    [hraIconButtonSize]="'medium'"
+    aria-label="Icon to open nested menu"
+    hraMicroTooltip="More"
+    (click)="$event.stopPropagation()"
   >
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-    [cdkConnectedOverlayOrigin]="resetTrigger"
-    [cdkConnectedOverlayPositions]="tooltipPosition"
-    [cdkConnectedOverlayOpen]="infoOpen"
-    [cdkConnectedOverlayOffsetX]="5"
-  >
-    <div>Violin plot</div>
-  </ng-template>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" [class]="'violin-overlay'">
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="infoSubMenu"
+      matRipple
+      matRippleColor="#201E3D14"
+      (click)="$event.stopImmediatePropagation()"
+    >
+      <mat-icon>info</mat-icon>
+      <span>Info</span>
+    </button>
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="downloadSubMenu"
+      matRipple
+      matRippleColor="#201E3D14"
+      (click)="$event.stopImmediatePropagation()"
+    >
+      <mat-icon>download</mat-icon>
+      <span>Downloads</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>fullscreen</mat-icon>
+      Full Screen
+    </button>
+    <button mat-menu-item>
+      <mat-icon>code</mat-icon>
+      Embed App
+    </button>
+    <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+      This violin plot shows a cell-to-nearest-anchor cell distance distributions categorized by each cell type in the
+      dataset.
+    </mat-menu>
+    <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
+      <button mat-menu-item (click)="$event.stopPropagation(); download('png')">
+        <mat-icon>download</mat-icon>
+        PNG
+      </button>
+      <button mat-menu-item (click)="$event.stopPropagation(); download('svg')">
+        <mat-icon>download</mat-icon>
+        SVG
+      </button>
+    </mat-menu>
+  </mat-menu>
 </span>
-
-<div class="download">
-  <button
-    mat-flat-button
-    color="accent"
-    class="mat-caption download"
-    (click)="$event.stopPropagation(); download('svg')"
-  >
-    <mat-icon class="material-symbols-rounded">download</mat-icon>
-    SVG
-  </button>
-  <button
-    mat-flat-button
-    color="accent"
-    class="mat-caption download"
-    (click)="$event.stopPropagation(); download('png')"
-  >
-    <mat-icon class="material-symbols-rounded">download</mat-icon>
-    PNG
-  </button>
-</div>
 
 <ng-scrollbar hraScrollOverflowFade class="violin">
   <div data-testid="violin" #violin></div>

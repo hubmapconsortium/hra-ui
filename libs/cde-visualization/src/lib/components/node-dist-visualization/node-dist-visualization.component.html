@@ -29,7 +29,7 @@
       (click)="$event.stopImmediatePropagation()"
     >
       <mat-icon>download</mat-icon>
-      <span>Download</span>
+      <span>Downloads</span>
     </button>
     <button
       mat-menu-item
@@ -62,38 +62,56 @@
       </div>
     </mat-menu>
     <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="download()">
         <mat-icon>download</mat-icon>
         <span>PNG</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="download()">
         <mat-icon>download</mat-icon>
         <span>SVG</span>
       </button>
     </mat-menu>
     <mat-menu #resetSubMenu="matMenu" [class]="'reset-sub-menu'">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="resetView()">
         <mat-icon>reset_wrench</mat-icon>
-        <span>Reset View</span>
+        <span>Reset Visualization View</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="resetAllCells.emit()">
         <mat-icon>reset_wrench</mat-icon>
-        <span>Reset All Cells</span>
+        <span>Reset Deleted Cells</span>
       </button>
     </mat-menu>
     <button mat-menu-item>
       <mat-icon>fullscreen</mat-icon>
       Full Screen
     </button>
-    <button mat-menu-item>
-      <mat-icon>visibility</mat-icon>
-      Show Cell Links
+    <button mat-menu-item (click)="toggleCellLinks()">
+      <mat-icon>{{ cellLinksVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      {{ cellLinksVisible() ? 'Hide' : 'Show' }} Cell Links
     </button>
     <button mat-menu-item>
       <mat-icon>code</mat-icon>
       Embed App
     </button>
   </mat-menu>
+  <div class="filler"></div>
+  <mat-icon class="delete" hraMicroTooltip="Select at least one cell to delete it from this dataset">delete</mat-icon>
+  <mat-button-toggle-group
+    name="visualizationSelect"
+    aria-label="Visualization Select"
+    hideSingleSelectionIndicator
+    hraButtonToggleSize="medium"
+  >
+    <mat-button-toggle value="select" checked hraMicroTooltip="Select cells to delete from this dataset"
+      >Select</mat-button-toggle
+    >
+    <mat-button-toggle value="inspect" hraMicroTooltip="Get information about individual cell types"
+      >Inspect</mat-button-toggle
+    >
+    <mat-button-toggle value="explore" hraMicroTooltip="Zoom, pan, and rotate the view of this visualization"
+      >Explore</mat-button-toggle
+    >
+  </mat-button-toggle-group>
 </div>
 
 <!-- <button mat-flat-button class="download mat-caption" (click)="download()">

@@ -14,6 +14,7 @@ import {
   isSignal,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +28,7 @@ import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -84,6 +86,7 @@ function isNonEmptyArray<T>(array: T[]): boolean {
     MicroTooltipDirective,
     IconButtonSizeDirective,
     MatMenuModule,
+    MatButtonToggleModule,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
@@ -123,6 +126,12 @@ export class NodeDistVisualizationComponent {
 
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEntry | undefined>();
+
+  /** Output event to reset all cells selection */
+  readonly resetAllCells = output();
+
+  /** Flag to check cell links visibility */
+  readonly cellLinksVisible = signal(false);
 
   /** Tooltip position constant */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
@@ -207,5 +216,10 @@ export class NodeDistVisualizationComponent {
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });
+  }
+
+  /** Toggles the visibility of the cell links */
+  toggleCellLinks(): void {
+    this.cellLinksVisible.set(!this.cellLinksVisible());
   }
 }

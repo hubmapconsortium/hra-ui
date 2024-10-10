@@ -6,6 +6,14 @@
   height: 0;
   flex-grow: 1;
 
+  .filler {
+    flex-grow: 1;
+  }
+
+  .delete {
+    margin-right: 1rem;
+  }
+
   .header {
     width: 100%;
     padding: 1rem;
@@ -62,5 +70,9 @@
     .mat-mdc-menu-item-text {
       font: var(--sys-label-medium);
     }
+  }
+
+  mat-button-toggle-group {
+    --mat-standard-button-toggle-height: 21px;
   }
 }

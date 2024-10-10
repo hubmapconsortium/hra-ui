@@ -58,6 +58,7 @@
       border-color: #d5dbe3;
       border-width: 0 0px 2px 0px;
       border-style: solid;
+      overflow: hidden;
     }
   }
 
@@ -83,12 +84,12 @@
       border-width: 0 0 2px 0;
       border-style: solid;
       height: 100%;
-      width: calc(100% - 488px);
+      min-width: calc(100% - 390px);
     }
 
     cde-violin {
       height: 100%;
-      width: 488px;
+      min-width: 390px;
     }
   }
 }
@@ -96,7 +97,8 @@
 ::ng-deep {
   .metadata-overlay,
   .histogram-overlay,
-  .vis-overlay {
+  .vis-overlay,
+  .violin-overlay {
     .mat-mdc-menu-content {
       background-color: var(--sys-on-primary);
       .mat-mdc-menu-item {
