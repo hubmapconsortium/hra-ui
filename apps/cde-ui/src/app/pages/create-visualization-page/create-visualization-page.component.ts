@@ -22,11 +22,11 @@ import {
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { FooterComponent } from '@hra-ui/design-system/footer';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { ParseError } from 'papaparse';
 
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
-import { HeaderComponent } from '../../components/header/header.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
@@ -68,9 +68,9 @@ function optionalValue<T>(): T | null {
 
     FileUploadComponent,
     FooterComponent,
-    HeaderComponent,
     MarkEmptyFormControlDirective,
     OverlayModule,
+    NavHeaderComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',

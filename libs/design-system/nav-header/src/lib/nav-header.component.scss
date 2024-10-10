@@ -1,11 +1,50 @@
 :host {
-  display: flex;
-  align-items: center;
-  height: 4.5rem;
-  padding: 0 0.75rem 0 1rem;
-  background-color: var(--sys-surface-container);
+  display: block;
+  width: 100%;
+  z-index: 1;
+  --mat-sidenav-content-background-color: transparent;
+  pointer-events: none;
 
-  .filler {
-    flex-grow: 1;
+  .container {
+    height: 100%;
+    font: var(--sys-headline-small);
+    letter-spacing: var(--sys-headline-small-tracking);
+
+    .header {
+      display: flex;
+      align-items: center;
+
+      .sidenav-title {
+        vertical-align: text-bottom;
+        color: var(--sys-secondary);
+      }
+    }
+  }
+
+  .mat-sidenav-content {
+    overflow: hidden;
+
+    .main {
+      display: flex;
+      align-items: center;
+      background-color: var(--sys-surface-dim);
+      height: 4.5rem;
+      padding: 0 0.75rem 0 1rem;
+      pointer-events: all;
+    }
+  }
+
+  .apps-sidenav {
+    --mat-sidenav-container-width: 35.25rem;
+    padding: 1rem;
+    border-radius: 0;
+    background-color: var(--sys-surface-dim);
+
+    .card-category {
+      font: var(--sys-title-medium);
+      letter-spacing: var(--sys-title-medium-tracking);
+      margin-top: 1rem;
+      color: var(--sys-secondary);
+    }
   }
 }

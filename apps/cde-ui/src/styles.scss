@@ -5,12 +5,7 @@
 @use 'light-theme';
 @use 'theming';
 
-// TODO Update and switch to design system theming
-// html {
-//   @include theming.theme(light-theme.$theme);
-// }
-// Only enabled for the footer at the moment
-hra-footer {
+html {
   @include theming.theme(light-theme.$theme);
 }
 
@@ -31,6 +26,11 @@ body {
 
 a {
   text-decoration: none;
+}
+
+hra-nav-header {
+  position: fixed;
+  height: 100vh;
 }
 
 .cta-filled {

@@ -6,8 +6,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { FooterComponent } from '@hra-ui/design-system/footer';
-import { HeaderComponent } from '../../components/header/header.component';
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 
 /**
  * Landing Page Component
@@ -21,9 +21,9 @@ import { VisualCard, VisualCardComponent } from '../../components/visual-card/vi
     MatIconModule,
     MatButtonModule,
     YouTubePlayerModule,
-    HeaderComponent,
     FooterComponent,
     AssetUrlPipe,
+    NavHeaderComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

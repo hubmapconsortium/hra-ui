@@ -1,32 +1,32 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '../../../src/index';
 import { NavHeaderComponent } from './nav-header.component';
+import { importProvidersFrom } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const APP_DESCRIPTION = 'HRA Preview Application';
 const apps: Record<string, Story['args']> = {
   'Cell Distance Explorer': {
     title: 'Cell Distance Explorer',
     icon: 'assets/logo/cde_logo.svg',
     link: 'https://apps.humanatlas.io/cde/',
-    description: APP_DESCRIPTION,
+    variant: 'basic',
   },
   'FTU Explorer': {
     title: 'FTU Explorer',
     icon: 'assets/logo/ftu_logo.svg',
     link: 'https://apps.humanatlas.io/cde/',
-    description: APP_DESCRIPTION,
+    variant: 'basic',
   },
   Dashboards: {
     title: 'Dashboards',
     icon: 'assets/logo/dashboards_logo.svg',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
-    description: APP_DESCRIPTION,
+    variant: 'sidenav',
   },
   'Atlas Applications': {
     title: 'Atlas Applications',
     icon: 'assets/logo/atlas_apps.svg',
     link: 'https://apps.humanatlas.io/',
-    description: APP_DESCRIPTION,
   },
 };
 
@@ -41,7 +41,7 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem()],
+      providers: [provideDesignSystem(), importProvidersFrom(BrowserAnimationsModule)],
     }),
   ],
   argTypes: {
@@ -56,6 +56,11 @@ const meta: Meta = {
   },
   render: (args) => ({
     props: args['app'],
+    styles: [
+      `hra-nav-header {
+        height: calc(100vh - 15rem);
+      }`,
+    ],
   }),
 };
 
