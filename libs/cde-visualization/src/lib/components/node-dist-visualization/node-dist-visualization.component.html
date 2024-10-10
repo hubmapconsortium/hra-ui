@@ -1,46 +1,122 @@
-<div class="info mat-caption">
+<div class="header">
   Visualization
-  <mat-icon
-    class="material-symbols-rounded"
-    cdkOverlayOrigin
-    #visTrigger="cdkOverlayOrigin"
-    (mouseover)="tooltipOpen = true"
-    (mouseout)="tooltipOpen = false"
-    >info</mat-icon
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    [hraIconButtonSize]="'medium'"
+    aria-label="Icon to open nested menu"
+    hraMicroTooltip="More"
+    (click)="$event.stopPropagation()"
   >
-
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'node-dist-vis-panel']"
-    [cdkConnectedOverlayPositions]="tooltipPosition"
-    [cdkConnectedOverlayOrigin]="visTrigger"
-    [cdkConnectedOverlayOpen]="tooltipOpen"
-    [cdkConnectedOverlayOffsetX]="5"
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" [class]="'vis-overlay'">
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="infoSubMenu"
+      matRipple
+      matRippleColor="#201E3D14"
+      (click)="$event.stopImmediatePropagation()"
+    >
+      <mat-icon>info</mat-icon>
+      <span>Info</span>
+    </button>
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="downloadSubMenu"
+      matRipple
+      matRippleColor="#201E3D14"
+      (click)="$event.stopImmediatePropagation()"
+    >
+      <mat-icon>download</mat-icon>
+      <span>Downloads</span>
+    </button>
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="resetSubMenu"
+      matRipple
+      matRippleColor="#201E3D14"
+      (click)="$event.stopImmediatePropagation()"
+    >
+      <mat-icon>reset_wrench</mat-icon>
+      <span>Reset</span>
+    </button>
+    <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+      <div>
+        <ul>
+          Zoom Options
+          <li>Mouse pinwheel</li>
+          <li>Trackpad Pinch</li>
+        </ul>
+        <ul>
+          Pan Options
+          <li>CTRL/CMD + mouse drag</li>
+          <li>Right click + mouse drag</li>
+          <li>Keyboard arrows</li>
+        </ul>
+        <ul>
+          Rotation Options
+          <li>CTRL/CMD + keyboard arrows</li>
+          <li>Mouse Drag</li>
+        </ul>
+      </div>
+    </mat-menu>
+    <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
+      <button mat-menu-item (click)="download()">
+        <mat-icon>download</mat-icon>
+        <span>PNG</span>
+      </button>
+      <button mat-menu-item (click)="download()">
+        <mat-icon>download</mat-icon>
+        <span>SVG</span>
+      </button>
+    </mat-menu>
+    <mat-menu #resetSubMenu="matMenu" [class]="'reset-sub-menu'">
+      <button mat-menu-item (click)="resetView()">
+        <mat-icon>reset_wrench</mat-icon>
+        <span>Reset Visualization View</span>
+      </button>
+      <button mat-menu-item (click)="resetAllCells.emit()">
+        <mat-icon>reset_wrench</mat-icon>
+        <span>Reset Deleted Cells</span>
+      </button>
+    </mat-menu>
+    <button mat-menu-item>
+      <mat-icon>fullscreen</mat-icon>
+      Full Screen
+    </button>
+    <button mat-menu-item (click)="toggleCellLinks()">
+      <mat-icon>{{ cellLinksVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      {{ cellLinksVisible() ? 'Hide' : 'Show' }} Cell Links
+    </button>
+    <button mat-menu-item>
+      <mat-icon>code</mat-icon>
+      Embed App
+    </button>
+  </mat-menu>
+  <div class="filler"></div>
+  <mat-icon class="delete" hraMicroTooltip="Select at least one cell to delete it from this dataset">delete</mat-icon>
+  <mat-button-toggle-group
+    name="visualizationSelect"
+    aria-label="Visualization Select"
+    hideSingleSelectionIndicator
+    hraButtonToggleSize="medium"
   >
-    <div>
-      <ul>
-        Zoom Options
-        <li>Mouse pinwheel</li>
-        <li>Trackpad Pinch</li>
-      </ul>
-      <ul>
-        Pan Options
-        <li>CTRL/CMD + mouse drag</li>
-        <li>Right click + mouse drag</li>
-        <li>Keyboard arrows</li>
-      </ul>
-      <ul>
-        Rotation Options for 3D Visualizations
-        <li>CTRL/CMD + keyboard arrows</li>
-        <li>Mouse Drag</li>
-      </ul>
-    </div>
-  </ng-template>
+    <mat-button-toggle value="select" checked hraMicroTooltip="Select cells to delete from this dataset"
+      >Select</mat-button-toggle
+    >
+    <mat-button-toggle value="inspect" hraMicroTooltip="Get information about individual cell types"
+      >Inspect</mat-button-toggle
+    >
+    <mat-button-toggle value="explore" hraMicroTooltip="Zoom, pan, and rotate the view of this visualization"
+      >Explore</mat-button-toggle
+    >
+  </mat-button-toggle-group>
 </div>
 
-<button mat-flat-button class="download mat-caption" (click)="download()">
+<!-- <button mat-flat-button class="download mat-caption" (click)="download()">
   PNG
   <mat-icon class="material-symbols-rounded">download</mat-icon>
-</button>
+</button> -->
 
 <hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
