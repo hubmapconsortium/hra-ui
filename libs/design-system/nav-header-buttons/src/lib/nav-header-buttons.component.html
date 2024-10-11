@@ -24,6 +24,6 @@
     </a>
   }
   @if (appStatus()) {
-    <div class="app-description">{{ appStatus() }}</div>
+    <hra-software-status-indicator [status]="appStatus()"></hra-software-status-indicator>
   }
 </span>

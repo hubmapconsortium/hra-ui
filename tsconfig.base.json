@@ -128,6 +128,9 @@
       "@hra-ui/design-system/social-media-button": [
         "libs/design-system/social-media-button/src/index.ts"
       ],
+      "@hra-ui/design-system/software-status-indicator": [
+        "libs/design-system/software-status-indicator/src/index.ts"
+      ],
       "@hra-ui/design-system/step-indicator": [
         "libs/design-system/step-indicator/src/index.ts"
       ],

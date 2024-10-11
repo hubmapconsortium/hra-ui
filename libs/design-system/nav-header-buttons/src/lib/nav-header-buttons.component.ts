@@ -4,6 +4,7 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { BrandmarkComponent } from '@hra-ui/design-system/brandmark';
 import { ButtonModule, ButtonSizeDirective, NavigationCategoryButtonDirective } from '@hra-ui/design-system/button';
 import { ProductLogoComponent, ProductName } from '@hra-ui/design-system/product-logo';
+import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
 export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
 
@@ -21,6 +22,7 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
     ButtonSizeDirective,
     ButtonModule,
     ProductLogoComponent,
+    SoftwareStatusIndicatorComponent,
   ],
   templateUrl: './nav-header-buttons.component.html',
   styleUrl: './nav-header-buttons.component.scss',
@@ -30,7 +32,7 @@ export class NavHeaderButtonsComponent {
   /** Variant of logo component */
   readonly variant = input<NavHeaderButtonsVariant>('basic');
 
-  readonly appStatus = input<string>();
+  readonly appStatus = input<SoftwareStatus>();
 
   readonly brandmark = input<boolean>(true);
 
