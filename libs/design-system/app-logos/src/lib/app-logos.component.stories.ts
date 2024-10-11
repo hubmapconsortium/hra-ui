@@ -29,9 +29,9 @@ const meta: Meta<AppLogosComponent> = {
         'https://apps.humanatlas.io/dashboard/',
       ],
     },
-    appIcon: {
+    app: {
       control: 'select',
-      options: ['assets/logo/ftu_logo.svg', 'assets/logo/cde_logo.svg', 'assets/logo/dashboards_logo.svg'],
+      options: ['ftu', 'cde', 'dashboards'],
     },
     appTitle: {
       control: 'select',
@@ -48,7 +48,7 @@ const meta: Meta<AppLogosComponent> = {
   },
   args: {
     appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
-    appIcon: 'assets/logo/ftu_logo.svg',
+    app: 'ftu',
     appTitle: 'FTU Explorer',
     appStatus: 'Beta',
   },

@@ -7,6 +7,7 @@ import { AppLogosComponent, AppLogosVariant } from '@hra-ui/design-system/app-lo
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { ProductName } from '@hra-ui/design-system/product-logo';
 
 /** HuBMAP cards data */
 export const HUBMAP_CARDS_DATA = [
@@ -128,8 +129,8 @@ export class NavHeaderComponent {
   readonly variant = input<AppLogosVariant>('basic');
   /** Link to the app */
   readonly link = input.required<string>();
-  /** Icon for the app */
-  readonly icon = input.required<string>();
+  /** Current app */
+  readonly app = input.required<ProductName>();
   /** Name of the app */
   readonly title = input.required<string>();
   /** Status of the app */

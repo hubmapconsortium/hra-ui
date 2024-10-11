@@ -7,26 +7,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const apps: Record<string, Story['args']> = {
   'Cell Distance Explorer': {
     title: 'Cell Distance Explorer',
-    icon: 'assets/logo/cde_logo.svg',
+    app: 'cde',
     link: 'https://apps.humanatlas.io/cde/',
     variant: 'basic',
   },
   'FTU Explorer': {
     title: 'FTU Explorer',
-    icon: 'assets/logo/ftu_logo.svg',
+    app: 'ftu',
     link: 'https://apps.humanatlas.io/cde/',
     variant: 'basic',
   },
   Dashboards: {
     title: 'Dashboards',
-    icon: 'assets/logo/dashboards_logo.svg',
+    app: 'dashboards',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
     variant: 'sidenav',
-  },
-  'Atlas Applications': {
-    title: 'Atlas Applications',
-    icon: 'assets/logo/atlas_apps.svg',
-    link: 'https://apps.humanatlas.io/',
   },
 };
 

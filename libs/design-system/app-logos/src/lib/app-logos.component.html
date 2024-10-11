@@ -9,7 +9,10 @@
     <hra-brandmark></hra-brandmark>
   </a>
 }
-<img class="app-logo" [attr.src]="appIcon() | assetUrl" [attr.alt]="appTitle() + ' logo'" />
+<a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer" [attr.alt]="appTitle() + ' logo'">
+  <hra-product-logo [name]="app()" size="small"></hra-product-logo>
+</a>
+
 <span class="logos-text">
   @if (variant() === 'sidenav') {
     <mat-button-toggle class="app-name-nav" value="bold" hraNavCatButton hraButtonSize="small" disableRipple>
