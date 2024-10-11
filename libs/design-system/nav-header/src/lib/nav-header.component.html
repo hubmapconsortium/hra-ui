@@ -25,13 +25,13 @@
 
   <mat-sidenav-content>
     <div class="main">
-      <hra-app-logos
+      <hra-nav-header-buttons
         [variant]="variant()"
         [appLink]="link()"
         [app]="app()"
         [appTitle]="title()"
         [appStatus]="status()"
-      ></hra-app-logos>
+      ></hra-nav-header-buttons>
       <div style="flex-grow: 1"></div>
       <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
         <mat-icon>apps</mat-icon>

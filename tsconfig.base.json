@@ -65,9 +65,6 @@
       "@hra-ui/design-system": [
         "libs/design-system/src/index.ts"
       ],
-      "@hra-ui/design-system/app-logos": [
-        "libs/design-system/app-logos/src/index.ts"
-      ],
       "@hra-ui/design-system/apps-card": [
         "libs/design-system/apps-card/src/index.ts"
       ],
@@ -109,6 +106,9 @@
       ],
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
+      ],
+      "@hra-ui/design-system/nav-header-buttons": [
+        "libs/design-system/nav-header-buttons/src/index.ts"
       ],
       "@hra-ui/design-system/product-logo": [
         "libs/design-system/product-logo/src/index.ts"

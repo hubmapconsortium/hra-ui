@@ -1,11 +1,11 @@
-import { AppLogosComponent } from './app-logos.component';
+import { NavHeaderButtonsComponent } from './nav-header-buttons.component';
 
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonModule } from '@hra-ui/design-system/button';
-const meta: Meta<AppLogosComponent> = {
-  component: AppLogosComponent,
-  title: 'AppLogosComponent',
+const meta: Meta<NavHeaderButtonsComponent> = {
+  component: NavHeaderButtonsComponent,
+  title: 'NavHeaderButtonsComponent',
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],
@@ -54,7 +54,7 @@ const meta: Meta<AppLogosComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<AppLogosComponent>;
+type Story = StoryObj<NavHeaderButtonsComponent>;
 
 export const Default: Story = {
   args: {

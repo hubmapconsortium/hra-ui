@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { AppLogosComponent, AppLogosVariant } from '@hra-ui/design-system/app-logos';
+import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
@@ -114,7 +114,7 @@ export const HUBMAP_CARDS_DATA = [
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    AppLogosComponent,
+    NavHeaderButtonsComponent,
     IconButtonSizeDirective,
     MatSidenavModule,
     AppsCardComponent,
@@ -126,7 +126,7 @@ export const HUBMAP_CARDS_DATA = [
 })
 export class NavHeaderComponent {
   /** Variant of the header */
-  readonly variant = input<AppLogosVariant>('basic');
+  readonly variant = input<NavHeaderButtonsVariant>('basic');
   /** Link to the app */
   readonly link = input.required<string>();
   /** Current app */
