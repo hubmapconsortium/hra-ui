@@ -110,6 +110,9 @@
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
       ],
+      "@hra-ui/design-system/product-logo": [
+        "libs/design-system/product-logo/src/index.ts"
+      ],
       "@hra-ui/design-system/scrolling": [
         "libs/design-system/scrolling/src/index.ts"
       ],

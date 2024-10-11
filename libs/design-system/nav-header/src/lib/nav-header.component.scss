@@ -39,6 +39,7 @@
     padding: 1rem;
     border-radius: 0;
     background-color: var(--sys-surface-dim);
+    pointer-events: all;
 
     .card-category {
       font: var(--sys-title-medium);
