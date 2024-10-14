@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
-import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
 import { ProductName } from '@hra-ui/design-system/product-logo';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
 
 /** HuBMAP cards data */
 export const HUBMAP_CARDS_DATA = [
@@ -134,7 +135,7 @@ export class NavHeaderComponent {
   /** Name of the app */
   readonly title = input.required<string>();
   /** Status of the app */
-  readonly status = input<string>();
-
+  readonly status = input<SoftwareStatus>();
+  /** Data to display in sidenav */
   readonly data = HUBMAP_CARDS_DATA;
 }

@@ -13,27 +13,16 @@ describe('NavHeaderButtonsComponent', () => {
       providers: globalProviders,
       componentInputs: {
         appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
-        appIcon: 'assets/logo/ftu_logo.svg',
+        app: 'ftu',
         appTitle: 'FTU Explorer',
-        appDescription: 'HRA Preview Application',
+        appStatus: 'Beta',
+        variant: 'basic',
       },
     });
   });
 
-  it('should render the Human Reference Atlas logo', async () => {
-    const logo = screen.getByAltText('HRA logo');
-    expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'assets/logo/hra_small.svg');
-  });
-
-  it('should render the app logo', async () => {
-    const appLogo = screen.getByAltText('FTU Explorer logo');
-    expect(appLogo).toBeInTheDocument();
-    expect(appLogo).toHaveAttribute('src', 'assets/logo/ftu_logo.svg');
-  });
-
-  it('should display the app title and description', async () => {
+  it('should display the app title and status', async () => {
     expect(screen.getByText('FTU Explorer')).toBeInTheDocument();
-    expect(screen.getByText('HRA Preview Application')).toBeInTheDocument();
+    expect(screen.getByText('Beta')).toBeInTheDocument();
   });
 });

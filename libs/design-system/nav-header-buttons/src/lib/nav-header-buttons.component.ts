@@ -6,6 +6,7 @@ import { ButtonModule, ButtonSizeDirective, NavigationCategoryButtonDirective } 
 import { ProductLogoComponent, ProductName } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
+/** Variant of nav header button */
 export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
 
 /**
@@ -31,11 +32,10 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
 export class NavHeaderButtonsComponent {
   /** Variant of logo component */
   readonly variant = input<NavHeaderButtonsVariant>('basic');
-
+  /** App software status */
   readonly appStatus = input<SoftwareStatus>();
-
+  /** Whether to show the HRA brandmark */
   readonly brandmark = input<boolean>(true);
-
   /** Current app */
   readonly app = input.required<ProductName>();
   /** Link to app home page */

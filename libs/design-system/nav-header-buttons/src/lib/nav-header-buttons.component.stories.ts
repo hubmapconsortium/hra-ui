@@ -3,6 +3,7 @@ import { NavHeaderButtonsComponent } from './nav-header-buttons.component';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonModule } from '@hra-ui/design-system/button';
+
 const meta: Meta<NavHeaderButtonsComponent> = {
   component: NavHeaderButtonsComponent,
   title: 'NavHeaderButtonsComponent',
@@ -45,12 +46,10 @@ const meta: Meta<NavHeaderButtonsComponent> = {
       control: 'boolean',
       options: [true, false],
     },
-  },
-  args: {
-    appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
-    app: 'ftu',
-    appTitle: 'FTU Explorer',
-    appStatus: 'Beta',
+    appStatus: {
+      control: 'select',
+      options: ['Beta', 'Alpha', 'Preview', undefined],
+    },
   },
 };
 export default meta;
@@ -60,5 +59,8 @@ export const Default: Story = {
   args: {
     variant: 'sidenav',
     brandmark: true,
+    appLink: 'https://apps.humanatlas.io/ftu-explorer/#/',
+    app: 'ftu',
+    appTitle: 'FTU Explorer',
   },
 };
