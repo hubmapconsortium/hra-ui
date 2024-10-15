@@ -1,9 +1,12 @@
 :host {
   display: block;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   --mat-sidenav-content-background-color: transparent;
+  position: fixed;
+  height: 100vh;
   pointer-events: none;
+  top: 0;
 
   .container {
     height: 100%;
@@ -33,6 +36,10 @@
       pointer-events: all;
       border-bottom: 1px solid #acb5c3;
     }
+  }
+
+  .mat-drawer-container-has-open {
+    pointer-events: all;
   }
 
   .apps-sidenav {

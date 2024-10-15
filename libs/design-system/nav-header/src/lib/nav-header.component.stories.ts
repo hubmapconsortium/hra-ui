@@ -71,6 +71,7 @@ const meta: Meta = {
     styles: [
       `hra-nav-header {
         height: calc(100vh - 2rem);
+        width: calc(100% - 1rem);
       }`,
     ],
   }),
