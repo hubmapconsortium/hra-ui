@@ -1,122 +1,53 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../styles/constants/palettes' as palettes;
-@use '../../../styles/breakpoints' as breakpoints;
+cde-create-visualization-page {
+  color: var(--sys-secondary);
 
-$gray-palette: map.get(palettes.$palettes, 'gray');
+  hra-nav-header {
+    background-color: var(--sys-surface-container-high) !important;
+  }
 
-@mixin color($theme) {
-  cde-create-visualization-page {
-    h1,
-    h2,
-    h3,
-    h4 {
-      color: mat.get-theme-color($theme, accent, darker);
-    }
+  .app-description {
+    color: var(--sys-on-tertiary-fixed) !important;
+    background: rgb(from var(--sys-on-tertiary-container) r g b / 0.08);
+  }
 
-    .page-nav .nav {
-      a {
-        color: mat.get-theme-color($theme, primary, 700);
-      }
+  .card {
+    background-color: var(--sys-surface-container-low);
 
-      mat-icon,
-      span {
-        color: map.get($gray-palette, 700);
-      }
-    }
-
-    .card {
-      background-color: white;
-
-      .header {
-        .step-number {
-          background-color: map.get($gray-palette, 700);
-          color: white;
-        }
-
-        mat-icon {
-          color: mat.get-theme-color($theme, accent, darker);
-        }
-      }
-    }
-
-    .data-upload {
-      .required-columns,
-      .optional-columns {
-        color: mat.get-theme-color($theme, accent, 800);
-      }
-
-      .use-template {
-        color: mat.get-theme-color($theme, primary, 700);
-      }
-    }
-
-    .color-config {
-      mat-button-toggle-group {
-        border-color: map.get($gray-palette, 700);
-        --mat-standard-button-toggle-text-color: #{mat.get-theme-color($theme, accent, darker)};
-        --mat-standard-button-toggle-background-color: #{mat.get-theme-color($theme, accent, lighter)};
-        --mat-standard-button-toggle-selected-state-text-color: white;
-        --mat-standard-button-toggle-selected-state-background-color: #{mat.get-theme-color($theme, primary, default)};
-      }
-
-      .use-template {
-        color: mat.get-theme-color($theme, primary, 700);
-      }
-    }
-
-    .metadata {
-      --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
+    .header {
+      --mat-icon-color: var(--sys-secondary);
     }
   }
 
-  .info-tooltip-panel {
-    background-color: white;
-    color: map.get($gray-palette, 600);
+  td {
+    color: var(--sys-primary);
   }
 
-  mat-form-field {
-    --mdc-filled-text-field-container-color: #{mat.get-theme-color($theme, accent, lighter)};
-    --mdc-filled-text-field-focus-label-text-color: #{mat.get-theme-color($theme, primary, darker)};
-    --mdc-filled-text-field-label-text-color: #{map.get($gray-palette, 700)};
-    --mat-select-enabled-arrow-color: #{map.get($gray-palette, 700)};
-    --mat-select-focused-arrow-color: #{mat.get-theme-color($theme, primary, darker)};
-  }
-
-  .mat-form-field-hide-placeholder {
-    --mdc-filled-text-field-container-color: white;
-  }
-
-  .select-panel {
-    --mat-option-selected-state-layer-color: #{mat.get-theme-color($theme, accent, lighter)};
-    --mat-option-label-text-color: #{map.get($gray-palette, 700)};
-    --mat-option-selected-state-label-text-color: #{mat.get-theme-color($theme, accent, darker)};
-    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{mat.get-theme-color($theme, primary, 700)};
-  }
-
-  .visualize-notification {
-    color: #4b4b5e;
-  }
-
-  .upload-errors {
-    .error-message {
-      color: #{mat.get-theme-color($theme, primary, darker)};
+  .color-config {
+    mat-button-toggle-group {
+      border-color: var(--sys-primary);
+      --mat-standard-button-toggle-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-background-color: rgb(from var(--sys-tertiary) r g b / 0.2);
     }
-    .error-instructions {
-      color: #{map.get($gray-palette, 700)};
+
+    mat-button-toggle {
+      &:first-child {
+        border-color: var(--sys-primary);
+      }
+    }
+  }
+
+  .visualize-notification,
+  .error {
+    color: var(--sys-on-error-container);
+    background-color: rgb(from var(--sys-error-container) r g b / 0.8);
+
+    .alert {
+      color: var(--sys-error);
     }
   }
 }
 
-@mixin typography($theme) {
-}
-
-@mixin theme($theme) {
-  @if mat.theme-has($theme, color) {
-    @include color($theme);
-  }
-
-  @if mat.theme-has($theme, typography) {
-    @include typography($theme);
-  }
+.info-tooltip-panel {
+  background-color: var(--sys-on-primary);
 }
