@@ -285,23 +285,23 @@ describe('CdeVisualizationComponent', () => {
           ...sampleData,
           nodes: [
             {
-              cell_type: 'a',
+              'Cell Type': 'a',
               x: 0,
               y: 1,
             },
             {
-              cell_type: 'b',
+              'Cell Type': 'b',
               x: 0,
               y: 2,
             },
             {
-              cell_type: 'c',
+              'Cell Type': 'c',
               x: 0,
               y: 3,
             },
           ],
           colorMap: sampleColorMap,
-          nodeTargetKey: 'cell_type',
+          nodeTargetKey: 'Cell Type',
         },
       });
 
