@@ -1,16 +1,8 @@
 @use 'light-theme';
 @use 'theming';
-@use '../src/app/pages/create-visualization-page/create-visualization-page.component.theme.scss' as create-visualization;
 
 html {
   @include theming.theme(light-theme.$theme);
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type='number'] {
