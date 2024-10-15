@@ -70,7 +70,7 @@ const meta: Meta = {
     props: args,
     styles: [
       `hra-nav-header {
-        height: calc(100vh - 15rem);
+        height: calc(100vh - 2rem);
       }`,
     ],
   }),

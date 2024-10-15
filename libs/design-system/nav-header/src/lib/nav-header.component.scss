@@ -27,10 +27,11 @@
     .main {
       display: flex;
       align-items: center;
-      background-color: var(--sys-surface-dim);
+      background-color: var(--sys-surface-container-high);
       height: 4.5rem;
-      padding: 0 0.75rem 0 1rem;
+      padding: 0 0.5rem 0 0.75rem;
       pointer-events: all;
+      border-bottom: 1px solid #acb5c3;
     }
   }
 
