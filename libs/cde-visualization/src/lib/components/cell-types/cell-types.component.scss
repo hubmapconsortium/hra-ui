@@ -8,7 +8,7 @@
   display: grid;
   grid:
     'cell-types . download'
-    'total-cell-types . total-cells'
+    'total-cell-types total-cells total-cell-links'
     'table table table' 1fr
     / auto 1fr auto;
   align-items: start;
@@ -20,24 +20,32 @@
   border-color: var(--sys-outline-variant);
   --mat-table-background-color: white;
   --mdc-checkbox-unselected-icon-color: var(--sys-secondary);
+  --mdc-checkbox-selected-icon-color: var(--sys-secondary);
+  --mdc-checkbox-selected-checkmark-color: var(--sys-secondary);
+  --mdc-checkbox-state-layer-size: 28px;
   --mat-sort-arrow-color: var(--sys-secondary);
   --mat-table-row-item-container-height: 1.75rem;
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
   --mdc-filled-button-container-height: 2rem;
   --mat-table-header-container-height: 2rem;
+  --mat-menu-item-label-text-color: var(--sys-primary);
+
+  &:not(:has(.total-cell-links)) {
+    grid:
+      'cell-types . download'
+      'total-cell-types . total-cells'
+      'table table table' 1fr
+      / auto 1fr auto;
+  }
 
   span.cell-types-label {
-    grid-area: cell-types;
     font: var(--sys-label-medium);
-    height: 2rem;
+    letter-spacing: var(--sys-label-medium-tracking);
+    grid-area: cell-types;
     display: flex;
     align-items: center;
     gap: 0.25rem;
-
-    mat-icon {
-      margin: 2px;
-    }
   }
 
   button.download-csv {
@@ -57,10 +65,11 @@
     }
   }
 
-  .mat-caption,
-  .total-ct-label {
-    grid-area: total-cell-types;
+  .total-ct-label,
+  .total-cells,
+  .total-cell-links {
     font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-medium-tracking);
 
     span {
       display: block;
@@ -69,13 +78,18 @@
     }
   }
 
+  .mat-caption,
+  .total-ct-label {
+    grid-area: total-cell-types;
+  }
+
   .total-cells {
     grid-area: total-cells;
+    justify-self: center;
+  }
 
-    span {
-      color: var(--sys-primary);
-      text-align: right;
-    }
+  .total-cell-links {
+    grid-area: total-cell-links;
   }
 
   .table-overflow-container {
@@ -85,7 +99,27 @@
 
     table {
       ::ng-deep {
+        .mat-mdc-menu-content {
+          color: var(--sys-primary);
+        }
+
         thead {
+          tr {
+            font: var(--sys-label-small);
+            .mat-mdc-checkbox {
+              .mdc-checkbox__background {
+                background-color: white;
+              }
+            }
+          }
+          .mat-sort-header-container {
+            max-width: 6rem;
+            .mat-sort-header-content {
+              font: var(--sys-label-small);
+              color: var(--sys-secondary);
+            }
+          }
+
           .mat-sort-header-arrow {
             opacity: 1 !important;
             transform: none !important;
@@ -94,14 +128,22 @@
           tr th:last-child > div {
             justify-content: flex-end;
             margin-right: 0.25rem;
-            color: var(--sys-secondary);
+            color: var(--sys-primary);
           }
         }
 
-        tbody tr td.mdc-data-table__cell:last-child {
+        tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
-          padding-right: 0.25rem;
+          padding-right: 1.5rem;
           color: var(--sys-primary);
+          font: var(--sys-label-small);
+        }
+
+        tbody {
+          tr,
+          td {
+            font: var(--sys-label-small);
+          }
         }
 
         tr:has(.anchor) {
@@ -126,6 +168,16 @@
             border-top: solid var(--sys-outline-variant) 0.0625rem;
             border-right: solid var(--sys-outline-variant) 0.0625rem;
             border-bottom: solid var(--sys-outline-variant) 0.0625rem;
+          }
+        }
+
+        tr {
+          .mat-mdc-checkbox {
+            &.mat-mdc-checkbox-checked {
+              .mdc-checkbox__background {
+                background-color: white;
+              }
+            }
           }
         }
       }
@@ -156,6 +208,20 @@
       .mdc-data-table__header-cell {
         padding: 0;
       }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-menu-content button {
+    color: var(--sys-primary);
+  }
+
+  div.mat-mdc-menu-panel {
+    max-width: 308px;
+    &.info-sub-menu .mat-mdc-menu-content {
+      padding: 1rem 1rem;
+      color: var(--sys-primary);
     }
   }
 }

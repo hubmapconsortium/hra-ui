@@ -11,6 +11,7 @@ import {
   input,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,17 +19,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Rgb } from '@hra-ui/design-system/color-picker';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
-
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 /**
  * Cell Type Component
  */
@@ -47,7 +51,11 @@ import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
     OverlayModule,
     ColorPickerLabelComponent,
     ScrollingModule,
+    MatMenuModule,
+    IconButtonSizeDirective,
     TooltipCardComponent,
+    MatSnackBarModule,
+    MicroTooltipDirective,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
@@ -62,17 +70,40 @@ export class CellTypesComponent {
   /** Currently selected cell type */
   readonly selectedCellType = input<string>('');
 
-  /** Output event for download action */
-  readonly download = output();
+  /** Output event for download colormap action */
+  readonly downloadColorMap = output();
+
+  /** Output event for download edges action */
+  readonly downloadNodes = output();
+
+  /** Output event for download edges action */
+  readonly downloadEdges = output();
+
+  /** Output event for reset color */
+  readonly resetAllColors = output();
 
   /** Columns to be displayed in the table */
-  protected readonly columns = ['select', 'name', 'count'];
+  protected readonly columns = computed(() => {
+    if (this.hideCellLinkData()) {
+      return ['select', 'cellType', 'count'];
+    } else {
+      return ['select', 'cellType', 'count', 'links'];
+    }
+  });
 
   /** Tooltip position configuration */
   protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** Reference to MatSort directive */
   protected readonly sort = viewChild.required(MatSort);
+
+  /** Content for Info Tooltip card */
+  protected readonly infoToolTipDescription: string = `Show/hide cell types in the visualization and plots. Hide cell links from this table view.
+    Update colors for individual cell types. Download CSVs for the current configurations of
+    cell types, cell links, and cell type color map formatting.`;
+
+  /** Flag to toggle cell links row visibility */
+  protected hideCellLinkData = signal(false);
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -120,17 +151,25 @@ export class CellTypesComponent {
     }
   });
 
+  /** Helper function to calculate the number of nodes or edges */
+  protected readonly sumCounts = (count: number, entry: CellTypeEntry, key: 'count' | 'outgoingEdgeCount') => {
+    const value = this.isSelected(entry) ? entry[key] : 0;
+    return count + value;
+  };
+
   /** Computed total cell count based on selection */
   protected totalCellCount = computed(() => {
-    const sumCounts = (count: number, entry: CellTypeEntry) => {
-      const value = this.isSelected(entry) ? entry.count : 0;
-      return count + value;
-    };
-
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 
-    return this.cellTypes().reduce(sumCounts, 0);
+    return this.cellTypes().reduce((count, entry) => this.sumCounts(count, entry, 'count'), 0);
+  });
+
+  protected totalCellLinksCount = computed(() => {
+    // Grab dependency on current selection since selectionModel is used indirectly
+    this.selection();
+
+    return this.cellTypes().reduce((count, entry) => this.sumCounts(count, entry, 'outgoingEdgeCount'), 0);
   });
 
   /** Toggle state for cell types info */
@@ -184,5 +223,9 @@ export class CellTypesComponent {
         sorter.sort(sortable);
       } while (sorter.direction !== 'desc');
     }
+  }
+
+  toggleLinksColumn(): void {
+    this.hideCellLinkData.set(!this.hideCellLinkData());
   }
 }

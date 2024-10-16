@@ -6,3 +6,7 @@
 html {
   @include theming.theme(light-theme.$theme);
 }
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}

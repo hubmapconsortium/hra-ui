@@ -12,7 +12,7 @@
       "options": {
         "outputPath": "dist/libs/cde-visualization",
         "index": "libs/cde-visualization/src/index.html",
-        "main": "libs/cde-visualization/src/main.ts",
+        "main": "libs/cde-visualization/src/index.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "libs/cde-visualization/tsconfig.app.json",
         "inlineStyleLanguage": "scss",

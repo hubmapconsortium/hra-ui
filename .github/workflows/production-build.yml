@@ -25,7 +25,6 @@ jobs:
           app-configuration: production
           nx-command: run-many
           build-compodoc: false
-          build-storybook: false
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -37,6 +36,7 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync --delete deploy/apps/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ui/
+          aws s3 sync deploy/storybook/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ui/storybook/
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/ui/*"
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_HUMANATLAS_IO_DISTRIBUTION_ID }} --paths "/*"
 

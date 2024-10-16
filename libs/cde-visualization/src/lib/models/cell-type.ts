@@ -6,6 +6,8 @@ export interface CellTypeEntry {
   name: string;
   /** Count of instances for this cell type */
   count: number;
+  /** Count of number of outgoing edges */
+  outgoingEdgeCount: number;
   /** RGB color associated with this cell type */
   color: Rgb;
 }
