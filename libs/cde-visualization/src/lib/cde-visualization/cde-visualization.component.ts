@@ -12,7 +12,6 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
-import { startCase } from 'lodash';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
@@ -315,13 +314,13 @@ export class CdeVisualizationComponent {
   // Add appropriate headers to edge data
   addEdgeHeaders(edges: EdgeEntry[]) {
     return edges.map((item) => ({
-      SourceNodeIndex: item[0],
-      X0: item[1],
-      Y0: item[2],
-      Z0: item[3],
-      X1: item[4],
-      Y1: item[5],
-      Z1: item[6],
+      'Cell ID': item[0],
+      X1: item[1],
+      Y1: item[2],
+      Z1: item[3],
+      X2: item[4],
+      Y2: item[5],
+      Z2: item[6],
     }));
   }
 
@@ -339,7 +338,7 @@ export class CdeVisualizationComponent {
   capitalizeHeaders(data: object[]): object[] {
     return data.map((item) => {
       const entries = Object.entries(item);
-      const capsEntries = entries.map((entry) => [startCase(entry[0][0]) + entry[0].slice(1), entry[1]]);
+      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
       return Object.fromEntries(capsEntries);
     });
   }
