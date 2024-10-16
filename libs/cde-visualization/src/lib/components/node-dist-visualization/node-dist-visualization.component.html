@@ -17,24 +17,7 @@
     [cdkConnectedOverlayOpen]="tooltipOpen"
     [cdkConnectedOverlayOffsetX]="5"
   >
-    <div>
-      <ul>
-        Zoom Options
-        <li>Mouse pinwheel</li>
-        <li>Trackpad Pinch</li>
-      </ul>
-      <ul>
-        Pan Options
-        <li>CTRL/CMD + mouse drag</li>
-        <li>Right click + mouse drag</li>
-        <li>Keyboard arrows</li>
-      </ul>
-      <ul>
-        Rotation Options for 3D Visualizations
-        <li>CTRL/CMD + keyboard arrows</li>
-        <li>Mouse Drag</li>
-      </ul>
-    </div>
+    <hra-tooltip-card small [content]="tooltipContent"> </hra-tooltip-card>
   </ng-template>
 </div>
 

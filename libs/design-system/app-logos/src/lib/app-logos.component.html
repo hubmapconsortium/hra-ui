@@ -13,7 +13,9 @@
   <span>
     <div class="mat-caption app-label">{{ appTitle() }}</div>
     @if (appDescription()) {
-      <div class="mat-caption app-description">{{ appDescription() }}</div>
+      <div class="mat-caption app-description" [class.beta-description]="appDescription() === 'Beta'">
+        {{ appDescription() }}
+      </div>
     }
   </span>
 </a>

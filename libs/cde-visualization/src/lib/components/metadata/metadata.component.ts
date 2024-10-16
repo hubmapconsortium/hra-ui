@@ -6,6 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
+import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -37,7 +38,15 @@ export class DefaultToPipe implements PipeTransform {
 @Component({
   selector: 'cde-metadata',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule, DefaultToPipe],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatExpansionModule,
+    OverlayModule,
+    DefaultToPipe,
+    TooltipCardComponent,
+  ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

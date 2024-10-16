@@ -2,23 +2,29 @@
   display: block;
   --mat-text-button-hover-state-layer-opacity: 0;
   --mat-text-button-pressed-state-layer-opacity: 0;
+  --mat-expansion-container-shape: 0;
 
   .mat-expansion-panel {
-    border-color: #d5dbe3;
+    --mat-expansion-container-text-font: var(--sys-label-small-font);
+    --mat-expansion-container-text-size: var(--sys-label-small-size);
+    --mat-expansion-container-text-weight: var(--sys-label-small-weight);
+    --mat-expansion-container-text-line-height: var(--sys-label-small-line-height);
+    --mat-expansion-container-text-tracking: var(--sys-label-small-tracking);
+    border-color: var(--sys-outline-variant);
     border-width: 0 2px 2px 0px;
     border-style: solid;
     box-shadow: none;
 
     .mat-expansion-panel-header {
-      padding: 0.75rem 1rem;
+      --mat-expansion-header-expanded-state-height: 3rem;
+      --mat-expansion-header-text-font: var(--sys-label-medium-font);
+      --mat-expansion-header-text-size: var(--sys-label-medium-size);
+      --mat-expansion-header-text-weight: var(--sys-label-medium-weight);
+      --mat-expansion-header-text-line-height: var(--sys-label-medium-line-height);
+      --mat-expansion-header-text-tracking: var(--sys-label-medium-tracking);
+      padding: 0 0.75rem;
 
       .title {
-        font-size: 1rem;
-        height: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-
         mat-icon {
           margin: 2px;
         }
@@ -36,11 +42,11 @@
       + a {
         display: block;
         margin-bottom: 0.75rem;
-        color: #b20a2f;
+        color: var(--sys-on-tertiary-fixed);
       }
 
       & + span.user-title {
-        color: #4c4c58;
+        color: var(--sys-primary);
       }
     }
 
@@ -58,21 +64,21 @@
       div.mat-caption {
         &:not(:has(span.mat-caption)) {
           span {
-            color: #4c4c58;
+            color: var(--sys-primary);
           }
         }
 
         span.mat-caption {
-          color: #b20a2f;
+          color: var(--sys-on-tertiary-fixed);
         }
 
         span.user-source {
-          color: #4c4c58;
+          color: var(--sys-primary);
         }
 
         a.mat-caption {
           display: block;
-          color: #b20a2f;
+          color: var(--sys-on-tertiary-fixed);
         }
       }
     }
@@ -82,7 +88,7 @@
       line-height: 21px;
 
       .mdc-button {
-        --mdc-text-button-label-text-color: #b20a2f;
+        --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
         height: 100%;
         padding: 0;
       }
