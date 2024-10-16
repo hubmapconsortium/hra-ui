@@ -17,10 +17,10 @@ export interface ColorMapEntry {
 }
 
 /** Default key for the color map type */
-export const DEFAULT_COLOR_MAP_KEY = 'cell_type' as ColorMapTypeKey;
+export const DEFAULT_COLOR_MAP_KEY = 'Cell Type' as ColorMapTypeKey;
 
 /** Default key for the color map value */
-export const DEFAULT_COLOR_MAP_VALUE_KEY = 'cell_color' as ColorMapColorKey;
+export const DEFAULT_COLOR_MAP_VALUE_KEY = 'HEX' as ColorMapColorKey;
 
 /** Converts a color map array to a lookup map for quick access */
 export function colorMapToLookup(

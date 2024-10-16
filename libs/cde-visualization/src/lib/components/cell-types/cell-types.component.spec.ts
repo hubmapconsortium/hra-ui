@@ -7,9 +7,9 @@ import { CellTypesComponent } from './cell-types.component';
 
 describe('CellTypesComponent', () => {
   const cellTypes: CellTypeEntry[] = [
-    { name: 'Cell Type 1', count: 100, color: [0, 1, 2] },
-    { name: 'Cell Type 2', count: 200, color: [3, 4, 5] },
-    { name: 'Cell Type 3', count: 300, color: [6, 7, 8] },
+    { name: 'Cell Type 1', count: 100, color: [0, 1, 2], outgoingEdgeCount: 0 },
+    { name: 'Cell Type 2', count: 200, color: [3, 4, 5], outgoingEdgeCount: 0 },
+    { name: 'Cell Type 3', count: 300, color: [6, 7, 8], outgoingEdgeCount: 0 },
   ];
   const cellTypesSelection = [cellTypes[0].name, cellTypes[1].name];
 
