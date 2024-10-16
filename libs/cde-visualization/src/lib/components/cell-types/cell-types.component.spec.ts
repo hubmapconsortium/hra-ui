@@ -1,5 +1,6 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
+import { MatMenuHarness } from '@angular/material/menu/testing';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
@@ -19,6 +20,53 @@ describe('CellTypesComponent', () => {
       providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
     });
   }
+
+  it('should update nodes when downloadNodes is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadNodes: emitFn,
+      },
+    });
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cells CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
+
+  it('should update edges when downloadEdges is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadEdges: emitFn,
+      },
+    });
+
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Links CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
+
+  it('should update color map when downloadColorMap is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadColorMap: emitFn,
+      },
+    });
+
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
 
   it('should render the component', async () => {
     await setup({

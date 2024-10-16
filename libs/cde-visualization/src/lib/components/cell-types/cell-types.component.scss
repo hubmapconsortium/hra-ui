@@ -228,15 +228,10 @@ $blue-theme: mat.m2-define-light-theme(
 }
 
 ::ng-deep {
-  .mat-mdc-menu-content button {
-    color: var(--sys-primary);
-  }
-
   div.mat-mdc-menu-panel {
     max-width: 308px;
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 1rem 1rem;
-      color: var(--sys-primary);
     }
   }
 }
