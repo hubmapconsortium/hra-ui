@@ -26,11 +26,6 @@ export class VisualizationHeaderComponent {
   /** Defines an output event for resetting all settings */
   readonly resetAll = output();
 
-  /** Defines an output event for downloading nodes */
-  readonly downloadNodes = output();
-  /** Defines an output event for downloading edges */
-  readonly downloadEdges = output();
-
   /** Flag to check if reset info tooltip is open */
   resetInfoOpen = false;
   /** Flag to check if embed info tooltip is open */
