@@ -45,9 +45,9 @@
   width: 100%;
   display: grid;
   grid-template-columns: 22.75rem minmax(57.1875rem, calc(100vw - 22.75rem));
-  grid-template-rows: 4rem minmax(calc(46.5rem - 4rem), calc(100vh - 5.25rem));
+  grid-template-rows: 4rem minmax(42.375rem, calc(100vh - 4rem));
   grid-template-areas:
-    'header header'
+    'header visualization'
     'metadata visualization';
   color: #201e3d;
 
@@ -84,12 +84,13 @@
       border-width: 0 0 2px 0;
       border-style: solid;
       height: 100%;
-      min-width: calc(100% - 390px);
+      min-width: 32.75rem;
     }
 
     cde-violin {
       height: 100%;
-      min-width: 390px;
+      min-width: 24.25rem;
+      max-width: 31.5rem;
     }
   }
 }
@@ -101,6 +102,7 @@
   .violin-overlay {
     .mat-mdc-menu-content {
       background-color: var(--sys-on-primary);
+      color: var(--sys-secondary);
       .mat-mdc-menu-item {
         --mat-menu-item-with-icon-leading-spacing: 1rem;
         --mat-menu-item-with-icon-trailing-spacing: 1rem;
@@ -117,13 +119,11 @@
     min-width: 208px;
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 0.75rem 1rem;
-      color: var(--sys-primary);
       background-color: var(--sys-on-primary);
       font: var(--sys-label-medium);
     }
 
     &.download-sub-menu .mat-mdc-menu-content {
-      color: var(--sys-primary);
       background-color: var(--sys-on-primary);
       font: var(--sys-label-medium);
 

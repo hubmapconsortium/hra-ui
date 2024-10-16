@@ -20,6 +20,7 @@
     >
       <mat-icon>info</mat-icon>
       <span>Info</span>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
     <button
       mat-menu-item
@@ -30,6 +31,7 @@
     >
       <mat-icon>download</mat-icon>
       <span>Downloads</span>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
     <button
       mat-menu-item
@@ -40,6 +42,7 @@
     >
       <mat-icon>reset_wrench</mat-icon>
       <span>Reset</span>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
     <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
       <div>
@@ -66,10 +69,6 @@
         <mat-icon>download</mat-icon>
         <span>PNG</span>
       </button>
-      <button mat-menu-item (click)="download()">
-        <mat-icon>download</mat-icon>
-        <span>SVG</span>
-      </button>
     </mat-menu>
     <mat-menu #resetSubMenu="matMenu" [class]="'reset-sub-menu'">
       <button mat-menu-item (click)="resetView()">
@@ -89,10 +88,15 @@
       <mat-icon>{{ cellLinksVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
       {{ cellLinksVisible() ? 'Hide' : 'Show' }} Cell Links
     </button>
-    <button mat-menu-item>
+    <a
+      mat-menu-item
+      href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <mat-icon>code</mat-icon>
       Embed App
-    </button>
+    </a>
   </mat-menu>
   <div class="filler"></div>
   <mat-icon class="delete" hraMicroTooltip="Select at least one cell to delete it from this dataset">delete</mat-icon>
@@ -113,10 +117,5 @@
     >
   </mat-button-toggle-group>
 </div>
-
-<!-- <button mat-flat-button class="download mat-caption" (click)="download()">
-  PNG
-  <mat-icon class="material-symbols-rounded">download</mat-icon>
-</button> -->
 
 <hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>

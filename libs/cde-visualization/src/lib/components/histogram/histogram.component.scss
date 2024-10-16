@@ -68,6 +68,9 @@
         cde-color-picker-label {
           .label {
             font: var(--sys-label-small);
+            display: flex;
+            white-space: unset;
+            max-width: unset;
           }
         }
       }
