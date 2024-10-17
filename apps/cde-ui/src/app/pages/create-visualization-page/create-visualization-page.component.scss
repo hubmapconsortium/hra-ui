@@ -4,10 +4,11 @@
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-position: center;
   background-size: cover;
+  position: relative;
+  top: 4.5rem;
 
   hra-nav-header {
     border-bottom: 1px solid var(--sys-outline);
-    height: 5rem;
   }
 
   ::ng-deep .app-logo .app-description {
