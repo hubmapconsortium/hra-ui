@@ -7,12 +7,12 @@
     "papaparse": "^5.4.1",
     "@hra-ui/utils": "0.0.1",
     "rxjs": "7.8.0",
-    "@angular/common": "18.2.1",
     "@deck.gl/carto": "~8.8.20",
     "@deck.gl/core": "~8.8.20",
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
-    "@vivjs/layers": "0.16.1"
+    "@vivjs/layers": "0.16.1",
+    "ngxtension": "^3.5.5"
   },
   "sideEffects": [
     "index.ts"
