@@ -1,0 +1,33 @@
+<cdk-accordion>
+  <cdk-accordion-item
+    #accordionItem="cdkAccordionItem"
+    tabindex="0"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="titleId"
+  >
+    <div class="header">
+      @if (!disabled()) {
+        <button mat-icon-button class="">
+          <mat-icon class="material-symbols-rounded" (click)="accordionItem.toggle()">
+            {{ accordionItem.expanded ? 'remove' : 'add' }}
+          </mat-icon>
+        </button>
+      }
+
+      <span class="title">
+        {{ title() }}
+      </span>
+
+      <span>
+        <ng-content select="hra-expansion-panel-actions"> </ng-content>
+      </span>
+      <div class="filler"></div>
+      <span>
+        <ng-content select="hra-expansion-panel-header-content"></ng-content>
+      </span>
+    </div>
+    <div role="region" class="content" [class.expanded]="accordionItem.expanded" [attr.aria-labelledby]="titleId">
+      <ng-content></ng-content>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>

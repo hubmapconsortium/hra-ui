@@ -1,0 +1,25 @@
+:host {
+  display: block;
+
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-label-large);
+    color: var(--sys-secondary);
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .content {
+    font: var(--sys-label-large);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.2s ease-in-out;
+
+    &.expanded {
+      height: 2rem;
+    }
+  }
+}
