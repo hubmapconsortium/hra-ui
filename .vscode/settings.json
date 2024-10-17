@@ -13,6 +13,7 @@
     "ccf-organ-info",
     "design-system",
     "body-ui",
-    "eui"
+    "eui",
+    "node-dist-vis"
   ]
 }

@@ -7,5 +7,3 @@ export * from './lib/node-dist-vis/node-dist-vis.component';
 export const CdeVisualizationElement = createCustomElement('hra-node-dist-vis', NodeDistVisComponent, {
   providers: [],
 });
-
-export * from './lib/deck-gl-visualization/deck-gl-visualization.component';
