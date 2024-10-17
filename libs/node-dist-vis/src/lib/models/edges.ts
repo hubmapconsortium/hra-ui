@@ -1,31 +1,30 @@
-export type EdgeEntry = [
-  sourceNodeIndex: number,
-  x0: number,
-  y0: number,
-  z0: number,
-  x1: number,
-  y1: number,
-  z1: number,
-];
+import { AnyDataEntry, createDataViewClass } from './data-view';
 
-/** Enum representing the indices of the elements in an EdgeEntry */
-export enum EdgeIndex {
-  SourceNode = 0,
-  x0,
-  y0,
-  z0,
-  x1,
-  y1,
-  z1,
+export interface EdgeEntry {
+  'Cell ID': number;
+  X1: number;
+  Y1: number;
+  Z1: number;
+  X2: number;
+  Y2: number;
+  Z2: number;
 }
 
-/** Default maximum distance for edges */
-export const DEFAULT_MAX_EDGE_DISTANCE = 1000;
+const EDGE_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
+const BaseEdgesView = createDataViewClass<EdgeEntry>(EDGE_KEYS);
 
-/** Calculates the Euclidean distance between the two points defined by an EdgeEntry */
-export function edgeDistance(edge: EdgeEntry): number {
-  const xDiff = edge[EdgeIndex.x0] - edge[EdgeIndex.x1];
-  const yDiff = edge[EdgeIndex.y0] - edge[EdgeIndex.y1];
-  const zDiff = edge[EdgeIndex.z0] - edge[EdgeIndex.z1];
-  return Math.hypot(xDiff, yDiff, zDiff);
+export class EdgesView extends BaseEdgesView {
+  readonly getSourcePositionAt = (index: number) => this.getSourcePositionFor(this.data[index]);
+  readonly getSourcePositionFor = (obj: AnyDataEntry): [number, number, number] => [
+    this.getX1For(obj),
+    this.getY1For(obj),
+    this.getZ1For(obj),
+  ];
+
+  readonly getTargetPositionAt = (index: number) => this.getTargetPositionFor(this.data[index]);
+  readonly getTargetPositionFor = (obj: AnyDataEntry): [number, number, number] => [
+    this.getX2For(obj),
+    this.getY2For(obj),
+    this.getZ2For(obj),
+  ];
 }

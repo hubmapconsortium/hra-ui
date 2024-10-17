@@ -1,3 +1,145 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  effect,
+  ElementRef,
+  ErrorHandler,
+  inject,
+  output,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
+import { DeckProps, OrbitView, PickingInfo } from '@deck.gl/core/typed';
+import { createDeck } from '../deckgl/deck';
+import { createEdgesLayer } from '../deckgl/layers/edges';
+import { createNodesLayer } from '../deckgl/layers/nodes';
+import { createScaleBarLayer } from '../deckgl/layers/scale-bar';
+import { ColorMapView } from '../models/color-map';
+import { AnyDataEntry } from '../models/data-view';
+import { EdgesView } from '../models/edges';
+import { NodesView } from '../models/nodes';
+
+@Component({
+  selector: 'hra-node-dist-vis',
+  standalone: true,
+  template: '<canvas #canvas></canvas>',
+  styles: ':host { display: block; width: 100%; height: 100%; }',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NodeDistVisComponent {
+  readonly nodeClick = output<AnyDataEntry>();
+  readonly nodeHover = output<AnyDataEntry | undefined>();
+
+  private readonly nodesView = signal(
+    new NodesView(
+      [
+        { x: 659, y: 72, position: [659, 72, 0], type: 'T-Helper' },
+        { x: 178, y: 73, position: [178, 73, 0], type: 'T-Helper' },
+        { x: 170, y: 74, position: [170, 74, 0], type: 'T-Helper' },
+        { x: 173, y: 75, position: [173, 75, 0], type: 'T-Helper' },
+        { x: 174, y: 76, position: [174, 76, 0], type: 'T-Helper' },
+      ],
+      { 'Cell Type': 'type', X: 'x', Y: 'y' },
+    ),
+  );
+  private readonly edgesView = signal(
+    new EdgesView(
+      [
+        [0, 659, 72, 0, 630, 105, 5],
+        [1, 178, 73, 0, 177, 71, 2],
+        [2, 170, 74, 0, 166, 79, 2],
+        [3, 173, 74, 0, 177, 71, 2],
+        [4, 174, 75, 0, 177, 71, 2],
+      ],
+      { 'Cell ID': 0, X1: 1, Y1: 2, Z1: 3, X2: 4, Y2: 5, Z2: 6 },
+    ),
+  );
+  private readonly colorMapView = signal(
+    new ColorMapView([['T-Helper', [112, 165, 168]]], { 'Cell Type': 0, 'Cell Color': 1 }),
+  );
+  private readonly selection = signal<string[] | undefined>(undefined);
+
+  private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
+  private readonly errorHandler = inject(ErrorHandler);
+
+  private viewStateVersionCounter = 0;
+  private readonly viewState = signal<object>(this.getInitialViewState());
+  private readonly viewSize = computed((): [number, number] => {
+    const { width, height } = this.canvas().nativeElement;
+    return [width, height];
+  });
+
+  private readonly deckProps = computed(
+    (): DeckProps => ({
+      canvas: this.canvas().nativeElement,
+      controller: true,
+      views: [new OrbitView({ orbitAxis: 'Y' })],
+      initialViewState: untracked(this.viewState),
+      layers: [],
+      getCursor: ({ isDragging, isHovering }) => this.getCursor(isDragging, isHovering),
+      onClick: (info) => this.onClick(info),
+      onHover: (info) => this.onHover(info),
+      onViewStateChange: ({ viewState }) => this.viewState.set(viewState),
+      onError: (error) => this.errorHandler.handleError(error),
+    }),
+  );
+  private readonly deck = createDeck(this.deckProps);
+
+  private readonly nodesLayer = createNodesLayer(this.nodesView, this.selection, this.colorMapView);
+  private readonly edgesLayer = createEdgesLayer(this.nodesView, this.edgesView, this.selection, this.colorMapView);
+  private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.viewSize, this.viewState);
+  private readonly layers = computed(() => [this.nodesLayer(), this.edgesLayer(), this.scaleBarLayer()]);
+
+  private activeHover: AnyDataEntry | undefined = undefined;
+
+  constructor() {
+    effect(() => this.deck()?.setProps({ layers: this.layers() }));
+    inject(DestroyRef).onDestroy(() => this.deck()?.finalize());
+  }
+
+  private getInitialViewState() {
+    return {
+      version: this.viewStateVersionCounter++,
+      orbitAxis: 'Y',
+      camera: 'orbit',
+      zoom: 9,
+      minRotationX: -90,
+      maxRotationX: 90,
+      rotationX: 0,
+      rotationOrbit: 0,
+      dragMode: 'rotate',
+      target: [0.5, 0.5],
+    };
+  }
+
+  private getCursor(isDragging: boolean, isHovering: boolean): string {
+    if (isDragging) {
+      return 'grabbing';
+    } else if (isHovering) {
+      return 'pointer';
+    } else {
+      return 'grab';
+    }
+  }
+
+  private onClick(info: PickingInfo): void {
+    if (info.picked) {
+      this.nodeClick.emit(info.object);
+    }
+  }
+
+  private onHover(info: PickingInfo): void {
+    const obj = info.picked ? info.object : undefined;
+    if (obj !== this.activeHover) {
+      this.nodeHover.emit(obj);
+      this.activeHover = obj;
+    }
+  }
+}
+
 // import { CommonModule } from '@angular/common';
 // import {
 //   ChangeDetectionStrategy,
