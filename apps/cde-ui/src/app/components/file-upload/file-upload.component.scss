@@ -1,65 +1,41 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../styles/constants/palettes' as palettes;
-
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 800, 900);
-$blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
-
 :host {
-  --mdc-filled-button-label-text-size: 1rem;
-  --mat-filled-button-horizontal-padding: 0.5rem;
-  --mdc-filled-button-label-text-tracking: 0.02em;
-  --mat-filled-button-icon-spacing: 0.25rem;
-  @include mat.button-color($blue-theme);
-
-  mat-icon {
-    --mat-filled-button-icon-offset: 0;
-    font-size: 1.5rem;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-
   .upload-success {
+    height: 2.5rem;
     display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background: var(--sys-surface-container);
+    gap: 0.5rem;
+    border-radius: 1rem;
+    font: var(--sys-label-large);
 
     .filename {
       display: flex;
-      flex-direction: column;
-      width: 15.25rem;
-      margin-right: 5rem;
-    }
-
-    .loaded-label {
-      color: mat.get-theme-color($blue-theme, primary, 900);
     }
 
     .file-name {
-      color: mat.get-theme-color($blue-theme, primary, 800);
+      color: var(--sys-primary);
     }
 
     .remove-file {
-      --mdc-filled-button-label-text-color: #{mat.get-theme-color($blue-theme, primary, 900)};
-      padding: 0.25rem 0.5rem;
-      width: fit-content;
-      margin-right: 5rem;
+      color: var(--sys-secondary);
+      cursor: pointer;
     }
-  }
-
-  .upload {
-    margin-right: 5rem;
   }
 
   .error {
     display: flex;
-    flex-direction: column;
+    gap: 0.5rem;
     margin-bottom: 2rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font: var(--sys-label-large);
+    width: fit-content;
+
+    .error-messages {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .action-required {
@@ -74,17 +50,6 @@ $blue-theme: mat.m2-define-light-theme(
       width: 2rem;
       height: 2rem;
       font-size: 2rem;
-    }
-  }
-
-  .use-template {
-    --mdc-text-button-label-text-size: 1rem;
-    --mat-text-button-with-icon-horizontal-padding: 0rem;
-    --mdc-text-button-label-text-tracking: 0.02em;
-    --mat-text-button-icon-spacing: 0.25rem;
-
-    &.loaded {
-      margin-top: 1.5rem;
     }
   }
 }

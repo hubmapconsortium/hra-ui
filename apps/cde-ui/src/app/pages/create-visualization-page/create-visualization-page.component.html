@@ -1,20 +1,25 @@
-<cde-header></cde-header>
+<hra-nav-header
+  title="Cell Distance Explorer"
+  icon="assets/logo/cde_logo.svg"
+  link="https://apps.humanatlas.io/cde/"
+  description="Beta"
+></hra-nav-header>
 <form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
   <div class="page-nav">
-    <div class="nav">
-      <a routerLink="/">Home</a>
-      <mat-icon>chevron_right</mat-icon>
-      <span>Create Visualization</span>
-    </div>
+    <hra-breadcrumbs
+      class="nav"
+      size="large"
+      [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]"
+    >
+    </hra-breadcrumbs>
 
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
   <div class="card data-upload">
     <h2 class="header">
-      <span class="step-number">1</span>
-      <span class="card-title">Format and Upload Data</span>
-      <div class="filler"></div>
+      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
+      <span class="card-title">Upload Data</span>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -34,16 +39,41 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Format single-cell spatial feature tables into the Cell Type Table template to upload and explore data. Cell
-          coordinates should be in micrometers. Damage and proliferation markers can be included.
-        </p>
+        <hra-tooltip-card [content]="tooltips[0]"> </hra-tooltip-card>
       </ng-template>
+      <div class="filler"></div>
+      <a
+        mat-button
+        class="use-template"
+        color="primary"
+        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
+        target="_blank"
+        rel="noopener noreferrer"
+        hraButtonSize="medium"
+      >
+        Template
+      </a>
     </h2>
-    <span class="subheader-required-columns">Required Columns:</span>
-    <span class="subheader-optional-columns">Optional Columns:</span>
-    <span class="required-columns">X, Y, and Cell Type</span>
-    <span class="optional-columns">Z and Cell Ontology ID</span>
+    <table aria-label="data upload requirements">
+      <tr>
+        <th>Required Columns</th>
+        <th>Optional Columns</th>
+        <th>Supported Format</th>
+      </tr>
+
+      <tr>
+        <td>• <span>X</span></td>
+        <td>• <span>Z</span></td>
+        <td>• <span>CSV</span></td>
+      </tr>
+      <tr>
+        <td>• <span>Y</span></td>
+        <td>• <span>Cell Ontology ID</span></td>
+      </tr>
+      <tr>
+        <td>• <span>Cell Type</span></td>
+      </tr>
+    </table>
 
     <cde-file-upload
       class="upload-csv"
@@ -56,67 +86,193 @@
       (loadErrored)="nodesLoadError = $event"
       [errorMessage]="nodesErrorMessage"
       [errorActionMessage]="nodesErrorActionMessage"
-      templateUrl="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
       #nodesFileUpload
     >
     </cde-file-upload>
   </div>
 
-  <div class="card anchor-selection">
+  <div class="card organize-data" formGroupName="headers">
     <h2 class="header">
-      <span class="step-number">2</span>
-      <span class="card-title">Optional: Select Anchor Cell Type</span>
-      <div class="filler"></div>
+      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
+      <span class="card-title">Organize Data</span>
       <mat-icon
         class="info"
         cdkOverlayOrigin
-        #anchorSelectionInfoTrigger="cdkOverlayOrigin"
-        (mouseover)="anchorInfoOpen = true"
-        (mouseout)="anchorInfoOpen = false"
+        #organizeDataTrigger="cdkOverlayOrigin"
+        (mouseover)="organizeDataInfoOpen = true"
+        (mouseout)="organizeDataInfoOpen = false"
       >
         info
       </mat-icon>
 
       <ng-template
         cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'anchor-tooltip']"
-        [cdkConnectedOverlayOrigin]="anchorSelectionInfoTrigger"
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'organize-data-tooltip']"
+        [cdkConnectedOverlayOrigin]="organizeDataTrigger"
         [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="anchorInfoOpen"
+        [cdkConnectedOverlayOpen]="organizeDataInfoOpen"
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-          computed and visualized. Euclidian distance is used to compute the distance between two cells.
-        </p>
-        <p>
-          “Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the
-          first listed cell type label is used as the anchor cell type.
-        </p>
+        <hra-tooltip-card [content]="tooltips[1]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
-    <mat-form-field class="select-form">
-      <mat-label class="mat-body-2">Anchor Cell Type</mat-label>
-      <mat-select
-        class="select mat-body-2"
-        formControlName="nodeTargetValue"
-        panelClass="select-panel"
-        cdeMarkEmptyFormControl
+    <div class="required-headers">
+      <span class="subheader">Required: Verify column headers</span>
+
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>X Axis</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="xAxis"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Y Axis</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="yAxis"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="cell-type-select" hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Cell Type</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="cellType"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (columnErrorActionMessage) {
+      <div class="error">
+        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
+        <span>{{ columnErrorActionMessage }}</span>
+      </div>
+    }
+
+    <div class="optional-headers">
+      <span class="subheader">Optional: Add column headers</span>
+
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Z Axis</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="zAxis"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Cell Ontology ID</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="ontologyId"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (option of dataHeaders; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="card parameters" formGroupName="parameters">
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
+      <div class="card-title">Configure Parameters</div>
+      <mat-icon
+        class="info"
+        cdkOverlayOrigin
+        #parametersTrigger="cdkOverlayOrigin"
+        (mouseover)="parametersInfoOpen = true"
+        (mouseout)="parametersInfoOpen = false"
       >
-        @for (type of cellTypes; track type) {
-          <mat-option [value]="type">{{ type }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+        info
+      </mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
+        [cdkConnectedOverlayOrigin]="parametersTrigger"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOpen]="parametersInfoOpen"
+        [cdkConnectedOverlayViewportMargin]="8"
+        [cdkConnectedOverlayPush]="true"
+      >
+        <hra-tooltip-card [content]="tooltips[2]"> </hra-tooltip-card>
+      </ng-template>
+    </h2>
+
+    <div class="parameters-1">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Anchor Cell Type</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="nodeTargetValue"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (type of cellTypes; track type) {
+            <mat-option [value]="type">{{ type }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Distance Threshold</mat-label>
+        <input matInput formControlName="distanceThreshold" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
+
+    <div class="parameters-2">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Pixel size (X) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeX" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Pixel size (Y) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeY" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Pixel size (Z) (µm/pixel)</mat-label>
+        <input matInput type="number" formControlName="pixelSizeZ" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
   </div>
 
   <div class="card metadata" formGroupName="metadata">
     <h2 class="header">
-      <span class="step-number">3</span>
+      <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
-      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -135,61 +291,62 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Information in these fields will not change the visualization output. Metadata may be helpful for taking
-          screenshots of the uploaded data and resulting visualizations in the Visualization App.
-        </p>
+        <hra-tooltip-card [content]="tooltips[3]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Visualization Title</mat-label>
+      <mat-label>Visualization Title</mat-label>
       <input matInput formControlName="title" cdeMarkEmptyFormControl />
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Imaging Technology</mat-label>
+      <mat-label>Imaging Technology</mat-label>
       <input matInput formControlName="technology" cdeMarkEmptyFormControl />
     </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Organ</mat-label>
-      <mat-select class="mat-body-2" formControlName="organ" panelClass="select-panel" cdeMarkEmptyFormControl>
+    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-label>Organ</mat-label>
+      <mat-select
+        disableRipple
+        formControlName="organ"
+        [panelClass]="['options-container', 'options-container-medium']"
+        cdeMarkEmptyFormControl
+      >
         @for (organ of organs(); track organ) {
           <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Sex</mat-label>
-      <mat-select class="mat-body-2" formControlName="sex" panelClass="select-panel" cdeMarkEmptyFormControl>
+    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-label>Sex</mat-label>
+      <mat-select
+        disableRipple
+        formControlName="sex"
+        [panelClass]="['options-container', 'options-container-medium']"
+        cdeMarkEmptyFormControl
+      >
         <mat-option value="Male">Male</mat-option>
         <mat-option value="Female">Female</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Age</mat-label>
+      <mat-label>Age</mat-label>
       <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Thickness (µm)</mat-label>
+      <mat-label>Thickness (µm)</mat-label>
       <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
-    </mat-form-field>
-
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="mat-body-2">Pixel size (µm/pixel)</mat-label>
-      <input matInput type="number" formControlName="pixelSize" min="0" cdeMarkEmptyFormControl />
     </mat-form-field>
   </div>
 
-  <div class="color-config card">
+  <div class="color-config card" [class.custom]="useCustomColorMap">
     <h2 class="header">
-      <span class="step-number">4</span>
+      <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
-      <div class="filler"></div>
       <mat-icon
         class="info"
         cdkOverlayOrigin
@@ -209,33 +366,60 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>
-          Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type
-          colors may be changed individually while exploring the visualization in the Visualization App.
-        </p>
+        <hra-tooltip-card [content]="tooltips[4]"> </hra-tooltip-card>
       </ng-template>
+      <div class="filler"></div>
+      <a
+        mat-button
+        class="use-template"
+        color="primary"
+        href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Template
+      </a>
     </h2>
 
-    <mat-button-toggle-group formControlName="colorMapType">
-      <mat-button-toggle value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
+    <mat-button-toggle-group
+      formControlName="colorMapType"
+      name="singleSelect"
+      aria-label="Single Select"
+      hideSingleSelectionIndicator
+      hraButtonToggleSize="large"
+    >
+      <mat-button-toggle disableRipple value="default">Use Default Colors</mat-button-toggle>
+      <mat-button-toggle disableRipple value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
+      <table aria-label="custom color map requirements">
+        <tr>
+          <th>Required Columns</th>
+          <th>Supported Format</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>• <span>Cell Type</span></td>
+          <td>• <span>CSV</span></td>
+        </tr>
+        <tr>
+          <td>• <span>HEX</span></td>
+        </tr>
+      </table>
       <cde-file-upload
         class="upload-colormap"
-        [actionNotification]="'Action Required: Upload Color Map'"
         accept="text/csv,.csv"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
         (loadErrored)="customColorMapLoadError = $event"
-        data-testid="color-map-upload"
-        #customColorMapFileUpload
         [errorMessage]="colorErrorMessage"
         [errorActionMessage]="colorErrorActionMessage"
-        templateUrl="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
+        #customColorMapFileUpload
+        data-testid="color-map-upload"
       >
       </cde-file-upload>
     }
@@ -243,9 +427,8 @@
 
   <div class="card visualize">
     <h2 class="header">
-      <span class="step-number">5</span>
+      <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
-      <div class="filler"></div>
       <mat-icon
         class="material-symbols-rounded info"
         cdkOverlayOrigin
@@ -265,18 +448,28 @@
         [cdkConnectedOverlayViewportMargin]="8"
         [cdkConnectedOverlayPush]="true"
       >
-        <p>Inputs on the Create Visualization page cannot be modified after a visualization is generated.</p>
+        <hra-tooltip-card [content]="tooltips[5]"> </hra-tooltip-card>
       </ng-template>
     </h2>
 
-    @if (hasValidNodes()) {
-      <button mat-flat-button type="submit" class="visualize-button cta-filled" color="primary" data-testid="visualize">
-        Visualize
-        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </button>
-    } @else {
-      <span class="visualize-notification">Please format and upload data to explore a visualization.</span>
+    @if (!hasValidNodes() || !hasValidData()) {
+      <div class="visualize-notification">
+        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
+        <span>Please upload a dataset.</span>
+      </div>
     }
+
+    <button
+      mat-flat-button
+      hraCallToActionButton
+      hraPrimaryButton
+      hraButtonSize="large"
+      [disabled]="!hasValidNodes() || !hasValidData()"
+      data-testid="visualize"
+    >
+      Visualize
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
   </div>
 </form>
 <hra-footer></hra-footer>

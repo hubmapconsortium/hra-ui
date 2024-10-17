@@ -1,7 +1,7 @@
 import { computed, Directive, input } from '@angular/core';
 
 /** Input options for icon button size */
-export type IconButtonSize = 'medium' | 'large';
+export type IconButtonSize = 'small' | 'medium' | 'large';
 
 /** Interface for ButtonToggle Config */
 interface ButtonToggleConfig {
@@ -13,6 +13,10 @@ interface ButtonToggleConfig {
 
 /** Record of button sizes (number in rem) */
 const BUTTON_CONFIG: Record<IconButtonSize, ButtonToggleConfig> = {
+  small: {
+    lineHeight: 18,
+    font: '--sys-label-small',
+  },
   medium: {
     lineHeight: 21,
     font: '--sys-label-medium',
