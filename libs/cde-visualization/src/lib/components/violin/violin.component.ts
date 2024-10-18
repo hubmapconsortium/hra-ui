@@ -3,44 +3,30 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   effect,
   ElementRef,
   inject,
   input,
-  output,
   Renderer2,
   signal,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
-  MatExpansionModule,
-  MatExpansionPanelDefaultOptions,
-} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { produce } from 'immer';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
-import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import * as VIOLIN_SPEC from './violin.vl.json';
 
-interface UpdateColorData {
-  entry: CellTypeEntry;
-  color: Rgb;
-}
-
-/** Interface for modifying the histogram specification */
-interface ModifiableHistogramSpec {
+/** Interface for modifying the violin specification */
+interface ModifiableViolinSpec {
   /** Configuration for the padding */
   config: {
     padding: {
@@ -50,36 +36,39 @@ interface ModifiableHistogramSpec {
       left: number;
     };
   };
-  /** Width of the histogram */
-  width: string | number;
-  /** Height of the histogram */
-  height: string | number;
-  /** Data values for the histogram */
+
+  /** Data values for the violin */
   data: {
     values?: unknown[];
   };
-  /** Encoding configuration for the histogram */
-  encoding: {
-    color: {
-      legend: unknown;
-      scale: {
-        range: unknown[];
+  /** Encoding configuration for the violin */
+  spec: {
+    /** Width of the violin */
+    width: string | number;
+    /** Height of the violin */
+    height: string | number;
+    layer: {
+      encoding: {
+        color: {
+          legend?: unknown;
+          scale: {
+            range: unknown[];
+          };
+          value?: string;
+        };
       };
-    };
+    }[];
   };
 }
 
-/** Fonts used in the histogram */
-const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
-
-/** Label for all cell types */
-const ALL_CELLS_TYPE = 'All Cells';
+/** Fonts used in the violin */
+const VIOLIN_FONTS = ['12px Metropolis', '14px Metropolis'];
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH = 1000;
 
 /** Height of the exported image */
-const EXPORT_IMAGE_HEIGHT = 500;
+const EXPORT_IMAGE_HEIGHT = 40;
 
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
@@ -96,74 +85,49 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
   titleFontWeight: 500,
   labelFontWeight: 500,
   labelColor: '#4B4B5E',
+  symbolStrokeColor: 'type',
+  symbolSize: 400,
 };
 
 /** Length of the dynamic color range */
 const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
 
-/** Dynamic color range for the histogram */
+/** Dynamic color range for the violin */
 const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
   .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
 
 /**
- * Histogram Component
+ * Violin Component
  */
 @Component({
-  selector: 'cde-histogram',
+  selector: 'cde-violin',
   standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
   ],
-  providers: [
-    {
-      provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
-      useValue: {
-        collapsedHeight: '56px',
-        expandedHeight: '56px',
-        hideToggle: true,
-      } satisfies MatExpansionPanelDefaultOptions,
-    },
-  ],
-  templateUrl: './histogram.component.html',
-  styleUrl: './histogram.component.scss',
+  templateUrl: './violin.component.html',
+  styleUrl: './violin.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HistogramComponent {
-  /** Data for the violin visualization */
-  readonly data = input.required<DistanceEntry[]>();
-
-  /** Colors for the violin visualization */
-  readonly colors = input.required<string[]>();
-
-  readonly filteredCellTypes = input.required<CellTypeEntry[]>();
-
-  /** Currently selected cell type */
-  readonly selectedCellType = input.required<string>();
-
+export class ViolinComponent {
   /** Tooltip position configuration */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
-  protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
+  /** Data for the violin visualization */
+  readonly data = input.required<DistanceEntry[]>();
 
-  /** State indicating whether overflow is visible */
-  protected readonly overflowVisible = computed(() => !!this.colorPicker());
-
-  /** Label for the total cell type */
-  protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
-
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
+  /** Colors for the violin visualization */
+  readonly colors = input.required<string[]>();
 
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
@@ -174,29 +138,35 @@ export class HistogramComponent {
   /** Service for saving files */
   private readonly fileSaver = inject(FileSaverService);
 
-  /** Element reference for the histogram container */
-  private readonly histogramEl = viewChild.required<ElementRef>('histogram');
+  /** Element reference for the violin container */
+  private readonly violinEl = viewChild.required<ElementRef>('violin');
 
-  /** Vega view instance for the histogram */
+  /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
-
-  readonly updateColor = output<UpdateColorData>();
 
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.colors()).run());
+  protected readonly viewColorsRef = effect(() => {
+    this.view()?.signal('colors', this.colors()).run();
+    this.view()?.resize();
+  });
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
     async (onCleanup) => {
-      const el = this.histogramEl().nativeElement;
+      const el = this.violinEl().nativeElement;
       await this.ensureFontsLoaded();
 
-      const spec = produce(HISTOGRAM_SPEC, (draft) => {
-        draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+      const spec = produce(VIOLIN_SPEC, (draft) => {
+        for (const layer of draft.spec.layer) {
+          if (layer.encoding.color.legend === null) {
+            layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
+          }
+        }
       });
+
       const { finalize, view } = await embed(el, spec as VisualizationSpec, {
         actions: false,
       });
@@ -207,18 +177,22 @@ export class HistogramComponent {
     { allowSignalWrites: true },
   );
 
-  /** Download the histogram as an image in the specified format */
+  /** Download the violin as an image in the specified format */
   async download(format: string): Promise<void> {
-    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
-      draft.width = EXPORT_IMAGE_WIDTH;
-      draft.height = EXPORT_IMAGE_HEIGHT;
+    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
+      draft.spec.width = EXPORT_IMAGE_WIDTH;
+      for (const layer of draft.spec.layer) {
+        if (layer.encoding.color.legend === null) {
+          layer.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+          layer.encoding.color.scale = { range: this.colors() };
+        }
+      }
+      draft.spec.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
       draft.data.values = this.data();
-      draft.encoding.color.scale.range = this.colors();
     });
 
     const el = this.renderer.createElement('div');
@@ -227,18 +201,13 @@ export class HistogramComponent {
     });
 
     const url = await view.toImageURL(format);
-    this.fileSaver.save(url, `cde-histogram.${format}`);
+    this.fileSaver.save(url, `cde-violin.${format}`);
     finalize();
   }
 
-  /** Ensure required fonts are loaded for the histogram */
+  /** Ensure required fonts are loaded for the violin */
   private async ensureFontsLoaded(): Promise<void> {
-    const loadPromises = HISTOGRAM_FONTS.map((font) => this.document.fonts.load(font));
+    const loadPromises = VIOLIN_FONTS.map((font) => this.document.fonts.load(font));
     await Promise.all(loadPromises);
-  }
-
-  /** Reset the color of the total cell type */
-  resetAllCellsColor(): void {
-    this.totalCellTypeColor.set([0, 0, 0]);
   }
 }

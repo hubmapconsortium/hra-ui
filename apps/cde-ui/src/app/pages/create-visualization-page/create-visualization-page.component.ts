@@ -2,12 +2,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
 import {
   ColorMapEntry,
@@ -19,9 +19,17 @@ import {
   DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
+  NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { FooterComponent } from '@hra-ui/design-system/footer';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { SelectSizeDirective } from '@hra-ui/design-system/select';
+import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { ParseError } from 'papaparse';
 
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
@@ -59,18 +67,25 @@ function optionalValue<T>(): T | null {
     ReactiveFormsModule,
     RouterModule,
 
-    MatButtonModule,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,
 
+    BreadcrumbsComponent,
+    ButtonModule,
     FileUploadComponent,
     FooterComponent,
     HeaderComponent,
     MarkEmptyFormControlDirective,
+    NavHeaderComponent,
     OverlayModule,
+    SelectSizeDirective,
+    StepIndicatorComponent,
+    ToggleButtonSizeDirective,
+    TooltipCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -94,9 +109,34 @@ export class CreateVisualizationPageComponent {
   /** Visualization data service */
   private readonly dataService = inject(VisualizationDataService);
 
+  /** Cell type headers to match for preselection */
+  private readonly acceptableCellTypeHeaders = ['celltype', 'cell type', 'cell_type'];
+  /** Ontology ID headers to match for preselection */
+  private readonly acceptableOntologyHeaders = [
+    'ontologyid',
+    'cellontologyid',
+    'ontology id',
+    'cell ontology id',
+    'ontology_id',
+    'cell_ontology_id',
+  ];
+
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
-    nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
+    headers: this.fb.group({
+      xAxis: [''],
+      yAxis: [''],
+      cellType: [''],
+      zAxis: [optionalValue<string>()],
+      ontologyId: [optionalValue<string>()],
+    }),
+    parameters: this.fb.group({
+      nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
+      distanceThreshold: [1000],
+      pixelSizeX: [1, Validators.min(1)],
+      pixelSizeY: [1, Validators.min(1)],
+      pixelSizeZ: [1, Validators.min(1)],
+    }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
       technology: [optionalValue<string>()],
@@ -104,7 +144,6 @@ export class CreateVisualizationPageComponent {
       sex: [optionalValue<string>()],
       age: [optionalValue<number>(), [Validators.min(0), Validators.max(120), validateInteger()]],
       thickness: [optionalValue<number>(), Validators.min(0)],
-      pixelSize: [optionalValue<number>(), Validators.min(0)],
     }),
     colorMapType: ['default'],
   });
@@ -141,19 +180,76 @@ export class CreateVisualizationPageComponent {
   /** Tooltip position config */
   readonly tooltipPosition = TOOLTIP_POSITION_BELOW;
 
+  /** Tooltip content */
+  readonly tooltips: TooltipContent[][] = [
+    [
+      {
+        description:
+          'Use the template to format single-cell spatial feature tables for exploration. The cell type column can include damage and proliferation markers.',
+      },
+    ],
+    [
+      {
+        description: 'Verify column headers and edit as needed. Select optional column headers.',
+      },
+    ],
+    [
+      {
+        title: 'Anchor Cell Type',
+        description:
+          'The anchor cell type represents the cell type to which the nearest cell distance distributions should be computed and visualized. Euclidian distance is used to compute the distance between two cells. \n“Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the first listed cell type label is used as the anchor cell type.',
+      },
+      {
+        title: 'Distance Threshold (µm)',
+        description: 'Configure the distance threshold to modify visualizations for analysis.',
+      },
+      {
+        title: 'Pixel Size (µm/pixel)',
+        description:
+          'Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already in micrometers.',
+      },
+    ],
+    [
+      {
+        description:
+          'Information in these fields will not change the visualization output. Metadata may be helpful for taking screenshots of the uploaded data and resulting visualizations in the Visualization App.',
+      },
+    ],
+    [
+      {
+        description:
+          'Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors may be changed individually while exploring the visualization in the Visualization App.',
+      },
+    ],
+    [
+      {
+        description: 'Data on the Create Visualization page cannot be modified after a visualization is generated.',
+      },
+    ],
+  ];
+
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;
-  /** Whether to show anchor info tooltip */
-  anchorInfoOpen = false;
+  /** Whether to show organize data tooltip */
+  organizeDataInfoOpen = false;
+
+  /** Whether to show parameters tooltip */
+  parametersInfoOpen = false;
+
   /** Whether to show metadata info tooltip */
   metadataInfoOpen = false;
+
   /** Whether to show color map info tooltip */
   colorInfoOpen = false;
+
   /** Whether to show visualize info tooltip */
   visualizeInfoOpen = false;
 
   /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_VALUE];
+
+  /** Headers for node data */
+  dataHeaders: string[] = [];
 
   /** Node CSV load error */
   nodesLoadError?: ExtendedFileLoadError;
@@ -179,6 +275,22 @@ export class CreateVisualizationPageComponent {
     return this.getErrorActionMessage(this.customColorMapLoadError, 'color map');
   }
 
+  /** Error message for missing data columns */
+  get columnErrorActionMessage(): string | undefined {
+    if (!this.nodes) {
+      return undefined;
+    }
+    const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
+    const xError = xAxis ? undefined : 'X Axis';
+    const yError = yAxis ? undefined : 'Y Axis';
+    const ctError = cellType ? undefined : 'Cell Type';
+    const errorColumns = [xError, yError, ctError].filter((e) => !!e);
+
+    return errorColumns.length > 0
+      ? `Please select the required column header${errorColumns.length === 1 ? '' : 's'}: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+      : undefined;
+  }
+
   /** Current nodes */
   private nodes?: NodeEntry[];
   /** Current color map */
@@ -189,22 +301,51 @@ export class CreateVisualizationPageComponent {
    * @param nodes Nodes to set
    */
   setNodes(nodes: NodeEntry[]): void {
-    this.nodesLoadError = this.checkRequiredKeys(nodes, ['Cell Type', 'x', 'y']);
-    if (this.nodesLoadError) {
-      this.nodesFileUpload().reset();
-      return;
-    }
+    this.setHeaders(nodes);
 
-    const uniqueCellTypes = new Set(nodes.map((node) => node[DEFAULT_NODE_TARGET_KEY]));
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader]));
     this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
     const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
       ? DEFAULT_NODE_TARGET_VALUE
       : this.cellTypes[0];
-    this.visualizationForm.patchValue({
+    this.visualizationForm.controls['parameters'].patchValue({
       nodeTargetValue: defaultCellType,
     });
+  }
+
+  /**
+   * Sets node data headers for visualization form
+   * @param nodes Node data entries
+   */
+  private setHeaders(nodes: NodeEntry[]): void {
+    this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
+    this.visualizationForm.controls['headers'].setValue({
+      xAxis: this.preSelectedHeader('x'),
+      yAxis: this.preSelectedHeader('y'),
+      cellType: this.preSelectedHeader('cellType'),
+      zAxis: this.preSelectedHeader('z'),
+      ontologyId: this.preSelectedHeader('ontologyId'),
+    });
+  }
+
+  /**
+   * If a header in the data matches one of the preselected options for a field, return that header
+   * @param field Field to look for matches
+   * @returns selected header
+   */
+  private preSelectedHeader(field: string): string | null {
+    if (['x', 'y', 'z'].includes(field)) {
+      return this.dataHeaders.find((h) => h.toLowerCase() === field) || null;
+    } else if (field === 'cellType') {
+      return this.dataHeaders.find((h) => this.acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
+    } else if (field === 'ontologyId') {
+      return this.dataHeaders.find((h) => this.acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -213,6 +354,7 @@ export class CreateVisualizationPageComponent {
   clearNodes(): void {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
+    this.setHeaders([]);
   }
 
   /**
@@ -220,8 +362,34 @@ export class CreateVisualizationPageComponent {
    * @returns boolean
    */
   hasValidNodes(): boolean {
+    // Set the cell type header value when valid nodes checked
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    if (cellTypeHeader && this.nodes) {
+      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader]));
+      this.cellTypes = Array.from(uniqueCellTypes);
+    }
     const { nodes } = this;
-    return !!(nodes && nodes.length > 0 && DEFAULT_NODE_TARGET_KEY in nodes[0]);
+    return !!(nodes && nodes.length > 0 && cellTypeHeader in nodes[0]);
+  }
+
+  /**
+   * Determines whether all required fields have been provided
+   * @returns true if all required data has been filled in
+   */
+  hasValidData(): boolean {
+    const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
+    const { nodeTargetValue, pixelSizeX, pixelSizeY, pixelSizeZ, distanceThreshold } =
+      this.visualizationForm.controls['parameters'].value;
+    return (
+      !!xAxis &&
+      !!yAxis &&
+      !!cellType &&
+      !!nodeTargetValue &&
+      !!pixelSizeX &&
+      !!pixelSizeY &&
+      !!pixelSizeZ &&
+      !!distanceThreshold
+    );
   }
 
   /**
@@ -229,7 +397,7 @@ export class CreateVisualizationPageComponent {
    * @param colorMap Color map entries
    */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
-    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['cell_id', 'cell_type', 'cell_color']);
+    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['Cell Type', 'HEX']);
     if (this.customColorMapLoadError) {
       this.customColorMapFileUpload()?.reset();
       return;
@@ -268,7 +436,11 @@ export class CreateVisualizationPageComponent {
     }
 
     const { nodes, customColorMap, visualizationForm } = this;
-    const { nodeTargetValue, colorMapType, metadata } = visualizationForm.value;
+    const { colorMapType, metadata } = visualizationForm.value;
+
+    const nodeTargetValue = visualizationForm.value.parameters
+      ? visualizationForm.value.parameters.nodeTargetValue
+      : undefined;
     const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
@@ -279,19 +451,39 @@ export class CreateVisualizationPageComponent {
       creationTimestamp: Date.now(),
     });
 
-    this.dataService.setData(
-      this.removeNullishValues({
-        nodes,
-        nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-        nodeTargetValue,
+    const nullishRemovedData = this.removeNullishValues({
+      nodes,
+      nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
+      nodeTargetValue,
 
-        colorMap,
-        colorMapKey: DEFAULT_COLOR_MAP_KEY,
-        colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
+      colorMap,
+      colorMapKey: DEFAULT_COLOR_MAP_KEY,
+      colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
 
-        metadata: normalizedMetadata,
-      }),
-    );
+      metadata: normalizedMetadata,
+    });
+    const ntKey = nullishRemovedData.nodeTargetKey as string;
+    const headers = visualizationForm.value.headers;
+    const xKey = (headers?.xAxis || '') as NodeTargetKey;
+    const yKey = (headers?.yAxis || '') as NodeTargetKey;
+    const zKey = (headers?.zAxis || '') as NodeTargetKey;
+    const ctKey = (headers?.cellType || '') as NodeTargetKey;
+    const idKey = (headers?.ontologyId || '') as NodeTargetKey;
+
+    const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
+      ? nullishRemovedData.nodes.map(
+          (node) =>
+            ({
+              x: node[xKey] as unknown as number,
+              y: node[yKey] as unknown as number,
+              z: node[zKey] as unknown as number,
+              [ntKey]: node[ctKey],
+              [idKey]: node[idKey],
+            }) as NodeEntry,
+        )
+      : []);
+    nullishRemovedData.nodes = convertedHeaderNodes;
+    this.dataService.setData(nullishRemovedData);
 
     this.router.navigate(['/visualize']);
   }
@@ -332,7 +524,7 @@ export class CreateVisualizationPageComponent {
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case 'missing-key-error':
-        return `Required columns missing: ${error.keys.join(', ')}`;
+        return `Required column${error.keys.length === 1 ? '' : 's'} missing: ${error.keys.join(', ')}`;
 
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
@@ -341,7 +533,7 @@ export class CreateVisualizationPageComponent {
         if (Array.isArray(error.cause)) {
           return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return 'Required columns missing: cell_color';
+          return `Required color format not detected. Please use [R, G, B].`;
         }
 
         return 'Invalid file: too many invalid rows.';
@@ -387,7 +579,7 @@ export class CreateVisualizationPageComponent {
       case 'type-error':
         return `Please upload a ${fileDescription} CSV file.`;
       default:
-        return 'Please upload a CSV file with the required columns.';
+        return 'Please upload a file with the required columns.';
     }
   }
 }
