@@ -1,0 +1,90 @@
+{
+  "name": "node-dist-vis-wc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "hra",
+  "sourceRoot": "apps/node-dist-vis-wc/src",
+  "tags": ["type:app", "project:node-dist-vis"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/node-dist-vis-wc",
+        "index": "apps/node-dist-vis-wc/src/index.html",
+        "browser": "apps/node-dist-vis-wc/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/node-dist-vis-wc/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/node-dist-vis-wc/public"
+          }
+        ],
+        "styles": ["apps/node-dist-vis-wc/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "node-dist-vis-wc:build:production"
+        },
+        "development": {
+          "buildTarget": "node-dist-vis-wc:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "node-dist-vis-wc:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/node-dist-vis-wc/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "node-dist-vis-wc:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/node-dist-vis-wc/browser",
+        "spa": true
+      }
+    }
+  }
+}
