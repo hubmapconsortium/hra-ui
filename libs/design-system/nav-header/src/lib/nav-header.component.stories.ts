@@ -1,32 +1,28 @@
+import { importProvidersFrom } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
-import { provideDesignSystem } from '../../../src/index';
+
+import { provideDesignSystem } from '../../../src';
 import { NavHeaderComponent } from './nav-header.component';
 
-const APP_DESCRIPTION = 'HRA Preview Application';
 const apps: Record<string, Story['args']> = {
   'Cell Distance Explorer': {
     title: 'Cell Distance Explorer',
-    icon: 'assets/logo/cde_logo.svg',
+    app: 'cde',
     link: 'https://apps.humanatlas.io/cde/',
-    description: APP_DESCRIPTION,
+    variant: 'basic',
   },
   'FTU Explorer': {
     title: 'FTU Explorer',
-    icon: 'assets/logo/ftu_logo.svg',
-    link: 'https://apps.humanatlas.io/cde/',
-    description: APP_DESCRIPTION,
+    app: 'ftu',
+    link: 'https://apps.humanatlas.io/ftu-explorer/',
+    variant: 'basic',
   },
   Dashboards: {
     title: 'Dashboards',
-    icon: 'assets/logo/dashboards_logo.svg',
+    app: 'dashboards',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
-    description: APP_DESCRIPTION,
-  },
-  'Atlas Applications': {
-    title: 'Atlas Applications',
-    icon: 'assets/logo/atlas_apps.svg',
-    link: 'https://apps.humanatlas.io/',
-    description: APP_DESCRIPTION,
+    variant: 'sidenav',
   },
 };
 
@@ -41,25 +37,55 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem()],
+      providers: [provideDesignSystem(), importProvidersFrom(BrowserAnimationsModule)],
     }),
   ],
   argTypes: {
     app: {
       control: 'select',
+      options: ['cde', 'ftu', 'dashboards'],
+    },
+    variant: {
+      control: 'select',
+      options: ['basic', 'sidenav'],
+    },
+    link: {
+      control: 'select',
+      options: [
+        'https://apps.humanatlas.io/cde/',
+        'https://apps.humanatlas.io/ftu-explorer/',
+        'https://apps.humanatlas.io/dashboard-ui/',
+      ],
+    },
+    title: {
+      control: 'select',
       options: Object.keys(apps),
-      mapping: apps,
+    },
+    status: {
+      control: 'select',
+      options: ['Beta', 'Alpha', 'Preview', undefined],
     },
   },
-  args: {
-    app: apps['Cell Distance Explorer'],
-  },
   render: (args) => ({
-    props: args['app'],
+    props: args,
+    styles: [
+      `hra-nav-header {
+        height: calc(100vh - 2rem);
+        width: calc(100% - 1rem);
+      }`,
+    ],
   }),
 };
 
 export default meta;
 type Story = StoryObj<NavHeaderComponent>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    app: 'cde',
+    variant: 'basic',
+    link: 'https://apps.humanatlas.io/cde/',
+    title: 'Cell Distance Explorer',
+    status: undefined,
+  },
+};
