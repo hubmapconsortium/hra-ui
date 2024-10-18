@@ -6,7 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
-import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -72,6 +72,13 @@ export class MetadataComponent {
 
   /** Sets the tooltip position to the right side */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      description: 'Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.',
+    },
+  ];
 
   /** Creates a date formatter with default locale */
   readonly dateFormat = new Intl.DateTimeFormat(undefined, {

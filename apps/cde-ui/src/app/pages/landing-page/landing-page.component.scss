@@ -6,6 +6,12 @@
   background-color: var(--sys-surface-container-low);
   min-width: 20rem;
 
+  color: var(--sys-secondary);
+
+  h4 {
+    color: var(--sys-primary);
+  }
+
   .create-explore-content {
     padding: 3rem 1rem 5rem 1rem;
 
