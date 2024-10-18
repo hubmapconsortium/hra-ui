@@ -1,18 +1,5 @@
-@if (!file && actionNotification()) {
-  <h3 class="action-required">
-    <mat-icon class="alert">settings_alert</mat-icon>
-    {{ actionNotification() }}
-  </h3>
-}
-
 @if (!file && errorMessage()) {
-  <div class="error">
-    <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-    <div class="error-messages">
-      <span class="message">{{ errorMessage() }}</span>
-      <span class="action">{{ errorActionMessage() }}</span>
-    </div>
-  </div>
+  <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]"></hra-error-indicator>
 }
 
 @if (file && !errorMessage()) {

@@ -34,16 +34,6 @@
     }
   }
 
-  .visualize-notification,
-  .error {
-    color: var(--sys-on-error-container);
-    background-color: rgb(from var(--sys-error-container) r g b / 0.8);
-
-    .alert {
-      color: var(--sys-error);
-    }
-  }
-
   .content {
     display: flex;
     flex-direction: column;
@@ -120,15 +110,8 @@
     }
   }
 
-  .visualize-notification,
-  .error {
-    display: flex;
-    gap: 0.5rem;
+  hra-error-indicator {
     margin: 2rem 0;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.25rem;
-    font: var(--sys-label-large);
-    width: fit-content;
   }
 
   mat-form-field {

@@ -165,10 +165,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <div class="error">
-        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-        <span>{{ columnErrorActionMessage }}</span>
-      </div>
+      <hra-error-indicator [errors]="[columnErrorActionMessage]"></hra-error-indicator>
     }
 
     <div class="optional-headers">
@@ -453,10 +450,7 @@
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
-      <div class="visualize-notification">
-        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-        <span>Please upload a dataset.</span>
-      </div>
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
     }
 
     <button

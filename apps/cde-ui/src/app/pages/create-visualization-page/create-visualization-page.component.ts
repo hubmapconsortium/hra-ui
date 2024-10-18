@@ -37,6 +37,7 @@ import { FileLoadError, FileUploadComponent } from '../../components/file-upload
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -84,6 +85,7 @@ function optionalValue<T>(): T | null {
     StepIndicatorComponent,
     ToggleButtonSizeDirective,
     TooltipCardComponent,
+    ErrorIndicatorComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
