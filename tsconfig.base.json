@@ -92,6 +92,9 @@
       "@hra-ui/design-system/error-indicator": [
         "libs/design-system/error-indicator/src/index.ts"
       ],
+      "@hra-ui/design-system/expansion-panel": [
+        "libs/design-system/expansion-panel/src/index.ts"
+      ],
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
