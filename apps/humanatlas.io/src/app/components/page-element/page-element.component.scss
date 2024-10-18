@@ -117,6 +117,7 @@
     position: fixed;
     top: 2.5rem;
     z-index: 10;
+    transition: margin-top 0.5s ease-out;
   }
 
   .three-dim-space {

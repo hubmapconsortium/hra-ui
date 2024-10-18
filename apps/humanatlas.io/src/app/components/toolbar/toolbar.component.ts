@@ -20,6 +20,9 @@ export class ToolbarComponent {
   /** Menu items to be displayed on the toolbar */
   @Input() navigationItems: NavItems[] = NAVIGATION_ITEMS;
 
+  /** Flag to show/hide notice */
+  protected noticeVisible = true;
+
   /** Position of Menu item card on small screen size */
   readonly MENU_TREE_POSITIONS: ConnectedPosition[] = [
     {
