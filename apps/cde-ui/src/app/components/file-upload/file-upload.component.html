@@ -3,12 +3,7 @@
 }
 
 @if (file && !errorMessage()) {
-  <div class="upload-success">
-    <div class="filename">
-      <span class="column-info-list mat-body-2 file-name">{{ file ? file.name : '' }}</span>
-    </div>
-    <mat-icon class="material-symbols-rounded remove-file" (click)="cancelLoad()">delete</mat-icon>
-  </div>
+  <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
 } @else {
   <button mat-flat-button class="upload" (click)="fileInput.click()" hraPrimaryButton hraButtonSize="large">
     Upload CSV
