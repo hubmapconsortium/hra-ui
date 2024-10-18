@@ -3,7 +3,7 @@
     #accordionItem="cdkAccordionItem"
     tabindex="0"
     [attr.aria-expanded]="accordionItem.expanded"
-    [attr.aria-controls]="titleId"
+    [attr.aria-controls]="bodyId"
   >
     <div class="header">
       @if (!disabled()) {
@@ -14,7 +14,7 @@
         </button>
       }
 
-      <span class="title">
+      <span class="title" [attr.id]="titleId">
         {{ title() }}
       </span>
 
@@ -26,8 +26,19 @@
         <ng-content select="hra-expansion-panel-header-content"></ng-content>
       </span>
     </div>
-    <div role="region" class="content" [class.expanded]="accordionItem.expanded" [attr.aria-labelledby]="titleId">
-      <ng-content></ng-content>
+    <div
+      role="region"
+      class="content"
+      [attr.id]="bodyId"
+      [attr.aria-labelledby]="titleId"
+      #body
+      [@bodyExpansion]="accordionItem.expanded ? 'expanded' : 'collapsed'"
+      (@bodyExpansion.start)="animationStart($event)"
+      (@bodyExpansion.done)="animationDone($event)"
+    >
+      <div class="expansion-body">
+        <ng-content></ng-content>
+      </div>
     </div>
   </cdk-accordion-item>
 </cdk-accordion>

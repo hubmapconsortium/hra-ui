@@ -14,12 +14,8 @@
 
   .content {
     font: var(--sys-label-large);
-    height: 0;
-    overflow: hidden;
-    transition: height 0.2s ease-in-out;
-
-    &.expanded {
-      height: 2rem;
+    &[style*='visibility: hidden'] * {
+      visibility: hidden !important;
     }
   }
 }
