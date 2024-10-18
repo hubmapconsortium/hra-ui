@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
 import { ButtonModule } from '@hra-ui/design-system/button';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { reduce, Subscription } from 'rxjs';
 
 /**
@@ -34,19 +36,16 @@ export type FileLoadError = FileTypeError | FileParseError;
 @Component({
   selector: 'cde-file-upload',
   standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonModule],
+  imports: [CommonModule, MatIconModule, ButtonModule, ErrorIndicatorComponent, DeleteFileButtonComponent],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileUploadComponent<T, OptionsT> {
-  /** Notification for action required */
-  readonly actionNotification = input<string>();
-
   /** Upload error message */
-  readonly errorMessage = input<string>();
+  readonly errorMessage = input<string>('');
   /** Upload error action message */
-  readonly errorActionMessage = input<string>();
+  readonly errorActionMessage = input<string>('');
 
   /** Accepted file types */
   readonly accept = input.required<string>();

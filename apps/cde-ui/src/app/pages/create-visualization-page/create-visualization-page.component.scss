@@ -1,20 +1,37 @@
 :host {
   display: block;
-  min-width: 545px;
+  min-width: 80rem;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-position: center;
   background-size: cover;
 
-  hra-nav-header {
-    border-bottom: 1px solid var(--sys-outline);
-    height: 5rem;
+  color: var(--sys-secondary);
+
+  .card {
+    background-color: var(--sys-surface-container-low);
+
+    .header {
+      --mat-icon-color: var(--sys-secondary);
+    }
   }
 
-  ::ng-deep .app-logo .app-description {
-    border-radius: 0.125rem;
-    width: fit-content;
-    padding: 0 0.25rem;
-    font: 500 0.625rem/1rem Metropolis !important;
+  td {
+    color: var(--sys-primary);
+  }
+
+  .color-config {
+    mat-button-toggle-group {
+      border-color: var(--sys-primary);
+      --mat-standard-button-toggle-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-background-color: rgb(from var(--sys-tertiary) r g b / 0.2);
+    }
+
+    mat-button-toggle {
+      &:first-child {
+        border-color: var(--sys-primary);
+      }
+    }
   }
 
   .content {
@@ -93,15 +110,8 @@
     }
   }
 
-  .visualize-notification,
-  .error {
-    display: flex;
-    gap: 0.5rem;
+  hra-error-indicator {
     margin: 2rem 0;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.25rem;
-    font: var(--sys-label-large);
-    width: fit-content;
   }
 
   mat-form-field {
