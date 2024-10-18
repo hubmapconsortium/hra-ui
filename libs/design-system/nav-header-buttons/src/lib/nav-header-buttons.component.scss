@@ -36,6 +36,15 @@
   }
 
   mat-button-toggle {
-    --mat-standard-button-toggle-height: 24px;
+    --mat-standard-button-toggle-height: 1.25rem;
+
+    ::ng-deep .mat-button-toggle-button {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  hra-software-status-indicator {
+    margin-left: 0.5rem;
   }
 }

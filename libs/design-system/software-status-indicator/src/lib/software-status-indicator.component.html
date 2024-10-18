@@ -1,1 +1,8 @@
-<div class="app-description" [hraMicroTooltip]="tooltips[status()]">{{ status() }}</div>
+<div
+  class="app-description"
+  [hraSoftwareStatusSize]="size()"
+  [hraMicroTooltip]="tooltips[status()]"
+  hraMicroTooltipSize="small"
+>
+  {{ status() }}
+</div>

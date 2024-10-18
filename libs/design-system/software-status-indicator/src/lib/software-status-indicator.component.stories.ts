@@ -14,16 +14,21 @@ const meta: Meta<SoftwareStatusIndicatorComponent> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=5444-20834&t=OL1ruNgysgpR28y0-4',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=1409-13182',
     },
   },
   args: {
     status: 'Beta',
+    size: 'medium',
   },
   argTypes: {
     status: {
       control: 'select',
       options: ['Beta', 'Alpha', 'Preview'],
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
     },
   },
 };
