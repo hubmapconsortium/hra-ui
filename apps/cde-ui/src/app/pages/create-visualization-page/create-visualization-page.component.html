@@ -4,7 +4,7 @@
   link="https://apps.humanatlas.io/cde/"
   description="Beta"
 ></hra-nav-header>
-<form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
+<form class="content" [formGroup]="visualizationForm">
   <div class="page-nav">
     <hra-breadcrumbs
       class="nav"
@@ -460,6 +460,7 @@
       hraButtonSize="large"
       [disabled]="!hasValidNodes() || !hasValidData()"
       data-testid="visualize"
+      (click)="submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
