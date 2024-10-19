@@ -1,40 +1,50 @@
 :host {
   display: block;
 
+  .header {
+    display: flex;
+    align-items: center;
+
+    .sidenav-title {
+      vertical-align: text-bottom;
+      color: var(--sys-secondary);
+    }
+  }
+
   .container {
-    width: 40rem;
-    height: auto;
+    height: calc(100vh - 3rem);
     font: var(--sys-headline-small);
     letter-spacing: var(--sys-headline-small-tracking);
-    --mat-sidenav-content-background-color: #ffffff;
-    --mat-sidenav-container-background-color: var(--mat-sidenav-content-background-color);
-    height: calc(100vh - 3rem);
-
-    .header {
-      display: flex;
-      align-items: center;
-
-      .sidenav-title {
-        vertical-align: text-bottom;
-        color: var(--sys-secondary);
-      }
-    }
   }
 
   .mat-sidenav-content {
     overflow: hidden;
-    margin: 1rem;
 
     .main {
       display: flex;
       align-items: center;
+      background-color: var(--sys-surface-container-high);
+      height: 4.5rem;
+      padding: 0 0.5rem 0 0.75rem;
+      pointer-events: all;
+      border-bottom: 1px solid #acb5c3;
     }
+  }
+
+  .mat-drawer-container-has-open {
+    pointer-events: all;
   }
 
   .apps-sidenav {
     --mat-sidenav-container-width: 35.25rem;
     padding: 1rem;
     border-radius: 0;
+    background-color: var(--sys-surface-dim);
+    pointer-events: all;
+
+    .category {
+      border-bottom: 1px solid var(--sys-outline);
+    }
 
     .card-category {
       font: var(--sys-title-medium);
@@ -42,5 +52,9 @@
       margin-top: 1rem;
       color: var(--sys-secondary);
     }
+  }
+
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden;
   }
 }

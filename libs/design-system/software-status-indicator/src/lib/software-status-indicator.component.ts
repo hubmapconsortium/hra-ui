@@ -6,6 +6,7 @@ import { SoftwareStatusSizeDirective } from './software-status-indicator-size.di
 /** Software status options */
 export type SoftwareStatus = 'Preview' | 'Alpha' | 'Beta';
 
+/** Software status size options */
 export type SoftwareStatusSize = 'small' | 'medium' | 'large';
 
 /**
@@ -23,6 +24,7 @@ export class SoftwareStatusIndicatorComponent {
   /** Current status of app */
   readonly status = input.required<SoftwareStatus>();
 
+  /** Size of indicator */
   readonly size = input<SoftwareStatusSize>('medium');
 
   /** Tooltips corresponding to software status */

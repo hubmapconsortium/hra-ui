@@ -8,17 +8,18 @@
           <mat-icon>close</mat-icon>
         </button>
       </div>
-
       @for (item of data; track item) {
-        <div class="card-category">{{ item.category }}</div>
-        @for (card of item.cards; track card) {
-          <hra-apps-card
-            [icon]="card.icon"
-            [title]="card.name"
-            [description]="card.description"
-            [link]="card.link"
-          ></hra-apps-card>
-        }
+        <div class="category">
+          <div class="card-category">{{ item.category }}</div>
+          @for (card of item.cards; track card) {
+            <hra-apps-card
+              [icon]="card.icon"
+              [title]="card.name"
+              [description]="card.description"
+              [link]="card.link"
+            ></hra-apps-card>
+          }
+        </div>
       }
     </ng-scrollbar>
   </mat-sidenav>
