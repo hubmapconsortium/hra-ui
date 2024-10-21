@@ -1,9 +1,7 @@
 import { inject, Injectable } from '@angular/core';
+import { CsvFileLoaderOptions, CsvFileLoaderService, FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
 import { map, Observable } from 'rxjs';
-
 import { ColorMapEntry } from '../../models/color-map';
-import { CsvFileLoaderOptions, CsvFileLoaderService } from '../file-loader/csv-file-loader.service';
-import { FileLoader, FileLoaderEvent } from '../file-loader/file-loader';
 
 /** Service to load color map entries from CSV files */
 @Injectable({
