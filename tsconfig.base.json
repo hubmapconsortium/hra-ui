@@ -47,6 +47,9 @@
       "@hra-ui/cdk/styling": [
         "libs/cdk/styling/src/index.ts"
       ],
+      "@hra-ui/common": [
+        "libs/common/src/index.ts"
+      ],
       "@hra-ui/components/atoms": [
         "libs/components/atoms/src/index.ts"
       ],

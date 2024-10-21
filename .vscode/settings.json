@@ -14,6 +14,7 @@
     "design-system",
     "body-ui",
     "eui",
-    "node-dist-vis"
+    "node-dist-vis",
+    "lib:common"
   ]
 }
