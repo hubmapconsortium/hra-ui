@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { MarkdownModule } from 'ngx-markdown';
-import { AnnouncementCardComponent } from './announcement-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { AnnouncementCardComponent } from './announcement-card.component';
 
 @NgModule({
   declarations: [AnnouncementCardComponent],
-  imports: [BrowserModule, MarkdownModule.forChild(), MatCardModule, RouterModule],
+  imports: [BrowserModule, MatCardModule, RouterModule],
   exports: [AnnouncementCardComponent],
 })
 export class AnnouncementCardModule {}
