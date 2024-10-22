@@ -299,7 +299,7 @@ export class CdeVisualizationComponent {
   downloadNodes(): void {
     const nodes = this.loadedNodes();
     if (nodes.length > 0) {
-      this.fileSaver.saveCsv(nodes, 'nodes.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
     }
   }
 
@@ -307,8 +307,21 @@ export class CdeVisualizationComponent {
   downloadEdges(): void {
     const edges = this.loadedEdges();
     if (edges.length > 0) {
-      this.fileSaver.saveCsv(edges, 'edges.csv');
+      this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
     }
+  }
+
+  // Add appropriate headers to edge data
+  addEdgeHeaders(edges: EdgeEntry[]) {
+    return edges.map((item) => ({
+      'Cell ID': item[0],
+      X1: item[1],
+      Y1: item[2],
+      Z1: item[3],
+      X2: item[4],
+      Y2: item[5],
+      Z2: item[6],
+    }));
   }
 
   /** Download color map as CSV */
@@ -317,8 +330,17 @@ export class CdeVisualizationComponent {
     const colorMap = this.cellTypesAsColorMap();
     const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
     if (data.length > 0) {
-      this.fileSaver.saveCsv(data, 'color-map.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
     }
+  }
+
+  /** Convert headers in an array of objects to title case */
+  capitalizeHeaders(data: object[]): object[] {
+    return data.map((item) => {
+      const entries = Object.entries(item);
+      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+      return Object.fromEntries(capsEntries);
+    });
   }
 
   /** Compute distances between nodes based on edges */

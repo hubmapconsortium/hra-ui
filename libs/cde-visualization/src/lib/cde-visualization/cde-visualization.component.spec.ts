@@ -103,6 +103,66 @@ describe('CdeVisualizationComponent', () => {
     embedResult.view.signal.mockReturnThis();
   });
 
+  it('should update nodes when downloadNodes is called', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await setup({
+      componentInputs: {
+        ...sampleData,
+        nodes: sampleNodes,
+      },
+    });
+
+    const fileSaver = TestBed.inject(FileSaverService);
+    const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+    const downloadNodesButton = screen.getByText('Nodes');
+    await userEvent.click(downloadNodesButton);
+    expect(fileSaveSpy).toHaveBeenCalledWith(instance.capitalizeHeaders(instance.loadedNodes()), 'nodes.csv');
+  });
+
+  it('should update edges when downloadEdges is called', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await setup({
+      componentInputs: {
+        ...sampleData,
+        edges: sampleEdges,
+      },
+    });
+
+    const fileSaver = TestBed.inject(FileSaverService);
+    const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+    const downloadEdgesButton = screen.getByText('Edges');
+    await userEvent.click(downloadEdgesButton);
+    expect(fileSaveSpy).toHaveBeenCalledWith(instance.addEdgeHeaders(instance.loadedEdges()), 'edges.csv');
+  });
+
+  it('should update color map when downloadColorMap is called', async () => {
+    const { fixture } = await setup({
+      componentInputs: {
+        ...sampleData,
+        nodes: sampleNodes,
+        colorMap: sampleColorMap,
+      },
+    });
+
+    const instance = fixture.componentInstance;
+    const processedColorMap = instance
+      .cellTypesAsColorMap()
+      .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
+
+    const fileSaver = TestBed.inject(FileSaverService);
+    const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+    expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
+  });
+
   it('should reset cell types and increase reset counter', async () => {
     const {
       fixture: { componentInstance: instance },
