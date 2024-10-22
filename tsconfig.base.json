@@ -137,6 +137,9 @@
       "@hra-ui/design-system/tree": [
         "libs/design-system/tree/src/index.ts"
       ],
+      "@hra-ui/design-system/workflow-card": [
+        "libs/design-system/workflow-card/src/index.ts"
+      ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
       ],

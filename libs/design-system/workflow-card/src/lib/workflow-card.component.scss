@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 42rem;
+}

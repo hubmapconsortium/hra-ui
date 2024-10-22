@@ -30,6 +30,7 @@ import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { SelectSizeDirective } from '@hra-ui/design-system/select';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { ParseError } from 'papaparse';
 
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
@@ -86,6 +87,7 @@ function optionalValue<T>(): T | null {
     StepIndicatorComponent,
     ToggleButtonSizeDirective,
     TooltipCardComponent,
+    WorkflowCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
