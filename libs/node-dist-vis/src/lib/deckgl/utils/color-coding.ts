@@ -1,5 +1,5 @@
 import { AccessorContext, AccessorFunction, Color } from '@deck.gl/core/typed';
-import { ColorMap } from '../../../models/color-map';
+import { ColorMap } from '../../models/color-map';
 import { colorCategories } from '@deck.gl/carto/typed';
 
 type Color2 = [r: number, g: number, b: number, a?: number];

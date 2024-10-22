@@ -1,8 +1,19 @@
+import { Signal } from '@angular/core';
 import { Color } from '@deck.gl/core/typed';
-import { createDataViewClass } from './data-view';
+import {
+  createDataView,
+  createDataViewClass,
+  DataViewInput,
+  inferViewKeyMapping,
+  KeyMappingInput,
+  loadViewData,
+  loadViewKeyMapping,
+} from './data-view';
+
+export type ColorMapInput = DataViewInput<ColorMapView>;
+export type ColorMapKeysInput = KeyMappingInput<ColorMapEntry>;
 
 export interface ColorMapEntry {
-  // TODO verify key names
   'Cell Type': string;
   'Cell Color': Color;
 }
@@ -12,13 +23,14 @@ export interface ColorMap {
   range: Color[];
 }
 
-const COLOR_MAP_KEYS: (keyof ColorMapEntry)[] = ['Cell Type', 'Cell Color'];
-const BaseColorMapView = createDataViewClass<ColorMapEntry>(COLOR_MAP_KEYS);
+const REQUIRED_KEYS: (keyof ColorMapEntry)[] = ['Cell Type', 'Cell Color'];
+const OPTIONAL_KEYS: (keyof ColorMapEntry)[] = [];
+const BaseColorMapView = createDataViewClass<ColorMapEntry>([...REQUIRED_KEYS, ...OPTIONAL_KEYS]);
 
 export class ColorMapView extends BaseColorMapView {
   readonly getColorMap = () => {
-    if (this._colorMap) {
-      return this._colorMap;
+    if (this.colorMap) {
+      return this.colorMap;
     }
 
     const domain: string[] = [];
@@ -28,11 +40,31 @@ export class ColorMapView extends BaseColorMapView {
       range.push(this.getCellColorFor(obj));
     }
 
-    return (this._colorMap = { domain, range });
+    return (this.colorMap = { domain, range });
   };
 
   readonly getDomain = () => this.getColorMap().domain;
   readonly getRange = () => this.getColorMap().range;
 
-  private _colorMap?: ColorMap = undefined;
+  private colorMap?: ColorMap = undefined;
+}
+
+export function loadColorMap(
+  input: Signal<ColorMapInput>,
+  keys: Signal<ColorMapKeysInput>,
+  colorMapKey?: Signal<string | undefined>,
+  colorMapValue?: Signal<string | undefined>,
+): Signal<ColorMapView> {
+  const data = loadViewData(input, ColorMapView);
+  const mapping = loadViewKeyMapping(keys, {
+    'Cell Type': colorMapKey,
+    'Cell Color': colorMapValue,
+  });
+  const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
+  const emptyView = new ColorMapView([], {
+    'Cell Type': 0,
+    'Cell Color': 1,
+  });
+
+  return createDataView(ColorMapView, data, inferred, emptyView);
 }

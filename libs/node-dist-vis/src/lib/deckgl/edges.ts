@@ -2,10 +2,10 @@ import { computed, Signal } from '@angular/core';
 import { COORDINATE_SYSTEM } from '@deck.gl/core/typed';
 import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensions/typed';
 import { LineLayer } from '@deck.gl/layers/typed';
-import { ColorMapView } from '../../models/color-map';
-import { AnyData, AnyDataEntry } from '../../models/data-view';
-import { EdgesView } from '../../models/edges';
-import { NodesView } from '../../models/nodes';
+import { ColorMapView } from '../models/color-map';
+import { AnyData, AnyDataEntry } from '../models/data-view';
+import { EdgesView } from '../models/edges';
+import { NodesView } from '../models/nodes';
 import { createColorAccessor } from './utils/color-coding';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 import { createSelectionFilterAccessor, FILTER_RANGE } from './utils/selection-filter';
@@ -44,7 +44,7 @@ export function createEdgesLayer(
   return computed(() => {
     return new LineLayer({
       id: 'edges',
-      data: edges().data,
+      data: edges(),
       getSourcePosition: sourcePositionAccessor(),
       getTargetPosition: targetPositionAccessor(),
       getColor: colorAccessor(),

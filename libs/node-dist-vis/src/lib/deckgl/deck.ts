@@ -1,15 +1,18 @@
-import { Signal } from '@angular/core';
+import { computed, effect, Signal } from '@angular/core';
 import { Deck, DeckProps } from '@deck.gl/core/typed';
-import { derivedAsync } from 'ngxtension/derived-async';
 
-export function createDeck(props: Signal<DeckProps>): Signal<Deck | undefined> {
-  return derivedAsync((previous) => {
-    previous?.finalize();
-    return new Promise((resolve) => {
-      const deck = new Deck({
-        ...props(),
-        onLoad: () => resolve(deck),
-      });
+export function createDeck(canvas: Signal<HTMLCanvasElement>, props: DeckProps): Signal<Deck> {
+  const deck = computed(() => {
+    return new Deck({
+      canvas: canvas(),
+      ...props,
     });
   });
+
+  effect((onCleanup) => {
+    const instance = deck();
+    onCleanup(() => instance.finalize());
+  });
+
+  return deck;
 }

@@ -1,4 +1,18 @@
-import { AnyDataEntry, createDataViewClass } from './data-view';
+import { Signal } from '@angular/core';
+import {
+  AnyDataEntry,
+  createDataView,
+  createDataViewClass,
+  DataViewInput,
+  inferViewKeyMapping,
+  KeyMappingInput,
+  loadViewData,
+  loadViewKeyMapping,
+} from './data-view';
+import { AccessorContext } from '@deck.gl/core/typed';
+
+export type NodesInput = DataViewInput<NodesView>;
+export type NodeKeysInput = KeyMappingInput<NodeEntry>;
 
 export interface NodeEntry {
   'Cell Type': string;
@@ -8,25 +22,29 @@ export interface NodeEntry {
   Z?: number;
 }
 
-const NODE_KEYS: (keyof NodeEntry)[] = ['Cell Type', 'Cell Ontology ID', 'X', 'Y', 'Z'];
-const BaseNodesView = createDataViewClass<NodeEntry>(NODE_KEYS);
+const REQUIRED_KEYS: (keyof NodeEntry)[] = ['Cell Type', 'X', 'Y'];
+const OPTIONAL_KEYS: (keyof NodeEntry)[] = ['Cell Ontology ID', 'Z'];
+const BaseNodesView = createDataViewClass<NodeEntry>([...REQUIRED_KEYS, ...OPTIONAL_KEYS]);
 
 export class NodesView extends BaseNodesView {
-  readonly getPositionAt = (index: number) => this.getPositionFor(this.data[index]);
-  readonly getPositionFor = (obj: AnyDataEntry): [number, number, number] => [
-    this.getXFor(obj),
-    this.getYFor(obj),
-    this.getZFor(obj) ?? 0,
-  ];
+  readonly getPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
+    this.getPositionFor(this.data[index], info);
+  readonly getPositionFor = (obj: AnyDataEntry, info?: AccessorContext<AnyDataEntry>): [number, number, number] => {
+    const position = (info?.target ?? new Array(3)) as [number, number, number];
+    position[0] = this.getXFor(obj);
+    position[1] = this.getYFor(obj);
+    position[2] = this.getZFor(obj) ?? 0;
+    return position;
+  };
 
   readonly getDimensions = (): [number, number] => {
-    if (this._dimensions) {
-      return this._dimensions;
+    if (this.dimensions) {
+      return this.dimensions;
     }
 
     let min = Number.MAX_VALUE;
     let max = -Number.MAX_VALUE;
-    for (const obj of this.data) {
+    for (const obj of this) {
       const x = this.getXFor(obj);
       const y = this.getYFor(obj);
       const z = this.getZFor(obj) ?? 0;
@@ -34,8 +52,25 @@ export class NodesView extends BaseNodesView {
       max = Math.max(max, x, y, z);
     }
 
-    return (this._dimensions = [min, max]);
+    return (this.dimensions = [min, max]);
   };
 
-  private _dimensions?: [number, number] = undefined;
+  private dimensions?: [number, number] = undefined;
+}
+
+export function loadNodes(
+  input: Signal<NodesInput>,
+  keys: Signal<NodeKeysInput>,
+  nodeTargetKey?: Signal<string | undefined>,
+): Signal<NodesView> {
+  const data = loadViewData(input, NodesView);
+  const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey });
+  const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
+  const emptyView = new NodesView([], {
+    'Cell Type': 0,
+    X: 1,
+    Y: 2,
+  });
+
+  return createDataView(NodesView, data, inferred, emptyView);
 }

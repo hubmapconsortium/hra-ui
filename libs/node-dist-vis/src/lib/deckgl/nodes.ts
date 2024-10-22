@@ -2,9 +2,9 @@ import { computed, Signal } from '@angular/core';
 import { COORDINATE_SYSTEM } from '@deck.gl/core/typed';
 import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensions/typed';
 import { PointCloudLayer } from '@deck.gl/layers/typed';
-import { ColorMapView } from '../../models/color-map';
-import { AnyData } from '../../models/data-view';
-import { NodesView } from '../../models/nodes';
+import { ColorMapView } from '../models/color-map';
+import { AnyData } from '../models/data-view';
+import { NodesView } from '../models/nodes';
 import { createColorAccessor } from './utils/color-coding';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 import { createSelectionFilterAccessor, FILTER_RANGE } from './utils/selection-filter';
@@ -34,7 +34,7 @@ export function createNodesLayer(
   return computed(() => {
     return new PointCloudLayer({
       id: 'nodes',
-      data: nodes().data,
+      data: nodes(),
       getPosition: positionAccessor(),
       getColor: colorAccessor(),
       pickable: true,
