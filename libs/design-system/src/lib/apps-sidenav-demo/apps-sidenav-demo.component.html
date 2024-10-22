@@ -1,13 +1,13 @@
 <mat-sidenav-container class="container">
-  <mat-sidenav #sidenav mode="over" class="apps-sidenav headline-small" [position]="'end'" [fixedInViewport]="false">
+  <mat-sidenav #sidenav mode="over" class="apps-sidenav" position="end" [fixedInViewport]="false">
+    <div class="header">
+      <span class="sidenav-title"> HuBMAP Tools & Applications </span>
+      <div style="flex-grow: 1"></div>
+      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <ng-scrollbar>
-      <div class="header">
-        <span class="sidenav-title"> HuBMAP Tools & Applications </span>
-        <div style="flex-grow: 1"></div>
-        <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
       @for (item of data; track item) {
         <div class="category">
           <div class="card-category">{{ item.category }}</div>

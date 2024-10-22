@@ -1,15 +1,6 @@
 :host {
   display: block;
-
-  .header {
-    display: flex;
-    align-items: center;
-
-    .sidenav-title {
-      vertical-align: text-bottom;
-      color: var(--sys-secondary);
-    }
-  }
+  color: var(--sys-secondary);
 
   .container {
     height: calc(100vh - 3rem);
@@ -17,7 +8,26 @@
     letter-spacing: var(--sys-headline-small-tracking);
   }
 
-  .mat-sidenav-content {
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-title-small);
+    height: 4.5rem;
+    padding-right: 0.5rem;
+    padding-left: 1rem;
+
+    .sidenav-title {
+      vertical-align: text-bottom;
+      color: var(--sys-secondary);
+    }
+  }
+
+  ng-scrollbar {
+    --scrollbar-offset: 4;
+    height: calc(100% - 4.5rem);
+  }
+
+  mat-sidenav-content {
     overflow: hidden;
 
     .main {
@@ -37,20 +47,29 @@
 
   .apps-sidenav {
     --mat-sidenav-container-width: 35.25rem;
-    padding: 1rem;
     border-radius: 0;
-    background-color: var(--sys-surface-dim);
+    background-color: var(--sys-surface-container-high);
     pointer-events: all;
 
     .category {
-      border-bottom: 1px solid var(--sys-outline);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-top: 1px solid var(--sys-outline);
     }
 
     .card-category {
-      font: var(--sys-title-medium);
-      letter-spacing: var(--sys-title-medium-tracking);
-      margin-top: 1rem;
-      color: var(--sys-secondary);
+      font: var(--sys-title-small);
+      letter-spacing: var(--sys-title-small-tracking);
+      color: var(--sys-primary-fixed);
+    }
+
+    .card-category,
+    hra-apps-card {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 
