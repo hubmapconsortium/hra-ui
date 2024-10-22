@@ -52,6 +52,10 @@ export class ExpansionPanelHeaderContentComponent {}
 export class ExpansionPanelComponent {
   /** Title of the expansion panel */
   readonly title = input.required<string>();
+
+  /** Flag to check if the body is expanded */
+  readonly expanded = input(true, { transform: booleanAttribute });
+
   /** Flag to denote panel as disabled */
   readonly disabled = input(false, { transform: booleanAttribute });
 

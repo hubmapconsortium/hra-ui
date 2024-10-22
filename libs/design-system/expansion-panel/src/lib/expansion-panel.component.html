@@ -4,11 +4,12 @@
     tabindex="0"
     [attr.aria-expanded]="accordionItem.expanded"
     [attr.aria-controls]="bodyId"
+    [expanded]="expanded"
   >
     <div class="header">
       @if (!disabled()) {
-        <button mat-icon-button class="">
-          <mat-icon class="material-symbols-rounded" (click)="accordionItem.toggle()">
+        <button mat-icon-button data-testid="toggle" (click)="accordionItem.toggle()">
+          <mat-icon class="material-symbols-rounded">
             {{ accordionItem.expanded ? 'remove' : 'add' }}
           </mat-icon>
         </button>
@@ -35,6 +36,7 @@
       [@bodyExpansion]="accordionItem.expanded ? 'expanded' : 'collapsed'"
       (@bodyExpansion.start)="animationStart($event)"
       (@bodyExpansion.done)="animationDone($event)"
+      data-testid="body"
     >
       <div class="expansion-body">
         <ng-content></ng-content>
