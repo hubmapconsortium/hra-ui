@@ -41,5 +41,7 @@ describe('ExpansionPanelComponent', () => {
     expect(element).toHaveAttribute('inert');
     player.finish();
     expect(element).not.toHaveAttribute('inert');
+    expect(element.style.height).toBe('0px');
+    expect(element.style.visibility).toBe('hidden');
   });
 });
