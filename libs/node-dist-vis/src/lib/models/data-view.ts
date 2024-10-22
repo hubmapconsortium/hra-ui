@@ -1,8 +1,6 @@
-import { computed, inject, Signal, Type } from '@angular/core';
-import { CsvFileLoaderService, FileLoader, JsonFileLoaderService } from '@hra-ui/common/fs';
-import { derivedAsync } from 'ngxtension/derived-async';
-import { filter, map } from 'rxjs';
-import { tryParseJson } from './utils';
+import { computed, Signal, Type } from '@angular/core';
+import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
+import { loadData } from './utils';
 
 type RemoveWhiteSpace<S extends string> = S extends `${infer Pre} ${infer Post}`
   ? RemoveWhiteSpace<`${Pre}${Post}`>
@@ -108,25 +106,6 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
   }
 
   return DataViewImpl as unknown as DataViewConstructor<Entry>;
-}
-
-function loadData<T, Opts>(
-  input: Signal<T | string | undefined>,
-  loaderService: Type<FileLoader<T, Opts>>,
-  options: Opts,
-): Signal<unknown> {
-  const loader = inject(loaderService);
-  return derivedAsync(() => {
-    const data = tryParseJson(input());
-    if (typeof data === 'string' || data instanceof File) {
-      return loader.load(data, options).pipe(
-        filter((event) => event.type === 'data'),
-        map((event) => event.data),
-      );
-    }
-
-    return data;
-  });
 }
 
 export function loadViewData<T>(

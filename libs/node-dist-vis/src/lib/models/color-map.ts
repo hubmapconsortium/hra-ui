@@ -35,7 +35,7 @@ export class ColorMapView extends BaseColorMapView {
 
     const domain: string[] = [];
     const range: Color[] = [];
-    for (const obj of this.data) {
+    for (const obj of this) {
       domain.push(this.getCellTypeFor(obj));
       range.push(this.getCellColorFor(obj));
     }

@@ -4,6 +4,7 @@ import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensio
 import { PointCloudLayer } from '@deck.gl/layers/typed';
 import { ColorMapView } from '../models/color-map';
 import { AnyData } from '../models/data-view';
+import { getNodeSize, Mode } from '../models/mode';
 import { NodesView } from '../models/nodes';
 import { createColorAccessor } from './utils/color-coding';
 import { createScaledPositionAccessor } from './utils/position-scaling';
@@ -12,6 +13,7 @@ import { createSelectionFilterAccessor, FILTER_RANGE } from './utils/selection-f
 export type NodesLayer = PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
 export function createNodesLayer(
+  mode: Signal<Mode>,
   nodes: Signal<NodesView>,
   selection: Signal<string[] | undefined>,
   colorMap: Signal<ColorMapView>,
@@ -39,7 +41,7 @@ export function createNodesLayer(
       getColor: colorAccessor(),
       pickable: true,
       coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
-      pointSize: 1.5,
+      pointSize: getNodeSize(mode()),
       getFilterValue: filterValueAccessor(),
       filterRange: FILTER_RANGE,
       filterEnabled: selection() !== undefined,
