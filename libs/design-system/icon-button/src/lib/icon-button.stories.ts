@@ -18,7 +18,7 @@ const meta: Meta = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'large'],
     },
   },
   decorators: [
@@ -56,12 +56,6 @@ export const Default: Story = {
 export const Small: Story = {
   args: {
     size: 'small',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    size: 'medium',
   },
 };
 
