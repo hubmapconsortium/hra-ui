@@ -16,24 +16,6 @@
       margin: 0;
       gap: 0.25rem;
       font: var(--sys-label-medium);
-
-      mat-icon {
-        margin: 2px;
-      }
-
-      button {
-        --mdc-filled-button-label-text-color: #201e3d;
-        padding: 0.375rem 0.5rem;
-        margin-left: 0.25rem;
-
-        .mat-icon {
-          margin-right: 0.125rem;
-          margin-left: unset;
-          font-size: 1.25rem;
-          height: 1.25rem;
-          width: 1.25rem;
-        }
-      }
     }
   }
 
