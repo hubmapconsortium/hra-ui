@@ -65,14 +65,14 @@
       "@hra-ui/design-system": [
         "libs/design-system/src/index.ts"
       ],
-      "@hra-ui/design-system/app-logos": [
-        "libs/design-system/app-logos/src/index.ts"
-      ],
       "@hra-ui/design-system/apps-card": [
         "libs/design-system/apps-card/src/index.ts"
       ],
       "@hra-ui/design-system/brand-logo": [
         "libs/design-system/brand-logo/src/index.ts"
+      ],
+      "@hra-ui/design-system/brandmark": [
+        "libs/design-system/brandmark/src/index.ts"
       ],
       "@hra-ui/design-system/breadcrumbs": [
         "libs/design-system/breadcrumbs/src/index.ts"
@@ -113,6 +113,12 @@
       "@hra-ui/design-system/nav-header": [
         "libs/design-system/nav-header/src/index.ts"
       ],
+      "@hra-ui/design-system/nav-header-buttons": [
+        "libs/design-system/nav-header-buttons/src/index.ts"
+      ],
+      "@hra-ui/design-system/product-logo": [
+        "libs/design-system/product-logo/src/index.ts"
+      ],
       "@hra-ui/design-system/scrolling": [
         "libs/design-system/scrolling/src/index.ts"
       ],
@@ -127,6 +133,9 @@
       ],
       "@hra-ui/design-system/social-media-button": [
         "libs/design-system/social-media-button/src/index.ts"
+      ],
+      "@hra-ui/design-system/software-status-indicator": [
+        "libs/design-system/software-status-indicator/src/index.ts"
       ],
       "@hra-ui/design-system/step-indicator": [
         "libs/design-system/step-indicator/src/index.ts"
