@@ -5,17 +5,18 @@ import { LineLayer } from '@deck.gl/layers/typed';
 import { ColorMapView } from '../models/color-map';
 import { AnyData, AnyDataEntry } from '../models/data-view';
 import { EdgesView } from '../models/edges';
+import { NodeFilterView } from '../models/filters';
 import { NodesView } from '../models/nodes';
 import { createColorAccessor } from './utils/color-coding';
+import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
-import { createSelectionFilterAccessor, FILTER_RANGE } from './utils/selection-filter';
 
 export type EdgesLayer = LineLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
 export function createEdgesLayer(
   nodes: Signal<NodesView>,
   edges: Signal<EdgesView>,
-  selection: Signal<string[] | undefined>,
+  nodeFilter: Signal<NodeFilterView>,
   colorMap: Signal<ColorMapView>,
 ): Signal<EdgesLayer> {
   const sourcePositionAccessor = computed(() => {
@@ -38,7 +39,8 @@ export function createEdgesLayer(
     return createColorAccessor(cellTypeAccessor(), map);
   });
   const filterValueAccessor = computed(() => {
-    return createSelectionFilterAccessor(cellTypeAccessor(), selection());
+    const filterFn = nodeFilter().includes;
+    return createNodeFilterAccessor(cellTypeAccessor(), filterFn);
   });
 
   return computed(() => {
@@ -53,11 +55,11 @@ export function createEdgesLayer(
       getWidth: 1,
       getFilterValue: filterValueAccessor(),
       filterRange: FILTER_RANGE,
-      filterEnabled: selection() !== undefined,
+      filterEnabled: !nodeFilter().isEmpty(),
       extensions: [new DataFilterExtension()],
       updateTriggers: {
         getColor: colorMap().getRange(),
-        getFilterValue: selection(),
+        getFilterValue: nodeFilter(),
       },
     });
   });

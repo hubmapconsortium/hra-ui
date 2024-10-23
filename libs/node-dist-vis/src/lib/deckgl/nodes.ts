@@ -4,18 +4,26 @@ import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensio
 import { PointCloudLayer } from '@deck.gl/layers/typed';
 import { ColorMapView } from '../models/color-map';
 import { AnyData } from '../models/data-view';
-import { getNodeSize, Mode } from '../models/mode';
+import { NodeFilterView } from '../models/filters';
 import { NodesView } from '../models/nodes';
+import { ViewMode } from '../models/view-mode';
 import { createColorAccessor } from './utils/color-coding';
+import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
-import { createSelectionFilterAccessor, FILTER_RANGE } from './utils/selection-filter';
 
 export type NodesLayer = PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
+const DEFAULT_NODE_SIZE = 5; // 1.5;
+const INSPECT_NODE_SIZE = 3;
+
+function getNodeSize(mode: ViewMode): number {
+  return mode === 'inspect' ? INSPECT_NODE_SIZE : DEFAULT_NODE_SIZE;
+}
+
 export function createNodesLayer(
-  mode: Signal<Mode>,
+  mode: Signal<ViewMode>,
   nodes: Signal<NodesView>,
-  selection: Signal<string[] | undefined>,
+  nodeFilter: Signal<NodeFilterView>,
   colorMap: Signal<ColorMapView>,
 ): Signal<NodesLayer> {
   const positionAccessor = computed(() => {
@@ -30,7 +38,8 @@ export function createNodesLayer(
   });
   const filterValueAccessor = computed(() => {
     const accessor = nodes().getCellTypeFor;
-    return createSelectionFilterAccessor(accessor, selection());
+    const filterFn = nodeFilter().includes;
+    return createNodeFilterAccessor(accessor, filterFn);
   });
 
   return computed(() => {
@@ -44,11 +53,11 @@ export function createNodesLayer(
       pointSize: getNodeSize(mode()),
       getFilterValue: filterValueAccessor(),
       filterRange: FILTER_RANGE,
-      filterEnabled: selection() !== undefined,
+      filterEnabled: !nodeFilter().isEmpty(),
       extensions: [new DataFilterExtension()],
       updateTriggers: {
         getColor: colorMap().getRange(),
-        getFilterValue: selection(),
+        getFilterValue: nodeFilter(),
       },
     });
   });

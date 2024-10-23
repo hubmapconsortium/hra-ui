@@ -1,6 +1,6 @@
 import { computed, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
-import { loadData } from './utils';
+import { isRecordObject, loadData } from './utils';
 
 type RemoveWhiteSpace<S extends string> = S extends `${infer Pre} ${infer Post}`
   ? RemoveWhiteSpace<`${Pre}${Post}`>
@@ -36,6 +36,7 @@ export interface DataView<Entry> {
   readonly offset: number;
   readonly length: number;
 
+  readonly at: (index: number) => AnyDataEntry;
   readonly getPropertyAt: <P extends keyof Entry>(index: number, property: P) => Entry[P];
   readonly getPropertyFor: <P extends keyof Entry>(obj: AnyDataEntry, property: P) => Entry[P];
 
@@ -75,8 +76,9 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
     readonly keys = keys;
     readonly length: number;
 
+    readonly at = (index: number) => this.data[this.offset + index];
     readonly getPropertyAt = <P extends keyof Entry>(index: number, property: P): Entry[P] => {
-      return this.getPropertyFor(this.data[index + this.offset] ?? {}, property);
+      return this.getPropertyFor(this.data[this.offset + index] ?? {}, property);
     };
     readonly getPropertyFor = <P extends keyof Entry>(obj: AnyDataEntry, property: P): Entry[P] => {
       const key = this.keyMapping[property];
@@ -133,7 +135,7 @@ export function loadViewKeyMapping<T>(
   const data = loadData(input, JsonFileLoaderService, {});
   return computed(() => {
     const result = data();
-    const mapping = typeof result === 'object' && result !== null ? (result as Record<string, unknown>) : {};
+    const mapping = isRecordObject(result) ? { ...result } : {};
 
     for (const key in mixins) {
       if (mapping[key] === undefined && mixins[key] !== undefined) {
@@ -161,8 +163,10 @@ function inferViewKeyMappingImpl<T>(
   let header: unknown[];
 
   if (isArrayEntry) {
-    if (entry.every((value) => typeof value === 'number')) {
-      header = keys;
+    const isAllNumeric = entry.every((value) => typeof value === 'number');
+    const isBackwardsCompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
+    if (isBackwardsCompatibleEdges) {
+      header = keys.slice(0, 7);
     } else {
       header = entry;
       mapping[DATA_VIEW_OFFSET] = 1;
@@ -177,6 +181,8 @@ function inferViewKeyMappingImpl<T>(
     const index = header.findIndex((candidate) => icase(candidate) === propICase);
     if (index >= 0) {
       mapping[key] = (isArrayEntry ? index : header[index]) as never;
+    } else {
+      delete mapping[key];
     }
   }
 }
@@ -212,7 +218,7 @@ export function inferViewKeyMapping<T>(
       return defaultArrayKeyMapping;
     }
 
-    const viewMapping = mapping();
+    const viewMapping = { ...mapping() };
     inferViewKeyMappingImpl(viewData[0], viewMapping, keys);
 
     const error = validateViewKeyMapping(viewMapping, requiredKeys);

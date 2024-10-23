@@ -3,6 +3,10 @@ import { FileLoader } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { filter, map } from 'rxjs';
 
+export function isRecordObject(obj: unknown): obj is Record<PropertyKey, unknown> {
+  return typeof obj === 'object' && obj !== null;
+}
+
 export function tryParseJson(value: unknown): unknown {
   try {
     if (typeof value === 'string') {

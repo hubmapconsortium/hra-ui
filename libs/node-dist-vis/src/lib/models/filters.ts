@@ -1,46 +1,73 @@
 import { computed, Signal } from '@angular/core';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
-import { loadData } from './utils';
+import { isRecordObject, loadData } from './utils';
 
-export type NodesFilterEntry = string | number;
-export type NodesFilterInput = NodesFilter | string | undefined;
+export type NodeFilterEntry = string | number;
+export type NodeFilterInput = NodeFilter | string | undefined;
+export type NodeFilterPredFn = (type: string, index: number) => boolean;
 
-export interface NodesFilter {
-  include?: NodesFilterEntry[];
-  exclude?: NodesFilterEntry[];
+export interface NodeFilter {
+  include?: NodeFilterEntry[];
+  exclude?: NodeFilterEntry[];
 }
 
-export class NodesFilterView {
+function truthy(): boolean {
+  return true;
+}
+
+function falsy(): boolean {
+  return false;
+}
+
+export class NodeFilterView {
+  readonly includes = this.selectFilterFn();
+  readonly isEmpty = () => {
+    const { include, exclude = [] } = this;
+    return include === undefined && exclude.length === 0;
+  };
+
   constructor(
-    readonly include: NodesFilterEntry[] | undefined,
-    readonly exclude: NodesFilterEntry[] | undefined,
-  ) {
-    //
+    readonly include: NodeFilterEntry[] | undefined,
+    readonly exclude: NodeFilterEntry[] | undefined,
+  ) {}
+
+  private selectFilterFn(): NodeFilterPredFn {
+    const { include, exclude = [] } = this;
+    const includeFn = this.createFilterFn(include);
+    const excludeFn = this.createFilterFn(exclude);
+
+    if (include === undefined) {
+      return exclude.length === 0 ? truthy : (type, index) => !excludeFn(type, index);
+    } else if (include.length === 0) {
+      return falsy;
+    } else if (exclude.length === 0) {
+      return includeFn;
+    } else {
+      return (type, index) => includeFn(type, index) && !excludeFn(type, index);
+    }
   }
 
-  equals(other: unknown): boolean {
-    if (!(other instanceof NodesFilterView)) {
-      return false;
-    }
-
-    // TODO
-
-    return true;
+  private createFilterFn(entries: NodeFilterEntry[] | undefined): NodeFilterPredFn {
+    const entriesSet = new Set(entries);
+    return (type, index) => entriesSet.has(type) || entriesSet.has(index);
   }
 }
 
-export function loadNodesFilter(
-  input: Signal<NodesFilterInput>,
-  selection: Signal<string[] | undefined>,
-): Signal<NodesFilterView> {
+export function loadNodeFilter(
+  input: Signal<NodeFilterInput>,
+  selection: Signal<string | string[] | undefined>,
+): Signal<NodeFilterView> {
   const data = loadData(input, JsonFileLoaderService, {});
+  const selectionData = loadData(selection, JsonFileLoaderService, {});
   return computed(() => {
     const result = data();
-    if (typeof result !== 'object' || result === null) {
-      return new NodesFilterView(selection(), undefined);
+    if (isRecordObject(result)) {
+      const { include, exclude } = result as NodeFilter;
+      return new NodeFilterView(include, exclude);
     }
 
-    const { include, exclude } = result as NodesFilter;
-    return new NodesFilterView(include, exclude);
+    const includeSelection = selectionData();
+    const include = Array.isArray(includeSelection) ? includeSelection : undefined;
+    return new NodeFilterView(include, undefined);
   });
 }
