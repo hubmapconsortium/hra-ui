@@ -3,7 +3,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
 import { LandingPageComponent } from './landing-page.component';
-import { HUBMAP_CARDS_DATA } from '../create-visualization-page/create-visualization-page.component';
+
+jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
 describe('LandingPageComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
@@ -32,7 +33,6 @@ describe('LandingPageComponent', () => {
             alt: '',
           },
         ],
-        sideNavData: HUBMAP_CARDS_DATA,
       },
     });
     expect(screen.getByText('Explore 2D Intestine Data')).toBeInTheDocument();
