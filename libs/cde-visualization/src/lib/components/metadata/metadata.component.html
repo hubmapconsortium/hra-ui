@@ -1,142 +1,134 @@
-<mat-accordion displayMode="flat" hideToggle>
-  <mat-expansion-panel expanded #panel>
-    <mat-expansion-panel-header (click)="togglePanel($event, panel)">
-      <mat-panel-title class="title">
-        <button mat-icon-button hraIconButtonSize="large" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
-          <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
-        </button>
-        {{ metadata().sampleExtra ? 'Sample ' : '' }}Metadata
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          [hraIconButtonSize]="'large'"
-          aria-label="Icon to open nested menu"
-          hraMicroTooltip="More"
-          (click)="$event.stopPropagation()"
-        >
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" [class]="'metadata-overlay'">
-          <button
-            mat-menu-item
-            [matMenuTriggerFor]="infoSubMenu"
-            class="expanded"
-            matRipple
-            matRippleColor="#201E3D14"
-            (click)="$event.stopImmediatePropagation()"
-          >
-            <mat-icon>info</mat-icon>
-            <span>Info</span>
-            <mat-icon class="expand-arrow">arrow_right</mat-icon>
-          </button>
-          <button mat-menu-item (click)="toggleEmptyFields()">
-            <mat-icon>{{ showEmptyFields() ? 'visibility_off' : 'visibility' }}visibility</mat-icon>
-            {{ showEmptyFields() ? 'Hide' : 'Show' }} Unknown Metadata
-          </button>
-          <a
-            mat-menu-item
-            href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <mat-icon>code</mat-icon>
-            Embed App
-          </a>
-          <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-            Visualization metadata for the sample dataset.
-          </mat-menu>
-        </mat-menu>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <div class="metadata-details">
-      <div>
-        @if (isFieldVisible('title')) {
-          <span>
-            {{ titleLabel() }}
-          </span>
-          <span>
-            @if (metadata().sampleExtra; as extra) {
-              <a
-                mat-button
-                hraButtonSize="small"
-                [attr.href]="extra.sampleUrl"
-                target="_blank"
-                rel="noreferrer noopener"
-                >{{ metadata().title }}</a
-              >
-            } @else {
-              <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
-            }
-          </span>
-        }
-      </div>
-      <div>
-        <span>Source Data</span>
+<hra-expansion-panel [title]="'Sample Metadata'">
+  <hra-expansion-panel-actions>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      [hraIconButtonSize]="'large'"
+      aria-label="Icon to open nested menu"
+      hraMicroTooltip="More"
+      (click)="$event.stopPropagation()"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [class]="'metadata-overlay'">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="infoSubMenu"
+        class="expanded"
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="$event.stopImmediatePropagation()"
+      >
+        <mat-icon>info</mat-icon>
+        <span>Info</span>
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+      <button mat-menu-item (click)="toggleEmptyFields()">
+        <mat-icon>{{ showEmptyFields() ? 'visibility_off' : 'visibility' }}visibility</mat-icon>
+        {{ showEmptyFields() ? 'Hide' : 'Show' }} Unknown Metadata
+      </button>
+      <a
+        mat-menu-item
+        href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <mat-icon>code</mat-icon>
+        Embed App
+      </a>
+      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+        Visualization metadata for the sample dataset.
+      </mat-menu>
+    </mat-menu>
+  </hra-expansion-panel-actions>
+  <div class="metadata-details">
+    <div>
+      @if (isFieldVisible('title')) {
+        <span>
+          {{ titleLabel() }}
+        </span>
         <span>
           @if (metadata().sampleExtra; as extra) {
             <a
               mat-button
               hraButtonSize="small"
-              [attr.href]="extra.sourceDataUrl"
+              [attr.href]="extra.sampleUrl"
               target="_blank"
               rel="noreferrer noopener"
-              >{{ metadata().sourceData }}</a
+              >{{ metadata().title }}</a
             >
           } @else {
-            <span>{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+            <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
           }
         </span>
-      </div>
-      @if (isFieldVisible('colorMap')) {
-        <div>
-          <span>Color Map</span>
-          <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
-        </div>
       }
-      @if (isFieldVisible('organ')) {
-        <div>
-          <span>Organ</span>
-          <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      @if (isFieldVisible('technology')) {
-        <div>
-          <span>Technology</span>
-          <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      @if (isFieldVisible('sex')) {
-        <div>
-          <span>Sex</span>
-          <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      @if (isFieldVisible('age')) {
-        <div>
-          <span>Age</span>
-          <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      @if (isFieldVisible('thickness')) {
-        <div>
-          <span>Thickness (µm)</span>
-          <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      @if (isFieldVisible('pixelSize')) {
-        <div>
-          <span>Pixel Size (µm/pixel)</span>
-          <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
-        </div>
-      }
-      <div>
-        <span>Creation Date</span>
-        <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
-      </div>
-      <div>
-        <span>Creation Time</span>
-        <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
-      </div>
     </div>
-  </mat-expansion-panel>
-</mat-accordion>
+    <div>
+      <span>Source Data</span>
+      <span>
+        @if (metadata().sampleExtra; as extra) {
+          <a
+            mat-button
+            hraButtonSize="small"
+            [attr.href]="extra.sourceDataUrl"
+            target="_blank"
+            rel="noreferrer noopener"
+            >{{ metadata().sourceData }}</a
+          >
+        } @else {
+          <span>{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+        }
+      </span>
+    </div>
+    @if (isFieldVisible('colorMap')) {
+      <div>
+        <span>Color Map</span>
+        <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('organ')) {
+      <div>
+        <span>Organ</span>
+        <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('technology')) {
+      <div>
+        <span>Technology</span>
+        <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('sex')) {
+      <div>
+        <span>Sex</span>
+        <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('age')) {
+      <div>
+        <span>Age</span>
+        <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('thickness')) {
+      <div>
+        <span>Thickness (µm)</span>
+        <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    @if (isFieldVisible('pixelSize')) {
+      <div>
+        <span>Pixel Size (µm/pixel)</span>
+        <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
+    <div>
+      <span>Creation Date</span>
+      <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+    </div>
+    <div>
+      <span>Creation Time</span>
+      <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+    </div>
+  </div>
+</hra-expansion-panel>
