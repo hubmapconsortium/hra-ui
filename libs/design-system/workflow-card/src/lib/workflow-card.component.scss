@@ -1,9 +1,23 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
-  border-radius: 1rem;
-  padding: 2rem;
+  display: block;
   width: 42rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+
+    &.show-progress {
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  mat-progress-bar {
+    --mdc-linear-progress-track-height: 0.5rem;
+    --mdc-linear-progress-active-indicator-height: 0.5rem;
+  }
 }

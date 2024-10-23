@@ -1,1 +1,6 @@
-<ng-content></ng-content>
+<div class="content" [class.show-progress]="loadProgress() !== 0">
+  <ng-content></ng-content>
+</div>
+@if (loadProgress() !== 0) {
+  <mat-progress-bar mode="determinate" [value]="loadProgress() * 100"></mat-progress-bar>
+}

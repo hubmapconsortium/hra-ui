@@ -16,7 +16,7 @@
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <hra-workflow-card class="card data-upload">
+  <hra-workflow-card class="card data-upload" [loadProgress]="nodeProgress">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
@@ -86,6 +86,7 @@
       (loadErrored)="nodesLoadError = $event"
       [errorMessage]="nodesErrorMessage"
       [errorActionMessage]="nodesErrorActionMessage"
+      (progress)="nodeProgress = $event"
       #nodesFileUpload
     >
     </cde-file-upload>
@@ -349,7 +350,7 @@
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="color-config card" [class.custom]="useCustomColorMap">
+  <hra-workflow-card class="color-config card" [class.custom]="useCustomColorMap" [loadProgress]="colorProgress">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
@@ -424,6 +425,7 @@
         (loadErrored)="customColorMapLoadError = $event"
         [errorMessage]="colorErrorMessage"
         [errorActionMessage]="colorErrorActionMessage"
+        (progress)="colorProgress = $event"
         #customColorMapFileUpload
         data-testid="color-map-upload"
       >

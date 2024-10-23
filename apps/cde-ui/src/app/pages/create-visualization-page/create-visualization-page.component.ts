@@ -258,6 +258,11 @@ export class CreateVisualizationPageComponent {
   /** Color map CSV load error */
   customColorMapLoadError?: ExtendedFileLoadError;
 
+  /** Node CSV load progress*/
+  nodeProgress = 0;
+  /** Color map CSV load progress */
+  colorProgress = 0;
+
   /** Error message for nodes uploading */
   get nodesErrorMessage(): string {
     return this.nodesLoadError ? this.formatErrorMessage(this.nodesLoadError) : '';
