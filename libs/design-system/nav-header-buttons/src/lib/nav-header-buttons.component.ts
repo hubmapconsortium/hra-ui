@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { BrandmarkComponent } from '@hra-ui/design-system/brandmark';
 import { ButtonModule, ButtonSizeDirective, NavigationCategoryButtonDirective } from '@hra-ui/design-system/button';
-import { ProductLogoComponent, ProductName } from '@hra-ui/design-system/product-logo';
+import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
 /** Variant of nav header button */
@@ -37,7 +37,7 @@ export class NavHeaderButtonsComponent {
   /** Whether to show the HRA brandmark */
   readonly brandmark = input<boolean>(true);
   /** Current app */
-  readonly app = input.required<ProductName>();
+  readonly app = input.required<string>();
   /** Link to app home page */
   readonly appLink = input.required<string>();
   /** App title */

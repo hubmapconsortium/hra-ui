@@ -8,7 +8,7 @@
       </button>
     </div>
     <ng-scrollbar>
-      @for (item of data; track item) {
+      @for (item of navigationCategories(); track item) {
         <div class="category">
           <div class="card-category">{{ item.category }}</div>
           @for (card of item.cards; track card) {
