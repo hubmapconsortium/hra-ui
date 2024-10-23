@@ -43,9 +43,6 @@ export class ToggleButtonSizeDirective {
   /** Size of icon button to use */
   readonly size = input.required<IconButtonSize>({ alias: 'hraButtonToggleSize' });
 
-  /** Gets size of button in rem */
-  protected readonly buttonSize = computed(() => BUTTON_CONFIG[this.size()]);
-
   /** Gets the font variable for the current button size */
   protected readonly fontVar = computed(() => `var(${BUTTON_CONFIG[this.size()].font})`);
 

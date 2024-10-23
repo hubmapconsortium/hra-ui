@@ -10,6 +10,7 @@ import { provideSelect } from '@hra-ui/design-system/select';
 import { provideInput } from '@hra-ui/design-system/input';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideTrees } from '@hra-ui/design-system/tree';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 /**
  * Returns design system providers
@@ -17,6 +18,7 @@ import { provideTrees } from '@hra-ui/design-system/tree';
 export function provideDesignSystem(): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideHttpClient(),
+    provideAnimations(),
     provideIcons({
       fontIcons: {
         defaultClasses: ['material-symbols-rounded'],
