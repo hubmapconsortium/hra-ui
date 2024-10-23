@@ -7,11 +7,13 @@ export const FILTER_RANGE: [number, number] = [0, 2];
 
 export function createNodeFilterAccessor<T>(
   accessor: AccessorFunction<T, string>,
+  indexAccessor: AccessorFunction<T, number>,
   filterFn: NodeFilterPredFn,
 ): AccessorFunction<T, number> {
   return (obj, info) => {
     const type = accessor(obj, info);
-    const result = filterFn(type, info.index);
+    const index = indexAccessor(obj, info);
+    const result = filterFn(type, index);
     return result ? FILTER_INCLUDE_VALUE : FILTER_EXCLUDE_VALUE;
   };
 }

@@ -39,8 +39,9 @@ export function createEdgesLayer(
     return createColorAccessor(cellTypeAccessor(), map);
   });
   const filterValueAccessor = computed(() => {
+    const nodeIndex = edges().getCellIDFor;
     const filterFn = nodeFilter().includes;
-    return createNodeFilterAccessor(cellTypeAccessor(), filterFn);
+    return createNodeFilterAccessor(cellTypeAccessor(), nodeIndex, filterFn);
   });
 
   return computed(() => {

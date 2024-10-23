@@ -1,5 +1,5 @@
 import { computed, Signal } from '@angular/core';
-import { COORDINATE_SYSTEM } from '@deck.gl/core/typed';
+import { AccessorContext, COORDINATE_SYSTEM } from '@deck.gl/core/typed';
 import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensions/typed';
 import { PointCloudLayer } from '@deck.gl/layers/typed';
 import { ColorMapView } from '../models/color-map';
@@ -18,6 +18,10 @@ const INSPECT_NODE_SIZE = 3;
 
 function getNodeSize(mode: ViewMode): number {
   return mode === 'inspect' ? INSPECT_NODE_SIZE : DEFAULT_NODE_SIZE;
+}
+
+function getIndex(_obj: unknown, info: AccessorContext<unknown>): number {
+  return info.index;
 }
 
 export function createNodesLayer(
@@ -39,7 +43,7 @@ export function createNodesLayer(
   const filterValueAccessor = computed(() => {
     const accessor = nodes().getCellTypeFor;
     const filterFn = nodeFilter().includes;
-    return createNodeFilterAccessor(accessor, filterFn);
+    return createNodeFilterAccessor(accessor, getIndex, filterFn);
   });
 
   return computed(() => {
