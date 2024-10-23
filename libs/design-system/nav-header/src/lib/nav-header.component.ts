@@ -9,13 +9,21 @@ import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/desi
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
 
+/** Sidenav card data */
 export interface CardData {
+  /** Name of card category */
   category: string;
+  /** Info for apps in category */
   cards: {
+    /** Name of app */
     name: string;
+    /** Icon path */
     icon: string;
+    /** App title */
     title: string;
+    /** App description */
     description: string;
+    /** Link to app */
     link: string;
   }[];
 }

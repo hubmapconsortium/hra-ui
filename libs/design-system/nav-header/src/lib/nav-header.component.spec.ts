@@ -19,6 +19,7 @@ describe('NavHeaderComponent', () => {
         app: app,
         title: title,
         status: 'Beta',
+        navigationCategories: [],
       },
     });
   });
