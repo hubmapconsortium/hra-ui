@@ -9,7 +9,7 @@
     <div class="header">
       @if (!disabled()) {
         <button mat-icon-button data-testid="toggle" (click)="accordionItem.toggle()">
-          <mat-icon class="material-symbols-rounded">
+          <mat-icon>
             {{ accordionItem.expanded ? 'remove' : 'add' }}
           </mat-icon>
         </button>

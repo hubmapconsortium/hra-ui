@@ -16,7 +16,7 @@ import {
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { matExpansionAnimations } from './expansion-panel-animations';
+import { BODY_EXPANSION } from './expansion-panel-animations';
 
 /** Counter to keep track of distinct panels */
 let idCounter = 0;
@@ -44,7 +44,7 @@ export class ExpansionPanelHeaderContentComponent {}
   selector: 'hra-expansion-panel',
   standalone: true,
   imports: [CommonModule, CdkAccordionModule, IconButtonSizeDirective, MatIconButton, MatIconModule],
-  animations: [matExpansionAnimations.bodyExpansion],
+  animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',
   styleUrl: './expansion-panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
