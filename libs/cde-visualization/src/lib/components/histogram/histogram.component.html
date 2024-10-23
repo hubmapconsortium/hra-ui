@@ -2,14 +2,14 @@
   <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
     <mat-expansion-panel-header class="header">
       <mat-panel-title class="title">
-        <button mat-icon-button hraIconButtonSize="medium" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
+        <button mat-icon-button hraIconButtonSize="small" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
           <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
         </button>
         Histogram
         <button
           mat-icon-button
           [matMenuTriggerFor]="menu"
-          [hraIconButtonSize]="'medium'"
+          [hraIconButtonSize]="'small'"
           aria-label="Icon to open nested menu"
           hraMicroTooltip="More"
           (click)="$event.stopPropagation()"
@@ -47,7 +47,7 @@
             <span>Downloads</span>
             <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="histogramEl().open()">
             <mat-icon>fullscreen</mat-icon>
             Full Screen
           </button>
@@ -79,7 +79,7 @@
     </mat-expansion-panel-header>
 
     <div class="content">
-      <div class="histogram" data-testid="histogram" #histogram></div>
+      <div *hraFullscreen class="histogram" data-testid="histogram" #histogram></div>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

@@ -95,6 +95,9 @@
       "@hra-ui/design-system/footer": [
         "libs/design-system/footer/src/index.ts"
       ],
+      "@hra-ui/design-system/fullscreen": [
+        "libs/design-system/fullscreen/src/index.ts"
+      ],
       "@hra-ui/design-system/icon-button": [
         "libs/design-system/icon-button/src/index.ts"
       ],

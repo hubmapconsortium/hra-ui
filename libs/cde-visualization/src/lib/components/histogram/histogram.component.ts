@@ -5,7 +5,6 @@ import {
   Component,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
   output,
@@ -27,15 +26,16 @@ import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { FullscreenDirective } from '@hra-ui/design-system/fullscreen';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
-import { MatMenuModule } from '@angular/material/menu';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -127,6 +127,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatMenuModule,
     IconButtonSizeDirective,
     MicroTooltipDirective,
+    FullscreenDirective,
   ],
   providers: [
     {
@@ -160,6 +161,8 @@ export class HistogramComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
+  protected readonly fullscreen = signal(false);
+
   protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
 
   /** State indicating whether overflow is visible */
@@ -181,7 +184,7 @@ export class HistogramComponent {
   private readonly fileSaver = inject(FileSaverService);
 
   /** Element reference for the histogram container */
-  private readonly histogramEl = viewChild.required<ElementRef>('histogram');
+  protected readonly histogramEl = viewChild.required(FullscreenDirective);
 
   /** Vega view instance for the histogram */
   private readonly view = signal<View | undefined>(undefined);

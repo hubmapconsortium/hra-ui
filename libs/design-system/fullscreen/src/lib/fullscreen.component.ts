@@ -1,0 +1,15 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+@Component({
+  selector: 'hra-fullscreen',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './fullscreen.component.html',
+  styleUrl: './fullscreen.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenComponent {
+  private readonly viewRef = inject(MAT_DIALOG_DATA);
+}
