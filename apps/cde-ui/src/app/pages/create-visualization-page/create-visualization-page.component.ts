@@ -359,6 +359,7 @@ export class CreateVisualizationPageComponent {
    * Clears all nodes and node load errors
    */
   clearNodes(): void {
+    this.nodeProgress = 0;
     this.nodes = undefined;
     this.nodesLoadError = undefined;
     this.setHeaders([]);
@@ -416,6 +417,7 @@ export class CreateVisualizationPageComponent {
    * Clears custom color map
    */
   clearCustomColorMap(): void {
+    this.colorProgress = 0;
     this.customColorMap = undefined;
     this.customColorMapLoadError = undefined;
   }

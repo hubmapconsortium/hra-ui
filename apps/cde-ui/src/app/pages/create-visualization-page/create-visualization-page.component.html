@@ -16,7 +16,7 @@
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <hra-workflow-card class="card data-upload" [loadProgress]="nodeProgress">
+  <hra-workflow-card class="card data-upload" [allowUpload]="true" [loadProgress]="nodeProgress">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
@@ -83,7 +83,7 @@
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
-      (loadErrored)="nodesLoadError = $event"
+      (loadErrored)="nodesLoadError = $event; nodeProgress = 0"
       [errorMessage]="nodesErrorMessage"
       [errorActionMessage]="nodesErrorActionMessage"
       (progress)="nodeProgress = $event"
@@ -350,7 +350,12 @@
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="color-config card" [class.custom]="useCustomColorMap" [loadProgress]="colorProgress">
+  <hra-workflow-card
+    class="color-config card"
+    [class.custom]="useCustomColorMap"
+    [allowUpload]="true"
+    [loadProgress]="colorProgress"
+  >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
@@ -422,7 +427,7 @@
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
-        (loadErrored)="customColorMapLoadError = $event"
+        (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"
         [errorMessage]="colorErrorMessage"
         [errorActionMessage]="colorErrorActionMessage"
         (progress)="colorProgress = $event"

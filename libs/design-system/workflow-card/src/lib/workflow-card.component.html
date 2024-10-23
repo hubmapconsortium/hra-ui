@@ -1,6 +1,11 @@
-<div class="content" [class.show-progress]="loadProgress() !== 0">
+<div class="content" [class.allow-upload]="allowUpload()">
   <ng-content></ng-content>
 </div>
-@if (loadProgress() !== 0) {
-  <mat-progress-bar mode="determinate" [value]="loadProgress() * 100"></mat-progress-bar>
+@if (allowUpload()) {
+  <mat-progress-bar
+    mode="determinate"
+    [class.ready]="loadProgress() === 0"
+    [class.fully-loaded]="loadProgress() === 1"
+    [value]="loadProgress() * 100"
+  ></mat-progress-bar>
 }

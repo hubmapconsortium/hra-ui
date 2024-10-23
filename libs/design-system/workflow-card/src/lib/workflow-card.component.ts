@@ -16,4 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class WorkflowCardComponent {
   /** Current data load progress */
   loadProgress = input<number>(0);
+
+  /** Whether the card allows uploading of files */
+  allowUpload = input<boolean>(false);
 }
