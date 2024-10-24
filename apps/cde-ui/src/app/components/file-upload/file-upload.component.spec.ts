@@ -1,18 +1,11 @@
 import { Injector, OutputEmitterRef, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { render, screen } from '@testing-library/angular';
+import { render } from '@testing-library/angular';
 
 import { FileUploadComponent } from './file-upload.component';
 
 describe('FileUploadComponent', () => {
   const loader = jest.fn();
-  const mockFiles = {
-    0: {
-      name: 'nodes.csv',
-      type: 'text/csv',
-    } as File,
-    length: 1,
-  } as unknown as FileList;
 
   beforeEach(() => {
     loader.mockReturnValue({
@@ -21,29 +14,12 @@ describe('FileUploadComponent', () => {
     });
   });
 
-  it('should load', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await render(FileUploadComponent, {
-      componentInputs: {
-        actionNotification: 'test',
-        accept: 'csv',
-        loader: loader,
-        options: {},
-      },
-    });
-
-    instance.load({ files: mockFiles } as HTMLInputElement);
-    expect(screen.getByText(/test/i)).toBeInTheDocument();
-  });
-
   it('should cancel load', async () => {
     const loadCancelled = jest.fn();
     const {
       fixture: { componentInstance: instance },
     } = await render(FileUploadComponent, {
       componentInputs: {
-        actionNotification: 'test',
         accept: 'csv',
         loader: loader,
         options: {},

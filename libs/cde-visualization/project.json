@@ -16,8 +16,9 @@
         "polyfills": ["zone.js"],
         "tsConfig": "libs/cde-visualization/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "styles": ["libs/cde-visualization/src/styles.scss"],
         "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
         },
         "scripts": []
       },
