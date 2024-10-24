@@ -29,6 +29,12 @@ import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -87,6 +93,10 @@ function isNonEmptyArray<T>(array: T[]): boolean {
     IconButtonSizeDirective,
     MatMenuModule,
     MatButtonToggleModule,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
@@ -141,6 +151,8 @@ export class NodeDistVisualizationComponent {
 
   /** Reference to the visualization element */
   private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+
+  protected readonly visEl = viewChild.required(FullscreenPortalComponent);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);

@@ -1,2 +1,13 @@
-<p>fullscreen works!</p>
-<ng-template hraFullscreenContentOutlet></ng-template>
+<hra-expansion-panel [title]="'Title'" disabled>
+  <hra-expansion-panel-actions>
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-rounded"> more_vert </mat-icon>
+    </button>
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-rounded"> close </mat-icon>
+    </button>
+  </hra-expansion-panel-header-content>
+  <ng-template hraFullscreenContentOutlet></ng-template>
+</hra-expansion-panel>

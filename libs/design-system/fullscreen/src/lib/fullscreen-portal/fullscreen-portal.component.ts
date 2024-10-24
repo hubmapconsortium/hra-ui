@@ -52,6 +52,7 @@ export class FullscreenPortalComponent {
 
     const dialogRef = this.dialog.open(FullscreenComponent, {
       data: viewRef,
+      panelClass: 'fullscreen-panel',
     });
 
     const subs = new Subscription();

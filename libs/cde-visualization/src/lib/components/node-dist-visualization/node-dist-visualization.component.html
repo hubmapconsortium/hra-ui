@@ -1,121 +1,122 @@
-<div class="header">
-  Visualization
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    [hraIconButtonSize]="'large'"
-    aria-label="Icon to open nested menu"
-    hraMicroTooltip="More"
-    (click)="$event.stopPropagation()"
-  >
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu" [class]="'vis-overlay'">
+<hra-expansion-panel [title]="'Visualization'">
+  <hra-expansion-panel-actions>
     <button
-      mat-menu-item
-      [matMenuTriggerFor]="infoSubMenu"
-      matRipple
-      matRippleColor="#201E3D14"
-      (click)="$event.stopImmediatePropagation()"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      [hraIconButtonSize]="'large'"
+      aria-label="Icon to open nested menu"
+      hraMicroTooltip="More"
+      (click)="$event.stopPropagation()"
     >
-      <mat-icon>info</mat-icon>
-      <span>Info</span>
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button
-      mat-menu-item
-      [matMenuTriggerFor]="downloadSubMenu"
-      matRipple
-      matRippleColor="#201E3D14"
-      (click)="$event.stopImmediatePropagation()"
-    >
-      <mat-icon>download</mat-icon>
-      <span>Downloads</span>
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
-    </button>
-    <button
-      mat-menu-item
-      [matMenuTriggerFor]="resetSubMenu"
-      matRipple
-      matRippleColor="#201E3D14"
-      (click)="$event.stopImmediatePropagation()"
-    >
-      <mat-icon>reset_wrench</mat-icon>
-      <span>Reset</span>
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
-    </button>
-    <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-      <div>
-        <ul>
-          Zoom Options
-          <li>Mouse pinwheel</li>
-          <li>Trackpad Pinch</li>
-        </ul>
-        <ul>
-          Pan Options
-          <li>CTRL/CMD + mouse drag</li>
-          <li>Right click + mouse drag</li>
-          <li>Keyboard arrows</li>
-        </ul>
-        <ul>
-          Rotation Options
-          <li>CTRL/CMD + keyboard arrows</li>
-          <li>Mouse Drag</li>
-        </ul>
-      </div>
-    </mat-menu>
-    <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
-      <button mat-menu-item (click)="download()">
+    <mat-menu #menu="matMenu" [class]="'vis-overlay'">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="infoSubMenu"
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="$event.stopImmediatePropagation()"
+      >
+        <mat-icon>info</mat-icon>
+        <span>Info</span>
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="downloadSubMenu"
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="$event.stopImmediatePropagation()"
+      >
         <mat-icon>download</mat-icon>
-        <span>PNG</span>
+        <span>Downloads</span>
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-    </mat-menu>
-    <mat-menu #resetSubMenu="matMenu" [class]="'reset-sub-menu'">
-      <button mat-menu-item (click)="resetView()">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="resetSubMenu"
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="$event.stopImmediatePropagation()"
+      >
         <mat-icon>reset_wrench</mat-icon>
-        <span>Reset Visualization View</span>
+        <span>Reset</span>
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="resetAllCells.emit()">
-        <mat-icon>reset_wrench</mat-icon>
-        <span>Reset Deleted Cells</span>
+      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+        <div>
+          <ul>
+            Zoom Options
+            <li>Mouse pinwheel</li>
+            <li>Trackpad Pinch</li>
+          </ul>
+          <ul>
+            Pan Options
+            <li>CTRL/CMD + mouse drag</li>
+            <li>Right click + mouse drag</li>
+            <li>Keyboard arrows</li>
+          </ul>
+          <ul>
+            Rotation Options
+            <li>CTRL/CMD + keyboard arrows</li>
+            <li>Mouse Drag</li>
+          </ul>
+        </div>
+      </mat-menu>
+      <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
+        <button mat-menu-item (click)="download()">
+          <mat-icon>download</mat-icon>
+          <span>PNG</span>
+        </button>
+      </mat-menu>
+      <mat-menu #resetSubMenu="matMenu" [class]="'reset-sub-menu'">
+        <button mat-menu-item (click)="resetView()">
+          <mat-icon>reset_wrench</mat-icon>
+          <span>Reset Visualization View</span>
+        </button>
+        <button mat-menu-item (click)="resetAllCells.emit()">
+          <mat-icon>reset_wrench</mat-icon>
+          <span>Reset Deleted Cells</span>
+        </button>
+      </mat-menu>
+      <button mat-menu-item (click)="visEl().open()">
+        <mat-icon>fullscreen</mat-icon>
+        Full Screen
       </button>
+      <button mat-menu-item (click)="toggleCellLinks()">
+        <mat-icon>{{ cellLinksVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        {{ cellLinksVisible() ? 'Hide' : 'Show' }} Cell Links
+      </button>
+      <a
+        mat-menu-item
+        href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <mat-icon>code</mat-icon>
+        Embed App
+      </a>
     </mat-menu>
-    <button mat-menu-item>
-      <mat-icon>fullscreen</mat-icon>
-      Full Screen
-    </button>
-    <button mat-menu-item (click)="toggleCellLinks()">
-      <mat-icon>{{ cellLinksVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
-      {{ cellLinksVisible() ? 'Hide' : 'Show' }} Cell Links
-    </button>
-    <a
-      mat-menu-item
-      href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-      target="_blank"
-      rel="noopener noreferrer"
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <mat-icon class="delete" hraMicroTooltip="Select at least one cell to delete it from this dataset">delete</mat-icon>
+    <mat-button-toggle-group
+      name="visualizationSelect"
+      aria-label="Visualization Select"
+      hideSingleSelectionIndicator
+      hraButtonToggleSize="medium"
     >
-      <mat-icon>code</mat-icon>
-      Embed App
-    </a>
-  </mat-menu>
-  <div class="filler"></div>
-  <mat-icon class="delete" hraMicroTooltip="Select at least one cell to delete it from this dataset">delete</mat-icon>
-  <mat-button-toggle-group
-    name="visualizationSelect"
-    aria-label="Visualization Select"
-    hideSingleSelectionIndicator
-    hraButtonToggleSize="medium"
-  >
-    <mat-button-toggle value="select" checked hraMicroTooltip="Select cells to delete from this dataset"
-      >Select</mat-button-toggle
-    >
-    <mat-button-toggle value="inspect" hraMicroTooltip="Get information about individual cell types"
-      >Inspect</mat-button-toggle
-    >
-    <mat-button-toggle value="explore" hraMicroTooltip="Zoom, pan, and rotate the view of this visualization"
-      >Explore</mat-button-toggle
-    >
-  </mat-button-toggle-group>
-</div>
-
-<hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
+      <mat-button-toggle value="select" checked hraMicroTooltip="Select cells to delete from this dataset"
+        >Select</mat-button-toggle
+      >
+      <mat-button-toggle value="inspect" hraMicroTooltip="Get information about individual cell types"
+        >Inspect</mat-button-toggle
+      >
+      <mat-button-toggle value="explore" hraMicroTooltip="Zoom, pan, and rotate the view of this visualization"
+        >Explore</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </hra-expansion-panel-header-content>
+  <hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
+</hra-expansion-panel>

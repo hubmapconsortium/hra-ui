@@ -7,7 +7,14 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 
 @Directive({
   selector: '[hraFullscreenContentOutlet]',
@@ -21,7 +28,14 @@ export class FullscreenContentOutletDirective {
 @Component({
   selector: 'hra-fullscreen',
   standalone: true,
-  imports: [FullscreenContentOutletDirective],
+  imports: [
+    FullscreenContentOutletDirective,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    MatButtonModule,
+    ExpansionPanelHeaderContentComponent,
+    MatIconModule,
+  ],
   templateUrl: './fullscreen.component.html',
   styleUrl: './fullscreen.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
