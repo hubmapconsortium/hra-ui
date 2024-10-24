@@ -16,11 +16,13 @@ import {
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
 
+/** Fullscreen content outlet directive */
 @Directive({
   selector: '[hraFullscreenContentOutlet]',
   standalone: true,
 })
 export class FullscreenContentOutletDirective {
+  /** Instance of the view container */
   readonly viewContainerRef = inject(ViewContainerRef);
 }
 
@@ -41,10 +43,12 @@ export class FullscreenContentOutletDirective {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenComponent {
+  /** Instance of the fullscreen content outlet directive */
   private readonly contentOutlet = viewChild.required(FullscreenContentOutletDirective);
   /** Reference to the mat dialog data */
   private readonly viewRef = inject(MAT_DIALOG_DATA);
 
+  /** Inserts the view reference into the view container reference */
   constructor() {
     effect(() => {
       this.contentOutlet().viewContainerRef.insert(this.viewRef);

@@ -17,8 +17,13 @@
   ::ng-deep {
     .header {
       background-color: white;
-      font: var(--sys-label-medium);
       padding: 0.75rem 1rem;
+
+      hra-expansion-panel-header-content {
+        mat-icon {
+          vertical-align: middle;
+        }
+      }
     }
   }
 

@@ -152,6 +152,7 @@ export class NodeDistVisualizationComponent {
   /** Reference to the visualization element */
   private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
 
+  /**  */
   protected readonly visEl = viewChild.required(FullscreenPortalComponent);
 
   /** Service to handle file saving */

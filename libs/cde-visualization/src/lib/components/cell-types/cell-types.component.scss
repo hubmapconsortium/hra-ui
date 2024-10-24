@@ -43,10 +43,6 @@ $blue-theme: mat.m2-define-light-theme(
     hra-expansion-panel {
       .header {
         margin-bottom: 0.25rem;
-
-        .title {
-          font: var(--sys-label-medium);
-        }
       }
 
       .expansion-body {

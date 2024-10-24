@@ -42,6 +42,7 @@ export class FullscreenPortalComponent {
   /** Reference to the mat dialog */
   private readonly dialog = inject(MatDialog);
 
+  /** Instance of the fullscreen portal content directive */
   private readonly content = viewChild.required(FullscreenPortalContentDirective);
 
   /** Detaches the view from histogram module and attaches it to the view in the dialog */
