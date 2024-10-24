@@ -30,6 +30,7 @@ import { CardData, NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { SelectSizeDirective } from '@hra-ui/design-system/select';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { ParseError } from 'papaparse';
 
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
@@ -181,6 +182,7 @@ function optionalValue<T>(): T | null {
     ToggleButtonSizeDirective,
     TooltipCardComponent,
     ErrorIndicatorComponent,
+    WorkflowCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -354,6 +356,11 @@ export class CreateVisualizationPageComponent {
   /** Color map CSV load error */
   customColorMapLoadError?: ExtendedFileLoadError;
 
+  /** Node CSV load progress*/
+  nodeProgress = 0;
+  /** Color map CSV load progress */
+  colorProgress = 0;
+
   /** Error message for nodes uploading */
   get nodesErrorMessage(): string {
     return this.nodesLoadError ? this.formatErrorMessage(this.nodesLoadError) : '';
@@ -450,6 +457,7 @@ export class CreateVisualizationPageComponent {
    * Clears all nodes and node load errors
    */
   clearNodes(): void {
+    this.nodeProgress = 0;
     this.nodes = undefined;
     this.nodesLoadError = undefined;
     this.setHeaders([]);
@@ -507,6 +515,7 @@ export class CreateVisualizationPageComponent {
    * Clears custom color map
    */
   clearCustomColorMap(): void {
+    this.colorProgress = 0;
     this.customColorMap = undefined;
     this.customColorMapLoadError = undefined;
   }
