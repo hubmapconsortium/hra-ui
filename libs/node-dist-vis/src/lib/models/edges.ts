@@ -11,26 +11,59 @@ import {
   loadViewKeyMapping,
 } from './data-view';
 
+/** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
+/** Edges key mapping input */
 export type EdgeKeysInput = KeyMappingInput<EdgeEntry>;
 
+/** Edge entry */
 export interface EdgeEntry {
+  /** Source node index */
   'Cell ID': number;
+  /** Source X coordinate */
   X1: number;
+  /** Source Y coordinate */
   Y1: number;
+  /** Source Z coordinate */
   Z1: number;
+  /** Target X coordinate */
   X2: number;
+  /** Target Y coordinate */
   Y2: number;
+  /** Target Z coordinate */
   Z2: number;
 }
 
+/** Required edge keys */
 const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
+/** Optional edge keys */
 const OPTIONAL_KEYS: (keyof EdgeEntry)[] = [];
+/** Base data view class for edges */
 const BaseEdgesView = createDataViewClass<EdgeEntry>([...REQUIRED_KEYS, ...OPTIONAL_KEYS]);
 
+/** Edges view */
 export class EdgesView extends BaseEdgesView {
+  /**
+   * Get the source position of an edge.
+   * If an accessor context is provided the preallocated target
+   * array will be filled out and returned instead of a new array.
+   *
+   * @param index Index of data entry
+   * @param info Optional accessor context
+   * @returns The source position in format [x, y, z]
+   */
   readonly getSourcePositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
     this.getSourcePositionFor(this.data[index], info);
+
+  /**
+   * Get the source position of an edge.
+   * If an accessor context is provided the preallocated target
+   * array will be filled out and returned instead of a new array.
+   *
+   * @param obj Raw edge data entry
+   * @param info Optional accessor context
+   * @returns The source position in format [x, y, z]
+   */
   readonly getSourcePositionFor = (
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
@@ -42,8 +75,27 @@ export class EdgesView extends BaseEdgesView {
     return position;
   };
 
+  /**
+   * Get the target position of an edge.
+   * If an accessor context is provided the preallocated target
+   * array will be filled out and returned instead of a new array.
+   *
+   * @param index Index of data entry
+   * @param info Optional accessor context
+   * @returns The target position in format [x, y, z]
+   */
   readonly getTargetPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
     this.getTargetPositionFor(this.data[index], info);
+
+  /**
+   * Get the target position of an edge.
+   * If an accessor context is provided the preallocated target
+   * array will be filled out and returned instead of a new array.
+   *
+   * @param obj Raw edge data entry
+   * @param info Optional accessor context
+   * @returns The target position in format [x, y, z]
+   */
   readonly getTargetPositionFor = (
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
@@ -56,6 +108,13 @@ export class EdgesView extends BaseEdgesView {
   };
 }
 
+/**
+ * Load edges
+ *
+ * @param input Raw edges input
+ * @param keys Raw edges key mapping input
+ * @returns A edges view
+ */
 export function loadEdges(input: Signal<EdgesInput>, keys: Signal<EdgeKeysInput>): Signal<EdgesView> {
   const data = loadViewData(input, EdgesView);
   const mapping = loadViewKeyMapping(keys);

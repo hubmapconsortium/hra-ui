@@ -3,9 +3,19 @@ import { Layer } from '@deck.gl/core/typed';
 import { ScaleBarLayer as ScaleBarLayerConstructor } from '@vivjs/layers';
 import { NodesView } from '../models/nodes';
 
+/** Scale bar layer props. Not exported by `@vivjs/layers` */
 type ScaleBarLayerProps = ConstructorParameters<typeof ScaleBarLayerConstructor>[0];
+/** Scale bar layer */
 export type ScaleBarLayer = Layer<ScaleBarLayerProps>;
 
+/**
+ * Create a deckgl for rendering a scale bar
+ *
+ * @param nodes Nodes view
+ * @param viewSize Size of view element
+ * @param viewState Current state of deckgl
+ * @returns A deckgl layer
+ */
 export function createScaleBarLayer(
   nodes: Signal<NodesView>,
   viewSize: Signal<{ width: number; height: number }>,

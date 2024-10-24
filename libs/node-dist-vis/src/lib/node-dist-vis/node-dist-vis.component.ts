@@ -23,14 +23,16 @@ import { EdgeKeysInput, EdgesInput, loadEdges } from '../models/edges';
 import { loadNodeFilter, NodeFilterInput } from '../models/filters';
 import { loadNodes, NodeKeysInput, NodesInput } from '../models/nodes';
 import { ViewMode } from '../models/view-mode';
+import { TEST_COLOR_MAP, TEST_EDGES, TEST_NODES } from './test-data';
 
-// CursorState is not exported by deckgl
+/** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
 
-// OrbitView's constructor is poorly typed
+/** OrbitView's constructor is poorly typed */
 type OrbitViewProps = ConstructorParameters<typeof OrbitView>[0] &
   ConstructorParameters<typeof View<OrbitViewState>>[0];
 
+/** Initial visualization deckgl state */
 const INITIAL_VIEW_STATE = {
   version: 0,
   orbitAxis: 'Y',
@@ -44,6 +46,7 @@ const INITIAL_VIEW_STATE = {
   target: [0.5, 0.5],
 };
 
+/** Node distance visualization */
 @Component({
   selector: 'hra-node-dist-vis',
   standalone: true,
@@ -52,36 +55,71 @@ const INITIAL_VIEW_STATE = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeDistVisComponent {
+  /** View mode of the visualization */
   readonly mode = input<ViewMode>('explore');
 
-  readonly nodes = input<NodesInput>();
+  /** Node data */
+  readonly nodes = input<NodesInput>(TEST_NODES);
+  /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
+  /** Node target selector used when calculating edges */
   readonly nodeTargetSelector = input<string>(); // TODO default (must take nodeTargetValue into consideration, i.e. don't set default on this input)
-  /** @deprecated */
+  /**
+   * Column/property of the node's 'Cell Type' values
+   *
+   * @deprecated Use `nodeKeys` to specify the column instead
+   */
   readonly nodeTargetKey = input<string>();
-  /** @deprecated */
+  /**
+   * Node target selector used when calculating edges
+   *
+   * @deprecated Use `nodeTargetSelector` instead
+   */
   readonly nodeTargetValue = input<string>();
 
-  readonly edges = input<EdgesInput>();
+  /** Edge data if already calculated */
+  readonly edges = input<EdgesInput>(TEST_EDGES);
+  /** Edge key mapping data */
   readonly edgeKeys = input<EdgeKeysInput>();
+  /** Max distance to consider when calculating edges */
   readonly maxEdgeDistance = input<string | number>(); // TODO default + transform
 
-  readonly colorMap = input<ColorMapView | AnyData | string>();
+  /** Color map data */
+  readonly colorMap = input<ColorMapView | AnyData | string>(TEST_COLOR_MAP);
+  /** Color map key mapping data */
   readonly colorMapKeys = input<KeyMapping<ColorMapEntry> | string>();
-  /** @deprecated */
+  /**
+   * Column/property of the color map's 'Cell Type' values
+   *
+   * @deprecated Use `colorMapKeys` to specify the column instead
+   */
   readonly colorMapKey = input<string>();
-  /** @deprecated */
+  /**
+   * Column/property of the color map's 'Cell Color' values
+   *
+   * @deprecated Use `colorMapKeys` to specify the column instead
+   */
   readonly colorMapValue = input<string>();
 
+  /** Node filter data */
   readonly nodeFilter = input<NodeFilterInput>();
-  /** @deprecated */
+  /**
+   * Node 'Cell Type's to display
+   *
+   * @deprecated Use `nodeFilter`'s `include` property to specify included nodes instead
+   */
   readonly selection = input<string[] | string>();
 
+  /** Emits when the user clicks on a node */
   readonly nodeClick = output<AnyDataEntry>();
+  /** Emits when the user starts or stops hovering over a node */
   readonly nodeHover = output<AnyDataEntry | undefined>();
+  /** Emits when the user selects one or more nodes in the 'select' view mode */
   readonly nodeSelectionChange = output<unknown>(); // TODO fix type
 
+  /** Reference to the rendered canvas element */
   readonly canvas = computed(() => this.canvasElementRef().nativeElement);
+  /** Reference to the deckgl instance */
   readonly deck = createDeck(this.canvas, {
     controller: true,
     views: new OrbitView({ id: 'orbit', orbitAxis: 'Y' } as OrbitViewProps),
@@ -94,28 +132,42 @@ export class NodeDistVisComponent {
     onError: (error) => this.errorHandler.handleError(error),
   });
 
+  /** Canvas element wrapped inside an `ElementRef` */
   private readonly canvasElementRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
+  /** Error handler for the application */
   private readonly errorHandler = inject(ErrorHandler);
 
+  /** Current version value of the deckgl view state */
   private viewStateVersion = INITIAL_VIEW_STATE.version;
+  /** Current deckgl view state */
   private readonly viewState = signal<object>(INITIAL_VIEW_STATE);
 
+  /** View of the node data */
   private readonly nodesView = loadNodes(this.nodes, this.nodeKeys, this.nodeTargetKey);
+  /** View of the edge data */
   private readonly edgesView = loadEdges(this.edges, this.edgeKeys);
+  /** View of the color map */
   private readonly colorMapView = loadColorMap(this.colorMap, this.colorMapKeys, this.colorMapKey, this.colorMapValue);
+  /** View of the node filter */
   private readonly nodeFilterView = loadNodeFilter(this.nodeFilter, this.selection);
 
+  /** Node layer */
   private readonly nodesLayer = createNodesLayer(this.mode, this.nodesView, this.nodeFilterView, this.colorMapView);
+  /** Edge layer */
   private readonly edgesLayer = createEdgesLayer(
     this.nodesView,
     this.edgesView,
     this.nodeFilterView,
     this.colorMapView,
   );
+  /** Scale bar layer */
   private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);
+  /** All layers as an array */
   private readonly layers = computed(() => [this.nodesLayer(), this.edgesLayer(), this.scaleBarLayer()]);
 
+  /** Controller options */
   private readonly controller = createController(this.mode);
+  /** Deckgl props */
   private readonly props = computed((): DeckProps => {
     return {
       controller: this.controller(),
@@ -123,12 +175,15 @@ export class NodeDistVisComponent {
     };
   });
 
+  /** Currently hovered node entry */
   private activeHover: AnyDataEntry | undefined = undefined;
 
+  /** Initialize the visualization */
   constructor() {
     effect(() => this.deck().setProps(this.props()));
   }
 
+  /** Resets the view to the original location and rotation */
   resetView(): void {
     this.deck().setProps({
       initialViewState: {
@@ -138,6 +193,12 @@ export class NodeDistVisComponent {
     });
   }
 
+  /**
+   * Get the cursor to display
+   *
+   * @param state Cursor state
+   * @returns Which cursor to display
+   */
   private getCursor({ isDragging, isHovering }: CursorState): string {
     if (isDragging) {
       return 'grabbing';
@@ -148,6 +209,11 @@ export class NodeDistVisComponent {
     }
   }
 
+  /**
+   * Handle a click in deckgl
+   *
+   * @param info Deckgl picking information
+   */
   private onClick(info: PickingInfo): void {
     const { picked, index } = info;
     if (picked) {
@@ -155,6 +221,11 @@ export class NodeDistVisComponent {
     }
   }
 
+  /**
+   * Handle hovering in deckgl
+   *
+   * @param info Deckgl picking information
+   */
   private onHover(info: PickingInfo): void {
     const { picked, index } = info;
     const obj = picked ? this.nodesView().at(index) : undefined;

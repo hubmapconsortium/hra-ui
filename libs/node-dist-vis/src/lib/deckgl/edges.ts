@@ -11,8 +11,18 @@ import { createColorAccessor } from './utils/color-coding';
 import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 
+/** Edges layer */
 export type EdgesLayer = LineLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
+/**
+ * Create a deckgl layer for rendering edges
+ *
+ * @param nodes Nodes data view
+ * @param edges Edges data view
+ * @param nodeFilter Node filter
+ * @param colorMap Color map
+ * @returns A deckgl layer
+ */
 export function createEdgesLayer(
   nodes: Signal<NodesView>,
   edges: Signal<EdgesView>,

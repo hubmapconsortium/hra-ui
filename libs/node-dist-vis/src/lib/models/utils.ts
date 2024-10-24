@@ -1,12 +1,27 @@
-import { inject, Signal, Type } from '@angular/core';
+import { ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { FileLoader } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
-import { filter, map } from 'rxjs';
+import { catchError, EMPTY, filter, map } from 'rxjs';
 
+/** Accepted data input types */
+export type DataInput<T> = T | File | URL | string | undefined;
+
+/**
+ * Tests whether a value is a plain object
+ *
+ * @param obj Object to test
+ * @returns True if `obj` is a plain object, otherwise false
+ */
 export function isRecordObject(obj: unknown): obj is Record<PropertyKey, unknown> {
-  return typeof obj === 'object' && obj !== null;
+  return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
 }
 
+/**
+ * Tries to parse a value as json
+ *
+ * @param value Value to parse
+ * @returns Parsed json value if possible, otherwise the original value
+ */
 export function tryParseJson(value: unknown): unknown {
   try {
     if (typeof value === 'string') {
@@ -19,18 +34,34 @@ export function tryParseJson(value: unknown): unknown {
   return value;
 }
 
+/**
+ * Loads data from either an url, file, json encoded string, or passed directly.
+ * The resulting signal value is undefined until data has has been sucessfully loaded.
+ *
+ * @param input Raw input
+ * @param loaderService Service to load urls and files
+ * @param options File loader options
+ * @returns Loaded data
+ */
 export function loadData<T, Opts>(
-  input: Signal<T | string | undefined>,
+  input: Signal<DataInput<T>>,
   loaderService: Type<FileLoader<T, Opts>>,
   options: Opts,
 ): Signal<unknown> {
   const loader = inject(loaderService);
+  const errorHandler = inject(ErrorHandler);
+
   return derivedAsync(() => {
     const data = tryParseJson(input());
-    if (typeof data === 'string' || data instanceof File) {
-      return loader.load(data, options).pipe(
+    if (typeof data === 'string' || data instanceof File || data instanceof URL) {
+      const source = data instanceof URL ? data.toString() : data;
+      return loader.load(source, options).pipe(
         filter((event) => event.type === 'data'),
         map((event) => event.data),
+        catchError((error) => {
+          errorHandler.handleError(error);
+          return EMPTY;
+        }),
       );
     }
 

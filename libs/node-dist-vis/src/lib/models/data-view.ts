@@ -1,65 +1,129 @@
-import { computed, Signal, Type } from '@angular/core';
+import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
-import { isRecordObject, loadData } from './utils';
+import { DataInput, isRecordObject, loadData } from './utils';
 
+/** Removes all whitespaces in a string */
 type RemoveWhiteSpace<S extends string> = S extends `${infer Pre} ${infer Post}`
   ? RemoveWhiteSpace<`${Pre}${Post}`>
   : S;
 
+/** 'At' accessors take an index argument while 'For' accessors takes the data object */
 type AccessorPostfixes = 'At' | 'For';
+/** Creates an accessor name from a property name */
 type AccessorName<
   Entry,
   P extends keyof Entry,
   Postfix extends AccessorPostfixes,
 > = `get${Capitalize<RemoveWhiteSpace<P & string>>}${Postfix}`;
+/** Accessor function type */
 type Accessor<Entry, P extends keyof Entry, Arg> = (arg: Arg) => Entry[P];
 
+/** View data entry */
 export type AnyDataEntry = unknown[] | object;
+/** View data */
 export type AnyData = unknown[][] | object[];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type DataViewInput<V extends DataView<any>> = V | AnyData | string | undefined;
-export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
-export type KeyMappingWithDataOffset<Entry> = KeyMapping<Entry> & { [DATA_VIEW_OFFSET]?: number };
-export type KeyMappingMixins<Entry> = { [P in keyof Entry]?: Signal<PropertyKey | undefined> };
-export type KeyMappingInput<Entry> = Partial<KeyMapping<Entry>> | string | undefined;
 
+/** Data view input */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
+
+/** Mapping for each entry key to the actual data's properties */
+export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
+/**
+ * Additional key mapping entries mixed into the mapping.
+ * Used to merge backwards compatibility inputs into the key mapping.
+ */
+export type KeyMappingMixins<Entry> = { [P in keyof Entry]?: Signal<PropertyKey | undefined> };
+/** Key mapping input */
+export type KeyMappingInput<Entry> = DataInput<Partial<KeyMapping<Entry>>>;
+
+/** Accessors automatically created by a data view */
 export type DataViewAccessors<Entry> = {
   [P in keyof Entry as AccessorName<Entry, P, 'At'>]-?: Accessor<Entry, P, number>;
 } & {
   [P in keyof Entry as AccessorName<Entry, P, 'For'>]-?: Accessor<Entry, P, AnyDataEntry>;
 };
 
+/** Data view */
 export interface DataView<Entry> {
+  /** Property names of the entry type */
   readonly keys: (keyof Entry)[];
+  /** Raw underlying data for the view */
   readonly data: AnyData;
+  /** Mapping from entry property names to properties in the raw data */
   readonly keyMapping: KeyMapping<Entry>;
+  /** Start offset of the first item in the data array */
   readonly offset: number;
+  /** Number of items in the data (raw data length minus the offset) */
   readonly length: number;
 
+  /**
+   * Gets the raw item at a specific index. Does **not** accept negative indices
+   *
+   * @param index Index of the item
+   * @returns The raw data object
+   */
   readonly at: (index: number) => AnyDataEntry;
+  /**
+   * Gets a property for the item at the specified index
+   *
+   * @param index Index of the item
+   * @param property Property to read
+   * @returns The property's value
+   */
   readonly getPropertyAt: <P extends keyof Entry>(index: number, property: P) => Entry[P];
+  /**
+   * Gets a property for a raw data object
+   *
+   * @param obj Raw data object
+   * @param property Property to read
+   * @returns The property's value
+   */
   readonly getPropertyFor: <P extends keyof Entry>(obj: AnyDataEntry, property: P) => Entry[P];
 
+  /** Raw data iterator */
   [Symbol.iterator](): IterableIterator<AnyDataEntry>;
 }
 
-export interface DataViewConstructor<Entry> {
-  new (data: AnyData, keyMapping: KeyMapping<Entry>, offset?: number): DataView<Entry> & DataViewAccessors<Entry>;
-}
+/** Data view constructor */
+export type DataViewConstructor<Entry> = new (
+  data: AnyData,
+  keyMapping: KeyMapping<Entry>,
+  offset?: number,
+) => DataView<Entry> & DataViewAccessors<Entry>;
 
-export const DATA_VIEW_OFFSET = Symbol('data offset');
-
+/**
+ * Create an accessor name for a property
+ *
+ * @param property Property name
+ * @param postfix Accessor postfix
+ * @returns An accessor name
+ */
 function createAccessorName<Entry>(property: keyof Entry, postfix: AccessorPostfixes): string {
   const trimmedProperty = String(property).replace(/\s+/g, '');
   const capitalizedProperty = trimmedProperty.slice(0, 1).toUpperCase() + trimmedProperty.slice(1);
   return `get${capitalizedProperty}${postfix}`;
 }
 
+/**
+ * Creates a new accessor bound to a data view
+ *
+ * @param instance Instance to bind the accessor to
+ * @param property Property to access
+ * @param postfix Accessor prostfix
+ * @returns A bound accessor function
+ */
 function createAccessor<Entry>(instance: DataView<Entry>, property: keyof Entry, postfix: AccessorPostfixes) {
   const method = `getProperty${postfix}` as const;
   return (arg: unknown) => instance[method](arg as never, property);
 }
 
+/**
+ * Creates and attaches accessors for each entry property on a data view
+ *
+ * @param instance Data view instance
+ * @param keys Entry property keys
+ */
 function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]): void {
   const postfixes: AccessorPostfixes[] = ['At', 'For'];
   for (const key of keys) {
@@ -71,6 +135,12 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
+/**
+ * Create a new data view base class
+ *
+ * @param keys Entry property keys
+ * @returns A data view base class
+ */
 export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConstructor<Entry> {
   class DataViewImpl implements DataView<Entry> {
     readonly keys = keys;
@@ -110,6 +180,14 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
   return DataViewImpl as unknown as DataViewConstructor<Entry>;
 }
 
+/**
+ * Loads view data from either json encoded input, a file or url,
+ * an existing data view instance, or an array of raw data
+ *
+ * @param input Raw data view input
+ * @param viewCls Data view class
+ * @returns Either a data view of the specified type or an array of raw data
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function loadViewData<T extends DataView<any>>(
   input: Signal<DataViewInput<T>>,
@@ -129,8 +207,16 @@ export function loadViewData<T extends DataView<any>>(
   });
 }
 
+/**
+ * Loads a key mapping from either json encoded input, a file or url,
+ * or an existing key mapping object
+ *
+ * @param input Raw key mapping input
+ * @param mixins Additional mappings for backwards compatability
+ * @returns A partial key mapping
+ */
 export function loadViewKeyMapping<T>(
-  input: Signal<Partial<KeyMapping<T>> | string | undefined>,
+  input: Signal<KeyMappingInput<T>>,
   mixins: KeyMappingMixins<T> = {},
 ): Signal<Partial<KeyMapping<T>>> {
   const data = loadData(input, JsonFileLoaderService, {});
@@ -154,11 +240,39 @@ export function loadViewKeyMapping<T>(
   });
 }
 
-function inferViewKeyMappingImpl<T>(
-  entry: AnyDataEntry,
-  mapping: Partial<KeyMappingWithDataOffset<T>>,
-  keys: (keyof T)[],
-): void {
+/** Type with the `DATA_VIEW_OFFSET` property */
+type WithDataViewOffset = Partial<Record<typeof DATA_VIEW_OFFSET, number>>;
+/** Symbol used to "smuggle" the offset between inferViewKeyMapping and createDataView */
+const DATA_VIEW_OFFSET = Symbol('DataView offset');
+
+/**
+ * Gets the `DATA_VIEW_OFFSET` stored in a key mapping
+ *
+ * @param mapping Key mapping
+ * @returns The offset if present
+ */
+function getDataViewOffset<T>(mapping: Partial<KeyMapping<T>>): number | undefined {
+  return (mapping as WithDataViewOffset)[DATA_VIEW_OFFSET];
+}
+
+/**
+ * Sets a new `DATA_VIEW_OFFSET` in a key mapping
+ *
+ * @param mapping Key mapping
+ * @param offset New offset value
+ */
+function setDataViewOffset<T>(mapping: Partial<KeyMapping<T>>, offset: number): void {
+  (mapping as WithDataViewOffset)[DATA_VIEW_OFFSET] = offset;
+}
+
+/**
+ * Attempts to infer key mapping properties from raw data
+ *
+ * @param entry The first raw data entry in the data array
+ * @param mapping Mapping to update with inferred keys
+ * @param keys Expected entry property keys
+ */
+function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMapping<T>>, keys: (keyof T)[]): void {
   const icase = (value: unknown) => String(value).toLowerCase();
   const isArrayEntry = Array.isArray(entry);
   let header: unknown[];
@@ -170,7 +284,7 @@ function inferViewKeyMappingImpl<T>(
       header = keys.slice(0, 7);
     } else {
       header = entry;
-      mapping[DATA_VIEW_OFFSET] = 1;
+      setDataViewOffset(mapping, 1);
     }
   } else {
     header = Object.keys(entry);
@@ -188,6 +302,13 @@ function inferViewKeyMappingImpl<T>(
   }
 }
 
+/**
+ * Validates an inferred key mapping
+ *
+ * @param mapping Inferred key mapping
+ * @param requiredKeys Required entry property keys
+ * @returns undefined if valid, otherwise an error describing the issue
+ */
 function validateViewKeyMapping<T>(mapping: Partial<KeyMapping<T>>, requiredKeys: (keyof T)[]): Error | void {
   const missingKeys: (keyof T)[] = [];
   for (const key of requiredKeys) {
@@ -201,12 +322,22 @@ function validateViewKeyMapping<T>(mapping: Partial<KeyMapping<T>>, requiredKeys
   }
 }
 
+/**
+ * Infers a complete key mapping from the data and a partial key mapping
+ *
+ * @param data View data
+ * @param mapping Partial existing key mapping
+ * @param requiredKeys Required property keys
+ * @param optionalKeys Optional property keys
+ * @returns A complete key mapping on success, otherwise undefined
+ */
 export function inferViewKeyMapping<T>(
   data: Signal<DataView<T> | AnyData>,
   mapping: Signal<Partial<KeyMapping<T>>>,
   requiredKeys: (keyof T)[],
   optionalKeys: (keyof T)[],
-): Signal<KeyMappingWithDataOffset<T> | undefined> {
+): Signal<KeyMapping<T> | undefined> {
+  const errorHandler = inject(ErrorHandler);
   const keys = [...requiredKeys, ...optionalKeys];
   const defaultArrayKeyMapping = {} as KeyMapping<T>;
   keys.forEach((key, index) => (defaultArrayKeyMapping[key] = index));
@@ -224,17 +355,27 @@ export function inferViewKeyMapping<T>(
 
     const error = validateViewKeyMapping(viewMapping, requiredKeys);
     if (error !== undefined) {
+      errorHandler.handleError(error);
       return undefined;
     }
 
-    return viewMapping as KeyMappingWithDataOffset<T>;
+    return viewMapping as KeyMapping<T>;
   });
 }
 
+/**
+ * Create a data view from data and key mapping
+ *
+ * @param viewCls Data view class
+ * @param data Already existing data view or array of raw data
+ * @param keyMapping Inferred key mapping for the raw data
+ * @param defaultView Default data view returned missing a data or key mapping
+ * @returns A data view of the specified class
+ */
 export function createDataView<T, V>(
   viewCls: new (data: AnyData, keyMapping: KeyMapping<T>, offset?: number) => V,
   data: Signal<V | AnyData>,
-  keyMapping: Signal<KeyMappingWithDataOffset<T> | undefined>,
+  keyMapping: Signal<KeyMapping<T> | undefined>,
   defaultView: V,
 ): Signal<V> {
   return computed(() => {
@@ -245,7 +386,7 @@ export function createDataView<T, V>(
 
     const viewMapping = keyMapping();
     if (viewMapping !== undefined) {
-      return new viewCls(viewData as AnyData, viewMapping, viewMapping[DATA_VIEW_OFFSET]);
+      return new viewCls(viewData as AnyData, viewMapping, getDataViewOffset(viewMapping));
     }
 
     return defaultView;

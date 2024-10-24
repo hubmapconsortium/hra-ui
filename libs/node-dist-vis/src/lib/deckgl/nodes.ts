@@ -11,19 +11,44 @@ import { createColorAccessor } from './utils/color-coding';
 import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 
+/** Nodes layer */
 export type NodesLayer = PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
-const DEFAULT_NODE_SIZE = 5; // 1.5;
+/** Default/initial node size */
+const DEFAULT_NODE_SIZE = 1.5;
+/** Node size in the 'inspect' view mode */
 const INSPECT_NODE_SIZE = 3;
 
+/**
+ * Get the node size based on the view mode
+ *
+ * @param mode Current view mode
+ * @returns The node size
+ */
 function getNodeSize(mode: ViewMode): number {
   return mode === 'inspect' ? INSPECT_NODE_SIZE : DEFAULT_NODE_SIZE;
 }
 
+/**
+ * Accessor for getting a node's index
+ *
+ * @param _obj Raw node data object
+ * @param info Accessor context
+ * @returns The index of the node
+ */
 function getIndex(_obj: unknown, info: AccessorContext<unknown>): number {
   return info.index;
 }
 
+/**
+ * Create a deckgl for rendering nodes
+ *
+ * @param mode View mode
+ * @param nodes Nodes view
+ * @param nodeFilter Nodes filter
+ * @param colorMap Color map
+ * @returns A deckgl layer
+ */
 export function createNodesLayer(
   mode: Signal<ViewMode>,
   nodes: Signal<NodesView>,
