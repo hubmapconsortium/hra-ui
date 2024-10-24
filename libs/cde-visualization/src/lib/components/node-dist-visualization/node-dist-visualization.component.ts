@@ -14,16 +14,27 @@ import {
   isSignal,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
 import { ColorMapEntry } from '../../models/color-map';
 import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -73,7 +84,20 @@ function isNonEmptyArray<T>(array: T[]): boolean {
 @Component({
   selector: 'cde-node-dist-visualization',
   standalone: true,
-  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    OverlayModule,
+    MatButtonModule,
+    MatIconModule,
+    MicroTooltipDirective,
+    IconButtonSizeDirective,
+    MatMenuModule,
+    MatButtonToggleModule,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+  ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -113,6 +137,12 @@ export class NodeDistVisualizationComponent {
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** Output event to reset all cells selection */
+  readonly resetAllCells = output();
+
+  /** Flag to check cell links visibility */
+  readonly cellLinksVisible = signal(false);
+
   /** Tooltip position constant */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
@@ -121,6 +151,9 @@ export class NodeDistVisualizationComponent {
 
   /** Reference to the visualization element */
   private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+
+  /**  */
+  protected readonly visEl = viewChild.required(FullscreenPortalComponent);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
@@ -196,5 +229,10 @@ export class NodeDistVisualizationComponent {
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });
+  }
+
+  /** Toggles the visibility of the cell links */
+  toggleCellLinks(): void {
+    this.cellLinksVisible.set(!this.cellLinksVisible());
   }
 }

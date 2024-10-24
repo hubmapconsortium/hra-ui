@@ -1,142 +1,150 @@
-<span class="cell-types-label">
-  Cell Types
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    hraMicroTooltip="More"
-    hraIconButtonSize="large"
-    data-testid="trigger"
+<hra-expansion-panel [title]="'Cell Types'" disabled="">
+  <hra-expansion-panel-actions>
+    <span class="cell-types-label">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        hraMicroTooltip="More"
+        hraIconButtonSize="large"
+        data-testid="trigger"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
+          <mat-icon>info</mat-icon>
+          <span>Info</span>
+          <mat-icon class="expand-arrow">arrow_right</mat-icon>
+        </button>
+        <button
+          mat-menu-item
+          [matMenuTriggerFor]="downloadSubMenu"
+          class="expanded"
+          matRipple
+          matRippleColor="#201E3D14"
+        >
+          <mat-icon>download</mat-icon>
+          <span>Download</span>
+          <mat-icon class="expand-arrow">arrow_right</mat-icon>
+        </button>
+        <button mat-menu-item (click)="toggleLinksColumn()">
+          <mat-icon>{{ hideCellLinkData() ? 'visibility' : 'visibility_off' }}visibility</mat-icon>
+          {{ hideCellLinkData() ? 'Show' : 'Hide' }} Cell Link Data
+        </button>
+        <button mat-menu-item (click)="resetAllColors.emit()">
+          <mat-icon>reset_wrench</mat-icon>
+          Reset All Colors
+        </button>
+        <a
+          mat-menu-item
+          href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <mat-icon>code</mat-icon>
+          Embed App
+        </a>
+      </mat-menu>
+      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+        {{ infoToolTipDescription }}
+      </mat-menu>
+      <mat-menu #downloadSubMenu="matMenu">
+        <button mat-menu-item (click)="downloadNodes.emit()">
+          <mat-icon>download</mat-icon>
+          <span>Cells CSV</span>
+        </button>
+        <button mat-menu-item (click)="downloadEdges.emit()">
+          <mat-icon>download</mat-icon>
+          <span>Cell Links CSV</span>
+        </button>
+        <button mat-menu-item (click)="downloadColorMap.emit()">
+          <mat-icon>download</mat-icon>
+          <span>Cell Color Map CSV</span>
+        </button>
+      </mat-menu>
+    </span>
+  </hra-expansion-panel-actions>
+  <div class="total-ct-label">
+    <span>{{ selection().length }}</span>
+    Total Cell Types
+  </div>
+  <div class="total-cells">
+    <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
+    Total Cells
+  </div>
+  @if (!hideCellLinkData()) {
+    <div class="total-cell-links">
+      <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
+      Total Cell Links
+    </div>
+  }
+
+  <ng-scrollbar
+    class="table-overflow-container"
+    externalViewport=".scroll-viewport"
+    externalContentWrapper="tbody"
+    externalSpacer="tbody"
+    asyncDetection="auto"
+    hraScrollOverflowFade
+    [scrollOverflowFadeOffset]="36"
   >
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
-      <mat-icon>info</mat-icon>
-      <span>Info</span>
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="downloadSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
-      <mat-icon>download</mat-icon>
-      <span>Download</span>
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
-    </button>
-    <button mat-menu-item (click)="toggleLinksColumn()">
-      <mat-icon>{{ hideCellLinkData() ? 'visibility' : 'visibility_off' }}visibility</mat-icon>
-      {{ hideCellLinkData() ? 'Show' : 'Hide' }} Cell Link Data
-    </button>
-    <button mat-menu-item (click)="resetAllColors.emit()">
-      <mat-icon>reset_wrench</mat-icon>
-      Reset All Colors
-    </button>
-    <a
-      mat-menu-item
-      href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <mat-icon>code</mat-icon>
-      Embed App
-    </a>
-  </mat-menu>
-  <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-    {{ infoToolTipDescription }}
-  </mat-menu>
-  <mat-menu #downloadSubMenu="matMenu">
-    <button mat-menu-item (click)="downloadNodes.emit()">
-      <mat-icon>download</mat-icon>
-      <span>Cells CSV</span>
-    </button>
-    <button mat-menu-item (click)="downloadEdges.emit()">
-      <mat-icon>download</mat-icon>
-      <span>Cell Links CSV</span>
-    </button>
-    <button mat-menu-item (click)="downloadColorMap.emit()">
-      <mat-icon>download</mat-icon>
-      <span>Cell Color Map CSV</span>
-    </button>
-  </mat-menu>
-</span>
+    <div class="scroll-viewport">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        [trackBy]="trackByName"
+        matSort
+        matSortDirection="desc"
+        matSortActive="count"
+        aria-label="Cell Types Count Table"
+      >
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+              (change)="toggleAllRows()"
+              [checked]="selectionState() === 'full'"
+              [indeterminate]="selectionState() === 'partial'"
+              [aria-label]="getCheckboxLabel(selectionState() === 'full')"
+            >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row; let index = index">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="toggleRow(row)"
+              [checked]="isSelected(row)"
+              [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
 
-<div class="total-ct-label">
-  <span>{{ selection().length }}</span>
-  Total Cell Types
-</div>
-<div class="total-cells">
-  <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
-  Total Cells
-</div>
-@if (!hideCellLinkData()) {
-  <div class="total-cell-links">
-    <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
-    Total Cell Links
-  </div>
-}
+        <ng-container matColumnDef="cellType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="name" start="desc">Cell Type</th>
+          <td mat-cell *matCellDef="let element" class="name">
+            <cde-color-picker-label
+              [label]="element.name"
+              [color]="element.color"
+              [isAnchor]="element.name === selectedCellType()"
+              (colorChange)="updateColor(element, $event)"
+            >
+            </cde-color-picker-label>
+          </td>
+        </ng-container>
 
-<ng-scrollbar
-  class="table-overflow-container"
-  externalViewport=".scroll-viewport"
-  externalContentWrapper="tbody"
-  externalSpacer="tbody"
-  asyncDetection="auto"
-  hraScrollOverflowFade
-  [scrollOverflowFadeOffset]="36"
->
-  <div class="scroll-viewport">
-    <table
-      mat-table
-      [dataSource]="dataSource"
-      [trackBy]="trackByName"
-      matSort
-      matSortDirection="desc"
-      matSortActive="count"
-      aria-label="Cell Types Count Table"
-    >
-      <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-checkbox
-            (change)="toggleAllRows()"
-            [checked]="selectionState() === 'full'"
-            [indeterminate]="selectionState() === 'partial'"
-            [aria-label]="getCheckboxLabel(selectionState() === 'full')"
-          >
-          </mat-checkbox>
-        </th>
-        <td mat-cell *matCellDef="let row; let index = index">
-          <mat-checkbox
-            (click)="$event.stopPropagation()"
-            (change)="toggleRow(row)"
-            [checked]="isSelected(row)"
-            [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
-          >
-          </mat-checkbox>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="count" start="desc">#Cells</th>
+          <td mat-cell *matCellDef="let element">{{ element.count.toLocaleString() }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="cellType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="name" start="desc">Cell Type</th>
-        <td mat-cell *matCellDef="let element" class="name">
-          <cde-color-picker-label
-            [label]="element.name"
-            [color]="element.color"
-            [isAnchor]="element.name === selectedCellType()"
-            (colorChange)="updateColor(element, $event)"
-          >
-          </cde-color-picker-label>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="links">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="outgoingEdgeCount" start="desc">#Links</th>
+          <td mat-cell *matCellDef="let element">{{ element.outgoingEdgeCount.toLocaleString() }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="count" start="desc">#Cells</th>
-        <td mat-cell *matCellDef="let element">{{ element.count.toLocaleString() }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="links">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="outgoingEdgeCount" start="desc">#Links</th>
-        <td mat-cell *matCellDef="let element">{{ element.outgoingEdgeCount.toLocaleString() }}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columns(); sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns()"></tr>
-    </table>
-  </div>
-</ng-scrollbar>
+        <tr mat-header-row *matHeaderRowDef="columns(); sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns()"></tr>
+      </table>
+    </div>
+  </ng-scrollbar>
+</hra-expansion-panel>

@@ -1,16 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  Renderer2,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +9,15 @@ import { produce } from 'immer';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
+import { MatMenuModule } from '@angular/material/menu';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -111,6 +110,13 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
+    MicroTooltipDirective,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
@@ -139,7 +145,7 @@ export class ViolinComponent {
   private readonly fileSaver = inject(FileSaverService);
 
   /** Element reference for the violin container */
-  private readonly violinEl = viewChild.required<ElementRef>('violin');
+  protected readonly violinEl = viewChild.required(FullscreenPortalComponent);
 
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
