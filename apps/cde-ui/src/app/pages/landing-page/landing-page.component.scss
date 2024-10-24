@@ -3,10 +3,9 @@
     margin: 0 auto;
   }
   display: block;
-  background-color: var(--sys-surface-container-low);
-  min-width: 20rem;
-
-  color: var(--sys-secondary);
+  background-color: rgba(252, 252, 252, 1);
+  position: relative;
+  top: 4.5rem;
 
   h4 {
     color: var(--sys-primary);

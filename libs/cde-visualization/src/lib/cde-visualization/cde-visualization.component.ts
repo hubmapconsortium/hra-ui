@@ -12,7 +12,6 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
-import { AppLogosComponent } from '@hra-ui/design-system/app-logos';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
@@ -41,6 +40,7 @@ import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { mergeObjects } from '../shared/merge';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -63,7 +63,7 @@ export interface DistanceEntry {
     NodeDistVisualizationComponent,
     HistogramComponent,
     ViolinComponent,
-    AppLogosComponent,
+    NavHeaderButtonsComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
