@@ -40,7 +40,8 @@ export class ColorMapView extends BaseColorMapView {
       range.push(this.getCellColorFor(obj));
     }
 
-    return (this.colorMap = { domain, range });
+    this.colorMap = { domain, range };
+    return this.colorMap;
   };
 
   readonly getDomain = () => this.getColorMap().domain;

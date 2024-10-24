@@ -52,7 +52,8 @@ export class NodesView extends BaseNodesView {
       max = Math.max(max, x, y, z);
     }
 
-    return (this.dimensions = [min, max]);
+    this.dimensions = [min, max];
+    return this.dimensions;
   };
 
   private dimensions?: [number, number] = undefined;

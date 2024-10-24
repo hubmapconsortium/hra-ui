@@ -110,8 +110,9 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
   return DataViewImpl as unknown as DataViewConstructor<Entry>;
 }
 
-export function loadViewData<T>(
-  input: Signal<T | AnyData | string | undefined>,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function loadViewData<T extends DataView<any>>(
+  input: Signal<DataViewInput<T>>,
   viewCls: Type<T>,
 ): Signal<T | AnyData> {
   const data = loadData(input, CsvFileLoaderService, {
