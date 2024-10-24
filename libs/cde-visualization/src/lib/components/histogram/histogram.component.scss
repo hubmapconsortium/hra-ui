@@ -7,35 +7,19 @@
   --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
 
-  .header {
-    padding: 0.5rem 1rem 0.25rem 0.75rem;
-    height: auto !important;
-
-    .title {
+  ::ng-deep {
+    .expansion-body {
+      height: 11.25rem;
       display: flex;
-      margin: 0;
-      gap: 0.25rem;
-      font: var(--sys-label-medium);
-    }
-  }
+      gap: 1rem;
 
-  .content {
-    height: 11.25rem;
-    display: flex;
-    gap: 1rem;
+      hra-fullscreen-portal {
+        width: 100%;
+      }
 
-    .histogram {
-      width: 100%;
-    }
-
-    .legend {
-      overflow-y: auto;
-      flex-grow: 1;
-      margin-left: 0.125rem;
-
-      cde-color-picker-label {
-        align-items: center;
-        max-width: calc(100% - 0.5rem);
+      .histogram {
+        width: 100%;
+        height: 100%;
       }
     }
   }

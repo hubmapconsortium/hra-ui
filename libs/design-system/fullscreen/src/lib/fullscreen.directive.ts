@@ -1,7 +1,7 @@
 import { Directive, inject, output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { FullscreenComponent } from './fullscreen.component';
+import { FullscreenComponent } from './fullscreen/fullscreen.component';
 
 /** Fullscreen directive */
 @Directive({

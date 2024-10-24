@@ -27,7 +27,12 @@ import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 import { MatMenuModule } from '@angular/material/menu';
-import { FullscreenDirective } from '@hra-ui/design-system/fullscreen';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
@@ -36,11 +41,6 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -132,7 +132,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatMenuModule,
     IconButtonSizeDirective,
     MicroTooltipDirective,
-    FullscreenDirective,
+    FullscreenPortalComponent,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
@@ -192,7 +192,7 @@ export class HistogramComponent {
   private readonly fileSaver = inject(FileSaverService);
 
   /** Element reference for the histogram container */
-  protected readonly histogramEl = viewChild.required(FullscreenDirective);
+  protected readonly histogramEl = viewChild.required(FullscreenPortalComponent);
 
   /** Vega view instance for the histogram */
   private readonly view = signal<View | undefined>(undefined);

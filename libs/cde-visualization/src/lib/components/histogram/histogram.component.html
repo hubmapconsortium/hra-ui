@@ -1,89 +1,3 @@
-<!-- <mat-accordion displayMode="flat">
-  <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
-    <mat-expansion-panel-header class="header">
-      <mat-panel-title class="title">
-        <button mat-icon-button hraIconButtonSize="large" [hraMicroTooltip]="panel.expanded ? 'Collapse' : 'Expand'">
-          <mat-icon class="expansion-indicator">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
-        </button>
-        Histogram
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          [hraIconButtonSize]="'large'"
-          aria-label="Icon to open nested menu"
-          hraMicroTooltip="More"
-          (click)="$event.stopPropagation()"
-        >
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <div class="filler"></div>
-        <cde-color-picker-label
-          [label]="totalCellTypeLabel"
-          [(color)]="totalCellTypeColor"
-          (colorPickerOpen)="colorPicker.set($event)"
-          (click)="$event.stopPropagation()"
-        >
-        </cde-color-picker-label>
-        <mat-menu #menu="matMenu" [class]="'histogram-overlay'">
-          <button
-            mat-menu-item
-            [matMenuTriggerFor]="infoSubMenu"
-            matRipple
-            matRippleColor="#201E3D14"
-            (click)="$event.stopImmediatePropagation()"
-          >
-            <mat-icon>info</mat-icon>
-            <span>Info</span>
-            <mat-icon class="expand-arrow">arrow_right</mat-icon>
-          </button>
-          <button
-            mat-menu-item
-            [matMenuTriggerFor]="downloadSubMenu"
-            matRipple
-            matRippleColor="#201E3D14"
-            (click)="$event.stopImmediatePropagation()"
-          >
-            <mat-icon>download</mat-icon>
-            <span>Downloads</span>
-            <mat-icon class="expand-arrow">arrow_right</mat-icon>
-          </button>
-          <button mat-menu-item (click)="histogramEl().open()">
-            <mat-icon>fullscreen</mat-icon>
-            Full Screen
-          </button>
-          <a
-            mat-menu-item
-            href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <mat-icon>code</mat-icon>
-            Embed App
-          </a>
-          <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-            This histogram plot shows the cell-to-nearest-anchor cell distance distributions categorized by each cell
-            type in the dataset.
-          </mat-menu>
-          <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
-            <button mat-menu-item (click)="$event.stopPropagation(); download('png')">
-              <mat-icon>download</mat-icon>
-              PNG
-            </button>
-            <button mat-menu-item (click)="$event.stopPropagation(); download('svg')">
-              <mat-icon>download</mat-icon>
-              SVG
-            </button>
-          </mat-menu>
-        </mat-menu>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="content">
-      <div *hraFullscreen class="histogram" data-testid="histogram" #histogram></div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion> -->
-
 <hra-expansion-panel [title]="'Histogram'">
   <hra-expansion-panel-actions>
     <button
@@ -157,5 +71,7 @@
     >
     </cde-color-picker-label>
   </hra-expansion-panel-header-content>
-  <div *hraFullscreen class="histogram" data-testid="histogram" #histogram></div>
+  <hra-fullscreen-portal>
+    <div class="histogram" data-testid="histogram" #histogram></div>
+  </hra-fullscreen-portal>
 </hra-expansion-panel>

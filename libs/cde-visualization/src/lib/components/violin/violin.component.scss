@@ -6,16 +6,16 @@
   border-style: solid;
   border-color: var(--sys-outline-variant);
 
-  span.violin-label {
-    grid-area: violin;
-    font: var(--sys-label-medium);
-    display: flex;
-    align-items: center;
-    padding: 1rem;
+  ::ng-deep {
+    hra-expansion-panel {
+      .header {
+        padding: 1rem;
+        font: var(--sys-label-medium);
+      }
+    }
   }
 
   .violin {
-    grid-area: plot;
     height: 100%;
     overflow-y: scroll;
     padding: 0 1rem 1rem 1rem;

@@ -1,2 +1,1 @@
-export * from './lib/fullscreen.directive';
-export * from './lib/fullscreen.component';
+export { FullscreenPortalComponent } from './lib/fullscreen-portal/fullscreen-portal.component';
