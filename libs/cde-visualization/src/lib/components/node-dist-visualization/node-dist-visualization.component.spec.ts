@@ -54,9 +54,9 @@ describe('NodeDistVisualizationComponent', () => {
     [2, 0, 4, 3, 4, 5, 6],
   ];
   const sampleCellTypes: CellTypeEntry[] = [
-    { name: 'a', count: 2, color: [0, 0, 0] },
-    { name: 'b', count: 4, color: [0, 1, 2] },
-    { name: 'c', count: 6, color: [0, 1, 3] },
+    { name: 'a', count: 2, color: [0, 0, 0], outgoingEdgeCount: 0 },
+    { name: 'b', count: 4, color: [0, 1, 2], outgoingEdgeCount: 0 },
+    { name: 'c', count: 6, color: [0, 1, 3], outgoingEdgeCount: 0 },
   ];
   const sampleCellTypesSelection: string[] = [sampleCellTypes[0].name, sampleCellTypes[1].name];
 

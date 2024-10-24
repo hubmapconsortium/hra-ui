@@ -1,11 +1,86 @@
 :host {
-  display: flex;
-  align-items: center;
-  height: 4.5rem;
-  padding: 0 0.75rem 0 1rem;
-  background-color: var(--sys-surface-container);
+  display: block;
+  color: var(--sys-secondary);
+  width: 100%;
+  z-index: 2;
+  --mat-sidenav-content-background-color: transparent;
+  position: fixed;
+  height: 100vh;
+  pointer-events: none;
+  top: 0;
 
-  .filler {
-    flex-grow: 1;
+  .container {
+    height: 100%;
+    font: var(--sys-headline-small);
+    letter-spacing: var(--sys-headline-small-tracking);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-title-small);
+    height: 4.5rem;
+    padding-right: 0.5rem;
+    padding-left: 1rem;
+
+    .sidenav-title {
+      vertical-align: text-bottom;
+      color: var(--sys-secondary);
+    }
+  }
+
+  ng-scrollbar {
+    --scrollbar-offset: 4;
+    height: calc(100% - 4.5rem);
+  }
+
+  mat-sidenav-content {
+    overflow: hidden;
+
+    .main {
+      display: flex;
+      align-items: center;
+      background-color: var(--sys-surface-container-high);
+      height: 4.5rem;
+      padding: 0 0.5rem 0 0.75rem;
+      pointer-events: all;
+      border-bottom: 1px solid #acb5c3;
+    }
+  }
+
+  .mat-drawer-container-has-open {
+    pointer-events: all;
+  }
+
+  .apps-sidenav {
+    --mat-sidenav-container-width: 35.25rem;
+    border-radius: 0;
+    background-color: var(--sys-surface-container-high);
+    pointer-events: all;
+
+    .category {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-top: 1px solid var(--sys-outline);
+    }
+
+    .card-category {
+      font: var(--sys-title-small);
+      letter-spacing: var(--sys-title-small-tracking);
+      color: var(--sys-primary-fixed);
+    }
+
+    .card-category,
+    hra-apps-card {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden;
   }
 }

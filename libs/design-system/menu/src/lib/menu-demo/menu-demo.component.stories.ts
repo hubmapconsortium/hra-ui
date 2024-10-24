@@ -66,11 +66,11 @@ const meta: Meta<MenuDemoComponent> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'large'],
     },
   },
   args: {
-    size: 'medium',
+    size: 'small',
     menuOptions: exampleOptions,
   },
 };

@@ -1,4 +1,4 @@
-@use '../../../styles/cta' as cta;
+// @use '../../../styles/cta' as cta;
 
 :host {
   display: flex;
@@ -24,9 +24,9 @@
       box-shadow: 0px 5px 1rem 5px rgba(32, 30, 61, 0.24);
     }
 
-    &:focus-visible .label {
-      @include cta.flatFocus();
-    }
+    // &:focus-visible .label {
+    //   @include cta.flatFocus();
+    // }
 
     img {
       width: 100%;

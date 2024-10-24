@@ -63,6 +63,10 @@
               {
                 "sourceTag": "project:design-system",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "project:node-dist-vis",
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }

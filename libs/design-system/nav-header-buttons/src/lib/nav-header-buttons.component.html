@@ -1,0 +1,29 @@
+@if (brandmark()) {
+  <a
+    class="hra-logo"
+    href="https://humanatlas.io"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Visit Human Reference Atlas"
+  >
+    <hra-brandmark></hra-brandmark>
+  </a>
+}
+<a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer" [attr.alt]="appTitle() + ' logo'">
+  <hra-product-logo [name]="app()" size="small"></hra-product-logo>
+</a>
+
+<span class="logos-text">
+  @if (variant() === 'sidenav') {
+    <mat-button-toggle class="app-name-nav" value="bold" hraNavCatButton hraButtonSize="small" disableRipple>
+      <span class="label">{{ appTitle() }}</span>
+    </mat-button-toggle>
+  } @else {
+    <a class="app-name" [href]="appLink()" target="_blank" rel="noopener noreferrer" aria-label="Return to app home">
+      <span class="app-label">{{ appTitle() }}</span>
+    </a>
+  }
+  @if (appStatus()) {
+    <hra-software-status-indicator [status]="appStatus()!" size="small"></hra-software-status-indicator>
+  }
+</span>

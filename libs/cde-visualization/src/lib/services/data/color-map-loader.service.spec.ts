@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { CsvFileLoaderService, FileLoaderEvent } from '@hra-ui/common/fs';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { firstValueFrom, of } from 'rxjs';
-
 import { ColorMapEntry } from '../../models/color-map';
-import { CsvFileLoaderService } from '../file-loader/csv-file-loader.service';
-import { FileLoaderEvent } from '../file-loader/file-loader';
 import { ColorMapFileLoaderService } from './color-map-loader.service';
 
 describe('ColorMapLoaderService', () => {

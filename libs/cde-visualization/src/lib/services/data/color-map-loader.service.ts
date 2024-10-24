@@ -1,9 +1,7 @@
 import { inject, Injectable } from '@angular/core';
+import { CsvFileLoaderOptions, CsvFileLoaderService, FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
 import { map, Observable } from 'rxjs';
-
 import { ColorMapEntry } from '../../models/color-map';
-import { CsvFileLoaderOptions, CsvFileLoaderService } from '../file-loader/csv-file-loader.service';
-import { FileLoader, FileLoaderEvent } from '../file-loader/file-loader';
 
 /** Service to load color map entries from CSV files */
 @Injectable({
@@ -35,6 +33,7 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
     let colorKey: string | undefined;
     for (const [key, value] of Object.entries(data[0])) {
       if (/^\[[\d\s,]+\]$/.test(value.trim())) {
+        // Checks for r g b array
         colorKey = key;
         break;
       }

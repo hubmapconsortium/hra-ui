@@ -1,19 +1,17 @@
 import { computed, Directive, input } from '@angular/core';
 
 /** Input options for icon button size */
-export type IconButtonSize = 'small' | 'medium' | 'large';
+export type IconButtonSize = 'small' | 'large';
 
 /** Record of button sizes (number in rem) */
 const BUTTON_SIZES: Record<IconButtonSize, number> = {
   small: 1.5,
-  medium: 2.25,
   large: 2.5,
 };
 
 /** Record of icon sizes (number in rem) */
 const ICON_SIZES: Record<IconButtonSize, number> = {
   small: 1.25,
-  medium: 1.5,
   large: 1.5,
 };
 

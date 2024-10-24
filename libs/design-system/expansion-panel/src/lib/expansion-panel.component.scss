@@ -1,0 +1,21 @@
+:host {
+  display: block;
+
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-label-large);
+    color: var(--sys-secondary);
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .content {
+    font: var(--sys-label-large);
+    &[style*='visibility: hidden'] * {
+      visibility: hidden !important;
+    }
+  }
+}

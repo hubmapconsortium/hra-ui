@@ -29,7 +29,7 @@ export interface MenuDemoOption {
 })
 export class MenuDemoComponent {
   /** Menu size */
-  readonly size = input<IconButtonSize>('medium');
+  readonly size = input<IconButtonSize>('small');
 
   /** List of menu options */
   readonly menuOptions = input<MenuDemoOption[]>([]);

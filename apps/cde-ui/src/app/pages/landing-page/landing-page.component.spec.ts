@@ -4,6 +4,8 @@ import { provideIcons } from '@hra-ui/cdk/icons';
 import { render, screen } from '@testing-library/angular';
 import { LandingPageComponent } from './landing-page.component';
 
+jest.mock('vega-embed', () => ({ default: jest.fn() }));
+
 describe('LandingPageComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
 

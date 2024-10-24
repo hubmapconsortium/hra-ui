@@ -5,6 +5,7 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withVi
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { ROUTES } from './app.routes';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 /**
  * Set of config options available during the application bootstrap operation.
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
         defaultClasses: ['material-symbols-rounded'],
       },
     }),
+    provideDesignSystem(),
   ],
 };

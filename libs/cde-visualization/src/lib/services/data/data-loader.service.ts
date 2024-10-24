@@ -1,8 +1,8 @@
 import { Injectable, Injector, Signal, Type, inject, runInInjectionContext } from '@angular/core';
 import { ToSignalOptions, toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '@hra-ui/common/fs';
 import { Observable, filter, map, of, switchAll, takeLast } from 'rxjs';
 import { createAbsoluteUrl } from '../../shared/url-normalization';
-import { FileLoader, FileLoaderDataEvent, FileLoaderOptions } from '../file-loader/file-loader';
 
 /** Service for loading data using specified loaders */
 @Injectable({

@@ -2,8 +2,31 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { AppLogosComponent, AppLogosVariant } from '@hra-ui/design-system/app-logos';
+import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
+
+/** Sidenav card data */
+export interface CardData {
+  /** Name of card category */
+  category: string;
+  /** Info for apps in category */
+  cards: {
+    /** Name of app */
+    name: string;
+    /** Icon path */
+    icon: string;
+    /** App title */
+    title: string;
+    /** App description */
+    description: string;
+    /** Link to app */
+    link: string;
+  }[];
+}
 
 /**
  * Navigation Header Component
@@ -11,20 +34,31 @@ import { AppLogosComponent, AppLogosVariant } from '@hra-ui/design-system/app-lo
 @Component({
   selector: 'hra-nav-header',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, AppLogosComponent, IconButtonSizeDirective],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    NavHeaderButtonsComponent,
+    IconButtonSizeDirective,
+    MatSidenavModule,
+    AppsCardComponent,
+    ScrollingModule,
+  ],
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavHeaderComponent {
   /** Variant of the header */
-  readonly variant = input<AppLogosVariant>('default');
+  readonly variant = input<NavHeaderButtonsVariant>('basic');
   /** Link to the app */
   readonly link = input.required<string>();
-  /** Icon for the app */
-  readonly icon = input.required<string>();
+  /** Current app */
+  readonly app = input.required<string>();
   /** Name of the app */
   readonly title = input.required<string>();
-  /** Description of the app */
-  readonly description = input<string>();
+  /** Status of the app */
+  readonly status = input<SoftwareStatus>();
+  /** Data to display in sidenav */
+  readonly navigationCategories = input.required<CardData[]>();
 }

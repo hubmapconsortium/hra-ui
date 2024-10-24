@@ -8,6 +8,12 @@ import { provideIconButtons } from './providers';
 
 const meta: Meta = {
   title: 'IconButton',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=24-876',
+    },
+  },
   args: {
     icon: 'search',
     size: 'large',
@@ -18,7 +24,7 @@ const meta: Meta = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'large'],
     },
   },
   decorators: [
@@ -56,12 +62,6 @@ export const Default: Story = {
 export const Small: Story = {
   args: {
     size: 'small',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    size: 'medium',
   },
 };
 

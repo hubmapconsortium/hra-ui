@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  height: 2.5rem;
+
+  > a {
+    display: inline-block;
+  }
+
+  .hra-logo,
+  .app-logo {
+    display: inline-flex;
+    color: var(--sys-secondary);
+  }
+
+  .hra-logo {
+    margin-right: 0.25rem;
+  }
+
+  .app-logo {
+    margin-right: 0.125rem;
+  }
+
+  .logos-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .app-label {
+      font: var(--sys-label-large);
+      letter-spacing: var(--sys-label-large-tracking);
+    }
+  }
+
+  .app-name {
+    margin-left: 0.5rem;
+    color: var(--sys-secondary);
+  }
+
+  mat-button-toggle {
+    --mat-standard-button-toggle-height: 1.25rem;
+
+    ::ng-deep .mat-button-toggle-button {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  hra-software-status-indicator {
+    margin-left: 0.5rem;
+  }
+}
