@@ -20,15 +20,6 @@ $blue-theme: mat.m2-define-light-theme(
 
 :host {
   @include mat.button-color($blue-theme);
-
-  display: grid;
-  grid:
-    'cell-types . download'
-    'total-cell-types total-cells total-cell-links'
-    'table table table' 1fr
-    / auto 1fr auto;
-  align-items: start;
-  row-gap: 0.75rem;
   overflow: hidden;
   padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
@@ -48,34 +39,30 @@ $blue-theme: mat.m2-define-light-theme(
   --mat-table-header-container-height: 2rem;
   --mat-menu-item-label-text-color: var(--sys-primary);
 
-  &:not(:has(.total-cell-links)) {
-    grid:
-      'cell-types . download'
-      'total-cell-types . total-cells'
-      'table table table' 1fr
-      / auto 1fr auto;
-  }
+  ::ng-deep {
+    hra-expansion-panel {
+      .header {
+        margin-bottom: 0.25rem;
 
-  span.cell-types-label {
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    grid-area: cell-types;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
+        .title {
+          font: var(--sys-label-medium);
+        }
+      }
 
-  button.download-csv {
-    --mdc-filled-button-label-text-color: #{button-text-color};
-    grid-area: download;
-    padding: 0.3438rem 0.5rem;
+      .expansion-body {
+        display: grid;
+        grid:
+          'total-cell-types total-cells total-cell-links'
+          'table table table' 1fr
+          / auto 1fr auto;
 
-    .mat-icon {
-      margin-left: unset;
-      margin-right: 0.125rem;
-      font-size: 1.25rem;
-      height: 1.25rem;
-      width: 1.25rem;
+        &:not(:has(.total-cell-links)) {
+          grid:
+            'total-cell-types . total-cells'
+            'table table table' 1fr
+            / auto 1fr auto;
+        }
+      }
     }
   }
 
@@ -84,6 +71,7 @@ $blue-theme: mat.m2-define-light-theme(
   .total-cell-links {
     font: var(--sys-label-small);
     letter-spacing: var(--sys-label-medium-tracking);
+    margin: 0.25rem 0;
 
     span {
       display: block;
@@ -92,7 +80,6 @@ $blue-theme: mat.m2-define-light-theme(
     }
   }
 
-  .mat-caption,
   .total-ct-label {
     grid-area: total-cell-types;
   }
@@ -229,7 +216,7 @@ $blue-theme: mat.m2-define-light-theme(
 
 ::ng-deep {
   div.mat-mdc-menu-panel {
-    max-width: 308px;
+    max-width: 19.25rem;
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 1rem 1rem;
     }
