@@ -16,9 +16,6 @@ export * from './lib/shared/tooltip-position';
 
 // TODO: Move these exports into a separate library
 export * from './lib/services/data/color-map-loader.service';
-export * from './lib/services/file-loader/csv-file-loader.service';
-export * from './lib/services/file-loader/file-loader';
-export * from './lib/services/file-loader/json-file-loader.service';
 
 /** Type for CdeVisualizationElement instance */
 export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;

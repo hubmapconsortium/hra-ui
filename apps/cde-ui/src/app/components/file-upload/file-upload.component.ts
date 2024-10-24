@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { FileLoader, FileLoaderEvent } from '@hra-ui/cde-visualization';
+import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { reduce, Subscription } from 'rxjs';
 
