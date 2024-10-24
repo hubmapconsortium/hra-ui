@@ -33,6 +33,7 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
     let colorKey: string | undefined;
     for (const [key, value] of Object.entries(data[0])) {
       if (/^\[[\d\s,]+\]$/.test(value.trim())) {
+        // Checks for r g b array
         colorKey = key;
         break;
       }

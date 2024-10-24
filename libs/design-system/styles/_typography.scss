@@ -122,4 +122,12 @@ $overrides: (
   --sys-wordmark-small-size: 0.75rem;
   --sys-wordmark-small-tracking: 0rem;
   --sys-wordmark-small-weight: 400;
+
+  // Micro label
+  --sys-label-micro: 500 0.625rem / 1rem #{$_brand};
+  --sys-label-micro-font: #{$_brand};
+  --sys-label-micro-line-height: 1rem;
+  --sys-label-micro-size: 0.625rem;
+  --sys-label-micro-tracking: 0rem;
+  --sys-label-micro-weight: 500;
 }

@@ -13,11 +13,12 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
-import { rgbToHex } from '@hra-ui/design-system/color-picker';
+import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ViolinComponent } from '../components/violin/violin.component';
 import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
 import {
@@ -28,7 +29,7 @@ import {
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
 } from '../models/color-map';
-import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
+import { DEFAULT_MAX_EDGE_DISTANCE, edgeDistance, EdgeEntry, EdgeIndex } from '../models/edge';
 import { Metadata } from '../models/metadata';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
 import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
@@ -38,6 +39,14 @@ import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { mergeObjects } from '../shared/merge';
+
+/** Interface for representing the distance entry */
+export interface DistanceEntry {
+  /** Type of the entry */
+  type: string;
+  /** Distance value of the entry */
+  distance: number;
+}
 
 /**
  * CDE Visualization Root Component
@@ -52,6 +61,7 @@ import { mergeObjects } from '../shared/merge';
     CellTypesComponent,
     NodeDistVisualizationComponent,
     HistogramComponent,
+    ViolinComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
@@ -205,6 +215,7 @@ export class CdeVisualizationComponent {
   /** Computed cell types from loaded nodes */
   readonly cellTypesFromNodes = computed(() => {
     const nodes = this.loadedNodes();
+    const edges = this.loadedEdges();
     const targetKey = this.nodeTypeKey();
     const defaultColorGenerator = createColorGenerator();
     const cellTypeByName: Record<string, CellTypeEntry> = {};
@@ -214,9 +225,16 @@ export class CdeVisualizationComponent {
       cellTypeByName[name] ??= {
         name,
         count: 0,
+        outgoingEdgeCount: 0,
         color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
       };
       cellTypeByName[name].count += 1;
+    }
+
+    for (const edge of edges) {
+      const node = nodes[edge[EdgeIndex.SourceNode]];
+      const name = node[targetKey];
+      cellTypeByName[name].outgoingEdgeCount += 1;
     }
 
     return Object.values(cellTypeByName);
@@ -240,6 +258,26 @@ export class CdeVisualizationComponent {
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
 
+  /** List of filtered cell types based on selection */
+  protected readonly filteredCellTypes = computed(
+    () => {
+      const selection = new Set(this.cellTypesSelection());
+      selection.delete(this.selectedNodeTargetValue());
+      const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
+      return filtered.sort((a, b) => b.count - a.count);
+    },
+    { equal: emptyArrayEquals },
+  );
+
+  /** Computed distances between nodes */
+  protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
+
+  /** Data for the histogram visualization */
+  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
+
+  /** Colors for the histogram visualization */
+  protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
+
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view
@@ -259,7 +297,7 @@ export class CdeVisualizationComponent {
   downloadNodes(): void {
     const nodes = this.loadedNodes();
     if (nodes.length > 0) {
-      this.fileSaver.saveCsv(nodes, 'nodes.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
     }
   }
 
@@ -267,8 +305,21 @@ export class CdeVisualizationComponent {
   downloadEdges(): void {
     const edges = this.loadedEdges();
     if (edges.length > 0) {
-      this.fileSaver.saveCsv(edges, 'edges.csv');
+      this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
     }
+  }
+
+  // Add appropriate headers to edge data
+  addEdgeHeaders(edges: EdgeEntry[]) {
+    return edges.map((item) => ({
+      'Cell ID': item[0],
+      X1: item[1],
+      Y1: item[2],
+      Z1: item[3],
+      X2: item[4],
+      Y2: item[5],
+      Z2: item[6],
+    }));
   }
 
   /** Download color map as CSV */
@@ -277,7 +328,65 @@ export class CdeVisualizationComponent {
     const colorMap = this.cellTypesAsColorMap();
     const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
     if (data.length > 0) {
-      this.fileSaver.saveCsv(data, 'color-map.csv');
+      this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
     }
+  }
+
+  /** Convert headers in an array of objects to title case */
+  capitalizeHeaders(data: object[]): object[] {
+    return data.map((item) => {
+      const entries = Object.entries(item);
+      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+      return Object.fromEntries(capsEntries);
+    });
+  }
+
+  /** Compute distances between nodes based on edges */
+  private computeDistances(): DistanceEntry[] {
+    const nodes = this.loadedNodes();
+    const edges = this.loadedEdges();
+    if (nodes.length === 0 || edges.length === 0) {
+      return [];
+    }
+
+    const nodeTypeKey = this.nodeTypeKey();
+    const selectedCellType = this.selectedNodeTargetValue();
+    const distances: DistanceEntry[] = [];
+    for (const edge of edges) {
+      const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
+      const type = sourceNode[nodeTypeKey];
+      if (type !== selectedCellType) {
+        distances.push({ type, distance: edgeDistance(edge) });
+      }
+    }
+
+    return distances;
+  }
+
+  /** Compute data for the violin visualization */
+  private computeFilteredDistances(): DistanceEntry[] {
+    const selection = new Set(this.cellTypesSelection());
+    if (selection.size === 0) {
+      return [];
+    }
+
+    return this.distances().filter(({ type }) => selection.has(type));
+  }
+
+  /** Compute colors for the violin visualization */
+  private computeFilteredColors(): string[] {
+    return this.filteredCellTypes()
+      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
+      .map(({ color }) => rgbToHex(color));
+  }
+
+  /** Update the color of a specific cell type entry */
+  updateColor(entry: CellTypeEntry, color: Rgb): void {
+    const entries = this.cellTypes();
+    const index = entries.indexOf(entry);
+    const copy = [...entries];
+
+    copy[index] = { ...copy[index], color };
+    this.cellTypes.set(copy);
   }
 }
