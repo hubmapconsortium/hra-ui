@@ -23,7 +23,6 @@ import { EdgeKeysInput, EdgesInput, loadEdges } from '../models/edges';
 import { loadNodeFilter, NodeFilterInput } from '../models/filters';
 import { loadNodes, NodeKeysInput, NodesInput } from '../models/nodes';
 import { ViewMode } from '../models/view-mode';
-import { TEST_COLOR_MAP, TEST_EDGES, TEST_NODES } from './test-data';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -59,7 +58,7 @@ export class NodeDistVisComponent {
   readonly mode = input<ViewMode>('explore');
 
   /** Node data */
-  readonly nodes = input<NodesInput>(TEST_NODES);
+  readonly nodes = input<NodesInput>();
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
@@ -78,14 +77,14 @@ export class NodeDistVisComponent {
   readonly nodeTargetValue = input<string>();
 
   /** Edge data if already calculated */
-  readonly edges = input<EdgesInput>(TEST_EDGES);
+  readonly edges = input<EdgesInput>();
   /** Edge key mapping data */
   readonly edgeKeys = input<EdgeKeysInput>();
   /** Max distance to consider when calculating edges */
   readonly maxEdgeDistance = input<string | number>(); // TODO default + transform
 
   /** Color map data */
-  readonly colorMap = input<ColorMapView | AnyData | string>(TEST_COLOR_MAP);
+  readonly colorMap = input<ColorMapView | AnyData | string>();
   /** Color map key mapping data */
   readonly colorMapKeys = input<KeyMapping<ColorMapEntry> | string>();
   /**
