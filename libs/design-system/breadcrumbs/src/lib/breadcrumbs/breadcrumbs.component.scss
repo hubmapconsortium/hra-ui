@@ -1,10 +1,15 @@
 :host {
   display: flex;
   align-items: center;
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
   color: var(--sys-on-primary-fixed);
 
-  span,
   button {
-    --mat-text-button-horizontal-padding: 0.25rem;
+    --mat-text-button-horizontal-padding: 0.75rem;
+  }
+
+  span {
+    margin: 0 0.75rem;
   }
 }

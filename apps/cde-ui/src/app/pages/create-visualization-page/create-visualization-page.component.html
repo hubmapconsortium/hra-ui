@@ -7,11 +7,7 @@
 ></hra-nav-header>
 <form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
   <div class="page-nav">
-    <hra-breadcrumbs
-      class="nav"
-      size="large"
-      [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]"
-    >
+    <hra-breadcrumbs class="nav" [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]">
     </hra-breadcrumbs>
 
     <h1 class="title">Create a Cell Distance Visualization</h1>
