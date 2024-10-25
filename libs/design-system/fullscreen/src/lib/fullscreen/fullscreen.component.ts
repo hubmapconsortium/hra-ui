@@ -6,6 +6,7 @@ import {
   inject,
   viewChild,
   ViewContainerRef,
+  ViewRef,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,6 +16,8 @@ import {
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
+
+export type FullscreenComponentData = ViewRef;
 
 /** Fullscreen content outlet directive */
 @Directive({

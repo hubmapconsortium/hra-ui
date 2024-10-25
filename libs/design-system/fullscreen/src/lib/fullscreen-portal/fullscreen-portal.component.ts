@@ -1,15 +1,18 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  DestroyRef,
   Directive,
   inject,
+  output,
   TemplateRef,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { FullscreenComponent } from '../fullscreen/fullscreen.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FullscreenComponent, FullscreenComponentData } from '../fullscreen/fullscreen.component';
 
 /** Fullscreen directive */
 @Directive({
@@ -35,37 +38,69 @@ export class FullscreenPortalContentDirective {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenPortalComponent {
-  get nativeElement(): HTMLElement {
-    return this.content().viewRef.rootNodes[0];
-  }
+  readonly beforeOpened = output<void>();
+  readonly opened = output<void>();
+  readonly beforeClosed = output<void>();
+  readonly closed = output<void>();
+
+  readonly rootNodes = computed(() => this.content().viewRef.rootNodes);
 
   /** Reference to the mat dialog */
-  private readonly dialog = inject(MatDialog);
+  private readonly dialogService = inject(MatDialog);
+  private readonly destroyRef = inject(DestroyRef);
 
   /** Instance of the fullscreen portal content directive */
   private readonly content = viewChild.required(FullscreenPortalContentDirective);
 
+  private dialogRef?: MatDialogRef<FullscreenComponent, FullscreenComponentData>;
+
+  constructor() {
+    this.destroyRef.onDestroy(() => this.close());
+  }
+
   /** Detaches the view from histogram module and attaches it to the view in the dialog */
   open(): void {
+    if (this.dialogRef !== undefined) {
+      return;
+    }
+
+    const { destroyRef, dialogService } = this;
     const { viewContainerRef, viewRef } = this.content();
     const index = viewContainerRef.indexOf(viewRef);
+
+    this.beforeOpened.emit();
     viewContainerRef.detach(index);
 
-    const dialogRef = this.dialog.open(FullscreenComponent, {
+    const dialogRef = (this.dialogRef = dialogService.open(FullscreenComponent, {
       data: viewRef,
       panelClass: 'fullscreen-panel',
-    });
+    }));
 
-    const subs = new Subscription();
-    const sub1 = dialogRef.beforeClosed().subscribe(() => {
-      viewContainerRef.insert(viewRef);
-    });
+    dialogRef
+      .afterOpened()
+      .pipe(takeUntilDestroyed(destroyRef))
+      .subscribe(() => {
+        this.opened.emit();
+      });
 
-    const sub2 = dialogRef.afterClosed().subscribe(() => {
-      // this.closed.emit();
-    });
+    dialogRef
+      .beforeClosed()
+      .pipe(takeUntilDestroyed(destroyRef))
+      .subscribe(() => {
+        this.beforeClosed.emit();
+        viewContainerRef.insert(viewRef);
+      });
 
-    subs.add(sub1);
-    subs.add(sub2);
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntilDestroyed(destroyRef))
+      .subscribe(() => {
+        this.dialogRef = undefined;
+        this.closed.emit();
+      });
+  }
+
+  close(): void {
+    this.dialogRef?.close();
   }
 }

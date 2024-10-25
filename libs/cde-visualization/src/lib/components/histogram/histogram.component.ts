@@ -195,7 +195,7 @@ export class HistogramComponent {
   protected readonly histogramEl = viewChild.required(FullscreenPortalComponent);
 
   /** Vega view instance for the histogram */
-  private readonly view = signal<View | undefined>(undefined);
+  protected readonly view = signal<View | undefined>(undefined);
 
   readonly updateColor = output<UpdateColorData>();
 
@@ -208,7 +208,7 @@ export class HistogramComponent {
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
     async (onCleanup) => {
-      const el = this.histogramEl().nativeElement;
+      const el = this.histogramEl().rootNodes()[0];
       await this.ensureFontsLoaded();
 
       const spec = produce(HISTOGRAM_SPEC, (draft) => {

@@ -4,10 +4,10 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   OutputEmitterRef,
   Signal,
   WritableSignal,
+  computed,
   effect,
   inject,
   input,
@@ -18,8 +18,15 @@ import {
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
@@ -28,13 +35,6 @@ import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -150,10 +150,12 @@ export class NodeDistVisualizationComponent {
   tooltipOpen = false;
 
   /** Reference to the visualization element */
-  private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+  // private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
 
   /**  */
-  protected readonly visEl = viewChild.required(FullscreenPortalComponent);
+  protected readonly vis = viewChild.required(FullscreenPortalComponent);
+
+  private readonly visEl = computed(() => this.vis().rootNodes()[0] as NodeDistVisElement);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
@@ -180,7 +182,7 @@ export class NodeDistVisualizationComponent {
 
   /** Downloads the visualization as an image */
   download(): void {
-    const el = this.vis().nativeElement;
+    const el = this.visEl();
     const url = el.toDataUrl();
     if (url) {
       this.fileSaver.save(url, 'cell-distance-vis.png');
@@ -189,7 +191,7 @@ export class NodeDistVisualizationComponent {
 
   /** Resets the visualization view */
   resetView(): void {
-    this.vis().nativeElement.resetView();
+    this.visEl().resetView();
   }
 
   /** Binds a property from the visualization element to a signal */
@@ -199,7 +201,7 @@ export class NodeDistVisualizationComponent {
     selector?: (value: NodeDistVisElementProps[K]) => boolean,
   ): void {
     effect(() => {
-      const el = this.vis().nativeElement;
+      const el = this.visEl();
       const data = value();
       if (selector === undefined || selector(data)) {
         el[prop].value = data;
@@ -218,7 +220,7 @@ export class NodeDistVisualizationComponent {
       : (value: T) => outputRef.emit(value);
 
     effect((onCleanup) => {
-      const el = this.vis().nativeElement;
+      const el = this.visEl();
       const handler = (event: Event) => {
         const { detail: data } = event as CustomEvent;
         if (selector === undefined || selector(data)) {

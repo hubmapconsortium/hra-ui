@@ -1,4 +1,4 @@
-<hra-expansion-panel [title]="'Visualization'">
+<hra-expansion-panel [title]="'Visualization'" disabled>
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
@@ -80,7 +80,7 @@
           <span>Reset Deleted Cells</span>
         </button>
       </mat-menu>
-      <button mat-menu-item (click)="visEl().open()">
+      <button mat-menu-item (click)="vis().open()">
         <mat-icon>fullscreen</mat-icon>
         Full Screen
       </button>
@@ -119,6 +119,6 @@
     </mat-button-toggle-group>
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal>
-    <hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
+    <hra-node-dist-vis class="vis" data-testid="node-dist-vis"></hra-node-dist-vis>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
