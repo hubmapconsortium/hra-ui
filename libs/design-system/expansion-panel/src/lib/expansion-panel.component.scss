@@ -14,6 +14,8 @@
 
   .content {
     font: var(--sys-label-large);
+    display: flex;
+    flex-direction: column;
     &[style*='visibility: hidden'] * {
       visibility: hidden !important;
     }
