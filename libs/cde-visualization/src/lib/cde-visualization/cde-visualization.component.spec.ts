@@ -1,4 +1,5 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
 import { rgbToHex } from '@hra-ui/design-system/color-picker';
@@ -92,7 +93,7 @@ describe('CdeVisualizationComponent', () => {
   async function setup(options?: RenderComponentOptions<CdeVisualizationComponent>) {
     return render(CdeVisualizationComponent, {
       ...options,
-      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+      providers: [provideHttpClient(), provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
     });
   }
 
@@ -108,6 +109,7 @@ describe('CdeVisualizationComponent', () => {
     embedResult.view.signal.mockReturnThis();
   });
 
+  // Test disabled until download nodes button is readded
   // it('should update nodes when downloadNodes is called', async () => {
   //   const {
   //     fixture: { componentInstance: instance },
@@ -126,6 +128,7 @@ describe('CdeVisualizationComponent', () => {
   //   expect(fileSaveSpy).toHaveBeenCalledWith(instance.loadedNodes(), 'nodes.csv');
   // });
 
+  // Test disabled until download edges button is readded
   // it('should update edges when downloadEdges is called', async () => {
   //   const {
   //     fixture: { componentInstance: instance },
