@@ -18,11 +18,7 @@
 
   button {
     min-width: 12rem;
-    border: 2px solid transparent;
-
-    &.expanded {
-      min-width: 12.25rem;
-    }
+    border: 0.125rem solid transparent;
   }
 
   .expand-arrow {
@@ -38,7 +34,7 @@
   // focused state
   .cdk-keyboard-focused {
     background-color: var(--sys-on-primary) !important;
-    border: 2px solid var(--sys-tertiary);
+    border: 0.125rem solid var(--sys-tertiary);
   }
 
   // selected state
