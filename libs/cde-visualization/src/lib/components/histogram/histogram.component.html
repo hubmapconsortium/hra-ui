@@ -20,10 +20,7 @@
           [cdkConnectedOverlayOpen]="infoOpen"
           [cdkConnectedOverlayOffsetX]="5"
         >
-          <div>
-            The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell
-            type in the dataset.
-          </div>
+          <hra-tooltip-card small [content]="tooltipContent"> </hra-tooltip-card>
         </ng-template>
 
         <div class="filler"></div>
