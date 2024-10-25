@@ -138,7 +138,7 @@ export class FileUploadComponent<T, OptionsT> {
   private handleLoadEvent(acc: T[], event: FileLoaderEvent<T>): T[] {
     if (event.type === 'data') {
       acc.push(event.data);
-    } else if (event.type === 'progress' && event.total !== undefined) {
+    } else if (event.type === 'progress' && event.total) {
       this.progress.emit(event.loaded / event.total);
     }
 

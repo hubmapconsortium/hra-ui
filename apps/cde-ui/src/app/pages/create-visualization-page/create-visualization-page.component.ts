@@ -88,7 +88,7 @@ export const HUBMAP_CARDS_DATA: CardData[] = [
       },
       {
         name: 'Exploration User Interface',
-        icon: 'assets/logo/eui.svg',
+        icon: 'assets/logo/hra_small.svg',
         title: 'Exploration User Interface',
         description:
           'Explore and validate spatially registered single-cell datasets in three-dimensions across organs.',
@@ -96,7 +96,7 @@ export const HUBMAP_CARDS_DATA: CardData[] = [
       },
       {
         name: 'ASCT+B Reporter',
-        icon: 'assets/logo/asctb-reporter.svg',
+        icon: 'assets/logo/hra_small.svg',
         title: 'ASCT+B Reporter',
         description:
           'Explore and compare ASCT+B tables and construct validated panels for multiplexed antibody-based imaging (OMAPs) tables.',
