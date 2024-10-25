@@ -1,16 +1,28 @@
 .mat-mdc-menu-panel {
-  --mat-menu-container-color: white;
   --mat-menu-container-shape: 0.5rem;
   --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.16);
   --mat-menu-item-with-icon-leading-spacing: 1rem;
   --mat-menu-item-with-icon-trailing-spacing: 1rem;
-  --mat-menu-item-label-text-color: var(--sys-on-primary-fixed);
-  --mat-menu-item-icon-color: var(--sys-on-primary-fixed);
-  --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
-  --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.04);
+
+  --mat-menu-item-label-text-color: var(--sys-secondary);
+  --mat-menu-item-icon-color: var(--sys-secondary);
+
+  --mat-menu-container-color: var(--sys-surface-container-low);
+  --mat-menu-item-hover-state-layer-color: rgb(from var(--sys-secondary) r g b / 0.08); // hovered state
+  --mat-menu-item-focus-state-layer-color: rgb(from var(--sys-tertiary) r g b / 0.2); // selected state
+
+  --mat-menu-item-label-text-tracking: var(--sys-label-medium-tracking);
+  --mat-menu-item-label-text-weight: var(--sys-label-medium-weight);
+  --mat-menu-item-label-text-size: var(--sys-label-medium-size);
+  --mat-menu-item-label-text-line-height: var(--sys-label-medium-line-height);
 
   button {
     min-width: 12rem;
+    border: 2px solid transparent;
+
+    &.expanded {
+      min-width: 12.25rem;
+    }
   }
 
   .expand-arrow {
@@ -23,73 +35,14 @@
     display: none;
   }
 
+  // focused state
+  .cdk-keyboard-focused {
+    background-color: var(--sys-on-primary) !important;
+    border: 2px solid var(--sys-tertiary);
+  }
+
+  // selected state
   .mat-mdc-menu-item-highlighted {
-    border: 1px solid rgb(from var(--sys-secondary) r g b / 0.32);
-    border-left: none;
-    border-right: none;
-  }
-
-  &,
-  &.medium {
-    --mat-menu-item-label-text-tracking: var(--sys-label-medium-tracking);
-    --mat-menu-item-label-text-weight: var(--sys-label-medium-weight);
-    --mat-menu-item-label-text-size: var(--sys-label-medium-size);
-    --mat-menu-item-label-text-line-height: var(--sys-label-medium-line-height);
-
-    .mat-mdc-menu-content {
-      padding: 0.5rem 0;
-    }
-
-    button {
-      min-height: 3rem;
-
-      &.expanded {
-        min-width: 12.25rem;
-      }
-    }
-  }
-
-  &.small {
-    --mat-menu-item-icon-size: 1.25rem;
-    --mat-menu-item-spacing: 0.5rem;
-    --mat-menu-item-label-text-tracking: var(--sys-label-small-tracking);
-    --mat-menu-item-label-text-weight: var(--sys-label-small-weight);
-    --mat-menu-item-label-text-size: var(--sys-label-small-size);
-    --mat-menu-item-label-text-line-height: var(--mat-menu-item-icon-size);
-
-    mat-icon {
-      font-size: var(--mat-menu-item-icon-size);
-    }
-
-    .mat-mdc-menu-content {
-      padding: 0.25rem 0;
-    }
-
-    button {
-      min-height: 2.5rem;
-
-      &.expanded {
-        min-width: 10.5rem;
-      }
-    }
-  }
-
-  &.large {
-    --mat-menu-item-label-text-tracking: var(--sys-label-large-tracking);
-    --mat-menu-item-label-text-weight: var(--sys-label-large-weight);
-    --mat-menu-item-label-text-size: var(--sys-label-large-size);
-    --mat-menu-item-label-text-line-height: var(--sys-label-large-line-height);
-
-    .mat-mdc-menu-content {
-      padding: 0.75rem 0;
-    }
-
-    button {
-      min-height: 3.5rem;
-
-      &.expanded {
-        min-width: 12.75rem;
-      }
-    }
+    background-color: rgb(from var(--sys-tertiary) r g b / 0.2);
   }
 }
