@@ -92,6 +92,9 @@
       "@hra-ui/design-system/color-picker": [
         "libs/design-system/color-picker/src/index.ts"
       ],
+      "@hra-ui/design-system/delete-file-button": [
+        "libs/design-system/delete-file-button/src/index.ts"
+      ],
       "@hra-ui/design-system/dialog": [
         "libs/design-system/dialog/src/index.ts"
       ],
@@ -154,6 +157,9 @@
       ],
       "@hra-ui/design-system/tree": [
         "libs/design-system/tree/src/index.ts"
+      ],
+      "@hra-ui/design-system/workflow-card": [
+        "libs/design-system/workflow-card/src/index.ts"
       ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"

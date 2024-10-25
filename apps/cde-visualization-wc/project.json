@@ -21,6 +21,9 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cde-visualization-wc/src/favicon.png", "apps/cde-visualization-wc/src/assets"],
         "styles": ["apps/cde-visualization-wc/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
+        },
         "scripts": [],
         "define": {
           "define": "undefined"
