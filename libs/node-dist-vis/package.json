@@ -1,0 +1,20 @@
+{
+  "name": "@hra-ui/node-dist-vis",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^18.2.0",
+    "@hra-ui/webcomponents": "0.0.1",
+    "papaparse": "^5.4.1",
+    "rxjs": "7.8.0",
+    "@deck.gl/carto": "~8.8.20",
+    "@deck.gl/core": "~8.8.20",
+    "@deck.gl/extensions": "~8.8.20",
+    "@deck.gl/layers": "~8.8.20",
+    "@vivjs/layers": "0.16.1",
+    "ngxtension": "^3.5.5",
+    "@hra-ui/common": "0.0.1"
+  },
+  "sideEffects": [
+    "index.ts"
+  ]
+}

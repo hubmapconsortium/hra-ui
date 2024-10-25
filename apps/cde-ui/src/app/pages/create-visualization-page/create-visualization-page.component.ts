@@ -12,8 +12,6 @@ import { Router, RouterModule } from '@angular/router';
 import {
   ColorMapEntry,
   ColorMapFileLoaderService,
-  CsvFileLoaderOptions,
-  CsvFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
   DEFAULT_NODE_TARGET_KEY,
@@ -33,6 +31,7 @@ import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tool
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { ParseError } from 'papaparse';
 
+import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';

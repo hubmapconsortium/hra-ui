@@ -47,6 +47,12 @@
       "@hra-ui/cdk/styling": [
         "libs/cdk/styling/src/index.ts"
       ],
+      "@hra-ui/common": [
+        "libs/common/src/index.ts"
+      ],
+      "@hra-ui/common/fs": [
+        "libs/common/fs/src/index.ts"
+      ],
       "@hra-ui/components/atoms": [
         "libs/components/atoms/src/index.ts"
       ],
@@ -154,6 +160,9 @@
       ],
       "@hra-ui/design-system/workflow-card": [
         "libs/design-system/workflow-card/src/index.ts"
+      ],
+      "@hra-ui/node-dist-vis": [
+        "libs/node-dist-vis/src/index.ts"
       ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
