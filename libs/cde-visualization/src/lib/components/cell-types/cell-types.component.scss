@@ -1,31 +1,7 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
-@use '../../../../../../apps/cde-ui/src/styles/constants/palettes' as palettes;
-
-$blue: mat.m2-define-palette(map.get(palettes.$palettes, 'blue'), 600, 500, 700);
-$blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $blue,
-      accent: $blue,
-    ),
-  )
-);
-
-::ng-deep {
-  .celltypes-panel {
-    max-width: 21rem;
-  }
-}
 
 :host {
-  @include mat.button-color($blue-theme);
-  overflow: hidden;
-  padding: 0.75rem 1rem;
-  border-width: 0 2px 0px 0px;
-  border-style: solid;
-  border-color: map.get(map.get(palettes.$palettes, 'blue'), 600);
-  $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   --mat-table-background-color: white;
   --mdc-checkbox-unselected-icon-color: var(--sys-secondary);
   --mdc-checkbox-selected-icon-color: var(--sys-secondary);
@@ -38,9 +14,32 @@ $blue-theme: mat.m2-define-light-theme(
   --mdc-filled-button-container-height: 2rem;
   --mat-table-header-container-height: 2rem;
   --mat-menu-item-label-text-color: var(--sys-primary);
+  padding: 0.75rem 1rem;
+  border-width: 0 2px 0px 0px;
+  border-style: solid;
+  overflow: hidden;
 
   ::ng-deep {
+    .celltypes-panel {
+      max-width: 21rem;
+    }
+
     hra-expansion-panel {
+      height: 100%;
+
+      cdk-accordion {
+        display: block;
+        height: 100%;
+
+        cdk-accordion-item {
+          height: 100%;
+
+          .content {
+            height: calc(100% - 2.5rem);
+          }
+        }
+      }
+
       .header {
         margin-bottom: 0.25rem;
       }
@@ -51,6 +50,7 @@ $blue-theme: mat.m2-define-light-theme(
           'total-cell-types total-cells total-cell-links'
           'table table table' 1fr
           / auto 1fr auto;
+        overflow: hidden;
 
         &:not(:has(.total-cell-links)) {
           grid:

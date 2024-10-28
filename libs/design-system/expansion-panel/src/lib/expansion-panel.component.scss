@@ -16,7 +16,7 @@
     font: var(--sys-label-large);
     display: flex;
     flex-direction: column;
-    &[style*='visibility: hidden'] * {
+    ::ng-deep &[style*='visibility: hidden'] * {
       visibility: hidden !important;
     }
   }
