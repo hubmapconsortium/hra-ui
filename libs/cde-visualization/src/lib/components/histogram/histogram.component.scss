@@ -8,9 +8,16 @@
   max-height: 22.5rem;
 
   ::ng-deep {
-    // .content {
-    //   overflow: hidden;
-    // }
+    .header {
+      hra-expansion-panel-header-content {
+        display: block;
+        margin-right: 1rem;
+
+        .label {
+          max-width: unset;
+        }
+      }
+    }
 
     .expansion-body {
       height: 11.25rem;
