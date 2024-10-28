@@ -71,7 +71,7 @@
     >
     </cde-color-picker-label>
   </hra-expansion-panel-header-content>
-  <hra-fullscreen-portal>
+  <hra-fullscreen-portal (opened)="resizeAndSyncView()">
     <div class="histogram" data-testid="histogram" #histogram></div>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

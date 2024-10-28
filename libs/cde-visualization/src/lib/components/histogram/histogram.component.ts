@@ -220,9 +220,14 @@ export class HistogramComponent {
 
       onCleanup(finalize);
       this.view.set(view);
+      this.resizeAndSyncView();
     },
     { allowSignalWrites: true },
   );
+
+  resizeAndSyncView() {
+    this.view()?.resize().runAsync();
+  }
 
   /** Download the histogram as an image in the specified format */
   async download(format: string): Promise<void> {
