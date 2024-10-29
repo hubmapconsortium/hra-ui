@@ -26,7 +26,6 @@ import {
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
@@ -35,6 +34,11 @@ import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -97,6 +101,8 @@ function isNonEmptyArray<T>(array: T[]): boolean {
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
+    FullscreenActionsComponent,
+    FullscreenPortalContentComponent,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
@@ -155,7 +161,7 @@ export class NodeDistVisualizationComponent {
   /**  */
   protected readonly vis = viewChild.required(FullscreenPortalComponent);
 
-  private readonly visEl = computed(() => this.vis().rootNodes()[0] as NodeDistVisElement);
+  private readonly visEl = computed(() => this.vis().rootNodes()[0].childNodes[0] as NodeDistVisElement);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);

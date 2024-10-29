@@ -4,58 +4,116 @@ import {
   computed,
   DestroyRef,
   Directive,
+  effect,
   inject,
+  input,
   output,
   TemplateRef,
   viewChild,
   ViewContainerRef,
+  ViewRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { FullscreenComponent, FullscreenComponentData } from '../fullscreen/fullscreen.component';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
-/** Fullscreen directive */
 @Directive({
-  selector: '[hraFullscreenPortalContent]',
+  selector: '[hraViewOutlet]',
   standalone: true,
 })
-export class FullscreenPortalContentDirective {
-  /** Reference to the template */
-  readonly templateRef = inject(TemplateRef);
-  /** Reference to the view container */
-  readonly viewContainerRef = inject(ViewContainerRef);
-  /** Create view reference using the template */
-  readonly viewRef = this.viewContainerRef.createEmbeddedView(this.templateRef);
+export class ViewOutletDirective {
+  readonly viewRef = input<ViewRef | undefined>(undefined, { alias: 'hraViewOutlet' });
+
+  private readonly viewContainerRef = inject(ViewContainerRef);
+
+  constructor() {
+    effect(() => this.attach());
+  }
+
+  attach(): void {
+    const viewRef = this.viewRef();
+    if (viewRef) {
+      this.viewContainerRef.insert(viewRef);
+    }
+  }
+
+  detach(): void {
+    const viewRef = this.viewRef();
+    const index = viewRef ? this.viewContainerRef.indexOf(viewRef) : -1;
+    if (index >= 0) {
+      this.viewContainerRef.detach(index);
+    }
+  }
 }
+
+@Component({
+  selector: 'hra-fullscreen-actions',
+  standalone: true,
+  template: `<ng-content></ng-content>`,
+  styles: `
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenActionsComponent {}
+
+@Component({
+  selector: 'hra-fullscreen-portal-content',
+  standalone: true,
+  template: `<ng-content></ng-content>`,
+  styles: `
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenPortalContentComponent {}
 
 /** Fullscreen Component */
 @Component({
   selector: 'hra-fullscreen-portal',
   standalone: true,
-  imports: [FullscreenPortalContentDirective],
+  imports: [MatDialogModule, MatIconModule, ButtonModule, ExpansionPanelModule, ViewOutletDirective],
   templateUrl: './fullscreen-portal.component.html',
   styleUrl: './fullscreen-portal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenPortalComponent {
+  readonly title = input.required<string>();
+
   readonly beforeOpened = output<void>();
   readonly opened = output<void>();
   readonly beforeClosed = output<void>();
   readonly closed = output<void>();
 
-  readonly rootNodes = computed(() => this.content().viewRef.rootNodes);
+  readonly viewRef = computed(() => {
+    return this.viewContainerRef.createEmbeddedView(this.contentTemplateRef());
+  });
+  readonly rootNodes = computed(() => this.viewRef().rootNodes);
 
   /** Reference to the mat dialog */
   private readonly dialogService = inject(MatDialog);
+  private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly destroyRef = inject(DestroyRef);
 
-  /** Instance of the fullscreen portal content directive */
-  private readonly content = viewChild.required(FullscreenPortalContentDirective);
+  private readonly viewOutlet = viewChild.required(ViewOutletDirective);
+  private readonly contentTemplateRef = viewChild.required<TemplateRef<void>>('contentTemplate');
+  private readonly dialogTemplateRef = viewChild.required<TemplateRef<void>>('dialogTemplate');
 
-  private dialogRef?: MatDialogRef<FullscreenComponent, FullscreenComponentData>;
+  private dialogRef?: MatDialogRef<void>;
 
   constructor() {
-    this.destroyRef.onDestroy(() => this.close());
+    this.destroyRef.onDestroy(() => {
+      this.close();
+      this.viewRef().destroy();
+    });
   }
 
   /** Detaches the view from histogram module and attaches it to the view in the dialog */
@@ -64,15 +122,10 @@ export class FullscreenPortalComponent {
       return;
     }
 
-    const { destroyRef, dialogService } = this;
-    const { viewContainerRef, viewRef } = this.content();
-    const index = viewContainerRef.indexOf(viewRef);
+    const { destroyRef, dialogService, dialogTemplateRef } = this;
 
     this.beforeOpened.emit();
-    viewContainerRef.detach(index);
-
-    const dialogRef = (this.dialogRef = dialogService.open(FullscreenComponent, {
-      data: viewRef,
+    const dialogRef = (this.dialogRef = dialogService.open(dialogTemplateRef(), {
       panelClass: 'fullscreen-panel',
     }));
 
@@ -88,7 +141,7 @@ export class FullscreenPortalComponent {
       .pipe(takeUntilDestroyed(destroyRef))
       .subscribe(() => {
         this.beforeClosed.emit();
-        viewContainerRef.insert(viewRef);
+        this.viewOutlet().attach();
       });
 
     dialogRef

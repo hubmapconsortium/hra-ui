@@ -15,7 +15,11 @@ import {
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
@@ -117,6 +121,8 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
+    FullscreenPortalContentComponent,
+    FullscreenActionsComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
@@ -182,6 +188,15 @@ export class ViolinComponent {
     },
     { allowSignalWrites: true },
   );
+
+  resizeAndSyncView() {
+    const container = this.view()?.container();
+    const bbox = container?.getBoundingClientRect();
+    if (bbox) {
+      this.view()?.width(bbox.width).height(bbox.height);
+    }
+    this.view()?.resize().runAsync();
+  }
 
   /** Download the violin as an image in the specified format */
   async download(format: string): Promise<void> {

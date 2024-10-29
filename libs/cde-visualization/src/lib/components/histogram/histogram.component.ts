@@ -25,7 +25,6 @@ import { produce } from 'immer';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-
 import { MatMenuModule } from '@angular/material/menu';
 import {
   ExpansionPanelActionsComponent,
@@ -41,6 +40,7 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import { FullscreenActionsComponent, FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -136,6 +136,8 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
+    FullscreenPortalContentComponent,
+    FullscreenActionsComponent,
   ],
   providers: [
     {
@@ -220,13 +222,20 @@ export class HistogramComponent {
 
       onCleanup(finalize);
       this.view.set(view);
-      this.resizeAndSyncView();
+      // this.resizeAndSyncView();
     },
     { allowSignalWrites: true },
   );
 
   resizeAndSyncView() {
+    const container = this.view()?.container();
+    const bbox = container?.getBoundingClientRect();
+    if (bbox) {
+      this.view()?.width(bbox.width).height(bbox.height);
+    }
     this.view()?.resize().runAsync();
+    // this.view()?.runAsync()
+    console.log('resized', this.view());
   }
 
   /** Download the histogram as an image in the specified format */
@@ -246,6 +255,7 @@ export class HistogramComponent {
     const el = this.renderer.createElement('div');
     const { view, finalize } = await embed(el, spec as VisualizationSpec, {
       actions: false,
+      renderer: 'svg',
     });
 
     const url = await view.toImageURL(format);

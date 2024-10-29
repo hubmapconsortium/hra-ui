@@ -1,1 +1,1 @@
-export { FullscreenPortalComponent } from './lib/fullscreen-portal/fullscreen-portal.component';
+export * from './lib/fullscreen-portal/fullscreen-portal.component';

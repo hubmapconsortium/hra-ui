@@ -9,7 +9,7 @@ import {
   ViewRef,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import {
   ExpansionPanelActionsComponent,
@@ -34,12 +34,13 @@ export class FullscreenContentOutletDirective {
   selector: 'hra-fullscreen',
   standalone: true,
   imports: [
-    FullscreenContentOutletDirective,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
-    MatButtonModule,
     ExpansionPanelHeaderContentComponent,
-    MatIconModule,
+    FullscreenContentOutletDirective,
   ],
   templateUrl: './fullscreen.component.html',
   styleUrl: './fullscreen.component.scss',
