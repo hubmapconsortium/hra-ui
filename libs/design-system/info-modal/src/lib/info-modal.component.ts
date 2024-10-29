@@ -12,8 +12,12 @@ export interface DataItem {
   value: string;
 }
 
+/** Info modal variants */
 export type InfoModalVariant = 'tabular' | 'center';
 
+/**
+ * Modal to display all available information about specific areas of a dataset.
+ */
 @Component({
   selector: 'hra-info-modal',
   standalone: true,
@@ -26,8 +30,15 @@ export type InfoModalVariant = 'tabular' | 'center';
   },
 })
 export class InfoModalComponent {
+  /** List of data items to display */
   data = input<DataItem[]>([]);
+
+  /** Variant of info modal to use */
   variant = input<InfoModalVariant>('tabular');
-  title = input<string>();
+
+  /** Title of modal */
+  title = input.required<string>();
+
+  /** Emits when close icon clicked */
   close = output<void>();
 }
