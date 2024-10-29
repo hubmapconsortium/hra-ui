@@ -222,7 +222,6 @@ export class HistogramComponent {
 
       onCleanup(finalize);
       this.view.set(view);
-      // this.resizeAndSyncView();
     },
     { allowSignalWrites: true },
   );
@@ -234,8 +233,6 @@ export class HistogramComponent {
       this.view()?.width(bbox.width).height(bbox.height);
     }
     this.view()?.resize().runAsync();
-    // this.view()?.runAsync()
-    console.log('resized', this.view());
   }
 
   /** Download the histogram as an image in the specified format */
@@ -255,7 +252,6 @@ export class HistogramComponent {
     const el = this.renderer.createElement('div');
     const { view, finalize } = await embed(el, spec as VisualizationSpec, {
       actions: false,
-      renderer: 'svg',
     });
 
     const url = await view.toImageURL(format);
