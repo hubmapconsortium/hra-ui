@@ -1,7 +1,7 @@
 import { computed, Signal } from '@angular/core';
 import { Layer } from '@deck.gl/core/typed';
+import { NodesView } from '@hra-ui/node-dist-vis/models';
 import { ScaleBarLayer as ScaleBarLayerConstructor } from '@vivjs/layers';
-import { NodesView } from '../models/nodes';
 
 /** Scale bar layer props. Not exported by `@vivjs/layers` */
 type ScaleBarLayerProps = ConstructorParameters<typeof ScaleBarLayerConstructor>[0];

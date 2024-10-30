@@ -167,6 +167,9 @@
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
       ],
+      "@hra-ui/node-dist-vis/models": [
+        "libs/node-dist-vis/models/src/index.ts"
+      ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
       ],

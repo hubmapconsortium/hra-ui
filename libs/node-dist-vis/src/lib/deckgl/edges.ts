@@ -2,11 +2,14 @@ import { computed, Signal } from '@angular/core';
 import { COORDINATE_SYSTEM } from '@deck.gl/core/typed';
 import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensions/typed';
 import { LineLayer } from '@deck.gl/layers/typed';
-import { ColorMapView } from '../models/color-map';
-import { AnyData, AnyDataEntry } from '../models/data-view';
-import { EdgesView } from '../models/edges';
-import { NodeFilterView } from '../models/filters';
-import { NodesView } from '../models/nodes';
+import {
+  AnyData,
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  NodeFilterView,
+  NodesView,
+} from '@hra-ui/node-dist-vis/models';
 import { createColorAccessor } from './utils/color-coding';
 import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';

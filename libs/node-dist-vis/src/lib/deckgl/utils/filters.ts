@@ -1,5 +1,5 @@
 import { AccessorFunction } from '@deck.gl/core/typed';
-import { NodeFilterPredFn } from '../../models/filters';
+import { NodeFilterPredFn } from '@hra-ui/node-dist-vis/models';
 
 /** Value used to indicate that an item is in the filter */
 const FILTER_INCLUDE_VALUE = 1;

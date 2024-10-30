@@ -12,17 +12,28 @@ import {
   viewChild,
 } from '@angular/core';
 import { DeckProps, OrbitView, OrbitViewState, PickingInfo, View } from '@deck.gl/core/typed';
+import {
+  AnyData,
+  AnyDataEntry,
+  ColorMapEntry,
+  ColorMapView,
+  EdgeKeysInput,
+  EdgesInput,
+  KeyMapping,
+  loadColorMap,
+  loadEdges,
+  loadNodeFilter,
+  loadNodes,
+  NodeFilterInput,
+  NodeKeysInput,
+  NodesInput,
+  ViewMode,
+} from '@hra-ui/node-dist-vis/models';
 import { createController } from '../deckgl/controller';
 import { createDeck } from '../deckgl/deck';
 import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
 import { createScaleBarLayer } from '../deckgl/scale-bar';
-import { ColorMapEntry, ColorMapView, loadColorMap } from '../models/color-map';
-import { AnyData, AnyDataEntry, KeyMapping } from '../models/data-view';
-import { EdgeKeysInput, EdgesInput, loadEdges } from '../models/edges';
-import { loadNodeFilter, NodeFilterInput } from '../models/filters';
-import { loadNodes, NodeKeysInput, NodesInput } from '../models/nodes';
-import { ViewMode } from '../models/view-mode';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
