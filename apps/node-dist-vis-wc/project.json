@@ -7,13 +7,16 @@
   "tags": ["type:app", "project:node-dist-vis"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:application",
+      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": "dist/apps/node-dist-vis-wc",
+        "outputPath": {
+          "base": "dist/apps/node-dist-vis-wc",
+          "browser": "."
+        },
         "index": "apps/node-dist-vis-wc/src/index.html",
         "browser": "apps/node-dist-vis-wc/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/node-dist-vis-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -24,7 +27,12 @@
         ],
         "styles": ["apps/node-dist-vis-wc/src/styles.scss"],
         "scripts": [],
-        "outputHashing": "none"
+        "define": {
+          "define": "undefined"
+        },
+        "outputHashing": "none",
+        "allowedCommonJsDependencies": ["*"],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
       },
       "configurations": {
         "production": {
@@ -42,15 +50,26 @@
           ]
         },
         "development": {
+          "baseHref": "/",
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "staging": {
+          "baseHref": "/ui--staging/node-dist-vis-wc/"
+        },
+        "preview": {
+          "baseHref": "/apps/node-dist-vis-wc/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "node-dist-vis-wc:build:production"
@@ -85,6 +104,9 @@
         "staticFilePath": "dist/apps/node-dist-vis-wc/browser",
         "spa": true
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/node-dist-vis-wc/"
     }
   }
 }
