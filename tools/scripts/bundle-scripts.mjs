@@ -2,7 +2,8 @@ import { Command } from 'commander';
 import { build } from 'esbuild';
 import { readFile } from 'fs/promises';
 import { glob } from 'glob';
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * @typedef BundleOptions
@@ -15,7 +16,7 @@ const VERSION = '0.0.1';
 const SCRIPT_PREFIXES = ['runtime', 'polyfills', 'scripts', 'vendor', 'main'];
 const SCRIPT_GLOB = `{${SCRIPT_PREFIXES.join(',')}}*.js`;
 const WORKER_GLOB = `worker*.js`;
-const WORKER_SHIM_SCRIPT = resolve(import.meta.dirname, './inline-worker-shim.js');
+const WORKER_SHIM_SCRIPT = resolve(dirname(fileURLToPath(import.meta.url)), './inline-worker-shim.js');
 
 /** @type {(filename: string) => number} */
 function getScriptOrder(filename) {
