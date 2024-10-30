@@ -1,28 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { render, screen } from '@testing-library/angular';
 import { FullscreenPortalComponent } from './fullscreen-portal.component';
 
 describe('FullscreenComponent', () => {
-  let component: FullscreenPortalComponent;
-  let fixture: ComponentFixture<FullscreenPortalComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [FullscreenPortalComponent],
-      providers: [
-        {
-          provide: MAT_DIALOG_DATA,
-          useValue: {},
-        },
-      ],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(FullscreenPortalComponent);
-    component = fixture.componentInstance;
+  it('should open the dialog and render title', async () => {
+    const opened = jest.fn();
+    const { fixture } = await render(FullscreenPortalComponent, {
+      inputs: {
+        title: 'Test Title',
+      },
+      on: {
+        opened: opened,
+      },
+    });
+    const component = fixture.componentInstance;
+    component.open();
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    const title = await screen.findByText('Test Title');
+    expect(title.textContent).toBe(' Test Title ');
   });
 });
