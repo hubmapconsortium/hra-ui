@@ -1,9 +1,11 @@
 <div class="header">
-  <cde-visualization-header
-    (resetView)="visualization.resetView()"
-    (resetAll)="cellTypesTable.resetSort(); visualization.resetView(); histogram.resetAllCellsColor(); resetCellTypes()"
-    [homeLink]="homeLink()"
-  ></cde-visualization-header>
+  <hra-nav-header-buttons
+    app="cde"
+    appTitle="Cell Distance Explorer"
+    appLink="https://apps.humanatlas.io/cde/"
+    variant="basic"
+    appStatus="Beta"
+  ></hra-nav-header-buttons>
 </div>
 
 <div class="metadata">

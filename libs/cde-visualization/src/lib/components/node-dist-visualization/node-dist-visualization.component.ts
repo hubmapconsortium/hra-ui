@@ -152,6 +152,22 @@ export class NodeDistVisualizationComponent {
   /** Tooltip position constant */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      title: 'Zoom Options',
+      description: '• Mouse pinwheel \n• Trackpad Pinch',
+    },
+    {
+      title: 'Pan Options',
+      description: '• CTRL/CMD + mouse drag \n• Right click + mouse drag \n• Keyboard arrows',
+    },
+    {
+      title: 'Rotation Options for 3D Visualizations',
+      description: '• CTRL/CMD + keyboard arrows \n• Mouse Drag',
+    },
+  ];
+
   /** Flag to check if the tooltip is open */
   tooltipOpen = false;
 

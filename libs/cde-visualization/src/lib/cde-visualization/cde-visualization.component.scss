@@ -1,46 +1,3 @@
-::ng-deep {
-  .info-tooltip-panel {
-    background-color: white;
-    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
-    border-radius: 0.5rem;
-    max-width: 21rem;
-
-    .break {
-      margin-bottom: 1rem;
-    }
-
-    div,
-    span {
-      font-family: 'Metropolis';
-      font-size: 0.875rem;
-      line-height: 1.3125rem;
-      letter-spacing: 0.005em;
-      font-weight: 500;
-      color: #4c4c58;
-    }
-
-    div {
-      margin: 1rem;
-
-      span {
-        display: block;
-      }
-    }
-  }
-}
-
-::ng-deep .download-snackbar-panel {
-  --mdc-snackbar-container-color: white;
-  --mdc-snackbar-supporting-text-color: #4b4b5e;
-  translate: 0 -2rem;
-  text-align: center;
-
-  .mdc-snackbar__surface {
-    border-radius: 0.5rem !important;
-    min-width: 13rem !important;
-  }
-}
-
 :host {
   width: 100%;
   display: grid;
@@ -49,16 +6,17 @@
   grid-template-areas:
     'header visualization'
     'metadata visualization';
-  color: #201e3d;
+  color: var(--sys-secondary);
 
   .header {
     grid-area: header;
+    border-color: var(--sys-outline-variant);
+    border-width: 0 0px 2px 0px;
+    border-style: solid;
+    height: 4rem;
 
-    cde-visualization-header {
-      border-color: #d5dbe3;
-      border-width: 0 0px 2px 0px;
-      border-style: solid;
-      overflow: hidden;
+    hra-nav-header-buttons {
+      margin: 0.75rem;
     }
   }
 
@@ -81,7 +39,7 @@
     }
 
     cde-node-dist-visualization {
-      border-color: #d5dbe3;
+      border-color: var(--sys-outline-variant);
       border-width: 0 0 2px 0;
       border-style: solid;
       height: 100%;
@@ -132,5 +90,17 @@
         font: var(--sys-label-medium);
       }
     }
+  }
+}
+
+::ng-deep .download-snackbar-panel {
+  --mdc-snackbar-container-color: var(--sys-surface-container);
+  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+  translate: 0 -2rem;
+  text-align: center;
+
+  .mdc-snackbar__surface {
+    border-radius: 0.5rem !important;
+    min-width: 13rem !important;
   }
 }

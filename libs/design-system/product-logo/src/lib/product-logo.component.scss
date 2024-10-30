@@ -1,0 +1,11 @@
+:host {
+  mat-icon {
+    width: 5rem;
+    height: 5rem;
+
+    &.small {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}

@@ -21,6 +21,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
@@ -167,6 +168,14 @@ export class HistogramComponent {
 
   /** Tooltip position configuration */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      description:
+        'The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.',
+    },
+  ];
 
   /** State indicating whether the info panel is open */
   infoOpen = false;

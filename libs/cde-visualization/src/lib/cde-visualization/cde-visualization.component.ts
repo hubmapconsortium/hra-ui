@@ -12,15 +12,14 @@ import {
   signal,
   ViewContainerRef,
 } from '@angular/core';
-
+import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
+import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
-import { VisualizationHeaderComponent } from '../components/visualization-header/visualization-header.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ColorMapColorKey,
   ColorMapEntry,
@@ -34,13 +33,12 @@ import { Metadata } from '../models/metadata';
 import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
 import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
 import { DataLoaderService } from '../services/data/data-loader.service';
-import { CsvFileLoaderService } from '../services/file-loader/csv-file-loader.service';
-import { JsonFileLoaderService } from '../services/file-loader/json-file-loader.service';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { mergeObjects } from '../shared/merge';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -58,12 +56,12 @@ export interface DistanceEntry {
   standalone: true,
   imports: [
     CommonModule,
-    VisualizationHeaderComponent,
     MetadataComponent,
     CellTypesComponent,
     NodeDistVisualizationComponent,
     HistogramComponent,
     ViolinComponent,
+    NavHeaderButtonsComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',

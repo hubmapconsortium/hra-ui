@@ -27,6 +27,7 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Interface for modifying the violin specification */
 interface ModifiableViolinSpec {
@@ -131,6 +132,14 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
 export class ViolinComponent {
   /** Tooltip position configuration */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      description:
+        'The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.',
+    },
+  ];
 
   /** State indicating whether the info panel is open */
   infoOpen = false;

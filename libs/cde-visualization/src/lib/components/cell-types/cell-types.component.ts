@@ -20,7 +20,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Rgb } from '@hra-ui/design-system/color-picker';
@@ -59,7 +58,6 @@ import {
     MatMenuModule,
     IconButtonSizeDirective,
     TooltipCardComponent,
-    MatSnackBarModule,
     MicroTooltipDirective,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,

@@ -2,6 +2,7 @@
   display: block;
   --mat-text-button-hover-state-layer-opacity: 0;
   --mat-text-button-pressed-state-layer-opacity: 0;
+  --mat-expansion-container-shape: 0;
 
   hra-expansion-panel {
     --mat-expansion-container-shape: 0;
@@ -68,7 +69,7 @@
       line-height: 21px;
 
       .mdc-button {
-        --mdc-text-button-label-text-color: #b20a2f;
+        --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
         height: 100%;
         padding: 0;
       }

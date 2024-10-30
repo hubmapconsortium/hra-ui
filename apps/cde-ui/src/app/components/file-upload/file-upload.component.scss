@@ -1,55 +1,5 @@
 :host {
-  .upload-success {
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    background: var(--sys-surface-container);
-    gap: 0.5rem;
-    border-radius: 1rem;
-    font: var(--sys-label-large);
-
-    .filename {
-      display: flex;
-    }
-
-    .file-name {
-      color: var(--sys-primary);
-    }
-
-    .remove-file {
-      color: var(--sys-secondary);
-      cursor: pointer;
-    }
-  }
-
-  .error {
-    display: flex;
-    gap: 0.5rem;
+  hra-error-indicator {
     margin-bottom: 2rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.25rem;
-    font: var(--sys-label-large);
-    width: fit-content;
-
-    .error-messages {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .action-required {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    position: relative;
-    left: -3rem;
-
-    mat-icon {
-      width: 2rem;
-      height: 2rem;
-      font-size: 2rem;
-    }
   }
 }

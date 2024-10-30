@@ -1,22 +1,19 @@
 <hra-nav-header
   title="Cell Distance Explorer"
-  icon="assets/logo/cde_logo.svg"
+  app="cde"
   link="https://apps.humanatlas.io/cde/"
-  description="Beta"
+  variant="basic"
+  [navigationCategories]="sideNavData"
 ></hra-nav-header>
-<form class="content" [formGroup]="visualizationForm" (ngSubmit)="submit()">
+<form class="content" [formGroup]="visualizationForm">
   <div class="page-nav">
-    <hra-breadcrumbs
-      class="nav"
-      size="large"
-      [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]"
-    >
+    <hra-breadcrumbs class="nav" [crumbs]="[{ name: 'Home', route: '/' }, { name: 'Create Visualization' }]">
     </hra-breadcrumbs>
 
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <div class="card data-upload">
+  <hra-workflow-card class="card data-upload" [allowUpload]="true" [loadProgress]="nodeProgress">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
@@ -83,15 +80,16 @@
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
-      (loadErrored)="nodesLoadError = $event"
+      (loadErrored)="nodesLoadError = $event; nodeProgress = 0"
       [errorMessage]="nodesErrorMessage"
       [errorActionMessage]="nodesErrorActionMessage"
+      (progress)="nodeProgress = $event"
       #nodesFileUpload
     >
     </cde-file-upload>
-  </div>
+  </hra-workflow-card>
 
-  <div class="card organize-data" formGroupName="headers">
+  <hra-workflow-card class="card organize-data" formGroupName="headers">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
@@ -165,10 +163,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <div class="error">
-        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-        <span>{{ columnErrorActionMessage }}</span>
-      </div>
+      <hra-error-indicator [errors]="[columnErrorActionMessage]"></hra-error-indicator>
     }
 
     <div class="optional-headers">
@@ -202,9 +197,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-  </div>
+  </hra-workflow-card>
 
-  <div class="card parameters" formGroupName="parameters">
+  <hra-workflow-card class="card parameters" formGroupName="parameters">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
@@ -267,9 +262,9 @@
         <input matInput type="number" formControlName="pixelSizeZ" min="0" cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
-  </div>
+  </hra-workflow-card>
 
-  <div class="card metadata" formGroupName="metadata">
+  <hra-workflow-card class="card metadata" formGroupName="metadata">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
@@ -295,55 +290,66 @@
       </ng-template>
     </h2>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Visualization Title</mat-label>
-      <input matInput formControlName="title" cdeMarkEmptyFormControl />
-    </mat-form-field>
+    <div class="row">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Visualization Title</mat-label>
+        <input matInput formControlName="title" cdeMarkEmptyFormControl />
+      </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Imaging Technology</mat-label>
-      <input matInput formControlName="technology" cdeMarkEmptyFormControl />
-    </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Imaging Technology</mat-label>
+        <input matInput formControlName="technology" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
 
-    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
-      <mat-label>Organ</mat-label>
-      <mat-select
-        disableRipple
-        formControlName="organ"
-        [panelClass]="['options-container', 'options-container-medium']"
-        cdeMarkEmptyFormControl
-      >
-        @for (organ of organs(); track organ) {
-          <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+    <div class="row">
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Organ</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="organ"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          @for (organ of organs(); track organ) {
+            <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
-      <mat-label>Sex</mat-label>
-      <mat-select
-        disableRipple
-        formControlName="sex"
-        [panelClass]="['options-container', 'options-container-medium']"
-        cdeMarkEmptyFormControl
-      >
-        <mat-option value="Male">Male</mat-option>
-        <mat-option value="Female">Female</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+        <mat-label>Sex</mat-label>
+        <mat-select
+          disableRipple
+          formControlName="sex"
+          [panelClass]="['options-container', 'options-container-medium']"
+          cdeMarkEmptyFormControl
+        >
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Age</mat-label>
-      <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
-    </mat-form-field>
+    <div class="row">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
+      </mat-form-field>
 
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Thickness (µm)</mat-label>
-      <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
-    </mat-form-field>
-  </div>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Thickness (µm)</mat-label>
+        <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </div>
+  </hra-workflow-card>
 
-  <div class="color-config card" [class.custom]="useCustomColorMap">
+  <hra-workflow-card
+    class="color-config card"
+    [class.custom]="useCustomColorMap"
+    [allowUpload]="true"
+    [loadProgress]="colorProgress"
+  >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
@@ -415,17 +421,18 @@
         [options]="colorMapLoaderOptions"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
-        (loadErrored)="customColorMapLoadError = $event"
+        (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"
         [errorMessage]="colorErrorMessage"
         [errorActionMessage]="colorErrorActionMessage"
+        (progress)="colorProgress = $event"
         #customColorMapFileUpload
         data-testid="color-map-upload"
       >
       </cde-file-upload>
     }
-  </div>
+  </hra-workflow-card>
 
-  <div class="card visualize">
+  <hra-workflow-card class="card visualize">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
@@ -453,23 +460,22 @@
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
-      <div class="visualize-notification">
-        <mat-icon class="material-symbols-rounded alert">error</mat-icon>
-        <span>Please upload a dataset.</span>
-      </div>
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
     }
 
     <button
+      class="visualize-button"
       mat-flat-button
       hraCallToActionButton
       hraPrimaryButton
       hraButtonSize="large"
       [disabled]="!hasValidNodes() || !hasValidData()"
       data-testid="visualize"
+      (click)="submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
-  </div>
+  </hra-workflow-card>
 </form>
 <hra-footer></hra-footer>

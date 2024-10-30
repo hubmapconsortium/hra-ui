@@ -124,7 +124,6 @@
           }
 
           tr th:last-child > div {
-            --mat-sort-arrow-color: #4b4b5e;
             justify-content: flex-end;
             margin-right: 0.25rem;
             color: var(--sys-primary);
@@ -151,22 +150,22 @@
           td:first-child {
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
-            border-top: solid #d5dbe3 0.0625rem;
-            border-left: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-left: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
 
           td:not(:first-child, :last-child) {
-            border-top: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
 
           td:last-child {
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            border-top: solid #d5dbe3 0.0625rem;
-            border-right: solid #d5dbe3 0.0625rem;
-            border-bottom: solid #d5dbe3 0.0625rem;
+            border-top: solid var(--sys-outline-variant) 0.0625rem;
+            border-right: solid var(--sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
           }
         }
 

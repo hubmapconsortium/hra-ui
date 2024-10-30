@@ -6,6 +6,7 @@
   --mat-expansion-container-background-color: var(--sys-on-primary);
   --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
+  --mat-expansion-container-shape: 0;
 
   ::ng-deep {
     .header {
@@ -61,17 +62,4 @@
 
 ::ng-deep .mat-content-hide-toggle {
   margin-right: 0 !important;
-}
-
-::ng-deep {
-  #vg-tooltip-element.vg-tooltip {
-    font-family: 'Metropolis';
-    font-weight: 500;
-    font-size: 0.75rem;
-    line-height: 1.125rem;
-    color: #201e3d;
-    padding: 0.5rem;
-    max-width: 22.5rem;
-    box-shadow: 0px 5px 16px 0px #201e3d3d;
-  }
 }
