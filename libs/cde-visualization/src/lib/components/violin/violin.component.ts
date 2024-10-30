@@ -200,11 +200,15 @@ export class ViolinComponent {
 
   resizeAndSyncView() {
     const container = this.view()?.container();
-    const bbox = container?.getBoundingClientRect();
-    if (bbox) {
-      this.view()?.width(bbox.width).height(bbox.height);
-    }
-    this.view()?.resize().runAsync();
+    setTimeout(() => {
+      const bbox = container?.getBoundingClientRect();
+      console.log(bbox);
+      if (bbox) {
+        this.view()?.width(bbox.width).height(bbox.height);
+      }
+      this.view()?.resize().runAsync();
+      window.dispatchEvent(new Event('resize'));
+    });
   }
 
   /** Download the violin as an image in the specified format */

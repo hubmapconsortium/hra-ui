@@ -19,26 +19,31 @@ import { MatIconModule } from '@angular/material/icon';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
+/** View outlet directive */
 @Directive({
   selector: '[hraViewOutlet]',
   standalone: true,
 })
 export class ViewOutletDirective {
+  /** view reference input */
   readonly viewRef = input<ViewRef | undefined>(undefined, { alias: 'hraViewOutlet' });
 
+  /** Reference of the view container */
   private readonly viewContainerRef = inject(ViewContainerRef);
 
+  /** Attaches the view */
   constructor() {
     effect(() => this.attach());
   }
 
+  /** Attaches the view to the view container */
   attach(): void {
     const viewRef = this.viewRef();
     if (viewRef) {
       this.viewContainerRef.insert(viewRef);
     }
   }
-
+  /** Detaches the view from the view container */
   detach(): void {
     const viewRef = this.viewRef();
     const index = viewRef ? this.viewContainerRef.indexOf(viewRef) : -1;
@@ -48,6 +53,7 @@ export class ViewOutletDirective {
   }
 }
 
+/** Fullscreen actions component */
 @Component({
   selector: 'hra-fullscreen-actions',
   standalone: true,
@@ -62,6 +68,7 @@ export class ViewOutletDirective {
 })
 export class FullscreenActionsComponent {}
 
+/** Fullscreen portal content component */
 @Component({
   selector: 'hra-fullscreen-portal-content',
   standalone: true,
@@ -86,29 +93,48 @@ export class FullscreenPortalContentComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenPortalComponent {
+  /** Heading of the dialog */
   readonly title = input.required<string>();
 
+  /** Event for before the dialog is opened */
   readonly beforeOpened = output<void>();
+  /** Event for when the dialog is opened */
   readonly opened = output<void>();
+  /** Event for before the dialog is closed */
   readonly beforeClosed = output<void>();
+  /** Event for when the dialog is closed */
   readonly closed = output<void>();
 
+  /** Creates embedded view using template */
   readonly viewRef = computed(() => {
     return this.viewContainerRef.createEmbeddedView(this.contentTemplateRef());
   });
+
+  /** Rootnodes of the view reference */
   readonly rootNodes = computed(() => this.viewRef().rootNodes);
 
   /** Reference to the mat dialog */
   private readonly dialogService = inject(MatDialog);
+
+  /** Reference to the view container */
   private readonly viewContainerRef = inject(ViewContainerRef);
+
+  /** Reference to the destroy ref */
   private readonly destroyRef = inject(DestroyRef);
 
+  /** Reference to the view outlet directive */
   private readonly viewOutlet = viewChild.required(ViewOutletDirective);
+
+  /** Reference to the view content template */
   private readonly contentTemplateRef = viewChild.required<TemplateRef<void>>('contentTemplate');
+
+  /** Reference to the view dialog template */
   private readonly dialogTemplateRef = viewChild.required<TemplateRef<void>>('dialogTemplate');
 
+  /** Reference to the mat dialog */
   private dialogRef?: MatDialogRef<void>;
 
+  /** Destroys the view */
   constructor() {
     this.destroyRef.onDestroy(() => {
       this.close();
@@ -153,6 +179,7 @@ export class FullscreenPortalComponent {
       });
   }
 
+  /** Closes the dialog */
   close(): void {
     this.dialogRef?.close();
   }

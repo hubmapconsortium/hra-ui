@@ -60,8 +60,8 @@
     }
   },
   "spec": {
-    "height": 40,
-    "width": 225,
+    "height": 35,
+    "width": "container",
     "layer": [
       {
         "mark": {
