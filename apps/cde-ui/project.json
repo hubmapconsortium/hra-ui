@@ -7,12 +7,15 @@
   "tags": ["app", "cde"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser-esbuild",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:application",
+      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": "dist/apps/cde-ui",
+        "outputPath": {
+          "base": "dist/apps/cde-ui",
+          "browser": "."
+        },
         "index": "apps/cde-ui/src/index.html",
-        "main": "apps/cde-ui/src/main.ts",
+        "browser": "apps/cde-ui/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/cde-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -29,7 +32,13 @@
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/design-system/styles"]
         },
-        "scripts": []
+        "scripts": [],
+        "define": {
+          "define": "undefined"
+        },
+        "outputHashing": "none",
+        "allowedCommonJsDependencies": ["*"],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
       },
       "configurations": {
         "production": {
@@ -70,7 +79,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "cde-ui:build:production"
@@ -133,7 +142,9 @@
     },
     "test-doc-coverage": {
       "command": "compodoc -p apps/cde-ui/tsconfig.app.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-ui/"
     }
-  },
-  "implicitDependencies": ["shared-theming"]
+  }
 }

@@ -29,7 +29,8 @@
           "define": "undefined"
         },
         "outputHashing": "none",
-        "allowedCommonJsDependencies": ["papaparse", "vega-embed"]
+        "allowedCommonJsDependencies": ["*"],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
       },
       "configurations": {
         "production": {
@@ -103,7 +104,7 @@
       }
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs cde-visualization-wc"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-visualization-wc/"
     }
   }
 }
