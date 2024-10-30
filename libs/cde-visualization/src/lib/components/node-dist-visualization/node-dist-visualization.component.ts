@@ -39,6 +39,7 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {

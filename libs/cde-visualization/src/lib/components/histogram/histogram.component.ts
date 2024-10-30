@@ -19,29 +19,32 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
-import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { produce } from 'immer';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
-import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
 import { MatMenuModule } from '@angular/material/menu';
+import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { FullscreenPortalComponent } from '@hra-ui/design-system/fullscreen';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { produce } from 'immer';
+import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
+import { View } from 'vega';
+import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
-import { FullscreenActionsComponent, FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 
 interface UpdateColorData {
   entry: CellTypeEntry;

@@ -22,12 +22,12 @@ import {
 } from '@hra-ui/design-system/fullscreen';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Interface for modifying the violin specification */
 interface ModifiableViolinSpec {

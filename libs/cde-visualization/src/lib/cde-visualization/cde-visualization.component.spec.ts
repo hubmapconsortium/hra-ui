@@ -1,19 +1,19 @@
-import { RenderComponentOptions, render } from '@testing-library/angular';
+import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
 import { TestBed } from '@angular/core/testing';
 import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
-import { render, RenderComponentOptions } from '@testing-library/angular';
-import { mockDeep } from 'jest-mock-extended';
-import embed, { Result } from 'vega-embed';
 
+import { provideHttpClient } from '@angular/common/http';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatMenuHarness } from '@angular/material/menu/testing';
 
 jest.mock('hra-node-dist-vis/docs/hra-node-dist-vis.wc.js', () => ({}));
 jest.mock('vega-embed', () => ({ default: jest.fn() }));

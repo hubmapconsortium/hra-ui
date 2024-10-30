@@ -15,6 +15,7 @@ import {
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
