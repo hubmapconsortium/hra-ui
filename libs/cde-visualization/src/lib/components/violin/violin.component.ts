@@ -177,7 +177,8 @@ export class ViolinComponent {
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
     async (onCleanup) => {
-      const el = this.violinEl().rootNodes()[0];
+      const container: HTMLElement = this.violinEl().rootNodes()[0];
+      const el = container.querySelector('.violin-container') as HTMLElement;
       await this.ensureFontsLoaded();
 
       const spec = produce(VIOLIN_SPEC, (draft) => {

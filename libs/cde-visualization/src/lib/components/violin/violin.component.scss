@@ -26,10 +26,22 @@
 
             .expansion-body {
               height: 100%;
+
+              hra-fullscreen-portal {
+                height: 100%;
+
+                .violin-container {
+                  width: 100%;
+                }
+              }
             }
           }
         }
       }
+    }
+
+    .violin-container {
+      width: 100%;
     }
   }
 
