@@ -20,7 +20,7 @@ import {
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
+import { colorEquals, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -213,11 +213,18 @@ export class HistogramComponent {
 
   readonly updateColor = output<UpdateColorData>();
 
+  protected readonly allColors = computed(() => {
+    const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
+    return [totalCellType, ...this.filteredCellTypes()]
+      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
+      .map(({ color }) => rgbToHex(color));
+  });
+
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.colors()).run());
+  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
