@@ -29,23 +29,21 @@
 
               hra-fullscreen-portal {
                 height: 100%;
-
-                .violin-container {
-                  width: 100%;
-                }
               }
             }
           }
         }
       }
     }
-
-    .violin-container {
-      width: 100%;
-    }
   }
 
   .violin {
     padding: 0.5rem;
+  }
+}
+
+::ng-deep {
+  .violin-container {
+    width: 100%;
   }
 }
