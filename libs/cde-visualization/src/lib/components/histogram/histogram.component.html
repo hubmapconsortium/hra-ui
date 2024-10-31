@@ -1,66 +1,6 @@
 <hra-expansion-panel [title]="'Histogram'">
   <hra-expansion-panel-actions>
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      [hraIconButtonSize]="'large'"
-      aria-label="Icon to open nested menu"
-      hraMicroTooltip="More"
-      (click)="$event.stopPropagation()"
-    >
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" [class]="'histogram-overlay'">
-      <button
-        mat-menu-item
-        [matMenuTriggerFor]="infoSubMenu"
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="$event.stopImmediatePropagation()"
-      >
-        <mat-icon>info</mat-icon>
-        <span>Info</span>
-        <mat-icon class="expand-arrow">arrow_right</mat-icon>
-      </button>
-      <button
-        mat-menu-item
-        [matMenuTriggerFor]="downloadSubMenu"
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="$event.stopImmediatePropagation()"
-      >
-        <mat-icon>download</mat-icon>
-        <span>Downloads</span>
-        <mat-icon class="expand-arrow">arrow_right</mat-icon>
-      </button>
-      <button mat-menu-item (click)="histogramEl().open()">
-        <mat-icon>fullscreen</mat-icon>
-        Full Screen
-      </button>
-      <a
-        mat-menu-item
-        href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <mat-icon>code</mat-icon>
-        Embed App
-      </a>
-      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-        This histogram plot shows the cell-to-nearest-anchor cell distance distributions categorized by each cell type
-        in the dataset.
-      </mat-menu>
-      <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
-        <button mat-menu-item (click)="$event.stopPropagation(); download('png')">
-          <mat-icon>download</mat-icon>
-          PNG
-        </button>
-        <button mat-menu-item (click)="$event.stopPropagation(); download('svg')">
-          <mat-icon>download</mat-icon>
-          SVG
-        </button>
-      </mat-menu>
-    </mat-menu>
+    <cde-histogram-menu></cde-histogram-menu>
   </hra-expansion-panel-actions>
   <hra-expansion-panel-header-content>
     <cde-color-picker-label
@@ -72,63 +12,7 @@
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal title="Histogram" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
     <hra-fullscreen-actions>
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="fullMenu"
-        [hraIconButtonSize]="'large'"
-        aria-label="Icon to open nested menu"
-        hraMicroTooltip="More"
-        (click)="$event.stopPropagation()"
-      >
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #fullMenu="matMenu" [class]="'histogram-overlay'">
-        <button
-          mat-menu-item
-          [matMenuTriggerFor]="fullInfoSubMenu"
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="$event.stopImmediatePropagation()"
-        >
-          <mat-icon>info</mat-icon>
-          <span>Info</span>
-          <mat-icon class="expand-arrow">arrow_right</mat-icon>
-        </button>
-        <button
-          mat-menu-item
-          [matMenuTriggerFor]="fullDownloadSubMenu"
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="$event.stopImmediatePropagation()"
-        >
-          <mat-icon>download</mat-icon>
-          <span>Downloads</span>
-          <mat-icon class="expand-arrow">arrow_right</mat-icon>
-        </button>
-        <a
-          mat-menu-item
-          href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <mat-icon>code</mat-icon>
-          Embed App
-        </a>
-        <mat-menu #fullInfoSubMenu="matMenu" [class]="'info-sub-menu'">
-          This histogram plot shows the cell-to-nearest-anchor cell distance distributions categorized by each cell type
-          in the dataset.
-        </mat-menu>
-        <mat-menu #fullDownloadSubMenu="matMenu" [class]="'download-sub-menu'">
-          <button mat-menu-item (click)="$event.stopPropagation(); download('png')">
-            <mat-icon>download</mat-icon>
-            PNG
-          </button>
-          <button mat-menu-item (click)="$event.stopPropagation(); download('svg')">
-            <mat-icon>download</mat-icon>
-            SVG
-          </button>
-        </mat-menu>
-      </mat-menu>
+      <cde-histogram-menu dialogOpen="true"></cde-histogram-menu>
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
