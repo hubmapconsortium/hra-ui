@@ -18,55 +18,13 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
-import { ColorMapEntry } from '../../models/color-map';
-import { EdgeEntry } from '../../models/edge';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import '@hra-ui/node-dist-vis';
+import { NodeDistVisElement } from '@hra-ui/node-dist-vis';
+import { ColorMapView, EdgesView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-
-/** Utility type to convert properties of an object into an object with a value wrapper */
-type Preactify<T> = {
-  [K in keyof T]: { value: T[K] };
-};
-
-/** Interface for properties required by the Node Distribution Visualization element */
-interface NodeDistVisElementProps {
-  /** Array of Node Entries to visualize */
-  nodesData: NodeEntry[];
-  /** Key used to identify the target node */
-  nodeTargetKey: string;
-  /** Value associated with the target node */
-  nodeTargetValue: string;
-  /** URL for the edges data (if applicable) */
-  edgesUrl: string;
-  /** Array of Edge Entries that connect the nodes */
-  edgesData: EdgeEntry[];
-  /** Maximum distance allowed for edges in the visualization */
-  maxEdgeDistance: number;
-  /** Array of color map entries for visualizing nodes */
-  colorMapData: ColorMapEntry[];
-  /** Key in the color map used to identify colors */
-  colorMapKey: string;
-  /** Value key in the color map used to map colors to node values */
-  colorMapValue: string;
-  /** Array of selected cell types for filtering the visualization */
-  selection: string[];
-}
-
-/** Extended HTMLElement for Node Distribution Visualization with specific properties and methods */
-interface NodeDistVisElement extends HTMLElement, Preactify<NodeDistVisElementProps> {
-  /** Method to reset the visualization view */
-  resetView(): void;
-  /** Method to get data URL of the visualization */
-  toDataUrl(type?: string, quality?: unknown): string | undefined;
-}
-
-/** Checks if an array is non-empty */
-function isNonEmptyArray<T>(array: T[]): boolean {
-  return array.length > 0;
-}
 
 /**
  * Component for Node Distribution Visualization
@@ -81,29 +39,15 @@ function isNonEmptyArray<T>(array: T[]): boolean {
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows custom elements in the template
 })
 export class NodeDistVisualizationComponent {
-  /** Input for the array of Node Entries */
-  readonly nodes = model.required<NodeEntry[]>();
+  readonly nodes = input.required<NodesView>();
 
-  /** Input for the key used to target nodes */
-  readonly nodeTargetKey = input.required<string>();
-
-  /** Input for the value used to target nodes */
-  readonly nodeTargetValue = input.required<string>();
-
-  /** Input for the array of Edge Entries */
-  readonly edges = model.required<EdgeEntry[]>();
+  readonly edges = model.required<EdgesView>();
 
   /** Input for the maximum edge distance */
   readonly maxEdgeDistance = input.required<number>();
 
   /** Input for the color map data */
-  readonly colorMap = input.required<ColorMapEntry[]>();
-
-  /** Input for the key in the color map */
-  readonly colorMapKey = input.required<string>();
-
-  /** Input for the value key in the color map */
-  readonly colorMapValueKey = input.required<string>();
+  readonly colorMap = input.required<ColorMapView>();
 
   /** Input for selected cell types */
   readonly cellTypesSelection = input.required<string[]>();
@@ -144,49 +88,45 @@ export class NodeDistVisualizationComponent {
 
   /** Bind data and events to the visualization element */
   constructor() {
-    this.bindData('nodesData', this.nodes, isNonEmptyArray);
-    this.bindData('nodeTargetKey', this.nodeTargetKey);
-    this.bindData('nodeTargetValue', this.nodeTargetValue);
-    this.bindEvent('nodes', this.nodes, isNonEmptyArray);
+    console.log(NodeDistVisElement);
+    this.bindData('nodes', this.nodes);
     this.bindEvent('nodeClicked', this.nodeClick);
     this.bindEvent('nodeHovering', this.nodeHover);
 
-    this.bindData('edgesData', this.edges, isNonEmptyArray);
+    this.bindData('edges', this.edges);
     this.bindData('maxEdgeDistance', this.maxEdgeDistance);
-    this.bindEvent('edges', this.edges, isNonEmptyArray);
+    // this.bindEvent('edges', this.edges, isNonEmptyArray);
 
-    this.bindData('colorMapData', this.colorMap, isNonEmptyArray);
-    this.bindData('colorMapKey', this.colorMapKey);
-    this.bindData('colorMapValue', this.colorMapValueKey);
+    this.bindData('colorMap', this.colorMap);
 
-    this.bindData('selection', this.cellTypesSelection);
+    // this.bindData('selection', this.cellTypesSelection);
   }
 
   /** Downloads the visualization as an image */
   download(): void {
-    const el = this.vis().nativeElement;
-    const url = el.toDataUrl();
-    if (url) {
-      this.fileSaver.save(url, 'cell-distance-vis.png');
-    }
+    // const el = this.vis().nativeElement;
+    // const url = el.toDataUrl();
+    // if (url) {
+    //   this.fileSaver.save(url, 'cell-distance-vis.png');
+    // }
   }
 
   /** Resets the visualization view */
   resetView(): void {
-    this.vis().nativeElement.resetView();
+    // this.vis().nativeElement.resetView();
   }
 
   /** Binds a property from the visualization element to a signal */
-  private bindData<K extends keyof NodeDistVisElementProps>(
+  private bindData<K extends keyof NodeDistVisElement>(
     prop: K,
-    value: Signal<NodeDistVisElementProps[K]>,
-    selector?: (value: NodeDistVisElementProps[K]) => boolean,
+    value: Signal<NodeDistVisElement[K]>,
+    selector?: (value: NodeDistVisElement[K]) => boolean,
   ): void {
     effect(() => {
       const el = this.vis().nativeElement;
       const data = value();
       if (selector === undefined || selector(data)) {
-        el[prop].value = data;
+        el[prop] = data;
       }
     });
   }

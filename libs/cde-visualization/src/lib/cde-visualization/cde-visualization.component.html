@@ -9,11 +9,11 @@
 </div>
 
 <div class="metadata">
-  <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
+  <cde-metadata [metadata]="metadataView()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
-    [selectedCellType]="selectedNodeTargetValue()"
+    [selectedCellType]="nodeTargetSelector()"
     (downloadColorMap)="downloadColorMap()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
@@ -25,20 +25,16 @@
 <div class="visualizations">
   <div class="top">
     <cde-node-dist-visualization
-      [nodes]="loadedNodes()"
-      [nodeTargetKey]="nodeTypeKey()"
-      [nodeTargetValue]="selectedNodeTargetValue()"
-      [edges]="loadedEdges()"
+      [nodes]="nodesView()"
+      [edges]="edgesView()"
       [maxEdgeDistance]="maxEdgeDistance()"
       [colorMap]="cellTypesAsColorMap()"
-      [colorMapKey]="colorMapTypeKey()"
-      [colorMapValueKey]="colorMapValueKey()"
       [cellTypesSelection]="cellTypesSelection()"
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
-      (edgesChange)="edges.set($event)"
       #visualization
     ></cde-node-dist-visualization>
+    <!-- (edgesChange)="edges.set($event)" -->
 
     <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
   </div>
@@ -47,7 +43,7 @@
     [colors]="filteredColors()"
     [data]="filteredDistances()"
     [filteredCellTypes]="filteredCellTypes()"
-    [selectedCellType]="selectedNodeTargetValue()"
+    [selectedCellType]="nodeTargetSelector()"
     (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>

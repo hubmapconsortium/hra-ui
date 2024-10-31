@@ -43,16 +43,16 @@
         Source Data
         @if (metadata().sampleExtra; as extra) {
           <a [attr.href]="extra.sourceDataUrl" class="mat-caption" target="_blank" rel="noreferrer noopener">{{
-            metadata().sourceData
+            metadata().sourceFileName
           }}</a>
         } @else {
-          <span class="mat-caption user-source">{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+          <span class="mat-caption user-source">{{ metadata().sourceFileName | defaultTo: 'Unknown' }}</span>
         }
       </div>
-      @if (isFieldVisible('colorMap')) {
+      @if (isFieldVisible('colorMapFileName')) {
         <div class="mat-caption">
           Color Map
-          <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
+          <span>{{ metadata().colorMapFileName | defaultTo: 'Default' }}</span>
         </div>
       }
       @if (isFieldVisible('organ')) {

@@ -11,7 +11,7 @@ import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tool
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'title',
-  'colorMap',
+  'colorMapFileName',
   'organ',
   'technology',
   'sex',

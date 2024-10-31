@@ -53,7 +53,7 @@ export class EdgesView extends BaseEdgesView {
    * @returns The source position in format [x, y, z]
    */
   readonly getSourcePositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getSourcePositionFor(this.data[index], info);
+    this.getSourcePositionFor(this.at(index), info);
 
   /**
    * Get the source position of an edge.
@@ -68,7 +68,7 @@ export class EdgesView extends BaseEdgesView {
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
   ): [number, number, number] => {
-    const position = (info?.target ?? new Array(3)) as [number, number, number];
+    const position = (info?.target ?? []) as [number, number, number];
     position[0] = this.getX1For(obj);
     position[1] = this.getY1For(obj);
     position[2] = this.getZ1For(obj);
@@ -85,7 +85,7 @@ export class EdgesView extends BaseEdgesView {
    * @returns The target position in format [x, y, z]
    */
   readonly getTargetPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getTargetPositionFor(this.data[index], info);
+    this.getTargetPositionFor(this.at(index), info);
 
   /**
    * Get the target position of an edge.
@@ -100,11 +100,32 @@ export class EdgesView extends BaseEdgesView {
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
   ): [number, number, number] => {
-    const position = (info?.target ?? new Array(3)) as [number, number, number];
+    const position = (info?.target ?? []) as [number, number, number];
     position[0] = this.getX2For(obj);
     position[1] = this.getY2For(obj);
     position[2] = this.getZ2For(obj);
     return position;
+  };
+
+  /**
+   * Get the distance/length of an edge
+   *
+   * @param index Index of data entry
+   * @returns The length of the edge
+   */
+  readonly getDistanceAt = (index: number) => this.getDistanceFor(this.at(index));
+
+  /**
+   * Get the distance/length of an edge
+   *
+   * @param obj Raw edge data entry
+   * @returns The length of the edge
+   */
+  readonly getDistanceFor = (obj: AnyDataEntry) => {
+    const xDiff = this.getX1For(obj) - this.getX2For(obj);
+    const yDiff = this.getY1For(obj) - this.getY2For(obj);
+    const zDiff = this.getZ1For(obj) - this.getZ2For(obj);
+    return Math.hypot(xDiff, yDiff, zDiff);
   };
 }
 

@@ -9,6 +9,7 @@ import {
   loadViewData,
   loadViewKeyMapping,
 } from './data-view';
+import { cachedAccessor } from './utils';
 
 /** Color map input */
 export type ColorMapInput = DataViewInput<ColorMapView>;
@@ -45,11 +46,7 @@ export class ColorMapView extends BaseColorMapView {
    *
    * @returns A `ColorMap`
    */
-  readonly getColorMap = () => {
-    if (this.colorMap) {
-      return this.colorMap;
-    }
-
+  readonly getColorMap = cachedAccessor(this, () => {
     const domain: string[] = [];
     const range: Color[] = [];
     for (const obj of this) {
@@ -57,9 +54,8 @@ export class ColorMapView extends BaseColorMapView {
       range.push(this.getCellColorFor(obj));
     }
 
-    this.colorMap = { domain, range };
-    return this.colorMap;
-  };
+    return { domain, range };
+  });
 
   /**
    * Get the domain of the color map
@@ -74,8 +70,19 @@ export class ColorMapView extends BaseColorMapView {
    */
   readonly getRange = () => this.getColorMap().range;
 
-  /** Cached color map object */
-  private colorMap?: ColorMap = undefined;
+  /**
+   * Get a mapping from type to color
+   *
+   * @returns A `Map`
+   */
+  readonly getColorLookup = cachedAccessor(this, () => {
+    const lookup = new Map<string, Color>();
+    for (const obj of this) {
+      lookup.set(this.getCellTypeFor(obj), this.getCellColorFor(obj));
+    }
+
+    return lookup;
+  });
 }
 
 /**

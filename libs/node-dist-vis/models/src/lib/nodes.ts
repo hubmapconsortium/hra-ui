@@ -10,6 +10,7 @@ import {
   loadViewData,
   loadViewKeyMapping,
 } from './data-view';
+import { cachedAccessor } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -49,7 +50,7 @@ export class NodesView extends BaseNodesView {
    * @returns The position in format [x, y, z]
    */
   readonly getPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getPositionFor(this.data[index], info);
+    this.getPositionFor(this.at(index), info);
 
   /**
    * Get the position of a node.
@@ -74,11 +75,7 @@ export class NodesView extends BaseNodesView {
    *
    * @returns An array of [minimum, maximum] values
    */
-  readonly getDimensions = (): [number, number] => {
-    if (this.dimensions) {
-      return this.dimensions;
-    }
-
+  readonly getDimensions = cachedAccessor(this, (): [number, number] => {
     let min = Number.MAX_VALUE;
     let max = -Number.MAX_VALUE;
     for (const obj of this) {
@@ -89,12 +86,8 @@ export class NodesView extends BaseNodesView {
       max = Math.max(max, x, y, z);
     }
 
-    this.dimensions = [min, max];
-    return this.dimensions;
-  };
-
-  /** Cached dimensions */
-  private dimensions?: [number, number] = undefined;
+    return [min, max];
+  });
 }
 
 /**

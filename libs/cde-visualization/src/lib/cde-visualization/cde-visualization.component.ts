@@ -7,38 +7,37 @@ import {
   effect,
   inject,
   input,
-  model,
   output,
   signal,
   ViewContainerRef,
 } from '@angular/core';
-import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import {
+  ColorMapInput,
+  ColorMapKeysInput,
+  ColorMapView,
+  EdgeKeysInput,
+  EdgesInput,
+  loadColorMap,
+  loadEdges,
+  loadNodes,
+  NodeKeysInput,
+  NodesInput,
+} from '@hra-ui/node-dist-vis/models';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
-import {
-  ColorMapColorKey,
-  ColorMapEntry,
-  colorMapToLookup,
-  ColorMapTypeKey,
-  DEFAULT_COLOR_MAP_KEY,
-  DEFAULT_COLOR_MAP_VALUE_KEY,
-} from '../models/color-map';
-import { DEFAULT_MAX_EDGE_DISTANCE, edgeDistance, EdgeEntry, EdgeIndex } from '../models/edge';
-import { Metadata } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
-import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
-import { DataLoaderService } from '../services/data/data-loader.service';
+import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
+import { loadMetadata, MetadataInput } from '../models/metadata';
+import { DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
-import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
+import { numberAttribute } from '../shared/attribute-transform';
 import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
-import { mergeObjects } from '../shared/merge';
-import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -71,36 +70,29 @@ export class CdeVisualizationComponent {
   /** Link to the home page */
   readonly homeLink = input<string>('https://apps.humanatlas.io/cde/');
 
-  /** Input nodes data, can be a url or array of node entry */
-  readonly nodes = input<string | NodeEntry[]>();
+  /** Node data */
+  readonly nodes = input<NodesInput>();
+  /** Node key mapping data */
+  readonly nodeKeys = input<NodeKeysInput>();
+  /** Node target selector used when calculating edges */
+  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_VALUE);
 
-  /** Key for node target attribute */
-  readonly nodeTargetKey = input(undefined, { transform: brandAttribute<string, NodeTargetKey>() });
-
-  /** Value for node target attribute */
-  readonly nodeTargetValue = input<string>();
-
-  /** Input edges data */
-  readonly edges = model<string | EdgeEntry[]>();
-
-  /** Maximum edge distance */
+  /** Edge data if already calculated */
+  readonly edges = input<EdgesInput>();
+  /** Edge key mapping data */
+  readonly edgeKeys = input<EdgeKeysInput>();
+  /** Max distance to consider when calculating edges */
   readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, {
     transform: numberAttribute(DEFAULT_MAX_EDGE_DISTANCE),
   });
 
-  /** Input color map data */
-  readonly colorMap = model<string | ColorMapEntry[]>();
-
-  /** Key for color map type attribute */
-  readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
-
-  /** Key for color map value attribute */
-  readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
-    transform: brandAttribute<string, ColorMapColorKey>(),
-  });
+  /** Color map data */
+  readonly colorMap = input<ColorMapInput>();
+  /** Color map key mapping data */
+  readonly colorMapKeys = input<ColorMapKeysInput>();
 
   /** Input metadata */
-  readonly metadata = input<string | Metadata>();
+  readonly metadata = input<MetadataInput>();
 
   /** Title of the visualization */
   readonly title = input<string>();
@@ -124,7 +116,7 @@ export class CdeVisualizationComponent {
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
 
   /** Creation timestamp (ms since 1/1/1970 UTC) */
-  readonly creationTimestamp = input<number>();
+  readonly creationTimestamp = input(undefined, { transform: numberAttribute() });
 
   /** Event emitted when a node is clicked */
   readonly nodeClick = output<NodeEntry>();
@@ -132,58 +124,76 @@ export class CdeVisualizationComponent {
   /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** View of the node data */
+  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys);
+  /** View of the edge data */
+  protected readonly edgesView = loadEdges(this.edges, this.edgeKeys);
+  /** View of the color map */
+  protected readonly colorMapView = loadColorMap(this.colorMap, this.colorMapKeys);
+
+  protected readonly metadataView = loadMetadata(this.metadata, {
+    title: this.title,
+    organ: this.organ,
+    technology: this.technology,
+    sex: this.sex,
+    age: this.age,
+    thickness: this.thickness,
+    pixelSize: this.pixelSize,
+    creationTimestamp: this.creationTimestamp,
+  });
+
   /** Injected data loader service */
-  private readonly dataLoader = inject(DataLoaderService);
+  // private readonly dataLoader = inject(DataLoaderService);
 
   /** Loaded nodes data */
-  readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
-    papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
-  });
+  // readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
+  //   papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
+  // });
 
   /** Key for node type attribute */
-  readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
+  // readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
 
   /** Selected node target value */
-  readonly selectedNodeTargetValue = computed(
-    () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
-  );
+  // readonly selectedNodeTargetValue = computed(
+  //   () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
+  // );
 
   /** Loaded edges data */
-  readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
-    papaparse: { dynamicTyping: true },
-  });
+  // readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
+  //   papaparse: { dynamicTyping: true },
+  // });
 
   /** Loaded color map data */
-  readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
-    papaparse: { header: true },
-  });
+  // readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
+  //   papaparse: { header: true },
+  // });
 
   /** Key for color map type attribute */
-  readonly colorMapTypeKey = computed(
-    () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
-  );
+  // readonly colorMapTypeKey = computed(
+  //   () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
+  // );
 
   /** Lookup table for color map */
-  private readonly colorMapLookup = computed(() =>
-    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
-  );
+  // private readonly colorMapLookup = computed(() =>
+  //   colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
+  // );
 
   /** Loaded metadata */
-  readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
+  // readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
 
   /** Merged metadata with input properties */
-  readonly mergedMetadata = computed(() =>
-    mergeObjects(this.loadedMetadata(), {
-      title: this.title(),
-      technology: this.technology(),
-      organ: this.organ(),
-      sex: this.sex(),
-      age: this.age(),
-      creationTimestamp: this.creationTimestamp(),
-      thickness: this.thickness(),
-      pixelSize: this.pixelSize(),
-    }),
-  );
+  // readonly mergedMetadata = computed(() =>
+  //   mergeObjects(this.loadedMetadata(), {
+  //     title: this.title(),
+  //     technology: this.technology(),
+  //     organ: this.organ(),
+  //     sex: this.sex(),
+  //     age: this.age(),
+  //     creationTimestamp: this.creationTimestamp(),
+  //     thickness: this.thickness(),
+  //     pixelSize: this.pixelSize(),
+  //   }),
+  // );
 
   /** List of cell types */
   readonly cellTypes = signal<CellTypeEntry[]>([]);
@@ -197,43 +207,46 @@ export class CdeVisualizationComponent {
   /** Computed cell types as color map entries */
   readonly cellTypesAsColorMap = computed(
     () => {
-      const cellTypes = this.cellTypes();
-      const typeKey = this.colorMapTypeKey();
-      const colorKey = this.colorMapValueKey();
+      return new ColorMapView(this.cellTypes(), {
+        'Cell Type': 'name',
+        'Cell Color': 'color',
+      });
+      // const cellTypes = this.cellTypes();
+      // const typeKey = this.colorMapTypeKey();
+      // const colorKey = this.colorMapValueKey();
 
-      return cellTypes.map(
-        (entry) =>
-          ({
-            [typeKey]: entry.name,
-            [colorKey]: entry.color,
-          }) as ColorMapEntry,
-      );
+      // return cellTypes.map(
+      //   (entry) =>
+      //     ({
+      //       [typeKey]: entry.name,
+      //       [colorKey]: entry.color,
+      //     }) as ColorMapEntry,
+      // );
     },
-    { equal: emptyArrayEquals },
+    // { equal: emptyArrayEquals },
   );
 
   /** Computed cell types from loaded nodes */
   readonly cellTypesFromNodes = computed(() => {
-    const nodes = this.loadedNodes();
-    const edges = this.loadedEdges();
-    const targetKey = this.nodeTypeKey();
+    const nodes = this.nodesView();
+    const edges = this.edgesView();
+    const colorMapLookup = this.colorMapView().getColorLookup();
     const defaultColorGenerator = createColorGenerator();
     const cellTypeByName: Record<string, CellTypeEntry> = {};
 
     for (const node of nodes) {
-      const name = node[targetKey];
+      const name = nodes.getCellTypeFor(node); // node[targetKey];
       cellTypeByName[name] ??= {
         name,
         count: 0,
         outgoingEdgeCount: 0,
-        color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
+        color: (colorMapLookup.get(name) as Rgb) ?? defaultColorGenerator(),
       };
       cellTypeByName[name].count += 1;
     }
 
     for (const edge of edges) {
-      const node = nodes[edge[EdgeIndex.SourceNode]];
-      const name = node[targetKey];
+      const name = nodes.getCellTypeAt(edges.getCellIDFor(edge));
       cellTypeByName[name].outgoingEdgeCount += 1;
     }
 
@@ -262,7 +275,7 @@ export class CdeVisualizationComponent {
   protected readonly filteredCellTypes = computed(
     () => {
       const selection = new Set(this.cellTypesSelection());
-      selection.delete(this.selectedNodeTargetValue());
+      selection.delete(this.nodeTargetSelector());
       const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
       return filtered.sort((a, b) => b.count - a.count);
     },
@@ -295,18 +308,18 @@ export class CdeVisualizationComponent {
 
   /** Download nodes data as CSV */
   downloadNodes(): void {
-    const nodes = this.loadedNodes();
-    if (nodes.length > 0) {
-      this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
-    }
+    // const nodes = this.loadedNodes();
+    // if (nodes.length > 0) {
+    //   this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
+    // }
   }
 
   /** Download edges data as CSV */
   downloadEdges(): void {
-    const edges = this.loadedEdges();
-    if (edges.length > 0) {
-      this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
-    }
+    // const edges = this.loadedEdges();
+    // if (edges.length > 0) {
+    //   this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
+    // }
   }
 
   // Add appropriate headers to edge data
@@ -324,12 +337,12 @@ export class CdeVisualizationComponent {
 
   /** Download color map as CSV */
   downloadColorMap(): void {
-    const colorKey = this.colorMapValueKey();
-    const colorMap = this.cellTypesAsColorMap();
-    const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
-    if (data.length > 0) {
-      this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
-    }
+    // const colorKey = this.colorMapValueKey();
+    // const colorMap = this.cellTypesAsColorMap();
+    // const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
+    // if (data.length > 0) {
+    //   this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
+    // }
   }
 
   /** Convert headers in an array of objects to title case */
@@ -343,20 +356,19 @@ export class CdeVisualizationComponent {
 
   /** Compute distances between nodes based on edges */
   private computeDistances(): DistanceEntry[] {
-    const nodes = this.loadedNodes();
-    const edges = this.loadedEdges();
+    const nodes = this.nodesView();
+    const edges = this.edgesView();
     if (nodes.length === 0 || edges.length === 0) {
       return [];
     }
 
-    const nodeTypeKey = this.nodeTypeKey();
-    const selectedCellType = this.selectedNodeTargetValue();
+    // const nodeTypeKey = this.nodeTypeKey();
+    const selectedCellType = this.nodeTargetSelector();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
-      const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
-      const type = sourceNode[nodeTypeKey];
+      const type = nodes.getCellTypeAt(edges.getCellIDFor(edge));
       if (type !== selectedCellType) {
-        distances.push({ type, distance: edgeDistance(edge) });
+        distances.push({ type, distance: edges.getDistanceFor(edge) });
       }
     }
 

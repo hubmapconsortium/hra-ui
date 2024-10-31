@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "cde",
   "sourceRoot": "apps/cde-ui/src",
-  "tags": ["app", "cde"],
+  "tags": ["type:app", "project:cde"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",

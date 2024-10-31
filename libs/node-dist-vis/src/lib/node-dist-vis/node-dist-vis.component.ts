@@ -204,6 +204,20 @@ export class NodeDistVisComponent {
   }
 
   /**
+   * Creates a blob representing the image in the canvas.
+   *
+   * @param type Image format (default: image/png)
+   * @param quality Image quality, a number between 0 and 1
+   * @returns A data blob
+   */
+  toBlob(type?: string, quality?: number): Promise<Blob | null> {
+    return new Promise((resolve) => {
+      this.deck().redraw('toDataUrl');
+      this.canvas().toBlob(resolve, type, quality);
+    });
+  }
+
+  /**
    * Get the cursor to display
    *
    * @param state Cursor state

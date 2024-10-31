@@ -17,6 +17,23 @@ export function isRecordObject(obj: unknown): obj is Record<PropertyKey, unknown
 }
 
 /**
+ * Caches the result of a no-argument accessor method returning the cached value on future calls.
+ *
+ * @param instance Instance to cache the result on
+ * @param accessor Original accessor method
+ * @returns A caching accessor method
+ */
+export function cachedAccessor<Res>(instance: object, accessor: () => Res): () => Res {
+  const cacheKey = Symbol();
+  const obj = instance as Record<symbol, Res>;
+
+  return () => {
+    obj[cacheKey] ??= accessor();
+    return obj[cacheKey];
+  };
+}
+
+/**
  * Tries to parse a value as json
  *
  * @param value Value to parse
