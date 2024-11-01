@@ -29,12 +29,13 @@
       hra-fullscreen-portal {
         width: 100%;
       }
-      
-    .legend {
-      --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
-      overflow-y: auto;
-      flex-grow: 1;
-      margin-left: 0.125rem;
+
+      .legend {
+        --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+        overflow-y: auto;
+        flex-grow: 1;
+        margin-left: 0.125rem;
+      }
 
       .histogram {
         width: 100%;
