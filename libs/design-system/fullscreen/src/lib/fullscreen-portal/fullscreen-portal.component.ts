@@ -187,6 +187,7 @@ export class FullscreenPortalComponent {
     this.dialogRef?.close();
   }
 
+  /** Filters the dialog event based on provided dialog reference */
   private filterDialogEvents<T>(dialogRef: MatDialogRef<void>): MonoTypeOperatorFunction<T> {
     return pipe(
       takeUntilDestroyed(this.destroyRef),
