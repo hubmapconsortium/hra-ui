@@ -18,6 +18,7 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { filter, MonoTypeOperatorFunction, pipe } from 'rxjs';
 
 /** View outlet directive */
 @Directive({
@@ -137,7 +138,9 @@ export class FullscreenPortalComponent {
   /** Destroys the view */
   constructor() {
     this.destroyRef.onDestroy(() => {
-      this.close();
+      const dialogRef = this.dialogRef;
+      this.dialogRef = undefined;
+      dialogRef?.close();
       this.viewRef().destroy();
     });
   }
@@ -148,7 +151,7 @@ export class FullscreenPortalComponent {
       return;
     }
 
-    const { destroyRef, dialogService, dialogTemplateRef } = this;
+    const { dialogService, dialogTemplateRef } = this;
 
     this.beforeOpened.emit();
     const dialogRef = (this.dialogRef = dialogService.open(dialogTemplateRef(), {
@@ -157,14 +160,14 @@ export class FullscreenPortalComponent {
 
     dialogRef
       .afterOpened()
-      .pipe(takeUntilDestroyed(destroyRef))
+      .pipe(this.filterDialogEvents(dialogRef))
       .subscribe(() => {
         this.opened.emit();
       });
 
     dialogRef
       .beforeClosed()
-      .pipe(takeUntilDestroyed(destroyRef))
+      .pipe(this.filterDialogEvents(dialogRef))
       .subscribe(() => {
         this.beforeClosed.emit();
         this.viewOutlet().attach();
@@ -172,7 +175,7 @@ export class FullscreenPortalComponent {
 
     dialogRef
       .afterClosed()
-      .pipe(takeUntilDestroyed(destroyRef))
+      .pipe(this.filterDialogEvents(dialogRef))
       .subscribe(() => {
         this.dialogRef = undefined;
         this.closed.emit();
@@ -182,5 +185,12 @@ export class FullscreenPortalComponent {
   /** Closes the dialog */
   close(): void {
     this.dialogRef?.close();
+  }
+
+  private filterDialogEvents<T>(dialogRef: MatDialogRef<void>): MonoTypeOperatorFunction<T> {
+    return pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter(() => this.dialogRef === dialogRef),
+    );
   }
 }

@@ -58,9 +58,8 @@ export class ColorPickerLabelComponent {
 
   /** Handle hover event to open the tooltip if label width exceeds the max width */
   handleHover(event: MouseEvent): void {
-    console.log('hovered', event);
-    if (Math.floor((event.target as HTMLElement).getBoundingClientRect().width) === MAX_LABEL_WIDTH) {
-      console.log('true');
+    const width = Math.floor((event.target as HTMLElement).getBoundingClientRect().width);
+    if (width >= MAX_LABEL_WIDTH) {
       this.tooltipOpen = true;
     }
   }

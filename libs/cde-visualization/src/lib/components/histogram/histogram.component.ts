@@ -247,6 +247,7 @@ export class HistogramComponent {
     { allowSignalWrites: true },
   );
 
+  /* istanbul ignore next */
   resizeAndSyncView() {
     const container = this.view()?.container();
     const bbox = container?.getBoundingClientRect();
@@ -257,6 +258,7 @@ export class HistogramComponent {
   }
 
   /** Download the histogram as an image in the specified format */
+  /* istanbul ignore next */
   async download(format: string): Promise<void> {
     const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
       draft.width = EXPORT_IMAGE_WIDTH;

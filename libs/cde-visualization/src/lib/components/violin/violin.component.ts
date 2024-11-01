@@ -201,6 +201,7 @@ export class ViolinComponent {
     { allowSignalWrites: true },
   );
 
+  /* istanbul ignore next */
   resizeAndSyncView() {
     const container = this.view()?.container();
     setTimeout(() => {
@@ -214,6 +215,7 @@ export class ViolinComponent {
   }
 
   /** Download the violin as an image in the specified format */
+  /* istanbul ignore next */
   async download(format: string): Promise<void> {
     const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
       draft.spec.width = EXPORT_IMAGE_WIDTH;

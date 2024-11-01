@@ -2,20 +2,20 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { Metadata } from '../../models/metadata';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { MatMenuModule } from '@angular/material/menu';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ButtonSizeDirective } from '@hra-ui/design-system/button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { Metadata } from '../../models/metadata';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -127,19 +127,5 @@ export class MetadataComponent {
   /** Formats the creation timestamp using a given formatter */
   formatCreationTimestamp(format: Intl.DateTimeFormat): string | undefined {
     return format.format(this.metadata().creationTimestamp);
-  }
-
-  /** Toggles the expansion panel only if clicked on the expansion indicator */
-  togglePanel(event: MouseEvent, panel: MatExpansionPanel): void {
-    if (!this.isExpansionIndicator(event.target as HTMLElement)) {
-      panel.toggle();
-    } else {
-      event.stopPropagation();
-    }
-  }
-
-  /** Returns if click target contains expansion indicator class */
-  private isExpansionIndicator(target: HTMLElement): boolean {
-    return target.classList.contains('expansion-indicator');
   }
 }
