@@ -1,6 +1,6 @@
 <hra-expansion-panel [title]="'Histogram'">
   <hra-expansion-panel-actions>
-    <cde-histogram-menu></cde-histogram-menu>
+    <cde-histogram-menu (open)="histogramEl().open()" (download)="download($event)"></cde-histogram-menu>
   </hra-expansion-panel-actions>
   <hra-expansion-panel-header-content>
     <cde-color-picker-label

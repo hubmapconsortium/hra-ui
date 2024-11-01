@@ -28,6 +28,7 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
+import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 
 /** Interface for modifying the violin specification */
 interface ModifiableViolinSpec {
@@ -124,6 +125,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ExpansionPanelHeaderContentComponent,
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
+    ViolinMenuComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',

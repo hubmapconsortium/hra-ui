@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { ButtonModule } from '@hra-ui/design-system/button';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { ButtonModule } from '@hra-ui/design-system/button';
 
 @Component({
-  selector: 'cde-histogram-menu',
+  selector: 'cde-violin-menu',
   standalone: true,
-  imports: [CommonModule, MatMenuModule, MatIconModule, IconButtonSizeDirective, ButtonModule],
-  templateUrl: './histogram-menu.component.html',
-  styleUrl: './histogram-menu.component.scss',
+  imports: [CommonModule, MatIconModule, MatMenuModule, IconButtonSizeDirective, ButtonModule],
+  templateUrl: './violin-menu.component.html',
+  styleUrl: './violin-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HistogramMenuComponent {
+export class ViolinMenuComponent {
   /** Flag to check if dialog is opened */
   dialogOpen = input(false, { transform: booleanAttribute });
   /** Event to emit when dialog is opened */
