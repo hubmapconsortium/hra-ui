@@ -1,0 +1,63 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="menu"
+  [hraIconButtonSize]="'large'"
+  aria-label="Icon to open nested menu"
+  hraMicroTooltip="More"
+  (click)="$event.stopPropagation()"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" [class]="'violin-overlay'">
+  <button
+    mat-menu-item
+    [matMenuTriggerFor]="infoSubMenu"
+    matRipple
+    matRippleColor="#201E3D14"
+    (click)="$event.stopImmediatePropagation()"
+  >
+    <mat-icon>info</mat-icon>
+    <span>Info</span>
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  <button
+    mat-menu-item
+    [matMenuTriggerFor]="downloadSubMenu"
+    matRipple
+    matRippleColor="#201E3D14"
+    (click)="$event.stopImmediatePropagation()"
+  >
+    <mat-icon>download</mat-icon>
+    <span>Downloads</span>
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  @if (!dialogOpen()) {
+    <button mat-menu-item (click)="open.emit()">
+      <mat-icon>fullscreen</mat-icon>
+      Full Screen
+    </button>
+  }
+  <a
+    mat-menu-item
+    href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <mat-icon>code</mat-icon>
+    Embed App
+  </a>
+  <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+    This violin plot shows a cell-to-nearest-anchor cell distance distributions categorized by each cell type in the
+    dataset.
+  </mat-menu>
+  <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
+    <button mat-menu-item (click)="$event.stopPropagation(); download.emit('png')">
+      <mat-icon>download</mat-icon>
+      PNG
+    </button>
+    <button mat-menu-item (click)="$event.stopPropagation(); download.emit('svg')">
+      <mat-icon>download</mat-icon>
+      SVG
+    </button>
+  </mat-menu>
+</mat-menu>

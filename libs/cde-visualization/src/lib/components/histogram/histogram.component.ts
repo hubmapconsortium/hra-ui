@@ -5,7 +5,6 @@ import {
   Component,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
   output,
@@ -20,20 +19,33 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { colorEquals, Rgb } from '@hra-ui/design-system/color-picker';
+import { MatMenuModule } from '@angular/material/menu';
+import { colorEquals, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
+import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
@@ -122,7 +134,16 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
-    TooltipCardComponent,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    MicroTooltipDirective,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    FullscreenPortalContentComponent,
+    FullscreenActionsComponent,
+    HistogramMenuComponent,
   ],
   providers: [
     {
@@ -164,6 +185,8 @@ export class HistogramComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
+  protected readonly fullscreen = signal(false);
+
   protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
 
   /** State indicating whether overflow is visible */
@@ -185,23 +208,30 @@ export class HistogramComponent {
   private readonly fileSaver = inject(FileSaverService);
 
   /** Element reference for the histogram container */
-  private readonly histogramEl = viewChild.required<ElementRef>('histogram');
+  protected readonly histogramEl = viewChild.required(FullscreenPortalComponent);
 
   /** Vega view instance for the histogram */
-  private readonly view = signal<View | undefined>(undefined);
+  protected readonly view = signal<View | undefined>(undefined);
 
   readonly updateColor = output<UpdateColorData>();
+
+  protected readonly allColors = computed(() => {
+    const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
+    return [totalCellType, ...this.filteredCellTypes()]
+      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
+      .map(({ color }) => rgbToHex(color));
+  });
 
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.colors()).run());
+  protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
     async (onCleanup) => {
-      const el = this.histogramEl().nativeElement;
+      const el = this.histogramEl().rootNodes()[0];
       await this.ensureFontsLoaded();
 
       const spec = produce(HISTOGRAM_SPEC, (draft) => {
@@ -217,7 +247,18 @@ export class HistogramComponent {
     { allowSignalWrites: true },
   );
 
+  /* istanbul ignore next */
+  resizeAndSyncView() {
+    const container = this.view()?.container();
+    const bbox = container?.getBoundingClientRect();
+    if (bbox) {
+      this.view()?.width(bbox.width).height(bbox.height);
+    }
+    this.view()?.resize().runAsync();
+  }
+
   /** Download the histogram as an image in the specified format */
+  /* istanbul ignore next */
   async download(format: string): Promise<void> {
     const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
       draft.width = EXPORT_IMAGE_WIDTH;

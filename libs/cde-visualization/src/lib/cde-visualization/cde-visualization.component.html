@@ -37,6 +37,7 @@
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
       (edgesChange)="edges.set($event)"
+      (resetAllCells)="resetCellTypes()"
       #visualization
     ></cde-node-dist-visualization>
 

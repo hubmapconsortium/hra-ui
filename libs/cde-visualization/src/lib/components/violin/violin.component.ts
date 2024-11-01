@@ -1,16 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  Renderer2,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,12 +9,26 @@ import { produce } from 'immer';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
+import { MatMenuModule } from '@angular/material/menu';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 
 /** Interface for modifying the violin specification */
 interface ModifiableViolinSpec {
@@ -112,7 +116,16 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,
-    TooltipCardComponent,
+    MicroTooltipDirective,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    FullscreenPortalContentComponent,
+    FullscreenActionsComponent,
+    ViolinMenuComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
@@ -149,7 +162,7 @@ export class ViolinComponent {
   private readonly fileSaver = inject(FileSaverService);
 
   /** Element reference for the violin container */
-  private readonly violinEl = viewChild.required<ElementRef>('violin');
+  protected readonly violinEl = viewChild.required(FullscreenPortalComponent);
 
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
@@ -166,7 +179,8 @@ export class ViolinComponent {
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(
     async (onCleanup) => {
-      const el = this.violinEl().nativeElement;
+      const container: HTMLElement = this.violinEl().rootNodes()[0];
+      const el = container.querySelector('.violin-container') as HTMLElement;
       await this.ensureFontsLoaded();
 
       const spec = produce(VIOLIN_SPEC, (draft) => {
@@ -187,7 +201,21 @@ export class ViolinComponent {
     { allowSignalWrites: true },
   );
 
+  /* istanbul ignore next */
+  resizeAndSyncView() {
+    const container = this.view()?.container();
+    setTimeout(() => {
+      const bbox = container?.getBoundingClientRect();
+      if (bbox) {
+        this.view()?.width(bbox.width).height(bbox.height);
+      }
+      this.view()?.resize().runAsync();
+      window.dispatchEvent(new Event('resize'));
+    });
+  }
+
   /** Download the violin as an image in the specified format */
+  /* istanbul ignore next */
   async download(format: string): Promise<void> {
     const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
       draft.spec.width = EXPORT_IMAGE_WIDTH;

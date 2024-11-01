@@ -4,9 +4,18 @@ import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, inpu
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonSizeDirective } from '@hra-ui/design-system/button';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -45,7 +54,14 @@ export class DefaultToPipe implements PipeTransform {
     MatExpansionModule,
     OverlayModule,
     DefaultToPipe,
-    TooltipCardComponent,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    IconButtonSizeDirective,
+    MicroTooltipDirective,
+    ButtonSizeDirective,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',

@@ -32,6 +32,11 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 /**
  * Cell Type Component
  */
@@ -54,6 +59,9 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
     IconButtonSizeDirective,
     TooltipCardComponent,
     MicroTooltipDirective,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',

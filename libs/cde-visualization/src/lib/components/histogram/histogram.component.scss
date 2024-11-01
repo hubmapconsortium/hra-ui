@@ -1,62 +1,45 @@
 :host {
-  background-color: white;
   border-radius: 0.5rem;
   height: fit-content;
   position: sticky;
+  --mdc-filled-button-container-height: 2rem;
+  --mat-expansion-container-background-color: var(--sys-on-primary);
+  --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
   --mat-expansion-container-shape: 0;
   --mat-expansion-container-background-color: var(--sys-surface-container-low);
 
-  .header {
-    padding: 0 1rem;
+  ::ng-deep {
+    .header {
+      hra-expansion-panel-header-content {
+        display: block;
+        margin-right: 1rem;
 
-    .title {
-      display: flex;
-      margin: 0;
-      gap: 0.25rem;
-      font-size: 1rem;
-      line-height: 1.5rem;
-
-      mat-icon {
-        margin: 2px;
-      }
-
-      button {
-        --mdc-filled-button-container-height: 2rem;
-        --mdc-filled-button-container-color: #d5dbe3;
-        --mdc-filled-button-label-text-color: #201e3d;
-        padding: 0.375rem 0.5rem;
-        margin-left: 0.25rem;
-
-        .mat-icon {
-          margin-right: 0.125rem;
-          margin-left: unset;
-          font-size: 1.25rem;
-          height: 1.25rem;
-          width: 1.25rem;
+        .label {
+          max-width: unset;
         }
       }
     }
-  }
 
-  .content {
-    height: 18rem;
-    display: flex;
-    gap: 1rem;
+    .expansion-body {
+      height: 11.25rem;
+      display: flex;
+      gap: 1rem;
 
-    .histogram {
-      width: calc(100% - 14rem);
-    }
+      hra-fullscreen-portal {
+        width: 100%;
+      }
 
-    .legend {
-      --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
-      overflow-y: auto;
-      flex-grow: 1;
-      margin-left: 0.125rem;
+      .legend {
+        --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+        overflow-y: auto;
+        flex-grow: 1;
+        margin-left: 0.125rem;
+      }
 
-      cde-color-picker-label {
-        align-items: center;
-        max-width: calc(100% - 0.5rem);
+      .histogram {
+        width: 100%;
+        height: 100%;
       }
     }
   }
@@ -64,10 +47,25 @@
   .filler {
     flex-grow: 1;
   }
-}
 
-::ng-deep .mat-expansion-panel-body {
-  padding-right: 1rem !important;
+  ::ng-deep {
+    hra-expansion-panel {
+      hra-expansion-panel-header-content {
+        cde-color-picker-label {
+          .label {
+            font: var(--sys-label-small);
+            display: flex;
+            white-space: unset;
+            max-width: unset;
+          }
+        }
+      }
+
+      .mat-expansion-panel-body {
+        padding: 0 1rem 0.5rem 0.75rem;
+      }
+    }
+  }
 }
 
 ::ng-deep .mat-content-hide-toggle {

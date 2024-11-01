@@ -4,27 +4,42 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   OutputEmitterRef,
   Signal,
   WritableSignal,
+  computed,
   effect,
   inject,
   input,
   isSignal,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import 'hra-node-dist-vis/docs/hra-node-dist-vis.wc.js';
 import { ColorMapEntry } from '../../models/color-map';
 import { EdgeEntry } from '../../models/edge';
 import { NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from '@hra-ui/design-system/fullscreen';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
 /** Utility type to convert properties of an object into an object with a value wrapper */
 type Preactify<T> = {
@@ -74,7 +89,22 @@ function isNonEmptyArray<T>(array: T[]): boolean {
 @Component({
   selector: 'cde-node-dist-visualization',
   standalone: true,
-  imports: [CommonModule, OverlayModule, MatButtonModule, MatIconModule, TooltipCardComponent],
+  imports: [
+    CommonModule,
+    OverlayModule,
+    MatButtonModule,
+    MatIconModule,
+    MicroTooltipDirective,
+    IconButtonSizeDirective,
+    MatMenuModule,
+    MatButtonToggleModule,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    FullscreenActionsComponent,
+    FullscreenPortalContentComponent,
+  ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -114,6 +144,12 @@ export class NodeDistVisualizationComponent {
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** Output event to reset all cells selection */
+  readonly resetAllCells = output();
+
+  /** Flag to check cell links visibility */
+  readonly cellLinksVisible = signal(false);
+
   /** Tooltip position constant */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
@@ -137,7 +173,12 @@ export class NodeDistVisualizationComponent {
   tooltipOpen = false;
 
   /** Reference to the visualization element */
-  private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+  // private readonly vis = viewChild.required<ElementRef<NodeDistVisElement>>('vis');
+
+  /**  */
+  protected readonly vis = viewChild.required(FullscreenPortalComponent);
+
+  private readonly visEl = computed(() => this.vis().rootNodes()[0].childNodes[0] as NodeDistVisElement);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
@@ -164,7 +205,7 @@ export class NodeDistVisualizationComponent {
 
   /** Downloads the visualization as an image */
   download(): void {
-    const el = this.vis().nativeElement;
+    const el = this.visEl();
     const url = el.toDataUrl();
     if (url) {
       this.fileSaver.save(url, 'cell-distance-vis.png');
@@ -173,7 +214,7 @@ export class NodeDistVisualizationComponent {
 
   /** Resets the visualization view */
   resetView(): void {
-    this.vis().nativeElement.resetView();
+    this.visEl().resetView();
   }
 
   /** Binds a property from the visualization element to a signal */
@@ -183,7 +224,7 @@ export class NodeDistVisualizationComponent {
     selector?: (value: NodeDistVisElementProps[K]) => boolean,
   ): void {
     effect(() => {
-      const el = this.vis().nativeElement;
+      const el = this.visEl();
       const data = value();
       if (selector === undefined || selector(data)) {
         el[prop].value = data;
@@ -202,7 +243,7 @@ export class NodeDistVisualizationComponent {
       : (value: T) => outputRef.emit(value);
 
     effect((onCleanup) => {
-      const el = this.vis().nativeElement;
+      const el = this.visEl();
       const handler = (event: Event) => {
         const { detail: data } = event as CustomEvent;
         if (selector === undefined || selector(data)) {
@@ -213,5 +254,10 @@ export class NodeDistVisualizationComponent {
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });
+  }
+
+  /** Toggles the visibility of the cell links */
+  toggleCellLinks(): void {
+    this.cellLinksVisible.set(!this.cellLinksVisible());
   }
 }

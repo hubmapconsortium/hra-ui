@@ -35,4 +35,17 @@ describe('MetadataComponent', () => {
     expect(screen.getByText('December 17, 1995')).toBeInTheDocument();
     expect(screen.getByText('3:24:00 AM')).toBeInTheDocument();
   });
+
+  it('should toggle the empty fields signal', async () => {
+    const { fixture } = await render(MetadataComponent, {
+      componentInputs: {
+        metadata,
+      },
+    });
+    const component = fixture.componentInstance;
+    component.toggleEmptyFields();
+    expect(component.showEmptyFields()).toBe(true);
+    component.toggleEmptyFields();
+    expect(component.showEmptyFields()).toBe(false);
+  });
 });

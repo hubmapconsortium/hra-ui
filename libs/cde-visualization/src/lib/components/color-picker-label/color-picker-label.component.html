@@ -49,9 +49,10 @@
 <div
   cdkOverlayOrigin
   #resetTrigger="cdkOverlayOrigin"
-  class="label mat-caption"
+  class="label"
   (mouseover)="handleHover($event)"
   (mouseout)="tooltipOpen = false"
+  data-testid="label"
 >
   {{ label() }}
   <ng-container>

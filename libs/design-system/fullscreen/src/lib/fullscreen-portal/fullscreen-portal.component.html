@@ -1,0 +1,21 @@
+<ng-template [hraViewOutlet]="viewRef()"> </ng-template>
+
+<ng-template #contentTemplate>
+  <ng-content select="hra-fullscreen-portal-content"></ng-content>
+</ng-template>
+
+<ng-template #dialogTemplate>
+  <hra-expansion-panel [title]="title()" disabled>
+    <hra-expansion-panel-actions>
+      <ng-content select="hra-fullscreen-actions"></ng-content>
+    </hra-expansion-panel-actions>
+
+    <hra-expansion-panel-header-content>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon class="material-symbols-rounded"> close </mat-icon>
+      </button>
+    </hra-expansion-panel-header-content>
+
+    <ng-template [hraViewOutlet]="viewRef()" data-testid="fullscreen-outlet"></ng-template>
+  </hra-expansion-panel>
+</ng-template>
