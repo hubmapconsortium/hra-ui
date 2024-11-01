@@ -116,6 +116,10 @@
       </ng-template>
     </h2>
 
+    @if (visualizationForm.controls.headers.disabled) {
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
+    }
+
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
 
@@ -224,6 +228,10 @@
         <hra-tooltip-card [content]="tooltips[2]"> </hra-tooltip-card>
       </ng-template>
     </h2>
+
+    @if (visualizationForm.controls.parameters.disabled) {
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
+    }
 
     <div class="parameters-1">
       <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">

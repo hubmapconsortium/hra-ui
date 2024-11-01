@@ -26,6 +26,12 @@ mat-form-field.mat-mdc-form-field {
       color: var(--sys-tertiary);
     }
   }
+
+  &.mat-form-field-disabled {
+    mat-label {
+      color: var(--mdc-filled-text-field-disabled-label-text-color);
+    }
+  }
 }
 
 mat-form-field[appearance='outline'] {
