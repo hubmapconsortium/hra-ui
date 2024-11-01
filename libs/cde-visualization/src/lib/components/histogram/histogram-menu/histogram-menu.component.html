@@ -4,7 +4,6 @@
   [hraIconButtonSize]="'large'"
   aria-label="Icon to open nested menu"
   hraMicroTooltip="More"
-  (click)="$event.stopPropagation()"
 >
   <mat-icon>more_vert</mat-icon>
 </button>
@@ -39,11 +38,11 @@
     the dataset.
   </mat-menu>
   <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
-    <button mat-menu-item (click)="$event.stopPropagation(); download.emit('png')">
+    <button mat-menu-item (click)="download.emit('png')">
       <mat-icon>download</mat-icon>
       PNG
     </button>
-    <button mat-menu-item (click)="$event.stopPropagation(); download.emit('svg')">
+    <button mat-menu-item (click)="download.emit('svg')">
       <mat-icon>download</mat-icon>
       SVG
     </button>
