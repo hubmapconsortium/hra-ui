@@ -7,6 +7,7 @@
   --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
   --mat-expansion-container-shape: 0;
+  --mat-expansion-container-background-color: var(--sys-surface-container-low);
 
   ::ng-deep {
     .header {
@@ -28,6 +29,12 @@
       hra-fullscreen-portal {
         width: 100%;
       }
+      
+    .legend {
+      --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+      overflow-y: auto;
+      flex-grow: 1;
+      margin-left: 0.125rem;
 
       .histogram {
         width: 100%;
