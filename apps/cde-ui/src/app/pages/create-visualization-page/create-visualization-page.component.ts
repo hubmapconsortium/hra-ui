@@ -223,18 +223,18 @@ export class CreateVisualizationPageComponent {
   /** Component form controller */
   readonly visualizationForm = this.fbnn.group({
     headers: this.fb.group({
-      xAxis: [''],
-      yAxis: [''],
-      cellType: [''],
-      zAxis: [optionalValue<string>()],
-      ontologyId: [optionalValue<string>()],
+      xAxis: [{ value: '', disabled: true }],
+      yAxis: [{ value: '', disabled: true }],
+      cellType: [{ value: '', disabled: true }],
+      zAxis: [{ value: optionalValue<string>(), disabled: true }],
+      ontologyId: [{ value: optionalValue<string>(), disabled: true }],
     }),
     parameters: this.fb.group({
-      nodeTargetValue: [DEFAULT_NODE_TARGET_VALUE],
-      distanceThreshold: [1000],
-      pixelSizeX: [1, Validators.min(1)],
-      pixelSizeY: [1, Validators.min(1)],
-      pixelSizeZ: [1, Validators.min(1)],
+      nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_VALUE, disabled: true }],
+      distanceThreshold: [{ value: 1000, disabled: true }],
+      pixelSizeX: [{ value: 1, disabled: true }, Validators.min(1)],
+      pixelSizeY: [{ value: 1, disabled: true }, Validators.min(1)],
+      pixelSizeZ: [{ value: 1, disabled: true }, Validators.min(1)],
     }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
@@ -433,6 +433,8 @@ export class CreateVisualizationPageComponent {
       zAxis: this.preSelectedHeader('z'),
       ontologyId: this.preSelectedHeader('ontologyId'),
     });
+    this.visualizationForm.controls['headers'].enable();
+    this.visualizationForm.controls['parameters'].enable();
   }
 
   /**
@@ -460,6 +462,8 @@ export class CreateVisualizationPageComponent {
     this.nodes = undefined;
     this.nodesLoadError = undefined;
     this.setHeaders([]);
+    this.visualizationForm.controls['headers'].disable();
+    this.visualizationForm.controls['parameters'].disable();
   }
 
   /**

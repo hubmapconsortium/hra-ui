@@ -9,7 +9,7 @@
     <hra-brandmark></hra-brandmark>
   </a>
 }
-<a class="app-logo" [href]="appLink()" target="_blank" rel="noopener noreferrer" [attr.alt]="appTitle() + ' logo'">
+<a class="app-logo" [href]="appLink()" [attr.alt]="appTitle() + ' logo'">
   <hra-product-logo [name]="app()" size="small"></hra-product-logo>
 </a>
 
@@ -19,7 +19,7 @@
       <span class="label">{{ appTitle() }}</span>
     </mat-button-toggle>
   } @else {
-    <a class="app-name" [href]="appLink()" target="_blank" rel="noopener noreferrer" aria-label="Return to app home">
+    <a class="app-name" [href]="appLink()" aria-label="Return to app home">
       <span class="app-label">{{ appTitle() }}</span>
     </a>
   }
