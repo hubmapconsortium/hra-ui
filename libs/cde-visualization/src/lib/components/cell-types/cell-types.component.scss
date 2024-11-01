@@ -217,4 +217,13 @@
       padding: 1rem 1rem;
     }
   }
+
+  .info-tooltip-panel {
+    background-color: white;
+    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
+    border-radius: 0.5rem;
+    max-width: 21rem;
+    font: var(--sys-label-medium);
+    color: var(--sys-primary);
+  }
 }

@@ -67,7 +67,7 @@ describe('HistogramComponent', () => {
     });
     await fixture.whenStable();
 
-    const container = screen.getByTestId('histogram');
+    const container = screen.getByTestId('portal-content');
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
   });
 

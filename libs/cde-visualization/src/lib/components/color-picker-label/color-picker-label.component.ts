@@ -7,7 +7,7 @@ import { Rgb, colorEquals, hexToRgb, rgbToHex } from '@hra-ui/design-system/colo
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
 /** Maximum cell width for the cell type label */
-const MAX_LABEL_WIDTH = 168;
+const MAX_LABEL_WIDTH = 104;
 
 /**
  * Color Picker Label Component
@@ -58,7 +58,9 @@ export class ColorPickerLabelComponent {
 
   /** Handle hover event to open the tooltip if label width exceeds the max width */
   handleHover(event: MouseEvent): void {
-    if ((event.target as HTMLElement).getBoundingClientRect().width === MAX_LABEL_WIDTH) {
+    console.log('hovered', event);
+    if (Math.floor((event.target as HTMLElement).getBoundingClientRect().width) === MAX_LABEL_WIDTH) {
+      console.log('true');
       this.tooltipOpen = true;
     }
   }

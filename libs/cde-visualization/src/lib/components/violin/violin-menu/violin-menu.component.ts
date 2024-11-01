@@ -15,7 +15,7 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 })
 export class ViolinMenuComponent {
   /** Flag to check if dialog is opened */
-  dialogOpen = input(false, { transform: booleanAttribute });
+  readonly dialogOpen = input(false, { transform: booleanAttribute });
   /** Event to emit when dialog is opened */
   readonly open = output();
   /** Event to emit to download assets */

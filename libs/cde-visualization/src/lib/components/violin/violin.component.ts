@@ -205,7 +205,6 @@ export class ViolinComponent {
     const container = this.view()?.container();
     setTimeout(() => {
       const bbox = container?.getBoundingClientRect();
-      console.log(bbox);
       if (bbox) {
         this.view()?.width(bbox.width).height(bbox.height);
       }

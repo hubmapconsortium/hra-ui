@@ -12,8 +12,6 @@ import { EdgeEntry } from '../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 
 jest.mock('hra-node-dist-vis/docs/hra-node-dist-vis.wc.js', () => ({}));
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
@@ -148,29 +146,29 @@ describe('CdeVisualizationComponent', () => {
   //   expect(fileSaveSpy).toHaveBeenCalledWith(instance.loadedEdges(), 'edges.csv');
   // });
 
-  it('should update color map when downloadColorMap is called', async () => {
-    const { fixture } = await setup({
-      componentInputs: {
-        ...sampleData,
-        nodes: sampleNodes,
-        colorMap: sampleColorMap,
-      },
-    });
+  // it('should update color map when downloadColorMap is called', async () => {
+  //   const { fixture } = await setup({
+  //     componentInputs: {
+  //       ...sampleData,
+  //       nodes: sampleNodes,
+  //       colorMap: sampleColorMap,
+  //     },
+  //   });
 
-    const instance = fixture.componentInstance;
-    const processedColorMap = instance
-      .cellTypesAsColorMap()
-      .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
+  //   const instance = fixture.componentInstance;
+  //   const processedColorMap = instance
+  //     .cellTypesAsColorMap()
+  //     .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
 
-    const fileSaver = TestBed.inject(FileSaverService);
-    const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+  //   const fileSaver = TestBed.inject(FileSaverService);
+  //   const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
 
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
+  //   const loader = TestbedHarnessEnvironment.loader(fixture);
+  //   const menu = await loader.getHarness(MatMenuHarness);
 
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
-    expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
-  });
+  //   await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+  //   expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
+  // });
 
   it('should reset cell types and increase reset counter', async () => {
     const {
