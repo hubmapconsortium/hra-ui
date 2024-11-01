@@ -5,6 +5,7 @@
   position: sticky;
   max-height: 22.5rem;
   --mat-expansion-container-shape: 0;
+  --mat-expansion-container-background-color: var(--sys-surface-container-low);
 
   .header {
     padding: 0 1rem;
@@ -48,6 +49,7 @@
     }
 
     .legend {
+      --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
       overflow-y: auto;
       flex-grow: 1;
       margin-left: 0.125rem;

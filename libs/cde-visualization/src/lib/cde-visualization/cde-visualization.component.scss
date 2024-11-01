@@ -7,6 +7,7 @@
     'header visualization'
     'metadata visualization';
   color: var(--sys-secondary);
+  background: var(--sys-surface-container-low);
 
   .header {
     grid-area: header;
