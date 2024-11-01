@@ -1,13 +1,6 @@
 mat-button-toggle-group {
   --mat-standard-button-toggle-shape: 0.25rem;
   --mat-standard-button-toggle-divider-color: var(--sys-primary);
-  --mat-standard-button-toggle-selected-state-background-color: color-mix(
-    in srgb,
-    var(--sys-tertiary) 20%,
-    transparent
-  );
-  --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
-  --mat-standard-button-toggle-hover-state-layer-opacity: 0.04;
 
   &.mat-button-toggle-group-appearance-standard {
     border: unset;
@@ -17,10 +10,6 @@ mat-button-toggle-group {
   .mat-button-toggle {
     width: 100%;
     font: inherit;
-
-    &:active {
-      --mat-standard-button-toggle-hover-state-layer-opacity: 0.08;
-    }
   }
 
   .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
