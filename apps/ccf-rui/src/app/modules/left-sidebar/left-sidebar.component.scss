@@ -1,8 +1,18 @@
 :host {
   display: block;
-  height: calc(100% - 2.5rem);
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  height: 100%;
+
+  .opacity-settings {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0 0.5rem 1.25rem;
+  }
+
+  hra-expansion-panel {
+    ccf-visibility-menu {
+      padding: 0 0.75rem;
+    }
+  }
 
   .scroll-wrapper {
     overflow-y: scroll;

@@ -4,6 +4,24 @@
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 
+  hra-expansion-panel {
+    ::ng-deep {
+      .content {
+        margin: 0 1rem;
+      }
+    }
+  }
+
+  .buttons {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+
+    ccf-review-button {
+      flex-grow: 1;
+    }
+  }
+
   .info-button-container {
     height: 3.75rem;
     display: flex;

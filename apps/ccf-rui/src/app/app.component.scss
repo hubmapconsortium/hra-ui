@@ -6,6 +6,10 @@
   font-size: 1rem;
   color: black;
 
+  hra-nav-header-buttons {
+    margin: 0.75rem;
+  }
+
   .header-hidden {
     display: none;
   }
@@ -81,6 +85,7 @@
       .stage-content {
         border-radius: 0.5rem;
         height: calc(100% - 2.5rem);
+        top: 3rem;
       }
 
       .expanded-stage {
