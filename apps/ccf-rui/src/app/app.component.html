@@ -25,50 +25,46 @@
   </ccf-drawer>
 
   <ccf-drawer-content>
-    <div class="stage-header">
-      <hra-expansion-panel [title]="'Registration'" disabled>
-        <hra-expansion-panel-actions>
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            [hraIconButtonSize]="'large'"
-            aria-label="Icon to open nested menu"
-            hraMicroTooltip="More"
-            (click)="$event.stopPropagation()"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" [class]="'vis-overlay'">
-            <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset all</button>
-            <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset camera view</button>
-            <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset tissue block</button>
-            <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset registration metadata</button>
-          </mat-menu>
-        </hra-expansion-panel-actions>
-        <hra-expansion-panel-header-content>
-          <mat-button-toggle-group
-            name="sideSelect"
-            aria-label="Side Select"
-            hideSingleSelectionIndicator
-            hraButtonToggleSize="medium"
-          >
-            <mat-button-toggle value="left" checkedks>Left</mat-button-toggle>
-            <mat-button-toggle value="right">Right</mat-button-toggle>
-            <mat-button-toggle value="anterior">Anterior</mat-button-toggle>
-            <mat-button-toggle value="posterior">Posterior</mat-button-toggle>
-          </mat-button-toggle-group>
-          <mat-button-toggle-group
-            name="modeSelect"
-            aria-label="Mode Select"
-            hideSingleSelectionIndicator
-            hraButtonToggleSize="medium"
-          >
-            <mat-button-toggle value="register" checkedks>Register</mat-button-toggle>
-            <mat-button-toggle value="preview">Preview</mat-button-toggle>
-          </mat-button-toggle-group>
-        </hra-expansion-panel-header-content>
-      </hra-expansion-panel>
-    </div>
+    <hra-expansion-panel [title]="'Registration'" disabled>
+      <hra-expansion-panel-actions>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [hraIconButtonSize]="'large'"
+          aria-label="Icon to open nested menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [class]="'reg-overlay'">
+          <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset all</button>
+          <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset camera view</button>
+          <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset tissue block</button>
+          <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset registration metadata</button>
+        </mat-menu>
+      </hra-expansion-panel-actions>
+      <hra-expansion-panel-header-content>
+        <mat-button-toggle-group
+          name="sideSelect"
+          aria-label="Side Select"
+          hideSingleSelectionIndicator
+          hraButtonToggleSize="medium"
+        >
+          <mat-button-toggle value="left" checked>Left</mat-button-toggle>
+          <mat-button-toggle value="right">Right</mat-button-toggle>
+          <mat-button-toggle value="anterior">Anterior</mat-button-toggle>
+          <mat-button-toggle value="posterior">Posterior</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-button-toggle-group
+          name="modeSelect"
+          aria-label="Mode Select"
+          hideSingleSelectionIndicator
+          hraButtonToggleSize="medium"
+        >
+          <mat-button-toggle value="register" checked>Register</mat-button-toggle>
+          <mat-button-toggle value="preview">Preview</mat-button-toggle>
+        </mat-button-toggle-group>
+      </hra-expansion-panel-header-content>
+    </hra-expansion-panel>
     <ccf-content class="stage-content" [disablePositionChange]="disablePositionChange"></ccf-content>
   </ccf-drawer-content>
 </ccf-drawer-container>

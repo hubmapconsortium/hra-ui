@@ -10,6 +10,20 @@
     margin: 0.75rem;
   }
 
+  hra-expansion-panel {
+    padding: 1rem;
+    ::ng-deep .title {
+      font: var(--sys-label-large);
+    }
+    hra-expansion-panel-header-content {
+      display: flex;
+      gap: 1rem;
+      mat-button-toggle-group {
+        --mat-standard-button-toggle-height: auto;
+      }
+    }
+  }
+
   .header-hidden {
     display: none;
   }
@@ -84,8 +98,8 @@
 
       .stage-content {
         border-radius: 0.5rem;
-        height: calc(100% - 2.5rem);
-        top: 3rem;
+        height: calc(100% - 4.5rem);
+        top: 4.5rem;
       }
 
       .expanded-stage {
@@ -110,6 +124,14 @@
   }
 }
 
-::ng-deep .mdc-snackbar__surface {
-  box-shadow: none !important;
+::ng-deep {
+  .mdc-snackbar__surface {
+    box-shadow: none !important;
+  }
+
+  .reg-overlay {
+    button.mat-mdc-menu-item .mat-mdc-menu-item-text {
+      font: var(--sys-label-medium);
+    }
+  }
 }

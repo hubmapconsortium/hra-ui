@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 0 0.5rem 1.25rem;
+    font: var(--sys-label-large);
   }
 
   hra-expansion-panel {
@@ -109,5 +110,13 @@
 
   .filler {
     flex-grow: 1;
+  }
+}
+
+::ng-deep {
+  .opacity-overlay {
+    button.mat-mdc-menu-item .mat-mdc-menu-item-text {
+      font: var(--sys-label-medium);
+    }
   }
 }
