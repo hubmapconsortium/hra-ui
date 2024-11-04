@@ -2,19 +2,10 @@
   display: flex;
   flex-direction: column;
 
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
-
   .header {
     display: flex;
     align-items: center;
-    height: 1.5rem;
     padding: 0.5rem 0;
-
-    .title {
-      font-weight: 400;
-    }
 
     .refresh {
       transform: scaleX(-1);

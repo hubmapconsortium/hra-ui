@@ -6,10 +6,17 @@
 
   hra-expansion-panel {
     ::ng-deep {
+      .title {
+        font: var(--sys-label-large);
+      }
       .content {
         margin: 0 1rem;
       }
     }
+  }
+
+  .tissue-block-settings {
+    border-bottom: 1px solid #acb5c3;
   }
 
   .buttons {

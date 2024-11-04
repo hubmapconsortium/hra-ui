@@ -22,7 +22,7 @@
   </mat-menu>
 </div>
 
-<hra-expansion-panel [title]="'Anatomical Structures'">
+<hra-expansion-panel [title]="'Anatomical Structures'" class="as-expansion">
   <ccf-visibility-menu
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
