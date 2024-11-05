@@ -10,6 +10,13 @@
 @use 'themes/gtex_light';
 @use 'themes/gtex_dark';
 
+@use 'light-theme';
+@use 'theming' as design-system-theming;
+
+html {
+  @include design-system-theming.theme(light-theme.$theme);
+}
+
 @include mat.core();
 @include mat.all-component-typographies(typography.$config);
 

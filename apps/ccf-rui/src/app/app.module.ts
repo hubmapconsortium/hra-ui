@@ -15,6 +15,7 @@ import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RegistrationModalModule } from './modules/registration-modal/registration-modal/registration-modal.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { DrawerModule } from './shared/components/drawer/drawer.module';
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
+    provideDesignSystem(),
     {
       provide: DEFAULT_THEME,
       useValue: 'hubmap-theme-light',
