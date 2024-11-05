@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { TagSearchComponent } from './tag-search.component';
+import { provideInput } from '@hra-ui/design-system/input';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { TagSearchComponent } from './tag-search.component';
     MatIconModule,
     MatInputModule,
   ],
+  providers: [provideInput()],
   declarations: [TagSearchComponent],
   exports: [TagSearchComponent],
 })

@@ -6,11 +6,62 @@
 
   hra-expansion-panel {
     ::ng-deep {
-      .title {
+      .header > .title {
         font: var(--sys-label-large);
       }
       .content {
         margin: 0 1rem;
+      }
+    }
+
+    &.tissue-block-settings {
+      ::ng-deep {
+        .content {
+          .expansion-body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 40px 0 28px;
+          }
+        }
+      }
+    }
+
+    .position {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        padding: 0.5rem 0;
+      }
+
+      .box {
+        height: 3rem;
+        width: 5rem;
+        border-radius: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 12px;
+
+        span {
+          font: var(--sys-label-medium);
+          color: var(--sys-primary);
+        }
+      }
+
+      .x-position {
+        background-color: color-mix(in srgb, #d50000 8%, transparent);
+        margin-bottom: 0.5rem;
+      }
+
+      .y-position {
+        background-color: color-mix(in srgb, #00c853 8%, transparent);
+        margin-bottom: 0.5rem;
+      }
+
+      .z-position {
+        background-color: color-mix(in srgb, #2979ff 8%, transparent);
       }
     }
   }

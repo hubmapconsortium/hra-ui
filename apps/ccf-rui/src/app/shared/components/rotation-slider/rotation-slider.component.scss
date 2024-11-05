@@ -3,12 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 1.5rem;
     padding: 0.5rem 0;
 
     .title {
-      font-weight: 400;
-      padding: 0.5rem 0;
+      font: var(--sys-label-medium);
     }
   }
 
@@ -30,21 +28,25 @@
 
   .slider-box {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 4rem;
 
     mat-form-field {
       height: 100%;
       width: 5rem;
 
-      ::ng-deep .mdc-text-field {
-        padding: 0;
+      ::ng-deep {
+        .mdc-text-field {
+          padding: 0;
+        }
+        .mat-mdc-form-field-infix {
+          --mat-form-field-container-height: 100%;
+          padding: 24px 12px 0 12px;
+        }
       }
 
-      .input {
-        text-align: center;
-      }
+      // .input {
+      //   text-align: center;
+      // }
     }
 
     .slider-container {

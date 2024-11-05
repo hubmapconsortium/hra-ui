@@ -1,11 +1,13 @@
 :host {
   display: flex;
   flex-direction: column;
+  --mat-form-field-container-height: auto;
 
   .header {
     display: flex;
     align-items: center;
     padding: 0.5rem 0;
+    font: var(--sys-label-medium);
 
     .refresh {
       transform: scaleX(-1);
@@ -20,20 +22,10 @@
 
   .size-inputs {
     display: flex;
-    justify-content: space-between;
-    width: 20rem;
-    margin: 0 auto;
+    flex-direction: column;
 
     .field {
-      width: 4.5rem;
-
-      &:not(:last-child) {
-        padding-right: 0.75rem;
-      }
-
-      .input {
-        text-align: center;
-      }
+      width: 5rem;
 
       .suffix {
         display: none;
@@ -41,9 +33,9 @@
 
       ::ng-deep .mdc-text-field {
         padding: 0;
-
+        --mat-form-field-container-height: 100%;
         .mat-mdc-form-field-infix {
-          padding-bottom: 0;
+          padding: 24px 12px 0 12px;
           min-height: inherit;
         }
 

@@ -116,17 +116,32 @@
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
     </mat-menu>
   </hra-expansion-panel-header-content>
+  <div class="position">
+    <span class="label">Position</span>
+    <div class="x-position box">
+      <span>X</span>
+      <span>45</span>
+    </div>
+    <div class="y-position box">
+      <span>Y</span>
+      <span>45</span>
+    </div>
+    <div class="z-position box">
+      <span>Z</span>
+      <span>45</span>
+    </div>
+  </div>
   <ccf-block-size-input [blockSize]="(model.blockSize$ | async)!" (blockSizeChange)="model.setBlockSize($event)">
   </ccf-block-size-input>
+
+  <ccf-rotation-slider [rotation]="$any(model.rotation$ | async)" (rotationChange)="model.setRotation($event)">
+  </ccf-rotation-slider>
 
   <ccf-slices-input
     [slicesConfig]="$any(model.slicesConfig$ | async)"
     (slicesConfigChange)="model.setSlicesConfig($event)"
   >
   </ccf-slices-input>
-
-  <ccf-rotation-slider [rotation]="$any(model.rotation$ | async)" (rotationChange)="model.setRotation($event)">
-  </ccf-rotation-slider>
 </hra-expansion-panel>
 <hra-expansion-panel [title]="'Anatomical Structure Tags'">
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>

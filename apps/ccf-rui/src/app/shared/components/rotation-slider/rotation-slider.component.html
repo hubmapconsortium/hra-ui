@@ -1,9 +1,7 @@
 <div class="header">
-  <span class="text title" matTooltip="Use sliders below to rotate tissue block for registration"
-    >Tissue Block Rotation</span
-  >
+  <span class="text title" matTooltip="Use sliders below to rotate tissue block for registration">Rotation</span>
   <div class="filler"></div>
-  <div class="refresh-button-container">
+  <!-- <div class="refresh-button-container">
     <mat-icon
       matRipple
       [matRippleCentered]="true"
@@ -12,12 +10,12 @@
       (click)="resetRotation('x'); resetRotation('y'); resetRotation('z')"
       >refresh</mat-icon
     >
-  </div>
+  </div> -->
 </div>
 
 <div class="slider-box red">
-  <span class="text label">X</span>
-  <div class="slider-container">
+  <!-- <span class="text label">X</span> -->
+  <!-- <div class="slider-container">
     <mat-slider class="slider" [max]="180" [min]="-180" disableRipple discrete>
       <input
         class="slider-x"
@@ -27,8 +25,9 @@
         #sliderX
       />
     </mat-slider>
-  </div>
+  </div> -->
   <mat-form-field>
+    <mat-label class="text form-input-label">X</mat-label>
     <input
       matInput
       class="input"
@@ -42,8 +41,8 @@
 </div>
 
 <div class="slider-box green">
-  <span class="text label">Y</span>
-  <div class="slider-container">
+  <!-- <span class="text label">Y</span> -->
+  <!-- <div class="slider-container">
     <mat-slider class="slider" [max]="180" [min]="-180" disableRipple discrete>
       <input
         class="slider-y"
@@ -53,8 +52,9 @@
         #sliderY
       />
     </mat-slider>
-  </div>
+  </div> -->
   <mat-form-field>
+    <mat-label class="text form-input-label">Y</mat-label>
     <input
       matInput
       class="input"
@@ -68,8 +68,8 @@
 </div>
 
 <div class="slider-box blue">
-  <span class="text label">Z</span>
-  <div class="slider-container">
+  <!-- <span class="text label">Z</span> -->
+  <!-- <div class="slider-container">
     <mat-slider class="slider" [max]="180" [min]="-180" disableRipple discrete>
       <input
         class="slider-z"
@@ -79,8 +79,9 @@
         #sliderZ
       />
     </mat-slider>
-  </div>
+  </div> -->
   <mat-form-field>
+    <mat-label class="text form-input-label">Z</mat-label>
     <input
       matInput
       class="input"
