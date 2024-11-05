@@ -27,20 +27,29 @@
     .field {
       width: 5rem;
 
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+
       .suffix {
         display: none;
       }
 
-      ::ng-deep .mdc-text-field {
-        padding: 0;
-        --mat-form-field-container-height: 100%;
-        .mat-mdc-form-field-infix {
-          padding: 24px 12px 0 12px;
-          min-height: inherit;
-        }
+      ::ng-deep {
+        .mdc-text-field {
+          padding: 0;
+          --mat-form-field-container-height: 100%;
+          .mat-mdc-form-field-infix {
+            padding: 23px 12px 0 12px;
+            min-height: inherit;
+          }
 
-        .mat-mdc-form-field-icon-suffix {
-          padding: 1rem 0 0px 0.25rem;
+          .mat-mdc-form-field-icon-suffix {
+            padding: 1rem 0 0px 0.25rem;
+          }
+        }
+        .mat-mdc-form-field-subscript-wrapper {
+          height: 0;
         }
       }
     }

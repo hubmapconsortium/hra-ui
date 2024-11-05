@@ -30,6 +30,10 @@
     display: flex;
     align-items: center;
 
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
     mat-form-field {
       height: 100%;
       width: 5rem;
@@ -40,7 +44,11 @@
         }
         .mat-mdc-form-field-infix {
           --mat-form-field-container-height: 100%;
-          padding: 24px 12px 0 12px;
+          padding: 23px 12px 0 12px;
+        }
+
+        .mat-mdc-form-field-subscript-wrapper {
+          height: 0;
         }
       }
 
