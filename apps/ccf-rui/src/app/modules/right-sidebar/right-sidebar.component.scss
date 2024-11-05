@@ -1,8 +1,7 @@
 :host {
-  display: block;
-  height: calc(100% - 2.5rem);
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
 
   hra-expansion-panel {
     ::ng-deep {
@@ -202,6 +201,14 @@
       .filler {
         flex-grow: 1;
       }
+    }
+  }
+}
+
+::ng-deep {
+  .settings-overlay {
+    button.mat-mdc-menu-item .mat-mdc-menu-item-text {
+      font: var(--sys-label-medium);
     }
   }
 }

@@ -114,6 +114,7 @@
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Watch video tutorial</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use app guide</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Explore all registrations</button>
     </mat-menu>
   </hra-expansion-panel-header-content>
   <div class="position">
@@ -146,7 +147,7 @@
 <hra-expansion-panel [title]="'Anatomical Structure Tags'">
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
 </hra-expansion-panel>
-
+<div style="flex-grow: 1"></div>
 <div class="buttons">
   <button mat-button hraButtonSize="medium">Edit Metadata</button>
 

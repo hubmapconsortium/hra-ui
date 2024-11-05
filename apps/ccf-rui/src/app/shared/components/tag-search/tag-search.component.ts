@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { ObservableInput, Subject, from, interval } from 'rxjs';
+import { from, interval, ObservableInput, Subject } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, throttle } from 'rxjs/operators';
 
 import { Tag, TagId, TagSearchResult } from '../../../core/models/anatomical-structure-tag';
@@ -40,7 +40,7 @@ export class TagSearchComponent implements OnDestroy {
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
   /** Placeholder text */
-  @Input() placeholder = 'Add Anatomical Structures ...';
+  @Input() placeholder = 'Search';
 
   /** Search method */
   @Input() search?: (text: string, limit: number) => ObservableInput<TagSearchResult>;
