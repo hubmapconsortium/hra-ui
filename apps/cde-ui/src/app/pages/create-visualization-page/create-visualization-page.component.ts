@@ -25,7 +25,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { FooterComponent } from '@hra-ui/design-system/footer';
 import { CardData, NavHeaderComponent } from '@hra-ui/design-system/nav-header';
-import { SelectSizeDirective } from '@hra-ui/design-system/select';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
@@ -176,7 +175,6 @@ function optionalValue<T>(): T | null {
     MarkEmptyFormControlDirective,
     NavHeaderComponent,
     OverlayModule,
-    SelectSizeDirective,
     StepIndicatorComponent,
     ToggleButtonSizeDirective,
     TooltipCardComponent,
