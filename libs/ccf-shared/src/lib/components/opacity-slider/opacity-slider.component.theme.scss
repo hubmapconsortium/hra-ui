@@ -17,11 +17,6 @@
       .mdc-slider__track--active_fill {
         background-color: mat.m2-get-color-from-palette($foreground, main);
       }
-
-      .mdc-slider__thumb-knob {
-        background-color: mat.m2-get-color-from-palette($foreground, main) !important;
-        border-color: mat.m2-get-color-from-palette($foreground, main) !important;
-      }
     }
 
     .opacity-value {
