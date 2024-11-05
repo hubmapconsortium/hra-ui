@@ -136,7 +136,7 @@
       }
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs ccf-rui"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ccf-rui/"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
