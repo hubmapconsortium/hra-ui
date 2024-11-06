@@ -1,13 +1,115 @@
-<div class="modal">
-  <div class="title">Start Registration</div>
-  <ccf-registration-metadata (registrationSelected)="handleRegistrationSelect()"></ccf-registration-metadata>
-  <button
-    [class.disabled]="!organSelected || !nameValid || !orcidValid"
-    mat-button
-    class="registration-button"
-    (click)="registerButtonClick($event)"
-    [matTooltip]="!organSelected || !nameValid ? 'Required: Enter first and last name, and select an organ' : ''"
-  >
-    Continue
-  </button>
+<div class="title">Tissue Registration Metadata</div>
+<!-- <ccf-registration-metadata></ccf-registration-metadata> -->
+
+<div class="workflows">
+  <hra-workflow-card>
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
+      <span class="card-title">Optional: Upload Previous Registration</span>
+    </h2>
+
+    <ccf-json-file-reader (parsedJson)="handleRegistrationUpload($any($event))" label="Upload"></ccf-json-file-reader>
+    <div>{{ uploadText }}</div>
+  </hra-workflow-card>
+
+  <hra-workflow-card>
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
+      <span class="card-title">Add Metadata</span>
+    </h2>
+
+    <form [formGroup]="registrationForm">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>First name</mat-label>
+        <input
+          matInput
+          formControlName="firstName"
+          cdeMarkEmptyFormControl
+          [value]="$any(page.user$ | async).firstName"
+          (input)="handleNameChange()"
+        />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Middle name (optional)</mat-label>
+        <input
+          matInput
+          formControlName="middleName"
+          cdeMarkEmptyFormControl
+          [value]="$any(page.user$ | async).middleName"
+          (input)="handleNameChange()"
+        />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Last name</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          cdeMarkEmptyFormControl
+          [value]="$any(page.user$ | async).lastName"
+          (input)="handleNameChange()"
+        />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" cdeMarkEmptyFormControl />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>ORCID (optional)</mat-label>
+        <input
+          matInput
+          formControlName="orcid"
+          cdeMarkEmptyFormControl
+          maxlength="19"
+          (input)="updateOrcid($any($event.target).value)"
+        />
+        <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Sex</mat-label>
+        <input matInput formControlName="sex" cdeMarkEmptyFormControl />
+        <mat-select
+          disableRipple
+          formControlName="sex"
+          panelClass="options-container"
+          cdeMarkEmptyFormControl
+          (selectionChange)="setSexFromLabel($event.value)"
+        >
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Organ</mat-label>
+        <input matInput formControlName="organ" cdeMarkEmptyFormControl />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Publication DOI (optional)</mat-label>
+        <input matInput formControlName="publicationDOI" cdeMarkEmptyFormControl />
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Consortium (Optional)</mat-label>
+        <input matInput formControlName="consortium" cdeMarkEmptyFormControl />
+      </mat-form-field>
+    </form>
+  </hra-workflow-card>
+
+  <hra-workflow-card>
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
+      <span class="card-title">Register Data Spatially</span>
+    </h2>
+
+    <button
+      class="registration-button"
+      mat-flat-button
+      hraCallToActionButton
+      hraPrimaryButton
+      [disabled]="!organSelected || !nameValid || !orcidValid"
+      (click)="registerButtonClick($event)"
+    >
+      Register
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
+  </hra-workflow-card>
 </div>

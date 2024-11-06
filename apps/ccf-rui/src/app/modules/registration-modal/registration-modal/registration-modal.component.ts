@@ -15,6 +15,7 @@ import { RegistrationContentComponent } from '../registration-content/registrati
  */
 @Component({
   selector: 'ccf-registration-modal',
+  styleUrls: ['./registration-modal.component.scss'],
   templateUrl: './registration-modal.component.html',
 })
 export class RegistrationModalComponent implements OnInit {
@@ -69,6 +70,7 @@ export class RegistrationModalComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(RegistrationContentComponent, {
       autoFocus: false,
+      panelClass: 'registration-modal',
     });
   }
 }

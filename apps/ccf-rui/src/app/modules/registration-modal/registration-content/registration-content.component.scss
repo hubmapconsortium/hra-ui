@@ -1,50 +1,47 @@
-.modal {
+:host {
   padding: 2rem;
-  border-radius: 0.5rem;
-  max-width: 47rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   .title {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font: var(--sys-headline-large);
+    letter-spacing: var(--sys-headline-large-tracking);
   }
 
-  .organ-sliders {
-    .slider-label {
-      font-weight: 600;
+  .workflows {
+    border-radius: 1rem;
+    border: 1px solid #acb5c3;
+    overflow: hidden;
+  }
+
+  hra-workflow-card {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: unset;
+
+    .header {
+      display: flex;
+      align-items: center;
+      height: 2.5rem;
+      margin: 0;
+
+      .step-number {
+        margin-right: 0.75rem;
+      }
+
+      .card-title {
+        margin-right: 0.75rem;
+        font: var(--sys-title-large);
+      }
     }
-
-    display: flex;
-    height: 3rem;
-    align-items: center;
   }
 
-  .selector-label {
-    font-weight: 600;
-    height: 3rem;
-    line-height: 3rem;
-  }
-
-  .selector-container {
-    margin: 0 auto;
+  hra-workflow-card:not(:last-child) {
+    border-bottom: 1px solid #acb5c3;
   }
 
   .registration-button {
-    transition: 0.6s;
-    display: flex;
-    width: 10rem;
-    height: 2rem;
-    padding: 0.25rem 1rem;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.125rem;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.16);
-    cursor: pointer;
-
-    &.disabled {
-      pointer-events: none;
-    }
+    align-self: flex-start;
   }
 }

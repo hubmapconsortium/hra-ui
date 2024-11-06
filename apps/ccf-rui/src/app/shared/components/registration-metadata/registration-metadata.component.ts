@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-
 import { FormControl, Validators } from '@angular/forms';
-import { SpatialEntityJsonLd } from 'ccf-body-ui';
+
 import { ModelState } from '../../../core/store/model/model.state';
 import { PageState, Person } from '../../../core/store/page/page.state';
 import { RegistrationState } from '../../../core/store/registration/registration.state';
@@ -42,39 +41,39 @@ export class RegistrationMetadataComponent {
     readonly registration: RegistrationState,
     readonly page: PageState,
   ) {
-    page.user$.subscribe((user) => {
-      this.checkNameValid(user);
-      this.orcId = page.uriToOrcid(user.orcidId);
-    });
-    registration.state$.subscribe((reg) => {
-      this.uploadText = reg.initialRegistration ? 'File(s) uploaded' : 'No file(s) uploaded';
-    });
+    // page.user$.subscribe((user) => {
+    //   this.checkNameValid(user);
+    //   this.orcId = page.uriToOrcid(user.orcidId);
+    // });
+    // registration.state$.subscribe((reg) => {
+    //   this.uploadText = reg.initialRegistration ? 'File(s) uploaded' : 'No file(s) uploaded';
+    // });
   }
 
-  /**
-   * Error message to inform user if orcid is invalid
-   * @returns Error message
-   */
-  getErrorMessage(): string {
-    return this.orcidControl.hasError('pattern') ? 'Not a valid ORCID' : '';
-  }
+  // /**
+  //  * Error message to inform user if orcid is invalid
+  //  * @returns Error message
+  //  */
+  // getErrorMessage(): string {
+  //   return this.orcidControl.hasError('pattern') ? 'Not a valid ORCID' : '';
+  // }
 
-  /**
-   * Updates orcid value
-   * @param value Orcid value entered
-   */
-  updateOrcid(value: string): void {
-    this.page.setOrcidId(value);
-  }
+  // /**
+  //  * Updates orcid value
+  //  * @param value Orcid value entered
+  //  */
+  // updateOrcid(value: string): void {
+  //   this.page.setOrcidId(value);
+  // }
 
-  /**
-   * Emits registrationSelected and calls editRegistration in state
-   * @param event Registration uploaded
-   */
-  handleRegistrationUpload(reg: SpatialEntityJsonLd): void {
-    this.registrationSelected.emit();
-    this.registration.editRegistration(reg);
-  }
+  // /**
+  //  * Emits registrationSelected and calls editRegistration in state
+  //  * @param event Registration uploaded
+  //  */
+  // handleRegistrationUpload(reg: SpatialEntityJsonLd): void {
+  //   this.registrationSelected.emit();
+  //   this.registration.editRegistration(reg);
+  // }
 
   /**
    * Checks to see if a first and last name has been entered
@@ -84,11 +83,11 @@ export class RegistrationMetadataComponent {
     this.nameValid = event.firstName.length > 0 && event.lastName.length > 0;
   }
 
-  /**
-   * Updates current sex selected
-   * @param label Sex selected
-   */
-  setSexFromLabel(label: 'Female' | 'Male'): void {
-    this.model.setSex(label.toLowerCase() as 'male' | 'female');
-  }
+  // /**
+  //  * Updates current sex selected
+  //  * @param label Sex selected
+  //  */
+  // setSexFromLabel(label: 'Female' | 'Male'): void {
+  //   this.model.setSex(label.toLowerCase() as 'male' | 'female');
+  // }
 }
