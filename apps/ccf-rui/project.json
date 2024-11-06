@@ -16,7 +16,7 @@
       "outputs": ["{options.outputPath.base}"],
       "options": {
         "outputPath": {
-          "base": "dist/apps/cde-ui",
+          "base": "dist/apps/ccf-rui",
           "browser": "."
         },
         "index": "apps/ccf-rui/src/index.html",
