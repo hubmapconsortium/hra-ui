@@ -1,13 +1,14 @@
-mat-form-field {
+mat-form-field.mat-mdc-form-field-type-mat-select {
   --mdc-filled-text-field-container-color: var(--sys-surface-container);
   --mat-select-focused-arrow-color: var(--sys-tertiary);
 
-  .mat-mdc-form-field-infix {
-    width: 14.625rem;
-  }
+  --mat-form-field-container-height: 3rem;
+  --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+  --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
 
   mat-label {
-    font: var(--sys-label-large);
+    font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
     color: var(--sys-primary-fixed);
   }
 
@@ -23,53 +24,20 @@ mat-form-field {
     mat-select {
       .mat-mdc-select-value-text .mat-mdc-select-min-line {
         color: var(--sys-primary-fixed);
+        letter-spacing: var(--sys-label-medium-tracking);
       }
-    }
-  }
-
-  .mat-mdc-text-field-wrapper:not(:has(.mat-mdc-select-placeholder)) {
-    .mdc-floating-label.mat-mdc-floating-label {
-      top: calc(var(--mat-form-field-container-height) / 2 + 2px);
     }
   }
 
   mat-select {
     .mat-mdc-select-value-text .mat-mdc-select-min-line {
-      font: var(--sys-label-large);
-    }
-  }
-
-  &[hraSelectSize='medium'] {
-    --mat-form-field-container-height: 48px;
-    --mat-form-field-filled-with-label-container-padding-top: 20px;
-    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
-
-    mat-label,
-    .mat-mdc-select-value-text .mat-mdc-select-min-line {
       font: var(--sys-label-medium);
     }
-
-    .mat-mdc-form-field-infix {
-      width: 13.25rem;
-    }
   }
 
-  &[hraSelectSize='small'] {
-    --mat-form-field-container-height: 40px;
-    --mat-form-field-filled-with-label-container-padding-top: 0.875rem;
-    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
-
-    mat-label,
-    .mat-mdc-select-value-text .mat-mdc-select-min-line {
-      font: var(--sys-label-small);
-    }
-
-    .mat-mdc-text-field-wrapper {
-      padding: 0 0.75rem;
-    }
-
-    .mat-mdc-form-field-infix {
-      width: 12.25rem;
+  &.mat-form-field-disabled {
+    mat-label {
+      color: var(--mdc-filled-text-field-disabled-label-text-color);
     }
   }
 }
@@ -102,20 +70,6 @@ mat-form-field {
 
     &.mat-mdc-option-active {
       outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);
-    }
-  }
-
-  &.options-container-medium {
-    mat-option.mat-mdc-option {
-      min-height: 3rem;
-      font: var(--sys-label-medium);
-    }
-  }
-
-  &.options-container-small {
-    mat-option.mat-mdc-option {
-      min-height: 2.5rem;
-      font: var(--sys-label-small);
     }
   }
 }

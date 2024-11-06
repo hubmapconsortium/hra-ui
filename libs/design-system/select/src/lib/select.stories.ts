@@ -4,33 +4,28 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { provideSelect } from './providers';
-import { SelectSizeDirective } from './select-size/select-size.directive';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 const meta: Meta = {
   title: 'Select',
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-  },
   decorators: [
     applicationConfig({
       providers: [provideSelect(), importProvidersFrom(BrowserAnimationsModule)],
     }),
     moduleMetadata({
-      imports: [MatSelectModule, MatFormFieldModule, SelectSizeDirective],
+      imports: [MatSelectModule, MatFormFieldModule, ReactiveFormsModule],
     }),
   ],
-  render: (args) => ({
-    props: args,
+};
+export default meta;
+type Story = StoryObj;
+
+export const Default: Story = {
+  render: () => ({
     template: `
-      <mat-form-field hraSelectSize="${args['size']}">
+      <mat-form-field>
         <mat-label>Choose an option</mat-label>
-        <mat-select disableRipple [panelClass]="['options-container', 'options-container-${args['size']}']">
+        <mat-select disableRipple panelClass="options-container">
           <mat-option value="option1">Option 1</mat-option>
           <mat-option value="option2">Option 2</mat-option>
           <mat-option value="option3">Option 3</mat-option>
@@ -39,11 +34,26 @@ const meta: Meta = {
     `,
   }),
 };
-export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {
-  args: {
-    size: 'large',
-  },
+export const RequiredSelect: Story = {
+  render: () => ({
+    props: {
+      selectFormControl: new FormControl<string | null>(null, Validators.required),
+      options: ['option1', 'option2', 'option3'],
+    },
+    template: `
+      <mat-form-field>
+        <mat-label>Choose an option</mat-label>
+        <mat-select disableRipple panelClass="options-container" [formControl]="selectFormControl" required>
+          <mat-option>--</mat-option>
+          @for (option of options; track option) {
+            <mat-option [value]="option">{{option}}</mat-option>
+          }
+        </mat-select>
+        @if (selectFormControl.hasError('required')) {
+          <mat-error>Please choose an option</mat-error>
+        }
+      </mat-form-field>
+    `,
+  }),
 };
