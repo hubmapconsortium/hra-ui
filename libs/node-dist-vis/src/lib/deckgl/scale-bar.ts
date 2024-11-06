@@ -20,7 +20,7 @@ export function createScaleBarLayer(
   nodes: Signal<NodesView>,
   viewSize: Signal<{ width: number; height: number }>,
   viewState: Signal<object>,
-): Signal<ScaleBarLayer> {
+): Signal<ScaleBarLayer | undefined> {
   const size = computed(() => {
     const [min, max] = nodes().getDimensions();
     const result = (max - min) / (1 - min);
@@ -36,6 +36,10 @@ export function createScaleBarLayer(
   });
 
   return computed(() => {
+    if (nodes().length === 0) {
+      return undefined;
+    }
+
     return new ScaleBarLayerConstructor({
       id: 'scalebar',
       unit: 'µm',

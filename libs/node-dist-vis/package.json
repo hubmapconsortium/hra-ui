@@ -11,7 +11,7 @@
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
-    "ngxtension": "^3.5.5",
+    "ngxtension": "^4.1.0",
     "@hra-ui/common": "0.0.1"
   },
   "sideEffects": [

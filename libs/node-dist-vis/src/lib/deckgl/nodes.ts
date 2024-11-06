@@ -11,9 +11,9 @@ import { createScaledPositionAccessor } from './utils/position-scaling';
 export type NodesLayer = PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>>;
 
 /** Default/initial node size */
-const DEFAULT_NODE_SIZE = 1.5;
+const DEFAULT_NODE_SIZE = 2;
 /** Node size in the 'inspect' view mode */
-const INSPECT_NODE_SIZE = 3;
+const INSPECT_NODE_SIZE = 6;
 
 /**
  * Get the node size based on the view mode
