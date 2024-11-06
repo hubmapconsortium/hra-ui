@@ -1,6 +1,7 @@
 import { Signal } from '@angular/core';
 import { Color } from '@deck.gl/core/typed';
 import {
+  AnyDataEntry,
   createDataView,
   createDataViewClass,
   DataViewInput,
@@ -8,8 +9,8 @@ import {
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
-} from './data-view';
-import { cachedAccessor } from './utils';
+} from '../data-view';
+import { cachedAccessor, tryParseColor } from '../utils';
 
 /** Color map input */
 export type ColorMapInput = DataViewInput<ColorMapView>;
@@ -21,7 +22,7 @@ export interface ColorMapEntry {
   /** Cell type */
   'Cell Type': string;
   /** Cell color */
-  'Cell Color': Color;
+  'Cell Color': unknown;
 }
 
 /** Color map */
@@ -32,6 +33,7 @@ export interface ColorMap {
   range: Color[];
 }
 
+const DEFAULT_CELL_COLOR: Color = [255, 255, 255];
 /** Required color map keys */
 const REQUIRED_KEYS: (keyof ColorMapEntry)[] = ['Cell Type', 'Cell Color'];
 /** Optional color map keys */
@@ -41,17 +43,27 @@ const BaseColorMapView = createDataViewClass<ColorMapEntry>([...REQUIRED_KEYS, .
 
 /** Color map view */
 export class ColorMapView extends BaseColorMapView {
+  static from(domain: string[], range: unknown[], defaultColor = DEFAULT_CELL_COLOR): ColorMapView {
+    const data = domain.map((value, index) => [value, range[index] ?? defaultColor]);
+    return new ColorMapView(data, EMPTY_COLOR_MAP_VIEW.keyMapping);
+  }
+
+  readonly getParsedCellColorAt = (index: number, defaultColor = DEFAULT_CELL_COLOR) =>
+    this.getParsedCellColorFor(this.at(index), defaultColor);
+  readonly getParsedCellColorFor = (obj: AnyDataEntry, defaultColor = DEFAULT_CELL_COLOR) =>
+    tryParseColor(this.getCellColorFor(obj)) ?? defaultColor;
+
   /**
    * Get the `ColorMap` for this view
    *
    * @returns A `ColorMap`
    */
-  readonly getColorMap = cachedAccessor(this, () => {
+  readonly getColorMap = cachedAccessor(this, (): ColorMap => {
     const domain: string[] = [];
     const range: Color[] = [];
     for (const obj of this) {
       domain.push(this.getCellTypeFor(obj));
-      range.push(this.getCellColorFor(obj));
+      range.push(this.getParsedCellColorFor(obj));
     }
 
     return { domain, range };
@@ -76,14 +88,21 @@ export class ColorMapView extends BaseColorMapView {
    * @returns A `Map`
    */
   readonly getColorLookup = cachedAccessor(this, () => {
+    const { domain, range } = this.getColorMap();
     const lookup = new Map<string, Color>();
-    for (const obj of this) {
-      lookup.set(this.getCellTypeFor(obj), this.getCellColorFor(obj));
+    for (let index = 0; index < domain.length; index++) {
+      lookup.set(domain[index], range[index]);
     }
 
     return lookup;
   });
 }
+
+/** Empty color map view */
+export const EMPTY_COLOR_MAP_VIEW = new ColorMapView([], {
+  'Cell Type': 0,
+  'Cell Color': 1,
+});
 
 /**
  * Load a color map
@@ -106,10 +125,5 @@ export function loadColorMap(
     'Cell Color': colorMapValue,
   });
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
-  const emptyView = new ColorMapView([], {
-    'Cell Type': 0,
-    'Cell Color': 1,
-  });
-
-  return createDataView(ColorMapView, data, inferred, emptyView);
+  return createDataView(ColorMapView, data, inferred, EMPTY_COLOR_MAP_VIEW);
 }

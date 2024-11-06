@@ -88,7 +88,25 @@ export class NodesView extends BaseNodesView {
 
     return [min, max];
   });
+
+  readonly getCounts = cachedAccessor(this, () => {
+    const counts: Record<string, number> = {};
+    for (const obj of this) {
+      const type = this.getCellTypeFor(obj);
+      counts[type] ??= 0;
+      counts[type] += 1;
+    }
+
+    return new Map(Object.entries(counts));
+  });
 }
+
+/** Empty nodes view */
+export const EMPTY_NODES_VIEW = new NodesView([], {
+  'Cell Type': 0,
+  X: 1,
+  Y: 2,
+});
 
 /**
  * Load nodes
@@ -106,11 +124,5 @@ export function loadNodes(
   const data = loadViewData(input, NodesView);
   const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey });
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
-  const emptyView = new NodesView([], {
-    'Cell Type': 0,
-    X: 1,
-    Y: 2,
-  });
-
-  return createDataView(NodesView, data, inferred, emptyView);
+  return createDataView(NodesView, data, inferred, EMPTY_NODES_VIEW);
 }

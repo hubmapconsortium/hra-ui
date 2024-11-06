@@ -9,7 +9,7 @@ import {
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
-} from './data-view';
+} from '../data-view';
 
 /** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
@@ -129,6 +129,17 @@ export class EdgesView extends BaseEdgesView {
   };
 }
 
+/** Empty edges view */
+export const EMPTY_EDGES_VIEW = new EdgesView([], {
+  'Cell ID': 0,
+  X1: 1,
+  Y1: 2,
+  Z1: 3,
+  X2: 4,
+  Y2: 5,
+  Z2: 6,
+});
+
 /**
  * Load edges
  *
@@ -140,15 +151,5 @@ export function loadEdges(input: Signal<EdgesInput>, keys: Signal<EdgeKeysInput>
   const data = loadViewData(input, EdgesView);
   const mapping = loadViewKeyMapping(keys);
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
-  const emptyView = new EdgesView([], {
-    'Cell ID': 0,
-    X1: 1,
-    Y1: 2,
-    Z1: 3,
-    X2: 4,
-    Y2: 5,
-    Z2: 6,
-  });
-
-  return createDataView(EdgesView, data, inferred, emptyView);
+  return createDataView(EdgesView, data, inferred, EMPTY_EDGES_VIEW);
 }

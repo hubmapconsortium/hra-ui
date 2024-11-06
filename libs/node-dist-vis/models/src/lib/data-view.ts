@@ -1,5 +1,7 @@
 import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
+import { derivedAsync } from 'ngxtension/derived-async';
+import { Observable } from 'rxjs';
 import { DataInput, isRecordObject, loadData } from './utils';
 
 /** Removes all whitespaces in a string */
@@ -22,6 +24,9 @@ type Accessor<Entry, P extends keyof Entry, Arg> = (arg: Arg) => Entry[P];
 export type AnyDataEntry = unknown[] | object;
 /** View data */
 export type AnyData = unknown[][] | object[];
+/** Any data view (primarly used as a generic constraint) */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyDataView = DataView<any>;
 
 /** Data view input */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -188,8 +193,7 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
  * @param viewCls Data view class
  * @returns Either a data view of the specified type or an array of raw data
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function loadViewData<T extends DataView<any>>(
+export function loadViewData<T extends AnyDataView>(
   input: Signal<DataViewInput<T>>,
   viewCls: Type<T>,
 ): Signal<T | AnyData> {
@@ -372,7 +376,7 @@ export function inferViewKeyMapping<T>(
  * @param defaultView Default data view returned missing a data or key mapping
  * @returns A data view of the specified class
  */
-export function createDataView<T, V>(
+export function createDataView<T, V extends AnyDataView>(
   viewCls: new (data: AnyData, keyMapping: KeyMapping<T>, offset?: number) => V,
   data: Signal<V | AnyData>,
   keyMapping: Signal<KeyMapping<T> | undefined>,
@@ -391,4 +395,18 @@ export function createDataView<T, V>(
 
     return defaultView;
   });
+}
+
+export function withDataViewDefaultGenerator<V extends AnyDataView>(
+  view: Signal<V>,
+  generator: () => Observable<V> | V,
+  initialValue: V,
+): Signal<V> {
+  return derivedAsync<V>(
+    () => {
+      const result = view();
+      return result.length !== 0 ? result : generator();
+    },
+    { initialValue },
+  );
 }
