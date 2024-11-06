@@ -41,6 +41,10 @@
     border-bottom: 1px solid #acb5c3;
   }
 
+  form {
+    display: flex;
+  }
+
   .registration-button {
     align-self: flex-start;
   }
