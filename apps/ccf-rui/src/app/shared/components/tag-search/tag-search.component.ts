@@ -138,7 +138,7 @@ export class TagSearchComponent implements OnDestroy {
   addTags(): void {
     const { searchControl, searchResults, checkedResults } = this;
     const tags = searchResults.results.filter((tag) => checkedResults[tag.id]);
-
+    console.log(tags, this.searchResults);
     if (tags.length > 0) {
       searchControl.reset();
       this.searchResults = EMPTY_RESULT;

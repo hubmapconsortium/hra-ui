@@ -1,5 +1,5 @@
 <div class="top-bar">
-  <ccf-stage-nav
+  <!-- <ccf-stage-nav
     [useDropdownMenu]="isNarrowView"
     [view3D]="(is3DView$ | async) ?? false"
     [side]="(model.viewSide$ | async)!"
@@ -15,7 +15,22 @@
     class="icon reset"
     (click)="resetStage()"
     >refresh</mat-icon
-  >
+  > -->
+  <ccf-spatial-search-keyboard-ui-behavior
+    *ngIf="page.registrationStarted$ | async"
+    [delta]="1"
+    [shiftDelta]="2"
+    [position]="(position$ | async)!"
+    [disablePositionChange]="disablePositionChange"
+  ></ccf-spatial-search-keyboard-ui-behavior>
+  <ccf-body-ui
+    class="gizmo"
+    [scene]="(scene.gizmo$ | async)!"
+    [rotation]="(scene.rotation$ | async) ?? 0"
+    [interactive]="false"
+    [zoom]="9.5"
+    #gizmo
+  ></ccf-body-ui>
 </div>
 
 <div class="main-content">
@@ -42,32 +57,17 @@
     camera="orthographic"
   ></ccf-body-ui>
   <div class="gizmo-area">
-    <ccf-body-ui
-      class="gizmo"
-      [scene]="(scene.gizmo$ | async)!"
-      [rotation]="(scene.rotation$ | async) ?? 0"
-      [interactive]="false"
-      [zoom]="9.5"
-      #gizmo
-    ></ccf-body-ui>
-    <ccf-spatial-search-keyboard-ui-behavior
-      *ngIf="page.registrationStarted$ | async"
-      [delta]="1"
-      [shiftDelta]="2"
-      [position]="(position$ | async)!"
-      [disablePositionChange]="disablePositionChange"
-    ></ccf-spatial-search-keyboard-ui-behavior>
-    <div class="position-display">
+    <!-- <div class="position-display">
       <div class="position">
         <div class="x">X: {{ (position$ | async)?.x }}</div>
         <div class="y">Y: {{ (position$ | async)?.y }}</div>
         <div class="z">Z: {{ (position$ | async)?.z }}</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
-<ccf-store-debug *ngIf="showDebugButtons && debugMode" class="debug"> </ccf-store-debug>
+<!-- <ccf-store-debug *ngIf="showDebugButtons && debugMode" class="debug"> </ccf-store-debug>
 <div
   *ngIf="showDebugButtons"
   style="
@@ -82,4 +82,4 @@
   <button style="width: 3rem; font-size: 0.7rem" (click)="debugMode = !debugMode">State</button>
   <button (click)="registration.setUseRegistrationCallback(true)">Use callback</button>
   <button (click)="registration.setUseRegistrationCallback(false)">Use download</button>
-</div>
+</div> -->

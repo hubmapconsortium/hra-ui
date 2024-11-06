@@ -70,6 +70,12 @@
     border-bottom: 1px solid #acb5c3;
   }
 
+  .as-tags {
+    ccf-tag-list {
+      margin-top: 1rem;
+    }
+  }
+
   .buttons {
     padding: 1rem;
     display: flex;

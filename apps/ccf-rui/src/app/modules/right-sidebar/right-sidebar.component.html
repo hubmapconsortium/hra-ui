@@ -121,15 +121,15 @@
     <span class="label">Position</span>
     <div class="x-position box">
       <span>X</span>
-      <span>45</span>
+      <span>{{ (position$ | async)?.x }}</span>
     </div>
     <div class="y-position box">
       <span>Y</span>
-      <span>45</span>
+      <span>{{ (position$ | async)?.y }}</span>
     </div>
     <div class="z-position box">
       <span>Z</span>
-      <span>45</span>
+      <span>{{ (position$ | async)?.z }}</span>
     </div>
   </div>
   <ccf-block-size-input [blockSize]="(model.blockSize$ | async)!" (blockSizeChange)="model.setBlockSize($event)">
@@ -144,8 +144,16 @@
   >
   </ccf-slices-input>
 </hra-expansion-panel>
-<hra-expansion-panel [title]="'Anatomical Structure Tags'">
+<hra-expansion-panel [title]="'Anatomical Structure Tags'" class="as-tags">
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
+  <ccf-tag-list
+    *ngIf="(model.organ$ | async)?.name; else tagListPlaceholder"
+    class="tag-list"
+    [tags]="(astags.tags$ | async) ?? []"
+    (tagRemoved)="astags.removeTag($event)"
+  >
+  </ccf-tag-list>
+  <ng-template #tagListPlaceholder> </ng-template>
 </hra-expansion-panel>
 <div style="flex-grow: 1"></div>
 <div class="buttons">
