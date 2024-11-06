@@ -14,16 +14,22 @@ import {
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import {
+  AnyDataEntry,
   ColorMapInput,
   ColorMapKeysInput,
   ColorMapView,
+  createColorMapGenerator,
+  createEdgeGenerator,
   EdgeKeysInput,
   EdgesInput,
+  EMPTY_COLOR_MAP_VIEW,
+  EMPTY_EDGES_VIEW,
   loadColorMap,
   loadEdges,
   loadNodes,
   NodeKeysInput,
   NodesInput,
+  withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
@@ -36,7 +42,6 @@ import { loadMetadata, MetadataInput } from '../models/metadata';
 import { DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
-import { createColorGenerator } from '../shared/color-generator';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 
 /** Interface for representing the distance entry */
@@ -124,13 +129,24 @@ export class CdeVisualizationComponent {
   /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEntry | undefined>();
 
+  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
+  readonly vcRef = inject(ViewContainerRef);
+
   /** View of the node data */
   protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys);
   /** View of the edge data */
-  protected readonly edgesView = loadEdges(this.edges, this.edgeKeys);
+  protected readonly edgesView = withDataViewDefaultGenerator(
+    loadEdges(this.edges, this.edgeKeys),
+    createEdgeGenerator(this.nodesView, this.edges, this.nodeTargetSelector, this.maxEdgeDistance),
+    EMPTY_EDGES_VIEW,
+  );
   /** View of the color map */
-  protected readonly colorMapView = loadColorMap(this.colorMap, this.colorMapKeys);
-
+  protected readonly colorMapView = withDataViewDefaultGenerator(
+    loadColorMap(this.colorMap, this.colorMapKeys),
+    createColorMapGenerator(this.nodesView, this.colorMap),
+    EMPTY_COLOR_MAP_VIEW,
+  );
+  /** Combined metadata */
   protected readonly metadataView = loadMetadata(this.metadata, {
     title: this.title,
     organ: this.organ,
@@ -142,115 +158,44 @@ export class CdeVisualizationComponent {
     creationTimestamp: this.creationTimestamp,
   });
 
-  /** Injected data loader service */
-  // private readonly dataLoader = inject(DataLoaderService);
-
-  /** Loaded nodes data */
-  // readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
-  //   papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
-  // });
-
-  /** Key for node type attribute */
-  // readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
-
-  /** Selected node target value */
-  // readonly selectedNodeTargetValue = computed(
-  //   () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
-  // );
-
-  /** Loaded edges data */
-  // readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
-  //   papaparse: { dynamicTyping: true },
-  // });
-
-  /** Loaded color map data */
-  // readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
-  //   papaparse: { header: true },
-  // });
-
-  /** Key for color map type attribute */
-  // readonly colorMapTypeKey = computed(
-  //   () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
-  // );
-
-  /** Lookup table for color map */
-  // private readonly colorMapLookup = computed(() =>
-  //   colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
-  // );
-
-  /** Loaded metadata */
-  // readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
-
-  /** Merged metadata with input properties */
-  // readonly mergedMetadata = computed(() =>
-  //   mergeObjects(this.loadedMetadata(), {
-  //     title: this.title(),
-  //     technology: this.technology(),
-  //     organ: this.organ(),
-  //     sex: this.sex(),
-  //     age: this.age(),
-  //     creationTimestamp: this.creationTimestamp(),
-  //     thickness: this.thickness(),
-  //     pixelSize: this.pixelSize(),
-  //   }),
-  // );
-
   /** List of cell types */
-  readonly cellTypes = signal<CellTypeEntry[]>([]);
+  protected readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
-  readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+  protected readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
   /** Counter for resetting cell types */
-  readonly cellTypesResetCounter = signal(0);
+  protected readonly cellTypesResetCounter = signal(0);
 
   /** Computed cell types as color map entries */
-  readonly cellTypesAsColorMap = computed(
-    () => {
-      return new ColorMapView(this.cellTypes(), {
-        'Cell Type': 'name',
-        'Cell Color': 'color',
-      });
-      // const cellTypes = this.cellTypes();
-      // const typeKey = this.colorMapTypeKey();
-      // const colorKey = this.colorMapValueKey();
-
-      // return cellTypes.map(
-      //   (entry) =>
-      //     ({
-      //       [typeKey]: entry.name,
-      //       [colorKey]: entry.color,
-      //     }) as ColorMapEntry,
-      // );
-    },
-    // { equal: emptyArrayEquals },
+  protected readonly cellTypesAsColorMap = computed(
+    () => new ColorMapView(this.cellTypes(), { 'Cell Type': 'name', 'Cell Color': 'color' }),
   );
 
-  /** Computed cell types from loaded nodes */
-  readonly cellTypesFromNodes = computed(() => {
-    const nodes = this.nodesView();
-    const edges = this.edgesView();
-    const colorMapLookup = this.colorMapView().getColorLookup();
-    const defaultColorGenerator = createColorGenerator();
-    const cellTypeByName: Record<string, CellTypeEntry> = {};
+  // protected readonly resetCellTypes = createNotifier()
 
-    for (const node of nodes) {
-      const name = nodes.getCellTypeFor(node); // node[targetKey];
-      cellTypeByName[name] ??= {
+  private readonly edgeTypeAccessor = computed(() => {
+    const getNodeType = this.nodesView().getCellTypeAt;
+    const getNodeIndex = this.edgesView().getCellIDFor;
+    return (edge: AnyDataEntry) => getNodeType(getNodeIndex(edge));
+  });
+
+  private readonly nodeCounts = computed(() => this.nodesView().getCounts());
+  private readonly edgeCounts = computed(() => this.edgesView().getCounts(this.edgeTypeAccessor()));
+
+  private readonly cellTypesFromNodes = computed(() => {
+    const nodeCounts = this.nodeCounts();
+    const edgeCounts = this.edgeCounts();
+    const colorLookup = this.colorMapView().getColorLookup();
+
+    return Array.from(nodeCounts).map(
+      ([name, count]): CellTypeEntry => ({
         name,
-        count: 0,
-        outgoingEdgeCount: 0,
-        color: (colorMapLookup.get(name) as Rgb) ?? defaultColorGenerator(),
-      };
-      cellTypeByName[name].count += 1;
-    }
-
-    for (const edge of edges) {
-      const name = nodes.getCellTypeAt(edges.getCellIDFor(edge));
-      cellTypeByName[name].outgoingEdgeCount += 1;
-    }
-
-    return Object.values(cellTypeByName);
+        count,
+        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+      }),
+    );
   });
 
   /** Computed selection of cell types from nodes */
@@ -267,9 +212,6 @@ export class CdeVisualizationComponent {
     },
     { allowSignalWrites: true },
   );
-
-  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
-  readonly vcRef = inject(ViewContainerRef);
 
   /** List of filtered cell types based on selection */
   protected readonly filteredCellTypes = computed(

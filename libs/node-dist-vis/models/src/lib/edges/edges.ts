@@ -127,6 +127,17 @@ export class EdgesView extends BaseEdgesView {
     const zDiff = this.getZ1For(obj) - this.getZ2For(obj);
     return Math.hypot(xDiff, yDiff, zDiff);
   };
+
+  readonly getCounts = (getType: (obj: AnyDataEntry) => string) => {
+    const counts: Record<string, number> = {};
+    for (const edge of this) {
+      const type = getType(edge);
+      counts[type] ??= 0;
+      counts[type] += 1;
+    }
+
+    return new Map(Object.entries(counts));
+  };
 }
 
 /** Empty edges view */
