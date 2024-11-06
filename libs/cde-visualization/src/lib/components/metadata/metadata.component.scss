@@ -3,83 +3,65 @@
   --mat-text-button-hover-state-layer-opacity: 0;
   --mat-text-button-pressed-state-layer-opacity: 0;
   --mat-expansion-container-shape: 0;
+  --mat-expansion-container-background-color: var(--sys-surface-container-low);
 
-  .mat-expansion-panel {
-    --mat-expansion-container-text-font: var(--sys-label-small-font);
-    --mat-expansion-container-text-size: var(--sys-label-small-size);
-    --mat-expansion-container-text-weight: var(--sys-label-small-weight);
-    --mat-expansion-container-text-line-height: var(--sys-label-small-line-height);
-    --mat-expansion-container-text-tracking: var(--sys-label-small-tracking);
+  hra-expansion-panel {
+    --mat-expansion-container-shape: 0;
+    --mat-expansion-header-expanded-state-height: auto;
+    --mat-expansion-header-collapsed-state-height: auto;
+    --mat-expansion-header-hover-state-layer-color: transparent;
     border-color: var(--sys-outline-variant);
+    background-color: var(--sys-secondary-container);
     border-width: 0 2px 2px 0px;
     border-style: solid;
     box-shadow: none;
 
-    .mat-expansion-panel-header {
-      --mat-expansion-header-expanded-state-height: 3rem;
-      --mat-expansion-header-text-font: var(--sys-label-medium-font);
-      --mat-expansion-header-text-size: var(--sys-label-medium-size);
-      --mat-expansion-header-text-weight: var(--sys-label-medium-weight);
-      --mat-expansion-header-text-line-height: var(--sys-label-medium-line-height);
-      --mat-expansion-header-text-tracking: var(--sys-label-medium-tracking);
-      padding: 0 0.75rem;
-
-      .title {
-        mat-icon {
-          margin: 2px;
-        }
-      }
-    }
-
     ::ng-deep {
       .mat-expansion-panel-body {
-        padding: 0 1rem 0.75rem 1rem;
+        padding: 0 1rem;
       }
     }
 
-    .label {
-      & + span,
-      + a {
-        display: block;
-        margin-bottom: 0.75rem;
-        color: var(--sys-on-tertiary-fixed);
-      }
-
-      & + span.user-title {
-        color: var(--sys-primary);
-      }
+    ::ng-deep .header {
+      padding: 0.5rem 0.75rem;
     }
 
     .metadata-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      row-gap: 0.75rem;
-      column-gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0 0.75rem;
       margin-bottom: 0.75rem;
+
+      > div {
+        display: inline-flex;
+        margin: 1px 0;
+
+        span {
+          width: 50%;
+
+          a[mat-button] {
+            height: auto;
+            padding: 0.0625rem 0.25rem;
+          }
+
+          &:first-child {
+            font: var(--sys-label-small);
+            color: var(--sys-secondary);
+          }
+
+          &:last-child {
+            font: var(--sys-label-small);
+            color: var(--sys-primary);
+
+            &:not(:has(a[mat-button])) {
+              padding-left: 0.5rem;
+            }
+          }
+        }
+      }
 
       span {
         display: block;
-      }
-
-      div.mat-caption {
-        &:not(:has(span.mat-caption)) {
-          span {
-            color: var(--sys-primary);
-          }
-        }
-
-        span.mat-caption {
-          color: var(--sys-on-tertiary-fixed);
-        }
-
-        span.user-source {
-          color: var(--sys-primary);
-        }
-
-        a.mat-caption {
-          display: block;
-          color: var(--sys-on-tertiary-fixed);
-        }
       }
     }
 

@@ -2,6 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -31,5 +32,6 @@ export const CdeVisualizationElement = createCustomElement('cde-visualization', 
     provideScrolling(),
     importProvidersFrom(ColorPickerModule),
     provideDesignSystem(),
+    provideButtonToggle(),
   ],
 });

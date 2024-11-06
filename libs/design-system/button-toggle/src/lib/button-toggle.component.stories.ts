@@ -1,7 +1,7 @@
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { provideButtonToggle } from './providers';
 import { ToggleButtonSizeDirective } from './button-toggle-size/button-toggle-size.directive';
+import { provideDesignSystem } from '@hra-ui/design-system';
 const meta: Meta = {
   title: 'ButtonToggleComponent',
   parameters: {
@@ -12,7 +12,7 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideButtonToggle()],
+      providers: [provideDesignSystem()],
     }),
     moduleMetadata({
       imports: [MatButtonToggleModule, ToggleButtonSizeDirective],

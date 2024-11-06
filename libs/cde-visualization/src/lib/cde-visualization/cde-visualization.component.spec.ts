@@ -1,13 +1,12 @@
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { provideHttpClient } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
-import { rgbToHex } from '@hra-ui/design-system/color-picker';
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 
+import { TestBed } from '@angular/core/testing';
+import { rgbToHex } from '@hra-ui/design-system/color-picker';
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
+
+import { provideHttpClient } from '@angular/common/http';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY } from '../models/color-map';
 import { EdgeEntry } from '../models/edge';
 import { DEFAULT_NODE_TARGET_KEY, DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
@@ -147,29 +146,29 @@ describe('CdeVisualizationComponent', () => {
   //   expect(fileSaveSpy).toHaveBeenCalledWith(instance.loadedEdges(), 'edges.csv');
   // });
 
-  it('should update color map when downloadColorMap is called', async () => {
-    const { fixture } = await setup({
-      componentInputs: {
-        ...sampleData,
-        nodes: sampleNodes,
-        colorMap: sampleColorMap,
-      },
-    });
+  // it('should update color map when downloadColorMap is called', async () => {
+  //   const { fixture } = await setup({
+  //     componentInputs: {
+  //       ...sampleData,
+  //       nodes: sampleNodes,
+  //       colorMap: sampleColorMap,
+  //     },
+  //   });
 
-    const instance = fixture.componentInstance;
-    const processedColorMap = instance
-      .cellTypesAsColorMap()
-      .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
+  //   const instance = fixture.componentInstance;
+  //   const processedColorMap = instance
+  //     .cellTypesAsColorMap()
+  //     .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
 
-    const fileSaver = TestBed.inject(FileSaverService);
-    const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+  //   const fileSaver = TestBed.inject(FileSaverService);
+  //   const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
 
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
+  //   const loader = TestbedHarnessEnvironment.loader(fixture);
+  //   const menu = await loader.getHarness(MatMenuHarness);
 
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
-    expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
-  });
+  //   await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+  //   expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
+  // });
 
   it('should reset cell types and increase reset counter', async () => {
     const {
@@ -359,6 +358,122 @@ describe('CdeVisualizationComponent', () => {
           outgoingEdgeCount: 0,
         },
       ]);
+    });
+  });
+
+  describe('downloadNodes()', () => {
+    it('should download nodes', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({
+        componentInputs: {
+          ...sampleData,
+          nodes: sampleNodes,
+        },
+      });
+
+      const expectedNodes = [
+        {
+          'Cell Type': 'a',
+          X: 0,
+          Y: 0,
+        },
+        {
+          'Cell Type': 'b',
+          X: 0,
+          Y: 2,
+        },
+        {
+          'Cell Type': 'c',
+          X: 0,
+          Y: 4,
+        },
+        {
+          'Cell Type': 'b',
+          X: 0,
+          Y: 5,
+        },
+      ];
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+      instance.downloadNodes();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expectedNodes, 'nodes.csv');
+    });
+  });
+
+  describe('downloadEdges()', () => {
+    it('should update edges when downloadEdges is called', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({
+        componentInputs: {
+          ...sampleData,
+          nodes: sampleNodes,
+          edges: sampleEdges,
+        },
+      });
+
+      const expectedEdges = [
+        {
+          'Cell ID': 0,
+          X1: 0,
+          X2: 4,
+          Y1: 0,
+          Y2: 5,
+          Z1: 3,
+          Z2: 6,
+        },
+        {
+          'Cell ID': 1,
+          X1: 0,
+          X2: 4,
+          Y1: 2,
+          Y2: 5,
+          Z1: 3,
+          Z2: 6,
+        },
+        {
+          'Cell ID': 2,
+          X1: 0,
+          X2: 4,
+          Y1: 4,
+          Y2: 5,
+          Z1: 3,
+          Z2: 6,
+        },
+      ];
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+      instance.downloadEdges();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expectedEdges, 'edges.csv');
+    });
+  });
+
+  describe('downloadColorMap()', () => {
+    it('should update color map when downloadColorMap is called', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({
+        componentInputs: {
+          ...sampleData,
+          nodes: sampleNodes,
+          colorMap: sampleColorMap,
+        },
+      });
+
+      const processedColorMap = instance
+        .cellTypesAsColorMap()
+        .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+
+      instance.downloadColorMap();
+      expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
     });
   });
 });

@@ -2,7 +2,7 @@
   <hra-nav-header-buttons
     app="cde"
     appTitle="Cell Distance Explorer"
-    appLink="https://apps.humanatlas.io/cde/"
+    appLink="/"
     variant="basic"
     appStatus="Beta"
   ></hra-nav-header-buttons>
@@ -32,6 +32,7 @@
       [cellTypesSelection]="cellTypesSelection()"
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
+      (resetAllCells)="resetCellTypes()"
       #visualization
     ></cde-node-dist-visualization>
     <!-- (edgesChange)="edges.set($event)" -->

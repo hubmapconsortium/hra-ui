@@ -99,8 +99,8 @@ export const FlatRound: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <button mat-flat-button
-    hraPrimaryButton hraButtonSize="large" [disabled]="${args['disabled']}">Button</button>
+      <button mat-flat-button
+      hraPrimaryButton hraButtonSize="large" [disabled]="${args['disabled']}">Button</button>
     `,
   }),
 };
@@ -117,16 +117,11 @@ export const CtaFlatPrimary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <button mat-flat-button  hraCallToActionButton hraPrimaryButton
-    hraButtonSize="large" [disabled]="${args['disabled']}">Button
-      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-    </button>
+      <button mat-flat-button  hraCallToActionButton hraPrimaryButton
+      hraButtonSize="large" [disabled]="${args['disabled']}">Button
+        <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+      </button>
     `,
-    styles: [
-      `mat-icon {
-        margin-left: 0.25rem;
-      }`,
-    ],
   }),
 };
 
@@ -142,16 +137,11 @@ export const CtaFlatSecondary: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <button mat-flat-button hraCallToActionButton hraSecondaryButton
-    hraButtonSize="large" [disabled]="${args['disabled']}">Button
-      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-    </button>
+      <button mat-flat-button hraCallToActionButton hraSecondaryButton
+      hraButtonSize="large" [disabled]="${args['disabled']}">Button
+        <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+      </button>
     `,
-    styles: [
-      `mat-icon {
-        margin-left: 0.25rem;
-      }`,
-    ],
   }),
 };
 
@@ -171,8 +161,8 @@ export const ToggleButton: Story = {
       </mat-button-toggle>
     `,
     styles: [
-      `mat-icon {
-        margin-right: 0.25rem;
+      `.mat-button-toggle-standalone {
+        border: none !important;
       }`,
     ],
   }),
@@ -191,8 +181,8 @@ export const NavigationCategoryButton: Story = {
       </mat-button-toggle>
     `,
     styles: [
-      `mat-icon {
-        margin-right: 0.25rem;
+      `.mat-button-toggle-standalone {
+        border: none !important;
       }`,
     ],
   }),
