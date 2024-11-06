@@ -16,7 +16,6 @@ import { RegistrationModalModule } from './modules/registration-modal/registrati
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
-import { provideDesignSystem } from '@hra-ui/design-system';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -26,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ButtonModule } from '@hra-ui/design-system/button';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 @NgModule({
   imports: [

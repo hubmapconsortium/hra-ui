@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JsonFileReaderComponent } from './json-file-reader.component';
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonModule } from '@hra-ui/design-system/button';
 
 @NgModule({
   declarations: [JsonFileReaderComponent],
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, ButtonModule],
   exports: [JsonFileReaderComponent],
 })
 export class JsonFileReaderModule {}

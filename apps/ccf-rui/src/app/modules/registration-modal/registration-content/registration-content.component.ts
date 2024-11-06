@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
 import { map } from 'rxjs/operators';
 
 import { ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
 import { PageState, Person } from '../../../core/store/page/page.state';
+import { RegistrationState } from '../../../core/store/registration/registration.state';
+
+/** Returns null for all optional values */
+function optionalValue<T>(): T | null {
+  return null;
+}
 
 /**
  * Component containing content of the initial registration modal
@@ -46,6 +54,24 @@ export class RegistrationContentComponent {
   /** Checks if a preexisting registration was uploaded */
   registrationSelected: boolean;
 
+  /** Form builder */
+  private readonly fb = inject(FormBuilder);
+
+  readonly registrationForm = this.fb.group({
+    firstName: ['', [Validators.required]],
+    middleName: [''],
+    lastName: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    orcid: [optionalValue<string>(), [Validators.pattern('^[a-zA-Z0-9]{4}(-[a-zA-Z0-9]{4}){3}$')]],
+    sex: ['', [Validators.required]],
+    organ: ['', [Validators.required]],
+    publicationDOI: [''],
+    consortium: [''],
+  });
+
+  /** Text to inform user if a registration file has been uploaded */
+  uploadText!: string;
+
   /**
    * Creates an instance of the registration dialog
    *
@@ -57,12 +83,14 @@ export class RegistrationContentComponent {
   constructor(
     readonly page: PageState,
     readonly model: ModelState,
+    readonly registration: RegistrationState,
     public dialogRef: MatDialogRef<RegistrationContentComponent>,
     cdr: ChangeDetectorRef,
   ) {
     this.registrationSelected = false;
     page.user$.subscribe((user) => {
       this.checkNameValid(user);
+      this.registrationForm.patchValue({ orcid: page.uriToOrcid(user.orcidId) });
       this.orcidValid = page.isOrcidValid();
       cdr.markForCheck();
     });
@@ -79,6 +107,10 @@ export class RegistrationContentComponent {
       this.organList = options as OrganInfo[];
       cdr.markForCheck();
     });
+
+    registration.state$.subscribe((reg) => {
+      this.uploadText = reg.initialRegistration ? 'File(s) uploaded' : 'No file(s) uploaded';
+    });
   }
 
   /**
@@ -87,6 +119,7 @@ export class RegistrationContentComponent {
    * @param label Sex selected
    */
   setSexFromLabel(label: 'Female' | 'Male'): void {
+    this.model.setSex(label.toLowerCase() as 'male' | 'female');
     this.currentSex = label;
     this.sexSelected = true;
   }
@@ -126,10 +159,8 @@ export class RegistrationContentComponent {
     this.closeDialog();
   }
 
-  /**
-   * Sets registrationSelected to true when a registration is uploaded
-   */
-  handleRegistrationSelect() {
+  handleRegistrationUpload(reg: SpatialEntityJsonLd): void {
+    this.registration.editRegistration(reg);
     this.registrationSelected = true;
   }
 
@@ -146,5 +177,30 @@ export class RegistrationContentComponent {
     }
     this.dialogRef.close(true);
     this.page.registrationStarted();
+  }
+
+  getErrorMessage(): string {
+    return this.registrationForm.controls['orcid'].hasError('pattern') ? 'Not a valid ORCID' : '';
+  }
+
+  /**
+   * Updates orcid value
+   * @param value Orcid value entered
+   */
+  updateOrcid(value: string): void {
+    this.page.setOrcidId(value);
+  }
+
+  handleNameChange(): void {
+    const { firstName, middleName, lastName } = this.registrationForm.value;
+    this.page.setUserName({
+      firstName: firstName || '',
+      middleName: middleName || '',
+      lastName: lastName || '',
+    });
+    this.checkNameValid({
+      firstName: firstName || '',
+      lastName: lastName || '',
+    });
   }
 }
