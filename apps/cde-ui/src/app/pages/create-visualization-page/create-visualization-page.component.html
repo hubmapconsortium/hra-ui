@@ -123,42 +123,27 @@
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>X Axis</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="xAxis"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="xAxis" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Y Axis</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="yAxis"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="yAxis" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="cell-type-select" hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field class="cell-type-select" subscriptSizing="dynamic">
         <mat-label>Cell Type</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="cellType"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="cellType" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -173,28 +158,18 @@
     <div class="optional-headers">
       <span class="subheader">Optional: Add column headers</span>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Z Axis</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="zAxis"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="zAxis" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Cell Ontology ID</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="ontologyId"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="ontologyId" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -234,12 +209,12 @@
     }
 
     <div class="parameters-1">
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Anchor Cell Type</mat-label>
         <mat-select
           disableRipple
           formControlName="nodeTargetValue"
-          [panelClass]="['options-container', 'options-container-medium']"
+          panelClass="options-container"
           cdeMarkEmptyFormControl
         >
           @for (type of cellTypes; track type) {
@@ -311,28 +286,18 @@
     </div>
 
     <div class="row">
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Organ</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="organ"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="organ" panelClass="options-container" cdeMarkEmptyFormControl>
           @for (organ of organs(); track organ) {
             <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field hraSelectSize="medium" subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic">
         <mat-label>Sex</mat-label>
-        <mat-select
-          disableRipple
-          formControlName="sex"
-          [panelClass]="['options-container', 'options-container-medium']"
-          cdeMarkEmptyFormControl
-        >
+        <mat-select disableRipple formControlName="sex" panelClass="options-container" cdeMarkEmptyFormControl>
           <mat-option value="Male">Male</mat-option>
           <mat-option value="Female">Female</mat-option>
         </mat-select>
