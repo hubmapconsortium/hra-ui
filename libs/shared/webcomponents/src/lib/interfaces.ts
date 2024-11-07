@@ -14,7 +14,10 @@ export type InputProps<CompT> = {
 /**
  * Additional methods and properties added to custom elements
  */
-export interface NgElementExtensions {
+export interface NgElementExtensions<T> {
+  /** Reference to the angular component instance */
+  readonly instance: T | undefined;
+
   /**
    * Resolves when the angular zone becomes stable.
    * This usually indicates that rendering has completed, etc.
