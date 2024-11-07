@@ -50,7 +50,7 @@ export function loadMetadata(input: Signal<MetadataInput>, mixins: MetadataMixin
     const metadata = typeof result === 'object' && result !== null ? (result as Metadata) : {};
     for (const key in mixins) {
       const value = mixins[key as keyof Metadata]?.();
-      if (value !== undefined) {
+      if (value !== undefined && value !== null && !Number.isNaN(value)) {
         metadata[key as keyof Metadata] = value as never;
       }
     }

@@ -5,7 +5,7 @@ import { derivedAsync } from 'ngxtension/derived-async';
 import { catchError, EMPTY, filter, map } from 'rxjs';
 
 /** Accepted data input types */
-export type DataInput<T> = T | File | URL | string | undefined;
+export type DataInput<T> = T | File | URL | string | null | undefined;
 
 /**
  * Tests whether a value is a plain object

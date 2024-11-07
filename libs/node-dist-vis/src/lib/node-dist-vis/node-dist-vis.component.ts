@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -80,7 +81,7 @@ const INITIAL_VIEW_STATE = {
   selector: 'hra-node-dist-vis',
   standalone: true,
   template: '<canvas #canvas></canvas>',
-  styles: ':host { display: block; }',
+  styles: ':host { display: block; position: relative; width: 100%; height: 100%; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeDistVisComponent {
@@ -92,7 +93,7 @@ export class NodeDistVisComponent {
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector = input<string>(); // TODO default (must take nodeTargetValue into consideration, i.e. don't set default on this input)
+  readonly nodeTargetSelector = input<string>();
   /**
    * Column/property of the node's 'Cell Type' values
    *
@@ -110,6 +111,8 @@ export class NodeDistVisComponent {
   readonly edges = input<EdgesInput>();
   /** Edge key mapping data */
   readonly edgeKeys = input<EdgeKeysInput>();
+  /** Whether edges are disabled */
+  readonly edgesDisabled = input(false, { transform: booleanAttribute });
   /** Max distance to consider when calculating edges */
   readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, { transform: numberAttribute });
 
@@ -204,6 +207,7 @@ export class NodeDistVisComponent {
     this.edgesView,
     this.nodeFilterView,
     this.colorMapView,
+    this.edgesDisabled,
   );
   /** Scale bar layer */
   private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);

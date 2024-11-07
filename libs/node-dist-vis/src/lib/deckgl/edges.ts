@@ -24,6 +24,7 @@ export type EdgesLayer = LineLayer<AnyData, DataFilterExtensionProps<AnyData>>;
  * @param edges Edges data view
  * @param nodeFilter Node filter
  * @param colorMap Color map
+ * @param disabled Whether to show/hide the layer
  * @returns A deckgl layer
  */
 export function createEdgesLayer(
@@ -31,6 +32,7 @@ export function createEdgesLayer(
   edges: Signal<EdgesView>,
   nodeFilter: Signal<NodeFilterView>,
   colorMap: Signal<ColorMapView>,
+  disabled: Signal<boolean>,
 ): Signal<EdgesLayer> {
   const sourcePositionAccessor = computed(() => {
     const accessor = edges().getSourcePositionFor;
@@ -60,6 +62,7 @@ export function createEdgesLayer(
   return computed(() => {
     return new LineLayer({
       id: 'edges',
+      visible: !disabled(),
       data: edges(),
       getSourcePosition: sourcePositionAccessor(),
       getTargetPosition: targetPositionAccessor(),
