@@ -33,7 +33,8 @@ export interface ColorMap {
   range: Color[];
 }
 
-const DEFAULT_CELL_COLOR: Color = [255, 255, 255];
+/** Default color (Surface N-98, Hra Blue 5) */
+const DEFAULT_CELL_COLOR: Color = [239, 242, 245];
 /** Required color map keys */
 const REQUIRED_KEYS: (keyof ColorMapEntry)[] = ['Cell Type', 'Cell Color'];
 /** Optional color map keys */
