@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>24 Hour Macroscope Event</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5FEBMK0QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-H5FEBMK0QE');
+    </script>
+    <script>
+      var end = new Date('12/14/2024 12:00 PM EST');
+
+      var _second = 1000;
+      var _minute = _second * 60;
+      var _hour = _minute * 60;
+      var _day = _hour * 24;
+      var timer;
+
+      function getESTOffset() {
+        return new Date().getTimezoneOffset() - end.getTimezoneOffset();
+      }
+
+      function showRemaining() {
+        var now = new Date();
+        var distance = end - now - getESTOffset() * _hour;
+        if (distance < 0) {
+          clearInterval(timer);
+          document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+          return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML =
+          "Starting in <span style='color:;'>" +
+          days +
+          "</span>d <span style='color:;'>" +
+          hours +
+          "</span>h <span style='color:;'>" +
+          minutes +
+          '</span>m';
+      }
+
+      timer = setInterval(showRemaining, 1000);
+    </script>
+  </head>
+
+  <body id="page-top">
+    <!-- Navigation-->
+    <div class="navbar">
+      <img src="assets/UI Assets/logo2.svg" />
+      <div class="timer" id="countdown"></div>
+    </div>
+
+    <!-- Header-->
+    <header class="masthead text-center text-white headerimg">
+      <div class="masthead-content">
+        <div class="container px-5">
+          <h1 class="masthead-heading mb-33">24 Hour “Macroscopes: Interactive Data Visualizations” Event</h1>
+          <h2 class="masthead-subheading mb-4">Let's explore data!</h2>
+          <div id="particles-js"></div>
+
+          <a class="btn btn-primary btn-xl rounded-pill mt-3" href="#scroll">View event schedule</a> &nbsp;&nbsp;
+          <a class="btn btn-primary btn-xl rounded-pill mt-3" href="https://iu.zoom.us/j/83295439931"
+            >Join event virtually via Zoom
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content sections-->
+    <div class="holder3" id="scroll">
+      <div class="px-4 pb-2 mb-5">
+        <h1 class="pt-5 pb-3" style="margin: auto; text-align: center">About</h1>
+        <p style="margin: auto; text-align: left; max-width: 700px">
+          Over the course of 24 hours, scholars and practitioners from around the globe will present and discuss their
+          work in a fun and accessible style. There will be presentations, panels, and a musical intervention. We will
+          feature behind-the-scenes videos, demonstrate valuable tools and methodologies, and have fun exploring
+          interactive data visualizations.
+
+          <br /><br />We hope the event will help kickoff the holiday season, create ever more excitement for the power
+          and data and visualizations, share the pleasures of scientific discovery, and give good energy to all on this
+          planet who are affected by the ongoing pandemic and raging wars.
+        </p>
+      </div>
+    </div>
+
+    <h1 class="pt-5 pb-4" style="margin: auto; background-color: #f1f1f1; text-align: center">
+      Saturday, Dec 9th 2023 <br />
+      <span style="font-size: 18px; opacity: 0.6">Main times are in EST (GMT-5)</span>
+    </h1>
+
+    <div class="holder">
+      <div class="timeline">
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/12pm.png" alt="..." />
+            <h2>12PM</h2>
+            <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9)</h6>
+            <h4>Welcome by Organizers</h4>
+            <p>With Katy Börner, Lisel Record, and Todd N. Theriault <i>(Indiana University)</i></p>
+            <p>
+              Click
+              <a href="https://scimaps.org/macroscopes" style="color: #b20a2f; text-decoration: none" target="_blank"
+                >here</a
+              >
+              to learn more about Macroscopes and the <i>Places & Spaces: Mapping Science</i> exhibit
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=3fw3XHUqCS8&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=1"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1pm.png" alt="..." />
+            <h2>1PM</h2>
+            <h6>6PM in London (GMT), 3AM in Tokyo (GMT+9)</h6>
+            <h4>Panel: Macroscopes in Public Places</h4>
+            <p><b>Moderator:</b> Lisel Record <i>(Indiana University)</i></p>
+            <p><b>Panelists:</b></p>
+            <ul>
+              <li>Stephen Uzzo <i>(National Museum of Mathematics)</i></li>
+              <li>Joe Heimlich <i>(COSI)</i></li>
+              <li>Kylie Peppler <i>(UCI)</i></li>
+            </ul>
+
+            <a
+              href="https://www.youtube.com/watch?v=KrniBAy18Xc&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=2"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/2pm.png" alt="..." />
+            <h2>2PM</h2>
+            <h6>7PM in London (GMT), 4AM in Tokyo (GMT+9)</h6>
+            <h4>Forecasting and Visualizing Desirable Futures</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p>
+              <b>Presenter:</b> Katy Börner <i>(Indiana University)</i>, author of
+              <a
+                href="https://mitpress.mit.edu/9780262045957/atlas-of-forecasts/"
+                style="color: #b20a2f; text-decoration: none"
+                target="_blank"
+                >Atlas of Forecasts</a
+              >
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=ycrAin9Hexw&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=3"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/3pm.png" alt="..." />
+            <h2>3PM</h2>
+            <h6>8PM in London (GMT), 5AM in Tokyo (GMT+9)</h6>
+            <h4>Panel: History and Future of Macroscopes</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Co-Curator, Places & Spaces, Indiana University)</i></p>
+            <p><b>Panelists:</b></p>
+            <ul>
+              <li>Bonnie Jean DeVarco <i>(Co-Founder of Studio DeVarco)</i></li>
+              <li>Asako Okamura <i>(National Institute of Science and Technology)</i></li>
+              <li>Chaomei Chen <i>(Drexel University College of Computing and Informatics)</i></li>
+            </ul>
+
+            <a
+              href="https://www.youtube.com/watch?v=zgtKlHqdokU&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=4&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/4pm.png" alt="..." />
+            <h2>4PM</h2>
+            <h6>9PM in London (GMT), 6AM in Tokyo (GMT+9)</h6>
+            <h4>Macroscopes in Action</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presenter:</b> Benjamin Wiederkehr <i>(Interactive Things)</i></p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides imgtimeline" src="assets/img/5pm.png" alt="..." />
+              <img class="rounded-circle mySlides imgtimeline" src="assets/img/5pm1.png" alt="..." />
+              <img class="rounded-circle mySlides imgtimeline" src="assets/img/5pm2.png" alt="..." />
+              <img class="rounded-circle mySlides imgtimeline" src="assets/img/5pm3.png" alt="..." />
+            </div>
+            <h2>5PM</h2>
+            <h6>10PM in London (GMT), 7AM in Tokyo (GMT+9)</h6>
+            <h4>XI. Iteration: Macroscopes for Interacting with Science</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>Katy Börner <i>(AcademyScope)</i></li>
+              <li>Kalev H. Leetaru <i>(GDELT)</i></li>
+            </ul>
+
+            <a
+              href="https://www.youtube.com/watch?v=IuwPrCCoS88&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=5&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+            <p><b>Links:</b></p>
+            <ul>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=pdqKBna1Fos"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >AcademyScope Video</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=vIJ0eX4jb9A&t=33s"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Kalev Leetaru’s Mapping Global News</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=EzLkGT1bhj0"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Mauro Martino Demos Charting Culture</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides2 imgtimeline" src="assets/img/6pm.png" alt="..." />
+              <img class="rounded-circle mySlides2 imgtimeline" src="assets/img/6pm1.png" alt="..." />
+              <img class="rounded-circle mySlides2 imgtimeline" src="assets/img/6pm2.png" alt="..." />
+              <img class="rounded-circle mySlides2 imgtimeline" src="assets/img/6pm3.png" alt="..." />
+            </div>
+            <h2>6PM</h2>
+            <h6>11PM in London (GMT), 8AM in Tokyo (GMT+9)</h6>
+            <h4>XII. Macroscopes for Making Sense of Science</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>Edyta Bogucka <i>(Nokia Bell Labs)</i></li>
+              <li>
+                Katy Börner
+                <i>(HathiTrust Digital Library)</i>
+              </li>
+            </ul>
+
+            <a
+              href="https://www.youtube.com/watch?v=pIyu80LZaoc&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=6&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+            <p>
+              <b>Link:</b>
+              <a
+                href="https://goodcitylife.org/smellymaps/project.php"
+                style="color: #b20a2f; text-decoration: none"
+                target="_blank"
+                >SmellyMaps</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides3 imgtimeline" src="assets/img/7pm.png" alt="..." />
+              <img class="rounded-circle mySlides3 imgtimeline" src="assets/img/7pm1.png" alt="..." />
+              <img class="rounded-circle mySlides3 imgtimeline" src="assets/img/7pm2.png" alt="..." />
+              <img class="rounded-circle mySlides3 imgtimeline" src="assets/img/7pm3.png" alt="..." />
+            </div>
+            <h2>7PM</h2>
+            <h6>12AM in London (GMT), 9AM in Tokyo (GMT+9)</h6>
+            <h4>XIII. Macroscopes for Playing with Scale</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>
+                Macrosope Demo Lightning Round:
+                <i>Smelly Maps, Megaregions of the US, Opportunity Atlas, and Virus Explorer</i>
+              </li>
+              <li>Mauro Martino Demos <i>Charting Culture</i></li>
+              <li>Kalev Leetaru Demos <i>Mapping Global News</i></li>
+              <li>Making <i>Academy Scope</i></li>
+              <li>Elijah Meeks on <i>Orbis</i></li>
+              <li>CONDOR: Tool Demo with Peter Gloor</li>
+            </ul>
+
+            <p>
+              <b>Link:</b>
+              <a href="https://youtu.be/aW3ppwq1Srw" style="color: #b20a2f; text-decoration: none" target="_blank"
+                >Megaregions of the US Demo</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/8pm.png" alt="..." />
+            <h2>8PM</h2>
+            <h6>1AM in London (GMT), 10AM in Tokyo (GMT+9)</h6>
+            <h4>Data Visualizations in Virtual Reality</h4>
+            <p><b>Moderator:</b> Andreas Bueckle <i>(Indiana University)</i></p>
+            <p>With Mudrika Alla & Shreyas Sawant <i>(Indiana University)</i></p>
+            <a
+              href="https://www.youtube.com/watch?v=DIx8xYAxDEg&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=7"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides4 imgtimeline" src="assets/img/9pm.png" alt="..." />
+              <img class="rounded-circle mySlides4 imgtimeline" src="assets/img/9pm1.png" alt="..." />
+              <img class="rounded-circle mySlides4 imgtimeline" src="assets/img/9pm2.png" alt="..." />
+              <img class="rounded-circle mySlides4 imgtimeline" src="assets/img/9pm3.png" alt="..." />
+            </div>
+            <h2>9PM</h2>
+            <h6>2AM in London (GMT), 11AM in Tokyo (GMT+9)</h6>
+            <h4>XIV. Macroscopes for Ensuring our Well-being</h4>
+            <p><b>Moderator:</b> Katy Börner <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>See David Chavalarias <i>(Complex Systems Institute of Paris Ile-de-France)</i> interview at 10AM</li>
+              <li><i>Humanexus</i> 2013 Version</li>
+              <li>Katy Börner on <i>Maps and Macroscopes</i></li>
+              <li>Andreas Bueckle on Living and Learning in the Metaverse</li>
+              <li>Visit the Gallery: A Guided Tour of <i>Places & Spaces</i></li>
+              <li>CNS Introduction Video</li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides5 imgtimeline" src="assets/img/10pm.png" alt="..." />
+              <img class="rounded-circle mySlides5 imgtimeline" src="assets/img/10pm1.png" alt="..." />
+              <img class="rounded-circle mySlides5 imgtimeline" src="assets/img/10pm2.png" alt="..." />
+              <img class="rounded-circle mySlides5 imgtimeline" src="assets/img/10pm3.png" alt="..." />
+            </div>
+            <h2>10PM</h2>
+            <h6>3AM in London (GMT), 12PM in Tokyo (GMT+9)</h6>
+            <h4>XV. Macroscopes for Tracking the Flow of Resources</h4>
+            <p><b>Moderator:</b> Katy Börner <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>Abin Abraham <i>(Booz Allen Hamilton)</i></li>
+              <li>Will [Jiahao] Su <i>(Datadog)</i></li>
+            </ul>
+            <p>
+              <b>Link:</b>
+              <a href="https://vimeo.com/289014717" style="color: #b20a2f; text-decoration: none" target="_blank"
+                >Refugee Flow</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides6 imgtimeline" src="assets/img/11pm.png" alt="..." />
+              <img class="rounded-circle mySlides6 imgtimeline" src="assets/img/11pm1.png" alt="..." />
+              <img class="rounded-circle mySlides6 imgtimeline" src="assets/img/11pm2.png" alt="..." />
+              <img class="rounded-circle mySlides6 imgtimeline" src="assets/img/11pm3.png" alt="..." />
+            </div>
+            <h2>11PM</h2>
+            <h6>4AM in London (GMT), 1PM in Tokyo (GMT+9)</h6>
+            <h4>XVI. Macroscopes for Harnessing the Power of Data</h4>
+            <p><b>Moderator:</b> Katy Börner <i>(Indiana University)</i></p>
+            <p><b>Presenter:</b> Nikita Rokotyan <i>(Interacta)</i></p>
+            <p><b>Video:</b> Hans Rosling's <i>Gapminder</i></p>
+            <a
+              href="https://www.youtube.com/watch?v=yeS607GJHMk&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=7&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+            <p><b>Links:</b></p>
+            <ul>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=JimOELC_tYM"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Andrew Levinson on the US Water Crisis Macroscope</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=K337rTmYEnU"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Andrew Levinson: Getting the jump on election results data</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=C96xUr6ml70"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Andrew Levinson on the Virtues of Working Ahead</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=Vm8ezg_tarM"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Mauro Martino on Visualization and the Democracy of Knowledge
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=pUSmPbxg1Xs"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Steven Ross on the Origins of the IBM Watson Explorer</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=s1jxgFptxKA"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Nikita Rokotyan on Creating An Alternative Data-Driven Map
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=2cRQui4AgG8&t=1s"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Nikita Rokotyan on the Power of Dimensionality Reduction
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=W3XSQnGJdws"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Alice Grishchenko on the Making of Nature 150
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=jXgIDhqGzy4"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Alice Grishchenko: Navigating the Worlds of Science and Art
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="py-5" style="margin: auto; text-align: center; color: white; background-color: #4b4b5e">
+      Sunday, Dec 10th 2023
+    </h1>
+
+    <div class="holder2">
+      <div class="timeline2">
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/12am.png" alt="..." />
+            <h2>12AM</h2>
+            <h6>5AM in London (GMT), 2PM in Tokyo (GMT+9)</h6>
+            <h4>Improvisation, Creativity, and Innovation Fireside Chat</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>
+                <a style="color: #b20a2f; text-decoration: none" href="https://www.monikaherzig.com">Monika Herzig</a>
+                <i
+                  >(Accomplished Jazz Musician & Professor of Artistic Research and Dean of Music Education at the Jam
+                  Music Lab University, Vienna)</i
+                >
+              </li>
+              <li>Katy Börner <i>(Indiana University)</i></li>
+            </ul>
+            <a
+              href="https://www.youtube.com/watch?v=QMj--1dYskQ&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=8&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+            <p><b>Links:</b></p>
+            <ul>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=u-RZliAAe1I"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >Keith Jarrett - The Köln Concert</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=ZfKMq-rYtnc"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >TEDxTucson George Land: The failure of success</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/watch?v=cy0L4iFnlsY"
+                  style="color: #b20a2f; text-decoration: none"
+                  target="_blank"
+                  >TEDxBloomington Monika Herzig: How to reclaim your genius level of creativity</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1am.png" alt="..." />
+            <h2>1AM</h2>
+            <h6>6AM in London (GMT), 3PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Macroscopes—Behind the Scenes</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>Mauro Martino Demos <i>Charting Culture</i></li>
+              <li>Elijah Meeks on <i>Orbis</i></li>
+              <li>Kalev Leetaru Demos <i>Mapping Global News</i></li>
+              <li>Nikita Rokotyan on <i>An Alternative Data-Driven Country Map</i></li>
+              <li>Making <i>Academy Scope</i></li>
+              <li>CONDOR: Tool Demo with Peter Gloor</li>
+              <li><i>Amatria</i> Installation at Luddy Hall</li>
+              <li>
+                Macroscope Demo Lightning Round:
+                <i>Smelly Maps, Megaregions of the US, Opportunity Atlas, and Virus Explorer</i>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/2am.png" alt="..." />
+            <h2>2AM</h2>
+            <h6>7AM in London (GMT), 4PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Research Talks</h4>
+            <p></p>
+            <b>Presentations:</b>
+            <ul>
+              <li>
+                Filipi Nascimento da Silva:
+                <i>Interactive visualization of large complex networks based on Helios-web</i>
+              </li>
+              <li>
+                David Kouřil:
+                <i>You've Visualized It but Now What? Navigating and Making Sense of Large 3D Visualizations</i>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1am.png" alt="..." />
+            <h2>3AM</h2>
+            <h6>8AM in London (GMT), 5PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Maker Interviews</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>Andrew Levinson on the <i>United States Water Crisis</i></li>
+              <li>Mauro Martino and Steven Ross on the <i>Watson News Explorer</i></li>
+              <li>Interview with Ward Shelley</li>
+              <li>Alice Grishchenko on <i>Nature 150</i></li>
+              <li>Ingo Günther on Data Science from an Artist's Perspective</li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/4am.png" alt="..." />
+            <h2>4AM</h2>
+            <h6>9AM in London (GMT), 6PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Research Talks</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>
+                Rongqian Ma:
+                <i
+                  >How are Visuals Worth a Thousand Words: Visualization as a Point of Departure to Investigate Research
+                  Culture in Digital Humanities</i
+                >
+              </li>
+              <li>Pirita Tolvanen: <i>Data Visualization in Children’s Nonfiction Picture Books</i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1am.png" alt="..." />
+            <h2>5AM</h2>
+            <h6>10AM in London (GMT), 7PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Foundations and Inspirations</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>Katy Börner at TEDX Bloomington: "Maps and Macroscopes"</li>
+              <li>Visit the Gallery: A Guided Tour of <i>Places & Spaces</i></li>
+              <li>CNS Introduction Video</li>
+              <li>Andreas Bueckle at TEDX Bloomington: “Living and Learning in the Metaverse”</li>
+              <li><i>Humanexus</i> 2013 Version</li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/6am.png" alt="..." />
+            <h2>6AM</h2>
+            <h6>11AM in London (GMT), 8PM in Tokyo (GMT+9)</h6>
+            <h4>Videos: Research Talks</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>Jessica Roberts: <i>Toward the Development of Museum Exhibits for Public AI Literacy</i></li>
+              <li>Melanie Martini & Marcus John: <i>Data Driven Foresight with KATI</i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides7 imgtimeline" src="assets/img/7am.png" alt="..." />
+              <img class="rounded-circle mySlides7 imgtimeline" src="assets/img/7am1.png" alt="..." />
+              <img class="rounded-circle mySlides7 imgtimeline" src="assets/img/7am2.png" alt="..." />
+              <img class="rounded-circle mySlides7 imgtimeline" src="assets/img/7am3.png" alt="..." />
+            </div>
+            <h2>7AM</h2>
+            <h6>12PM in London (GMT), 9PM in Tokyo (GMT+9)</h6>
+            <h4>XVII. Macroscopes for Placing Data in Space</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presentations:</b></p>
+            <ul>
+              <li>Andrew Levinson on the <i>United States Water Crisis</i></li>
+              <li>Mauro Martino and Steve Ross on the <i>Watson News Explorer </i></li>
+              <li>Alice Grishchenko on <i>Nature 150</i></li>
+              <li>Nikita Rokotyan on <i>An Alternative Data-Driven Country Map</i></li>
+              <li>Ingo Gunther on Data Science from an Artist's Perspective</li>
+            </ul>
+            <p><b>Links:</b></p>
+            <ul>
+              <li>
+                <a href="https://youtu.be/dFFhnKzSP7w" style="color: #b20a2f; text-decoration: none" target="_blank"
+                  >John Friedman on Opportunity Atlas</a
+                >
+              </li>
+              <li>
+                <a href="https://youtu.be/TKxyz7veNXI" style="color: #b20a2f; text-decoration: none" target="_blank"
+                  >Eugene Chen on Opportunity Atlas</a
+                >
+              </li>
+              <li>
+                <a href="https://youtu.be/cOHy2T8vGkM" style="color: #b20a2f; text-decoration: none" target="_blank"
+                  >Fabian deKok-Mercado on Virus Explorer</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <div class="carousel">
+              <img class="rounded-circle mySlides8 imgtimeline" src="assets/img/8am.png" alt="..." />
+              <img class="rounded-circle mySlides8 imgtimeline" src="assets/img/8am1.png" alt="..." />
+              <img class="rounded-circle mySlides8 imgtimeline" src="assets/img/8am2.png" alt="..." />
+              <img class="rounded-circle mySlides8 imgtimeline" src="assets/img/8am3.png" alt="..." />
+            </div>
+            <h2>8AM</h2>
+            <h6>1PM in London (GMT), 10PM in Tokyo (GMT+9)</h6>
+            <h4>XVIII. Macroscopes for a New Perspective</h4>
+            <p><b>Moderator:</b> Todd Theriault <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>Jan Willem Tulp <i>(TULP Interactive)</i></li>
+              <li>Esteban Moro <i>(Universidad Carlos III de Madrid)</i></li>
+            </ul>
+            <a
+              href="https://www.youtube.com/watch?v=ezXwhR5RP5U&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=9&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/9am.png" alt="..." />
+            <h2>9AM</h2>
+            <h6>2PM in London (GMT), 11PM in Tokyo (GMT+9)</h6>
+            <h4>Debut: XIX Macroscopes as Digital Atlases</h4>
+            <p><b>Moderators:</b> Todd Theriault, Lisel Record, and Katy Börner <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>
+                Raúl Sánchez González
+                <i
+                  >(<a style="color: #b20a2f; text-decoration: none" target="_blank" href="elDiario.es">elDiario.es</a
+                  >)</i
+                >
+              </li>
+              <li>Hanna Shumway <i>(MIT)</i></li>
+              <li>André Skupin <i>(San Diego State University)</i></li>
+            </ul>
+            <a
+              href="https://www.youtube.com/watch?v=xpwbRIdKNm8&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=10&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/10am.png" alt="..." />
+            <h2>10AM</h2>
+            <h6>3PM in London (GMT), 12AM in Tokyo (GMT+9)</h6>
+            <h4>Data Storytelling</h4>
+            <p><b>Moderator:</b> Katy Börner <i>(Indiana University)</i></p>
+            <p><b>Presenters:</b></p>
+            <ul>
+              <li>David Chavalarias <i>(Complex Systems Institute of Paris Ile-de-France)</i></li>
+            </ul>
+            <a
+              href="https://www.youtube.com/watch?v=VgfvbVk5K4c&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=11&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/11am.png" alt="..." />
+            <h2>11AM</h2>
+            <h6>4PM in London (GMT), 1AM in Tokyo (GMT+9)</h6>
+            <h4><b>Panel:</b> Visions for the (AI) Future</h4>
+            <p><b>Moderator:</b> Dan Qaurooni <i>(Indiana University)</i></p>
+            <p><b>Panelists:</b></p>
+            <ul>
+              <li>Soumya Ghose <i>(GE Health Care)</i></li>
+              <li>Yong Yeol Ahn <i>(Indiana University)</i></li>
+              <li>Naoki Abe <i>(IBM)</i></li>
+              <li>Hiroaki Kitano <i>(Sony AI)</i></li>
+              <li>Katy Börner <i>(Indiana University)</i></li>
+            </ul>
+
+            <a
+              href="https://www.youtube.com/watch?v=E3q-Uc1yMro&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=12&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content mb-5">
+            <img class="rounded-circle imgtimeline" src="assets/img/12pm2.png" alt="..." />
+            <h2>12PM</h2>
+            <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9)</h6>
+            <h4>End of Event</h4>
+            <p>Thanks for going with us on this journey!</p>
+            <a
+              href="https://www.youtube.com/watch?v=-cQwikDBzZA&list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx&index=13&ab_channel=CyberinfrastructureforNetworkScienceCenter%28CNS%29"
+              target="_blank"
+              style="text-decoration: none"
+            >
+              <div class="youtubebutton">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-play-btn-fill"
+                  viewBox="0 0 16 18"
+                >
+                  <path
+                    d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                  />
+                </svg>
+                Watch Presentation
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End section-->
+    <div class="holder3">
+      <div class="px-4 pb-5">
+        <h1 class="pt-5 pb-3" style="margin: auto; text-align: center">We would like to thank</h1>
+        <p class="ThanksList"></p>
+        <ul style="text-align: left; margin: auto; max-width: 700px; padding-left: 0 !important">
+          <li style="list-style-position: inside !important">
+            <b>Todd Theriault</b> - for compiling the video collections.
+          </li>
+          <li style="list-style-position: inside !important">
+            <b>Tracey Lynn Theriault </b> - for the professional slide templates.
+          </li>
+          <li style="list-style-position: inside !important">
+            <b>Melanie B. Goldstone</b> - for designing the website.
+          </li>
+          <li style="list-style-position: inside !important">
+            <b>Jini A. Bhanushali, Nicole C. Johnson, Aazin A. Shaikh</b> - for project management and technical
+            support.
+          </li>
+          <li style="list-style-position: inside !important">
+            <b>Andreas Bueckle</b> - for film making and compiling research talks.
+          </li>
+          <li style="list-style-position: inside !important"><b>Monika Herzig</b> - for providing great music.</li>
+          <li style="list-style-position: inside !important">
+            <b>Melina Casadio, Nature and Alex Bannister, Abcam</b> - for social media support.
+          </li>
+        </ul>
+
+        <p style="margin: auto; text-align: left; max-width: 700px">
+          <em
+            ><b>
+              Funding for this event was kindly provided by Murray A. Goldstone and the Cyberinfrastructure for Network
+              Science Center & SICE IT team at Indiana University.
+            </b></em
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer-->
+
+    <div class="hrafooter">
+      <div class="leftsidefooter">
+        <img src="assets/UI Assets/logo.svg" height="102px" width="246px" />
+        <div class="footercopyright">
+          <a href="https://humanatlas.io/" target="_blank"><img src="assets/UI Assets/copyrightsymbol.svg" /></a>
+          2024 CNS at Indiana University
+        </div>
+      </div>
+      <div class="rightsidefooter">
+        <div class="centeritems">
+          <div class="footerlogocenter">
+            <div class="footerlogos">
+              <a href="https://twitter.com/cnscenter" target="_blank"
+                ><img src="assets/UI Assets/social media.svg"
+              /></a>
+              <a href="https://www.facebook.com/cnscenter/" target="_blank"
+                ><img src="assets/UI Assets/social media-1.svg"
+              /></a>
+              <a href="https://www.instagram.com/cns_at_iu/" target="_blank"
+                ><img src="assets/UI Assets/social media-2.svg"
+              /></a>
+              <a href="https://www.youtube.com/@CNSCenter/" target="_blank"
+                ><img src="assets/UI Assets/social media-3.svg"
+              /></a>
+              <a href="https://www.linkedin.com/company/cns-indiana-university-bloomington" target="_blank"
+                ><img src="assets/UI Assets/social media-4.svg"
+              /></a>
+              <a href="https://twitter.com/cnscenter" target="_blank"
+                ><img src="assets/UI Assets/social media-5.svg"
+              /></a>
+            </div>
+            <div class="footerfounders">
+              <p>Funded By:</p>
+              <div class="founderlogos">
+                <a href="https://www.nih.gov/" target="_blank"><img src="assets/UI Assets/icon_ funder.svg" /></a>
+                <a href="https://cifar.ca/" target="_blank"><img src="assets/UI Assets/icon_ funder-1.svg" /></a>
+                <a href="https://www.iu.edu/index.html" target="_blank"
+                  ><img src="assets/UI Assets/icon_ funder-2.svg"
+                /></a>
+              </div>
+            </div>
+          </div>
+          <div class="medicaldisclaimer">
+            Medical Disclaimer: This resource is intended for research purposes only. It should not be used for
+            emergencies or medical or professional advice.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- <footer>
+        <div class="footerleft">
+            <img src="assets/UI Assets/logo.svg">
+            <div class="footercopyright">
+                <a href="https://humanatlas.io/" target="_blank"><img src="assets/UI Assets/copyrightsymbol.svg"></a>
+                2024 CNS at Indiana University
+            </div>
+        </div>
+        <div class="footermiddle">
+            <div class="footerlogocenter">
+                <div class="footerlogos">
+                    <a href="https://twitter.com/cnscenter" target="_blank"><img
+                            src="assets/UI Assets/social media.svg"></a>
+                    <a href="https://www.facebook.com/cnscenter/" target="_blank"><img
+                            src="assets/UI Assets/social media-1.svg"></a>
+                    <a href="https://www.instagram.com/cns_at_iu/" target="_blank"><img
+                            src="assets/UI Assets/social media-2.svg"></a>
+                    <a href="https://www.youtube.com/@CNSCenter/" target="_blank"><img
+                            src="assets/UI Assets/social media-3.svg"></a>
+                    <a href="https://www.linkedin.com/company/cns-indiana-university-bloomington" target="_blank"><img
+                            src="assets/UI Assets/social media-4.svg"></a>
+                    <a href="https://twitter.com/cnscenter" target="_blank"><img
+                            src="assets/UI Assets/social media-5.svg"></a>
+                </div>
+                <div class="footerfounders">
+                    <p>Funded By:</p>
+                    <div class="founderlogos">
+                        <a href="https://www.nih.gov/" target="_blank"><img src="assets/UI Assets/icon_ funder.svg"></a>
+                        <a href="https://cifar.ca/" target="_blank"><img src="assets/UI Assets/icon_ funder-1.svg"></a>
+                        <a href="https://www.iu.edu/index.html" target="_blank"><img
+                                src="assets/UI Assets/icon_ funder-2.svg"></a>
+                    </div>
+                </div>
+            </div>
+            <p class="medicaldisclaimer">Medical Disclaimer: This resource is intended for research purposes only. It
+                should not be used for
+                emergencies or medical or professional advice. </p>
+        </div>
+    </footer> -->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      var myIndex = 0;
+      carousel();
+
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName('mySlides');
+        var y = document.getElementsByClassName('mySlides2');
+        var z = document.getElementsByClassName('mySlides3');
+        var a = document.getElementsByClassName('mySlides4');
+        var b = document.getElementsByClassName('mySlides5');
+        var c = document.getElementsByClassName('mySlides6');
+        var d = document.getElementsByClassName('mySlides7');
+        var e = document.getElementsByClassName('mySlides8');
+
+        for (i = 0; i < x.length; i++) {
+          x[i].style.opacity = 0;
+          y[i].style.opacity = 0;
+          z[i].style.opacity = 0;
+          a[i].style.opacity = 0;
+          b[i].style.opacity = 0;
+          c[i].style.opacity = 0;
+          d[i].style.opacity = 0;
+          e[i].style.opacity = 0;
+        }
+        myIndex++;
+        if (myIndex > x.length) {
+          myIndex = 1;
+        }
+        x[myIndex - 1].style.opacity = 1;
+        y[myIndex - 1].style.opacity = 1;
+        z[myIndex - 1].style.opacity = 1;
+        a[myIndex - 1].style.opacity = 1;
+        b[myIndex - 1].style.opacity = 1;
+        c[myIndex - 1].style.opacity = 1;
+        d[myIndex - 1].style.opacity = 1;
+        e[myIndex - 1].style.opacity = 1;
+
+        setTimeout(carousel, 3000); // Change image every 3 seconds
+      }
+    </script>
+  </body>
+</html>
