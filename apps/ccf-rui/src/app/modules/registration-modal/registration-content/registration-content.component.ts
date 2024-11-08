@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
 import { PageState, Person } from '../../../core/store/page/page.state';
@@ -54,6 +56,8 @@ export class RegistrationContentComponent {
   /** Checks if a preexisting registration was uploaded */
   registrationSelected: boolean;
 
+  uploadedFileName = '';
+
   /** Form builder */
   private readonly fb = inject(FormBuilder);
 
@@ -69,8 +73,7 @@ export class RegistrationContentComponent {
     consortium: [''],
   });
 
-  /** Text to inform user if a registration file has been uploaded */
-  uploadText!: string;
+  filteredOptions?: Observable<OrganInfo[]>;
 
   /**
    * Creates an instance of the registration dialog
@@ -88,6 +91,27 @@ export class RegistrationContentComponent {
     cdr: ChangeDetectorRef,
   ) {
     this.registrationSelected = false;
+
+    page.organOptions$.subscribe((options = []) => {
+      function _filter(name: string | OrganInfo): OrganInfo[] {
+        let filterValue: string | OrganInfo;
+        if (typeof name === 'string') {
+          filterValue = name.toLowerCase();
+        } else {
+          filterValue = name.organ;
+        }
+        return options.filter((option) => option.name.toLowerCase().includes(filterValue));
+      }
+
+      this.filteredOptions = this.registrationForm.valueChanges.pipe(
+        startWith(''),
+        map((value) => {
+          const organ = typeof value === 'string' ? value : value?.organ;
+          return organ ? _filter(organ as string) : options.slice();
+        }),
+      );
+    });
+
     page.user$.subscribe((user) => {
       this.checkNameValid(user);
       this.registrationForm.patchValue({ orcid: page.uriToOrcid(user.orcidId) });
@@ -109,8 +133,20 @@ export class RegistrationContentComponent {
     });
 
     registration.state$.subscribe((reg) => {
-      this.uploadText = reg.initialRegistration ? 'File(s) uploaded' : 'No file(s) uploaded';
+      if (!reg.initialRegistration) {
+        return;
+      }
+      const { sex, reference_organ } = reg.initialRegistration;
+      if (sex) {
+        this.registrationForm.patchValue({ sex });
+      }
+      this.registrationForm.patchValue({ organ: reference_organ });
     });
+  }
+
+  removeFile() {
+    this.registration.patchState({ initialRegistration: undefined });
+    this.registrationSelected = false;
   }
 
   /**
@@ -202,5 +238,13 @@ export class RegistrationContentComponent {
       firstName: firstName || '',
       lastName: lastName || '',
     });
+  }
+
+  displayFn(organ: OrganInfo): string {
+    return organ && organ.name ? organ.name : '';
+  }
+
+  onSelect(event: MatAutocompleteSelectedEvent): void {
+    this.model.setOrgan(event.option.value);
   }
 }

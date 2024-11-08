@@ -43,6 +43,12 @@
 
   form {
     display: flex;
+    flex-direction: column;
+
+    .metadata-1,
+    .metadata-2 {
+      display: flex;
+    }
   }
 
   .registration-button {

@@ -13,6 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonModule } from '@hra-ui/design-system/button';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [RegistrationContentComponent],
@@ -30,6 +34,9 @@ import { ButtonModule } from '@hra-ui/design-system/button';
     MatSelectModule,
     MatIconModule,
     ButtonModule,
+    MatAutocompleteModule,
+    DeleteFileButtonComponent,
+    ErrorIndicatorComponent,
   ],
   exports: [RegistrationContentComponent],
 })
