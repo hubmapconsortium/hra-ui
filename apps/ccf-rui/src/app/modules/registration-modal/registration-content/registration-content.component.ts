@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
-import { PageState, Person } from '../../../core/store/page/page.state';
+import { MODEL_DEFAULTS, ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
+import { PageState } from '../../../core/store/page/page.state';
 import { RegistrationState } from '../../../core/store/registration/registration.state';
 
 /** Returns null for all optional values */
@@ -41,11 +40,8 @@ export class RegistrationContentComponent {
   /** Whether an organ has been selected */
   organSelected!: boolean;
 
-  /** Current sex selected */
-  currentSex!: string;
-
   /** Current organ selected */
-  currentOrgan!: OrganInfo;
+  currentOrgan?: OrganInfo;
 
   /** Checks if the user has entered a first and last name */
   nameValid!: boolean;
@@ -54,7 +50,7 @@ export class RegistrationContentComponent {
   orcidValid!: boolean;
 
   /** Checks if a preexisting registration was uploaded */
-  registrationSelected: boolean;
+  registrationSelected = false;
 
   uploadedFileName = '';
 
@@ -62,13 +58,13 @@ export class RegistrationContentComponent {
   private readonly fb = inject(FormBuilder);
 
   readonly registrationForm = this.fb.group({
-    firstName: ['', [Validators.required]],
+    firstName: [''],
     middleName: [''],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    lastName: [''],
+    email: ['', [Validators.email]],
     orcid: [optionalValue<string>(), [Validators.pattern('^[a-zA-Z0-9]{4}(-[a-zA-Z0-9]{4}){3}$')]],
-    sex: ['', [Validators.required]],
-    organ: ['', [Validators.required]],
+    sex: [''],
+    organ: [''],
     publicationDOI: [''],
     consortium: [''],
   });
@@ -90,9 +86,16 @@ export class RegistrationContentComponent {
     public dialogRef: MatDialogRef<RegistrationContentComponent>,
     cdr: ChangeDetectorRef,
   ) {
-    this.registrationSelected = false;
+    dialogRef.disableClose = true;
+    page.user$.subscribe((user) => {
+      this.checkNameValid();
+      this.registrationForm.patchValue({ orcid: page.uriToOrcid(user.orcidId) });
+      this.orcidValid = page.isOrcidValid();
+      cdr.markForCheck();
+    });
+    this.page.organOptions$.subscribe((options = []) => {
+      this.organList = options as OrganInfo[];
 
-    page.organOptions$.subscribe((options = []) => {
       function _filter(name: string | OrganInfo): OrganInfo[] {
         let filterValue: string | OrganInfo;
         if (typeof name === 'string') {
@@ -110,54 +113,58 @@ export class RegistrationContentComponent {
           return organ ? _filter(organ as string) : options.slice();
         }),
       );
-    });
 
-    page.user$.subscribe((user) => {
-      this.checkNameValid(user);
-      this.registrationForm.patchValue({ orcid: page.uriToOrcid(user.orcidId) });
-      this.orcidValid = page.isOrcidValid();
-      cdr.markForCheck();
-    });
-    model.organ$.subscribe((organ) => {
-      this.organSelected = organ.src !== '';
-      cdr.markForCheck();
-    });
-    this.sexByLabel$.subscribe((sex) => {
-      this.setSexFromLabel(sex);
-      cdr.markForCheck();
-    });
-    dialogRef.disableClose = true;
-    this.page.organOptions$.subscribe((options) => {
-      this.organList = options as OrganInfo[];
       cdr.markForCheck();
     });
 
     registration.state$.subscribe((reg) => {
       if (!reg.initialRegistration) {
+        this.registrationSelected = false;
+        this.registrationForm.reset();
+        model.setOrgan({ src: '', name: '', organ: '' });
         return;
       }
-      const { sex, reference_organ } = reg.initialRegistration;
-      if (sex) {
-        this.registrationForm.patchValue({ sex });
+
+      const {
+        creator_first_name,
+        creator_middle_name,
+        creator_last_name,
+        creator_email,
+        creator_orcid,
+        sex,
+        reference_organ,
+      } = reg.initialRegistration;
+
+      this.registrationForm.patchValue({
+        firstName: creator_first_name,
+        middleName: creator_middle_name,
+        lastName: creator_last_name,
+        email: creator_email,
+        orcid: creator_orcid,
+        sex,
+      });
+
+      if (reference_organ) {
+        const match = RUI_ORGANS.find((o) => o.organ === reference_organ);
+        if (match) {
+          this.organSelect(match);
+        }
+        this.registrationForm.patchValue({ organ: reference_organ });
       }
-      this.registrationForm.patchValue({ organ: reference_organ });
+    });
+
+    this.registrationForm.valueChanges.subscribe(() => {
+      this.checkOrganSelected();
+      this.checkNameValid();
+      this.checkSexSelected();
     });
   }
 
   removeFile() {
     this.registration.patchState({ initialRegistration: undefined });
-    this.registrationSelected = false;
-  }
-
-  /**
-   * Updates current sex selected
-   *
-   * @param label Sex selected
-   */
-  setSexFromLabel(label: 'Female' | 'Male'): void {
-    this.model.setSex(label.toLowerCase() as 'male' | 'female');
-    this.currentSex = label;
-    this.sexSelected = true;
+    this.page.patchState({ user: { firstName: '', lastName: '', email: '' } });
+    this.model.setState(MODEL_DEFAULTS);
+    this.currentOrgan = undefined;
   }
 
   /**
@@ -165,18 +172,29 @@ export class RegistrationContentComponent {
    *
    * @param event Name input event
    */
-  checkNameValid(event: Pick<Person, 'firstName' | 'lastName'>): void {
-    this.nameValid = event.firstName.length > 0 && event.lastName.length > 0;
+  checkNameValid(): void {
+    this.nameValid =
+      !!this.registrationForm.controls['firstName'].value && !!this.registrationForm.controls['lastName'].value;
   }
 
-  /**
-   * Updates current organ selected
-   *
-   * @param organ Organ selected
-   */
+  checkSexSelected(): void {
+    this.sexSelected = !!this.registrationForm.controls['sex'].value;
+  }
+
+  checkOrganSelected(): void {
+    const organValue = this.registrationForm.controls['organ'].value;
+    const organNames = this.organList.map((organ) => organ.name);
+    this.organSelected = organValue ? organNames.includes(organValue) : false;
+  }
+
+  emailValid(): boolean {
+    const emailControl = this.registrationForm.controls['email'];
+    return !!emailControl.value && emailControl.value.length > 0 && !emailControl.hasError('email');
+  }
+
   organSelect(organ: OrganInfo): void {
+    this.registrationForm.controls['organ'].setValue(organ.name);
     this.currentOrgan = organ;
-    this.organSelected = true;
   }
 
   /**
@@ -206,8 +224,18 @@ export class RegistrationContentComponent {
    * Updates page state to signal registration has started
    */
   closeDialog(): void {
-    this.model.setSex(this.currentSex === 'Female' ? 'female' : 'male');
-    this.model.setOrgan(this.currentOrgan);
+    const { firstName, middleName, lastName, sex, email } = this.registrationForm.controls;
+
+    this.page.setUserName({
+      firstName: firstName.value || '',
+      middleName: middleName.value || '',
+      lastName: lastName.value || '',
+    });
+    this.model.setSex(sex.value === 'Female' ? 'female' : 'male');
+    this.updateEmail(email.value ?? '');
+    if (this.currentOrgan) {
+      this.model.setOrgan(this.currentOrgan);
+    }
     if (!this.registrationSelected) {
       this.model.setOrganDefaults();
     }
@@ -215,8 +243,12 @@ export class RegistrationContentComponent {
     this.page.registrationStarted();
   }
 
-  getErrorMessage(): string {
+  getOrcidErrorMessage(): string {
     return this.registrationForm.controls['orcid'].hasError('pattern') ? 'Not a valid ORCID' : '';
+  }
+
+  getEmailErrorMessage(): string {
+    return this.emailValid() ? '' : 'Not a valid email';
   }
 
   /**
@@ -227,24 +259,11 @@ export class RegistrationContentComponent {
     this.page.setOrcidId(value);
   }
 
-  handleNameChange(): void {
-    const { firstName, middleName, lastName } = this.registrationForm.value;
-    this.page.setUserName({
-      firstName: firstName || '',
-      middleName: middleName || '',
-      lastName: lastName || '',
-    });
-    this.checkNameValid({
-      firstName: firstName || '',
-      lastName: lastName || '',
-    });
+  updateEmail(value: string): void {
+    this.page.setEmail(value);
   }
 
-  displayFn(organ: OrganInfo): string {
-    return organ && organ.name ? organ.name : '';
-  }
-
-  onSelect(event: MatAutocompleteSelectedEvent): void {
-    this.model.setOrgan(event.option.value);
+  displayFn(organ: string): string {
+    return organ ?? '';
   }
 }

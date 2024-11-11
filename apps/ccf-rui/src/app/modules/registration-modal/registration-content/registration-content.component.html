@@ -33,7 +33,6 @@
             formControlName="firstName"
             cdeMarkEmptyFormControl
             [value]="$any(page.user$ | async).firstName"
-            (input)="handleNameChange()"
           />
         </mat-form-field>
         <mat-form-field subscriptSizing="dynamic">
@@ -43,7 +42,6 @@
             formControlName="middleName"
             cdeMarkEmptyFormControl
             [value]="$any(page.user$ | async).middleName"
-            (input)="handleNameChange()"
           />
         </mat-form-field>
         <mat-form-field subscriptSizing="dynamic">
@@ -53,12 +51,12 @@
             formControlName="lastName"
             cdeMarkEmptyFormControl
             [value]="$any(page.user$ | async).lastName"
-            (input)="handleNameChange()"
           />
         </mat-form-field>
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" cdeMarkEmptyFormControl />
+          <input matInput formControlName="email" cdeMarkEmptyFormControl [value]="$any(page.user$ | async).email" />
+          <mat-error *ngIf="registrationForm.controls['email'].invalid">{{ getEmailErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>ORCID (optional)</mat-label>
@@ -67,23 +65,17 @@
             formControlName="orcid"
             cdeMarkEmptyFormControl
             maxlength="19"
+            [value]="$any(page.user$ | async).orcid"
             (input)="updateOrcid($any($event.target).value)"
           />
-          <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getOrcidErrorMessage() }}</mat-error>
         </mat-form-field>
       </div>
 
       <div class="metadata-2">
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Sex</mat-label>
-          <mat-select
-            disableRipple
-            formControlName="sex"
-            panelClass="options-container"
-            cdeMarkEmptyFormControl
-            [value]="model.sex$ | async"
-            (selectionChange)="setSexFromLabel($event.value)"
-          >
+          <mat-select disableRipple formControlName="sex" panelClass="options-container" cdeMarkEmptyFormControl>
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Female">Female</mat-option>
           </mat-select>
@@ -92,7 +84,11 @@
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Organ</mat-label>
           <input type="text" matInput formControlName="organ" [matAutocomplete]="auto" />
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event)">
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            [displayWith]="displayFn"
+            (optionSelected)="organSelect($event.option.value)"
+          >
             @for (organ of filteredOptions | async; track organ) {
               <mat-option [value]="organ">{{ organ.name }}</mat-option>
             }
@@ -117,7 +113,7 @@
       <span class="card-title">Register Data Spatially</span>
     </h2>
 
-    @if (!organSelected || !nameValid || !orcidValid) {
+    @if (!organSelected || !nameValid || !emailValid() || !sexSelected || !orcidValid) {
       <hra-error-indicator [errors]="['Please add required metadata.']"></hra-error-indicator>
     }
 
@@ -126,7 +122,7 @@
       mat-flat-button
       hraCallToActionButton
       hraPrimaryButton
-      [disabled]="!organSelected || !nameValid || !orcidValid"
+      [disabled]="!organSelected || !nameValid || !emailValid() || !sexSelected || !orcidValid"
       (click)="registerButtonClick($event)"
     >
       Register
