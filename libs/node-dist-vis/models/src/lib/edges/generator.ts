@@ -124,6 +124,7 @@ export function* generateEdges(
       if (closest !== undefined) {
         yield {
           'Cell ID': cell.index,
+          'Target ID': closest.index,
           X1: cell.x,
           Y1: cell.y,
           Z1: cell.z,

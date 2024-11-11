@@ -44,6 +44,7 @@ import { createDeck } from '../deckgl/deck';
 import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
 import { createScaleBarLayer } from '../deckgl/scale-bar';
+import { createSelectionLayer } from '../deckgl/selection';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -151,7 +152,7 @@ export class NodeDistVisComponent {
   /** Emits when the user starts or stops hovering over a node */
   readonly nodeHover = output<NodeEvent | undefined>();
   /** Emits when the user selects one or more nodes in the 'select' view mode */
-  readonly nodeSelectionChange = output<unknown>(); // TODO fix type
+  readonly nodeSelectionChange = output<NodeEvent[]>();
 
   /** Reference to the rendered canvas element */
   readonly canvas = computed(() => this.canvasElementRef().nativeElement);
@@ -211,8 +212,15 @@ export class NodeDistVisComponent {
   );
   /** Scale bar layer */
   private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);
+  /** Selection layer */
+  private readonly selectionLayer = createSelectionLayer(this.mode, this.onSelect.bind(this));
   /** All layers as an array */
-  private readonly layers = computed(() => [this.nodesLayer(), this.edgesLayer(), this.scaleBarLayer()]);
+  private readonly layers = computed(() => [
+    this.nodesLayer(),
+    this.edgesLayer(),
+    this.scaleBarLayer(),
+    this.selectionLayer(),
+  ]);
 
   /** Controller options */
   private readonly controller = createController(this.mode);
@@ -284,14 +292,8 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onClick(info: PickingInfo): void {
-    const { picked, index, x, y } = info;
-    if (picked) {
-      this.nodeClick.emit({
-        index,
-        x,
-        y,
-        object: this.nodesView().at(index),
-      });
+    if (info.picked) {
+      this.nodeClick.emit(this.pickingInfoToNodeEvent(info));
     }
   }
 
@@ -301,12 +303,26 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onHover(info: PickingInfo): void {
-    const { picked, index, x, y } = info;
-    const obj = picked ? this.nodesView().at(index) : undefined;
-    if (obj !== this.activeHover) {
-      this.nodeHover.emit(obj ? { index, x, y, object: obj } : undefined);
-      this.activeHover = obj;
+    if (info.picked) {
+      const event = this.pickingInfoToNodeEvent(info);
+      if (event.object !== this.activeHover) {
+        this.nodeHover.emit(event);
+        this.activeHover = event.object;
+      }
+    } else if (this.activeHover !== undefined) {
+      this.nodeHover.emit(undefined);
+      this.activeHover = undefined;
     }
+  }
+
+  private onSelect(infos: PickingInfo[]): void {
+    const events = infos.map((info) => this.pickingInfoToNodeEvent(info));
+    this.nodeSelectionChange.emit(events);
+  }
+
+  private pickingInfoToNodeEvent(info: PickingInfo): NodeEvent {
+    const { index, x, y, object = this.nodesView().at(index) } = info;
+    return { index, x, y, object };
   }
 
   private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
