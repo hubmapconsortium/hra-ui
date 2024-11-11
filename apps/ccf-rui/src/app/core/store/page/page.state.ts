@@ -5,7 +5,7 @@ import { State } from '@ngxs/store';
 import { iif, patch } from '@ngxs/store/operators';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { pluckUnique } from 'ccf-shared/rxjs-ext/operators';
-import { Observable, combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map, tap, withLatestFrom } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
@@ -17,6 +17,7 @@ export interface Person {
   firstName: string;
   middleName?: string;
   lastName: string;
+  email: string;
   orcidId?: string;
 }
 
@@ -44,6 +45,7 @@ export interface PageStateModel {
     user: {
       firstName: '',
       lastName: '',
+      email: '',
     },
     registrationStarted: false,
     useCancelRegistrationCallback: false,
@@ -108,8 +110,8 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
             patch({
               registrationCallbackSet: reg.useRegistrationCallback ? !!config.register : false,
               useCancelRegistrationCallback: !!config.cancelRegistration,
-              user: iif(!!config.user, config.user ?? { firstName: '', lastName: '' }),
-              registrationStarted: config.user ?? reg.initialRegistration ? true : undefined,
+              user: iif(!!config.user, config.user ?? { firstName: '', lastName: '', email: '' }),
+              registrationStarted: (config.user ?? reg.initialRegistration) ? true : undefined,
             }),
           );
         }),
@@ -175,6 +177,17 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     this.ctx.patchState({
       orcidValid: id ? this.isOrcidValid() : true,
     });
+  }
+
+  @DataAction()
+  setEmail(email: string): void {
+    this.ctx.setState(
+      patch({
+        user: patch({
+          email,
+        }),
+      }),
+    );
   }
 
   /**

@@ -9,6 +9,7 @@ export interface GlobalConfig {
   user?: {
     firstName: string;
     lastName: string;
+    email: string;
   };
 
   register?: (data: string) => void;
@@ -46,5 +47,5 @@ declare global {
 export const GLOBAL_CONFIG = new InjectionToken<GlobalConfig>('Global configuration object');
 
 export function globalConfigFactory(globals: GlobalsService): GlobalConfig {
-  return globals.get('ruiConfig', { user: { firstName: '', lastName: '' } });
+  return globals.get('ruiConfig', { user: { firstName: '', lastName: '', email: '' } });
 }

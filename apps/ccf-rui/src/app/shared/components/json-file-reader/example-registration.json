@@ -5,6 +5,8 @@
   "creator": "Jane Doe",
   "creator_first_name": "Jane",
   "creator_last_name": "Doe",
+  "creator_email": "Jane.doe@gmail.com",
+  "creator_orcid": "aaaa-aaaa-aaaa-aaaa",
   "sex": "Female",
   "reference_organ": "Heart",
   "creation_date": "2020-10-21T12:47:39.395Z",
