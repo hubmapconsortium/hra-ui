@@ -19,6 +19,7 @@ function createResultMessage(edges: EdgeEntry[]): ResultMessage {
       data: edges,
       keyMapping: {
         'Cell ID': 'Cell ID',
+        'Target ID': 'Target ID',
         X1: 'X1',
         Y1: 'Y1',
         Z1: 'Z1',
