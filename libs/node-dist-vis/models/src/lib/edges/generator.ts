@@ -169,7 +169,7 @@ const progressTimeFormat = new Intl.DateTimeFormat(undefined, {
 
 function formatProgressMessage(msg: ProgressMessage): string {
   const { processed, total, timestamp } = msg;
-  const percentage = (100 * processed) / total;
+  const percentage = Math.round((100 * processed) / total);
   const time = progressTimeFormat.format(timestamp);
   return `Computing edges: ${percentage}% (${processed}/${total}) complete at ${time}`;
 }

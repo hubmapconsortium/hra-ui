@@ -62,6 +62,9 @@ const EMPTY_STATE: SelectionLayerState = {
 const defaultProps: DefaultProps<SelectionLayerProps> = {
   layerIds: [],
   onSelect: () => undefined,
+  parameters: {
+    depthTest: false,
+  },
 };
 
 class ClickableDrawPolygonByDraggingMode extends DrawPolygonByDraggingMode {
@@ -136,7 +139,20 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
       selectedFeatureIndexes: [],
       onEdit: (event) => this.handleEdit(event),
 
-      // TODO styling
+      getFillColor: [255, 255, 255, 51],
+      getLineColor: [255, 255, 255, 255],
+      getLineWidth: 2,
+      getTentativeLineWidth: 2,
+
+      _subLayerProps: {
+        guides: {
+          _subLayerProps: {
+            'points-circle': {
+              visible: false,
+            },
+          },
+        },
+      },
     });
   }
 
@@ -152,7 +168,10 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
 
       this.setState({ data, boundingBox, mask } satisfies SelectionLayerState);
       // Workaround since there is no way to register an after render callback in a layer
-      setTimeout(() => onSelect(this.getSelection()), 16);
+      setTimeout(() => {
+        this.context.deck?.redraw();
+        onSelect(this.getSelection());
+      });
     }
   }
 

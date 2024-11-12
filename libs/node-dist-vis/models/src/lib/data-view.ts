@@ -279,13 +279,13 @@ function setDataViewOffset<T>(mapping: Partial<KeyMapping<T>>, offset: number): 
 function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMapping<T>>, keys: (keyof T)[]): void {
   const icase = (value: unknown) => String(value).toLowerCase();
   const isArrayEntry = Array.isArray(entry);
-  let header: unknown[];
+  let header: unknown[] = [];
 
   if (isArrayEntry) {
     const isAllNumeric = entry.every((value) => typeof value === 'number');
-    const isBackwardsCompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
-    if (isBackwardsCompatibleEdges) {
-      header = keys.slice(0, 7);
+    const isBackwardsIncompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
+    if (isBackwardsIncompatibleEdges) {
+      console.warn('Incompatable edges detected! Edges must have a `Target ID`');
     } else {
       header = entry;
       setDataViewOffset(mapping, 1);
