@@ -45,9 +45,23 @@
     display: flex;
     flex-direction: column;
 
+    .subheader {
+      font: var(--sys-title-small);
+      margin-bottom: 1rem;
+    }
+
+    .metadata-1 {
+      margin-bottom: 1.5rem;
+    }
+
     .metadata-1,
     .metadata-2 {
       display: flex;
+      gap: 1rem;
+    }
+
+    mat-form-field {
+      flex-grow: 1;
     }
   }
 
