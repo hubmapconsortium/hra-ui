@@ -5,13 +5,18 @@
       (fullscreenClick)="fullscreen.open()"
       (downloadClick)="download()"
       (resetViewClick)="resetView()"
-      (resetDeletedClick)="resetAllCells.emit()"
+      (resetDeletedClick)="resetDeletedNodes()"
     >
     </cde-node-dist-visualization-menu>
   </hra-expansion-panel-actions>
 
   <hra-expansion-panel-header-content>
-    <cde-node-dist-visualization-controls [(viewMode)]="viewMode"> </cde-node-dist-visualization-controls>
+    <cde-node-dist-visualization-controls
+      [(viewMode)]="viewMode"
+      [deleteDisabled]="!hasSelection()"
+      (deleteClick)="deleteSelection()"
+    >
+    </cde-node-dist-visualization-controls>
   </hra-expansion-panel-header-content>
 
   <hra-fullscreen-portal title="Visualization" #fullscreen>
@@ -21,11 +26,16 @@
         [(edgesDisabled)]="edgesDisabled"
         (downloadClick)="download()"
         (resetViewClick)="resetView()"
-        (resetDeletedClick)="resetAllCells.emit()"
+        (resetDeletedClick)="resetDeletedNodes()"
       >
       </cde-node-dist-visualization-menu>
 
-      <cde-node-dist-visualization-controls [(viewMode)]="viewMode"> </cde-node-dist-visualization-controls>
+      <cde-node-dist-visualization-controls
+        [(viewMode)]="viewMode"
+        [deleteDisabled]="!hasSelection()"
+        (deleteClick)="deleteSelection()"
+      >
+      </cde-node-dist-visualization-controls>
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>

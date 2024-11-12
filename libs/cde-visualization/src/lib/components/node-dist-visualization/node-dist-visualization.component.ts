@@ -4,10 +4,13 @@ import {
   Component,
   OutputEmitterRef,
   Signal,
+  WritableSignal,
   computed,
   effect,
   inject,
   input,
+  isSignal,
+  model,
   output,
   signal,
   viewChild,
@@ -23,9 +26,8 @@ import {
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import '@hra-ui/node-dist-vis';
-import { NodeDistVisElement } from '@hra-ui/node-dist-vis';
-import { ColorMapView, EdgesView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
-import { NodeEntry } from '../../models/node';
+import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
+import { ColorMapView, EdgesView, NodeFilter, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
@@ -63,14 +65,16 @@ export class NodeDistVisualizationComponent {
   /** Input for the color map data */
   readonly colorMap = input.required<ColorMapView>();
 
+  readonly nodeFilter = model<NodeFilter>({});
+
   /** Input for selected cell types */
   readonly cellTypesSelection = input.required<string[]>();
 
   /** Output emitter for node click events */
-  readonly nodeClick = output<NodeEntry>();
+  readonly nodeClick = output<NodeEvent>();
 
   /** Output emitter for node hover events */
-  readonly nodeHover = output<NodeEntry | undefined>();
+  readonly nodeHover = output<NodeEvent | undefined>();
 
   /** Output event to reset all cells selection */
   readonly resetAllCells = output<void>();
@@ -80,9 +84,14 @@ export class NodeDistVisualizationComponent {
 
   protected readonly viewMode = signal<ViewMode>('explore');
 
-  protected readonly vis = viewChild.required(FullscreenPortalComponent);
+  protected readonly selection = signal<NodeEvent[]>([]);
 
-  private readonly visEl = computed(() => this.vis().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  protected readonly hasSelection = computed(() => {
+    return this.viewMode() === 'select' && this.selection().length > 0;
+  });
+
+  private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
+  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
@@ -102,6 +111,8 @@ export class NodeDistVisualizationComponent {
     this.bindData('colorMap', this.colorMap);
 
     this.bindData('selection', this.cellTypesSelection);
+    this.bindData('nodeFilter', this.nodeFilter);
+    this.bindEvent('nodeSelectionChange', this.selection);
   }
 
   /** Downloads the visualization as an image */
@@ -118,6 +129,25 @@ export class NodeDistVisualizationComponent {
     this.visEl().instance?.resetView();
   }
 
+  resetDeletedNodes(): void {
+    const oldFilter = this.nodeFilter();
+    const newFilter = { ...oldFilter, exclude: [] };
+    this.nodeFilter.set(newFilter);
+  }
+
+  deleteSelection(): void {
+    const selection = this.selection();
+    if (selection.length > 0) {
+      const indices = selection.map((event) => event.index);
+      const oldFilter = this.nodeFilter();
+      const newFilter = { ...oldFilter, exclude: [...(oldFilter.exclude ?? []), ...indices] };
+
+      this.visEl().instance?.clearSelection();
+      this.selection.set([]);
+      this.nodeFilter.set(newFilter);
+    }
+  }
+
   /** Binds a property from the visualization element to a signal */
   private bindData<K extends keyof NodeDistVisElement>(prop: K, value: Signal<NodeDistVisElement[K]>): void {
     effect(() => {
@@ -128,14 +158,18 @@ export class NodeDistVisualizationComponent {
   }
 
   /** Binds an event from the visualization element to an output emitter */
-  private bindEvent<T>(type: string, outputRef: OutputEmitterRef<T>): void {
+  private bindEvent<T>(type: string, outputRef: OutputEmitterRef<T> | WritableSignal<T>): void {
+    const handler = (event: Event) => {
+      const { detail: data } = event as CustomEvent;
+      if (isSignal(outputRef)) {
+        outputRef.set(data);
+      } else {
+        outputRef.emit(data);
+      }
+    };
+
     effect((onCleanup) => {
       const el = this.visEl();
-      const handler = (event: Event) => {
-        const { detail: data } = event as CustomEvent;
-        outputRef.emit(data);
-      };
-
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });

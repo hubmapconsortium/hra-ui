@@ -256,6 +256,10 @@ export class NodeDistVisComponent {
     });
   }
 
+  clearSelection(): void {
+    this.selectionLayer()?.clearSelection();
+  }
+
   /**
    * Creates a blob representing the image in the canvas.
    *

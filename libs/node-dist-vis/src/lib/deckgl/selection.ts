@@ -118,8 +118,12 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
     const y = Math.min(y1, y2);
     const width = Math.abs(x2 - x1);
     const height = Math.abs(y2 - y1);
-    const selection = deck?.pickObjects({ x, y, width, height, layerIds: [...layerIds, maskId] });
-    return selection?.filter((info) => info.layer?.id !== this.id);
+    const selection = deck.pickObjects({ x, y, width, height, layerIds: [...layerIds, maskId] });
+    return selection.filter((info) => info.layer?.id !== this.id);
+  }
+
+  clearSelection(): void {
+    this.setState(EMPTY_STATE);
   }
 
   private getMaskLayer(): Layer {

@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
   ColorMapInput,
@@ -39,7 +40,7 @@ import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
 import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
 import { loadMetadata, MetadataInput } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
+import { DEFAULT_NODE_TARGET_VALUE } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
@@ -124,10 +125,10 @@ export class CdeVisualizationComponent {
   readonly creationTimestamp = input(undefined, { transform: numberAttribute() });
 
   /** Event emitted when a node is clicked */
-  readonly nodeClick = output<NodeEntry>();
+  readonly nodeClick = output<NodeEvent>();
 
   /** Event emitted when a node is hovered */
-  readonly nodeHover = output<NodeEntry | undefined>();
+  readonly nodeHover = output<NodeEvent | undefined>();
 
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
