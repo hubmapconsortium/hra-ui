@@ -9,7 +9,7 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" [class]="'metadata-overlay'">
+    <mat-menu #menu="matMenu" class="metadata-overlay">
       <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
         <mat-icon>info</mat-icon>
         <span>Info</span>
@@ -30,9 +30,7 @@
         <mat-icon>code</mat-icon>
         Embed App
       </a>
-      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-        Visualization metadata for the sample dataset.
-      </mat-menu>
+      <mat-menu #infoSubMenu="matMenu" class="info-sub-menu"> Visualization metadata for the sample dataset. </mat-menu>
     </mat-menu>
   </hra-expansion-panel-actions>
   <div class="metadata-details">
