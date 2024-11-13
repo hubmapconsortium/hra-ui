@@ -126,6 +126,9 @@
           "apps/ccf-rui/src/app/**/*.module.ts"
         ],
         "styles": ["apps/ccf-rui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/design-system/styles"]
+        },
         "scripts": []
       }
     },
