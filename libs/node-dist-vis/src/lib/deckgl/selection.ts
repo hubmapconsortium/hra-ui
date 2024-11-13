@@ -1,5 +1,6 @@
 import { computed, Signal } from '@angular/core';
 import {
+  AccessorFunction,
   CompositeLayer,
   CompositeLayerProps,
   DefaultProps,
@@ -10,8 +11,9 @@ import {
   LayersList,
   PickingInfo,
 } from '@deck.gl/core/typed';
+import { DataFilterExtension } from '@deck.gl/extensions/typed';
 import { SolidPolygonLayer } from '@deck.gl/layers/typed';
-import { ViewMode } from '@hra-ui/node-dist-vis/models';
+import { AnyDataEntry, ViewMode } from '@hra-ui/node-dist-vis/models';
 import {
   ClickEvent,
   DrawPolygonByDraggingMode,
@@ -24,17 +26,19 @@ import {
 import { EditableGeoJsonLayer } from '@nebula.gl/layers';
 import { default as bbox } from '@turf/bbox';
 import { BBox } from '@turf/helpers';
+import { NodesLayer } from './nodes';
+import { FILTER_EXCLUDE_VALUE, FILTER_INCLUDE_VALUE, FILTER_RANGE } from './utils/filters';
 
 type _SelectionLayerProps = {
-  layerIds?: string[];
+  nodesLayer?: NodesLayer;
   onSelect?: (infos: PickingInfo[]) => void;
 };
 
 export type SelectionLayerProps = _SelectionLayerProps & CompositeLayerProps;
 
 enum SelectionSubLayerId {
-  MaskLayer = 'mask',
   LassoLayer = 'lasso',
+  MaskLayer = 'mask',
 }
 
 enum SelectionEditType {
@@ -46,6 +50,7 @@ type SelectionLayerState = {
   data: FeatureCollection;
   boundingBox?: BBox;
   mask?: PolygonCoordinates;
+  selection?: unknown[];
 };
 
 const EMPTY_DATA: FeatureCollection = {
@@ -57,10 +62,11 @@ const EMPTY_STATE: SelectionLayerState = {
   data: EMPTY_DATA,
   boundingBox: undefined,
   mask: undefined,
+  selection: undefined,
 };
 
 const defaultProps: DefaultProps<SelectionLayerProps> = {
-  layerIds: [],
+  nodesLayer: undefined,
   onSelect: () => undefined,
   parameters: {
     depthTest: false,
@@ -95,31 +101,57 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
   }
 
   override renderLayers(): Layer | null | LayersList {
-    return [this.getSelectionLayer(), this.getMaskLayer()];
+    return [this.getLassoLayer(), this.getNodesLayer(), this.getMaskLayer()];
   }
 
   override filterSubLayer({ layer, isPicking }: FilterContext): boolean {
-    return isPicking || !layer.id.endsWith(SelectionSubLayerId.MaskLayer);
+    return isPicking || layer.id.endsWith(SelectionSubLayerId.LassoLayer);
   }
 
-  getSelection(): PickingInfo[] {
+  async getSelection(): Promise<PickingInfo[]> {
+    const MAX_ROUNDS = 20;
     const { deck } = this.context;
+    const { nodesLayer } = this.props;
     const { boundingBox } = this.state as SelectionLayerState;
-    const { layerIds } = this.props;
-    if (!deck || !boundingBox || layerIds.length === 0) {
+    if (!deck || !nodesLayer || !boundingBox) {
       return [];
     }
 
     const [xMin, yMin, xMax, yMax] = boundingBox;
     const [x1, y1] = this.project([xMin, yMin]);
     const [x2, y2] = this.project([xMax, yMax]);
-    const { id: maskId } = this.getSubLayerProps({ id: SelectionSubLayerId.MaskLayer });
     const x = Math.min(x1, x2);
     const y = Math.min(y1, y2);
     const width = Math.abs(x2 - x1);
     const height = Math.abs(y2 - y1);
-    const selection = deck.pickObjects({ x, y, width, height, layerIds: [...layerIds, maskId] });
-    return selection.filter((info) => info.layer?.id !== this.id);
+    const { id: maskId } = this.getSubLayerProps({ id: SelectionSubLayerId.MaskLayer });
+    const pickingOpts = { x, y, width, height, layerIds: [this.id] };
+    const result: PickingInfo[] = [];
+    let selection: AnyDataEntry[] = [];
+
+    for (let round = 0; round < MAX_ROUNDS; round++) {
+      this.setState({ selection } as SelectionLayerState);
+      deck.redraw();
+      await new Promise((res) => setTimeout(res, 16));
+
+      const infos = deck.pickObjects(pickingOpts);
+      const maskInfo = infos.find((info) => info.sourceLayer?.id === maskId);
+      if (infos.length <= 1) {
+        break;
+      } else if (!maskInfo) {
+        continue;
+      }
+
+      selection = [...selection];
+      for (const info of infos) {
+        if (info.sourceLayer?.id !== maskId) {
+          result.push(info);
+          selection.push(info.object);
+        }
+      }
+    }
+
+    return result;
   }
 
   clearSelection(): void {
@@ -134,7 +166,30 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
     });
   }
 
-  private getSelectionLayer(): Layer {
+  private getNodesLayer(): Layer {
+    const { nodesLayer } = this.props;
+    const { selection } = this.state as SelectionLayerState;
+    const { id, getFilterValue, filterEnabled, filterRange, updateTriggers } = nodesLayer.props;
+    const exclusionSet = new Set(selection);
+
+    return nodesLayer.clone({
+      ...this.getSubLayerProps({ id }),
+      pickable: true,
+      getFilterValue: (obj, info) => [
+        (getFilterValue as AccessorFunction<AnyDataEntry, number>)(obj, info),
+        exclusionSet.has(obj) ? FILTER_EXCLUDE_VALUE : FILTER_INCLUDE_VALUE,
+      ],
+      filterRange: [filterRange as [number, number], FILTER_RANGE],
+      filterEnabled: filterEnabled !== false || exclusionSet.size > 0,
+      extensions: [new DataFilterExtension({ filterSize: 2 })],
+      updateTriggers: {
+        ...updateTriggers,
+        getFilterValue: [updateTriggers['getFilterValue'], selection],
+      },
+    });
+  }
+
+  private getLassoLayer(): Layer {
     const { data = EMPTY_DATA } = this.state as SelectionLayerState;
 
     return new EditableGeoJsonLayer(this.getSubLayerProps({ id: SelectionSubLayerId.LassoLayer }), {
@@ -160,7 +215,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
     });
   }
 
-  private handleEdit(event: EditAction<FeatureCollection>): void {
+  private async handleEdit(event: EditAction<FeatureCollection>): Promise<void> {
     const { onSelect } = this.props;
     const { editType, updatedData: data } = event;
     if (editType === SelectionEditType.ClearSelection) {
@@ -171,17 +226,17 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
       const mask = this.createMaskPolygon(data, boundingBox);
 
       this.setState({ data, boundingBox, mask } satisfies SelectionLayerState);
-      // Workaround since there is no way to register an after render callback in a layer
-      setTimeout(() => {
-        this.context.deck?.redraw();
-        onSelect(this.getSelection());
-      });
+      onSelect(await this.getSelection());
     }
   }
 
   private createMaskPolygon(data: FeatureCollection, boundingBox: BBox): PolygonCoordinates {
-    const [xMin, yMin, xMax, yMax] = boundingBox;
     const holes = data.features.flatMap((feat) => feat.geometry.coordinates as PolygonCoordinates);
+    const adjust = 0.01;
+    const xMin = (1 - adjust) * boundingBox[0];
+    const yMin = (1 - adjust) * boundingBox[1];
+    const xMax = (1 + adjust) * boundingBox[2];
+    const yMax = (1 + adjust) * boundingBox[3];
     return [
       [
         [xMin, yMin],
@@ -196,6 +251,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
 
 export function createSelectionLayer(
   mode: Signal<ViewMode>,
+  nodesLayer: Signal<NodesLayer>,
   onSelect: (infos: PickingInfo[]) => void,
 ): Signal<SelectionLayer | undefined> {
   return computed(() => {
@@ -205,7 +261,7 @@ export function createSelectionLayer(
 
     return new SelectionLayer({
       id: 'selection',
-      layerIds: ['nodes'],
+      nodesLayer: nodesLayer(),
       onSelect,
     });
   });

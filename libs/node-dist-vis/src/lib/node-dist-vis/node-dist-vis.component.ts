@@ -213,7 +213,7 @@ export class NodeDistVisComponent {
   /** Scale bar layer */
   private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);
   /** Selection layer */
-  private readonly selectionLayer = createSelectionLayer(this.mode, this.onSelect.bind(this));
+  private readonly selectionLayer = createSelectionLayer(this.mode, this.nodesLayer, this.onSelect.bind(this));
   /** All layers as an array */
   private readonly layers = computed(() => [
     this.nodesLayer(),
@@ -251,7 +251,7 @@ export class NodeDistVisComponent {
     this.deck().setProps({
       initialViewState: {
         ...INITIAL_VIEW_STATE,
-        version: this.viewStateVersion++,
+        version: ++this.viewStateVersion,
       },
     });
   }
@@ -296,7 +296,9 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onClick(info: PickingInfo): void {
-    if (info.picked) {
+    if (this.mode() === 'select') {
+      return;
+    } else if (info.picked) {
       this.nodeClick.emit(this.pickingInfoToNodeEvent(info));
     }
   }
@@ -307,7 +309,9 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onHover(info: PickingInfo): void {
-    if (info.picked) {
+    if (this.mode() === 'select') {
+      return;
+    } else if (info.picked) {
       const event = this.pickingInfoToNodeEvent(info);
       if (event.object !== this.activeHover) {
         this.nodeHover.emit(event);

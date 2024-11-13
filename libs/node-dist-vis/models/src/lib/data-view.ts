@@ -125,8 +125,17 @@ function createAccessorName<Entry>(property: keyof Entry, postfix: AccessorPostf
  * @returns A bound accessor function
  */
 function createAccessor<Entry>(instance: DataView<Entry>, property: keyof Entry, postfix: AccessorPostfixes) {
-  const method = `getProperty${postfix}` as const;
-  return (arg: unknown) => instance[method](arg as never, property);
+  const key = instance.keyMapping[property];
+  if (key === undefined) {
+    return () => undefined;
+  }
+
+  if (postfix === 'At') {
+    const { data, offset } = instance;
+    return (index: number) => ((data[index + offset] ?? {}) as Record<PropertyKey, unknown>)[key];
+  } else {
+    return (obj: Record<PropertyKey, unknown>) => obj[key];
+  }
 }
 
 /**

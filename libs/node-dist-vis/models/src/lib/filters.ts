@@ -57,23 +57,26 @@ export class NodeFilterView {
     return include === undefined && exclude.length === 0;
   };
 
+  readonly addEntries = (
+    include?: NodeFilterEntry[] | undefined,
+    exclude?: NodeFilterEntry[] | undefined,
+  ): NodeFilterView => {
+    const newInclude = concatEntries(this.include, include);
+    const newExclude = concatEntries(this.exclude, exclude);
+    return new NodeFilterView(newInclude, newExclude);
+  };
+
+  readonly clear = (clearInclude = true, clearExclude = true): NodeFilterView => {
+    const include = clearInclude ? undefined : this.include;
+    const exclude = clearExclude ? undefined : this.exclude;
+    return new NodeFilterView(include, exclude);
+  };
+
   /** Initialize the filter */
   constructor(
     readonly include: NodeFilterEntry[] | undefined,
     readonly exclude: NodeFilterEntry[] | undefined,
   ) {}
-
-  addEntries(include?: NodeFilterEntry[] | undefined, exclude?: NodeFilterEntry[] | undefined): NodeFilterView {
-    const newInclude = concatEntries(this.include, include);
-    const newExclude = concatEntries(this.exclude, exclude);
-    return new NodeFilterView(newInclude, newExclude);
-  }
-
-  clear(clearInclude = true, clearExclude = true): NodeFilterView {
-    const include = clearInclude ? undefined : this.include;
-    const exclude = clearExclude ? undefined : this.exclude;
-    return new NodeFilterView(include, exclude);
-  }
 
   /**
    * Selects a node filter predicate function based on whether
