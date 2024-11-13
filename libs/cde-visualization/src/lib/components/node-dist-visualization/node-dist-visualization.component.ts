@@ -27,7 +27,7 @@ import {
 } from '@hra-ui/design-system/fullscreen';
 import '@hra-ui/node-dist-vis';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
-import { ColorMapView, EdgesView, NodeFilter, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
+import { ColorMapView, EdgesView, NodeFilterView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
@@ -65,19 +65,13 @@ export class NodeDistVisualizationComponent {
   /** Input for the color map data */
   readonly colorMap = input.required<ColorMapView>();
 
-  readonly nodeFilter = model<NodeFilter>({});
-
-  /** Input for selected cell types */
-  readonly cellTypesSelection = input.required<string[]>();
+  readonly nodeFilter = model.required<NodeFilterView>();
 
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();
 
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEvent | undefined>();
-
-  /** Output event to reset all cells selection */
-  readonly resetAllCells = output<void>();
 
   /** Flag to check cell links visibility */
   protected readonly edgesDisabled = signal(false);
@@ -110,7 +104,6 @@ export class NodeDistVisualizationComponent {
 
     this.bindData('colorMap', this.colorMap);
 
-    this.bindData('selection', this.cellTypesSelection);
     this.bindData('nodeFilter', this.nodeFilter);
     this.bindEvent('nodeSelectionChange', this.selection);
   }
@@ -130,8 +123,7 @@ export class NodeDistVisualizationComponent {
   }
 
   resetDeletedNodes(): void {
-    const oldFilter = this.nodeFilter();
-    const newFilter = { ...oldFilter, exclude: [] };
+    const newFilter = this.nodeFilter().clear(false, true);
     this.nodeFilter.set(newFilter);
   }
 
@@ -139,8 +131,7 @@ export class NodeDistVisualizationComponent {
     const selection = this.selection();
     if (selection.length > 0) {
       const indices = selection.map((event) => event.index);
-      const oldFilter = this.nodeFilter();
-      const newFilter = { ...oldFilter, exclude: [...(oldFilter.exclude ?? []), ...indices] };
+      const newFilter = this.nodeFilter().addEntries(undefined, indices);
 
       this.visEl().instance?.clearSelection();
       this.selection.set([]);

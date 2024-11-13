@@ -1,6 +1,7 @@
 import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
+import { unparse } from 'papaparse';
 import { Observable } from 'rxjs';
 import { DataInput, isRecordObject, loadData } from './utils';
 
@@ -21,7 +22,7 @@ type AccessorName<
 type Accessor<Entry, P extends keyof Entry, Arg> = (arg: Arg) => Entry[P];
 
 /** View data entry */
-export type AnyDataEntry = unknown[] | object;
+export type AnyDataEntry = AnyData[number];
 /** View data */
 export type AnyData = unknown[][] | object[];
 /** Any data view (primarly used as a generic constraint) */
@@ -88,6 +89,11 @@ export interface DataView<Entry> {
 
   /** Raw data iterator */
   [Symbol.iterator](): IterableIterator<AnyDataEntry>;
+
+  /**
+   * Serialize to a csv blob (including header)
+   */
+  toCsv(): Promise<Blob>;
 }
 
 /** Data view constructor */
@@ -140,6 +146,39 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
+function* normalizeRows(data: AnyData, keys: PropertyKey[], start: number, end: number): Generator<unknown[]> {
+  end = Math.min(end, data.length);
+  for (let index = start; index < end; index++) {
+    const item = data[index] as Record<PropertyKey, unknown>;
+    const row: unknown[] = [];
+    for (const key of keys) {
+      const value = item[key];
+      const serialized = typeof value !== 'object' ? value : JSON.stringify(value);
+      row.push(serialized);
+    }
+
+    yield row;
+  }
+}
+
+async function serializeToCsv<T>(data: AnyData, keyMapping: KeyMapping<T>, offset: number): Promise<Blob> {
+  const ROWS_PER_CHUNK = 5000;
+  const keys = Object.values(keyMapping) as PropertyKey[];
+  const chunks: string[] = [unparse([Object.keys(keyMapping)]), '\r\n'];
+
+  for (let index = offset; index < data.length; index += ROWS_PER_CHUNK) {
+    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK));
+    chunks.push(unparse(rows), '\r\n');
+    // Don't block the main thread
+    await new Promise((res) => setTimeout(res));
+  }
+
+  // Remove trailing new line
+  chunks.pop();
+
+  return new Blob(chunks);
+}
+
 /**
  * Create a new data view base class
  *
@@ -179,6 +218,10 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
         iter.next();
       }
       return iter;
+    }
+
+    toCsv(): Promise<Blob> {
+      return serializeToCsv(this.data, this.keyMapping, this.offset);
     }
   }
 

@@ -27,6 +27,21 @@ function falsy(): boolean {
   return false;
 }
 
+function concatEntries(
+  array1: NodeFilterEntry[] | undefined,
+  array2: NodeFilterEntry[] | undefined,
+): NodeFilterEntry[] | undefined {
+  if (array1 !== undefined) {
+    if (array2 !== undefined) {
+      return [...array1, ...array2];
+    } else {
+      return array1;
+    }
+  } else {
+    return array2;
+  }
+}
+
 /** Node filter view */
 export class NodeFilterView {
   /** Predicate that tests whether a node is included in the filter */
@@ -47,6 +62,18 @@ export class NodeFilterView {
     readonly include: NodeFilterEntry[] | undefined,
     readonly exclude: NodeFilterEntry[] | undefined,
   ) {}
+
+  addEntries(include?: NodeFilterEntry[] | undefined, exclude?: NodeFilterEntry[] | undefined): NodeFilterView {
+    const newInclude = concatEntries(this.include, include);
+    const newExclude = concatEntries(this.exclude, exclude);
+    return new NodeFilterView(newInclude, newExclude);
+  }
+
+  clear(clearInclude = true, clearExclude = true): NodeFilterView {
+    const include = clearInclude ? undefined : this.include;
+    const exclude = clearExclude ? undefined : this.exclude;
+    return new NodeFilterView(include, exclude);
+  }
 
   /**
    * Selects a node filter predicate function based on whether
@@ -97,7 +124,9 @@ export function loadNodeFilter(
   const selectionData = loadData(selection, JsonFileLoaderService, {});
   return computed(() => {
     const result = data();
-    if (isRecordObject(result)) {
+    if (result instanceof NodeFilterView) {
+      return result;
+    } else if (isRecordObject(result)) {
       const { include, exclude } = result as NodeFilter;
       return new NodeFilterView(include, exclude);
     }

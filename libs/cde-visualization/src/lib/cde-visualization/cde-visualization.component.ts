@@ -8,6 +8,7 @@ import {
   inject,
   input,
   output,
+  Signal,
   signal,
   ViewContainerRef,
 } from '@angular/core';
@@ -16,6 +17,7 @@ import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-butt
 import { NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
+  AnyDataView,
   ColorMapInput,
   ColorMapKeysInput,
   ColorMapView,
@@ -28,6 +30,7 @@ import {
   loadColorMap,
   loadEdges,
   loadNodes,
+  NodeFilterView,
   NodeKeysInput,
   NodesInput,
   withDataViewDefaultGenerator,
@@ -38,7 +41,7 @@ import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
+import { DEFAULT_MAX_EDGE_DISTANCE } from '../models/edge';
 import { loadMetadata, MetadataInput } from '../models/metadata';
 import { DEFAULT_NODE_TARGET_VALUE } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
@@ -159,6 +162,8 @@ export class CdeVisualizationComponent {
     creationTimestamp: this.creationTimestamp,
   });
 
+  protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
+
   /** List of cell types */
   protected readonly cellTypes = signal<CellTypeEntry[]>([]);
 
@@ -234,6 +239,9 @@ export class CdeVisualizationComponent {
   /** Colors for the histogram visualization */
   protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
 
+  /** Injected file saver service */
+  private readonly fileSaver = inject(FileSaverService);
+
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view
@@ -246,55 +254,22 @@ export class CdeVisualizationComponent {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
   }
 
-  /** Injected file saver service */
-  private readonly fileSaver = inject(FileSaverService);
+  /** Update the color of a specific cell type entry */
+  updateColor(entry: CellTypeEntry, color: Rgb): void {
+    const entries = this.cellTypes();
+    const index = entries.indexOf(entry);
+    const copy = [...entries];
 
-  /** Download nodes data as CSV */
-  downloadNodes(): void {
-    // const nodes = this.loadedNodes();
-    // if (nodes.length > 0) {
-    //   this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
-    // }
+    copy[index] = { ...copy[index], color };
+    this.cellTypes.set(copy);
   }
 
-  /** Download edges data as CSV */
-  downloadEdges(): void {
-    // const edges = this.loadedEdges();
-    // if (edges.length > 0) {
-    //   this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
-    // }
-  }
-
-  // Add appropriate headers to edge data
-  addEdgeHeaders(edges: EdgeEntry[]) {
-    return edges.map((item) => ({
-      'Cell ID': item[0],
-      X1: item[1],
-      Y1: item[2],
-      Z1: item[3],
-      X2: item[4],
-      Y2: item[5],
-      Z2: item[6],
-    }));
-  }
-
-  /** Download color map as CSV */
-  downloadColorMap(): void {
-    // const colorKey = this.colorMapValueKey();
-    // const colorMap = this.cellTypesAsColorMap();
-    // const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
-    // if (data.length > 0) {
-    //   this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
-    // }
-  }
-
-  /** Convert headers in an array of objects to title case */
-  capitalizeHeaders(data: object[]): object[] {
-    return data.map((item) => {
-      const entries = Object.entries(item);
-      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-      return Object.fromEntries(capsEntries);
-    });
+  async downloadView<V extends AnyDataView>(view: Signal<V>, filename: string): Promise<void> {
+    const instance = view();
+    if (instance.length > 0) {
+      const data = await instance.toCsv();
+      this.fileSaver.saveData(data, filename);
+    }
   }
 
   /** Compute distances between nodes based on edges */
@@ -333,15 +308,5 @@ export class CdeVisualizationComponent {
     return this.filteredCellTypes()
       .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
       .map(({ color }) => rgbToHex(color));
-  }
-
-  /** Update the color of a specific cell type entry */
-  updateColor(entry: CellTypeEntry, color: Rgb): void {
-    const entries = this.cellTypes();
-    const index = entries.indexOf(entry);
-    const copy = [...entries];
-
-    copy[index] = { ...copy[index], color };
-    this.cellTypes.set(copy);
   }
 }
