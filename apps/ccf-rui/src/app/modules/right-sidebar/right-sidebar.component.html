@@ -1,4 +1,4 @@
-<div class="info-button-container">
+<!-- <div class="info-button-container">
   <ccf-info-button
     videoID="j4f9_xdBrK0"
     infoTitle="CCF Registration User Interface"
@@ -80,4 +80,93 @@
     >
     </ccf-review-button>
   </div>
+</div> -->
+
+<hra-expansion-panel [title]="'Tissue Block Settings'" class="tissue-block-settings">
+  <hra-expansion-panel-actions>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      [hraIconButtonSize]="'large'"
+      aria-label="Icon to open nested menu"
+      hraMicroTooltip="More"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [class]="'settings-overlay'">
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset all settings</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset position</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset size</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset rotation</button>
+    </mat-menu>
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="help"
+      [hraIconButtonSize]="'large'"
+      aria-label="Icon to open nested menu"
+      hraMicroTooltip="More"
+    >
+      <mat-icon>help</mat-icon>
+    </button>
+    <mat-menu #help="matMenu" [class]="'settings-overlay'">
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Watch video tutorial</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Use app guide</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Explore all registrations</button>
+    </mat-menu>
+  </hra-expansion-panel-header-content>
+  <div class="position">
+    <span class="label">Position</span>
+    <div class="x-position box">
+      <span>X</span>
+      <span>{{ (position$ | async)?.x }}</span>
+    </div>
+    <div class="y-position box">
+      <span>Y</span>
+      <span>{{ (position$ | async)?.y }}</span>
+    </div>
+    <div class="z-position box">
+      <span>Z</span>
+      <span>{{ (position$ | async)?.z }}</span>
+    </div>
+  </div>
+  <ccf-block-size-input [blockSize]="(model.blockSize$ | async)!" (blockSizeChange)="model.setBlockSize($event)">
+  </ccf-block-size-input>
+
+  <ccf-rotation-slider [rotation]="$any(model.rotation$ | async)" (rotationChange)="model.setRotation($event)">
+  </ccf-rotation-slider>
+
+  <ccf-slices-input
+    [slicesConfig]="$any(model.slicesConfig$ | async)"
+    (slicesConfigChange)="model.setSlicesConfig($event)"
+  >
+  </ccf-slices-input>
+</hra-expansion-panel>
+<hra-expansion-panel [title]="'Anatomical Structure Tags'" class="as-tags">
+  <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
+  <ccf-tag-list
+    *ngIf="(model.organ$ | async)?.name; else tagListPlaceholder"
+    class="tag-list"
+    [tags]="(astags.tags$ | async) ?? []"
+    (tagRemoved)="astags.removeTag($event)"
+  >
+  </ccf-tag-list>
+  <ng-template #tagListPlaceholder> </ng-template>
+</hra-expansion-panel>
+<div style="flex-grow: 1"></div>
+<div class="buttons">
+  <button mat-button hraButtonSize="medium">Edit Metadata</button>
+
+  <ccf-review-button
+    class="review-button"
+    [registrationCallbackSet]="(page.registrationCallbackSet$ | async) ?? false"
+    [displayErrors]="(registration.displayErrors$ | async) ?? false"
+    [userValid]="(registration.valid$ | async) ?? false"
+    [metaData]="(registration.metadata$ | async) ?? []"
+    (registerData)="registration.register()"
+    (enterErrorMode)="registration.setDisplayErrors(!registration.isValid)"
+  >
+  </ccf-review-button>
 </div>

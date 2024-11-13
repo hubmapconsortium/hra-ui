@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { provideInput } from '@hra-ui/design-system/input';
 
 @NgModule({
   declarations: [RotationSliderComponent],
@@ -20,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatFormFieldModule,
   ],
+  providers: [provideInput()],
   exports: [RotationSliderComponent],
 })
 export class RotationSliderModule {}

@@ -44,6 +44,8 @@
     }
 
     .item-name {
+      font: var(--sys-label-small);
+      color: var(--sys-primary);
       user-select: none;
       white-space: nowrap;
       overflow: hidden;
