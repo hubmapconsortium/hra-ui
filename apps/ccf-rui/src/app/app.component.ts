@@ -5,6 +5,7 @@ import {
   ElementRef,
   HostListener,
   Injector,
+  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -13,10 +14,13 @@ import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
 
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
+import { Side } from './modules/content/stage-nav/stage-nav.component';
+import { RegistrationState } from './core/store/registration/registration.state';
 
 export interface User {
   firstName: string;
@@ -70,6 +74,12 @@ export class AppComponent implements OnDestroy, OnInit {
 
   logoTooltip!: string;
 
+  /** Input that allows changing the current side from outside the component */
+  @Input() side: Side = 'anterior';
+
+  /** Input that allows toggling of 3D view on / off from outside the component */
+  @Input() view3D = false;
+
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
 
@@ -83,6 +93,8 @@ export class AppComponent implements OnDestroy, OnInit {
     injector: Injector,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
     cdr: ChangeDetectorRef,
+    private readonly ga: GoogleAnalyticsService,
+    readonly registration: RegistrationState,
   ) {
     theming.initialize(el, injector);
     this.subscriptions.add(
@@ -202,5 +214,39 @@ export class AppComponent implements OnDestroy, OnInit {
    */
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  updateSide(selection: Side): void {
+    this.ga.event('side_update', 'stage_nav', selection);
+
+    if (selection === '3D') {
+      this.updateView(true);
+    } else {
+      this.updateView(false);
+      this.side = selection;
+      this.model.setViewSide(selection);
+    }
+  }
+
+  /**
+   * Handles updating of the boolean that keeps track of current view
+   * and calling the event emitter.
+   *
+   * @param selection 3D (true) or Register (false)
+   */
+  updateView(selection: boolean): void {
+    this.view3D = selection;
+    this.ga.event('view_update', 'stage_nav', selection ? '3D' : 'Register');
+    this.model.setViewType(selection ? '3d' : 'register');
+  }
+
+  resetStage(): void {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.setToInitialRegistration();
+    } else {
+      this.model.setOrganDefaults();
+    }
+    this.model.setViewSide('anterior');
+    this.model.setViewType('register');
   }
 }

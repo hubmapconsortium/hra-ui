@@ -14,11 +14,6 @@
     .mdc-slider__track--active_fill {
       border-color: $lightColor;
     }
-
-    .mdc-slider__thumb-knob {
-      background-color: $color !important;
-      border-color: $color !important;
-    }
   }
 }
 
@@ -38,9 +33,9 @@
       }
     }
 
-    .mdc-text-field {
-      background: white;
-    }
+    // .mdc-text-field {
+    //   background: white;
+    // }
 
     .mat-mdc-form-field-focus-overlay {
       background: transparent;

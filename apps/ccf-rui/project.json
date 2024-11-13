@@ -12,22 +12,37 @@
   },
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:application",
+      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": "dist/apps/ccf-rui",
+        "outputPath": {
+          "base": "dist/apps/ccf-rui",
+          "browser": "."
+        },
         "index": "apps/ccf-rui/src/index.html",
-        "main": "apps/ccf-rui/src/main.ts",
-        "polyfills": "apps/ccf-rui/src/polyfills.ts",
+        "browser": "apps/ccf-rui/src/main.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/ccf-rui/tsconfig.app.json",
-        "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
+        "assets": [
+          "apps/ccf-rui/src/favicon.png",
+          "apps/ccf-rui/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "styles": ["apps/ccf-rui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
+        },
         "scripts": [],
-        "vendorChunk": true,
-        "extractLicenses": false,
-        "buildOptimizer": false,
-        "sourceMap": true,
-        "optimization": false,
-        "namedChunks": true
+        "define": {
+          "define": "undefined"
+        },
+        "outputHashing": "none",
+        "allowedCommonJsDependencies": ["*"],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
       },
       "configurations": {
         "production": {
@@ -38,13 +53,6 @@
               "with": "apps/ccf-rui/src/environments/environment.prod.ts"
             }
           ],
-          "optimization": true,
-          "outputHashing": "none",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
           "budgets": [
             {
               "type": "initial",
@@ -57,6 +65,13 @@
               "maximumError": "10kb"
             }
           ]
+        },
+        "development": {
+          "baseHref": "/",
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         },
         "staging": {
           "baseHref": "/ui--staging/ccf-rui/",
@@ -65,52 +80,29 @@
               "replace": "apps/ccf-rui/src/environments/environment.ts",
               "with": "apps/ccf-rui/src/environments/environment.staging.ts"
             }
-          ],
-          "optimization": true,
-          "outputHashing": "none",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
           ]
         },
         "preview": {
           "baseHref": "/apps/ccf-rui/",
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
         }
       },
-      "defaultConfiguration": ""
+      "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "browserTarget": "ccf-rui:build"
-      },
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "ccf-rui:build:production"
+          "buildTarget": "ccf-rui:build:production"
         },
-        "staging": {
-          "browserTarget": "ccf-rui:build:staging"
+        "development": {
+          "buildTarget": "ccf-rui:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -134,6 +126,9 @@
           "apps/ccf-rui/src/app/**/*.module.ts"
         ],
         "styles": ["apps/ccf-rui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/design-system/styles"]
+        },
         "scripts": []
       }
     },
@@ -144,7 +139,7 @@
       }
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs ccf-rui"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ccf-rui/"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

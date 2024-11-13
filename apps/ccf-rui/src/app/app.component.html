@@ -1,24 +1,65 @@
 <ccf-registration-modal></ccf-registration-modal>
-<ccf-header
+<hra-nav-header-buttons
+  [app]="'rui'"
+  [appLink]="'https://apps.humanatlas.io/rui/'"
+  [appTitle]="'Registration User Interface'"
+  [brandmark]="true"
+></hra-nav-header-buttons>
+<ccf-left-sidebar [modalClosed]="registrationStarted"> </ccf-left-sidebar>
+<hra-expansion-panel [title]="'Registration'" disabled class="registration">
+  <hra-expansion-panel-actions>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      [hraIconButtonSize]="'large'"
+      aria-label="Icon to open nested menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [class]="'reg-overlay'">
+      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetStage()">Reset all</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset camera view</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset tissue block</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset registration metadata</button>
+    </mat-menu>
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <mat-button-toggle-group
+      name="sideSelect"
+      aria-label="Side Select"
+      hideSingleSelectionIndicator
+      hraButtonToggleSize="medium"
+      (change)="updateSide($event.value)"
+    >
+      <mat-button-toggle value="left">Left</mat-button-toggle>
+      <mat-button-toggle value="right">Right</mat-button-toggle>
+      <mat-button-toggle value="anterior" checked>Anterior</mat-button-toggle>
+      <mat-button-toggle value="posterior">Posterior</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-button-toggle-group
+      name="modeSelect"
+      aria-label="Mode Select"
+      hideSingleSelectionIndicator
+      hraButtonToggleSize="medium"
+      (change)="updateView($event.value === 'preview')"
+    >
+      <mat-button-toggle value="register" checked>Register</mat-button-toggle>
+      <mat-button-toggle value="preview">Preview</mat-button-toggle>
+    </mat-button-toggle-group>
+  </hra-expansion-panel-header-content>
+</hra-expansion-panel>
+<ccf-content class="stage-content" [disablePositionChange]="disablePositionChange"></ccf-content>
+<ccf-right-sidebar
+  [modalClosed]="registrationStarted"
+  (registrationExpanded)="registrationToggle($event)"
+></ccf-right-sidebar>
+<!-- <ccf-header
   [class.header-hidden]="(header$ | async) === false"
   [logoTooltip]="(logoTooltip$ | async) ?? ''"
   [homeUrl]="(homeUrl$ | async) ?? ''"
-></ccf-header>
+></ccf-header> -->
 
-<ccf-drawer-container>
-  <ccf-drawer opened>
-    <ccf-left-sidebar [modalClosed]="registrationStarted"> </ccf-left-sidebar>
-    <ccf-drawer-toggle-button></ccf-drawer-toggle-button>
-  </ccf-drawer>
-  <ccf-drawer position="end" opened>
-    <ccf-right-sidebar
-      [modalClosed]="registrationStarted"
-      (registrationExpanded)="registrationToggle($event)"
-    ></ccf-right-sidebar>
-    <ccf-drawer-toggle-button></ccf-drawer-toggle-button>
-  </ccf-drawer>
-
+<!-- <ccf-drawer-container>
   <ccf-drawer-content>
-    <ccf-content class="stage-content" [disablePositionChange]="disablePositionChange"></ccf-content>
   </ccf-drawer-content>
-</ccf-drawer-container>
+</ccf-drawer-container> -->

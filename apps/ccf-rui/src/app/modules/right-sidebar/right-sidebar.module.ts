@@ -15,6 +15,14 @@ import { TagListModule } from '../../shared/components/tag-list/tag-list.module'
 import { TagSearchModule } from '../../shared/components/tag-search/tag-search.module';
 import { ReviewButtonModule } from '../review/review-button/review-button.module';
 import { RightSidebarComponent } from './right-sidebar.component';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
 @NgModule({
   imports: [
@@ -34,6 +42,13 @@ import { RightSidebarComponent } from './right-sidebar.component';
     TagSearchModule,
     InfoButtonModule,
     RegistrationMetadataModule,
+
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    MatMenuModule,
+    ButtonModule,
+    IconButtonSizeDirective,
   ],
   declarations: [RightSidebarComponent],
   exports: [RightSidebarComponent],
