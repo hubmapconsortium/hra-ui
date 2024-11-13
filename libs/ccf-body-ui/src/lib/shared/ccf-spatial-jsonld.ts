@@ -58,4 +58,6 @@ export interface SpatialEntityJsonLd extends JsonLdObj {
   dimension_units: string;
   object: SpatialObjectReferenceJsonLd;
   placement: SpatialPlacementJsonLd | SpatialPlacementJsonLd[];
+  publication_doi: string | undefined;
+  consortium: string | undefined;
 }

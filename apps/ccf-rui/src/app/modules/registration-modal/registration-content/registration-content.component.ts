@@ -69,7 +69,9 @@ export class RegistrationContentComponent {
     consortium: [''],
   });
 
-  filteredOptions?: Observable<OrganInfo[]>;
+  filteredOrganOptions?: Observable<OrganInfo[]>;
+
+  consortiumList = ['Test', 'Sample', 'Foo', 'SenNet'];
 
   /**
    * Creates an instance of the registration dialog
@@ -106,7 +108,7 @@ export class RegistrationContentComponent {
         return options.filter((option) => option.name.toLowerCase().includes(filterValue));
       }
 
-      this.filteredOptions = this.registrationForm.valueChanges.pipe(
+      this.filteredOrganOptions = this.registrationForm.valueChanges.pipe(
         startWith(''),
         map((value) => {
           const organ = typeof value === 'string' ? value : value?.organ;
@@ -133,6 +135,8 @@ export class RegistrationContentComponent {
         creator_orcid,
         sex,
         reference_organ,
+        publication_doi,
+        consortium,
       } = reg.initialRegistration;
 
       this.registrationForm.patchValue({
@@ -142,15 +146,10 @@ export class RegistrationContentComponent {
         email: creator_email,
         orcid: creator_orcid,
         sex,
+        organ: reference_organ,
+        publicationDOI: publication_doi,
+        consortium,
       });
-
-      if (reference_organ) {
-        const match = RUI_ORGANS.find((o) => o.organ === reference_organ);
-        if (match) {
-          this.organSelect(match);
-        }
-        this.registrationForm.patchValue({ organ: reference_organ });
-      }
     });
 
     this.registrationForm.valueChanges.subscribe(() => {
@@ -219,18 +218,21 @@ export class RegistrationContentComponent {
   }
 
   /**
-   * Closes the dialog and sets the correct sex and organ in the model state
+   * Closes the dialog and updates page and model states according to form values
    * Sets block to default position and rotation if user didn't select a registration
    * Updates page state to signal registration has started
    */
   closeDialog(): void {
-    const { firstName, middleName, lastName, sex, email } = this.registrationForm.controls;
+    const { firstName, middleName, lastName, email, orcid, sex } = this.registrationForm.controls;
+
+    // TODO: find out where to update publicationDOI and consortium
 
     this.page.setUserName({
-      firstName: firstName.value || '',
-      middleName: middleName.value || '',
-      lastName: lastName.value || '',
+      firstName: firstName.value ?? '',
+      middleName: middleName.value ?? '',
+      lastName: lastName.value ?? '',
     });
+    this.page.setOrcidId(orcid.value ?? '');
     this.model.setSex(sex.value === 'Female' ? 'female' : 'male');
     this.updateEmail(email.value ?? '');
     if (this.currentOrgan) {
@@ -263,7 +265,7 @@ export class RegistrationContentComponent {
     this.page.setEmail(value);
   }
 
-  displayFn(organ: string): string {
-    return organ ?? '';
+  displayFn(value: string): string {
+    return value ?? '';
   }
 }

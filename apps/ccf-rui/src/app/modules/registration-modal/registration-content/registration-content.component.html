@@ -1,4 +1,7 @@
-<div class="title">Tissue Registration Metadata</div>
+<div class="title">
+  <span>Tissue Registration Metadata</span>
+  <mat-icon class="info"> info </mat-icon>
+</div>
 
 <div class="workflows">
   <hra-workflow-card>
@@ -22,6 +25,8 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Add Metadata</span>
+      <div class="filler"></div>
+      <a mat-button class="use-template" color="primary" target="_blank" rel="noopener noreferrer"> Get ORCID </a>
     </h2>
 
     <form [formGroup]="registrationForm">
@@ -85,13 +90,13 @@
 
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Organ</mat-label>
-          <input type="text" matInput formControlName="organ" [matAutocomplete]="auto" />
+          <input type="text" matInput formControlName="organ" [matAutocomplete]="organ" />
           <mat-autocomplete
-            #auto="matAutocomplete"
+            #organ="matAutocomplete"
             [displayWith]="displayFn"
             (optionSelected)="organSelect($event.option.value)"
           >
-            @for (organ of filteredOptions | async; track organ) {
+            @for (organ of filteredOrganOptions | async; track organ) {
               <mat-option [value]="organ">{{ organ.name }}</mat-option>
             }
           </mat-autocomplete>
@@ -103,7 +108,12 @@
         </mat-form-field>
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Consortium (Optional)</mat-label>
-          <input matInput formControlName="consortium" cdeMarkEmptyFormControl />
+          <input type="text" matInput formControlName="consortium" [matAutocomplete]="consortium" />
+          <mat-autocomplete #consortium="matAutocomplete" [displayWith]="displayFn">
+            @for (consortium of consortiumList; track consortium) {
+              <mat-option [value]="consortium">{{ consortium }}</mat-option>
+            }
+          </mat-autocomplete>
         </mat-form-field>
       </div>
     </form>

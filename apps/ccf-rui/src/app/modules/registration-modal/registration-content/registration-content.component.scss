@@ -1,12 +1,21 @@
 :host {
+  --mdc-filled-text-field-input-text-color: var(--sys-primary);
+
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 
   .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font: var(--sys-headline-large);
     letter-spacing: var(--sys-headline-large-tracking);
+
+    .info {
+      margin: 0.5rem;
+    }
   }
 
   .workflows {
@@ -67,5 +76,13 @@
 
   .registration-button {
     align-self: flex-start;
+  }
+
+  mat-error {
+    height: 0rem;
+  }
+
+  .filler {
+    flex-grow: 1;
   }
 }
