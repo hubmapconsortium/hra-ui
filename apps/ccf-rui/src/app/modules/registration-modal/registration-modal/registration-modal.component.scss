@@ -1,6 +1,7 @@
 ::ng-deep .registration-modal {
   --mat-dialog-container-max-width: 100vw;
   --mdc-dialog-container-shape: 0;
+  --mdc-dialog-container-color: var(--sys-surface-container-low);
   height: 100vh;
   width: 100vw;
 }

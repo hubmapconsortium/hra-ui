@@ -71,7 +71,7 @@ export class RegistrationContentComponent {
 
   filteredOrganOptions?: Observable<OrganInfo[]>;
 
-  consortiumList = ['Test', 'Sample', 'Foo', 'SenNet'];
+  consortiumList = ['Test', 'Sample', 'Foo', 'SenNet']; // TODO: replace with actual consortium data
 
   /**
    * Creates an instance of the registration dialog
