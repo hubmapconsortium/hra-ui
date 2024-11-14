@@ -33,6 +33,9 @@ export type AnyDataView = DataView<any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
 
+/** Filter function */
+export type DataViewFilter = (obj: AnyDataEntry, index: number) => boolean;
+
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
 /**
@@ -93,7 +96,7 @@ export interface DataView<Entry> {
   /**
    * Serialize to a csv blob (including header)
    */
-  toCsv(): Promise<Blob>;
+  toCsv(filter?: DataViewFilter): Promise<Blob>;
 }
 
 /** Data view constructor */
@@ -155,11 +158,22 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
-function* normalizeRows(data: AnyData, keys: PropertyKey[], start: number, end: number): Generator<unknown[]> {
+function* normalizeRows(
+  data: AnyData,
+  keys: PropertyKey[],
+  start: number,
+  end: number,
+  offset: number,
+  filter: DataViewFilter | undefined,
+): Generator<unknown[]> {
   end = Math.min(end, data.length);
   for (let index = start; index < end; index++) {
     const item = data[index] as Record<PropertyKey, unknown>;
     const row: unknown[] = [];
+    if (filter?.(item, index - offset) === false) {
+      continue;
+    }
+
     for (const key of keys) {
       const value = item[key];
       const serialized = typeof value !== 'object' ? value : JSON.stringify(value);
@@ -170,13 +184,18 @@ function* normalizeRows(data: AnyData, keys: PropertyKey[], start: number, end: 
   }
 }
 
-async function serializeToCsv<T>(data: AnyData, keyMapping: KeyMapping<T>, offset: number): Promise<Blob> {
+async function serializeToCsv<T>(
+  data: AnyData,
+  keyMapping: KeyMapping<T>,
+  offset: number,
+  filter: DataViewFilter | undefined,
+): Promise<Blob> {
   const ROWS_PER_CHUNK = 5000;
   const keys = Object.values(keyMapping) as PropertyKey[];
   const chunks: string[] = [unparse([Object.keys(keyMapping)]), '\r\n'];
 
   for (let index = offset; index < data.length; index += ROWS_PER_CHUNK) {
-    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK));
+    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK, offset, filter));
     chunks.push(unparse(rows), '\r\n');
     // Don't block the main thread
     await new Promise((res) => setTimeout(res));
@@ -229,8 +248,8 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       return iter;
     }
 
-    toCsv(): Promise<Blob> {
-      return serializeToCsv(this.data, this.keyMapping, this.offset);
+    toCsv(filter?: DataViewFilter): Promise<Blob> {
+      return serializeToCsv(this.data, this.keyMapping, this.offset, filter);
     }
   }
 

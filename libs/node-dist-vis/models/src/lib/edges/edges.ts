@@ -4,12 +4,15 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
 } from '../data-view';
+import { NodeFilterView } from '../filters';
+import { NodesView } from '../nodes';
 
 /** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
@@ -139,6 +142,17 @@ export class EdgesView extends BaseEdgesView {
     }
 
     return new Map(Object.entries(counts));
+  };
+
+  readonly createFilter = (nodesView: NodesView, filterView: NodeFilterView): DataViewFilter => {
+    return (obj) => {
+      const index1 = this.getCellIDFor(obj);
+      const index2 = this.getTargetIDFor(obj);
+      return (
+        filterView.includes(nodesView.getCellTypeAt(index1), index1) &&
+        filterView.includes(nodesView.getCellTypeAt(index2), index2)
+      );
+    };
   };
 }
 

@@ -4,12 +4,14 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
 } from './data-view';
+import { NodeFilterView } from './filters';
 import { cachedAccessor } from './utils';
 
 /** Node view input */
@@ -99,6 +101,10 @@ export class NodesView extends BaseNodesView {
 
     return new Map(Object.entries(counts));
   });
+
+  readonly createFilter = (filterView: NodeFilterView): DataViewFilter => {
+    return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
+  };
 }
 
 /** Empty nodes view */

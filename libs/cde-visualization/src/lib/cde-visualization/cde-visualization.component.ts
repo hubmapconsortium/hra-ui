@@ -8,7 +8,6 @@ import {
   inject,
   input,
   output,
-  Signal,
   signal,
   untracked,
   ViewContainerRef,
@@ -24,6 +23,7 @@ import {
   ColorMapView,
   createColorMapGenerator,
   createEdgeGenerator,
+  DataViewFilter,
   EdgeKeysInput,
   EdgesInput,
   EMPTY_COLOR_MAP_VIEW,
@@ -274,10 +274,27 @@ export class CdeVisualizationComponent {
     this.cellTypes.set(copy);
   }
 
-  async downloadView<V extends AnyDataView>(view: Signal<V>, filename: string): Promise<void> {
-    const instance = view();
-    if (instance.length > 0) {
-      const data = await instance.toCsv();
+  async downloadNodes(): Promise<void> {
+    const nodes = this.nodesView();
+    const filter = nodes.createFilter(this.nodeFilterView());
+    await this.downloadView(nodes, filter, 'nodes.csv');
+  }
+
+  async downloadEdges(): Promise<void> {
+    const edges = this.edgesView();
+    const filter = edges.createFilter(this.nodesView(), this.nodeFilterView());
+    await this.downloadView(edges, filter, 'edges.csv');
+  }
+
+  async downloadColorMap(): Promise<void> {
+    const colorMap = this.cellTypesAsColorMap();
+    const filter = colorMap.createFilter(this.nodeFilterView());
+    await this.downloadView(colorMap, filter, 'color-map.csv');
+  }
+
+  private async downloadView<V extends AnyDataView>(view: V, filter: DataViewFilter, filename: string): Promise<void> {
+    if (view.length > 0) {
+      const data = await view.toCsv(filter);
       this.fileSaver.saveData(data, filename);
     }
   }

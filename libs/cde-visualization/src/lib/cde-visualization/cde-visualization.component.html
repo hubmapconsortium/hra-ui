@@ -14,9 +14,9 @@
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="nodeTargetSelector()"
-    (downloadColorMap)="downloadView(cellTypesAsColorMap, 'color-map.csv')"
-    (downloadNodes)="downloadView(nodesView, 'nodes.csv')"
-    (downloadEdges)="downloadView(edgesView, 'edges.csv')"
+    (downloadNodes)="downloadNodes()"
+    (downloadEdges)="downloadEdges()"
+    (downloadColorMap)="downloadColorMap()"
     (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
