@@ -50,6 +50,7 @@ describe('PageState', () => {
         user: {
           firstName: 'Bob',
           lastName: 'the Dragon',
+          email: 'bob@dragon.com',
         },
         useCancelRegistrationCallback: false,
       },
@@ -64,7 +65,7 @@ describe('PageState', () => {
 
   it('has the latest user', async () => {
     const value = await nextValue(state.user$);
-    expect(value).toEqual({ firstName: 'Bob', lastName: 'the Dragon' });
+    expect(value).toEqual({ firstName: 'Bob', lastName: 'the Dragon', email: 'bob@dragon.com' });
   });
 
   it('updates user name', async () => {

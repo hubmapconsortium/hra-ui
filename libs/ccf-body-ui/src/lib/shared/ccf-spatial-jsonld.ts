@@ -37,18 +37,18 @@ export interface SpatialEntityJsonLd extends JsonLdObj {
   comment: string;
   creator: string;
   creator_first_name: string;
-  creator_middle_name: string | undefined;
+  creator_middle_name?: string;
   creator_last_name: string;
   creator_email: string;
-  creator_orcid: string | undefined;
+  creator_orcid?: string;
   creation_date: string;
   updated_date: string;
   ccf_annotations: string[];
   representation_of: string;
   reference_organ: string;
   extraction_set: string;
-  sex: 'Male' | 'Female' | undefined;
-  side: 'Left' | 'Right' | undefined;
+  sex?: 'Male' | 'Female';
+  side?: 'Left' | 'Right';
   rui_rank: number;
   slice_thickness: number;
   slice_count: number;
@@ -58,6 +58,6 @@ export interface SpatialEntityJsonLd extends JsonLdObj {
   dimension_units: string;
   object: SpatialObjectReferenceJsonLd;
   placement: SpatialPlacementJsonLd | SpatialPlacementJsonLd[];
-  publication_doi: string | undefined;
-  consortium: string | undefined;
+  publication_doi?: string;
+  consortium?: string;
 }

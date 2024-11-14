@@ -55,6 +55,7 @@ const initialPageState: PageStateModel = {
   user: {
     firstName: '',
     lastName: '',
+    email: '',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
@@ -120,7 +121,7 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(updatedReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' },
+      user: { firstName: 'John', lastName: 'Doe', email: 'j.joe@gmail.com' },
     });
     modelSubject.next({
       ...(initialModelState as ModelStateModel),
@@ -136,7 +137,7 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(initialReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' },
+      user: { firstName: 'John', lastName: 'Doe', email: 'j.joe@gmail.com' },
     });
     modelSubject.next({
       ...(initialModelState as ModelStateModel),
