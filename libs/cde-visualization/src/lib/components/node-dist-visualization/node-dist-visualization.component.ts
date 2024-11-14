@@ -1,3 +1,4 @@
+import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
@@ -25,6 +26,7 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
+import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
 import '@hra-ui/node-dist-vis';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import { ColorMapView, EdgesView, NodeFilterView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
@@ -39,12 +41,15 @@ import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualizati
   selector: 'cde-node-dist-visualization',
   standalone: true,
   imports: [
+    OverlayModule,
+
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenActionsComponent,
     FullscreenPortalComponent,
     FullscreenPortalContentComponent,
+    InfoModalComponent,
 
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
@@ -84,19 +89,64 @@ export class NodeDistVisualizationComponent {
     return this.viewMode() === 'select' && this.selection().length > 0;
   });
 
-  private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
-  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  protected readonly cellInfo = signal<NodeEvent | undefined>(undefined);
+  protected readonly cellInfoOpen = computed(() => this.viewMode() === 'inspect' && !!this.cellInfo());
+  protected readonly cellInfoPosition = computed((): ConnectedPosition[] => [
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: this.cellInfo()?.x,
+      offsetY: this.cellInfo()?.y,
+    },
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetX: this.cellInfo()?.x,
+      offsetY: this.cellInfo()?.y,
+    },
+  ]);
+  protected readonly cellInfoContent = computed((): DataItem[] => {
+    const info = this.cellInfo();
+    if (!info) {
+      return [];
+    }
+
+    const nodes = this.nodes();
+    const node = info.object;
+    const type = nodes.getCellTypeFor(node);
+    const ontologyId = nodes.getCellOntologyIDFor(node);
+    const x = nodes.getXFor(node).toFixed(2);
+    const y = nodes.getYFor(node).toFixed(2);
+    const z = nodes.getZFor(node)?.toFixed(2) ?? '0';
+    return [
+      { label: 'Cell Type', value: type },
+      { label: 'CL ID', value: ontologyId ?? '-' },
+      { label: 'X Coordinate', value: `${x} µm` },
+      { label: 'Y Coordinate', value: `${y} µm` },
+      { label: 'Z Coordinate', value: `${z} µm` },
+    ];
+  });
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
+
+  private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
+  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+
+  private readonly cellInfoOverlay = viewChild.required<CdkConnectedOverlay>('cellInfoOverlay');
 
   /** Bind data and events to the visualization element */
   constructor() {
     this.bindData('mode', this.viewMode);
 
     this.bindData('nodes', this.nodes);
-    this.bindEvent('nodeClicked', this.nodeClick);
-    this.bindEvent('nodeHovering', this.nodeHover);
+    this.bindEvent('nodeClick', this.nodeClick);
+    this.bindEvent('nodeClick', this.cellInfo);
+    this.bindEvent('nodeHover', this.nodeHover);
 
     this.bindData('edges', this.edges);
     this.bindData('edgesDisabled', this.edgesDisabled);
@@ -106,6 +156,16 @@ export class NodeDistVisualizationComponent {
 
     this.bindData('nodeFilter', this.nodeFilter);
     this.bindEvent('nodeSelectionChange', this.selection);
+
+    effect(() => {
+      // CdkConnectedOverlay only updates the position on changes to 'origin' and 'open'
+      // Manually force an update to the position instead
+      const info = this.cellInfo();
+      const ref = this.cellInfoOverlay().overlayRef;
+      if (info && ref) {
+        setTimeout(() => ref.updatePosition());
+      }
+    });
   }
 
   /** Downloads the visualization as an image */
@@ -119,6 +179,7 @@ export class NodeDistVisualizationComponent {
 
   /** Resets the visualization view */
   resetView(): void {
+    this.cellInfo.set(undefined);
     this.visEl().instance?.resetView();
   }
 

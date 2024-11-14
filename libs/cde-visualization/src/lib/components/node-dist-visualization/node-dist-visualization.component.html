@@ -1,4 +1,4 @@
-<hra-expansion-panel title="Visualization" disabled>
+<hra-expansion-panel [title]="'Visualization'" disabled>
   <hra-expansion-panel-actions>
     <cde-node-dist-visualization-menu
       [(edgesDisabled)]="edgesDisabled"
@@ -15,11 +15,12 @@
       [(viewMode)]="viewMode"
       [deleteDisabled]="!hasSelection()"
       (deleteClick)="deleteSelection()"
+      (viewModeChange)="cellInfo.set(undefined)"
     >
     </cde-node-dist-visualization-controls>
   </hra-expansion-panel-header-content>
 
-  <hra-fullscreen-portal title="Visualization" #fullscreen>
+  <hra-fullscreen-portal [title]="'Visualization'" #fullscreen>
     <hra-fullscreen-actions>
       <cde-node-dist-visualization-menu
         fullscreenMode
@@ -34,12 +35,35 @@
         [(viewMode)]="viewMode"
         [deleteDisabled]="!hasSelection()"
         (deleteClick)="deleteSelection()"
+        (viewModeChange)="cellInfo.set(undefined)"
       >
       </cde-node-dist-visualization-controls>
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
-      <hra-node-dist-vis class="vis" data-testid="node-dist-vis"></hra-node-dist-vis>
+      <hra-node-dist-vis
+        cdkOverlayOrigin
+        class="vis"
+        data-testid="node-dist-vis"
+        #cellInfoOrigin="cdkOverlayOrigin"
+      ></hra-node-dist-vis>
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayDisposeOnNavigation]="true"
+  [cdkConnectedOverlayHasBackdrop]="false"
+  [cdkConnectedOverlayMinWidth]="540"
+  [cdkConnectedOverlayOpen]="cellInfoOpen()"
+  [cdkConnectedOverlayOrigin]="cellInfoOrigin"
+  [cdkConnectedOverlayPositions]="cellInfoPosition()"
+  [cdkConnectedOverlayPush]="true"
+  [cdkConnectedOverlayViewportMargin]="16"
+  (overlayOutsideClick)="cellInfo.set(undefined)"
+  #cellInfoOverlay="cdkConnectedOverlay"
+>
+  <hra-info-modal [title]="'Cell Info'" variant="center" [data]="cellInfoContent()" (close)="cellInfo.set(undefined)">
+  </hra-info-modal>
+</ng-template>
