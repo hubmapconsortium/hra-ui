@@ -1,6 +1,28 @@
 <div class="title">
   <span>Tissue Registration Metadata</span>
-  <mat-icon class="info"> info </mat-icon>
+  <button class="help" mat-icon-button [matMenuTriggerFor]="help" aria-label="Icon to open help menu">
+    <mat-icon>help</mat-icon>
+  </button>
+
+  <mat-menu #help="matMenu">
+    <a mat-menu-item href="https://youtu.be/j4f9_xdBrK0?si=b5_p_lBuFzSyTXS3" target="_blank" rel="noopener noreferrer">
+      Watch video tutorial
+    </a>
+    <a
+      mat-menu-item
+      href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Use app guide
+    </a>
+    <a mat-menu-item href="https://doi.org/10.5281/zenodo.5575776" target="_blank" rel="noopener noreferrer">
+      Use standard operating procedure
+    </a>
+    <a mat-menu-item href="https://apps.humanatlas.io/eui/" target="_blank" rel="noopener noreferrer">
+      Explore all registrations
+    </a>
+  </mat-menu>
 </div>
 
 <div class="workflows">
@@ -21,66 +43,72 @@
     }
   </hra-workflow-card>
 
-  <hra-workflow-card>
+  <hra-workflow-card class="metadata-card">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Add Metadata</span>
       <div class="filler"></div>
-      <a mat-button class="use-template" color="primary" target="_blank" rel="noopener noreferrer"> Get ORCID </a>
+      <a mat-button class="use-template" href="https://orcid.org/register" target="_blank" rel="noopener noreferrer">
+        Get ORCID
+      </a>
     </h2>
 
     <form [formGroup]="registrationForm">
       <span class="subheader">Author</span>
       <div class="metadata-1">
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>First name</mat-label>
-          <input
-            matInput
-            formControlName="firstName"
-            cdeMarkEmptyFormControl
-            [value]="$any(page.user$ | async).firstName"
-          />
-        </mat-form-field>
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>Middle name (optional)</mat-label>
-          <input
-            matInput
-            formControlName="middleName"
-            cdeMarkEmptyFormControl
-            [value]="$any(page.user$ | async).middleName"
-          />
-        </mat-form-field>
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>Last name</mat-label>
-          <input
-            matInput
-            formControlName="lastName"
-            cdeMarkEmptyFormControl
-            [value]="$any(page.user$ | async).lastName"
-          />
-        </mat-form-field>
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" cdeMarkEmptyFormControl [value]="$any(page.user$ | async).email" />
-          <mat-error *ngIf="registrationForm.controls['email'].invalid">{{ getEmailErrorMessage() }}</mat-error>
-        </mat-form-field>
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>ORCID (optional)</mat-label>
-          <input
-            matInput
-            formControlName="orcid"
-            cdeMarkEmptyFormControl
-            maxlength="19"
-            [value]="$any(page.user$ | async).orcid"
-            (input)="updateOrcid($any($event.target).value)"
-          />
-          <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getOrcidErrorMessage() }}</mat-error>
-        </mat-form-field>
+        <div class="metadata-1a">
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>First name</mat-label>
+            <input
+              matInput
+              formControlName="firstName"
+              cdeMarkEmptyFormControl
+              [value]="$any(page.user$ | async).firstName"
+            />
+          </mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>Middle name (optional)</mat-label>
+            <input
+              matInput
+              formControlName="middleName"
+              cdeMarkEmptyFormControl
+              [value]="$any(page.user$ | async).middleName"
+            />
+          </mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>Last name</mat-label>
+            <input
+              matInput
+              formControlName="lastName"
+              cdeMarkEmptyFormControl
+              [value]="$any(page.user$ | async).lastName"
+            />
+          </mat-form-field>
+        </div>
+        <div class="metadata-1b">
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" cdeMarkEmptyFormControl [value]="$any(page.user$ | async).email" />
+            <mat-error *ngIf="registrationForm.controls['email'].invalid">{{ getEmailErrorMessage() }}</mat-error>
+          </mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>ORCID (optional)</mat-label>
+            <input
+              matInput
+              formControlName="orcid"
+              cdeMarkEmptyFormControl
+              maxlength="19"
+              [value]="$any(page.user$ | async).orcid"
+              (input)="updateOrcid($any($event.target).value)"
+            />
+            <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getOrcidErrorMessage() }}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
 
       <span class="subheader">Donor</span>
       <div class="metadata-2">
-        <mat-form-field subscriptSizing="dynamic">
+        <mat-form-field subscriptSizing="dynamic" class="sex-select">
           <mat-label>Sex</mat-label>
           <mat-select disableRipple formControlName="sex" panelClass="options-container" cdeMarkEmptyFormControl>
             <mat-option value="Male">Male</mat-option>
@@ -91,6 +119,7 @@
         <mat-form-field subscriptSizing="dynamic">
           <mat-label>Organ</mat-label>
           <input type="text" matInput formControlName="organ" [matAutocomplete]="organ" />
+          <mat-icon class="search-icon" matPrefix>search</mat-icon>
           <mat-autocomplete
             #organ="matAutocomplete"
             [displayWith]="displayFn"

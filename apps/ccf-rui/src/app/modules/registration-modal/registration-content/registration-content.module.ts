@@ -17,6 +17,7 @@ import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-but
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [RegistrationContentComponent],
@@ -37,6 +38,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     DeleteFileButtonComponent,
     ErrorIndicatorComponent,
+    MatMenuModule,
   ],
   exports: [RegistrationContentComponent],
 })

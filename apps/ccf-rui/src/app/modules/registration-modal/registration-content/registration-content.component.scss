@@ -12,10 +12,6 @@
     align-items: center;
     font: var(--sys-headline-large);
     letter-spacing: var(--sys-headline-large-tracking);
-
-    .info {
-      margin: 0.5rem;
-    }
   }
 
   .workflows {
@@ -53,17 +49,23 @@
   form {
     display: flex;
     flex-direction: column;
+    max-width: 56rem;
 
     .subheader {
       font: var(--sys-title-small);
+      color: var(--sys-primary);
       margin-bottom: 1rem;
     }
 
     .metadata-1 {
       margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
 
-    .metadata-1,
+    .metadata-1a,
+    .metadata-1b,
     .metadata-2 {
       display: flex;
       gap: 1rem;
@@ -71,6 +73,10 @@
 
     mat-form-field {
       flex-grow: 1;
+    }
+
+    .sex-select {
+      max-width: 8rem;
     }
   }
 
@@ -84,5 +90,15 @@
 
   .filler {
     flex-grow: 1;
+  }
+
+  ::ng-deep .mat-mdc-form-field-icon-prefix {
+    padding: 0;
+  }
+
+  ::ng-deep .metadata-card {
+    .content {
+      gap: 1rem !important;
+    }
   }
 }
