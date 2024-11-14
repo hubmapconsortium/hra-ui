@@ -10,6 +10,7 @@ import {
   output,
   Signal,
   signal,
+  untracked,
   ViewContainerRef,
 } from '@angular/core';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
@@ -247,6 +248,15 @@ export class CdeVisualizationComponent {
     // Workaround for getting ngx-color-picker to attach to the root view
     // Not populated for standalone/custom components so we forcefully insert ourself
     inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
+
+    effect(
+      () => {
+        const selection = this.cellTypesSelection();
+        const filter = untracked(this.nodeFilterView);
+        this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   /** Reset cell types */
@@ -280,7 +290,6 @@ export class CdeVisualizationComponent {
       return [];
     }
 
-    // const nodeTypeKey = this.nodeTypeKey();
     const selectedCellType = this.nodeTargetSelector();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
