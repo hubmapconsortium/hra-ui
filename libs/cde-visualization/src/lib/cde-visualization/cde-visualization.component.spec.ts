@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
@@ -15,6 +16,7 @@ import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
+import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
@@ -28,9 +30,10 @@ const embedResult = mockDeep<Result>();
 describe('CdeVisualizationComponent', () => {
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
   const SAMPLE_NODE_2: AnyDataEntry = ['t-cell', 300, 100];
+  const SAMPLE_NODE_3: AnyDataEntry = ['b-cell', 300, 100];
   const SAMPLE_EDGE: AnyDataEntry = [0, 1, 100, 200, 0, 100, 300, 0];
   const SAMPLE_COLOR: AnyDataEntry = ['epithelial', [0, 0, 255]];
-  const NODES = new NodesView([SAMPLE_NODE, SAMPLE_NODE_2], EMPTY_NODES_VIEW.keyMapping);
+  const NODES = new NodesView([SAMPLE_NODE, SAMPLE_NODE_2, SAMPLE_NODE_3], EMPTY_NODES_VIEW.keyMapping);
   const EDGES = new EdgesView([SAMPLE_EDGE], EMPTY_EDGES_VIEW.keyMapping);
   const COLOR_MAP = new ColorMapView([SAMPLE_COLOR], EMPTY_COLOR_MAP_VIEW.keyMapping);
 
@@ -57,6 +60,11 @@ describe('CdeVisualizationComponent', () => {
   }
 
   beforeAll(() => {
+    if (!URL.createObjectURL) {
+      URL.createObjectURL = jest.fn().mockReturnValue('blob:fakeblob');
+      URL.revokeObjectURL = jest.fn();
+    }
+
     customElements.define(
       'hra-node-dist-vis',
       class MockElement extends HTMLElement {
@@ -87,9 +95,21 @@ describe('CdeVisualizationComponent', () => {
 
   it('filters the distances based on the current selection', async () => {
     const { fixture } = await setup();
-    fixture.componentInstance.cellTypesSelection.set(['t-cell']);
+    fixture.componentInstance.cellTypesSelection.set(['t-cell', 'b-cell']);
     fixture.detectChanges();
 
     expect(fixture.componentInstance.filteredDistances()).toEqual([]);
+  });
+
+  describe('downloadNodes()', () => {
+    it('should download nodes', async () => {
+      const { fixture } = await setup();
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+
+      await fixture.componentInstance.downloadNodes();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv');
+    });
   });
 });
