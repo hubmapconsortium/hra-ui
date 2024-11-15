@@ -1,5 +1,5 @@
 import { computed, Signal } from '@angular/core';
-import { AccessorContext, COORDINATE_SYSTEM } from '@deck.gl/core/typed';
+import { AccessorContext, COORDINATE_SYSTEM, GetPickingInfoParams, PickingInfo } from '@deck.gl/core/typed';
 import { DataFilterExtension, DataFilterExtensionProps } from '@deck.gl/extensions/typed';
 import { PointCloudLayer } from '@deck.gl/layers/typed';
 import { AnyData, ColorMapView, NodeFilterView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
@@ -8,7 +8,16 @@ import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 
 /** Nodes layer */
-export type NodesLayer = PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>>;
+export class NodesLayer extends PointCloudLayer<AnyData, DataFilterExtensionProps<AnyData>> {
+  override getPickingInfo({ info }: GetPickingInfoParams): PickingInfo {
+    const { data } = this.props;
+    if (data instanceof NodesView) {
+      info.object = data.at(info.index);
+    }
+
+    return info;
+  }
+}
 
 /** Default/initial node size */
 const DEFAULT_NODE_SIZE = 2;
@@ -68,7 +77,7 @@ export function createNodesLayer(
   });
 
   return computed(() => {
-    return new PointCloudLayer({
+    return new NodesLayer({
       id: 'nodes',
       data: nodes(),
       getPosition: positionAccessor(),

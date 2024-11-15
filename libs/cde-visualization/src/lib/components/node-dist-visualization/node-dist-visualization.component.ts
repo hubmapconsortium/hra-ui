@@ -1,13 +1,17 @@
+import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   Component,
   OutputEmitterRef,
   Signal,
+  WritableSignal,
   computed,
   effect,
   inject,
   input,
+  isSignal,
+  model,
   output,
   signal,
   viewChild,
@@ -22,13 +26,24 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
+import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
 import '@hra-ui/node-dist-vis';
-import { NodeDistVisElement } from '@hra-ui/node-dist-vis';
-import { ColorMapView, EdgesView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
-import { NodeEntry } from '../../models/node';
+import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
+import {
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  NodeFilterView,
+  NodesView,
+  ViewMode,
+} from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
+
+const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+});
 
 /**
  * Component for Node Distribution Visualization
@@ -37,12 +52,15 @@ import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualizati
   selector: 'cde-node-dist-visualization',
   standalone: true,
   imports: [
+    OverlayModule,
+
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenActionsComponent,
     FullscreenPortalComponent,
     FullscreenPortalContentComponent,
+    InfoModalComponent,
 
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
@@ -57,43 +75,94 @@ export class NodeDistVisualizationComponent {
 
   readonly edges = input.required<EdgesView>();
 
-  /** Input for the maximum edge distance */
-  readonly maxEdgeDistance = input.required<number>();
-
   /** Input for the color map data */
   readonly colorMap = input.required<ColorMapView>();
 
-  /** Input for selected cell types */
-  readonly cellTypesSelection = input.required<string[]>();
+  readonly nodeFilter = model.required<NodeFilterView>();
+
+  /** Input for the maximum edge distance */
+  readonly maxEdgeDistance = input.required<number>();
 
   /** Output emitter for node click events */
-  readonly nodeClick = output<NodeEntry>();
+  readonly nodeClick = output<NodeEvent>();
 
   /** Output emitter for node hover events */
-  readonly nodeHover = output<NodeEntry | undefined>();
-
-  /** Output event to reset all cells selection */
-  readonly resetAllCells = output<void>();
+  readonly nodeHover = output<NodeEvent | undefined>();
 
   /** Flag to check cell links visibility */
   protected readonly edgesDisabled = signal(false);
 
   protected readonly viewMode = signal<ViewMode>('explore');
 
-  protected readonly vis = viewChild.required(FullscreenPortalComponent);
+  protected readonly selection = signal<NodeEvent[]>([]);
 
-  private readonly visEl = computed(() => this.vis().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  protected readonly hasSelection = computed(() => {
+    return this.viewMode() === 'select' && this.selection().length > 0;
+  });
+
+  protected readonly cellInfo = signal<NodeEvent | undefined>(undefined);
+  protected readonly cellInfoOpen = computed(() => this.viewMode() === 'inspect' && !!this.cellInfo());
+  protected readonly cellInfoPosition = computed((): ConnectedPosition[] => [
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: this.cellInfo()?.x,
+      offsetY: this.cellInfo()?.y,
+    },
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetX: this.cellInfo()?.x,
+      offsetY: this.cellInfo()?.y,
+    },
+  ]);
+  protected readonly cellInfoContent = computed((): DataItem[] => {
+    const info = this.cellInfo();
+    if (!info) {
+      return [];
+    }
+
+    const nodes = this.nodes();
+    const edges = this.edges();
+    const { index, object: node } = info;
+    const edge = this.findClosestEdge(index);
+    const type = nodes.getCellTypeFor(node);
+    const ontologyId = nodes.getCellOntologyIDFor(node) ?? '-';
+    const distance = edge ? DISTANCE_FORMAT.format(edges.getDistanceFor(edge)) + ' µm' : '-';
+    const x = DISTANCE_FORMAT.format(nodes.getXFor(node));
+    const y = DISTANCE_FORMAT.format(nodes.getYFor(node));
+    const z = DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
+
+    return [
+      { label: 'Cell Type', value: type },
+      { label: 'CL ID', value: ontologyId },
+      { label: 'Distance to Closest Anchor Cell', value: distance },
+      { label: 'X Coordinate', value: `${x} µm` },
+      { label: 'Y Coordinate', value: `${y} µm` },
+      { label: 'Z Coordinate', value: `${z} µm` },
+    ];
+  });
 
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
+
+  private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
+  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+
+  private readonly cellInfoOverlay = viewChild.required<CdkConnectedOverlay>('cellInfoOverlay');
 
   /** Bind data and events to the visualization element */
   constructor() {
     this.bindData('mode', this.viewMode);
 
     this.bindData('nodes', this.nodes);
-    this.bindEvent('nodeClicked', this.nodeClick);
-    this.bindEvent('nodeHovering', this.nodeHover);
+    this.bindEvent('nodeClick', this.nodeClick);
+    this.bindEvent('nodeClick', this.cellInfo);
+    this.bindEvent('nodeHover', this.nodeHover);
 
     this.bindData('edges', this.edges);
     this.bindData('edgesDisabled', this.edgesDisabled);
@@ -101,7 +170,24 @@ export class NodeDistVisualizationComponent {
 
     this.bindData('colorMap', this.colorMap);
 
-    this.bindData('selection', this.cellTypesSelection);
+    this.bindData('nodeFilter', this.nodeFilter);
+    this.bindEvent('nodeSelectionChange', this.selection);
+
+    effect(() => {
+      if (this.viewMode() === 'select') {
+        this.resetOrbit();
+      }
+    });
+
+    effect(() => {
+      // CdkConnectedOverlay only updates the position on changes to 'origin' and 'open'
+      // Manually force an update to the position instead
+      const info = this.cellInfo();
+      const ref = this.cellInfoOverlay().overlayRef;
+      if (info && ref) {
+        setTimeout(() => ref.updatePosition());
+      }
+    });
   }
 
   /** Downloads the visualization as an image */
@@ -115,7 +201,29 @@ export class NodeDistVisualizationComponent {
 
   /** Resets the visualization view */
   resetView(): void {
+    this.cellInfo.set(undefined);
     this.visEl().instance?.resetView();
+  }
+
+  resetOrbit(): void {
+    this.visEl().instance?.resetOrbit();
+  }
+
+  resetDeletedNodes(): void {
+    const newFilter = this.nodeFilter().clear(false, true);
+    this.nodeFilter.set(newFilter);
+  }
+
+  deleteSelection(): void {
+    const selection = this.selection();
+    if (selection.length > 0) {
+      const indices = selection.map((event) => event.index);
+      const newFilter = this.nodeFilter().addEntries(undefined, indices);
+
+      this.visEl().instance?.clearSelection();
+      this.selection.set([]);
+      this.nodeFilter.set(newFilter);
+    }
   }
 
   /** Binds a property from the visualization element to a signal */
@@ -128,16 +236,31 @@ export class NodeDistVisualizationComponent {
   }
 
   /** Binds an event from the visualization element to an output emitter */
-  private bindEvent<T>(type: string, outputRef: OutputEmitterRef<T>): void {
+  private bindEvent<T>(type: string, outputRef: OutputEmitterRef<T> | WritableSignal<T>): void {
+    const handler = (event: Event) => {
+      const { detail: data } = event as CustomEvent;
+      if (isSignal(outputRef)) {
+        outputRef.set(data);
+      } else {
+        outputRef.emit(data);
+      }
+    };
+
     effect((onCleanup) => {
       const el = this.visEl();
-      const handler = (event: Event) => {
-        const { detail: data } = event as CustomEvent;
-        outputRef.emit(data);
-      };
-
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });
+  }
+
+  private findClosestEdge(index: number): AnyDataEntry | undefined {
+    const edges = this.edges();
+    for (const edge of edges) {
+      if (edges.getCellIDFor(edge) === index) {
+        return edge;
+      }
+    }
+
+    return undefined;
   }
 }

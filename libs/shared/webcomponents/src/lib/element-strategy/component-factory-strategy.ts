@@ -96,12 +96,13 @@ export class ComponentNgElementStrategy implements NgElementStrategy {
   /** The zone the element was created in or `null` if Zone.js is not loaded. */
   private readonly elementZone: Zone | null;
 
-  private readonly componentMirror = reflectComponentType(this.component) as ComponentMirror<any>;
+  private readonly componentMirror: ComponentMirror<any>;
 
   constructor(
     private readonly component: Type<any>,
     private readonly injector: Injector,
   ) {
+    this.componentMirror = reflectComponentType(this.component) as ComponentMirror<any>;
     this.unchangedInputs = new Set<string>(this.componentMirror.inputs.map(({ propName }) => propName));
     this.ngZone = this.injector.get<NgZone>(NgZone);
     this.elementZone = typeof Zone === 'undefined' ? null : this.ngZone.run(() => Zone.current);

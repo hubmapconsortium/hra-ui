@@ -4,6 +4,7 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
@@ -11,6 +12,7 @@ import {
   loadViewKeyMapping,
 } from '../data-view';
 import { cachedAccessor, tryParseColor } from '../utils';
+import { NodeFilterView } from '../filters';
 
 /** Color map input */
 export type ColorMapInput = DataViewInput<ColorMapView>;
@@ -97,6 +99,10 @@ export class ColorMapView extends BaseColorMapView {
 
     return lookup;
   });
+
+  readonly createFilter = (filterView: NodeFilterView): DataViewFilter => {
+    return (obj) => filterView.includes(this.getCellTypeFor(obj), -1);
+  };
 }
 
 /** Empty color map view */

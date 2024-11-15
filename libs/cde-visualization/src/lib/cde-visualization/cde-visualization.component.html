@@ -14,9 +14,9 @@
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="nodeTargetSelector()"
-    (downloadColorMap)="downloadColorMap()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
+    (downloadColorMap)="downloadColorMap()"
     (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
@@ -29,7 +29,7 @@
       [edges]="edgesView()"
       [maxEdgeDistance]="maxEdgeDistance()"
       [colorMap]="cellTypesAsColorMap()"
-      [cellTypesSelection]="cellTypesSelection()"
+      [(nodeFilter)]="nodeFilterView"
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
       (resetAllCells)="resetCellTypes()"
@@ -43,7 +43,6 @@
     [colors]="filteredColors()"
     [data]="filteredDistances()"
     [filteredCellTypes]="filteredCellTypes()"
-    [selectedCellType]="nodeTargetSelector()"
     (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>

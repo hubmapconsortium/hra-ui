@@ -124,6 +124,7 @@ export function* generateEdges(
       if (closest !== undefined) {
         yield {
           'Cell ID': cell.index,
+          'Target ID': closest.index,
           X1: cell.x,
           Y1: cell.y,
           Z1: cell.z,
@@ -168,7 +169,7 @@ const progressTimeFormat = new Intl.DateTimeFormat(undefined, {
 
 function formatProgressMessage(msg: ProgressMessage): string {
   const { processed, total, timestamp } = msg;
-  const percentage = (100 * processed) / total;
+  const percentage = Math.round((100 * processed) / total);
   const time = progressTimeFormat.format(timestamp);
   return `Computing edges: ${percentage}% (${processed}/${total}) complete at ${time}`;
 }

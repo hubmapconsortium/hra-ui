@@ -1,24 +1,28 @@
-import { provideHttpClient } from '@angular/common/http';
+import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/button';
-import { provideIconButtons } from '@hra-ui/design-system/icon-button';
-import { provideMenu } from '@hra-ui/design-system/menu';
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
-import { provideTable } from '@hra-ui/design-system/table';
-import { provideSelect } from '@hra-ui/design-system/select';
-import { provideInput } from '@hra-ui/design-system/input';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
+import { provideIconButtons } from '@hra-ui/design-system/icon-button';
+import { provideInput } from '@hra-ui/design-system/input';
+import { provideMenu } from '@hra-ui/design-system/menu';
+import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
+import { provideSelect } from '@hra-ui/design-system/select';
+import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
-import { provideAnimations } from '@angular/platform-browser/animations';
 
-/**
- * Returns design system providers
- */
-export function provideDesignSystem(): EnvironmentProviders {
-  return makeEnvironmentProviders([
-    provideHttpClient(),
-    provideAnimations(),
+/** Design system provider options */
+export interface DesignSystemOptions {
+  /** Http features */
+  http?: HttpFeature<HttpFeatureKind>[];
+  /** Scrolling options */
+  scrolling?: ScrollingOptions;
+}
+
+/** Get the providers shared between prod and testing */
+export function provideDesignSystemCommon(options?: DesignSystemOptions) {
+  return [
     provideIcons({
       fontIcons: {
         defaultClasses: ['material-symbols-rounded'],
@@ -27,11 +31,22 @@ export function provideDesignSystem(): EnvironmentProviders {
     provideButtons(),
     provideIconButtons(),
     provideTrees(),
-    provideScrolling(),
+    provideScrolling(options?.scrolling),
     provideMenu(),
     provideTable(),
     provideSelect(),
     provideInput(),
     provideButtonToggle(),
+  ];
+}
+
+/**
+ * Returns design system providers
+ */
+export function provideDesignSystem(options?: DesignSystemOptions): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    provideHttpClient(...(options?.http ?? [])),
+    provideAnimations(),
+    ...provideDesignSystemCommon(options),
   ]);
 }

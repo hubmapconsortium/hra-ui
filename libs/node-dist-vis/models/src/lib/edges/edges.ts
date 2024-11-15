@@ -4,12 +4,15 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
 } from '../data-view';
+import { NodeFilterView } from '../filters';
+import { NodesView } from '../nodes';
 
 /** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
@@ -20,6 +23,8 @@ export type EdgeKeysInput = KeyMappingInput<EdgeEntry>;
 export interface EdgeEntry {
   /** Source node index */
   'Cell ID': number;
+  /** Target node index */
+  'Target ID': number;
   /** Source X coordinate */
   X1: number;
   /** Source Y coordinate */
@@ -35,7 +40,7 @@ export interface EdgeEntry {
 }
 
 /** Required edge keys */
-const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
+const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'Target ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
 /** Optional edge keys */
 const OPTIONAL_KEYS: (keyof EdgeEntry)[] = [];
 /** Base data view class for edges */
@@ -138,17 +143,29 @@ export class EdgesView extends BaseEdgesView {
 
     return new Map(Object.entries(counts));
   };
+
+  readonly createFilter = (nodesView: NodesView, filterView: NodeFilterView): DataViewFilter => {
+    return (obj) => {
+      const index1 = this.getCellIDFor(obj);
+      const index2 = this.getTargetIDFor(obj);
+      return (
+        filterView.includes(nodesView.getCellTypeAt(index1), index1) &&
+        filterView.includes(nodesView.getCellTypeAt(index2), index2)
+      );
+    };
+  };
 }
 
 /** Empty edges view */
 export const EMPTY_EDGES_VIEW = new EdgesView([], {
   'Cell ID': 0,
-  X1: 1,
-  Y1: 2,
-  Z1: 3,
-  X2: 4,
-  Y2: 5,
-  Z2: 6,
+  'Target ID': 1,
+  X1: 2,
+  Y1: 3,
+  Z1: 4,
+  X2: 5,
+  Y2: 6,
+  Z2: 7,
 });
 
 /**

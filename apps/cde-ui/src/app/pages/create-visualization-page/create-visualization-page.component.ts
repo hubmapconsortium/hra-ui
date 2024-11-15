@@ -14,124 +14,29 @@ import {
   ColorMapFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
   NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { FooterComponent } from '@hra-ui/design-system/footer';
-import { CardData, NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
+import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
-
-import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
+import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
-
-/** HuBMAP cards data */
-export const HUBMAP_CARDS_DATA: CardData[] = [
-  {
-    category: 'About',
-    cards: [
-      {
-        name: 'HuBMAP Consortium',
-        icon: 'assets/logo/hubmap.svg',
-        title: 'HuBMAP Consortium',
-        description:
-          'HuBMAP all access: Learn about us, our policies, data, and tools. Explore our publications and how to work with us.',
-        link: 'https://hubmapconsortium.org/',
-      },
-    ],
-  },
-  {
-    category: 'Data',
-    cards: [
-      {
-        name: 'HubMAP Data Portal',
-        icon: 'assets/logo/data_portal.svg',
-        title: 'HuBMAP Data Portal',
-        description:
-          'Explore, visualize and download consortium-generated spatial and single cell data for the human body.',
-        link: 'https://portal.hubmapconsortium.org/',
-      },
-      {
-        name: 'Data Portal Workspaces',
-        icon: 'assets/logo/data_portal.svg',
-        title: 'Data Portal Workspaces',
-        description:
-          'Access HuBMAP data in a lightweight exploration platform and perform analyses directly within the portal.',
-        link: 'https://portal.hubmapconsortium.org/workspaces',
-      },
-    ],
-  },
-  {
-    category: 'Atlas',
-    cards: [
-      {
-        name: 'Human Reference Atlas',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'Human Reference Atlas',
-        description:
-          'Use the HRA Portal to access atlas data, explore atlas functionality, and contribute to the Human Reference Atlas.',
-        link: 'https://humanatlas.io/',
-      },
-      {
-        name: 'Exploration User Interface',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'Exploration User Interface',
-        description:
-          'Explore and validate spatially registered single-cell datasets in three-dimensions across organs.',
-        link: 'https://apps.humanatlas.io/eui/',
-      },
-      {
-        name: 'ASCT+B Reporter',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'ASCT+B Reporter',
-        description:
-          'Explore and compare ASCT+B tables and construct validated panels for multiplexed antibody-based imaging (OMAPs) tables.',
-        link: 'https://hubmapconsortium.github.io/ccf-asct-reporter/',
-      },
-    ],
-  },
-  {
-    category: 'Analytics Tools',
-    cards: [
-      {
-        name: 'Azimuth',
-        icon: 'assets/logo/azimuth.svg',
-        title: 'Azimuth',
-        description:
-          'Azimuth uses a reference dataset to process, analyze, and interpret single-cell RNA-seq or ATAC-seq experiments.',
-        link: 'https://azimuth.hubmapconsortium.org/',
-      },
-      {
-        name: 'FUSION',
-        icon: 'assets/logo/fusion.svg',
-        title: 'FUSION',
-        description: 'Functional Unit State Identification and Navigation with WSI.',
-        link: 'http://fusion.hubmapconsortium.org/?utm_source=hubmap',
-      },
-      {
-        name: 'Antibody Validation Reports',
-        icon: 'assets/logo/antibody-validation-reports.svg',
-        title: 'Antibody Validation Reports',
-        description:
-          'Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.',
-        link: 'https://avr.hubmapconsortium.org/',
-      },
-    ],
-  },
-];
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -190,7 +95,7 @@ export class CreateVisualizationPageComponent {
   readonly organs = input.required<OrganEntry[]>();
 
   /** Data for sidenav cards */
-  readonly sideNavData = HUBMAP_CARDS_DATA;
+  readonly sideNavData = SIDENAV_CONTENT;
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
@@ -504,7 +409,10 @@ export class CreateVisualizationPageComponent {
    * @param colorMap Color map entries
    */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
-    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['Cell Type', 'HEX']);
+    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, [
+      DEFAULT_COLOR_MAP_KEY,
+      DEFAULT_COLOR_MAP_VALUE_KEY,
+    ]);
     if (this.customColorMapLoadError) {
       this.customColorMapFileUpload()?.reset();
       return;
@@ -545,54 +453,43 @@ export class CreateVisualizationPageComponent {
 
     const { nodes, customColorMap, visualizationForm } = this;
     const { colorMapType, metadata } = visualizationForm.value;
+    const headers = visualizationForm.value.headers;
 
-    const nodeTargetValue = visualizationForm.value.parameters
+    const nodesView = new NodesView(nodes, {
+      'Cell Type': headers?.cellType ?? '',
+      'Cell Ontology ID': headers?.ontologyId ?? undefined,
+      X: headers?.xAxis ?? '',
+      Y: headers?.yAxis ?? '',
+      Z: headers?.zAxis ?? undefined,
+    });
+
+    const colorMapView =
+      colorMapType === 'custom' && this.hasValidCustomColorMap() && customColorMap
+        ? new ColorMapView(customColorMap, {
+            'Cell Type': DEFAULT_COLOR_MAP_KEY,
+            'Cell Color': DEFAULT_COLOR_MAP_VALUE_KEY,
+          })
+        : undefined;
+
+    const nodeTargetSelector = visualizationForm.value.parameters
       ? visualizationForm.value.parameters.nodeTargetValue
       : undefined;
-    const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
-      sourceData: this.nodesFileUpload().file?.name,
-      colorMap: this.customColorMapFileUpload()?.file?.name,
-      organId: metadata?.organ?.id,
+      sourceFileName: this.nodesFileUpload().file?.name,
+      colorMapFileName: this.customColorMapFileUpload()?.file?.name,
       organ: metadata?.organ?.label,
       creationTimestamp: Date.now(),
     });
 
     const nullishRemovedData = this.removeNullishValues({
-      nodes,
-      nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-      nodeTargetValue,
-
-      colorMap,
-      colorMapKey: DEFAULT_COLOR_MAP_KEY,
-      colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
-
+      nodes: nodesView,
+      nodeTargetSelector,
+      colorMap: colorMapView,
       metadata: normalizedMetadata,
     });
-    const ntKey = nullishRemovedData.nodeTargetKey as string;
-    const headers = visualizationForm.value.headers;
-    const xKey = (headers?.xAxis || '') as NodeTargetKey;
-    const yKey = (headers?.yAxis || '') as NodeTargetKey;
-    const zKey = (headers?.zAxis || '') as NodeTargetKey;
-    const ctKey = (headers?.cellType || '') as NodeTargetKey;
-    const idKey = (headers?.ontologyId || '') as NodeTargetKey;
 
-    const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
-      ? nullishRemovedData.nodes.map(
-          (node) =>
-            ({
-              x: node[xKey] as unknown as number,
-              y: node[yKey] as unknown as number,
-              z: node[zKey] as unknown as number,
-              [ntKey]: node[ctKey],
-              [idKey]: node[idKey],
-            }) as NodeEntry,
-        )
-      : []);
-    nullishRemovedData.nodes = convertedHeaderNodes;
     this.dataService.setData(nullishRemovedData);
-
     this.router.navigate(['/visualize']);
   }
 

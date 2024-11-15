@@ -9,17 +9,21 @@ import {
   input,
   output,
   signal,
+  untracked,
   ViewContainerRef,
 } from '@angular/core';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
+  AnyDataView,
   ColorMapInput,
   ColorMapKeysInput,
   ColorMapView,
   createColorMapGenerator,
   createEdgeGenerator,
+  DataViewFilter,
   EdgeKeysInput,
   EdgesInput,
   EMPTY_COLOR_MAP_VIEW,
@@ -27,6 +31,7 @@ import {
   loadColorMap,
   loadEdges,
   loadNodes,
+  NodeFilterView,
   NodeKeysInput,
   NodesInput,
   withDataViewDefaultGenerator,
@@ -37,9 +42,7 @@ import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { DEFAULT_MAX_EDGE_DISTANCE, EdgeEntry } from '../models/edge';
 import { loadMetadata, MetadataInput } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_VALUE, NodeEntry } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
@@ -80,7 +83,7 @@ export class CdeVisualizationComponent {
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_VALUE);
+  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_SELECTOR);
 
   /** Edge data if already calculated */
   readonly edges = input<EdgesInput>();
@@ -124,10 +127,10 @@ export class CdeVisualizationComponent {
   readonly creationTimestamp = input(undefined, { transform: numberAttribute() });
 
   /** Event emitted when a node is clicked */
-  readonly nodeClick = output<NodeEntry>();
+  readonly nodeClick = output<NodeEvent>();
 
   /** Event emitted when a node is hovered */
-  readonly nodeHover = output<NodeEntry | undefined>();
+  readonly nodeHover = output<NodeEvent | undefined>();
 
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
@@ -158,11 +161,13 @@ export class CdeVisualizationComponent {
     creationTimestamp: this.creationTimestamp,
   });
 
+  protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
+
   /** List of cell types */
   protected readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
-  protected readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+  readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
   /** Counter for resetting cell types */
   protected readonly cellTypesResetCounter = signal(0);
@@ -228,16 +233,28 @@ export class CdeVisualizationComponent {
   protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
   /** Data for the histogram visualization */
-  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
+  readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
 
   /** Colors for the histogram visualization */
   protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
+
+  /** Injected file saver service */
+  private readonly fileSaver = inject(FileSaverService);
 
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view
     // Not populated for standalone/custom components so we forcefully insert ourself
     inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
+
+    effect(
+      () => {
+        const selection = this.cellTypesSelection();
+        const filter = untracked(this.nodeFilterView);
+        this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   /** Reset cell types */
@@ -245,55 +262,39 @@ export class CdeVisualizationComponent {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
   }
 
-  /** Injected file saver service */
-  private readonly fileSaver = inject(FileSaverService);
+  /** Update the color of a specific cell type entry */
+  updateColor(entry: CellTypeEntry, color: Rgb): void {
+    const entries = this.cellTypes();
+    const index = entries.indexOf(entry);
+    const copy = [...entries];
 
-  /** Download nodes data as CSV */
-  downloadNodes(): void {
-    // const nodes = this.loadedNodes();
-    // if (nodes.length > 0) {
-    //   this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
-    // }
+    copy[index] = { ...copy[index], color };
+    this.cellTypes.set(copy);
   }
 
-  /** Download edges data as CSV */
-  downloadEdges(): void {
-    // const edges = this.loadedEdges();
-    // if (edges.length > 0) {
-    //   this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
-    // }
+  async downloadNodes(): Promise<void> {
+    const nodes = this.nodesView();
+    const filter = nodes.createFilter(this.nodeFilterView());
+    await this.downloadView(nodes, filter, 'nodes.csv');
   }
 
-  // Add appropriate headers to edge data
-  addEdgeHeaders(edges: EdgeEntry[]) {
-    return edges.map((item) => ({
-      'Cell ID': item[0],
-      X1: item[1],
-      Y1: item[2],
-      Z1: item[3],
-      X2: item[4],
-      Y2: item[5],
-      Z2: item[6],
-    }));
+  async downloadEdges(): Promise<void> {
+    const edges = this.edgesView();
+    const filter = edges.createFilter(this.nodesView(), this.nodeFilterView());
+    await this.downloadView(edges, filter, 'edges.csv');
   }
 
-  /** Download color map as CSV */
-  downloadColorMap(): void {
-    // const colorKey = this.colorMapValueKey();
-    // const colorMap = this.cellTypesAsColorMap();
-    // const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
-    // if (data.length > 0) {
-    //   this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
-    // }
+  async downloadColorMap(): Promise<void> {
+    const colorMap = this.cellTypesAsColorMap();
+    const filter = colorMap.createFilter(this.nodeFilterView());
+    await this.downloadView(colorMap, filter, 'color-map.csv');
   }
 
-  /** Convert headers in an array of objects to title case */
-  capitalizeHeaders(data: object[]): object[] {
-    return data.map((item) => {
-      const entries = Object.entries(item);
-      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-      return Object.fromEntries(capsEntries);
-    });
+  private async downloadView<V extends AnyDataView>(view: V, filter: DataViewFilter, filename: string): Promise<void> {
+    if (view.length > 0) {
+      const data = await view.toCsv(filter);
+      this.fileSaver.saveData(data, filename);
+    }
   }
 
   /** Compute distances between nodes based on edges */
@@ -304,7 +305,6 @@ export class CdeVisualizationComponent {
       return [];
     }
 
-    // const nodeTypeKey = this.nodeTypeKey();
     const selectedCellType = this.nodeTargetSelector();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
@@ -332,15 +332,5 @@ export class CdeVisualizationComponent {
     return this.filteredCellTypes()
       .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
       .map(({ color }) => rgbToHex(color));
-  }
-
-  /** Update the color of a specific cell type entry */
-  updateColor(entry: CellTypeEntry, color: Rgb): void {
-    const entries = this.cellTypes();
-    const index = entries.indexOf(entry);
-    const copy = [...entries];
-
-    copy[index] = { ...copy[index], color };
-    this.cellTypes.set(copy);
   }
 }

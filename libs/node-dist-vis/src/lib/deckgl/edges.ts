@@ -11,7 +11,7 @@ import {
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
 import { createColorAccessor } from './utils/color-coding';
-import { createNodeFilterAccessor, FILTER_RANGE } from './utils/filters';
+import { createNodeFilterAccessor2, FILTER_RANGE } from './utils/filters';
 import { createScaledPositionAccessor } from './utils/position-scaling';
 
 /** Edges layer */
@@ -44,19 +44,31 @@ export function createEdgesLayer(
     const dimensions = nodes().getDimensions();
     return createScaledPositionAccessor(accessor, dimensions);
   });
-  const cellTypeAccessor = computed(() => {
+  const sourceCellTypeAccessor = computed(() => {
     const nodeIndex = edges().getCellIDFor;
+    const nodeCellType = nodes().getCellTypeAt;
+    return (obj: AnyDataEntry) => nodeCellType(nodeIndex(obj));
+  });
+  const targetCellTypeAccessor = computed(() => {
+    const nodeIndex = edges().getTargetIDFor;
     const nodeCellType = nodes().getCellTypeAt;
     return (obj: AnyDataEntry) => nodeCellType(nodeIndex(obj));
   });
   const colorAccessor = computed(() => {
     const map = colorMap().getColorMap();
-    return createColorAccessor(cellTypeAccessor(), map);
+    return createColorAccessor(sourceCellTypeAccessor(), map);
   });
   const filterValueAccessor = computed(() => {
-    const nodeIndex = edges().getCellIDFor;
+    const sourceIndex = edges().getCellIDFor;
+    const targetIndex = edges().getTargetIDFor;
     const filterFn = nodeFilter().includes;
-    return createNodeFilterAccessor(cellTypeAccessor(), nodeIndex, filterFn);
+    return createNodeFilterAccessor2(
+      sourceCellTypeAccessor(),
+      sourceIndex,
+      targetCellTypeAccessor(),
+      targetIndex,
+      filterFn,
+    );
   });
 
   return computed(() => {

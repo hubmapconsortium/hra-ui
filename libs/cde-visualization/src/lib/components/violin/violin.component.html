@@ -2,7 +2,7 @@
   <hra-expansion-panel-actions>
     <cde-violin-menu (open)="violinEl().open()" (download)="download($event)"></cde-violin-menu>
   </hra-expansion-panel-actions>
-  <hra-fullscreen-portal title="Violin Graph" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
+  <hra-fullscreen-portal [title]="'Violin Graph'" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
     <hra-fullscreen-actions>
       <cde-violin-menu dialogOpen></cde-violin-menu>
     </hra-fullscreen-actions>
