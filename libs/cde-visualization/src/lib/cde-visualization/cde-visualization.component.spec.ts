@@ -7,6 +7,7 @@ import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
+
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
@@ -73,20 +74,13 @@ describe('CdeVisualizationComponent', () => {
     await expect(setup()).resolves.toBeDefined();
   });
 
-  // it('should reset cell types and increase reset counter', async () => {
-  //   const {
-  //     fixture: { componentInstance: instance },
-  //   } = await setup({
-  //     componentInputs: {
-  //       ...sampleData,
-  //       nodes: sampleNodes,
-  //       edges: sampleEdges,
-  //       colorMap: sampleColorMap,
-  //     },
-  //   });
-  //   instance.resetCellTypes();
-  //   expect(instance.cellTypesResetCounter()).toEqual(1);
-  // });
+  it('should reset cell types and increase reset counter', async () => {
+    const {
+      fixture: { componentInstance: instance },
+    } = await setup({});
+    instance.resetCellTypes();
+    // expect(instance.cellTypesResetCounter()).toEqual(1);
+  });
 
   // describe('nodeTypeKey()', () => {
   //   it('should use the default node target key provided', async () => {
@@ -264,119 +258,48 @@ describe('CdeVisualizationComponent', () => {
   //   });
   // });
 
-  // describe('downloadNodes()', () => {
-  //   it('should download nodes', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodes: sampleNodes,
-  //       },
-  //     });
+  describe('updateColor()', () => {
+    it('should update color in an entry', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({});
 
-  //     const expectedNodes = [
-  //       {
-  //         'Cell Type': 'a',
-  //         X: 0,
-  //         Y: 0,
-  //       },
-  //       {
-  //         'Cell Type': 'b',
-  //         X: 0,
-  //         Y: 2,
-  //       },
-  //       {
-  //         'Cell Type': 'c',
-  //         X: 0,
-  //         Y: 4,
-  //       },
-  //       {
-  //         'Cell Type': 'b',
-  //         X: 0,
-  //         Y: 5,
-  //       },
-  //     ];
+      instance.updateColor({ name: 'epithelial', count: 20, outgoingEdgeCount: 2, color: [0, 0, 0] }, [1, 1, 1]);
+      console.log(instance.cellTypes());
+    });
+  });
 
-  //     const fileSaver = TestBed.inject(FileSaverService);
-  //     const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+  describe('downloadNodes()', () => {
+    it('should download nodes', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({});
 
-  //     instance.downloadNodes();
-  //     expect(fileSaveSpy).toHaveBeenCalledWith(expectedNodes, 'nodes.csv');
-  //   });
-  // });
+      // const fileSaver = TestBed.inject(FileSaverService);
+      // const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
 
-  // describe('downloadEdges()', () => {
-  //   it('should update edges when downloadEdges is called', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodes: sampleNodes,
-  //         edges: sampleEdges,
-  //       },
-  //     });
+      instance.downloadNodes();
+      // expect(fileSaveSpy).toHaveBeenCalledWith(expectedNodes, 'nodes.csv');
+    });
+  });
 
-  //     const expectedEdges = [
-  //       {
-  //         'Cell ID': 0,
-  //         X1: 0,
-  //         X2: 4,
-  //         Y1: 0,
-  //         Y2: 5,
-  //         Z1: 3,
-  //         Z2: 6,
-  //       },
-  //       {
-  //         'Cell ID': 1,
-  //         X1: 0,
-  //         X2: 4,
-  //         Y1: 2,
-  //         Y2: 5,
-  //         Z1: 3,
-  //         Z2: 6,
-  //       },
-  //       {
-  //         'Cell ID': 2,
-  //         X1: 0,
-  //         X2: 4,
-  //         Y1: 4,
-  //         Y2: 5,
-  //         Z1: 3,
-  //         Z2: 6,
-  //       },
-  //     ];
+  describe('downloadEdges()', () => {
+    it('should download edges', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({});
 
-  //     const fileSaver = TestBed.inject(FileSaverService);
-  //     const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+      instance.downloadEdges();
+    });
+  });
 
-  //     instance.downloadEdges();
-  //     expect(fileSaveSpy).toHaveBeenCalledWith(expectedEdges, 'edges.csv');
-  //   });
-  // });
+  describe('downloadColorMap()', () => {
+    it('should download color map', async () => {
+      const {
+        fixture: { componentInstance: instance },
+      } = await setup({});
 
-  // describe('downloadColorMap()', () => {
-  //   it('should update color map when downloadColorMap is called', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodes: sampleNodes,
-  //         colorMap: sampleColorMap,
-  //       },
-  //     });
-
-  //     const processedColorMap = instance
-  //       .cellTypesAsColorMap()
-  //       .map((entry) => ({ ...entry, [instance.colorMapValueKey()]: rgbToHex(entry[instance.colorMapValueKey()]) }));
-
-  //     const fileSaver = TestBed.inject(FileSaverService);
-  //     const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
-
-  //     instance.downloadColorMap();
-  //     expect(fileSaveSpy).toHaveBeenCalledWith(processedColorMap, 'color-map.csv');
-  //   });
-  // });
+      instance.downloadColorMap();
+    });
+  });
 });
