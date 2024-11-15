@@ -14,7 +14,6 @@ import {
   ColorMapFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  DEFAULT_NODE_TARGET_KEY,
   DEFAULT_NODE_TARGET_VALUE,
   NodeEntry,
   NodeTargetKey,
@@ -31,12 +30,13 @@ import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { ParseError } from 'papaparse';
 
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 
 /** HuBMAP cards data */
 export const HUBMAP_CARDS_DATA: CardData[] = [
@@ -504,7 +504,10 @@ export class CreateVisualizationPageComponent {
    * @param colorMap Color map entries
    */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
-    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['Cell Type', 'HEX']);
+    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, [
+      DEFAULT_COLOR_MAP_KEY,
+      DEFAULT_COLOR_MAP_VALUE_KEY,
+    ]);
     if (this.customColorMapLoadError) {
       this.customColorMapFileUpload()?.reset();
       return;
@@ -545,54 +548,43 @@ export class CreateVisualizationPageComponent {
 
     const { nodes, customColorMap, visualizationForm } = this;
     const { colorMapType, metadata } = visualizationForm.value;
+    const headers = visualizationForm.value.headers;
 
-    const nodeTargetValue = visualizationForm.value.parameters
+    const nodesView = new NodesView(nodes, {
+      'Cell Type': headers?.cellType ?? '',
+      'Cell Ontology ID': headers?.ontologyId ?? undefined,
+      X: headers?.xAxis ?? '',
+      Y: headers?.yAxis ?? '',
+      Z: headers?.zAxis ?? undefined,
+    });
+
+    const colorMapView =
+      colorMapType === 'custom' && this.hasValidCustomColorMap() && customColorMap
+        ? new ColorMapView(customColorMap, {
+            'Cell Type': DEFAULT_COLOR_MAP_KEY,
+            'Cell Color': DEFAULT_COLOR_MAP_VALUE_KEY,
+          })
+        : undefined;
+
+    const nodeTargetSelector = visualizationForm.value.parameters
       ? visualizationForm.value.parameters.nodeTargetValue
       : undefined;
-    const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
-      sourceData: this.nodesFileUpload().file?.name,
-      colorMap: this.customColorMapFileUpload()?.file?.name,
-      organId: metadata?.organ?.id,
+      sourceFileName: this.nodesFileUpload().file?.name,
+      colorMapFileName: this.customColorMapFileUpload()?.file?.name,
       organ: metadata?.organ?.label,
       creationTimestamp: Date.now(),
     });
 
     const nullishRemovedData = this.removeNullishValues({
-      nodes,
-      nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-      nodeTargetValue,
-
-      colorMap,
-      colorMapKey: DEFAULT_COLOR_MAP_KEY,
-      colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
-
+      nodes: nodesView,
+      nodeTargetSelector,
+      colorMap: colorMapView,
       metadata: normalizedMetadata,
     });
-    const ntKey = nullishRemovedData.nodeTargetKey as string;
-    const headers = visualizationForm.value.headers;
-    const xKey = (headers?.xAxis || '') as NodeTargetKey;
-    const yKey = (headers?.yAxis || '') as NodeTargetKey;
-    const zKey = (headers?.zAxis || '') as NodeTargetKey;
-    const ctKey = (headers?.cellType || '') as NodeTargetKey;
-    const idKey = (headers?.ontologyId || '') as NodeTargetKey;
 
-    const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
-      ? nullishRemovedData.nodes.map(
-          (node) =>
-            ({
-              x: node[xKey] as unknown as number,
-              y: node[yKey] as unknown as number,
-              z: node[zKey] as unknown as number,
-              [ntKey]: node[ctKey],
-              [idKey]: node[idKey],
-            }) as NodeEntry,
-        )
-      : []);
-    nullishRemovedData.nodes = convertedHeaderNodes;
     this.dataService.setData(nullishRemovedData);
-
     this.router.navigate(['/visualize']);
   }
 
