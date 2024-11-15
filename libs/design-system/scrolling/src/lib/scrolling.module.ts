@@ -11,7 +11,7 @@ import { ScrollOverflowFadeDirective } from './scroll-overflow-fade/scroll-overf
 import { ScrollbarStylesComponent } from './scrollbar-styles/scrollbar-styles.component';
 
 /** Scrolling configuration */
-export interface ScollingOptions extends NgScrollbarOptions {
+export interface ScrollingOptions extends NgScrollbarOptions {
   /** Url to the scroll timeline polyfill script */
   polyfillUrl?: string;
 }
@@ -25,7 +25,7 @@ const DEFAULT_POLYFILL_URL = 'assets/polyfills/scroll-timeline-polyfill.js';
  * @param options Scrollbar options
  * @returns An environment provider
  */
-export function provideScrolling(options?: ScollingOptions): EnvironmentProviders {
+export function provideScrolling(options?: ScrollingOptions): EnvironmentProviders {
   const polyfillUrl = getCurrentScriptBasePath() + (options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
   return makeEnvironmentProviders([
