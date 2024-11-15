@@ -330,7 +330,7 @@ export class CdeVisualizationComponent {
   /** Compute colors for the violin visualization */
   private computeFilteredColors(): string[] {
     return this.filteredCellTypes()
-      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
+      .sort((a, b) => (a.name < b.name ? -1 : 1))
       .map(({ color }) => rgbToHex(color));
   }
 }
