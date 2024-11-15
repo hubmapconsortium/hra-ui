@@ -356,7 +356,7 @@ function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMap
     const isAllNumeric = entry.every((value) => typeof value === 'number');
     const isBackwardsIncompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
     if (isBackwardsIncompatibleEdges) {
-      console.warn('Incompatable edges detected! Edges must have a `Target ID`');
+      console.warn('Legacy edge format detected! Edges csv now require a header.');
     } else {
       header = entry;
       setDataViewOffset(mapping, 1);

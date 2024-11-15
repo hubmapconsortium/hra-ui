@@ -256,6 +256,17 @@ export class NodeDistVisComponent {
     });
   }
 
+  resetOrbit(): void {
+    this.deck().setProps({
+      initialViewState: {
+        ...this.viewState(),
+        rotationX: 0,
+        rotationOrbit: 0,
+        version: ++this.viewStateVersion,
+      },
+    });
+  }
+
   clearSelection(): void {
     this.selectionLayer()?.clearSelection();
   }

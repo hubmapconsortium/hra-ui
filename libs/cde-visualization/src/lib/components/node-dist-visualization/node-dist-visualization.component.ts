@@ -29,10 +29,21 @@ import {
 import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
 import '@hra-ui/node-dist-vis';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
-import { ColorMapView, EdgesView, NodeFilterView, NodesView, ViewMode } from '@hra-ui/node-dist-vis/models';
+import {
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  NodeFilterView,
+  NodesView,
+  ViewMode,
+} from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
+
+const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+});
 
 /**
  * Component for Node Distribution Visualization
@@ -64,13 +75,13 @@ export class NodeDistVisualizationComponent {
 
   readonly edges = input.required<EdgesView>();
 
-  /** Input for the maximum edge distance */
-  readonly maxEdgeDistance = input.required<number>();
-
   /** Input for the color map data */
   readonly colorMap = input.required<ColorMapView>();
 
   readonly nodeFilter = model.required<NodeFilterView>();
+
+  /** Input for the maximum edge distance */
+  readonly maxEdgeDistance = input.required<number>();
 
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();
@@ -116,15 +127,20 @@ export class NodeDistVisualizationComponent {
     }
 
     const nodes = this.nodes();
-    const node = info.object;
+    const edges = this.edges();
+    const { index, object: node } = info;
+    const edge = this.findClosestEdge(index);
     const type = nodes.getCellTypeFor(node);
-    const ontologyId = nodes.getCellOntologyIDFor(node);
-    const x = nodes.getXFor(node).toFixed(2);
-    const y = nodes.getYFor(node).toFixed(2);
-    const z = nodes.getZFor(node)?.toFixed(2) ?? '0';
+    const ontologyId = nodes.getCellOntologyIDFor(node) ?? '-';
+    const distance = edge ? DISTANCE_FORMAT.format(edges.getDistanceFor(edge)) + ' µm' : '-';
+    const x = DISTANCE_FORMAT.format(nodes.getXFor(node));
+    const y = DISTANCE_FORMAT.format(nodes.getYFor(node));
+    const z = DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
+
     return [
       { label: 'Cell Type', value: type },
-      { label: 'CL ID', value: ontologyId ?? '-' },
+      { label: 'CL ID', value: ontologyId },
+      { label: 'Distance to Closest Anchor Cell', value: distance },
       { label: 'X Coordinate', value: `${x} µm` },
       { label: 'Y Coordinate', value: `${y} µm` },
       { label: 'Z Coordinate', value: `${z} µm` },
@@ -158,6 +174,12 @@ export class NodeDistVisualizationComponent {
     this.bindEvent('nodeSelectionChange', this.selection);
 
     effect(() => {
+      if (this.viewMode() === 'select') {
+        this.resetOrbit();
+      }
+    });
+
+    effect(() => {
       // CdkConnectedOverlay only updates the position on changes to 'origin' and 'open'
       // Manually force an update to the position instead
       const info = this.cellInfo();
@@ -181,6 +203,10 @@ export class NodeDistVisualizationComponent {
   resetView(): void {
     this.cellInfo.set(undefined);
     this.visEl().instance?.resetView();
+  }
+
+  resetOrbit(): void {
+    this.visEl().instance?.resetOrbit();
   }
 
   resetDeletedNodes(): void {
@@ -225,5 +251,16 @@ export class NodeDistVisualizationComponent {
       el.addEventListener(type, handler);
       onCleanup(() => el.removeEventListener(type, handler));
     });
+  }
+
+  private findClosestEdge(index: number): AnyDataEntry | undefined {
+    const edges = this.edges();
+    for (const edge of edges) {
+      if (edges.getCellIDFor(edge) === index) {
+        return edge;
+      }
+    }
+
+    return undefined;
   }
 }
