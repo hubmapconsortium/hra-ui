@@ -19,119 +19,24 @@ import {
   NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { FooterComponent } from '@hra-ui/design-system/footer';
-import { CardData, NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
-import { ParseError } from 'papaparse';
-
-import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
+import { ParseError } from 'papaparse';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
+import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
-
-/** HuBMAP cards data */
-export const HUBMAP_CARDS_DATA: CardData[] = [
-  {
-    category: 'About',
-    cards: [
-      {
-        name: 'HuBMAP Consortium',
-        icon: 'assets/logo/hubmap.svg',
-        title: 'HuBMAP Consortium',
-        description:
-          'HuBMAP all access: Learn about us, our policies, data, and tools. Explore our publications and how to work with us.',
-        link: 'https://hubmapconsortium.org/',
-      },
-    ],
-  },
-  {
-    category: 'Data',
-    cards: [
-      {
-        name: 'HubMAP Data Portal',
-        icon: 'assets/logo/data_portal.svg',
-        title: 'HuBMAP Data Portal',
-        description:
-          'Explore, visualize and download consortium-generated spatial and single cell data for the human body.',
-        link: 'https://portal.hubmapconsortium.org/',
-      },
-      {
-        name: 'Data Portal Workspaces',
-        icon: 'assets/logo/data_portal.svg',
-        title: 'Data Portal Workspaces',
-        description:
-          'Access HuBMAP data in a lightweight exploration platform and perform analyses directly within the portal.',
-        link: 'https://portal.hubmapconsortium.org/workspaces',
-      },
-    ],
-  },
-  {
-    category: 'Atlas',
-    cards: [
-      {
-        name: 'Human Reference Atlas',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'Human Reference Atlas',
-        description:
-          'Use the HRA Portal to access atlas data, explore atlas functionality, and contribute to the Human Reference Atlas.',
-        link: 'https://humanatlas.io/',
-      },
-      {
-        name: 'Exploration User Interface',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'Exploration User Interface',
-        description:
-          'Explore and validate spatially registered single-cell datasets in three-dimensions across organs.',
-        link: 'https://apps.humanatlas.io/eui/',
-      },
-      {
-        name: 'ASCT+B Reporter',
-        icon: 'assets/logo/hra_small.svg',
-        title: 'ASCT+B Reporter',
-        description:
-          'Explore and compare ASCT+B tables and construct validated panels for multiplexed antibody-based imaging (OMAPs) tables.',
-        link: 'https://hubmapconsortium.github.io/ccf-asct-reporter/',
-      },
-    ],
-  },
-  {
-    category: 'Analytics Tools',
-    cards: [
-      {
-        name: 'Azimuth',
-        icon: 'assets/logo/azimuth.svg',
-        title: 'Azimuth',
-        description:
-          'Azimuth uses a reference dataset to process, analyze, and interpret single-cell RNA-seq or ATAC-seq experiments.',
-        link: 'https://azimuth.hubmapconsortium.org/',
-      },
-      {
-        name: 'FUSION',
-        icon: 'assets/logo/fusion.svg',
-        title: 'FUSION',
-        description: 'Functional Unit State Identification and Navigation with WSI.',
-        link: 'http://fusion.hubmapconsortium.org/?utm_source=hubmap',
-      },
-      {
-        name: 'Antibody Validation Reports',
-        icon: 'assets/logo/antibody-validation-reports.svg',
-        title: 'Antibody Validation Reports',
-        description:
-          'Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.',
-        link: 'https://avr.hubmapconsortium.org/',
-      },
-    ],
-  },
-];
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -190,7 +95,7 @@ export class CreateVisualizationPageComponent {
   readonly organs = input.required<OrganEntry[]>();
 
   /** Data for sidenav cards */
-  readonly sideNavData = HUBMAP_CARDS_DATA;
+  readonly sideNavData = SIDENAV_CONTENT;
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
