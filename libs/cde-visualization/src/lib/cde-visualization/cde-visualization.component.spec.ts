@@ -1,13 +1,22 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
-import { AnyDataEntry, EdgesView, EMPTY_EDGES_VIEW, EMPTY_NODES_VIEW, NodesView } from '@hra-ui/node-dist-vis/models';
+import {
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  EMPTY_COLOR_MAP_VIEW,
+  EMPTY_EDGES_VIEW,
+  EMPTY_NODES_VIEW,
+  NodesView,
+} from '@hra-ui/node-dist-vis/models';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
-
+import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
@@ -20,9 +29,12 @@ const embedResult = mockDeep<Result>();
 
 describe('CdeVisualizationComponent', () => {
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
+  const SAMPLE_NODE_2: AnyDataEntry = ['t-cell', 300, 100];
   const SAMPLE_EDGE: AnyDataEntry = [0, 1, 100, 200, 0, 100, 300, 0];
-  const NODES = new NodesView([SAMPLE_NODE], EMPTY_NODES_VIEW.keyMapping);
+  const SAMPLE_COLOR: AnyDataEntry = ['epithelial', [0, 0, 255]];
+  const NODES = new NodesView([SAMPLE_NODE, SAMPLE_NODE_2], EMPTY_NODES_VIEW.keyMapping);
   const EDGES = new EdgesView([SAMPLE_EDGE], EMPTY_EDGES_VIEW.keyMapping);
+  const COLOR_MAP = new ColorMapView([SAMPLE_COLOR], EMPTY_COLOR_MAP_VIEW.keyMapping);
 
   async function setup(options?: RenderComponentOptions<CdeVisualizationComponent>) {
     const result = await render(CdeVisualizationComponent, {
@@ -30,6 +42,7 @@ describe('CdeVisualizationComponent', () => {
       inputs: {
         nodes: NODES,
         edges: EDGES,
+        colorMap: COLOR_MAP,
         maxEdgeDistance: '100',
         ...options?.inputs,
       },
@@ -46,6 +59,11 @@ describe('CdeVisualizationComponent', () => {
   }
 
   beforeAll(() => {
+    if (!URL.createObjectURL) {
+      URL.createObjectURL = jest.fn().mockReturnValue('blob:fakeblob');
+      URL.revokeObjectURL = jest.fn();
+    }
+
     customElements.define(
       'hra-node-dist-vis',
       class MockElement extends HTMLElement {
@@ -74,232 +92,23 @@ describe('CdeVisualizationComponent', () => {
     await expect(setup()).resolves.toBeDefined();
   });
 
-  it('should reset cell types and increase reset counter', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await setup({});
-    instance.resetCellTypes();
-    // expect(instance.cellTypesResetCounter()).toEqual(1);
-  });
+  it('filters the distances based on the current selection', async () => {
+    const { fixture } = await setup();
+    fixture.componentInstance.cellTypesSelection.set(['t-cell']);
+    fixture.detectChanges();
 
-  // describe('nodeTypeKey()', () => {
-  //   it('should use the default node target key provided', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetKey: 'key',
-  //       },
-  //     });
-  //     expect(instance.nodeTypeKey()).toEqual('key');
-  //   });
-
-  //   it('should use the default node target key if node target key is not provided', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetKey: undefined,
-  //       },
-  //     });
-  //     expect(instance.nodeTypeKey()).toEqual(DEFAULT_NODE_TARGET_KEY);
-  //   });
-  // });
-
-  // describe('selectedNodeTargetValue()', () => {
-  //   it('should set a default node target with nodeTargetValue', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetValue: 'Endothelial',
-  //       },
-  //     });
-  //     expect(instance.selectedNodeTargetValue()).toEqual('Endothelial');
-  //   });
-
-  //   it('should set a default node target if nodeTargetValue is not provided', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetValue: undefined,
-  //       },
-  //     });
-  //     expect(instance.selectedNodeTargetValue()).toEqual(DEFAULT_NODE_TARGET_VALUE);
-  //   });
-  // });
-
-  // describe('colorMapTypeKey()', () => {
-  //   it('should set color map key', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         colorMapKey: 'key',
-  //       },
-  //     });
-  //     expect(instance.colorMapTypeKey()).toEqual('key');
-  //   });
-
-  //   it('should set color map key as node target key if colorMapKey is undefined and nodeTargetKey is provided', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetKey: 'key',
-  //         colorMapKey: undefined,
-  //       },
-  //     });
-  //     expect(instance.colorMapTypeKey()).toEqual('key');
-  //   });
-
-  //   it('should set a default color map key if colorMapKey and nodeTargetKey are undefined', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodeTargetKey: undefined,
-  //         colorMapKey: undefined,
-  //       },
-  //     });
-  //     expect(instance.colorMapTypeKey()).toEqual(DEFAULT_COLOR_MAP_KEY);
-  //   });
-  // });
-
-  // describe('cellTypesFromNodes()', () => {
-  //   it('should get cell types from nodes and set color from color map', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodes: [
-  //           {
-  //             'Cell Type': 'a',
-  //             x: 0,
-  //             y: 1,
-  //           },
-  //           {
-  //             'Cell Type': 'b',
-  //             x: 0,
-  //             y: 2,
-  //           },
-  //           {
-  //             'Cell Type': 'c',
-  //             x: 0,
-  //             y: 3,
-  //           },
-  //         ],
-  //         colorMap: sampleColorMap,
-  //         nodeTargetKey: 'Cell Type',
-  //       },
-  //     });
-
-  //     expect(instance.cellTypesFromNodes()).toEqual([
-  //       {
-  //         name: 'a',
-  //         count: 1,
-  //         color: [0, 0, 0],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //       {
-  //         name: 'b',
-  //         count: 1,
-  //         color: [0, 0, 1],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //       {
-  //         name: 'c',
-  //         count: 1,
-  //         color: [0, 0, 2],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //     ]);
-  //   });
-
-  //   it('should set default colors if color map not provided', async () => {
-  //     const {
-  //       fixture: { componentInstance: instance },
-  //     } = await setup({
-  //       componentInputs: {
-  //         ...sampleData,
-  //         nodes: sampleNodes,
-  //         colorMap: undefined,
-  //       },
-  //     });
-  //     expect(instance.cellTypesFromNodes()).toEqual([
-  //       {
-  //         name: 'a',
-  //         count: 1,
-  //         color: [112, 165, 168],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //       {
-  //         name: 'b',
-  //         count: 2,
-  //         color: [205, 132, 144],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //       {
-  //         name: 'c',
-  //         count: 1,
-  //         color: [116, 149, 174],
-  //         outgoingEdgeCount: 0,
-  //       },
-  //     ]);
-  //   });
-  // });
-
-  describe('updateColor()', () => {
-    it('should update color in an entry', async () => {
-      const {
-        fixture: { componentInstance: instance },
-      } = await setup({});
-
-      instance.updateColor({ name: 'epithelial', count: 20, outgoingEdgeCount: 2, color: [0, 0, 0] }, [1, 1, 1]);
-      console.log(instance.cellTypes());
-    });
+    expect(fixture.componentInstance.filteredDistances()).toEqual([]);
   });
 
   describe('downloadNodes()', () => {
     it('should download nodes', async () => {
-      const {
-        fixture: { componentInstance: instance },
-      } = await setup({});
+      const { fixture } = await setup();
 
-      // const fileSaver = TestBed.inject(FileSaverService);
-      // const fileSaveSpy = jest.spyOn(fileSaver, 'saveCsv').mockReturnValue(undefined);
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
 
-      instance.downloadNodes();
-      // expect(fileSaveSpy).toHaveBeenCalledWith(expectedNodes, 'nodes.csv');
-    });
-  });
-
-  describe('downloadEdges()', () => {
-    it('should download edges', async () => {
-      const {
-        fixture: { componentInstance: instance },
-      } = await setup({});
-
-      instance.downloadEdges();
-    });
-  });
-
-  describe('downloadColorMap()', () => {
-    it('should download color map', async () => {
-      const {
-        fixture: { componentInstance: instance },
-      } = await setup({});
-
-      instance.downloadColorMap();
+      await fixture.componentInstance.downloadNodes();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv');
     });
   });
 });

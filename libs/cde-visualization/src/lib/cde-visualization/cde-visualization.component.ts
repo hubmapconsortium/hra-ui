@@ -167,7 +167,7 @@ export class CdeVisualizationComponent {
   readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
-  protected readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+  readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
   /** Counter for resetting cell types */
   protected readonly cellTypesResetCounter = signal(0);
@@ -233,7 +233,7 @@ export class CdeVisualizationComponent {
   protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
   /** Data for the histogram visualization */
-  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
+  readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
 
   /** Colors for the histogram visualization */
   protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
