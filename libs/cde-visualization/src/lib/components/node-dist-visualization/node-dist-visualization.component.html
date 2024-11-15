@@ -64,6 +64,12 @@
   (overlayOutsideClick)="cellInfo.set(undefined)"
   #cellInfoOverlay="cdkConnectedOverlay"
 >
-  <hra-info-modal [title]="'Cell Info'" variant="center" [data]="cellInfoContent()" (close)="cellInfo.set(undefined)">
+  <hra-info-modal
+    [title]="'Cell Info'"
+    variant="center"
+    [data]="cellInfoContent()"
+    (close)="cellInfo.set(undefined)"
+    data-testid="cell-info"
+  >
   </hra-info-modal>
 </ng-template>
