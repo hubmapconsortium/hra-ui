@@ -2,7 +2,15 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
-import { AnyDataEntry, EdgesView, EMPTY_EDGES_VIEW, EMPTY_NODES_VIEW, NodesView } from '@hra-ui/node-dist-vis/models';
+import {
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  EMPTY_COLOR_MAP_VIEW,
+  EMPTY_EDGES_VIEW,
+  EMPTY_NODES_VIEW,
+  NodesView,
+} from '@hra-ui/node-dist-vis/models';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
@@ -19,9 +27,12 @@ const embedResult = mockDeep<Result>();
 
 describe('CdeVisualizationComponent', () => {
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
+  const SAMPLE_NODE_2: AnyDataEntry = ['t-cell', 300, 100];
   const SAMPLE_EDGE: AnyDataEntry = [0, 1, 100, 200, 0, 100, 300, 0];
-  const NODES = new NodesView([SAMPLE_NODE], EMPTY_NODES_VIEW.keyMapping);
+  const SAMPLE_COLOR: AnyDataEntry = ['epithelial', [0, 0, 255]];
+  const NODES = new NodesView([SAMPLE_NODE, SAMPLE_NODE_2], EMPTY_NODES_VIEW.keyMapping);
   const EDGES = new EdgesView([SAMPLE_EDGE], EMPTY_EDGES_VIEW.keyMapping);
+  const COLOR_MAP = new ColorMapView([SAMPLE_COLOR], EMPTY_COLOR_MAP_VIEW.keyMapping);
 
   async function setup(options?: RenderComponentOptions<CdeVisualizationComponent>) {
     const result = await render(CdeVisualizationComponent, {
@@ -29,6 +40,7 @@ describe('CdeVisualizationComponent', () => {
       inputs: {
         nodes: NODES,
         edges: EDGES,
+        colorMap: COLOR_MAP,
         maxEdgeDistance: '100',
         ...options?.inputs,
       },
@@ -75,7 +87,8 @@ describe('CdeVisualizationComponent', () => {
 
   it('filters the distances based on the current selection', async () => {
     const { fixture } = await setup();
-    fixture.componentInstance.cellTypesSelection.set(['type 7']);
+    fixture.componentInstance.cellTypesSelection.set(['t-cell']);
+    fixture.detectChanges();
 
     expect(fixture.componentInstance.filteredDistances()).toEqual([]);
   });
