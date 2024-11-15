@@ -164,7 +164,7 @@ export class CdeVisualizationComponent {
   protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
 
   /** List of cell types */
-  readonly cellTypes = signal<CellTypeEntry[]>([]);
+  protected readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
