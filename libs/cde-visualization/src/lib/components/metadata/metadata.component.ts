@@ -20,7 +20,7 @@ import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'title',
-  'colorMap',
+  'colorMapFileName',
   'organ',
   'technology',
   'sex',

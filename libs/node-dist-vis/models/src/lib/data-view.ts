@@ -1,5 +1,8 @@
 import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
+import { derivedAsync } from 'ngxtension/derived-async';
+import { unparse } from 'papaparse';
+import { Observable } from 'rxjs';
 import { DataInput, isRecordObject, loadData } from './utils';
 
 /** Removes all whitespaces in a string */
@@ -19,13 +22,19 @@ type AccessorName<
 type Accessor<Entry, P extends keyof Entry, Arg> = (arg: Arg) => Entry[P];
 
 /** View data entry */
-export type AnyDataEntry = unknown[] | object;
+export type AnyDataEntry = AnyData[number];
 /** View data */
 export type AnyData = unknown[][] | object[];
+/** Any data view (primarly used as a generic constraint) */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyDataView = DataView<any>;
 
 /** Data view input */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
+
+/** Filter function */
+export type DataViewFilter = (obj: AnyDataEntry, index: number) => boolean;
 
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
@@ -83,6 +92,11 @@ export interface DataView<Entry> {
 
   /** Raw data iterator */
   [Symbol.iterator](): IterableIterator<AnyDataEntry>;
+
+  /**
+   * Serialize to a csv blob (including header)
+   */
+  toCsv(filter?: DataViewFilter): Promise<Blob>;
 }
 
 /** Data view constructor */
@@ -114,8 +128,17 @@ function createAccessorName<Entry>(property: keyof Entry, postfix: AccessorPostf
  * @returns A bound accessor function
  */
 function createAccessor<Entry>(instance: DataView<Entry>, property: keyof Entry, postfix: AccessorPostfixes) {
-  const method = `getProperty${postfix}` as const;
-  return (arg: unknown) => instance[method](arg as never, property);
+  const key = instance.keyMapping[property];
+  if (key === undefined) {
+    return () => undefined;
+  }
+
+  if (postfix === 'At') {
+    const { data, offset } = instance;
+    return (index: number) => ((data[index + offset] ?? {}) as Record<PropertyKey, unknown>)[key];
+  } else {
+    return (obj: Record<PropertyKey, unknown>) => obj[key];
+  }
 }
 
 /**
@@ -133,6 +156,55 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
       (instance as unknown as Record<string, unknown>)[name] = accessor;
     }
   }
+}
+
+function* normalizeRows(
+  data: AnyData,
+  keys: PropertyKey[],
+  start: number,
+  end: number,
+  offset: number,
+  filter: DataViewFilter | undefined,
+): Generator<unknown[]> {
+  end = Math.min(end, data.length);
+  for (let index = start; index < end; index++) {
+    const item = data[index] as Record<PropertyKey, unknown>;
+    const row: unknown[] = [];
+    if (filter?.(item, index - offset) === false) {
+      continue;
+    }
+
+    for (const key of keys) {
+      const value = item[key];
+      const serialized = typeof value !== 'object' ? value : JSON.stringify(value);
+      row.push(serialized);
+    }
+
+    yield row;
+  }
+}
+
+async function serializeToCsv<T>(
+  data: AnyData,
+  keyMapping: KeyMapping<T>,
+  offset: number,
+  filter: DataViewFilter | undefined,
+): Promise<Blob> {
+  const ROWS_PER_CHUNK = 5000;
+  const keys = Object.values(keyMapping) as PropertyKey[];
+  const chunks: string[] = [unparse([Object.keys(keyMapping)]), '\r\n'];
+
+  for (let index = offset; index < data.length; index += ROWS_PER_CHUNK) {
+    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK, offset, filter));
+    chunks.push(unparse(rows), '\r\n');
+    // Don't block the main thread
+    await new Promise((res) => setTimeout(res));
+  }
+
+  // Remove trailing new line
+  chunks.pop();
+
+  return new Blob(chunks);
 }
 
 /**
@@ -175,6 +247,10 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       }
       return iter;
     }
+
+    toCsv(filter?: DataViewFilter): Promise<Blob> {
+      return serializeToCsv(this.data, this.keyMapping, this.offset, filter);
+    }
   }
 
   return DataViewImpl as unknown as DataViewConstructor<Entry>;
@@ -188,8 +264,7 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
  * @param viewCls Data view class
  * @returns Either a data view of the specified type or an array of raw data
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function loadViewData<T extends DataView<any>>(
+export function loadViewData<T extends AnyDataView>(
   input: Signal<DataViewInput<T>>,
   viewCls: Type<T>,
 ): Signal<T | AnyData> {
@@ -275,13 +350,13 @@ function setDataViewOffset<T>(mapping: Partial<KeyMapping<T>>, offset: number): 
 function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMapping<T>>, keys: (keyof T)[]): void {
   const icase = (value: unknown) => String(value).toLowerCase();
   const isArrayEntry = Array.isArray(entry);
-  let header: unknown[];
+  let header: unknown[] = [];
 
   if (isArrayEntry) {
     const isAllNumeric = entry.every((value) => typeof value === 'number');
-    const isBackwardsCompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
-    if (isBackwardsCompatibleEdges) {
-      header = keys.slice(0, 7);
+    const isBackwardsIncompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
+    if (isBackwardsIncompatibleEdges) {
+      console.warn('Legacy edge format detected! Edges csv now require a header.');
     } else {
       header = entry;
       setDataViewOffset(mapping, 1);
@@ -372,7 +447,7 @@ export function inferViewKeyMapping<T>(
  * @param defaultView Default data view returned missing a data or key mapping
  * @returns A data view of the specified class
  */
-export function createDataView<T, V>(
+export function createDataView<T, V extends AnyDataView>(
   viewCls: new (data: AnyData, keyMapping: KeyMapping<T>, offset?: number) => V,
   data: Signal<V | AnyData>,
   keyMapping: Signal<KeyMapping<T> | undefined>,
@@ -391,4 +466,18 @@ export function createDataView<T, V>(
 
     return defaultView;
   });
+}
+
+export function withDataViewDefaultGenerator<V extends AnyDataView>(
+  view: Signal<V>,
+  generator: () => Observable<V> | V,
+  initialValue: V,
+): Signal<V> {
+  return derivedAsync<V>(
+    () => {
+      const result = view();
+      return result.length !== 0 ? result : generator();
+    },
+    { initialValue },
+  );
 }

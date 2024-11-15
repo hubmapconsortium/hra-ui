@@ -4,12 +4,15 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
-} from './data-view';
+} from '../data-view';
+import { NodeFilterView } from '../filters';
+import { NodesView } from '../nodes';
 
 /** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
@@ -20,6 +23,8 @@ export type EdgeKeysInput = KeyMappingInput<EdgeEntry>;
 export interface EdgeEntry {
   /** Source node index */
   'Cell ID': number;
+  /** Target node index */
+  'Target ID': number;
   /** Source X coordinate */
   X1: number;
   /** Source Y coordinate */
@@ -35,7 +40,7 @@ export interface EdgeEntry {
 }
 
 /** Required edge keys */
-const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
+const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'Target ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
 /** Optional edge keys */
 const OPTIONAL_KEYS: (keyof EdgeEntry)[] = [];
 /** Base data view class for edges */
@@ -53,7 +58,7 @@ export class EdgesView extends BaseEdgesView {
    * @returns The source position in format [x, y, z]
    */
   readonly getSourcePositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getSourcePositionFor(this.data[index], info);
+    this.getSourcePositionFor(this.at(index), info);
 
   /**
    * Get the source position of an edge.
@@ -68,7 +73,7 @@ export class EdgesView extends BaseEdgesView {
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
   ): [number, number, number] => {
-    const position = (info?.target ?? new Array(3)) as [number, number, number];
+    const position = (info?.target ?? []) as [number, number, number];
     position[0] = this.getX1For(obj);
     position[1] = this.getY1For(obj);
     position[2] = this.getZ1For(obj);
@@ -85,7 +90,7 @@ export class EdgesView extends BaseEdgesView {
    * @returns The target position in format [x, y, z]
    */
   readonly getTargetPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getTargetPositionFor(this.data[index], info);
+    this.getTargetPositionFor(this.at(index), info);
 
   /**
    * Get the target position of an edge.
@@ -100,13 +105,68 @@ export class EdgesView extends BaseEdgesView {
     obj: AnyDataEntry,
     info?: AccessorContext<AnyDataEntry>,
   ): [number, number, number] => {
-    const position = (info?.target ?? new Array(3)) as [number, number, number];
+    const position = (info?.target ?? []) as [number, number, number];
     position[0] = this.getX2For(obj);
     position[1] = this.getY2For(obj);
     position[2] = this.getZ2For(obj);
     return position;
   };
+
+  /**
+   * Get the distance/length of an edge
+   *
+   * @param index Index of data entry
+   * @returns The length of the edge
+   */
+  readonly getDistanceAt = (index: number) => this.getDistanceFor(this.at(index));
+
+  /**
+   * Get the distance/length of an edge
+   *
+   * @param obj Raw edge data entry
+   * @returns The length of the edge
+   */
+  readonly getDistanceFor = (obj: AnyDataEntry) => {
+    const xDiff = this.getX1For(obj) - this.getX2For(obj);
+    const yDiff = this.getY1For(obj) - this.getY2For(obj);
+    const zDiff = this.getZ1For(obj) - this.getZ2For(obj);
+    return Math.hypot(xDiff, yDiff, zDiff);
+  };
+
+  readonly getCounts = (getType: (obj: AnyDataEntry) => string) => {
+    const counts: Record<string, number> = {};
+    for (const edge of this) {
+      const type = getType(edge);
+      counts[type] ??= 0;
+      counts[type] += 1;
+    }
+
+    return new Map(Object.entries(counts));
+  };
+
+  readonly createFilter = (nodesView: NodesView, filterView: NodeFilterView): DataViewFilter => {
+    return (obj) => {
+      const index1 = this.getCellIDFor(obj);
+      const index2 = this.getTargetIDFor(obj);
+      return (
+        filterView.includes(nodesView.getCellTypeAt(index1), index1) &&
+        filterView.includes(nodesView.getCellTypeAt(index2), index2)
+      );
+    };
+  };
 }
+
+/** Empty edges view */
+export const EMPTY_EDGES_VIEW = new EdgesView([], {
+  'Cell ID': 0,
+  'Target ID': 1,
+  X1: 2,
+  Y1: 3,
+  Z1: 4,
+  X2: 5,
+  Y2: 6,
+  Z2: 7,
+});
 
 /**
  * Load edges
@@ -119,15 +179,5 @@ export function loadEdges(input: Signal<EdgesInput>, keys: Signal<EdgeKeysInput>
   const data = loadViewData(input, EdgesView);
   const mapping = loadViewKeyMapping(keys);
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
-  const emptyView = new EdgesView([], {
-    'Cell ID': 0,
-    X1: 1,
-    Y1: 2,
-    Z1: 3,
-    X2: 4,
-    Y2: 5,
-    Z2: 6,
-  });
-
-  return createDataView(EdgesView, data, inferred, emptyView);
+  return createDataView(EdgesView, data, inferred, EMPTY_EDGES_VIEW);
 }

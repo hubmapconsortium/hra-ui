@@ -19,13 +19,10 @@ export * from './lib/shared/tooltip-position';
 export * from './lib/services/data/color-map-loader.service';
 
 /** Type for CdeVisualizationElement instance */
-export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+export type CdeVisualizationElement = InstanceType<Awaited<typeof CdeVisualizationElement>>;
 
 /** Input properties for CdeVisualizationComponent */
 export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>;
-
-/** Constructor type for CdeVisualizationElement */
-export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 
 /** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {

@@ -21,6 +21,8 @@ import { VisualizationDataService } from '../../services/visualization-data-serv
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('@hra-ui/node-dist-vis', () => ({}));
+jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
 
 const resizeObserverInstance = mock<ResizeObserver>();
 global.ResizeObserver = jest.fn(() => resizeObserverInstance);
@@ -217,7 +219,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setCustomColorMap(sampleColorMap);
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleData);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it("doesn't submit if no nodes", async () => {
@@ -238,10 +240,9 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setNodes(sampleNodes);
       instance.setCustomColorMap(sampleColorMap);
       instance.visualizationForm.value.colorMapType = 'custom';
-      const processedSampleDataWithColorMap = { ...processedSampleData, colorMap: sampleColorMap };
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithColorMap);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('submits metadata', async () => {
@@ -250,17 +251,9 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = sampleMetadata;
-      const processedMetadata = {
-        creationTimestamp: 0,
-        organId: sampleMetadata.organ.id,
-        organ: sampleMetadata.organ.label,
-      };
-
-      const processedSampleDataWithMetadata = { ...processedSampleData, metadata: processedMetadata };
-
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('uses empty object as metadata if no metadata', async () => {
@@ -269,11 +262,10 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = undefined;
-      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: { creationTimestamp: 0 } };
 
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithEmptyMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
   });
 

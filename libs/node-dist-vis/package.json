@@ -11,8 +11,12 @@
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
-    "ngxtension": "^3.5.5",
-    "@hra-ui/common": "0.0.1"
+    "ngxtension": "^4.1.0",
+    "@hra-ui/common": "0.0.1",
+    "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
+    "@nebula.gl/layers": "^1.1.0-alpha.5",
+    "@turf/bbox": "^6.5.0",
+    "@turf/helpers": "^6.5.0"
   },
   "sideEffects": [
     "index.ts"

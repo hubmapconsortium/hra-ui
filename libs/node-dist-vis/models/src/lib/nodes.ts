@@ -4,12 +4,15 @@ import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
+  DataViewFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
 } from './data-view';
+import { NodeFilterView } from './filters';
+import { cachedAccessor } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -49,7 +52,7 @@ export class NodesView extends BaseNodesView {
    * @returns The position in format [x, y, z]
    */
   readonly getPositionAt = (index: number, info?: AccessorContext<AnyDataEntry>) =>
-    this.getPositionFor(this.data[index], info);
+    this.getPositionFor(this.at(index), info);
 
   /**
    * Get the position of a node.
@@ -74,11 +77,7 @@ export class NodesView extends BaseNodesView {
    *
    * @returns An array of [minimum, maximum] values
    */
-  readonly getDimensions = (): [number, number] => {
-    if (this.dimensions) {
-      return this.dimensions;
-    }
-
+  readonly getDimensions = cachedAccessor(this, (): [number, number] => {
     let min = Number.MAX_VALUE;
     let max = -Number.MAX_VALUE;
     for (const obj of this) {
@@ -89,13 +88,31 @@ export class NodesView extends BaseNodesView {
       max = Math.max(max, x, y, z);
     }
 
-    this.dimensions = [min, max];
-    return this.dimensions;
-  };
+    return [min, max];
+  });
 
-  /** Cached dimensions */
-  private dimensions?: [number, number] = undefined;
+  readonly getCounts = cachedAccessor(this, () => {
+    const counts: Record<string, number> = {};
+    for (const obj of this) {
+      const type = this.getCellTypeFor(obj);
+      counts[type] ??= 0;
+      counts[type] += 1;
+    }
+
+    return new Map(Object.entries(counts));
+  });
+
+  readonly createFilter = (filterView: NodeFilterView): DataViewFilter => {
+    return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
+  };
 }
+
+/** Empty nodes view */
+export const EMPTY_NODES_VIEW = new NodesView([], {
+  'Cell Type': 0,
+  X: 1,
+  Y: 2,
+});
 
 /**
  * Load nodes
@@ -113,11 +130,5 @@ export function loadNodes(
   const data = loadViewData(input, NodesView);
   const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey });
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
-  const emptyView = new NodesView([], {
-    'Cell Type': 0,
-    X: 1,
-    Y: 2,
-  });
-
-  return createDataView(NodesView, data, inferred, emptyView);
+  return createDataView(NodesView, data, inferred, EMPTY_NODES_VIEW);
 }

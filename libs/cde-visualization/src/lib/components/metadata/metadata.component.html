@@ -9,7 +9,7 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" [class]="'metadata-overlay'">
+    <mat-menu #menu="matMenu" class="metadata-overlay">
       <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" class="expanded" matRipple matRippleColor="#201E3D14">
         <mat-icon>info</mat-icon>
         <span>Info</span>
@@ -30,9 +30,7 @@
         <mat-icon>code</mat-icon>
         Embed App
       </a>
-      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
-        Visualization metadata for the sample dataset.
-      </mat-menu>
+      <mat-menu #infoSubMenu="matMenu" class="info-sub-menu"> Visualization metadata for the sample dataset. </mat-menu>
     </mat-menu>
   </hra-expansion-panel-actions>
   <div class="metadata-details">
@@ -43,14 +41,9 @@
         </span>
         <span>
           @if (metadata().sampleExtra; as extra) {
-            <a
-              mat-button
-              hraButtonSize="small"
-              [attr.href]="extra.sampleUrl"
-              target="_blank"
-              rel="noreferrer noopener"
-              >{{ metadata().title }}</a
-            >
+            <a mat-button hraButtonSize="small" [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">
+              {{ metadata().title }}
+            </a>
           } @else {
             <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
           }
@@ -67,17 +60,18 @@
             [attr.href]="extra.sourceDataUrl"
             target="_blank"
             rel="noreferrer noopener"
-            >{{ metadata().sourceData }}</a
           >
+            {{ metadata().sourceFileName }}
+          </a>
         } @else {
-          <span>{{ metadata().sourceData | defaultTo: 'Unknown' }}</span>
+          <span>{{ metadata().sourceFileName | defaultTo: 'Unknown' }}</span>
         }
       </span>
     </div>
-    @if (isFieldVisible('colorMap')) {
+    @if (isFieldVisible('colorMapFileName')) {
       <div>
         <span>Color Map</span>
-        <span>{{ metadata().colorMap | defaultTo: 'Default' }}</span>
+        <span>{{ metadata().colorMapFileName | defaultTo: 'Default' }}</span>
       </div>
     }
     @if (isFieldVisible('organ')) {

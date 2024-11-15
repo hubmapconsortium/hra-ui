@@ -9,16 +9,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "module": "esnext",
     "lib": [
-      "es2017",
-      "dom"
+      "ES2022",
+      "DOM"
     ],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "typeRoots": [
+      "libs/3rd-party-typings",
+      "node_modules/@types"
+    ],
     "paths": {
       "@components/*": [
         "apps/human-atlas/src/app/components/*"
@@ -169,6 +173,9 @@
       ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
+      ],
+      "@hra-ui/node-dist-vis/models": [
+        "libs/node-dist-vis/models/src/index.ts"
       ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"

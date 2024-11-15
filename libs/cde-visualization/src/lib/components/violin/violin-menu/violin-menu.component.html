@@ -1,14 +1,14 @@
 <button
   mat-icon-button
   [matMenuTriggerFor]="menu"
-  [hraIconButtonSize]="'large'"
+  hraIconButtonSize="large"
   aria-label="Icon to open nested menu"
   hraMicroTooltip="More"
   (click)="$event.stopPropagation()"
 >
   <mat-icon>more_vert</mat-icon>
 </button>
-<mat-menu #menu="matMenu" [class]="'violin-overlay'">
+<mat-menu #menu="matMenu" class="violin-overlay">
   <button
     mat-menu-item
     [matMenuTriggerFor]="infoSubMenu"
@@ -46,11 +46,11 @@
     <mat-icon>code</mat-icon>
     Embed App
   </a>
-  <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+  <mat-menu #infoSubMenu="matMenu" class="info-sub-menu">
     This violin plot shows a cell-to-nearest-anchor cell distance distributions categorized by each cell type in the
     dataset.
   </mat-menu>
-  <mat-menu #downloadSubMenu="matMenu" [class]="'download-sub-menu'">
+  <mat-menu #downloadSubMenu="matMenu" class="download-sub-menu">
     <button mat-menu-item (click)="$event.stopPropagation(); download.emit('png')">
       <mat-icon>download</mat-icon>
       PNG

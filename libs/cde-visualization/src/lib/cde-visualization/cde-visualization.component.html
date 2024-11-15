@@ -9,14 +9,14 @@
 </div>
 
 <div class="metadata">
-  <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
+  <cde-metadata [metadata]="metadataView()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
-    [selectedCellType]="selectedNodeTargetValue()"
-    (downloadColorMap)="downloadColorMap()"
+    [selectedCellType]="nodeTargetSelector()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
+    (downloadColorMap)="downloadColorMap()"
     (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
@@ -25,18 +25,13 @@
 <div class="visualizations">
   <div class="top">
     <cde-node-dist-visualization
-      [nodes]="loadedNodes()"
-      [nodeTargetKey]="nodeTypeKey()"
-      [nodeTargetValue]="selectedNodeTargetValue()"
-      [edges]="loadedEdges()"
+      [nodes]="nodesView()"
+      [edges]="edgesView()"
       [maxEdgeDistance]="maxEdgeDistance()"
       [colorMap]="cellTypesAsColorMap()"
-      [colorMapKey]="colorMapTypeKey()"
-      [colorMapValueKey]="colorMapValueKey()"
-      [cellTypesSelection]="cellTypesSelection()"
+      [(nodeFilter)]="nodeFilterView"
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
-      (edgesChange)="edges.set($event)"
       (resetAllCells)="resetCellTypes()"
       #visualization
     ></cde-node-dist-visualization>
@@ -48,7 +43,6 @@
     [colors]="filteredColors()"
     [data]="filteredDistances()"
     [filteredCellTypes]="filteredCellTypes()"
-    [selectedCellType]="selectedNodeTargetValue()"
     (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>

@@ -1,0 +1,86 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="menu"
+  hraIconButtonSize="large"
+  aria-label="Icon to open nested menu"
+  hraMicroTooltip="More"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" class="vis-overlay">
+  <button mat-menu-item [matMenuTriggerFor]="infoSubMenu" matRipple matRippleColor="#201E3D14">
+    <mat-icon>info</mat-icon>
+    <span>Info</span>
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="downloadSubMenu" matRipple matRippleColor="#201E3D14">
+    <mat-icon>download</mat-icon>
+    <span>Downloads</span>
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="resetSubMenu" matRipple matRippleColor="#201E3D14">
+    <mat-icon>reset_wrench</mat-icon>
+    <span>Reset</span>
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  @if (!fullscreenMode()) {
+    <button mat-menu-item (click)="fullscreenClick.emit()">
+      <mat-icon>fullscreen</mat-icon>
+      Full Screen
+    </button>
+  }
+  <button mat-menu-item (click)="this.edgesDisabled.set(!this.edgesDisabled())">
+    <mat-icon>{{ edgesDisabled() ? 'visibility' : 'visibility_off' }}</mat-icon>
+    {{ edgesDisabled() ? 'Show' : 'Hide' }} Cell Links
+  </button>
+  <a
+    mat-menu-item
+    href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <mat-icon>code</mat-icon>
+    Embed App
+  </a>
+</mat-menu>
+
+<mat-menu #infoSubMenu="matMenu" class="info-sub-menu">
+  <div>
+    <ul>
+      Zoom Options
+      <li>Mouse pinwheel</li>
+      <li>Trackpad Pinch</li>
+    </ul>
+    <ul>
+      Pan Options
+      <li>CTRL/CMD + mouse drag</li>
+      <li>Right click + mouse drag</li>
+      <li>Keyboard arrows</li>
+    </ul>
+    <ul>
+      Rotation Options
+      <li>CTRL/CMD + keyboard arrows</li>
+      <li>Mouse Drag</li>
+    </ul>
+  </div>
+</mat-menu>
+
+<mat-menu #downloadSubMenu="matMenu" class="download-sub-menu">
+  <button mat-menu-item (click)="downloadClick.emit()">
+    <mat-icon>download</mat-icon>
+    <span>PNG</span>
+  </button>
+</mat-menu>
+
+<mat-menu #resetSubMenu="matMenu" class="reset-sub-menu">
+  <button mat-menu-item (click)="resetViewClick.emit()">
+    <mat-icon>reset_wrench</mat-icon>
+    <span>Reset Visualization View</span>
+  </button>
+
+  <button mat-menu-item (click)="resetDeletedClick.emit()">
+    <mat-icon>reset_wrench</mat-icon>
+    <span>Reset Deleted Cells</span>
+  </button>
+</mat-menu>

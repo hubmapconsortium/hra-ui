@@ -1,5 +1,4 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -15,28 +14,22 @@ import {
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ButtonModule } from '@hra-ui/design-system/button';
 import { Rgb } from '@hra-ui/design-system/color-picker';
+import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipCardComponent } from '@hra-ui/design-system/tooltip-card';
-import { ColorPickerModule } from 'ngx-color-picker';
 import { map } from 'rxjs';
 import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
+
 /**
  * Cell Type Component
  */
@@ -46,22 +39,19 @@ import {
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule,
-    MatListModule,
+    MatMenuModule,
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-    ColorPickerModule,
-    OverlayModule,
-    ColorPickerLabelComponent,
-    ScrollingModule,
-    MatMenuModule,
-    IconButtonSizeDirective,
-    TooltipCardComponent,
-    MicroTooltipDirective,
+
+    ButtonModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
-    ExpansionPanelHeaderContentComponent,
+    IconButtonSizeDirective,
+    MicroTooltipDirective,
+    ScrollingModule,
+
+    ColorPickerLabelComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
