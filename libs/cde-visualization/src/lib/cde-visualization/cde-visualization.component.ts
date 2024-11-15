@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
-import { NodeEvent } from '@hra-ui/node-dist-vis';
+import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
   AnyDataView,
@@ -42,9 +42,7 @@ import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
-import { DEFAULT_MAX_EDGE_DISTANCE } from '../models/edge';
 import { loadMetadata, MetadataInput } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_VALUE } from '../models/node';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
@@ -85,7 +83,7 @@ export class CdeVisualizationComponent {
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_VALUE);
+  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_SELECTOR);
 
   /** Edge data if already calculated */
   readonly edges = input<EdgesInput>();

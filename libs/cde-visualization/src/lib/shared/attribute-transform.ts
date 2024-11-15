@@ -1,16 +1,3 @@
-import { AnyBrand } from '../models/brand';
-
-/**
- * Transforms an input value by adding a brand.
- * This function does not change the value at runtime.
- * It is a compile time type change only.
- *
- * @returns A transform function
- */
-export function brandAttribute<T, const BrandT extends AnyBrand>(): (value: T) => T & BrandT {
-  return (value) => value as T & BrandT;
-}
-
 /**
  * Same as angular's `numberAttribute` except it takes the fallback value first and
  * returns a transform function making the fallback parameter actually useful.
