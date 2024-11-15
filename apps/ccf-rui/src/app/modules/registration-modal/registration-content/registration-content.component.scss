@@ -1,10 +1,13 @@
 :host {
   --mdc-filled-text-field-input-text-color: var(--sys-primary);
 
-  padding: 2rem;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
+  max-width: 43.5rem;
+  min-width: 28.5rem;
+  margin: 0 auto;
 
   .title {
     display: flex;
@@ -28,7 +31,6 @@
     .header {
       display: flex;
       align-items: center;
-      height: 2.5rem;
       margin: 0;
 
       .step-number {
@@ -49,7 +51,6 @@
   form {
     display: flex;
     flex-direction: column;
-    max-width: 56rem;
 
     .subheader {
       font: var(--sys-title-small);
@@ -57,26 +58,81 @@
       margin-bottom: 1rem;
     }
 
-    .metadata-1 {
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
+    .subheader.donor {
+      grid-area: subheader-donor;
     }
 
-    .metadata-1a,
-    .metadata-1b,
-    .metadata-2 {
-      display: flex;
-      gap: 1rem;
+    .field.firstname {
+      grid-area: field-firstname;
     }
 
-    mat-form-field {
-      flex-grow: 1;
+    .field.middlename {
+      grid-area: field-middlename;
     }
 
-    .sex-select {
-      max-width: 8rem;
+    .field.lastname {
+      grid-area: field-lastname;
+    }
+
+    .field.orcid {
+      grid-area: field-orcid;
+    }
+
+    .field.email {
+      grid-area: field-email;
+    }
+
+    .field.sex {
+      grid-area: field-sex;
+    }
+
+    .field.organ {
+      grid-area: field-organ;
+    }
+
+    .field.consortium {
+      grid-area: field-consortium;
+    }
+
+    .field.doi {
+      grid-area: field-doi;
+    }
+
+    .author-fields {
+      display: grid;
+      column-gap: 1.5rem;
+      row-gap: 1.5rem;
+      grid-template-areas:
+        'field-firstname field-middlename'
+        'field-lastname field-orcid'
+        'field-email field-email';
+      margin-bottom: 2rem;
+
+      @media (max-width: 759px) {
+        grid-template-areas:
+          'field-firstname'
+          'field-middlename'
+          'field-lastname'
+          'field-orcid'
+          'field-email';
+      }
+    }
+
+    .donor-fields {
+      display: grid;
+      column-gap: 1.5rem;
+      row-gap: 1.5rem;
+      grid-template-columns: 8rem auto auto;
+      grid-template-areas:
+        'field-sex field-organ field-consortium'
+        'field-doi field-doi field-doi';
+
+      @media (max-width: 759px) {
+        grid-template-areas:
+          'field-sex field-organ field-organ'
+          'field-consortium field-consortium field-consortium'
+          'field-doi field-doi field-doi';
+      }
     }
   }
 

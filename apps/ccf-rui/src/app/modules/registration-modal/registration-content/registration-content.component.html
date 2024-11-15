@@ -54,69 +54,64 @@
     </h2>
 
     <form [formGroup]="registrationForm">
-      <span class="subheader">Author</span>
-      <div class="metadata-1">
-        <div class="metadata-1a">
-          <mat-form-field subscriptSizing="dynamic">
-            <mat-label>First name</mat-label>
-            <input
-              matInput
-              formControlName="firstName"
-              cdeMarkEmptyFormControl
-              [value]="$any(page.user$ | async).firstName"
-            />
-          </mat-form-field>
-          <mat-form-field subscriptSizing="dynamic">
-            <mat-label>Middle name (optional)</mat-label>
-            <input
-              matInput
-              formControlName="middleName"
-              cdeMarkEmptyFormControl
-              [value]="$any(page.user$ | async).middleName"
-            />
-          </mat-form-field>
-          <mat-form-field subscriptSizing="dynamic">
-            <mat-label>Last name</mat-label>
-            <input
-              matInput
-              formControlName="lastName"
-              cdeMarkEmptyFormControl
-              [value]="$any(page.user$ | async).lastName"
-            />
-          </mat-form-field>
-        </div>
-        <div class="metadata-1b">
-          <mat-form-field subscriptSizing="dynamic">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" cdeMarkEmptyFormControl [value]="$any(page.user$ | async).email" />
-            <mat-error *ngIf="registrationForm.controls['email'].invalid">{{ getEmailErrorMessage() }}</mat-error>
-          </mat-form-field>
-          <mat-form-field subscriptSizing="dynamic">
-            <mat-label>ORCID (optional)</mat-label>
-            <input
-              matInput
-              formControlName="orcid"
-              cdeMarkEmptyFormControl
-              maxlength="19"
-              [value]="$any(page.user$ | async).orcid"
-              (input)="updateOrcid($any($event.target).value)"
-            />
-            <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getOrcidErrorMessage() }}</mat-error>
-          </mat-form-field>
-        </div>
+      <span class="subheader author">Author</span>
+      <div class="author-fields">
+        <mat-form-field subscriptSizing="dynamic" class="field firstname">
+          <mat-label>First name</mat-label>
+          <input
+            matInput
+            formControlName="firstName"
+            cdeMarkEmptyFormControl
+            [value]="$any(page.user$ | async).firstName"
+          />
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="field middlename">
+          <mat-label>Middle name (optional)</mat-label>
+          <input
+            matInput
+            formControlName="middleName"
+            cdeMarkEmptyFormControl
+            [value]="$any(page.user$ | async).middleName"
+          />
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="field lastname">
+          <mat-label>Last name</mat-label>
+          <input
+            matInput
+            formControlName="lastName"
+            cdeMarkEmptyFormControl
+            [value]="$any(page.user$ | async).lastName"
+          />
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="field orcid">
+          <mat-label>ORCID (optional)</mat-label>
+          <input
+            matInput
+            formControlName="orcid"
+            cdeMarkEmptyFormControl
+            maxlength="19"
+            [value]="$any(page.user$ | async).orcid"
+            (input)="updateOrcid($any($event.target).value)"
+          />
+          <mat-error *ngIf="registrationForm.controls['orcid'].invalid">{{ getOrcidErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="field email">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" cdeMarkEmptyFormControl [value]="$any(page.user$ | async).email" />
+          <mat-error *ngIf="registrationForm.controls['email'].invalid">{{ getEmailErrorMessage() }}</mat-error>
+        </mat-form-field>
       </div>
 
-      <span class="subheader">Donor</span>
-      <div class="metadata-2">
-        <mat-form-field subscriptSizing="dynamic" class="sex-select">
+      <span class="subheader donor">Donor</span>
+      <div class="donor-fields">
+        <mat-form-field subscriptSizing="dynamic" class="field sex">
           <mat-label>Sex</mat-label>
           <mat-select disableRipple formControlName="sex" panelClass="options-container" cdeMarkEmptyFormControl>
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Female">Female</mat-option>
           </mat-select>
         </mat-form-field>
-
-        <mat-form-field subscriptSizing="dynamic">
+        <mat-form-field subscriptSizing="dynamic" class="field organ">
           <mat-label>Organ</mat-label>
           <input type="text" matInput formControlName="organ" [matAutocomplete]="organ" />
           <mat-icon class="search-icon" matPrefix>search</mat-icon>
@@ -130,12 +125,7 @@
             }
           </mat-autocomplete>
         </mat-form-field>
-
-        <mat-form-field subscriptSizing="dynamic">
-          <mat-label>Publication DOI (optional)</mat-label>
-          <input matInput formControlName="publicationDOI" cdeMarkEmptyFormControl />
-        </mat-form-field>
-        <mat-form-field subscriptSizing="dynamic">
+        <mat-form-field subscriptSizing="dynamic" class="field consortium">
           <mat-label>Consortium (Optional)</mat-label>
           <input type="text" matInput formControlName="consortium" [matAutocomplete]="consortium" />
           <mat-autocomplete #consortium="matAutocomplete" [displayWith]="displayFn">
@@ -143,6 +133,10 @@
               <mat-option [value]="consortium">{{ consortium }}</mat-option>
             }
           </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field subscriptSizing="dynamic" class="field doi">
+          <mat-label>Publication DOI (optional)</mat-label>
+          <input matInput formControlName="publicationDOI" cdeMarkEmptyFormControl />
         </mat-form-field>
       </div>
     </form>
