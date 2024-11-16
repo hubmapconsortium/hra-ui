@@ -80,6 +80,10 @@ export class RegistrationModalComponent implements OnInit {
         autoFocus: false,
         panelClass: 'registration-modal',
         hasBackdrop: false,
+        width: '100vw',
+        maxWidth: '100vw',
+        height: '100vh',
+        maxHeight: '100vh',
       })
       .afterOpened()
       .subscribe(() => {
