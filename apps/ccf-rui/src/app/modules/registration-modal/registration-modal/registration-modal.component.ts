@@ -1,13 +1,20 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalConfigState } from 'ccf-shared';
-import { combineLatest } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { combineLatest, fromEvent } from 'rxjs';
+import { EMPTY_SUBSCRIPTION } from 'rxjs/internal/Subscription';
+import { filter, map, startWith, switchAll, take, tap, throttleTime } from 'rxjs/operators';
 
 import { GlobalConfig } from '../../../core/services/config/config';
 import { ModelState } from '../../../core/store/model/model.state';
 import { PageState } from '../../../core/store/page/page.state';
 import { ReferenceDataState } from '../../../core/store/reference-data/reference-data.state';
+import {
+  DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY,
+  SCREEN_SIZE_NOTICE_MAX_HEIGHT,
+  SCREEN_SIZE_NOTICE_MAX_WIDTH,
+  ScreenSizeNoticeComponent,
+} from '../../screen-size-notice/screen-size-notice.component';
 import { RegistrationContentComponent } from '../registration-content/registration-content.component';
 
 /**
@@ -65,12 +72,43 @@ export class RegistrationModalComponent implements OnInit {
   }
 
   /**
-   * Opens dialog
+   * Opens dialog and opens screen size notice panel if necessary
    */
   openDialog(): void {
-    this.dialog.open(RegistrationContentComponent, {
-      autoFocus: false,
-      panelClass: 'registration-modal',
-    });
+    this.dialog
+      .open(RegistrationContentComponent, {
+        autoFocus: false,
+        panelClass: 'registration-modal',
+        hasBackdrop: false,
+      })
+      .afterOpened()
+      .subscribe(() => {
+        const initialStorageValue = booleanAttribute(localStorage.getItem(DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY));
+        if (initialStorageValue) {
+          return EMPTY_SUBSCRIPTION;
+        }
+        const testScreenSize = () =>
+          window.innerWidth < SCREEN_SIZE_NOTICE_MAX_WIDTH || window.innerHeight < SCREEN_SIZE_NOTICE_MAX_HEIGHT;
+        const afterClosed$ = fromEvent(window, 'resize').pipe(
+          throttleTime(50),
+          startWith({}),
+          filter(testScreenSize),
+          take(1),
+          map(() => {
+            return this.dialog.open(ScreenSizeNoticeComponent, {
+              panelClass: 'screen-size-notice-panel',
+              width: '456px',
+              disableClose: true,
+              closeOnNavigation: false,
+            });
+          }),
+          map((ref) => ref.afterClosed()),
+          switchAll(),
+        );
+
+        return afterClosed$.subscribe(() => {
+          localStorage.setItem(DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY, 'true');
+        });
+      });
   }
 }
