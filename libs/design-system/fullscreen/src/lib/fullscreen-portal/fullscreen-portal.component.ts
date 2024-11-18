@@ -100,6 +100,9 @@ export class FullscreenPortalComponent {
   /** Heading of the dialog */
   readonly title = input.required<string>();
 
+  /** Classes to apply to the dialog panel in fullscreen mode */
+  readonly panelClass = input<string | string[]>();
+
   /** Event for before the dialog is opened */
   readonly beforeOpened = output<void>();
   /** Event for when the dialog is opened */
@@ -155,10 +158,12 @@ export class FullscreenPortalComponent {
     }
 
     const { dialogService, dialogTemplateRef } = this;
+    const panelClass = this.panelClass() ?? [];
+    const normalizedPanelClass = typeof panelClass === 'string' ? panelClass.split(' ') : panelClass;
 
     this.beforeOpened.emit();
     const dialogRef = (this.dialogRef = dialogService.open(dialogTemplateRef(), {
-      panelClass: 'fullscreen-panel',
+      panelClass: [...normalizedPanelClass, 'fullscreen-panel'],
     }));
 
     dialogRef

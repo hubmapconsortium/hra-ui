@@ -51,3 +51,11 @@
     }
   }
 }
+
+::ng-deep div.node-dist-vis-fullscreen-panel {
+  --mdc-dialog-container-color: black;
+
+  .header {
+    background-color: white;
+  }
+}
