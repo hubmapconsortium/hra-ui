@@ -422,9 +422,20 @@ a {
   box-sizing: inherit;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 html {
   --sys-background: #f6feff;
-  --sys-error: #bc4f00;
+  --sys-error: #883700;
   --sys-error-container: #ffdcc4;
   --sys-inverse-on-surface: #ecf2f3;
   --sys-inverse-primary: #c7c5d3;
@@ -582,6 +593,12 @@ html {
   --sys-wordmark-small-size: 0.75rem;
   --sys-wordmark-small-tracking: 0rem;
   --sys-wordmark-small-weight: 400;
+  --sys-label-micro: 500 0.625rem / 1rem Metropolis;
+  --sys-label-micro-font: Metropolis;
+  --sys-label-micro-line-height: 1rem;
+  --sys-label-micro-size: 0.625rem;
+  --sys-label-micro-tracking: 0rem;
+  --sys-label-micro-weight: 500;
   --mat-app-background-color: var(--sys-background);
   --mat-app-text-color: var(--sys-on-background);
   --mat-app-elevation-shadow-level-0: 0px 0px 0px 0px rgba(32, 30, 61, 0.2), 0px 0px 0px 0px rgba(32, 30, 61, 0.14), 0px 0px 0px 0px rgba(32, 30, 61, 0.12);

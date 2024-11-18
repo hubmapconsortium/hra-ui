@@ -165,11 +165,6 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#buttonSize" >buttonSize</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#fontVar" >fontVar</a>
                             </li>
                             <li>
@@ -209,39 +204,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="buttonSize"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>buttonSize</b></span>
-                        <a href="#buttonSize"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; BUTTON_CONFIG[this.size()])</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:43</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Gets size of button in rem</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="fontVar"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -258,7 +220,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -291,7 +253,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -323,7 +285,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -346,7 +308,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, Directive, input } from &#x27;@angular/core&#x27;;
 
 /** Input options for icon button size */
-export type IconButtonSize &#x3D; &#x27;medium&#x27; | &#x27;large&#x27;;
+export type IconButtonSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27; | &#x27;large&#x27;;
 
 /** Interface for ButtonToggle Config */
 interface ButtonToggleConfig {
@@ -358,6 +320,10 @@ interface ButtonToggleConfig {
 
 /** Record of button sizes (number in rem) */
 const BUTTON_CONFIG: Record&lt;IconButtonSize, ButtonToggleConfig&gt; &#x3D; {
+  small: {
+    lineHeight: 18,
+    font: &#x27;--sys-label-small&#x27;,
+  },
   medium: {
     lineHeight: 21,
     font: &#x27;--sys-label-medium&#x27;,
@@ -383,9 +349,6 @@ const BUTTON_CONFIG: Record&lt;IconButtonSize, ButtonToggleConfig&gt; &#x3D; {
 export class ToggleButtonSizeDirective {
   /** Size of icon button to use */
   readonly size &#x3D; input.required&lt;IconButtonSize&gt;({ alias: &#x27;hraButtonToggleSize&#x27; });
-
-  /** Gets size of button in rem */
-  protected readonly buttonSize &#x3D; computed(() &#x3D;&gt; BUTTON_CONFIG[this.size()]);
 
   /** Gets the font variable for the current button size */
   protected readonly fontVar &#x3D; computed(() &#x3D;&gt; &#x60;var(${BUTTON_CONFIG[this.size()].font})&#x60;);

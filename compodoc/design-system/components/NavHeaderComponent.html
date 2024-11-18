@@ -167,8 +167,11 @@
                             <code>CommonModule</code>
                                 <code><a href="../modules/ButtonModule.html" target="_self" >MatButtonModule</a></code>
                             <code>MatIconModule</code>
-                                <code><a href="../components/AppLogosComponent.html" target="_self" >AppLogosComponent</a></code>
+                                <code><a href="../components/NavHeaderButtonsComponent.html" target="_self" >NavHeaderButtonsComponent</a></code>
                                 <code><a href="../directives/IconButtonSizeDirective.html" target="_self" >IconButtonSizeDirective</a></code>
+                            <code>MatSidenavModule</code>
+                                <code><a href="../components/AppsCardComponent.html" target="_self" >AppsCardComponent</a></code>
+                                <code><a href="../modules/ScrollingModule.html" target="_self" >ScrollingModule</a></code>
                 </td>
             </tr>
 
@@ -209,15 +212,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#description" >description</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#icon" >icon</a>
+                                <a href="#app" >app</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#link" >link</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#navigationCategories" >navigationCategories</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#status" >status</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -241,13 +248,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#description" >description</a>
-                            </li>
-                            <li>
-                                <a href="#icon" >icon</a>
+                                <a href="#app" >app</a>
                             </li>
                             <li>
                                 <a href="#link" >link</a>
+                            </li>
+                            <li>
+                                <a href="#status" >status</a>
                             </li>
                             <li>
                                 <a href="#title" >title</a>
@@ -270,29 +277,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="description"></a>
-                        <b>description</b>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:29</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Description of the app</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="icon"></a>
-                        <b>icon</b>
+                        <a name="app"></a>
+                        <b>app</b>
                     </td>
                 </tr>
                 <tr>
@@ -302,12 +288,12 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:57</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Icon for the app</p>
+                        <div class="io-description"><p>Current app</p>
 </div>
                     </td>
                 </tr>
@@ -328,12 +314,33 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:55</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Link to the app</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="status"></a>
+                        <b>status</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Status of the app</p>
 </div>
                     </td>
                 </tr>
@@ -354,7 +361,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:59</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -379,50 +386,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="description"></a>
+                    <a name="app"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>description</b></span>
-                        <a href="#description"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>app</b></span>
+                        <a href="#app"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Description of the app</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="icon"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>icon</b></span>
-                        <a href="#icon"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:25</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Icon for the app</p>
+                    <div class="io-description"><p>Current app</p>
 </div>
                 </td>
             </tr>
@@ -443,13 +423,72 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:55</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Link to the app</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigationCategories"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>navigationCategories</b></span>
+                        <a href="#navigationCategories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>input.required&lt;CardData[]&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data to display in sidenav</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="status"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Status of the app</p>
 </div>
                 </td>
             </tr>
@@ -470,7 +509,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -497,12 +536,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>input&lt;AppLogosVariant&gt;(&#x27;default&#x27;)</code>
+                        <i>Default value : </i><code>input&lt;NavHeaderButtonsVariant&gt;(&#x27;basic&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">nav-header/src/lib/nav-header.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -525,8 +564,31 @@
 import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
+import { AppsCardComponent } from &#x27;@hra-ui/design-system/apps-card&#x27;;
 import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
-import { AppLogosComponent, AppLogosVariant } from &#x27;@hra-ui/design-system/app-logos&#x27;;
+import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from &#x27;@hra-ui/design-system/nav-header-buttons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { SoftwareStatus } from &#x27;@hra-ui/design-system/software-status-indicator&#x27;;
+
+/** Sidenav card data */
+export interface CardData {
+  /** Name of card category */
+  category: string;
+  /** Info for apps in category */
+  cards: {
+    /** Name of app */
+    name: string;
+    /** Icon path */
+    icon: string;
+    /** App title */
+    title: string;
+    /** App description */
+    description: string;
+    /** Link to app */
+    link: string;
+  }[];
+}
 
 /**
  * Navigation Header Component
@@ -534,38 +596,80 @@ import { AppLogosComponent, AppLogosVariant } from &#x27;@hra-ui/design-system/a
 @Component({
   selector: &#x27;hra-nav-header&#x27;,
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, AppLogosComponent, IconButtonSizeDirective],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    NavHeaderButtonsComponent,
+    IconButtonSizeDirective,
+    MatSidenavModule,
+    AppsCardComponent,
+    ScrollingModule,
+  ],
   templateUrl: &#x27;./nav-header.component.html&#x27;,
   styleUrl: &#x27;./nav-header.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavHeaderComponent {
   /** Variant of the header */
-  readonly variant &#x3D; input&lt;AppLogosVariant&gt;(&#x27;default&#x27;);
+  readonly variant &#x3D; input&lt;NavHeaderButtonsVariant&gt;(&#x27;basic&#x27;);
   /** Link to the app */
   readonly link &#x3D; input.required&lt;string&gt;();
-  /** Icon for the app */
-  readonly icon &#x3D; input.required&lt;string&gt;();
+  /** Current app */
+  readonly app &#x3D; input.required&lt;string&gt;();
   /** Name of the app */
   readonly title &#x3D; input.required&lt;string&gt;();
-  /** Description of the app */
-  readonly description &#x3D; input&lt;string&gt;();
+  /** Status of the app */
+  readonly status &#x3D; input&lt;SoftwareStatus&gt;();
+  /** Data to display in sidenav */
+  readonly navigationCategories &#x3D; input.required&lt;CardData[]&gt;();
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-app-logos
-  [variant]&#x3D;&quot;variant()&quot;
-  [appLink]&#x3D;&quot;link()&quot;
-  [appIcon]&#x3D;&quot;icon()&quot;
-  [appTitle]&#x3D;&quot;title()&quot;
-  [appDescription]&#x3D;&quot;description()&quot;
-&gt;&lt;/hra-app-logos&gt;
-&lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
-&lt;button mat-icon-button hraIconButtonSize&#x3D;&quot;large&quot;&gt;
-  &lt;mat-icon&gt;apps&lt;/mat-icon&gt;
-&lt;/button&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-sidenav-container class&#x3D;&quot;container&quot;&gt;
+  &lt;mat-sidenav #sidenav mode&#x3D;&quot;over&quot; class&#x3D;&quot;apps-sidenav&quot; position&#x3D;&quot;end&quot; [fixedInViewport]&#x3D;&quot;false&quot;&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;span class&#x3D;&quot;sidenav-title&quot;&gt; HuBMAP Tools &amp; Applications &lt;/span&gt;
+      &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
+      &lt;button mat-icon-button hraIconButtonSize&#x3D;&quot;large&quot; disableRipple (click)&#x3D;&quot;sidenav.toggle()&quot;&gt;
+        &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;ng-scrollbar&gt;
+      @for (item of navigationCategories(); track item) {
+        &lt;div class&#x3D;&quot;category&quot;&gt;
+          &lt;div class&#x3D;&quot;card-category&quot;&gt;{{ item.category }}&lt;/div&gt;
+          @for (card of item.cards; track card) {
+            &lt;hra-apps-card
+              [icon]&#x3D;&quot;card.icon&quot;
+              [title]&#x3D;&quot;card.name&quot;
+              [description]&#x3D;&quot;card.description&quot;
+              [link]&#x3D;&quot;card.link&quot;
+            &gt;&lt;/hra-apps-card&gt;
+          }
+        &lt;/div&gt;
+      }
+    &lt;/ng-scrollbar&gt;
+  &lt;/mat-sidenav&gt;
+
+  &lt;mat-sidenav-content&gt;
+    &lt;div class&#x3D;&quot;main&quot;&gt;
+      &lt;hra-nav-header-buttons
+        [variant]&#x3D;&quot;variant()&quot;
+        [appLink]&#x3D;&quot;link()&quot;
+        [app]&#x3D;&quot;app()&quot;
+        [appTitle]&#x3D;&quot;title()&quot;
+        [appStatus]&#x3D;&quot;status()&quot;
+      &gt;&lt;/hra-nav-header-buttons&gt;
+      &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
+      &lt;button mat-icon-button hraIconButtonSize&#x3D;&quot;large&quot; disableRipple (click)&#x3D;&quot;sidenav.toggle()&quot;&gt;
+        &lt;mat-icon&gt;apps&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/mat-sidenav-content&gt;
+&lt;/mat-sidenav-container&gt;
 </code></pre>
     </div>
 
@@ -595,9 +699,9 @@ export class NavHeaderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-app-logos  [variant]="variant()"  [appLink]="link()"  [appIcon]="icon()"  [appTitle]="title()"  [appDescription]="description()"></hra-app-logos><div class="filler"></div><button mat-icon-button hraIconButtonSize="large">  <mat-icon>apps</mat-icon></button></div>'
-    var COMPONENTS = [{'name': 'AppLogosComponent', 'selector': 'hra-app-logos'},{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'}];
-    var DIRECTIVES = [{'name': 'BreadcrumbsSizeDirective', 'selector': '[hraBreadcrumbSize]'},{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MenuSizeDirective', 'selector': '[hraMenuSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SelectSizeDirective', 'selector': '[hraSelectSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'}];
+        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="container">  <mat-sidenav #sidenav mode="over" class="apps-sidenav" position="end" [fixedInViewport]="false">    <div class="header">      <span class="sidenav-title"> HuBMAP Tools & Applications </span>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>close</mat-icon>      </button>    </div>    <ng-scrollbar>      @for (item of navigationCategories(); track item) {        <div class="category">          <div class="card-category">{{ item.category }}</div>          @for (card of item.cards; track card) {            <hra-apps-card              [icon]="card.icon"              [title]="card.name"              [description]="card.description"              [link]="card.link"            ></hra-apps-card>          }        </div>      }    </ng-scrollbar>  </mat-sidenav>  <mat-sidenav-content>    <div class="main">      <hra-nav-header-buttons        [variant]="variant()"        [appLink]="link()"        [app]="app()"        [appTitle]="title()"        [appStatus]="status()"      ></hra-nav-header-buttons>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>apps</mat-icon>      </button>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
+    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'}];
+    var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'NavHeaderComponent'};
 </script>
 <script src="../js/tree.js"></script>

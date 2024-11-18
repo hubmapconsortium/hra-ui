@@ -117,13 +117,13 @@
 <title>cluster_ScrollingModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="139,-70 139,-268 357,-268 357,-70 139,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ScrollingModule_imports</title>
-<polygon fill="none" stroke="black" points="149,-78 149,-130 347,-130 347,-78 149,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ScrollingModule_exports</title>
 <polygon fill="none" stroke="black" points="147,-208 147,-260 349,-260 349,-208 147,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ScrollingModule_imports</title>
+<polygon fill="none" stroke="black" points="149,-78 149,-130 347,-130 347,-78 149,-78"/>
 </g>
 <!-- ScrollOverflowFadeDirective -->
 <g id="node1" class="node">
@@ -248,7 +248,7 @@ import { ScrollOverflowFadeDirective } from &#x27;./scroll-overflow-fade/scroll-
 import { ScrollbarStylesComponent } from &#x27;./scrollbar-styles/scrollbar-styles.component&#x27;;
 
 /** Scrolling configuration */
-export interface ScollingOptions extends NgScrollbarOptions {
+export interface ScrollingOptions extends NgScrollbarOptions {
   /** Url to the scroll timeline polyfill script */
   polyfillUrl?: string;
 }
@@ -262,7 +262,7 @@ const DEFAULT_POLYFILL_URL &#x3D; &#x27;assets/polyfills/scroll-timeline-polyfil
  * @param options Scrollbar options
  * @returns An environment provider
  */
-export function provideScrolling(options?: ScollingOptions): EnvironmentProviders {
+export function provideScrolling(options?: ScrollingOptions): EnvironmentProviders {
   const polyfillUrl &#x3D; getCurrentScriptBasePath() + (options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
   return makeEnvironmentProviders([

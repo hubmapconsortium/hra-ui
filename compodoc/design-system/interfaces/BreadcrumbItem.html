@@ -265,8 +265,6 @@ import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
 
-import { BreadcrumbSize, BreadcrumbsSizeDirective } from &#x27;../breadcrumbs-size/breadcrumbs-size.directive&#x27;;
-
 /** Breadcrumb item */
 interface BreadcrumbItem {
   /** Name of item */
@@ -281,15 +279,12 @@ interface BreadcrumbItem {
 @Component({
   selector: &#x27;hra-breadcrumbs&#x27;,
   standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonModule, RouterModule, BreadcrumbsSizeDirective],
+  imports: [CommonModule, MatIconModule, ButtonModule, RouterModule],
   templateUrl: &#x27;./breadcrumbs.component.html&#x27;,
   styleUrl: &#x27;./breadcrumbs.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent {
-  /** Size of breadcrumbs component */
-  readonly size &#x3D; input.required&lt;BreadcrumbSize&gt;();
-
   /** Crumbs to display */
   readonly crumbs &#x3D; input&lt;BreadcrumbItem[]&gt;([]);
 }

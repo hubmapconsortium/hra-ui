@@ -256,7 +256,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, Directive, input } from &#x27;@angular/core&#x27;;
 
 /** Input options for icon button size */
-export type IconButtonSize &#x3D; &#x27;medium&#x27; | &#x27;large&#x27;;
+export type IconButtonSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27; | &#x27;large&#x27;;
 
 /** Interface for ButtonToggle Config */
 interface ButtonToggleConfig {
@@ -268,6 +268,10 @@ interface ButtonToggleConfig {
 
 /** Record of button sizes (number in rem) */
 const BUTTON_CONFIG: Record&lt;IconButtonSize, ButtonToggleConfig&gt; &#x3D; {
+  small: {
+    lineHeight: 18,
+    font: &#x27;--sys-label-small&#x27;,
+  },
   medium: {
     lineHeight: 21,
     font: &#x27;--sys-label-medium&#x27;,
@@ -293,9 +297,6 @@ const BUTTON_CONFIG: Record&lt;IconButtonSize, ButtonToggleConfig&gt; &#x3D; {
 export class ToggleButtonSizeDirective {
   /** Size of icon button to use */
   readonly size &#x3D; input.required&lt;IconButtonSize&gt;({ alias: &#x27;hraButtonToggleSize&#x27; });
-
-  /** Gets size of button in rem */
-  protected readonly buttonSize &#x3D; computed(() &#x3D;&gt; BUTTON_CONFIG[this.size()]);
 
   /** Gets the font variable for the current button size */
   protected readonly fontVar &#x3D; computed(() &#x3D;&gt; &#x60;var(${BUTTON_CONFIG[this.size()].font})&#x60;);

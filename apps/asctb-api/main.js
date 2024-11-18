@@ -89,8 +89,7 @@ function setupCSVRoutes(app) {
     /**
      * Fetch a CSV given a link and parse it into json or graph output
      */
-    app.get('/v2/csv', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-        var _a;
+    app.get('/v2/csv', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         // query parameters
         const csvUrls = req.query.csvUrl;
@@ -98,9 +97,9 @@ function setupCSVRoutes(app) {
         const withSubclasses = req.query.subclasses !== 'false';
         const output = req.query.output;
         try {
-            const asctbDataResponses = yield Promise.all(csvUrls.split('|').map((csvUrl) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            const asctbDataResponses = await Promise.all(csvUrls.split('|').map(async (csvUrl) => {
                 const parsedUrl = (0, api_functions_1.normalizeCsvUrl)(csvUrl.trim());
-                const response = yield axios_1.default.get(parsedUrl);
+                const response = await axios_1.default.get(parsedUrl);
                 const { data } = papaparse_1.default.parse(response.data, {
                     skipEmptyLines: 'greedy',
                 });
@@ -113,7 +112,7 @@ function setupCSVRoutes(app) {
                     warnings: asctbData.warnings,
                     isOmap: asctbData.isOmap,
                 };
-            })));
+            }));
             const asctbData = asctbDataResponses
                 .map((response) => response.data)
                 .reduce((result, data) => {
@@ -122,14 +121,14 @@ function setupCSVRoutes(app) {
             }, []);
             const asctbDataResponse = asctbDataResponses[0];
             if (output === 'owl') {
-                const graphData = yield (0, graph_owl_functions_1.makeOwlData)((0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses));
+                const graphData = await (0, graph_owl_functions_1.makeOwlData)((0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses));
                 res.type('application/rdf+xml');
                 return res.send(graphData);
             }
             else if (output === 'jsonld') {
                 let graphData = (0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses);
                 if (expanded) {
-                    graphData = yield (0, jsonld_1.expand)(graphData);
+                    graphData = await (0, jsonld_1.expand)(graphData);
                 }
                 return res.send(graphData);
             }
@@ -152,7 +151,7 @@ function setupCSVRoutes(app) {
                     csv: asctbDataResponse.csv,
                     parsed: asctbDataResponse.parsed,
                     warnings: asctbDataResponse.warnings,
-                    isOmap: (_a = asctbDataResponse.isOmap) !== null && _a !== void 0 ? _a : false,
+                    isOmap: asctbDataResponse.isOmap ?? false,
                 });
             }
         }
@@ -163,11 +162,11 @@ function setupCSVRoutes(app) {
                 code: 500,
             });
         }
-    }));
+    });
     /**
      * Parse a CSV into JSON format given the raw file formData
      */
-    app.post('/v2/csv', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    app.post('/v2/csv', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         if (!req.files || !req.files.csvFile) {
             return res.status(400).send({
@@ -205,10 +204,10 @@ function setupCSVRoutes(app) {
                 code: 500,
             });
         }
-    }));
-    app.get('/v2/csv/validate', () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    });
+    app.get('/v2/csv/validate', async () => {
         console.log();
-    }));
+    });
 }
 
 
@@ -407,16 +406,15 @@ function validateHeaderRow(headerData, rowIndex, warnings) {
     });
 }
 function checkMissingIds(column, index, row, value, rowData, warnings) {
-    var _a, _b, _c, _d;
     /**
      * check for missing Uberon/CL IDs:
      */
     const lastElement = column[column.length - 1];
     const isId = lastElement.toLowerCase() === api_model_1.objectFieldMap.ID;
     if (isId) {
-        const nameValue = (_b = (_a = rowData[index - 2]) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : '';
+        const nameValue = rowData[index - 2]?.trim() ?? '';
         const idValue = value.trim();
-        const labelValue = (_d = (_c = rowData[index - 1]) === null || _c === void 0 ? void 0 : _c.trim()) !== null && _d !== void 0 ? _d : '';
+        const labelValue = rowData[index - 1]?.trim() ?? '';
         if (nameValue) {
             if (!idValue) {
                 const colName = columnIndexToName(index);
@@ -453,17 +451,25 @@ function makeASCTBData(data) {
         const omapTransformer = new omap_functions_1.OmapDataTransformer(data, true);
         const omapWarnings = omapTransformer.warnings;
         const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
-        return Object.assign(Object.assign({}, asctbData), { warnings: [...asctbData.warnings, ...omapWarnings], isOmap: true });
+        return {
+            ...asctbData,
+            warnings: [...asctbData.warnings, ...omapWarnings],
+            isOmap: true,
+        };
     }
     else if (header[0] === api_model_1.OMAP_HEADER_FIRST_COLUMN) {
         const omapTransformer = new omap_functions_1.OmapDataTransformer(data, false);
         const omapWarnings = omapTransformer.warnings;
         const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
-        return Object.assign(Object.assign({}, asctbData), { warnings: [...asctbData.warnings, ...omapWarnings], isOmap: true });
+        return {
+            ...asctbData,
+            warnings: [...asctbData.warnings, ...omapWarnings],
+            isOmap: true,
+        };
     }
     else if (header[0] === api_model_1.ASCT_HEADER_FIRST_COLUMN) {
         const asctbData = makeASCTBDataWork(data);
-        return Object.assign(Object.assign({}, asctbData), { isOmap: false });
+        return { ...asctbData, isOmap: false };
     }
     else {
         throw new Error(`Header row, first column should be : ${api_model_1.ASCT_HEADER_FIRST_COLUMN} or ${api_model_1.OMAP_HEADER_FIRST_COLUMN}`);
@@ -644,6 +650,9 @@ function createObject(name, structureType) {
     }
 }
 class Reference {
+    id;
+    doi;
+    notes;
     constructor(id) {
         this.id = id;
     }
@@ -653,9 +662,13 @@ class Reference {
 }
 exports.Reference = Reference;
 class Structure {
+    name;
+    id = '';
+    rdfs_label = '';
+    b_type;
+    proteinPresence;
+    notes;
     constructor(name, structureType) {
-        this.id = '';
-        this.rdfs_label = '';
         this.name = name;
         this.setBiomarkerProperties(structureType, name);
     }
@@ -701,18 +714,19 @@ class Structure {
 }
 exports.Structure = Structure;
 class Row {
+    rowNumber;
+    anatomical_structures = [];
+    cell_types = [];
+    biomarkers = [];
+    biomarkers_protein = [];
+    biomarkers_gene = [];
+    biomarkers_lipids = [];
+    biomarkers_meta = [];
+    biomarkers_prot = [];
+    ftu_types = [];
+    references = [];
     constructor(rowNumber) {
         this.rowNumber = rowNumber;
-        this.anatomical_structures = [];
-        this.cell_types = [];
-        this.biomarkers = [];
-        this.biomarkers_protein = [];
-        this.biomarkers_gene = [];
-        this.biomarkers_lipids = [];
-        this.biomarkers_meta = [];
-        this.biomarkers_prot = [];
-        this.ftu_types = [];
-        this.references = [];
     }
     finalize() {
         this.anatomical_structures = this.anatomical_structures.filter((s) => s.isValid());
@@ -798,7 +812,7 @@ function buildHGNCLink(id) {
     return `http://identifiers.org/hgnc/${id}`;
 }
 function fixOntologyId(id) {
-    if ((id === null || id === void 0 ? void 0 : id.toLowerCase()) === 'n/a' || (id === null || id === void 0 ? void 0 : id.toLowerCase()) === 'not found') {
+    if (id?.toLowerCase() === 'n/a' || id?.toLowerCase() === 'not found') {
         return '';
     }
     // Fix IDs from ASCT+B Tables. Ideally, these changes are made up stream for next release and no transformation is necessary
@@ -864,6 +878,13 @@ exports.OmapDataTransformer = void 0;
 const api_model_1 = __webpack_require__(11);
 const api_functions_1 = __webpack_require__(10);
 class OmapDataTransformer {
+    data;
+    headerRow;
+    _warnings;
+    metaData;
+    _transformedData;
+    isLegacyOmap;
+    columns;
     constructor(data, legacy = false) {
         this.isLegacyOmap = legacy;
         this.data = data;
@@ -893,11 +914,10 @@ class OmapDataTransformer {
         return newHeaderRow;
     }
     createData() {
-        var _a;
         const dataObject = this.createMapOfOldColumnsAndValues();
         // Decides whether to take organs from table or constants
         const organColumnsPresent = ['organ', 'organ_uberon'].every((column) => this.columns.includes(column));
-        const organ = (_a = api_model_1.OMAP_ORGAN[this.metaData.data_doi]) !== null && _a !== void 0 ? _a : api_model_1.OMAP_ORGAN.default;
+        const organ = api_model_1.OMAP_ORGAN[this.metaData.data_doi] ?? api_model_1.OMAP_ORGAN.default;
         if (!(this.isLegacyOmap || organColumnsPresent)) {
             this._warnings.add('WARNING: Organ Columns Missing. Adding default Organ Columns');
         }
@@ -911,10 +931,9 @@ class OmapDataTransformer {
         let organLabelMissingWarningAdded = false;
         let organUberonMissingWarningAdded = false;
         dataObject.forEach((data) => {
-            var _a, _b, _c, _d, _e;
             const uniprots = data.uniprot_accession_number.split(', ');
             const hgncIds = data.HGNC_ID.split(', ');
-            const targetNames = (_b = (_a = data.target_symbol) === null || _a === void 0 ? void 0 : _a.split(', ')) !== null && _b !== void 0 ? _b : [];
+            const targetNames = data.target_symbol?.split(', ') ?? [];
             if (!(uniprots.length === hgncIds.length && hgncIds.length === targetNames.length)) {
                 this.warnings.add('WARNING: Number of entires in column uniprot_accession_number, HGNC_ID,' +
                     `target_symbol are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
@@ -945,7 +964,7 @@ class OmapDataTransformer {
                     : [data.organ, data.organ, data.organ_uberon];
                 const maxBPs = Math.max(uniprots.length, hgncIds.length, targetNames.length);
                 for (let i = 0; i < maxBPs; i++) {
-                    newrow.push((_c = targetNames[i]) !== null && _c !== void 0 ? _c : '', (_d = uniprots[i]) !== null && _d !== void 0 ? _d : '', (_e = hgncIds[i]) !== null && _e !== void 0 ? _e : '', notes !== null && notes !== void 0 ? notes : '');
+                    newrow.push(targetNames[i] ?? '', uniprots[i] ?? '', hgncIds[i] ?? '', notes ?? '');
                 }
                 transformedData.push(newrow);
             }
@@ -1027,21 +1046,23 @@ var CcfProperty;
     CcfProperty["OCCURS_IN"] = "ccf:occurs_in";
 })(CcfProperty || (CcfProperty = {}));
 function makeJsonLdData(data, withSubclasses = true) {
-    var _a;
     const { nodes, edges } = data;
     const iriLookup = {};
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nodeMap = new Map();
     nodes.forEach((node, index) => {
-        var _a, _b;
         let ontologyId = node.metadata.ontologyId;
         let iri;
-        if ((_a = (ontologyId === null || ontologyId === void 0 ? void 0 : ontologyId.trim().length) > 0) !== null && _a !== void 0 ? _a : false) {
+        if (ontologyId?.trim().length > 0 ?? false) {
             ontologyId = (0, lookup_functions_1.fixOntologyId)(ontologyId);
             iri = (0, lookup_functions_1.guessIri)(ontologyId);
         }
         if (!iri) {
-            const suffix = (_b = node.name) === null || _b === void 0 ? void 0 : _b.toLowerCase().trim().replace(/\W+/g, '-').replace(/[^a-z0-9-]+/g, '');
+            const suffix = node.name
+                ?.toLowerCase()
+                .trim()
+                .replace(/\W+/g, '-')
+                .replace(/[^a-z0-9-]+/g, '');
             ontologyId = `ASCTB-TEMP:${suffix}`;
             iri = `https://purl.org/ccf/ASCTB-TEMP_${suffix}`;
         }
@@ -1059,7 +1080,6 @@ function makeJsonLdData(data, withSubclasses = true) {
         }
     });
     edges.forEach((edge) => {
-        var _a, _b, _c, _d, _e;
         const source = {
             iri: iriLookup[edge.source],
             type: nodes[edge.source].type,
@@ -1073,24 +1093,24 @@ function makeJsonLdData(data, withSubclasses = true) {
         if (source.iri !== target.iri) {
             switch (source.type + target.type) {
                 case graph_model_1.Edge_type.AS_AS:
-                    target.node.part_of = ((_a = target.node.part_of) !== null && _a !== void 0 ? _a : new Set()).add(source.iri);
+                    target.node.part_of = (target.node.part_of ?? new Set()).add(source.iri);
                     break;
                 case graph_model_1.Edge_type.AS_CT:
-                    target.node.located_in = ((_b = target.node.located_in) !== null && _b !== void 0 ? _b : new Set()).add(source.iri);
+                    target.node.located_in = (target.node.located_in ?? new Set()).add(source.iri);
                     break;
                 case graph_model_1.Edge_type.CT_CT:
-                    target.node.is_a = ((_c = target.node.is_a) !== null && _c !== void 0 ? _c : new Set()).add(source.iri);
+                    target.node.is_a = (target.node.is_a ?? new Set()).add(source.iri);
                     break;
                 case graph_model_1.Edge_type.CT_G:
                 case graph_model_1.Edge_type.CT_P:
                 case graph_model_1.Edge_type.CT_BL:
                 case graph_model_1.Edge_type.CT_BM:
                 case graph_model_1.Edge_type.CT_BF:
-                    target.node.characterizes = ((_d = target.node.characterizes) !== null && _d !== void 0 ? _d : new Set()).add(source.iri);
+                    target.node.characterizes = (target.node.characterizes ?? new Set()).add(source.iri);
                     break;
                 case graph_model_1.Edge_type.AS_G:
                 case graph_model_1.Edge_type.AS_P:
-                    target.node.occurs_in = ((_e = source.node.occurs_in) !== null && _e !== void 0 ? _e : new Set()).add(source.iri);
+                    target.node.occurs_in = (source.node.occurs_in ?? new Set()).add(source.iri);
                     break;
                 default:
                     console.log(source.type + target.type);
@@ -1106,7 +1126,7 @@ function makeJsonLdData(data, withSubclasses = true) {
             occurs_in: node.occurs_in ? [...node.occurs_in] : undefined,
         });
         if (withSubclasses) {
-            let subclasses = (_a = node['rdfs:subClassOf']) !== null && _a !== void 0 ? _a : [];
+            let subclasses = node['rdfs:subClassOf'] ?? [];
             if (node.part_of) {
                 subclasses = subclasses.concat(node.part_of.map((iri, index) => ({
                     '@id': `_:n${node.id.replace(':', '')}_ASAS${index}`,
@@ -1286,6 +1306,14 @@ var Edge_type;
     Edge_type["AS_P"] = "ASprotein";
 })(Edge_type || (exports.Edge_type = Edge_type = {}));
 class GNode {
+    id;
+    parent;
+    type;
+    name;
+    comparator;
+    comparatorName;
+    comparatorId;
+    metadata;
     constructor(id, name, parent, ontologyId, label, type, references, bType) {
         this.id = id;
         this.parent = parent;
@@ -1299,6 +1327,13 @@ class GNode {
 }
 exports.GNode = GNode;
 class Metadata {
+    ontologyTypeId;
+    ontologyType;
+    label;
+    name;
+    ontologyId;
+    bmType;
+    references;
     constructor(name, ontologyId, label, references, bmType) {
         this.name = name;
         this.ontologyId = ontologyId;
@@ -1328,35 +1363,55 @@ exports.Metadata = Metadata;
 
 /***/ }),
 /* 18 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.makeOwlData = makeOwlData;
-const tslib_1 = __webpack_require__(1);
 const stream_1 = __webpack_require__(19);
-function makeOwlData(data) {
-    return tslib_1.__awaiter(this, void 0, void 0, function* () {
-        const inputReadable = new stream_1.Readable({
-            read: () => {
-                inputReadable.push(JSON.stringify(data));
-                inputReadable.push(null);
-            },
+async function makeOwlData(data) {
+    const inputReadable = new stream_1.Readable({
+        read: () => {
+            inputReadable.push(JSON.stringify(data));
+            inputReadable.push(null);
+        },
+    });
+    // This package has some kind of incompatibility with how nx transpiles/executes modules
+    // If imported top level the serve command fails with `require() of ES Module [...] not supported`
+    // Dynamically importing the module works fine though!
+    const { default: formats } = await Promise.resolve().then(() => __importStar(__webpack_require__(20)));
+    const input = formats.parsers.import('application/ld+json', inputReadable);
+    const output = formats.serializers.import('application/rdf+xml', input);
+    return new Promise((resolve) => {
+        let xmlString = '';
+        output.on('data', (xmlData) => {
+            xmlString += xmlData;
         });
-        // This package has some kind of incompatibility with how nx transpiles/executes modules
-        // If imported top level the serve command fails with `require() of ES Module [...] not supported`
-        // Dynamically importing the module works fine though!
-        const { default: formats } = yield Promise.resolve().then(() => tslib_1.__importStar(__webpack_require__(20)));
-        const input = formats.parsers.import('application/ld+json', inputReadable);
-        const output = formats.serializers.import('application/rdf+xml', input);
-        return new Promise((resolve) => {
-            let xmlString = '';
-            output.on('data', (xmlData) => {
-                xmlString += xmlData;
-            });
-            output.on('end', () => {
-                resolve(xmlString);
-            });
+        output.on('end', () => {
+            resolve(xmlString);
         });
     });
 }
@@ -1581,7 +1636,7 @@ function setupGoogleSheetRoutes(app) {
     /**
      * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.
      */
-    app.get('/v2/:sheetid/:gid', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    app.get('/v2/:sheetid/:gid', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         const f1 = req.params.sheetid;
         const f2 = req.params.gid;
@@ -1591,7 +1646,7 @@ function setupGoogleSheetRoutes(app) {
                 response = { data: const_1.PLAYGROUND_CSV };
             }
             else {
-                response = yield axios_1.default.get(`https://docs.google.com/spreadsheets/d/${f1}/export?format=csv&gid=${f2}`);
+                response = await axios_1.default.get(`https://docs.google.com/spreadsheets/d/${f1}/export?format=csv&gid=${f2}`);
             }
             const { data } = papaparse_1.default.parse(response.data);
             const asctbData = (0, api_functions_1.makeASCTBData)(data);
@@ -1611,11 +1666,11 @@ function setupGoogleSheetRoutes(app) {
                 code: 500,
             });
         }
-    }));
+    });
     /**
      * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns Graph format.
      */
-    app.get('/v2/:sheetid/:gid/graph', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    app.get('/v2/:sheetid/:gid/graph', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         const sheetID = req.params.sheetid;
         const gID = req.params.gid;
@@ -1625,7 +1680,7 @@ function setupGoogleSheetRoutes(app) {
                 resp = { data: const_1.PLAYGROUND_CSV };
             }
             else {
-                resp = yield axios_1.default.get(`https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`);
+                resp = await axios_1.default.get(`https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`);
             }
             const { data } = papaparse_1.default.parse(resp.data);
             const asctbData = (0, api_functions_1.makeASCTBData)(data);
@@ -1641,7 +1696,7 @@ function setupGoogleSheetRoutes(app) {
                 code: 500,
             });
         }
-    }));
+    });
 }
 
 
@@ -1689,14 +1744,13 @@ function setupOntologyLookupRoutes(app) {
      * call the corresponding external ontology API to fetch data about that term, including
      * label and description.
      */
-    app.get('/lookup/:ontology/:id', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
+    app.get('/lookup/:ontology/:id', async (req, res) => {
         const ontologyCode = req.params.ontology.toUpperCase();
         const termId = req.params.id;
         const output = req.query.output;
         switch (ontologyCode) {
             case lookup_model_1.OntologyCode.HGNC: {
-                const response = yield axios_1.default.get((0, lookup_functions_1.buildHGNCApiUrl)(termId), {
+                const response = await axios_1.default.get((0, lookup_functions_1.buildHGNCApiUrl)(termId), {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 if (response.status === 200 && response.data) {
@@ -1710,7 +1764,10 @@ function setupOntologyLookupRoutes(app) {
                         link: (0, lookup_functions_1.buildHGNCLink)(firstResult.hgnc_id),
                         description: firstResult.name ? firstResult.name : '',
                     };
-                    res.send(Object.assign(Object.assign({}, (output === 'graph' && { additionalInfo: firstResult })), details));
+                    res.send({
+                        ...(output === 'graph' && { additionalInfo: firstResult }),
+                        ...details,
+                    });
                 }
                 else {
                     res.status(response.status).end();
@@ -1721,22 +1778,25 @@ function setupOntologyLookupRoutes(app) {
             case lookup_model_1.OntologyCode.CL:
             case lookup_model_1.OntologyCode.LMHA:
             case lookup_model_1.OntologyCode.FMA: {
-                const response = yield axios_1.default.get((0, lookup_functions_1.buildASCTApiUrl)(`${ontologyCode}:${termId}`));
-                if (response.status === 200 && ((_c = (_b = (_a = response.data) === null || _a === void 0 ? void 0 : _a._embedded) === null || _b === void 0 ? void 0 : _b.terms) === null || _c === void 0 ? void 0 : _c.length) > 0) {
+                const response = await axios_1.default.get((0, lookup_functions_1.buildASCTApiUrl)(`${ontologyCode}:${termId}`));
+                if (response.status === 200 && response.data?._embedded?.terms?.length > 0) {
                     const firstResult = response.data._embedded.terms[0];
                     const details = {
                         label: firstResult.label,
                         link: firstResult.iri,
                         description: firstResult.annotation.definition ? firstResult.annotation.definition[0] : '',
                     };
-                    res.send(Object.assign(Object.assign({}, (output === 'graph' && { additionalInfo: firstResult })), details));
+                    res.send({
+                        ...(output === 'graph' && { additionalInfo: firstResult }),
+                        ...details,
+                    });
                 }
                 else {
                     res.status(response.status).end();
                 }
             }
         }
-    }));
+    });
 }
 
 
@@ -1792,7 +1852,7 @@ function setupPlaygroundRoutes(app) {
     /**
      * Get the toy CSV data set for the default playground view
      */
-    app.get('/v2/playground', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    app.get('/v2/playground', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         try {
             const parsed = papaparse_1.default.parse(const_1.PLAYGROUND_CSV).data;
@@ -1812,11 +1872,11 @@ function setupPlaygroundRoutes(app) {
                 code: 500,
             });
         }
-    }));
+    });
     /**
      * Send updated data to render on the playground after editing the table
      */
-    app.post('/v2/playground', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+    app.post('/v2/playground', async (req, res) => {
         const csv = papaparse_1.default.unparse(req.body);
         try {
             const asctbData = (0, api_functions_1.makeASCTBData)(req.body.data);
@@ -1835,7 +1895,7 @@ function setupPlaygroundRoutes(app) {
                 code: 500,
             });
         }
-    }));
+    });
 }
 
 
@@ -1925,7 +1985,7 @@ module.exports = require("memory-cache");
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
