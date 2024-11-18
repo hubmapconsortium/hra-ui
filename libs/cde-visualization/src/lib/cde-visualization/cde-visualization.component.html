@@ -1,48 +1,49 @@
 <div class="header">
-  <cde-visualization-header
-    (resetView)="visualization.resetView()"
-    (resetAll)="cellTypesTable.resetSort(); visualization.resetView(); histogram.resetAllCellsColor(); resetCellTypes()"
-    (downloadNodes)="downloadNodes()"
-    (downloadEdges)="downloadEdges()"
-    [homeLink]="homeLink()"
-  ></cde-visualization-header>
+  <hra-nav-header-buttons
+    app="cde"
+    appTitle="Cell Distance Explorer"
+    appLink="/"
+    variant="basic"
+    appStatus="Beta"
+  ></hra-nav-header-buttons>
 </div>
 
 <div class="metadata">
-  <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
+  <cde-metadata [metadata]="metadataView()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
-    [selectedCellType]="selectedNodeTargetValue()"
-    (download)="downloadColorMap()"
+    [selectedCellType]="nodeTargetSelector()"
+    (downloadNodes)="downloadNodes()"
+    (downloadEdges)="downloadEdges()"
+    (downloadColorMap)="downloadColorMap()"
+    (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
 </div>
 
 <div class="visualizations">
-  <cde-node-dist-visualization
-    [nodes]="loadedNodes()"
-    [nodeTargetKey]="nodeTypeKey()"
-    [nodeTargetValue]="selectedNodeTargetValue()"
-    [edges]="loadedEdges()"
-    [maxEdgeDistance]="maxEdgeDistance()"
-    [colorMap]="cellTypesAsColorMap()"
-    [colorMapKey]="colorMapTypeKey()"
-    [colorMapValueKey]="colorMapValueKey()"
-    [cellTypesSelection]="cellTypesSelection()"
-    (nodeClick)="nodeClick.emit($event)"
-    (nodeHover)="nodeHover.emit($event)"
-    (edgesChange)="edges.set($event)"
-    #visualization
-  ></cde-node-dist-visualization>
+  <div class="top">
+    <cde-node-dist-visualization
+      [nodes]="nodesView()"
+      [edges]="edgesView()"
+      [maxEdgeDistance]="maxEdgeDistance()"
+      [colorMap]="cellTypesAsColorMap()"
+      [(nodeFilter)]="nodeFilterView"
+      (nodeClick)="nodeClick.emit($event)"
+      (nodeHover)="nodeHover.emit($event)"
+      (resetAllCells)="resetCellTypes()"
+      #visualization
+    ></cde-node-dist-visualization>
+
+    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
+  </div>
 
   <cde-histogram
-    [nodes]="loadedNodes()"
-    [nodeTargetKey]="nodeTypeKey()"
-    [edges]="loadedEdges()"
-    [selectedCellType]="selectedNodeTargetValue()"
-    [(cellTypes)]="cellTypes"
-    [cellTypesSelection]="cellTypesSelection()"
+    [colors]="filteredColors()"
+    [data]="filteredDistances()"
+    [filteredCellTypes]="filteredCellTypes()"
+    (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>
 </div>

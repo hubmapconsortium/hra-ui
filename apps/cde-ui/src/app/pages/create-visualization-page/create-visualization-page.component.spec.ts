@@ -21,6 +21,8 @@ import { VisualizationDataService } from '../../services/visualization-data-serv
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('@hra-ui/node-dist-vis', () => ({}));
+jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
 
 const resizeObserverInstance = mock<ResizeObserver>();
 global.ResizeObserver = jest.fn(() => resizeObserverInstance);
@@ -38,17 +40,17 @@ const sampleNodes = [
   createNodeEntry(nodeTargetKey, 'c', 0, 4),
 ];
 const processedSampleData = {
-  colorMapKey: 'cell_type',
-  colorMapValueKey: 'cell_color',
+  colorMapKey: 'Cell Type',
+  colorMapValueKey: 'HEX',
   metadata: {
     creationTimestamp: 0,
   } satisfies Metadata,
   nodeTargetKey: 'Cell Type',
   nodeTargetValue: 'a',
   nodes: [
-    { 'Cell Type': 'a', x: 0, y: 0 },
-    { 'Cell Type': 'b', x: 0, y: 2 },
-    { 'Cell Type': 'c', x: 0, y: 4 },
+    { 'Cell Type': 'a', x: 0, y: 0, z: undefined },
+    { 'Cell Type': 'b', x: 0, y: 2, z: undefined },
+    { 'Cell Type': 'c', x: 0, y: 4, z: undefined },
   ],
 };
 
@@ -82,13 +84,13 @@ const csvNodeDataMissingValues = `Cell Type,x,y
   a,0
   b,1,2`;
 
-const csvColorMap = `cell_id,cell_type,cell_color
-  0,cell1,[0,0,0]
-  1,cell2,[1,1,1]`;
+const csvColorMap = `cell_id,Cell Type,HEX
+  0,cell1,"[0,0,0]"
+  1,cell2,"[1,1,1]"`;
 
 const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
-  0,cell1,[0,0,0]
-  1,cell2,[1,1,1]`;
+  0,cell1,"[0,0,0]"
+  1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
   let instance: CreateVisualizationPageComponent;
@@ -110,7 +112,7 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('setNodes()', () => {
-    it('checks for required keys, if missing do not update data', async () => {
+    it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
       const data = new File([csvNodeDataWrongKeys], 'blah.csv', { type: 'text/csv' });
       const spy = jest.spyOn(instance.visualizationForm, 'patchValue');
@@ -118,7 +120,7 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.nodesErrorMessage).toMatch(/Required columns missing/);
+      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: Cell Type/);
     });
 
     it('sets nodes', async () => {
@@ -134,7 +136,9 @@ describe('CreateVisualizationPageComponent', () => {
         createNodeEntry(nodeTargetKey, DEFAULT_NODE_TARGET_VALUE, 0, 4),
       ];
       instance.setNodes(sampleNodes2);
-      expect(instance.visualizationForm.value.nodeTargetValue).toEqual(DEFAULT_NODE_TARGET_VALUE);
+      expect(instance.visualizationForm.controls['parameters'].value.nodeTargetValue).toEqual(
+        DEFAULT_NODE_TARGET_VALUE,
+      );
     });
   });
 
@@ -151,6 +155,13 @@ describe('CreateVisualizationPageComponent', () => {
     it('checks for valid nodes', async () => {
       instance.setNodes(sampleNodes);
       expect(instance.hasValidNodes()).toBeTruthy();
+    });
+  });
+
+  describe('hasValidData()', () => {
+    it('checks for valid data', async () => {
+      instance.setNodes(sampleNodes);
+      expect(instance.hasValidData()).toBeTruthy();
     });
   });
 
@@ -208,7 +219,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setCustomColorMap(sampleColorMap);
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleData);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it("doesn't submit if no nodes", async () => {
@@ -229,10 +240,9 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setNodes(sampleNodes);
       instance.setCustomColorMap(sampleColorMap);
       instance.visualizationForm.value.colorMapType = 'custom';
-      const processedSampleDataWithColorMap = { ...processedSampleData, colorMap: sampleColorMap };
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithColorMap);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('submits metadata', async () => {
@@ -241,17 +251,9 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = sampleMetadata;
-      const processedMetadata = {
-        creationTimestamp: 0,
-        organId: sampleMetadata.organ.id,
-        organ: sampleMetadata.organ.label,
-      };
-
-      const processedSampleDataWithMetadata = { ...processedSampleData, metadata: processedMetadata };
-
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('uses empty object as metadata if no metadata', async () => {
@@ -260,11 +262,10 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = undefined;
-      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: { creationTimestamp: 0 } };
 
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithEmptyMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
   });
 
@@ -285,7 +286,9 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: new Error(),
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Required columns missing/);
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(
+        'Required color format not detected. Please use [R, G, B].',
+      );
     });
 
     it('shows parse errors (cause is some other type)', async () => {

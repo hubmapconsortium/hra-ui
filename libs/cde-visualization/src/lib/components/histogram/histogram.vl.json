@@ -2,6 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": "container",
+  "background": "#fcfcfc",
   "config": {
     "font": "Metropolis",
     "padding": {
@@ -23,15 +24,6 @@
       "ticks": false,
       "domain": false,
       "labelPadding": 8
-    },
-    "legend": {
-      "titleFontSize": 14,
-      "titleLineHeight": 21,
-      "titleColor": "#201E3D",
-      "titleFontWeight": 500,
-      "labelFontSize": 14,
-      "labelFontWeight": 500,
-      "labelColor": "#4B4B5E"
     }
   },
   "data": {

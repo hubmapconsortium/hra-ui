@@ -1,0 +1,14 @@
+:host {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  background: var(--sys-surface-container);
+  gap: 0.5rem;
+  border-radius: 2rem;
+  font: var(--sys-label-large);
+
+  .file-name {
+    color: var(--sys-primary);
+  }
+}

@@ -1,46 +1,75 @@
-<div class="info mat-caption">
-  Visualization
-  <mat-icon
-    class="material-symbols-rounded"
-    cdkOverlayOrigin
-    #visTrigger="cdkOverlayOrigin"
-    (mouseover)="tooltipOpen = true"
-    (mouseout)="tooltipOpen = false"
-    >info</mat-icon
+<hra-expansion-panel [title]="'Visualization'" disabled>
+  <hra-expansion-panel-actions>
+    <cde-node-dist-visualization-menu
+      [(edgesDisabled)]="edgesDisabled"
+      (fullscreenClick)="fullscreen.open()"
+      (downloadClick)="download()"
+      (resetViewClick)="resetView()"
+      (resetDeletedClick)="resetDeletedNodes()"
+    >
+    </cde-node-dist-visualization-menu>
+  </hra-expansion-panel-actions>
+
+  <hra-expansion-panel-header-content>
+    <cde-node-dist-visualization-controls
+      [(viewMode)]="viewMode"
+      [deleteDisabled]="!hasSelection()"
+      (deleteClick)="deleteSelection()"
+      (viewModeChange)="cellInfo.set(undefined)"
+    >
+    </cde-node-dist-visualization-controls>
+  </hra-expansion-panel-header-content>
+
+  <hra-fullscreen-portal [title]="'Visualization'" #fullscreen>
+    <hra-fullscreen-actions>
+      <cde-node-dist-visualization-menu
+        fullscreenMode
+        [(edgesDisabled)]="edgesDisabled"
+        (downloadClick)="download()"
+        (resetViewClick)="resetView()"
+        (resetDeletedClick)="resetDeletedNodes()"
+      >
+      </cde-node-dist-visualization-menu>
+
+      <cde-node-dist-visualization-controls
+        [(viewMode)]="viewMode"
+        [deleteDisabled]="!hasSelection()"
+        (deleteClick)="deleteSelection()"
+        (viewModeChange)="cellInfo.set(undefined)"
+      >
+      </cde-node-dist-visualization-controls>
+    </hra-fullscreen-actions>
+
+    <hra-fullscreen-portal-content>
+      <hra-node-dist-vis
+        cdkOverlayOrigin
+        class="vis"
+        data-testid="node-dist-vis"
+        #cellInfoOrigin="cdkOverlayOrigin"
+      ></hra-node-dist-vis>
+    </hra-fullscreen-portal-content>
+  </hra-fullscreen-portal>
+</hra-expansion-panel>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayDisposeOnNavigation]="true"
+  [cdkConnectedOverlayHasBackdrop]="false"
+  [cdkConnectedOverlayMinWidth]="540"
+  [cdkConnectedOverlayOpen]="cellInfoOpen()"
+  [cdkConnectedOverlayOrigin]="cellInfoOrigin"
+  [cdkConnectedOverlayPositions]="cellInfoPosition()"
+  [cdkConnectedOverlayPush]="true"
+  [cdkConnectedOverlayViewportMargin]="16"
+  (overlayOutsideClick)="cellInfo.set(undefined)"
+  #cellInfoOverlay="cdkConnectedOverlay"
+>
+  <hra-info-modal
+    [title]="'Cell Info'"
+    variant="center"
+    [data]="cellInfoContent()"
+    (close)="cellInfo.set(undefined)"
+    data-testid="cell-info"
   >
-
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'node-dist-vis-panel']"
-    [cdkConnectedOverlayPositions]="tooltipPosition"
-    [cdkConnectedOverlayOrigin]="visTrigger"
-    [cdkConnectedOverlayOpen]="tooltipOpen"
-    [cdkConnectedOverlayOffsetX]="5"
-  >
-    <div>
-      <ul>
-        Zoom Options
-        <li>Mouse pinwheel</li>
-        <li>Trackpad Pinch</li>
-      </ul>
-      <ul>
-        Pan Options
-        <li>CTRL/CMD + mouse drag</li>
-        <li>Right click + mouse drag</li>
-        <li>Keyboard arrows</li>
-      </ul>
-      <ul>
-        Rotation Options for 3D Visualizations
-        <li>CTRL/CMD + keyboard arrows</li>
-        <li>Mouse Drag</li>
-      </ul>
-    </div>
-  </ng-template>
-</div>
-
-<button mat-flat-button class="download mat-caption" (click)="download()">
-  PNG
-  <mat-icon class="material-symbols-rounded">download</mat-icon>
-</button>
-
-<hra-node-dist-vis class="vis" data-testid="node-dist-vis" #vis></hra-node-dist-vis>
+  </hra-info-modal>
+</ng-template>

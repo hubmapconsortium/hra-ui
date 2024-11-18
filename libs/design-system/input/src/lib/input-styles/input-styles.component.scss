@@ -1,19 +1,26 @@
-mat-form-field.mat-mdc-form-field {
-  font-family: var(--sys-title-small-font);
+mat-form-field.mat-mdc-form-field-type-mat-input {
   --mdc-filled-text-field-container-color: var(--sys-surface-container);
   --mdc-outlined-text-field-outline-color: var(--sys-outline-variant);
   --mdc-outlined-text-field-focus-outline-color: var(--sys-tertiary);
   --mdc-outlined-text-field-input-text-color: var(--sys-primary-fixed);
 
+  --mat-form-field-container-height: 3rem;
+  --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+  --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
+
   mat-label {
-    font: var(--sys-title-small);
-    letter-spacing: var(--sys-title-small-tracking);
+    font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
     color: var(--sys-primary-fixed);
   }
 
-  input.mat-mdc-form-field-input-control {
-    font: var(--sys-title-small);
-    letter-spacing: var(--sys-title-small-tracking);
+  .mat-mdc-form-field-infix {
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+
+    input {
+      height: 1.5rem;
+    }
   }
 
   &.mat-focused {
@@ -24,6 +31,12 @@ mat-form-field.mat-mdc-form-field {
 
     mat-label {
       color: var(--sys-tertiary);
+    }
+  }
+
+  &.mat-form-field-disabled {
+    mat-label {
+      color: var(--mdc-filled-text-field-disabled-label-text-color);
     }
   }
 }

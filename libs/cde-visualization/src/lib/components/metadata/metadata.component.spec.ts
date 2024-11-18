@@ -6,8 +6,8 @@ import { MetadataComponent } from './metadata.component';
 describe('MetadataComponent', () => {
   const metadata: Metadata = {
     title: 'Test Visualization',
-    sourceData: 'test_data.csv',
-    colorMap: 'test_colormap.csv',
+    sourceFileName: 'test_data.csv',
+    colorMapFileName: 'test_colormap.csv',
     organ: 'Brain',
     technology: 'MRI',
     sex: 'Male',
@@ -25,7 +25,7 @@ describe('MetadataComponent', () => {
     });
 
     expect(screen.getByText(metadata.title ?? '')).toBeInTheDocument();
-    expect(screen.getByText(metadata.sourceData ?? '')).toBeInTheDocument();
+    expect(screen.getByText(metadata.sourceFileName ?? '')).toBeInTheDocument();
     expect(screen.getByText(metadata.organ ?? '')).toBeInTheDocument();
     expect(screen.getByText(metadata.technology ?? '')).toBeInTheDocument();
     expect(screen.getByText(metadata.sex ?? '')).toBeInTheDocument();
@@ -34,5 +34,18 @@ describe('MetadataComponent', () => {
     expect(screen.getByText(metadata.pixelSize ?? '')).toBeInTheDocument();
     expect(screen.getByText('December 17, 1995')).toBeInTheDocument();
     expect(screen.getByText('3:24:00 AM')).toBeInTheDocument();
+  });
+
+  it('should toggle the empty fields signal', async () => {
+    const { fixture } = await render(MetadataComponent, {
+      componentInputs: {
+        metadata,
+      },
+    });
+    const component = fixture.componentInstance;
+    component.toggleEmptyFields();
+    expect(component.showEmptyFields()).toBe(true);
+    component.toggleEmptyFields();
+    expect(component.showEmptyFields()).toBe(false);
   });
 });

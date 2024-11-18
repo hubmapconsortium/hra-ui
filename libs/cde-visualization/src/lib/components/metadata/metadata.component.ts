@@ -4,13 +4,23 @@ import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, inpu
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonSizeDirective } from '@hra-ui/design-system/button';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'title',
-  'colorMap',
+  'colorMapFileName',
   'organ',
   'technology',
   'sex',
@@ -37,7 +47,22 @@ export class DefaultToPipe implements PipeTransform {
 @Component({
   selector: 'cde-metadata',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatExpansionModule, OverlayModule, DefaultToPipe],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatExpansionModule,
+    OverlayModule,
+    DefaultToPipe,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    IconButtonSizeDirective,
+    MicroTooltipDirective,
+    ButtonSizeDirective,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+  ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,6 +88,13 @@ export class MetadataComponent {
 
   /** Sets the tooltip position to the right side */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] = [
+    {
+      description: 'Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.',
+    },
+  ];
 
   /** Creates a date formatter with default locale */
   readonly dateFormat = new Intl.DateTimeFormat(undefined, {

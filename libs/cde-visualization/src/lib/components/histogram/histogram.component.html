@@ -1,73 +1,22 @@
-<mat-accordion displayMode="flat">
-  <mat-expansion-panel expanded [style.overflow]="panel.expanded && overflowVisible() ? 'visible' : null" #panel>
-    <mat-expansion-panel-header class="header">
-      <mat-panel-title class="mat-caption title">
-        <mat-icon class="material-symbols-rounded">{{ panel.expanded ? 'remove' : 'add' }}</mat-icon>
-        Histogram
-        <mat-icon
-          class="material-symbols-rounded"
-          cdkOverlayOrigin
-          #resetTrigger="cdkOverlayOrigin"
-          (mouseover)="infoOpen = true"
-          (mouseout)="infoOpen = false"
-          >info</mat-icon
-        >
-        <ng-template
-          cdkConnectedOverlay
-          [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-          [cdkConnectedOverlayOrigin]="resetTrigger"
-          [cdkConnectedOverlayPositions]="tooltipPosition"
-          [cdkConnectedOverlayOpen]="infoOpen"
-          [cdkConnectedOverlayOffsetX]="5"
-        >
-          <div>
-            The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell
-            type in the dataset.
-          </div>
-        </ng-template>
+<hra-expansion-panel [title]="'Histogram'">
+  <hra-expansion-panel-actions>
+    <cde-histogram-menu (open)="histogramEl().open()" (download)="download($event)"></cde-histogram-menu>
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <cde-color-picker-label
+      [label]="totalCellTypeLabel"
+      [(color)]="totalCellTypeColor"
+      (colorPickerOpen)="colorPicker.set($event)"
+    >
+    </cde-color-picker-label>
+  </hra-expansion-panel-header-content>
+  <hra-fullscreen-portal [title]="'Histogram'" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
+    <hra-fullscreen-actions>
+      <cde-histogram-menu dialogOpen="true"></cde-histogram-menu>
+    </hra-fullscreen-actions>
 
-        <div class="filler"></div>
-
-        <button
-          mat-flat-button
-          color="accent"
-          class="mat-caption download"
-          (click)="$event.stopPropagation(); download('svg')"
-        >
-          <mat-icon class="material-symbols-rounded">download</mat-icon>
-          SVG
-        </button>
-        <button
-          mat-flat-button
-          color="accent"
-          class="mat-caption download"
-          (click)="$event.stopPropagation(); download('png')"
-        >
-          <mat-icon class="material-symbols-rounded">download</mat-icon>
-          PNG
-        </button>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="content">
-      <div class="histogram" data-testid="histogram" #histogram></div>
-      <ng-scrollbar hraScrollOverflowFade class="legend" (scroll)="colorPicker()?.closeDialog()">
-        <cde-color-picker-label
-          [label]="totalCellTypeLabel"
-          [(color)]="totalCellTypeColor"
-          (colorPickerOpen)="colorPicker.set($event)"
-        >
-        </cde-color-picker-label>
-        @for (type of filteredCellTypes(); track type.name) {
-          <cde-color-picker-label
-            [label]="type.name"
-            [color]="type.color"
-            [isAnchor]="type.name === selectedCellType()"
-            (colorPickerOpen)="colorPicker.set($event)"
-            (colorChange)="updateColor(type, $event)"
-          ></cde-color-picker-label>
-        }
-      </ng-scrollbar>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+    <hra-fullscreen-portal-content data-testid="portal-content">
+      <div class="histogram" style="height: 100%; width: 100%" data-testid="histogram" #histogram></div>
+    </hra-fullscreen-portal-content>
+  </hra-fullscreen-portal>
+</hra-expansion-panel>

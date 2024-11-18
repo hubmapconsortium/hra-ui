@@ -1,9 +1,15 @@
-<cde-header></cde-header>
+<hra-nav-header
+  title="Cell Distance Explorer"
+  app="cde"
+  link="/"
+  variant="basic"
+  [navigationCategories]="sideNavData"
+></hra-nav-header>
 <section class="create-and-explore">
   <div class="create-explore-content">
     <div class="header">
-      <h1>Create and explore cell distance visualizations</h1>
-      <h4>
+      <h1 class="title">Create and explore cell distance visualizations</h1>
+      <h4 class="description">
         This website supports visualization and quantification of cells and cell-cell distance distributions in
         processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
         embedded on websites.
@@ -20,7 +26,7 @@
       </h2>
       <div class="content">
         <div class="paper">
-          <p>
+          <p class="background-text">
             The vasculature is the human body's delivery system. It is also a cornerstone of medicine, helping surgeons
             guide surgeries, pathologists diagnose disease, and serving as a landmark for medical practitioners of all
             stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic infrastructure in order
@@ -28,28 +34,30 @@
           </p>
           <div class="links">
             <a
+              class="vccf-paper"
               mat-flat-button
-              class="hra-btn cta-filled"
+              hraCallToActionButton
+              hraPrimaryButton
+              disableRipple
               href="https://doi.org/10.3389/fcvm.2020.00029"
               target="_blank"
               rel="noopener noreferrer"
-              color="primary"
-              disableRipple
             >
               Read VCCF Paper
-              <mat-icon iconPositionEnd> east </mat-icon>
+              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
             </a>
+
             <a
-              mat-button
-              class="hra-btn cta-flat"
+              mat-flat-button
+              hraCallToActionButton
+              hraSecondaryButton
+              disableRipple
               [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
               target="_blank"
               rel="noopener noreferrer"
-              color="primary"
-              disableRipple
             >
               VCCF Visualization Poster
-              <mat-icon iconPositionEnd> east </mat-icon>
+              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
             </a>
           </div>
         </div>

@@ -1,46 +1,79 @@
 :host {
   display: block;
+  color: var(--sys-secondary);
 
   .container {
-    width: 40rem;
-    height: auto;
+    height: calc(100vh - 3rem);
     font: var(--sys-headline-small);
     letter-spacing: var(--sys-headline-small-tracking);
-    --mat-sidenav-content-background-color: #ffffff;
-    --mat-sidenav-container-background-color: var(--mat-sidenav-content-background-color);
-    height: calc(100vh - 3rem);
+  }
 
-    .header {
-      display: flex;
-      align-items: center;
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-title-small);
+    height: 4.5rem;
+    padding-right: 0.5rem;
+    padding-left: 1rem;
 
-      .sidenav-title {
-        vertical-align: text-bottom;
-        color: var(--sys-secondary);
-      }
+    .sidenav-title {
+      vertical-align: text-bottom;
+      color: var(--sys-secondary);
     }
   }
 
-  .mat-sidenav-content {
+  ng-scrollbar {
+    --scrollbar-offset: 4;
+    height: calc(100% - 4.5rem);
+  }
+
+  mat-sidenav-content {
     overflow: hidden;
-    margin: 1rem;
 
     .main {
       display: flex;
       align-items: center;
+      background-color: var(--sys-surface-container-high);
+      height: 4.5rem;
+      padding: 0 0.5rem 0 0.75rem;
+      pointer-events: all;
+      border-bottom: 1px solid #acb5c3;
     }
+  }
+
+  .mat-drawer-container-has-open {
+    pointer-events: all;
   }
 
   .apps-sidenav {
     --mat-sidenav-container-width: 35.25rem;
-    padding: 1rem;
     border-radius: 0;
+    background-color: var(--sys-surface-container-high);
+    pointer-events: all;
+
+    .category {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-top: 1px solid var(--sys-outline);
+    }
 
     .card-category {
-      font: var(--sys-title-medium);
-      letter-spacing: var(--sys-title-medium-tracking);
-      margin-top: 1rem;
-      color: var(--sys-secondary);
+      font: var(--sys-title-small);
+      letter-spacing: var(--sys-title-small-tracking);
+      color: var(--sys-primary-fixed);
     }
+
+    .card-category,
+    hra-apps-card {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden;
   }
 }

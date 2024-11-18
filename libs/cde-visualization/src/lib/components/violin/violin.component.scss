@@ -1,0 +1,49 @@
+:host {
+  --mdc-filled-button-container-height: 2rem;
+  display: block;
+  overflow: hidden;
+  border-width: 0px 0px 2px 2px;
+  border-style: solid;
+  border-color: var(--sys-outline-variant);
+
+  ::ng-deep {
+    hra-expansion-panel {
+      height: 100%;
+
+      cdk-accordion {
+        display: block;
+        height: 100%;
+
+        cdk-accordion-item {
+          height: 100%;
+
+          .header {
+            padding: 1rem;
+          }
+
+          .content {
+            height: calc(100% - 4.5rem);
+
+            .expansion-body {
+              height: 100%;
+
+              hra-fullscreen-portal {
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .violin {
+    padding: 0.5rem;
+  }
+}
+
+::ng-deep {
+  .violin-container {
+    width: 100%;
+  }
+}

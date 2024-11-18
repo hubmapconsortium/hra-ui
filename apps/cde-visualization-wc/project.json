@@ -21,12 +21,16 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cde-visualization-wc/src/favicon.png", "apps/cde-visualization-wc/src/assets"],
         "styles": ["apps/cde-visualization-wc/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
+        },
         "scripts": [],
         "define": {
           "define": "undefined"
         },
         "outputHashing": "none",
-        "allowedCommonJsDependencies": ["papaparse", "vega-embed"]
+        "allowedCommonJsDependencies": ["*"],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
       },
       "configurations": {
         "production": {
@@ -100,7 +104,7 @@
       }
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs cde-visualization-wc"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-visualization-wc/"
     }
   }
 }

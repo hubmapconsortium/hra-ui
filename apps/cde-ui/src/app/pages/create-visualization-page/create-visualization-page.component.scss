@@ -1,238 +1,153 @@
-@use '../../../styles/breakpoints' as breakpoints;
-
 :host {
   display: block;
-  min-width: 545px;
+  min-width: 80rem;
   background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-position: center;
   background-size: cover;
+  position: relative;
+  top: 4.5rem;
+
+  hra-nav-header {
+    border-bottom: 1px solid var(--sys-outline);
+  }
+
+  ::ng-deep .app-logo .app-description {
+    border-radius: 0.125rem;
+    width: fit-content;
+    padding: 0 0.25rem;
+    font: 500 0.625rem/1rem Metropolis !important;
+  }
 
   .content {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    padding: 3rem 1rem 6rem;
     gap: 3rem;
-    align-items: center;
-
-    @include breakpoints.breakpoint('large', 'x-large', 'xx-large', 'xxx-large') {
-      max-width: 53.5rem;
-      align-items: flex-start;
-      padding: 3rem 0rem 6rem;
-    }
+    max-width: 53.5rem;
+    align-items: flex-start;
+    padding: 3rem 0rem 6rem;
   }
 
   .page-nav {
-    margin-bottom: -0.6rem;
-    width: 100%;
-    max-width: 42rem;
+    margin-bottom: -0.5rem;
 
     .nav {
-      display: flex;
-      align-items: center;
       margin-bottom: 1.5rem;
-
-      & > :not(mat-icon) {
-        padding: 0.375rem 0.5rem;
-      }
     }
 
     .title {
       margin: 0;
+      font: var(--sys-display-small);
+      letter-spacing: var(--sys-display-small-tracking);
     }
   }
 
-  .card {
-    box-shadow: 0rem 0.3125rem 1rem 0rem #201e3d3d;
-    border-radius: 1rem;
-    padding: 2rem;
-    max-width: 42rem;
-    width: 100%;
+  .header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    margin: 0;
 
-    .header {
-      grid-area: header;
-      display: flex;
-      margin-bottom: 2rem;
+    .step-number {
+      margin-right: 0.75rem;
+    }
 
-      .step-number {
-        display: flex;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1rem;
-        font-size: 1rem;
-      }
+    .card-title {
+      margin-right: 0.75rem;
+      font: var(--sys-title-large);
+    }
 
-      .filler {
-        flex-grow: 1;
-      }
-
-      .info {
-        margin: 0.25rem;
-      }
+    .info {
+      margin: 0.25rem;
+      cursor: pointer;
     }
   }
 
-  .data-upload {
-    display: grid;
-    grid:
-      'header header header header'
-      '. subheader-required-columns . subheader-optional-columns'
-      '. required-columns . optional-columns'
-      '. upload-csv upload-csv upload-csv' / 3rem auto 5rem 1fr;
-    grid-template-rows: 4.25rem auto 4.5rem auto;
+  .filler {
+    flex-grow: 1;
+  }
 
-    .subheader-required-columns {
-      grid-area: subheader-required-columns;
+  table {
+    grid-area: table;
+
+    th,
+    td {
+      font: var(--sys-label-large);
+      font-weight: var(--sys-label-large-weight);
+      padding-left: 1rem;
+      text-align: left;
+      min-width: 13.5rem;
+      height: 1.5rem;
     }
 
-    .subheader-optional-columns {
-      grid-area: subheader-optional-columns;
-    }
-
-    .required-columns {
-      grid-area: required-columns;
-    }
-
-    .optional-columns {
-      grid-area: optional-columns;
-    }
-
-    .upload-csv {
-      grid-area: upload-csv;
-
-      ::ng-deep .error {
-        margin-bottom: 3rem;
-      }
+    td {
+      padding-left: 1.5rem;
     }
   }
 
-  .anchor-selection {
-    .header {
-      margin-bottom: 0.5rem;
+  .organize-data {
+    .required-headers,
+    .optional-headers {
+      display: grid;
+      grid: 'subheader subheader';
+      column-gap: 1.5rem;
+      font: var(--sys-label-large);
     }
 
-    .select-form {
-      width: calc(100% - 6rem);
-      margin: 1.5rem 3rem;
+    .subheader {
+      grid-area: subheader;
+      margin-bottom: 1rem;
+    }
+
+    .cell-type-select {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .parameters {
+    .parameters-1,
+    .parameters-2 {
+      display: grid;
+      column-gap: 1.5rem;
+    }
+
+    .parameters-1 {
+      grid: '. .';
+    }
+
+    .parameters-2 {
+      grid: '. . .';
     }
   }
 
   .metadata {
-    display: grid;
-    grid: 'header';
-    gap: 0.5rem;
-    column-gap: 2.5rem;
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
 
-    @include breakpoints.breakpoint('medium', 'large', 'x-large', 'xx-large', 'xxx-large') {
-      grid: 'header header';
-    }
-
-    .header {
-      grid-area: header;
-      margin-bottom: 0;
-    }
-
-    mat-form-field {
-      margin: 1.5rem 0;
-      max-width: 17.5rem;
+      mat-form-field {
+        flex-grow: 1;
+      }
     }
   }
 
   .color-config {
-    display: grid;
-    grid:
-      'header header'
-      'toggle toggle'
-      '. upload-colormap' / 3rem auto;
+    table {
+      width: 66%;
 
-    mat-button-toggle-group {
-      grid-area: toggle;
-      --mat-standard-button-toggle-label-text-size: 1rem;
-      --mat-standard-button-toggle-height: 2.5rem;
-      --mat-standard-button-toggle-shape: 1rem;
-      --mat-standard-button-toggle-label-text-weight: 500;
-
-      mat-button-toggle {
-        width: 50%;
-        border: none;
+      th,
+      td {
+        min-width: 0;
       }
-    }
-
-    .upload-colormap {
-      grid-area: upload-colormap;
-      margin-top: 2rem;
     }
   }
 
   .visualize {
-    .visualize-notification,
     .visualize-button {
-      display: flex;
-      margin-left: 3rem;
-      --mdc-filled-button-label-text-size: 1rem;
-      --mat-filled-button-horizontal-padding: 1.5rem;
-      --mdc-filled-button-label-text-tracking: 0.02em;
-      --mat-filled-button-icon-spacing: 0.75rem;
-      --mat-filled-button-icon-offset: -0.375rem;
-
-      mat-icon {
-        font-size: 1.5rem;
-        height: 1.5rem;
-        width: 1.5rem;
-      }
+      width: fit-content;
     }
   }
-}
-
-::ng-deep mat-form-field {
-  --mat-form-field-container-height: 3.625rem;
-  --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
-  --mat-form-field-filled-with-label-container-padding-bottom: 0;
-  box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
-  border-radius: 1rem;
-
-  .mat-mdc-text-field-wrapper {
-    border-radius: 1rem;
-    padding: 0 1.5rem;
-  }
-
-  .mat-mdc-form-field-subscript-wrapper {
-    display: none;
-  }
-
-  .mdc-line-ripple {
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
-}
-
-::ng-deep .info-tooltip-panel {
-  display: flex;
-  flex-direction: column;
-  max-width: 28rem;
-  min-width: 21rem;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
-  border-radius: 0.5rem;
-
-  p:last-child {
-    margin: 0;
-  }
-}
-
-::ng-deep .select-panel {
-  --mat-option-label-text-size: 1rem;
-  --mat-option-label-text-line-height: 1.5rem;
-  --mat-option-label-text-weight: 500;
-  --mat-option-label-text-font: Metropolis;
-  --mat-option-label-text-tracking: normal;
-  border-radius: 0.5rem !important;
-  box-shadow: 0 5px 0.25rem 0 #201e3d29 !important;
-  padding: 1rem 0 !important;
 }

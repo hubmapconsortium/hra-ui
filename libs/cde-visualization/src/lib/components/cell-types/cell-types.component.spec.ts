@@ -1,24 +1,72 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
+import { MatMenuHarness } from '@angular/material/menu/testing';
+import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
 
 describe('CellTypesComponent', () => {
   const cellTypes: CellTypeEntry[] = [
-    { name: 'Cell Type 1', count: 100, color: [0, 1, 2] },
-    { name: 'Cell Type 2', count: 200, color: [3, 4, 5] },
-    { name: 'Cell Type 3', count: 300, color: [6, 7, 8] },
+    { name: 'Cell Type 1', count: 100, color: [0, 1, 2], outgoingEdgeCount: 0 },
+    { name: 'Cell Type 2', count: 200, color: [3, 4, 5], outgoingEdgeCount: 0 },
+    { name: 'Cell Type 3', count: 300, color: [6, 7, 8], outgoingEdgeCount: 0 },
   ];
   const cellTypesSelection = [cellTypes[0].name, cellTypes[1].name];
 
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon({ scrolling: { disableSensor: true } }), ...(options?.providers ?? [])],
     });
   }
+
+  it('should update nodes when downloadNodes is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadNodes: emitFn,
+      },
+    });
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cells CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
+
+  it('should update edges when downloadEdges is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadEdges: emitFn,
+      },
+    });
+
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Links CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
+
+  it('should update color map when downloadColorMap is called', async () => {
+    const emitFn = jest.fn();
+    const { fixture } = await setup({
+      inputs: { cellTypes, cellTypesSelection },
+      on: {
+        downloadColorMap: emitFn,
+      },
+    });
+
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+
+    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+    expect(emitFn).toHaveBeenCalled();
+  });
 
   it('should render the component', async () => {
     await setup({

@@ -7,19 +7,10 @@
   "tags": ["type:lib", "project:cde", "webcomponent"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "outputPath": "dist/libs/cde-visualization",
-        "index": "libs/cde-visualization/src/index.html",
-        "main": "libs/cde-visualization/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "libs/cde-visualization/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        },
-        "scripts": []
+        "project": "libs/cde-visualization/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -58,9 +49,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent-libs.mjs cde-visualization"
     }
   }
 }

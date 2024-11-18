@@ -1,5 +1,13 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { BodyUiComponent, GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { lastValueFrom } from 'rxjs';
@@ -25,15 +33,13 @@ export class AppComponent {
   @Output() readonly onMouseLeave = new EventEmitter<string>();
   @Output() readonly onClick = new EventEmitter<string>();
 
+  private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
+  private readonly sceneSource = inject(FilteredSceneService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   readonly data$ = this.configState.getOption('data');
   organs$ = this.sceneSource.filteredOrgans$;
   scene$ = this.sceneSource.filteredScene$.pipe(tap((_) => this.reset()));
-
-  constructor(
-    private readonly configState: GlobalConfigState<GlobalConfig>,
-    private readonly sceneSource: FilteredSceneService,
-    private readonly cdr: ChangeDetectorRef,
-  ) {}
 
   private async reset(): Promise<void> {
     const { bodyUI } = this;

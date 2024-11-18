@@ -8,7 +8,7 @@ const sampleItem = { name: 'Button', route: 'A/B/C' };
 
 const meta: Meta<BreadcrumbsComponent> = {
   component: BreadcrumbsComponent,
-  title: 'Breadcrumbs',
+  title: 'BreadcrumbsComponent',
   parameters: {
     design: {
       type: 'figma',
@@ -20,15 +20,6 @@ const meta: Meta<BreadcrumbsComponent> = {
       providers: [provideDesignSystem(), provideRouter([])],
     }),
   ],
-  args: {
-    size: 'large',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-  },
 };
 export default meta;
 type Story = StoryObj<BreadcrumbsComponent>;

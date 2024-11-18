@@ -1,5 +1,6 @@
 import { render } from '@testing-library/angular';
 import { ColorPickerComponent } from './color-picker.component';
+import { rgbToHex } from './color-utils';
 
 describe('ColorPickerComponent', () => {
   it('should update color when selectColor is called', async () => {
@@ -26,5 +27,12 @@ describe('ColorPickerComponent', () => {
 
     instance.selectColor('#ffffff');
     expect(instance.color()).toEqual([255, 255, 255]);
+  });
+});
+
+describe('rgbToHex()', () => {
+  it('should convert the color from RGB format to HEX format', () => {
+    const hex = rgbToHex([180, 150, 200]);
+    expect(hex).toBe('#b496c8');
   });
 });

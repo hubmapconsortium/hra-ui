@@ -1,37 +1,28 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed } from '@angular/core/testing';
+import { MatMenuHarness } from '@angular/material/menu/testing';
+import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
-import { RenderComponentOptions, render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
+import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
-import { CellTypeEntry } from '../../models/cell-type';
-import { Rgb } from '@hra-ui/design-system/color-picker';
-import { EdgeEntry } from '../../models/edge';
-import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
 describe('HistogramComponent', () => {
-  const nodeTargetKey = DEFAULT_NODE_TARGET_KEY;
-  function createNodeEntry(target: string, x: number, y: number): NodeEntry {
-    return { [nodeTargetKey]: target, x, y } as NodeEntry;
-  }
-
-  const sampleNodes = [createNodeEntry('a', 0, 0), createNodeEntry('b', 0, 2), createNodeEntry('c', 0, 4)];
-  const sampleEdges: EdgeEntry[] = [
-    [0, 0, 0, 3, 4, 5, 6],
-    [1, 0, 2, 3, 4, 5, 6],
-    [2, 0, 4, 3, 4, 5, 6],
+  const sampleData = [
+    {
+      type: 'A',
+      distance: 5,
+    },
+    {
+      type: 'B',
+      distance: 7,
+    },
   ];
-  const sampleCellTypes: CellTypeEntry[] = [
-    { name: 'a', count: 2, color: [0, 0, 0] },
-    { name: 'b', count: 4, color: [0, 1, 2] },
-    { name: 'c', count: 6, color: [0, 1, 3] },
-  ];
-  const sampleCellTypesSelection: string[] = [sampleCellTypes[0].name, sampleCellTypes[1].name];
 
   const embedResult = mockDeep<Result>();
 
@@ -60,30 +51,24 @@ describe('HistogramComponent', () => {
 
   it('should render the histogram using vega', async () => {
     const { fixture } = await setup({
-      componentInputs: {
-        nodes: sampleNodes,
-        nodeTargetKey,
-        edges: sampleEdges,
-        selectedCellType: sampleNodes[0][nodeTargetKey],
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
+      inputs: {
+        data: sampleData,
+        colors: [],
+        filteredCellTypes: [],
       },
     });
     await fixture.whenStable();
 
-    const container = screen.getByTestId('histogram');
+    const container = screen.getByTestId('portal-content');
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
   });
 
-  it('should set empty data when nodes or edges are empty', async () => {
+  it('should set empty data when input data is empty', async () => {
     const { fixture } = await setup({
-      componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
-        selectedCellType: sampleNodes[0][nodeTargetKey],
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
       },
     });
     await fixture.whenStable();
@@ -91,15 +76,12 @@ describe('HistogramComponent', () => {
     expect(embedResult.view.data).toHaveBeenCalledWith('data', []);
   });
 
-  it('should download in the specified format', async () => {
-    await setup({
-      componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
-        selectedCellType: '',
-        cellTypes: [],
-        cellTypesSelection: [],
+  it('should download in the specified format', fakeAsync(async () => {
+    const { fixture } = await setup({
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
       },
     });
 
@@ -109,41 +91,21 @@ describe('HistogramComponent', () => {
     const imageUrl = 'data:foo';
     embedResult.view.toImageURL.mockReturnValue(Promise.resolve(imageUrl));
 
-    const downloadSvgButton = screen.getByText(/svg/i);
-    await userEvent.click(downloadSvgButton);
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+    await menu.clickItem({ text: /Downloads/i }, { text: /svg/i });
 
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
-  });
-
-  it('should updateColor', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await setup({
-      componentInputs: {
-        nodes: [],
-        nodeTargetKey: 'key',
-        edges: [],
-        selectedCellType: 'type',
-        cellTypes: sampleCellTypes,
-        cellTypesSelection: sampleCellTypesSelection,
-      },
-    });
-
-    instance.updateColor(sampleCellTypes[0], [255, 255, 255]);
-    expect(instance.cellTypes()[0].color).toEqual([255, 255, 255]);
-  });
+  }));
 
   it('should reset all cell colors', async () => {
     const {
       fixture: { componentInstance: instance },
     } = await setup({
-      componentInputs: {
-        nodes: [],
-        nodeTargetKey,
-        edges: [],
-        selectedCellType: '',
-        cellTypes: [],
-        cellTypesSelection: [],
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
       },
     });
 

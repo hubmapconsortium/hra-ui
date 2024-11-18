@@ -1,3 +1,7 @@
+mat-tree {
+  --mat-tree-container-background-color: var(--sys-on-primary);
+}
+
 mat-tree-node {
   --mat-tree-node-text-font: var(--sys-label-medium-font);
   --mat-tree-node-text-weight: var(--sys-label-medium-weight);
@@ -24,7 +28,7 @@ mat-tree-node {
   line-height: var(--mat-tree-node-min-height);
   border-radius: 0.25rem;
   width: 100%;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   border-color: transparent;
 
@@ -33,16 +37,15 @@ mat-tree-node {
   }
 
   &:hover {
-    background: rgb(from var(--sys-secondary) r g b / 0.04);
+    background: rgb(from var(--sys-secondary) r g b / 0.08);
   }
 
   &:active {
-    background: rgb(from var(--sys-secondary) r g b / 0.08);
+    background: rgb(from var(--sys-secondary) r g b / 0.16);
     border-color: transparent;
   }
 
   &.selected {
-    background: var(--sys-tertiary);
-    color: var(--sys-on-tertiary);
+    background: rgb(from var(--sys-tertiary) r g b / 0.2);
   }
 }

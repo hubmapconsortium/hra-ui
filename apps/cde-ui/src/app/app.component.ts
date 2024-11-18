@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from './components/header/header.component';
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
 
 /** Max width to show screen size notice */
@@ -14,7 +13,7 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  */
 @Component({
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet],
   selector: 'cde-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

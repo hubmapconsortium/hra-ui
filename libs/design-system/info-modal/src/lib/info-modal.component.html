@@ -1,0 +1,30 @@
+<h2 class="header">
+  <mat-icon class="info"> info </mat-icon>
+  <span class="card-title">{{ title() }}</span>
+  <div class="filler"></div>
+  <button class="close" mat-icon-button (click)="close.emit()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<div class="table-container">
+  <table mat-table [dataSource]="data()" aria-label="info table">
+    <!-- Label Column -->
+    <ng-container matColumnDef="label">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>
+      <td class="label" mat-cell *matCellDef="let element">
+        {{ element.label }}
+      </td>
+    </ng-container>
+
+    <!-- Value Column -->
+    <ng-container matColumnDef="value">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>
+      <td class="value" mat-cell *matCellDef="let element">
+        {{ element.value }}
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: ['label', 'value']"></tr>
+  </table>
+</div>

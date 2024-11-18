@@ -63,14 +63,7 @@ const meta: Meta<MenuDemoComponent> = {
       providers: [provideAnimations(), provideDesignSystem()],
     }),
   ],
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-  },
   args: {
-    size: 'medium',
     menuOptions: exampleOptions,
   },
 };
