@@ -81,7 +81,7 @@ const INITIAL_VIEW_STATE = {
 @Component({
   selector: 'hra-node-dist-vis',
   standalone: true,
-  template: '<canvas #canvas></canvas>',
+  template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>',
   styles: ':host { display: block; position: relative; width: 100%; height: 100%; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -12,7 +12,7 @@
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal [title]="'Histogram'" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
     <hra-fullscreen-actions>
-      <cde-histogram-menu dialogOpen="true"></cde-histogram-menu>
+      <cde-histogram-menu dialogOpen="true" (download)="download($event)"></cde-histogram-menu>
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content data-testid="portal-content">

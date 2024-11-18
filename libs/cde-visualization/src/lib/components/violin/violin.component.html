@@ -4,7 +4,7 @@
   </hra-expansion-panel-actions>
   <hra-fullscreen-portal [title]="'Violin Graph'" (opened)="resizeAndSyncView()" (closed)="resizeAndSyncView()">
     <hra-fullscreen-actions>
-      <cde-violin-menu dialogOpen></cde-violin-menu>
+      <cde-violin-menu dialogOpen (download)="download($event)"></cde-violin-menu>
     </hra-fullscreen-actions>
     <hra-fullscreen-portal-content>
       <ng-scrollbar class="violin">
