@@ -191,7 +191,6 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AnimationEvent } from &#x27;@angular/animations&#x27;;
 import { CdkAccordionModule } from &#x27;@angular/cdk/accordion&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
 import {
   ANIMATION_MODULE_TYPE,
   booleanAttribute,
@@ -206,7 +205,6 @@ import {
 } from &#x27;@angular/core&#x27;;
 import { MatIconButton } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { BODY_EXPANSION } from &#x27;./expansion-panel-animations&#x27;;
 
 /** Counter to keep track of distinct panels */
@@ -234,7 +232,7 @@ export class ExpansionPanelHeaderContentComponent {}
 @Component({
   selector: &#x27;hra-expansion-panel&#x27;,
   standalone: true,
-  imports: [CommonModule, CdkAccordionModule, IconButtonSizeDirective, MatIconButton, MatIconModule],
+  imports: [CdkAccordionModule, MatIconButton, MatIconModule],
   animations: [BODY_EXPANSION],
   templateUrl: &#x27;./expansion-panel.component.html&#x27;,
   styleUrl: &#x27;./expansion-panel.component.scss&#x27;,

@@ -307,6 +307,9 @@ export class FullscreenPortalComponent {
   /** Heading of the dialog */
   readonly title &#x3D; input.required&lt;string&gt;();
 
+  /** Classes to apply to the dialog panel in fullscreen mode */
+  readonly panelClass &#x3D; input&lt;string | string[]&gt;();
+
   /** Event for before the dialog is opened */
   readonly beforeOpened &#x3D; output&lt;void&gt;();
   /** Event for when the dialog is opened */
@@ -362,10 +365,12 @@ export class FullscreenPortalComponent {
     }
 
     const { dialogService, dialogTemplateRef } &#x3D; this;
+    const panelClass &#x3D; this.panelClass() ?? [];
+    const normalizedPanelClass &#x3D; typeof panelClass &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? panelClass.split(&#x27; &#x27;) : panelClass;
 
     this.beforeOpened.emit();
     const dialogRef &#x3D; (this.dialogRef &#x3D; dialogService.open(dialogTemplateRef(), {
-      panelClass: &#x27;fullscreen-panel&#x27;,
+      panelClass: [...normalizedPanelClass, &#x27;fullscreen-panel&#x27;],
     }));
 
     dialogRef

@@ -164,9 +164,7 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>CommonModule</code>
                             <code>CdkAccordionModule</code>
-                                <code><a href="../directives/IconButtonSizeDirective.html" target="_self" >IconButtonSizeDirective</a></code>
                             <code>MatIconButton</code>
                             <code>MatIconModule</code>
                 </td>
@@ -298,7 +296,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:52</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -340,8 +338,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -411,8 +409,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -486,7 +484,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -518,7 +516,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +548,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -583,7 +581,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -610,7 +608,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -643,7 +641,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">expansion-panel/src/lib/expansion-panel.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -664,7 +662,6 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AnimationEvent } from &#x27;@angular/animations&#x27;;
 import { CdkAccordionModule } from &#x27;@angular/cdk/accordion&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
 import {
   ANIMATION_MODULE_TYPE,
   booleanAttribute,
@@ -679,7 +676,6 @@ import {
 } from &#x27;@angular/core&#x27;;
 import { MatIconButton } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { BODY_EXPANSION } from &#x27;./expansion-panel-animations&#x27;;
 
 /** Counter to keep track of distinct panels */
@@ -707,7 +703,7 @@ export class ExpansionPanelHeaderContentComponent {}
 @Component({
   selector: &#x27;hra-expansion-panel&#x27;,
   standalone: true,
-  imports: [CommonModule, CdkAccordionModule, IconButtonSizeDirective, MatIconButton, MatIconModule],
+  imports: [CdkAccordionModule, MatIconButton, MatIconModule],
   animations: [BODY_EXPANSION],
   templateUrl: &#x27;./expansion-panel.component.html&#x27;,
   styleUrl: &#x27;./expansion-panel.component.scss&#x27;,
