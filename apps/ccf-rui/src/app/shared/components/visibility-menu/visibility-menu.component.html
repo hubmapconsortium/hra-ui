@@ -1,13 +1,3 @@
-<!-- <mat-icon
-  class="icon reset"
-  matRipple
-  [matRippleCentered]="true"
-  [matRippleUnbounded]="true"
-  (click)="setAllOpacity(20)"
-  *ngIf="items.length"
-  >refresh</mat-icon
-> -->
-
 <div
   class="item-entry"
   [class.selected]="selection ? getId(0, selection) === getId(0, item) : false"
@@ -19,7 +9,7 @@
     [class.fade]="!item.visible"
     svgIcon="app:opacity"
   ></mat-icon>
-  <div class="item-name" [class.hidden]="item.id === selection?.id" title="{{ item.name }}">
+  <div class="item-name">
     {{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}
   </div>
 

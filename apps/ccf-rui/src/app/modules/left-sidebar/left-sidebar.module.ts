@@ -10,7 +10,6 @@ import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@
 import { ExtractionSetDropdownModule } from '../../shared/components/extraction-set-dropdown/extraction-set-dropdown.module';
 import { NameInputModule } from '../../shared/components/name-input/name-input.module';
 import { VisibilityMenuModule } from '../../shared/components/visibility-menu/visibility-menu.module';
-import { VisibilityToggleModule } from '../../shared/components/visibility-toggle/visibility-toggle.module';
 import { LeftSidebarComponent } from './left-sidebar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
@@ -25,11 +24,9 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 
     MatDividerModule,
     NameInputModule,
-    VisibilityToggleModule,
     ExtractionSetDropdownModule,
     OpacitySliderModule,
     VisibilityMenuModule,
-    VisibilityToggleModule,
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,

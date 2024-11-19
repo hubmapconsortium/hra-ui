@@ -1,51 +1,23 @@
-<div class="slider-box">
-  <div class="icons">
-    <button
-      matRipple
-      mat-icon-button
-      [matRippleCentered]="true"
-      [matRippleUnbounded]="true"
-      class="visibility icon invisible"
-      (click)="toggleVisibility()"
-      [class.hidden]="opacity > 0"
-    >
-      <mat-icon svgIcon="app:visibility_off"></mat-icon>
+<div class="icons">
+  @if (opacity > 0) {
+    <button mat-icon-button class="visibility icon visible" (click)="toggleVisibility()">
+      <mat-icon>visibility_off</mat-icon>
     </button>
-    <button
-      matRipple
-      mat-icon-button
-      [matRippleCentered]="true"
-      [matRippleUnbounded]="true"
-      class="visibility icon visible"
-      (click)="toggleVisibility()"
-      [class.hidden]="opacity === 0"
-    >
-      <mat-icon svgIcon="app:visibility_on"></mat-icon>
+  } @else {
+    <button mat-icon-button class="visibility icon invisible" (click)="toggleVisibility()">
+      <mat-icon>visibility_on</mat-icon>
     </button>
-    <button
-      matRipple
-      mat-icon-button
-      [matRippleCentered]="true"
-      [matRippleUnbounded]="true"
-      class="icon reset"
-      (click)="resetOpacity()"
-    >
-      <mat-icon>refresh</mat-icon>
-    </button>
-  </div>
-  <div class="slider-and-label">
-    <mat-slider class="slider" [class.disabled]="!visible" [step]="1" [min]="0" [max]="100" [disableRipple]="true">
-      <input
-        matSliderThumb
-        class="opacity-slider"
-        [value]="opacity"
-        (input)="opacityChange.emit(+slider.value)"
-        #slider
-      />
-    </mat-slider>
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Opacity</mat-label>
-      <input matInput [value]="opacity" type="number" />
-    </mat-form-field>
-  </div>
+  }
+  <button mat-icon-button class="icon reset" (click)="resetOpacity()">
+    <mat-icon>reset_settings</mat-icon>
+  </button>
 </div>
+
+<mat-slider class="slider" [class.disabled]="!visible" [step]="1" [min]="0" [max]="100">
+  <input matSliderThumb class="opacity-slider" [value]="opacity" (input)="opacityChange.emit(+slider.value)" #slider />
+</mat-slider>
+
+<mat-form-field subscriptSizing="dynamic">
+  <mat-label>Opacity</mat-label>
+  <input matInput [value]="opacity" type="number" />
+</mat-form-field>

@@ -1,49 +1,23 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin-right: 0;
-  margin-left: 0;
   max-height: 40vh;
   overflow-y: auto;
   scrollbar-width: thin;
 
-  .icon {
-    border-radius: 0.25rem;
-  }
-
-  .reset {
-    transform: scaleX(-1);
-    cursor: pointer;
-    transition: 0.6s;
-    position: absolute;
-    top: 3rem;
-
-    &:hover {
-      border-radius: 2px;
-    }
-  }
-
   .item-entry {
     display: flex;
-    height: 1.5rem;
     align-items: center;
-    flex-shrink: 0;
-    position: relative;
 
     &.selected {
       z-index: 1;
     }
 
-    .opacity {
-      cursor: pointer;
-    }
-
     .opacity-icon {
-      z-index: 1;
       transition: 0.6s;
 
-      &:hover {
-        border-radius: 2px;
+      &.fade {
+        opacity: 0.12;
       }
     }
 
@@ -55,28 +29,19 @@
       overflow: hidden;
       text-overflow: ellipsis;
       margin-left: 0.25rem;
-      opacity: 1;
-      transition-duration: 0.4s;
-      transition-timing-function: ease-in-out;
-      transition-property: opacity;
-      max-width: calc(100% - 2.5rem);
     }
 
     .slider {
-      width: calc(100% - 2rem);
-      transition-duration: 0.3s;
+      position: fixed;
+      left: 2.5rem;
       transition-timing-function: ease-in-out;
       transition-property: opacity;
-      left: 2rem;
-      position: fixed;
-      width: 26.5rem;
+      transition-duration: 0.3s;
 
       &.hidden {
         transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-        transition-property: opacity;
         opacity: 0;
-        z-index: -1;
+        pointer-events: none;
       }
     }
   }

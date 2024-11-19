@@ -89,7 +89,7 @@ export class VisibilityMenuComponent {
     if (!this.selection) {
       return;
     }
-    const updatedSelection = { ...this.selection, opacity: value };
+    const updatedSelection = { ...this.selection, opacity: value, visible: value ? value > 0 : false };
     this.selection = updatedSelection;
     if (updatedSelection.id === 'all') {
       this.setAllOpacity(updatedSelection.opacity as number);
