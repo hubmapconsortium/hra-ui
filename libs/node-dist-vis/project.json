@@ -33,7 +33,7 @@
       "executor": "@nx/eslint:lint"
     },
     "bundle-cli": {
-      "command": "node tools/scripts/bundle-cli.mjs libs/node-dist-vis/src/cli.js dist/apps/cde-ui/"
+      "command": "node tools/scripts/bundle-cli.mjs libs/node-dist-vis/src/cli.js dist/libs/node-dist-vis/"
     }
   }
 }
