@@ -25,10 +25,14 @@
 
   .item-entry {
     display: flex;
-    height: 2.25rem;
+    height: 1.5rem;
     align-items: center;
     flex-shrink: 0;
     position: relative;
+
+    &.selected {
+      z-index: 1;
+    }
 
     .opacity {
       cursor: pointer;
@@ -50,16 +54,12 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-left: 0.5rem;
+      margin-left: 0.25rem;
       opacity: 1;
       transition-duration: 0.4s;
       transition-timing-function: ease-in-out;
       transition-property: opacity;
       max-width: calc(100% - 2.5rem);
-
-      &.hidden {
-        opacity: 0;
-      }
     }
 
     .slider {
@@ -68,14 +68,15 @@
       transition-timing-function: ease-in-out;
       transition-property: opacity;
       left: 2rem;
-      position: absolute;
-      opacity: 1;
+      position: fixed;
+      width: 26.5rem;
 
       &.hidden {
-        opacity: 0;
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
         transition-property: opacity;
+        opacity: 0;
+        z-index: -1;
       }
     }
   }

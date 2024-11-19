@@ -1,21 +1,4 @@
 <div class="top-bar">
-  <!-- <ccf-stage-nav
-    [useDropdownMenu]="isNarrowView"
-    [view3D]="(is3DView$ | async) ?? false"
-    [side]="(model.viewSide$ | async)!"
-    (view3DChange)="setViewType($event)"
-    (sideChange)="model.setViewSide($any($event))"
-  >
-  </ccf-stage-nav>
-  <mat-icon
-    matRipple
-    [matRippleCentered]="true"
-    [matRippleUnbounded]="true"
-    matRippleColor="rgba(204, 204, 204, 0.25)"
-    class="icon reset"
-    (click)="resetStage()"
-    >refresh</mat-icon
-  > -->
   <ccf-spatial-search-keyboard-ui-behavior
     *ngIf="page.registrationStarted$ | async"
     [delta]="1"

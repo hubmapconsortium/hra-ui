@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-@use '../../app/modules/header/header.component.theme' as header;
 @use '../../../../../libs/ccf-shared/src/lib/components//info/info-dialog/info-dialog.component.theme.scss' as
   infoDialog;
 @use '../../../../../libs/ccf-shared/src/lib/components/info/info-button/info-button.component.theme.scss' as infoButton;
@@ -50,7 +49,6 @@
   @include mat.tooltip-theme($theme);
   @include mat.slider-theme($theme);
 
-  @include header.theme($theme);
   @include infoDialog.theme($theme);
   @include infoButton.theme($theme);
   @include drawer.theme($theme);

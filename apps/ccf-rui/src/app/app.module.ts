@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { DEFAULT_THEME } from './core/services/theming/theming.service';
 import { ContentModule } from './modules/content/content.module';
-import { HeaderModule } from './modules/header/header.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RegistrationModalModule } from './modules/registration-modal/registration-modal/registration-modal.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
@@ -34,7 +33,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
     CoreModule,
     MatIconModule,
     DrawerModule,
-    HeaderModule,
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,

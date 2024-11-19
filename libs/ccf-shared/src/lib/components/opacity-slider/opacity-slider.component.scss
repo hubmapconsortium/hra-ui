@@ -3,6 +3,7 @@
   display: flex;
   border-radius: 0.5rem;
   background-color: white;
+  box-shadow: 0px 5px 4px 0px #201e3d29;
 
   .slider-box {
     display: flex;
@@ -15,6 +16,7 @@
       display: flex;
       align-items: center;
       height: 100%;
+      flex-grow: 1;
 
       mat-form-field {
         max-width: 4.75rem;
@@ -22,6 +24,7 @@
 
       mat-slider {
         width: 100%;
+        margin: 0 1.5rem;
 
         &.disabled {
           pointer-events: none;
@@ -33,14 +36,14 @@
             transition: none;
 
             .mdc-slider__thumb-knob {
-              background-color: var(--sys-tertiary);
-              border-color: var(--sys-tertiary);
+              background-color: var(--sys-on-tertiary-fixed);
+              border-color: var(--sys-on-tertiary-fixed);
             }
           }
 
           .mdc-slider__track--active_fill {
-            background-color: var(--sys-tertiary);
-            border-color: var(--sys-tertiary);
+            background-color: var(--sys-on-tertiary-fixed);
+            border-color: var(--sys-on-tertiary-fixed);
           }
         }
 
@@ -52,20 +55,11 @@
 
     .icons {
       display: flex;
-      cursor: pointer !important;
-
-      .reset {
-        cursor: pointer;
-        transition: 0.6s;
-        border-radius: 0.25rem;
-      }
+      cursor: pointer;
+      border-radius: 0.25rem;
+      transition: 0.6s;
 
       .visibility {
-        transition: 0.6s;
-        cursor: pointer;
-        padding: 0.25rem;
-        border-radius: 0.25rem;
-
         &.hidden {
           display: none;
         }
