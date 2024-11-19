@@ -40,9 +40,9 @@ export interface EdgeEntry {
 }
 
 /** Required edge keys */
-const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'Target ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
+export const REQUIRED_KEYS: (keyof EdgeEntry)[] = ['Cell ID', 'Target ID', 'X1', 'Y1', 'Z1', 'X2', 'Y2', 'Z2'];
 /** Optional edge keys */
-const OPTIONAL_KEYS: (keyof EdgeEntry)[] = [];
+export const OPTIONAL_KEYS: (keyof EdgeEntry)[] = [];
 /** Base data view class for edges */
 const BaseEdgesView = createDataViewClass<EdgeEntry>([...REQUIRED_KEYS, ...OPTIONAL_KEYS]);
 

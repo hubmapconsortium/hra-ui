@@ -342,12 +342,17 @@ function setDataViewOffset<T>(mapping: Partial<KeyMapping<T>>, offset: number): 
 
 /**
  * Attempts to infer key mapping properties from raw data
+ * @private
  *
  * @param entry The first raw data entry in the data array
  * @param mapping Mapping to update with inferred keys
  * @param keys Expected entry property keys
  */
-function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMapping<T>>, keys: (keyof T)[]): void {
+export function inferViewKeyMappingImpl<T>(
+  entry: AnyDataEntry,
+  mapping: Partial<KeyMapping<T>>,
+  keys: (keyof T)[],
+): void {
   const icase = (value: unknown) => String(value).toLowerCase();
   const isArrayEntry = Array.isArray(entry);
   let header: unknown[] = [];
@@ -371,7 +376,8 @@ function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMap
     const index = header.findIndex((candidate) => icase(candidate) === propICase);
     if (index >= 0) {
       mapping[key] = (isArrayEntry ? index : header[index]) as never;
-    } else {
+    } else if (key in mapping) {
+      console.warn(`Could not find a matching column for '${String(mapping[key])}', key: ${String(key)}`);
       delete mapping[key];
     }
   }
@@ -379,12 +385,13 @@ function inferViewKeyMappingImpl<T>(entry: AnyDataEntry, mapping: Partial<KeyMap
 
 /**
  * Validates an inferred key mapping
+ * @private
  *
  * @param mapping Inferred key mapping
  * @param requiredKeys Required entry property keys
  * @returns undefined if valid, otherwise an error describing the issue
  */
-function validateViewKeyMapping<T>(mapping: Partial<KeyMapping<T>>, requiredKeys: (keyof T)[]): Error | void {
+export function validateViewKeyMapping<T>(mapping: Partial<KeyMapping<T>>, requiredKeys: (keyof T)[]): Error | void {
   const missingKeys: (keyof T)[] = [];
   for (const key of requiredKeys) {
     if (mapping[key] === undefined) {
