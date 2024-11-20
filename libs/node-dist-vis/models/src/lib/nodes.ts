@@ -34,9 +34,9 @@ export interface NodeEntry {
 }
 
 /** Required node keys */
-const REQUIRED_KEYS: (keyof NodeEntry)[] = ['Cell Type', 'X', 'Y'];
+export const REQUIRED_KEYS: (keyof NodeEntry)[] = ['Cell Type', 'X', 'Y'];
 /** Optional node keys */
-const OPTIONAL_KEYS: (keyof NodeEntry)[] = ['Cell Ontology ID', 'Z'];
+export const OPTIONAL_KEYS: (keyof NodeEntry)[] = ['Cell Ontology ID', 'Z'];
 /** Base nodes view class */
 const BaseNodesView = createDataViewClass<NodeEntry>([...REQUIRED_KEYS, ...OPTIONAL_KEYS]);
 

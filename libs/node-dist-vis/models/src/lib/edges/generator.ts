@@ -117,6 +117,11 @@ export function* generateEdges(
   maxDistance: number,
 ): Generator<EdgeEntry, undefined, undefined> {
   const { sourceCells, targetCells } = partitionNodes(nodes, targetSelector, maxDistance);
+  if (Object.keys(targetCells).length === 0) {
+    console.warn(`No target cells found using selector '${targetSelector}'`);
+    return;
+  }
+
   for (const [x, y] of sourceCells.getNonEmptyIndices()) {
     const candidates = Array.from(targetCells.getNeighborhood(x, y));
     for (const cell of sourceCells.getCellsAt(x, y) ?? []) {
