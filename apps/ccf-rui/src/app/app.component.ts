@@ -19,7 +19,6 @@ import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
-import { Side } from './modules/content/stage-nav/stage-nav.component';
 import { RegistrationState } from './core/store/registration/registration.state';
 
 export interface User {
@@ -35,6 +34,9 @@ interface AppOptions extends GlobalConfig {
   view?: ViewType;
   viewSide?: ViewSide;
 }
+
+/** Valid values for side. */
+export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
 
 /**
  * App component

@@ -1,9 +1,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  max-height: 40vh;
+  max-height: 55vh;
   overflow-y: auto;
-  scrollbar-width: thin;
 
   .item-entry {
     display: flex;

@@ -45,8 +45,14 @@
         padding: 0 12px;
 
         span {
+          color: var(--sys-on-primary-fixed-variant);
+        }
+
+        .position-label {
+          font: var(--sys-label-small);
+        }
+        .position-value {
           font: var(--sys-label-medium);
-          color: var(--sys-primary);
         }
       }
 

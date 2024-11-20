@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 21rem minmax(586px, calc(100vw - 43.25rem)) 22.25rem;
+  grid-template-columns: 21rem minmax(586px, calc(100vw - 44.25rem)) 22.25rem;
   grid-template-rows: 4.5rem auto;
   grid-template-areas:
     'header registration metadata'

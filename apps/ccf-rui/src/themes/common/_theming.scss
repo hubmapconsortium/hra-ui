@@ -1,11 +1,6 @@
 @use '../../../../../libs/ccf-shared/src/lib/components//info/info-dialog/info-dialog.component.theme.scss' as
   infoDialog;
-@use '../../../../../libs/ccf-shared/src/lib/components/info/info-button/info-button.component.theme.scss' as infoButton;
 @use '../../app/shared/components/drawer/drawer.theme' as drawer;
-@use '../../app/modules/right-sidebar/right-sidebar.component.theme.scss' as rightSidebar;
-@use '../../app/shared/components/block-size-input/block-size-input.component.theme.scss' as blockSizeInput;
-@use '../../app/shared/components/slices-input/slices-input.component.theme.scss' as slicesInput;
-@use '../../app/shared/components/rotation-slider/rotation-slider.component.theme.scss' as rotationSlider;
 @use '../../app/shared/components/tag-list/tag-list.theme.scss' as tagList;
 @use '../../app/shared/components/tag-search/tag-search.component.theme.scss' as tagSearch;
 @use '../../app/shared/components/name-input/name-input.component.theme' as nameInput;
@@ -16,7 +11,6 @@
   as spatialKeyBoardUI;
 @use '../../app/shared/components/details-label/details-label.component.theme' as detailsLabel;
 @use '../../app/modules/content/content.component.theme.scss' as content;
-@use '../../app/modules/content/stage-nav/stage-nav.component.theme.scss' as stageNav;
 @use '../../app/modules/review/review-button/review-button.component.theme.scss' as reviewButton;
 @use '../../app/modules/review/review-modal/review-modal.component.theme.scss' as reviewModal;
 @use '../../app/modules/content/video-modal/video-modal/video-modal.component.theme.scss' as videoModal;
@@ -29,12 +23,7 @@
 
 @mixin ccf-theme($theme) {
   @include infoDialog.theme($theme);
-  @include infoButton.theme($theme);
   @include drawer.theme($theme);
-  @include rightSidebar.theme($theme);
-  @include blockSizeInput.theme($theme);
-  @include slicesInput.theme($theme);
-  @include rotationSlider.theme($theme);
   @include tagList.theme($theme);
   @include tagSearch.theme($theme);
   @include spatialKeyBoardUI.theme($theme);
@@ -44,7 +33,6 @@
   @include extractionSets.theme($theme);
   @include detailsLabel.theme($theme);
   @include content.theme($theme);
-  @include stageNav.theme($theme);
   @include reviewButton.theme($theme);
   @include reviewModal.theme($theme);
   @include videoModal.theme($theme);
