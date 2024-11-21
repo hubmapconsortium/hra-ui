@@ -1,44 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-
-import { RegistrationContentComponent } from './registration-content.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
-import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
-import { JsonFileReaderModule } from '../../../shared/components/json-file-reader/json-file-reader.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
+import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatMenuModule } from '@angular/material/menu';
+import { JsonFileReaderModule } from '../../../shared/components/json-file-reader/json-file-reader.module';
+import { RegistrationFormModule } from '../registration-form/registration-form.module';
+import { RegistrationContentComponent } from './registration-content.component';
 
 @NgModule({
   declarations: [RegistrationContentComponent],
   imports: [
     CommonModule,
     MatTooltipModule,
-    MatButtonModule,
-    MatFormFieldModule,
     WorkflowCardComponent,
     StepIndicatorComponent,
     JsonFileReaderModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule,
-    MatSelectModule,
     MatIconModule,
     ButtonModule,
-    MatAutocompleteModule,
     DeleteFileButtonComponent,
     ErrorIndicatorComponent,
     MatMenuModule,
+    RegistrationFormModule,
   ],
   exports: [RegistrationContentComponent],
 })
