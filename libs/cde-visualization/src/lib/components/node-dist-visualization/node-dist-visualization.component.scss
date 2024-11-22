@@ -19,7 +19,9 @@
 
           .header {
             background-color: white;
+            height: calc(4rem - 2px);
             padding: 0.75rem 1rem;
+            border-left: 2px solid var(--sys-outline-variant);
 
             hra-expansion-panel-header-content {
               mat-icon {
@@ -29,7 +31,8 @@
           }
 
           .content {
-            height: calc(100% - 4rem);
+            height: calc(100% - 4rem + 2px);
+            border-top: 2px solid var(--sys-outline-variant);
 
             .expansion-body {
               height: 100%;
