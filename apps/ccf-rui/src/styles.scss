@@ -13,6 +13,8 @@
 @use 'light-theme';
 @use 'theming' as design-system-theming;
 
+@use 'themes/common/utility';
+
 html {
   @include design-system-theming.theme(light-theme.$theme);
 }
@@ -150,12 +152,12 @@ mat-icon {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #cdcdcd;
+  background: rgb(from var(--sys-primary) r g b / 0.87);
   -webkit-border-radius: 0.625rem;
   border-radius: 0.625rem;
 }

@@ -77,12 +77,34 @@ export interface ModelStateModel {
   anatomicalStructures: VisibilityItem[];
   /** Extraction sets */
   extractionSets: ExtractionSet[];
+  consortium?: string;
+  doi?: string;
 }
 
 /**
  * All organs to be displayed
  */
 export const RUI_ORGANS = ALL_ORGANS;
+
+export const MODEL_DEFAULTS: ModelStateModel = {
+  id: '',
+  label: '',
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  organ: { src: '', name: '' } as OrganInfo,
+  organIri: '',
+  organDimensions: { x: 90, y: 90, z: 90 },
+  sex: 'male',
+  blockSize: { x: 10, y: 10, z: 10 },
+  rotation: { x: 0, y: 0, z: 0 },
+  position: { x: 0, y: 0, z: 0 },
+  slicesConfig: { thickness: NaN, numSlices: NaN },
+  viewType: 'register',
+  viewSide: 'anterior',
+  showPrevious: false,
+  extractionSites: [],
+  anatomicalStructures: [],
+  extractionSets: [],
+};
 
 /**
  * Data for the main 3d model display
@@ -190,6 +212,14 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** Extraction sets observable */
   readonly extractionSets$ = this.state$.pipe(
     map((x) => x?.extractionSets),
+    distinctUntilChanged(),
+  );
+  readonly consortium$ = this.state$.pipe(
+    map((x) => x?.consortium),
+    distinctUntilChanged(),
+  );
+  readonly doi$ = this.state$.pipe(
+    map((x) => x?.doi),
     distinctUntilChanged(),
   );
 
@@ -415,6 +445,16 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   @DataAction()
   setExtractionSets(extractionSets: ExtractionSet[]): void {
     this.ctx.patchState({ extractionSets });
+  }
+
+  @DataAction()
+  setConsortium(consortium?: string): void {
+    this.ctx.patchState({ consortium });
+  }
+
+  @DataAction()
+  setDoi(doi?: string): void {
+    this.ctx.patchState({ doi });
   }
 
   /**
