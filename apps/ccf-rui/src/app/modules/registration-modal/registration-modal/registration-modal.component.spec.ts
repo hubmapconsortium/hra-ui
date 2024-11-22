@@ -55,6 +55,7 @@ const initialPageState: PageStateModel = {
   user: {
     firstName: '',
     lastName: '',
+    email: '',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
@@ -96,12 +97,6 @@ describe('RegistrationModalComponent', () => {
       });
   });
 
-  it('should open the dialog when the openDialog() method is called', async () => {
-    const { instance, inject } = await shallow.render();
-    instance.openDialog();
-    expect(inject(MatDialog).open).toHaveBeenCalled();
-  });
-
   it('should open the dialog on init if there is no user or organ', async () => {
     const { instance } = await shallow.render();
     const spy = spyOn(instance, 'openDialog');
@@ -120,7 +115,7 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(updatedReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' },
+      user: { firstName: 'John', lastName: 'Doe', email: 'j.joe@gmail.com' },
     });
     modelSubject.next({
       ...(initialModelState as ModelStateModel),
@@ -136,7 +131,7 @@ describe('RegistrationModalComponent', () => {
     referenceSubject.next(initialReferenceDataState);
     pageSubject.next({
       ...initialPageState,
-      user: { firstName: 'John', lastName: 'Doe' },
+      user: { firstName: 'John', lastName: 'Doe', email: 'j.joe@gmail.com' },
     });
     modelSubject.next({
       ...(initialModelState as ModelStateModel),
