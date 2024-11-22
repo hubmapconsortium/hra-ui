@@ -15,10 +15,12 @@ jest.mock('vega-embed', () => ({ default: jest.fn() }));
 describe('HistogramComponent', () => {
   const sampleData = [
     {
+      edge: [],
       type: 'A',
       distance: 5,
     },
     {
+      edge: [],
       type: 'B',
       distance: 7,
     },
