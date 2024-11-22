@@ -36,10 +36,7 @@ export class RegistrationFormComponent {
 
   @Output() readonly isValidChange = new EventEmitter<boolean>();
 
-  @Output() organChange = new EventEmitter<OrganInfo>();
-
-  /** Current sex in the model state */
-  readonly sexByLabel$ = this.model.sex$.pipe(map((sex) => (sex === 'female' ? 'Female' : 'Male')));
+  @Output() readonly organChange = new EventEmitter<OrganInfo>();
 
   /** List of selectable organs */
   organList = RUI_ORGANS;

@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-import { MODEL_DEFAULTS, ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
+import { MODEL_DEFAULTS, ModelState } from '../../../core/store/model/model.state';
 import { PageState } from '../../../core/store/page/page.state';
 import { RegistrationState } from '../../../core/store/registration/registration.state';
 
@@ -27,35 +25,13 @@ export class RegistrationContentComponent {
 
   isValid!: boolean;
 
-  /** Current sex in the model state */
-  readonly sexByLabel$ = this.model.sex$.pipe(map((sex) => (sex === 'female' ? 'Female' : 'Male')));
-
-  /** List of selectable organs */
-  organList = RUI_ORGANS;
-
-  /** Whether sex has been selected */
-  sexSelected!: boolean;
-
   /** Current organ selected */
   currentOrgan?: OrganInfo;
-
-  /** Checks if the user has entered a first and last name */
-  nameValid!: boolean;
-
-  /** Checks if the entered orcid is valid */
-  orcidValid!: boolean;
 
   /** Checks if a preexisting registration was uploaded */
   registrationSelected = false;
 
   uploadedFileName = '';
-
-  /** Form builder */
-  private readonly fb = inject(FormBuilder);
-
-  filteredOrganOptions?: Observable<OrganInfo[]>;
-
-  consortiumList = ['Test', 'Sample', 'Foo', 'SenNet']; // TODO: replace with actual consortium data
 
   /**
    * Creates an instance of the registration dialog
@@ -63,7 +39,6 @@ export class RegistrationContentComponent {
    * @param page Page state
    * @param model Model state
    * @param dialogRef Registration dialog
-   * @param cdr Change detection
    */
   constructor(
     readonly page: PageState,
@@ -104,9 +79,8 @@ export class RegistrationContentComponent {
    * Updates page state to signal registration has started
    */
   closeDialog(): void {
-    const { firstName, middleName, lastName, email, orcid, sex } = this.registrationForm.controls;
-
-    // TODO: find out where to update publicationDOI and consortium
+    const { firstName, middleName, lastName, email, orcid, sex, consortium, publicationDOI } =
+      this.registrationForm.controls;
 
     this.page.setUserName({
       firstName: firstName.value ?? '',
@@ -114,8 +88,10 @@ export class RegistrationContentComponent {
       lastName: lastName.value ?? '',
     });
     this.page.setOrcidId(orcid.value ?? '');
-    this.model.setSex(sex.value === 'Female' ? 'female' : 'male');
     this.page.setEmail(email.value ?? '');
+    this.model.setSex(sex.value === 'Female' ? 'female' : 'male');
+    this.model.setConsortium(consortium.value);
+    this.model.setDoi(publicationDOI.value);
     if (this.currentOrgan) {
       this.model.setOrgan(this.currentOrgan);
     }

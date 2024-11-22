@@ -77,6 +77,8 @@ export interface ModelStateModel {
   anatomicalStructures: VisibilityItem[];
   /** Extraction sets */
   extractionSets: ExtractionSet[];
+  consortium?: string;
+  doi?: string;
 }
 
 /**
@@ -192,6 +194,14 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** Extraction sets observable */
   readonly extractionSets$ = this.state$.pipe(
     map((x) => x?.extractionSets),
+    distinctUntilChanged(),
+  );
+  readonly consortium$ = this.state$.pipe(
+    map((x) => x?.consortium),
+    distinctUntilChanged(),
+  );
+  readonly doi$ = this.state$.pipe(
+    map((x) => x?.doi),
     distinctUntilChanged(),
   );
 
@@ -417,6 +427,16 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   @DataAction()
   setExtractionSets(extractionSets: ExtractionSet[]): void {
     this.ctx.patchState({ extractionSets });
+  }
+
+  @DataAction()
+  setConsortium(consortium?: string): void {
+    this.ctx.patchState({ consortium });
+  }
+
+  @DataAction()
+  setDoi(doi?: string): void {
+    this.ctx.patchState({ doi });
   }
 
   /**
