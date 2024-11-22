@@ -3,6 +3,10 @@
   flex-direction: column;
   margin-top: 1rem;
 
+  ccf-slices-input {
+    margin: 0.75rem 0 1.5rem 0;
+  }
+
   hra-expansion-panel {
     ::ng-deep {
       .header > .title {

@@ -10,7 +10,6 @@ import {
   Input,
   OnDestroy,
   Output,
-  ViewChild,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -53,16 +52,6 @@ export class TagSearchComponent implements OnDestroy {
 
   /** Emits when tags are added */
   @Output() readonly added = new EventEmitter<Tag[]>();
-
-  /** Element for close search button */
-  @ViewChild('closeSearch', { read: ElementRef, static: false }) closeSearch!: ElementRef<HTMLElement>;
-
-  /** Mapping for pluralizing the result total count */
-  readonly countMapping = {
-    /* eslint-disable-next-line @typescript-eslint/naming-convention */
-    '=1': '1 result',
-    other: '# results',
-  };
 
   /** Search field controller */
   readonly searchControl = new UntypedFormControl();
@@ -167,9 +156,8 @@ export class TagSearchComponent implements OnDestroy {
   @HostListener('window:click', ['$event']) // eslint-disable-line
   @HostListener('window:focusin', ['$event']) // eslint-disable-line
   closeResults(event: Event): void {
-    const { closeSearch } = this;
     if (this.resultsVisible && event.target instanceof Node) {
-      if (!this.el.nativeElement.contains(event.target) || closeSearch.nativeElement.contains(event.target)) {
+      if (!this.el.nativeElement.contains(event.target)) {
         this.resultsVisible = false;
       }
     }

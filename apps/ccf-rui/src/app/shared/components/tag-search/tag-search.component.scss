@@ -28,18 +28,14 @@
   }
 
   .results {
-    margin-top: 0.5rem;
-
-    .count {
-      margin-top: 0.5rem;
-      font-size: 0.75rem;
-      text-align: end;
-    }
+    background: var(--sys-surface-container-low);
+    border-top: 3px solid #4b4b5e;
   }
 
   ::ng-deep {
     mat-form-field {
       width: 100%;
+      box-shadow: 0px 5px 4px 0px #201e3d29;
 
       .mat-mdc-text-field-wrapper {
         padding: 0;

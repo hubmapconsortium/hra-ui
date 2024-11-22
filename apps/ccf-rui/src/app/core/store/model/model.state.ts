@@ -101,7 +101,7 @@ export const RUI_ORGANS = ALL_ORGANS;
     blockSize: { x: 10, y: 10, z: 10 },
     rotation: { x: 0, y: 0, z: 0 },
     position: { x: 0, y: 0, z: 0 },
-    slicesConfig: { thickness: NaN, numSlices: NaN },
+    slicesConfig: { thickness: 0, numSlices: 0 },
     viewType: 'register',
     viewSide: 'anterior',
     showPrevious: false,
