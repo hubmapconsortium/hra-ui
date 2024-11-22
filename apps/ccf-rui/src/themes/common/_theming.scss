@@ -5,7 +5,6 @@
 @use '../../app/shared/components/name-input/name-input.component.theme' as nameInput;
 @use '../../../../../libs/ccf-shared/src/lib/components/organ-selector/organ-selector.component.theme' as organSelector;
 @use '../../app/shared/components/labeled-slide-toggle/labeled-slide-toggle.component.theme' as slideToggle;
-@use '../../app/shared/components/extraction-set-dropdown/extraction-set-dropdown.component.theme' as extractionSets;
 @use '../../../../../libs/ccf-shared/src/lib/components/spatial-search-keyboard-ui/spatial-search-keyboard-ui.component.theme'
   as spatialKeyBoardUI;
 @use '../../app/shared/components/details-label/details-label.component.theme' as detailsLabel;
@@ -28,7 +27,6 @@
   @include nameInput.theme($theme);
   @include organSelector.theme($theme);
   @include slideToggle.theme($theme);
-  @include extractionSets.theme($theme);
   @include detailsLabel.theme($theme);
   @include content.theme($theme);
   @include reviewButton.theme($theme);

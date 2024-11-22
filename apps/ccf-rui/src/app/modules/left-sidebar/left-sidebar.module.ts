@@ -7,7 +7,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
 
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
-import { ExtractionSetDropdownModule } from '../../shared/components/extraction-set-dropdown/extraction-set-dropdown.module';
 import { NameInputModule } from '../../shared/components/name-input/name-input.module';
 import { VisibilityMenuModule } from '../../shared/components/visibility-menu/visibility-menu.module';
 import { LeftSidebarComponent } from './left-sidebar.component';
@@ -24,7 +23,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 
     MatDividerModule,
     NameInputModule,
-    ExtractionSetDropdownModule,
     OpacitySliderModule,
     VisibilityMenuModule,
     ExpansionPanelComponent,

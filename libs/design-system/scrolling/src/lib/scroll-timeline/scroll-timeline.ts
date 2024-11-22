@@ -24,7 +24,7 @@ export const SCROLL_TIMELINE = new InjectionToken<Signal<ScrollTimelineFunc | nu
   providedIn: 'root',
   factory: () => {
     type WindowWithScrollTimeline = { ScrollTimeline: ScrollTimelineFunc };
-    const window = inject(DOCUMENT).defaultView as WindowWithScrollTimeline | null;
+    const window = inject(DOCUMENT).defaultView as unknown as WindowWithScrollTimeline | null;
     if (!isPlatformBrowser(inject(PLATFORM_ID)) || !window) {
       return signal(null);
     }

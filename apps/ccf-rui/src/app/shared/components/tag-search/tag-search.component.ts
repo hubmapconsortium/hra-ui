@@ -38,9 +38,6 @@ export class TagSearchComponent implements OnDestroy {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
-  /** Placeholder text */
-  @Input() placeholder = 'Search';
-
   /** Search method */
   @Input() search?: (text: string, limit: number) => ObservableInput<TagSearchResult>;
 
