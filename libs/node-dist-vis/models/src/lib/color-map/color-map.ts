@@ -1,18 +1,19 @@
 import { Signal } from '@angular/core';
 import { Color } from '@deck.gl/core/typed';
+import { NextObserver } from 'rxjs';
 import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
-  DataViewFilter,
+  DataViewEntryFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
   loadViewData,
   loadViewKeyMapping,
 } from '../data-view';
-import { cachedAccessor, tryParseColor } from '../utils';
 import { NodeFilterView } from '../filters';
+import { cachedAccessor, tryParseColor } from '../utils';
 
 /** Color map input */
 export type ColorMapInput = DataViewInput<ColorMapView>;
@@ -100,7 +101,7 @@ export class ColorMapView extends BaseColorMapView {
     return lookup;
   });
 
-  readonly createFilter = (filterView: NodeFilterView): DataViewFilter => {
+  readonly createFilter = (filterView: NodeFilterView): DataViewEntryFilter => {
     return (obj) => filterView.includes(this.getCellTypeFor(obj), -1);
   };
 }
@@ -118,6 +119,7 @@ export const EMPTY_COLOR_MAP_VIEW = new ColorMapView([], {
  * @param keys Raw color mak key mapping input
  * @param colorMapKey Backwards compatable 'Cell Type' key mapping
  * @param colorMapValue Backwards compatable 'Cell Color' key mapping
+ * @param loading Observer notified when data is loading
  * @returns A color map view
  */
 export function loadColorMap(
@@ -125,12 +127,17 @@ export function loadColorMap(
   keys: Signal<ColorMapKeysInput>,
   colorMapKey?: Signal<string | undefined>,
   colorMapValue?: Signal<string | undefined>,
+  loading?: NextObserver<boolean>,
 ): Signal<ColorMapView> {
-  const data = loadViewData(input, ColorMapView);
-  const mapping = loadViewKeyMapping(keys, {
-    'Cell Type': colorMapKey,
-    'Cell Color': colorMapValue,
-  });
+  const data = loadViewData(input, ColorMapView, loading);
+  const mapping = loadViewKeyMapping(
+    keys,
+    {
+      'Cell Type': colorMapKey,
+      'Cell Color': colorMapValue,
+    },
+    loading,
+  );
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(ColorMapView, data, inferred, EMPTY_COLOR_MAP_VIEW);
 }

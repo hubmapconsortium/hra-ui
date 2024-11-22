@@ -2,7 +2,7 @@ import { ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { Color } from '@deck.gl/core/typed';
 import { FileLoader } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
-import { catchError, EMPTY, filter, map } from 'rxjs';
+import { catchError, filter, map, NextObserver, Observer, of, tap } from 'rxjs';
 
 /** Accepted data input types */
 export type DataInput<T> = T | File | URL | string | null | undefined;
@@ -120,30 +120,39 @@ export function tryParseColor(value: unknown): Color | undefined {
  * @param input Raw input
  * @param loaderService Service to load urls and files
  * @param options File loader options
+ * @param loading Observer notified when data is loading
  * @returns Loaded data
  */
 export function loadData<T, Opts>(
   input: Signal<DataInput<T>>,
   loaderService: Type<FileLoader<T, Opts>>,
   options: Opts,
+  loading?: NextObserver<boolean>,
 ): Signal<unknown> {
   const loader = inject(loaderService);
   const errorHandler = inject(ErrorHandler);
+  const loadingHandler: Partial<Observer<T>> = {
+    next: () => loading?.next(false),
+    error: (error) => {
+      loading?.next(false);
+      errorHandler.handleError(error);
+    },
+  };
 
   return derivedAsync(() => {
     const data = tryParseJson(input());
     if (typeof data === 'string' || data instanceof File || data instanceof URL) {
       const source = data instanceof URL ? data.toString() : data;
+      loading?.next(true);
       return loader.load(source, options).pipe(
         filter((event) => event.type === 'data'),
         map((event) => event.data),
-        catchError((error) => {
-          errorHandler.handleError(error);
-          return EMPTY;
-        }),
+        tap(loadingHandler),
+        catchError(() => of(undefined)),
       );
     }
 
+    loading?.next(false);
     return data;
   });
 }

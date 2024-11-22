@@ -1,3 +1,7 @@
+@if (loadingManager.isLoading$ | async) {
+  <mat-progress-bar class="progress" mode="indeterminate"></mat-progress-bar>
+}
+
 <div class="header">
   <hra-nav-header-buttons
     app="cde"

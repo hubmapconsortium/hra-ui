@@ -1,8 +1,6 @@
 :host {
   display: block;
-  position: relative;
   background-color: black;
-  isolation: isolate;
 
   .filler {
     flex-grow: 1;

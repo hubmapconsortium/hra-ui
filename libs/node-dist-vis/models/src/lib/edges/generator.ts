@@ -1,5 +1,18 @@
-import { Signal } from '@angular/core';
-import { filter, fromEvent, map, Observable, take, tap, Unsubscribable, using } from 'rxjs';
+import { ErrorHandler, inject, Signal } from '@angular/core';
+import {
+  catchError,
+  filter,
+  fromEvent,
+  map,
+  NextObserver,
+  Observable,
+  Observer,
+  of,
+  take,
+  tap,
+  Unsubscribable,
+  using,
+} from 'rxjs';
 import { AnyDataEntry } from '../data-view';
 import { NodesView } from '../nodes';
 import { EdgeEntry, EdgesInput, EdgesView, EMPTY_EDGES_VIEW } from './edges';
@@ -215,7 +228,17 @@ export function createEdgeGenerator(
   edges: Signal<EdgesInput>,
   nodeTargetSelector: Signal<string>,
   maxEdgeDistance: Signal<number>,
+  loading?: NextObserver<boolean>,
 ): () => Observable<EdgesView> | EdgesView {
+  const errorHandler = inject(ErrorHandler);
+  const loadingHandler: Partial<Observer<EdgesView>> = {
+    next: () => loading?.next(false),
+    error: (error) => {
+      loading?.next(false);
+      errorHandler.handleError(error);
+    },
+  };
+
   return () => {
     const view = nodes();
     const input = edges();
@@ -228,21 +251,25 @@ export function createEdgeGenerator(
       !Number.isFinite(distance) ||
       distance <= 0
     ) {
+      loading?.next(false);
       return EMPTY_EDGES_VIEW;
     }
 
+    loading?.next(true);
     return createEdgeGeneratorWorker(view, selector, distance).pipe(
       tap((event) => {
         if (event.data.type === 'progress') {
           console.log(formatProgressMessage(event.data));
         }
       }),
-      filter((event) => event.data.type === 'result'),
+      filter((event): event is MessageEvent<ResultMessage> => event.data.type === 'result'),
       take(1),
       map((event) => {
-        const { data, keyMapping, offset } = (event.data as ResultMessage).edges;
+        const { data, keyMapping, offset } = event.data.edges;
         return new EdgesView(data, keyMapping, offset);
       }),
+      tap(loadingHandler),
+      catchError(() => of(EMPTY_EDGES_VIEW)),
     );
   };
 }

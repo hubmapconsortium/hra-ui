@@ -2,7 +2,7 @@ import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { unparse } from 'papaparse';
-import { Observable } from 'rxjs';
+import { NextObserver, Observable } from 'rxjs';
 import { DataInput, isRecordObject, loadData } from './utils';
 
 /** Removes all whitespaces in a string */
@@ -34,7 +34,9 @@ export type AnyDataView = DataView<any>;
 export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
 
 /** Filter function */
-export type DataViewFilter = (obj: AnyDataEntry, index: number) => boolean;
+export type DataViewEntryFilter = (obj: AnyDataEntry, index: number) => boolean;
+/** Transform function */
+export type DataViewEntryTransform = (obj: AnyDataEntry, key: PropertyKey, index: number) => unknown;
 
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
@@ -52,6 +54,14 @@ export type DataViewAccessors<Entry> = {
 } & {
   [P in keyof Entry as AccessorName<Entry, P, 'For'>]-?: Accessor<Entry, P, AnyDataEntry>;
 };
+
+/** Options for serialization */
+export interface DataViewSerializationOptions {
+  /** Data filter */
+  filter?: DataViewEntryFilter;
+  /** Value transformation */
+  transform?: DataViewEntryTransform;
+}
 
 /** Data view */
 export interface DataView<Entry> {
@@ -96,7 +106,7 @@ export interface DataView<Entry> {
   /**
    * Serialize to a csv blob (including header)
    */
-  toCsv(filter?: DataViewFilter): Promise<Blob>;
+  toCsv(options?: DataViewSerializationOptions): Promise<Blob>;
 }
 
 /** Data view constructor */
@@ -164,8 +174,9 @@ function* normalizeRows(
   start: number,
   end: number,
   offset: number,
-  filter: DataViewFilter | undefined,
+  options: DataViewSerializationOptions,
 ): Generator<unknown[]> {
+  const { filter, transform } = options;
   end = Math.min(end, data.length);
   for (let index = start; index < end; index++) {
     const item = data[index] as Record<PropertyKey, unknown>;
@@ -175,7 +186,7 @@ function* normalizeRows(
     }
 
     for (const key of keys) {
-      const value = item[key];
+      const value = transform ? transform(item, key, index) : item[key];
       const serialized = typeof value !== 'object' ? value : JSON.stringify(value);
       row.push(serialized);
     }
@@ -188,14 +199,14 @@ async function serializeToCsv<T>(
   data: AnyData,
   keyMapping: KeyMapping<T>,
   offset: number,
-  filter: DataViewFilter | undefined,
+  options: DataViewSerializationOptions,
 ): Promise<Blob> {
   const ROWS_PER_CHUNK = 5000;
   const keys = Object.values(keyMapping) as PropertyKey[];
   const chunks: string[] = [unparse([Object.keys(keyMapping)]), '\r\n'];
 
   for (let index = offset; index < data.length; index += ROWS_PER_CHUNK) {
-    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK, offset, filter));
+    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK, offset, options));
     chunks.push(unparse(rows), '\r\n');
     // Don't block the main thread
     await new Promise((res) => setTimeout(res));
@@ -248,8 +259,8 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       return iter;
     }
 
-    toCsv(filter?: DataViewFilter): Promise<Blob> {
-      return serializeToCsv(this.data, this.keyMapping, this.offset, filter);
+    toCsv(options: DataViewSerializationOptions = {}): Promise<Blob> {
+      return serializeToCsv(this.data, this.keyMapping, this.offset, options);
     }
   }
 
@@ -262,19 +273,26 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
  *
  * @param input Raw data view input
  * @param viewCls Data view class
+ * @param loading Observer notified when data is loading
  * @returns Either a data view of the specified type or an array of raw data
  */
 export function loadViewData<T extends AnyDataView>(
   input: Signal<DataViewInput<T>>,
   viewCls: Type<T>,
+  loading?: NextObserver<boolean>,
 ): Signal<T | AnyData> {
-  const data = loadData(input, CsvFileLoaderService, {
-    papaparse: {
-      dynamicTyping: true,
-      header: false,
-      skipEmptyLines: 'greedy',
+  const data = loadData(
+    input,
+    CsvFileLoaderService,
+    {
+      papaparse: {
+        dynamicTyping: true,
+        header: false,
+        skipEmptyLines: 'greedy',
+      },
     },
-  });
+    loading,
+  );
 
   return computed(() => {
     const result = data();
@@ -288,13 +306,15 @@ export function loadViewData<T extends AnyDataView>(
  *
  * @param input Raw key mapping input
  * @param mixins Additional mappings for backwards compatability
+ * @param loading Observer notified when data is loading
  * @returns A partial key mapping
  */
 export function loadViewKeyMapping<T>(
   input: Signal<KeyMappingInput<T>>,
   mixins: KeyMappingMixins<T> = {},
+  loading?: NextObserver<boolean>,
 ): Signal<Partial<KeyMapping<T>>> {
-  const data = loadData(input, JsonFileLoaderService, {});
+  const data = loadData(input, JsonFileLoaderService, {}, loading);
   return computed(() => {
     const result = data();
     const mapping = isRecordObject(result) ? { ...result } : {};

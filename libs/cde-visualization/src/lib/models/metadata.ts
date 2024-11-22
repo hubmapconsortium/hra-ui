@@ -1,6 +1,7 @@
 import { computed, Signal } from '@angular/core';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
 import { DataInput, loadData } from '@hra-ui/node-dist-vis/models';
+import { NextObserver } from 'rxjs';
 
 export type MetadataInput = DataInput<Metadata>;
 export type MetadataMixins = { [P in keyof Metadata]: Signal<Metadata[P] | undefined> };
@@ -43,8 +44,12 @@ export interface SampleMetadataExtra {
   sourceDataUrl: string;
 }
 
-export function loadMetadata(input: Signal<MetadataInput>, mixins: MetadataMixins): Signal<Metadata> {
-  const data = loadData(input, JsonFileLoaderService, {});
+export function loadMetadata(
+  input: Signal<MetadataInput>,
+  mixins: MetadataMixins,
+  loading?: NextObserver<boolean>,
+): Signal<Metadata> {
+  const data = loadData(input, JsonFileLoaderService, {}, loading);
   return computed(() => {
     const result = data();
     const metadata = typeof result === 'object' && result !== null ? (result as Metadata) : {};

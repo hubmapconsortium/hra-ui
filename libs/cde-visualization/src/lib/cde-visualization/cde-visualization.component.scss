@@ -1,6 +1,7 @@
 :host {
   width: 100%;
   display: grid;
+  position: relative;
   grid-template-columns: 22.75rem minmax(57.1875rem, calc(100vw - 22.75rem));
   grid-template-rows: 4rem minmax(42.375rem, calc(100vh - 4rem));
   grid-template-areas:
@@ -8,6 +9,12 @@
     'metadata visualization';
   color: var(--sys-secondary);
   background: var(--sys-surface-container-low);
+
+  .progress {
+    position: absolute;
+    inset: 0 0 auto 0;
+    --mdc-linear-progress-active-indicator-color: var(--sys-tertiary);
+  }
 
   .header {
     grid-area: header;

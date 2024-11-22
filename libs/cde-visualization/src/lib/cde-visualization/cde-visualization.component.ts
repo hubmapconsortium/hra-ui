@@ -12,6 +12,7 @@ import {
   untracked,
   ViewContainerRef,
 } from '@angular/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -23,7 +24,7 @@ import {
   ColorMapView,
   createColorMapGenerator,
   createEdgeGenerator,
-  DataViewFilter,
+  DataViewSerializationOptions,
   EdgeKeysInput,
   EdgesInput,
   EMPTY_COLOR_MAP_VIEW,
@@ -46,9 +47,12 @@ import { loadMetadata, MetadataInput } from '../models/metadata';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
+import { LoadingManager } from '../shared/loading-manager';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
+  /** Source edge */
+  edge: AnyDataEntry;
   /** Type of the entry */
   type: string;
   /** Distance value of the entry */
@@ -63,12 +67,14 @@ export interface DistanceEntry {
   standalone: true,
   imports: [
     CommonModule,
-    MetadataComponent,
+    MatProgressBarModule,
+
     CellTypesComponent,
-    NodeDistVisualizationComponent,
     HistogramComponent,
-    ViolinComponent,
+    MetadataComponent,
     NavHeaderButtonsComponent,
+    NodeDistVisualizationComponent,
+    ViolinComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
@@ -135,31 +141,44 @@ export class CdeVisualizationComponent {
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
 
+  /** Whether there are loading resources, etc. */
+  protected loadingManager = new LoadingManager();
+
   /** View of the node data */
-  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys);
+  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys, undefined, this.loadingManager.createSource());
   /** View of the edge data */
   protected readonly edgesView = withDataViewDefaultGenerator(
-    loadEdges(this.edges, this.edgeKeys),
-    createEdgeGenerator(this.nodesView, this.edges, this.nodeTargetSelector, this.maxEdgeDistance),
+    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createSource()),
+    createEdgeGenerator(
+      this.nodesView,
+      this.edges,
+      this.nodeTargetSelector,
+      this.maxEdgeDistance,
+      this.loadingManager.createSource(),
+    ),
     EMPTY_EDGES_VIEW,
   );
   /** View of the color map */
   protected readonly colorMapView = withDataViewDefaultGenerator(
-    loadColorMap(this.colorMap, this.colorMapKeys),
+    loadColorMap(this.colorMap, this.colorMapKeys, undefined, undefined, this.loadingManager.createSource()),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
   );
   /** Combined metadata */
-  protected readonly metadataView = loadMetadata(this.metadata, {
-    title: this.title,
-    organ: this.organ,
-    technology: this.technology,
-    sex: this.sex,
-    age: this.age,
-    thickness: this.thickness,
-    pixelSize: this.pixelSize,
-    creationTimestamp: this.creationTimestamp,
-  });
+  protected readonly metadataView = loadMetadata(
+    this.metadata,
+    {
+      title: this.title,
+      organ: this.organ,
+      technology: this.technology,
+      sex: this.sex,
+      age: this.age,
+      thickness: this.thickness,
+      pixelSize: this.pixelSize,
+      creationTimestamp: this.creationTimestamp,
+    },
+    this.loadingManager.createSource(),
+  );
 
   protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
 
@@ -176,8 +195,6 @@ export class CdeVisualizationComponent {
   protected readonly cellTypesAsColorMap = computed(
     () => new ColorMapView(this.cellTypes(), { 'Cell Type': 'name', 'Cell Color': 'color' }),
   );
-
-  // protected readonly resetCellTypes = createNotifier()
 
   private readonly edgeTypeAccessor = computed(() => {
     const getNodeType = this.nodesView().getCellTypeAt;
@@ -275,24 +292,28 @@ export class CdeVisualizationComponent {
   async downloadNodes(): Promise<void> {
     const nodes = this.nodesView();
     const filter = nodes.createFilter(this.nodeFilterView());
-    await this.downloadView(nodes, filter, 'nodes.csv');
+    await this.downloadView(nodes, 'nodes.csv', { filter });
   }
 
   async downloadEdges(): Promise<void> {
     const edges = this.edgesView();
     const filter = edges.createFilter(this.nodesView(), this.nodeFilterView());
-    await this.downloadView(edges, filter, 'edges.csv');
+    await this.downloadView(edges, 'edges.csv', { filter }); // TODO update indices!!! Use transform option
   }
 
   async downloadColorMap(): Promise<void> {
     const colorMap = this.cellTypesAsColorMap();
     const filter = colorMap.createFilter(this.nodeFilterView());
-    await this.downloadView(colorMap, filter, 'color-map.csv');
+    await this.downloadView(colorMap, 'color-map.csv', { filter });
   }
 
-  private async downloadView<V extends AnyDataView>(view: V, filter: DataViewFilter, filename: string): Promise<void> {
+  private async downloadView<V extends AnyDataView>(
+    view: V,
+    filename: string,
+    options: DataViewSerializationOptions,
+  ): Promise<void> {
     if (view.length > 0) {
-      const data = await view.toCsv(filter);
+      const data = await view.toCsv(options);
       this.fileSaver.saveData(data, filename);
     }
   }
@@ -310,7 +331,7 @@ export class CdeVisualizationComponent {
     for (const edge of edges) {
       const type = nodes.getCellTypeAt(edges.getCellIDFor(edge));
       if (type !== selectedCellType) {
-        distances.push({ type, distance: edges.getDistanceFor(edge) });
+        distances.push({ edge, type, distance: edges.getDistanceFor(edge) });
       }
     }
 
@@ -319,12 +340,14 @@ export class CdeVisualizationComponent {
 
   /** Compute data for the violin visualization */
   private computeFilteredDistances(): DistanceEntry[] {
-    const selection = new Set(this.cellTypesSelection());
-    if (selection.size === 0) {
-      return [];
+    const distances = this.distances();
+    const nodeFilter = this.nodeFilterView();
+    const edgeFilterFn = this.edgesView().createFilter(this.nodesView(), this.nodeFilterView());
+    if (nodeFilter.isEmpty()) {
+      return distances;
     }
 
-    return this.distances().filter(({ type }) => selection.has(type));
+    return distances.filter(({ edge }) => edgeFilterFn(edge, -1));
   }
 
   /** Compute colors for the violin visualization */
