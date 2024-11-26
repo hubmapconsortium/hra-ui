@@ -259,7 +259,7 @@ export class AppComponent implements OnDestroy, OnInit {
    */
   @HostListener('document:mousedown', ['$event.target'])
   handleClick(target: HTMLElement): void {
-    const disableWhenClicked = ['mat-mdc-input-element', 'form-input-label'];
+    const disableWhenClicked = ['mat-mdc-input-element', 'mat-mdc-form-field', 'form-input-label'];
     for (const className of disableWhenClicked) {
       if (typeof target.className === 'string' && target.className.includes(className)) {
         this.disablePositionChange = true;
