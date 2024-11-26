@@ -8,7 +8,6 @@ import { TrackingPopupModule } from 'ccf-shared';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { DEFAULT_THEME } from './core/services/theming/theming.service';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RegistrationModalModule } from './modules/registration-modal/registration-modal/registration-modal.module';
@@ -51,10 +50,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
   declarations: [AppComponent, AppWebComponent],
   providers: [
     provideDesignSystem(),
-    {
-      provide: DEFAULT_THEME,
-      useValue: 'hubmap-theme-light',
-    },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

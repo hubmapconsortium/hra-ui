@@ -27,7 +27,14 @@
       <mat-icon>help</mat-icon>
     </button>
     <mat-menu #help="matMenu" [class]="'settings-overlay'">
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Watch video tutorial</button>
+      <a
+        mat-menu-item
+        href="https://youtu.be/j4f9_xdBrK0?si=b5_p_lBuFzSyTXS3"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Watch video tutorial
+      </a>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use app guide</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Explore all registrations</button>

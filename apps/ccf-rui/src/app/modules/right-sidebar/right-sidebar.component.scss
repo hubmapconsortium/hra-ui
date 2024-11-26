@@ -93,12 +93,9 @@
   .buttons {
     padding: 1rem;
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
     border-top: 1px solid #acb5c3;
-
-    ccf-review-button {
-      flex-grow: 1;
-    }
+    margin-top: 1rem;
   }
 
   .info-button-container {
