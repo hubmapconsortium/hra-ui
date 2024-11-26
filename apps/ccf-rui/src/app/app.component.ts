@@ -183,8 +183,16 @@ export class AppComponent implements OnDestroy, OnInit {
           snackBar.dismiss();
         },
       },
+
       duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
+      panelClass: 'usage-snackbar',
     });
+
+    const snackbarContainer = window.document.querySelector<HTMLElement>('.usage-snackbar');
+
+    if (snackbarContainer && snackbarContainer.parentNode && snackbarContainer.parentNode.parentNode) {
+      (snackbarContainer.parentNode.parentNode as unknown as HTMLElement).style.zIndex = '1001';
+    }
 
     this.themeMode$.next('light');
 

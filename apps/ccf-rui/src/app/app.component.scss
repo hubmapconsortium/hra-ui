@@ -54,10 +54,6 @@
 }
 
 ::ng-deep {
-  .mdc-snackbar__surface {
-    box-shadow: none !important;
-  }
-
   .reg-overlay {
     button.mat-mdc-menu-item .mat-mdc-menu-item-text {
       font: var(--sys-label-medium);
