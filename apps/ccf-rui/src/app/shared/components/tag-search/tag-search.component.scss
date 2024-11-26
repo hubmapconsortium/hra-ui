@@ -30,6 +30,7 @@
   mat-checkbox {
     --mdc-checkbox-state-layer-size: 3rem;
     --mdc-checkbox-selected-icon-color: var(--sys-on-tertiary-fixed);
+    --mdc-checkbox-selected-focus-icon-color: var(--sys-on-tertiary-fixed);
 
     ::ng-deep label {
       font: var(--sys-label-medium);
