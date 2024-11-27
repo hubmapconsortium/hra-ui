@@ -55,52 +55,48 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    */
   updatePosition(key: string): void {
     this.currentDelta = this.shiftPressed ? this.shiftDelta : this.delta;
-    if (key === 'Shift') {
-      this.shiftPressed = true;
-    } else {
-      this.currentKey = key.toLowerCase();
-      switch (this.currentKey) {
-        case 'q':
-          this.position = {
-            ...this.position,
-            z: this.position.z + this.currentDelta,
-          };
-          break;
-        case 'e':
-          this.position = {
-            ...this.position,
-            z: this.position.z - this.currentDelta,
-          };
-          break;
-        case 'w':
-          this.position = {
-            ...this.position,
-            y: this.position.y + this.currentDelta,
-          };
-          break;
-        case 's':
-          this.position = {
-            ...this.position,
-            y: this.position.y - this.currentDelta,
-          };
-          break;
-        case 'a':
-          this.position = {
-            ...this.position,
-            x: this.position.x - this.currentDelta,
-          };
-          break;
-        case 'd':
-          this.position = {
-            ...this.position,
-            x: this.position.x + this.currentDelta,
-          };
-          break;
-        default:
-          break;
-      }
-      this.changePosition.emit(this.position);
+    this.currentKey = key.toLowerCase();
+    switch (this.currentKey) {
+      case 'q':
+        this.position = {
+          ...this.position,
+          z: this.position.z + this.currentDelta,
+        };
+        break;
+      case 'e':
+        this.position = {
+          ...this.position,
+          z: this.position.z - this.currentDelta,
+        };
+        break;
+      case 'w':
+        this.position = {
+          ...this.position,
+          y: this.position.y + this.currentDelta,
+        };
+        break;
+      case 's':
+        this.position = {
+          ...this.position,
+          y: this.position.y - this.currentDelta,
+        };
+        break;
+      case 'a':
+        this.position = {
+          ...this.position,
+          x: this.position.x - this.currentDelta,
+        };
+        break;
+      case 'd':
+        this.position = {
+          ...this.position,
+          x: this.position.x + this.currentDelta,
+        };
+        break;
+      default:
+        break;
     }
+    this.changePosition.emit(this.position);
   }
 
   /**
@@ -109,6 +105,9 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    */
   @HostListener('document:keydown', ['$event'])
   handleKey(target: KeyboardEvent): void {
+    if (target.shiftKey) {
+      this.shiftPressed = true;
+    }
     if (this.disablePositionChange) {
       return;
     }

@@ -5,6 +5,7 @@
     [shiftDelta]="2"
     [position]="(position$ | async)!"
     [disablePositionChange]="disablePositionChange"
+    (changePosition)="model.setPosition($event)"
   ></ccf-spatial-search-keyboard-ui-behavior>
   <ccf-body-ui
     class="gizmo"

@@ -10,6 +10,14 @@
     }
   }
 
+  .rotation-value {
+    cursor: pointer;
+
+    input {
+      cursor: pointer;
+    }
+  }
+
   .slider-box {
     display: flex;
     align-items: center;

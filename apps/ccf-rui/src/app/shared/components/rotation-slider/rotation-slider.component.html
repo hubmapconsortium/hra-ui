@@ -3,115 +3,100 @@
 </div>
 
 <div class="slider-box">
-  <mat-form-field *ngIf="displayedSlider !== 'x'" subscriptSizing="dynamic" (click)="displaySlider('x')">
-    <mat-label class="text form-input-label">X</mat-label>
-    <input
-      matInput
-      class="input"
-      type="number"
-      [value]="rotation.x"
-      [min]="-180"
-      [max]="180"
-      (change)="changeRotation($any($event.target).value, 'x')"
-    />
-  </mat-form-field>
-  <div *ngIf="displayedSlider === 'x'" class="slider-container">
-    <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
-      <input
-        class="slider-x"
-        matSliderThumb
-        [value]="rotation.x"
-        (input)="changeRotation(sliderX.value, 'x')"
-        #sliderX
-      />
-    </mat-slider>
-    <mat-form-field subscriptSizing="dynamic">
+  @if (displayedSlider !== 'x') {
+    <mat-form-field class="rotation-value" subscriptSizing="dynamic" (click)="displaySlider('x')">
       <mat-label class="text form-input-label">X</mat-label>
-      <input
-        matInput
-        class="input"
-        type="number"
-        [value]="rotation.x"
-        [min]="-180"
-        [max]="180"
-        (change)="changeRotation($any($event.target).value, 'x')"
-      />
+      <input matInput [value]="rotation.x" />
     </mat-form-field>
-  </div>
+  } @else {
+    <div class="slider-container">
+      <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
+        <input
+          class="slider-x"
+          matSliderThumb
+          [value]="rotation.x"
+          (input)="changeRotation(sliderX.value, 'x')"
+          #sliderX
+        />
+      </mat-slider>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="text form-input-label">X</mat-label>
+        <input
+          matInput
+          class="input"
+          type="number"
+          [value]="rotation.x"
+          [min]="-180"
+          [max]="180"
+          (change)="changeRotation($any($event.target).value, 'x')"
+        />
+      </mat-form-field>
+    </div>
+  }
 </div>
 
 <div class="slider-box">
-  <mat-form-field *ngIf="displayedSlider !== 'y'" subscriptSizing="dynamic" (click)="displaySlider('y')">
-    <mat-label class="text form-input-label">Y</mat-label>
-    <input
-      matInput
-      class="input"
-      type="number"
-      [value]="rotation.y"
-      [min]="-180"
-      [max]="180"
-      (change)="changeRotation($any($event.target).value, 'y')"
-    />
-  </mat-form-field>
-  <div *ngIf="displayedSlider === 'y'" class="slider-container">
-    <mat-slider class="slider" [max]="180" [min]="-180" disableRipple discrete>
-      <input
-        class="slider-y"
-        matSliderThumb
-        [value]="rotation.y"
-        (input)="changeRotation(sliderY.value, 'y')"
-        #sliderY
-      />
-    </mat-slider>
-    <mat-form-field subscriptSizing="dynamic">
+  @if (displayedSlider !== 'y') {
+    <mat-form-field class="rotation-value" subscriptSizing="dynamic" (click)="displaySlider('y')">
       <mat-label class="text form-input-label">Y</mat-label>
-      <input
-        matInput
-        class="input"
-        type="number"
-        [value]="rotation.y"
-        [min]="-180"
-        [max]="180"
-        (change)="changeRotation($any($event.target).value, 'y')"
-      />
+      <input matInput [value]="rotation.y" />
     </mat-form-field>
-  </div>
+  } @else {
+    <div class="slider-container">
+      <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
+        <input
+          class="slider-y"
+          matSliderThumb
+          [value]="rotation.y"
+          (input)="changeRotation(sliderY.value, 'y')"
+          #sliderY
+        />
+      </mat-slider>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="text form-input-label">Y</mat-label>
+        <input
+          matInput
+          class="input"
+          type="number"
+          [value]="rotation.y"
+          [min]="-180"
+          [max]="180"
+          (change)="changeRotation($any($event.target).value, 'y')"
+        />
+      </mat-form-field>
+    </div>
+  }
 </div>
 
 <div class="slider-box">
-  <mat-form-field *ngIf="displayedSlider !== 'z'" subscriptSizing="dynamic" (click)="displaySlider('z')">
-    <mat-label class="text form-input-label">Z</mat-label>
-    <input
-      matInput
-      class="input"
-      type="number"
-      [value]="rotation.z"
-      [min]="-180"
-      [max]="180"
-      (change)="changeRotation($any($event.target).value, 'z')"
-    />
-  </mat-form-field>
-  <div *ngIf="displayedSlider === 'z'" class="slider-container">
-    <mat-slider class="slider" [max]="180" [min]="-180" disableRipple discrete>
-      <input
-        class="slider-z"
-        matSliderThumb
-        [value]="rotation.z"
-        (input)="changeRotation(sliderZ.value, 'z')"
-        #sliderZ
-      />
-    </mat-slider>
-    <mat-form-field subscriptSizing="dynamic">
+  @if (displayedSlider !== 'z') {
+    <mat-form-field class="rotation-value" subscriptSizing="dynamic" (click)="displaySlider('z')">
       <mat-label class="text form-input-label">Z</mat-label>
-      <input
-        matInput
-        class="input"
-        type="number"
-        [value]="rotation.z"
-        [min]="-180"
-        [max]="180"
-        (change)="changeRotation($any($event.target).value, 'z')"
-      />
+      <input matInput [value]="rotation.z" />
     </mat-form-field>
-  </div>
+  } @else {
+    <div class="slider-container">
+      <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
+        <input
+          class="slider-z"
+          matSliderThumb
+          [value]="rotation.z"
+          (input)="changeRotation(sliderZ.value, 'z')"
+          #sliderZ
+        />
+      </mat-slider>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label class="text form-input-label">Z</mat-label>
+        <input
+          matInput
+          class="input"
+          type="number"
+          [value]="rotation.z"
+          [min]="-180"
+          [max]="180"
+          (change)="changeRotation($any($event.target).value, 'z')"
+        />
+      </mat-form-field>
+    </div>
+  }
 </div>

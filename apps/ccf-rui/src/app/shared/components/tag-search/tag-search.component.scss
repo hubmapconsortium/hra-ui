@@ -9,7 +9,8 @@
   }
 
   mat-label {
-    color: var(--sys-inverse-surface) !important;
+    color: var(--sys-inverse-surface);
+    font: var(--sys-label-medium);
   }
 
   mat-icon {

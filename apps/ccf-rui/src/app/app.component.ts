@@ -213,44 +213,44 @@ export class AppComponent implements OnDestroy, OnInit {
     }
   }
 
-  /**
-   * Shifts block position when certain keys are pressed
-   *
-   * @param target The keyboard event
-   */
-  @HostListener('document:keydown', ['$event'])
-  handleKey(target: KeyboardEvent): void {
-    const oldPosition = this.model.snapshot.position;
-    if (this.disablePositionChange || !this.registrationStarted) {
-      return;
-    }
-    target.preventDefault();
-    const delta = target.repeat ? 1.0 : 0.5;
-    let newPosition = oldPosition;
-    switch (target.key) {
-      case 'q':
-        newPosition = { ...oldPosition, z: oldPosition.z + delta };
-        break;
-      case 'e':
-        newPosition = { ...oldPosition, z: oldPosition.z - delta };
-        break;
-      case 'w':
-        newPosition = { ...oldPosition, y: oldPosition.y + delta };
-        break;
-      case 's':
-        newPosition = { ...oldPosition, y: oldPosition.y - delta };
-        break;
-      case 'a':
-        newPosition = { ...oldPosition, x: oldPosition.x - delta };
-        break;
-      case 'd':
-        newPosition = { ...oldPosition, x: oldPosition.x + delta };
-        break;
-      default:
-        break;
-    }
-    this.model.setPosition(newPosition);
-  }
+  // /**
+  //  * Shifts block position when certain keys are pressed
+  //  *
+  //  * @param target The keyboard event
+  //  */
+  // @HostListener('document:keydown', ['$event'])
+  // handleKey(target: KeyboardEvent): void {
+  //   const oldPosition = this.model.snapshot.position;
+  //   if (this.disablePositionChange || !this.registrationStarted) {
+  //     return;
+  //   }
+  //   target.preventDefault();
+  //   const delta = target.repeat ? 1.0 : 0.5;
+  //   let newPosition = oldPosition;
+  //   switch (target.key) {
+  //     case 'q':
+  //       newPosition = { ...oldPosition, z: oldPosition.z + delta };
+  //       break;
+  //     case 'e':
+  //       newPosition = { ...oldPosition, z: oldPosition.z - delta };
+  //       break;
+  //     case 'w':
+  //       newPosition = { ...oldPosition, y: oldPosition.y + delta };
+  //       break;
+  //     case 's':
+  //       newPosition = { ...oldPosition, y: oldPosition.y - delta };
+  //       break;
+  //     case 'a':
+  //       newPosition = { ...oldPosition, x: oldPosition.x - delta };
+  //       break;
+  //     case 'd':
+  //       newPosition = { ...oldPosition, x: oldPosition.x + delta };
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   this.model.setPosition(newPosition);
+  // }
 
   /**
    * Disables block position change if an input element is clicked
