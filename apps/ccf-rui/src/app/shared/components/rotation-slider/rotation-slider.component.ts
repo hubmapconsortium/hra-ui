@@ -8,6 +8,16 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Type in which the values of the sliders are stored. */
@@ -56,6 +66,10 @@ export class RotationSliderComponent {
    *
    * @param ga Analytics service
    */
+  constructor(
+    private readonly el: ElementRef<Node>,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
   constructor(
     private readonly el: ElementRef<Node>,
     private readonly ga: GoogleAnalyticsService,
