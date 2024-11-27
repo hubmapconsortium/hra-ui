@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Type in which the values of the sliders are stored. */
@@ -38,12 +47,19 @@ export class RotationSliderComponent {
   /** Output that emits the new rotation whenever it is changed from within the component */
   @Output() readonly rotationChange = new EventEmitter<Rotation>();
 
+  displayedSlider?: 'x' | 'y' | 'z';
+
+  step = 30;
+
   /**
    * Creates an instance of rotation slider component.
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  constructor(
+    private readonly el: ElementRef<Node>,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
 
   /**
    * Function that handles updating the rotation and emitting the new value
@@ -65,5 +81,25 @@ export class RotationSliderComponent {
     this.rotation = { ...this.rotation, [dimension]: 0 };
     this.ga.event('rotation_reset', 'rotation_slider');
     this.rotationChange.emit(this.rotation);
+  }
+
+  displaySlider(dimension: 'x' | 'y' | 'z'): void {
+    this.displayedSlider = dimension;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  @HostListener('document:keyup', ['$event'])
+  handleKey(target: KeyboardEvent): void {
+    target.preventDefault();
+    this.step = target.shiftKey ? 1 : 30;
+  }
+
+  @HostListener('window:mouseup', ['$event']) // eslint-disable-line
+  closeResults(event: Event): void {
+    if (this.displayedSlider && event.target instanceof Node) {
+      if (!this.el.nativeElement.contains(event.target)) {
+        this.displayedSlider = undefined;
+      }
+    }
   }
 }
