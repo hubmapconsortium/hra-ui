@@ -7,14 +7,17 @@
   .item-entry {
     display: flex;
     align-items: center;
+    border-radius: 0.25rem;
 
     &.selected {
       z-index: 1;
+      background: color-mix(in srgb, var(--sys-tertiary) 20%, transparent);
     }
 
     .opacity-icon {
       transition: 0.6s;
       min-width: 1.5rem;
+      cursor: pointer;
 
       &.fade {
         opacity: 0.12;
@@ -33,7 +36,7 @@
 
     .slider {
       position: fixed;
-      left: 2.5rem;
+      left: 21rem;
       transition-timing-function: ease-in-out;
       transition-property: opacity;
       transition-duration: 0.3s;

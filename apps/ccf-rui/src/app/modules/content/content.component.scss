@@ -4,6 +4,8 @@
   height: 100%;
   overflow: hidden;
   background-color: black;
+  border: 1px solid #acb5c3;
+  border-bottom: none;
 
   .top-bar {
     display: flex;
@@ -23,28 +25,6 @@
 
     .gizmo {
       width: 3.375rem;
-    }
-  }
-
-  .sidebar {
-    .minimap-scene {
-      margin: 1.5rem;
-      width: 12.75rem;
-      height: 11rem;
-      ::ng-deep .body-ui {
-        background-color: #232f3a;
-      }
-    }
-
-    ccf-spatial-search-keyboard-ui-behavior {
-      margin: 1.5rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    ccf-xyz-position {
-      margin: 1.5rem;
-      padding-left: 5rem;
     }
   }
 
