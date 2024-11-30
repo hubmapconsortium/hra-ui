@@ -1,6 +1,5 @@
 <div class="header">
   <span class="text title" hraMicroTooltip="Use sliders below to rotate tissue block for registration">Rotation</span>
-  <span class="text title" hraMicroTooltip="Use sliders below to rotate tissue block for registration">Rotation</span>
 </div>
 
 <div class="slider-box">
@@ -11,6 +10,9 @@
     </mat-form-field>
   } @else {
     <div class="slider-container">
+      <button mat-icon-button class="icon reset" (click)="resetRotation('x')">
+        <mat-icon>reset_settings</mat-icon>
+      </button>
       <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
         <input
           class="slider-x"
@@ -44,6 +46,9 @@
     </mat-form-field>
   } @else {
     <div class="slider-container">
+      <button mat-icon-button class="icon reset" (click)="resetRotation('y')">
+        <mat-icon>reset_settings</mat-icon>
+      </button>
       <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
         <input
           class="slider-y"
@@ -77,6 +82,9 @@
     </mat-form-field>
   } @else {
     <div class="slider-container">
+      <button mat-icon-button class="icon reset" (click)="resetRotation('z')">
+        <mat-icon>reset_settings</mat-icon>
+      </button>
       <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
         <input
           class="slider-z"

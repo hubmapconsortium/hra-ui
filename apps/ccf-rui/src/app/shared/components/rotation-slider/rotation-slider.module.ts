@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 import { RotationSliderComponent } from './rotation-slider.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [RotationSliderComponent],
@@ -21,6 +22,7 @@ import { RotationSliderComponent } from './rotation-slider.component';
     MatInputModule,
     MatFormFieldModule,
     MicroTooltipDirective,
+    MatButtonModule,
   ],
   exports: [RotationSliderComponent],
 })

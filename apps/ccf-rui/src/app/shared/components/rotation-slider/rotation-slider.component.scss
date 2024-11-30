@@ -41,6 +41,7 @@
 
   .slider-container {
     display: flex;
+    align-items: center;
     background: var(--sys-on-primary);
     border-radius: 0.5rem;
     box-shadow: 0px 5px 4px 0px #201e3d29;
@@ -49,11 +50,26 @@
     translate: 1rem;
 
     mat-slider {
-      width: 184px;
-    }
+      --mdc-slider-active-track-color: var(--sys-on-tertiary-fixed);
+      --mdc-slider-inactive-track-color: #acb5c3;
+      --mdc-slider-handle-color: var(--sys-on-tertiary-fixed);
+      --mdc-slider-active-track-height: 2px;
+      --mdc-slider-inactive-track-height: 2px;
+      width: 11.5rem;
+      margin: 0 1.5rem;
 
-    ::ng-deep mat-slider-visual-thumb {
-      transition: none;
+      &.disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      ::ng-deep mat-slider-visual-thumb {
+        transition: none;
+      }
+
+      ::ng-deep .mdc-slider__track--inactive {
+        opacity: 1;
+      }
     }
   }
 }
