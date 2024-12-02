@@ -10,9 +10,7 @@ import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualiza
 
 export * from './lib/cde-visualization/cde-visualization.component';
 export * from './lib/models/color-map';
-export * from './lib/models/edge';
 export * from './lib/models/metadata';
-export * from './lib/models/node';
 export * from './lib/shared/tooltip-position';
 
 // TODO: Move these exports into a separate library

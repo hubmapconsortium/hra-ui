@@ -14,9 +14,6 @@ import {
   ColorMapFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  DEFAULT_NODE_TARGET_VALUE,
-  NodeEntry,
-  NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
@@ -29,6 +26,7 @@ import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
+import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
@@ -133,7 +131,7 @@ export class CreateVisualizationPageComponent {
       ontologyId: [{ value: optionalValue<string>(), disabled: true }],
     }),
     parameters: this.fb.group({
-      nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_VALUE, disabled: true }],
+      nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_SELECTOR, disabled: true }],
       distanceThreshold: [{ value: 1000, disabled: true }],
       pixelSizeX: [{ value: 1, disabled: true }, Validators.min(1)],
       pixelSizeY: [{ value: 1, disabled: true }, Validators.min(1)],
@@ -156,7 +154,7 @@ export class CreateVisualizationPageComponent {
   }
 
   /** Node CSV file loader service */
-  readonly nodesLoader = CsvFileLoaderService<NodeEntry>;
+  readonly nodesLoader = CsvFileLoaderService<Record<string, unknown>>;
   /** Options for node CSV loader */
   readonly nodesLoaderOptions: CsvFileLoaderOptions = {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
@@ -248,7 +246,7 @@ export class CreateVisualizationPageComponent {
   visualizeInfoOpen = false;
 
   /** Cell types included in uploaded data */
-  cellTypes = [DEFAULT_NODE_TARGET_VALUE];
+  cellTypes = [DEFAULT_NODE_TARGET_SELECTOR];
 
   /** Headers for node data */
   dataHeaders: string[] = [];
@@ -299,7 +297,7 @@ export class CreateVisualizationPageComponent {
   }
 
   /** Current nodes */
-  private nodes?: NodeEntry[];
+  private nodes?: Record<string, unknown>[];
   /** Current color map */
   private customColorMap?: ColorMapEntry[];
 
@@ -307,16 +305,16 @@ export class CreateVisualizationPageComponent {
    * Sets node values
    * @param nodes Nodes to set
    */
-  setNodes(nodes: NodeEntry[]): void {
+  setNodes(nodes: Record<string, unknown>[]): void {
     this.setHeaders(nodes);
 
-    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
-    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader]));
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as string;
+    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader] as string));
     this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
-    const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
-      ? DEFAULT_NODE_TARGET_VALUE
+    const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_SELECTOR)
+      ? DEFAULT_NODE_TARGET_SELECTOR
       : this.cellTypes[0];
     this.visualizationForm.controls['parameters'].patchValue({
       nodeTargetValue: defaultCellType,
@@ -327,7 +325,7 @@ export class CreateVisualizationPageComponent {
    * Sets node data headers for visualization form
    * @param nodes Node data entries
    */
-  private setHeaders(nodes: NodeEntry[]): void {
+  private setHeaders(nodes: Record<string, unknown>[]): void {
     this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
       xAxis: this.preSelectedHeader('x'),
@@ -375,9 +373,9 @@ export class CreateVisualizationPageComponent {
    */
   hasValidNodes(): boolean {
     // Set the cell type header value when valid nodes checked
-    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as string;
     if (cellTypeHeader && this.nodes) {
-      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader]));
+      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader] as string));
       this.cellTypes = Array.from(uniqueCellTypes);
     }
     const { nodes } = this;
