@@ -18,13 +18,15 @@ import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-butt
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
-  AnyDataView,
   ColorMapInput,
   ColorMapKeysInput,
   ColorMapView,
   createColorMapGenerator,
   createEdgeGenerator,
+  DataView,
+  DataViewEntryTransform,
   DataViewSerializationOptions,
+  EdgeEntry,
   EdgeKeysInput,
   EdgesInput,
   EMPTY_COLOR_MAP_VIEW,
@@ -35,6 +37,7 @@ import {
   NodeFilterView,
   NodeKeysInput,
   NodesInput,
+  toCsv,
   withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
@@ -145,22 +148,22 @@ export class CdeVisualizationComponent {
   protected loadingManager = new LoadingManager();
 
   /** View of the node data */
-  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys, undefined, this.loadingManager.createSource());
+  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys, undefined, this.loadingManager.createObserver());
   /** View of the edge data */
   protected readonly edgesView = withDataViewDefaultGenerator(
-    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createSource()),
+    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
     createEdgeGenerator(
       this.nodesView,
       this.edges,
       this.nodeTargetSelector,
       this.maxEdgeDistance,
-      this.loadingManager.createSource(),
+      this.loadingManager.createObserver(),
     ),
     EMPTY_EDGES_VIEW,
   );
   /** View of the color map */
   protected readonly colorMapView = withDataViewDefaultGenerator(
-    loadColorMap(this.colorMap, this.colorMapKeys, undefined, undefined, this.loadingManager.createSource()),
+    loadColorMap(this.colorMap, this.colorMapKeys, undefined, undefined, this.loadingManager.createObserver()),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
   );
@@ -177,7 +180,7 @@ export class CdeVisualizationComponent {
       pixelSize: this.pixelSize,
       creationTimestamp: this.creationTimestamp,
     },
-    this.loadingManager.createSource(),
+    this.loadingManager.createObserver(),
   );
 
   protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
@@ -186,7 +189,7 @@ export class CdeVisualizationComponent {
   protected readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
-  readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
+  protected readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
   /** Counter for resetting cell types */
   protected readonly cellTypesResetCounter = signal(0);
@@ -204,6 +207,9 @@ export class CdeVisualizationComponent {
 
   private readonly nodeCounts = computed(() => this.nodesView().getCounts());
   private readonly edgeCounts = computed(() => this.edgesView().getCounts(this.edgeTypeAccessor()));
+  private readonly edgeCountsBySourceNode = computed(() =>
+    this.edgesView().getCounts((obj) => `${this.edgesView().getCellIDFor(obj)}`),
+  );
 
   private readonly cellTypesFromNodes = computed(() => {
     const nodeCounts = this.nodeCounts();
@@ -220,8 +226,25 @@ export class CdeVisualizationComponent {
     );
   });
 
+  protected readonly countAdjustments = computed(() => {
+    const nodes = this.nodesView();
+    const edgesCounts = this.edgeCountsBySourceNode();
+    const { exclude = [] } = this.nodeFilterView();
+    const indices = exclude.filter((entry) => typeof entry === 'number');
+    const result: Record<string, { count: number; outgoingEdgeCount: number }> = {};
+
+    for (const index of indices) {
+      const key = nodes.getCellTypeAt(index);
+      result[key] ??= { count: 0, outgoingEdgeCount: 0 };
+      result[key].count += 1;
+      result[key].outgoingEdgeCount += edgesCounts.get(`${index}`) ?? 0;
+    }
+
+    return result;
+  });
+
   /** Computed selection of cell types from nodes */
-  readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
+  protected readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
 
   /** Effect to create cell types */
   readonly cellTypesCreateRef = effect(
@@ -250,7 +273,7 @@ export class CdeVisualizationComponent {
   protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
   /** Data for the histogram visualization */
-  readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
+  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
 
   /** Colors for the histogram visualization */
   protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
@@ -296,9 +319,15 @@ export class CdeVisualizationComponent {
   }
 
   async downloadEdges(): Promise<void> {
+    const nodes = this.nodesView();
     const edges = this.edgesView();
-    const filter = edges.createFilter(this.nodesView(), this.nodeFilterView());
-    await this.downloadView(edges, 'edges.csv', { filter }); // TODO update indices!!! Use transform option
+    const filter = edges.createFilter(nodes, this.nodeFilterView());
+    const reindex = await nodes.createReindexer(this.nodeFilterView());
+    const transform: DataViewEntryTransform<EdgeEntry> = (value, key) => {
+      return key === 'Cell ID' || key === 'Target ID' ? reindex[value] : value;
+    };
+
+    await this.downloadView(edges, 'edges.csv', { filter, transform });
   }
 
   async downloadColorMap(): Promise<void> {
@@ -307,13 +336,13 @@ export class CdeVisualizationComponent {
     await this.downloadView(colorMap, 'color-map.csv', { filter });
   }
 
-  private async downloadView<V extends AnyDataView>(
-    view: V,
+  private async downloadView<Entry>(
+    view: DataView<Entry>,
     filename: string,
-    options: DataViewSerializationOptions,
+    options: DataViewSerializationOptions<Entry>,
   ): Promise<void> {
     if (view.length > 0) {
-      const data = await view.toCsv(options);
+      const data = await toCsv(view, options);
       this.fileSaver.saveData(data, filename);
     }
   }
