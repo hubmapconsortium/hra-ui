@@ -59,6 +59,31 @@ export function tryParseJson(value: unknown): unknown {
   return value;
 }
 
+export async function batch<T>(
+  iterable: Iterable<T>,
+  batchSize: number,
+  itemCb: (value: T, index: number) => void,
+  batchCb?: () => void,
+): Promise<void> {
+  const iter = iterable[Symbol.iterator]();
+  let index = 0;
+  let done = false;
+  while (!done) {
+    for (let counter = 0; counter < batchSize; counter++, index++) {
+      const item = iter.next();
+      if (item.done) {
+        done = true;
+        break;
+      }
+
+      itemCb(item.value, index);
+    }
+
+    batchCb?.();
+    await new Promise((res) => setTimeout(res, 0));
+  }
+}
+
 const cachedColors = new Map<string, Color>();
 let cachedCtx: CanvasRenderingContext2D | null = null;
 

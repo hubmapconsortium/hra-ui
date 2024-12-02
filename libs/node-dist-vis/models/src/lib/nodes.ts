@@ -13,7 +13,7 @@ import {
   loadViewKeyMapping,
 } from './data-view';
 import { NodeFilterView } from './filters';
-import { cachedAccessor } from './utils';
+import { batch, cachedAccessor } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -105,6 +105,19 @@ export class NodesView extends BaseNodesView {
 
   readonly createFilter = (filterView: NodeFilterView): DataViewEntryFilter => {
     return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
+  };
+
+  readonly createReindexer = async (filterView: NodeFilterView) => {
+    const BATCH_SIZE = 20000;
+    const result: number[] = [];
+    let acc = -1;
+
+    await batch(this, BATCH_SIZE, (obj, index) => {
+      const included = filterView.includes(this.getCellTypeFor(obj), index);
+      acc += Number(included);
+      result.push(acc);
+    });
+    return result;
   };
 }
 
