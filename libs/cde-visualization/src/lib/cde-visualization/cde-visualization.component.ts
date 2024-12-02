@@ -183,10 +183,10 @@ export class CdeVisualizationComponent {
     this.loadingManager.createObserver(),
   );
 
-  protected readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
+  readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
 
   /** List of cell types */
-  protected readonly cellTypes = signal<CellTypeEntry[]>([]);
+  readonly cellTypes = signal<CellTypeEntry[]>([]);
 
   /** List of selected cell types */
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
@@ -226,7 +226,7 @@ export class CdeVisualizationComponent {
     );
   });
 
-  protected readonly countAdjustments = computed(() => {
+  readonly countAdjustments = computed(() => {
     const nodes = this.nodesView();
     const edgesCounts = this.edgeCountsBySourceNode();
     const { exclude = [] } = this.nodeFilterView();

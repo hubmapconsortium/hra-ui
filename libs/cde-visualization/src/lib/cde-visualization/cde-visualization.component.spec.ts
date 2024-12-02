@@ -45,6 +45,8 @@ describe('CdeVisualizationComponent', () => {
         edges: EDGES,
         colorMap: COLOR_MAP,
         maxEdgeDistance: '100',
+        metadata: {},
+        age: 40,
         ...options?.inputs,
       },
       providers: [
@@ -101,7 +103,31 @@ describe('CdeVisualizationComponent', () => {
     expect(fixture.componentInstance.filteredDistances()).toEqual([]);
   });
 
-  describe('downloadNodes()', () => {
+  describe('countAdjustments', () => {
+    it('adjust counts when there are excluded nodes', async () => {
+      const { fixture } = await setup();
+      const instance = fixture.componentInstance;
+      instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+
+      const adjustments = instance.countAdjustments();
+      expect(adjustments).toHaveProperty('epithelial');
+    });
+  });
+
+  describe('updateColor()', () => {
+    it('updates the cell types', async () => {
+      const { fixture } = await setup();
+      const instance = fixture.componentInstance;
+      const prevTypes = instance.cellTypes();
+      fixture.componentInstance.updateColor(prevTypes[0], [1, 2, 3]);
+
+      const newTypes = instance.cellTypes();
+      expect(newTypes).not.toEqual(prevTypes);
+      expect(newTypes[0].color).toEqual([1, 2, 3]);
+    });
+  });
+
+  describe('downloads', () => {
     it('should download nodes', async () => {
       const { fixture } = await setup();
 
@@ -110,6 +136,26 @@ describe('CdeVisualizationComponent', () => {
 
       await fixture.componentInstance.downloadNodes();
       expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv');
+    });
+
+    it('should download edges', async () => {
+      const { fixture } = await setup();
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+
+      await fixture.componentInstance.downloadEdges();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'edges.csv');
+    });
+
+    it('should download color map', async () => {
+      const { fixture } = await setup();
+
+      const fileSaver = TestBed.inject(FileSaverService);
+      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+
+      await fixture.componentInstance.downloadColorMap();
+      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
     });
   });
 });
