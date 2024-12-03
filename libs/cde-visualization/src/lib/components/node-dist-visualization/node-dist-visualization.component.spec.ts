@@ -25,7 +25,7 @@ describe('NodeDistVisualizationComponent', () => {
   const EMPTY_FILTER = new NodeFilterView(undefined, undefined);
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
   const SAMPLE_EDGE: AnyDataEntry = [0, 1, 100, 200, 0, 100, 300, 0];
-  const SAMPLE_NODE_EVENT: NodeEvent = { index: 0, x: 0, y: 0, object: SAMPLE_NODE };
+  const SAMPLE_NODE_EVENT: NodeEvent = { index: 0, clientX: 0, clientY: 0, object: SAMPLE_NODE };
   const NODES = new NodesView([SAMPLE_NODE], EMPTY_NODES_VIEW.keyMapping);
   const EDGES = new EdgesView([SAMPLE_EDGE], EMPTY_EDGES_VIEW.keyMapping);
 
