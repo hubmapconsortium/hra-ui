@@ -2,8 +2,8 @@ import { computed, ErrorHandler, inject, Signal, Type } from '@angular/core';
 import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { unparse } from 'papaparse';
-import { Observable } from 'rxjs';
-import { DataInput, isRecordObject, loadData } from './utils';
+import { NextObserver, Observable } from 'rxjs';
+import { batch, DataInput, isRecordObject, loadData } from './utils';
 
 /** Removes all whitespaces in a string */
 type RemoveWhiteSpace<S extends string> = S extends `${infer Pre} ${infer Post}`
@@ -34,7 +34,14 @@ export type AnyDataView = DataView<any>;
 export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
 
 /** Filter function */
-export type DataViewFilter = (obj: AnyDataEntry, index: number) => boolean;
+export type DataViewEntryFilter = (obj: AnyDataEntry, index: number) => boolean;
+/** Transform function */
+export type DataViewEntryTransform<Entry> = <K extends keyof Entry>(
+  value: Entry[K],
+  key: K,
+  obj: AnyDataEntry,
+  index: number,
+) => Entry[K];
 
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
@@ -52,6 +59,14 @@ export type DataViewAccessors<Entry> = {
 } & {
   [P in keyof Entry as AccessorName<Entry, P, 'For'>]-?: Accessor<Entry, P, AnyDataEntry>;
 };
+
+/** Options for serialization */
+export interface DataViewSerializationOptions<Entry> {
+  /** Data filter */
+  filter?: DataViewEntryFilter;
+  /** Value transformation */
+  transform?: DataViewEntryTransform<Entry>;
+}
 
 /** Data view */
 export interface DataView<Entry> {
@@ -92,11 +107,6 @@ export interface DataView<Entry> {
 
   /** Raw data iterator */
   [Symbol.iterator](): IterableIterator<AnyDataEntry>;
-
-  /**
-   * Serialize to a csv blob (including header)
-   */
-  toCsv(filter?: DataViewFilter): Promise<Blob>;
 }
 
 /** Data view constructor */
@@ -158,55 +168,6 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
-function* normalizeRows(
-  data: AnyData,
-  keys: PropertyKey[],
-  start: number,
-  end: number,
-  offset: number,
-  filter: DataViewFilter | undefined,
-): Generator<unknown[]> {
-  end = Math.min(end, data.length);
-  for (let index = start; index < end; index++) {
-    const item = data[index] as Record<PropertyKey, unknown>;
-    const row: unknown[] = [];
-    if (filter?.(item, index - offset) === false) {
-      continue;
-    }
-
-    for (const key of keys) {
-      const value = item[key];
-      const serialized = typeof value !== 'object' ? value : JSON.stringify(value);
-      row.push(serialized);
-    }
-
-    yield row;
-  }
-}
-
-async function serializeToCsv<T>(
-  data: AnyData,
-  keyMapping: KeyMapping<T>,
-  offset: number,
-  filter: DataViewFilter | undefined,
-): Promise<Blob> {
-  const ROWS_PER_CHUNK = 5000;
-  const keys = Object.values(keyMapping) as PropertyKey[];
-  const chunks: string[] = [unparse([Object.keys(keyMapping)]), '\r\n'];
-
-  for (let index = offset; index < data.length; index += ROWS_PER_CHUNK) {
-    const rows = Array.from(normalizeRows(data, keys, index, index + ROWS_PER_CHUNK, offset, filter));
-    chunks.push(unparse(rows), '\r\n');
-    // Don't block the main thread
-    await new Promise((res) => setTimeout(res));
-  }
-
-  // Remove trailing new line
-  chunks.pop();
-
-  return new Blob(chunks);
-}
-
 /**
  * Create a new data view base class
  *
@@ -247,10 +208,6 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       }
       return iter;
     }
-
-    toCsv(filter?: DataViewFilter): Promise<Blob> {
-      return serializeToCsv(this.data, this.keyMapping, this.offset, filter);
-    }
   }
 
   return DataViewImpl as unknown as DataViewConstructor<Entry>;
@@ -262,19 +219,26 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
  *
  * @param input Raw data view input
  * @param viewCls Data view class
+ * @param loading Observer notified when data is loading
  * @returns Either a data view of the specified type or an array of raw data
  */
 export function loadViewData<T extends AnyDataView>(
   input: Signal<DataViewInput<T>>,
   viewCls: Type<T>,
+  loading?: NextObserver<boolean>,
 ): Signal<T | AnyData> {
-  const data = loadData(input, CsvFileLoaderService, {
-    papaparse: {
-      dynamicTyping: true,
-      header: false,
-      skipEmptyLines: 'greedy',
+  const data = loadData(
+    input,
+    CsvFileLoaderService,
+    {
+      papaparse: {
+        dynamicTyping: true,
+        header: false,
+        skipEmptyLines: 'greedy',
+      },
     },
-  });
+    loading,
+  );
 
   return computed(() => {
     const result = data();
@@ -288,13 +252,15 @@ export function loadViewData<T extends AnyDataView>(
  *
  * @param input Raw key mapping input
  * @param mixins Additional mappings for backwards compatability
+ * @param loading Observer notified when data is loading
  * @returns A partial key mapping
  */
 export function loadViewKeyMapping<T>(
   input: Signal<KeyMappingInput<T>>,
   mixins: KeyMappingMixins<T> = {},
+  loading?: NextObserver<boolean>,
 ): Signal<Partial<KeyMapping<T>>> {
-  const data = loadData(input, JsonFileLoaderService, {});
+  const data = loadData(input, JsonFileLoaderService, {}, loading);
   return computed(() => {
     const result = data();
     const mapping = isRecordObject(result) ? { ...result } : {};
@@ -487,4 +453,53 @@ export function withDataViewDefaultGenerator<V extends AnyDataView>(
     },
     { initialValue },
   );
+}
+
+function toCsvRow<Entry>(
+  obj: AnyDataEntry,
+  index: number,
+  keyMapping: [keyof Entry, PropertyKey][],
+  transform: DataViewEntryTransform<Entry>,
+): unknown[] {
+  const row: unknown[] = [];
+  for (const [key, prop] of keyMapping) {
+    const value = transform((obj as Record<PropertyKey, Entry[keyof Entry]>)[prop], key, obj, index);
+    const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
+    row.push(serialized);
+  }
+
+  return row;
+}
+
+export async function toCsv<Entry>(
+  view: DataView<Entry>,
+  options: DataViewSerializationOptions<Entry> = {},
+): Promise<Blob> {
+  const BATCH_SIZE = 10000;
+  const { filter = () => true, transform = (value) => value } = options;
+  const keyMapping = Object.entries(view.keyMapping) as [keyof Entry, PropertyKey][];
+  const header = unparse([keyMapping.map(([key]) => key)]);
+  const chunks: string[] = [header, '\r\n'];
+  let rows: unknown[][] = [];
+
+  await batch(
+    view,
+    BATCH_SIZE,
+    (obj, index) => {
+      if (filter(obj, index)) {
+        rows.push(toCsvRow(obj, index, keyMapping, transform));
+      }
+    },
+    () => {
+      if (rows.length > 0) {
+        chunks.push(unparse(rows), '\r\n');
+        rows = [];
+      }
+    },
+  );
+
+  // Remove trailing new line
+  chunks.pop();
+
+  return new Blob(chunks);
 }

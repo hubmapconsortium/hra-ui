@@ -60,11 +60,14 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 export class CellTypesComponent {
   /** List of cell types */
   readonly cellTypes = model.required<CellTypeEntry[]>();
+
   /** List of selected cell types */
   readonly cellTypesSelection = model.required<string[]>();
 
   /** Currently selected cell type */
   readonly selectedCellType = input<string>('');
+
+  readonly countAdjustments = input<Record<string, { count: number; outgoingEdgeCount: number }>>({});
 
   /** Output event for download colormap action */
   readonly downloadColorMap = output();
@@ -149,8 +152,13 @@ export class CellTypesComponent {
 
   /** Helper function to calculate the number of nodes or edges */
   protected readonly sumCounts = (count: number, entry: CellTypeEntry, key: 'count' | 'outgoingEdgeCount') => {
-    const value = this.isSelected(entry) ? entry[key] : 0;
-    return count + value;
+    if (this.isSelected(entry)) {
+      const adjustment = this.countAdjustments()[entry.name]?.[key] ?? 0;
+      const value = entry[key];
+      return count + value - adjustment;
+    }
+
+    return count;
   };
 
   /** Computed total cell count based on selection */
@@ -181,6 +189,12 @@ export class CellTypesComponent {
     const action = isSelected ? 'deselect' : 'select';
     const where = row === undefined ? 'all' : `row ${row}`;
     return `${action} ${where}`;
+  }
+
+  getCount(obj: CellTypeEntry, key: 'count' | 'outgoingEdgeCount'): string {
+    const adjustment = this.countAdjustments()[obj.name]?.[key] ?? 0;
+    const count = obj[key] - adjustment;
+    return count.toLocaleString();
   }
 
   /** Check if a cell type entry is selected */

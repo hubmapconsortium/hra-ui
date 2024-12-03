@@ -1,10 +1,11 @@
 import { Signal } from '@angular/core';
 import { AccessorContext } from '@deck.gl/core/typed';
+import { NextObserver } from 'rxjs';
 import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
-  DataViewFilter,
+  DataViewEntryFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
@@ -144,7 +145,7 @@ export class EdgesView extends BaseEdgesView {
     return new Map(Object.entries(counts));
   };
 
-  readonly createFilter = (nodesView: NodesView, filterView: NodeFilterView): DataViewFilter => {
+  readonly createFilter = (nodesView: NodesView, filterView: NodeFilterView): DataViewEntryFilter => {
     return (obj) => {
       const index1 = this.getCellIDFor(obj);
       const index2 = this.getTargetIDFor(obj);
@@ -173,11 +174,16 @@ export const EMPTY_EDGES_VIEW = new EdgesView([], {
  *
  * @param input Raw edges input
  * @param keys Raw edges key mapping input
+ * @param loading Observer notified when data is loading
  * @returns A edges view
  */
-export function loadEdges(input: Signal<EdgesInput>, keys: Signal<EdgeKeysInput>): Signal<EdgesView> {
-  const data = loadViewData(input, EdgesView);
-  const mapping = loadViewKeyMapping(keys);
+export function loadEdges(
+  input: Signal<EdgesInput>,
+  keys: Signal<EdgeKeysInput>,
+  loading?: NextObserver<boolean>,
+): Signal<EdgesView> {
+  const data = loadViewData(input, EdgesView, loading);
+  const mapping = loadViewKeyMapping(keys, undefined, loading);
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(EdgesView, data, inferred, EMPTY_EDGES_VIEW);
 }

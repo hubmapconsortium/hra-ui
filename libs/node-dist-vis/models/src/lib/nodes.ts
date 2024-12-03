@@ -1,10 +1,11 @@
 import { Signal } from '@angular/core';
 import { AccessorContext } from '@deck.gl/core/typed';
+import { NextObserver } from 'rxjs';
 import {
   AnyDataEntry,
   createDataView,
   createDataViewClass,
-  DataViewFilter,
+  DataViewEntryFilter,
   DataViewInput,
   inferViewKeyMapping,
   KeyMappingInput,
@@ -12,7 +13,7 @@ import {
   loadViewKeyMapping,
 } from './data-view';
 import { NodeFilterView } from './filters';
-import { cachedAccessor } from './utils';
+import { batch, cachedAccessor } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -102,8 +103,21 @@ export class NodesView extends BaseNodesView {
     return new Map(Object.entries(counts));
   });
 
-  readonly createFilter = (filterView: NodeFilterView): DataViewFilter => {
+  readonly createFilter = (filterView: NodeFilterView): DataViewEntryFilter => {
     return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
+  };
+
+  readonly createReindexer = async (filterView: NodeFilterView) => {
+    const BATCH_SIZE = 20000;
+    const result: number[] = [];
+    let acc = -1;
+
+    await batch(this, BATCH_SIZE, (obj, index) => {
+      const included = filterView.includes(this.getCellTypeFor(obj), index);
+      acc += Number(included);
+      result.push(acc);
+    });
+    return result;
   };
 }
 
@@ -120,15 +134,17 @@ export const EMPTY_NODES_VIEW = new NodesView([], {
  * @param input Raw nodes input
  * @param keys Raw nodes key mapping input
  * @param nodeTargetKey Backwards compatable 'Cell Type' key mapping
+ * @param loading Observer notified when data is loading
  * @returns A nodes view
  */
 export function loadNodes(
   input: Signal<NodesInput>,
   keys: Signal<NodeKeysInput>,
   nodeTargetKey?: Signal<string | undefined>,
+  loading?: NextObserver<boolean>,
 ): Signal<NodesView> {
-  const data = loadViewData(input, NodesView);
-  const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey });
+  const data = loadViewData(input, NodesView, loading);
+  const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey }, loading);
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(NodesView, data, inferred, EMPTY_NODES_VIEW);
 }

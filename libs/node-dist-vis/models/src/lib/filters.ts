@@ -1,5 +1,6 @@
 import { computed, Signal } from '@angular/core';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
+import { NextObserver } from 'rxjs';
 import { DataInput, isRecordObject, loadData } from './utils';
 
 /** Node filter data entry */
@@ -117,14 +118,16 @@ export class NodeFilterView {
  *
  * @param input Node filter raw input
  * @param selection Backwards compatable node filter include array
+ * @param loading Observer notified when data is loading
  * @returns A node filter view
  */
 export function loadNodeFilter(
   input: Signal<NodeFilterInput>,
   selection: Signal<DataInput<string[]>>,
+  loading?: NextObserver<boolean>,
 ): Signal<NodeFilterView> {
-  const data = loadData(input, JsonFileLoaderService, {});
-  const selectionData = loadData(selection, JsonFileLoaderService, {});
+  const data = loadData(input, JsonFileLoaderService, {}, loading);
+  const selectionData = loadData(selection, JsonFileLoaderService, {}, loading);
   return computed(() => {
     const result = data();
     if (result instanceof NodeFilterView) {

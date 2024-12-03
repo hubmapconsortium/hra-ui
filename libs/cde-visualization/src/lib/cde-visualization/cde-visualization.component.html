@@ -1,3 +1,7 @@
+@if (loadingManager.isLoading$ | async) {
+  <mat-progress-bar class="progress" mode="indeterminate"></mat-progress-bar>
+}
+
 <div class="header">
   <hra-nav-header-buttons
     app="cde"
@@ -14,6 +18,7 @@
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
     [selectedCellType]="nodeTargetSelector()"
+    [countAdjustments]="countAdjustments()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
     (downloadColorMap)="downloadColorMap()"
@@ -33,10 +38,9 @@
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
       (resetAllCells)="resetCellTypes()"
-      #visualization
     ></cde-node-dist-visualization>
 
-    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
+    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()"></cde-violin>
   </div>
 
   <cde-histogram
