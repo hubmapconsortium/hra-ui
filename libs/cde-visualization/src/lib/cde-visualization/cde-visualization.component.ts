@@ -8,6 +8,8 @@ import {
   inject,
   input,
   output,
+  OutputEmitterRef,
+  Signal,
   signal,
   untracked,
   ViewContainerRef,
@@ -17,7 +19,9 @@ import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
+  AnyData,
   AnyDataEntry,
+  AnyDataView,
   ColorMapInput,
   ColorMapKeysInput,
   ColorMapView,
@@ -26,7 +30,6 @@ import {
   DataView,
   DataViewEntryTransform,
   DataViewSerializationOptions,
-  EdgeEntry,
   EdgeKeysInput,
   EdgesInput,
   EMPTY_COLOR_MAP_VIEW,
@@ -85,7 +88,7 @@ export interface DistanceEntry {
 })
 export class CdeVisualizationComponent {
   /** Link to the home page */
-  readonly homeLink = input<string>('https://apps.humanatlas.io/cde/');
+  readonly homeLink = input<string>('/');
 
   /** Node data */
   readonly nodes = input<NodesInput>();
@@ -135,11 +138,19 @@ export class CdeVisualizationComponent {
   /** Creation timestamp (ms since 1/1/1970 UTC) */
   readonly creationTimestamp = input(undefined, { transform: numberAttribute() });
 
+  readonly sourceFileName = input<string>();
+
+  readonly colorMapFileName = input<string>();
+
   /** Event emitted when a node is clicked */
   readonly nodeClick = output<NodeEvent>();
 
   /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEvent | undefined>();
+
+  readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
@@ -179,6 +190,8 @@ export class CdeVisualizationComponent {
       thickness: this.thickness,
       pixelSize: this.pixelSize,
       creationTimestamp: this.creationTimestamp,
+      sourceFileName: this.sourceFileName,
+      colorMapFileName: this.colorMapFileName,
     },
     this.loadingManager.createObserver(),
   );
@@ -295,6 +308,11 @@ export class CdeVisualizationComponent {
       },
       { allowSignalWrites: true },
     );
+
+    // Connect outputs
+    this.bindDataOutput(this.nodesView, this.nodesChange);
+    this.bindDataOutput(this.edgesView, this.edgesChange);
+    this.bindDataOutput(this.colorMapView, this.colorMapChange);
   }
 
   /** Reset cell types */
@@ -323,8 +341,8 @@ export class CdeVisualizationComponent {
     const edges = this.edgesView();
     const filter = edges.createFilter(nodes, this.nodeFilterView());
     const reindex = await nodes.createReindexer(this.nodeFilterView());
-    const transform: DataViewEntryTransform<EdgeEntry> = (value, key) => {
-      return key === 'Cell ID' || key === 'Target ID' ? reindex[value] : value;
+    const transform: DataViewEntryTransform = (value, key) => {
+      return key === 'Cell ID' || key === 'Target ID' ? reindex[value as number] : value;
     };
 
     await this.downloadView(edges, 'edges.csv', { filter, transform });
@@ -339,7 +357,7 @@ export class CdeVisualizationComponent {
   private async downloadView<Entry>(
     view: DataView<Entry>,
     filename: string,
-    options: DataViewSerializationOptions<Entry>,
+    options: DataViewSerializationOptions,
   ): Promise<void> {
     if (view.length > 0) {
       const data = await toCsv(view, options);
@@ -384,5 +402,13 @@ export class CdeVisualizationComponent {
     return this.filteredCellTypes()
       .sort((a, b) => (a.name < b.name ? -1 : 1))
       .map(({ color }) => rgbToHex(color));
+  }
+
+  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
+    effect(() => {
+      if (view().length !== 0) {
+        output.emit(view().data);
+      }
+    });
   }
 }

@@ -36,15 +36,12 @@ export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
 /** Filter function */
 export type DataViewEntryFilter = (obj: AnyDataEntry, index: number) => boolean;
 /** Transform function */
-export type DataViewEntryTransform<Entry> = <K extends keyof Entry>(
-  value: Entry[K],
-  key: K,
-  obj: AnyDataEntry,
-  index: number,
-) => Entry[K];
+export type DataViewEntryTransform = (value: unknown, key: string, obj: AnyDataEntry, index: number) => unknown;
 
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
+/** Any key mapping */
+export type AnyKeyMapping = Record<string, PropertyKey>;
 /**
  * Additional key mapping entries mixed into the mapping.
  * Used to merge backwards compatibility inputs into the key mapping.
@@ -52,6 +49,20 @@ export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
 export type KeyMappingMixins<Entry> = { [P in keyof Entry]?: Signal<PropertyKey | undefined> };
 /** Key mapping input */
 export type KeyMappingInput<Entry> = DataInput<Partial<KeyMapping<Entry>>>;
+
+interface KeyMappingExtra {
+  [DATA_VIEW_HEADER]?: string[];
+  [DATA_VIEW_DATA_OFFSET]?: number;
+}
+
+/** Private storage for original header */
+const DATA_VIEW_HEADER = Symbol('DataView header');
+/** Private storage for data offset */
+const DATA_VIEW_DATA_OFFSET = Symbol('DataView data offset');
+
+function getKeyMappingExtra<T>(mapping: Partial<KeyMapping<T>>): Partial<KeyMapping<T>> & KeyMappingExtra {
+  return mapping;
+}
 
 /** Accessors automatically created by a data view */
 export type DataViewAccessors<Entry> = {
@@ -61,11 +72,13 @@ export type DataViewAccessors<Entry> = {
 };
 
 /** Options for serialization */
-export interface DataViewSerializationOptions<Entry> {
+export interface DataViewSerializationOptions {
+  /** Key mapping */
+  keyMapping?: AnyKeyMapping;
   /** Data filter */
   filter?: DataViewEntryFilter;
   /** Value transformation */
-  transform?: DataViewEntryTransform<Entry>;
+  transform?: DataViewEntryTransform;
 }
 
 /** Data view */
@@ -104,6 +117,9 @@ export interface DataView<Entry> {
    * @returns The property's value
    */
   readonly getPropertyFor: <P extends keyof Entry>(obj: AnyDataEntry, property: P) => Entry[P];
+
+  readonly materializeAt: (index: number, keyMapping?: AnyKeyMapping) => object;
+  readonly materializeFor: (obj: AnyDataEntry, keyMapping?: AnyKeyMapping) => object;
 
   /** Raw data iterator */
   [Symbol.iterator](): IterableIterator<AnyDataEntry>;
@@ -168,6 +184,22 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
+function selectMaterializationKeyMapping<Entry>(
+  view: DataView<Entry>,
+  ...candidates: (AnyKeyMapping | undefined)[]
+): [string, PropertyKey][] {
+  const [mapping] = candidates.filter((candidate) => candidate !== undefined);
+  const header = getKeyMappingExtra(mapping)[DATA_VIEW_HEADER];
+
+  if (header === undefined) {
+    return Object.entries(mapping);
+  } else if (Array.isArray(view.at(0))) {
+    return header.map((key, index) => [key, index]);
+  } else {
+    return header.map((key) => [key, key]);
+  }
+}
+
 /**
  * Create a new data view base class
  *
@@ -190,6 +222,20 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       }
 
       return (obj as Record<PropertyKey, Entry[P]>)[key];
+    };
+    readonly materializeAt = (index: number, keyMapping?: AnyKeyMapping) => {
+      return this.materializeFor(this.at(index), keyMapping);
+    };
+    readonly materializeFor = (obj: AnyDataEntry, keyMapping?: AnyKeyMapping) => {
+      const mapping = selectMaterializationKeyMapping(this, keyMapping, this.keyMapping);
+      const result: Record<string, unknown> = {};
+      for (const [key, prop] of mapping) {
+        const value = (obj as Record<PropertyKey, unknown>)[prop];
+        const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
+        result[key] = serialized;
+      }
+
+      return result;
     };
 
     constructor(
@@ -281,31 +327,6 @@ export function loadViewKeyMapping<T>(
   });
 }
 
-/** Type with the `DATA_VIEW_OFFSET` property */
-type WithDataViewOffset = Partial<Record<typeof DATA_VIEW_OFFSET, number>>;
-/** Symbol used to "smuggle" the offset between inferViewKeyMapping and createDataView */
-const DATA_VIEW_OFFSET = Symbol('DataView offset');
-
-/**
- * Gets the `DATA_VIEW_OFFSET` stored in a key mapping
- *
- * @param mapping Key mapping
- * @returns The offset if present
- */
-function getDataViewOffset<T>(mapping: Partial<KeyMapping<T>>): number | undefined {
-  return (mapping as WithDataViewOffset)[DATA_VIEW_OFFSET];
-}
-
-/**
- * Sets a new `DATA_VIEW_OFFSET` in a key mapping
- *
- * @param mapping Key mapping
- * @param offset New offset value
- */
-function setDataViewOffset<T>(mapping: Partial<KeyMapping<T>>, offset: number): void {
-  (mapping as WithDataViewOffset)[DATA_VIEW_OFFSET] = offset;
-}
-
 /**
  * Attempts to infer key mapping properties from raw data
  * @private
@@ -321,7 +342,7 @@ export function inferViewKeyMappingImpl<T>(
 ): void {
   const icase = (value: unknown) => String(value).toLowerCase();
   const isArrayEntry = Array.isArray(entry);
-  let header: unknown[] = [];
+  let header: string[] = [];
 
   if (isArrayEntry) {
     const isAllNumeric = entry.every((value) => typeof value === 'number');
@@ -329,8 +350,8 @@ export function inferViewKeyMappingImpl<T>(
     if (isBackwardsIncompatibleEdges) {
       console.warn('Legacy edge format detected! Edges csv now require a header.');
     } else {
-      header = entry;
-      setDataViewOffset(mapping, 1);
+      header = entry as string[];
+      getKeyMappingExtra(mapping)[DATA_VIEW_DATA_OFFSET] = 1;
     }
   } else {
     header = Object.keys(entry);
@@ -347,6 +368,8 @@ export function inferViewKeyMappingImpl<T>(
       delete mapping[key];
     }
   }
+
+  getKeyMappingExtra(mapping)[DATA_VIEW_HEADER] = header;
 }
 
 /**
@@ -434,7 +457,7 @@ export function createDataView<T, V extends AnyDataView>(
 
     const viewMapping = keyMapping();
     if (viewMapping !== undefined) {
-      return new viewCls(viewData as AnyData, viewMapping, getDataViewOffset(viewMapping));
+      return new viewCls(viewData as AnyData, viewMapping, getKeyMappingExtra(viewMapping)[DATA_VIEW_DATA_OFFSET]);
     }
 
     return defaultView;
@@ -455,15 +478,15 @@ export function withDataViewDefaultGenerator<V extends AnyDataView>(
   );
 }
 
-function toCsvRow<Entry>(
+function toCsvRow(
   obj: AnyDataEntry,
   index: number,
-  keyMapping: [keyof Entry, PropertyKey][],
-  transform: DataViewEntryTransform<Entry>,
+  keyMapping: [string, PropertyKey][],
+  transform: DataViewEntryTransform,
 ): unknown[] {
   const row: unknown[] = [];
   for (const [key, prop] of keyMapping) {
-    const value = transform((obj as Record<PropertyKey, Entry[keyof Entry]>)[prop], key, obj, index);
+    const value = transform((obj as Record<PropertyKey, unknown>)[prop], key, obj, index);
     const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
     row.push(serialized);
   }
@@ -471,13 +494,10 @@ function toCsvRow<Entry>(
   return row;
 }
 
-export async function toCsv<Entry>(
-  view: DataView<Entry>,
-  options: DataViewSerializationOptions<Entry> = {},
-): Promise<Blob> {
+export async function toCsv<Entry>(view: DataView<Entry>, options: DataViewSerializationOptions = {}): Promise<Blob> {
   const BATCH_SIZE = 10000;
   const { filter = () => true, transform = (value) => value } = options;
-  const keyMapping = Object.entries(view.keyMapping) as [keyof Entry, PropertyKey][];
+  const keyMapping = selectMaterializationKeyMapping(view, options.keyMapping, view.keyMapping);
   const header = unparse([keyMapping.map(([key]) => key)]);
   const chunks: string[] = [header, '\r\n'];
   let rows: unknown[][] = [];

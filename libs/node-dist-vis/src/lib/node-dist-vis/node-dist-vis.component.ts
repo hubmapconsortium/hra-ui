@@ -55,9 +55,9 @@ type OrbitViewProps = ConstructorParameters<typeof OrbitView>[0] &
 
 export interface NodeEvent {
   index: number;
-  x: number;
-  y: number;
-  object: AnyDataEntry;
+  clientX: number;
+  clientY: number;
+  object: object;
 }
 
 export const DEFAULT_NODE_TARGET_SELECTOR = 'Endothelial';
@@ -340,8 +340,9 @@ export class NodeDistVisComponent {
   }
 
   private pickingInfoToNodeEvent(info: PickingInfo): NodeEvent {
-    const { index, x, y, object = this.nodesView().at(index) } = info;
-    return { index, x, y, object };
+    const view = this.nodesView();
+    const { index, x, y } = info;
+    return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
   }
 
   private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
