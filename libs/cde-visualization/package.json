@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/cde-visualization",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "papaparse": "^5.4.1",
     "rxjs": "7.8.0",

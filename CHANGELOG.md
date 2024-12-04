@@ -2,9 +2,28 @@
 
 Changelog for the Human Reference Atlas (HRA) User Interfaces
 
+## @hra-ui/cde-visualization@1.0.0 - 2024-12-04
+
+- Most changes are due to the migration of [@hra-ui/node-dist-vis@1.0.0](#hra-uinode-dist-vis100---2024-12-04) and the use of [@hra-ui/design-system](#hra-uidesign-system100---2024-12-04)
+- Refactored all parts of the app with design system components to align the look and feel with the spec
+
+### Added
+
+- Violin graph
+
+### Changed
+
+- Most action buttons have been moved into menus and submenus
+
+### Known Issues
+
+- In Firefox the selection tool has a noticeable delay between pressing the mouse button and moving the mouse ([#840](https://github.com/hubmapconsortium/hra-ui/issues/840))
+
 ## @hra-ui/design-system@1.0.0 - 2024-12-04
 
-- First release of the design system - [Figma spec](https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2-841&node-type=canvas&t=7jz5ImmAN4qPxNF1-0)
+- First release of the design system
+  - [Figma spec](https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2-841&node-type=canvas&t=7jz5ImmAN4qPxNF1-0)
+  - [Storybook](https://cdn.humanatlas.io/ui/storybook/design-system/)
 
 ### Added
 
