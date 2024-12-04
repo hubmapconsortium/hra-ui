@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/node-dist-vis",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "bin": "./cli.js",
   "peerDependencies": {
     "@angular/core": "^18.2.0",
