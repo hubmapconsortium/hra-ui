@@ -11,14 +11,14 @@
     "immer": "^10.1.1",
     "vega": "^5.30.0",
     "vega-embed": "^6.26.0",
-    "@hra-ui/design-system": "0.0.1",
+    "@hra-ui/design-system": "1.0.0",
     "@angular/common": "18.2.1",
     "@angular/core": "18.2.1",
     "@angular/platform-browser": "18.2.1",
     "@angular/cdk": "18.2.1",
     "@angular/material": "18.2.1",
     "@hra-ui/common": "0.0.1",
-    "@hra-ui/node-dist-vis": "0.0.1"
+    "@hra-ui/node-dist-vis": "1.0.0"
   },
   "dependencies": {},
   "sideEffects": [

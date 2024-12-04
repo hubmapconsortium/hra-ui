@@ -2,9 +2,19 @@
 
 Changelog for the Human Reference Atlas (HRA) User Interfaces
 
+## cde-ui@1.0.0
+
+- Update UI to use [@hra-ui/design-system@1.0.0](#hra-uidesign-system100---2024-12-04)
+- See [@hra-ui/cde-visualization@1.0.0](#hra-uicde-visualization100---2024-12-04) for changes on the visualization page
+
+### Added
+
+- Added HuBMAP sidenav
+- Added the ability for the user to select which columns to use when uploading a custom dataset
+
 ## @hra-ui/cde-visualization@1.0.0 - 2024-12-04
 
-- Most changes are due to the migration of [@hra-ui/node-dist-vis@1.0.0](#hra-uinode-dist-vis100---2024-12-04) and the use of [@hra-ui/design-system](#hra-uidesign-system100---2024-12-04)
+- Most changes are due to the migration of [@hra-ui/node-dist-vis@1.0.0](#hra-uinode-dist-vis100---2024-12-04) and the use of [@hra-ui/design-system@1.0.0](#hra-uidesign-system100---2024-12-04)
 - Refactored all parts of the app with design system components to align the look and feel with the spec
 
 ### Added
