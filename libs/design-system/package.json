@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/design-system",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "exports": {
     "./styles/fonts": {
       "sass": "./styles/_fonts.scss"

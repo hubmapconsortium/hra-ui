@@ -2,6 +2,47 @@
 
 Changelog for the Human Reference Atlas (HRA) User Interfaces
 
+## @hra-ui/design-system@1.0.0 - 2024-12-04
+
+- First release of the design system - [Figma spec](https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2-841&node-type=canvas&t=7jz5ImmAN4qPxNF1-0)
+
+### Added
+
+- Configured fonts and colors to align with the spec
+- Added the following design components and directives:
+  - `apps-card`
+  - `brand-logo`
+  - `brandmark`
+  - `breadcrumbs`
+  - `color-picker`
+  - `delete-file-button`
+  - `dialog`
+  - `error-indicator`
+  - `expansion-panel`
+  - `footer`
+  - `fullscreen`
+  - `info-modal`
+  - `micro-tooltip`
+  - `nav-header` and `nav-header-butons`
+  - `product-logo`
+  - `scrolling`
+  - `snackbar`
+  - `social-media-button`
+  - `software-status-indicator`
+  - `step-indicator`
+  - `tooltip-card`
+  - `workflow-card`
+- Styled the following angular material components to align with the spec:
+  - Buttons
+  - Button toggles
+  - Dividers
+  - Icon buttons
+  - Inputs
+  - Menus
+  - Select inputs
+  - Tables
+  - Trees
+
 ## @hra-ui/node-dist-vis@1.0.0 - 2024-12-04
 
 - Migrated code from [@cns-iu/hra-node-dist-vis](https://github.com/cns-iu/hra-node-dist-vis)
