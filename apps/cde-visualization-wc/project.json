@@ -19,7 +19,15 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/cde-visualization-wc/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/cde-visualization-wc/src/favicon.png", "apps/cde-visualization-wc/src/assets"],
+        "assets": [
+          "apps/cde-visualization-wc/src/favicon.png",
+          "apps/cde-visualization-wc/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "styles": ["apps/cde-visualization-wc/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/design-system/styles"]
