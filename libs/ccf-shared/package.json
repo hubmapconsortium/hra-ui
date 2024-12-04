@@ -1,6 +1,6 @@
 {
   "name": "ccf-shared",
-  "version": "0.0.1",
+  "version": "4.0.0",
   "peerDependencies": {
     "angular-ru/ngxs": "^14.1.4",
     "@angular/common": "^10.0.6",
