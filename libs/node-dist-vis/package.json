@@ -4,7 +4,7 @@
   "bin": "./cli.js",
   "peerDependencies": {
     "@angular/core": "^18.2.0",
-    "@hra-ui/webcomponents": "0.0.1",
+    "@hra-ui/webcomponents": "1.0.0",
     "papaparse": "^5.4.1",
     "rxjs": "7.8.0",
     "@deck.gl/carto": "~8.8.20",
@@ -13,7 +13,7 @@
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
     "ngxtension": "^4.1.0",
-    "@hra-ui/common": "0.0.1",
+    "@hra-ui/common": "1.0.0",
     "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
     "@nebula.gl/layers": "^1.1.0-alpha.5",
     "@turf/bbox": "^6.5.0",
