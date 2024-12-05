@@ -20,7 +20,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "typeRoots": [
-      "libs/3rd-party-typings",
       "node_modules/@types"
     ],
     "paths": {
@@ -33,41 +32,17 @@
       "@hra-ui/cdk": [
         "libs/cdk/src/index.ts"
       ],
-      "@hra-ui/cdk/app-href": [
-        "libs/cdk/app-href/src/index.ts"
-      ],
-      "@hra-ui/cdk/icons": [
-        "libs/cdk/icons/src/index.ts"
-      ],
-      "@hra-ui/cdk/injectors": [
-        "libs/cdk/injectors/src/index.ts"
-      ],
-      "@hra-ui/cdk/platform-location": [
-        "libs/cdk/platform-location/src/index.ts"
-      ],
-      "@hra-ui/cdk/state": [
-        "libs/cdk/state/src/index.ts"
-      ],
-      "@hra-ui/cdk/styling": [
-        "libs/cdk/styling/src/index.ts"
+      "@hra-ui/cdk/*": [
+        "libs/cdk/*/src/index.ts"
       ],
       "@hra-ui/common": [
         "libs/common/src/index.ts"
       ],
-      "@hra-ui/common/fs": [
-        "libs/common/fs/src/index.ts"
+      "@hra-ui/common/*": [
+        "libs/common/*/src/index.ts"
       ],
-      "@hra-ui/components/atoms": [
-        "libs/components/atoms/src/index.ts"
-      ],
-      "@hra-ui/components/behavioral": [
-        "libs/components/behavioral/src/index.ts"
-      ],
-      "@hra-ui/components/molecules": [
-        "libs/components/molecules/src/index.ts"
-      ],
-      "@hra-ui/components/organisms": [
-        "libs/components/organisms/src/index.ts"
+      "@hra-ui/components/*": [
+        "libs/components/*/src/index.ts"
       ],
       "@hra-ui/dashboard": [
         "libs/dashboard/src/index.ts"
@@ -75,107 +50,14 @@
       "@hra-ui/design-system": [
         "libs/design-system/src/index.ts"
       ],
-      "@hra-ui/design-system/apps-card": [
-        "libs/design-system/apps-card/src/index.ts"
-      ],
-      "@hra-ui/design-system/brand-logo": [
-        "libs/design-system/brand-logo/src/index.ts"
-      ],
-      "@hra-ui/design-system/brandmark": [
-        "libs/design-system/brandmark/src/index.ts"
-      ],
-      "@hra-ui/design-system/breadcrumbs": [
-        "libs/design-system/breadcrumbs/src/index.ts"
-      ],
-      "@hra-ui/design-system/button": [
-        "libs/design-system/button/src/index.ts"
-      ],
-      "@hra-ui/design-system/button-toggle": [
-        "libs/design-system/button-toggle/src/index.ts"
-      ],
-      "@hra-ui/design-system/color-picker": [
-        "libs/design-system/color-picker/src/index.ts"
-      ],
-      "@hra-ui/design-system/delete-file-button": [
-        "libs/design-system/delete-file-button/src/index.ts"
-      ],
-      "@hra-ui/design-system/dialog": [
-        "libs/design-system/dialog/src/index.ts"
-      ],
-      "@hra-ui/design-system/error-indicator": [
-        "libs/design-system/error-indicator/src/index.ts"
-      ],
-      "@hra-ui/design-system/expansion-panel": [
-        "libs/design-system/expansion-panel/src/index.ts"
-      ],
-      "@hra-ui/design-system/footer": [
-        "libs/design-system/footer/src/index.ts"
-      ],
-      "@hra-ui/design-system/fullscreen": [
-        "libs/design-system/fullscreen/src/index.ts"
-      ],
-      "@hra-ui/design-system/icon-button": [
-        "libs/design-system/icon-button/src/index.ts"
-      ],
-      "@hra-ui/design-system/info-modal": [
-        "libs/design-system/info-modal/src/index.ts"
-      ],
-      "@hra-ui/design-system/input": [
-        "libs/design-system/input/src/index.ts"
-      ],
-      "@hra-ui/design-system/menu": [
-        "libs/design-system/menu/src/index.ts"
-      ],
-      "@hra-ui/design-system/micro-tooltip": [
-        "libs/design-system/micro-tooltip/src/index.ts"
-      ],
-      "@hra-ui/design-system/nav-header": [
-        "libs/design-system/nav-header/src/index.ts"
-      ],
-      "@hra-ui/design-system/nav-header-buttons": [
-        "libs/design-system/nav-header-buttons/src/index.ts"
-      ],
-      "@hra-ui/design-system/product-logo": [
-        "libs/design-system/product-logo/src/index.ts"
-      ],
-      "@hra-ui/design-system/scrolling": [
-        "libs/design-system/scrolling/src/index.ts"
-      ],
-      "@hra-ui/design-system/scrolling/testing": [
-        "libs/design-system/scrolling/testing/src/index.ts"
-      ],
-      "@hra-ui/design-system/select": [
-        "libs/design-system/select/src/index.ts"
-      ],
-      "@hra-ui/design-system/snackbar": [
-        "libs/design-system/snackbar/src/index.ts"
-      ],
-      "@hra-ui/design-system/social-media-button": [
-        "libs/design-system/social-media-button/src/index.ts"
-      ],
-      "@hra-ui/design-system/software-status-indicator": [
-        "libs/design-system/software-status-indicator/src/index.ts"
-      ],
-      "@hra-ui/design-system/step-indicator": [
-        "libs/design-system/step-indicator/src/index.ts"
-      ],
-      "@hra-ui/design-system/table": [
-        "libs/design-system/table/src/index.ts"
-      ],
-      "@hra-ui/design-system/tooltip-card": [
-        "libs/design-system/tooltip-card/src/index.ts"
-      ],
-      "@hra-ui/design-system/tree": [
-        "libs/design-system/tree/src/index.ts"
-      ],
-      "@hra-ui/design-system/workflow-card": [
-        "libs/design-system/workflow-card/src/index.ts"
+      "@hra-ui/design-system/*": [
+        "libs/design-system/*/src/index.ts"
       ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
       ],
-      "@hra-ui/node-dist-vis/models": [
-        "libs/node-dist-vis/models/src/index.ts"
+      "@hra-ui/node-dist-vis/*": [
+        "libs/node-dist-vis/*/src/index.ts"
       ],
       "@hra-ui/services": [
         "libs/services/src/index.ts"
@@ -189,11 +71,8 @@
       "@hra-ui/utils": [
         "libs/shared/utils/src/index.ts"
       ],
-      "@hra-ui/utils/testing": [
-        "libs/shared/testing/src/index.ts"
-      ],
-      "@hra-ui/utils/types": [
-        "libs/shared/utils/types/src/index.ts"
+      "@hra-ui/utils/*": [
+        "libs/shared/utils/*/src/index.ts"
       ],
       "@hra-ui/webcomponents": [
         "libs/shared/webcomponents/src/index.ts"
@@ -207,26 +86,8 @@
       "ccf-shared": [
         "libs/ccf-shared/src/public-api.ts"
       ],
-      "ccf-shared/analytics": [
-        "libs/ccf-shared/analytics/src/public-api.ts"
-      ],
-      "ccf-shared/rxjs-ext": [
-        "libs/ccf-shared/rxjs-ext/src/public-api.ts"
-      ],
-      "ccf-shared/rxjs-ext/operators": [
-        "libs/ccf-shared/rxjs-ext/operators/src/public-api.ts"
-      ],
-      "ccf-shared/web-components": [
-        "libs/ccf-shared/web-components/src/public-api.ts"
-      ],
-      "cde-ui": [
-        "apps/cde-ui/src/index.ts"
-      ],
-      "stream": [
-        "./node_modules/stream-browserify"
-      ],
-      "swiper_angular": [
-        "node_modules/swiper/angular"
+      "ccf-shared/*": [
+        "libs/ccf-shared/*/src/public-api.ts"
       ]
     }
   },
