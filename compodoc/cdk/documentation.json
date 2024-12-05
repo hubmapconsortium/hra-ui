@@ -6963,7 +6963,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "be0b9645-4a2f-4bf8-a2e2-52998c70c4fb",
+                        "destrucuredGroupId": "b3919547-e9ae-484f-9ada-3d918288e4be",
                         "destructuredParameter": true
                     }
                 ],
@@ -6998,7 +6998,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "be0b9645-4a2f-4bf8-a2e2-52998c70c4fb",
+                        "destrucuredGroupId": "b3919547-e9ae-484f-9ada-3d918288e4be",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -7136,7 +7136,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "96c85190-48e5-453e-963d-66c7afc62b9a",
+                        "destrucuredGroupId": "a9fc50e8-157a-406f-b781-7638a3b3a328",
                         "destructuredParameter": true
                     }
                 ],
@@ -7204,7 +7204,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "96c85190-48e5-453e-963d-66c7afc62b9a",
+                        "destrucuredGroupId": "a9fc50e8-157a-406f-b781-7638a3b3a328",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -10435,7 +10435,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "be0b9645-4a2f-4bf8-a2e2-52998c70c4fb",
+                            "destrucuredGroupId": "b3919547-e9ae-484f-9ada-3d918288e4be",
                             "destructuredParameter": true
                         }
                     ],
@@ -10470,7 +10470,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "be0b9645-4a2f-4bf8-a2e2-52998c70c4fb",
+                            "destrucuredGroupId": "b3919547-e9ae-484f-9ada-3d918288e4be",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -10522,7 +10522,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "96c85190-48e5-453e-963d-66c7afc62b9a",
+                            "destrucuredGroupId": "a9fc50e8-157a-406f-b781-7638a3b3a328",
                             "destructuredParameter": true
                         }
                     ],
@@ -10590,7 +10590,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "96c85190-48e5-453e-963d-66c7afc62b9a",
+                            "destrucuredGroupId": "a9fc50e8-157a-406f-b781-7638a3b3a328",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
