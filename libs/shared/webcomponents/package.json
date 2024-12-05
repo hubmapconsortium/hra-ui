@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/webcomponents",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/core": "18.2.1",
     "@angular/elements": "18.2.1",

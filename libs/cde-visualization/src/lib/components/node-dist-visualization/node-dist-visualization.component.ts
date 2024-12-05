@@ -108,16 +108,16 @@ export class NodeDistVisualizationComponent {
       originY: 'top',
       overlayX: 'start',
       overlayY: 'top',
-      offsetX: this.cellInfo()?.x,
-      offsetY: this.cellInfo()?.y,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
     },
     {
       originX: 'start',
       originY: 'top',
       overlayX: 'end',
       overlayY: 'top',
-      offsetX: this.cellInfo()?.x,
-      offsetY: this.cellInfo()?.y,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
     },
   ]);
   protected readonly cellInfoContent = computed((): DataItem[] => {
