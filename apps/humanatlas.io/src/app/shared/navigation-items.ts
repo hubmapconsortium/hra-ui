@@ -62,6 +62,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         disabled: true,
         url: 'https://data.sennetconsortium.org/',
       },
+      {
+        menuName: 'KPMP Kidney Tissue Atlas',
+        disabled: true,
+        url: 'https://atlas.kpmp.org/',
+      },
     ],
   },
   {

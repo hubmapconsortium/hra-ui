@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>24 Hour Multiscale Human Event</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5FEBMK0QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-H5FEBMK0QE');
+    </script>
+    <script>
+      var end = new Date('12/14/2024 12:00 PM EST');
+
+      var _second = 1000;
+      var _minute = _second * 60;
+      var _hour = _minute * 60;
+      var _day = _hour * 24;
+      var timer;
+
+      function getESTOffset() {
+        return new Date().getTimezoneOffset() - end.getTimezoneOffset();
+      }
+
+      function showRemaining() {
+        var now = new Date();
+        var distance = end - now - getESTOffset() * _hour;
+        if (distance < 0) {
+          clearInterval(timer);
+          document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+          return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML =
+          "Starting in <span style='color:;'>" +
+          days +
+          "</span>d <span style='color:;'>" +
+          hours +
+          "</span>h <span style='color:;'>" +
+          minutes +
+          '</span>m';
+      }
+
+      timer = setInterval(showRemaining, 1000);
+    </script>
+  </head>
+
+  <body id="page-top">
+    <!-- Navigation-->
+    <div class="navbar">
+      <img src="assets/UI Assets/logo2.svg" />
+      <div class="timer" id="countdown"></div>
+    </div>
+
+    <!-- Header-->
+    <header class="masthead text-center text-white headerimg">
+      <div class="masthead-content">
+        <div class="container px-5">
+          <h1 class="masthead-heading mb-33">24 Hour “Multiscale Human” Event</h1>
+          <h2 class="masthead-subheading mb-4">Let's explore data!</h2>
+          <div id="particles-js"></div>
+
+          <a class="btn btn-primary btn-xl rounded-pill mt-3" href="#scroll">View event schedule</a> &nbsp;&nbsp;
+          <a class="btn btn-primary btn-xl rounded-pill mt-3" href="https://iu.zoom.us/j/83295439931"
+            >Join event virtually via Zoom
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content sections-->
+    <div class="holder3" id="scroll">
+      <div class="px-4 pb-2 mb-5">
+        <h1 class="pt-5 pb-3" style="margin: auto; text-align: center">About</h1>
+        <p style="margin: auto; text-align: left; max-width: 700px">
+          Join us for a groundbreaking 24-hour online webinar on December 14-15, hosted via Zoom. This event will delve
+          into the complexities of
+          <strong>“What is a Multiscale Human”</strong> a revolutionary research focus led by CNS in partnership with
+          CIFAR.
+        </p>
+        <br />
+        <p style="margin: auto; text-align: left; max-width: 700px">
+          Starting at <strong>12:00 PM on December 14</strong> and running until
+          <strong>12:00 PM on December 15</strong>, each hour will introduce a unique topic related to the multiscale
+          mapping of the human body. This webinar offers a rare opportunity to dive into topics such as
+          <strong>3D visualization, human physiology</strong>, and the role of illustrations and animations in
+          understanding complex biological systems. You’ll also learn about the program's founders, funding avenues, and
+          the collaborative efforts advancing this research.
+        </p>
+      </div>
+    </div>
+
+    <h1 class="pt-5 pb-4" style="margin: auto; background-color: #f1f1f1; text-align: center">
+      Saturday, Dec 14th, 2024 <br />
+      <span style="font-size: 18px; opacity: 0.6">Main times are in EST (GMT-5)</span>
+    </h1>
+
+    <div class="holder">
+      <div class="timeline">
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/12pm.png" alt="..." />
+            <h2>12PM</h2>
+            <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9)</h6>
+            <h4>Welcome and Panel: Multiscale Human: Definitions, Maps, Models</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Panelists:</strong></p>
+            <ul>
+              <li>Griffin Weber, <em>Harvard Medical School (Human Reference Atlas)</em></li>
+              <li>Karen Miga, <em>UC Santa Cruz (Pangenome)</em></li>
+              <li>Clair Walsh, <em>University College London (Human Organ Atlas)</em></li>
+              <li>Caterina Strambio, <em>University of Massachusetts Medical School (4D Nucleome Network)</em></li>
+              <li>Aviv Regev, <em>Genentech, Inc. (Human Cell Atlas)</em></li>
+              <li>Peter Hunter, <em>Bioengineering Institute New Zealand (SPARC)</em></li>
+              <li>Gary Bader, <em>University of Toronto, Canada (CIFAR co-director) </em></li>
+              <li>Maryann Martone, <em>National Center for Microscopy and Imaging Research (NCMIR)</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1pm.png" alt="..." />
+            <h2>1PM</h2>
+            <h6>6PM in London (GMT), 3AM in Tokyo (GMT+9)</h6>
+            <h4>Multiscale Illustrations and Animations</h4>
+            <p><strong>Moderator:</strong> Todd Theriault, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Heidi Schlehlein, <em>Indiana University</em></li>
+              <li>Ushma Patel, <em>Indiana University</em></li>
+              <li>Rachel Bajema, <em>Indiana University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/2pm.png" alt="..." />
+            <h2>2PM</h2>
+            <h6>7PM in London (GMT), 4AM in Tokyo (GMT+9)</h6>
+            <h4>Publishers</h4>
+            <p><strong>Moderator:</strong> Andreas Bueckle, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Rita Strack, <em>Nature</em></li>
+              <li>Andrea Scharnhorst, <em>Royal Netherlands Academy of Arts and Sciences</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/3pm.png" alt="..." />
+            <h2>3PM</h2>
+            <h6>8PM in London (GMT), 5AM in Tokyo (GMT+9)</h6>
+            <h4>Funders</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Richard Conroy, <em>NIH/OD</em></li>
+              <li>Chris Kinsinger, <em>NIH/CFDE</em></li>
+              <li>Amy Cook, <em>CIFAR</em></li>
+              <li>Takei Kenta, <em>Japan Science and Technology Agency</em></li>
+              <li>Yusuke Date, <em>Department of Strategic Basic Research, Japan</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/4pm.png" alt="..." />
+            <h2>4PM</h2>
+            <h6>9PM in London (GMT), 6AM in Tokyo (GMT+9)</h6>
+            <h4>Michael Levin</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenter:</strong> Michael Levin, <em>Tufts University & Harvard University</em></p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/5pm.png" alt="..." />
+            <h2>5PM</h2>
+            <h6>10PM in London (GMT), 7AM in Tokyo (GMT+9)</h6>
+            <h4>Cells & Vasculature</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Chenchen Zhu, <em>Stanford University</em></li>
+              <li>Samuel L. Ewing, <em>University of Florida</em></li>
+              <li>Kevin Matthew Byrd, <em>Adams School of Dentistry Oral and Craniofacial Health Sciences</em></li>
+              <li>Archibald Enninful, <em>Yale University</em></li>
+              <li>Alex Wong, <em>Harvard University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/6pm.png" alt="..." />
+            <h2>6PM</h2>
+            <h6>11PM in London (GMT), 8AM in Tokyo (GMT+9)</h6>
+            <h4>Cell Manufacturing &amp; Mapping</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenter:</strong> Jan Jensen, <em>Trailhead Biosystems</em> CEO</p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/7pm.png" alt="..." />
+            <h2>7PM</h2>
+            <h6>12AM in London (GMT), 9AM in Tokyo (GMT+9)</h6>
+            <h4>Panel: Science Museums</h4>
+            <p><strong>Moderator:</strong> Stephen Uzzo, <em>National Museum of Mathematics</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Weidi Zhang, <em>Arizona State University</em></li>
+              <li>Yoon Chung Han, <em>San José State University</em></li>
+              <li>Joe Heimlich, <em>Center of Science and Industry</em></li>
+              <li>Katy Börner, <em>Indiana University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/8pm.png" alt="..." />
+            <h2>8PM</h2>
+            <h6>1AM in London (GMT), 10AM in Tokyo (GMT+9)</h6>
+            <h4>Multiscale Maps</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Tarek M. Ashkar, <em>Indiana University</em></li>
+              <li>Daria Barwinska, <em>Indiana University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/9pm.png" alt="..." />
+            <h2>9PM</h2>
+            <h6>2AM in London (GMT), 11AM in Tokyo (GMT+9)</h6>
+            <h4>Multiscale Models</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Maria Brbic, <em>Swiss Federal Institute of Technology Lausanne</em></li>
+              <li>Bianca M. Dumitrascu, <em>Columbia University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/10pm.png" alt="..." />
+            <h2>10PM</h2>
+            <h6>3AM in London (GMT), 12PM in Tokyo (GMT+9)</h6>
+            <h4>STELLAR & Cell Neighborhoods</h4>
+            <p><strong>Moderator:</strong> Ellen Quardokus, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>John Hickey, <em>Duke University</em></li>
+              <li>Jure Leskovec, <em>Stanford University</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/11pm.png" alt="..." />
+            <h2>11PM</h2>
+            <h6>4AM in London (GMT), 1PM in Tokyo (GMT+9)</h6>
+            <h4>Multiscale Visualizations</h4>
+            <p><strong>Moderator:</strong> Andreas Bueckle, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>
+                Tobias Isenberg,
+                <em>National Institute for Research in Digital Science and Technology (Inria), France</em>
+              </li>
+              <li>Ludovic Autin, <em>Scripps Research Institute</em></li>
+              <li>Griffin Weber, <em>Harvard Medical School</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="py-5" style="margin: auto; text-align: center; color: white; background-color: #4b4b5e">
+      Sunday, Dec 15th 2024
+    </h1>
+
+    <div class="holder2">
+      <div class="timeline2">
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/12am.png" alt="..." />
+            <h2>12AM</h2>
+            <h6>5AM in London (GMT), 2PM in Tokyo (GMT+9)</h6>
+            <h4>TBD</h4>
+            <p><strong>Moderator:</strong> Todd Theriault, <em>Indiana University</em></p>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/1am.png" alt="..." />
+            <h2>1AM</h2>
+            <h6>6AM in London (GMT), 3PM in Tokyo (GMT+9)</h6>
+            <h4>VIDEOS: Human Atlas Data</h4>
+            <ul>
+              <li>An Introduction to Ontologies by Mark Musen, <em>Stanford University</em></li>
+              <li>Organizing and Searching Biological Datasets by Alexandro Trevino, <em>Enable Medicine</em></li>
+              <li>
+                How are Visuals Worth a Thousand Words: Visualization as a Point of Departure to Investigate Research
+                Culture in Digital Humanities by Rongqian Ma, <em>Indiana University</em>
+              </li>
+              <li>
+                Data Driven Foresight with KATI - Can number crunching reveal the future of technologies? by Marcus John
+                and Melanie Martini,
+                <em>Fraunhofer Institute for Scientific and Technological Trend Analysis INT, Germany</em>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/2am.png" alt="..." />
+            <h2>2AM</h2>
+            <h6>7AM in London (GMT), 4PM in Tokyo (GMT+9)</h6>
+            <h4>VIDEOS: Human Atlas Methods</h4>
+            <ul>
+              <li>Consensus prediction of cell type labels with popV by Can Ergen, <em>UC Berkeley</em></li>
+              <li>
+                Seurat v5, Azimuth, and Building a Pan-Human Reference by Gesmira Molla and Rahul Satija,
+                <em>New York Genome Center</em>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/3am.png" alt="..." />
+            <h2>3AM</h2>
+            <h6>8AM in London (GMT), 5PM in Tokyo (GMT+9)</h6>
+            <h4>VIDEOS: Human Atlas Technologies</h4>
+            <ul>
+              <li>10x Xenium by Danny Barrett and Leilani Marty-Santos, <em>10x Genomics</em></li>
+              <li>The MERSCOPE Spatial Analysis Platform by Sayak Mitter, <em>Vizgen</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/4am.png" alt="..." />
+            <h2>4AM</h2>
+            <h6>9AM in London (GMT), 6PM in Tokyo (GMT+9)</h6>
+            <h4>VIDEOS: Human Atlas Tools</h4>
+            <ul>
+              <li>Brain Warping by James C. Gee, <em>University of Pennsylvania</em></li>
+              <li>Flow Immersive Data Vis in AR with AI by Jason Marsh, <em>Flow Immersive</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/5am.png" alt="..." />
+            <h2>5AM</h2>
+            <h6>10AM in London (GMT), 7PM in Tokyo (GMT+9)</h6>
+            <h4>VIDEOS: Human Atlas Insights</h4>
+            <ul>
+              <li>
+                Scientific Visualization and storytelling at the Visualization Group, Barcelona Supercomputing Center by
+                Guillermo Marin, <em>Universitat Autonoma de Barcelona, Spain</em>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/6am.png" alt="..." />
+            <h2>6AM</h2>
+            <h6>11AM in London (GMT), 8PM in Tokyo (GMT+9)</h6>
+            <h4>Multiscale Foundation Models</h4>
+            <p><strong>Moderator:</strong> Yashvardhan Jain, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Mo Chen, <em>Tsinghua University, China</em></li>
+              <li>Tianhong Zhou, <em>Tsinghua University, China</em></li>
+              <li>Yubo Zhao, <em>Tsinghua University, China</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/7am.png" alt="..." />
+            <h2>7AM</h2>
+            <h6>12PM in London (GMT), 9PM in Tokyo (GMT+9)</h6>
+            <h4>Theoretical Biology and History of Biology</h4>
+            <p><strong>Moderator:</strong> Yashvardhan Jain, <em>Indiana University</em></p>
+            <p><strong>Presenter:</strong> Manfred Laubichler, <em>Arizona State University</em></p>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/8am.png" alt="..." />
+            <h2>8AM</h2>
+            <h6>1PM in London (GMT), 10PM in Tokyo (GMT+9)</h6>
+            <h4>Panel: Why 3D?</h4>
+            <p><strong>Moderator:</strong> Andreas Bueckle, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Timothy Davison, <em>Independent computer graphics researcher/programmer, Austria</em></li>
+              <li>Christiane V.R. Hütter, <em>University of Vienna, Austria</em></li>
+              <li>Sebastian Pirch, <em>Austrian Academy of Sciences, Austria</em></li>
+              <li>Martin Chiettini, <em>University of Vienna, Austria</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/9am.png" alt="..." />
+            <h2>9AM</h2>
+            <h6>2PM in London (GMT), 11PM in Tokyo (GMT+9)</h6>
+            <h4>Panel: Ontologies and AI</h4>
+            <p><strong>Moderator:</strong> Bruce W. Herr II, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>
+                Maria-Esther Vidal,
+                <em>German National Library of Science and Technology (TIB), Germany</em>
+                <a href="https://ask.orkg.org/" target="_blank">(ORKG Ask)</a>
+              </li>
+              <li>
+                Yongxin (Kiki) Kong,
+                <em>Indiana University & Chinese Academy of Sciences, China</em>
+                <a href="http://dx.doi.org/10.1038/s41597-024-03416-8" target="_blank">(HRAlit)</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/10am.png" alt="..." />
+            <h2>10AM</h2>
+            <h6>3PM in London (GMT), 12AM in Tokyo (GMT+9)</h6>
+            <h4>Novel Methods and Technologies</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Majd Ariss, <em>Single Cell Technologies</em></li>
+              <li>Jiang He, <em>Vizgen, Inc</em></li>
+              <li>Price Colles, <em>Takeda</em></li>
+              <li>Daniel Moline, <em>Science & Technologies Advisor</em></li>
+              <li>Sarah Teichmann, <em>Cambridge Stem Cell Institute, UK (CIFAR co-director)</em></li>
+              <li>Tobias Wenzel, <em>Pontificia Universidad Católica de Chile, Chile</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 right">
+          <div class="content">
+            <img class="rounded-circle imgtimeline" src="assets/img/11am.png" alt="..." />
+            <h2>11AM</h2>
+            <h6>4PM in London (GMT), 1AM in Tokyo (GMT+9)</h6>
+            <h4>FAIR & Scalable Infrastructures</h4>
+            <p><strong>Moderator:</strong> Katy Börner, <em>Indiana University</em></p>
+            <p><strong>Presenters:</strong></p>
+            <ul>
+              <li>Deanne Taylor, <em>Children's Hospital of Philadelphia</em></li>
+              <li>Ino de Bruijn, <em>Memorial Sloan Kettering Cancer Center</em></li>
+              <li>Bruce W. Herr II, <em>Indiana University</em></li>
+              <li>Jonathan Silverstein, <em>University of Pittsburgh</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container2 left">
+          <div class="content mb-5">
+            <img class="rounded-circle imgtimeline" src="assets/img/12pm.png" alt="..." />
+            <h2>12PM</h2>
+            <h6>5PM in London (GMT), 2AM in Tokyo (GMT+9)</h6>
+            <h4>End of Event</h4>
+            <p>Thanks for going with us on this journey!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End section-->
+    <div class="holder3">
+      <div class="px-4 pb-5">
+        <h1 class="pt-5 pb-3" style="margin: auto; text-align: center">We would like to thank</h1>
+        <p class="ThanksList"></p>
+        <ul style="text-align: left; margin: auto; max-width: 700px; padding-left: 1rem !important">
+          <li><strong>Todd Theriault &amp; Andreas Bueckle</strong> - for compiling the video collections.</li>
+          <li><strong>Melanie B. Goldstone &amp; Edward Lu</strong> - for designing the website.</li>
+          <li>
+            <strong>Nicole C. Johnson, Dan Qaurooni &amp; Meryl Sarah Jacobs</strong> - for project management and
+            technical support.
+          </li>
+          <li><strong>Nicole C. Johnson &amp; Meryl Sarah Jacobs</strong> - for social media support.</li>
+        </ul>
+        <br />
+        <p style="margin: auto; text-align: left; max-width: 700px">
+          <em
+            ><strong>
+              Funding for this event was kindly provided by
+              <a href="https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/" target="_blank">CIFAR</a>,
+              the <a href="https://cns.iu.edu/" , target="_blank">Cyberinfrastructure for Network Science Center</a>
+              &amp; SICE IT team at Indiana University.
+            </strong></em
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer-->
+
+    <div class="hrafooter">
+      <div class="leftsidefooter">
+        <img src="assets/UI Assets/logo.svg" height="102px" width="246px" />
+        <div class="footercopyright">
+          <a href="https://humanatlas.io/" target="_blank"><img src="assets/UI Assets/copyrightsymbol.svg" /></a>
+          2024 CNS at Indiana University
+        </div>
+      </div>
+      <div class="rightsidefooter">
+        <div class="centeritems">
+          <div class="footerlogocenter">
+            <div class="footerlogos">
+              <a href="https://twitter.com/cnscenter" target="_blank"
+                ><img src="assets/UI Assets/social media.svg"
+              /></a>
+              <a href="https://www.facebook.com/cnscenter/" target="_blank"
+                ><img src="assets/UI Assets/social media-1.svg"
+              /></a>
+              <a href="https://www.instagram.com/cns_at_iu/" target="_blank"
+                ><img src="assets/UI Assets/social media-2.svg"
+              /></a>
+              <a href="https://www.youtube.com/@CNSCenter/" target="_blank"
+                ><img src="assets/UI Assets/social media-3.svg"
+              /></a>
+              <a href="https://www.linkedin.com/company/cns-indiana-university-bloomington" target="_blank"
+                ><img src="assets/UI Assets/social media-4.svg"
+              /></a>
+              <a href="https://twitter.com/cnscenter" target="_blank"
+                ><img src="assets/UI Assets/social media-5.svg"
+              /></a>
+            </div>
+            <div class="footerfounders">
+              <p>Funded By:</p>
+              <div class="founderlogos">
+                <a href="https://www.nih.gov/" target="_blank"><img src="assets/UI Assets/icon_ funder.svg" /></a>
+                <a href="https://cifar.ca/" target="_blank"><img src="assets/UI Assets/icon_ funder-1.svg" /></a>
+                <a href="https://www.iu.edu/index.html" target="_blank"
+                  ><img src="assets/UI Assets/icon_ funder-2.svg"
+                /></a>
+              </div>
+            </div>
+          </div>
+          <div class="medicaldisclaimer">
+            Medical Disclaimer: This resource is intended for research purposes only. It should not be used for
+            emergencies or medical or professional advice.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
