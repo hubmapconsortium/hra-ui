@@ -294,26 +294,6 @@ export class CdeVisualizationComponent {
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
-  /** List of filtered cell types based on selection */
-  protected readonly filteredCellTypes = computed(
-    () => {
-      const selection = new Set(this.cellTypesSelection());
-      selection.delete(this.selectedNodeTargetValue());
-      const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
-      return filtered.sort((a, b) => b.count - a.count);
-    },
-    { equal: emptyArrayEquals },
-  );
-
-  /** Computed distances between nodes */
-  protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
-
-  /** Data for the histogram visualization */
-  protected readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
-
-  /** Colors for the histogram visualization */
-  protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
-
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view

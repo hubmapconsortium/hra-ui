@@ -44,7 +44,6 @@ import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
-import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 
 interface UpdateColorData {
   entry: CellTypeEntry;
