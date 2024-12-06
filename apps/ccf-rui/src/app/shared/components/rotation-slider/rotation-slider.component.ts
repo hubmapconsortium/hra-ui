@@ -26,6 +26,8 @@ const DEFAULT_ROTATION: Rotation = {
   z: 0,
 };
 
+export type Axis = 'x' | 'y' | 'z';
+
 /**
  * Component that enables the setting of a Rotation object via either 3 draggable sliders
  * or through an Input method.
@@ -51,9 +53,11 @@ export class RotationSliderComponent {
   /** Output that emits the new rotation whenever it is changed from within the component */
   @Output() readonly rotationChange = new EventEmitter<Rotation>();
 
-  displayedSlider?: 'x' | 'y' | 'z';
+  displayedSlider?: Axis;
 
-  step = 30;
+  axisOptions: Axis[] = ['x', 'y', 'z'];
+
+  step = 1;
 
   /**
    * Creates an instance of rotation slider component.
@@ -81,18 +85,18 @@ export class RotationSliderComponent {
   /**
    * Function to easily reset the rotations to 0 and emit this change.
    */
-  resetRotation(dimension: 'x' | 'y' | 'z'): void {
+  resetRotation(dimension: Axis): void {
     this.rotation = { ...this.rotation, [dimension]: 0 };
     this.ga.event('rotation_reset', 'rotation_slider');
     this.rotationChange.emit(this.rotation);
   }
 
-  displaySlider(dimension: 'x' | 'y' | 'z'): void {
+  displaySlider(dimension: Axis): void {
     this.displayedSlider = dimension;
   }
 
   changeStep(target: KeyboardEvent): void {
-    this.step = target.shiftKey ? 1 : 30;
+    this.step = target.shiftKey ? 30 : 1;
   }
 
   closeResults(event: Event): void {
