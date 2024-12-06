@@ -90,8 +90,8 @@ describe('HistogramComponent', () => {
     const fileSaver = TestBed.inject(FileSaverService);
     const fileSaveSpy = jest.spyOn(fileSaver, 'save');
 
-    //   const fileSaver = TestBed.inject(FileSaverService);
-    //   const fileSaveSpy = jest.spyOn(fileSaver, 'save');
+    const imageUrl = 'data:foo';
+    embedResult.view.toImageURL.mockReturnValue(Promise.resolve(imageUrl));
 
     const loader = TestbedHarnessEnvironment.loader(fixture);
     const menu = await loader.getHarness(MatMenuHarness);
