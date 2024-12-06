@@ -29,22 +29,14 @@
 @use '../../app/modules/content/video-modal/video-modal/video-modal.component.theme.scss' as videoModal;
 @use '../../app/modules/content/video-modal/video-modal-launcher/video-modal-launcher.component.theme.scss' as
   videoModalLauncher;
-@use '../../app/shared/components/json-file-reader/json-file-reader.theme.scss' as jsonFileReader;
-@use '../../app/modules/registration-modal/registration-content/registration-content.component.theme.scss' as
-  registrationContent;
-@use '../../app/shared/components/registration-metadata/registration-metadata.component.theme' as registrationMetadata;
 
 @mixin ccf-theme($theme) {
   @include mat.core-theme($theme);
 
-  @include mat.button-theme($theme);
   @include mat.checkbox-theme($theme);
   @include mat.expansion-theme($theme);
-  @include mat.form-field-theme($theme);
   @include mat.icon-theme($theme);
-  @include mat.input-theme($theme);
   @include mat.radio-theme($theme);
-  @include mat.select-theme($theme);
   @include mat.slide-toggle-theme($theme);
   @include mat.toolbar-theme($theme);
   @include mat.tooltip-theme($theme);
@@ -79,9 +71,6 @@
   @include reviewModal.theme($theme);
   @include videoModal.theme($theme);
   @include videoModalLauncher.theme($theme);
-  @include jsonFileReader.theme($theme);
-  @include registrationContent.theme($theme);
-  @include registrationMetadata.theme($theme);
 
   // Overrides goes here!
 }

@@ -1,9 +1,8 @@
 :host {
-  height: 2.25rem;
+  padding: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 0.1875rem;
+  border-radius: 0.5rem;
+  background-color: white;
 
   .slider-box {
     display: flex;
@@ -13,10 +12,13 @@
     height: 100%;
 
     .slider-and-label {
-      width: 60%;
       display: flex;
       align-items: center;
       height: 100%;
+
+      mat-form-field {
+        max-width: 4.75rem;
+      }
 
       mat-slider {
         width: 100%;
@@ -26,18 +28,25 @@
           cursor: not-allowed;
         }
 
-        ::ng-deep mat-slider-visual-thumb {
-          transition: none;
+        ::ng-deep {
+          mat-slider-visual-thumb {
+            transition: none;
+
+            .mdc-slider__thumb-knob {
+              background-color: var(--sys-tertiary);
+              border-color: var(--sys-tertiary);
+            }
+          }
+
+          .mdc-slider__track--active_fill {
+            background-color: var(--sys-tertiary);
+            border-color: var(--sys-tertiary);
+          }
         }
 
         ::ng-deep .mat-ripple {
           display: none;
         }
-      }
-
-      .opacity-value {
-        width: 1.5rem;
-        margin-left: 0.5rem;
       }
     }
 
@@ -46,8 +55,6 @@
       cursor: pointer !important;
 
       .reset {
-        margin-right: 1rem;
-        padding: 0.25rem;
         cursor: pointer;
         transition: 0.6s;
         border-radius: 0.25rem;

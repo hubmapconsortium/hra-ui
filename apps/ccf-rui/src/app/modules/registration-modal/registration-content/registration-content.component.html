@@ -1,13 +1,94 @@
-<div class="modal">
-  <div class="title">Start Registration</div>
-  <ccf-registration-metadata (registrationSelected)="handleRegistrationSelect()"></ccf-registration-metadata>
-  <button
-    [class.disabled]="!organSelected || !nameValid || !orcidValid"
-    mat-button
-    class="registration-button"
-    (click)="registerButtonClick($event)"
-    [matTooltip]="!organSelected || !nameValid ? 'Required: Enter first and last name, and select an organ' : ''"
-  >
-    Continue
+<div class="title">
+  <span>Tissue Registration Metadata</span>
+  <button class="help" mat-icon-button [matMenuTriggerFor]="help" aria-label="Icon to open help menu">
+    <mat-icon>help</mat-icon>
   </button>
+
+  <mat-menu #help="matMenu">
+    <a mat-menu-item href="https://youtu.be/j4f9_xdBrK0?si=b5_p_lBuFzSyTXS3" target="_blank" rel="noopener noreferrer">
+      Watch video tutorial
+    </a>
+    <a
+      mat-menu-item
+      href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Use app guide
+    </a>
+    <a mat-menu-item href="https://doi.org/10.5281/zenodo.5575776" target="_blank" rel="noopener noreferrer">
+      Use standard operating procedure
+    </a>
+    <a mat-menu-item href="https://apps.humanatlas.io/eui/" target="_blank" rel="noopener noreferrer">
+      Explore all registrations
+    </a>
+  </mat-menu>
+</div>
+
+<div class="workflows">
+  <hra-workflow-card>
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
+      <span class="card-title">Optional: Upload Previous Registration</span>
+    </h2>
+
+    @if (registrationSelected) {
+      <hra-delete-file-button [fileName]="uploadedFileName" (cancelLoad)="removeFile()"></hra-delete-file-button>
+    } @else {
+      <ccf-json-file-reader
+        (parsedJson)="handleRegistrationUpload($any($event))"
+        (fileName)="uploadedFileName = $event"
+        label="Upload"
+      ></ccf-json-file-reader>
+    }
+  </hra-workflow-card>
+
+  <hra-workflow-card class="metadata-card">
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
+      <span class="card-title">Add Metadata</span>
+      <div class="filler"></div>
+      <a
+        mat-flat-button
+        hraCallToActionButton
+        hraSecondaryButton
+        class="use-template"
+        href="https://orcid.org/register"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Get ORCID
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    </h2>
+
+    <ccf-registration-form
+      (registrationFormChange)="setForm($event)"
+      (isValidChange)="setValid($event)"
+      (organChange)="setOrgan($event)"
+    ></ccf-registration-form>
+  </hra-workflow-card>
+
+  <hra-workflow-card>
+    <h2 class="header">
+      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
+      <span class="card-title">Register Data Spatially</span>
+    </h2>
+
+    @if (!isValid) {
+      <hra-error-indicator [errors]="['Please add required metadata.']"></hra-error-indicator>
+    }
+
+    <button
+      class="registration-button"
+      mat-flat-button
+      hraCallToActionButton
+      hraPrimaryButton
+      [disabled]="!isValid"
+      (click)="registerButtonClick($event)"
+    >
+      Register
+      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
+  </hra-workflow-card>
 </div>

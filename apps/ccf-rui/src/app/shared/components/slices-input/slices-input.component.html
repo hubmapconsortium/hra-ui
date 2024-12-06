@@ -1,8 +1,6 @@
 <div class="header">
-  <span class="text title" matTooltip="Add thickness of tissue sections and the total number of sections"
-    >Tissue Sections</span
-  >
-  <div class="filler"></div>
+  <span class="text title">Tissue Section</span>
+  <!-- <div class="filler"></div>
   <mat-icon
     matRipple
     [matRippleCentered]="true"
@@ -11,11 +9,11 @@
     (click)="refreshSlices()"
   >
     refresh
-  </mat-icon>
+  </mat-icon> -->
 </div>
 
 <div class="slices-inputs">
-  <mat-form-field class="field">
+  <!-- <mat-form-field class="field">
     <mat-label class="text form-input-label">Thickness</mat-label>
     <input
       matInput
@@ -27,6 +25,19 @@
       matTooltip="Enter thickness of tissue sections"
     />
     <div matSuffix class="suffix" [class.show]="hasThicknessValue">μm</div>
+  </mat-form-field> -->
+
+  <mat-form-field>
+    <mat-label>Thickness</mat-label>
+    <input
+      matInput
+      ccfNumbersOnly
+      class="input"
+      type="number"
+      [value]="slicesConfig.thickness"
+      (keyup)="updateSlicesData($event, 'thickness')"
+    />
+    <!-- <div matSuffix class="suffix" [class.show]="hasThicknessValue">μm</div> -->
   </mat-form-field>
 
   <mat-form-field class="field">

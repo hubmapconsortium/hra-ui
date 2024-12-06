@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
-import { map } from 'rxjs/operators';
 
-import { ModelState, RUI_ORGANS } from '../../../core/store/model/model.state';
-import { PageState, Person } from '../../../core/store/page/page.state';
+import { MODEL_DEFAULTS, ModelState } from '../../../core/store/model/model.state';
+import { PageState } from '../../../core/store/page/page.state';
+import { RegistrationState } from '../../../core/store/registration/registration.state';
 
 /**
  * Component containing content of the initial registration modal
@@ -19,32 +21,17 @@ export class RegistrationContentComponent {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-registration-content';
 
-  /** Current sex in the model state */
-  readonly sexByLabel$ = this.model.sex$.pipe(map((sex) => (sex === 'female' ? 'Female' : 'Male')));
+  registrationForm!: FormGroup;
 
-  /** List of selectable organs */
-  organList = RUI_ORGANS;
-
-  /** Whether sex has been selected */
-  sexSelected!: boolean;
-
-  /** Whether an organ has been selected */
-  organSelected!: boolean;
-
-  /** Current sex selected */
-  currentSex!: string;
+  isValid!: boolean;
 
   /** Current organ selected */
-  currentOrgan!: OrganInfo;
-
-  /** Checks if the user has entered a first and last name */
-  nameValid!: boolean;
-
-  /** Checks if the entered orcid is valid */
-  orcidValid!: boolean;
+  currentOrgan?: OrganInfo;
 
   /** Checks if a preexisting registration was uploaded */
-  registrationSelected: boolean;
+  registrationSelected = false;
+
+  uploadedFileName = '';
 
   /**
    * Creates an instance of the registration dialog
@@ -52,62 +39,20 @@ export class RegistrationContentComponent {
    * @param page Page state
    * @param model Model state
    * @param dialogRef Registration dialog
-   * @param cdr Change detection
    */
   constructor(
     readonly page: PageState,
     readonly model: ModelState,
+    readonly registration: RegistrationState,
     public dialogRef: MatDialogRef<RegistrationContentComponent>,
-    cdr: ChangeDetectorRef,
-  ) {
+  ) {}
+
+  removeFile() {
+    this.registration.patchState({ initialRegistration: undefined });
+    this.page.patchState({ user: { firstName: '', lastName: '', email: '' } });
+    this.model.setState(MODEL_DEFAULTS);
+    this.currentOrgan = undefined;
     this.registrationSelected = false;
-    page.user$.subscribe((user) => {
-      this.checkNameValid(user);
-      this.orcidValid = page.isOrcidValid();
-      cdr.markForCheck();
-    });
-    model.organ$.subscribe((organ) => {
-      this.organSelected = organ.src !== '';
-      cdr.markForCheck();
-    });
-    this.sexByLabel$.subscribe((sex) => {
-      this.setSexFromLabel(sex);
-      cdr.markForCheck();
-    });
-    dialogRef.disableClose = true;
-    this.page.organOptions$.subscribe((options) => {
-      this.organList = options as OrganInfo[];
-      cdr.markForCheck();
-    });
-  }
-
-  /**
-   * Updates current sex selected
-   *
-   * @param label Sex selected
-   */
-  setSexFromLabel(label: 'Female' | 'Male'): void {
-    this.currentSex = label;
-    this.sexSelected = true;
-  }
-
-  /**
-   * Checks to see if a first and last name has been entered
-   *
-   * @param event Name input event
-   */
-  checkNameValid(event: Pick<Person, 'firstName' | 'lastName'>): void {
-    this.nameValid = event.firstName.length > 0 && event.lastName.length > 0;
-  }
-
-  /**
-   * Updates current organ selected
-   *
-   * @param organ Organ selected
-   */
-  organSelect(organ: OrganInfo): void {
-    this.currentOrgan = organ;
-    this.organSelected = true;
   }
 
   /**
@@ -120,31 +65,52 @@ export class RegistrationContentComponent {
     if (event) {
       event.preventDefault();
     }
-    if (!this.organSelected || !this.nameValid) {
-      return;
-    }
     this.closeDialog();
   }
 
-  /**
-   * Sets registrationSelected to true when a registration is uploaded
-   */
-  handleRegistrationSelect() {
+  handleRegistrationUpload(reg: SpatialEntityJsonLd): void {
+    this.registration.editRegistration(reg);
     this.registrationSelected = true;
   }
 
   /**
-   * Closes the dialog and sets the correct sex and organ in the model state
+   * Closes the dialog and updates page and model states according to form values
    * Sets block to default position and rotation if user didn't select a registration
    * Updates page state to signal registration has started
    */
   closeDialog(): void {
-    this.model.setSex(this.currentSex === 'Female' ? 'female' : 'male');
-    this.model.setOrgan(this.currentOrgan);
+    const { firstName, middleName, lastName, email, orcid, sex, consortium, publicationDOI } =
+      this.registrationForm.controls;
+
+    this.page.setUserName({
+      firstName: firstName.value ?? '',
+      middleName: middleName.value ?? '',
+      lastName: lastName.value ?? '',
+    });
+    this.page.setOrcidId(orcid.value ?? '');
+    this.page.setEmail(email.value ?? '');
+    this.model.setSex(sex.value === 'Female' ? 'female' : 'male');
+    this.model.setConsortium(consortium.value);
+    this.model.setDoi(publicationDOI.value);
+    if (this.currentOrgan) {
+      this.model.setOrgan(this.currentOrgan);
+    }
     if (!this.registrationSelected) {
       this.model.setOrganDefaults();
     }
     this.dialogRef.close(true);
     this.page.registrationStarted();
+  }
+
+  setValid(value: boolean) {
+    this.isValid = value;
+  }
+
+  setOrgan(value: OrganInfo) {
+    this.currentOrgan = value;
+  }
+
+  setForm(value: FormGroup) {
+    this.registrationForm = value;
   }
 }

@@ -1,17 +1,20 @@
-<div class="spacer"></div>
-
-<mat-form-field class="overlay" [class.expanded]="resultsVisible" appearance="outline" subscriptSizing="dynamic">
+<mat-form-field [class.expanded]="resultsVisible" subscriptSizing="dynamic">
   <div class="search-box">
+    <button mat-icon-button hraIconButtonSize="small" class="search-icon">
+      <mat-icon>search</mat-icon>
+    </button>
     <input matInput type="search" [placeholder]="placeholder" [formControl]="searchControl" #search />
     <button
-      class="add-button"
+      mat-icon-button
+      class="add-icon"
+      hraIconButtonSize="small"
       [class.active]="hasCheckedTags()"
       [disabled]="!hasCheckedTags()"
       (click)="addTags(); search.focus()"
       matSuffix
       #closeSearch
     >
-      <mat-icon class="icon">add</mat-icon>
+      <mat-icon>add_circle</mat-icon>
     </button>
   </div>
 

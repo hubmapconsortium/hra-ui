@@ -36,7 +36,7 @@ describe('RegistrationMetadataComponent', () => {
       })
       .mock(PageState, {
         ...mockPageState,
-        user$: of({ firstName: '', lastName: '' }),
+        user$: of({ firstName: '', lastName: '', email: '' }),
         organOptions$: of([]),
         uriToOrcid: () => '1234-1234-1234-1234',
       })

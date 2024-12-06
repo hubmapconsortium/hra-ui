@@ -40,15 +40,6 @@ describe('ContentComponent', () => {
       });
   });
 
-  it('should call the resetStage method when the reset button is clicked.', async () => {
-    const { find, instance } = await shallow.render();
-    const spy = spyOn(instance, 'resetStage');
-    const resetButton = find('.icon.reset');
-
-    resetButton.triggerEventHandler('click', {});
-    expect(spy).toHaveBeenCalled();
-  });
-
   describe('.setViewType(is3DView)', () => {
     it('set view type to 3d when is3DView is true', async () => {
       const { instance, inject } = await shallow.render();

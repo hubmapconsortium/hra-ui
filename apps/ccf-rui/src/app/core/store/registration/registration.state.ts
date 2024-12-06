@@ -186,6 +186,8 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       lastName: reg.creator_last_name,
     });
 
+    this.page.setEmail(reg.creator_email);
+
     const orcid = this.page.uriToOrcid(reg.creator_orcid);
     this.page.setOrcidId(orcid);
 
