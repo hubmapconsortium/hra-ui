@@ -91,6 +91,10 @@ export class RotationSliderComponent {
     this.rotationChange.emit(this.rotation);
   }
 
+  resetAllRotations(): void {
+    this.axisOptions.forEach((axis) => this.resetRotation(axis));
+  }
+
   displaySlider(dimension: Axis): void {
     this.displayedSlider = dimension;
   }

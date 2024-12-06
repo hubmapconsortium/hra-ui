@@ -367,6 +367,13 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     });
   }
 
+  @DataAction()
+  setDefaultPosition(): void {
+    this.ctx.patchState({
+      position: this.defaultPosition,
+    });
+  }
+
   /**
    * Updates the sex
    *
