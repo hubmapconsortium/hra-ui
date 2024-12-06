@@ -1,7 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
+import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
@@ -17,7 +17,7 @@ describe('CellTypesComponent', () => {
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon({ scrolling: { disableSensor: true } }), ...(options?.providers ?? [])],
     });
   }
 

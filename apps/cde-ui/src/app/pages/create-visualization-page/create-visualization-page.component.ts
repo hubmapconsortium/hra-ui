@@ -14,26 +14,25 @@ import {
   ColorMapFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  DEFAULT_NODE_TARGET_KEY,
-  DEFAULT_NODE_TARGET_VALUE,
-  NodeEntry,
-  NodeTargetKey,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { FooterComponent } from '@hra-ui/design-system/footer';
-import { CardData, NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
+import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
+import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
-
-import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
+import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
@@ -190,7 +189,7 @@ export class CreateVisualizationPageComponent {
   readonly organs = input.required<OrganEntry[]>();
 
   /** Data for sidenav cards */
-  readonly sideNavData = HUBMAP_CARDS_DATA;
+  readonly sideNavData = SIDENAV_CONTENT;
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
@@ -228,7 +227,7 @@ export class CreateVisualizationPageComponent {
       ontologyId: [{ value: optionalValue<string>(), disabled: true }],
     }),
     parameters: this.fb.group({
-      nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_VALUE, disabled: true }],
+      nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_SELECTOR, disabled: true }],
       distanceThreshold: [{ value: 1000, disabled: true }],
       pixelSizeX: [{ value: 1, disabled: true }, Validators.min(1)],
       pixelSizeY: [{ value: 1, disabled: true }, Validators.min(1)],
@@ -251,7 +250,7 @@ export class CreateVisualizationPageComponent {
   }
 
   /** Node CSV file loader service */
-  readonly nodesLoader = CsvFileLoaderService<NodeEntry>;
+  readonly nodesLoader = CsvFileLoaderService<Record<string, unknown>>;
   /** Options for node CSV loader */
   readonly nodesLoaderOptions: CsvFileLoaderOptions = {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
@@ -343,7 +342,10 @@ export class CreateVisualizationPageComponent {
   visualizeInfoOpen = false;
 
   /** Cell types included in uploaded data */
-  cellTypes = [DEFAULT_NODE_TARGET_VALUE];
+  cellTypes = [DEFAULT_NODE_TARGET_SELECTOR];
+
+  /** Headers for node data */
+  dataHeaders: string[] = [];
 
   /** Headers for node data */
   dataHeaders: string[] = [];
@@ -394,7 +396,7 @@ export class CreateVisualizationPageComponent {
   }
 
   /** Current nodes */
-  private nodes?: NodeEntry[];
+  private nodes?: Record<string, unknown>[];
   /** Current color map */
   private customColorMap?: ColorMapEntry[];
 
@@ -402,16 +404,16 @@ export class CreateVisualizationPageComponent {
    * Sets node values
    * @param nodes Nodes to set
    */
-  setNodes(nodes: NodeEntry[]): void {
+  setNodes(nodes: Record<string, unknown>[]): void {
     this.setHeaders(nodes);
 
-    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
-    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader]));
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as string;
+    const uniqueCellTypes = new Set(nodes.map((node) => node[cellTypeHeader] as string));
     this.nodes = nodes;
     this.cellTypes = Array.from(uniqueCellTypes);
 
-    const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_VALUE)
-      ? DEFAULT_NODE_TARGET_VALUE
+    const defaultCellType = uniqueCellTypes.has(DEFAULT_NODE_TARGET_SELECTOR)
+      ? DEFAULT_NODE_TARGET_SELECTOR
       : this.cellTypes[0];
     this.visualizationForm.controls['parameters'].patchValue({
       nodeTargetValue: defaultCellType,
@@ -422,7 +424,7 @@ export class CreateVisualizationPageComponent {
    * Sets node data headers for visualization form
    * @param nodes Node data entries
    */
-  private setHeaders(nodes: NodeEntry[]): void {
+  private setHeaders(nodes: Record<string, unknown>[]): void {
     this.dataHeaders = nodes[0] ? Object.keys(nodes[0]) : [];
     this.visualizationForm.controls['headers'].setValue({
       xAxis: this.preSelectedHeader('x'),
@@ -470,9 +472,9 @@ export class CreateVisualizationPageComponent {
    */
   hasValidNodes(): boolean {
     // Set the cell type header value when valid nodes checked
-    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as NodeTargetKey;
+    const cellTypeHeader = this.visualizationForm.controls['headers'].value.cellType as string;
     if (cellTypeHeader && this.nodes) {
-      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader]));
+      const uniqueCellTypes = new Set(this.nodes.map((node) => node[cellTypeHeader] as string));
       this.cellTypes = Array.from(uniqueCellTypes);
     }
     const { nodes } = this;
@@ -504,7 +506,10 @@ export class CreateVisualizationPageComponent {
    * @param colorMap Color map entries
    */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
-    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, ['Cell Type', 'HEX']);
+    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, [
+      DEFAULT_COLOR_MAP_KEY,
+      DEFAULT_COLOR_MAP_VALUE_KEY,
+    ]);
     if (this.customColorMapLoadError) {
       this.customColorMapFileUpload()?.reset();
       return;
@@ -545,54 +550,43 @@ export class CreateVisualizationPageComponent {
 
     const { nodes, customColorMap, visualizationForm } = this;
     const { colorMapType, metadata } = visualizationForm.value;
+    const headers = visualizationForm.value.headers;
 
-    const nodeTargetValue = visualizationForm.value.parameters
+    const nodesView = new NodesView(nodes, {
+      'Cell Type': headers?.cellType ?? '',
+      'Cell Ontology ID': headers?.ontologyId ?? undefined,
+      X: headers?.xAxis ?? '',
+      Y: headers?.yAxis ?? '',
+      Z: headers?.zAxis ?? undefined,
+    });
+
+    const colorMapView =
+      colorMapType === 'custom' && this.hasValidCustomColorMap() && customColorMap
+        ? new ColorMapView(customColorMap, {
+            'Cell Type': DEFAULT_COLOR_MAP_KEY,
+            'Cell Color': DEFAULT_COLOR_MAP_VALUE_KEY,
+          })
+        : undefined;
+
+    const nodeTargetSelector = visualizationForm.value.parameters
       ? visualizationForm.value.parameters.nodeTargetValue
       : undefined;
-    const colorMap = colorMapType === 'custom' && this.hasValidCustomColorMap() ? customColorMap : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
-      sourceData: this.nodesFileUpload().file?.name,
-      colorMap: this.customColorMapFileUpload()?.file?.name,
-      organId: metadata?.organ?.id,
+      sourceFileName: this.nodesFileUpload().file?.name,
+      colorMapFileName: this.customColorMapFileUpload()?.file?.name,
       organ: metadata?.organ?.label,
       creationTimestamp: Date.now(),
     });
 
     const nullishRemovedData = this.removeNullishValues({
-      nodes,
-      nodeTargetKey: DEFAULT_NODE_TARGET_KEY,
-      nodeTargetValue,
-
-      colorMap,
-      colorMapKey: DEFAULT_COLOR_MAP_KEY,
-      colorMapValueKey: DEFAULT_COLOR_MAP_VALUE_KEY,
-
+      nodes: nodesView,
+      nodeTargetSelector,
+      colorMap: colorMapView,
       metadata: normalizedMetadata,
     });
-    const ntKey = nullishRemovedData.nodeTargetKey as string;
-    const headers = visualizationForm.value.headers;
-    const xKey = (headers?.xAxis || '') as NodeTargetKey;
-    const yKey = (headers?.yAxis || '') as NodeTargetKey;
-    const zKey = (headers?.zAxis || '') as NodeTargetKey;
-    const ctKey = (headers?.cellType || '') as NodeTargetKey;
-    const idKey = (headers?.ontologyId || '') as NodeTargetKey;
 
-    const convertedHeaderNodes = (nullishRemovedData.nodes = nullishRemovedData.nodes
-      ? nullishRemovedData.nodes.map(
-          (node) =>
-            ({
-              x: node[xKey] as unknown as number,
-              y: node[yKey] as unknown as number,
-              z: node[zKey] as unknown as number,
-              [ntKey]: node[ctKey],
-              [idKey]: node[idKey],
-            }) as NodeEntry,
-        )
-      : []);
-    nullishRemovedData.nodes = convertedHeaderNodes;
     this.dataService.setData(nullishRemovedData);
-
     this.router.navigate(['/visualize']);
   }
 

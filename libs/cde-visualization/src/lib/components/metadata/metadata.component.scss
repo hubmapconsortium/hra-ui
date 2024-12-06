@@ -41,7 +41,7 @@
 
           a[mat-button] {
             height: auto;
-            padding: 0.0625rem 0.25rem;
+            padding: 0.0625rem 0.5rem;
           }
 
           &:first-child {
@@ -52,12 +52,12 @@
           &:last-child {
             font: var(--sys-label-small);
             color: var(--sys-primary);
-
-            &:not(:has(a[mat-button])) {
-              padding-left: 0.5rem;
-            }
           }
         }
+      }
+
+      span {
+        display: block;
       }
 
       span {

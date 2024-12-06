@@ -37,9 +37,24 @@
       "value": []
     }
   ],
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "count",
+          "as": "Count"
+        }
+      ],
+      "groupby": ["type"]
+    }
+  ],
   "facet": {
     "row": {
       "field": "type",
+      "sort": {
+        "field": "Count",
+        "order": "descending"
+      },
       "title": "Cell Types",
       "header": {
         "labelAngle": 0,

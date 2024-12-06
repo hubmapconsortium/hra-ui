@@ -7,41 +7,58 @@ import {
   effect,
   inject,
   input,
-  model,
   output,
+  OutputEmitterRef,
+  Signal,
   signal,
+  untracked,
   ViewContainerRef,
 } from '@angular/core';
-import { CsvFileLoaderService, JsonFileLoaderService } from '@hra-ui/common/fs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
+import {
+  AnyData,
+  AnyDataEntry,
+  AnyDataView,
+  ColorMapInput,
+  ColorMapKeysInput,
+  ColorMapView,
+  createColorMapGenerator,
+  createEdgeGenerator,
+  DataView,
+  DataViewEntryTransform,
+  DataViewSerializationOptions,
+  EdgeKeysInput,
+  EdgesInput,
+  EMPTY_COLOR_MAP_VIEW,
+  EMPTY_EDGES_VIEW,
+  loadColorMap,
+  loadEdges,
+  loadNodes,
+  NodeFilterView,
+  NodeKeysInput,
+  NodesInput,
+  toCsv,
+  withDataViewDefaultGenerator,
+} from '@hra-ui/node-dist-vis/models';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
-import {
-  ColorMapColorKey,
-  ColorMapEntry,
-  colorMapToLookup,
-  ColorMapTypeKey,
-  DEFAULT_COLOR_MAP_KEY,
-  DEFAULT_COLOR_MAP_VALUE_KEY,
-} from '../models/color-map';
-import { DEFAULT_MAX_EDGE_DISTANCE, edgeDistance, EdgeEntry, EdgeIndex } from '../models/edge';
-import { Metadata } from '../models/metadata';
-import { DEFAULT_NODE_TARGET_KEY, NodeEntry, NodeTargetKey, selectNodeTargetValue } from '../models/node';
-import { ColorMapFileLoaderService } from '../services/data/color-map-loader.service';
-import { DataLoaderService } from '../services/data/data-loader.service';
+import { loadMetadata, MetadataInput } from '../models/metadata';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
-import { brandAttribute, numberAttribute } from '../shared/attribute-transform';
-import { createColorGenerator } from '../shared/color-generator';
+import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
-import { mergeObjects } from '../shared/merge';
-import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { LoadingManager } from '../shared/loading-manager';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
+  /** Source edge */
+  edge: AnyDataEntry;
   /** Type of the entry */
   type: string;
   /** Distance value of the entry */
@@ -56,12 +73,14 @@ export interface DistanceEntry {
   standalone: true,
   imports: [
     CommonModule,
-    MetadataComponent,
+    MatProgressBarModule,
+
     CellTypesComponent,
-    NodeDistVisualizationComponent,
     HistogramComponent,
-    ViolinComponent,
+    MetadataComponent,
     NavHeaderButtonsComponent,
+    NodeDistVisualizationComponent,
+    ViolinComponent,
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
@@ -69,38 +88,31 @@ export interface DistanceEntry {
 })
 export class CdeVisualizationComponent {
   /** Link to the home page */
-  readonly homeLink = input<string>('https://apps.humanatlas.io/cde/');
+  readonly homeLink = input<string>('/');
 
-  /** Input nodes data, can be a url or array of node entry */
-  readonly nodes = input<string | NodeEntry[]>();
+  /** Node data */
+  readonly nodes = input<NodesInput>();
+  /** Node key mapping data */
+  readonly nodeKeys = input<NodeKeysInput>();
+  /** Node target selector used when calculating edges */
+  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_SELECTOR);
 
-  /** Key for node target attribute */
-  readonly nodeTargetKey = input(undefined, { transform: brandAttribute<string, NodeTargetKey>() });
-
-  /** Value for node target attribute */
-  readonly nodeTargetValue = input<string>();
-
-  /** Input edges data */
-  readonly edges = model<string | EdgeEntry[]>();
-
-  /** Maximum edge distance */
+  /** Edge data if already calculated */
+  readonly edges = input<EdgesInput>();
+  /** Edge key mapping data */
+  readonly edgeKeys = input<EdgeKeysInput>();
+  /** Max distance to consider when calculating edges */
   readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, {
     transform: numberAttribute(DEFAULT_MAX_EDGE_DISTANCE),
   });
 
-  /** Input color map data */
-  readonly colorMap = model<string | ColorMapEntry[]>();
-
-  /** Key for color map type attribute */
-  readonly colorMapKey = input(undefined, { transform: brandAttribute<string, ColorMapTypeKey>() });
-
-  /** Key for color map value attribute */
-  readonly colorMapValueKey = input(DEFAULT_COLOR_MAP_VALUE_KEY, {
-    transform: brandAttribute<string, ColorMapColorKey>(),
-  });
+  /** Color map data */
+  readonly colorMap = input<ColorMapInput>();
+  /** Color map key mapping data */
+  readonly colorMapKeys = input<ColorMapKeysInput>();
 
   /** Input metadata */
-  readonly metadata = input<string | Metadata>();
+  readonly metadata = input<MetadataInput>();
 
   /** Title of the visualization */
   readonly title = input<string>();
@@ -124,66 +136,67 @@ export class CdeVisualizationComponent {
   readonly pixelSize = input(undefined, { transform: numberAttribute() });
 
   /** Creation timestamp (ms since 1/1/1970 UTC) */
-  readonly creationTimestamp = input<number>();
+  readonly creationTimestamp = input(undefined, { transform: numberAttribute() });
+
+  readonly sourceFileName = input<string>();
+
+  readonly colorMapFileName = input<string>();
 
   /** Event emitted when a node is clicked */
-  readonly nodeClick = output<NodeEntry>();
+  readonly nodeClick = output<NodeEvent>();
 
   /** Event emitted when a node is hovered */
-  readonly nodeHover = output<NodeEntry | undefined>();
+  readonly nodeHover = output<NodeEvent | undefined>();
 
-  /** Injected data loader service */
-  private readonly dataLoader = inject(DataLoaderService);
+  readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
-  /** Loaded nodes data */
-  readonly loadedNodes = this.dataLoader.load(this.nodes, [], CsvFileLoaderService, {
-    papaparse: { header: true, dynamicTyping: { x: true, y: true, z: true } },
-  });
+  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
+  readonly vcRef = inject(ViewContainerRef);
 
-  /** Key for node type attribute */
-  readonly nodeTypeKey = computed(() => this.nodeTargetKey() ?? DEFAULT_NODE_TARGET_KEY);
+  /** Whether there are loading resources, etc. */
+  protected loadingManager = new LoadingManager();
 
-  /** Selected node target value */
-  readonly selectedNodeTargetValue = computed(
-    () => this.nodeTargetValue() ?? selectNodeTargetValue(this.loadedNodes(), this.nodeTypeKey()),
+  /** View of the node data */
+  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys, undefined, this.loadingManager.createObserver());
+  /** View of the edge data */
+  protected readonly edgesView = withDataViewDefaultGenerator(
+    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
+    createEdgeGenerator(
+      this.nodesView,
+      this.edges,
+      this.nodeTargetSelector,
+      this.maxEdgeDistance,
+      this.loadingManager.createObserver(),
+    ),
+    EMPTY_EDGES_VIEW,
+  );
+  /** View of the color map */
+  protected readonly colorMapView = withDataViewDefaultGenerator(
+    loadColorMap(this.colorMap, this.colorMapKeys, undefined, undefined, this.loadingManager.createObserver()),
+    createColorMapGenerator(this.nodesView, this.colorMap),
+    EMPTY_COLOR_MAP_VIEW,
+  );
+  /** Combined metadata */
+  protected readonly metadataView = loadMetadata(
+    this.metadata,
+    {
+      title: this.title,
+      organ: this.organ,
+      technology: this.technology,
+      sex: this.sex,
+      age: this.age,
+      thickness: this.thickness,
+      pixelSize: this.pixelSize,
+      creationTimestamp: this.creationTimestamp,
+      sourceFileName: this.sourceFileName,
+      colorMapFileName: this.colorMapFileName,
+    },
+    this.loadingManager.createObserver(),
   );
 
-  /** Loaded edges data */
-  readonly loadedEdges = this.dataLoader.load(this.edges, [], CsvFileLoaderService, {
-    papaparse: { dynamicTyping: true },
-  });
-
-  /** Loaded color map data */
-  readonly loadedColorMap = this.dataLoader.load(this.colorMap, [], ColorMapFileLoaderService, {
-    papaparse: { header: true },
-  });
-
-  /** Key for color map type attribute */
-  readonly colorMapTypeKey = computed(
-    () => this.colorMapKey() ?? (this.nodeTargetKey() as string as ColorMapTypeKey) ?? DEFAULT_COLOR_MAP_KEY,
-  );
-
-  /** Lookup table for color map */
-  private readonly colorMapLookup = computed(() =>
-    colorMapToLookup(this.loadedColorMap(), this.colorMapTypeKey(), this.colorMapValueKey()),
-  );
-
-  /** Loaded metadata */
-  readonly loadedMetadata = this.dataLoader.load(this.metadata, {}, JsonFileLoaderService, {});
-
-  /** Merged metadata with input properties */
-  readonly mergedMetadata = computed(() =>
-    mergeObjects(this.loadedMetadata(), {
-      title: this.title(),
-      technology: this.technology(),
-      organ: this.organ(),
-      sex: this.sex(),
-      age: this.age(),
-      creationTimestamp: this.creationTimestamp(),
-      thickness: this.thickness(),
-      pixelSize: this.pixelSize(),
-    }),
-  );
+  readonly nodeFilterView = signal<NodeFilterView>(new NodeFilterView(undefined, undefined));
 
   /** List of cell types */
   readonly cellTypes = signal<CellTypeEntry[]>([]);
@@ -192,56 +205,59 @@ export class CdeVisualizationComponent {
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
   /** Counter for resetting cell types */
-  readonly cellTypesResetCounter = signal(0);
+  protected readonly cellTypesResetCounter = signal(0);
 
   /** Computed cell types as color map entries */
-  readonly cellTypesAsColorMap = computed(
-    () => {
-      const cellTypes = this.cellTypes();
-      const typeKey = this.colorMapTypeKey();
-      const colorKey = this.colorMapValueKey();
-
-      return cellTypes.map(
-        (entry) =>
-          ({
-            [typeKey]: entry.name,
-            [colorKey]: entry.color,
-          }) as ColorMapEntry,
-      );
-    },
-    { equal: emptyArrayEquals },
+  protected readonly cellTypesAsColorMap = computed(
+    () => new ColorMapView(this.cellTypes(), { 'Cell Type': 'name', 'Cell Color': 'color' }),
   );
 
-  /** Computed cell types from loaded nodes */
-  readonly cellTypesFromNodes = computed(() => {
-    const nodes = this.loadedNodes();
-    const edges = this.loadedEdges();
-    const targetKey = this.nodeTypeKey();
-    const defaultColorGenerator = createColorGenerator();
-    const cellTypeByName: Record<string, CellTypeEntry> = {};
+  private readonly edgeTypeAccessor = computed(() => {
+    const getNodeType = this.nodesView().getCellTypeAt;
+    const getNodeIndex = this.edgesView().getCellIDFor;
+    return (edge: AnyDataEntry) => getNodeType(getNodeIndex(edge));
+  });
 
-    for (const node of nodes) {
-      const name = node[targetKey];
-      cellTypeByName[name] ??= {
+  private readonly nodeCounts = computed(() => this.nodesView().getCounts());
+  private readonly edgeCounts = computed(() => this.edgesView().getCounts(this.edgeTypeAccessor()));
+  private readonly edgeCountsBySourceNode = computed(() =>
+    this.edgesView().getCounts((obj) => `${this.edgesView().getCellIDFor(obj)}`),
+  );
+
+  private readonly cellTypesFromNodes = computed(() => {
+    const nodeCounts = this.nodeCounts();
+    const edgeCounts = this.edgeCounts();
+    const colorLookup = this.colorMapView().getColorLookup();
+
+    return Array.from(nodeCounts).map(
+      ([name, count]): CellTypeEntry => ({
         name,
-        count: 0,
-        outgoingEdgeCount: 0,
-        color: this.colorMapLookup().get(name) ?? defaultColorGenerator(),
-      };
-      cellTypeByName[name].count += 1;
+        count,
+        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+      }),
+    );
+  });
+
+  readonly countAdjustments = computed(() => {
+    const nodes = this.nodesView();
+    const edgesCounts = this.edgeCountsBySourceNode();
+    const { exclude = [] } = this.nodeFilterView();
+    const indices = exclude.filter((entry) => typeof entry === 'number');
+    const result: Record<string, { count: number; outgoingEdgeCount: number }> = {};
+
+    for (const index of indices) {
+      const key = nodes.getCellTypeAt(index);
+      result[key] ??= { count: 0, outgoingEdgeCount: 0 };
+      result[key].count += 1;
+      result[key].outgoingEdgeCount += edgesCounts.get(`${index}`) ?? 0;
     }
 
-    for (const edge of edges) {
-      const node = nodes[edge[EdgeIndex.SourceNode]];
-      const name = node[targetKey];
-      cellTypeByName[name].outgoingEdgeCount += 1;
-    }
-
-    return Object.values(cellTypeByName);
+    return result;
   });
 
   /** Computed selection of cell types from nodes */
-  readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
+  protected readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
 
   /** Effect to create cell types */
   readonly cellTypesCreateRef = effect(
@@ -255,8 +271,28 @@ export class CdeVisualizationComponent {
     { allowSignalWrites: true },
   );
 
-  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
-  readonly vcRef = inject(ViewContainerRef);
+  /** List of filtered cell types based on selection */
+  protected readonly filteredCellTypes = computed(
+    () => {
+      const selection = new Set(this.cellTypesSelection());
+      selection.delete(this.nodeTargetSelector());
+      const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
+      return filtered.sort((a, b) => b.count - a.count);
+    },
+    { equal: emptyArrayEquals },
+  );
+
+  /** Computed distances between nodes */
+  protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
+
+  /** Data for the histogram visualization */
+  readonly filteredDistances = computed(() => this.computeFilteredDistances(), { equal: emptyArrayEquals });
+
+  /** Colors for the histogram visualization */
+  protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
+
+  /** Injected file saver service */
+  private readonly fileSaver = inject(FileSaverService);
 
   /** List of filtered cell types based on selection */
   protected readonly filteredCellTypes = computed(
@@ -283,101 +319,25 @@ export class CdeVisualizationComponent {
     // Workaround for getting ngx-color-picker to attach to the root view
     // Not populated for standalone/custom components so we forcefully insert ourself
     inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
+
+    effect(
+      () => {
+        const selection = this.cellTypesSelection();
+        const filter = untracked(this.nodeFilterView);
+        this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
+      },
+      { allowSignalWrites: true },
+    );
+
+    // Connect outputs
+    this.bindDataOutput(this.nodesView, this.nodesChange);
+    this.bindDataOutput(this.edgesView, this.edgesChange);
+    this.bindDataOutput(this.colorMapView, this.colorMapChange);
   }
 
   /** Reset cell types */
   resetCellTypes(): void {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
-  }
-
-  /** Injected file saver service */
-  private readonly fileSaver = inject(FileSaverService);
-
-  /** Download nodes data as CSV */
-  downloadNodes(): void {
-    const nodes = this.loadedNodes();
-    if (nodes.length > 0) {
-      this.fileSaver.saveCsv(this.capitalizeHeaders(nodes), 'nodes.csv');
-    }
-  }
-
-  /** Download edges data as CSV */
-  downloadEdges(): void {
-    const edges = this.loadedEdges();
-    if (edges.length > 0) {
-      this.fileSaver.saveCsv(this.addEdgeHeaders(edges), 'edges.csv');
-    }
-  }
-
-  // Add appropriate headers to edge data
-  addEdgeHeaders(edges: EdgeEntry[]) {
-    return edges.map((item) => ({
-      'Cell ID': item[0],
-      X1: item[1],
-      Y1: item[2],
-      Z1: item[3],
-      X2: item[4],
-      Y2: item[5],
-      Z2: item[6],
-    }));
-  }
-
-  /** Download color map as CSV */
-  downloadColorMap(): void {
-    const colorKey = this.colorMapValueKey();
-    const colorMap = this.cellTypesAsColorMap();
-    const data = colorMap.map((entry) => ({ ...entry, [colorKey]: rgbToHex(entry[colorKey]) }));
-    if (data.length > 0) {
-      this.fileSaver.saveCsv(this.capitalizeHeaders(data), 'color-map.csv');
-    }
-  }
-
-  /** Convert headers in an array of objects to title case */
-  capitalizeHeaders(data: object[]): object[] {
-    return data.map((item) => {
-      const entries = Object.entries(item);
-      const capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-      return Object.fromEntries(capsEntries);
-    });
-  }
-
-  /** Compute distances between nodes based on edges */
-  private computeDistances(): DistanceEntry[] {
-    const nodes = this.loadedNodes();
-    const edges = this.loadedEdges();
-    if (nodes.length === 0 || edges.length === 0) {
-      return [];
-    }
-
-    const nodeTypeKey = this.nodeTypeKey();
-    const selectedCellType = this.selectedNodeTargetValue();
-    const distances: DistanceEntry[] = [];
-    for (const edge of edges) {
-      const sourceNode = nodes[edge[EdgeIndex.SourceNode]];
-      const type = sourceNode[nodeTypeKey];
-      if (type !== selectedCellType) {
-        distances.push({ type, distance: edgeDistance(edge) });
-      }
-    }
-
-    return distances;
-  }
-
-  /** Compute data for the violin visualization */
-  private computeFilteredDistances(): DistanceEntry[] {
-    const selection = new Set(this.cellTypesSelection());
-    if (selection.size === 0) {
-      return [];
-    }
-
-    return this.distances().filter(({ type }) => selection.has(type));
-  }
-
-  /** Compute colors for the violin visualization */
-  private computeFilteredColors(): string[] {
-    return this.filteredCellTypes()
-      .sort((a, b) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1))
-      .map(({ color }) => rgbToHex(color));
   }
 
   /** Update the color of a specific cell type entry */
@@ -388,5 +348,87 @@ export class CdeVisualizationComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  async downloadNodes(): Promise<void> {
+    const nodes = this.nodesView();
+    const filter = nodes.createFilter(this.nodeFilterView());
+    await this.downloadView(nodes, 'nodes.csv', { filter });
+  }
+
+  async downloadEdges(): Promise<void> {
+    const nodes = this.nodesView();
+    const edges = this.edgesView();
+    const filter = edges.createFilter(nodes, this.nodeFilterView());
+    const reindex = await nodes.createReindexer(this.nodeFilterView());
+    const transform: DataViewEntryTransform = (value, key) => {
+      return key === 'Cell ID' || key === 'Target ID' ? reindex[value as number] : value;
+    };
+
+    await this.downloadView(edges, 'edges.csv', { filter, transform });
+  }
+
+  async downloadColorMap(): Promise<void> {
+    const colorMap = this.cellTypesAsColorMap();
+    const filter = colorMap.createFilter(this.nodeFilterView());
+    await this.downloadView(colorMap, 'color-map.csv', { filter });
+  }
+
+  private async downloadView<Entry>(
+    view: DataView<Entry>,
+    filename: string,
+    options: DataViewSerializationOptions,
+  ): Promise<void> {
+    if (view.length > 0) {
+      const data = await toCsv(view, options);
+      this.fileSaver.saveData(data, filename);
+    }
+  }
+
+  /** Compute distances between nodes based on edges */
+  private computeDistances(): DistanceEntry[] {
+    const nodes = this.nodesView();
+    const edges = this.edgesView();
+    if (nodes.length === 0 || edges.length === 0) {
+      return [];
+    }
+
+    const selectedCellType = this.nodeTargetSelector();
+    const distances: DistanceEntry[] = [];
+    for (const edge of edges) {
+      const type = nodes.getCellTypeAt(edges.getCellIDFor(edge));
+      if (type !== selectedCellType) {
+        distances.push({ edge, type, distance: edges.getDistanceFor(edge) });
+      }
+    }
+
+    return distances;
+  }
+
+  /** Compute data for the violin visualization */
+  private computeFilteredDistances(): DistanceEntry[] {
+    const distances = this.distances();
+    const nodeFilter = this.nodeFilterView();
+    const edgeFilterFn = this.edgesView().createFilter(this.nodesView(), this.nodeFilterView());
+    if (nodeFilter.isEmpty()) {
+      return distances;
+    }
+
+    return distances.filter(({ edge }) => edgeFilterFn(edge, -1));
+  }
+
+  /** Compute colors for the violin visualization */
+  private computeFilteredColors(): string[] {
+    return this.filteredCellTypes()
+      .sort((a, b) => (a.name < b.name ? -1 : 1))
+      .map(({ color }) => rgbToHex(color));
+  }
+
+  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
+    effect(() => {
+      if (view().length !== 0) {
+        output.emit(view().data);
+      }
+    });
   }
 }

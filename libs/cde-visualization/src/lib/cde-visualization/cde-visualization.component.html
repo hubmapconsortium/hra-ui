@@ -1,22 +1,27 @@
+@if (loadingManager.isLoading$ | async) {
+  <mat-progress-bar class="progress" mode="indeterminate"></mat-progress-bar>
+}
+
 <div class="header">
   <hra-nav-header-buttons
     app="cde"
     appTitle="Cell Distance Explorer"
-    appLink="/"
+    [appLink]="homeLink()"
     variant="basic"
     appStatus="Beta"
   ></hra-nav-header-buttons>
 </div>
 
 <div class="metadata">
-  <cde-metadata [metadata]="mergedMetadata()"></cde-metadata>
+  <cde-metadata [metadata]="metadataView()"></cde-metadata>
   <cde-cell-types
     [(cellTypes)]="cellTypes"
     [(cellTypesSelection)]="cellTypesSelection"
-    [selectedCellType]="selectedNodeTargetValue()"
-    (downloadColorMap)="downloadColorMap()"
+    [selectedCellType]="nodeTargetSelector()"
+    [countAdjustments]="countAdjustments()"
     (downloadNodes)="downloadNodes()"
     (downloadEdges)="downloadEdges()"
+    (downloadColorMap)="downloadColorMap()"
     (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
     #cellTypesTable
   ></cde-cell-types>
@@ -25,30 +30,23 @@
 <div class="visualizations">
   <div class="top">
     <cde-node-dist-visualization
-      [nodes]="loadedNodes()"
-      [nodeTargetKey]="nodeTypeKey()"
-      [nodeTargetValue]="selectedNodeTargetValue()"
-      [edges]="loadedEdges()"
+      [nodes]="nodesView()"
+      [edges]="edgesView()"
       [maxEdgeDistance]="maxEdgeDistance()"
       [colorMap]="cellTypesAsColorMap()"
-      [colorMapKey]="colorMapTypeKey()"
-      [colorMapValueKey]="colorMapValueKey()"
-      [cellTypesSelection]="cellTypesSelection()"
+      [(nodeFilter)]="nodeFilterView"
       (nodeClick)="nodeClick.emit($event)"
       (nodeHover)="nodeHover.emit($event)"
-      (edgesChange)="edges.set($event)"
       (resetAllCells)="resetCellTypes()"
-      #visualization
     ></cde-node-dist-visualization>
 
-    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" #violin></cde-violin>
+    <cde-violin [colors]="filteredColors()" [data]="filteredDistances()"></cde-violin>
   </div>
 
   <cde-histogram
     [colors]="filteredColors()"
     [data]="filteredDistances()"
     [filteredCellTypes]="filteredCellTypes()"
-    [selectedCellType]="selectedNodeTargetValue()"
     (updateColor)="updateColor($event.entry, $event.color)"
     #histogram
   ></cde-histogram>

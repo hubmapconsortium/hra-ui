@@ -18,7 +18,8 @@ $y-multiplier: 0.4566;
   direction: ltr;
 }
 
-* {
+a,
+button {
   --mat-filled-button-pressed-state-layer-opacity: 0.16;
   --mdc-filled-button-container-color: var(--sys-tertiary);
   --mdc-filled-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);

@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+::ng-deep {
+  .info-sub-menu div {
+    ul {
+      padding: 0;
+      color: var(--sys-secondary);
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    li {
+      margin-left: 1.5rem;
+    }
+  }
+
+  .reset-sub-menu .mat-mdc-menu-content {
+    color: var(--sys-primary);
+    background-color: var(--sys-on-primary);
+    font: var(--sys-label-medium);
+
+    .mat-mdc-menu-item-text {
+      font: var(--sys-label-medium);
+    }
+  }
+}

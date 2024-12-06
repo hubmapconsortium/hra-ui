@@ -1,6 +1,6 @@
-import { AccessorContext, AccessorFunction, Color } from '@deck.gl/core/typed';
-import { ColorMap } from '../../models/color-map';
 import { colorCategories } from '@deck.gl/carto/typed';
+import { AccessorContext, AccessorFunction, Color } from '@deck.gl/core/typed';
+import { ColorMap } from '@hra-ui/node-dist-vis/models';
 
 /** Color format expected by `colorCategories` */
 type Color2 = [r: number, g: number, b: number, a?: number];

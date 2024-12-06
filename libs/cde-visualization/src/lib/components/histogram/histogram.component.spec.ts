@@ -1,31 +1,26 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
-// import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed } from '@angular/core/testing';
+import { MatMenuHarness } from '@angular/material/menu/testing';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
-// import userEvent from '@testing-library/user-event';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
-
-import { DEFAULT_NODE_TARGET_KEY, NodeEntry } from '../../models/node';
-// import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 
 describe('HistogramComponent', () => {
-  const nodeTargetKey = DEFAULT_NODE_TARGET_KEY;
-  function createNodeEntry(target: string, x: number, y: number): NodeEntry {
-    return { [nodeTargetKey]: target, x, y } as NodeEntry;
-  }
-
-  const sampleNodes = [createNodeEntry('a', 0, 0), createNodeEntry('b', 0, 2), createNodeEntry('c', 0, 4)];
   const sampleData = [
     {
+      edge: [],
       type: 'A',
       distance: 5,
     },
     {
+      edge: [],
       type: 'B',
       distance: 7,
     },
@@ -58,11 +53,10 @@ describe('HistogramComponent', () => {
 
   it('should render the histogram using vega', async () => {
     const { fixture } = await setup({
-      componentInputs: {
+      inputs: {
         data: sampleData,
         colors: [],
         filteredCellTypes: [],
-        selectedCellType: sampleNodes[0][nodeTargetKey],
       },
     });
     await fixture.whenStable();
@@ -73,11 +67,10 @@ describe('HistogramComponent', () => {
 
   it('should set empty data when input data is empty', async () => {
     const { fixture } = await setup({
-      componentInputs: {
+      inputs: {
         data: [],
         colors: [],
         filteredCellTypes: [],
-        selectedCellType: sampleNodes[0][nodeTargetKey],
       },
     });
     await fixture.whenStable();
@@ -85,37 +78,36 @@ describe('HistogramComponent', () => {
     expect(embedResult.view.data).toHaveBeenCalledWith('data', []);
   });
 
-  // it('should download in the specified format', async () => {
-  //   await setup({
-  //     componentInputs: {
-  //       data: [],
-  //       colors: [],
-  //       filteredCellTypes: [],
-  //       selectedCellType: '',
-  //     },
-  //   });
+  it('should download in the specified format', fakeAsync(async () => {
+    const { fixture } = await setup({
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
+      },
+    });
 
-  //   const fileSaver = TestBed.inject(FileSaverService);
-  //   const fileSaveSpy = jest.spyOn(fileSaver, 'save');
+    const fileSaver = TestBed.inject(FileSaverService);
+    const fileSaveSpy = jest.spyOn(fileSaver, 'save');
 
-  //   const imageUrl = 'data:foo';
-  //   embedResult.view.toImageURL.mockReturnValue(Promise.resolve(imageUrl));
+    //   const fileSaver = TestBed.inject(FileSaverService);
+    //   const fileSaveSpy = jest.spyOn(fileSaver, 'save');
 
-  //   const downloadSvgButton = screen.getByText(/svg/i);
-  //   await userEvent.click(downloadSvgButton);
+    const loader = TestbedHarnessEnvironment.loader(fixture);
+    const menu = await loader.getHarness(MatMenuHarness);
+    await menu.clickItem({ text: /Downloads/i }, { text: /svg/i });
 
-  //   expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
-  // });
+    expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
+  }));
 
   it('should reset all cell colors', async () => {
     const {
       fixture: { componentInstance: instance },
     } = await setup({
-      componentInputs: {
+      inputs: {
         data: [],
         colors: [],
         filteredCellTypes: [],
-        selectedCellType: '',
       },
     });
 

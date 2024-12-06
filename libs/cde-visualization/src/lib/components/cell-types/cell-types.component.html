@@ -45,7 +45,7 @@
           Embed App
         </a>
       </mat-menu>
-      <mat-menu #infoSubMenu="matMenu" [class]="'info-sub-menu'">
+      <mat-menu #infoSubMenu="matMenu" class="info-sub-menu">
         {{ infoToolTipDescription }}
       </mat-menu>
       <mat-menu #downloadSubMenu="matMenu">
@@ -134,12 +134,12 @@
 
         <ng-container matColumnDef="count">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="count" start="desc">#Cells</th>
-          <td mat-cell *matCellDef="let element">{{ element.count.toLocaleString() }}</td>
+          <td mat-cell *matCellDef="let element">{{ getCount(element, 'count') }}</td>
         </ng-container>
 
         <ng-container matColumnDef="links">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="outgoingEdgeCount" start="desc">#Links</th>
-          <td mat-cell *matCellDef="let element">{{ element.outgoingEdgeCount.toLocaleString() }}</td>
+          <td mat-cell *matCellDef="let element">{{ getCount(element, 'outgoingEdgeCount') }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columns(); sticky: true"></tr>

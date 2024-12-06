@@ -31,8 +31,6 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
@@ -44,6 +42,7 @@ import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 
@@ -135,8 +134,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     OverlayModule,
     ScrollingModule,
     MatMenuModule,
-    IconButtonSizeDirective,
-    MicroTooltipDirective,
     FullscreenPortalComponent,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
@@ -167,9 +164,6 @@ export class HistogramComponent {
   readonly colors = input.required<string[]>();
 
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
-
-  /** Currently selected cell type */
-  readonly selectedCellType = input.required<string>();
 
   /** Tooltip position configuration */
   readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;

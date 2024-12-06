@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SpatialEntity, SpatialSceneNode, V1Service } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
-import { Observable, combineLatest, of } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
-
 import { GlobalConfig } from '../../../app.component';
 import { FEMALE_SKIN_URL, HIGHLIGHT_YELLOW, MALE_SKIN_URL, SPATIAL_ENTITY_URL } from '../../constants';
 import { hightlight } from '../../highlight.operator';
@@ -14,6 +13,9 @@ import { zoomTo } from '../../zoom-to.operator';
   providedIn: 'root',
 })
 export class FilteredSceneService {
+  private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
+  private readonly api = inject(V1Service);
+
   readonly data$ = this.configState.getOption('data');
   readonly zoomToID$ = this.configState.getOption('zoomToID').pipe(map((id) => `http://purl.org/ccf/1.5/entity/${id}`));
   readonly highlightID$ = this.configState
@@ -42,11 +44,6 @@ export class FilteredSceneService {
     zoomTo(this.zoomToID$),
     shareReplay(1),
   );
-
-  constructor(
-    private readonly configState: GlobalConfigState<GlobalConfig>,
-    private readonly api: V1Service,
-  ) {}
 
   private chooseScene(data?: JsonLdObj[], organs?: SpatialEntity[]): Observable<SpatialSceneNode[]> {
     const organUrls = data?.map(this.getPlacementTarget) ?? [];

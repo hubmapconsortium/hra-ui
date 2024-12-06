@@ -1,6 +1,6 @@
 import { computed, Signal } from '@angular/core';
 import { DeckProps } from '@deck.gl/core/typed';
-import { ViewMode } from '../models/view-mode';
+import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
 /** Initial/default controller options */
 const DEFAULT_CONTROLLER_OPTIONS: DeckProps['controller'] = true;

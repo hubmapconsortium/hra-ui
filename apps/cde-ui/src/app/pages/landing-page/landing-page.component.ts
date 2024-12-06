@@ -6,9 +6,8 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
-
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
-import { HUBMAP_CARDS_DATA } from '../create-visualization-page/create-visualization-page.component';
+import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 
 /**
  * Landing Page Component
@@ -35,5 +34,5 @@ export class LandingPageComponent {
   readonly cards = input<VisualCard[]>([]);
 
   /** Data for sidenav cards */
-  readonly sideNavData = HUBMAP_CARDS_DATA;
+  readonly sideNavData = SIDENAV_CONTENT;
 }

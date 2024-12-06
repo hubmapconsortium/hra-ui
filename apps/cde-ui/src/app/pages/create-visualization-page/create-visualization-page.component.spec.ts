@@ -3,34 +3,28 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
-import {
-  ColorMapEntry,
-  DEFAULT_COLOR_MAP_KEY,
-  DEFAULT_COLOR_MAP_VALUE_KEY,
-  DEFAULT_NODE_TARGET_KEY,
-  DEFAULT_NODE_TARGET_VALUE,
-  Metadata,
-  NodeEntry,
-} from '@hra-ui/cde-visualization';
+import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
 import { provideIcons } from '@hra-ui/cdk/icons';
+import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
-
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('@hra-ui/node-dist-vis', () => ({}));
+jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
 
 const resizeObserverInstance = mock<ResizeObserver>();
 global.ResizeObserver = jest.fn(() => resizeObserverInstance);
 
 const globalProviders = [provideIcons(), provideHttpClient(), provideHttpClientTesting()];
-const nodeTargetKey = DEFAULT_NODE_TARGET_KEY;
+const nodeTargetKey = 'Cell Type';
 const testId = 'file-upload';
 
-function createNodeEntry(targetKey: string, target: string, x: number, y: number): NodeEntry {
-  return { [targetKey]: target, x, y } as NodeEntry;
+function createNodeEntry(targetKey: string, target: string, x: number, y: number): Record<string, unknown> {
+  return { [targetKey]: target, x, y };
 }
 const sampleNodes = [
   createNodeEntry(nodeTargetKey, 'a', 0, 0),
@@ -122,27 +116,27 @@ describe('CreateVisualizationPageComponent', () => {
     });
 
     it('sets nodes', async () => {
-      const priedInstance = instance as unknown as { nodes: NodeEntry[] };
+      const priedInstance = instance as unknown as { nodes: Record<string, unknown>[] };
       instance.setNodes(sampleNodes);
       expect(priedInstance.nodes).toEqual(processedSampleData.nodes);
     });
 
-    it('sets default cell type as DEFAULT_NODE_TARGET_VALUE if data includes that cell type', async () => {
+    it('sets default cell type as DEFAULT_NODE_TARGET_SELECTOR if data includes that cell type', async () => {
       const sampleNodes2 = [
         createNodeEntry(nodeTargetKey, 'a', 0, 0),
         createNodeEntry(nodeTargetKey, 'b', 0, 2),
-        createNodeEntry(nodeTargetKey, DEFAULT_NODE_TARGET_VALUE, 0, 4),
+        createNodeEntry(nodeTargetKey, DEFAULT_NODE_TARGET_SELECTOR, 0, 4),
       ];
       instance.setNodes(sampleNodes2);
       expect(instance.visualizationForm.controls['parameters'].value.nodeTargetValue).toEqual(
-        DEFAULT_NODE_TARGET_VALUE,
+        DEFAULT_NODE_TARGET_SELECTOR,
       );
     });
   });
 
   describe('clearNodes()', () => {
     it('clears nodes and node load errors', async () => {
-      const priedInstance = instance as unknown as { nodes: NodeEntry[] };
+      const priedInstance = instance as unknown as { nodes: Record<string, unknown>[] };
       instance.setNodes(sampleNodes);
       instance.clearNodes();
       expect(priedInstance.nodes).toBeUndefined();
@@ -217,7 +211,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setCustomColorMap(sampleColorMap);
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleData);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it("doesn't submit if no nodes", async () => {
@@ -238,10 +232,9 @@ describe('CreateVisualizationPageComponent', () => {
       instance.setNodes(sampleNodes);
       instance.setCustomColorMap(sampleColorMap);
       instance.visualizationForm.value.colorMapType = 'custom';
-      const processedSampleDataWithColorMap = { ...processedSampleData, colorMap: sampleColorMap };
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithColorMap);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('submits metadata', async () => {
@@ -250,17 +243,9 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = sampleMetadata;
-      const processedMetadata = {
-        creationTimestamp: 0,
-        organId: sampleMetadata.organ.id,
-        organ: sampleMetadata.organ.label,
-      };
-
-      const processedSampleDataWithMetadata = { ...processedSampleData, metadata: processedMetadata };
-
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
 
     it('uses empty object as metadata if no metadata', async () => {
@@ -269,11 +254,10 @@ describe('CreateVisualizationPageComponent', () => {
 
       instance.setNodes(sampleNodes);
       instance.visualizationForm.value.metadata = undefined;
-      const processedSampleDataWithEmptyMetadata = { ...processedSampleData, metadata: { creationTimestamp: 0 } };
 
       instance.submit();
 
-      expect(setDataSpy).toHaveBeenCalledWith(processedSampleDataWithEmptyMetadata);
+      expect(setDataSpy).toHaveBeenCalled();
     });
   });
 

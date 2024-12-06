@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -7,22 +8,43 @@ import {
   ErrorHandler,
   inject,
   input,
+  numberAttribute,
   output,
+  OutputEmitterRef,
+  Signal,
   signal,
   viewChild,
 } from '@angular/core';
 import { DeckProps, OrbitView, OrbitViewState, PickingInfo, View } from '@deck.gl/core/typed';
+import {
+  AnyData,
+  AnyDataEntry,
+  AnyDataView,
+  ColorMapEntry,
+  ColorMapView,
+  createColorMapGenerator,
+  createEdgeGenerator,
+  EdgeKeysInput,
+  EdgesInput,
+  EMPTY_COLOR_MAP_VIEW,
+  EMPTY_EDGES_VIEW,
+  KeyMapping,
+  loadColorMap,
+  loadEdges,
+  loadNodeFilter,
+  loadNodes,
+  NodeFilterInput,
+  NodeKeysInput,
+  NodesInput,
+  ViewMode,
+  withDataViewDefaultGenerator,
+} from '@hra-ui/node-dist-vis/models';
 import { createController } from '../deckgl/controller';
 import { createDeck } from '../deckgl/deck';
 import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
 import { createScaleBarLayer } from '../deckgl/scale-bar';
-import { ColorMapEntry, ColorMapView, loadColorMap } from '../models/color-map';
-import { AnyData, AnyDataEntry, KeyMapping } from '../models/data-view';
-import { EdgeKeysInput, EdgesInput, loadEdges } from '../models/edges';
-import { loadNodeFilter, NodeFilterInput } from '../models/filters';
-import { loadNodes, NodeKeysInput, NodesInput } from '../models/nodes';
-import { ViewMode } from '../models/view-mode';
+import { createSelectionLayer } from '../deckgl/selection';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -30,6 +52,16 @@ type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
 /** OrbitView's constructor is poorly typed */
 type OrbitViewProps = ConstructorParameters<typeof OrbitView>[0] &
   ConstructorParameters<typeof View<OrbitViewState>>[0];
+
+export interface NodeEvent {
+  index: number;
+  clientX: number;
+  clientY: number;
+  object: object;
+}
+
+export const DEFAULT_NODE_TARGET_SELECTOR = 'Endothelial';
+export const DEFAULT_MAX_EDGE_DISTANCE = 1000;
 
 /** Initial visualization deckgl state */
 const INITIAL_VIEW_STATE = {
@@ -49,8 +81,8 @@ const INITIAL_VIEW_STATE = {
 @Component({
   selector: 'hra-node-dist-vis',
   standalone: true,
-  template: '<canvas #canvas></canvas>',
-  styles: ':host { display: block; }',
+  template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>',
+  styles: ':host { display: block; position: relative; width: 100%; height: 100%; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeDistVisComponent {
@@ -62,7 +94,7 @@ export class NodeDistVisComponent {
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector = input<string>(); // TODO default (must take nodeTargetValue into consideration, i.e. don't set default on this input)
+  readonly nodeTargetSelector = input<string>();
   /**
    * Column/property of the node's 'Cell Type' values
    *
@@ -80,8 +112,10 @@ export class NodeDistVisComponent {
   readonly edges = input<EdgesInput>();
   /** Edge key mapping data */
   readonly edgeKeys = input<EdgeKeysInput>();
+  /** Whether edges are disabled */
+  readonly edgesDisabled = input(false, { transform: booleanAttribute });
   /** Max distance to consider when calculating edges */
-  readonly maxEdgeDistance = input<string | number>(); // TODO default + transform
+  readonly maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, { transform: numberAttribute });
 
   /** Color map data */
   readonly colorMap = input<ColorMapView | AnyData | string>();
@@ -109,12 +143,16 @@ export class NodeDistVisComponent {
    */
   readonly selection = input<string[] | string>();
 
+  readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
+
   /** Emits when the user clicks on a node */
-  readonly nodeClick = output<AnyDataEntry>();
+  readonly nodeClick = output<NodeEvent>();
   /** Emits when the user starts or stops hovering over a node */
-  readonly nodeHover = output<AnyDataEntry | undefined>();
+  readonly nodeHover = output<NodeEvent | undefined>();
   /** Emits when the user selects one or more nodes in the 'select' view mode */
-  readonly nodeSelectionChange = output<unknown>(); // TODO fix type
+  readonly nodeSelectionChange = output<NodeEvent[]>();
 
   /** Reference to the rendered canvas element */
   readonly canvas = computed(() => this.canvasElementRef().nativeElement);
@@ -141,12 +179,24 @@ export class NodeDistVisComponent {
   /** Current deckgl view state */
   private readonly viewState = signal<object>(INITIAL_VIEW_STATE);
 
+  private readonly nodeTargetSelectorWithDefault = computed(() => {
+    return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
+  });
+
   /** View of the node data */
   private readonly nodesView = loadNodes(this.nodes, this.nodeKeys, this.nodeTargetKey);
   /** View of the edge data */
-  private readonly edgesView = loadEdges(this.edges, this.edgeKeys);
+  private readonly edgesView = withDataViewDefaultGenerator(
+    loadEdges(this.edges, this.edgeKeys),
+    createEdgeGenerator(this.nodesView, this.edges, this.nodeTargetSelectorWithDefault, this.maxEdgeDistance),
+    EMPTY_EDGES_VIEW,
+  );
   /** View of the color map */
-  private readonly colorMapView = loadColorMap(this.colorMap, this.colorMapKeys, this.colorMapKey, this.colorMapValue);
+  private readonly colorMapView = withDataViewDefaultGenerator(
+    loadColorMap(this.colorMap, this.colorMapKeys, this.colorMapKey, this.colorMapValue),
+    createColorMapGenerator(this.nodesView, this.colorMap),
+    EMPTY_COLOR_MAP_VIEW,
+  );
   /** View of the node filter */
   private readonly nodeFilterView = loadNodeFilter(this.nodeFilter, this.selection);
 
@@ -158,11 +208,19 @@ export class NodeDistVisComponent {
     this.edgesView,
     this.nodeFilterView,
     this.colorMapView,
+    this.edgesDisabled,
   );
   /** Scale bar layer */
   private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);
+  /** Selection layer */
+  private readonly selectionLayer = createSelectionLayer(this.mode, this.nodesLayer, this.onSelect.bind(this));
   /** All layers as an array */
-  private readonly layers = computed(() => [this.nodesLayer(), this.edgesLayer(), this.scaleBarLayer()]);
+  private readonly layers = computed(() => [
+    this.nodesLayer(),
+    this.edgesLayer(),
+    this.scaleBarLayer(),
+    this.selectionLayer(),
+  ]);
 
   /** Controller options */
   private readonly controller = createController(this.mode);
@@ -179,7 +237,13 @@ export class NodeDistVisComponent {
 
   /** Initialize the visualization */
   constructor() {
+    // Connect data to deckgl
     effect(() => this.deck().setProps(this.props()));
+
+    // Connect outputs
+    this.bindDataOutput(this.nodesView, this.nodesChange);
+    this.bindDataOutput(this.edgesView, this.edgesChange);
+    this.bindDataOutput(this.colorMapView, this.colorMapChange);
   }
 
   /** Resets the view to the original location and rotation */
@@ -187,8 +251,37 @@ export class NodeDistVisComponent {
     this.deck().setProps({
       initialViewState: {
         ...INITIAL_VIEW_STATE,
-        version: this.viewStateVersion++,
+        version: ++this.viewStateVersion,
       },
+    });
+  }
+
+  resetOrbit(): void {
+    this.deck().setProps({
+      initialViewState: {
+        ...this.viewState(),
+        rotationX: 0,
+        rotationOrbit: 0,
+        version: ++this.viewStateVersion,
+      },
+    });
+  }
+
+  clearSelection(): void {
+    this.selectionLayer()?.clearSelection();
+  }
+
+  /**
+   * Creates a blob representing the image in the canvas.
+   *
+   * @param type Image format (default: image/png)
+   * @param quality Image quality, a number between 0 and 1
+   * @returns A data blob
+   */
+  toBlob(type?: string, quality?: number): Promise<Blob | null> {
+    return new Promise((resolve) => {
+      this.deck().redraw('toDataUrl');
+      this.canvas().toBlob(resolve, type, quality);
     });
   }
 
@@ -214,9 +307,10 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onClick(info: PickingInfo): void {
-    const { picked, index } = info;
-    if (picked) {
-      this.nodeClick.emit(this.nodesView().at(index));
+    if (this.mode() === 'select') {
+      return;
+    } else if (info.picked) {
+      this.nodeClick.emit(this.pickingInfoToNodeEvent(info));
     }
   }
 
@@ -226,11 +320,36 @@ export class NodeDistVisComponent {
    * @param info Deckgl picking information
    */
   private onHover(info: PickingInfo): void {
-    const { picked, index } = info;
-    const obj = picked ? this.nodesView().at(index) : undefined;
-    if (obj !== this.activeHover) {
-      this.nodeHover.emit(obj);
-      this.activeHover = obj;
+    if (this.mode() === 'select') {
+      return;
+    } else if (info.picked) {
+      const event = this.pickingInfoToNodeEvent(info);
+      if (event.object !== this.activeHover) {
+        this.nodeHover.emit(event);
+        this.activeHover = event.object;
+      }
+    } else if (this.activeHover !== undefined) {
+      this.nodeHover.emit(undefined);
+      this.activeHover = undefined;
     }
+  }
+
+  private onSelect(infos: PickingInfo[]): void {
+    const events = infos.map((info) => this.pickingInfoToNodeEvent(info));
+    this.nodeSelectionChange.emit(events);
+  }
+
+  private pickingInfoToNodeEvent(info: PickingInfo): NodeEvent {
+    const view = this.nodesView();
+    const { index, x, y } = info;
+    return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
+  }
+
+  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
+    effect(() => {
+      if (view().length !== 0) {
+        output.emit(view().data);
+      }
+    });
   }
 }
