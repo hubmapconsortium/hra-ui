@@ -59,18 +59,4 @@
   .header {
     background-color: white;
   }
-
-  .reset-sub-menu .mat-mdc-menu-content {
-    color: var(--sys-primary);
-    background-color: var(--sys-on-primary);
-    font: var(--sys-label-medium);
-
-    .mat-mdc-menu-item-text {
-      font: var(--sys-label-medium);
-    }
-  }
-
-  mat-button-toggle-group {
-    --mat-standard-button-toggle-height: 21px;
-  }
 }

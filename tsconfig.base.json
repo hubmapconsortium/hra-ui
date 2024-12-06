@@ -53,9 +53,6 @@
       "@hra-ui/design-system/*": [
         "libs/design-system/*/src/index.ts"
       ],
-      "@hra-ui/design-system/workflow-card": [
-        "libs/design-system/workflow-card/src/index.ts"
-      ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
       ],

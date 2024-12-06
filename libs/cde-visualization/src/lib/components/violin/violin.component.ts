@@ -4,11 +4,6 @@ import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, s
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { produce } from 'immer';
-import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
-
 import { MatMenuModule } from '@angular/material/menu';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import {
@@ -16,7 +11,11 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { produce } from 'immer';
+import { View } from 'vega';
+import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
