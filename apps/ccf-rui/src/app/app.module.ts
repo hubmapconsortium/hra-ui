@@ -24,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ButtonModule } from '@hra-ui/design-system/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { ButtonModule } from '@hra-ui/design-system/button';
     IconButtonSizeDirective,
     MatButtonToggleModule,
     ButtonModule,
+    MatDividerModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [

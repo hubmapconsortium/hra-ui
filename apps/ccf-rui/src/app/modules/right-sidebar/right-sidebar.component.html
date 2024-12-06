@@ -9,7 +9,7 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" [class]="'settings-overlay'">
+    <mat-menu #menu="matMenu" class="settings-overlay">
       <button
         mat-menu-item
         matRipple
@@ -20,6 +20,7 @@
       >
         Reset all settings
       </button>
+      <mat-divider class="menu-divider"></mat-divider>
       <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="setDefaultPosition()">Reset position</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="blocksize.refreshBlockSize()">
         Reset size
@@ -39,7 +40,7 @@
     >
       <mat-icon>help</mat-icon>
     </button>
-    <mat-menu #help="matMenu" [class]="'settings-overlay'">
+    <mat-menu #help="matMenu" class="settings-overlay">
       <a
         mat-menu-item
         href="https://youtu.be/j4f9_xdBrK0?si=b5_p_lBuFzSyTXS3"
@@ -50,6 +51,7 @@
       </a>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use app guide</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
+      <mat-divider class="menu-divider"></mat-divider>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Explore all registrations</button>
     </mat-menu>
   </hra-expansion-panel-header-content>

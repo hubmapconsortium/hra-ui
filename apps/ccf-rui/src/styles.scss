@@ -36,3 +36,9 @@ body {
 .cdk-global-overlay-wrapper:first-of-type {
   z-index: 1001;
 }
+
+.menu-divider {
+  --mat-divider-color: #acb5c3;
+  --mat-menu-divider-bottom-spacing: 0;
+  --mat-menu-divider-top-spacing: 0;
+}

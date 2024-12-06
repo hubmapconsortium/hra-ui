@@ -222,11 +222,3 @@
     }
   }
 }
-
-::ng-deep {
-  .settings-overlay {
-    button.mat-mdc-menu-item .mat-mdc-menu-item-text {
-      font: var(--sys-label-medium);
-    }
-  }
-}

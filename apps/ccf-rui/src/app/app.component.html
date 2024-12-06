@@ -18,8 +18,10 @@
     </button>
     <mat-menu #menu="matMenu" [class]="'reg-overlay'">
       <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetStage()">Reset all</button>
+      <mat-divider class="menu-divider"></mat-divider>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset camera view</button>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset tissue block</button>
+      <mat-divider class="menu-divider"></mat-divider>
       <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset registration metadata</button>
     </mat-menu>
   </hra-expansion-panel-actions>
