@@ -15,10 +15,14 @@
   </button>
 </mat-form-field>
 
-<div *ngIf="resultsVisible && searchResults.totalCount > 0" class="results">
-  <div *ngFor="let result of searchResults.results; trackBy: tagId" class="item">
-    <mat-checkbox labelPosition="after" [(ngModel)]="checkedResults[result.id]">
-      {{ result.label }}
-    </mat-checkbox>
+@if (resultsVisible && searchResults.totalCount > 0) {
+  <div class="results">
+    @for (result of searchResults.results; track result.id) {
+      <div class="item">
+        <mat-checkbox labelPosition="after" [(ngModel)]="checkedResults[result.id]">
+          {{ result.label }}
+        </mat-checkbox>
+      </div>
+    }
   </div>
-</div>
+}

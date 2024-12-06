@@ -4,7 +4,6 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  HostListener,
   Input,
   Output,
 } from '@angular/core';
@@ -36,6 +35,11 @@ const DEFAULT_ROTATION: Rotation = {
   templateUrl: './rotation-slider.component.html',
   styleUrls: ['./rotation-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keydown)': 'changeStep($event)',
+    '(document:keyup)': 'changeStep($event)',
+    '(window:mouseup)': 'closeResults($event)',
+  },
 })
 export class RotationSliderComponent {
   /** HTML class name */
@@ -87,13 +91,10 @@ export class RotationSliderComponent {
     this.displayedSlider = dimension;
   }
 
-  @HostListener('document:keydown', ['$event'])
-  @HostListener('document:keyup', ['$event'])
   changeStep(target: KeyboardEvent): void {
     this.step = target.shiftKey ? 1 : 30;
   }
 
-  @HostListener('window:mouseup', ['$event']) // eslint-disable-line
   closeResults(event: Event): void {
     if (this.displayedSlider && event.target instanceof Node) {
       if (!this.el.nativeElement.contains(event.target)) {

@@ -4,7 +4,6 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  HostListener,
   Input,
   Output,
 } from '@angular/core';
@@ -20,6 +19,9 @@ import { VisibilityItem } from '../../../core/models/visibility-item';
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:mouseup)': 'closeSlider($event)',
+  },
 })
 export class VisibilityMenuComponent {
   /**
@@ -141,7 +143,6 @@ export class VisibilityMenuComponent {
     return item.id;
   }
 
-  @HostListener('window:mouseup', ['$event']) // eslint-disable-line
   closeSlider(event: Event): void {
     if (this.selection && event.target instanceof Node) {
       if (!this.el.nativeElement.contains(event.target)) {

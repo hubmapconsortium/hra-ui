@@ -31,3 +31,8 @@ body {
   --mdc-snackbar-container-color: var(--sys-surface-dim);
   --mdc-snackbar-supporting-text-color: var(--sys-secondary);
 }
+
+// Keeps the usage snackbar on top
+.cdk-global-overlay-wrapper:first-of-type {
+  z-index: 1001;
+}
