@@ -1391,9 +1391,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.makeOwlData = makeOwlData;
-const stream_1 = __webpack_require__(19);
+const stream_browserify_1 = __webpack_require__(19);
 async function makeOwlData(data) {
-    const inputReadable = new stream_1.Readable({
+    const inputReadable = new stream_browserify_1.Readable({
         read: () => {
             inputReadable.push(JSON.stringify(data));
             inputReadable.push(null);
@@ -1421,7 +1421,7 @@ async function makeOwlData(data) {
 /* 19 */
 /***/ ((module) => {
 
-module.exports = require("stream");
+module.exports = require("stream-browserify");
 
 /***/ }),
 /* 20 */

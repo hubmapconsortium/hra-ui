@@ -1,0 +1,543 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>design-system</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">design-system</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FullscreenPortalContentComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Fullscreen portal content component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-fullscreen-portal-content</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-content&gt;&lt;/ng-content&gt;</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  Directive,
+  effect,
+  inject,
+  input,
+  output,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+  ViewRef,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatDialog, MatDialogModule, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
+import { ExpansionPanelModule } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
+import { filter, MonoTypeOperatorFunction, pipe } from &#x27;rxjs&#x27;;
+
+/** View outlet directive */
+@Directive({
+  selector: &#x27;[hraViewOutlet]&#x27;,
+  standalone: true,
+})
+export class ViewOutletDirective {
+  /** view reference input */
+  readonly viewRef &#x3D; input&lt;ViewRef | undefined&gt;(undefined, { alias: &#x27;hraViewOutlet&#x27; });
+
+  /** Reference of the view container */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+
+  /** Attaches the view */
+  constructor() {
+    effect(() &#x3D;&gt; this.attach());
+  }
+
+  /** Attaches the view to the view container */
+  attach(): void {
+    const viewRef &#x3D; this.viewRef();
+    if (viewRef) {
+      this.viewContainerRef.insert(viewRef);
+    }
+  }
+  /** Detaches the view from the view container */
+  detach(): void {
+    const viewRef &#x3D; this.viewRef();
+    const index &#x3D; viewRef ? this.viewContainerRef.indexOf(viewRef) : -1;
+    if (index &gt;&#x3D; 0) {
+      this.viewContainerRef.detach(index);
+    }
+  }
+}
+
+/** Fullscreen actions component */
+@Component({
+  selector: &#x27;hra-fullscreen-actions&#x27;,
+  standalone: true,
+  template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
+  styles: &#x60;
+    :host {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: row;
+      align-items: center;
+    }
+  &#x60;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenActionsComponent {}
+
+/** Fullscreen portal content component */
+@Component({
+  selector: &#x27;hra-fullscreen-portal-content&#x27;,
+  standalone: true,
+  template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
+  styles: &#x60;
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  &#x60;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenPortalContentComponent {}
+
+/** Fullscreen Component */
+@Component({
+  selector: &#x27;hra-fullscreen-portal&#x27;,
+  standalone: true,
+  imports: [MatDialogModule, MatIconModule, ButtonModule, ExpansionPanelModule, ViewOutletDirective],
+  templateUrl: &#x27;./fullscreen-portal.component.html&#x27;,
+  styleUrl: &#x27;./fullscreen-portal.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FullscreenPortalComponent {
+  /** Heading of the dialog */
+  readonly title &#x3D; input.required&lt;string&gt;();
+
+  /** Classes to apply to the dialog panel in fullscreen mode */
+  readonly panelClass &#x3D; input&lt;string | string[]&gt;();
+
+  /** Event for before the dialog is opened */
+  readonly beforeOpened &#x3D; output&lt;void&gt;();
+  /** Event for when the dialog is opened */
+  readonly opened &#x3D; output&lt;void&gt;();
+  /** Event for before the dialog is closed */
+  readonly beforeClosed &#x3D; output&lt;void&gt;();
+  /** Event for when the dialog is closed */
+  readonly closed &#x3D; output&lt;void&gt;();
+
+  /** Creates embedded view using template */
+  readonly viewRef &#x3D; computed(() &#x3D;&gt; {
+    return this.viewContainerRef.createEmbeddedView(this.contentTemplateRef());
+  });
+
+  /** Rootnodes of the view reference */
+  readonly rootNodes &#x3D; computed(() &#x3D;&gt; this.viewRef().rootNodes);
+
+  /** Reference to the mat dialog */
+  private readonly dialogService &#x3D; inject(MatDialog);
+
+  /** Reference to the view container */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+
+  /** Reference to the destroy ref */
+  private readonly destroyRef &#x3D; inject(DestroyRef);
+
+  /** Reference to the view outlet directive */
+  private readonly viewOutlet &#x3D; viewChild.required(ViewOutletDirective);
+
+  /** Reference to the view content template */
+  private readonly contentTemplateRef &#x3D; viewChild.required&lt;TemplateRef&lt;void&gt;&gt;(&#x27;contentTemplate&#x27;);
+
+  /** Reference to the view dialog template */
+  private readonly dialogTemplateRef &#x3D; viewChild.required&lt;TemplateRef&lt;void&gt;&gt;(&#x27;dialogTemplate&#x27;);
+
+  /** Reference to the mat dialog */
+  private dialogRef?: MatDialogRef&lt;void&gt;;
+
+  /** Destroys the view */
+  constructor() {
+    this.destroyRef.onDestroy(() &#x3D;&gt; {
+      const dialogRef &#x3D; this.dialogRef;
+      this.dialogRef &#x3D; undefined;
+      dialogRef?.close();
+      this.viewRef().destroy();
+    });
+  }
+
+  /** Detaches the view from histogram module and attaches it to the view in the dialog */
+  open(): void {
+    if (this.dialogRef !&#x3D;&#x3D; undefined) {
+      return;
+    }
+
+    const { dialogService, dialogTemplateRef } &#x3D; this;
+    const panelClass &#x3D; this.panelClass() ?? [];
+    const normalizedPanelClass &#x3D; typeof panelClass &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? panelClass.split(&#x27; &#x27;) : panelClass;
+
+    this.beforeOpened.emit();
+    const dialogRef &#x3D; (this.dialogRef &#x3D; dialogService.open(dialogTemplateRef(), {
+      panelClass: [...normalizedPanelClass, &#x27;fullscreen-panel&#x27;],
+    }));
+
+    dialogRef
+      .afterOpened()
+      .pipe(this.filterDialogEvents(dialogRef))
+      .subscribe(() &#x3D;&gt; {
+        this.opened.emit();
+      });
+
+    dialogRef
+      .beforeClosed()
+      .pipe(this.filterDialogEvents(dialogRef))
+      .subscribe(() &#x3D;&gt; {
+        this.beforeClosed.emit();
+        this.viewOutlet().attach();
+      });
+
+    dialogRef
+      .afterClosed()
+      .pipe(this.filterDialogEvents(dialogRef))
+      .subscribe(() &#x3D;&gt; {
+        this.dialogRef &#x3D; undefined;
+        this.closed.emit();
+      });
+  }
+
+  /** Closes the dialog */
+  close(): void {
+    this.dialogRef?.close();
+  }
+
+  /** Filters the dialog event based on provided dialog reference */
+  private filterDialogEvents&lt;T&gt;(dialogRef: MatDialogRef&lt;void&gt;): MonoTypeOperatorFunction&lt;T&gt; {
+    return pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter(() &#x3D;&gt; this.dialogRef &#x3D;&#x3D;&#x3D; dialogRef),
+    );
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-content></ng-content></div>'
+    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'}];
+    var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+    var ACTUAL_COMPONENT = {'name': 'FullscreenPortalContentComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FullscreenPortalContentComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
