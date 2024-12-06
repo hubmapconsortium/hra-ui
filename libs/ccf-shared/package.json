@@ -10,7 +10,6 @@
     "@math.gl/core": "^3.5.5",
     "@ngxs/store": "^3.7.1",
     "@ngxs-labs/data": "^4.1.1",
-    "comlink": "^4.3.0",
     "css-element-queries": "^1.2.3",
     "ngx-google-analytics": "^11.2.1",
     "ngx-markdown": "^11.1.1",

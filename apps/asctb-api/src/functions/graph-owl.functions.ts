@@ -1,5 +1,5 @@
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { Readable } from 'stream';
+import { Readable } from 'stream-browserify';
 
 export async function makeOwlData(data: JsonLd): Promise<string> {
   const inputReadable = new Readable({
