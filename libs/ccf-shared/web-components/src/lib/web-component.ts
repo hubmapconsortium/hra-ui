@@ -10,7 +10,7 @@ export interface BaseWebComponentOptions extends ConfigManagerOptions {
 @Directive()
 export class BaseWebComponent implements OnInit, OnChanges, OnDestroy {
   initialized = false;
-  configManager = new ConfigManager(this.configState, this.options);
+  configManager: ConfigManager;
 
   private _init?: ReturnType<typeof setTimeout>;
 
@@ -18,7 +18,9 @@ export class BaseWebComponent implements OnInit, OnChanges, OnDestroy {
     readonly configState: GlobalConfigState<GenericGlobalConfig>,
     readonly cdr: ChangeDetectorRef,
     readonly options: BaseWebComponentOptions = {},
-  ) {}
+  ) {
+    this.configManager = new ConfigManager(this.configState, this.options);
+  }
 
   ngOnInit(): void {
     this._init = setTimeout(() => this.initialize(), this.options.initialDelay ?? 0);

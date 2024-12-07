@@ -1,5 +1,5 @@
-import { ApplicationConfig, ApplicationRef, Injector, Type } from '@angular/core';
-import { NgElementConstructor, createCustomElement as createCustomElementImpl } from '@angular/elements';
+import { ApplicationConfig, ApplicationRef, ComponentRef, Injector, Type } from '@angular/core';
+import { createCustomElement as createCustomElementImpl, NgElement, NgElementConstructor } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
 import { filter, firstValueFrom } from 'rxjs';
 import { ComponentNgElementStrategyFactory } from './element-strategy/component-factory-strategy';
@@ -8,18 +8,25 @@ import { InputProps, NgElementExtensions } from './interfaces';
 /**
  * Adds additional methods to an NgElement class
  *
- * @param Base Base element class
+ * @param base Base element class
  * @param injector Application injector
  * @returns A new class with extension methods added
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mixinExtensions<TypeT extends Type<any>>(Base: TypeT, injector: Injector) {
-  return class NgElementWithExtensions extends Base implements NgElementExtensions {
+function mixinExtensions<T>(base: new (injector?: Injector) => NgElement, injector: Injector) {
+  abstract class NgElementWithExtensions extends base implements NgElementExtensions<T> {
+    get instance(): T | undefined {
+      // componentRef is not public...
+      const strategy = this.ngElementStrategy as unknown as Record<'componentRef', ComponentRef<T> | null>;
+      return strategy.componentRef?.instance;
+    }
+
     async whenStable(): Promise<void> {
       const appRef = injector.get(ApplicationRef);
       await firstValueFrom(appRef.isStable.pipe(filter((stable) => stable)));
     }
-  };
+  }
+
+  return NgElementWithExtensions as NgElementConstructor<InputProps<T> & NgElementExtensions<T>>;
 }
 
 /**
@@ -30,16 +37,16 @@ function mixinExtensions<TypeT extends Type<any>>(Base: TypeT, injector: Injecto
  * @param applicationConfig Additional application configuration
  * @returns A custom element class
  */
-export async function createCustomElement<CompT>(
+export async function createCustomElement<T>(
   name: string,
-  component: Type<CompT>,
+  component: Type<T>,
   applicationConfig?: ApplicationConfig,
-): Promise<NgElementConstructor<InputProps<CompT> & NgElementExtensions>> {
+): Promise<NgElementConstructor<InputProps<T> & NgElementExtensions<T>>> {
   const { injector } = await createApplication(applicationConfig);
   const strategyFactory = new ComponentNgElementStrategyFactory(component);
-  const base = createCustomElementImpl<InputProps<CompT>>(component, { injector, strategyFactory });
-  const element = mixinExtensions(base, injector);
+  const base = createCustomElementImpl<InputProps<T>>(component, { injector, strategyFactory });
+  const element = mixinExtensions<T>(base, injector);
 
   customElements.define(name, element);
-  return element as NgElementConstructor<InputProps<CompT> & NgElementExtensions>;
+  return element;
 }

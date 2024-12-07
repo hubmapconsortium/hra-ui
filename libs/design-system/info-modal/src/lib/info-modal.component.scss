@@ -3,6 +3,7 @@
   box-shadow: 0px 5px 1rem 0px rgb(from var(--sys-shadow) r g b / 0.24);
   border-radius: 0.5rem;
   width: min-content;
+  background-color: var(--sys-surface-container-low);
 
   .header {
     display: flex;

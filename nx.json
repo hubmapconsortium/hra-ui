@@ -87,6 +87,18 @@
         "{workspaceRoot}/dist/{projectRoot}/webcomponent-example.html"
       ]
     },
+    "bundle-cli": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "params": "forward"
+        }
+      ],
+      "inputs": ["production", "^production", "{projectRoot}/src/webcomponent-example.html"],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}/cli.js"
+      ]
+    },
     "@nx/eslint:lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/eslint.config.js"],
       "cache": true

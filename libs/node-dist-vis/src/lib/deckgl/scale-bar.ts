@@ -1,7 +1,7 @@
 import { computed, Signal } from '@angular/core';
 import { Layer } from '@deck.gl/core/typed';
+import { NodesView } from '@hra-ui/node-dist-vis/models';
 import { ScaleBarLayer as ScaleBarLayerConstructor } from '@vivjs/layers';
-import { NodesView } from '../models/nodes';
 
 /** Scale bar layer props. Not exported by `@vivjs/layers` */
 type ScaleBarLayerProps = ConstructorParameters<typeof ScaleBarLayerConstructor>[0];
@@ -20,7 +20,7 @@ export function createScaleBarLayer(
   nodes: Signal<NodesView>,
   viewSize: Signal<{ width: number; height: number }>,
   viewState: Signal<object>,
-): Signal<ScaleBarLayer> {
+): Signal<ScaleBarLayer | undefined> {
   const size = computed(() => {
     const [min, max] = nodes().getDimensions();
     const result = (max - min) / (1 - min);
@@ -36,6 +36,10 @@ export function createScaleBarLayer(
   });
 
   return computed(() => {
+    if (nodes().length === 0) {
+      return undefined;
+    }
+
     return new ScaleBarLayerConstructor({
       id: 'scalebar',
       unit: 'µm',

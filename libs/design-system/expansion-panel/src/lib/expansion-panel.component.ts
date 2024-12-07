@@ -1,6 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { CommonModule } from '@angular/common';
 import {
   ANIMATION_MODULE_TYPE,
   booleanAttribute,
@@ -15,7 +14,6 @@ import {
 } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { BODY_EXPANSION } from './expansion-panel-animations';
 
 /** Counter to keep track of distinct panels */
@@ -43,7 +41,7 @@ export class ExpansionPanelHeaderContentComponent {}
 @Component({
   selector: 'hra-expansion-panel',
   standalone: true,
-  imports: [CommonModule, CdkAccordionModule, IconButtonSizeDirective, MatIconButton, MatIconModule],
+  imports: [CdkAccordionModule, MatIconButton, MatIconModule],
   animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',
   styleUrl: './expansion-panel.component.scss',

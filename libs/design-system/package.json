@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/design-system",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "exports": {
     "./styles/fonts": {
       "sass": "./styles/_fonts.scss"
@@ -22,7 +22,7 @@
     }
   },
   "peerDependencies": {
-    "@hra-ui/cdk": "0.0.1",
+    "@hra-ui/cdk": "1.0.0",
     "ng-inline-svg-2": "^15.0.1",
     "rxjs": "7.8.0",
     "@angular/common": "18.2.1",

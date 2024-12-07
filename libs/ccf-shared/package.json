@@ -1,6 +1,6 @@
 {
   "name": "ccf-shared",
-  "version": "0.0.1",
+  "version": "4.0.0",
   "peerDependencies": {
     "angular-ru/ngxs": "^14.1.4",
     "@angular/common": "^10.0.6",
@@ -10,7 +10,6 @@
     "@math.gl/core": "^3.5.5",
     "@ngxs/store": "^3.7.1",
     "@ngxs-labs/data": "^4.1.1",
-    "comlink": "^4.3.0",
     "css-element-queries": "^1.2.3",
     "ngx-google-analytics": "^11.2.1",
     "ngx-markdown": "^11.1.1",

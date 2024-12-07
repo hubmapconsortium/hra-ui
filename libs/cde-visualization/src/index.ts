@@ -10,22 +10,17 @@ import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualiza
 
 export * from './lib/cde-visualization/cde-visualization.component';
 export * from './lib/models/color-map';
-export * from './lib/models/edge';
 export * from './lib/models/metadata';
-export * from './lib/models/node';
 export * from './lib/shared/tooltip-position';
 
 // TODO: Move these exports into a separate library
 export * from './lib/services/data/color-map-loader.service';
 
 /** Type for CdeVisualizationElement instance */
-export type CdeVisualizationElement = InstanceType<CdeVisualizationElementConstructor>;
+export type CdeVisualizationElement = InstanceType<Awaited<typeof CdeVisualizationElement>>;
 
 /** Input properties for CdeVisualizationComponent */
 export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>;
-
-/** Constructor type for CdeVisualizationElement */
-export type CdeVisualizationElementConstructor = Awaited<typeof CdeVisualizationElement>;
 
 /** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {

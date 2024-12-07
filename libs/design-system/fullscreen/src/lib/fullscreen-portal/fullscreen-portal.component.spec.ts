@@ -14,7 +14,7 @@ describe('FullscreenComponent', () => {
 
   it('should open the dialog and render title', async () => {
     const opened = jest.fn();
-    const { fixture } = await setup({ on: { opened } });
+    const { fixture } = await setup({ inputs: { panelClass: 'test' }, on: { opened } });
     fixture.componentInstance.open();
     await fixture.whenStable();
     const title = await screen.findByText('Test Title');

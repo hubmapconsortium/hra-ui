@@ -52,11 +52,15 @@
     pointer-events: all;
   }
 
-  .apps-sidenav {
-    --mat-sidenav-container-width: 35.25rem;
+  mat-sidenav {
+    --mat-sidenav-container-width: 36.25rem;
     border-radius: 0;
     background-color: var(--sys-surface-container-high);
     pointer-events: all;
+
+    @media (max-width: 36.25rem) {
+      --mat-sidenav-container-width: 100%;
+    }
 
     .category {
       padding-top: 1rem;
