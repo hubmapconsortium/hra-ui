@@ -97,6 +97,8 @@ export class RegistrationContentComponent {
     }
     if (!this.registrationSelected) {
       this.model.setOrganDefaults();
+    } else {
+      this.registration.resetPosition();
     }
     this.dialogRef.close(true);
     this.page.registrationStarted();
