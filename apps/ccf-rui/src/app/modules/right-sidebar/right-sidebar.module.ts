@@ -49,6 +49,7 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
     MatMenuModule,
     ButtonModule,
     IconButtonSizeDirective,
+    MatDividerModule,
   ],
   declarations: [RightSidebarComponent],
   exports: [RightSidebarComponent],

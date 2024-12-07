@@ -13,6 +13,7 @@ import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { JsonFileReaderModule } from '../../../shared/components/json-file-reader/json-file-reader.module';
 import { RegistrationFormModule } from '../registration-form/registration-form.module';
 import { RegistrationContentComponent } from './registration-content.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [RegistrationContentComponent],
@@ -30,6 +31,7 @@ import { RegistrationContentComponent } from './registration-content.component';
     ErrorIndicatorComponent,
     MatMenuModule,
     RegistrationFormModule,
+    MatDividerModule,
   ],
   exports: [RegistrationContentComponent],
 })

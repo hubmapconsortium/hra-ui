@@ -8,8 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { TagSearchComponent } from './tag-search.component';
-import { provideInput } from '@hra-ui/design-system/input';
-import { IconButtonSizeDirective, provideIconButtons } from '@hra-ui/design-system/icon-button';
 
 @NgModule({
   imports: [
@@ -22,10 +20,7 @@ import { IconButtonSizeDirective, provideIconButtons } from '@hra-ui/design-syst
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-
-    IconButtonSizeDirective,
   ],
-  providers: [provideInput(), provideIconButtons()],
   declarations: [TagSearchComponent],
   exports: [TagSearchComponent],
 })

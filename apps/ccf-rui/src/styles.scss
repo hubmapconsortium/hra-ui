@@ -1,153 +1,13 @@
-@use '@angular/material' as mat;
-@use 'themes/common/typography';
-@use 'themes/common/theming';
-@use 'themes/_default_light';
-@use 'themes/_default_dark';
-@use 'themes/hubmap_light';
-@use 'themes/hubmap_dark';
-@use 'themes/sennet_light';
-@use 'themes/sennet_dark';
-@use 'themes/gtex_light';
-@use 'themes/gtex_dark';
-
 @use 'light-theme';
 @use 'theming' as design-system-theming;
-
-@use 'themes/common/utility';
 
 html {
   @include design-system-theming.theme(light-theme.$theme);
 }
 
-@include mat.core();
-@include mat.all-component-typographies(typography.$config);
-
-.default-theme-light {
-  @include theming.ccf-theme(default_light.$theme);
-}
-
-.default-theme-dark {
-  @include theming.ccf-theme(default_dark.$theme);
-}
-
-.default-theme-light,
-.default-theme-dark {
-  .portal {
-    width: 19rem !important;
-  }
-
-  .logo {
-    background-image: url('./assets/icons/default-logo.svg');
-    background-size: cover !important;
-  }
-}
-
-.hubmap-theme-light {
-  @include theming.ccf-theme(hubmap_light.$theme);
-}
-
-.hubmap-theme-dark {
-  @include theming.ccf-theme(hubmap_dark.$theme);
-}
-
-.hubmap-theme-light,
-.hubmap-theme-dark {
-  .logo {
-    background-image: url('./assets/icons/logo-rui.svg');
-  }
-}
-
-.sennet-theme-light {
-  @include theming.ccf-theme(sennet_light.$theme);
-}
-
-.sennet-theme-dark {
-  @include theming.ccf-theme(sennet_dark.$theme);
-}
-
-.sennet-theme-light,
-.sennet-theme-dark {
-  .portal {
-    width: 15rem !important;
-  }
-
-  .logo {
-    background-image: url('./assets/icons/sennet-logo.svg');
-    height: 100% !important;
-  }
-}
-
-.gtex-theme-light {
-  @include theming.ccf-theme(gtex_light.$theme);
-}
-
-.gtex-theme-dark {
-  @include theming.ccf-theme(gtex_dark.$theme);
-}
-
-.gtex-theme-light,
-.gtex-theme-dark {
-  .portal {
-    width: 11rem !important;
-  }
-
-  .logo {
-    height: 100%;
-    background-image: url('./assets/icons/gtex-logo.png');
-  }
-
-  .ccf-header {
-    border-bottom-width: 20px;
-    box-shadow: none;
-  }
-}
-
-.default-theme-light,
-.sennet-theme-light,
-.hubmap-theme-light,
-.gtex-theme-light {
-  .mdc-tooltip {
-    background: rgba(97, 97, 97);
-  }
-}
-
-.default-theme-dark,
-.sennet-theme-dark,
-.hubmap-theme-dark,
-.gtex-theme-dark {
-  ::-webkit-scrollbar {
-    background: #757575;
-  }
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 html,
 body {
   height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family:
-    var(--ccf-ui-font, ''),
-    Inter,
-    Inter Variable,
-    sans-serif;
-  background-color: white;
-}
-
-mat-icon {
-  user-select: none;
 }
 
 // Reference: https://css-tricks.com/custom-scrollbars-in-webkit/
@@ -167,52 +27,18 @@ mat-icon {
   border-radius: 0.625rem;
 }
 
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
+.usage-snackbar {
+  --mdc-snackbar-container-color: var(--sys-surface-dim);
+  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
 }
 
-/* Global Angular Material Modal Style Overrides */
-@keyframes fadeOut {
-  100% {
-    transform: scale(0.75);
-    opacity: 0;
-  }
+// Keeps the usage snackbar on top of the registration modal
+.cdk-global-overlay-wrapper:first-of-type {
+  z-index: 1001;
 }
 
-.modal-backdrop-dark {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.modal-animate-fade-out {
-  animation: fadeOut 0.25s forwards;
-}
-
-// Workaround for https://github.com/angular/components/issues/16503 and related bugs
-.ng-animating mat-expansion-panel mat-expansion-panel-header {
-  height: 3rem;
-}
-
-.ng-animating mat-expansion-panel div.mat-expansion-panel-content {
-  height: 0rem;
-  visibility: hidden;
-}
-
-.light-theme .mat-tooltip {
-  background: rgba(97, 97, 97);
-}
-
-.dark-theme .mat-tooltip {
-  background: rgba(97, 97, 97);
-}
-
-/* Tooltip styles */
-.mdc-tooltip {
-  border-radius: 4px;
-  .mdc-tooltip__surface {
-    font-size: 10px !important;
-  }
+.menu-divider {
+  --mat-divider-color: #acb5c3;
+  --mat-menu-divider-bottom-spacing: 0;
+  --mat-menu-divider-top-spacing: 0;
 }

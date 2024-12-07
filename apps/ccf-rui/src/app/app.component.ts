@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
   Injector,
   Input,
   OnDestroy,
@@ -34,7 +33,6 @@ import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
-import { Side } from './modules/content/stage-nav/stage-nav.component';
 import {
   DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY,
   SCREEN_SIZE_NOTICE_MAX_HEIGHT,
@@ -85,6 +83,9 @@ export function openScreenSizeNotice(dialog: MatDialog): Subscription {
   });
 }
 
+/** Valid values for side. */
+export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
+
 /**
  * App component
  */
@@ -93,6 +94,9 @@ export function openScreenSizeNotice(dialog: MatDialog): Subscription {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:mousedown)': 'handleClick($event.target)',
+  },
 })
 export class AppComponent implements OnDestroy, OnInit {
   /** False until the initial registration modal is closed */
@@ -181,7 +185,9 @@ export class AppComponent implements OnDestroy, OnInit {
           snackBar.dismiss();
         },
       },
+
       duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
+      panelClass: 'usage-snackbar',
     });
 
     this.themeMode$.next('light');
@@ -204,52 +210,12 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   /**
-   * Shifts block position when certain keys are pressed
-   *
-   * @param target The keyboard event
-   */
-  @HostListener('document:keydown', ['$event'])
-  handleKey(target: KeyboardEvent): void {
-    const oldPosition = this.model.snapshot.position;
-    if (this.disablePositionChange || !this.registrationStarted) {
-      return;
-    }
-    target.preventDefault();
-    const delta = target.repeat ? 1.0 : 0.5;
-    let newPosition = oldPosition;
-    switch (target.key) {
-      case 'q':
-        newPosition = { ...oldPosition, z: oldPosition.z + delta };
-        break;
-      case 'e':
-        newPosition = { ...oldPosition, z: oldPosition.z - delta };
-        break;
-      case 'w':
-        newPosition = { ...oldPosition, y: oldPosition.y + delta };
-        break;
-      case 's':
-        newPosition = { ...oldPosition, y: oldPosition.y - delta };
-        break;
-      case 'a':
-        newPosition = { ...oldPosition, x: oldPosition.x - delta };
-        break;
-      case 'd':
-        newPosition = { ...oldPosition, x: oldPosition.x + delta };
-        break;
-      default:
-        break;
-    }
-    this.model.setPosition(newPosition);
-  }
-
-  /**
    * Disables block position change if an input element is clicked
    *
    * @param target The element clicked
    */
-  @HostListener('document:mousedown', ['$event.target'])
   handleClick(target: HTMLElement): void {
-    const disableWhenClicked = ['mat-mdc-input-element', 'form-input-label'];
+    const disableWhenClicked = ['mat-mdc-input-element', 'mat-mdc-form-field', 'form-input-label'];
     for (const className of disableWhenClicked) {
       if (typeof target.className === 'string' && target.className.includes(className)) {
         this.disablePositionChange = true;
@@ -291,12 +257,28 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   resetStage(): void {
+    this.resetMetadata();
+    this.resetCamera();
+  }
+
+  resetCamera(): void {
+    this.model.setViewSide('anterior');
+    this.model.setViewType('register');
+  }
+
+  resetMetadata(): void {
     if (this.registration.snapshot.initialRegistration) {
       this.registration.setToInitialRegistration();
     } else {
       this.model.setOrganDefaults();
     }
-    this.model.setViewSide('anterior');
-    this.model.setViewType('register');
+  }
+
+  resetBlock(): void {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.resetPosition();
+    } else {
+      this.model.setDefaultPosition();
+    }
   }
 }

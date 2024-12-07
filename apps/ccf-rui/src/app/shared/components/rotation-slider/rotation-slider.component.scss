@@ -1,8 +1,8 @@
 :host {
+  width: 5rem;
+
   .header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 0.5rem 0;
 
     .title {
@@ -10,69 +10,9 @@
     }
   }
 
-  .reset {
-    transform: scaleX(-1);
-    cursor: pointer;
-    transition: 0.6s;
-
-    &:hover {
-      border-radius: 2px;
-    }
-  }
-
-  .refresh-button-container {
-    display: flex;
-    height: 1rem;
-    justify-content: flex-end;
-  }
-
   .slider-box {
-    display: flex;
-    align-items: center;
-
     &:not(:last-child) {
       margin-bottom: 0.5rem;
-    }
-
-    mat-form-field {
-      height: 100%;
-      width: 5rem;
-
-      ::ng-deep {
-        .mdc-text-field {
-          padding: 0;
-        }
-        .mat-mdc-form-field-infix {
-          --mat-form-field-container-height: 100%;
-          padding: 23px 12px 0 12px;
-        }
-
-        .mat-mdc-form-field-subscript-wrapper {
-          height: 0;
-        }
-      }
-
-      // .input {
-      //   text-align: center;
-      // }
-    }
-
-    .slider-container {
-      width: 100%;
-      padding-left: 0.5rem;
-      padding-right: 2rem;
-
-      .slider {
-        width: 100%;
-      }
-
-      ::ng-deep mat-slider-visual-thumb {
-        transition: none;
-      }
-    }
-
-    .filler {
-      flex-grow: 1;
     }
   }
 }

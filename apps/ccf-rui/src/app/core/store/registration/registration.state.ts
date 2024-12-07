@@ -175,6 +175,14 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     });
   }
 
+  resetPosition() {
+    const reg = this.ctx.getState().initialRegistration;
+    if (reg) {
+      const place = this.refData.normalizePlacement(Array.isArray(reg.placement) ? reg.placement[0] : reg.placement);
+      this.model.setPosition({ x: place.x_translation, y: place.y_translation, z: place.z_translation });
+    }
+  }
+
   async editRegistration(reg: SpatialEntityJsonLd): Promise<void> {
     this.ctx.patchState({ initialRegistration: reg });
     const place = this.refData.normalizePlacement(Array.isArray(reg.placement) ? reg.placement[0] : reg.placement);

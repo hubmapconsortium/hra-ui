@@ -42,4 +42,12 @@ export class RightSidebarComponent {
     readonly page: PageState,
     readonly astags: AnatomicalStructureTagState,
   ) {}
+
+  setDefaultPosition() {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.resetPosition();
+    } else {
+      this.model.setDefaultPosition();
+    }
+  }
 }
