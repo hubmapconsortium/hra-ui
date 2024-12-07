@@ -1,4 +1,4 @@
-<hra-expansion-panel [title]="'Tissue Block Settings'" class="tissue-block-settings">
+<hra-expansion-panel title="Tissue Block Settings" class="tissue-block-settings">
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
@@ -40,7 +40,7 @@
     >
       <mat-icon>help</mat-icon>
     </button>
-    <mat-menu #help="matMenu" class="settings-overlay">
+    <mat-menu #help="matMenu">
       <a
         mat-menu-item
         href="https://youtu.be/j4f9_xdBrK0?si=b5_p_lBuFzSyTXS3"
@@ -49,10 +49,21 @@
       >
         Watch video tutorial
       </a>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Use app guide</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Use standard operating procedure</button>
+      <a
+        mat-menu-item
+        href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Use app guide
+      </a>
+      <a mat-menu-item href="https://doi.org/10.5281/zenodo.5575776" target="_blank" rel="noopener noreferrer">
+        Use standard operating procedure
+      </a>
       <mat-divider class="menu-divider"></mat-divider>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Explore all registrations</button>
+      <a mat-menu-item href="https://apps.humanatlas.io/eui/" target="_blank" rel="noopener noreferrer">
+        Explore all registrations
+      </a>
     </mat-menu>
   </hra-expansion-panel-header-content>
   <div class="position">
@@ -91,7 +102,7 @@
   >
   </ccf-slices-input>
 </hra-expansion-panel>
-<hra-expansion-panel [title]="'Anatomical Structure Tags'" class="as-tags">
+<hra-expansion-panel title="Anatomical Structure Tags" class="as-tags">
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
   <ccf-tag-list
     *ngIf="(model.organ$ | async)?.name; else tagListPlaceholder"

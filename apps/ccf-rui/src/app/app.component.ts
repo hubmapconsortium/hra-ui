@@ -257,12 +257,28 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   resetStage(): void {
+    this.resetMetadata();
+    this.resetCamera();
+  }
+
+  resetCamera(): void {
+    this.model.setViewSide('anterior');
+    this.model.setViewType('register');
+  }
+
+  resetMetadata(): void {
     if (this.registration.snapshot.initialRegistration) {
       this.registration.setToInitialRegistration();
     } else {
       this.model.setOrganDefaults();
     }
-    this.model.setViewSide('anterior');
-    this.model.setViewType('register');
+  }
+
+  resetBlock(): void {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.resetPosition();
+    } else {
+      this.model.setDefaultPosition();
+    }
   }
 }

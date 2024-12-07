@@ -44,7 +44,6 @@ export class RightSidebarComponent {
   ) {}
 
   setDefaultPosition() {
-    console.warn(this.registration.snapshot.initialRegistration);
     if (this.registration.snapshot.initialRegistration) {
       this.registration.resetPosition();
     } else {
