@@ -413,7 +413,8 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setExtractionSites(extractionSites: VisibilityItem[]): void {
-    this.ctx.patchState({ extractionSites });
+    const visibilityChecked = extractionSites.map((as) => ({ ...as, visible: as.opacity ? as.opacity > 0 : false }));
+    this.ctx.patchState({ extractionSites: visibilityChecked });
   }
 
   /**
@@ -423,7 +424,11 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setAnatomicalStructures(anatomicalStructures: VisibilityItem[]): void {
-    this.ctx.patchState({ anatomicalStructures });
+    const visibilityChecked = anatomicalStructures.map((as) => ({
+      ...as,
+      visible: as.opacity ? as.opacity > 0 : false,
+    }));
+    this.ctx.patchState({ anatomicalStructures: visibilityChecked });
   }
 
   /**
@@ -504,12 +509,12 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
 
       const sets: ExtractionSet[] = (db.extractionSets[organIri] || []).map((set) => ({
         name: set.label,
-        sites: [{ id: 'all', name: 'all landmarks', visible: true, opacity: 0 }].concat(
+        sites: [{ id: 'all', name: 'all landmarks', visible: false, opacity: 0 }].concat(
           sortBy(
             set.extractionSites.map((entity) => ({
               id: entity['@id'],
               name: entity.label ?? '',
-              visible: true,
+              visible: false,
               opacity: 0,
               tooltip: entity.comment,
             })),

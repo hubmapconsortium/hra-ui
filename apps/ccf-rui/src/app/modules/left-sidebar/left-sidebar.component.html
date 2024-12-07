@@ -11,20 +11,21 @@
   </button>
   <mat-menu #menu="matMenu" class="opacity-overlay">
     <button mat-menu-item matRipple matRippleColor="#201E3D14">
-      <span>Reset All Settings</span>
+      <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset All Settings</span>
     </button>
     <mat-divider class="menu-divider"></mat-divider>
     <button mat-menu-item matRipple matRippleColor="#201E3D14">
-      <span>Reset anatomical structures</span>
+      <span (click)="anatomical.setAllOpacity(20)">Reset anatomical structures</span>
     </button>
     <button mat-menu-item matRipple matRippleColor="#201E3D14">
-      <span>Reset landmarks</span>
+      <span (click)="landmarks.setAllOpacity(0)">Reset landmarks</span>
     </button>
   </mat-menu>
 </div>
 
 <hra-expansion-panel title="Anatomical Structures" class="as-expansion">
   <ccf-visibility-menu
+    #anatomical
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
   >
@@ -33,6 +34,7 @@
 
 <hra-expansion-panel title="Landmarks">
   <ccf-visibility-menu
+    #landmarks
     [items]="$any(model.extractionSites$ | async)"
     (itemsChange)="model.setExtractionSites($event)"
     (hover)="updateExtractionSiteTooltip($event)"
