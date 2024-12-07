@@ -32,7 +32,7 @@ body {
   --mdc-snackbar-supporting-text-color: var(--sys-secondary);
 }
 
-// Keeps the usage snackbar on top
+// Keeps the usage snackbar on top of the registration modal
 .cdk-global-overlay-wrapper:first-of-type {
   z-index: 1001;
 }

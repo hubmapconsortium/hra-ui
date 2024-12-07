@@ -40,23 +40,17 @@
 
   hra-expansion-panel {
     padding: 1rem;
+
     ::ng-deep .title {
       font: var(--sys-label-large);
     }
+
     hra-expansion-panel-header-content {
       display: flex;
       gap: 1rem;
       mat-button-toggle-group {
         --mat-standard-button-toggle-height: auto;
       }
-    }
-  }
-}
-
-::ng-deep {
-  .reg-overlay {
-    button.mat-mdc-menu-item .mat-mdc-menu-item-text {
-      font: var(--sys-label-medium);
     }
   }
 }

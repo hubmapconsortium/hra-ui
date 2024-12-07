@@ -66,3 +66,9 @@
     }
   }
 }
+
+// Keep help menu and backdrop on top
+::ng-deep .registration-help,
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  z-index: 1002;
+}

@@ -9,7 +9,7 @@
   >
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" [class]="'opacity-overlay'">
+  <mat-menu #menu="matMenu" class="opacity-overlay">
     <button mat-menu-item matRipple matRippleColor="#201E3D14">
       <span>Reset All Settings</span>
     </button>
@@ -23,7 +23,7 @@
   </mat-menu>
 </div>
 
-<hra-expansion-panel [title]="'Anatomical Structures'" class="as-expansion">
+<hra-expansion-panel title="Anatomical Structures" class="as-expansion">
   <ccf-visibility-menu
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
@@ -31,7 +31,7 @@
   </ccf-visibility-menu>
 </hra-expansion-panel>
 
-<hra-expansion-panel [title]="'Landmarks'">
+<hra-expansion-panel title="Landmarks">
   <ccf-visibility-menu
     [items]="$any(model.extractionSites$ | async)"
     (itemsChange)="model.setExtractionSites($event)"
