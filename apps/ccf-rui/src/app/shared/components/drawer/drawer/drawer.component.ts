@@ -8,7 +8,6 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  HostListener,
   Input,
   OnDestroy,
   Output,
@@ -123,6 +122,10 @@ class InitializationState {
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '@openClose.done': 'closeOpenDone()',
+    '@expandCollapse.done': 'expandCollapseDone()',
+  },
 })
 export class DrawerComponent implements AfterViewInit, OnDestroy {
   /** HTML class */
@@ -367,7 +370,6 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   /**
    * Listener to open/close animation completion.
    */
-  @HostListener('@openClose.done')
   closeOpenDone(): void {
     this.openedChange.emit(this.opened);
   }
@@ -375,7 +377,6 @@ export class DrawerComponent implements AfterViewInit, OnDestroy {
   /**
    * Listener to expand/collapse animation completion.
    */
-  @HostListener('@expandCollapse.done')
   expandCollapseDone(): void {
     this.expandedChange.emit(this.expanded);
   }

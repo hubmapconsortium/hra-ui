@@ -2,6 +2,7 @@
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
+  --mdc-chip-label-text-color: var(--sys-on-primary-fixed-variant);
 
   .added-label {
     font: var(--sys-label-medium);
@@ -19,5 +20,9 @@
     .mat-mdc-chip {
       margin: 0;
     }
+  }
+
+  .icon.remove {
+    color: var(--sys-on-primary-fixed-variant);
   }
 }

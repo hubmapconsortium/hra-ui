@@ -1,26 +1,25 @@
 <ccf-registration-modal></ccf-registration-modal>
 <hra-nav-header-buttons
-  [app]="'rui'"
-  [appLink]="'https://apps.humanatlas.io/rui/'"
-  [appTitle]="'Registration User Interface'"
+  app="rui"
+  appLink="https://apps.humanatlas.io/rui/"
+  appTitle="Registration User Interface"
   [brandmark]="true"
 ></hra-nav-header-buttons>
 <ccf-left-sidebar [modalClosed]="registrationStarted"> </ccf-left-sidebar>
-<hra-expansion-panel [title]="'Registration'" disabled class="registration">
+<hra-expansion-panel title="Registration" disabled class="registration">
   <hra-expansion-panel-actions>
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      [hraIconButtonSize]="'large'"
-      aria-label="Icon to open nested menu"
-    >
+    <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="large" aria-label="Icon to open nested menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" [class]="'reg-overlay'">
+    <mat-menu #menu="matMenu">
       <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetStage()">Reset all</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset camera view</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset tissue block</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14">Reset registration metadata</button>
+      <mat-divider class="menu-divider"></mat-divider>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetCamera()">Reset camera view</button>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetBlock()">Reset tissue block</button>
+      <mat-divider class="menu-divider"></mat-divider>
+      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetMetadata()">
+        Reset registration metadata
+      </button>
     </mat-menu>
   </hra-expansion-panel-actions>
   <hra-expansion-panel-header-content>
@@ -53,13 +52,3 @@
   [modalClosed]="registrationStarted"
   (registrationExpanded)="registrationToggle($event)"
 ></ccf-right-sidebar>
-<!-- <ccf-header
-  [class.header-hidden]="(header$ | async) === false"
-  [logoTooltip]="(logoTooltip$ | async) ?? ''"
-  [homeUrl]="(homeUrl$ | async) ?? ''"
-></ccf-header> -->
-
-<!-- <ccf-drawer-container>
-  <ccf-drawer-content>
-  </ccf-drawer-content>
-</ccf-drawer-container> -->

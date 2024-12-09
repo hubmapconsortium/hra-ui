@@ -1,32 +1,28 @@
 <mat-form-field [class.expanded]="resultsVisible" subscriptSizing="dynamic">
-  <div class="search-box">
-    <button mat-icon-button hraIconButtonSize="small" class="search-icon">
-      <mat-icon>search</mat-icon>
-    </button>
-    <input matInput type="search" [placeholder]="placeholder" [formControl]="searchControl" #search />
-    <button
-      mat-icon-button
-      class="add-icon"
-      hraIconButtonSize="small"
-      [class.active]="hasCheckedTags()"
-      [disabled]="!hasCheckedTags()"
-      (click)="addTags(); search.focus()"
-      matSuffix
-      #closeSearch
-    >
-      <mat-icon>add_circle</mat-icon>
-    </button>
-  </div>
-
-  <div *ngIf="resultsVisible" class="results">
-    <div *ngFor="let result of searchResults.results; trackBy: tagId" class="item">
-      <mat-checkbox labelPosition="after" [(ngModel)]="checkedResults[result.id]">
-        {{ result.label }}
-      </mat-checkbox>
-    </div>
-
-    <div class="count">
-      {{ searchResults.totalCount | i18nPlural: countMapping }}
-    </div>
-  </div>
+  <mat-label class="form-input-label">Search</mat-label>
+  <input matInput [formControl]="searchControl" #search />
+  <mat-icon class="search-icon" matPrefix>search</mat-icon>
+  <button
+    matSuffix
+    mat-icon-button
+    class="add-icon"
+    hraIconButtonSize="small"
+    [class.active]="hasCheckedTags()"
+    [disabled]="!hasCheckedTags()"
+    (click)="addTags(); search.focus()"
+  >
+    <mat-icon>add_circle</mat-icon>
+  </button>
 </mat-form-field>
+
+@if (resultsVisible && searchResults.totalCount > 0) {
+  <div class="results">
+    @for (result of searchResults.results; track result.id) {
+      <div class="item">
+        <mat-checkbox labelPosition="after" [(ngModel)]="checkedResults[result.id]">
+          {{ result.label }}
+        </mat-checkbox>
+      </div>
+    }
+  </div>
+}
