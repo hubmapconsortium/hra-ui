@@ -5,16 +5,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { BodyUiModule, SpatialSearchKeyboardUIBehaviorModule, StoreDebugModule } from 'ccf-shared';
 
 import { ContentComponent } from '../content/content.component';
-import { StageNavModule } from './stage-nav/stage-nav.module';
-import { VideoModalLauncherModule } from './video-modal/video-modal-launcher/video-modal-launcher.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    StageNavModule,
     MatIconModule,
     StoreDebugModule,
-    VideoModalLauncherModule,
     MatRippleModule,
     SpatialSearchKeyboardUIBehaviorModule,
     BodyUiModule,

@@ -12,7 +12,6 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
 @Component({
   selector: 'ccf-review-button',
   templateUrl: './review-button.component.html',
-  styleUrls: ['./review-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewButtonComponent implements OnChanges {

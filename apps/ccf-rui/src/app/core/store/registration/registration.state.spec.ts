@@ -39,6 +39,7 @@ const testPage: Immutable<PageStateModel> = {
   user: {
     firstName: 'John',
     lastName: 'Doe',
+    email: 'foo@gmail.com',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
@@ -68,6 +69,7 @@ describe('RegistrationState', () => {
       lastName: 'bar',
       middleName: 'middle',
       orcidId: '1111-1111-1111-1111',
+      email: 'foo@gmail.com',
     },
   };
   const initialModelState: Partial<ModelStateModel> = {

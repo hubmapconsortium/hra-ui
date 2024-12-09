@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+} from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { VisibilityItem } from '../../../core/models/visibility-item';
@@ -11,6 +19,9 @@ import { VisibilityItem } from '../../../core/models/visibility-item';
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:mouseup)': 'closeSlider($event)',
+  },
 })
 export class VisibilityMenuComponent {
   /**
@@ -43,7 +54,10 @@ export class VisibilityMenuComponent {
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  constructor(
+    private readonly el: ElementRef<Node>,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
 
   /**
    * Toggles visibility of an item; opacity is reverted to the previous value if visibility toggled back on
@@ -61,23 +75,13 @@ export class VisibilityMenuComponent {
   }
 
   /**
-   * Changes current selection to hovered over item and emits the item
+   * Changes current selection to clicked item and emits the item
    *
    * @param item Menu item
    */
-  mouseOver(item: VisibilityItem): void {
+  menuOpen(item: VisibilityItem): void {
     this.selection = item === this.selection ? undefined : item;
     this.hover.emit(item);
-  }
-
-  /**
-   * Clears current selection and emits undefined in response to mouse out
-   *
-   * @param item Menu item
-   */
-  mouseOut(): void {
-    this.selection = undefined;
-    this.hover.emit(undefined);
   }
 
   /**
@@ -89,7 +93,7 @@ export class VisibilityMenuComponent {
     if (!this.selection) {
       return;
     }
-    const updatedSelection = { ...this.selection, opacity: value };
+    const updatedSelection = { ...this.selection, opacity: value, visible: value ? value > 0 : false };
     this.selection = updatedSelection;
     if (updatedSelection.id === 'all') {
       this.setAllOpacity(updatedSelection.opacity as number);
@@ -137,5 +141,14 @@ export class VisibilityMenuComponent {
    */
   getId(_index: number, item: VisibilityItem): string | number {
     return item.id;
+  }
+
+  closeSlider(event: Event): void {
+    if (this.selection && event.target instanceof Node) {
+      if (!this.el.nativeElement.contains(event.target)) {
+        this.selection = undefined;
+        this.hover.emit(undefined);
+      }
+    }
   }
 }

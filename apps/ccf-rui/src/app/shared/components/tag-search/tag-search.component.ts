@@ -6,15 +6,13 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  HostListener,
   Input,
   OnDestroy,
   Output,
-  ViewChild,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { ObservableInput, Subject, from, interval } from 'rxjs';
+import { from, interval, ObservableInput, Subject } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, throttle } from 'rxjs/operators';
 
 import { Tag, TagId, TagSearchResult } from '../../../core/models/anatomical-structure-tag';
@@ -34,13 +32,16 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
   templateUrl: './tag-search.component.html',
   styleUrls: ['./tag-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(click)': 'openResults()',
+    '(focusin)': 'openResults()',
+    '(window:click)': 'closeResults($event)',
+    '(window:focusin)': 'closeResults($event)',
+  },
 })
 export class TagSearchComponent implements OnDestroy {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
-
-  /** Placeholder text */
-  @Input() placeholder = 'Add Anatomical Structures ...';
 
   /** Search method */
   @Input() search?: (text: string, limit: number) => ObservableInput<TagSearchResult>;
@@ -53,16 +54,6 @@ export class TagSearchComponent implements OnDestroy {
 
   /** Emits when tags are added */
   @Output() readonly added = new EventEmitter<Tag[]>();
-
-  /** Element for close search button */
-  @ViewChild('closeSearch', { read: ElementRef, static: false }) closeSearch!: ElementRef<HTMLElement>;
-
-  /** Mapping for pluralizing the result total count */
-  readonly countMapping = {
-    /* eslint-disable-next-line @typescript-eslint/naming-convention */
-    '=1': '1 result',
-    other: '# results',
-  };
 
   /** Search field controller */
   readonly searchControl = new UntypedFormControl();
@@ -113,17 +104,6 @@ export class TagSearchComponent implements OnDestroy {
   }
 
   /**
-   * Extracts the tag identifier
-   *
-   * @param _index Unused
-   * @param tag A tag
-   * @returns The identifier corresponding to the tag
-   */
-  tagId(_index: number, tag: Tag): TagId {
-    return tag.id;
-  }
-
-  /**
    * Determines whether any tags have been checked
    *
    * @returns true if any tag has been checked by the user
@@ -138,7 +118,6 @@ export class TagSearchComponent implements OnDestroy {
   addTags(): void {
     const { searchControl, searchResults, checkedResults } = this;
     const tags = searchResults.results.filter((tag) => checkedResults[tag.id]);
-
     if (tags.length > 0) {
       searchControl.reset();
       this.searchResults = EMPTY_RESULT;
@@ -151,8 +130,6 @@ export class TagSearchComponent implements OnDestroy {
   /**
    * Opens the results panel
    */
-  @HostListener('click') // eslint-disable-line
-  @HostListener('focusin') // eslint-disable-line
   openResults(): void {
     if (!this.resultsVisible) {
       this.resultsVisible = true;
@@ -164,12 +141,9 @@ export class TagSearchComponent implements OnDestroy {
    *
    * @param event DOM event
    */
-  @HostListener('window:click', ['$event']) // eslint-disable-line
-  @HostListener('window:focusin', ['$event']) // eslint-disable-line
   closeResults(event: Event): void {
-    const { closeSearch } = this;
     if (this.resultsVisible && event.target instanceof Node) {
-      if (!this.el.nativeElement.contains(event.target) || closeSearch.nativeElement.contains(event.target)) {
+      if (!this.el.nativeElement.contains(event.target)) {
         this.resultsVisible = false;
       }
     }

@@ -113,20 +113,6 @@ export class ContentComponent implements OnInit, OnDestroy {
     this.model.setViewType(is3DView ? '3d' : 'register');
   }
 
-  /**
-   * Method to reset registration block, crosshairs, and x,y,z information.
-   * Resets to initial registration state if provided
-   */
-  resetStage(): void {
-    if (this.registration.snapshot.initialRegistration) {
-      this.registration.setToInitialRegistration();
-    } else {
-      this.model.setOrganDefaults();
-    }
-    this.model.setViewSide('anterior');
-    this.model.setViewType('register');
-  }
-
   handleNodeDrag(event: NodeDragEvent): void {
     if (event.node['@id'] === '#DraftPlacement') {
       if (event.info.coordinate) {

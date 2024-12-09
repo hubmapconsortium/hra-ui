@@ -13,8 +13,8 @@ export interface SlicesConfig {
 
 /** Default values for slices config. */
 const DEFAULT_SLICES_CONFIG: SlicesConfig = {
-  thickness: NaN,
-  numSlices: NaN,
+  thickness: 0,
+  numSlices: 0,
 };
 
 /**

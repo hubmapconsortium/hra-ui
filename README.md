@@ -67,7 +67,7 @@ For detailed information, please refer to the documentation for each app.
 - [CCF Body UI Web Component](./apps/ccf-body-ui-wc/README.md) - A web component used in Exploration User Interface.
 - [Exploration User Interface](./apps/ccf-eui/README.md) - An interactive tool for exploring and validating spatially registered tissue blocks and cell-type populations.
 - [CCF Organ Info](./apps/ccf-organ-info/README.md) - User Interface for Organ Information.
-- [Registration User Interfce](./apps/ccf-rui/README.md) - An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms.
+- [Registration User Interface](./apps/ccf-rui/README.md) - An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms.
 - [Cell Distance Explorer](./apps/cde-ui/README.md) - Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more.
 - [Cell Distance Explorer Visualization Web Component](./apps/cde-visualization-wc/README.md) - A web component used in Cell Distance Explorer.
 - [HRA Dashboards](./apps/dashboard-ui/README.md) - Explore usage statistics of atlas data and code.

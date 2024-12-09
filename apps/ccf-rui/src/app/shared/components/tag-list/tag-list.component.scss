@@ -2,12 +2,27 @@
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
+  --mdc-chip-label-text-color: var(--sys-on-primary-fixed-variant);
+
+  .added-label {
+    font: var(--sys-label-medium);
+    margin-bottom: 0.25rem;
+  }
 
   ::ng-deep .mdc-evolution-chip-set__chips {
     margin: 0 !important;
+    gap: 0.25rem;
 
     .mdc-evolution-chip__text-label {
-      font-size: 14px;
+      font: var(--sys-label-medium);
     }
+
+    .mat-mdc-chip {
+      margin: 0;
+    }
+  }
+
+  .icon.remove {
+    color: var(--sys-on-primary-fixed-variant);
   }
 }

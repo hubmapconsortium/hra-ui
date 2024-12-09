@@ -4,6 +4,7 @@ import { AnatomicalStructureTagState } from '../../core/store/anatomical-structu
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
+import { map } from 'rxjs';
 
 /**
  * The right sidebar
@@ -23,6 +24,10 @@ export class RightSidebarComponent {
 
   @Output() readonly registrationExpanded = new EventEmitter<boolean>();
 
+  readonly position$ = this.model.position$.pipe(
+    map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
+  );
+
   /**
    * Creates an instance of right sidebar component.
    *
@@ -37,4 +42,12 @@ export class RightSidebarComponent {
     readonly page: PageState,
     readonly astags: AnatomicalStructureTagState,
   ) {}
+
+  setDefaultPosition() {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.resetPosition();
+    } else {
+      this.model.setDefaultPosition();
+    }
+  }
 }

@@ -2,49 +2,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
+  width: 100%;
 
   .header {
     display: flex;
     align-items: center;
     height: 1.5rem;
     padding: 0.5rem 0;
-
-    .title {
-      font-weight: 400;
-    }
-
-    .refresh {
-      transform: scaleX(-1);
-      cursor: pointer;
-      transition: 0.6s;
-
-      &:hover {
-        border-radius: 2px;
-      }
-    }
   }
 
   .slices-inputs {
     display: flex;
-    justify-content: space-between;
-    width: 20rem;
+    gap: 1rem;
     margin: 0 auto;
+    width: 100%;
 
     .field {
-      width: 9rem;
-
-      &:not(:last-child) {
-        padding-right: 0.75rem;
-      }
-
-      .input {
-        text-align: center;
-      }
-
       .suffix {
         display: none;
       }
@@ -53,23 +26,21 @@
       .suffix.show {
         display: initial;
       }
+    }
 
-      ::ng-deep .mdc-text-field {
-        padding: 0;
+    mat-form-field {
+      --mdc-filled-text-field-input-text-color: var(--sys-on-primary-fixed-variant);
+      --mdc-filled-text-field-label-text-color: var(--sys-on-primary-fixed-variant);
 
-        .mat-mdc-form-field-infix {
-          padding-bottom: 0;
-          min-height: inherit;
+      ::ng-deep {
+        .mat-mdc-form-field-subscript-wrapper {
+          height: 0;
         }
 
-        .mat-mdc-form-field-icon-suffix {
-          padding: 1.5rem 0 0 0;
+        .mdc-floating-label {
+          transform: translateY(-100%);
         }
       }
     }
-  }
-
-  .filler {
-    flex-grow: 1;
   }
 }

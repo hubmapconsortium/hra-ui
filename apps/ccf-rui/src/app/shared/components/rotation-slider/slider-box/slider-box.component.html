@@ -1,0 +1,33 @@
+@if (displayedSlider !== sliderAxis) {
+  <mat-form-field class="rotation-value" subscriptSizing="dynamic" (click)="displaySlider.emit()">
+    <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
+    <input matInput [value]="rotation[sliderAxis]" />
+  </mat-form-field>
+} @else {
+  <div class="slider-container">
+    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()">
+      <mat-icon>reset_settings</mat-icon>
+    </button>
+    <mat-slider class="slider" [max]="180" [min]="-180" [step]="step" disableRipple>
+      <input
+        class="slider-input"
+        matSliderThumb
+        [value]="rotation[sliderAxis]"
+        (input)="changeRotation.emit(slider.value)"
+        #slider
+      />
+    </mat-slider>
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
+      <input
+        matInput
+        class="input"
+        type="number"
+        [value]="rotation[sliderAxis]"
+        [min]="-180"
+        [max]="180"
+        (change)="changeRotation.emit($any($event.target).value)"
+      />
+    </mat-form-field>
+  </div>
+}

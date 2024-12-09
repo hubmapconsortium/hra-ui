@@ -29,6 +29,8 @@ export class JsonFileReaderComponent {
   /** Emits the json object of any files uploaded. */
   @Output() readonly parsedJson = new EventEmitter<unknown>();
 
+  @Output() readonly fileName = new EventEmitter<string>();
+
   /**
    * Creates an instance of json file reader component.
    *
@@ -63,6 +65,7 @@ export class JsonFileReaderComponent {
       const json = JSON.parse(fileReader.result as string) as unknown;
       this.ga.event('json_file_load_end', 'json_file_reader');
       this.parsedJson.emit(json);
+      this.fileName.emit(file.name);
     };
 
     this.ga.event('json_file_load_start', 'json_file_reader');

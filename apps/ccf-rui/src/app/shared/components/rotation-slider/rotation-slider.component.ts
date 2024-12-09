@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+} from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Type in which the values of the sliders are stored. */
@@ -18,6 +26,8 @@ const DEFAULT_ROTATION: Rotation = {
   z: 0,
 };
 
+export type Axis = 'x' | 'y' | 'z';
+
 /**
  * Component that enables the setting of a Rotation object via either 3 draggable sliders
  * or through an Input method.
@@ -27,6 +37,11 @@ const DEFAULT_ROTATION: Rotation = {
   templateUrl: './rotation-slider.component.html',
   styleUrls: ['./rotation-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keydown)': 'changeStep($event)',
+    '(document:keyup)': 'changeStep($event)',
+    '(window:mouseup)': 'closeResults($event)',
+  },
 })
 export class RotationSliderComponent {
   /** HTML class name */
@@ -38,12 +53,21 @@ export class RotationSliderComponent {
   /** Output that emits the new rotation whenever it is changed from within the component */
   @Output() readonly rotationChange = new EventEmitter<Rotation>();
 
+  displayedSlider?: Axis;
+
+  axisOptions: Axis[] = ['x', 'y', 'z'];
+
+  step = 1;
+
   /**
    * Creates an instance of rotation slider component.
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  constructor(
+    private readonly el: ElementRef<Node>,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
 
   /**
    * Function that handles updating the rotation and emitting the new value
@@ -61,9 +85,29 @@ export class RotationSliderComponent {
   /**
    * Function to easily reset the rotations to 0 and emit this change.
    */
-  resetRotation(dimension: 'x' | 'y' | 'z'): void {
+  resetRotation(dimension: Axis): void {
     this.rotation = { ...this.rotation, [dimension]: 0 };
     this.ga.event('rotation_reset', 'rotation_slider');
     this.rotationChange.emit(this.rotation);
+  }
+
+  resetAllRotations(): void {
+    this.axisOptions.forEach((axis) => this.resetRotation(axis));
+  }
+
+  displaySlider(dimension: Axis): void {
+    this.displayedSlider = dimension;
+  }
+
+  changeStep(target: KeyboardEvent): void {
+    this.step = target.shiftKey ? 30 : 1;
+  }
+
+  closeResults(event: Event): void {
+    if (this.displayedSlider && event.target instanceof Node) {
+      if (!this.el.nativeElement.contains(event.target)) {
+        this.displayedSlider = undefined;
+      }
+    }
   }
 }
