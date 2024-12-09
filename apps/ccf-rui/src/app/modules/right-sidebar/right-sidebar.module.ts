@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoButtonModule } from 'ccf-shared';
 
 import { BlockSizeInputModule } from '../../shared/components/block-size-input/block-size-input.module';
-import { RegistrationMetadataModule } from '../../shared/components/registration-metadata/registration-metadata.module';
 import { RotationSliderModule } from '../../shared/components/rotation-slider/rotation-slider.module';
 import { SlicesInputModule } from '../../shared/components/slices-input/slices-input.module';
 import { TagListModule } from '../../shared/components/tag-list/tag-list.module';
@@ -41,7 +40,6 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
     TagListModule,
     TagSearchModule,
     InfoButtonModule,
-    RegistrationMetadataModule,
 
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
