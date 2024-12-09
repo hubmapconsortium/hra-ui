@@ -1,5 +1,4 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -14,31 +13,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import {
-  combineLatest,
-  filter,
-  fromEvent,
-  map,
-  ReplaySubject,
-  startWith,
-  Subscription,
-  switchAll,
-  take,
-  throttleTime,
-} from 'rxjs';
-import { EMPTY_SUBSCRIPTION } from 'rxjs/internal/Subscription';
+import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
 
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
-import {
-  DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY,
-  SCREEN_SIZE_NOTICE_MAX_HEIGHT,
-  SCREEN_SIZE_NOTICE_MAX_WIDTH,
-  ScreenSizeNoticeComponent,
-} from './modules/screen-size-notice/screen-size-notice.component';
 
 export interface User {
   firstName: string;
@@ -52,35 +33,6 @@ interface AppOptions extends GlobalConfig {
   logoTooltip?: string;
   view?: ViewType;
   viewSide?: ViewSide;
-}
-
-export function openScreenSizeNotice(dialog: MatDialog): Subscription {
-  const initialStorageValue = booleanAttribute(localStorage.getItem(DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY));
-  if (initialStorageValue) {
-    return EMPTY_SUBSCRIPTION;
-  }
-  const testScreenSize = () =>
-    window.innerWidth < SCREEN_SIZE_NOTICE_MAX_WIDTH || window.innerHeight < SCREEN_SIZE_NOTICE_MAX_HEIGHT;
-  const afterClosed$ = fromEvent(window, 'resize').pipe(
-    throttleTime(50),
-    startWith({}),
-    filter(testScreenSize),
-    take(1),
-    map(() => {
-      return dialog.open(ScreenSizeNoticeComponent, {
-        panelClass: 'screen-size-notice-panel',
-        width: '456px',
-        disableClose: true,
-        closeOnNavigation: false,
-      });
-    }),
-    map((ref) => ref.afterClosed()),
-    switchAll(),
-  );
-
-  return afterClosed$.subscribe(() => {
-    localStorage.setItem(DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY, 'true');
-  });
 }
 
 /** Valid values for side. */

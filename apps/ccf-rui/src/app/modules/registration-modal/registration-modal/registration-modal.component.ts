@@ -4,11 +4,11 @@ import { GlobalConfigState } from 'ccf-shared';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { openScreenSizeNotice } from '../../../app.component';
 import { GlobalConfig } from '../../../core/services/config/config';
 import { ModelState } from '../../../core/store/model/model.state';
 import { PageState } from '../../../core/store/page/page.state';
 import { ReferenceDataState } from '../../../core/store/reference-data/reference-data.state';
+import { openScreenSizeNotice } from '../../screen-size-notice/screen-size-notice.component';
 import { RegistrationContentComponent } from '../registration-content/registration-content.component';
 
 /**

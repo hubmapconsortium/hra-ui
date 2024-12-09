@@ -15,6 +15,7 @@
     "body-ui",
     "eui",
     "node-dist-vis",
-    "lib:common"
+    "lib:common",
+    "ccf-rui"
   ]
 }
