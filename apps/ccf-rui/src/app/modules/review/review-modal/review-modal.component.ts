@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import { MetaData } from '../../../core/models/meta-data';
 
 /**
@@ -25,15 +26,11 @@ interface ReviewModalData {
 export class ReviewModalComponent {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-review-modal';
-  /**
-   * Whether or not the cancel registration callback is set
-   */
-  registrationCallbackSet: boolean;
 
   /**
    * The object containing all of the review information for displaying inside the modal
    */
-  metaData: MetaData;
+  metaData: Record<string, MetaData> = {};
 
   /**
    * Creates an instance of the review modal component.
@@ -45,8 +42,11 @@ export class ReviewModalComponent {
     public dialogRef: MatDialogRef<ReviewModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ReviewModalData,
   ) {
-    this.metaData = data.metaData;
-    this.registrationCallbackSet = data.registrationCallbackSet;
+    const allData = data.metaData;
+    this.metaData['Author Metadata'] = allData.slice(0, 5);
+    this.metaData['Donor Metadata'] = allData.slice(5, 9);
+    this.metaData['Tissue Block Registration'] = allData.slice(9, 16);
+    console.warn(this.metaData);
   }
 
   /**
