@@ -46,7 +46,6 @@ export class ReviewModalComponent {
     this.metaData['Author Metadata'] = allData.slice(0, 5);
     this.metaData['Donor Metadata'] = allData.slice(5, 9);
     this.metaData['Tissue Block Registration'] = allData.slice(9, 16);
-    console.warn(this.metaData);
   }
 
   /**
