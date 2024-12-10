@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 import { MetaData } from '../../../core/models/meta-data';
 
@@ -32,6 +33,8 @@ export class ReviewModalComponent {
    */
   metaData: Record<string, MetaData> = {};
 
+  private readonly snackbar = inject(SnackbarService);
+
   /**
    * Creates an instance of the review modal component.
    *
@@ -57,5 +60,10 @@ export class ReviewModalComponent {
     setTimeout(() => {
       this.dialogRef.close();
     }, 250);
+  }
+
+  downloadClicked(): void {
+    this.dialogRef.close(true);
+    this.snackbar.open('File downloaded', '', false, 'end', { duration: 5000 });
   }
 }
