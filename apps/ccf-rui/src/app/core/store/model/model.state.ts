@@ -79,6 +79,7 @@ export interface ModelStateModel {
   extractionSets: ExtractionSet[];
   consortium?: string;
   doi?: string;
+  placementDate: string;
 }
 
 /**
@@ -104,6 +105,7 @@ export const MODEL_DEFAULTS: ModelStateModel = {
   extractionSites: [],
   anatomicalStructures: [],
   extractionSets: [],
+  placementDate: '',
 };
 
 /**
@@ -449,6 +451,11 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   @DataAction()
   setDoi(doi?: string): void {
     this.ctx.patchState({ doi });
+  }
+
+  @DataAction()
+  setPlacementDate(placementDate?: string): void {
+    this.ctx.patchState({ placementDate });
   }
 
   /**

@@ -277,6 +277,6 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
       .replace(/-/g, '')
       .replace(/(.{1,4})/g, '$1-')
       .slice(0, -1);
-    return 'https://orcid.org/' + idWithHyphens;
+    return idWithHyphens;
   }
 }

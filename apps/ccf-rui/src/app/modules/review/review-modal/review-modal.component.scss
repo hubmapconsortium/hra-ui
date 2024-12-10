@@ -1,66 +1,84 @@
 :host {
-  .ccf-about.wrapper {
-    .container {
-      .close {
-        .close-icon {
-          float: right;
-          margin-top: 1rem;
-          margin-right: 1rem;
-          cursor: pointer;
-        }
+  mat-dialog-content {
+    --mat-dialog-content-padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    color: var(--sys-secondary);
+  }
+
+  .type-title,
+  .data-value {
+    color: var(--sys-primary-fixed);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    font: var(--sys-headline-small);
+    margin-bottom: 0.75rem;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+
+  .metadata-tables {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .type-title {
+    font: var(--sys-title-small);
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    font: var(--sys-label-medium);
+
+    td {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #acb5c3;
+      border-right: 1px solid #acb5c3;
+    }
+
+    tr td:first-child {
+      border-left: 1px solid #acb5c3;
+      width: 14.5rem;
+      background-color: var(--sys-surface-container);
+    }
+
+    tr:first-child {
+      td {
+        border-top: 1px solid #acb5c3;
       }
 
-      .content {
-        padding: 2rem;
-        background-color: white;
-
-        .title {
-          text-align: center;
-          font-size: 1.5rem;
-          margin-bottom: 0;
-          font-weight: 500;
-        }
-
-        .mat-typography {
-          justify-content: space-around;
-          display: flex;
-          font-weight: 500;
-          font-size: 1rem;
-
-          .display-fields {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            width: 100%;
-
-            .field {
-              display: flex;
-
-              .label {
-                width: 50%;
-                text-align: right;
-                padding-right: 1rem;
-              }
-
-              .data {
-                width: 50%;
-                text-align: left;
-                padding-left: 1rem;
-              }
-            }
-          }
-        }
+      td:first-child {
+        border-top-left-radius: 0.5rem;
       }
 
-      .footer {
-        padding-top: 1.5rem;
-        display: flex;
-        justify-content: space-around;
-
-        .download-button {
-          padding: 0 1rem;
-          transition: 0.6s;
-        }
+      td:last-child {
+        border-top-right-radius: 0.5rem;
       }
     }
+
+    tr:last-child {
+      td:first-child {
+        border-bottom-left-radius: 0.5rem;
+      }
+
+      td:last-child {
+        border-bottom-right-radius: 0.5rem;
+      }
+    }
+  }
+
+  .download-button {
+    width: fit-content;
+    margin-top: 1.5rem;
+    min-height: 2.5rem;
   }
 }
