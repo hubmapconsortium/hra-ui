@@ -54,3 +54,9 @@
     }
   }
 }
+
+::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
+  z-index: 2000 !important;
+  --mdc-snackbar-container-color: var(--sys-surface-dim);
+  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+}

@@ -17,7 +17,7 @@ export interface Person {
   firstName: string;
   middleName?: string;
   lastName: string;
-  email: string;
+  email?: string;
   orcidId?: string;
 }
 
@@ -45,7 +45,6 @@ export interface PageStateModel {
     user: {
       firstName: '',
       lastName: '',
-      email: '',
     },
     registrationStarted: false,
     useCancelRegistrationCallback: false,
@@ -180,7 +179,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
   }
 
   @DataAction()
-  setEmail(email: string): void {
+  setEmail(email?: string): void {
     this.ctx.setState(
       patch({
         user: patch({

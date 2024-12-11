@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TrackingPopupModule } from 'ccf-shared';
-import { AppWebComponent } from './app-web-component.component';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { ContentModule } from './modules/content/content.module';
-import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
-import { RegistrationModalModule } from './modules/registration-modal/registration-modal/registration-modal.module';
-import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
-import { DrawerModule } from './shared/components/drawer/drawer.module';
-import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { ButtonModule } from '@hra-ui/design-system/button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { MatMenuModule } from '@angular/material/menu';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ButtonModule } from '@hra-ui/design-system/button';
-import { MatDividerModule } from '@angular/material/divider';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { TrackingPopupModule } from 'ccf-shared';
+import { provideNgxMask } from 'ngx-mask';
+import { AppWebComponent } from './app-web-component.component';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { ContentModule } from './modules/content/content.module';
+import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
+import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
+import { DrawerModule } from './shared/components/drawer/drawer.module';
 
 @NgModule({
   imports: [
@@ -36,7 +36,6 @@ import { MatDividerModule } from '@angular/material/divider';
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,
-    RegistrationModalModule,
     TrackingPopupModule,
     MatSnackBarModule,
     NavHeaderButtonsComponent,
@@ -51,6 +50,7 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
+    provideNgxMask(),
     provideDesignSystem(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

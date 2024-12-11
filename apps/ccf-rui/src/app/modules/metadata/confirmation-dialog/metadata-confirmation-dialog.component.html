@@ -1,0 +1,17 @@
+<h2 mat-dialog-title class="title">Confirm: Organ Update</h2>
+<button mat-icon-button mat-dialog-close class="close">
+  <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+  <hra-error-indicator
+    [errors]="[
+      'Updates to organ metadata reset all tissue block positions and anatomical structure tags. Are you sure you want to update metadata?',
+    ]"
+  ></hra-error-indicator>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true">Update Metadata</button>
+</mat-dialog-actions>

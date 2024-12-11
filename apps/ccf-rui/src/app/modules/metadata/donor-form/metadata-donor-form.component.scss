@@ -1,0 +1,23 @@
+:host {
+  display: block;
+
+  .subheader {
+    font: var(--sys-title-small);
+    color: var(--sys-primary);
+    margin-bottom: 1rem;
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: 8rem 12.5rem auto;
+    gap: 1.5rem;
+
+    .field:not(.mat-form-field-invalid) {
+      height: 3rem;
+    }
+
+    .doi {
+      grid-column: 1 / span 3;
+    }
+  }
+}

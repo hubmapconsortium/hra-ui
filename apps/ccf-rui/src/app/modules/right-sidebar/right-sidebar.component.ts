@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, inject, Input, Output } from '@angular/core';
 
 import { AnatomicalStructureTagState } from '../../core/store/anatomical-structure-tags/anatomical-structure-tags.state';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
 import { map } from 'rxjs';
+import { MetadataService } from '../metadata/metadata.service';
 
 /**
  * The right sidebar
@@ -27,6 +28,8 @@ export class RightSidebarComponent {
   readonly position$ = this.model.position$.pipe(
     map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
   );
+
+  protected readonly metadata = inject(MetadataService);
 
   /**
    * Creates an instance of right sidebar component.

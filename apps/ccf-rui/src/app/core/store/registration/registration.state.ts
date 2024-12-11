@@ -389,6 +389,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       creator_first_name: page.user.firstName,
       creator_last_name: page.user.lastName,
       creator_middle_name: page.user.middleName,
+      creator_email: page.user.email,
       creator_orcid: page.user.orcidId,
       creation_date: this.currentDate,
       ccf_annotations: tags.map((tag) => tag.id),
@@ -399,6 +400,8 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       y_dimension: +model.blockSize.y.toFixed(3),
       z_dimension: +model.blockSize.z.toFixed(3),
       dimension_units: 'millimeter',
+      publication_doi: model.doi,
+      consortium: model.consortium,
 
       placement: {
         '@context': 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',

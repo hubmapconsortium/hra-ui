@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  inject,
   Injector,
   Input,
   OnDestroy,
@@ -14,12 +15,13 @@ import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
-
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
+import { MetadataService } from './modules/metadata/metadata.service';
+import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
 
 export interface User {
   firstName: string;
@@ -85,6 +87,8 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Input that allows toggling of 3D view on / off from outside the component */
   @Input() view3D = false;
 
+  private readonly metadata = inject(MetadataService);
+
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
 
@@ -128,6 +132,8 @@ export class AppComponent implements OnDestroy, OnInit {
       this.model.setViewSide(viewSide ?? 'anterior');
       cdr.markForCheck();
     });
+
+    openScreenSizeNotice(dialog);
   }
 
   ngOnInit(): void {
@@ -145,6 +151,11 @@ export class AppComponent implements OnDestroy, OnInit {
     this.themeMode$.next('light');
 
     this.theming.setTheme(`${this.theme}-theme-light`);
+
+    const { editRegistration, user, organ } = this.globalConfig.snapshot;
+    if (!editRegistration && (!user || !organ)) {
+      this.metadata.openModal('create');
+    }
   }
 
   /**

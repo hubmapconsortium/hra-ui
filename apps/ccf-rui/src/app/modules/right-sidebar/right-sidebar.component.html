@@ -115,7 +115,7 @@
 </hra-expansion-panel>
 <div style="flex-grow: 1"></div>
 <div class="buttons">
-  <button mat-button hraButtonSize="medium">Edit Metadata</button>
+  <button mat-button hraButtonSize="medium" (click)="metadata.openModal('edit')">Edit Metadata</button>
 
   <ccf-review-button
     class="review-button"
