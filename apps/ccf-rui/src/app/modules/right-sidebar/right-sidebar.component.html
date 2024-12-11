@@ -36,7 +36,7 @@
       [matMenuTriggerFor]="help"
       hraIconButtonSize="large"
       aria-label="Icon to open nested menu"
-      hraMicroTooltip="More"
+      hraMicroTooltip="App guides and training resources"
     >
       <mat-icon>help</mat-icon>
     </button>
@@ -68,15 +68,15 @@
   </hra-expansion-panel-header-content>
   <div class="position">
     <span class="label">Position</span>
-    <div class="x-position box">
+    <div class="x-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">X</span>
       <span class="position-value">{{ (position$ | async)?.x }}</span>
     </div>
-    <div class="y-position box">
+    <div class="y-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">Y</span>
       <span class="position-value">{{ (position$ | async)?.y }}</span>
     </div>
-    <div class="z-position box">
+    <div class="z-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">Z</span>
       <span class="position-value">{{ (position$ | async)?.z }}</span>
     </div>

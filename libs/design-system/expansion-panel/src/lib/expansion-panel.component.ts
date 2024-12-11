@@ -15,6 +15,7 @@ import {
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BODY_EXPANSION } from './expansion-panel-animations';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 /** Counter to keep track of distinct panels */
 let idCounter = 0;
@@ -41,7 +42,7 @@ export class ExpansionPanelHeaderContentComponent {}
 @Component({
   selector: 'hra-expansion-panel',
   standalone: true,
-  imports: [CdkAccordionModule, MatIconButton, MatIconModule],
+  imports: [CdkAccordionModule, MatIconButton, MatIconModule, MicroTooltipDirective],
   animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',
   styleUrl: './expansion-panel.component.scss',
@@ -56,6 +57,9 @@ export class ExpansionPanelComponent {
 
   /** Flag to denote panel as disabled */
   readonly disabled = input(false, { transform: booleanAttribute });
+
+  /** Tooltip for header title */
+  readonly tooltip = input<string>();
 
   /** Increments the counter on every declaration */
   protected readonly id = idCounter++;

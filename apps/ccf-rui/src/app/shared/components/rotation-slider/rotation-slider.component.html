@@ -1,10 +1,11 @@
 <div class="header">
-  <span class="text title" hraMicroTooltip="Use sliders below to rotate tissue block for registration">Rotation</span>
+  <span class="text title">Rotation</span>
 </div>
 
 @for (axis of axisOptions; track axis) {
   <ccf-slider-box
     class="slider-box"
+    hraMicroTooltip="Rotation is measured in degrees"
     [sliderAxis]="axis"
     [displayedSlider]="displayedSlider"
     [rotation]="rotation"

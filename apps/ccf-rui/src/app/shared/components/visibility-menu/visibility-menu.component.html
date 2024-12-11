@@ -3,8 +3,14 @@
   [class.selected]="selection ? getId(0, selection) === getId(0, item) : false"
   *ngFor="let item of items; trackBy: getId"
 >
-  <mat-icon (click)="menuOpen(item)" class="opacity-icon" [class.fade]="!item.visible" svgIcon="app:opacity"></mat-icon>
-  <div class="item-name">
+  <mat-icon
+    hraMicroTooltip="Edit opacity"
+    (click)="menuOpen(item)"
+    class="opacity-icon"
+    [class.fade]="!item.visible"
+    svgIcon="app:opacity"
+  ></mat-icon>
+  <div class="item-name" [hraMicroTooltip]="item.name.charAt(0).toUpperCase() + item.name.slice(1)">
     {{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}
   </div>
 

@@ -9,13 +9,13 @@
     <div class="header">
       @if (!disabled()) {
         <button mat-icon-button data-testid="toggle" (click)="accordionItem.toggle()">
-          <mat-icon>
+          <mat-icon [hraMicroTooltip]="accordionItem.expanded ? 'Collapse' : 'Expand'">
             {{ accordionItem.expanded ? 'remove' : 'add' }}
           </mat-icon>
         </button>
       }
 
-      <span class="title" [attr.id]="titleId">
+      <span class="title" [attr.id]="titleId" [hraMicroTooltip]="tooltip()">
         {{ title() }}
       </span>
 

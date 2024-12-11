@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { VisibilityItem } from '../../core/models/visibility-item';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
@@ -30,24 +29,14 @@ export class LeftSidebarComponent {
    */
   extractionSiteTooltip = '';
 
+  asTooltip =
+    'Parts of the body in defined locations and regions, including the surface, internal organs and tissues. These structures may be described by gross or microscopic morphology and include functional tissue units and highly organized cellular ecosystems (such as alveoli in the lungs).';
+
+  landmarksTooltip = 'Some organs have predefined landmarks to help guide manual tissue registration.';
+
   constructor(
     readonly page: PageState,
     readonly model: ModelState,
     readonly registration: RegistrationState,
   ) {}
-
-  /**
-   * Updates extraction site tooltip to either the VisibilityItem passed in's
-   * tooltip property, or an empty string if undefined.
-   *
-   * @param item The VisibilityItem which we want to show the tooltip of, or
-   * undefined.
-   */
-  updateExtractionSiteTooltip(item: VisibilityItem | undefined): void {
-    if (item?.tooltip) {
-      this.extractionSiteTooltip = item.tooltip;
-    } else {
-      this.extractionSiteTooltip = '';
-    }
-  }
 }
