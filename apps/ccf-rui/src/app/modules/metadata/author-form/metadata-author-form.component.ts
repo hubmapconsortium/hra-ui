@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { NgxMaskDirective } from 'ngx-mask';
+import { removeOrcidBaseUrl } from '../../../shared/utils/orcid';
 
 export interface AuthorFormControls {
   firstName: FormControl<string>;
@@ -23,4 +24,10 @@ export interface AuthorFormControls {
 })
 export class MetadataAuthorFormComponent {
   readonly form = input.required<FormGroup<AuthorFormControls>>();
+
+  protected readonly orcidInputFn = (value: unknown) => removeOrcidBaseUrl(String(value).trim());
+
+  constructor() {
+    console.log(this);
+  }
 }

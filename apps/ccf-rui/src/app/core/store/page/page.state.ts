@@ -9,6 +9,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map, tap, withLatestFrom } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
+import { normalizeOrcid } from '../../../shared/utils/orcid';
 import { GlobalConfig } from '../../services/config/config';
 import { RegistrationState } from '../registration/registration.state';
 
@@ -166,16 +167,14 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
    */
   @DataAction()
   setOrcidId(id?: string): void {
+    const orcidId = id && normalizeOrcid(id);
+    const orcidValid = id === undefined || orcidId !== undefined;
     this.ctx.setState(
       patch({
-        user: patch({
-          orcidId: id ? this.orcidToUri(id) : undefined,
-        }),
+        user: patch({ orcidId }),
+        orcidValid,
       }),
     );
-    this.ctx.patchState({
-      orcidValid: id ? this.isOrcidValid() : true,
-    });
   }
 
   @DataAction()
@@ -249,33 +248,11 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
   }
 
   /**
-   * Checks if current orcid value is in the valid format
-   * @returns true if orcid valid or blank
-   */
-  isOrcidValid(): boolean {
-    const orcId = this.uriToOrcid(this.snapshot.user.orcidId);
-    return !!(!orcId || orcId.match('^[a-zA-Z0-9]{4}(-[a-zA-Z0-9]{4}){3}$'));
-  }
-
-  /**
    * Converts orcid URI to a regular orcid value
    * @param uri orcid uri
    * @returns orcid id
    */
   uriToOrcid(uri?: string): string {
     return uri ? uri.split('/').slice(-1)[0] : '';
-  }
-
-  /**
-   * Converts orcid to URI
-   * @param id orcid id
-   * @returns orcid URI
-   */
-  private orcidToUri(id: string): string {
-    const idWithHyphens = id
-      .replace(/-/g, '')
-      .replace(/(.{1,4})/g, '$1-')
-      .slice(0, -1);
-    return 'https://orcid.org/' + idWithHyphens;
   }
 }

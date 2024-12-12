@@ -66,7 +66,7 @@ export class MetadataService {
     modelState.setOrgan(organ);
     modelState.setSex(sex);
     modelState.setConsortium(consortium);
-    modelState.setDoi(doi);
+    modelState.setDoi(doi && `https://doi.org/${doi}`);
     if (organ !== previousOrgan) {
       modelState.setOrganDefaults();
     }

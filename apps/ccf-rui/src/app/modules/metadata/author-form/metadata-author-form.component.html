@@ -9,7 +9,7 @@
   </mat-form-field>
 
   <mat-form-field class="field middlename">
-    <mat-label>Middle name (optional)</mat-label>
+    <mat-label>Middle name</mat-label>
     <input matInput formControlName="middleName" />
   </mat-form-field>
 
@@ -22,8 +22,14 @@
   </mat-form-field>
 
   <mat-form-field class="field orcid">
-    <mat-label>ORCID (optional)</mat-label>
-    <input matInput formControlName="orcidId" mask="AAAA-AAAA-AAAA-AAAA" [validation]="true" />
+    <mat-label>ORCID</mat-label>
+    <input
+      matInput
+      formControlName="orcidId"
+      mask="AAAA-AAAA-AAAA-AAAA"
+      [inputTransformFn]="orcidInputFn"
+      [dropSpecialCharacters]="false"
+    />
     @if (form().hasError('mask', 'orcidId')) {
       <mat-error>Please enter a valid ORCID</mat-error>
     }
