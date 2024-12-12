@@ -7,7 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NumbersOnlyModule } from 'ccf-shared';
 import { SlicesInputComponent } from './slices-input.component';
-import { provideInput } from '@hra-ui/design-system/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -20,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NumbersOnlyModule,
     MatFormFieldModule,
   ],
-  providers: [provideInput(), importProvidersFrom(BrowserAnimationsModule)],
+  providers: [importProvidersFrom(BrowserAnimationsModule)],
   declarations: [SlicesInputComponent],
   exports: [SlicesInputComponent],
 })

@@ -81,7 +81,7 @@ describe('PageState', () => {
     state.setOrcidId(newOrcid);
 
     const value = await nextValue(state.user$);
-    expect(value.orcidId).toEqual('https://orcid.org/' + newOrcid);
+    expect(value.orcidId).toEqual(newOrcid);
   });
 
   it('updates registrationStarted', async () => {

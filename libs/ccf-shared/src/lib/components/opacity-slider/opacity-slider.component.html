@@ -1,6 +1,6 @@
 <div class="icons">
   @if (opacity > 0) {
-    <button mat-icon-button class="visibility icon visible" (click)="toggleVisibility()">
+    <button mat-icon-button class="visibility icon visible" (click)="toggleVisibility()" hraMicroTooltip="Hide">
       <mat-icon>visibility_off</mat-icon>
     </button>
   } @else {
@@ -8,7 +8,7 @@
       <mat-icon>visibility_on</mat-icon>
     </button>
   }
-  <button mat-icon-button class="icon reset" (click)="resetOpacity()">
+  <button mat-icon-button class="icon reset" (click)="resetOpacity()" hraMicroTooltip="Reset">
     <mat-icon>reset_settings</mat-icon>
   </button>
 </div>

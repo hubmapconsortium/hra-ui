@@ -119,7 +119,8 @@ export class ReviewButtonComponent implements OnChanges {
     this.page.patchState({ registrationStarted: false });
     const dialogRef = this.dialog.open(ReviewModalComponent, {
       panelClass: 'modal-animated',
-      width: '60rem',
+      minWidth: '40rem',
+      maxWidth: '40rem',
       data: {
         registrationCallbackSet: this.registrationCallbackSet,
         metaData: this.metaData,
