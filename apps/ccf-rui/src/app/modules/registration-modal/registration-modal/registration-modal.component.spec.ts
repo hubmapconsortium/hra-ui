@@ -49,6 +49,7 @@ const initialModelState = {
   extractionSites: [],
   anatomicalStructures: [],
   extractionSets: [],
+  placementDate: '01-01-01',
 };
 
 const initialPageState: PageStateModel = {
