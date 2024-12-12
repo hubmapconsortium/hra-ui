@@ -196,6 +196,29 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
       return '';
     }
     const organEntry = this.snapshot.placementPatches[organ];
-    return organEntry ? this.getLatestIri(organEntry.target) : organ;
+    if (organEntry) {
+      return this.getLatestIri(organEntry.target);
+    } else {
+      const organIris = Object.values(this.snapshot.organIRILookup);
+      const baseIri = this.getUnversionedOrganIri(organ);
+      const foundOrgan = organIris.find((o) => this.getUnversionedOrganIri(o) === baseIri);
+      return foundOrgan ?? organ;
+    }
+  }
+
+  /**
+   * HRA v2.0+ Reference organs include the version number in the IRI. To test if an old
+   * HRA v2.0+ registration organ has a newer version, we need the IRI without the version.
+   * This function removes the version, so that we can look for a newer version where applicable.
+   *
+   * @param organ the organ IRI to check
+   * @returns the organ IRI without a version
+   */
+  private getUnversionedOrganIri(organ: string): string {
+    if (organ.endsWith('#primary')) {
+      return organ.slice(0, organ.lastIndexOf('/'));
+    } else {
+      return organ;
+    }
   }
 }
