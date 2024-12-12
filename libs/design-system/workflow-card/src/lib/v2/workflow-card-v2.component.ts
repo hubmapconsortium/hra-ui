@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@ang
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 
+/** Actions placed next to the card title */
 @Component({
   selector: 'hra-workflow-card-actions',
   standalone: true,
@@ -11,6 +12,7 @@ import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 })
 export class WorkflowCardActionsComponent {}
 
+/** Additional content placed on very right side of the header */
 @Component({
   selector: 'hra-workflow-card-extra',
   standalone: true,
@@ -32,7 +34,10 @@ export class WorkflowCardExtraComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkflowCardV2Component {
+  /** Card title */
   readonly title = input.required<string>();
+  /** Step indicator value */
   readonly step = input(undefined, { transform: numberAttribute });
+  /** Load progress */
   readonly progress = input<number | undefined>(undefined);
 }
