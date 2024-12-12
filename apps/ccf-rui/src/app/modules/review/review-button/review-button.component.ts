@@ -56,6 +56,12 @@ export class ReviewButtonComponent implements OnChanges {
    */
   registrationIsValid = false;
 
+  get tooltip(): string {
+    return this.disabled
+      ? 'Tissue block does not collide with any anatomical structures'
+      : 'Review registration and submit/download.';
+  }
+
   /**
    * Creates an instance of review button component.
    *

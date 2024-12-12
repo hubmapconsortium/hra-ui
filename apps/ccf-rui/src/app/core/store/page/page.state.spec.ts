@@ -4,7 +4,7 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';
 import { Observable, lastValueFrom, of } from 'rxjs';
 import { take } from 'rxjs/operators';
-
+import { addOrcidBaseUrl } from '../../../shared/utils/orcid';
 import { GLOBAL_CONFIG } from '../../services/config/config';
 import { AnatomicalStructureTagState } from '../anatomical-structure-tags/anatomical-structure-tags.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
@@ -78,10 +78,11 @@ describe('PageState', () => {
 
   it('sets orcid', async () => {
     const newOrcid = '1111-1111-1111-1111';
+    const orcidUrl = addOrcidBaseUrl(newOrcid);
     state.setOrcidId(newOrcid);
 
     const value = await nextValue(state.user$);
-    expect(value.orcidId).toEqual(newOrcid);
+    expect(value.orcidId).toEqual(orcidUrl);
   });
 
   it('updates registrationStarted', async () => {
