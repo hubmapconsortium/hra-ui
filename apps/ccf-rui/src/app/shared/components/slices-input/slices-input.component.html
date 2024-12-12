@@ -10,10 +10,9 @@
       ccfNumbersOnly
       class="input"
       type="number"
-      [value]="slicesConfig.thickness"
+      [value]="emptyStringIfNaN(slicesConfig.thickness)"
       (keyup)="updateSlicesData($event, 'thickness')"
     />
-    <!-- <div matSuffix class="suffix" [class.show]="hasThicknessValue">μm</div> -->
   </mat-form-field>
 
   <mat-form-field class="field">
@@ -23,7 +22,7 @@
       ccfNumbersOnly
       class="input"
       type="number"
-      [value]="slicesConfig.numSlices"
+      [value]="emptyStringIfNaN(slicesConfig.numSlices)"
       (keyup)="updateSlicesData($event, 'numSlices')"
       matTooltip="Enter total number of sections"
     />

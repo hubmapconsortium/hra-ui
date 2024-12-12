@@ -32,6 +32,7 @@ mat-form-field.mat-mdc-form-field-type-mat-select {
   mat-select {
     .mat-mdc-select-value-text .mat-mdc-select-min-line {
       font: var(--sys-label-medium);
+      letter-spacing: var(--sys-label-medium-tracking);
     }
   }
 

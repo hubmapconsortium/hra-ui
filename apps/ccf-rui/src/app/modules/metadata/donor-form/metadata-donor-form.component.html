@@ -1,0 +1,59 @@
+<div class="subheader">Donor</div>
+<div class="fields" [formGroup]="form()">
+  <mat-form-field class="field sex">
+    <mat-label>Sex</mat-label>
+    <mat-select formControlName="sex" panelClass="options-container" disableRipple>
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+    </mat-select>
+    @if (form().hasError('required', 'sex')) {
+      <mat-error>Sex is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="field organ">
+    <mat-label>Organ</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="organ"
+      [matAutocomplete]="organAutocomplete"
+      (input)="organInput.next(organ.value)"
+      (focus)="organInput.next(organ.value)"
+      #organ
+    />
+    <mat-icon class="search-icon" matPrefix>search</mat-icon>
+    @if (form().hasError('required', 'organ')) {
+      <mat-error>Organ is required</mat-error>
+    }
+
+    <mat-autocomplete
+      autoActiveFirstOption
+      autoSelectActiveOption
+      requireSelection
+      [displayWith]="getOrganName"
+      #organAutocomplete="matAutocomplete"
+    >
+      @for (organ of filteredOrgans(); track organ) {
+        <mat-option [value]="organ">{{ organ.name }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="field consortium">
+    <mat-label>Consortium</mat-label>
+    <input type="text" matInput formControlName="consortium" [matAutocomplete]="consortium" />
+    <mat-icon class="search-icon" matPrefix>search</mat-icon>
+
+    <mat-autocomplete #consortium="matAutocomplete">
+      @for (consortium of filteredConsortiums(); track consortium) {
+        <mat-option [value]="consortium">{{ consortium }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="field doi">
+    <mat-label>Publication DOI</mat-label>
+    <input matInput formControlName="doi" />
+  </mat-form-field>
+</div>

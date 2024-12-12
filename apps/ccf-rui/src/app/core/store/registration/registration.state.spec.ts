@@ -83,6 +83,10 @@ describe('RegistrationState', () => {
       name: '',
       organ: '',
     },
+    slicesConfig: {
+      thickness: NaN,
+      numSlices: NaN,
+    },
   };
   const initialReferenceDataState: Partial<ReferenceDataStateModel> = {
     anatomicalStructures: {},

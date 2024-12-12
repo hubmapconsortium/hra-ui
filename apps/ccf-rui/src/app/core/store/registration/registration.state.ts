@@ -37,6 +37,10 @@ export interface RegistrationStateModel {
 
 const JSONLD_THROTTLE_DURATION = 100;
 
+function undefIfNaN(value: number): number | undefined {
+  return Number.isNaN(value) ? undefined : value;
+}
+
 /**
  * Data for model registrations
  */
@@ -406,16 +410,19 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       creator_first_name: page.user.firstName,
       creator_last_name: page.user.lastName,
       creator_middle_name: page.user.middleName,
+      creator_email: page.user.email,
       creator_orcid: page.user.orcidId,
       creation_date: this.currentDate,
       ccf_annotations: tags.map((tag) => tag.id),
-      slice_thickness: model.slicesConfig?.thickness || undefined,
-      slice_count: model.slicesConfig?.numSlices || undefined,
+      slice_thickness: undefIfNaN(model.slicesConfig.thickness),
+      slice_count: undefIfNaN(model.slicesConfig.numSlices),
 
       x_dimension: +model.blockSize.x.toFixed(3),
       y_dimension: +model.blockSize.y.toFixed(3),
       z_dimension: +model.blockSize.z.toFixed(3),
       dimension_units: 'millimeter',
+      publication_doi: model.doi,
+      consortium: model.consortium,
 
       placement: {
         '@context': 'https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld',

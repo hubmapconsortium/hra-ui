@@ -15,6 +15,8 @@ const DIRECTION_FACTORS: Record<string, number[]> = {
   d: [1, 0, 0],
 };
 
+const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
+
 /**
  * Behavioral component for spatial search keyboard UI
  */
@@ -80,11 +82,15 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    * @param target Keyboard event
    */
   handleKey(target: KeyboardEvent): void {
+    if (
+      this.disablePositionChange ||
+      !DIRECTION_KEYS.has(target.key.toLowerCase()) ||
+      target.target instanceof HTMLInputElement
+    ) {
+      return;
+    }
     if (target.shiftKey) {
       this.shiftPressed = true;
-    }
-    if (this.disablePositionChange) {
-      return;
     }
     target.preventDefault();
     this.updatePosition(target.key);

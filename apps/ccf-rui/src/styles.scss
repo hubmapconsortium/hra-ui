@@ -9,36 +9,3 @@ html,
 body {
   height: 100%;
 }
-
-// Reference: https://css-tricks.com/custom-scrollbars-in-webkit/
-::-webkit-scrollbar {
-  width: 0.75rem;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(from var(--sys-primary) r g b / 0.87);
-  -webkit-border-radius: 0.625rem;
-  border-radius: 0.625rem;
-}
-
-.usage-snackbar {
-  --mdc-snackbar-container-color: var(--sys-surface-dim);
-  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
-}
-
-// Keeps the usage snackbar on top of the registration modal
-.cdk-global-overlay-wrapper:first-of-type {
-  z-index: 1001;
-}
-
-.menu-divider {
-  --mat-divider-color: #acb5c3;
-  --mat-menu-divider-bottom-spacing: 0;
-  --mat-menu-divider-top-spacing: 0;
-}

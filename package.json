@@ -81,6 +81,7 @@
     "ngx-color-picker": "^17.0.0",
     "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^18.0.0",
+    "ngx-mask": "^18.0.4",
     "ngx-mat-select-search": "^7.0.6",
     "ngx-scrollbar": "^15.1.0",
     "ngxs-reset-plugin": "^4.0.0",
