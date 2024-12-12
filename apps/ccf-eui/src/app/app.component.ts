@@ -196,6 +196,7 @@ export class AppComponent implements OnInit {
           snackBar.dismiss();
         },
       },
+      panelClass: 'usage-snackbar',
       duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
     });
 

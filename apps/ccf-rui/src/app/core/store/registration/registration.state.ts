@@ -214,6 +214,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     this.model.setSlicesConfig({ thickness: reg.slice_thickness || NaN, numSlices: reg.slice_count || NaN });
 
     this.model.setPosition({ x: place.x_translation, y: place.y_translation, z: place.z_translation });
+    this.model.setPlacementDate(place.placement_date);
     const iris = new Set<string>(reg.ccf_annotations);
     this.tags.addTags(
       this.model.snapshot.anatomicalStructures
@@ -352,20 +353,36 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     const data: MetaData = [];
 
     if (!page.registrationCallbackSet) {
-      data.push({ label: 'First Name', value: page.user.firstName }, { label: 'Last Name', value: page.user.lastName });
+      data.push(
+        { label: 'First Name', value: page.user.firstName },
+        { label: 'Middle name (optional)', value: page.user.middleName },
+        { label: 'Last Name', value: page.user.lastName },
+        { label: 'Email', value: page.user.email },
+        { label: 'ORCID (optional)', value: page.user.orcidId },
+      );
     }
 
     data.push(
-      { label: 'Reference Organ Name', value: model.organ.name },
-      { label: 'Tissue Block Dimensions (mm)', value: this.xyzTripletToString(model.blockSize) },
-      { label: 'Tissue Block Position (mm)', value: this.xyzTripletToString(model.position) },
-      { label: 'Tissue Block Rotation', value: this.xyzTripletToString(model.rotation) },
+      { label: 'Sex', value: model.sex ? model.sex.charAt(0).toUpperCase() + model.sex.slice(1) : undefined },
+      { label: 'Organ', value: model.organ.name },
+      { label: 'Publication DOI (optional)', value: model.doi },
+      { label: 'Consortium (optional)', value: model.consortium },
+      { label: 'Position (mm)', value: this.xyzTripletToString(model.position) },
+      { label: 'Size (mm)', value: this.xyzTripletToString(model.blockSize) },
+      { label: 'Rotation (degrees)', value: this.xyzTripletToString(model.rotation) },
+      { label: 'Tissue section thickness (µm)', value: model.slicesConfig.thickness.toString() },
+      { label: 'Tissue #sections', value: model.slicesConfig.numSlices.toString() },
       { label: 'Anatomical Structure Tags', value: tags.map((t) => t.label).join(', ') },
-      { label: 'Time Stamp', value: this.currentDate },
-      { label: 'Alignment ID', value: this.currentIdentifier },
+      { label: 'Placement date', value: this.getDate(model.placementDate) },
+      // { label: 'Alignment ID', value: this.currentIdentifier },
     );
 
     return data;
+  }
+
+  private getDate(datestring: string) {
+    const match = datestring.match('d{4}-d{2}-d{2}');
+    return match ? match[0] : this.currentDate;
   }
 
   /**
