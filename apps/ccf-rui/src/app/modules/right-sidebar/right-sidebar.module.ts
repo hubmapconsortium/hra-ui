@@ -3,8 +3,16 @@ import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { InfoButtonModule } from 'ccf-shared';
 
 import { BlockSizeInputModule } from '../../shared/components/block-size-input/block-size-input.module';
@@ -14,14 +22,6 @@ import { TagListModule } from '../../shared/components/tag-list/tag-list.module'
 import { TagSearchModule } from '../../shared/components/tag-search/tag-search.module';
 import { ReviewButtonModule } from '../review/review-button/review-button.module';
 import { RightSidebarComponent } from './right-sidebar.component';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
-import { MatMenuModule } from '@angular/material/menu';
-import { ButtonModule } from '@hra-ui/design-system/button';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
 @NgModule({
   imports: [
@@ -31,7 +31,6 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
     MatDividerModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatTooltipModule,
 
     BlockSizeInputModule,
     ReviewButtonModule,
@@ -48,6 +47,7 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
     ButtonModule,
     IconButtonSizeDirective,
     MatDividerModule,
+    MicroTooltipDirective,
   ],
   declarations: [RightSidebarComponent],
   exports: [RightSidebarComponent],
