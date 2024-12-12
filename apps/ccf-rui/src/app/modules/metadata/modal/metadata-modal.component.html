@@ -66,7 +66,12 @@
             <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
           </button>
         } @else {
-          <button mat-flat-button hraPrimaryButton type="submit" [disabled]="metadataForm.invalid">
+          <button
+            mat-flat-button
+            hraPrimaryButton
+            type="submit"
+            [disabled]="metadataForm.pristine || metadataForm.invalid"
+          >
             Update Metadata
           </button>
         }
