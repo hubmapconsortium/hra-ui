@@ -4,6 +4,7 @@ import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { ModelState, ModelStateModel } from '../../core/store/model/model.state';
 import { PageState, PageStateModel } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
+import { normalizeDoi } from '../../shared/utils/doi';
 import {
   MetadataModalComponent,
   MetadataModalConfig,
@@ -66,7 +67,7 @@ export class MetadataService {
     modelState.setOrgan(organ);
     modelState.setSex(sex);
     modelState.setConsortium(consortium);
-    modelState.setDoi(doi && `https://doi.org/${doi}`);
+    modelState.setDoi(doi && normalizeDoi(doi));
     if (organ !== previousOrgan) {
       modelState.setOrganDefaults();
     }
