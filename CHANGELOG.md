@@ -62,6 +62,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ## @hra-ui/ccf-eui
 
+### 4.1.0 - 2024-12-13
+
+- Update to support HRA v2.2 (8th Release)
+
 ### 4.0.0 - 2024-12-04
 
 - Finished migration from [hubmapconsortium/ccf-ui](https://github.com/hubmapconsortium/ccf-ui)
@@ -81,6 +85,17 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - See [changelog](https://github.com/hubmapconsortium/ccf-ui/blob/main/CHANGELOG.md) in previous reporitory
 
 ## @hra-ui/ccf-rui
+
+### 4.1.0 - 2024-12-13
+
+- Updated UI to use [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+
+#### Added
+
+- Additional metadata can now be specified during registration. The following fields are available:
+  - Email
+  - Consortium
+  - Publication DOI
 
 ### 4.0.0 - 2024-12-04
 
