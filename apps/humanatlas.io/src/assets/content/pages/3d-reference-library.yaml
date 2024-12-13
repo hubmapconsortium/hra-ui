@@ -355,21 +355,21 @@
           image: assets/images/renal-pelvis.svg
           alt: Renal Pelvis icon
           tissueData:
-            - name: Female,, L
+            - name: Female, L
               url: https://purl.humanatlas.io/ref-organ/renal-pelvis-female-left/v1.0
-              alt: Renal Pelvis, Female,, Left
+              alt: Renal Pelvis, Female, Left
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-female-left/v1.0/assets/3d-vh-f-renal-pelvis-l.glb
-            - name: Female,, R
+            - name: Female, R
               url: https://purl.humanatlas.io/ref-organ/renal-pelvis-female-right/v1.0
-              alt: Renal Pelvis, Female,, Right
+              alt: Renal Pelvis, Female, Right
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-female-right/v1.0/assets/3d-vh-f-renal-pelvis-r.glb
-            - name: male,, L
+            - name: Male, L
               url: https://purl.humanatlas.io/ref-organ/renal-pelvis-male-left/v1.0
-              alt: Renal Pelvis, male,, Left
+              alt: Renal Pelvis, Male, Left
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-male-left/v1.0/assets/3d-vh-m-renal-pelvis-l.glb
-            - name: male,, R
+            - name: Male, R
               url: https://purl.humanatlas.io/ref-organ/renal-pelvis-male-right/v1.0
-              alt: Renal Pelvis, male,, Right
+              alt: Renal Pelvis, Male, Right
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-male-right/v1.0/assets/3d-vh-m-renal-pelvis-r.glb
         - name: Skin
           image: assets/images/skin.svg
