@@ -33,12 +33,14 @@ const testModel: Immutable<ModelStateModel> = {
   extractionSites: testVisibilityItems,
   anatomicalStructures: testVisibilityItems,
   extractionSets: testExtractionSets,
+  placementDate: '01-01-01',
 };
 
 const testPage: Immutable<PageStateModel> = {
   user: {
     firstName: 'John',
     lastName: 'Doe',
+    email: 'foo@gmail.com',
   },
   registrationStarted: false,
   useCancelRegistrationCallback: false,
@@ -68,6 +70,7 @@ describe('RegistrationState', () => {
       lastName: 'bar',
       middleName: 'middle',
       orcidId: '1111-1111-1111-1111',
+      email: 'foo@gmail.com',
     },
   };
   const initialModelState: Partial<ModelStateModel> = {
@@ -79,6 +82,10 @@ describe('RegistrationState', () => {
       src: '',
       name: '',
       organ: '',
+    },
+    slicesConfig: {
+      thickness: NaN,
+      numSlices: NaN,
     },
   };
   const initialReferenceDataState: Partial<ReferenceDataStateModel> = {
@@ -169,20 +176,6 @@ describe('RegistrationState', () => {
     state.ngxsOnInit();
   });
 
-  describe('.metadata$', () => {
-    it('is based on current state', async () => {
-      const value = await nextValue(state.metadata$);
-      expect(value).toContain({ label: 'Tissue Block Rotation', value: '0, 0, 0' });
-    });
-
-    it('has extra fields if cancel registration callback is set', async () => {
-      pageStateSubject.next({ ...initialPageState, useCancelRegistrationCallback: false });
-
-      const value = await nextValue(state.metadata$);
-      expect(value).toContain({ label: 'First Name', value: 'foo' });
-    });
-  });
-
   describe('.valid$', () => {
     it('creates valid$ boolean', async () => {
       const value = await nextValue(state.valid$);
@@ -234,14 +227,6 @@ describe('RegistrationState', () => {
       const value = await nextValue(state.previousRegistrations$);
       expect(value).toEqual([reg1]);
     });
-
-    // it('calls fetchPreviousRegistrations if available', async () => {
-    //   const spy = jasmine.createSpy().and.returnValue([[]]);
-    //   TestBed.inject(GlobalConfigState).setConfig({ fetchPreviousRegistrations: spy });
-
-    //   await nextValue(state.previousRegistrations$);
-    //   expect(spy).toHaveBeenCalled();
-    // });
 
     it('combines the results from fetchPreviousRegistrations and local registrations', async () => {
       const spy = jasmine.createSpy().and.returnValue([[reg2]]);

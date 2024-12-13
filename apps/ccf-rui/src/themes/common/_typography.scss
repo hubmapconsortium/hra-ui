@@ -1,6 +1,0 @@
-@use '@angular/material' as mat;
-
-$config: mat.m2-define-legacy-typography-config(
-  $body-1: mat.m2-define-typography-level(1rem, 1.5rem, 500),
-  $font-family: 'var(--ccf-ui-font, ""), Inter, Inter Variable, sans-serif',
-);

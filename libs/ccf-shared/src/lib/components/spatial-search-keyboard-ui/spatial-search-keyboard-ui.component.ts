@@ -24,32 +24,4 @@ export class SpatialSearchKeyboardUIComponent {
 
   /** Emits the key value when a key is hovered over */
   @Output() readonly keyHovered = new EventEmitter<string | undefined>();
-
-  /** List of keys and their arrow icons that appear when the key is pressed */
-  keyMap = [
-    {
-      key: 'w',
-      direction: 'north',
-    },
-    {
-      key: 's',
-      direction: 'south',
-    },
-    {
-      key: 'a',
-      direction: 'west',
-    },
-    {
-      key: 'd',
-      direction: 'east',
-    },
-    {
-      key: 'e',
-      direction: 'north_east',
-    },
-    {
-      key: 'q',
-      direction: 'south_west',
-    },
-  ];
 }

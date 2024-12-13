@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { TrackingPopupModule } from 'ccf-shared';
+import { provideNgxMask } from 'ngx-mask';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { DEFAULT_THEME } from './core/services/theming/theming.service';
 import { ContentModule } from './modules/content/content.module';
-import { HeaderModule } from './modules/header/header.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
-import { RegistrationModalModule } from './modules/registration-modal/registration-modal/registration-modal.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
-import { DrawerModule } from './shared/components/drawer/drawer.module';
 
 @NgModule({
   imports: [
@@ -22,21 +31,25 @@ import { DrawerModule } from './shared/components/drawer/drawer.module';
     BrowserAnimationsModule,
     CoreModule,
     MatIconModule,
-    DrawerModule,
-    HeaderModule,
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,
-    RegistrationModalModule,
     TrackingPopupModule,
     MatSnackBarModule,
+    NavHeaderButtonsComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    MatButtonToggleModule,
+    ButtonModule,
+    MatDividerModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
-    {
-      provide: DEFAULT_THEME,
-      useValue: 'hubmap-theme-light',
-    },
+    provideNgxMask(),
+    provideDesignSystem(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

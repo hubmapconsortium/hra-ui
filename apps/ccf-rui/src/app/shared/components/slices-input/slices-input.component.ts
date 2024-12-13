@@ -13,8 +13,8 @@ export interface SlicesConfig {
 
 /** Default values for slices config. */
 const DEFAULT_SLICES_CONFIG: SlicesConfig = {
-  thickness: NaN,
-  numSlices: NaN,
+  thickness: 0,
+  numSlices: 0,
 };
 
 /**
@@ -41,18 +41,15 @@ export class SlicesInputComponent {
   @Output() readonly slicesConfigChange = new EventEmitter<SlicesConfig>();
 
   /**
-   * Returns whether a valid thickness value has been entered.
-   */
-  get hasThicknessValue(): boolean {
-    return !isNaN(this.slicesConfig.thickness);
-  }
-
-  /**
    * Creates an instance of slices input component.
    *
    * @param ga Analytics service
    */
   constructor(private readonly ga: GoogleAnalyticsService) {}
+
+  emptyStringIfNaN(value: number): number | string {
+    return Number.isNaN(value) ? '' : value;
+  }
 
   /**
    * Limits the length of the input if needed and updates values when an input changes

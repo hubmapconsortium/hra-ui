@@ -15,21 +15,7 @@
     "body-ui",
     "eui",
     "node-dist-vis",
-    "lib:common"
-  ],
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#FF0043",
-    "activityBar.background": "#FF0043",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#0c5411",
-    "activityBarBadge.foreground": "#e7e7e7",
-    "sash.hoverBorder": "#FF0043",
-    "statusBar.background": "#B20A2F",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#FF0043",
-    "statusBarItem.remoteBackground": "#B20A2F",
-    "statusBarItem.remoteForeground": "#e7e7e7"
-  },
-  "peacock.remoteColor": "#B20A2F"
+    "lib:common",
+    "ccf-rui"
+  ]
 }

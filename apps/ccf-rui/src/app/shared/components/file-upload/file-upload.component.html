@@ -1,0 +1,22 @@
+@if (file) {
+  <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
+} @else {
+  <button
+    mat-flat-button
+    class="upload"
+    type="button"
+    (click)="fileInput.click()"
+    hraPrimaryButton
+    hraButtonSize="large"
+  >
+    <ng-content></ng-content>
+  </button>
+  <input
+    type="file"
+    style="display: none"
+    name="fileInput"
+    [attr.accept]="accept()"
+    (change)="load(fileInput)"
+    #fileInput
+  />
+}

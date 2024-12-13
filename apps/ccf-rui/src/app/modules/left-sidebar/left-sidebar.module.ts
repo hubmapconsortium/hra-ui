@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
-
-import { ExtractionSetDropdownModule } from '../../shared/components/extraction-set-dropdown/extraction-set-dropdown.module';
-import { NameInputModule } from '../../shared/components/name-input/name-input.module';
 import { VisibilityMenuModule } from '../../shared/components/visibility-menu/visibility-menu.module';
-import { VisibilityToggleModule } from '../../shared/components/visibility-toggle/visibility-toggle.module';
 import { LeftSidebarComponent } from './left-sidebar.component';
 
 @NgModule({
@@ -17,15 +17,16 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     CommonModule,
     MatExpansionModule,
     MatIconModule,
-    MatTooltipModule,
 
     MatDividerModule,
-    NameInputModule,
-    VisibilityToggleModule,
-    ExtractionSetDropdownModule,
     OpacitySliderModule,
     VisibilityMenuModule,
-    VisibilityToggleModule,
+    ExpansionPanelComponent,
+    ExpansionPanelHeaderContentComponent,
+    MatMenuModule,
+    IconButtonSizeDirective,
+    ButtonModule,
+    MicroTooltipDirective,
   ],
   declarations: [LeftSidebarComponent],
   exports: [LeftSidebarComponent],

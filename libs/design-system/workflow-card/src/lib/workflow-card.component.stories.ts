@@ -2,7 +2,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { WorkflowCardComponent } from './workflow-card.component';
 
 const meta: Meta = {
-  title: 'WorkflowCardComponent',
+  title: 'WorkflowCardV2Component',
   decorators: [
     moduleMetadata({
       imports: [WorkflowCardComponent],
@@ -22,16 +22,15 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-workflow-card>
-      <div>HEADER</div>
-      <div>placeholder row content</div>
-      <div>placeholder row content</div>
-      <div>placeholder row content</div>
-      <div>placeholder row content</div>
+    <hra-workflow-card title="Title" [step]="1">
+      <div class="placeholder">placeholder row content</div>
+      <div class="placeholder">placeholder row content</div>
+      <div class="placeholder">placeholder row content</div>
+      <div class="placeholder">placeholder row content</div>
     </hra-workflow-card>
     `,
     styles: [
-      `div {
+      `.placeholder {
         height: 3rem;
         text-align: center;
         font: var(--sys-display-small);

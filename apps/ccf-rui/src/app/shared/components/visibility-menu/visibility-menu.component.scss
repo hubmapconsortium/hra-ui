@@ -1,79 +1,50 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin-right: 0;
-  margin-left: 0;
-  max-height: 40vh;
+  max-height: 55vh;
   overflow-y: auto;
-  scrollbar-width: thin;
-
-  .icon {
-    border-radius: 0.25rem;
-  }
-
-  .reset {
-    transform: scaleX(-1);
-    cursor: pointer;
-    transition: 0.6s;
-    position: absolute;
-    top: 3rem;
-
-    &:hover {
-      border-radius: 2px;
-    }
-  }
 
   .item-entry {
     display: flex;
-    height: 2.25rem;
     align-items: center;
-    flex-shrink: 0;
-    position: relative;
+    border-radius: 0.25rem;
 
-    .opacity {
-      cursor: pointer;
+    &.selected {
+      z-index: 1;
+      background: color-mix(in srgb, var(--sys-tertiary) 20%, transparent);
     }
 
     .opacity-icon {
-      z-index: 1;
       transition: 0.6s;
+      min-width: 1.5rem;
+      cursor: pointer;
 
-      &:hover {
-        border-radius: 2px;
+      &.fade {
+        opacity: 0.12;
       }
     }
 
     .item-name {
+      font: var(--sys-label-small);
+      color: var(--sys-primary);
       user-select: none;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-left: 0.5rem;
-      opacity: 1;
-      transition-duration: 0.4s;
-      transition-timing-function: ease-in-out;
-      transition-property: opacity;
-      max-width: calc(100% - 2.5rem);
-
-      &.hidden {
-        opacity: 0;
-      }
+      margin-left: 0.25rem;
     }
 
     .slider {
-      width: calc(100% - 2rem);
-      transition-duration: 0.3s;
+      position: fixed;
+      left: 21rem;
       transition-timing-function: ease-in-out;
       transition-property: opacity;
-      left: 2rem;
-      position: absolute;
-      opacity: 1;
+      transition-duration: 0.3s;
 
       &.hidden {
-        opacity: 0;
         transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-        transition-property: opacity;
+        opacity: 0;
+        pointer-events: none;
       }
     }
   }

@@ -9,7 +9,9 @@
   mat-icon {
     margin-right: 0.5rem;
     color: var(--sys-error);
+    min-width: 1.5rem;
   }
+
   .error {
     font: var(--sys-label-large);
     letter-spacing: var(--sys-label-large-text-tracking);

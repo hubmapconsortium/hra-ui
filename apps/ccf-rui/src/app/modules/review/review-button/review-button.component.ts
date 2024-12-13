@@ -12,7 +12,6 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
 @Component({
   selector: 'ccf-review-button',
   templateUrl: './review-button.component.html',
-  styleUrls: ['./review-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewButtonComponent implements OnChanges {
@@ -56,6 +55,12 @@ export class ReviewButtonComponent implements OnChanges {
    * Decides whether or not to let the user open the registration / download modal
    */
   registrationIsValid = false;
+
+  get tooltip(): string {
+    return this.disabled
+      ? 'Tissue block does not collide with any anatomical structures'
+      : 'Review registration and submit/download.';
+  }
 
   /**
    * Creates an instance of review button component.
@@ -120,7 +125,8 @@ export class ReviewButtonComponent implements OnChanges {
     this.page.patchState({ registrationStarted: false });
     const dialogRef = this.dialog.open(ReviewModalComponent, {
       panelClass: 'modal-animated',
-      width: '60rem',
+      minWidth: '40rem',
+      maxWidth: '40rem',
       data: {
         registrationCallbackSet: this.registrationCallbackSet,
         metaData: this.metaData,

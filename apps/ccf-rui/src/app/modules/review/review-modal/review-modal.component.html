@@ -1,25 +1,27 @@
-<div class="ccf-about wrapper">
-  <div class="container">
-    <div class="close">
-      <mat-icon class="material-icons close-icon" (click)="close()">clear</mat-icon>
-    </div>
-    <div class="content">
-      <h2 class="title" mat-dialog-title>Registration Review</h2>
-
-      <mat-dialog-content class="mat-typography">
-        <div class="display-fields">
-          <div class="field" *ngFor="let data of metaData">
-            <div class="label">{{ data.label }}</div>
-            <div class="data">{{ data.value }}</div>
-          </div>
-        </div>
-      </mat-dialog-content>
-
-      <div class="footer">
-        <button mat-button class="download-button" (click)="dialogRef.close(true)">
-          {{ registrationCallbackSet ? 'REGISTER' : 'DOWNLOAD REGISTRATION DATA' }}
-        </button>
-      </div>
-    </div>
+<mat-dialog-content>
+  <div class="header">
+    <div class="title">Review and Download</div>
+    <div class="filler"></div>
+    <button mat-icon-button class="close" hraIconButtonSize="large">
+      <mat-icon (click)="close()">clear</mat-icon>
+    </button>
   </div>
-</div>
+
+  <div class="metadata-tables">
+    @for (type of ['Author Metadata', 'Donor Metadata', 'Tissue Block Registration']; track type) {
+      <div class="metadata-table">
+        <div class="type-title">{{ type }}</div>
+        <table>
+          @for (data of metaData[type]; track data) {
+            <tr>
+              <td class="data-label">{{ data.label }}</td>
+              <td class="data-value">{{ data.value }}</td>
+            </tr>
+          }
+        </table>
+      </div>
+    }
+  </div>
+
+  <button mat-button mat-flat-button class="download-button" (click)="downloadClicked()">Download</button>
+</mat-dialog-content>

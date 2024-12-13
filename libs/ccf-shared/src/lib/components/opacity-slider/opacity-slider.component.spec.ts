@@ -1,5 +1,4 @@
 import { Shallow } from 'shallow-render';
-
 import { OpacitySliderComponent } from './opacity-slider.component';
 import { OpacitySliderModule } from './opacity-slider.module';
 

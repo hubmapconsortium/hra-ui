@@ -1,18 +1,21 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 export interface Position {
   x: number;
   y: number;
   z: number;
 }
+
+const DIRECTION_FACTORS: Record<string, number[]> = {
+  q: [0, 0, 1],
+  e: [0, 0, -1],
+  w: [0, 1, 0],
+  s: [0, -1, 0],
+  a: [-1, 0, 0],
+  d: [1, 0, 0],
+};
+
+const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
 
 /**
  * Behavioral component for spatial search keyboard UI
@@ -21,6 +24,10 @@ export interface Position {
   selector: 'ccf-spatial-search-keyboard-ui-behavior',
   templateUrl: './spatial-search-keyboard-ui-behavior.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keydown)': 'handleKey($event)',
+    '(document:keyup)': 'keyUp($event)',
+  },
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
   /** HTML class */
@@ -55,50 +62,17 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    */
   updatePosition(key: string): void {
     this.currentDelta = this.shiftPressed ? this.shiftDelta : this.delta;
-    if (key === 'Shift') {
-      this.shiftPressed = true;
-    } else {
-      this.currentKey = key.toLowerCase();
-      switch (this.currentKey) {
-        case 'q':
-          this.position = {
-            ...this.position,
-            z: this.position.z + this.currentDelta,
-          };
-          break;
-        case 'e':
-          this.position = {
-            ...this.position,
-            z: this.position.z - this.currentDelta,
-          };
-          break;
-        case 'w':
-          this.position = {
-            ...this.position,
-            y: this.position.y + this.currentDelta,
-          };
-          break;
-        case 's':
-          this.position = {
-            ...this.position,
-            y: this.position.y - this.currentDelta,
-          };
-          break;
-        case 'a':
-          this.position = {
-            ...this.position,
-            x: this.position.x - this.currentDelta,
-          };
-          break;
-        case 'd':
-          this.position = {
-            ...this.position,
-            x: this.position.x + this.currentDelta,
-          };
-          break;
-        default:
-          break;
-      }
+    this.currentKey = key.toLowerCase();
+    const factors = DIRECTION_FACTORS[this.currentKey];
+    if (factors !== undefined) {
+      const { x, y, z } = this.position;
+      const delta = this.currentDelta;
+      this.position = {
+        x: x + factors[0] * delta,
+        y: y + factors[1] * delta,
+        z: z + factors[2] * delta,
+      };
+
       this.changePosition.emit(this.position);
     }
   }
@@ -107,10 +81,16 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    * Listens for keydown keyboard event and updates the position
    * @param target Keyboard event
    */
-  @HostListener('document:keydown', ['$event'])
   handleKey(target: KeyboardEvent): void {
-    if (this.disablePositionChange) {
+    if (
+      this.disablePositionChange ||
+      !DIRECTION_KEYS.has(target.key.toLowerCase()) ||
+      target.target instanceof HTMLInputElement
+    ) {
       return;
+    }
+    if (target.shiftKey) {
+      this.shiftPressed = true;
     }
     target.preventDefault();
     this.updatePosition(target.key);
@@ -120,7 +100,6 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
    * Listens for keyup keyboard event and updates currentKey / shiftPressed
    * @param target Keyboard event
    */
-  @HostListener('document:keyup', ['$event'])
   keyUp(target: KeyboardEvent): void {
     if (target.key === 'Shift') {
       this.shiftPressed = false;

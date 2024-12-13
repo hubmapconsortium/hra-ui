@@ -1,0 +1,46 @@
+<div class="subheader">Author</div>
+<div class="fields" [formGroup]="form()">
+  <mat-form-field class="field firstname">
+    <mat-label>First name</mat-label>
+    <input matInput formControlName="firstName" autocomplete="given-name" />
+    @if (form().hasError('required', 'firstName')) {
+      <mat-error>First name is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="field middlename">
+    <mat-label>Middle name</mat-label>
+    <input matInput formControlName="middleName" autocomplete="additional-name" />
+  </mat-form-field>
+
+  <mat-form-field class="field lastname">
+    <mat-label>Last name</mat-label>
+    <input matInput formControlName="lastName" autocomplete="family-name" />
+    @if (form().hasError('required', 'lastName')) {
+      <mat-error>Last name is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="field orcid">
+    <mat-label>ORCID</mat-label>
+    <input
+      matInput
+      formControlName="orcidId"
+      mask="AAAA-AAAA-AAAA-AAAA"
+      placeholder="xxxx-xxxx-xxxx-xxxx"
+      [inputTransformFn]="orcidInputFn"
+      [dropSpecialCharacters]="false"
+    />
+    @if (form().hasError('mask', 'orcidId')) {
+      <mat-error>Please enter a valid ORCID</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="field email">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" autocomplete="email" />
+    @if (form().hasError('email', 'email')) {
+      <mat-error>Please enter a valid email</mat-error>
+    }
+  </mat-form-field>
+</div>

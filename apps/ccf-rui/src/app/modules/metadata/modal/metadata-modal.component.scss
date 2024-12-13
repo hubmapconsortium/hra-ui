@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  --scrollbar-offset: 2;
+  --mat-dialog-content-padding: 3rem 1.5rem;
+
+  .close {
+    position: absolute;
+    inset: 1rem 1rem auto auto;
+    padding: 0.5rem;
+    margin: 0;
+    z-index: 2;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: unset !important;
+
+    & > * {
+      max-width: 43.5rem;
+      min-width: 32.5rem;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      .title {
+        font: var(--sys-headline-large);
+        letter-spacing: var(--sys-headline-large-tracking);
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .upload .errors {
+      margin-bottom: 2rem;
+    }
+
+    .metadata {
+      .author {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .register .error {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+::ng-deep {
+  .metadata-modal {
+    --mdc-dialog-container-shape: 0;
+    --mdc-dialog-container-color: var(--sys-surface-container-low);
+
+    .mat-mdc-dialog-surface {
+      overflow-y: hidden !important;
+    }
+  }
+
+  .metadata-confirmation-modal {
+    --mdc-dialog-container-color: var(--sys-surface-container-low);
+  }
+}

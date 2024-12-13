@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: 42rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
+  background-color: var(--sys-surface-container-low);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+
+    &.allow-upload {
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  mat-progress-bar {
+    --mdc-linear-progress-track-height: 0.5rem;
+    --mdc-linear-progress-active-indicator-height: 0.5rem;
+    --mdc-linear-progress-active-indicator-color: var(--sys-inverse-surface);
+    --mdc-linear-progress-track-color: var(--sys-surface-container-high);
+
+    &.ready {
+      --mdc-linear-progress-track-color: transparent;
+      --mdc-linear-progress-active-indicator-color: transparent;
+    }
+
+    &.fully-loaded {
+      opacity: 0;
+      transition-delay: 0.5s;
+    }
+  }
+}

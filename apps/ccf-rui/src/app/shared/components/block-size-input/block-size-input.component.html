@@ -1,19 +1,8 @@
-<div class="header" matTooltip="Set the tissue block width, height and depth (dimensions)">
-  <span class="text title">Tissue Block Dimensions (mm)</span>
-  <div class="filler"></div>
-  <mat-icon
-    matRipple
-    [matRippleCentered]="true"
-    [matRippleUnbounded]="true"
-    class="icon refresh"
-    (click)="refreshBlockSize()"
-    >refresh</mat-icon
-  >
-</div>
+<div class="header">Size</div>
 
 <div class="size-inputs">
-  <mat-form-field class="field">
-    <mat-label class="text form-input-label">Width (X)</mat-label>
+  <mat-form-field class="field" hraMicroTooltip="Size is measured in millimeters">
+    <mat-label class="text form-input-label">Width</mat-label>
     <input
       matInput
       class="input"
@@ -25,8 +14,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field class="field">
-    <mat-label class="text form-input-label">Height (Y)</mat-label>
+  <mat-form-field class="field" hraMicroTooltip="Size is measured in millimeters">
+    <mat-label class="text form-input-label">Height</mat-label>
     <input
       matInput
       class="input"
@@ -38,8 +27,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field class="field">
-    <mat-label class="text form-input-label">Depth (Z)</mat-label>
+  <mat-form-field class="field" hraMicroTooltip="Size is measured in millimeters">
+    <mat-label class="text form-input-label">Depth</mat-label>
     <input
       matInput
       class="input"

@@ -1,50 +1,42 @@
-<div class="scroll-wrapper">
-  <div class="container">
-    <mat-expansion-panel class="anatomical-structures-menu" [expanded]="organSelected$ | async">
-      <mat-expansion-panel-header class="expansion-header">
-        <mat-panel-title
-          class="expansion-title"
-          matTooltip="Use opacity icons to change visibility of anatomical structures"
-          >Anatomical Structures</mat-panel-title
-        >
-      </mat-expansion-panel-header>
-
-      <div class="expansion-content">
-        <ccf-visibility-menu
-          [items]="$any(model.anatomicalStructures$ | async) ?? []"
-          (itemsChange)="model.setAnatomicalStructures($event)"
-        >
-        </ccf-visibility-menu>
-      </div>
-    </mat-expansion-panel>
-
-    <mat-divider></mat-divider>
-
-    <mat-expansion-panel class="extraction-menu" [expanded]="organSelected$ | async">
-      <mat-expansion-panel-header class="expansion-header">
-        <mat-panel-title
-          matTooltip="Some organs have predefined landmarks to guide manual tissue registration--you can turn these on/off."
-          class="expansion-title"
-          >Landmarks</mat-panel-title
-        >
-      </mat-expansion-panel-header>
-      <div *ngIf="organSelected$ | async" class="expansion-content">
-        <ccf-extraction-set-dropdown
-          [sets]="$any(model.extractionSets$ | async)"
-          (setChange)="model.setExtractionSites($event.sites)"
-          #dropdown
-        >
-        </ccf-extraction-set-dropdown>
-        <ccf-visibility-menu
-          [items]="$any(model.extractionSites$ | async)"
-          (itemsChange)="model.setExtractionSites($event)"
-          (hover)="updateExtractionSiteTooltip($event)"
-        >
-        </ccf-visibility-menu>
-      </div>
-    </mat-expansion-panel>
-    <div class="extraction-site-tooltip mat-elevation-z8" *ngIf="extractionSiteTooltip.length > 0">
-      {{ extractionSiteTooltip }}
-    </div>
-  </div>
+<div class="opacity-settings">
+  Opacity Settings
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    hraIconButtonSize="large"
+    aria-label="Icon to open nested menu"
+    hraMicroTooltip="More"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="opacity-overlay">
+    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+      <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset All Settings</span>
+    </button>
+    <mat-divider class="menu-divider"></mat-divider>
+    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+      <span (click)="anatomical.setAllOpacity(20)">Reset anatomical structures</span>
+    </button>
+    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+      <span (click)="landmarks.setAllOpacity(0)">Reset landmarks</span>
+    </button>
+  </mat-menu>
 </div>
+
+<hra-expansion-panel [title]="'Anatomical Structures'" class="as-expansion" [tooltip]="asTooltip">
+  <ccf-visibility-menu
+    #anatomical
+    [items]="$any(model.anatomicalStructures$ | async) ?? []"
+    (itemsChange)="model.setAnatomicalStructures($event)"
+  >
+  </ccf-visibility-menu>
+</hra-expansion-panel>
+
+<hra-expansion-panel [title]="'Landmarks'" [tooltip]="landmarksTooltip">
+  <ccf-visibility-menu
+    #landmarks
+    [items]="$any(model.extractionSites$ | async)"
+    (itemsChange)="model.setExtractionSites($event)"
+  >
+  </ccf-visibility-menu>
+</hra-expansion-panel>

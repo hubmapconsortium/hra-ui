@@ -1,11 +1,21 @@
-<div class="content" [class.allow-upload]="allowUpload()">
+<h2 class="header">
+  @let stepValue = step();
+  @if (stepValue !== undefined) {
+    <hra-step-indicator [value]="stepValue"> </hra-step-indicator>
+  }
+
+  <span>{{ title() }}</span>
+  <ng-content select="hra-workflow-card-actions"> </ng-content>
+
+  <div class="filler"></div>
+  <ng-content select="hra-workflow-card-extra"> </ng-content>
+</h2>
+
+<div class="content">
   <ng-content></ng-content>
 </div>
-@if (allowUpload()) {
-  <mat-progress-bar
-    mode="determinate"
-    [class.ready]="loadProgress() === 0"
-    [class.fully-loaded]="loadProgress() === 1"
-    [value]="loadProgress() * 100"
-  ></mat-progress-bar>
+
+@let progressValue = progress();
+@if (progressValue !== undefined) {
+  <mat-progress-bar class="progress" mode="determinate" [value]="100 * progressValue"> </mat-progress-bar>
 }
