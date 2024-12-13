@@ -47,6 +47,9 @@
   versionChooserDisabled: false
   versionData:
     # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/asctb-release.csv
+    - release: 8th HRA Release (v2.2), December 2024
+      file: asctb_release8.csv
+      version: 2.2
     - release: 7th HRA Release (v2.1), June 2024
       file: asctb_release7.csv
       version: 2.1
