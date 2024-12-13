@@ -17,5 +17,8 @@
     "node-dist-vis",
     "lib:common",
     "ccf-rui"
+  ],
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "main"
   ]
 }

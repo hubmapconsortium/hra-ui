@@ -81,7 +81,7 @@
           links:
             - label: CSV
               link: https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature-organ-crosswalk/v1.3/assets/blood-vasculature-organ-crosswalk.csv
-          releaseVersion: v1.2
+          releaseVersion: v1.3
           dot: Crosswalk
         - label: Blood Vasculature Geometry
           url: https://purl.humanatlas.io/vascular-geometry/blood-vasculature-geometry/v1.1
