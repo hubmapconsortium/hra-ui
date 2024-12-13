@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
 /**
@@ -8,7 +9,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 @Component({
   selector: 'hra-brandmark',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule],
+  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './brandmark.component.html',
   styleUrl: './brandmark.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
