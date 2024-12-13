@@ -40,6 +40,7 @@
     - release: ''
       version: ''
       file: ct-per-organ-per-tool.csv
+      # source: https://github.com/x-atlas-consortia/hra-pop/blob/main/output-data/v0.11.1/reports/hra/ct-per-organ-per-tool.csv
   headerInfo:
     - columnDef: Organ
       header: Organ
