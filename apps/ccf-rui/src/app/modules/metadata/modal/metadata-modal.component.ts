@@ -7,7 +7,7 @@ import { JsonFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { WorkflowCardV2Module } from '@hra-ui/design-system/workflow-card';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
 import { ModelStateModel } from '../../../core/store/model/model.state';
@@ -43,7 +43,7 @@ export interface MetadataModalResult {
     ButtonModule,
     ErrorIndicatorComponent,
     ScrollingModule,
-    WorkflowCardV2Module,
+    WorkflowCardModule,
     FileUploadComponent,
     MetadataAuthorFormComponent,
     MetadataDonorFormComponent,

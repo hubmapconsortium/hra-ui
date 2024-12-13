@@ -25,7 +25,7 @@ import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { WorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
+import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
@@ -73,6 +73,7 @@ function optionalValue<T>(): T | null {
 
     BreadcrumbsComponent,
     ButtonModule,
+    DeprecatedWorkflowCardComponent,
     FileUploadComponent,
     FooterComponent,
     MarkEmptyFormControlDirective,
@@ -82,7 +83,6 @@ function optionalValue<T>(): T | null {
     ToggleButtonSizeDirective,
     TooltipCardComponent,
     ErrorIndicatorComponent,
-    WorkflowCardComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
