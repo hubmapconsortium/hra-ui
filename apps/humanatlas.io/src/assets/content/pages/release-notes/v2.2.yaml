@@ -92,15 +92,15 @@
             - heading: ''
               descriptions: |
                 The Human Reference Atlas now includes:
-                - [XX] ASCT+B Tables
-                  - [XX] anatomical structures
-                  - [XX] cell types
-                  - [XX] biomarkers
-                - [XX] 2D Functional Tissue Units (FTUs)
-                - [XX] 3D Organ Models
-                - [XX] Organ Mapping Antibody Panel (OMAP) Tables
-                - [XX] Crosswalk Tables
-                - [XX] Vasculature Common Coordinate Framework (VCCF) Tables
+                - 36 ASCT+B Tables
+                  - 4,694 anatomical structures
+                  - 1,288 cell types
+                  - 2,018 biomarkers
+                - 22 2D Functional Tissue Units (FTUs)
+                - 75 3D Organ Models
+                - 23 Organ Mapping Antibody Panel (OMAP) Tables
+                - 10 Crosswalk Tables
+                - 7 Vasculature Common Coordinate Framework (VCCF) Tables
         - type: button
           text: 8th Release Digital Objects
           url: https://purl.humanatlas.io/collection/hra/v2.2
