@@ -258,6 +258,7 @@ import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
+import { AssetUrlPipe } from &#x27;@hra-ui/cdk/app-href&#x27;;
 import { AppsCardComponent } from &#x27;@hra-ui/design-system/apps-card&#x27;;
 import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from &#x27;@hra-ui/design-system/nav-header-buttons&#x27;;
@@ -298,6 +299,7 @@ export interface CardData {
     MatSidenavModule,
     AppsCardComponent,
     ScrollingModule,
+    AssetUrlPipe,
   ],
   templateUrl: &#x27;./nav-header.component.html&#x27;,
   styleUrl: &#x27;./nav-header.component.scss&#x27;,
