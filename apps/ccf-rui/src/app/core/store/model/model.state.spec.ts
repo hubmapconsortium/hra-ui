@@ -235,22 +235,6 @@ describe('ModelState', () => {
     expect(value).toEqual(true);
   });
 
-  // it('updates extraction sites', async () => {
-  //   const newSites = [{ id: 2 }] as VisibilityItem[];
-  //   state.setExtractionSites(newSites);
-
-  //   const value = await nextValue(state.extractionSites$);
-  //   expect(value).toEqual(newSites);
-  // });
-
-  // it('updates anatomical structures', async () => {
-  //   const newStructures = [{ id: 3 }] as VisibilityItem[];
-  //   state.setAnatomicalStructures(newStructures);
-
-  //   const value = await nextValue(state.anatomicalStructures$);
-  //   expect(value).toEqual(newStructures);
-  // });
-
   it('updates extraction sets', async () => {
     const newSets = [{ name: '', organ: '', sites: [{ id: 1 }] }] as ExtractionSet[];
     state.setExtractionSets(newSets);

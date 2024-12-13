@@ -24,7 +24,6 @@ import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
-import { DrawerModule } from './shared/components/drawer/drawer.module';
 
 @NgModule({
   imports: [
@@ -32,7 +31,6 @@ import { DrawerModule } from './shared/components/drawer/drawer.module';
     BrowserAnimationsModule,
     CoreModule,
     MatIconModule,
-    DrawerModule,
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,

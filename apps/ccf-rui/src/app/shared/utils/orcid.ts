@@ -5,6 +5,7 @@ export function addOrcidBaseUrl(value: string): string {
 }
 
 export function removeOrcidBaseUrl(value: string): string {
+  value = value.trim().toLowerCase();
   if (value.startsWith(ORCID_BASE_URL)) {
     return value.slice(ORCID_BASE_URL.length);
   }
@@ -13,7 +14,7 @@ export function removeOrcidBaseUrl(value: string): string {
 }
 
 export function normalizeOrcid(value: string): string | undefined {
-  value = removeOrcidBaseUrl(value.trim());
+  value = removeOrcidBaseUrl(value);
   value = value.replace(/-/g, '');
   if (value.length !== 16) {
     return undefined;

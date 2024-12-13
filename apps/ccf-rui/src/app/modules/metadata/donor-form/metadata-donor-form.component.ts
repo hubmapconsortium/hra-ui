@@ -8,8 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
+import { NgxMaskDirective } from 'ngx-mask';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { distinctUntilChanged, map, Observable, startWith, Subject } from 'rxjs';
+import { removeDoiBase } from '../../../shared/utils/doi';
 
 export interface DonorFormControls {
   organ: FormControl<OrganInfo | string | null>;
@@ -68,6 +70,7 @@ function filterAutocompleteOptions<T>(
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    NgxMaskDirective,
     ButtonModule,
   ],
   templateUrl: './metadata-donor-form.component.html',
@@ -90,4 +93,7 @@ export class MetadataDonorFormComponent {
     this.consortiumControl,
     (value) => value,
   );
+
+  protected readonly doiInputFn = (value: unknown) => removeDoiBase(String(value));
+  protected readonly doiPatterns = { A: { pattern: /[\w.]/ } };
 }

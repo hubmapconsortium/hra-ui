@@ -54,6 +54,15 @@
 
   <mat-form-field class="field doi">
     <mat-label>Publication DOI</mat-label>
-    <input matInput formControlName="doi" />
+    <input
+      matInput
+      formControlName="doi"
+      mask="A*/A*"
+      placeholder="00.00000/0000.00.00.000000"
+      [specialCharacters]="['/']"
+      [patterns]="doiPatterns"
+      [inputTransformFn]="doiInputFn"
+      [dropSpecialCharacters]="false"
+    />
   </mat-form-field>
 </div>

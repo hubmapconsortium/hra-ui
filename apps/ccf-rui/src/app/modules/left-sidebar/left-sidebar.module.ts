@@ -9,8 +9,6 @@ import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
-
-import { NameInputModule } from '../../shared/components/name-input/name-input.module';
 import { VisibilityMenuModule } from '../../shared/components/visibility-menu/visibility-menu.module';
 import { LeftSidebarComponent } from './left-sidebar.component';
 
@@ -21,7 +19,6 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     MatIconModule,
 
     MatDividerModule,
-    NameInputModule,
     OpacitySliderModule,
     VisibilityMenuModule,
     ExpansionPanelComponent,

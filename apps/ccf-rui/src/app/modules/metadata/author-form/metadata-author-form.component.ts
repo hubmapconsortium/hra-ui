@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,12 +22,15 @@ export interface AuthorFormControls {
   styleUrls: ['./metadata-author-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MetadataAuthorFormComponent {
+export class MetadataAuthorFormComponent implements OnInit {
   readonly form = input.required<FormGroup<AuthorFormControls>>();
 
   protected readonly orcidInputFn = (value: unknown) => removeOrcidBaseUrl(String(value).trim());
 
-  constructor() {
-    console.log(this);
+  ngOnInit(): void {
+    setTimeout(() => {
+      // Something with ngx-mask is not syncing properly...
+      this.form().controls.orcidId.updateValueAndValidity();
+    });
   }
 }
