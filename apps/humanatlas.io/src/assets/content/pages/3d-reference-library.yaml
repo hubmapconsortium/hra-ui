@@ -272,7 +272,7 @@
               alt: Mammary Gland, Female, Right
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.1/assets/3d-vh-f-mammary-gland-r.glb
         - name: Manubrium
-          image: null
+          image: assets/images/hra.svg #FIXME
           alt: Manubrium icon
           tissueData:
             - name: Female
@@ -352,7 +352,7 @@
               alt: Prostate, Male
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/3d-vh-m-prostate.glb
         - name: Renal Pelvis
-          image: null
+          image: assets/images/hra.svg #FIXME
           alt: Renal Pelvis icon
           tissueData:
             - name: Female,, L
@@ -420,7 +420,7 @@
               alt: Spleen, Male
               threeDimImage: https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-male/v1.3/assets/3d-vh-m-spleen.glb
         - name: Sternum
-          image: null
+          image: assets/images/hra.svg #FIXME
           alt: Sternum icon
           tissueData:
             - name: Female
