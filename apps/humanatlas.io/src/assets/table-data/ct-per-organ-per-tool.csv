@@ -1,28 +1,28 @@
 Organ,H5AD,AS3D,AS,CT,Azimuth,CellTypist,popV,hasReferenceOrgan
-blood,2525,0,1,29,41,26,18,
-blood vasculature,3,244,1178,65,0,0,14,x
-bone marrow,131,0,1,47,43,39,14,
-breast mammary gland,4,18,3,10,0,0,14,x
+blood,2581,0,1,29,41,26,18,
+blood vasculature,22,248,1204,65,0,0,14,x
+bone marrow,180,0,1,47,43,39,14,
 eye,204,96,41,58,0,0,27,x
-heart,363,34,1190,68,25,49,6,x
-hippocampal gyrus (formation),4,0,4,45,0,20,0,
-white adipose tissue,0,0,1,0,26,0,0,
+heart,404,34,1216,68,25,49,6,x
+hippocampal gyrus (formation),4,216,4,45,0,20,0,x
 intestine,0,0,1,0,0,38,0,
-kidney,417,116,64,75,58,34,0,x
-large intestine,179,22,62,77,0,0,16,x
-liver,73,46,859,43,25,35,12,x
-lung,577,141,949,208,78,71,36,x
+kidney,597,116,64,75,58,34,0,x
+large intestine,179,22,64,86,0,0,16,x
+liver,78,46,597,46,25,35,12,x
+lung,641,141,690,209,78,71,36,x
 lymph node,0,16,35,46,0,28,22,x
-male reproductive system,0,18,1189,77,0,0,13,x
-mesenteric lymph node,16,16,1,1,0,0,22,x
-palatine tonsil,0,4,98,22,81,0,0,x
-pancreas,14,11,26,30,11,9,14,x
-prostate,38,18,1187,77,0,0,13,x
+male reproductive system,0,18,1215,77,0,0,13,x
+mammary gland,4,0,1,0,0,0,14,
+mesenteric lymph node,17,16,1,1,0,0,22,x
+palatine tonsil,0,0,96,22,81,0,0,
+pancreas,14,12,29,33,11,9,14,x
+prostate gland,38,18,1213,77,0,0,13,x
 skeletal muscle tissue,0,0,1,0,0,18,0,
-skin of body,55,2,19,48,0,23,21,x
-small intestine,216,23,43,35,0,0,16,x
-spleen,50,12,88,71,0,32,22,x
-thoracic thymus,47,6,796,61,0,0,21,x
-trachea,29,8,14,18,0,0,18,x
+skin,68,2,19,48,0,23,21,x
+small Intestine,223,23,43,35,0,0,16,x
+spleen,59,12,86,71,0,32,22,x
+thymus,47,6,534,63,0,0,21,x
+trachea,29,6,14,18,0,0,18,x
 urinary bladder,14,15,16,15,0,0,14,x
-uterus,23,10,65,35,0,0,13,x
+uterus,47,10,65,33,0,0,13,x
+white adipose tissue,0,0,1,0,26,0,0,
