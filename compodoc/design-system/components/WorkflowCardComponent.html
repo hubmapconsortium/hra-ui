@@ -164,8 +164,8 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>CommonModule</code>
                             <code>MatProgressBarModule</code>
+                                <code><a href="../components/StepIndicatorComponent.html" target="_self" >StepIndicatorComponent</a></code>
                 </td>
             </tr>
 
@@ -205,10 +205,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#allowUpload" >allowUpload</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#progress" >progress</a>
                             </li>
                             <li>
-                                <a href="#loadProgress" >loadProgress</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#step" >step</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#title" >title</a>
                             </li>
                         </ul>
                     </td>
@@ -224,10 +230,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#allowUpload" >allowUpload</a>
-                            </li>
-                            <li>
-                                <a href="#loadProgress" >loadProgress</a>
+                                <a href="#title" >title</a>
                             </li>
                         </ul>
                     </td>
@@ -247,49 +250,23 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="allowUpload"></a>
-                        <b>allowUpload</b>
+                        <a name="title"></a>
+                        <b>title</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:21</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Whether the card allows uploading of files</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="loadProgress"></a>
-                        <b>loadProgress</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>0</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Current data load progress</p>
+                        <div class="io-description"><p>Card title</p>
 </div>
                     </td>
                 </tr>
@@ -309,27 +286,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="allowUpload"></a>
+                    <a name="progress"></a>
                     <span class="name">
-                        <span ><b>allowUpload</b></span>
-                        <a href="#allowUpload"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>progress</b></span>
+                        <a href="#progress"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
+                        <i>Default value : </i><code>input&lt;number | undefined&gt;(undefined)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:42</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Whether the card allows uploading of files</p>
+                    <div class="io-description"><p>Load progress</p>
 </div>
                 </td>
             </tr>
@@ -340,27 +318,55 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loadProgress"></a>
+                    <a name="step"></a>
                     <span class="name">
-                        <span ><b>loadProgress</b></span>
-                        <a href="#loadProgress"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>step</b></span>
+                        <a href="#step"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>0</code>
+                        <i>Default value : </i><code>input(undefined, { transform: numberAttribute })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:40</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Current data load progress</p>
+                    <div class="io-description"><p>Step indicator value</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">workflow-card/src/lib/workflow-card.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Card title</p>
 </div>
                 </td>
             </tr>
@@ -373,9 +379,29 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, numberAttribute } from &#x27;@angular/core&#x27;;
 import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
+import { StepIndicatorComponent } from &#x27;@hra-ui/design-system/step-indicator&#x27;;
+
+/** Actions placed next to the card title */
+@Component({
+  selector: &#x27;hra-workflow-card-actions&#x27;,
+  standalone: true,
+  template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
+  styles: &#x27;:host { display: flex; gap: 0.75rem; }&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class WorkflowCardActionsComponent {}
+
+/** Additional content placed on very right side of the header */
+@Component({
+  selector: &#x27;hra-workflow-card-extra&#x27;,
+  standalone: true,
+  template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
+  styles: &#x27;:host { display: flex; gap: 0.75rem; }&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class WorkflowCardExtraComponent {}
 
 /**
  * Component that appears when users are completing a workflow process
@@ -383,32 +409,43 @@ import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
 @Component({
   selector: &#x27;hra-workflow-card&#x27;,
   standalone: true,
-  imports: [CommonModule, MatProgressBarModule],
+  imports: [MatProgressBarModule, StepIndicatorComponent],
   templateUrl: &#x27;./workflow-card.component.html&#x27;,
   styleUrl: &#x27;./workflow-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkflowCardComponent {
-  /** Current data load progress */
-  loadProgress &#x3D; input&lt;number&gt;(0);
-
-  /** Whether the card allows uploading of files */
-  allowUpload &#x3D; input&lt;boolean&gt;(false);
+  /** Card title */
+  readonly title &#x3D; input.required&lt;string&gt;();
+  /** Step indicator value */
+  readonly step &#x3D; input(undefined, { transform: numberAttribute });
+  /** Load progress */
+  readonly progress &#x3D; input&lt;number | undefined&gt;(undefined);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;content&quot; [class.allow-upload]&#x3D;&quot;allowUpload()&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;h2 class&#x3D;&quot;header&quot;&gt;
+  @let stepValue &#x3D; step();
+  @if (stepValue !&#x3D;&#x3D; undefined) {
+    &lt;hra-step-indicator [value]&#x3D;&quot;stepValue&quot;&gt; &lt;/hra-step-indicator&gt;
+  }
+
+  &lt;span&gt;{{ title() }}&lt;/span&gt;
+  &lt;ng-content select&#x3D;&quot;hra-workflow-card-actions&quot;&gt; &lt;/ng-content&gt;
+
+  &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
+  &lt;ng-content select&#x3D;&quot;hra-workflow-card-extra&quot;&gt; &lt;/ng-content&gt;
+&lt;/h2&gt;
+
+&lt;div class&#x3D;&quot;content&quot;&gt;
   &lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/div&gt;
-@if (allowUpload()) {
-  &lt;mat-progress-bar
-    mode&#x3D;&quot;determinate&quot;
-    [class.ready]&#x3D;&quot;loadProgress() &#x3D;&#x3D;&#x3D; 0&quot;
-    [class.fully-loaded]&#x3D;&quot;loadProgress() &#x3D;&#x3D;&#x3D; 1&quot;
-    [value]&#x3D;&quot;loadProgress() * 100&quot;
-  &gt;&lt;/mat-progress-bar&gt;
+
+@let progressValue &#x3D; progress();
+@if (progressValue !&#x3D;&#x3D; undefined) {
+  &lt;mat-progress-bar class&#x3D;&quot;progress&quot; mode&#x3D;&quot;determinate&quot; [value]&#x3D;&quot;100 * progressValue&quot;&gt; &lt;/mat-progress-bar&gt;
 }
 </code></pre>
     </div>
@@ -439,8 +476,8 @@ export class WorkflowCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="content" [class.allow-upload]="allowUpload()">  <ng-content></ng-content></div>@if (allowUpload()) {  <mat-progress-bar    mode="determinate"    [class.ready]="loadProgress() === 0"    [class.fully-loaded]="loadProgress() === 1"    [value]="loadProgress() * 100"  ></mat-progress-bar>}</div>'
-    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'}];
+        var COMPONENT_TEMPLATE = '<div><h2 class="header">  @let stepValue = step();  @if (stepValue !== undefined) {    <hra-step-indicator [value]="stepValue"> </hra-step-indicator>  }  <span>{{ title() }}</span>  <ng-content select="hra-workflow-card-actions"> </ng-content>  <div class="filler"></div>  <ng-content select="hra-workflow-card-extra"> </ng-content></h2><div class="content">  <ng-content></ng-content></div>@let progressValue = progress();@if (progressValue !== undefined) {  <mat-progress-bar class="progress" mode="determinate" [value]="100 * progressValue"> </mat-progress-bar>}</div>'
+    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
     var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'WorkflowCardComponent'};
 </script>

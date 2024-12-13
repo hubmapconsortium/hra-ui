@@ -2201,6 +2201,104 @@
             "templateData": "<span class=\"file-name\">{{ fileName() }}</span>\n\n<button mat-icon-button hraIconButtonSize=\"large\" (click)=\"cancelLoad.emit()\">\n  <mat-icon>delete</mat-icon>\n</button>\n"
         },
         {
+            "name": "DeprecatedWorkflowCardComponent",
+            "id": "component-DeprecatedWorkflowCardComponent-df425fd6d3536fac98eed7b0a167ea22d48d21a7ee02ec8dfe5795bf0cb769cf1f6d06b3ef7f5e52c5b97de7cef94e02aef14e153bbd6adc598bfc4329b75d3a",
+            "file": "workflow-card/src/lib/deprecated/workflow-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-workflow-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./workflow-card.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "allowUpload",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Whether the card allows uploading of files</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nWhether the card allows uploading of files",
+                    "required": false
+                },
+                {
+                    "name": "loadProgress",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current data load progress</p>\n",
+                    "line": 19,
+                    "rawdescription": "\nCurrent data load progress",
+                    "required": false
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "allowUpload",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Whether the card allows uploading of files</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nWhether the card allows uploading of files",
+                    "required": false
+                },
+                {
+                    "name": "loadProgress",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Current data load progress</p>\n",
+                    "line": 19,
+                    "rawdescription": "\nCurrent data load progress",
+                    "required": false
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": true,
+            "deprecationMessage": "Use [WorkflowCardComponent](../workflow-card.component.ts) instead",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatProgressBarModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Component that appears when users are completing a workflow process</p>\n",
+            "rawdescription": "\n\nComponent that appears when users are completing a workflow process\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\n\n/**\n * Component that appears when users are completing a workflow process\n * @deprecated Use [WorkflowCardComponent](../workflow-card.component.ts) instead\n */\n@Component({\n  selector: 'hra-workflow-card',\n  standalone: true,\n  imports: [CommonModule, MatProgressBarModule],\n  templateUrl: './workflow-card.component.html',\n  styleUrl: './workflow-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DeprecatedWorkflowCardComponent {\n  /** Current data load progress */\n  loadProgress = input<number>(0);\n\n  /** Whether the card allows uploading of files */\n  allowUpload = input<boolean>(false);\n}\n",
+            "styleUrl": "./workflow-card.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"content\" [class.allow-upload]=\"allowUpload()\">\n  <ng-content></ng-content>\n</div>\n@if (allowUpload()) {\n  <mat-progress-bar\n    mode=\"determinate\"\n    [class.ready]=\"loadProgress() === 0\"\n    [class.fully-loaded]=\"loadProgress() === 1\"\n    [value]=\"loadProgress() * 100\"\n  ></mat-progress-bar>\n}\n"
+        },
+        {
             "name": "ErrorIndicatorComponent",
             "id": "component-ErrorIndicatorComponent-6f70f3ccc35c6cfc12d31e1651c05e16f103867487d2b01ae58d28fe7e09138aec93f3571b55f813e99804f7a8325d2fe178f4a66649aee75cb1e6dd47bad607",
             "file": "error-indicator/src/lib/error-indicator.component.ts",
@@ -2265,7 +2363,7 @@
         },
         {
             "name": "ExpansionPanelActionsComponent",
-            "id": "component-ExpansionPanelActionsComponent-d557c92db5aeb73014693dad01a2180992b239288df3692c60fad07ce17c821230dc34f2ffde3a82a9b09bc15b6a0c44a7504743868350cd938cab0d8b9f329f",
+            "id": "component-ExpansionPanelActionsComponent-2775e95b972c30082e16bc99bebe01289dea14d3968b421c38e1c8650ad9c44fa2e9087ad1020f5193e7174df8069b0806a14b55cb24c3cfdcdb7f6db57c5c4d",
             "file": "expansion-panel/src/lib/expansion-panel.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2293,7 +2391,7 @@
             "description": "<p>Expansion panel actions component</p>\n",
             "rawdescription": "\nExpansion panel actions component",
             "type": "component",
-            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
+            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\nimport { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule, MicroTooltipDirective],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Tooltip for header title */\n  readonly tooltip = input<string>();\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2301,7 +2399,7 @@
         },
         {
             "name": "ExpansionPanelComponent",
-            "id": "component-ExpansionPanelComponent-d557c92db5aeb73014693dad01a2180992b239288df3692c60fad07ce17c821230dc34f2ffde3a82a9b09bc15b6a0c44a7504743868350cd938cab0d8b9f329f",
+            "id": "component-ExpansionPanelComponent-2775e95b972c30082e16bc99bebe01289dea14d3968b421c38e1c8650ad9c44fa2e9087ad1020f5193e7174df8069b0806a14b55cb24c3cfdcdb7f6db57c5c4d",
             "file": "expansion-panel/src/lib/expansion-panel.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2325,12 +2423,26 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Title of the expansion panel</p>\n",
-                    "line": 52,
+                    "line": 53,
                     "rawdescription": "\nTitle of the expansion panel",
                     "modifierKind": [
                         148
                     ],
                     "required": true
+                },
+                {
+                    "name": "tooltip",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Tooltip for header title</p>\n",
+                    "line": 62,
+                    "rawdescription": "\nTooltip for header title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "outputsClass": [],
@@ -2343,7 +2455,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Id attribute for body based on current id counter</p>\n",
-                    "line": 67,
+                    "line": 71,
                     "rawdescription": "\nId attribute for body based on current id counter",
                     "modifierKind": [
                         124,
@@ -2358,7 +2470,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Flag to denote panel as disabled</p>\n",
-                    "line": 58,
+                    "line": 59,
                     "rawdescription": "\nFlag to denote panel as disabled",
                     "modifierKind": [
                         148
@@ -2372,7 +2484,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Flag to check if the body is expanded</p>\n",
-                    "line": 55,
+                    "line": 56,
                     "rawdescription": "\nFlag to check if the body is expanded",
                     "modifierKind": [
                         148
@@ -2386,7 +2498,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Increments the counter on every declaration</p>\n",
-                    "line": 61,
+                    "line": 65,
                     "rawdescription": "\nIncrements the counter on every declaration",
                     "modifierKind": [
                         124,
@@ -2400,7 +2512,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Title of the expansion panel</p>\n",
-                    "line": 52,
+                    "line": 53,
                     "rawdescription": "\nTitle of the expansion panel",
                     "modifierKind": [
                         148
@@ -2415,12 +2527,26 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Id attribute for title based on current id counter</p>\n",
-                    "line": 64,
+                    "line": 68,
                     "rawdescription": "\nId attribute for title based on current id counter",
                     "modifierKind": [
                         124,
                         148
                     ]
+                },
+                {
+                    "name": "tooltip",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Tooltip for header title</p>\n",
+                    "line": 62,
+                    "rawdescription": "\nTooltip for header title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "methodsClass": [
@@ -2437,7 +2563,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 89,
+                    "line": 93,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nRemoves attribute based on event state",
@@ -2470,7 +2596,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 82,
+                    "line": 86,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nSets attribute based on event state",
@@ -2507,22 +2633,26 @@
                 {
                     "name": "MatIconModule",
                     "type": "module"
+                },
+                {
+                    "name": "MicroTooltipDirective",
+                    "type": "directive"
                 }
             ],
             "description": "<p>Expansion panel component</p>\n",
             "rawdescription": "\nExpansion panel component",
             "type": "component",
-            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
+            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\nimport { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule, MicroTooltipDirective],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Tooltip for header title */\n  readonly tooltip = input<string>();\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
             "styleUrl": "./expansion-panel.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<cdk-accordion>\n  <cdk-accordion-item\n    #accordionItem=\"cdkAccordionItem\"\n    tabindex=\"0\"\n    [attr.aria-expanded]=\"accordionItem.expanded\"\n    [attr.aria-controls]=\"bodyId\"\n    [expanded]=\"expanded\"\n  >\n    <div class=\"header\">\n      @if (!disabled()) {\n        <button mat-icon-button data-testid=\"toggle\" (click)=\"accordionItem.toggle()\">\n          <mat-icon>\n            {{ accordionItem.expanded ? 'remove' : 'add' }}\n          </mat-icon>\n        </button>\n      }\n\n      <span class=\"title\" [attr.id]=\"titleId\">\n        {{ title() }}\n      </span>\n\n      <span>\n        <ng-content select=\"hra-expansion-panel-actions\"> </ng-content>\n      </span>\n      <div class=\"filler\"></div>\n      <span>\n        <ng-content select=\"hra-expansion-panel-header-content\"></ng-content>\n      </span>\n    </div>\n    <div\n      role=\"region\"\n      class=\"content\"\n      [attr.id]=\"bodyId\"\n      [attr.aria-labelledby]=\"titleId\"\n      #body\n      [@bodyExpansion]=\"accordionItem.expanded ? 'expanded' : 'collapsed'\"\n      (@bodyExpansion.start)=\"animationStart($event)\"\n      (@bodyExpansion.done)=\"animationDone($event)\"\n      data-testid=\"body\"\n    >\n      <div class=\"expansion-body\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n  </cdk-accordion-item>\n</cdk-accordion>\n"
+            "templateData": "<cdk-accordion>\n  <cdk-accordion-item\n    #accordionItem=\"cdkAccordionItem\"\n    tabindex=\"0\"\n    [attr.aria-expanded]=\"accordionItem.expanded\"\n    [attr.aria-controls]=\"bodyId\"\n    [expanded]=\"expanded\"\n  >\n    <div class=\"header\">\n      @if (!disabled()) {\n        <button mat-icon-button data-testid=\"toggle\" (click)=\"accordionItem.toggle()\">\n          <mat-icon [hraMicroTooltip]=\"accordionItem.expanded ? 'Collapse' : 'Expand'\">\n            {{ accordionItem.expanded ? 'remove' : 'add' }}\n          </mat-icon>\n        </button>\n      }\n\n      <span class=\"title\" [attr.id]=\"titleId\" [hraMicroTooltip]=\"tooltip()\">\n        {{ title() }}\n      </span>\n\n      <span>\n        <ng-content select=\"hra-expansion-panel-actions\"> </ng-content>\n      </span>\n      <div class=\"filler\"></div>\n      <span>\n        <ng-content select=\"hra-expansion-panel-header-content\"></ng-content>\n      </span>\n    </div>\n    <div\n      role=\"region\"\n      class=\"content\"\n      [attr.id]=\"bodyId\"\n      [attr.aria-labelledby]=\"titleId\"\n      #body\n      [@bodyExpansion]=\"accordionItem.expanded ? 'expanded' : 'collapsed'\"\n      (@bodyExpansion.start)=\"animationStart($event)\"\n      (@bodyExpansion.done)=\"animationDone($event)\"\n      data-testid=\"body\"\n    >\n      <div class=\"expansion-body\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n  </cdk-accordion-item>\n</cdk-accordion>\n"
         },
         {
             "name": "ExpansionPanelHeaderContentComponent",
-            "id": "component-ExpansionPanelHeaderContentComponent-d557c92db5aeb73014693dad01a2180992b239288df3692c60fad07ce17c821230dc34f2ffde3a82a9b09bc15b6a0c44a7504743868350cd938cab0d8b9f329f",
+            "id": "component-ExpansionPanelHeaderContentComponent-2775e95b972c30082e16bc99bebe01289dea14d3968b421c38e1c8650ad9c44fa2e9087ad1020f5193e7174df8069b0806a14b55cb24c3cfdcdb7f6db57c5c4d",
             "file": "expansion-panel/src/lib/expansion-panel.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2550,7 +2680,7 @@
             "description": "<p>Expansion panel header content component</p>\n",
             "rawdescription": "\nExpansion panel header content component",
             "type": "component",
-            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
+            "sourceCode": "import { AnimationEvent } from '@angular/animations';\nimport { CdkAccordionModule } from '@angular/cdk/accordion';\nimport {\n  ANIMATION_MODULE_TYPE,\n  booleanAttribute,\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  ElementRef,\n  inject,\n  input,\n  Renderer2,\n  viewChild,\n} from '@angular/core';\nimport { MatIconButton } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BODY_EXPANSION } from './expansion-panel-animations';\nimport { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';\n\n/** Counter to keep track of distinct panels */\nlet idCounter = 0;\n\n/** Expansion panel actions component */\n@Component({\n  selector: 'hra-expansion-panel-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelActionsComponent {}\n\n/** Expansion panel header content component */\n@Component({\n  selector: 'hra-expansion-panel-header-content',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelHeaderContentComponent {}\n\n/** Expansion panel component */\n@Component({\n  selector: 'hra-expansion-panel',\n  standalone: true,\n  imports: [CdkAccordionModule, MatIconButton, MatIconModule, MicroTooltipDirective],\n  animations: [BODY_EXPANSION],\n  templateUrl: './expansion-panel.component.html',\n  styleUrl: './expansion-panel.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ExpansionPanelComponent {\n  /** Title of the expansion panel */\n  readonly title = input.required<string>();\n\n  /** Flag to check if the body is expanded */\n  readonly expanded = input(true, { transform: booleanAttribute });\n\n  /** Flag to denote panel as disabled */\n  readonly disabled = input(false, { transform: booleanAttribute });\n\n  /** Tooltip for header title */\n  readonly tooltip = input<string>();\n\n  /** Increments the counter on every declaration */\n  protected readonly id = idCounter++;\n\n  /** Id attribute for title based on current id counter */\n  protected readonly titleId = `expansion-panel-title-${this.id}`;\n\n  /** Id attribute for body based on current id counter */\n  protected readonly bodyId = `expansion-panel-body-${this.id}`;\n\n  /** Instance of renderer */\n  private readonly renderer = inject(Renderer2);\n\n  /** Instance of body element */\n  private readonly bodyElementRef = viewChild.required<ElementRef<HTMLElement>>('body');\n\n  /** Actual body element */\n  private readonly body = computed(() => this.bodyElementRef().nativeElement);\n\n  /** Disable animations based on module type */\n  private readonly animationsDisabled = inject(ANIMATION_MODULE_TYPE) === 'NoopAnimations';\n\n  /** Sets attribute based on event state */\n  protected animationStart(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.setAttribute(this.body(), 'inert', '');\n    }\n  }\n\n  /** Removes attribute based on event state */\n  protected animationDone(event: AnimationEvent): void {\n    if (event.fromState !== 'void' && !this.animationsDisabled) {\n      this.renderer.removeAttribute(this.body(), 'inert');\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -4166,7 +4296,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "mat-form-field.mat-mdc-form-field-type-mat-select {\n  --mdc-filled-text-field-container-color: var(--sys-surface-container);\n  --mat-select-focused-arrow-color: var(--sys-tertiary);\n\n  --mat-form-field-container-height: 3rem;\n  --mat-form-field-filled-with-label-container-padding-top: 1.25rem;\n  --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;\n\n  mat-label {\n    font: var(--sys-label-small);\n    letter-spacing: var(--sys-label-small-tracking);\n    color: var(--sys-primary-fixed);\n  }\n\n  &.mat-focused {\n    mat-label {\n      color: var(--sys-tertiary);\n    }\n\n    .mdc-line-ripple::after {\n      --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);\n    }\n\n    mat-select {\n      .mat-mdc-select-value-text .mat-mdc-select-min-line {\n        color: var(--sys-primary-fixed);\n        letter-spacing: var(--sys-label-medium-tracking);\n      }\n    }\n  }\n\n  mat-select {\n    .mat-mdc-select-value-text .mat-mdc-select-min-line {\n      font: var(--sys-label-medium);\n    }\n  }\n\n  &.mat-form-field-disabled {\n    mat-label {\n      color: var(--mdc-filled-text-field-disabled-label-text-color);\n    }\n  }\n}\n\n.options-container {\n  --mat-select-panel-background-color: var(--sys-on-primary);\n  --mat-option-selected-state-label-text-color: var(--sys-secondary);\n  --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);\n  --mat-select-container-elevation-shadow: 0px 5px 4px 0px rgb(from var(--sys-shadow) r g b / 0.16);\n  --mat-option-label-text-color: var(--sys-primary-container);\n  --mat-option-focus-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);\n\n  mat-option.mat-mdc-option {\n    font: var(--sys-label-large);\n    margin-bottom: 0.5px;\n    min-height: 3.5rem;\n\n    &:active {\n      --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);\n    }\n\n    &:focus-visible {\n      outline: 2px solid var(--sys-tertiary);\n    }\n\n    &.mdc-list-item--selected.mat-mdc-option-active {\n      --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);\n      background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);\n    }\n\n    &.mat-mdc-option-active {\n      outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);\n    }\n  }\n}\n",
+                    "data": "mat-form-field.mat-mdc-form-field-type-mat-select {\n  --mdc-filled-text-field-container-color: var(--sys-surface-container);\n  --mat-select-focused-arrow-color: var(--sys-tertiary);\n\n  --mat-form-field-container-height: 3rem;\n  --mat-form-field-filled-with-label-container-padding-top: 1.25rem;\n  --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;\n\n  mat-label {\n    font: var(--sys-label-small);\n    letter-spacing: var(--sys-label-small-tracking);\n    color: var(--sys-primary-fixed);\n  }\n\n  &.mat-focused {\n    mat-label {\n      color: var(--sys-tertiary);\n    }\n\n    .mdc-line-ripple::after {\n      --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);\n    }\n\n    mat-select {\n      .mat-mdc-select-value-text .mat-mdc-select-min-line {\n        color: var(--sys-primary-fixed);\n        letter-spacing: var(--sys-label-medium-tracking);\n      }\n    }\n  }\n\n  mat-select {\n    .mat-mdc-select-value-text .mat-mdc-select-min-line {\n      font: var(--sys-label-medium);\n      letter-spacing: var(--sys-label-medium-tracking);\n    }\n  }\n\n  &.mat-form-field-disabled {\n    mat-label {\n      color: var(--mdc-filled-text-field-disabled-label-text-color);\n    }\n  }\n}\n\n.options-container {\n  --mat-select-panel-background-color: var(--sys-on-primary);\n  --mat-option-selected-state-label-text-color: var(--sys-secondary);\n  --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);\n  --mat-select-container-elevation-shadow: 0px 5px 4px 0px rgb(from var(--sys-shadow) r g b / 0.16);\n  --mat-option-label-text-color: var(--sys-primary-container);\n  --mat-option-focus-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);\n\n  mat-option.mat-mdc-option {\n    font: var(--sys-label-large);\n    margin-bottom: 0.5px;\n    min-height: 3.5rem;\n\n    &:active {\n      --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);\n    }\n\n    &:focus-visible {\n      outline: 2px solid var(--sys-tertiary);\n    }\n\n    &.mdc-list-item--selected.mat-mdc-option-active {\n      --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);\n      background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);\n    }\n\n    &.mat-mdc-option-active {\n      outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);\n    }\n  }\n}\n",
                     "styleUrl": "./select-styles.component.scss"
                 }
             ],
@@ -5052,8 +5182,46 @@
             "extends": []
         },
         {
+            "name": "WorkflowCardActionsComponent",
+            "id": "component-WorkflowCardActionsComponent-6c1eaed4129660ba6d03ee60712ee1d5e563901e1ec0512a4e6635f2f37eb187b75aaec61d5ec5556cae930a654487ef88292c8ab83d351c77184502ff7d94ea",
+            "file": "workflow-card/src/lib/workflow-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-workflow-card-actions",
+            "styleUrls": [],
+            "styles": [
+                ":host { display: flex; gap: 0.75rem; }"
+            ],
+            "template": "<ng-content></ng-content>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "<p>Actions placed next to the card title</p>\n",
+            "rawdescription": "\nActions placed next to the card title",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\nimport { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';\n\n/** Actions placed next to the card title */\n@Component({\n  selector: 'hra-workflow-card-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardActionsComponent {}\n\n/** Additional content placed on very right side of the header */\n@Component({\n  selector: 'hra-workflow-card-extra',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardExtraComponent {}\n\n/**\n * Component that appears when users are completing a workflow process\n */\n@Component({\n  selector: 'hra-workflow-card',\n  standalone: true,\n  imports: [MatProgressBarModule, StepIndicatorComponent],\n  templateUrl: './workflow-card.component.html',\n  styleUrl: './workflow-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardComponent {\n  /** Card title */\n  readonly title = input.required<string>();\n  /** Step indicator value */\n  readonly step = input(undefined, { transform: numberAttribute });\n  /** Load progress */\n  readonly progress = input<number | undefined>(undefined);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": ":host { display: flex; gap: 0.75rem; }\n",
+            "extends": []
+        },
+        {
             "name": "WorkflowCardComponent",
-            "id": "component-WorkflowCardComponent-5dc77d809ac453f0dbcc6e63525494d65f7c45b01d980057552973c110ffa266da0e1700bfc00ce8f522f74f11e61b6bc5fb84bb4bcbd9fdd376ab702795f276",
+            "id": "component-WorkflowCardComponent-6c1eaed4129660ba6d03ee60712ee1d5e563901e1ec0512a4e6635f2f37eb187b75aaec61d5ec5556cae930a654487ef88292c8ab83d351c77184502ff7d94ea",
             "file": "workflow-card/src/lib/workflow-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -5071,55 +5239,63 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "allowUpload",
-                    "defaultValue": "false",
+                    "name": "title",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "<p>Whether the card allows uploading of files</p>\n",
-                    "line": 21,
-                    "rawdescription": "\nWhether the card allows uploading of files",
-                    "required": false
-                },
-                {
-                    "name": "loadProgress",
-                    "defaultValue": "0",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "<p>Current data load progress</p>\n",
-                    "line": 18,
-                    "rawdescription": "\nCurrent data load progress",
-                    "required": false
+                    "description": "<p>Card title</p>\n",
+                    "line": 38,
+                    "rawdescription": "\nCard title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "allowUpload",
-                    "defaultValue": "false",
+                    "name": "progress",
+                    "defaultValue": "input<number | undefined>(undefined)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "<p>Whether the card allows uploading of files</p>\n",
-                    "line": 21,
-                    "rawdescription": "\nWhether the card allows uploading of files",
-                    "required": false
+                    "description": "<p>Load progress</p>\n",
+                    "line": 42,
+                    "rawdescription": "\nLoad progress",
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
-                    "name": "loadProgress",
-                    "defaultValue": "0",
+                    "name": "step",
+                    "defaultValue": "input(undefined, { transform: numberAttribute })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "<p>Current data load progress</p>\n",
-                    "line": 18,
-                    "rawdescription": "\nCurrent data load progress",
-                    "required": false
+                    "description": "<p>Step indicator value</p>\n",
+                    "line": 40,
+                    "rawdescription": "\nStep indicator value",
+                    "modifierKind": [
+                        148
+                    ]
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Card title</p>\n",
+                    "line": 38,
+                    "rawdescription": "\nCard title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
                 }
             ],
             "methodsClass": [],
@@ -5130,24 +5306,62 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
+                    "name": "MatProgressBarModule",
                     "type": "module"
                 },
                 {
-                    "name": "MatProgressBarModule",
-                    "type": "module"
+                    "name": "StepIndicatorComponent",
+                    "type": "component"
                 }
             ],
             "description": "<p>Component that appears when users are completing a workflow process</p>\n",
             "rawdescription": "\n\nComponent that appears when users are completing a workflow process\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\n\n/**\n * Component that appears when users are completing a workflow process\n */\n@Component({\n  selector: 'hra-workflow-card',\n  standalone: true,\n  imports: [CommonModule, MatProgressBarModule],\n  templateUrl: './workflow-card.component.html',\n  styleUrl: './workflow-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardComponent {\n  /** Current data load progress */\n  loadProgress = input<number>(0);\n\n  /** Whether the card allows uploading of files */\n  allowUpload = input<boolean>(false);\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\nimport { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';\n\n/** Actions placed next to the card title */\n@Component({\n  selector: 'hra-workflow-card-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardActionsComponent {}\n\n/** Additional content placed on very right side of the header */\n@Component({\n  selector: 'hra-workflow-card-extra',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardExtraComponent {}\n\n/**\n * Component that appears when users are completing a workflow process\n */\n@Component({\n  selector: 'hra-workflow-card',\n  standalone: true,\n  imports: [MatProgressBarModule, StepIndicatorComponent],\n  templateUrl: './workflow-card.component.html',\n  styleUrl: './workflow-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardComponent {\n  /** Card title */\n  readonly title = input.required<string>();\n  /** Step indicator value */\n  readonly step = input(undefined, { transform: numberAttribute });\n  /** Load progress */\n  readonly progress = input<number | undefined>(undefined);\n}\n",
             "styleUrl": "./workflow-card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"content\" [class.allow-upload]=\"allowUpload()\">\n  <ng-content></ng-content>\n</div>\n@if (allowUpload()) {\n  <mat-progress-bar\n    mode=\"determinate\"\n    [class.ready]=\"loadProgress() === 0\"\n    [class.fully-loaded]=\"loadProgress() === 1\"\n    [value]=\"loadProgress() * 100\"\n  ></mat-progress-bar>\n}\n"
+            "templateData": "<h2 class=\"header\">\n  @let stepValue = step();\n  @if (stepValue !== undefined) {\n    <hra-step-indicator [value]=\"stepValue\"> </hra-step-indicator>\n  }\n\n  <span>{{ title() }}</span>\n  <ng-content select=\"hra-workflow-card-actions\"> </ng-content>\n\n  <div class=\"filler\"></div>\n  <ng-content select=\"hra-workflow-card-extra\"> </ng-content>\n</h2>\n\n<div class=\"content\">\n  <ng-content></ng-content>\n</div>\n\n@let progressValue = progress();\n@if (progressValue !== undefined) {\n  <mat-progress-bar class=\"progress\" mode=\"determinate\" [value]=\"100 * progressValue\"> </mat-progress-bar>\n}\n"
+        },
+        {
+            "name": "WorkflowCardExtraComponent",
+            "id": "component-WorkflowCardExtraComponent-6c1eaed4129660ba6d03ee60712ee1d5e563901e1ec0512a4e6635f2f37eb187b75aaec61d5ec5556cae930a654487ef88292c8ab83d351c77184502ff7d94ea",
+            "file": "workflow-card/src/lib/workflow-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-workflow-card-extra",
+            "styleUrls": [],
+            "styles": [
+                ":host { display: flex; gap: 0.75rem; }"
+            ],
+            "template": "<ng-content></ng-content>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "<p>Additional content placed on very right side of the header</p>\n",
+            "rawdescription": "\nAdditional content placed on very right side of the header",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\nimport { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';\n\n/** Actions placed next to the card title */\n@Component({\n  selector: 'hra-workflow-card-actions',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardActionsComponent {}\n\n/** Additional content placed on very right side of the header */\n@Component({\n  selector: 'hra-workflow-card-extra',\n  standalone: true,\n  template: '<ng-content></ng-content>',\n  styles: ':host { display: flex; gap: 0.75rem; }',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardExtraComponent {}\n\n/**\n * Component that appears when users are completing a workflow process\n */\n@Component({\n  selector: 'hra-workflow-card',\n  standalone: true,\n  imports: [MatProgressBarModule, StepIndicatorComponent],\n  templateUrl: './workflow-card.component.html',\n  styleUrl: './workflow-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WorkflowCardComponent {\n  /** Card title */\n  readonly title = input.required<string>();\n  /** Step indicator value */\n  readonly step = input(undefined, { transform: numberAttribute });\n  /** Load progress */\n  readonly progress = input<number | undefined>(undefined);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": ":host { display: flex; gap: 0.75rem; }\n",
+            "extends": []
         }
     ],
     "modules": [
@@ -5318,6 +5532,62 @@
                     "elements": []
                 }
             ]
+        },
+        {
+            "name": "WorkflowCardModule",
+            "id": "module-WorkflowCardModule-d538998a7e86168fd6122c6dcf572323089bd5f6cec04f45e8b7802e8f7593435755961eed72538b47172fbfbb503e8855584b766b860a65fe406d0bcec4e6a9",
+            "description": "<p>Main module</p>\n",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "workflow-card/src/index.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport {\n  WorkflowCardActionsComponent,\n  WorkflowCardComponent,\n  WorkflowCardExtraComponent,\n} from './lib/workflow-card.component';\n\nexport * from './lib/deprecated/workflow-card.component';\nexport * from './lib/workflow-card.component';\n\n/** All components */\nconst COMPONENTS = [WorkflowCardComponent, WorkflowCardActionsComponent, WorkflowCardExtraComponent];\n\n/** Main module */\n@NgModule({\n  imports: COMPONENTS,\n  exports: COMPONENTS,\n})\nexport class WorkflowCardModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "WorkflowCardActionsComponent"
+                        },
+                        {
+                            "name": "WorkflowCardComponent"
+                        },
+                        {
+                            "name": "WorkflowCardExtraComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "WorkflowCardActionsComponent"
+                        },
+                        {
+                            "name": "WorkflowCardComponent"
+                        },
+                        {
+                            "name": "WorkflowCardExtraComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
         }
     ],
     "miscellaneous": {
@@ -5357,6 +5627,18 @@
                 "defaultValue": "{\n  small: 1.5,\n  large: 2.5,\n}",
                 "rawdescription": "Record of button sizes (number in rem)",
                 "description": "<p>Record of button sizes (number in rem)</p>\n"
+            },
+            {
+                "name": "COMPONENTS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "workflow-card/src/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[WorkflowCardComponent, WorkflowCardActionsComponent, WorkflowCardExtraComponent]",
+                "rawdescription": "All components",
+                "description": "<p>All components</p>\n"
             },
             {
                 "name": "DEFAULT_POLYFILL_URL",
@@ -5486,7 +5768,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {\n  providedIn: 'root',\n  factory: () => {\n    type WindowWithScrollTimeline = { ScrollTimeline: ScrollTimelineFunc };\n    const window = inject(DOCUMENT).defaultView as WindowWithScrollTimeline | null;\n    if (!isPlatformBrowser(inject(PLATFORM_ID)) || !window) {\n      return signal(null);\n    }\n\n    const isAvailable = () => 'ScrollTimeline' in window && typeof window.ScrollTimeline === 'function';\n    if (isAvailable()) {\n      return signal(window['ScrollTimeline']);\n    }\n\n    const scrollTimeline$ = inject(SCROLL_TIMELINE_QUERY_INTERVAL).pipe(\n      takeWhile(() => !isAvailable()),\n      ignoreElements(),\n      endWith(null),\n      map(() => window.ScrollTimeline),\n    );\n\n    return toSignal(scrollTimeline$, { initialValue: null });\n  },\n})",
+                "defaultValue": "new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {\n  providedIn: 'root',\n  factory: () => {\n    type WindowWithScrollTimeline = { ScrollTimeline: ScrollTimelineFunc };\n    const window = inject(DOCUMENT).defaultView as unknown as WindowWithScrollTimeline | null;\n    if (!isPlatformBrowser(inject(PLATFORM_ID)) || !window) {\n      return signal(null);\n    }\n\n    const isAvailable = () => 'ScrollTimeline' in window && typeof window.ScrollTimeline === 'function';\n    if (isAvailable()) {\n      return signal(window['ScrollTimeline']);\n    }\n\n    const scrollTimeline$ = inject(SCROLL_TIMELINE_QUERY_INTERVAL).pipe(\n      takeWhile(() => !isAvailable()),\n      ignoreElements(),\n      endWith(null),\n      map(() => window.ScrollTimeline),\n    );\n\n    return toSignal(scrollTimeline$, { initialValue: null });\n  },\n})",
                 "rawdescription": "Provides ScrollTimeline as a signal.\nIf not natively implemented it will try to wait for a polyfill\nto provide the function.",
                 "description": "<p>Provides ScrollTimeline as a signal.\nIf not natively implemented it will try to wait for a polyfill\nto provide the function.</p>\n"
             },
@@ -6106,6 +6388,20 @@
                     "description": "<p>Record of icon sizes (number in rem)</p>\n"
                 }
             ],
+            "workflow-card/src/index.ts": [
+                {
+                    "name": "COMPONENTS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "workflow-card/src/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[WorkflowCardComponent, WorkflowCardActionsComponent, WorkflowCardExtraComponent]",
+                    "rawdescription": "All components",
+                    "description": "<p>All components</p>\n"
+                }
+            ],
             "scrolling/src/lib/scrolling.module.ts": [
                 {
                     "name": "DEFAULT_POLYFILL_URL",
@@ -6221,7 +6517,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {\n  providedIn: 'root',\n  factory: () => {\n    type WindowWithScrollTimeline = { ScrollTimeline: ScrollTimelineFunc };\n    const window = inject(DOCUMENT).defaultView as WindowWithScrollTimeline | null;\n    if (!isPlatformBrowser(inject(PLATFORM_ID)) || !window) {\n      return signal(null);\n    }\n\n    const isAvailable = () => 'ScrollTimeline' in window && typeof window.ScrollTimeline === 'function';\n    if (isAvailable()) {\n      return signal(window['ScrollTimeline']);\n    }\n\n    const scrollTimeline$ = inject(SCROLL_TIMELINE_QUERY_INTERVAL).pipe(\n      takeWhile(() => !isAvailable()),\n      ignoreElements(),\n      endWith(null),\n      map(() => window.ScrollTimeline),\n    );\n\n    return toSignal(scrollTimeline$, { initialValue: null });\n  },\n})",
+                    "defaultValue": "new InjectionToken<Signal<ScrollTimelineFunc | null>>('SCROLL_TIMELINE', {\n  providedIn: 'root',\n  factory: () => {\n    type WindowWithScrollTimeline = { ScrollTimeline: ScrollTimelineFunc };\n    const window = inject(DOCUMENT).defaultView as unknown as WindowWithScrollTimeline | null;\n    if (!isPlatformBrowser(inject(PLATFORM_ID)) || !window) {\n      return signal(null);\n    }\n\n    const isAvailable = () => 'ScrollTimeline' in window && typeof window.ScrollTimeline === 'function';\n    if (isAvailable()) {\n      return signal(window['ScrollTimeline']);\n    }\n\n    const scrollTimeline$ = inject(SCROLL_TIMELINE_QUERY_INTERVAL).pipe(\n      takeWhile(() => !isAvailable()),\n      ignoreElements(),\n      endWith(null),\n      map(() => window.ScrollTimeline),\n    );\n\n    return toSignal(scrollTimeline$, { initialValue: null });\n  },\n})",
                     "rawdescription": "Provides ScrollTimeline as a signal.\nIf not natively implemented it will try to wait for a polyfill\nto provide the function.",
                     "description": "<p>Provides ScrollTimeline as a signal.\nIf not natively implemented it will try to wait for a polyfill\nto provide the function.</p>\n"
                 },

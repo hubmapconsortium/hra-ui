@@ -104,6 +104,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
+                            <li class="link">
+                                <a href="modules/WorkflowCardModule.html" data-type="entity-link" >WorkflowCardModule</a>
+                            </li>
                 </ul>
                 </li>
                     <li class="chapter">
@@ -140,6 +143,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/DeleteFileButtonComponent.html" data-type="entity-link" >DeleteFileButtonComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/DeprecatedWorkflowCardComponent.html" data-type="entity-link" class="deprecated-name">DeprecatedWorkflowCardComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ErrorIndicatorComponent.html" data-type="entity-link" >ErrorIndicatorComponent</a>
@@ -232,7 +238,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/TreeStylesComponent.html" data-type="entity-link" >TreeStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/WorkflowCardActionsComponent.html" data-type="entity-link" >WorkflowCardActionsComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/WorkflowCardComponent.html" data-type="entity-link" >WorkflowCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/WorkflowCardExtraComponent.html" data-type="entity-link" >WorkflowCardExtraComponent</a>
                             </li>
                         </ul>
                     </li>
