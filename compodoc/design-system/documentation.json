@@ -77,12 +77,12 @@
         },
         {
             "name": "CardData",
-            "id": "interface-CardData-83b84bf009f75462a6df6c83e7fbaa0535fe75ca25bd871dc3582fad966f0183ee22c311574b85ffcf32bc022de89a2d7b3c3493bf65980c3067919e23673023",
+            "id": "interface-CardData-592abaa96955257744ad9e27ecfb49dbaf40c849580904bb7a032df5a704326e476563a6d5a5a9e732b73c6582e191f1ed78f7af4f0a39c56772f281396e8cb9",
             "file": "nav-header/src/lib/nav-header.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { AppsCardComponent } from '@hra-ui/design-system/apps-card';\nimport { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';\n\n/** Sidenav card data */\nexport interface CardData {\n  /** Name of card category */\n  category: string;\n  /** Info for apps in category */\n  cards: {\n    /** Name of app */\n    name: string;\n    /** Icon path */\n    icon: string;\n    /** App title */\n    title: string;\n    /** App description */\n    description: string;\n    /** Link to app */\n    link: string;\n  }[];\n}\n\n/**\n * Navigation Header Component\n */\n@Component({\n  selector: 'hra-nav-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    NavHeaderButtonsComponent,\n    IconButtonSizeDirective,\n    MatSidenavModule,\n    AppsCardComponent,\n    ScrollingModule,\n  ],\n  templateUrl: './nav-header.component.html',\n  styleUrl: './nav-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class NavHeaderComponent {\n  /** Variant of the header */\n  readonly variant = input<NavHeaderButtonsVariant>('basic');\n  /** Link to the app */\n  readonly link = input.required<string>();\n  /** Current app */\n  readonly app = input.required<string>();\n  /** Name of the app */\n  readonly title = input.required<string>();\n  /** Status of the app */\n  readonly status = input<SoftwareStatus>();\n  /** Data to display in sidenav */\n  readonly navigationCategories = input.required<CardData[]>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { AppsCardComponent } from '@hra-ui/design-system/apps-card';\nimport { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';\n\n/** Sidenav card data */\nexport interface CardData {\n  /** Name of card category */\n  category: string;\n  /** Info for apps in category */\n  cards: {\n    /** Name of app */\n    name: string;\n    /** Icon path */\n    icon: string;\n    /** App title */\n    title: string;\n    /** App description */\n    description: string;\n    /** Link to app */\n    link: string;\n  }[];\n}\n\n/**\n * Navigation Header Component\n */\n@Component({\n  selector: 'hra-nav-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    NavHeaderButtonsComponent,\n    IconButtonSizeDirective,\n    MatSidenavModule,\n    AppsCardComponent,\n    ScrollingModule,\n    AssetUrlPipe,\n  ],\n  templateUrl: './nav-header.component.html',\n  styleUrl: './nav-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class NavHeaderComponent {\n  /** Variant of the header */\n  readonly variant = input<NavHeaderButtonsVariant>('basic');\n  /** Link to the app */\n  readonly link = input.required<string>();\n  /** Current app */\n  readonly app = input.required<string>();\n  /** Name of the app */\n  readonly title = input.required<string>();\n  /** Status of the app */\n  readonly status = input<SoftwareStatus>();\n  /** Data to display in sidenav */\n  readonly navigationCategories = input.required<CardData[]>();\n}\n",
             "properties": [
                 {
                     "name": "cards",
@@ -91,7 +91,7 @@
                     "type": "literal type[]",
                     "optional": false,
                     "description": "<p>Info for apps in category</p>\n",
-                    "line": 17,
+                    "line": 18,
                     "rawdescription": "\nInfo for apps in category"
                 },
                 {
@@ -101,7 +101,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "<p>Name of card category</p>\n",
-                    "line": 15,
+                    "line": 16,
                     "rawdescription": "\nName of card category"
                 }
             ],
@@ -1695,7 +1695,7 @@
         },
         {
             "name": "BrandmarkComponent",
-            "id": "component-BrandmarkComponent-b62f6c11103a93823ede00227e77645f1e53dd6ccd9b82e0a3b2df10de90a46744e8824e7ee6c0596e6a6303de1c7b61f42e8fff2732c3b859c6e149aa083ed2",
+            "id": "component-BrandmarkComponent-beefba1a48cfca46db2211ac3b864295ea85571c7bddd23c117621346df58aae48f66128bc9d84cf57b5eec29bffb6a81e4c712c875c3bf56f7c5fd86768a7ff",
             "file": "brandmark/src/lib/brandmark.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1720,7 +1720,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Whether to use the contrast brandmark</p>\n",
-                    "line": 18,
+                    "line": 19,
                     "rawdescription": "\nWhether to use the contrast brandmark",
                     "modifierKind": [
                         148
@@ -1738,7 +1738,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Whether to use the contrast brandmark</p>\n",
-                    "line": 18,
+                    "line": 19,
                     "rawdescription": "\nWhether to use the contrast brandmark",
                     "modifierKind": [
                         148
@@ -1753,7 +1753,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Path to SVG</p>\n",
-                    "line": 21,
+                    "line": 22,
                     "rawdescription": "\nPath to SVG",
                     "modifierKind": [
                         148
@@ -1774,18 +1774,22 @@
                 {
                     "name": "InlineSVGModule",
                     "type": "module"
+                },
+                {
+                    "name": "AssetUrlPipe",
+                    "type": "pipe"
                 }
             ],
             "description": "<p>HRA brandmark component</p>\n",
             "rawdescription": "\n\nHRA brandmark component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { InlineSVGModule } from 'ng-inline-svg-2';\n\n/**\n * HRA brandmark component\n */\n@Component({\n  selector: 'hra-brandmark',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule],\n  templateUrl: './brandmark.component.html',\n  styleUrl: './brandmark.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BrandmarkComponent {\n  /** Whether to use the contrast brandmark */\n  readonly contrast = input(false);\n\n  /** Path to SVG */\n  readonly svgPath = computed(() => {\n    return `assets/logo/hra_brandmark${this.contrast() ? '_contrast' : ''}.svg`;\n  });\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { InlineSVGModule } from 'ng-inline-svg-2';\n\n/**\n * HRA brandmark component\n */\n@Component({\n  selector: 'hra-brandmark',\n  standalone: true,\n  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],\n  templateUrl: './brandmark.component.html',\n  styleUrl: './brandmark.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BrandmarkComponent {\n  /** Whether to use the contrast brandmark */\n  readonly contrast = input(false);\n\n  /** Path to SVG */\n  readonly svgPath = computed(() => {\n    return `assets/logo/hra_brandmark${this.contrast() ? '_contrast' : ''}.svg`;\n  });\n}\n",
             "styleUrl": "./brandmark.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"hra-brandmark\" [inlineSVG]=\"svgPath()\" alt=\"Human Reference Atlas brandmark\" data-testid=\"brandmark\"></div>\n"
+            "templateData": "<div\n  class=\"hra-brandmark\"\n  [inlineSVG]=\"svgPath() | assetUrl\"\n  alt=\"Human Reference Atlas brandmark\"\n  data-testid=\"brandmark\"\n></div>\n"
         },
         {
             "name": "BreadcrumbsComponent",
@@ -3747,7 +3751,7 @@
         },
         {
             "name": "NavHeaderComponent",
-            "id": "component-NavHeaderComponent-83b84bf009f75462a6df6c83e7fbaa0535fe75ca25bd871dc3582fad966f0183ee22c311574b85ffcf32bc022de89a2d7b3c3493bf65980c3067919e23673023",
+            "id": "component-NavHeaderComponent-592abaa96955257744ad9e27ecfb49dbaf40c849580904bb7a032df5a704326e476563a6d5a5a9e732b73c6582e191f1ed78f7af4f0a39c56772f281396e8cb9",
             "file": "nav-header/src/lib/nav-header.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -3771,7 +3775,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current app</p>\n",
-                    "line": 57,
+                    "line": 59,
                     "rawdescription": "\nCurrent app",
                     "modifierKind": [
                         148
@@ -3785,7 +3789,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Link to the app</p>\n",
-                    "line": 55,
+                    "line": 57,
                     "rawdescription": "\nLink to the app",
                     "modifierKind": [
                         148
@@ -3799,7 +3803,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Status of the app</p>\n",
-                    "line": 61,
+                    "line": 63,
                     "rawdescription": "\nStatus of the app",
                     "modifierKind": [
                         148
@@ -3813,7 +3817,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Name of the app</p>\n",
-                    "line": 59,
+                    "line": 61,
                     "rawdescription": "\nName of the app",
                     "modifierKind": [
                         148
@@ -3830,7 +3834,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Current app</p>\n",
-                    "line": 57,
+                    "line": 59,
                     "rawdescription": "\nCurrent app",
                     "modifierKind": [
                         148
@@ -3844,7 +3848,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Link to the app</p>\n",
-                    "line": 55,
+                    "line": 57,
                     "rawdescription": "\nLink to the app",
                     "modifierKind": [
                         148
@@ -3859,7 +3863,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Data to display in sidenav</p>\n",
-                    "line": 63,
+                    "line": 65,
                     "rawdescription": "\nData to display in sidenav",
                     "modifierKind": [
                         148
@@ -3872,7 +3876,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Status of the app</p>\n",
-                    "line": 61,
+                    "line": 63,
                     "rawdescription": "\nStatus of the app",
                     "modifierKind": [
                         148
@@ -3886,7 +3890,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Name of the app</p>\n",
-                    "line": 59,
+                    "line": 61,
                     "rawdescription": "\nName of the app",
                     "modifierKind": [
                         148
@@ -3901,7 +3905,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>Variant of the header</p>\n",
-                    "line": 53,
+                    "line": 55,
                     "rawdescription": "\nVariant of the header",
                     "modifierKind": [
                         148
@@ -3946,18 +3950,22 @@
                 {
                     "name": "ScrollingModule",
                     "type": "module"
+                },
+                {
+                    "name": "AssetUrlPipe",
+                    "type": "pipe"
                 }
             ],
             "description": "<p>Navigation Header Component</p>\n",
             "rawdescription": "\n\nNavigation Header Component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { AppsCardComponent } from '@hra-ui/design-system/apps-card';\nimport { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';\n\n/** Sidenav card data */\nexport interface CardData {\n  /** Name of card category */\n  category: string;\n  /** Info for apps in category */\n  cards: {\n    /** Name of app */\n    name: string;\n    /** Icon path */\n    icon: string;\n    /** App title */\n    title: string;\n    /** App description */\n    description: string;\n    /** Link to app */\n    link: string;\n  }[];\n}\n\n/**\n * Navigation Header Component\n */\n@Component({\n  selector: 'hra-nav-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    NavHeaderButtonsComponent,\n    IconButtonSizeDirective,\n    MatSidenavModule,\n    AppsCardComponent,\n    ScrollingModule,\n  ],\n  templateUrl: './nav-header.component.html',\n  styleUrl: './nav-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class NavHeaderComponent {\n  /** Variant of the header */\n  readonly variant = input<NavHeaderButtonsVariant>('basic');\n  /** Link to the app */\n  readonly link = input.required<string>();\n  /** Current app */\n  readonly app = input.required<string>();\n  /** Name of the app */\n  readonly title = input.required<string>();\n  /** Status of the app */\n  readonly status = input<SoftwareStatus>();\n  /** Data to display in sidenav */\n  readonly navigationCategories = input.required<CardData[]>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { AppsCardComponent } from '@hra-ui/design-system/apps-card';\nimport { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';\nimport { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';\n\n/** Sidenav card data */\nexport interface CardData {\n  /** Name of card category */\n  category: string;\n  /** Info for apps in category */\n  cards: {\n    /** Name of app */\n    name: string;\n    /** Icon path */\n    icon: string;\n    /** App title */\n    title: string;\n    /** App description */\n    description: string;\n    /** Link to app */\n    link: string;\n  }[];\n}\n\n/**\n * Navigation Header Component\n */\n@Component({\n  selector: 'hra-nav-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatButtonModule,\n    MatIconModule,\n    NavHeaderButtonsComponent,\n    IconButtonSizeDirective,\n    MatSidenavModule,\n    AppsCardComponent,\n    ScrollingModule,\n    AssetUrlPipe,\n  ],\n  templateUrl: './nav-header.component.html',\n  styleUrl: './nav-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class NavHeaderComponent {\n  /** Variant of the header */\n  readonly variant = input<NavHeaderButtonsVariant>('basic');\n  /** Link to the app */\n  readonly link = input.required<string>();\n  /** Current app */\n  readonly app = input.required<string>();\n  /** Name of the app */\n  readonly title = input.required<string>();\n  /** Status of the app */\n  readonly status = input<SoftwareStatus>();\n  /** Data to display in sidenav */\n  readonly navigationCategories = input.required<CardData[]>();\n}\n",
             "styleUrl": "./nav-header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<mat-sidenav-container class=\"container\">\n  <mat-sidenav #sidenav mode=\"over\" class=\"apps-sidenav\" position=\"end\" [fixedInViewport]=\"false\">\n    <div class=\"header\">\n      <span class=\"sidenav-title\"> HuBMAP Tools & Applications </span>\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>close</mat-icon>\n      </button>\n    </div>\n    <ng-scrollbar>\n      @for (item of navigationCategories(); track item) {\n        <div class=\"category\">\n          <div class=\"card-category\">{{ item.category }}</div>\n          @for (card of item.cards; track card) {\n            <hra-apps-card\n              [icon]=\"card.icon\"\n              [title]=\"card.name\"\n              [description]=\"card.description\"\n              [link]=\"card.link\"\n            ></hra-apps-card>\n          }\n        </div>\n      }\n    </ng-scrollbar>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <div class=\"main\">\n      <hra-nav-header-buttons\n        [variant]=\"variant()\"\n        [appLink]=\"link()\"\n        [app]=\"app()\"\n        [appTitle]=\"title()\"\n        [appStatus]=\"status()\"\n      ></hra-nav-header-buttons>\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>apps</mat-icon>\n      </button>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+            "templateData": "<mat-sidenav-container class=\"container\">\n  <mat-sidenav #sidenav mode=\"over\" class=\"apps-sidenav\" position=\"end\" [fixedInViewport]=\"false\">\n    <div class=\"header\">\n      <span class=\"sidenav-title\"> HuBMAP Tools & Applications </span>\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>close</mat-icon>\n      </button>\n    </div>\n    <ng-scrollbar>\n      @for (item of navigationCategories(); track item) {\n        <div class=\"category\">\n          <div class=\"card-category\">{{ item.category }}</div>\n          @for (card of item.cards; track card) {\n            <hra-apps-card\n              [icon]=\"card.icon\"\n              [title]=\"card.name\"\n              [description]=\"card.description\"\n              [link]=\"card.link | assetUrl\"\n            ></hra-apps-card>\n          }\n        </div>\n      }\n    </ng-scrollbar>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <div class=\"main\">\n      <hra-nav-header-buttons\n        [variant]=\"variant()\"\n        [appLink]=\"link()\"\n        [app]=\"app()\"\n        [appTitle]=\"title()\"\n        [appStatus]=\"status()\"\n      ></hra-nav-header-buttons>\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>apps</mat-icon>\n      </button>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
         },
         {
             "name": "NoticeComponent",
