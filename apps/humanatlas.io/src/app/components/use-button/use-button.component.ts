@@ -6,6 +6,9 @@ import { UseButton } from './use-button';
   selector: 'ccf-use-button',
   templateUrl: './use-button.component.html',
   styleUrls: ['./use-button.component.scss'],
+  host: {
+    '[class.small]': 'buttonData.small',
+  },
 })
 export class UseButtonComponent {
   /** Details of the button */

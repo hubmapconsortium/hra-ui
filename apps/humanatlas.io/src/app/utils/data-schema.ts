@@ -105,6 +105,7 @@ export const Button = z
       description: 'Route for the another page in current project',
     }),
     icon: z.string({ description: 'Icon on the button' }),
+    small: z.boolean({ description: 'Smaller version of button ' }),
     styles: Styles.optional(),
   })
   .partial({
@@ -112,6 +113,7 @@ export const Button = z
     route: true,
     icon: true,
     styles: true,
+    small: true,
   })
   .describe(buttonDescription);
 
