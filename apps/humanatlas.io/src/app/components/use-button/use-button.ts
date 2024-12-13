@@ -8,4 +8,6 @@ export interface UseButton {
   route?: string;
   /** Icon name of the icon to be displayed on the button */
   icon?: string;
+  /** Small version of button */
+  small?: boolean;
 }

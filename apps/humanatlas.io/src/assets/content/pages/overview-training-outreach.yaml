@@ -83,6 +83,11 @@
           body: See what's new in the 7th Release (v2.1) of the Human Reference Atlas
           route: release-notes/v2.1
           alt: Release notes icon
+        - icon: assets/images/hra-sop.svg
+          title: 8th Release Notes
+          body: See what's new in the 8th Release (v2.2) of the Human Reference Atlas
+          route: release-notes/v2.2
+          alt: Release notes icon
       id: release-notes
     - heading: Human Atlas Stories
       cardData:
