@@ -1,0 +1,645 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>components-molecules</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">components-molecules</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  NodeTooltipData</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/interactive-svg/interactive-svg.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Node tooltip data</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#node" 
+>
+                                            node
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#origin" 
+>
+                                            origin
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="node"></a>
+                                        <span class="name "><b>node</b>
+                                            <a href="#node">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>node:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Node name</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="origin"></a>
+                                        <span class="name "><b>origin</b>
+                                            <a href="#origin">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>origin:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Center point of hovered node in screen coordinates</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewEncapsulation,
+} from &#x27;@angular/core&#x27;;
+import { TooltipComponent } from &#x27;@hra-ui/components/atoms&#x27;;
+import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
+import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from &#x27;rxjs&#x27;;
+import { NodeEventHandler } from &#x27;rxjs/internal/observable/fromEvent&#x27;;
+
+/** Delay before tooltip becomes visible */
+const HOVER_DELAY &#x3D; 200;
+
+/** Tooltip position settings */
+const TOOLTIP_POSITIONS: ConnectedPosition[] &#x3D; [
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;center&#x27;,
+    overlayX: &#x27;start&#x27;,
+    overlayY: &#x27;center&#x27;,
+    offsetX: 8,
+  },
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;center&#x27;,
+    overlayX: &#x27;end&#x27;,
+    overlayY: &#x27;center&#x27;,
+    offsetX: -8,
+  },
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;center&#x27;,
+    overlayX: &#x27;center&#x27;,
+    overlayY: &#x27;top&#x27;,
+    offsetY: 8,
+  },
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;center&#x27;,
+    overlayX: &#x27;center&#x27;,
+    overlayY: &#x27;bottom&#x27;,
+    offsetY: -8,
+  },
+];
+
+/** Node tooltip data */
+export interface NodeTooltipData {
+  /** Node name */
+  node: string;
+  /** Center point of hovered node in screen coordinates */
+  origin: { x: number; y: number };
+}
+
+/** Interface for node entries */
+export interface NodeMapEntry {
+  /** Node label */
+  label: string;
+  /** Node id in svg */
+  id: string;
+  /** Node group id */
+  groupId: string;
+  /** Ontology id of cell type */
+  ontologyId: string;
+}
+
+/**
+ * Interactive SVG component
+ */
+@Component({
+  selector: &#x27;hra-interactive-svg&#x27;,
+  standalone: true,
+  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
+  templateUrl: &#x27;./interactive-svg.component.html&#x27;,
+  styleUrls: [&#x27;./interactive-svg.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
+})
+export class InteractiveSvgComponent&lt;T extends NodeMapEntry&gt; implements OnChanges, OnDestroy {
+  /** SVG url */
+  @Input() url?: string;
+
+  /** Mapping info */
+  @Input() mapping: T[] &#x3D; [];
+
+  /** Highlighted ontology id */
+  @Input() highlightId?: string;
+
+  /** Emits node id when hovered */
+  @Output() readonly nodeHover &#x3D; new EventEmitter&lt;T | undefined&gt;();
+
+  /** Emits node id when clicked */
+  @Output() readonly nodeClick &#x3D; new EventEmitter&lt;T&gt;();
+
+  /** SVG script eval mode */
+  readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;
+
+  /** Tooltip position settings */
+  readonly TOOLTIP_POSITIONS &#x3D; TOOLTIP_POSITIONS;
+
+  /** Observable of node hover data or undefined when there is no active hover */
+  readonly nodeHoverData$ &#x3D; new BehaviorSubject&lt;NodeTooltipData | undefined&gt;(undefined);
+
+  /** Observable of node hover with a timer */
+  readonly nodeHoverDelayedData$ &#x3D; this.nodeHoverData$.pipe(debounce((event) &#x3D;&gt; timer(event ? HOVER_DELAY : 0)));
+
+  /** Custom renderer */
+  private readonly renderer &#x3D; inject(Renderer2);
+
+  /** Destroys */
+  private destroy$ &#x3D; new Subject&lt;void&gt;();
+
+  /** Crosswalk element of svg */
+  private crosswalkEl?: Element;
+
+  /** List of highlighted svg elements */
+  private highlightedElements: Element[] &#x3D; [];
+
+  /**
+   * Updates the highlighting based on current highlight id
+   * @param changes
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if (&#x27;highlightId&#x27; in changes) {
+      this.resetHighlight();
+      this.setHighlight();
+    }
+  }
+
+  /**
+   * Highlights cells that match highlightId
+   */
+  private setHighlight() {
+    const { mapping, highlightId, crosswalkEl } &#x3D; this;
+    const entry &#x3D; mapping.find(({ ontologyId }) &#x3D;&gt; ontologyId &#x3D;&#x3D;&#x3D; highlightId);
+    if (!entry || !crosswalkEl) {
+      return;
+    }
+
+    const encodedId &#x3D; this.encodeId(entry.id);
+    const element &#x3D; crosswalkEl.querySelector(&#x60;#${entry.id}, #${encodedId}&#x60;);
+    if (!element) {
+      return;
+    }
+
+    const gElement &#x3D; element.nodeName &#x3D;&#x3D;&#x3D; &#x27;g&#x27; ? element : (element.parentElement as Element);
+    const id &#x3D; gElement.id;
+    const elements &#x3D; crosswalkEl.querySelectorAll(&#x60;#${id} :is(path, polygon, polyline)&#x60;);
+    this.highlightedElements &#x3D; Array.from(elements);
+    elements.forEach((el) &#x3D;&gt; el.classList.add(&#x27;click-active&#x27;));
+  }
+
+  /**
+   * Resets all highlighted elements in the svg
+   */
+  private resetHighlight(): void {
+    for (const el of this.highlightedElements) {
+      el.classList.remove(&#x27;click-active&#x27;);
+    }
+    this.highlightedElements &#x3D; [];
+  }
+
+  /**
+   * Clears observables on destroy
+   */
+  ngOnDestroy(): void {
+    this.clear();
+  }
+
+  /**
+   * Sets SVG element
+   * @param el SVG element
+   */
+  setSvgElement(el: SVGElement): void {
+    this.clear();
+    this.crosswalkEl &#x3D; el.querySelector(&#x27;[id^&#x3D;&quot;Crosswalk&quot;]&#x27;) ?? undefined;
+    if (this.crosswalkEl) {
+      // Move to front (i.e. last child in svg)
+      this.renderer.appendChild(el, this.crosswalkEl);
+      this.attachCrosswalkHover(this.crosswalkEl);
+      this.setHighlight();
+    }
+  }
+
+  /**
+   * Removes underscores from id
+   * @param name Node name
+   * @returns node name without underscores
+   */
+  formatNodeName(name: string): string {
+    return name.replace(/_/g, &#x27; &#x27;);
+  }
+
+  /**
+   * Attaches crosswalk hover
+   * @param el element
+   */
+  private attachCrosswalkHover(el: Element): void {
+    this.attachEvent(el, &#x27;mouseover&#x27;).subscribe((event) &#x3D;&gt; this.onCrosswalkHover(event));
+    this.attachEvent(el, &#x27;mouseout&#x27;).subscribe(() &#x3D;&gt; this.onCrosswalkHover(undefined as never as MouseEvent));
+    this.attachEvent(el, &#x27;click&#x27;).subscribe((event) &#x3D;&gt; this.nodeClick.emit(this.getNode(event)));
+  }
+
+  /**
+   * Finds matching node in data from a hovered element
+   * @param event Mouse event
+   */
+  private onCrosswalkHover(event: MouseEvent): void {
+    if (event) {
+      const node &#x3D; this.getNode(event);
+      if (node) {
+        this.nodeHoverData$.next({
+          node: node.label,
+          origin: {
+            x: event.clientX,
+            y: event.clientY,
+          },
+        });
+        this.nodeHover.emit(node); //emits node entry
+      }
+    } else {
+      this.nodeHoverData$.next(undefined);
+      this.nodeHover.emit();
+    }
+  }
+
+  /**
+   * Clears observables
+   */
+  private clear(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.destroy$ &#x3D; new Subject();
+  }
+
+  /**
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
+   * @param event Event
+   * @returns Node entry that matches the target id
+   */
+  private getNode(event: Event): T | undefined {
+    const targetId &#x3D; (event.target as Element).id;
+    const parentId &#x3D; (event.target as Element).parentElement?.id ?? &#x27;&#x27;;
+    const grandparentId &#x3D; (event.target as Element).parentElement?.parentElement?.id ?? &#x27;&#x27;;
+    const idCollection &#x3D; [targetId, parentId, grandparentId];
+    for (const id of idCollection) {
+      const decodedID &#x3D; this.decodeId(id);
+      const cellMatch &#x3D; this.mapping.find(
+        (item) &#x3D;&gt; item.id?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase(), //search mapping by cell name for matching node entry
+      );
+      if (cellMatch) {
+        return cellMatch;
+      } else {
+        const groupMatch &#x3D; this.mapping.find(
+          (item) &#x3D;&gt; item.groupId?.toLowerCase() &#x3D;&#x3D;&#x3D; decodedID.toLowerCase(), //search mapping by group name for matching node entry
+        );
+        if (groupMatch) {
+          return groupMatch;
+        }
+      }
+    }
+    return undefined;
+  }
+
+  /**
+   * Decodes id into a normal string
+   * @param id Undecoded ID
+   * @returns id
+   */
+  private decodeId(id: string): string {
+    const replacer &#x3D; (_match: string, hex: string) &#x3D;&gt; String.fromCharCode(Number.parseInt(hex, 16));
+    return id.replace(/_x([\da-f]+)_/gi, replacer);
+  }
+
+  /**
+   * Turns normal string into decoded SVG id
+   * @param id id
+   * @returns Encoded id
+   */
+  private encodeId(id: string): string {
+    const replacer &#x3D; (match: string) &#x3D;&gt; &#x60;_x${match.charCodeAt(0).toString(16).toUpperCase()}_&#x60;;
+    return id.replace(/[^a-z0-9-]/gi, replacer);
+  }
+
+  /**
+   * Attaches an event listener
+   * @template K
+   * @param el Element
+   * @param event Event
+   * @returns Observable
+   */
+  private attachEvent&lt;K extends keyof SVGElementEventMap&gt;(el: Element, event: K): Observable&lt;SVGElementEventMap[K]&gt; {
+    const { renderer, destroy$ } &#x3D; this;
+    const add &#x3D; (handler: NodeEventHandler) &#x3D;&gt; renderer.listen(el, event, handler);
+    const remove &#x3D; (_handler: NodeEventHandler, unlisten: () &#x3D;&gt; void) &#x3D;&gt; unlisten();
+    return fromEventPattern&lt;SVGElementEventMap[K]&gt;(add, remove).pipe(takeUntil(destroy$));
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'NodeTooltipData.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -197,6 +197,8 @@ THE SOFTWARE.
 @hra-api/ng-client
 Unlicense
 
+@hra-ui/design-system
+
 @hra-ui/webcomponents
 
 @loaders.gl/core
