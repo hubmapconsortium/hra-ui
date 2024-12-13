@@ -112,7 +112,7 @@
       alt: Publications
     # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/data/hra-growth.atlas.csv
     - image: assets/images/organs_metric.svg
-      count: 75
+      count: 71
       text: organs
       alt: Organs
     - image: assets/images/anatomical-structures.svg

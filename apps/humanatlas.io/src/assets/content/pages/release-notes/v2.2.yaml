@@ -97,7 +97,7 @@
                   - 1,288 cell types
                   - 2,018 biomarkers
                 - 22 2D Functional Tissue Units (FTUs)
-                - 75 3D Organ Models
+                - 71 3D Organ Models
                 - 23 Organ Mapping Antibody Panel (OMAP) Tables
                 - 10 Crosswalk Tables
                 - 7 Vasculature Common Coordinate Framework (VCCF) Tables
@@ -188,7 +188,7 @@
                   - OMAP-2: Intestine, Fresh frozen, CODEX
                   - OMAP-9: Kidney, Fresh frozen, CODEX
                   - OMAP-21: Palatine tonsil, FFPE, MICS
-                - 6 Crosswalk Tables
+                - 7 Crosswalk Tables
                   - 2D Functional Tissue Unit
                   - 3D Reference Organ
                   - Pathway
