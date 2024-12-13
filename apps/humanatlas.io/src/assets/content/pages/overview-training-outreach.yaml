@@ -6,9 +6,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
-      route: 'v2.1'
-      routeText: '7th Release Notes.'
+    - message: "The 8th Release of the Human Reference Atlas (v2.2) is now available! See what's new in HRA v2.2 in "
+      route: 'v2.2'
+      routeText: '8th Release Notes.'
       emoji: '🎉'
 
 - type: simple-tile
@@ -82,6 +82,11 @@
           title: 7th Release Notes
           body: See what's new in the 7th Release (v2.1) of the Human Reference Atlas
           route: release-notes/v2.1
+          alt: Release notes icon
+        - icon: assets/images/hra-sop.svg
+          title: 8th Release Notes
+          body: See what's new in the 8th Release (v2.2) of the Human Reference Atlas
+          route: release-notes/v2.2
           alt: Release notes icon
       id: release-notes
     - heading: Human Atlas Stories

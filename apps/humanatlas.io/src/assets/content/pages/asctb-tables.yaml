@@ -9,9 +9,9 @@
 
 - type: announcement
   announcementCard:
-    - message: "The 7th Release of the Human Reference Atlas (v2.1) is now available! See what's new in HRA v2.1 in "
-      route: 'v2.1'
-      routeText: '7th Release Notes.'
+    - message: "The 8th Release of the Human Reference Atlas (v2.2) is now available! See what's new in HRA v2.2 in "
+      route: 'v2.2'
+      routeText: '8th Release Notes.'
       emoji: '🎉'
 
 - type: margin
@@ -47,6 +47,9 @@
   versionChooserDisabled: false
   versionData:
     # SOURCE: https://github.com/x-atlas-consortia/hra-dashboard-data/blob/main/data/humanatlas.io/asctb-release.csv
+    - release: 8th HRA Release (v2.2), December 2024
+      file: asctb_release8.csv
+      version: 2.2
     - release: 7th HRA Release (v2.1), June 2024
       file: asctb_release7.csv
       version: 2.1
