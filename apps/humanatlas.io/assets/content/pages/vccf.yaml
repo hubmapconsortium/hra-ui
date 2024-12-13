@@ -95,7 +95,7 @@
           links:
             - label: CSV
               link: https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature/v1.7/assets/asct-b-vh-blood-vasculature.csv
-          releaseVersion: v1.6
+          releaseVersion: v1.7
           dot: ASCT+B Table
         - label: Lymph Vasculature
           url: https://purl.humanatlas.io/asct-b/lymph-vasculature/v1.5
