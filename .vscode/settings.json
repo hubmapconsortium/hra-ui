@@ -17,5 +17,20 @@
     "node-dist-vis",
     "lib:common",
     "ccf-rui"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#e7bf43",
+    "activityBar.background": "#e7bf43",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#128d6f",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#e7bf43",
+    "statusBar.background": "#dbac1c",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#ae8816",
+    "statusBarItem.remoteBackground": "#dbac1c",
+    "statusBarItem.remoteForeground": "#15202b"
+  },
+  "peacock.remoteColor": "#dbac1c"
 }

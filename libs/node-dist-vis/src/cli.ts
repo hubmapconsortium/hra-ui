@@ -114,9 +114,9 @@ program
   .command('generate-edges')
   .description('Generate edges from nodes')
   .argument('<nodes>', 'csv file with nodes')
-  .option('-t, --target', 'node target selector', 'Endothelial')
+  .option('-t, --target <target>', 'node target selector', 'Endothelial')
   .option('-k, --keys <mapping...>', "key mapping in the format 'from:to'", [])
-  .option('-d, --max-distance', '', '1000')
+  .option('-d, --max-distance <maxDistance>', 'max distance to target', '1000')
   .option('-o, --output <filename>', 'output file for generated edges', 'edges.csv')
   .action(generateEdgesAction);
 
