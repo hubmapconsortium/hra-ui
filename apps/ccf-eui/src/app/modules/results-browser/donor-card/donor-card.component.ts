@@ -10,6 +10,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   templateUrl: './donor-card.component.html',
   styleUrls: ['./donor-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DonorCardComponent {
   /** HTML Class Name */

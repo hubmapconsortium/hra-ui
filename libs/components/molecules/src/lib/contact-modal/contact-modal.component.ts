@@ -30,7 +30,6 @@ const EMPTY_CONTACT_DATA: Partial<ContactData> = {
  */
 @Component({
   selector: 'hra-contact-modal',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,

@@ -43,6 +43,7 @@ const isExpandable = property<FlatNode, boolean>('expandable');
   templateUrl: './ontology-tree.component.html',
   styleUrls: ['./ontology-tree.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OntologyTreeComponent implements OnInit, OnChanges {
   /**

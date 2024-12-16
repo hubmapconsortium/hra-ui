@@ -28,6 +28,7 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
   templateUrl: './block-size-input.component.html',
   styleUrls: ['./block-size-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class BlockSizeInputComponent {
   /** HTML class name */

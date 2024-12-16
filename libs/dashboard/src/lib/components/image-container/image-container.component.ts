@@ -7,7 +7,6 @@ import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.com
 /** Image container component, renders image inside a card */
 @Component({
   selector: 'hra-image-container',
-  standalone: true,
   imports: [CommonModule, TitleCardComponent],
   templateUrl: './image-container.component.html',
   styleUrl: './image-container.component.scss',

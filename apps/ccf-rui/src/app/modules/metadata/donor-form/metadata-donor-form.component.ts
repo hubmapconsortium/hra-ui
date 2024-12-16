@@ -61,7 +61,6 @@ function filterAutocompleteOptions<T>(
 
 @Component({
   selector: 'ccf-metadata-donor-form',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatAutocompleteModule,

@@ -1,4 +1,10 @@
-import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
+import {
+  EnvironmentProviders,
+  InjectionToken,
+  makeEnvironmentProviders,
+  inject,
+  provideAppInitializer,
+} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppHrefService } from '@hra-ui/cdk/app-href';
@@ -95,12 +101,10 @@ export function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders
       provide: FONT_ICONS_CONFIG,
       useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },
     },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: registerDefaultFontSetClassesFactory,
-      deps: [MatIconRegistry, FONT_ICONS_CONFIG],
-    },
+    provideAppInitializer(() => {
+      const initializerFn = registerDefaultFontSetClassesFactory(inject(MatIconRegistry), inject(FONT_ICONS_CONFIG));
+      return initializerFn();
+    }),
   ]);
 }
 
@@ -116,12 +120,15 @@ export function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {
       provide: SVG_ICONS_CONFIG,
       useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },
     },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: registerSvgIconResolverFactory,
-      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],
-    },
+    provideAppInitializer(() => {
+      const initializerFn = registerSvgIconResolverFactory(
+        inject(MatIconRegistry),
+        inject(AppHrefService),
+        inject(DomSanitizer),
+        inject(SVG_ICONS_CONFIG),
+      );
+      return initializerFn();
+    }),
   ]);
 }
 

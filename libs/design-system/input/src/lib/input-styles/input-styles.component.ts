@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
  */
 @Component({
   selector: 'hra-input-styles',
-  standalone: true,
   imports: [CommonModule],
   template: '',
   styleUrl: './input-styles.component.scss',

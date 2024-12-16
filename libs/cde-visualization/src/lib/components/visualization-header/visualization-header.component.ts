@@ -11,7 +11,6 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
  */
 @Component({
   selector: 'cde-visualization-header',
-  standalone: true,
   imports: [CommonModule, MatDividerModule, MatIconModule, MatButtonModule, OverlayModule, AssetUrlPipe],
   templateUrl: './visualization-header.component.html',
   styleUrl: './visualization-header.component.scss',

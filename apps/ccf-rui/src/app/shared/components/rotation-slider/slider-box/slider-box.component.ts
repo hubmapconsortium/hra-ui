@@ -7,6 +7,7 @@ import { Axis, Rotation } from '../rotation-slider.component';
   templateUrl: './slider-box.component.html',
   styleUrl: './slider-box.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SliderBoxComponent {
   @Input() sliderAxis!: Axis;

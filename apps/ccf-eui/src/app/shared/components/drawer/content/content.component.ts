@@ -16,11 +16,11 @@ import { Message, MessageService } from '../messages';
     trigger('fadeInOut', [
       state('false', style({ opacity: 1 })),
       state('true', style({ opacity: 0 })),
-
       transition('false <=> true', animate('1s')),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ContentComponent implements OnDestroy {
   /** HTML class */

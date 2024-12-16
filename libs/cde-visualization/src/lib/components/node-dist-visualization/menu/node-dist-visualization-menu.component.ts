@@ -7,7 +7,6 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 @Component({
   selector: 'cde-node-dist-visualization-menu',
-  standalone: true,
   imports: [MatMenuModule, MatIconModule, ButtonModule, IconButtonSizeDirective, MicroTooltipDirective],
   templateUrl: './node-dist-visualization-menu.component.html',
   styleUrl: './node-dist-visualization-menu.component.scss',

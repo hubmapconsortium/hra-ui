@@ -6,7 +6,6 @@ import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  standalone: true,
   imports: [CommonModule, AssetUrlPipe, InlineSVGModule],
   templateUrl: './brand-logo.component.html',
   styleUrl: './brand-logo.component.scss',

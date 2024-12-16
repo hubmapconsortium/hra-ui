@@ -15,6 +15,7 @@ import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/
   selector: 'ccf-spatial-search-config-behavior',
   templateUrl: './spatial-search-config-behavior.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
   @Select(SpatialSearchUiSelectors.sex)

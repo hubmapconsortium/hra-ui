@@ -13,6 +13,7 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
   selector: 'ccf-review-button',
   templateUrl: './review-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReviewButtonComponent implements OnChanges {
   /** HTML class name */

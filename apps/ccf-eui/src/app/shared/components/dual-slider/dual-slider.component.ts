@@ -24,6 +24,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   templateUrl: './dual-slider.component.html',
   styleUrls: ['./dual-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DualSliderComponent implements OnDestroy, OnChanges {
   /**

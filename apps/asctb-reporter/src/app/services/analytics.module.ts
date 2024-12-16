@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
+import { inject, ModuleWithProviders, NgModule, provideAppInitializer } from '@angular/core';
 import { IGoogleAnalyticsCommand, NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 import { ConsentService } from './consent.service';
@@ -48,12 +48,11 @@ function initCommands(options: AnalyticsOptions): IGoogleAnalyticsCommand[] {
   providers: [
     ...EAGERLY_LOADED_SERVICES,
 
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () => () => undefined,
-      deps: EAGERLY_LOADED_SERVICES,
-    },
+    provideAppInitializer(() => {
+      for (const service of EAGERLY_LOADED_SERVICES) {
+        inject<unknown>(service);
+      }
+    }),
   ],
 })
 export class AnalyticsModule {

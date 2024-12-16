@@ -7,7 +7,6 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
 @Component({
   selector: 'cde-histogram-menu',
-  standalone: true,
   imports: [CommonModule, MatMenuModule, MatIconModule, IconButtonSizeDirective, ButtonModule],
   templateUrl: './histogram-menu.component.html',
   styleUrl: './histogram-menu.component.scss',

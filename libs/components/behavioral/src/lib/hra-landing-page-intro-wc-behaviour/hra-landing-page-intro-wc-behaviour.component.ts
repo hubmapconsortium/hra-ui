@@ -8,7 +8,6 @@ import { ResourceIds as RIds } from '@hra-ui/state';
 /** Component for LandingPage Intro Behaviour: Web component */
 @Component({
   selector: 'ftu-wc-intro',
-  standalone: true,
   imports: [CommonModule, HraLandingPageIntroWcComponent],
   templateUrl: './hra-landing-page-intro-wc-behaviour.component.html',
   styleUrls: ['./hra-landing-page-intro-wc-behaviour.component.scss'],

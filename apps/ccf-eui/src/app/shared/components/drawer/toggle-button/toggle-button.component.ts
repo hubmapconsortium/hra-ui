@@ -19,6 +19,7 @@ import { Message, MessageService } from '../messages';
   templateUrl: './toggle-button.component.html',
   styleUrls: ['./toggle-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ToggleButtonComponent implements AfterViewInit, OnDestroy {
   /** HTML class */

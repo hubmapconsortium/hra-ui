@@ -14,6 +14,7 @@ import { ListResult } from '../../../core/models/list-result';
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ResultsBrowserComponent {
   /**

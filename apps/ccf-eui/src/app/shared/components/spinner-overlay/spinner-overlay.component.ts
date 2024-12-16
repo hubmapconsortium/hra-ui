@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   templateUrl: './spinner-overlay.component.html',
   styleUrls: ['./spinner-overlay.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpinnerOverlayComponent {
   /** HTML class */

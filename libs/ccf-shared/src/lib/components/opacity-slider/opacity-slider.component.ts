@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   templateUrl: './opacity-slider.component.html',
   styleUrls: ['./opacity-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OpacitySliderComponent implements OnInit {
   /**

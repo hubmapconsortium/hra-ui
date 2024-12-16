@@ -12,6 +12,7 @@ import { NavItems } from '../toolbar/nav-items';
   selector: 'menu-tree',
   templateUrl: './menu-tree.component.html',
   styleUrls: ['./menu-tree.component.scss'],
+  standalone: false,
 })
 export class MenuTreeComponent {
   /** Sets the menu items to the datasource */

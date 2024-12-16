@@ -95,6 +95,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [MatDialogModule],
+  standalone: false,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;

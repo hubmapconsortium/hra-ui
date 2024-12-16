@@ -20,7 +20,6 @@ export type InfoModalVariant = 'tabular' | 'center';
  */
 @Component({
   selector: 'hra-info-modal',
-  standalone: true,
   imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.scss',

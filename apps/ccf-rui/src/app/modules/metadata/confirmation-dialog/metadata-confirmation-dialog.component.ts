@@ -6,7 +6,6 @@ import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 
 @Component({
   selector: 'ccf-metadata-confirmation-dialog',
-  standalone: true,
   imports: [MatDialogModule, MatIconModule, ButtonModule, ErrorIndicatorComponent],
   templateUrl: './metadata-confirmation-dialog.component.html',
   styleUrls: ['./metadata-confirmation-dialog.component.scss'],

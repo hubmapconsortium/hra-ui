@@ -36,6 +36,7 @@ function throwDuplicateDrawersError(position: 'start' | 'end'): never {
   styleUrls: ['./container.component.scss'],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ContainerComponent implements AfterViewInit, OnDestroy {
   /** HTML class */

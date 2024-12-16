@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'ccf-simple-image',
   templateUrl: './simple-image.component.html',
   styleUrls: ['./simple-image.component.scss'],
+  standalone: false,
 })
 export class SimpleImageComponent {
   /** Details to be displayed inside the card */

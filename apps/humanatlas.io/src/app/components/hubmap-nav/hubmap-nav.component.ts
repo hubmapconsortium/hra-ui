@@ -9,6 +9,7 @@ import { HubmapNavItems } from './hubmap-nav';
   templateUrl: './hubmap-nav.component.html',
   styleUrl: './hubmap-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class HubmapNavComponent {
   /** Navigation Menu Items */

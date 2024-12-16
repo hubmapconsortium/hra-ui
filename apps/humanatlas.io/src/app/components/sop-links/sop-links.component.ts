@@ -6,6 +6,7 @@ import { SopLinks } from './sop-links';
   selector: 'ccf-sop-links',
   templateUrl: './sop-links.component.html',
   styleUrls: ['./sop-links.component.scss'],
+  standalone: false,
 })
 export class SopLinksComponent {
   /** Title and details of URLs to be displayed */

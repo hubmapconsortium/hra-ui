@@ -6,6 +6,7 @@ import { Announcement } from './announcement-card';
   selector: 'announcement-card',
   templateUrl: './announcement-card.component.html',
   styleUrls: ['./announcement-card.component.scss'],
+  standalone: false,
 })
 export class AnnouncementCardComponent {
   /** Message to be shown to the users */

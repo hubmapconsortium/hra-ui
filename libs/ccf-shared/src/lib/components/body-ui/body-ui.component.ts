@@ -28,6 +28,7 @@ interface XYZTriplet<T = number> {
   templateUrl: './body-ui.component.html',
   styleUrls: ['./body-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class BodyUiComponent implements AfterViewInit, OnDestroy {
   /** HTML class name */

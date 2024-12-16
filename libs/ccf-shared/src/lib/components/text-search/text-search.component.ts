@@ -43,6 +43,7 @@ export const DEFAULT_MAX_OPTIONS = new InjectionToken('Maximum number of autocom
   templateUrl: './text-search.component.html',
   styleUrls: ['./text-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TextSearchComponent {
   /** HTML class name */

@@ -6,6 +6,7 @@ import { NavItems } from '../toolbar/nav-items';
   selector: 'ccf-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  standalone: false,
 })
 export class NavbarComponent {
   /** Menu items to be displayed on the navigation bar */

@@ -27,7 +27,6 @@ const PADDING: Record<TreeSize, number> = {
 @Component({
   selector: 'hra-tree-demo',
   templateUrl: 'tree-demo.component.html',
-  standalone: true,
   imports: [MatTreeModule, MatButtonModule, MatIconModule, TreeSizeDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

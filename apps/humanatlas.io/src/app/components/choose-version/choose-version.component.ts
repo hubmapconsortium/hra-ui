@@ -6,6 +6,7 @@ import { ChooseVersion } from './choose-version';
   selector: 'ccf-choose-version',
   templateUrl: './choose-version.component.html',
   styleUrls: ['./choose-version.component.scss'],
+  standalone: false,
 })
 export class ChooseVersionComponent {
   /** Details of options in the select */

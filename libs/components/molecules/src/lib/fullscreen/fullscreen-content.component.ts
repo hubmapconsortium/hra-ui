@@ -5,7 +5,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 /** A component that displays its content in fullscreen mode when its isFullScreen property is set to true */
 @Component({
   selector: 'hra-fullscreen-content',
-  standalone: true,
   imports: [CommonModule],
   animations: [
     trigger('animateResize', [

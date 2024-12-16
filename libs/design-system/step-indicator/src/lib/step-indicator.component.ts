@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
  */
 @Component({
   selector: 'hra-step-indicator',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './step-indicator.component.html',
   styleUrl: './step-indicator.component.scss',

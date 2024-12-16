@@ -82,6 +82,7 @@ function parseFilter(value: unknown): string | Partial<Filter> {
   selector: 'ccf-root-wc',
   template: '<ccf-root *ngIf="initialized"></ccf-root>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() baseHref!: string;

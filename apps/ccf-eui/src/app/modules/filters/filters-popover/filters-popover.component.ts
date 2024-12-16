@@ -23,6 +23,7 @@ import { SetExecuteSearchOnGenerate } from '../../../core/store/spatial-search-u
   templateUrl: './filters-popover.component.html',
   styleUrls: ['./filters-popover.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FiltersPopoverComponent implements OnChanges, AfterViewInit {
   /**
