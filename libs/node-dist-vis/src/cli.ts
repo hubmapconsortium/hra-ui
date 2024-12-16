@@ -9,6 +9,7 @@ import {
   NodesView,
   OPTIONAL_NODE_KEYS,
   REQUIRED_NODE_KEYS,
+  toCsv,
   validateViewKeyMapping,
 } from '@hra-ui/node-dist-vis/models';
 import { Command } from 'commander';
@@ -100,7 +101,7 @@ async function generateEdgesAction(file: string, options: GenerateEdgesOptions):
   const nodes = await loadNodes(file, options.keys);
   const entries = generateEdgesWithProgress(nodes, options.target, Number(options.maxDistance));
   const edges = new EdgesView(entries, edgeKeyMapping);
-  const result = await (await edges.toCsv()).text();
+  const result = await (await toCsv(edges)).text();
   await writeFile(options.output, result, { encoding: 'utf-8' });
 }
 
