@@ -81,7 +81,7 @@
           links:
             - label: CSV
               link: https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature-organ-crosswalk/v1.3/assets/blood-vasculature-organ-crosswalk.csv
-          releaseVersion: v1.2
+          releaseVersion: v1.3
           dot: Crosswalk
         - label: Blood Vasculature Geometry
           url: https://purl.humanatlas.io/vascular-geometry/blood-vasculature-geometry/v1.1
@@ -177,11 +177,11 @@
           releaseVersion: v1.2
           dot: ASCT+B Table
         - label: Peripheral Nervous System to Organ Crosswalk
-          url: https://lod.humanatlas.io/asct-b/peripheral-nervous-system-organ-crosswalk/v1.0/
+          url: https://lod.humanatlas.io/asct-b/peripheral-nervous-system-organ-crosswalk/v1.1/
           links:
             - label: CSV
-              link: https://cdn.humanatlas.io/digital-objects/asct-b/peripheral-nervous-system-organ-crosswalk/v1.0/assets/peripheral-nervous-system-organ-crosswalk.csv
-          releaseVersion: v1.0
+              link: https://cdn.humanatlas.io/digital-objects/asct-b/peripheral-nervous-system-organ-crosswalk/v1.1/assets/peripheral-nervous-system-organ-crosswalk.csv
+          releaseVersion: v1.1
           dot: Crosswalk
         - label: Skeleton
           url: https://purl.humanatlas.io/asct-b/skeleton/v1.2
