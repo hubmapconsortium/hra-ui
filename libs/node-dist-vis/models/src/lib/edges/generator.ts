@@ -2,11 +2,11 @@ import { ErrorHandler, inject, Signal } from '@angular/core';
 import {
   catchError,
   filter,
+  finalize,
   fromEvent,
   map,
   NextObserver,
   Observable,
-  Observer,
   of,
   take,
   tap,
@@ -231,13 +231,6 @@ export function createEdgeGenerator(
   loading?: NextObserver<boolean>,
 ): () => Observable<EdgesView> | EdgesView {
   const errorHandler = inject(ErrorHandler);
-  const loadingHandler: Partial<Observer<EdgesView>> = {
-    next: () => loading?.next(false),
-    error: (error) => {
-      loading?.next(false);
-      errorHandler.handleError(error);
-    },
-  };
 
   return () => {
     const view = nodes();
@@ -268,8 +261,11 @@ export function createEdgeGenerator(
         const { data, keyMapping, offset } = event.data.edges;
         return new EdgesView(data, keyMapping, offset);
       }),
-      tap(loadingHandler),
-      catchError(() => of(EMPTY_EDGES_VIEW)),
+      catchError((error) => {
+        errorHandler.handleError(error);
+        return of(EMPTY_EDGES_VIEW);
+      }),
+      finalize(() => loading?.next(false)),
     );
   };
 }

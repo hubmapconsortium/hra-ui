@@ -29,7 +29,8 @@
     "scale": { "continuousPadding": 20 }
   },
   "data": {
-    "name": "data"
+    "name": "data",
+    "values": []
   },
   "params": [
     {
@@ -130,7 +131,7 @@
             "scale": {
               "range": [
                 {
-                  "expr": "'Replaced/repeated in javascript' || color[0] || '#000'"
+                  "expr": "'Replaced/repeated in javascript' && colors[0] || '#000'"
                 }
               ]
             }
