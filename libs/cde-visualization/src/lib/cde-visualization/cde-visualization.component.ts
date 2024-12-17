@@ -204,6 +204,7 @@ export class CdeVisualizationComponent {
       this.loadingManager.createObserver(),
     ),
     EMPTY_EDGES_VIEW,
+    false,
   );
   /** View of the color map */
   protected readonly colorMapView = withDataViewDefaultGenerator(

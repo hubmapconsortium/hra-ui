@@ -29,6 +29,9 @@ export type AnyData = unknown[][] | object[];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyDataView = DataView<any>;
 
+/** Data used when the input is nullish or invalid */
+const NULL_DATA_ARRAY = Object.freeze<AnyData>([]) as AnyData;
+
 /** Data view input */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
@@ -288,7 +291,7 @@ export function loadViewData<T extends AnyDataView>(
 
   return computed(() => {
     const result = data();
-    return result instanceof viewCls || Array.isArray(result) ? result : [];
+    return result instanceof viewCls || Array.isArray(result) ? result : NULL_DATA_ARRAY;
   });
 }
 
@@ -468,11 +471,13 @@ export function withDataViewDefaultGenerator<V extends AnyDataView>(
   view: Signal<V>,
   generator: () => Observable<V> | V,
   initialValue: V,
+  generateWhenEmpty = true,
 ): Signal<V> {
   return derivedAsync<V>(
     () => {
       const result = view();
-      return result.length !== 0 ? result : generator();
+      const shouldGenerate = result.length === 0 && (generateWhenEmpty || result.data === NULL_DATA_ARRAY);
+      return shouldGenerate ? generator() : result;
     },
     { initialValue },
   );
