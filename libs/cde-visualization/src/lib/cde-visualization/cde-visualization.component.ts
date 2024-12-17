@@ -96,6 +96,18 @@ export class CdeVisualizationComponent {
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
   readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_SELECTOR);
+  /**
+   * Column/property of the node's 'Cell Type' values
+   *
+   * @deprecated Use `nodeKeys` to specify the column instead
+   */
+  readonly nodeTargetKey = input<string>();
+  /**
+   * Node target selector used when calculating edges
+   *
+   * @deprecated Use `nodeTargetSelector` instead
+   */
+  readonly nodeTargetValue = input<string>();
 
   /** Edge data if already calculated */
   readonly edges = input<EdgesInput>();
@@ -110,6 +122,18 @@ export class CdeVisualizationComponent {
   readonly colorMap = input<ColorMapInput>();
   /** Color map key mapping data */
   readonly colorMapKeys = input<ColorMapKeysInput>();
+  /**
+   * Column/property of the color map's 'Cell Type' values
+   *
+   * @deprecated Use `colorMapKeys` to specify the column instead
+   */
+  readonly colorMapKey = input<string>();
+  /**
+   * Column/property of the color map's 'Cell Color' values
+   *
+   * @deprecated Use `colorMapKeys` to specify the column instead
+   */
+  readonly colorMapValue = input<string>();
 
   /** Input metadata */
   readonly metadata = input<MetadataInput>();
@@ -158,23 +182,39 @@ export class CdeVisualizationComponent {
   /** Whether there are loading resources, etc. */
   protected loadingManager = new LoadingManager();
 
+  private readonly nodeTargetSelectorWithDefault = computed(() => {
+    return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
+  });
+
   /** View of the node data */
-  protected readonly nodesView = loadNodes(this.nodes, this.nodeKeys, undefined, this.loadingManager.createObserver());
+  protected readonly nodesView = loadNodes(
+    this.nodes,
+    this.nodeKeys,
+    this.nodeTargetKey,
+    this.loadingManager.createObserver(),
+  );
   /** View of the edge data */
   protected readonly edgesView = withDataViewDefaultGenerator(
     loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
     createEdgeGenerator(
       this.nodesView,
       this.edges,
-      this.nodeTargetSelector,
+      this.nodeTargetSelectorWithDefault,
       this.maxEdgeDistance,
       this.loadingManager.createObserver(),
     ),
     EMPTY_EDGES_VIEW,
+    false,
   );
   /** View of the color map */
   protected readonly colorMapView = withDataViewDefaultGenerator(
-    loadColorMap(this.colorMap, this.colorMapKeys, undefined, undefined, this.loadingManager.createObserver()),
+    loadColorMap(
+      this.colorMap,
+      this.colorMapKeys,
+      this.colorMapKey,
+      this.colorMapValue,
+      this.loadingManager.createObserver(),
+    ),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
   );
@@ -275,7 +315,7 @@ export class CdeVisualizationComponent {
   protected readonly filteredCellTypes = computed(
     () => {
       const selection = new Set(this.cellTypesSelection());
-      selection.delete(this.nodeTargetSelector());
+      selection.delete(this.nodeTargetSelectorWithDefault());
       const filtered = this.cellTypes().filter(({ name }) => selection.has(name));
       return filtered.sort((a, b) => b.count - a.count);
     },
@@ -373,7 +413,7 @@ export class CdeVisualizationComponent {
       return [];
     }
 
-    const selectedCellType = this.nodeTargetSelector();
+    const selectedCellType = this.nodeTargetSelectorWithDefault();
     const distances: DistanceEntry[] = [];
     for (const edge of edges) {
       const type = nodes.getCellTypeAt(edges.getCellIDFor(edge));

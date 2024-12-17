@@ -156,7 +156,13 @@ export class ViolinComponent {
   private readonly view = signal<View | undefined>(undefined);
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(() => this.view()?.data('data', this.data()).run());
+  protected readonly viewDataRef = effect(() => {
+    const view = this.view();
+    const data = this.data();
+    if (view && data.length > 0) {
+      view.data('data', data).run();
+    }
+  });
 
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {

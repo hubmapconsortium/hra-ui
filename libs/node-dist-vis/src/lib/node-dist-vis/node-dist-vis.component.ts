@@ -190,6 +190,7 @@ export class NodeDistVisComponent {
     loadEdges(this.edges, this.edgeKeys),
     createEdgeGenerator(this.nodesView, this.edges, this.nodeTargetSelectorWithDefault, this.maxEdgeDistance),
     EMPTY_EDGES_VIEW,
+    false,
   );
   /** View of the color map */
   private readonly colorMapView = withDataViewDefaultGenerator(
