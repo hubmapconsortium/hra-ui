@@ -19,7 +19,7 @@ function createInlineWorker(scriptText, options) {
   const blob = new Blob([scriptText], { type: 'text/javascript' });
   const url = URL.createObjectURL(blob);
   const worker = new Worker(url, options);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
   return worker;
 }
 
