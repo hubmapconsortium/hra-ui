@@ -154,7 +154,7 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         route: 'user-story/6',
       },
       {
-        menuName: 'Preview: HRA Dashboards',
+        menuName: 'Preview: HRA Dashboard',
         route: 'user-story/7',
       },
       {

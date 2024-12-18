@@ -1,4 +1,4 @@
-## HRA Dashboards
+## HRA Dashboard
 
 ### Overview
 

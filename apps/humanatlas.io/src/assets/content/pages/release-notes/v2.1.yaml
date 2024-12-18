@@ -197,7 +197,7 @@
                 - <a href='https://apps.humanatlas.io/ftu-explorer/' target="_blank">Preview: Functional Tissue Unit (FTU) Explorer</a>
                 - <a href='https://apps.humanatlas.io/cde/' target="_blank">Preview: Cell Distance Explorer</a>
                 - <a href='https://apps.humanatlas.io/us6/' target="_blank">Preview: Use Atlas Components</a>
-                - <a href='https://apps.humanatlas.io/dashboard/' target="_blank">Preview: HRA Dashboards</a>
+                - <a href='https://apps.humanatlas.io/dashboard/' target="_blank">Preview: HRA Dashboard</a>
                 - <a href='https://lod.humanatlas.io' target="_blank">Human Atlas Stories: Knowledge Graph</a>
           styles:
             margin-bottom: 2.5rem

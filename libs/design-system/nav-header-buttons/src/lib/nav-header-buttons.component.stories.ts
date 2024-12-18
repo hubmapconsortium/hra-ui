@@ -36,7 +36,7 @@ const meta: Meta<NavHeaderButtonsComponent> = {
     },
     appTitle: {
       control: 'select',
-      options: ['FTU Explorer', 'Cell Distance Explorer', 'Dashboards'],
+      options: ['FTU Explorer', 'Cell Distance Explorer', 'Dashboard'],
     },
     variant: {
       control: 'select',
