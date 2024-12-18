@@ -32,7 +32,7 @@
   bottom: -3rem
 
 - type: button
-  text: Use HRA Dashboards
+  text: Use HRA Dashboard
   url: https://apps.humanatlas.io/dashboard/
 
 - type: margin

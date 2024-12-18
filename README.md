@@ -70,7 +70,7 @@ For detailed information, please refer to the documentation for each app.
 - [Registration User Interface](./apps/ccf-rui/README.md) - An interactive tool for registering tissue blocks spatially and annotating them semantically using ASCT+B Table terms.
 - [Cell Distance Explorer](./apps/cde-ui/README.md) - Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more.
 - [Cell Distance Explorer Visualization Web Component](./apps/cde-visualization-wc/README.md) - A web component used in Cell Distance Explorer.
-- [HRA Dashboards](./apps/dashboard-ui/README.md) - Explore usage statistics of atlas data and code.
+- [HRA Dashboard](./apps/dashboard-ui/README.md) - Explore usage statistics of atlas data and code.
 - [FTU UI](./apps/ftu-ui/README.md) - Examine cell type abundance and biomarker expression values for functional tissue units (FTUs).
 - [FTU UI Small Web Component](./apps/ftu-ui-small-wc/README.md) - A web component used in FTU Explorer.
 - [Humanatlas](./apps/humanatlas.io/README.md) - 3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization, and Usage.

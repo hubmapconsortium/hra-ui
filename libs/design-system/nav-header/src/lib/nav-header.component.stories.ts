@@ -18,8 +18,8 @@ const apps: Record<string, Story['args']> = {
     link: 'https://apps.humanatlas.io/ftu-explorer/',
     variant: 'basic',
   },
-  Dashboards: {
-    title: 'Dashboards',
+  Dashboard: {
+    title: 'Dashboard',
     app: 'dashboards',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
     variant: 'sidenav',
