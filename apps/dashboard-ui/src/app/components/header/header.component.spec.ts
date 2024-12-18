@@ -9,7 +9,7 @@ describe('HeaderComponent', () => {
 
   it('should display hra and dashboards logo', () => {
     const hraLogo = screen.getByAltText('Human Reference Atlas logo');
-    const dashboardLogo = screen.getByAltText('HRA Dashboards logo');
+    const dashboardLogo = screen.getByAltText('HRA Dashboard logo');
     expect(hraLogo).toBeInTheDocument();
     expect(dashboardLogo).toBeInTheDocument();
   });
