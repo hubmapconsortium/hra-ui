@@ -1,4 +1,4 @@
-import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
+import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
@@ -36,6 +36,7 @@ import { ReferenceDataState } from './../reference-data/reference-data.state';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SceneStateModel {
   showCollisions: boolean;
+  deferCollisions: boolean;
 }
 
 interface Collision {
@@ -62,6 +63,7 @@ function getNodeBbox(model: SpatialSceneNode): AABB {
   name: 'scene',
   defaults: {
     showCollisions: !environment.production,
+    deferCollisions: false,
   },
 })
 @Injectable()
@@ -287,6 +289,14 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     },
   ]);
 
+  @Computed()
+  get deferCollisions$(): Observable<boolean> {
+    return this.state$.pipe(
+      map((state) => state.deferCollisions),
+      distinctUntilChanged(),
+    );
+  }
+
   /** Reference to the model state */
   private model!: ModelState;
   private registration!: RegistrationState;
@@ -294,8 +304,10 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
   @Computed()
   private get collisions$(): Observable<Collision[] | undefined> {
-    return defer(() => this.registration.throttledJsonld$).pipe(
-      concatMap((jsonld) => this.getCollisions(jsonld)),
+    const jsonld$ = defer(() => this.registration.throttledJsonld$);
+    return combineLatest([this.deferCollisions$, jsonld$]).pipe(
+      distinctUntilChanged(isEqual),
+      concatMap(([deferCollisions, jsonld]) => (deferCollisions ? of([]) : this.getCollisions(jsonld))),
       startWith([]),
     );
   }
@@ -324,6 +336,13 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     this.model = this.injector.get(ModelState);
     this.registration = this.injector.get(RegistrationState);
     this.referenceData = this.injector.get(ReferenceDataState);
+
+    this.placementCube$.subscribe(() => this.setDeferCollisions(false));
+  }
+
+  @DataAction()
+  setDeferCollisions(deferCollisions: boolean): void {
+    this.ctx.patchState({ deferCollisions });
   }
 
   private createSceneNodes(organIri: string, items: VisibilityItem[]): SpatialSceneNode[] {

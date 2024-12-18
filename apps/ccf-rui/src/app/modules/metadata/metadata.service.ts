@@ -4,6 +4,7 @@ import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { ModelState, ModelStateModel } from '../../core/store/model/model.state';
 import { PageState, PageStateModel } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
+import { SceneState } from '../../core/store/scene/scene.state';
 import { normalizeDoi } from '../../shared/utils/doi';
 import {
   MetadataModalComponent,
@@ -18,6 +19,7 @@ export class MetadataService {
   private readonly modelState = inject(ModelState);
   private readonly pageState = inject(PageState);
   private readonly registrationState = inject(RegistrationState);
+  private readonly sceneState = inject(SceneState);
 
   openModal(mode: MetadataModalMode): void {
     const ref = this.dialog.open<MetadataModalComponent, MetadataModalConfig, MetadataModalResult>(
@@ -47,7 +49,7 @@ export class MetadataService {
   }
 
   private updateState(_mode: MetadataModalMode, data: MetadataModalResult): void {
-    const { modelState, pageState, registrationState } = this;
+    const { modelState, pageState, registrationState, sceneState } = this;
     const {
       author,
       donor: { organ, sex, consortium, doi },
@@ -71,5 +73,7 @@ export class MetadataService {
     if (organ !== previousOrgan) {
       modelState.setOrganDefaults();
     }
+
+    sceneState.setDeferCollisions(previousRegistration !== undefined);
   }
 }
