@@ -17,9 +17,9 @@ The following code snippet can be used to get started with the _FTU_.
     <!-- The important bits -->
     <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
     <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
@@ -124,9 +124,9 @@ A `FtuIllustrationNode` is a plain object with at least the following properties
     <!-- The important bits -->
     <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
     <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
