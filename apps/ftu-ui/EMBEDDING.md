@@ -58,24 +58,6 @@ ftu.selectedIllustration = 'https://...';
 | _app-links_             | **Advanced users**: Modify application links                          | A yaml file url                     | [Default Links](./src/assets/links.yml)                                                                                                 |
 | _app-resources_         | **Advanced users**: Modify application content                        | A yaml file url                     | [Default Content](./src/assets/resources.yml)                                                                                           |
 
-### Illustrations, summaries, and datasets
-
-The `illustrations`, `summaries`, and `datasets` inputs all accept an url to a json file from which to load their data, i.e.
-
-```html
-<ftu-ui illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"> </ftu-ui>
-```
-
-Alternatively the data can be set from javascript.
-
-```js
-ftu.illustrations = {
-  '@graph': [
-    // Illustrations data
-  ],
-};
-```
-
 ## Outputs
 
 Outputs can be listened to using javascript.
