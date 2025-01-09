@@ -66,12 +66,6 @@ The `illustrations`, `summaries`, and `datasets` inputs all accept an url to a j
 <ftu-ui illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"> </ftu-ui>
 ```
 
-They also accept data encoded directly in the html attribute as json, although this is less useful for larger objects.
-
-```html
-<ftu-ui illustrations='{ "@graph": [] }'> </ftu-ui>
-```
-
 Alternatively the data can be set from javascript.
 
 ```js
@@ -94,11 +88,11 @@ ftu.addEventListener('cell-click', (event) => {
 
 _FTU_ fires the following events:
 
-| Event name              | Description                           | Data format                        |
-| ----------------------- | ------------------------------------- | ---------------------------------- |
-| _illustration-selected_ | The id of the selected illustration   | A string                           |
-| _cell-click_            | Data associated with the clicked cell | A FtuIllustrationNode              |
-| _cell-hover_            | Data associated with the hovered cell | A FtuIllustrationNode or undefined |
+| Event name              | Description                           | Data format                            |
+| ----------------------- | ------------------------------------- | -------------------------------------- |
+| _illustration-selected_ | The id of the selected illustration   | A string                               |
+| _cell-click_            | Data associated with the clicked cell | A `FtuIllustrationNode`                |
+| _cell-hover_            | Data associated with the hovered cell | A `FtuIllustrationNode` or `undefined` |
 
 A `FtuIllustrationNode` is a plain object with at least the following properties:
 
