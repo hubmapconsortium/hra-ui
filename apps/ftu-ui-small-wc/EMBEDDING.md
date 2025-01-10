@@ -68,7 +68,7 @@ ftu.addEventListener('cell-click', (event) => {
 });
 ```
 
-_FTU_ fires the following events:
+_FTU-Small_ fires the following events:
 
 | Event name              | Description                           | Data format                            |
 | ----------------------- | ------------------------------------- | -------------------------------------- |
