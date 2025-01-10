@@ -1,8 +1,8 @@
-# Embedding _Functional Tissue Unit Explorer (FTU)_
+# Embedding _Functional Tissue Unit Explorer - Small version (FTU-Small)_
 
 ## Basic Usage
 
-The following code snippet can be used to get started with the _FTU_.
+The following code snippet can be used to get started with the _FTU-Small_.
 
 ```html
 <!doctype html>
@@ -10,32 +10,32 @@ The following code snippet can be used to get started with the _FTU_.
   <head>
     <!-- Regular metadata. Customize as you see fit -->
     <meta charset="utf-8" />
-    <title>FTU Explorer</title>
+    <title>Small FTU Explorer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
 
     <!-- The important bits -->
-    <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
+    <base href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-    <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
+    <link href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/polyfills.js" defer></script>
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/main.js" defer></script>
   </head>
   <body>
-    <hra-ftu-ui id="ftu" selected-illustration="https://..."></hra-ftu-ui>
+    <hra-ftu-ui-small id="ftu" selected-illustration="https://..."></hra-ftu-ui-small>
   </body>
 </html>
 ```
 
 ## Inputs
 
-The _FTU_ has many inputs in different formats. Each input can be set using either HTML attributes:
+The _FTU-Small_ has many inputs in different formats. Each input can be set using either HTML attributes:
 
 ```html
-<hra-ftu-ui selected-illustration="https://..."> </hra-ftu-ui>
+<hra-ftu-ui-small selected-illustration="https://..."> </hra-ftu-ui-small>
 ```
 
 or through javascript:
@@ -93,19 +93,19 @@ A `FtuIllustrationNode` is a plain object with at least the following properties
   <head>
     <!-- Regular metadata. Customize as you see fit -->
     <meta charset="utf-8" />
-    <title>FTU Explorer</title>
+    <title>Small FTU Explorer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
 
     <!-- The important bits -->
-    <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
+    <base href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-    <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
+    <link href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/polyfills.js" defer></script>
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/main.js" defer></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
@@ -118,7 +118,7 @@ A `FtuIllustrationNode` is a plain object with at least the following properties
     </script>
   </head>
   <body>
-    <hra-ftu-ui id="ftu" selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"> </hra-ftu-ui>
+    <hra-ftu-ui-small id="ftu" selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle"> </hra-ftu-ui-small>
   </body>
 </html>
 ```
