@@ -1,0 +1,29 @@
+{
+  "name": "apps.humanatlas.io-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/apps.humanatlas.io-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["apps.humanatlas.io"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/apps.humanatlas.io-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "apps.humanatlas.io:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "apps.humanatlas.io:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "apps.humanatlas.io:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
