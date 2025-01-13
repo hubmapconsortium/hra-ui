@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+/** Main application component */
 @Component({
   standalone: true,
   imports: [RouterModule],
