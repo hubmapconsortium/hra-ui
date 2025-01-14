@@ -17,7 +17,7 @@ const meta: Meta = {
   args: {
     icon: 'search',
     size: 'large',
-    color: 'black',
+    variant: 'black',
   },
   argTypes: {
     icon: {
