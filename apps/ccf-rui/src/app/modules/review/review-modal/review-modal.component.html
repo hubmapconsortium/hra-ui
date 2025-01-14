@@ -23,5 +23,7 @@
     }
   </div>
 
-  <button mat-button mat-flat-button class="download-button" (click)="downloadClicked()">Download</button>
+  <button mat-button mat-flat-button class="download-button" (click)="downloadClicked()">
+    {{ data.registrationCallbackSet ? 'Register' : 'Download' }}
+  </button>
 </mat-dialog-content>

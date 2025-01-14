@@ -1,6 +1,6 @@
 <hra-nav-header-buttons
   app="rui"
-  appLink="https://apps.humanatlas.io/rui/"
+  [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
   appTitle="Registration User Interface"
   [brandmark]="true"
 ></hra-nav-header-buttons>
