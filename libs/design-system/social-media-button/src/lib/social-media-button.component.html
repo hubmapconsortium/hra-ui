@@ -1,3 +1,7 @@
 <a [href]="link()" target="_blank" rel="noopener noreferrer">
-  <mat-icon [class.small]="size() === 'small'" [svgIcon]="icon()"></mat-icon>
+  @if (name() === 'email') {
+    <mat-icon [class.small]="size() === 'small'">email</mat-icon>
+  } @else {
+    <mat-icon [class.small]="size() === 'small'" [svgIcon]="icon()"></mat-icon>
+  }
 </a>
