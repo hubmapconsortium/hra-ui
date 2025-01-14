@@ -7,7 +7,12 @@ a[mat-icon-button] {
 
   &:focus-visible {
     --mdc-icon-button-icon-color: var(--sys-secondary);
-    outline: 2px solid var(--sys-tertiary);
+    border: 2px solid var(--sys-tertiary);
+
+    mat-icon {
+      left: -2px;
+      top: -2px;
+    }
   }
 
   mat-icon {
