@@ -21,6 +21,7 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
   linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',
   github: 'https://github.com/hubmapconsortium/hra-ui',
   email: 'mailto:infoccf@iu.edu',
+  github: 'https://github.com/hubmapconsortium/hra-ui',
 };
 
 /**
