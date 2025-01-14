@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { MatIconModule } from '@angular/material/icon';
 
 /** Social media name type */
-export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email';
+export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email' | 'github';
 /** Button size type */
 export type SocialMediaButtonSize = 'small' | 'large';
 
@@ -15,6 +15,7 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
   youtube: 'https://www.youtube.com/@CNSCenter/',
   linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',
   email: 'mailto:infoccf@iu.edu',
+  github: 'https://github.com/hubmapconsortium/hra-ui',
 };
 
 /**
@@ -36,7 +37,7 @@ export class SocialMediaButtonComponent {
   readonly size = input.required<SocialMediaButtonSize>();
 
   /** Icon to display */
-  protected icon = computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`);
+  protected icon = computed(() => `social:${this.name()}`);
 
   /** External link for button */
   protected link = computed(() => SOCIAL_LINKS[this.name()]);

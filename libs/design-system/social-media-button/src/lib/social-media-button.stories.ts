@@ -1,5 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
 import { SocialMediaButtonComponent } from './social-media-button.component';
@@ -15,7 +14,7 @@ const meta: Meta<SocialMediaButtonComponent> = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideHttpClient(), provideIcons()],
+      providers: [provideDesignSystem()],
     }),
   ],
 };
@@ -24,13 +23,13 @@ type Story = StoryObj<SocialMediaButtonComponent>;
 
 export const Default: Story = {
   args: {
-    name: 'email',
+    name: 'github',
     size: 'large',
   },
   argTypes: {
     name: {
       control: 'select',
-      options: ['email', 'facebook', 'instagram', 'linkedin', 'x', 'youtube'],
+      options: ['email', 'github', 'facebook', 'instagram', 'linkedin', 'x', 'youtube'],
     },
     size: {
       control: 'select',
