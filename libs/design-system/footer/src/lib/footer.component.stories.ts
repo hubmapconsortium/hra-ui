@@ -1,6 +1,6 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
+
 import { FooterComponent } from './footer.component';
 
 const meta: Meta<FooterComponent> = {
@@ -8,7 +8,7 @@ const meta: Meta<FooterComponent> = {
   title: 'FooterComponent',
   decorators: [
     applicationConfig({
-      providers: [provideHttpClient(), provideIcons()],
+      providers: [provideDesignSystem()],
     }),
   ],
 };

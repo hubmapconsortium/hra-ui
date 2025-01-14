@@ -1,13 +1,7 @@
-import { computed, Directive, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 /** Input options for icon button color */
-export type IconButtonColor = 'white' | 'red' | 'black';
-
-const COLOR_MAP: Record<IconButtonColor, string> = {
-  black: 'var(--sys-secondary)',
-  red: 'var(--sys-on-tertiary-fixed)',
-  white: 'var(--sys-on-primary)',
-};
+export type IconButtonVariant = 'light' | 'dark' | 'default';
 
 /**
  * Directive for icon button variants (color)
@@ -16,11 +10,9 @@ const COLOR_MAP: Record<IconButtonColor, string> = {
   selector: '[hraIconButtonVariant]',
   standalone: true,
   host: {
-    '[style.--mdc-icon-button-icon-color]': 'iconColor()',
+    '[class]': '"icon-button-variant-" + color()',
   },
 })
 export class IconButtonVariantDirective {
-  readonly color = input<IconButtonColor>('black', { alias: 'hraIconButtonVariant' });
-
-  protected readonly iconColor = computed(() => COLOR_MAP[this.color()]);
+  readonly color = input<IconButtonVariant>('default', { alias: 'hraIconButtonVariant' });
 }
