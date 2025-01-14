@@ -1,6 +1,4 @@
-import { MatIconModule } from '@angular/material/icon';
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from './providers';
 
 const meta: Meta = {
@@ -8,9 +6,6 @@ const meta: Meta = {
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],
-    }),
-    moduleMetadata({
-      imports: [MatIconModule],
     }),
   ],
 };
