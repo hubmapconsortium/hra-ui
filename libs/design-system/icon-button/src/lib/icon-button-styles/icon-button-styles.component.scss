@@ -3,6 +3,10 @@ button[mat-icon-button] {
   --mat-icon-button-pressed-state-layer-opacity: 0.16;
   --mat-icon-button-focus-state-layer-opacity: 0;
 
+  a {
+    color: inherit;
+  }
+
   &:focus-visible {
     outline: 2px solid var(--sys-tertiary);
   }

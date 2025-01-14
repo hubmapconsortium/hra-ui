@@ -1,11 +1,21 @@
-import { provideHttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { provideIcons } from '@hra-ui/cdk/icons';
-import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
 import { IconButtonSizeDirective } from './icon-button-size/icon-button-size.directive';
 import { IconButtonVariantDirective } from './icon-button-variant/icon-button-variant.directive';
-import { provideIconButtons } from './providers';
+
+/** All CNS links */
+export const SOCIAL_LINKS: Record<string, string> = {
+  x: 'https://twitter.com/cnscenter',
+  facebook: 'https://www.facebook.com/cnscenter/',
+  instagram: 'https://www.instagram.com/cns_at_iu/',
+  youtube: 'https://www.youtube.com/@CNSCenter/',
+  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',
+  email: 'mailto:infoccf@iu.edu',
+  github: 'https://github.com/hubmapconsortium/hra-ui',
+};
 
 const meta: Meta = {
   title: 'IconButton',
@@ -35,15 +45,7 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [
-        provideHttpClient(),
-        provideIcons({
-          fontIcons: {
-            defaultClasses: ['material-symbols-rounded'],
-          },
-        }),
-        provideIconButtons(),
-      ],
+      providers: [provideDesignSystem()],
     }),
     moduleMetadata({
       imports: [MatButtonModule, MatIconModule, IconButtonSizeDirective, IconButtonVariantDirective],
@@ -80,21 +82,14 @@ export const Large: Story = {
 export const Social: Story = {
   args: {
     size: 'large',
-    icon: 'social:github',
+    icon: 'github',
     color: 'black',
     link: 'https://github.com/hubmapconsortium/hra-ui',
   },
   argTypes: {
     icon: {
       control: 'select',
-      options: [
-        'social:github',
-        'social:facebook',
-        'social:instagram',
-        'social:linkedin',
-        'social:youtube',
-        'social:x',
-      ],
+      options: ['email', 'github', 'facebook', 'instagram', 'linkedin', 'youtube', 'x'],
     },
     size: {
       control: 'select',
@@ -112,7 +107,13 @@ export const Social: Story = {
     props: args,
     template: `
       <button mat-icon-button hraIconButtonSize="${args['size']}" hraIconButtonVariant="${args['color']}">
-        <mat-icon [svgIcon]="'${args['icon']}'"></mat-icon>
+        <a href="${SOCIAL_LINKS[args['icon']]}" target="_blank" rel="noopener noreferrer">
+          @if ('${args['icon']}' === 'email') {
+            <mat-icon [class.small]="${args['size']} === 'small'">email</mat-icon>
+          } @else {
+            <mat-icon [class.small]="${args['size']} === 'small'" svgIcon="social:${args['icon']}"></mat-icon>
+          }
+        </a>
       </button>
     `,
   }),
