@@ -14,5 +14,6 @@ export type IconButtonVariant = 'light' | 'dark' | 'default';
   },
 })
 export class IconButtonVariantDirective {
-  readonly color = input<IconButtonVariant>('default', { alias: 'hraIconButtonVariant' });
+  /** Input for icon button color variant */
+  readonly variant = input<IconButtonVariant>('default', { alias: 'hraIconButtonVariant' });
 }
