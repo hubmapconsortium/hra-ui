@@ -22,6 +22,7 @@ import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
 import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 export interface User {
   firstName: string;
@@ -48,6 +49,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class.embedded]': 'embedded()',
     '(document:mousedown)': 'handleClick($event.target)',
   },
 })
@@ -79,6 +81,8 @@ export class AppComponent implements OnDestroy, OnInit {
   @Input() view3D = false;
 
   private readonly metadata = inject(MetadataService);
+
+  protected readonly embedded = toSignal(inject(PageState).useCancelRegistrationCallback$);
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
