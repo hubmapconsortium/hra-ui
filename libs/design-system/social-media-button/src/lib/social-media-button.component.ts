@@ -41,7 +41,7 @@ export class SocialMediaButtonComponent {
   readonly size = input<IconButtonSize>('large');
 
   /** Button variant */
-  readonly variant = input<IconButtonVariant>('default');
+  readonly variant = input<IconButtonVariant>('dark');
 
   /** Icon to display */
   protected icon = computed(() => `social:${this.name()}`);

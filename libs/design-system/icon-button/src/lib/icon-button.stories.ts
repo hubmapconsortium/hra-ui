@@ -17,7 +17,7 @@ const meta: Meta = {
   args: {
     icon: 'search',
     size: 'large',
-    variant: 'black',
+    variant: 'dark',
   },
   argTypes: {
     icon: {
@@ -29,7 +29,7 @@ const meta: Meta = {
     },
     variant: {
       control: 'select',
-      options: ['light', 'dark', 'default'],
+      options: ['light', 'dark', 'color'],
     },
   },
   decorators: [

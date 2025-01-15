@@ -1,7 +1,7 @@
 import { Directive, input } from '@angular/core';
 
 /** Input options for icon button color */
-export type IconButtonVariant = 'light' | 'dark' | 'default';
+export type IconButtonVariant = 'light' | 'dark' | 'color';
 
 /**
  * Directive for icon button variants (color)
@@ -15,5 +15,5 @@ export type IconButtonVariant = 'light' | 'dark' | 'default';
 })
 export class IconButtonVariantDirective {
   /** Input for icon button color variant */
-  readonly variant = input<IconButtonVariant>('default', { alias: 'hraIconButtonVariant' });
+  readonly variant = input<IconButtonVariant>('dark', { alias: 'hraIconButtonVariant' });
 }
