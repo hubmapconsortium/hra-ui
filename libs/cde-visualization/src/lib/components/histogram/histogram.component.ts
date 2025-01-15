@@ -122,7 +122,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
  */
 @Component({
   selector: 'cde-histogram',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,

@@ -17,7 +17,6 @@ interface BreadcrumbItem {
  */
 @Component({
   selector: 'hra-breadcrumbs',
-  standalone: true,
   imports: [CommonModule, MatIconModule, ButtonModule, RouterModule],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',

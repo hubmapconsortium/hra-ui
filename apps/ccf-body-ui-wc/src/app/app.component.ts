@@ -25,6 +25,7 @@ export interface GlobalConfig {
   selector: 'ccf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
 export class AppComponent {
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;

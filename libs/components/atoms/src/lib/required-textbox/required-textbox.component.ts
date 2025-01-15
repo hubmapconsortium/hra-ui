@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
  */
 @Component({
   selector: 'hra-required-textbox',
-  standalone: true,
   imports: [CommonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
   templateUrl: './required-textbox.component.html',
   styleUrls: ['./required-textbox.component.scss'],
@@ -42,7 +41,7 @@ export class RequiredTextboxComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? value : undefined))
+        map((value) => (control.valid ? value : undefined)),
       )
       .subscribe((value) => this.messageChange.emit(value as string | undefined));
   }

@@ -11,7 +11,6 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, RouterModule, MatMenuModule, MatIconModule, AssetUrlPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

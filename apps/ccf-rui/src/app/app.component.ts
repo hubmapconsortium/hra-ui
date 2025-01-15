@@ -51,6 +51,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   host: {
     '(document:mousedown)': 'handleClick($event.target)',
   },
+  standalone: false,
 })
 export class AppComponent implements OnDestroy, OnInit {
   /** False until the initial registration modal is closed */

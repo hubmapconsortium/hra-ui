@@ -12,7 +12,6 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  * App component for CDE
  */
 @Component({
-  standalone: true,
   imports: [RouterOutlet],
   selector: 'cde-root',
   templateUrl: './app.component.html',

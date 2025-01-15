@@ -42,6 +42,7 @@ export type Axis = 'x' | 'y' | 'z';
     '(document:keyup)': 'changeStep($event)',
     '(window:mouseup)': 'closeResults($event)',
   },
+  standalone: false,
 })
 export class RotationSliderComponent {
   /** HTML class name */

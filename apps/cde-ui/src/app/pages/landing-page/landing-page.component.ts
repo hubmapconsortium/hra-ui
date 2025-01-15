@@ -14,7 +14,6 @@ import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
  */
 @Component({
   selector: 'cde-landing-page',
-  standalone: true,
   imports: [
     CommonModule,
     VisualCardComponent,

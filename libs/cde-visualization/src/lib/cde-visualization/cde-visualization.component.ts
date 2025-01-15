@@ -70,11 +70,9 @@ export interface DistanceEntry {
  */
 @Component({
   selector: 'cde-visualization-root',
-  standalone: true,
   imports: [
     CommonModule,
     MatProgressBarModule,
-
     CellTypesComponent,
     HistogramComponent,
     MetadataComponent,
@@ -172,8 +170,11 @@ export class CdeVisualizationComponent {
   /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEvent | undefined>();
 
+  /* eslint-disable-next-line @angular-eslint/no-output-rename */
   readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  /* eslint-disable-next-line @angular-eslint/no-output-rename */
   readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  /* eslint-disable-next-line @angular-eslint/no-output-rename */
   readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */

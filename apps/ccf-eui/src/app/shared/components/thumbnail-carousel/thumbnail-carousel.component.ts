@@ -21,6 +21,7 @@ const nextUid = (() => {
   templateUrl: './thumbnail-carousel.component.html',
   styleUrls: ['./thumbnail-carousel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ThumbnailCarouselComponent {
   /**

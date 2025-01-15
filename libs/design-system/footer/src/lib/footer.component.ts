@@ -9,7 +9,6 @@ import { SOCIAL_LINKS, SocialMediaButtonComponent, SocialMediaName } from '@hra-
  */
 @Component({
   selector: 'hra-footer',
-  standalone: true,
   imports: [CommonModule, MatIconModule, SocialMediaButtonComponent, AssetUrlPipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

@@ -34,7 +34,6 @@ export interface CardData {
  */
 @Component({
   selector: 'hra-nav-header',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,

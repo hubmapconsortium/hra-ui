@@ -9,6 +9,7 @@ import { UseButton } from './use-button';
   host: {
     '[class.small]': 'buttonData.small',
   },
+  standalone: false,
 })
 export class UseButtonComponent {
   /** Details of the button */

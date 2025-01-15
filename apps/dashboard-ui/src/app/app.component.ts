@@ -7,7 +7,6 @@ import { HeaderComponent } from './components/header/header.component';
  * App Component
  */
 @Component({
-  standalone: true,
   imports: [RouterModule, HeaderComponent, FooterComponent],
   selector: 'hra-root',
   templateUrl: './app.component.html',

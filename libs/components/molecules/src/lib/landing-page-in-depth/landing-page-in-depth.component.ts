@@ -10,7 +10,6 @@ import { MarkdownModule } from 'ngx-markdown';
  */
 @Component({
   selector: 'hra-landing-page-in-depth',
-  standalone: true,
   imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule, LinkDirective],
   templateUrl: './landing-page-in-depth.component.html',
   styleUrls: ['./landing-page-in-depth.component.scss'],

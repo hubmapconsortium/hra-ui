@@ -33,7 +33,6 @@ export type FileLoadError = FileTypeError | FileParseError;
 /** Component for loading a file from disk */
 @Component({
   selector: 'ccf-file-upload',
-  standalone: true,
   imports: [MatIconModule, ButtonModule, DeleteFileButtonComponent],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
@@ -48,6 +47,7 @@ export class FileUploadComponent<T, OptionsT> {
   readonly options = input.required<OptionsT>();
 
   /** Progress events */
+  /* eslint-disable-next-line @angular-eslint/no-output-native */
   readonly progress = output<number>();
   /** Loading start events */
   readonly loadStarted = output<File>();

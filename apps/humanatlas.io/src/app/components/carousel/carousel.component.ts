@@ -10,6 +10,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class CarouselComponent {
   /** Details of slides to be displayed inside the carousel */

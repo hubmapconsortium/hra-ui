@@ -37,6 +37,7 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('left', { read: ElementRef, static: true }) left!: ElementRef<HTMLElement>;

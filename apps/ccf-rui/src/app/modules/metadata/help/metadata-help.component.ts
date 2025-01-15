@@ -6,7 +6,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 
 @Component({
   selector: 'ccf-metadata-help',
-  standalone: true,
   imports: [MatDividerModule, MatIconModule, MatMenuModule, ButtonModule],
   templateUrl: './metadata-help.component.html',
   styleUrls: ['./metadata-help.component.scss'],

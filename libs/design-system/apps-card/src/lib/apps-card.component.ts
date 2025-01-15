@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 /** Apps Card Component */
 @Component({
   selector: 'hra-apps-card',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './apps-card.component.html',
   styleUrl: './apps-card.component.scss',

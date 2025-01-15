@@ -12,6 +12,7 @@ import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
   selector: 'ccf-organ-version',
   templateUrl: './organ-version.component.html',
   styleUrls: ['./organ-version.component.scss'],
+  standalone: false,
 })
 export class OrganVersionComponent implements OnInit {
   /** Deatils of the release and version */

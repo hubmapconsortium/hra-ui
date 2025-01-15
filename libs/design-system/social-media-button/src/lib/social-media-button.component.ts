@@ -22,7 +22,6 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
  */
 @Component({
   selector: 'hra-social-media-button',
-  standalone: true,
   imports: [CommonModule, MatIconModule],
   templateUrl: './social-media-button.component.html',
   styleUrl: './social-media-button.component.scss',

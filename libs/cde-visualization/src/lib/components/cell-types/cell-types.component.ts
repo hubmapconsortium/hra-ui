@@ -35,7 +35,6 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
  */
 @Component({
   selector: 'cde-cell-types',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
@@ -43,14 +42,12 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-
     ButtonModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     IconButtonSizeDirective,
     MicroTooltipDirective,
     ScrollingModule,
-
     ColorPickerLabelComponent,
   ],
   templateUrl: './cell-types.component.html',

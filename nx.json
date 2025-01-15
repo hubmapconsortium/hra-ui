@@ -95,9 +95,7 @@
         }
       ],
       "inputs": ["production", "^production", "{projectRoot}/src/webcomponent-example.html"],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}/cli.js"
-      ]
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}/cli.js"]
     },
     "@nx/eslint:lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/eslint.config.js"],
@@ -139,5 +137,6 @@
     }
   },
   "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU=",
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "useLegacyCache": true
 }

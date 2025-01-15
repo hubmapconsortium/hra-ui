@@ -8,7 +8,6 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
  */
 @Component({
   selector: 'hra-brandmark',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './brandmark.component.html',
   styleUrl: './brandmark.component.scss',

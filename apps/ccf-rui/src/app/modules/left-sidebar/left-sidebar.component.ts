@@ -13,6 +13,7 @@ import { RegistrationState } from '../../core/store/registration/registration.st
   templateUrl: './left-sidebar.component.html',
   styleUrls: ['./left-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class LeftSidebarComponent {
   /** HTML class name */

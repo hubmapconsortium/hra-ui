@@ -11,7 +11,6 @@ import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.c
 /** A component for footer behavior which provides functionality for various buttons in footer */
 @Component({
   selector: 'ftu-footer-behavior',
-  standalone: true,
   imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],
   templateUrl: './footer-behavior.component.html',
   styleUrls: ['./footer-behavior.component.scss'],

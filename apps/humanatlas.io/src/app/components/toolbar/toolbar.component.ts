@@ -9,6 +9,7 @@ import { HUBMAP_NAV_ITEMS } from '../../shared/hubmap-navigation-items';
   selector: 'ccf-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
+  standalone: false,
 })
 export class ToolbarComponent {
   /** Menu items for hubmap nav menu for web */

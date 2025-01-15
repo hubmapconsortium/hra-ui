@@ -14,7 +14,6 @@ const MAX_LABEL_WIDTH = 104;
  */
 @Component({
   selector: 'cde-color-picker-label',
-  standalone: true,
   imports: [CommonModule, ColorPickerModule, MatIconModule, OverlayModule],
   templateUrl: './color-picker-label.component.html',
   styleUrl: './color-picker-label.component.scss',
