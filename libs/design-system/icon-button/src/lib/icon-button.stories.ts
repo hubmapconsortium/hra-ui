@@ -17,7 +17,6 @@ const meta: Meta = {
   args: {
     icon: 'search',
     size: 'large',
-    variant: 'dark',
   },
   argTypes: {
     icon: {
@@ -26,10 +25,6 @@ const meta: Meta = {
     size: {
       control: 'select',
       options: ['small', 'large'],
-    },
-    variant: {
-      control: 'select',
-      options: ['light', 'dark', 'color'],
     },
   },
   decorators: [
@@ -43,7 +38,7 @@ const meta: Meta = {
   render: (args) => ({
     props: args,
     template: `
-      <button mat-icon-button hraIconButtonSize="${args['size']}" hraIconButtonVariant="${args['variant']}">
+      <button mat-icon-button hraIconButtonSize="${args['size']}">
         <mat-icon>${args['icon']}</mat-icon>
       </button>
     `,
@@ -65,5 +60,23 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     size: 'large',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    variant: 'dark',
+  },
+};
+
+export const Light: Story = {
+  args: {
+    variant: 'light',
+  },
+};
+
+export const Color: Story = {
+  args: {
+    variant: 'color',
   },
 };
