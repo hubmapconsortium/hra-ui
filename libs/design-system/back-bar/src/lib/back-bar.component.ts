@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonModule } from '@hra-ui/design-system/button';
 
+/** Back bar component used when an application is embedded */
 @Component({
   selector: 'hra-back-bar',
   standalone: true,
@@ -11,5 +12,6 @@ import { ButtonModule } from '@hra-ui/design-system/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BackBarComponent {
+  /** Emits when the back button is clicked */
   readonly backClick = output<void>();
 }
