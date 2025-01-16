@@ -40,9 +40,7 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() fetchPreviousRegistrations!: string | FetchPreviousRegistrationsCallback;
   @Input() skipUnsavedChangesConfirmation!: string | boolean;
   @Input() theme!: string;
-  @Input() header!: string | boolean;
   @Input() homeUrl!: string;
-  @Input() logoTooltip!: string;
   @Input() organOptions!: string | string[];
   @Input() collisionsEndpoint!: string;
   @Input() view!: ViewType;
@@ -66,7 +64,6 @@ export class AppWebComponent extends BaseWebComponent {
         cancelRegistration: BP.function,
         fetchPreviousRegistrations: BP.function,
         skipUnsavedChangesConfirmation: BP.boolean,
-        header: BP.boolean,
         organOptions: BP.stringArray,
       },
     });
