@@ -16,9 +16,8 @@
     "@hra-ui/common": "1.0.0",
     "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
     "@nebula.gl/layers": "^1.1.0-alpha.5",
-    "@turf/bbox": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "commander": "^12.1.0"
+    "@turf/bbox": "^7.2.0",
+    "commander": "^13.0.0"
   },
   "sideEffects": [
     "index.ts"

@@ -28,7 +28,7 @@
     "@angular/common": "19.0.6",
     "@angular/core": "19.0.6",
     "@angular/material": "19.0.5",
-    "ngx-scrollbar": "^15.1.0",
+    "ngx-scrollbar": "^17.0.0",
     "@angular/router": "19.0.6",
     "@angular/cdk": "19.0.5",
     "@angular/animations": "19.0.6",
