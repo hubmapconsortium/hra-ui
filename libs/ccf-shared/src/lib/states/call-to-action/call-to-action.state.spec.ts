@@ -39,7 +39,7 @@ describe('CallToActionState', () => {
 
   beforeEach(() => {
     storage.getItem.and.returnValue('');
-    ctx.getState.and.returnValue({ ...defaultState, expirationDate: 'December 22,2024' });
+    ctx.getState.and.returnValue({ ...defaultState, expirationDate: 'December 22,3024' });
     http.get.and.returnValue(of(''));
   });
 
