@@ -5,17 +5,9 @@
 export const environment = {
   production: false,
   disableDbWorker: true,
-  dbOptions: {
-    hubmapDataService: 'search-api',
-    hubmapPortalUrl: 'https://portal.hubmapconsortium.org/',
-    hubmapDataUrl: '', // Do not query the search-api for spatial entities by default
-    hubmapAssetsUrl: 'https://assets.hubmapconsortium.org',
-  },
+  dbOptions: {},
   customization: {
     theme: 'default',
-    header: true,
-    homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project',
     collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
     referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },
