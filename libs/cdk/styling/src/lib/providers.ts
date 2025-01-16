@@ -20,7 +20,9 @@ export function provideStyleComponents<T>(...components: Type<T>[]): Environment
       const initializerFn = (() => {
         const injector = inject(Injector);
         const manager = inject(StyleComponentManagerService);
-        return () => manager.registerStyleComponents(components, { injector });
+        return () => {
+          manager.registerStyleComponents(components, { injector });
+        };
       })();
       return initializerFn();
     }),

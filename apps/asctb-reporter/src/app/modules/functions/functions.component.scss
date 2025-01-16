@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import './../../../assets/stylesheets/_colors.scss';
 
 .mat-expansion-panel:not([class*='mat-elevation-z']) {
@@ -19,7 +20,7 @@
 }
 
 .mat-expansion-panel-header:hover {
-  background-color: darken($color: $secondary, $amount: 8%) !important;
+  background-color: color.adjust($color: $secondary, $lightness: -8%) !important;
 }
 
 .function-button {

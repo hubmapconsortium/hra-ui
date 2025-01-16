@@ -10,7 +10,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
   /**
    * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.
    */
-  app.get('/v2/:sheetid/:gid', async (req: Request, res: Response) => {
+  app.get('/v2/:sheetid/:gid', async (req: Request, res: Response): Promise<void> => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
 
     const f1 = req.params.sheetid;
@@ -28,7 +28,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
 
       const asctbData = makeASCTBData(data);
 
-      return res.send({
+      res.send({
         data: asctbData.data,
         metadata: asctbData.metadata,
         warnings: asctbData.warnings,
@@ -38,7 +38,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });
@@ -48,7 +48,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
   /**
    * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns Graph format.
    */
-  app.get('/v2/:sheetid/:gid/graph', async (req: Request, res: Response) => {
+  app.get('/v2/:sheetid/:gid/graph', async (req: Request, res: Response): Promise<void> => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
     const sheetID = req.params.sheetid;
     const gID = req.params.gid;
@@ -64,12 +64,10 @@ export function setupGoogleSheetRoutes(app: Express): void {
       const asctbData = makeASCTBData(data);
       const graphData = makeGraphData(asctbData.data);
 
-      return res.send({
-        data: graphData,
-      });
+      res.send({ data: graphData });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });

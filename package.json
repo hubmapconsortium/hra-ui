@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "19.0.6",
     "@angular/router": "19.0.6",
     "@angular/youtube-player": "^19.0.5",
+    "@deck.gl/aggregation-layers": "^8.8.20",
     "@deck.gl/carto": "~8.8.20",
     "@deck.gl/core": "~8.8.20",
     "@deck.gl/extensions": "~8.8.20",
