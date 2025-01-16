@@ -1598,6 +1598,84 @@
             "templateData": "<mat-sidenav-container class=\"container\">\n  <mat-sidenav #sidenav mode=\"over\" class=\"apps-sidenav\" position=\"end\" [fixedInViewport]=\"false\">\n    <div class=\"header\">\n      <span class=\"sidenav-title\"> HuBMAP Tools & Applications </span>\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>close</mat-icon>\n      </button>\n    </div>\n    <ng-scrollbar>\n      @for (item of data; track item) {\n        <div class=\"category\">\n          <div class=\"card-category\">{{ item.category }}</div>\n          @for (card of item.cards; track card) {\n            <hra-apps-card\n              [icon]=\"card.icon\"\n              [title]=\"card.name\"\n              [description]=\"card.description\"\n              [link]=\"card.link\"\n            ></hra-apps-card>\n          }\n        </div>\n      }\n    </ng-scrollbar>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <div class=\"main\">\n      Sidenav Demonstration\n      <div style=\"flex-grow: 1\"></div>\n      <button mat-icon-button hraIconButtonSize=\"large\" disableRipple (click)=\"sidenav.toggle()\">\n        <mat-icon>apps</mat-icon>\n      </button>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
         },
         {
+            "name": "BackBarComponent",
+            "id": "component-BackBarComponent-bd33164825cb0ee95827b240c1c680ba2310394d83fae2156f59f407b8f3832472370f5350ce8a388071d14f0df231098e2247b5d60c8c3ba826ee6804c200a7",
+            "file": "back-bar/src/lib/back-bar.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-back-bar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./back-bar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "backClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Emits when the back button is clicked</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nEmits when the back button is clicked",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "backClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Emits when the back button is clicked</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nEmits when the back button is clicked",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ButtonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Back bar component used when an application is embedded</p>\n",
+            "rawdescription": "\nBack bar component used when an application is embedded",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, output } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { ButtonModule } from '@hra-ui/design-system/button';\n\n/** Back bar component used when an application is embedded */\n@Component({\n  selector: 'hra-back-bar',\n  standalone: true,\n  imports: [MatIconModule, ButtonModule],\n  templateUrl: './back-bar.component.html',\n  styleUrl: './back-bar.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BackBarComponent {\n  /** Emits when the back button is clicked */\n  readonly backClick = output<void>();\n}\n",
+            "styleUrl": "./back-bar.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<button mat-button (click)=\"backClick.emit()\">\n  <mat-icon>arrow_back</mat-icon>\n  Back\n</button>\n"
+        },
+        {
             "name": "BrandLogoComponent",
             "id": "component-BrandLogoComponent-6437f560b6fb8186ab807bb98086a2b32a5b3e3c1b5e3a08020044d0f05ba2215c508705f65a4d92cbe20db0b2b9cfe215883ebc61a9c7aa86caf9484afde42f",
             "file": "brand-logo/src/lib/brand-logo.component.ts",
