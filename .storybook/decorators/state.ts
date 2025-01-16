@@ -24,7 +24,7 @@ export function addState(): DecoratorFunction<AngularRenderer> {
           useFactory: (store: Store) => () => {
             const { actions } = config;
             const hasActions = actions && actions.length > 0;
-            return hasActions ? store.dispatch(actions) : undefined;
+            return hasActions ? store.dispatch(actions as {}[]) : undefined;
           },
           deps: [Store],
         },
