@@ -89,7 +89,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  ButtonStylesComponent</li>
+  BackBarComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -102,8 +102,8 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
             <a href="#tree" class="nav-link"
@@ -116,7 +116,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>button/src/lib/button-styles/button-styles.component.ts</code>
+    <code>back-bar/src/lib/back-bar.component.ts</code>
 </p>
 
 
@@ -124,7 +124,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Applies button styles globally</p>
+        <p>Back bar component used when an application is embedded</p>
 
     </p>
 
@@ -141,10 +141,6 @@
                 <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">encapsulation</td>
-                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
-            </tr>
 
 
 
@@ -157,7 +153,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>hra-button-styles</code></td>
+                <td class="col-md-9"><code>hra-back-bar</code></td>
             </tr>
 
             <tr>
@@ -165,17 +161,28 @@
                 <td class="col-md-9"><code>true</code></td>
             </tr>
 
-
             <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./button-styles.component.scss</code></td>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>MatIconModule</code>
+                                <code><a href="../modules/ButtonModule.html" target="_self" >ButtonModule</a></code>
+                </td>
             </tr>
 
 
 
 
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./back-bar.component.html</code></td>
+            </tr>
 
 
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./back-bar.component.scss</code></td>
+            </tr>
 
 
 
@@ -185,343 +192,144 @@
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#backClick" >backClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#backClick" >backClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
+        </tbody>
+    </table>
+</section>
 
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backClick"></a>
+                        <b>backClick</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">back-bar/src/lib/back-bar.component.ts:16</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the back button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="backClick"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>backClick</b></span>
+                        <a href="#backClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">back-bar/src/lib/back-bar.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emits when the back button is clicked</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, output } from &#x27;@angular/core&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
 
-/**
- * Applies button styles globally
- */
+/** Back bar component used when an application is embedded */
 @Component({
-  selector: &#x27;hra-button-styles&#x27;,
+  selector: &#x27;hra-back-bar&#x27;,
   standalone: true,
-  template: &#x27;&#x27;,
-  styleUrls: [&#x27;./button-styles.component.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  imports: [MatIconModule, ButtonModule],
+  templateUrl: &#x27;./back-bar.component.html&#x27;,
+  styleUrl: &#x27;./back-bar.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonStylesComponent {}
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./button-styles.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">$corner-width: 0.9375rem;
-$corner-height: 0.8125rem;
-$border-width: 0.15rem;
-$x-multiplier: 0.373;
-$y-multiplier: 0.4566;
-
-@mixin material-symbols-rounded() {
-  font-family: &#x27;Material Symbols Rounded&#x27;;
-  font-weight: 300;
-  font-style: normal;
-  font-size: 1.5rem;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-}
-
-a,
-button {
-  --mat-filled-button-pressed-state-layer-opacity: 0.16;
-  --mdc-filled-button-container-color: var(--sys-tertiary);
-  --mdc-filled-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
-}
-
-// CTA Primary
-:is(a, button)[mat-flat-button]:not(.secondary-button).cta-button {
-  --mdc-filled-button-container-color: var(--sys-tertiary);
-  --mdc-filled-button-container-shape: 0;
-  clip-path: polygon(
-    /* Bottom left */ 0 100%,
-    /* Top left */ 0 0,
-    /* Top right */ 100% 0%,
-    /* Bottom right y-axis */ 100% calc(100% - $corner-height),
-    /* Bottom right x-axis */ calc(100% - $corner-width) 100%
-  );
-
-  &amp;:hover {
-    background-color: transparent;
-    clip-path: unset;
-    box-shadow: unset;
-    filter: drop-shadow(0px 0px 16px color-mix(in srgb, var(--sys-tertiary) 56%, transparent));
-
-    &amp;:before {
-      content: &#x27;&#x27;;
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      background: var(--mdc-filled-button-container-color);
-      clip-path: polygon(
-        /* Bottom left */ 0 100%,
-        /* Top left */ 0 0,
-        /* Top right */ 100% 0%,
-        /* Bottom right y-axis */ 100% calc(100% - $corner-height),
-        /* Bottom right x-axis */ calc(100% - $corner-width) 100%
-      );
-    }
-  }
-
-  &amp;:focus-visible {
-    --mdc-filled-button-label-text-color: var(--sys-secondary);
-    outline: unset;
-  }
-
-  &amp;:focus-visible::after {
-    content: &#x27;&#x27;;
-    position: absolute;
-    background-color: var(--sys-on-primary);
-    inset: 0;
-    z-index: -1;
-    clip-path: polygon(
-      /* Bottom left */ $border-width calc(100% - $border-width),
-      /* Top left */ $border-width $border-width,
-      /* Top right */ calc(100% - $border-width) $border-width,
-      /* Bottom right y-axis */ calc(100% - $border-width) calc(100% - $corner-height - $border-width * $y-multiplier),
-      /* Bottom right x-axis */ calc(100% - $corner-width - $border-width * $x-multiplier) calc(100% - $border-width)
-    );
-  }
-
-  mat-icon {
-    margin-left: 0.375rem;
-  }
-}
-
-// CTA Secondary
-:is(a, button)[mat-flat-button].cta-button.secondary-button {
-  --mdc-filled-button-container-color: var(--sys-on-primary);
-  --mdc-filled-button-label-text-color: var(--sys-on-tertiary-fixed);
-  --mat-filled-button-hover-state-layer-opacity: 0.08;
-  --mat-filled-button-pressed-state-layer-opacity: 0.16;
-  --mat-filled-button-state-layer-color: var(--sys-on-tertiary-fixed);
-  --mdc-filled-button-container-shape: 0;
-  --mdc-filled-button-disabled-container-color: var(--sys-on-primary);
-
-  &amp;:hover {
-    box-shadow: none;
-  }
-
-  &amp;:focus-visible {
-    --mat-filled-button-state-layer-color: var(--sys-on-primary);
-    --mdc-filled-button-label-text-color: var(--sys-secondary);
-    outline: solid 2px var(--sys-tertiary);
-  }
-
-  mat-icon {
-    margin-left: 0.375rem;
-  }
-}
-
-// This css clips the focus, hover, ripple states of the button for the Primary CTA
-.mat-mdc-unelevated-button.cta-button:not(.secondary-button) {
-  .mat-mdc-button-persistent-ripple,
-  .mat-mdc-button-ripple,
-  &amp;:hover .mat-mdc-button-persistent-ripple::before {
-    clip-path: polygon(
-      /* Bottom left */ 0 100%,
-      /* Top left */ 0 0,
-      /* Top right */ 100% 0%,
-      /* Bottom right y-axis */ 100% calc(100% - $corner-height),
-      /* Bottom right x-axis */ calc(100% - $corner-width) 100%
-    );
-  }
-}
-
-// Flat Round
-:is(a, button)[mat-flat-button] {
-  font: var(--sys-label-medium);
-  letter-spacing: var(--sys-label-medium-tracking);
-  --mdc-filled-button-container-shape: 0.25rem;
-  --mat-filled-button-horizontal-padding: 1rem;
-  --mdc-filled-button-container-height: 2.5rem;
-
-  &amp;:hover {
-    box-shadow: 1px 2px 16px 0px rgb(from var(--sys-tertiary) r g b / 0.56);
-  }
-
-  &amp;:focus-visible {
-    --mdc-filled-button-container-color: var(--sys-on-primary);
-    --mdc-filled-button-label-text-color: var(--sys-secondary);
-    outline: solid 2px var(--sys-tertiary);
-  }
-}
-
-// Custom class for Flat primary &amp; Secondary
-:is(a, button)[mat-flat-button] {
-  &amp;.button-size-large {
-    --mat-filled-button-horizontal-padding: 1rem;
-    --mdc-filled-button-container-height: 2.5rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    padding: 0.5rem var(--mat-filled-button-horizontal-padding);
-  }
-}
-
-// Basic Primary &amp; Secondary
-:is(a, button)[mat-button] {
-  min-width: unset;
-  font: var(--sys-label-medium);
-  letter-spacing: var(--sys-label-medium-tracking);
-  --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
-  --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
-  --mdc-text-button-disabled-label-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
-  --mat-text-button-pressed-state-layer-opacity: 0.16;
-  --mat-text-button-focus-state-layer-opacity: 0;
-  --mdc-text-button-container-shape: 0.25rem;
-  --mat-text-button-horizontal-padding: 1rem;
-
-  &amp;:focus-visible {
-    outline: solid 2px var(--sys-tertiary);
-    --mdc-text-button-label-text-color: var(--sys-secondary);
-  }
-
-  &amp;.secondary-button {
-    --mat-text-button-state-layer-color: var(--sys-secondary);
-    --mdc-text-button-label-text-color: var(--sys-secondary);
-  }
-
-  &amp;:has(mat-icon).mat-mdc-button {
-    padding: 0 1rem 0 0.75rem;
-    mat-icon {
-      margin-right: 0.5rem;
-    }
-  }
-
-  .mat-mdc-button-touch-target {
-    height: auto;
-  }
-}
-
-// Custom Class for basic primary and secondary
-:is(a, button)[mat-button] {
-  &amp;.button-size-medium {
-    --mat-text-button-horizontal-padding: 1rem;
-    --mdc-text-button-container-height: 2.5rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    padding: 0.5rem var(--mat-text-button-horizontal-padding);
-  }
-
-  &amp;.button-size-small {
-    --mat-text-button-horizontal-padding: 0.5rem;
-    --mdc-text-button-container-height: 1.75rem;
-    font: var(--sys-label-small);
-    letter-spacing: var(--sys-label-small-tracking);
-    padding: 0.3125rem var(--mat-text-button-horizontal-padding);
-  }
-}
-
-// Toggle
-mat-button-toggle.mat-button-toggle-appearance-standard {
-  --mat-standard-button-toggle-shape: 0;
-  --mat-standard-button-toggle-hover-state-layer-opacity: 0.08;
-  --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
-  --mat-standard-button-toggle-disabled-state-text-color: color-mix(in srgb, var(--sys-on-surface) 40%, transparent);
-  --mat-standard-button-toggle-disabled-state-background-color: color-mix(
-    in srgb,
-    var(--sys-on-surface) 12%,
-    transparent
-  );
-  border: none;
-  font: var(--sys-label-large);
-  letter-spacing: var(--sys-label-large-tracking);
-
-  &amp;.button-size-large {
-    --mat-standard-button-toggle-height: 1.5rem;
-    .mat-button-toggle-label-content {
-      padding: 0.5rem 1rem;
-    }
-  }
-
-  &amp;.button-size-medium {
-    --mat-standard-button-toggle-height: 1.3125rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    .mat-button-toggle-label-content {
-      padding: 0.3438rem 0.5rem;
-    }
-  }
-
-  &amp;:active {
-    .mat-button-toggle-focus-overlay {
-      opacity: 0.16;
-    }
-  }
-
-  &amp;:focus-visible,
-  &amp;.cdk-keyboard-focused {
-    --mat-standard-button-toggle-focus-state-layer-opacity: 0;
-    outline: solid 2px var(--sys-tertiary);
-  }
-
-  &amp;.mat-button-toggle-checked:not(.nav-cat-button) {
-    background-color: color-mix(in srgb, var(--sys-tertiary) 20%, transparent);
-  }
-
-  &amp;.mat-button-toggle-disabled {
-    background-color: color-mix(in srgb, var(--sys-on-surface) 12%, transparent);
-  }
-}
-
-// Nav Cat
-mat-button-toggle.nav-cat-button .mat-button-toggle-label-content::after {
-  @include material-symbols-rounded();
-  content: &#x27;keyboard_arrow_down&#x27;;
-  vertical-align: middle;
-}
-
-mat-button-toggle.mat-button-toggle-checked.nav-cat-button {
-  .mat-button-toggle-label-content::after {
-    transform: rotate(180deg);
-  }
-
-  .label {
-    border-bottom: solid 1px var(--sys-tertiary);
-    margin-right: 0.25rem;
-  }
-}
-
-mat-button-toggle.nav-cat-button {
-  font: var(--sys-label-large);
-  letter-spacing: var(--sys-label-large-tracking);
-  --mat-standard-button-toggle-hover-state-layer-opacity: 0;
-  --mat-standard-button-toggle-selected-state-background-color: var(--sys-on-primary);
-  :is(:hover, :active) {
-    .label {
-      border-bottom: solid 1px var(--sys-tertiary);
-    }
-  }
-
-  .mat-button-toggle-label-content {
-    padding: 0 0.5rem;
-  }
-
-  &amp;:active {
-    .mat-button-toggle-focus-overlay {
-      opacity: 0;
-    }
-  }
+export class BackBarComponent {
+  /** Emits when the back button is clicked */
+  readonly backClick &#x3D; output&lt;void&gt;();
 }
 </code></pre>
     </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;button mat-button (click)&#x3D;&quot;backClick.emit()&quot;&gt;
+  &lt;mat-icon&gt;arrow_back&lt;/mat-icon&gt;
+  Back
+&lt;/button&gt;
+</code></pre>
+    </div>
+
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -548,10 +356,10 @@ mat-button-toggle.nav-cat-button {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div></div>'
+        var COMPONENT_TEMPLATE = '<div><button mat-button (click)="backClick.emit()">  <mat-icon>arrow_back</mat-icon>  Back</button></div>'
     var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackBarComponent', 'selector': 'hra-back-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
     var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
-    var ACTUAL_COMPONENT = {'name': 'ButtonStylesComponent'};
+    var ACTUAL_COMPONENT = {'name': 'BackBarComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -597,7 +405,7 @@ mat-button-toggle.nav-cat-button {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'ButtonStylesComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'BackBarComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

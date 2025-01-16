@@ -124,6 +124,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/AppsSidenavDemoComponent.html" data-type="entity-link" >AppsSidenavDemoComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/BackBarComponent.html" data-type="entity-link" >BackBarComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/BrandLogoComponent.html" data-type="entity-link" >BrandLogoComponent</a>
                             </li>
                             <li class="link">
