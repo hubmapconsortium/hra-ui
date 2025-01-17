@@ -5,6 +5,9 @@ import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { MatIconModule } from '@angular/material/icon';
 
+/**
+ * Cell Population Predictor Page Component
+ */
 @Component({
   selector: 'hra-cell-population-predictor',
   standalone: true,
