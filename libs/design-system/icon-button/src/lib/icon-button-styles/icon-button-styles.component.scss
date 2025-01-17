@@ -3,6 +3,8 @@ a[mat-icon-button] {
   --mat-icon-button-hover-state-layer-opacity: 0.08;
   --mat-icon-button-pressed-state-layer-opacity: 0.12;
   --mat-icon-button-focus-state-layer-opacity: 0;
+  --mdc-icon-button-icon-color: var(--sys-secondary);
+  --mat-icon-button-state-layer-color: var(--sys-secondary);
 
   mat-icon {
     height: var(--mdc-icon-button-icon-size);
