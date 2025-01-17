@@ -4,7 +4,7 @@
   "sourceRoot": "libs/common/src",
   "prefix": "hra",
   "projectType": "library",
-  "tags": ["type:lib"],
+  "tags": ["type:lib", "project:common"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

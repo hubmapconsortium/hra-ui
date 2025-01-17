@@ -97,6 +97,6 @@
       }
     }
   },
-  "tags": ["app"],
+  "tags": ["type:app", "project:ftu"],
   "implicitDependencies": ["shared-theming"]
 }

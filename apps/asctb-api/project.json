@@ -67,5 +67,5 @@
       }
     }
   },
-  "tags": ["asctb"]
+  "tags": ["type:app", "project:asctb"]
 }
