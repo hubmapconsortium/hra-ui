@@ -2,8 +2,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { CheckboxSizeDirective } from './checkbox-size/checkbox-size-directive';
-import { CheckboxColorDirective } from './checkbox-color/checkbox-color-directive';
+import { CheckboxErrorVariantDirective } from './checkbox-error-variant/checkbox-error-variant-directive';
 
 const meta: Meta = {
   title: 'Checkbox',
@@ -13,41 +12,42 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=6791-24001&t=KSPA1HRCXrHUsgVn-4',
     },
   },
-  args: {
-    size: 'large',
-    color: 'red',
-    checkColor: 'white',
-  },
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'large'],
-    },
-    color: {
-      control: 'text',
-    },
-    checkColor: {
-      control: 'text',
-    },
-  },
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],
     }),
     moduleMetadata({
-      imports: [MatCheckboxModule, CheckboxSizeDirective, CheckboxColorDirective],
+      imports: [MatCheckboxModule, CheckboxErrorVariantDirective],
     }),
   ],
-  render: (args) => ({
-    props: args,
-    template: `
-      <mat-checkbox hraCheckboxSize="${args['size']}" checkboxColor="'${args['color']}'" checkmarkColor="'${args['checkColor']}'"></mat-checkbox>
-    `,
-  }),
+  args: {
+    indeterminate: false,
+    disabled: false,
+  },
+  argTypes: {
+    indeterminate: {
+      control: 'boolean',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  args: {},
+  render: (args) => ({
+    template: `
+      <mat-checkbox [indeterminate]=${args['indeterminate']} [disabled]=${args['disabled']}></mat-checkbox>
+    `,
+  }),
+};
+
+export const Error: Story = {
+  render: (args) => ({
+    template: `
+      <mat-checkbox [indeterminate]=${args['indeterminate']} [disabled]=${args['disabled']} hraCheckboxErrorVariant></mat-checkbox>
+    `,
+  }),
 };
