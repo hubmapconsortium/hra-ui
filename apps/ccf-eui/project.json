@@ -134,13 +134,7 @@
         "karmaConfig": "apps/ccf-eui/karma.conf.js",
         "assets": ["apps/ccf-eui/src/favicon.png", "apps/ccf-eui/src/assets"],
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/e2e/**/*",
-          "**/test.ts",
-          "**/polyfills.ts",
-          "**/environments/**/*.ts",
-          "**/*.module.ts"
-        ],
+        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
         "styles": ["apps/ccf-eui/src/styles.scss"],
         "scripts": []
       }

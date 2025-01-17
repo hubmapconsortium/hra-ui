@@ -134,13 +134,7 @@
         "karmaConfig": "apps/asctb-reporter/karma.conf.js",
         "assets": ["apps/asctb-reporter/src/favicon.png", "apps/asctb-reporter/src/assets"],
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/e2e/**/*",
-          "**/test.ts",
-          "**/polyfills.ts",
-          "**/environments/**/*.ts",
-          "**/*.module.ts"
-        ],
+        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
         "styles": [
           "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
           "apps/asctb-reporter/src/styles.scss"

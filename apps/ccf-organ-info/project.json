@@ -126,13 +126,7 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/e2e/**/*",
-          "**/test.ts",
-          "**/polyfills.ts",
-          "**/environments/**/*.ts",
-          "**/*.module.ts"
-        ],
+        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
         "scripts": []
       }
