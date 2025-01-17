@@ -1,10 +1,7 @@
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { IconButtonSizeDirective } from './icon-button-size/icon-button-size.directive';
-import { IconButtonVariantDirective } from './icon-button-variant/icon-button-variant.directive';
+import { IconButtonModule } from './icon-button.module';
 
 const meta: Meta = {
   title: 'IconButton',
@@ -37,7 +34,7 @@ const meta: Meta = {
       providers: [provideDesignSystem()],
     }),
     moduleMetadata({
-      imports: [MatButtonModule, MatIconModule, IconButtonSizeDirective, IconButtonVariantDirective],
+      imports: [IconButtonModule],
     }),
   ],
   render: (args) => ({
