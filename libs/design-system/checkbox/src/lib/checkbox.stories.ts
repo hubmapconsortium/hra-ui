@@ -44,7 +44,7 @@ export const Default: Story = {
   }),
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   render: (args) => ({
     template: `
       <mat-checkbox [indeterminate]=${args['indeterminate']} [disabled]=${args['disabled']} hraCheckboxErrorVariant></mat-checkbox>
