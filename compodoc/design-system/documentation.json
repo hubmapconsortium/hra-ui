@@ -159,12 +159,12 @@
         },
         {
             "name": "DesignSystemOptions",
-            "id": "interface-DesignSystemOptions-64f7b187d9caebe055e682637d55304b92b55081c1151f5ee44fc4e9fd876b98503523480aeafa72b168feacbc95763a48f344d1787f26d568f731ee51ea221d",
+            "id": "interface-DesignSystemOptions-1dfec5f62547b5abbd823310b63fb2318fa28022f64fe481c258c815b1337296e75e35ebd88145429628194fbc2dab34f2d2496026342938912006aedabba9e7",
             "file": "src/lib/providers.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';\nimport { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';\nimport { provideAnimations } from '@angular/platform-browser/animations';\nimport { provideIcons } from '@hra-ui/cdk/icons';\nimport { provideButtons } from '@hra-ui/design-system/button';\nimport { provideButtonToggle } from '@hra-ui/design-system/button-toggle';\nimport { provideIconButtons } from '@hra-ui/design-system/icon-button';\nimport { provideInput } from '@hra-ui/design-system/input';\nimport { provideMenu } from '@hra-ui/design-system/menu';\nimport { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';\nimport { provideSelect } from '@hra-ui/design-system/select';\nimport { provideTable } from '@hra-ui/design-system/table';\nimport { provideTrees } from '@hra-ui/design-system/tree';\n\n/** Design system provider options */\nexport interface DesignSystemOptions {\n  /** Http features */\n  http?: HttpFeature<HttpFeatureKind>[];\n  /** Scrolling options */\n  scrolling?: ScrollingOptions;\n}\n\n/** Get the providers shared between prod and testing */\nexport function provideDesignSystemCommon(options?: DesignSystemOptions) {\n  return [\n    provideIcons({\n      fontIcons: {\n        defaultClasses: ['material-symbols-rounded'],\n      },\n    }),\n    provideButtons(),\n    provideIconButtons(),\n    provideTrees(),\n    provideScrolling(options?.scrolling),\n    provideMenu(),\n    provideTable(),\n    provideSelect(),\n    provideInput(),\n    provideButtonToggle(),\n  ];\n}\n\n/**\n * Returns design system providers\n */\nexport function provideDesignSystem(options?: DesignSystemOptions): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    provideHttpClient(...(options?.http ?? [])),\n    provideAnimations(),\n    ...provideDesignSystemCommon(options),\n  ]);\n}\n",
+            "sourceCode": "import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';\nimport { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';\nimport { provideAnimations } from '@angular/platform-browser/animations';\nimport { provideIcons } from '@hra-ui/cdk/icons';\nimport { provideButtons } from '@hra-ui/design-system/button';\nimport { provideButtonToggle } from '@hra-ui/design-system/button-toggle';\nimport { provideCheckboxes } from '@hra-ui/design-system/checkbox';\nimport { provideIconButtons } from '@hra-ui/design-system/icon-button';\nimport { provideInput } from '@hra-ui/design-system/input';\nimport { provideMenu } from '@hra-ui/design-system/menu';\nimport { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';\nimport { provideSelect } from '@hra-ui/design-system/select';\nimport { provideTable } from '@hra-ui/design-system/table';\nimport { provideTrees } from '@hra-ui/design-system/tree';\n\n/** Design system provider options */\nexport interface DesignSystemOptions {\n  /** Http features */\n  http?: HttpFeature<HttpFeatureKind>[];\n  /** Scrolling options */\n  scrolling?: ScrollingOptions;\n}\n\n/** Get the providers shared between prod and testing */\nexport function provideDesignSystemCommon(options?: DesignSystemOptions) {\n  return [\n    provideIcons({\n      fontIcons: {\n        defaultClasses: ['material-symbols-rounded'],\n      },\n    }),\n    provideButtons(),\n    provideIconButtons(),\n    provideTrees(),\n    provideScrolling(options?.scrolling),\n    provideMenu(),\n    provideTable(),\n    provideSelect(),\n    provideInput(),\n    provideButtonToggle(),\n    provideCheckboxes(),\n  ];\n}\n\n/**\n * Returns design system providers\n */\nexport function provideDesignSystem(options?: DesignSystemOptions): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    provideHttpClient(...(options?.http ?? [])),\n    provideAnimations(),\n    ...provideDesignSystemCommon(options),\n  ]);\n}\n",
             "properties": [
                 {
                     "name": "http",
@@ -174,7 +174,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Http features</p>\n",
-                    "line": 18,
+                    "line": 19,
                     "rawdescription": "\nHttp features"
                 },
                 {
@@ -185,7 +185,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Scrolling options</p>\n",
-                    "line": 20,
+                    "line": 21,
                     "rawdescription": "\nScrolling options"
                 }
             ],
@@ -790,6 +790,28 @@
             "rawdescription": "\nDirective for Call to Action Button",
             "sourceCode": "import { Directive } from '@angular/core';\n\n/** Directive for Call to Action Button */\n@Directive({\n  selector: '[hraCallToActionButton]',\n  standalone: true,\n  host: {\n    class: 'cta-button',\n  },\n})\nexport class CallToActionButtonDirective {}\n",
             "selector": "[hraCallToActionButton]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "extends": []
+        },
+        {
+            "name": "CheckboxErrorVariantDirective",
+            "id": "directive-CheckboxErrorVariantDirective-90041ffb12e9bd8a13c6ebd19641ae1df814f232181f45b94bc19725410dc7add9054eafb2a59dacd73986c01d2d0801f0959f9b1118f5e63700e038a93931d3",
+            "file": "checkbox/src/lib/checkbox-error-variant/checkbox-error-variant-directive.ts",
+            "type": "directive",
+            "description": "<p>Directive for checkbox error variant</p>\n",
+            "rawdescription": "\n\nDirective for checkbox error variant\n",
+            "sourceCode": "import { Directive } from '@angular/core';\n\n/**\n * Directive for checkbox error variant\n */\n@Directive({\n  selector: '[hraCheckboxErrorVariant]',\n  standalone: true,\n  host: {\n    class: 'hra-checkbox-error-variant',\n  },\n})\nexport class CheckboxErrorVariantDirective {}\n",
+            "selector": "[hraCheckboxErrorVariant]",
             "providers": [],
             "hostDirectives": [],
             "standalone": true,
@@ -2090,6 +2112,51 @@
                 {
                     "data": "mat-button-toggle-group {\n  --mat-standard-button-toggle-shape: 0.25rem;\n  --mat-standard-button-toggle-divider-color: var(--sys-primary);\n\n  &.mat-button-toggle-group-appearance-standard {\n    border: unset;\n    outline: solid 1px var(--mat-standard-button-toggle-divider-color);\n  }\n\n  .mat-button-toggle {\n    width: 100%;\n    font: inherit;\n  }\n\n  .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n    padding: 0.5rem 1rem;\n  }\n\n  .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n    padding: 0.5rem 1rem;\n  }\n\n  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {\n    padding: 0;\n  }\n\n  &[hraButtonToggleSize='medium'] {\n    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n      padding: 0.3438rem 0.5rem;\n    }\n\n    .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n      padding: 0.3438rem 0.5rem;\n    }\n  }\n\n  &[hraButtonToggleSize='small'] {\n    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n      padding: 0.3125rem 0.5rem;\n    }\n\n    .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n      padding: 0.3125rem 0.5rem;\n    }\n  }\n}\n",
                     "styleUrl": "./button-toggle-styles.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "CheckboxStylesComponent",
+            "id": "component-CheckboxStylesComponent-02d70ee5a000854e525275f68c518e7ee808756f6cc722803b782f17b72afc3f0193651e2e5b3f2ef62684af3f67bc5e42d6f2a56715c04d8f9654223e0ae166",
+            "file": "checkbox/src/lib/checkbox-styles/checkbox-styles.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-checkbox-styles",
+            "styleUrls": [
+                "./checkbox-styles.component.scss"
+            ],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "<p>Applies checkbox styles globally</p>\n",
+            "rawdescription": "\n\nApplies checkbox styles globally\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\n\n/**\n * Applies checkbox styles globally\n */\n@Component({\n  selector: 'hra-checkbox-styles',\n  standalone: true,\n  template: '',\n  styleUrls: ['./checkbox-styles.component.scss'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CheckboxStylesComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "mat-checkbox {\n  --mdc-checkbox-unselected-icon-color: var(--sys-primary);\n  --mdc-checkbox-unselected-hover-icon-color: var(--sys-secondary);\n  --mdc-checkbox-unselected-focus-icon-color: var(--sys-secondary);\n\n  --mdc-checkbox-selected-icon-color: var(--sys-on-tertiary-fixed);\n  --mdc-checkbox-selected-hover-icon-color: var(--sys-on-tertiary-fixed);\n  --mdc-checkbox-selected-focus-icon-color: var(--sys-on-tertiary-fixed);\n\n  --mdc-checkbox-unselected-hover-state-layer-color: var(--sys-secondary);\n  --mdc-checkbox-unselected-focus-state-layer-color: var(--sys-secondary);\n  --mdc-checkbox-unselected-pressed-state-layer-color: var(--sys-secondary);\n\n  --mdc-checkbox-selected-hover-state-layer-color: var(--sys-on-tertiary-fixed);\n  --mdc-checkbox-selected-focus-state-layer-color: var(--sys-on-tertiary-fixed);\n  --mdc-checkbox-selected-pressed-state-layer-color: var(--sys-on-tertiary-fixed);\n\n  &.hra-checkbox-error-variant {\n    --mdc-checkbox-unselected-icon-color: var(--sys-error);\n    --mdc-checkbox-unselected-hover-icon-color: var(--sys-error);\n    --mdc-checkbox-unselected-focus-icon-color: var(--sys-error);\n\n    --mdc-checkbox-selected-icon-color: var(--sys-error);\n    --mdc-checkbox-selected-hover-icon-color: var(--sys-error);\n    --mdc-checkbox-selected-focus-icon-color: var(--sys-error);\n\n    --mdc-checkbox-unselected-hover-state-layer-color: var(--sys-error);\n    --mdc-checkbox-unselected-focus-state-layer-color: var(--sys-error);\n    --mdc-checkbox-unselected-pressed-state-layer-color: var(--sys-error);\n\n    --mdc-checkbox-selected-hover-state-layer-color: var(--sys-error);\n    --mdc-checkbox-selected-focus-state-layer-color: var(--sys-error);\n    --mdc-checkbox-selected-pressed-state-layer-color: var(--sys-error);\n  }\n}\n",
+                    "styleUrl": "./checkbox-styles.component.scss"
                 }
             ],
             "stylesData": "",
@@ -6161,6 +6228,17 @@
                 "returnType": "EnvironmentProviders"
             },
             {
+                "name": "provideCheckboxes",
+                "file": "checkbox/src/lib/providers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Returns providers for checkboxes</p>\n",
+                "args": [],
+                "returnType": "EnvironmentProviders"
+            },
+            {
                 "name": "provideDesignSystem",
                 "file": "src/lib/providers.ts",
                 "ctype": "miscellaneous",
@@ -6945,6 +7023,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Returns providers for button toggle</p>\n",
+                    "args": [],
+                    "returnType": "EnvironmentProviders"
+                }
+            ],
+            "checkbox/src/lib/providers.ts": [
+                {
+                    "name": "provideCheckboxes",
+                    "file": "checkbox/src/lib/providers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Returns providers for checkboxes</p>\n",
                     "args": [],
                     "returnType": "EnvironmentProviders"
                 }
