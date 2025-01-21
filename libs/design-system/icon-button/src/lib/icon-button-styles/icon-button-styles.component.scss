@@ -1,16 +1,34 @@
-button[mat-icon-button] {
+button[mat-icon-button],
+a[mat-icon-button] {
   --mat-icon-button-hover-state-layer-opacity: 0.08;
-  --mat-icon-button-pressed-state-layer-opacity: 0.16;
-  --mat-icon-button-state-layer-color: var(--sys-secondary);
+  --mat-icon-button-pressed-state-layer-opacity: 0.12;
   --mat-icon-button-focus-state-layer-opacity: 0;
-
-  &:focus-visible {
-    outline: 2px solid var(--sys-tertiary);
-  }
+  --mdc-icon-button-icon-color: var(--sys-secondary);
+  --mat-icon-button-state-layer-color: var(--sys-secondary);
 
   mat-icon {
     height: var(--mdc-icon-button-icon-size);
     width: var(--mdc-icon-button-icon-size);
     font-size: var(--mdc-icon-button-icon-size);
+  }
+
+  &.icon-button-variant-light {
+    --mdc-icon-button-icon-color: var(--sys-on-primary);
+    --mat-icon-button-state-layer-color: var(--sys-on-primary);
+  }
+
+  &.icon-button-variant-dark {
+    --mdc-icon-button-icon-color: var(--sys-secondary);
+    --mat-icon-button-state-layer-color: var(--sys-secondary);
+  }
+
+  &.icon-button-variant-color {
+    --mdc-icon-button-icon-color: var(--sys-on-tertiary-fixed);
+    --mat-icon-button-state-layer-color: var(--sys-on-tertiary-fixed);
+  }
+
+  &:focus-visible {
+    --mdc-icon-button-icon-color: var(--sys-secondary);
+    outline: 2px solid var(--sys-tertiary);
   }
 }

@@ -13,9 +13,9 @@ describe('SocialMediaButtonComponent', () => {
       providers: [provideIcons(), provideHttpClient()],
     });
     const link = screen.getByRole('link');
-    const icon = link.querySelector('mat-icon');
+    const icon = link.querySelector('a');
     if (icon) {
-      expect(icon.classList.contains('small')).toBeTruthy();
+      expect(icon.clientHeight).toBe(24);
     }
   });
 
@@ -28,9 +28,9 @@ describe('SocialMediaButtonComponent', () => {
       providers: [provideIcons(), provideHttpClient()],
     });
     const link = screen.getByRole('link');
-    const icon = link.querySelector('mat-icon');
+    const icon = link.querySelector('a');
     if (icon) {
-      expect(icon.classList.contains('small')).not.toBeTruthy();
+      expect(icon.clientHeight).toBe(40);
     }
   });
 });
