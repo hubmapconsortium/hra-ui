@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ccf-scene-utils/src",
   "projectType": "library",
-  "tags": ["ccf"],
+  "tags": ["type:lib", "project:ccf"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",

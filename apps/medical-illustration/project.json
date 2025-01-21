@@ -99,6 +99,6 @@
       "command": "node tools/scripts/build-webcomponent.mjs medical-illustration"
     }
   },
-  "tags": ["app", "webcomponent"],
+  "tags": ["type:app", "project:ftu", "webcomponent"],
   "implicitDependencies": ["shared-theming"]
 }
