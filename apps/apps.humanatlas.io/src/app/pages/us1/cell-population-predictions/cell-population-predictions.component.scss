@@ -1,3 +1,31 @@
 :host {
   display: block;
+  background: linear-gradient(to bottom, #e6eaf0, #ffffff);
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+h1 {
+  font: var(--sys-display-large);
+  letter-spacing: var(--sys-display-large-tracking);
+  font-weight: 500;
+  margin: 0;
+}
+
+.info-text {
+  font: var(--sys-body-large);
+  letter-spacing: var(--sys-body-large-tracking);
+  color: #4c4c58;
+}
+
+.table-container {
+  margin-top: 48px;
+
+  .more-icon {
+    display: flex;
+  }
 }

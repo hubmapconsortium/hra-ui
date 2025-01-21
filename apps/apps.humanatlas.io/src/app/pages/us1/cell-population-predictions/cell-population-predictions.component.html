@@ -1,1 +1,54 @@
-<p>cell-population-predictions works!</p>
+<div class="container">
+  <h1>Cell Population Predictions</h1>
+  <p class="info-text">
+    This table lists all cell types predicted for the selected extraction site per tool. Note that different annotation
+    tools predict different cell types and different percentages for the very same cell type. Hover over column headers
+    for details.
+  </p>
+
+  <div class="table-container">
+    <hra-workflow-card title="Cell Population Predictions">
+      <hra-workflow-card-actions>
+        <mat-icon aria-hidden="false" aria-label="more icon" class="more-icon" fontIcon="more_vert"></mat-icon>
+      </hra-workflow-card-actions>
+      <hra-workflow-card-extra>
+        <hra-delete-file-button [fileName]="'test.csv'"></hra-delete-file-button>
+      </hra-workflow-card-extra>
+      <table mat-table [dataSource]="predictions">
+        <ng-container matColumnDef="tool">
+          <th mat-header-cell *matHeaderCellDef>Tool</th>
+          <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
+        </ng-container>
+        <ng-container matColumnDef="modality">
+          <th mat-header-cell *matHeaderCellDef>Modality</th>
+          <td mat-cell *matCellDef="let element">{{ element.modality }}</td>
+        </ng-container>
+        <ng-container matColumnDef="percentage">
+          <th mat-header-cell *matHeaderCellDef>% Of Total</th>
+          <td mat-cell *matCellDef="let element">{{ element.percentage }}</td>
+        </ng-container>
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef># Count</th>
+          <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cell_label">
+          <th mat-header-cell *matHeaderCellDef>Cell Name in Cell Ontology (CL)</th>
+          <td mat-cell *matCellDef="let element">{{ element.cell_label }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cell_id">
+          <th mat-header-cell *matHeaderCellDef>Cell Type ID in Cell Ontology (CL)</th>
+          <td mat-cell *matCellDef="let element">{{ element.cell_id }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </hra-workflow-card>
+  </div>
+</div>
+
+<!-- @for (item of predictions; track item.cell_id) {
+  <li>{{ item.cell_label }}</li>
+} @empty {
+  <li>There are no items.</li>
+} -->
