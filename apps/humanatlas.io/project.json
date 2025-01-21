@@ -10,7 +10,7 @@
       "style": "scss"
     }
   },
-  "tags": ["app", "humanatlas.io"],
+  "tags": ["type:app", "project:humanatlas.io"],
   "sourceRoot": "apps/humanatlas.io/src",
   "prefix": "humanatlas.io",
   "targets": {

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/webcomponents/src",
   "prefix": "hra-ui",
   "projectType": "library",
-  "tags": ["type:lib", "shared"],
+  "tags": ["type:lib", "project:shared"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

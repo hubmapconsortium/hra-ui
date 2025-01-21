@@ -32,6 +32,7 @@ export interface CellSummaryModel {
   aggregates: CellSummaryAggregate[];
 }
 
+/** State context */
 export type Context = StateContext<CellSummaryModel>;
 
 /** Biomarker type labels */

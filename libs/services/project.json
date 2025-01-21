@@ -62,5 +62,5 @@
       "command": "compodoc -p libs/services/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
-  "tags": ["services"]
+  "tags": ["type:lib", "services"]
 }

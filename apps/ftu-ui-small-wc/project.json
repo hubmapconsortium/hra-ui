@@ -7,7 +7,7 @@
   "projectType": "application",
   "prefix": "hra",
   "sourceRoot": "apps/ftu-ui-small-wc/src",
-  "tags": ["app"],
+  "tags": ["type:app", "project:ftu"],
   "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {

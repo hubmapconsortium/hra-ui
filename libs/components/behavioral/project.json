@@ -101,5 +101,5 @@
       "command": "compodoc -p libs/components/behavioral/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
-  "tags": ["components", "behavioral"]
+  "tags": ["type:lib", "project:components", "behavioral"]
 }
