@@ -4,6 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/button';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
+import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideInput } from '@hra-ui/design-system/input';
 import { provideMenu } from '@hra-ui/design-system/menu';
@@ -37,6 +38,7 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideSelect(),
     provideInput(),
     provideButtonToggle(),
+    provideCheckboxes(),
   ];
 }
 
