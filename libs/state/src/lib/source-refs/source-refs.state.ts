@@ -15,6 +15,7 @@ export interface SourceRefsModel {
   selected: SourceReference[];
 }
 
+/** State context */
 type Context = StateContext<SourceRefsModel>;
 
 /**

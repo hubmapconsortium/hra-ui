@@ -101,5 +101,5 @@
       "command": "compodoc -p libs/cdk/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
-  "tags": ["cdk"]
+  "tags": ["type:lib", "project:cdk"]
 }
