@@ -15,6 +15,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Represents the color of the icon</p>\n",
                     "line": 40,
@@ -25,6 +26,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Represents the data for the data card</p>\n",
                     "line": 44,
@@ -35,6 +37,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Represents the size of the icon</p>\n",
                     "line": 42,
@@ -62,6 +65,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>ID of the Tissue</p>\n",
                     "line": 61,
@@ -72,6 +76,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Name of the Tissue</p>\n",
                     "line": 63,
@@ -221,6 +226,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Columns replaysubject</p>\n",
                     "line": 126,
@@ -235,6 +241,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Source for the table</p>\n",
                     "line": 154,
@@ -248,6 +255,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ElementRef",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Reference to biomarker table</p>\n",
                     "line": 123,
@@ -267,6 +275,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "CdkVirtualScrollViewport",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Reference to virtual scroll viewport</p>\n",
                     "line": 120,
@@ -338,10 +347,10 @@
                             "name": {
                                 "pos": 10272,
                                 "end": 10277,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -350,10 +359,10 @@
                             "tagName": {
                                 "pos": 10266,
                                 "end": 10271,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -362,10 +371,10 @@
                             "tagName": {
                                 "pos": 10284,
                                 "end": 10291,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -402,10 +411,10 @@
                             "tagName": {
                                 "pos": 11100,
                                 "end": 11107,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -435,10 +444,10 @@
                             "name": {
                                 "pos": 8365,
                                 "end": 8369,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "data"
                             },
                             "type": "DataRow<T>",
@@ -447,10 +456,10 @@
                             "tagName": {
                                 "pos": 8359,
                                 "end": 8364,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": "<p>row data</p>\n"
@@ -459,10 +468,10 @@
                             "tagName": {
                                 "pos": 8385,
                                 "end": 8392,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>cell type id</p>\n"
@@ -492,10 +501,10 @@
                             "name": {
                                 "pos": 9170,
                                 "end": 9184,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "meanExpression"
                             },
                             "type": "number",
@@ -504,10 +513,10 @@
                             "tagName": {
                                 "pos": 9164,
                                 "end": 9169,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -516,10 +525,10 @@
                             "tagName": {
                                 "pos": 9191,
                                 "end": 9198,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -549,10 +558,10 @@
                             "name": {
                                 "pos": 9762,
                                 "end": 9772,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "percentage"
                             },
                             "type": "number",
@@ -561,10 +570,10 @@
                             "tagName": {
                                 "pos": 9756,
                                 "end": 9761,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -573,10 +582,10 @@
                             "tagName": {
                                 "pos": 9779,
                                 "end": 9786,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -606,10 +615,10 @@
                             "name": {
                                 "pos": 10768,
                                 "end": 10773,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -618,10 +627,10 @@
                             "tagName": {
                                 "pos": 10762,
                                 "end": 10767,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -630,10 +639,10 @@
                             "tagName": {
                                 "pos": 10780,
                                 "end": 10787,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -663,10 +672,10 @@
                             "name": {
                                 "pos": 8861,
                                 "end": 8864,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "hex"
                             },
                             "type": "string",
@@ -675,10 +684,10 @@
                             "tagName": {
                                 "pos": 8855,
                                 "end": 8860,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -687,10 +696,10 @@
                             "tagName": {
                                 "pos": 8871,
                                 "end": 8878,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -720,10 +729,10 @@
                             "name": {
                                 "pos": 8184,
                                 "end": 8187,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "row"
                             },
                             "type": "DataRow<T>",
@@ -732,10 +741,10 @@
                             "tagName": {
                                 "pos": 8178,
                                 "end": 8183,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": "<p>Highlighted row</p>\n"
@@ -777,10 +786,10 @@
                             "name": {
                                 "pos": 8649,
                                 "end": 8654,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "value"
                             },
                             "type": "number",
@@ -789,10 +798,10 @@
                             "tagName": {
                                 "pos": 8643,
                                 "end": 8648,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -801,10 +810,10 @@
                             "name": {
                                 "pos": 8667,
                                 "end": 8670,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "min"
                             },
                             "type": "number",
@@ -813,10 +822,10 @@
                             "tagName": {
                                 "pos": 8661,
                                 "end": 8666,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -825,10 +834,10 @@
                             "name": {
                                 "pos": 8683,
                                 "end": 8686,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "max"
                             },
                             "type": "number",
@@ -837,10 +846,10 @@
                             "tagName": {
                                 "pos": 8677,
                                 "end": 8682,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": ""
@@ -849,10 +858,10 @@
                             "tagName": {
                                 "pos": 8693,
                                 "end": 8700,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": ""
@@ -904,10 +913,10 @@
                             "name": {
                                 "pos": 12054,
                                 "end": 12061,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "hoverId"
                             },
                             "type": "string",
@@ -917,10 +926,10 @@
                             "tagName": {
                                 "pos": 12048,
                                 "end": 12053,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": "<p>cell type id</p>\n"

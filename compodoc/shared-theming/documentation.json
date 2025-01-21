@@ -45,10 +45,10 @@
                             "name": {
                                 "pos": 1096,
                                 "end": 1099,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "ctx"
                             },
                             "type": "ThemingContext",
@@ -57,10 +57,10 @@
                             "tagName": {
                                 "pos": 1090,
                                 "end": 1095,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "param"
                             },
                             "comment": "<p>State Context</p>\n"
@@ -77,10 +77,10 @@
                             "tagName": {
                                 "pos": 1173,
                                 "end": 1180,
-                                "flags": 16842752,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
                                 "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
                                 "escapedText": "returns"
                             },
                             "comment": "<p>asyncronous data from the url</p>\n"
@@ -128,10 +128,10 @@
                         "name": {
                             "pos": 354,
                             "end": 357,
-                            "flags": 16842752,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
                             "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
                             "escapedText": "url"
                         },
                         "type": "string",
@@ -140,10 +140,10 @@
                         "tagName": {
                             "pos": 348,
                             "end": 353,
-                            "flags": 16842752,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
                             "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
                             "escapedText": "param"
                         },
                         "comment": "<p>URL of the yaml file, containing theming color key-value pairs</p>\n"
@@ -159,6 +159,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>static type for the action</p>\n",
                     "line": 8,
@@ -174,6 +175,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
+                    "indexKey": "",
                     "optional": false,
                     "description": "<p>Initialising type for the  action</p>\n",
                     "line": 12,
