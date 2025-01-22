@@ -98,7 +98,7 @@ export class FullscreenPortalContentComponent {}
 })
 export class FullscreenPortalComponent {
   /** Heading of the dialog */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
 
   /** Classes to apply to the dialog panel in fullscreen mode */
   readonly panelClass = input<string | string[]>();

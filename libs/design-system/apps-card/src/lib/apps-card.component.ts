@@ -14,7 +14,7 @@ export class AppsCardComponent {
   /** URL for the icon */
   readonly icon = input.required<string>();
   /** Title of the card */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
   /** Description of the card */
   readonly description = input.required<string>();
   /** Link of the card */

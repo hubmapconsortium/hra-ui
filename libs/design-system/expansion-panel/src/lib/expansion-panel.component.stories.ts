@@ -27,7 +27,7 @@ const meta: Meta = {
   render: (args) => ({
     props: args,
     template: `
-      <hra-expansion-panel [title]="'Title'">
+      <hra-expansion-panel [tagline]="'Title'">
         <hra-expansion-panel-actions>
           <button mat-icon-button>
             <mat-icon class="material-symbols-rounded">

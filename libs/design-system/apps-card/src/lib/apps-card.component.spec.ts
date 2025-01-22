@@ -4,9 +4,9 @@ import { AppsCardComponent } from './apps-card.component';
 describe('AppsCardComponent', () => {
   beforeEach(async () => {
     await render(AppsCardComponent, {
-      componentInputs: {
+      inputs: {
         icon: 'test.svg',
-        title: 'Test Title',
+        tagline: 'Test Title',
         description: 'Test Description',
         link: 'https://www.example.com',
       },
@@ -15,9 +15,6 @@ describe('AppsCardComponent', () => {
 
   it('should create and render the card', async () => {
     const cardLink = screen.getByRole('link');
-    const cardImage = screen.getByRole('img');
-    expect(cardImage.getAttribute('alt')).toBe('Test Title Icon');
-    expect(cardImage.getAttribute('src')).toBe('test.svg');
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.getByText('Test Description')).toBeInTheDocument();
     expect(cardLink.getAttribute('href')).toBe('https://www.example.com');

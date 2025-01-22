@@ -58,7 +58,7 @@ export class NavHeaderComponent {
   /** Current app */
   readonly app = input.required<string>();
   /** Name of the app */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
   /** Status of the app */
   readonly status = input<SoftwareStatus>();
   /** Data to display in sidenav */
