@@ -1,4 +1,4 @@
-<div class="ccf-app mat-app-background">
+<!-- <div class="ccf-app mat-app-background">
   <ccf-spinner-overlay [text]="(loadingMessage$ | async) ?? ''" [active]="(spinnerActive$ | async) ?? false">
   </ccf-spinner-overlay>
   <ccf-header
@@ -194,4 +194,49 @@
       </ccf-body-ui>
     </ccf-drawer-content>
   </ccf-drawer-container>
+</div> -->
+
+<hra-back-bar></hra-back-bar>
+
+<hra-nav-header-buttons
+  app="eui"
+  [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
+  appTitle="Exploration User Interface"
+  [brandmark]="true"
+></hra-nav-header-buttons>
+
+<hra-expansion-panel [title]="'Body Visualization'" disabled class="vis-panel">
+  <hra-expansion-panel-actions>
+    <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="large" aria-label="Icon to open nested menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">Info</button>
+      <button mat-menu-item matRipple>Reset view</button>
+      <button mat-menu-item matRipple>Hide all organs</button>
+      <button mat-menu-item matRipple>Show all organs</button>
+    </mat-menu>
+    <mat-menu #submenu="matMenu">
+      <span>Test</span>
+    </mat-menu>
+  </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+</hra-expansion-panel>
+
+<div class="left-panel"></div>
+
+<div class="content">
+  <ccf-body-ui
+    #bodyUI
+    class="stage-content"
+    [scene]="$any(scene.scene$ | async)"
+    (nodeClick)="scene.sceneNodeClicked($event)"
+    (nodeHoverStart)="scene.sceneNodeHovered($event)"
+    (nodeHoverStop)="scene.sceneNodeUnhover()"
+    [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
+    [class.expanded-stage]="!organListVisible"
+  >
+  </ccf-body-ui>
 </div>
+
+<div class="right-panel"></div>
