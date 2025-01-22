@@ -2,6 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ButtonModule } from '@hra-ui/design-system/button';
 
+/**
+ * Component representing a web component card.
+ * Displays an image, product title, web component name, and description.
+ */
+
 @Component({
   selector: 'hra-web-component-card',
   standalone: true,

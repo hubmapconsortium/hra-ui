@@ -1,19 +1,15 @@
-<div class="image">
-  <img alt="image" [src]="imageUrl()" />
-</div>
-<div class="cardContent">
-  <h2 class="productTitle" [ngClass]="{ default_style: !webComponentName(), style_change: webComponentName() }">
-    {{ productTitle() }}
-  </h2>
-  <h1 *ngIf="webComponentName()" class="webComponentName">{{ webComponentName() }}</h1>
+<img alt="" [src]="imageUrl()" />
+<div class="card-content">
+  @if (webComponentName()) {
+    <h2 class="style_change">{{ productTitle() }}</h2>
+    <h1 class="web-component-name">{{ webComponentName() }}</h1>
+  } @else {
+    <h2 class="default_style">{{ productTitle() }}</h2>
+  }
   <span class="description">{{ description() }}</span>
 </div>
 
-<div class="cardFooter">
+<div class="card-footer">
   <button mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
   <button mat-flat-button hraPrimaryButton hraButtonSize="medium">Embed</button>
-</div>
-
-<div class="content">
-  <ng-content></ng-content>
 </div>
