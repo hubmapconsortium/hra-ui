@@ -1,20 +1,18 @@
 import { WebComponentCardComponent } from './web-component-card.component';
-import { render, screen } from '@testing-library/angular';
+import { screen } from '@testing-library/dom';
+import { render } from '@testing-library/angular';
 
 describe('WebComponentCardComponent', () => {
-  it('Error should be visible in the indicator', async () => {
-    const productTitle = 'Product Title';
-    const webComponentName = 'Web Component Name';
-    const description = 'This is a placeholder description (>125 characters.)';
-
+  beforeEach(async () => {
     await render(WebComponentCardComponent, {
       componentInputs: {
-        productTitle,
-        webComponentName,
-        description,
+        productTitle: 'Product Title',
+        webComponentName: 'Web Component Name',
+        description: 'This is a placeholder description (>125 characters.)',
       },
     });
-
+  });
+  it('should render title, web component name and description', () => {
     expect(screen.getByText('Product Title')).toBeInTheDocument();
     expect(screen.getByText('Web Component Name')).toBeInTheDocument();
     expect(screen.getByText('This is a placeholder description (>125 characters.)')).toBeInTheDocument();
