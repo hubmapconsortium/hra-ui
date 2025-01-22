@@ -1,3 +1,59 @@
 :host {
   display: block;
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--sys-surface-container-low);
+  box-shadow: 0px 5px 16px 0px rgba(from var(--sys-shadow) r g b / 0.24);
+
+  .image {
+    height: 15rem;
+    img {
+      height: 15rem;
+      width: 100%;
+    }
+  }
+
+  .cardContent {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+  }
+
+  .default_style {
+    font: var(--sys-title-large);
+    margin: 0;
+    line-height: 1.875rem;
+    color: var(--sys-inverse-surface);
+  }
+
+  .style_change {
+    font: var(--sys-title-medium);
+    margin: 0;
+    line-height: 1.875rem;
+    color: var(--sys-on-background);
+  }
+
+  .webComponentName {
+    font: var(--sys-title-large);
+    line-height: 2.25rem;
+    margin: 0;
+    margin-top: 0.5rem;
+    color: var(--sys-on-background);
+  }
+
+  .description {
+    margin-top: 0.5rem;
+    overflow-wrap: break-word;
+    display: block;
+    width: 100%;
+    font: var(--sys-body-large);
+    letter-spacing: 0.0313rem;
+    color: var(--sys-on-surface-variant);
+  }
+
+  .cardFooter {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin-top: 1.5rem;
+  }
 }

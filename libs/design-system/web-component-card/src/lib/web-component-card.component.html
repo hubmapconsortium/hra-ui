@@ -1,3 +1,19 @@
+<div class="image">
+  <img [src]="imageUrl()" />
+</div>
+<div class="cardContent">
+  <h2 class="productTitle" [ngClass]="{ default_style: !webComponentName(), style_change: webComponentName() }">
+    {{ productTitle() }}
+  </h2>
+  <h1 *ngIf="webComponentName()" class="webComponentName">{{ webComponentName() }}</h1>
+  <span class="description">{{ description() }}</span>
+</div>
+
+<div class="cardFooter">
+  <button mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
+  <button mat-flat-button hraPrimaryButton hraButtonSize="medium">Embed</button>
+</div>
+
 <div class="content">
   <ng-content></ng-content>
 </div>

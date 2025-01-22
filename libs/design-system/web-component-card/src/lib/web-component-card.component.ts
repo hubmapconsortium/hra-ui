@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ButtonModule } from '@hra-ui/design-system/button';
 
 @Component({
   selector: 'hra-web-component-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ButtonModule, CommonModule],
   templateUrl: './web-component-card.component.html',
   styleUrl: './web-component-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +16,7 @@ export class WebComponentCardComponent {
   /** Product title */
   readonly productTitle = input.required<string>();
   /** Web Component Name */
-  readonly webComponentName = input<string | undefined>(undefined); // optional
+  readonly webComponentName = input<string | undefined>();
   /** Description */
   readonly description = input.required<string>();
 }
