@@ -119,7 +119,7 @@
   },
   "generators": {
     "@nx/angular:application": {
-      "e2eTestRunner": "cypress",
+      "e2eTestRunner": "none",
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"

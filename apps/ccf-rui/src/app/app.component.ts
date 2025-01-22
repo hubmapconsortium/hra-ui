@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
+import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { GlobalConfig } from './core/services/config/config';
 import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
@@ -22,6 +22,7 @@ import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
 import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 export interface User {
   firstName: string;
@@ -30,7 +31,6 @@ export interface User {
 
 interface AppOptions extends GlobalConfig {
   theme?: string;
-  header?: boolean;
   homeUrl?: string;
   logoTooltip?: string;
   view?: ViewType;
@@ -49,6 +49,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class.embedded]': 'embedded()',
     '(document:mousedown)': 'handleClick($event.target)',
   },
 })
@@ -66,20 +67,12 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   readonly theme$ = this.globalConfig.getOption('theme');
-  readonly themeMode$ = new ReplaySubject<'light' | 'dark'>(1);
+  readonly themeMode$ = new BehaviorSubject<'light' | 'dark'>('light');
 
-  readonly header$ = this.globalConfig.getOption('header');
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
-  readonly logoTooltip$ = this.globalConfig.getOption('logoTooltip');
 
   readonly view$ = this.globalConfig.getOption('view');
   readonly viewSide$ = this.globalConfig.getOption('viewSide');
-
-  theme!: string;
-
-  homeUrl!: string;
-
-  logoTooltip!: string;
 
   /** Input that allows changing the current side from outside the component */
   @Input() side: Side = 'anterior';
@@ -88,6 +81,8 @@ export class AppComponent implements OnDestroy, OnInit {
   @Input() view3D = false;
 
   private readonly metadata = inject(MetadataService);
+
+  protected readonly embedded = toSignal(inject(PageState).useCancelRegistrationCallback$);
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
@@ -112,15 +107,6 @@ export class AppComponent implements OnDestroy, OnInit {
         this.registrationStarted = registrationStarted;
       }),
     );
-    this.theme$.subscribe((theme) => {
-      this.theme = theme ?? 'light';
-    });
-    this.globalConfig.getOption('homeUrl').subscribe((url) => {
-      this.homeUrl = url ?? '';
-    });
-    this.globalConfig.getOption('logoTooltip').subscribe((tooltip) => {
-      this.logoTooltip = tooltip ?? '';
-    });
 
     combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
       this.theming.setTheme(`${theme}-theme-${mode}`);
@@ -147,10 +133,6 @@ export class AppComponent implements OnDestroy, OnInit {
       duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
       panelClass: 'usage-snackbar',
     });
-
-    this.themeMode$.next('light');
-
-    this.theming.setTheme(`${this.theme}-theme-light`);
 
     const { editRegistration, user, organ } = this.globalConfig.snapshot;
     if (!editRegistration && (!user || !organ)) {

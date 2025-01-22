@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-organ-info/src",
   "prefix": "app",
-  "tags": ["ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf", "karma-test-runner"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -126,13 +126,7 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
         "codeCoverage": true,
-        "codeCoverageExclude": [
-          "**/e2e/**/*",
-          "**/test.ts",
-          "**/polyfills.ts",
-          "**/environments/**/*.ts",
-          "**/*.module.ts"
-        ],
+        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
         "styles": ["apps/ccf-organ-info/src/styles.scss"],
         "scripts": []
       }

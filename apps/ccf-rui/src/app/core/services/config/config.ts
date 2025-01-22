@@ -23,9 +23,7 @@ export interface GlobalConfig {
   skipUnsavedChangesConfirmation?: boolean;
 
   theme?: string;
-  header?: boolean;
   homeUrl?: string;
-  logoTooltip?: string;
   organOptions?: string[];
 
   collisionsEndpoint?: string;
