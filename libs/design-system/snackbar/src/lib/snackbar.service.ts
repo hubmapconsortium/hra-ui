@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ButtonPosition, SnackbarComponent, SnackbarData } from './snackbar.component';
 
+/** Snackbar configuration */
 export type SnackbarConfig = Omit<MatSnackBarConfig, 'data' | 'panelClass'>;
 
 /** Service for snackbar. Opens the snackbar and configures it */

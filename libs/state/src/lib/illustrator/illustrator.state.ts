@@ -22,6 +22,7 @@ export interface IllustratorModel {
   hoveredCellTypeId?: string;
 }
 
+/** State context */
 type Context = StateContext<IllustratorModel>;
 
 /**

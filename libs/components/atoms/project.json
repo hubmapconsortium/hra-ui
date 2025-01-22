@@ -101,5 +101,5 @@
       "command": "compodoc -p libs/components/atoms/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
   },
-  "tags": ["components", "atoms"]
+  "tags": ["type:lib", "project:components", "atoms"]
 }

@@ -21,7 +21,7 @@ function pipeActionInstance<A>(action: A, obs$: Observable<void>): Observable<A>
  */
 function createActionFactory<A, BoundArgs extends Any[], RestArgs extends Any[]>(
   type: new (...args: [...BoundArgs, ...RestArgs]) => A,
-  boundArgs: BoundArgs
+  boundArgs: BoundArgs,
 ): (...args: RestArgs) => A {
   return (...args) => new type(...boundArgs, ...args);
 }
@@ -34,12 +34,12 @@ function createActionFactory<A, BoundArgs extends Any[], RestArgs extends Any[]>
  */
 function dispatchImpl<A, R, Args extends Any[]>(
   actionFactory: (...args: Args) => A,
-  resultHandler: (action: A, obs$: Observable<void>) => R
+  resultHandler: (action: A, obs$: Observable<void>) => R,
 ): (...args: Args) => R {
   const store = inject(Store);
   return (...args) => {
     const action = actionFactory(...args);
-    const obs$ = store.dispatch(action);
+    const obs$ = store.dispatch(action as Any);
     return resultHandler(action, obs$);
   };
 }
