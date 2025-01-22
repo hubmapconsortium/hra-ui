@@ -223,7 +223,35 @@
   <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
 </hra-expansion-panel>
 
-<div class="left-panel"></div>
+<div class="left-panel">
+  <div class="filter-data">
+    <ccf-filters-popover
+      [filters]="$any(data.filter$ | async)"
+      (filtersChange)="data.updateFilter($event)"
+      [technologyFilters]="(data.technologyFilterData$ | async) ?? []"
+      [providerFilters]="(data.providerFilterData$ | async) ?? []"
+      [spatialSearchFilters]="$any(selectableSearches$ | async)"
+      (spatialSearchSelected)="setSelectedSearches($event)"
+      (spatialSearchRemoved)="removeSpatialSearch($event)"
+      #filterbox
+    >
+    </ccf-filters-popover>
+
+    <div class="filter-text">
+      <div class="sex filter-tag">
+        Sex: <strong>{{ (data.filter$ | async)?.sex }}</strong>
+      </div>
+      <div class="age filter-tag">
+        Age:
+        <strong> {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }} </strong>
+      </div>
+      <div class="bmi filter-tag">
+        BMI:
+        <strong> {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }} </strong>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="content">
   <ccf-body-ui
@@ -239,4 +267,18 @@
   </ccf-body-ui>
 </div>
 
-<div class="right-panel"></div>
+<div class="right-panel">
+  <ccf-results-browser
+    [listResults]="(listResultsState.listResults$ | async) ?? []"
+    [aggregateData]="(data.aggregateData$ | async) ?? []"
+    [resultLabel]="selectionLabel"
+    (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
+    (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
+    (linkClicked)="openiFrameViewer($event)"
+    [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
+    (itemHovered)="listResultsState.highlightNode($event)"
+    (itemUnhovered)="listResultsState.unHighlightNode()"
+    [header]="(header$ | async) ?? false"
+  >
+  </ccf-results-browser>
+</div>
