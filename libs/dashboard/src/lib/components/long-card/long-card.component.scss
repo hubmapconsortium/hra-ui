@@ -1,26 +1,19 @@
 :host {
   .long-card {
-    --mdc-text-button-label-text-color: #b20a2f;
-    --mat-text-button-hover-state-layer-opacity: 0;
     display: flex;
     flex-direction: column;
-    width: 14.5rem;
+    align-items: center;
+    width: 14rem;
     height: 42rem;
     border-radius: 1rem;
-    overflow: hidden;
+    background-color: white;
     box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.24);
     outline-offset: 0;
-    background-color: white;
+    overflow: hidden;
     cursor: pointer;
 
-    &:hover {
-      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
-    }
-
-    &:active {
-      box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
-    }
-
+    &:hover,
+    &:active,
     &:focus-visible {
       box-shadow: 0px 5px 20px 0px rgba(32, 30, 61, 0.32);
     }
@@ -28,31 +21,20 @@
     img {
       width: 100%;
       object-fit: contain;
+      opacity: 80%;
     }
 
     .label {
-      width: fit-content;
+      --mdc-text-button-label-text-color: #b20a2f;
+      --mat-text-button-hover-state-layer-opacity: 0;
+
       display: flex;
       align-items: center;
-      margin: auto 1.5rem;
+      margin: auto auto;
       font-family: 'Metropolis';
+      font-size: 1.25rem;
+      line-height: 1.875rem;
       letter-spacing: normal;
-    }
-
-    mat-icon {
-      vertical-align: middle;
-      margin-left: 0.25rem;
-    }
-  }
-
-  @media (max-width: 544px) {
-    justify-content: center;
-  }
-
-  @media (min-width: 1441px) {
-    .long-card {
-      width: 17rem;
-      height: 51rem;
     }
   }
 }
