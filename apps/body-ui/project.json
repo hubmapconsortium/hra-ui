@@ -7,7 +7,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/body-ui/src",
-  "tags": ["type:app"],
+  "tags": ["type:app", "project:ccf"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",

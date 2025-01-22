@@ -7,7 +7,7 @@
   "projectType": "application",
   "prefix": "cde",
   "sourceRoot": "apps/cde-visualization-wc/src",
-  "tags": ["app", "cde", "webcomponent"],
+  "tags": ["type:app", "project:cde", "webcomponent"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
