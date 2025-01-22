@@ -1,21 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WebComponentCardComponent } from './web-component-card.component';
+import { render, screen } from '@testing-library/angular';
 
 describe('WebComponentCardComponent', () => {
-  let component: WebComponentCardComponent;
-  let fixture: ComponentFixture<WebComponentCardComponent>;
+  it('Error should be visible in the indicator', async () => {
+    const productTitle = 'Product Title';
+    const webComponentName = 'Web Component Name';
+    const description = 'This is a placeholder description (>125 characters.)';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [WebComponentCardComponent],
-    }).compileComponents();
+    await render(WebComponentCardComponent, {
+      componentInputs: {
+        productTitle,
+        webComponentName,
+        description,
+      },
+    });
 
-    fixture = TestBed.createComponent(WebComponentCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(screen.getByText('Product Title')).toBeInTheDocument();
+    expect(screen.getByText('Web Component Name')).toBeInTheDocument();
+    expect(screen.getByText('This is a placeholder description (>125 characters.)')).toBeInTheDocument();
   });
 });
