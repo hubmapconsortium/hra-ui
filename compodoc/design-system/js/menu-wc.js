@@ -142,6 +142,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ButtonToggleStylesComponent.html" data-type="entity-link" >ButtonToggleStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CheckboxStylesComponent.html" data-type="entity-link" >CheckboxStylesComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ColorPickerComponent.html" data-type="entity-link" >ColorPickerComponent</a>
                             </li>
                             <li class="link">
@@ -264,6 +267,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/CallToActionButtonDirective.html" data-type="entity-link" >CallToActionButtonDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CheckboxErrorVariantDirective.html" data-type="entity-link" >CheckboxErrorVariantDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
