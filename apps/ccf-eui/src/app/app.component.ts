@@ -19,7 +19,6 @@ import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { OntologySelection } from './core/models/ontology-selection';
-import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
 import { ThemingService } from './core/services/theming/theming.service';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
@@ -158,12 +157,10 @@ export class AppComponent implements OnInit {
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
-    overlay: AppRootOverlayContainer,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
     cdr: ChangeDetectorRef,
   ) {
     theming.initialize(el, injector);
-    overlay.setRootElement(el);
     data.tissueBlockData$.subscribe();
     data.aggregateData$.subscribe();
     data.ontologyTermOccurencesData$.subscribe();

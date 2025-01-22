@@ -1,17 +1,21 @@
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
-import { DEFAULT_THEME } from '../app/core/services/theming/theming.service';
+
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
 import { ResultsBrowserModule } from './modules/results-browser/results-browser/results-browser.module';
@@ -21,6 +25,7 @@ import { DualSliderModule } from './shared/components/dual-slider/dual-slider.mo
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
+import { BackBarComponent } from '@hra-ui/design-system/back-bar';
 
 @NgModule({
   imports: [
@@ -45,11 +50,15 @@ import { ViewerModule } from './shared/components/viewer/viewer.module';
     MatSnackBarModule,
     MatButtonToggleModule,
     ButtonToggleModule,
+
+    NavHeaderButtonsComponent,
+    ExpansionPanelModule,
+    ButtonModule,
+    MatMenuModule,
+    MatDividerModule,
+    BackBarComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
-  providers: [
-    { provide: DEFAULT_THEME, useValue: 'hubmap-theme-light' },
-    { provide: OverlayContainer, useExisting: AppRootOverlayContainer },
-  ],
+  providers: [provideDesignSystem()],
 })
 export class AppModule {}
