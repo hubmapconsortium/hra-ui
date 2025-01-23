@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/angular';
-import { AppsCardComponent } from './apps-card.component';
+import { AppNavButtonComponent } from './app-nav-button.component';
 
 describe('AppsCardComponent', () => {
   beforeEach(async () => {
-    await render(AppsCardComponent, {
+    await render(AppNavButtonComponent, {
       inputs: {
         icon: 'test.svg',
         tagline: 'Test Title',

@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
 
 /** Apps Card Component */
 @Component({
   selector: 'hra-apps-card',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './apps-card.component.html',
-  styleUrl: './apps-card.component.scss',
+  imports: [CommonModule, MatRippleModule],
+  templateUrl: './app-nav-button.component.html',
+  styleUrl: './app-nav-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppsCardComponent {
+export class AppNavButtonComponent {
   /** URL for the icon */
   readonly icon = input.required<string>();
   /** Title of the card */

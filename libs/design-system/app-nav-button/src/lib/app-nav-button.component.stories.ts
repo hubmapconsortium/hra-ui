@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { AppsCardComponent } from './apps-card.component';
+import { AppNavButtonComponent } from './app-nav-button.component';
 
 const apps: Record<string, Story['args']> = {
   'HuBMAP Consortium': {
@@ -66,8 +66,8 @@ const apps: Record<string, Story['args']> = {
 };
 
 const meta: Meta = {
-  component: AppsCardComponent,
-  title: 'AppsCardComponent',
+  component: AppNavButtonComponent,
+  title: 'Design System/Buttons/AppNavButton',
   parameters: {
     design: {
       type: 'figma',
@@ -89,6 +89,6 @@ const meta: Meta = {
   }),
 };
 export default meta;
-type Story = StoryObj<AppsCardComponent>;
+type Story = StoryObj<AppNavButtonComponent>;
 
 export const Primary: Story = {};
