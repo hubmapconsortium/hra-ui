@@ -1,3 +1,14 @@
-<a [href]="link()" target="_blank" rel="noopener noreferrer">
-  <mat-icon [class.small]="size() === 'small'" [svgIcon]="icon()"></mat-icon>
+<a
+  mat-icon-button
+  [hraIconButtonVariant]="variant()"
+  [hraIconButtonSize]="size()"
+  [href]="link()"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  @if (name() === 'email') {
+    <mat-icon>email</mat-icon>
+  } @else {
+    <mat-icon [svgIcon]="icon()"></mat-icon>
+  }
 </a>

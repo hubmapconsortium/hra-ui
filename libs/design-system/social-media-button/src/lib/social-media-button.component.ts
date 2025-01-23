@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  IconButtonSize,
+  IconButtonSizeDirective,
+  IconButtonVariant,
+  IconButtonVariantDirective,
+} from '@hra-ui/design-system/icon-button';
 
 /** Social media name type */
-export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email';
-/** Button size type */
-export type SocialMediaButtonSize = 'small' | 'large';
+export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email' | 'github';
 
 /** All CNS links */
 export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
@@ -14,6 +19,7 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
   instagram: 'https://www.instagram.com/cns_at_iu/',
   youtube: 'https://www.youtube.com/@CNSCenter/',
   linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',
+  github: 'https://github.com/hubmapconsortium/hra-ui',
   email: 'mailto:infoccf@iu.edu',
 };
 
@@ -23,9 +29,8 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
 @Component({
   selector: 'hra-social-media-button',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, IconButtonVariantDirective, IconButtonSizeDirective],
   templateUrl: './social-media-button.component.html',
-  styleUrl: './social-media-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {
@@ -33,10 +38,13 @@ export class SocialMediaButtonComponent {
   readonly name = input.required<SocialMediaName>();
 
   /** Button size */
-  readonly size = input.required<SocialMediaButtonSize>();
+  readonly size = input<IconButtonSize>('large');
+
+  /** Button variant */
+  readonly variant = input<IconButtonVariant>('dark');
 
   /** Icon to display */
-  protected icon = computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`);
+  protected icon = computed(() => `social:${this.name()}`);
 
   /** External link for button */
   protected link = computed(() => SOCIAL_LINKS[this.name()]);
