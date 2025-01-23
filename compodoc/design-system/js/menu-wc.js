@@ -88,6 +88,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ExpansionPanelModule.html" data-type="entity-link" >ExpansionPanelModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/IconButtonModule.html" data-type="entity-link" >IconButtonModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#directives-links-module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16"' : 'data-bs-target="#xs-directives-links-module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16"' }>
+                                        <span class="icon ion-md-code-working"></span>
+                                        <span>Directives</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16"' :
+                                        'id="xs-directives-links-module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16"' }>
+                                        <li class="link">
+                                            <a href="directives/IconButtonSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IconButtonSizeDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/IconButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IconButtonVariantDirective</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ScrollingModule.html" data-type="entity-link" >ScrollingModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -244,6 +264,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/TreeStylesComponent.html" data-type="entity-link" >TreeStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/WebComponentCardComponent.html" data-type="entity-link" >WebComponentCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/WorkflowCardActionsComponent.html" data-type="entity-link" >WorkflowCardActionsComponent</a>
                             </li>
                             <li class="link">
@@ -276,6 +299,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/IconButtonSizeDirective.html" data-type="entity-link" >IconButtonSizeDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/IconButtonVariantDirective.html" data-type="entity-link" >IconButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/MicroTooltipDirective.html" data-type="entity-link" >MicroTooltipDirective</a>

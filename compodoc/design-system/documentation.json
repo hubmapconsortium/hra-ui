@@ -961,6 +961,44 @@
             "extends": []
         },
         {
+            "name": "IconButtonVariantDirective",
+            "id": "directive-IconButtonVariantDirective-33600bf1e618b5bd5444c3ae23a8298307152521cc96377350a193b3ad9a402b34225ac2158799a40e57bd2ecdce3987dc1fd007c10269d0fa6e4dcc515624fe",
+            "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+            "type": "directive",
+            "description": "<p>Directive for icon button variants (color)</p>\n",
+            "rawdescription": "\n\nDirective for icon button variants (color)\n",
+            "sourceCode": "import { Directive, input } from '@angular/core';\n\n/** Input options for icon button color */\nexport type IconButtonVariant = 'light' | 'dark' | 'color';\n\n/**\n * Directive for icon button variants (color)\n */\n@Directive({\n  selector: '[hraIconButtonVariant]',\n  standalone: true,\n  host: {\n    '[class]': '\"icon-button-variant-\" + variant()',\n  },\n})\nexport class IconButtonVariantDirective {\n  /** Input for icon button color variant */\n  readonly variant = input<IconButtonVariant>('dark', { alias: 'hraIconButtonVariant' });\n}\n",
+            "selector": "[hraIconButtonVariant]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "variant",
+                    "defaultValue": "input<IconButtonVariant>('dark', { alias: 'hraIconButtonVariant' })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input for icon button color variant</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nInput for icon button color variant",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "extends": []
+        },
+        {
             "name": "MicroTooltipDirective",
             "id": "directive-MicroTooltipDirective-f93a9a4b0be3dcf5c8906b069ecfd7519dbe8b57555f87f93e82144d2348e930bbd880e1e6e0e1fc8f8e239e1698f0445a4e93a0d9a62f75f6800588145a91e3",
             "file": "micro-tooltip/src/micro-tooltip.directive.ts",
@@ -3416,7 +3454,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "button[mat-icon-button] {\n  --mat-icon-button-hover-state-layer-opacity: 0.08;\n  --mat-icon-button-pressed-state-layer-opacity: 0.16;\n  --mat-icon-button-state-layer-color: var(--sys-secondary);\n  --mat-icon-button-focus-state-layer-opacity: 0;\n\n  &:focus-visible {\n    outline: 2px solid var(--sys-tertiary);\n  }\n\n  mat-icon {\n    height: var(--mdc-icon-button-icon-size);\n    width: var(--mdc-icon-button-icon-size);\n    font-size: var(--mdc-icon-button-icon-size);\n  }\n}\n",
+                    "data": "button[mat-icon-button],\na[mat-icon-button] {\n  --mat-icon-button-hover-state-layer-opacity: 0.08;\n  --mat-icon-button-pressed-state-layer-opacity: 0.12;\n  --mat-icon-button-focus-state-layer-opacity: 0;\n  --mdc-icon-button-icon-color: var(--sys-secondary);\n  --mat-icon-button-state-layer-color: var(--sys-secondary);\n\n  mat-icon {\n    height: var(--mdc-icon-button-icon-size);\n    width: var(--mdc-icon-button-icon-size);\n    font-size: var(--mdc-icon-button-icon-size);\n  }\n\n  &.icon-button-variant-light {\n    --mdc-icon-button-icon-color: var(--sys-on-primary);\n    --mat-icon-button-state-layer-color: var(--sys-on-primary);\n  }\n\n  &.icon-button-variant-dark {\n    --mdc-icon-button-icon-color: var(--sys-secondary);\n    --mat-icon-button-state-layer-color: var(--sys-secondary);\n  }\n\n  &.icon-button-variant-color {\n    --mdc-icon-button-icon-color: var(--sys-on-tertiary-fixed);\n    --mat-icon-button-state-layer-color: var(--sys-on-tertiary-fixed);\n  }\n\n  &:focus-visible {\n    --mdc-icon-button-icon-color: var(--sys-secondary);\n    outline: 2px solid var(--sys-tertiary);\n  }\n}\n",
                     "styleUrl": "./icon-button-styles.component.scss"
                 }
             ],
@@ -4688,7 +4726,7 @@
         },
         {
             "name": "SocialMediaButtonComponent",
-            "id": "component-SocialMediaButtonComponent-69e9ba010698ed9289c8abae54031aba860c6eece3ea08304a414f3b63b8fb2e4eb99627feeef12162a3a1ad3b8c3c308a16987bede8f8c2965d1e227b5e0d01",
+            "id": "component-SocialMediaButtonComponent-9ca4fd1a15dae140d3ad21117dc5ca3ee69ef3e2293b4f1f24f8a2c91b1ad70f9cfc97c98bc2826c0024d5f0760ff27198a47f30e71f518850511508c83801e2",
             "file": "social-media-button/src/lib/social-media-button.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -4713,23 +4751,8 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button name</p>\n",
-                    "line": 33,
+                    "line": 38,
                     "rawdescription": "\nButton name",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": true
-                },
-                {
-                    "name": "size",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Button size</p>\n",
-                    "line": 36,
-                    "rawdescription": "\nButton size",
                     "modifierKind": [
                         148
                     ],
@@ -4740,14 +4763,14 @@
             "propertiesClass": [
                 {
                     "name": "icon",
-                    "defaultValue": "computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`)",
+                    "defaultValue": "computed(() => `social:${this.name()}`)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Icon to display</p>\n",
-                    "line": 39,
+                    "line": 47,
                     "rawdescription": "\nIcon to display",
                     "modifierKind": [
                         124
@@ -4762,7 +4785,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>External link for button</p>\n",
-                    "line": 42,
+                    "line": 50,
                     "rawdescription": "\nExternal link for button",
                     "modifierKind": [
                         124
@@ -4776,7 +4799,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button name</p>\n",
-                    "line": 33,
+                    "line": 38,
                     "rawdescription": "\nButton name",
                     "modifierKind": [
                         148
@@ -4785,18 +4808,33 @@
                 },
                 {
                     "name": "size",
+                    "defaultValue": "input<IconButtonSize>('large')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button size</p>\n",
-                    "line": 36,
+                    "line": 41,
                     "rawdescription": "\nButton size",
                     "modifierKind": [
                         148
-                    ],
-                    "required": true
+                    ]
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "input<IconButtonVariant>('dark')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button variant</p>\n",
+                    "line": 44,
+                    "rawdescription": "\nButton variant",
+                    "modifierKind": [
+                        148
+                    ]
                 }
             ],
             "methodsClass": [],
@@ -4811,20 +4849,31 @@
                     "type": "module"
                 },
                 {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
                     "name": "MatIconModule",
                     "type": "module"
+                },
+                {
+                    "name": "IconButtonVariantDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "IconButtonSizeDirective",
+                    "type": "directive"
                 }
             ],
             "description": "<p>Social media buttons for HRA apps</p>\n",
             "rawdescription": "\n\nSocial media buttons for HRA apps\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\n\n/** Social media name type */\nexport type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email';\n/** Button size type */\nexport type SocialMediaButtonSize = 'small' | 'large';\n\n/** All CNS links */\nexport const SOCIAL_LINKS: Record<SocialMediaName, string> = {\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n};\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, MatIconModule],\n  templateUrl: './social-media-button.component.html',\n  styleUrl: './social-media-button.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Button name */\n  readonly name = input.required<SocialMediaName>();\n\n  /** Button size */\n  readonly size = input.required<SocialMediaButtonSize>();\n\n  /** Icon to display */\n  protected icon = computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`);\n\n  /** External link for button */\n  protected link = computed(() => SOCIAL_LINKS[this.name()]);\n}\n",
-            "styleUrl": "./social-media-button.component.scss",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport {\n  IconButtonSize,\n  IconButtonSizeDirective,\n  IconButtonVariant,\n  IconButtonVariantDirective,\n} from '@hra-ui/design-system/icon-button';\n\n/** Social media name type */\nexport type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email' | 'github';\n\n/** All CNS links */\nexport const SOCIAL_LINKS: Record<SocialMediaName, string> = {\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  github: 'https://github.com/hubmapconsortium/hra-ui',\n  email: 'mailto:infoccf@iu.edu',\n};\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, MatButtonModule, MatIconModule, IconButtonVariantDirective, IconButtonSizeDirective],\n  templateUrl: './social-media-button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Button name */\n  readonly name = input.required<SocialMediaName>();\n\n  /** Button size */\n  readonly size = input<IconButtonSize>('large');\n\n  /** Button variant */\n  readonly variant = input<IconButtonVariant>('dark');\n\n  /** Icon to display */\n  protected icon = computed(() => `social:${this.name()}`);\n\n  /** External link for button */\n  protected link = computed(() => SOCIAL_LINKS[this.name()]);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<a [href]=\"link()\" target=\"_blank\" rel=\"noopener noreferrer\">\n  <mat-icon [class.small]=\"size() === 'small'\" [svgIcon]=\"icon()\"></mat-icon>\n</a>\n"
+            "templateData": "<a\n  mat-icon-button\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [href]=\"link()\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n  @if (name() === 'email') {\n    <mat-icon>email</mat-icon>\n  } @else {\n    <mat-icon [svgIcon]=\"icon()\"></mat-icon>\n  }\n</a>\n"
         },
         {
             "name": "SoftwareStatusIndicatorComponent",
@@ -5500,6 +5549,161 @@
             "extends": []
         },
         {
+            "name": "WebComponentCardComponent",
+            "id": "component-WebComponentCardComponent-1cca7503bd409bb900d7becb89d01712d14a60cf397ab68404b4262e427864b61c33c697c9a2c1d3496f93dcffc34081b8ed9eeeef2b49a1c0f70e5122f2ee7a",
+            "file": "web-component-card/src/lib/web-component-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-web-component-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./web-component-card.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Description</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nDescription",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "imageUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Image url</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nImage url",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "productTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Product title</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nProduct title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Description</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nDescription",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "imageUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Image url</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nImage url",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "productTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Product title</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nProduct title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "webComponentName",
+                    "defaultValue": "input<string | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Web Component Name</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nWeb Component Name",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "ButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Component representing a web component card.\nDisplays an image, product title, web component name, and description.</p>\n",
+            "rawdescription": "\n\nComponent representing a web component card.\nDisplays an image, product title, web component name, and description.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { ButtonModule } from '@hra-ui/design-system/button';\n\n/**\n * Component representing a web component card.\n * Displays an image, product title, web component name, and description.\n */\n\n@Component({\n  selector: 'hra-web-component-card',\n  standalone: true,\n  imports: [ButtonModule, CommonModule],\n  templateUrl: './web-component-card.component.html',\n  styleUrl: './web-component-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WebComponentCardComponent {\n  /** Image url */\n  readonly imageUrl = input.required<string>();\n  /** Product title */\n  readonly productTitle = input.required<string>();\n  /** Web Component Name */\n  readonly webComponentName = input<string | undefined>();\n  /** Description */\n  readonly description = input.required<string>();\n}\n",
+            "styleUrl": "./web-component-card.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<img alt=\"\" [src]=\"imageUrl()\" />\n<div class=\"card-content\">\n  @if (webComponentName()) {\n    <h2 class=\"product-title\">{{ productTitle() }}</h2>\n    <h1 class=\"web-component-name\">{{ webComponentName() }}</h1>\n  } @else {\n    <h2 class=\"product-title\">{{ productTitle() }}</h2>\n  }\n  <span class=\"description\">{{ description() }}</span>\n</div>\n\n<div class=\"card-footer\">\n  <button mat-button hraPrimaryButton hraButtonSize=\"medium\">Use App</button>\n  <button mat-flat-button hraPrimaryButton hraButtonSize=\"medium\">Embed</button>\n</div>\n"
+        },
+        {
             "name": "WorkflowCardActionsComponent",
             "id": "component-WorkflowCardActionsComponent-6c1eaed4129660ba6d03ee60712ee1d5e563901e1ec0512a4e6635f2f37eb187b75aaec61d5ec5556cae930a654487ef88292c8ab83d351c77184502ff7d94ea",
             "file": "workflow-card/src/lib/workflow-card.component.ts",
@@ -5798,6 +6002,56 @@
                         },
                         {
                             "name": "ExpansionPanelHeaderContentComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "IconButtonModule",
+            "id": "module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16",
+            "description": "<p>Module exporting icon button and related utilities</p>\n",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "icon-button/src/lib/icon-button.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\n\nimport { IconButtonSizeDirective } from './icon-button-size/icon-button-size.directive';\nimport { IconButtonVariantDirective } from './icon-button-variant/icon-button-variant.directive';\n\n/** Module exporting icon button and related utilities */\n@NgModule({\n  imports: [IconButtonSizeDirective, IconButtonVariantDirective],\n  exports: [MatButtonModule, MatIconModule, IconButtonSizeDirective, IconButtonVariantDirective],\n})\nexport class IconButtonModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "IconButtonSizeDirective"
+                        },
+                        {
+                            "name": "IconButtonVariantDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconButtonSizeDirective"
+                        },
+                        {
+                            "name": "IconButtonVariantDirective"
                         }
                     ]
                 },
@@ -6114,7 +6368,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Record<SocialMediaName, string>",
-                "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n}",
+                "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  github: 'https://github.com/hubmapconsortium/hra-ui',\n  email: 'mailto:infoccf@iu.edu',\n}",
                 "rawdescription": "All CNS links",
                 "description": "<p>All CNS links</p>\n"
             },
@@ -6510,6 +6764,17 @@
                 "kind": 192
             },
             {
+                "name": "IconButtonVariant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"light\" | \"dark\" | \"color\"",
+                "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Input options for icon button color</p>\n",
+                "kind": 192
+            },
+            {
                 "name": "InfoModalVariant",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -6587,21 +6852,10 @@
                 "kind": 183
             },
             {
-                "name": "SocialMediaButtonSize",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"small\" | \"large\"",
-                "file": "social-media-button/src/lib/social-media-button.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "<p>Button size type</p>\n",
-                "kind": 192
-            },
-            {
                 "name": "SocialMediaName",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\"",
+                "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\" | \"github\"",
                 "file": "social-media-button/src/lib/social-media-button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -6876,7 +7130,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Record<SocialMediaName, string>",
-                    "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n}",
+                    "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  github: 'https://github.com/hubmapconsortium/hra-ui',\n  email: 'mailto:infoccf@iu.edu',\n}",
                     "rawdescription": "All CNS links",
                     "description": "<p>All CNS links</p>\n"
                 }
@@ -7309,6 +7563,19 @@
                     "kind": 192
                 }
             ],
+            "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts": [
+                {
+                    "name": "IconButtonVariant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"light\" | \"dark\" | \"color\"",
+                    "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Input options for icon button color</p>\n",
+                    "kind": 192
+                }
+            ],
             "info-modal/src/lib/info-modal.component.ts": [
                 {
                     "name": "InfoModalVariant",
@@ -7402,21 +7669,10 @@
             ],
             "social-media-button/src/lib/social-media-button.component.ts": [
                 {
-                    "name": "SocialMediaButtonSize",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"small\" | \"large\"",
-                    "file": "social-media-button/src/lib/social-media-button.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "<p>Button size type</p>\n",
-                    "kind": 192
-                },
-                {
                     "name": "SocialMediaName",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\"",
+                    "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\" | \"github\"",
                     "file": "social-media-button/src/lib/social-media-button.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",

@@ -165,7 +165,10 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>CommonModule</code>
+                                <code><a href="../modules/ButtonModule.html" target="_self" >MatButtonModule</a></code>
                             <code>MatIconModule</code>
+                                <code><a href="../directives/IconButtonVariantDirective.html" target="_self" >IconButtonVariantDirective</a></code>
+                                <code><a href="../directives/IconButtonSizeDirective.html" target="_self" >IconButtonSizeDirective</a></code>
                 </td>
             </tr>
 
@@ -179,10 +182,6 @@
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./social-media-button.component.scss</code></td>
-            </tr>
 
 
 
@@ -220,6 +219,10 @@
                                     <span class="modifier">Readonly</span>
                                 <a href="#size" >size</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#variant" >variant</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -235,9 +238,6 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#name" >name</a>
-                            </li>
-                            <li>
-                                <a href="#size" >size</a>
                             </li>
                         </ul>
                     </td>
@@ -268,38 +268,12 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Button name</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="size"></a>
-                        <b>size</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Required : </i>&nbsp;<b>true</b>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:36</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Button size</p>
 </div>
                     </td>
                 </tr>
@@ -329,12 +303,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;social:${this.name()}${this.size() &#x3D;&#x3D;&#x3D; &#x27;large&#x27; ? &#x27;_large&#x27; : &#x27;&#x27;}&#x60;)</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;social:${this.name()}&#x60;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -366,7 +340,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -393,7 +367,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -418,15 +392,52 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>input&lt;IconButtonSize&gt;(&#x27;large&#x27;)</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:41</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Button size</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="variant"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>variant</b></span>
+                        <a href="#variant"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>input&lt;IconButtonVariant&gt;(&#x27;dark&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">social-media-button/src/lib/social-media-button.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Button variant</p>
 </div>
                 </td>
             </tr>
@@ -441,12 +452,17 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import {
+  IconButtonSize,
+  IconButtonSizeDirective,
+  IconButtonVariant,
+  IconButtonVariantDirective,
+} from &#x27;@hra-ui/design-system/icon-button&#x27;;
 
 /** Social media name type */
-export type SocialMediaName &#x3D; &#x27;x&#x27; | &#x27;facebook&#x27; | &#x27;instagram&#x27; | &#x27;youtube&#x27; | &#x27;linkedin&#x27; | &#x27;email&#x27;;
-/** Button size type */
-export type SocialMediaButtonSize &#x3D; &#x27;small&#x27; | &#x27;large&#x27;;
+export type SocialMediaName &#x3D; &#x27;x&#x27; | &#x27;facebook&#x27; | &#x27;instagram&#x27; | &#x27;youtube&#x27; | &#x27;linkedin&#x27; | &#x27;email&#x27; | &#x27;github&#x27;;
 
 /** All CNS links */
 export const SOCIAL_LINKS: Record&lt;SocialMediaName, string&gt; &#x3D; {
@@ -455,6 +471,7 @@ export const SOCIAL_LINKS: Record&lt;SocialMediaName, string&gt; &#x3D; {
   instagram: &#x27;https://www.instagram.com/cns_at_iu/&#x27;,
   youtube: &#x27;https://www.youtube.com/@CNSCenter/&#x27;,
   linkedin: &#x27;https://www.linkedin.com/company/cns-indiana-university-bloomington&#x27;,
+  github: &#x27;https://github.com/hubmapconsortium/hra-ui&#x27;,
   email: &#x27;mailto:infoccf@iu.edu&#x27;,
 };
 
@@ -464,9 +481,8 @@ export const SOCIAL_LINKS: Record&lt;SocialMediaName, string&gt; &#x3D; {
 @Component({
   selector: &#x27;hra-social-media-button&#x27;,
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, IconButtonVariantDirective, IconButtonSizeDirective],
   templateUrl: &#x27;./social-media-button.component.html&#x27;,
-  styleUrl: &#x27;./social-media-button.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {
@@ -474,10 +490,13 @@ export class SocialMediaButtonComponent {
   readonly name &#x3D; input.required&lt;SocialMediaName&gt;();
 
   /** Button size */
-  readonly size &#x3D; input.required&lt;SocialMediaButtonSize&gt;();
+  readonly size &#x3D; input&lt;IconButtonSize&gt;(&#x27;large&#x27;);
+
+  /** Button variant */
+  readonly variant &#x3D; input&lt;IconButtonVariant&gt;(&#x27;dark&#x27;);
 
   /** Icon to display */
-  protected icon &#x3D; computed(() &#x3D;&gt; &#x60;social:${this.name()}${this.size() &#x3D;&#x3D;&#x3D; &#x27;large&#x27; ? &#x27;_large&#x27; : &#x27;&#x27;}&#x60;);
+  protected icon &#x3D; computed(() &#x3D;&gt; &#x60;social:${this.name()}&#x60;);
 
   /** External link for button */
   protected link &#x3D; computed(() &#x3D;&gt; SOCIAL_LINKS[this.name()]);
@@ -486,8 +505,19 @@ export class SocialMediaButtonComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;a [href]&#x3D;&quot;link()&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;
-  &lt;mat-icon [class.small]&#x3D;&quot;size() &#x3D;&#x3D;&#x3D; &#x27;small&#x27;&quot; [svgIcon]&#x3D;&quot;icon()&quot;&gt;&lt;/mat-icon&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;a
+  mat-icon-button
+  [hraIconButtonVariant]&#x3D;&quot;variant()&quot;
+  [hraIconButtonSize]&#x3D;&quot;size()&quot;
+  [href]&#x3D;&quot;link()&quot;
+  target&#x3D;&quot;_blank&quot;
+  rel&#x3D;&quot;noopener noreferrer&quot;
+&gt;
+  @if (name() &#x3D;&#x3D;&#x3D; &#x27;email&#x27;) {
+    &lt;mat-icon&gt;email&lt;/mat-icon&gt;
+  } @else {
+    &lt;mat-icon [svgIcon]&#x3D;&quot;icon()&quot;&gt;&lt;/mat-icon&gt;
+  }
 &lt;/a&gt;
 </code></pre>
     </div>
@@ -518,9 +548,9 @@ export class SocialMediaButtonComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a [href]="link()" target="_blank" rel="noopener noreferrer">  <mat-icon [class.small]="size() === \'small\'" [svgIcon]="icon()"></mat-icon></a></div>'
-    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackBarComponent', 'selector': 'hra-back-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
-    var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+        var COMPONENT_TEMPLATE = '<div><a  mat-icon-button  [hraIconButtonVariant]="variant()"  [hraIconButtonSize]="size()"  [href]="link()"  target="_blank"  rel="noopener noreferrer">  @if (name() === \'email\') {    <mat-icon>email</mat-icon>  } @else {    <mat-icon [svgIcon]="icon()"></mat-icon>  }</a></div>'
+    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackBarComponent', 'selector': 'hra-back-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WebComponentCardComponent', 'selector': 'hra-web-component-card'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
+    var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'SocialMediaButtonComponent'};
 </script>
 <script src="../js/tree.js"></script>
