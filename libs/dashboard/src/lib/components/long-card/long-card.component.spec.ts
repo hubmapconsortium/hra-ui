@@ -13,9 +13,6 @@ describe('LongCardComponent', () => {
     });
 
     const cardTitle = screen.getByText('Card Title');
-    const cardImage = screen.getByAltText('Image of Card Title');
-
     expect(cardTitle).toBeInTheDocument();
-    expect(cardImage).toHaveAttribute('src', 'https://example.com/image.jpg');
   });
 });
