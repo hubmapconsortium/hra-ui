@@ -1,10 +1,10 @@
 <img alt="" [src]="imageUrl()" />
 <div class="card-content">
   @if (webComponentName()) {
-    <h2 class="style_change">{{ productTitle() }}</h2>
+    <h2 class="product-title">{{ productTitle() }}</h2>
     <h1 class="web-component-name">{{ webComponentName() }}</h1>
   } @else {
-    <h2 class="default_style">{{ productTitle() }}</h2>
+    <h2 class="product-title">{{ productTitle() }}</h2>
   }
   <span class="description">{{ description() }}</span>
 </div>

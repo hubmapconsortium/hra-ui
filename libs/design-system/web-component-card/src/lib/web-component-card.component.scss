@@ -15,29 +15,19 @@
     padding: 1.5rem 1.5rem 0 1.5rem;
   }
 
-  .default_style {
-    font: var(--sys-title-large);
-    letter-spacing: var(--sys-title-large-tracking);
-    margin: 0;
-    line-height: 1.875rem;
-    color: var(--sys-inverse-surface);
-  }
-
-  .style_change {
-    font: var(--sys-title-medium);
-    letter-spacing: var(--sys-title-large-tracking);
-    margin: 0;
-    line-height: 1.875rem;
-    color: var(--sys-on-background);
-  }
-
+  .product-title,
   .web-component-name {
     font: var(--sys-title-large);
     letter-spacing: var(--sys-title-large-tracking);
-    line-height: 2.25rem;
-    margin: 0;
-    margin-top: 0.5rem;
     color: var(--sys-on-background);
+    margin: 0;
+  }
+
+  .product-title:has(+ .web-component-name) {
+    font: var(--sys-title-medium);
+    letter-spacing: var(--sys-title-medium-tracking);
+    color: var(--sys-inverse-surface);
+    margin-bottom: 0.5rem;
   }
 
   .description {
@@ -45,7 +35,7 @@
     display: block;
     width: 100%;
     font: var(--sys-body-large);
-    letter-spacing: 0.0313rem;
+    letter-spacing: var(--sys-body-large-tracking);
     color: var(--sys-on-surface-variant);
   }
 
