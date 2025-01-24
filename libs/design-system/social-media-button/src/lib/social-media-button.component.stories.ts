@@ -1,15 +1,34 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { SocialMediaButtonComponent } from './social-media-button.component';
+import { SOCIAL_MEDIA_NAMES, SocialMediaButtonComponent } from './social-media-button.component';
 
 const meta: Meta<SocialMediaButtonComponent> = {
   component: SocialMediaButtonComponent,
-  title: 'SocialMediaButtonComponent',
+  title: 'Design System/Buttons/SocialMediaButton',
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=333-4',
+    },
+  },
+  args: {
+    name: 'github',
+    size: 'large',
+    variant: 'dark',
+  },
+  argTypes: {
+    name: {
+      control: 'select',
+      options: SOCIAL_MEDIA_NAMES,
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'large'],
+    },
+    variant: {
+      control: 'select',
+      options: ['light', 'dark', 'color'],
     },
   },
   decorators: [
@@ -21,19 +40,4 @@ const meta: Meta<SocialMediaButtonComponent> = {
 export default meta;
 type Story = StoryObj<SocialMediaButtonComponent>;
 
-export const Default: Story = {
-  args: {
-    name: 'github',
-    size: 'large',
-  },
-  argTypes: {
-    name: {
-      control: 'select',
-      options: ['email', 'github', 'facebook', 'instagram', 'linkedin', 'x', 'youtube'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'large'],
-    },
-  },
-};
+export const Default: Story = {};

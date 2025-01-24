@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
-import { SOCIAL_LINKS, SocialMediaButtonComponent, SocialMediaName } from '@hra-ui/design-system/social-media-button';
+import { SOCIAL_MEDIA_NAMES, SocialMediaButtonComponent } from '@hra-ui/design-system/social-media-button';
 
 /**
  * Component for footer
@@ -20,5 +20,5 @@ export class FooterComponent {
   readonly logo = input<string>('assets/logo/hra_logo_contrast.svg');
 
   /** List of social links to use in the footer */
-  protected readonly socialMediaNames = Object.keys(SOCIAL_LINKS) as SocialMediaName[];
+  protected readonly socialMediaNames = SOCIAL_MEDIA_NAMES;
 }
