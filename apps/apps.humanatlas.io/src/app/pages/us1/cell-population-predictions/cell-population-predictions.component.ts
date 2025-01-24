@@ -28,12 +28,14 @@ export interface Prediction {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CellPopulationPredictionsComponent implements OnInit, AfterViewInit {
-  datasource = new MatTableDataSource<Prediction>([]);
+  datasource: MatTableDataSource<Prediction>;
   displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.datasource = new MatTableDataSource<Prediction>([]);
+  }
 
   ngOnInit() {
     const predictions: Prediction[] = this.route.snapshot.data['predictions'] || [];
