@@ -17,6 +17,9 @@
 
       <!-- TABLE -->
       <table mat-table [dataSource]="datasource" matSort class="predictions-table">
+        <caption>
+          Table displaying cell population predictions.
+        </caption>
         <ng-container matColumnDef="tool">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
           <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
