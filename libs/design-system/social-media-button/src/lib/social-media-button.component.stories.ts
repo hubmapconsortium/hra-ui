@@ -1,7 +1,7 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { SOCIAL_MEDIA_NAMES, SocialMediaButtonComponent } from './social-media-button.component';
+import { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from './social-media-button.component';
 
 const meta: Meta<SocialMediaButtonComponent> = {
   component: SocialMediaButtonComponent,
@@ -13,14 +13,14 @@ const meta: Meta<SocialMediaButtonComponent> = {
     },
   },
   args: {
-    name: 'github',
+    id: 'github',
     size: 'large',
     variant: 'dark',
   },
   argTypes: {
-    name: {
+    id: {
       control: 'select',
-      options: SOCIAL_MEDIA_NAMES,
+      options: SOCIAL_MEDIA_IDS,
     },
     size: {
       control: 'select',

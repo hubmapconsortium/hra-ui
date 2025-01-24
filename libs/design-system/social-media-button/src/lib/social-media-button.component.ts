@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';
-import SOCIAL_MEDIA_BUTTON_DATA from './social-media-button.json';
+import SOCIAL_MEDIA_DATA from './social-media.json';
 
-/** Social media name type */
-export type SocialMediaName = keyof typeof SOCIAL_MEDIA_BUTTON_DATA;
+/** Social media id */
+export type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;
 
-/** Every social media button name */
-export const SOCIAL_MEDIA_NAMES = Object.keys(SOCIAL_MEDIA_BUTTON_DATA) as SocialMediaName[];
+/** All available social media ids */
+export const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA) as SocialMediaId[];
 
 /**
  * Social media buttons for HRA apps
@@ -20,8 +20,8 @@ export const SOCIAL_MEDIA_NAMES = Object.keys(SOCIAL_MEDIA_BUTTON_DATA) as Socia
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {
-  /** Button name */
-  readonly name = input.required<SocialMediaName>();
+  /** Social media to display */
+  readonly id = input.required<SocialMediaId>();
 
   /** Button size */
   readonly size = input<IconButtonSize>('large');
@@ -30,7 +30,7 @@ export class SocialMediaButtonComponent {
   readonly variant = input<IconButtonVariant>('dark');
 
   /** Social media button data */
-  protected readonly data = computed(() => SOCIAL_MEDIA_BUTTON_DATA[this.name()]);
+  protected readonly data = computed(() => SOCIAL_MEDIA_DATA[this.id()]);
 
   /** Whether the icon is a font icon or svg icon */
   protected readonly isFontIcon = computed(() => 'isFontIcon' in this.data());
