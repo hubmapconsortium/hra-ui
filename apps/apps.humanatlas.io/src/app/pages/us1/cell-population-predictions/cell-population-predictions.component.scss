@@ -24,8 +24,45 @@ h1 {
 
 .table-container {
   margin-top: 48px;
+  margin-bottom: 5px;
 
   .more-icon {
     display: flex;
+  }
+
+  .predictions-table {
+    background-color: #fcfcfc;
+    border-collapse: collapse;
+
+    th,
+    td {
+      font: var(--sys-label-medium);
+      letter-spacing: var(--sys-label-medium-tracking);
+      font-weight: 500;
+      border: 1px solid #acb5c3;
+    }
+
+    th {
+      color: #201e3d;
+      background-color: #eff2f5;
+    }
+    td {
+      color: #4b4b5e;
+
+      &:last-child {
+        color: #b20a2f;
+      }
+    }
+  }
+
+  // Remove default Material padding
+  ::ng-deep .mat-cell:first-of-type,
+  ::ng-deep .mat-header-cell:first-of-type {
+    padding-left: 16px;
+  }
+
+  ::ng-deep .mat-cell:last-of-type,
+  ::ng-deep .mat-header-cell:last-of-type {
+    padding-right: 16px;
   }
 }

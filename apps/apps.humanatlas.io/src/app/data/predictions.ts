@@ -376,7 +376,7 @@ const predictions = [
     percentage: 0.13284199903812066,
   },
   {
-    tool: 'azimuth',
+    tool: 'z-testing-sort',
     modality: 'sc_transcriptomics',
     cell_id: 'http://purl.obolibrary.org/obo/CL_1001109',
     cell_label: 'Cortical Thick Ascending Limb',

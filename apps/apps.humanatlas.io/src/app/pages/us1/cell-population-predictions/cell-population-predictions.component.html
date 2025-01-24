@@ -14,9 +14,11 @@
       <hra-workflow-card-extra>
         <hra-delete-file-button [fileName]="'test.csv'"></hra-delete-file-button>
       </hra-workflow-card-extra>
-      <table mat-table [dataSource]="predictions">
+
+      <!-- TABLE -->
+      <table mat-table [dataSource]="datasource" matSort class="predictions-table">
         <ng-container matColumnDef="tool">
-          <th mat-header-cell *matHeaderCellDef>Tool</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
           <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
         </ng-container>
         <ng-container matColumnDef="modality">
@@ -25,11 +27,11 @@
         </ng-container>
         <ng-container matColumnDef="percentage">
           <th mat-header-cell *matHeaderCellDef>% Of Total</th>
-          <td mat-cell *matCellDef="let element">{{ element.percentage }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.percentage }}%</td>
         </ng-container>
         <ng-container matColumnDef="count">
           <th mat-header-cell *matHeaderCellDef># Count</th>
-          <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.count | number: '1.0-2' }}</td>
         </ng-container>
         <ng-container matColumnDef="cell_label">
           <th mat-header-cell *matHeaderCellDef>Cell Name in Cell Ontology (CL)</th>
@@ -46,9 +48,3 @@
     </hra-workflow-card>
   </div>
 </div>
-
-<!-- @for (item of predictions; track item.cell_id) {
-  <li>{{ item.cell_label }}</li>
-} @empty {
-  <li>There are no items.</li>
-} -->
