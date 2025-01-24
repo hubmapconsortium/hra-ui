@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';
-import SOCIAL_MEDIA_DATA from './social-media.json';
+import * as SOCIAL_MEDIA_DATA from './social-media.json';
 
 /** Social media id */
 export type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;
 
 /** All available social media ids */
-export const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA) as SocialMediaId[];
+export const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[];
 
 /**
  * Social media buttons for HRA apps
