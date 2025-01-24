@@ -198,6 +198,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/FullscreenPortalContentComponent.html" data-type="entity-link" >FullscreenPortalContentComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FundingComponent.html" data-type="entity-link" >FundingComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/IconButtonStylesComponent.html" data-type="entity-link" >IconButtonStylesComponent</a>
                             </li>
                             <li class="link">
