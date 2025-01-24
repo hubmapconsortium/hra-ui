@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "global",
     "global:config",
+    "app:apps.humanatlas.io",
     "app:asctb-reporter",
     "app:body-ui",
     "app:ccf-eui",

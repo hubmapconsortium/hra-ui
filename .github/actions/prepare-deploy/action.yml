@@ -36,7 +36,7 @@ runs:
       if: ${{ inputs.skip-node-js == 'false' }}
       uses: ./.github/actions/setup-node-js
     - name: Configure nx
-      uses: nrwl/nx-set-shas@v3
+      uses: nrwl/nx-set-shas@v4
       with:
         main-branch-name: ${{ inputs.main-branch-name }}
 
@@ -69,7 +69,7 @@ runs:
       run: ${{ github.action_path }}/collect_artifacts.sh ${{ inputs.deploy-directory }} dist/{apps,compodoc,storybook}
 
     - name: Generate index file
-      uses: cuchi/jinja2-action@v1.2.0
+      uses: cuchi/jinja2-action@v1.3.0
       with:
         template: ${{ github.action_path }}/index.html.j2
         output_file: ${{ inputs.deploy-directory }}/index.html

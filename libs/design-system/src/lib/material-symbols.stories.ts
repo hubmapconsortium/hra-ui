@@ -35,7 +35,7 @@ export const BuiltinSymbols: Story = {
 
 export const CustomSymbols: Story = {
   args: {
-    name: 'social:email',
+    name: 'social:github',
   },
   argTypes: {
     name: {
@@ -43,18 +43,12 @@ export const CustomSymbols: Story = {
       options: [
         'upload',
         'settings_alert',
-        'social:email',
-        'social:email_large',
+        'social:github',
         'social:facebook',
-        'social:facebook_large',
         'social:instagram',
-        'social:instagram_large',
         'social:linkedin',
-        'social:linkedin_large',
         'social:x',
-        'social:x_large',
         'social:youtube',
-        'social:youtube_large',
       ],
     },
   },
