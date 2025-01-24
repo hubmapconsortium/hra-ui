@@ -16,6 +16,9 @@ export interface Prediction {
   percentage: number;
 }
 
+/**
+ * Cell Population Predictions Result Page Component
+ */
 @Component({
   selector: 'hra-cell-population-predictions',
   standalone: true,

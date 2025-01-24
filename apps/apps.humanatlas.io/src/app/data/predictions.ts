@@ -1,3 +1,6 @@
+/**
+ * Predictions demo data
+ */
 const predictions = [
   {
     tool: 'azimuth',
