@@ -6,6 +6,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 
+/**
+ * Prediction Result
+ */
 export interface Prediction {
   tool: string;
   modality: string;
@@ -27,10 +30,15 @@ export interface Prediction {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CellPopulationPredictionsComponent {
+  /**
+   * Predictions
+   */
   readonly predictions = input<Prediction[]>([]);
 
   private readonly sort = viewChild.required(MatSort);
-
+  /**
+   * Data for predictions table
+   */
   protected readonly dataSource = new MatTableDataSource<Prediction>([]);
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
 
