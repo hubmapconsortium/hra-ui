@@ -961,6 +961,44 @@
             "extends": []
         },
         {
+            "name": "IconButtonVariantDirective",
+            "id": "directive-IconButtonVariantDirective-33600bf1e618b5bd5444c3ae23a8298307152521cc96377350a193b3ad9a402b34225ac2158799a40e57bd2ecdce3987dc1fd007c10269d0fa6e4dcc515624fe",
+            "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+            "type": "directive",
+            "description": "<p>Directive for icon button variants (color)</p>\n",
+            "rawdescription": "\n\nDirective for icon button variants (color)\n",
+            "sourceCode": "import { Directive, input } from '@angular/core';\n\n/** Input options for icon button color */\nexport type IconButtonVariant = 'light' | 'dark' | 'color';\n\n/**\n * Directive for icon button variants (color)\n */\n@Directive({\n  selector: '[hraIconButtonVariant]',\n  standalone: true,\n  host: {\n    '[class]': '\"icon-button-variant-\" + variant()',\n  },\n})\nexport class IconButtonVariantDirective {\n  /** Input for icon button color variant */\n  readonly variant = input<IconButtonVariant>('dark', { alias: 'hraIconButtonVariant' });\n}\n",
+            "selector": "[hraIconButtonVariant]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "variant",
+                    "defaultValue": "input<IconButtonVariant>('dark', { alias: 'hraIconButtonVariant' })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input for icon button color variant</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nInput for icon button color variant",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "extends": []
+        },
+        {
             "name": "MicroTooltipDirective",
             "id": "directive-MicroTooltipDirective-f93a9a4b0be3dcf5c8906b069ecfd7519dbe8b57555f87f93e82144d2348e930bbd880e1e6e0e1fc8f8e239e1698f0445a4e93a0d9a62f75f6800588145a91e3",
             "file": "micro-tooltip/src/micro-tooltip.directive.ts",
@@ -2924,7 +2962,7 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-d0ab81e70404c3ef0d05c9463838702d6b1f9961526933a3476427a47992a760dfb220e603ab3a9a489b5afe0cbb35253700c7d7c550bd6c8b62587472153202",
+            "id": "component-FooterComponent-b8a88b3afa6c5888eafe5c36d480144055a0672cf6a279e6733bd45841b91c768de34d6f32eb45cadde3f8adc8a0bf64af94fd0a3c10fb43451a8f810d174c0b",
             "file": "footer/src/lib/footer.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2944,31 +2982,16 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "logo",
-                    "defaultValue": "input<string>('assets/logo/hra_logo_contrast.svg')",
+                    "name": "socials",
+                    "defaultValue": "SOCIAL_MEDIA_IDS",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>HRA Logo url</p>\n",
-                    "line": 20,
-                    "rawdescription": "\nHRA Logo url",
-                    "modifierKind": [
-                        148
-                    ]
-                },
-                {
-                    "name": "socialMediaNames",
-                    "defaultValue": "Object.keys(SOCIAL_LINKS) as SocialMediaName[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>List of social links to use in the footer</p>\n",
-                    "line": 23,
-                    "rawdescription": "\nList of social links to use in the footer",
+                    "description": "<p>List of social media links shown</p>\n",
+                    "line": 21,
+                    "rawdescription": "\nList of social media links shown",
                     "modifierKind": [
                         124,
                         148
@@ -2991,24 +3014,28 @@
                     "type": "module"
                 },
                 {
+                    "name": "BrandLogoComponent",
+                    "type": "component"
+                },
+                {
                     "name": "SocialMediaButtonComponent",
                     "type": "component"
                 },
                 {
-                    "name": "AssetUrlPipe",
-                    "type": "pipe"
+                    "name": "FundingComponent",
+                    "type": "component"
                 }
             ],
-            "description": "<p>Component for footer</p>\n",
-            "rawdescription": "\n\nComponent for footer\n",
+            "description": "<p>Global footer component</p>\n",
+            "rawdescription": "\n\nGlobal footer component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { SOCIAL_LINKS, SocialMediaButtonComponent, SocialMediaName } from '@hra-ui/design-system/social-media-button';\n\n/**\n * Component for footer\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatIconModule, SocialMediaButtonComponent, AssetUrlPipe],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent {\n  /** HRA Logo url */\n  readonly logo = input<string>('assets/logo/hra_logo_contrast.svg');\n\n  /** List of social links to use in the footer */\n  protected readonly socialMediaNames = Object.keys(SOCIAL_LINKS) as SocialMediaName[];\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BrandLogoComponent } from '@hra-ui/design-system/brand-logo';\nimport { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from '@hra-ui/design-system/social-media-button';\nimport { FundingComponent } from './funding/funding.component';\n\n/**\n * Global footer component\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatIconModule, BrandLogoComponent, SocialMediaButtonComponent, FundingComponent],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent {\n  /** List of social media links shown */\n  protected readonly socials = SOCIAL_MEDIA_IDS;\n}\n",
             "styleUrl": "./footer.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"footer-left\">\n  <a href=\"https://humanatlas.io\" target=\"_blank\" rel=\"noopener noreferrer\">\n    <img [attr.src]=\"logo() | assetUrl\" alt=\"Human Reference Atlas Logo\" />\n  </a>\n  <span class=\"copyright\">\n    <mat-icon fontSet=\"material-symbols-outlined\">copyright</mat-icon>\n    2024 CNS at Indiana University\n  </span>\n</div>\n<div class=\"footer-right\">\n  <div class=\"footer-right-content\">\n    <div class=\"social-funded\">\n      <div class=\"social-media\">\n        @for (link of socialMediaNames; track link) {\n          <hra-social-media-button size=\"large\" [name]=\"link\"></hra-social-media-button>\n        }\n      </div>\n      <div class=\"funded-by\">\n        <span>Funded By:</span>\n        <div class=\"funded-logo\">\n          <a href=\"https://www.iu.edu/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">\n            <img [attr.src]=\"'assets/logo/iu.svg' | assetUrl\" alt=\"Indiana University Logo\" />\n          </a>\n          <a href=\"https://www.nih.gov/\" target=\"_blank\" rel=\"noopener noreferrer\">\n            <img [attr.src]=\"'assets/logo/nih.svg' | assetUrl\" alt=\"National Institutes of Health (NIH) Logo\" />\n          </a>\n          <a href=\"https://cifar.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">\n            <img [attr.src]=\"'assets/logo/cifar.svg' | assetUrl\" alt=\"CIFAR Logo\" />\n          </a>\n          <div class=\"spacer\"></div>\n          <div class=\"spacer\"></div>\n          <div class=\"spacer\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"disclaimer\">\n      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or\n      medical or professional advice.\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"left\">\n  <div class=\"content\">\n    <hra-brand-logo class=\"logo\"></hra-brand-logo>\n    <span class=\"copyright\">\n      <mat-icon fontSet=\"material-symbols-outlined\">copyright</mat-icon>\n      2024 CNS at Indiana University\n    </span>\n    <div class=\"socials\">\n      @for (id of socials; track id) {\n        <hra-social-media-button [id]=\"$any(id)\" size=\"large\" variant=\"light\"></hra-social-media-button>\n      }\n    </div>\n  </div>\n</div>\n\n<div class=\"right\">\n  <div class=\"content\">\n    <hra-funding></hra-funding>\n    <p class=\"disclaimer\">\n      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or\n      medical or professional advice.\n    </p>\n    <p class=\"data-notice\">\n      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including\n      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in\n      scientific results published by HuBMAP consortium collaborations.\n    </p>\n  </div>\n</div>\n"
         },
         {
             "name": "FullscreenActionsComponent",
@@ -3379,6 +3406,104 @@
             "extends": []
         },
         {
+            "name": "FundingComponent",
+            "id": "component-FundingComponent-9740e1259d8a02db8a922ff031a328dfa9e9de7bef34db4796d61a5b86551713b2680596ffbc6effc7acd34ba19a2155d9ebc3261f605a1da460f42c05520ea8",
+            "file": "footer/src/lib/funding/funding.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-funding",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./funding.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "funders",
+                    "defaultValue": "FUNDER_IDS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Funders to display</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nFunders to display",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "funders",
+                    "defaultValue": "FUNDER_IDS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Funders to display</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nFunders to display",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "fundersData",
+                    "defaultValue": "computed(() => this.funders().map((id) => FUNDERS_DATA[id]))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Associated data for each funder displayed</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nAssociated data for each funder displayed",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "AssetUrlPipe",
+                    "type": "pipe"
+                }
+            ],
+            "description": "<p>Displays a list of funders</p>\n",
+            "rawdescription": "\nDisplays a list of funders",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport * as FUNDERS_DATA from './funders.json';\n\n/** Funder id */\nexport type FunderId = keyof typeof FUNDERS_DATA;\n\n/** All available funder ids */\nexport const FUNDER_IDS = Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[];\n\n/** Displays a list of funders */\n@Component({\n  selector: 'hra-funding',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe],\n  templateUrl: './funding.component.html',\n  styleUrl: './funding.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FundingComponent {\n  /** Funders to display */\n  readonly funders = input(FUNDER_IDS);\n\n  /** Associated data for each funder displayed */\n  protected readonly fundersData = computed(() => this.funders().map((id) => FUNDERS_DATA[id]));\n}\n",
+            "styleUrl": "./funding.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<span class=\"title\">Funded By:</span>\n<div class=\"funders\">\n  @for (funder of fundersData(); track funder.name) {\n    <a class=\"funder\" [attr.href]=\"funder.link\" target=\"_blank\" rel=\"noopener noreferrer\">\n      <img [attr.src]=\"funder.image | assetUrl\" alt=\"\" />\n      <span>{{ funder.name }}</span>\n    </a>\n  }\n</div>\n"
+        },
+        {
             "name": "IconButtonStylesComponent",
             "id": "component-IconButtonStylesComponent-94a1a6eb1c2e74616269d445654201ae718b6594f4f6a2b598ef4e6f2a0e85dd7bdf976b40a47ad61f631507144341e285196283bad4979a91bb0c6b1a5758d3",
             "file": "icon-button/src/lib/icon-button-styles/icon-button-styles.component.ts",
@@ -3416,7 +3541,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "button[mat-icon-button] {\n  --mat-icon-button-hover-state-layer-opacity: 0.08;\n  --mat-icon-button-pressed-state-layer-opacity: 0.16;\n  --mat-icon-button-state-layer-color: var(--sys-secondary);\n  --mat-icon-button-focus-state-layer-opacity: 0;\n\n  &:focus-visible {\n    outline: 2px solid var(--sys-tertiary);\n  }\n\n  mat-icon {\n    height: var(--mdc-icon-button-icon-size);\n    width: var(--mdc-icon-button-icon-size);\n    font-size: var(--mdc-icon-button-icon-size);\n  }\n}\n",
+                    "data": "button[mat-icon-button],\na[mat-icon-button] {\n  --mat-icon-button-hover-state-layer-opacity: 0.08;\n  --mat-icon-button-pressed-state-layer-opacity: 0.12;\n  --mat-icon-button-focus-state-layer-opacity: 0;\n  --mdc-icon-button-icon-color: var(--sys-secondary);\n  --mat-icon-button-state-layer-color: var(--sys-secondary);\n\n  mat-icon {\n    height: var(--mdc-icon-button-icon-size);\n    width: var(--mdc-icon-button-icon-size);\n    font-size: var(--mdc-icon-button-icon-size);\n  }\n\n  &.icon-button-variant-light {\n    --mdc-icon-button-icon-color: var(--sys-on-primary);\n    --mat-icon-button-state-layer-color: var(--sys-on-primary);\n  }\n\n  &.icon-button-variant-dark {\n    --mdc-icon-button-icon-color: var(--sys-secondary);\n    --mat-icon-button-state-layer-color: var(--sys-secondary);\n  }\n\n  &.icon-button-variant-color {\n    --mdc-icon-button-icon-color: var(--sys-on-tertiary-fixed);\n    --mat-icon-button-state-layer-color: var(--sys-on-tertiary-fixed);\n  }\n\n  &:focus-visible {\n    --mdc-icon-button-icon-color: var(--sys-secondary);\n    outline: 2px solid var(--sys-tertiary);\n  }\n}\n",
                     "styleUrl": "./icon-button-styles.component.scss"
                 }
             ],
@@ -4688,7 +4813,7 @@
         },
         {
             "name": "SocialMediaButtonComponent",
-            "id": "component-SocialMediaButtonComponent-69e9ba010698ed9289c8abae54031aba860c6eece3ea08304a414f3b63b8fb2e4eb99627feeef12162a3a1ad3b8c3c308a16987bede8f8c2965d1e227b5e0d01",
+            "id": "component-SocialMediaButtonComponent-bbce5087d7f9a9d95391b7f3a5fee3e3c409fe46c5813036f0c19e2eec8270c53fd8ae54ba516a7a6f5c877a717093bba95e6acb25be4cf5663450ae07b43852",
             "file": "social-media-button/src/lib/social-media-button.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -4706,30 +4831,15 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "name",
+                    "name": "id",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Button name</p>\n",
-                    "line": 33,
-                    "rawdescription": "\nButton name",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": true
-                },
-                {
-                    "name": "size",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Button size</p>\n",
-                    "line": 36,
-                    "rawdescription": "\nButton size",
+                    "description": "<p>Social media to display</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nSocial media to display",
                     "modifierKind": [
                         148
                     ],
@@ -4739,64 +4849,81 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "icon",
-                    "defaultValue": "computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`)",
+                    "name": "data",
+                    "defaultValue": "computed(() => SOCIAL_MEDIA_DATA[this.id()])",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Icon to display</p>\n",
-                    "line": 39,
-                    "rawdescription": "\nIcon to display",
-                    "modifierKind": [
-                        124
-                    ]
-                },
-                {
-                    "name": "link",
-                    "defaultValue": "computed(() => SOCIAL_LINKS[this.name()])",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>External link for button</p>\n",
-                    "line": 42,
-                    "rawdescription": "\nExternal link for button",
-                    "modifierKind": [
-                        124
-                    ]
-                },
-                {
-                    "name": "name",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Button name</p>\n",
+                    "description": "<p>Social media button data</p>\n",
                     "line": 33,
-                    "rawdescription": "\nButton name",
+                    "rawdescription": "\nSocial media button data",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Social media to display</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nSocial media to display",
                     "modifierKind": [
                         148
                     ],
                     "required": true
                 },
                 {
+                    "name": "isFontIcon",
+                    "defaultValue": "computed(() => 'isFontIcon' in this.data())",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether the icon is a font icon or svg icon</p>\n",
+                    "line": 36,
+                    "rawdescription": "\nWhether the icon is a font icon or svg icon",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
                     "name": "size",
+                    "defaultValue": "input<IconButtonSize>('large')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button size</p>\n",
-                    "line": 36,
+                    "line": 27,
                     "rawdescription": "\nButton size",
                     "modifierKind": [
                         148
-                    ],
-                    "required": true
+                    ]
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "input<IconButtonVariant>('dark')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button variant</p>\n",
+                    "line": 30,
+                    "rawdescription": "\nButton variant",
+                    "modifierKind": [
+                        148
+                    ]
                 }
             ],
             "methodsClass": [],
@@ -4811,20 +4938,19 @@
                     "type": "module"
                 },
                 {
-                    "name": "MatIconModule",
+                    "name": "IconButtonModule",
                     "type": "module"
                 }
             ],
             "description": "<p>Social media buttons for HRA apps</p>\n",
             "rawdescription": "\n\nSocial media buttons for HRA apps\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\n\n/** Social media name type */\nexport type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email';\n/** Button size type */\nexport type SocialMediaButtonSize = 'small' | 'large';\n\n/** All CNS links */\nexport const SOCIAL_LINKS: Record<SocialMediaName, string> = {\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n};\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, MatIconModule],\n  templateUrl: './social-media-button.component.html',\n  styleUrl: './social-media-button.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Button name */\n  readonly name = input.required<SocialMediaName>();\n\n  /** Button size */\n  readonly size = input.required<SocialMediaButtonSize>();\n\n  /** Icon to display */\n  protected icon = computed(() => `social:${this.name()}${this.size() === 'large' ? '_large' : ''}`);\n\n  /** External link for button */\n  protected link = computed(() => SOCIAL_LINKS[this.name()]);\n}\n",
-            "styleUrl": "./social-media-button.component.scss",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';\nimport * as SOCIAL_MEDIA_DATA from './social-media.json';\n\n/** Social media id */\nexport type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;\n\n/** All available social media ids */\nexport const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[];\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, IconButtonModule],\n  templateUrl: './social-media-button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Social media to display */\n  readonly id = input.required<SocialMediaId>();\n\n  /** Button size */\n  readonly size = input<IconButtonSize>('large');\n\n  /** Button variant */\n  readonly variant = input<IconButtonVariant>('dark');\n\n  /** Social media button data */\n  protected readonly data = computed(() => SOCIAL_MEDIA_DATA[this.id()]);\n\n  /** Whether the icon is a font icon or svg icon */\n  protected readonly isFontIcon = computed(() => 'isFontIcon' in this.data());\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<a [href]=\"link()\" target=\"_blank\" rel=\"noopener noreferrer\">\n  <mat-icon [class.small]=\"size() === 'small'\" [svgIcon]=\"icon()\"></mat-icon>\n</a>\n"
+            "templateData": "<a\n  mat-icon-button\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [href]=\"data().link\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n  @if (isFontIcon()) {\n    <mat-icon [fontIcon]=\"data().icon\"></mat-icon>\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\"></mat-icon>\n  }\n</a>\n"
         },
         {
             "name": "SoftwareStatusIndicatorComponent",
@@ -5500,6 +5626,161 @@
             "extends": []
         },
         {
+            "name": "WebComponentCardComponent",
+            "id": "component-WebComponentCardComponent-1cca7503bd409bb900d7becb89d01712d14a60cf397ab68404b4262e427864b61c33c697c9a2c1d3496f93dcffc34081b8ed9eeeef2b49a1c0f70e5122f2ee7a",
+            "file": "web-component-card/src/lib/web-component-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "hra-web-component-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./web-component-card.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Description</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nDescription",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "imageUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Image url</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nImage url",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "productTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Product title</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nProduct title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Description</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nDescription",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "imageUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Image url</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nImage url",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "productTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Product title</p>\n",
+                    "line": 22,
+                    "rawdescription": "\nProduct title",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "webComponentName",
+                    "defaultValue": "input<string | undefined>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Web Component Name</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nWeb Component Name",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "ButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Component representing a web component card.\nDisplays an image, product title, web component name, and description.</p>\n",
+            "rawdescription": "\n\nComponent representing a web component card.\nDisplays an image, product title, web component name, and description.\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { ButtonModule } from '@hra-ui/design-system/button';\n\n/**\n * Component representing a web component card.\n * Displays an image, product title, web component name, and description.\n */\n\n@Component({\n  selector: 'hra-web-component-card',\n  standalone: true,\n  imports: [ButtonModule, CommonModule],\n  templateUrl: './web-component-card.component.html',\n  styleUrl: './web-component-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class WebComponentCardComponent {\n  /** Image url */\n  readonly imageUrl = input.required<string>();\n  /** Product title */\n  readonly productTitle = input.required<string>();\n  /** Web Component Name */\n  readonly webComponentName = input<string | undefined>();\n  /** Description */\n  readonly description = input.required<string>();\n}\n",
+            "styleUrl": "./web-component-card.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<img alt=\"\" [src]=\"imageUrl()\" />\n<div class=\"card-content\">\n  @if (webComponentName()) {\n    <h2 class=\"product-title\">{{ productTitle() }}</h2>\n    <h1 class=\"web-component-name\">{{ webComponentName() }}</h1>\n  } @else {\n    <h2 class=\"product-title\">{{ productTitle() }}</h2>\n  }\n  <span class=\"description\">{{ description() }}</span>\n</div>\n\n<div class=\"card-footer\">\n  <button mat-button hraPrimaryButton hraButtonSize=\"medium\">Use App</button>\n  <button mat-flat-button hraPrimaryButton hraButtonSize=\"medium\">Embed</button>\n</div>\n"
+        },
+        {
             "name": "WorkflowCardActionsComponent",
             "id": "component-WorkflowCardActionsComponent-6c1eaed4129660ba6d03ee60712ee1d5e563901e1ec0512a4e6635f2f37eb187b75aaec61d5ec5556cae930a654487ef88292c8ab83d351c77184502ff7d94ea",
             "file": "workflow-card/src/lib/workflow-card.component.ts",
@@ -5812,6 +6093,56 @@
             ]
         },
         {
+            "name": "IconButtonModule",
+            "id": "module-IconButtonModule-e73b1277b11d49efd817b47b3dc2d0f39a94adc58047dfb9cbfe072de3d28d676a42bb265f3d26fcd23bc91dbad3f6f6181240ea28058483e09dcb73ac8b8b16",
+            "description": "<p>Module exporting icon button and related utilities</p>\n",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "icon-button/src/lib/icon-button.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\n\nimport { IconButtonSizeDirective } from './icon-button-size/icon-button-size.directive';\nimport { IconButtonVariantDirective } from './icon-button-variant/icon-button-variant.directive';\n\n/** Module exporting icon button and related utilities */\n@NgModule({\n  imports: [IconButtonSizeDirective, IconButtonVariantDirective],\n  exports: [MatButtonModule, MatIconModule, IconButtonSizeDirective, IconButtonVariantDirective],\n})\nexport class IconButtonModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "IconButtonSizeDirective"
+                        },
+                        {
+                            "name": "IconButtonVariantDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconButtonSizeDirective"
+                        },
+                        {
+                            "name": "IconButtonVariantDirective"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "ScrollingModule",
             "id": "module-ScrollingModule-be92df704ab4f4a4523b66effa747b28adbcd4019d314eb5d936bc3c0fcb004ad347b57d224ea9715e389f15b61ce0bf4f8dd875fed05a827cd767ba1ce12c35",
             "description": "<p>Module exporting ng-scrollbar and related scrolling utilities</p>\n",
@@ -5999,6 +6330,18 @@
                 "description": "<p>Font sizes for each tree size (rem)</p>\n"
             },
             {
+                "name": "FUNDER_IDS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "footer/src/lib/funding/funding.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[]",
+                "rawdescription": "All available funder ids",
+                "description": "<p>All available funder ids</p>\n"
+            },
+            {
                 "name": "GRADIENT_BOTTOM_KEYFRAMES",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6107,16 +6450,16 @@
                 "description": "<p>Interval between scroll timeline availability checks.\nPrimarily used to simplify testing.</p>\n"
             },
             {
-                "name": "SOCIAL_LINKS",
+                "name": "SOCIAL_MEDIA_IDS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "social-media-button/src/lib/social-media-button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Record<SocialMediaName, string>",
-                "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n}",
-                "rawdescription": "All CNS links",
-                "description": "<p>All CNS links</p>\n"
+                "type": "",
+                "defaultValue": "Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[]",
+                "rawdescription": "All available social media ids",
+                "description": "<p>All available social media ids</p>\n"
             },
             {
                 "name": "STATUS_FONTS",
@@ -6488,6 +6831,17 @@
                 "kind": 192
             },
             {
+                "name": "FunderId",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "",
+                "file": "footer/src/lib/funding/funding.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Funder id</p>\n",
+                "kind": 198
+            },
+            {
                 "name": "IconButtonSize",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -6507,6 +6861,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Input options for icon button size</p>\n",
+                "kind": 192
+            },
+            {
+                "name": "IconButtonVariant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"light\" | \"dark\" | \"color\"",
+                "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Input options for icon button color</p>\n",
                 "kind": 192
             },
             {
@@ -6587,26 +6952,15 @@
                 "kind": 183
             },
             {
-                "name": "SocialMediaButtonSize",
+                "name": "SocialMediaId",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"small\" | \"large\"",
+                "rawtype": "",
                 "file": "social-media-button/src/lib/social-media-button.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "description": "<p>Button size type</p>\n",
-                "kind": 192
-            },
-            {
-                "name": "SocialMediaName",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\"",
-                "file": "social-media-button/src/lib/social-media-button.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "<p>Social media name type</p>\n",
-                "kind": 192
+                "description": "<p>Social media id</p>\n",
+                "kind": 198
             },
             {
                 "name": "SoftwareStatus",
@@ -6787,6 +7141,20 @@
                     "description": "<p>Node heights for each tree size (rem)</p>\n"
                 }
             ],
+            "footer/src/lib/funding/funding.component.ts": [
+                {
+                    "name": "FUNDER_IDS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "footer/src/lib/funding/funding.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[]",
+                    "rawdescription": "All available funder ids",
+                    "description": "<p>All available funder ids</p>\n"
+                }
+            ],
             "scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts": [
                 {
                     "name": "GRADIENT_BOTTOM_KEYFRAMES",
@@ -6869,16 +7237,16 @@
             ],
             "social-media-button/src/lib/social-media-button.component.ts": [
                 {
-                    "name": "SOCIAL_LINKS",
+                    "name": "SOCIAL_MEDIA_IDS",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "social-media-button/src/lib/social-media-button.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Record<SocialMediaName, string>",
-                    "defaultValue": "{\n  x: 'https://twitter.com/cnscenter',\n  facebook: 'https://www.facebook.com/cnscenter/',\n  instagram: 'https://www.instagram.com/cns_at_iu/',\n  youtube: 'https://www.youtube.com/@CNSCenter/',\n  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',\n  email: 'mailto:infoccf@iu.edu',\n}",
-                    "rawdescription": "All CNS links",
-                    "description": "<p>All CNS links</p>\n"
+                    "type": "",
+                    "defaultValue": "Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[]",
+                    "rawdescription": "All available social media ids",
+                    "description": "<p>All available social media ids</p>\n"
                 }
             ],
             "software-status-indicator/src/lib/software-status-indicator-size.directive.ts": [
@@ -7283,6 +7651,19 @@
                     "kind": 192
                 }
             ],
+            "footer/src/lib/funding/funding.component.ts": [
+                {
+                    "name": "FunderId",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "",
+                    "file": "footer/src/lib/funding/funding.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Funder id</p>\n",
+                    "kind": 198
+                }
+            ],
             "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts": [
                 {
                     "name": "IconButtonSize",
@@ -7306,6 +7687,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Input options for icon button size</p>\n",
+                    "kind": 192
+                }
+            ],
+            "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts": [
+                {
+                    "name": "IconButtonVariant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"light\" | \"dark\" | \"color\"",
+                    "file": "icon-button/src/lib/icon-button-variant/icon-button-variant.directive.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Input options for icon button color</p>\n",
                     "kind": 192
                 }
             ],
@@ -7402,26 +7796,15 @@
             ],
             "social-media-button/src/lib/social-media-button.component.ts": [
                 {
-                    "name": "SocialMediaButtonSize",
+                    "name": "SocialMediaId",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"small\" | \"large\"",
+                    "rawtype": "",
                     "file": "social-media-button/src/lib/social-media-button.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "description": "<p>Button size type</p>\n",
-                    "kind": 192
-                },
-                {
-                    "name": "SocialMediaName",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"x\" | \"facebook\" | \"instagram\" | \"youtube\" | \"linkedin\" | \"email\"",
-                    "file": "social-media-button/src/lib/social-media-button.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "<p>Social media name type</p>\n",
-                    "kind": 192
+                    "description": "<p>Social media id</p>\n",
+                    "kind": 198
                 }
             ],
             "software-status-indicator/src/lib/software-status-indicator.component.ts": [
