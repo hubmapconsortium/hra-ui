@@ -37,7 +37,11 @@ export class CellPopulationPredictionsComponent implements OnInit, AfterViewInit
 
   ngOnInit() {
     const predictions: Prediction[] = this.route.snapshot.data['predictions'] || [];
-    this.datasource.data = predictions;
+    if (predictions) {
+      this.datasource.data = predictions;
+    } else {
+      this.datasource.data = [];
+    }
   }
 
   ngAfterViewInit() {
