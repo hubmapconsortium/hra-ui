@@ -2,13 +2,13 @@
   mat-icon-button
   [hraIconButtonVariant]="variant()"
   [hraIconButtonSize]="size()"
-  [href]="link()"
+  [href]="data().link"
   target="_blank"
   rel="noopener noreferrer"
 >
-  @if (name() === 'email') {
-    <mat-icon>email</mat-icon>
+  @if (isFontIcon()) {
+    <mat-icon [fontIcon]="data().icon"></mat-icon>
   } @else {
-    <mat-icon [svgIcon]="icon()"></mat-icon>
+    <mat-icon [svgIcon]="data().icon"></mat-icon>
   }
 </a>

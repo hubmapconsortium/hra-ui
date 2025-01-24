@@ -1,27 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  IconButtonSize,
-  IconButtonSizeDirective,
-  IconButtonVariant,
-  IconButtonVariantDirective,
-} from '@hra-ui/design-system/icon-button';
+import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';
+import * as SOCIAL_MEDIA_DATA from './social-media.json';
 
-/** Social media name type */
-export type SocialMediaName = 'x' | 'facebook' | 'instagram' | 'youtube' | 'linkedin' | 'email' | 'github';
+/** Social media id */
+export type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;
 
-/** All CNS links */
-export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
-  x: 'https://twitter.com/cnscenter',
-  facebook: 'https://www.facebook.com/cnscenter/',
-  instagram: 'https://www.instagram.com/cns_at_iu/',
-  youtube: 'https://www.youtube.com/@CNSCenter/',
-  linkedin: 'https://www.linkedin.com/company/cns-indiana-university-bloomington',
-  github: 'https://github.com/hubmapconsortium/hra-ui',
-  email: 'mailto:infoccf@iu.edu',
-};
+/** All available social media ids */
+export const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[];
 
 /**
  * Social media buttons for HRA apps
@@ -29,13 +15,13 @@ export const SOCIAL_LINKS: Record<SocialMediaName, string> = {
 @Component({
   selector: 'hra-social-media-button',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, IconButtonVariantDirective, IconButtonSizeDirective],
+  imports: [CommonModule, IconButtonModule],
   templateUrl: './social-media-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {
-  /** Button name */
-  readonly name = input.required<SocialMediaName>();
+  /** Social media to display */
+  readonly id = input.required<SocialMediaId>();
 
   /** Button size */
   readonly size = input<IconButtonSize>('large');
@@ -43,9 +29,9 @@ export class SocialMediaButtonComponent {
   /** Button variant */
   readonly variant = input<IconButtonVariant>('dark');
 
-  /** Icon to display */
-  protected icon = computed(() => `social:${this.name()}`);
+  /** Social media button data */
+  protected readonly data = computed(() => SOCIAL_MEDIA_DATA[this.id()]);
 
-  /** External link for button */
-  protected link = computed(() => SOCIAL_LINKS[this.name()]);
+  /** Whether the icon is a font icon or svg icon */
+  protected readonly isFontIcon = computed(() => 'isFontIcon' in this.data());
 }
