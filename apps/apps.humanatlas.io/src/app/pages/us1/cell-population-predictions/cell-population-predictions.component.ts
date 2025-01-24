@@ -1,11 +1,10 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { ChangeDetectionStrategy, Component, effect, input, viewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 
 export interface Prediction {
   tool: string;
@@ -27,26 +26,21 @@ export interface Prediction {
   styleUrl: './cell-population-predictions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellPopulationPredictionsComponent implements OnInit, AfterViewInit {
-  datasource: MatTableDataSource<Prediction>;
-  displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
+export class CellPopulationPredictionsComponent {
+  readonly predictions = input<Prediction[]>([]);
 
-  @ViewChild(MatSort) sort!: MatSort;
+  private readonly sort = viewChild.required(MatSort);
 
-  constructor(private route: ActivatedRoute) {
-    this.datasource = new MatTableDataSource<Prediction>([]);
-  }
+  protected readonly dataSource = new MatTableDataSource<Prediction>([]);
+  protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
 
-  ngOnInit() {
-    const predictions: Prediction[] = this.route.snapshot.data['predictions'] || [];
-    if (predictions) {
-      this.datasource.data = predictions;
-    } else {
-      this.datasource.data = [];
-    }
-  }
+  constructor() {
+    effect(() => {
+      this.dataSource.data = this.predictions();
+    });
 
-  ngAfterViewInit() {
-    this.datasource.sort = this.sort;
+    effect(() => {
+      this.dataSource.sort = this.sort();
+    });
   }
 }
