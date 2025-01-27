@@ -1,4 +1,10 @@
 import { Route } from '@angular/router';
+import { WebComponentsComponent } from './pages/us6/web-components.component';
 
 /** Application routes */
-export const appRoutes: Route[] = [];
+export const appRoutes: Route[] = [
+  {
+    path: '',
+    component: WebComponentsComponent,
+  },
+];

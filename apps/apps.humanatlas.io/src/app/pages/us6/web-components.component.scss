@@ -1,0 +1,18 @@
+:host {
+  display: block;
+
+  .web-components-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 10rem;
+
+    h1 {
+      color: var(--sys-on-background);
+      margin: 0;
+      font: var(--sys-display-large);
+      letter-spacing: var(--sys-display-large-tracking);
+    }
+  }
+}
