@@ -5,7 +5,7 @@ import { DeleteFileButtonComponent } from './delete-file-button.component';
 
 const meta: Meta<DeleteFileButtonComponent> = {
   component: DeleteFileButtonComponent,
-  title: 'DeleteFileButtonComponent',
+  title: 'Design System/Buttons/DeleteFileButton',
   parameters: {
     design: {
       type: 'figma',
