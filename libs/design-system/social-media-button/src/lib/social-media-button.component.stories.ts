@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
 import { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from './social-media-button.component';
 
@@ -30,6 +31,11 @@ const meta: Meta<SocialMediaButtonComponent> = {
       options: ['light', 'dark', 'color'],
     },
   },
+  decorators: [
+    applicationConfig({
+      providers: [provideDesignSystem()],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj<SocialMediaButtonComponent>;
