@@ -1,12 +1,12 @@
 import { render } from '@testing-library/angular';
 import { screen } from '@testing-library/dom';
 import { userEvent } from '@testing-library/user-event';
-import { BackBarComponent } from './back-bar.component';
+import { BackButtonBarComponent } from './back-button-bar.component';
 
-describe('BackBarComponent', () => {
+describe('BackButtonBarComponent', () => {
   it('has a back button', async () => {
     const click = jest.fn();
-    await render(BackBarComponent, {
+    await render(BackButtonBarComponent, {
       on: {
         backClick: click,
       },

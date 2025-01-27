@@ -1,10 +1,10 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
-import { BackBarComponent } from './back-bar.component';
+import { BackButtonBarComponent } from './back-button-bar.component';
 
-const meta: Meta<BackBarComponent> = {
-  component: BackBarComponent,
-  title: 'BackBarComponent',
+const meta: Meta<BackButtonBarComponent> = {
+  component: BackButtonBarComponent,
+  title: 'Design System/Buttons/BackButtonBar',
   parameters: {
     design: {
       type: 'figma',
@@ -19,7 +19,7 @@ const meta: Meta<BackBarComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<BackBarComponent>;
+type Story = StoryObj<BackButtonBarComponent>;
 
 export const Primary: Story = {
   args: {},
