@@ -10,11 +10,29 @@ import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
  * Prediction Result
  */
 export interface Prediction {
+  /**
+   * Tool
+   */
   tool: string;
+  /**
+   * Modality
+   */
   modality: string;
+  /**
+   * Cell Type ID in Cell Ontology
+   */
   cell_id: string;
+  /**
+   * Cell Name in Cell Ontology
+   */
   cell_label: string;
+  /**
+   * Count
+   */
   count: number;
+  /**
+   * Percentage
+   */
   percentage: number;
 }
 
@@ -35,13 +53,24 @@ export class CellPopulationPredictionsComponent {
    */
   readonly predictions = input<Prediction[]>([]);
 
+  /**
+   * For sorting Tools column
+   */
   private readonly sort = viewChild.required(MatSort);
+
   /**
    * Data for predictions table
    */
   protected readonly dataSource = new MatTableDataSource<Prediction>([]);
+
+  /**
+   * Columns for prediction table
+   */
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
 
+  /**
+   * Constructor that initializes the component and sets up effects for predictions and sorting
+   */
   constructor() {
     effect(() => {
       this.dataSource.data = this.predictions();
