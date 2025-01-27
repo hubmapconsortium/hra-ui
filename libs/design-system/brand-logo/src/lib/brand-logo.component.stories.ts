@@ -1,10 +1,10 @@
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
 import { BrandLogoComponent } from './brand-logo.component';
-import { provideHttpClient } from '@angular/common/http';
 
 const meta: Meta<BrandLogoComponent> = {
   component: BrandLogoComponent,
-  title: 'BrandLogoComponent',
+  title: 'Design System/Brand/BrandLogo',
   parameters: {
     design: {
       type: 'figma',
@@ -13,7 +13,7 @@ const meta: Meta<BrandLogoComponent> = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideHttpClient()],
+      providers: [provideDesignSystem()],
     }),
   ],
 };
