@@ -2,7 +2,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import {
   DashboardIndexComponent,
@@ -14,6 +13,7 @@ import {
   VegaContainerComponent,
   provideDashboardComponents,
 } from '@hra-ui/dashboard';
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { appRoutes } from './app.routes';
 
 /** Application config */
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(),
     provideAnimations(),
-    provideIcons(),
+    provideDesignSystem(),
     provideDashboardComponents([
       DashboardIndexComponent,
       DashboardLayoutComponent,

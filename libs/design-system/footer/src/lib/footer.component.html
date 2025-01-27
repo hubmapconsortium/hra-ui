@@ -1,41 +1,29 @@
-<div class="footer-left">
-  <a href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">
-    <img [attr.src]="logo() | assetUrl" alt="Human Reference Atlas Logo" />
-  </a>
-  <span class="copyright">
-    <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
-    2024 CNS at Indiana University
-  </span>
-</div>
-<div class="footer-right">
-  <div class="footer-right-content">
-    <div class="social-funded">
-      <div class="social-media">
-        @for (link of socialMediaNames; track link) {
-          <hra-social-media-button size="large" [name]="link"></hra-social-media-button>
-        }
-      </div>
-      <div class="funded-by">
-        <span>Funded By:</span>
-        <div class="funded-logo">
-          <a href="https://www.iu.edu/index.html" target="_blank" rel="noopener noreferrer">
-            <img [attr.src]="'assets/logo/iu.svg' | assetUrl" alt="Indiana University Logo" />
-          </a>
-          <a href="https://www.nih.gov/" target="_blank" rel="noopener noreferrer">
-            <img [attr.src]="'assets/logo/nih.svg' | assetUrl" alt="National Institutes of Health (NIH) Logo" />
-          </a>
-          <a href="https://cifar.ca/" target="_blank" rel="noopener noreferrer">
-            <img [attr.src]="'assets/logo/cifar.svg' | assetUrl" alt="CIFAR Logo" />
-          </a>
-          <div class="spacer"></div>
-          <div class="spacer"></div>
-          <div class="spacer"></div>
-        </div>
-      </div>
+<div class="left">
+  <div class="content">
+    <hra-brand-logo class="logo"></hra-brand-logo>
+    <span class="copyright">
+      <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
+      2024 CNS at Indiana University
+    </span>
+    <div class="socials">
+      @for (id of socials; track id) {
+        <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
+      }
     </div>
-    <div class="disclaimer">
+  </div>
+</div>
+
+<div class="right">
+  <div class="content">
+    <hra-funding></hra-funding>
+    <p class="disclaimer">
       Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
       medical or professional advice.
-    </div>
+    </p>
+    <p class="data-notice">
+      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including
+      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in
+      scientific results published by HuBMAP consortium collaborations.
+    </p>
   </div>
 </div>
