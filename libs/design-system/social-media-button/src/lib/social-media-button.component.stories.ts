@@ -1,0 +1,37 @@
+import { Meta, StoryObj } from '@storybook/angular';
+
+import { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from './social-media-button.component';
+
+const meta: Meta<SocialMediaButtonComponent> = {
+  component: SocialMediaButtonComponent,
+  title: 'Design System/Buttons/SocialMediaButton',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Design-System-Components?node-id=333-4',
+    },
+  },
+  args: {
+    id: 'github',
+    size: 'large',
+    variant: 'dark',
+  },
+  argTypes: {
+    id: {
+      control: 'select',
+      options: SOCIAL_MEDIA_IDS,
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'large'],
+    },
+    variant: {
+      control: 'select',
+      options: ['light', 'dark', 'color'],
+    },
+  },
+};
+export default meta;
+type Story = StoryObj<SocialMediaButtonComponent>;
+
+export const Default: Story = {};
