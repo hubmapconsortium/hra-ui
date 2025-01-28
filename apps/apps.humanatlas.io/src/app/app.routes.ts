@@ -6,12 +6,12 @@ import predictions from './data/predictions';
 /** Application routes */
 export const appRoutes: Route[] = [
   {
-    path: '',
-    component: CellPopulationPredictorComponent,
-  },
-  {
-    path: 'result',
+    path: 'us1/result',
     component: CellPopulationPredictionsComponent,
     data: { predictions: predictions },
+  },
+  {
+    path: 'us1',
+    component: CellPopulationPredictorComponent,
   },
 ];
