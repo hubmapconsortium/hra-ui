@@ -1,10 +1,7 @@
-import { provideHttpClient } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { provideIcons } from '@hra-ui/cdk/icons';
-import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { IconButtonSizeDirective } from './icon-button-size/icon-button-size.directive';
-import { provideIconButtons } from './providers';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
+import { IconButtonModule } from './icon-button.module';
 
 const meta: Meta = {
   title: 'IconButton',
@@ -17,6 +14,7 @@ const meta: Meta = {
   args: {
     icon: 'search',
     size: 'large',
+    variant: 'dark',
   },
   argTypes: {
     icon: {
@@ -26,27 +24,23 @@ const meta: Meta = {
       control: 'select',
       options: ['small', 'large'],
     },
+    variant: {
+      control: 'select',
+      options: ['dark', 'light', 'color'],
+    },
   },
   decorators: [
     applicationConfig({
-      providers: [
-        provideHttpClient(),
-        provideIcons({
-          fontIcons: {
-            defaultClasses: ['material-symbols-rounded'],
-          },
-        }),
-        provideIconButtons(),
-      ],
+      providers: [provideDesignSystem()],
     }),
     moduleMetadata({
-      imports: [MatButtonModule, MatIconModule, IconButtonSizeDirective],
+      imports: [IconButtonModule],
     }),
   ],
   render: (args) => ({
     props: args,
     template: `
-      <button mat-icon-button hraIconButtonSize="${args['size']}">
+      <button mat-icon-button hraIconButtonSize="${args['size']}" hraIconButtonVariant="${args['variant']}">
         <mat-icon>${args['icon']}</mat-icon>
       </button>
     `,
@@ -68,5 +62,23 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     size: 'large',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    variant: 'dark',
+  },
+};
+
+export const Light: Story = {
+  args: {
+    variant: 'light',
+  },
+};
+
+export const Color: Story = {
+  args: {
+    variant: 'color',
   },
 };

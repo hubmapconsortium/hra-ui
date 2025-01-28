@@ -1,3 +1,14 @@
-<a [href]="link()" target="_blank" rel="noopener noreferrer">
-  <mat-icon [class.small]="size() === 'small'" [svgIcon]="icon()"></mat-icon>
+<a
+  mat-icon-button
+  [hraIconButtonVariant]="variant()"
+  [hraIconButtonSize]="size()"
+  [href]="data().link"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  @if (isFontIcon()) {
+    <mat-icon [fontIcon]="data().icon"></mat-icon>
+  } @else {
+    <mat-icon [svgIcon]="data().icon"></mat-icon>
+  }
 </a>

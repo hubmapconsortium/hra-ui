@@ -7,30 +7,30 @@ describe('SocialMediaButtonComponent', () => {
   it('it should render the small logo', async () => {
     await render(SocialMediaButtonComponent, {
       inputs: {
-        name: 'facebook',
+        id: 'facebook',
         size: 'small',
       },
       providers: [provideIcons(), provideHttpClient()],
     });
     const link = screen.getByRole('link');
-    const icon = link.querySelector('mat-icon');
+    const icon = link.querySelector('a');
     if (icon) {
-      expect(icon.classList.contains('small')).toBeTruthy();
+      expect(icon.clientHeight).toBe(24);
     }
   });
 
   it('it should render the large logo', async () => {
     await render(SocialMediaButtonComponent, {
       inputs: {
-        name: 'facebook',
+        id: 'facebook',
         size: 'large',
       },
       providers: [provideIcons(), provideHttpClient()],
     });
     const link = screen.getByRole('link');
-    const icon = link.querySelector('mat-icon');
+    const icon = link.querySelector('a');
     if (icon) {
-      expect(icon.classList.contains('small')).not.toBeTruthy();
+      expect(icon.clientHeight).toBe(40);
     }
   });
 });
