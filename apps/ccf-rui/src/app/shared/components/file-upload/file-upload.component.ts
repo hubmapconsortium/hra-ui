@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Ty
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
 import { ButtonModule } from '@hra-ui/design-system/button';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { reduce, Subscription } from 'rxjs';
 
 /**

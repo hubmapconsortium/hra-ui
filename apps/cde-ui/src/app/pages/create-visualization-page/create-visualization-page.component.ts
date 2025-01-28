@@ -17,7 +17,7 @@ import {
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
-import { BreadcrumbsComponent } from '@hra-ui/design-system/breadcrumbs';
+import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ButtonModule } from '@hra-ui/design-system/button';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
