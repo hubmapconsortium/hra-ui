@@ -1,53 +1,93 @@
-<div class="container">
-  <!-- HEADING -->
-  <div class="heading-container">
-    <div>
-      <img [src]="'images/cell-population-predictor-icon.svg' | assetUrl" alt="icon for cell population predictor" />
-    </div>
-    <div class="title-container">
-      <h1>Cell Population Predictor</h1>
-      <hra-software-status-indicator [status]="'Preview'" [size]="'medium'"></hra-software-status-indicator>
-    </div>
+<!-- HEADING -->
+<div class="heading-container">
+  <div>
+    <img [src]="'images/cell-population-predictor-icon.svg' | assetUrl" alt="" />
   </div>
+  <div class="title-container">
+    <h1>Cell Population Predictor</h1>
+    <hra-software-status-indicator [status]="'Preview'" [size]="'medium'"></hra-software-status-indicator>
+  </div>
+</div>
 
-  <!-- INFO -->
-  <div class="info-text">
-    <p>
-      Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this
-      site.
+<!-- INFO -->
+<p class="info-text">
+  Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this
+  site.
+</p>
+
+<!-- CARDS -->
+<div class="cards">
+  <!-- CARD 1 -->
+  <hra-workflow-card title="Upload" class="card card-1">
+    <hra-workflow-card-actions>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="info icon"
+        class="info-icon"
+        fontIcon="info"
+        cdkOverlayOrigin
+        #uploadDataTooltipTrigger="cdkOverlayOrigin"
+        (mouseover)="uploadInfoOpen = true"
+        (mouseout)="uploadInfoOpen = false"
+      ></mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOrigin]="uploadDataTooltipTrigger"
+        [cdkConnectedOverlayOpen]="uploadInfoOpen"
+        [cdkConnectedOverlayViewportMargin]="8"
+        [cdkConnectedOverlayPush]="true"
+      >
+        <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+      </ng-template>
+    </hra-workflow-card-actions>
+
+    <p class="card-text">
+      Upload an existing extraction site made with the Registration User Interface (RUI) in the JSON format or use the
+      sample file.
     </p>
-  </div>
 
-  <!-- CARDS -->
-  <div class="cards">
-    <hra-workflow-card title="Upload" class="card card-1">
-      <hra-workflow-card-actions>
-        <mat-icon aria-hidden="false" aria-label="info icon" class="info-icon" fontIcon="info"></mat-icon>
-      </hra-workflow-card-actions>
-      <div>
-        <p class="card-text">
-          Upload an existing extraction site made with the Registration User Interface (RUI) in the JSON format or use
-          the sample file.
-        </p>
-      </div>
-      <div class="buttons">
-        <button mat-button [disabled]="false" hraButtonSize="medium">Use Sample</button>
-        <button mat-button [disabled]="false" hraButtonSize="medium">Upload File</button>
-      </div>
-    </hra-workflow-card>
-    <hra-workflow-card title="Create" class="card card-2">
-      <hra-workflow-card-actions>
-        <mat-icon aria-hidden="false" aria-label="info icon" class="info-icon" fontIcon="info"></mat-icon>
-      </hra-workflow-card-actions>
-      <div>
-        <p class="card-text">
-          Create a new tissue extraction site by placing a tissue block spatially using the Registration User Interface
-          (RUI).
-        </p>
-      </div>
-      <div class="buttons">
-        <button mat-button [disabled]="false" hraButtonSize="medium">Create</button>
-      </div>
-    </hra-workflow-card>
-  </div>
+    <div class="buttons">
+      <button mat-button hraButtonSize="medium">Use Sample</button>
+      <button mat-button hraButtonSize="medium">Upload File</button>
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 2 -->
+  <hra-workflow-card title="Create" class="card card-2">
+    <hra-workflow-card-actions>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="info icon"
+        class="info-icon"
+        fontIcon="info"
+        cdkOverlayOrigin
+        #createDataTooltipTrigger="cdkOverlayOrigin"
+        (mouseover)="createInfoOpen = true"
+        (mouseout)="createInfoOpen = false"
+      >
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+          [cdkConnectedOverlayPositions]="tooltipPosition"
+          [cdkConnectedOverlayOrigin]="createDataTooltipTrigger"
+          [cdkConnectedOverlayOpen]="createInfoOpen"
+          [cdkConnectedOverlayViewportMargin]="8"
+          [cdkConnectedOverlayPush]="true"
+        >
+          <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+        </ng-template>
+      </mat-icon>
+    </hra-workflow-card-actions>
+
+    <p class="card-text">
+      Create a new tissue extraction site by placing a tissue block spatially using the Registration User Interface
+      (RUI).
+    </p>
+
+    <div class="buttons">
+      <button mat-button hraButtonSize="medium">Create</button>
+    </div>
+  </hra-workflow-card>
 </div>
