@@ -27,16 +27,8 @@ export class DonorCardComponent {
   /** Allows the expanded state of the card to be set from outside the component */
   @Input() expanded = false;
 
-  @Input() highlighted = false;
-
-  /** Emits the new checked state whenever it changes */
-  @Output() readonly checked = new EventEmitter<boolean>();
-
   /** Emit the url of any link when clicked. */
   @Output() readonly linkClick = new EventEmitter<string>();
-
-  /** To keep track of which element, if any, are hovered over. */
-  hoverState = '';
 
   /**
    * Creates an instance of donor card component.
@@ -44,16 +36,6 @@ export class DonorCardComponent {
    * @param ga Analytics service
    */
   constructor(private readonly ga: GoogleAnalyticsService) {}
-
-  /**
-   * Handles the logic that needs to run when the checkbox is clicked on.
-   */
-  handleCheckbox(): void {
-    this.selected = !this.selected;
-    this.ga.event('selected_toggled', 'donor_card', this.tissueBlock.label, +this.selected);
-    this.checked.emit(this.selected);
-    this.expanded = false;
-  }
 
   /**
    * Ensures that the expanded variable is only changed if selected first.
@@ -75,10 +57,9 @@ export class DonorCardComponent {
   linkHandler(url: string): void {
     this.ga.event('link_clicked', 'donor_card', this.tissueBlock.label);
     if (this.selected) {
-      this.linkClick.emit(url);
+      window.open(url, '_blank');
     } else {
       this.selected = true;
-      this.checked.emit(this.selected);
     }
   }
 }

@@ -225,6 +225,7 @@
 
 <div class="left-panel">
   <div class="filter-data">
+    <div>Filters</div>
     <ccf-filters-popover
       [filters]="$any(data.filter$ | async)"
       (filtersChange)="data.updateFilter($event)"
@@ -251,6 +252,61 @@
       </div>
     </div>
   </div>
+
+  <ccf-button-toggle
+    class="button-toggle-group"
+    [menuOptions]="menuOptions"
+    [enableTooltip]="true"
+    [tooltips]="tooltips"
+    [selectedItems]="selectedtoggleOptions"
+    (selectionChange)="toggleSelection($event)"
+  ></ccf-button-toggle>
+  <div class="ontologies">
+    <ccf-ontology-selection
+      class="ontology-selection"
+      [class.firefox]="isFirefox"
+      *ngIf="isItemSelected('AS')"
+      [showtoggle]="false"
+      [treeModel]="(ontologyTreeModel$ | async)!"
+      [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
+      [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
+      placeholderText="Search anatomical structures..."
+      (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
+      [header]="(header$ | async) ?? false"
+    >
+    </ccf-ontology-selection>
+    <ccf-ontology-selection
+      class="cell-type-selection"
+      [class.firefox]="isFirefox"
+      *ngIf="isItemSelected('CT')"
+      [showtoggle]="false"
+      [treeModel]="(cellTypeTreeModel$ | async)!"
+      [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
+      [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
+      placeholderText="Search cell types..."
+      (ontologySelection)="ontologySelected($any($event), 'cell-type')"
+      [header]="(header$ | async) ?? false"
+    >
+    </ccf-ontology-selection>
+    <ccf-ontology-selection
+      class="biomarker-selection"
+      [class.firefox]="isFirefox"
+      *ngIf="isItemSelected('B')"
+      [showtoggle]="true"
+      [treeModel]="(biomarkersTreeModel$ | async)!"
+      [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
+      [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
+      placeholderText="Search Biomarkers..."
+      (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
+      [header]="(header$ | async) ?? false"
+    >
+    </ccf-ontology-selection>
+
+    <div class="no-selection-notice" *ngIf="selectedtoggleOptions.length === 0">
+      No anatomical structures, cell types, or biomarkers selected. Use the above AS, CT, and B buttons to view the
+      registered listings.
+    </div>
+  </div>
 </div>
 
 <div class="content">
@@ -271,12 +327,9 @@
   <ccf-results-browser
     [listResults]="(listResultsState.listResults$ | async) ?? []"
     [aggregateData]="(data.aggregateData$ | async) ?? []"
-    [resultLabel]="selectionLabel"
     (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
     (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
     (linkClicked)="openiFrameViewer($event)"
-    [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
-    (itemHovered)="listResultsState.highlightNode($event)"
     (itemUnhovered)="listResultsState.unHighlightNode()"
     [header]="(header$ | async) ?? false"
   >

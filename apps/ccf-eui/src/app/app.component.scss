@@ -271,6 +271,8 @@
     'header vis-panel right'
     'left content right';
 
+  background-color: var(--sys-surface-container-low);
+
   &.embedded {
     grid-template-rows: 3rem 4.5rem auto;
   }
@@ -320,6 +322,48 @@
 
   .left-panel {
     grid-area: left;
+
+    .filter-data {
+      display: flex;
+      align-items: center;
+      height: 2.5rem;
+    }
+
+    .filter-text {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-left: 3rem;
+    }
+
+    .ontologies {
+      height: calc(100% - 9rem);
+      display: flex;
+      gap: 1.5rem;
+      flex-direction: column;
+
+      ccf-ontology-selection {
+        flex: 1 1;
+        overflow: auto;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar {
+          width: 0.25rem;
+        }
+
+        &.firefox {
+          padding-right: 0.5rem;
+        }
+
+        &.biomarker-selection {
+          flex-basis: 30%;
+        }
+      }
+
+      .no-selection-notice {
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
   }
 
   .right-panel {

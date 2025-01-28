@@ -1,4 +1,6 @@
 mat-checkbox {
+  padding: 0.25rem;
+
   --mdc-checkbox-unselected-icon-color: var(--sys-primary);
   --mdc-checkbox-unselected-hover-icon-color: var(--sys-secondary);
   --mdc-checkbox-unselected-focus-icon-color: var(--sys-secondary);

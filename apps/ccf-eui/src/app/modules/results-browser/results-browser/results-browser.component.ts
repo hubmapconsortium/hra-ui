@@ -2,6 +2,7 @@ import { Immutable } from '@angular-ru/cdk/typings';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { AggregateCount } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { ListResult } from '../../../core/models/list-result';
 
 /**
@@ -31,8 +32,6 @@ export class ResultsBrowserComponent {
    */
   @Input() resultLabel!: string;
 
-  @Input() highlighted!: string;
-
   @Input() header!: boolean;
 
   /**
@@ -50,10 +49,6 @@ export class ResultsBrowserComponent {
    * Output emitting the link result deselected
    */
   @Output() readonly listResultDeselected = new EventEmitter<Immutable<ListResult>>();
-
-  @Output() readonly itemHovered = new EventEmitter<string>();
-
-  @Output() readonly itemUnhovered = new EventEmitter();
 
   /**
    * Keeps track of whether or not the virtual scroll viewport is scrolled all the way to the bottom.
@@ -104,14 +99,6 @@ export class ResultsBrowserComponent {
     const { clientHeight, scrollHeight, scrollTop } = event.target as Element;
     const diff = scrollHeight - scrollTop - clientHeight;
     this.atScrollBottom = diff < 64;
-  }
-
-  handleHover(id: string): void {
-    this.itemHovered.emit(id);
-  }
-
-  handleUnhover(): void {
-    this.itemUnhovered.emit();
   }
 
   asMutable<T>(value: Immutable<T>): T {
