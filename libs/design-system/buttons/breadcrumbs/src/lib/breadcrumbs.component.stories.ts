@@ -1,14 +1,21 @@
-import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideRouter, Routes } from '@angular/router';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
-
 import { BreadcrumbsComponent } from './breadcrumbs.component';
-import { provideRouter } from '@angular/router';
 
-const sampleItem = { name: 'Button', route: 'A/B/C' };
+/** Route that immediately cancels all navigation attempts */
+const ROUTES: Routes = [
+  {
+    path: '**',
+    canActivate: [() => false],
+    loadComponent: () => Promise.reject(''),
+  },
+];
+
+const SAMPLE_CRUMB = { name: 'Link', route: 'A/B/C' };
 
 const meta: Meta<BreadcrumbsComponent> = {
   component: BreadcrumbsComponent,
-  title: 'BreadcrumbsComponent',
+  title: 'Design System/Buttons/Breadcrumbs',
   parameters: {
     design: {
       type: 'figma',
@@ -17,7 +24,7 @@ const meta: Meta<BreadcrumbsComponent> = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem(), provideRouter([])],
+      providers: [provideRouter(ROUTES)],
     }),
   ],
 };
@@ -26,12 +33,12 @@ type Story = StoryObj<BreadcrumbsComponent>;
 
 export const Short: Story = {
   args: {
-    crumbs: [sampleItem, { name: 'Current Page' }],
+    crumbs: [SAMPLE_CRUMB, { name: 'Current Page' }],
   },
 };
 
 export const Long: Story = {
   args: {
-    crumbs: [sampleItem, sampleItem, sampleItem, { name: 'Current Page' }],
+    crumbs: [SAMPLE_CRUMB, SAMPLE_CRUMB, SAMPLE_CRUMB, { name: 'Current Page' }],
   },
 };

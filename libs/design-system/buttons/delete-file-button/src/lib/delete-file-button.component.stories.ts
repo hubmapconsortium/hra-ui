@@ -1,5 +1,4 @@
-import { provideDesignSystem } from '@hra-ui/design-system';
-import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 
 import { DeleteFileButtonComponent } from './delete-file-button.component';
 
@@ -12,11 +11,6 @@ const meta: Meta<DeleteFileButtonComponent> = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/Explorer-Design-System-Repository?node-id=5676-22770&t=X0D1vCOZyGiIyp9H-4',
     },
   },
-  decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-  ],
   args: {
     fileName: 'test.csv',
   },
