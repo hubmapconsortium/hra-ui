@@ -1,0 +1,6 @@
+@use 'light-theme';
+@use 'theming';
+
+html {
+  @include theming.theme(light-theme.$theme);
+}

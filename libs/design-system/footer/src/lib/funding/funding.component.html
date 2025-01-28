@@ -1,0 +1,9 @@
+<span class="title">Funded By:</span>
+<div class="funders">
+  @for (funder of fundersData(); track funder.name) {
+    <a class="funder" [attr.href]="funder.link" target="_blank" rel="noopener noreferrer">
+      <img [attr.src]="funder.image | assetUrl" alt="" />
+      <span>{{ funder.name }}</span>
+    </a>
+  }
+</div>
