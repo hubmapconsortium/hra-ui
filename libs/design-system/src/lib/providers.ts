@@ -2,7 +2,7 @@ import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
-import { provideButtons } from '@hra-ui/design-system/button';
+import { provideButtons as provideButtonsOld } from '@hra-ui/design-system/button';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
@@ -12,6 +12,7 @@ import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scroll
 import { provideSelect } from '@hra-ui/design-system/select';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
+import { provideButtons } from '@hra-ui/design-system/buttons';
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -30,6 +31,7 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
       },
     }),
     provideButtons(),
+    provideButtonsOld(),
     provideIconButtons(),
     provideTrees(),
     provideScrolling(options?.scrolling),
