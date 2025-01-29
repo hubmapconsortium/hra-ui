@@ -1,18 +1,48 @@
 :host {
   display: block;
 
-  .web-components-container {
+  .heading-container {
+    margin: 10rem auto 0 auto;
+    max-width: 48.75rem;
+  }
+
+  .show-button {
+    margin-top: 2rem;
+  }
+
+  .title-logo-div {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 1.25rem;
-    margin-top: 10rem;
 
     h1 {
       color: var(--sys-on-background);
       margin: 0;
       font: var(--sys-display-large);
       letter-spacing: var(--sys-display-large-tracking);
+    }
+  }
+
+  .description {
+    font: var(--sys-body-large);
+    color: var(--sys-on-secondary-container);
+    padding-top: 3.5rem;
+    margin: 0;
+    letter-spacing: var(--sys-body-large-tracking);
+  }
+
+  .card-container {
+    margin: 6rem auto 0 auto;
+    max-width: 24.5rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
+    background-color: var(--sys-secondary-container);
+
+    p {
+      margin: 0;
+      font: var(--sys-title-medium);
+      letter-spacing: var(--sys-title-medium-tracking);
     }
   }
 }

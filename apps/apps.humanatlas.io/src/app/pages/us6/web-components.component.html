@@ -1,9 +1,17 @@
-<div class="web-components-container">
-  <hra-product-logo name="web_components" size="large"></hra-product-logo>
-  <div>
-    <h1>Web Components</h1>
-    <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
+<div class="heading-container">
+  <div class="title-logo-div">
+    <hra-product-logo name="web_components" size="large"></hra-product-logo>
+    <div>
+      <h1>Web Components</h1>
+      <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
+    </div>
   </div>
+  <p class="description">
+    Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
+  </p>
 </div>
 
-<div class="card-container"></div>
+<div class="card-container">
+  <p>Select organ:</p>
+  <button class="show-button" mat-flat-button hraPrimaryButton hraButtonSize="medium">Show</button>
+</div>

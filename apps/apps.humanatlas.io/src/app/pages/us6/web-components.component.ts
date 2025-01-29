@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
+import { ButtonModule } from '@hra-ui/design-system/button';
 
 @Component({
   selector: 'hra-web-components',
   standalone: true,
-  imports: [CommonModule, ProductLogoComponent, SoftwareStatusIndicatorComponent],
+  imports: [CommonModule, ProductLogoComponent, SoftwareStatusIndicatorComponent, ButtonModule],
   templateUrl: './web-components.component.html',
   styleUrl: './web-components.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
