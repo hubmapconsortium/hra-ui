@@ -56,30 +56,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
-                                <a href="modules/ButtonModule.html" data-type="entity-link" >ButtonModule</a>
+                                <a href="modules/ButtonsModule.html" data-type="entity-link" >ButtonsModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-ButtonModule-a47b123ab05987a11a562cfd45eb5d2eef93ec6b252461785f1673324b4070ea003e0450ebc633feb1600c9ef58e981808b349b23b703cb488eb4de230195c81"' : 'data-bs-target="#xs-directives-links-module-ButtonModule-a47b123ab05987a11a562cfd45eb5d2eef93ec6b252461785f1673324b4070ea003e0450ebc633feb1600c9ef58e981808b349b23b703cb488eb4de230195c81"' }>
+                                        'data-bs-target="#directives-links-module-ButtonsModule-c799a487ea310a4812b557cb98298dfd5827c5ddbd38f3e66bc4c9e3eb841989f33ae368073a53c70fcce38f3fe756358a853a54811e7b285f3837270fa735ae"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-c799a487ea310a4812b557cb98298dfd5827c5ddbd38f3e66bc4c9e3eb841989f33ae368073a53c70fcce38f3fe756358a853a54811e7b285f3837270fa735ae"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonModule-a47b123ab05987a11a562cfd45eb5d2eef93ec6b252461785f1673324b4070ea003e0450ebc633feb1600c9ef58e981808b349b23b703cb488eb4de230195c81"' :
-                                        'id="xs-directives-links-module-ButtonModule-a47b123ab05987a11a562cfd45eb5d2eef93ec6b252461785f1673324b4070ea003e0450ebc633feb1600c9ef58e981808b349b23b703cb488eb4de230195c81"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-c799a487ea310a4812b557cb98298dfd5827c5ddbd38f3e66bc4c9e3eb841989f33ae368073a53c70fcce38f3fe756358a853a54811e7b285f3837270fa735ae"' :
+                                        'id="xs-directives-links-module-ButtonsModule-c799a487ea310a4812b557cb98298dfd5827c5ddbd38f3e66bc4c9e3eb841989f33ae368073a53c70fcce38f3fe756358a853a54811e7b285f3837270fa735ae"' }>
                                         <li class="link">
                                             <a href="directives/ButtonSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonSizeDirective</a>
                                         </li>
                                         <li class="link">
-                                            <a href="directives/CallToActionButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CallToActionButtonDirective</a>
+                                            <a href="directives/ButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonVariantDirective</a>
                                         </li>
                                         <li class="link">
-                                            <a href="directives/NavigationCategoryButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavigationCategoryButtonDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/PrimaryButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PrimaryButtonDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/SecondaryButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SecondaryButtonDirective</a>
+                                            <a href="directives/CtaButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CtaButtonDirective</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -138,13 +132,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/AppsCardComponent.html" data-type="entity-link" >AppsCardComponent</a>
+                                <a href="components/AppNavButtonComponent.html" data-type="entity-link" >AppNavButtonComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/AppsSidenavDemoComponent.html" data-type="entity-link" >AppsSidenavDemoComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/BackBarComponent.html" data-type="entity-link" >BackBarComponent</a>
+                                <a href="components/BackButtonBarComponent.html" data-type="entity-link" >BackButtonBarComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/BrandLogoComponent.html" data-type="entity-link" >BrandLogoComponent</a>
@@ -156,7 +150,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BreadcrumbsComponent.html" data-type="entity-link" >BreadcrumbsComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ButtonStylesComponent.html" data-type="entity-link" >ButtonStylesComponent</a>
+                                <a href="components/ButtonGlobalStylesComponent.html" data-type="entity-link" >ButtonGlobalStylesComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ButtonToggleStylesComponent.html" data-type="entity-link" >ButtonToggleStylesComponent</a>
@@ -258,6 +252,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/TableStylesComponent.html" data-type="entity-link" >TableStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/TextHyperlinkGlobalStylesComponent.html" data-type="entity-link" >TextHyperlinkGlobalStylesComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TooltipCardComponent.html" data-type="entity-link" >TooltipCardComponent</a>
                             </li>
                             <li class="link">
@@ -289,13 +286,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
                                 <li class="link">
+                                    <a href="directives/BaseButtonVariantDirective.html" data-type="entity-link" >BaseButtonVariantDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/ButtonSizeDirective.html" data-type="entity-link" >ButtonSizeDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/CallToActionButtonDirective.html" data-type="entity-link" >CallToActionButtonDirective</a>
+                                    <a href="directives/ButtonVariantDirective.html" data-type="entity-link" >ButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/CheckboxErrorVariantDirective.html" data-type="entity-link" >CheckboxErrorVariantDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CtaButtonDirective.html" data-type="entity-link" >CtaButtonDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
@@ -310,16 +313,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/MicroTooltipDirective.html" data-type="entity-link" >MicroTooltipDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/NavigationCategoryButtonDirective.html" data-type="entity-link" >NavigationCategoryButtonDirective</a>
-                                </li>
-                                <li class="link">
-                                    <a href="directives/PrimaryButtonDirective.html" data-type="entity-link" >PrimaryButtonDirective</a>
+                                    <a href="directives/PrimaryButtonVariantDirective.html" data-type="entity-link" >PrimaryButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/ScrollOverflowFadeDirective.html" data-type="entity-link" >ScrollOverflowFadeDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/SecondaryButtonDirective.html" data-type="entity-link" >SecondaryButtonDirective</a>
+                                    <a href="directives/SecondaryButtonVariantDirective.html" data-type="entity-link" >SecondaryButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/SoftwareStatusSizeDirective.html" data-type="entity-link" >SoftwareStatusSizeDirective</a>

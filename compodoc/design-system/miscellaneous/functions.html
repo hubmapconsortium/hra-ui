@@ -118,7 +118,10 @@
                             <a href="#hexToRgb" title="color-picker/src/lib/color-utils.ts" ><b>hexToRgb</b>&nbsp;&nbsp;&nbsp;(color-picker/.../color-utils.ts)</a>
                         </li>
                         <li>
-                            <a href="#provideButtons" title="button/src/lib/providers.ts" ><b>provideButtons</b>&nbsp;&nbsp;&nbsp;(button/.../providers.ts)</a>
+                            <a href="#provideButton" title="buttons/button/src/lib/providers.ts" ><b>provideButton</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideButtons" title="buttons/src/lib/providers.ts" ><b>provideButtons</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
                         </li>
                         <li>
                             <a href="#provideButtonToggle" title="button-toggle/src/lib/providers.ts" ><b>provideButtonToggle</b>&nbsp;&nbsp;&nbsp;(button-toggle/.../providers.ts)</a>
@@ -149,6 +152,9 @@
                         </li>
                         <li>
                             <a href="#provideTable" title="table/src/lib/providers.ts" ><b>provideTable</b>&nbsp;&nbsp;&nbsp;(table/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTextHyperlink" title="buttons/text-hyperlink/src/lib/providers.ts" ><b>provideTextHyperlink</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
                         </li>
                         <li>
                             <a href="#provideTrees" title="tree/src/lib/providers.ts" ><b>provideTrees</b>&nbsp;&nbsp;&nbsp;(tree/.../providers.ts)</a>
@@ -369,7 +375,46 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>button/src/lib/providers.ts</h3>
+</section>    <h3>buttons/button/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideButton"></a>
+                    <span class="name">
+                        <span ><b>provideButton</b></span>
+                        <a href="#provideButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideButton()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies global styles to buttons</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Button providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/src/lib/providers.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -393,13 +438,17 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Returns providers for button</p>
+                        <div class="io-description"><p>Collects all subpackage providers into a single provider function.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>EnvironmentProviders</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>Button providers</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -837,6 +886,45 @@
                             <b>Returns : </b>    <code>EnvironmentProviders</code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/text-hyperlink/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTextHyperlink"></a>
+                    <span class="name">
+                        <span ><b>provideTextHyperlink</b></span>
+                        <a href="#provideTextHyperlink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideTextHyperlink()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides the global styles for text hyperlink elements.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Text hyperlink providers</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>

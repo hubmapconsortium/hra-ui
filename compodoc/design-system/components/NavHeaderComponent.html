@@ -165,12 +165,12 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>CommonModule</code>
-                                <code><a href="../modules/ButtonModule.html" target="_self" >MatButtonModule</a></code>
+                            <code>MatButtonModule</code>
                             <code>MatIconModule</code>
                                 <code><a href="../components/NavHeaderButtonsComponent.html" target="_self" >NavHeaderButtonsComponent</a></code>
                                 <code><a href="../directives/IconButtonSizeDirective.html" target="_self" >IconButtonSizeDirective</a></code>
                             <code>MatSidenavModule</code>
-                                <code><a href="../components/AppsCardComponent.html" target="_self" >AppsCardComponent</a></code>
+                                <code><a href="../components/AppNavButtonComponent.html" target="_self" >AppNavButtonComponent</a></code>
                                 <code><a href="../modules/ScrollingModule.html" target="_self" >ScrollingModule</a></code>
                             <code>AssetUrlPipe</code>
                 </td>
@@ -229,7 +229,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#title" >title</a>
+                                <a href="#tagline" >tagline</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -258,7 +258,7 @@
                                 <a href="#status" >status</a>
                             </li>
                             <li>
-                                <a href="#title" >title</a>
+                                <a href="#tagline" >tagline</a>
                             </li>
                         </ul>
                     </td>
@@ -351,8 +351,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="title"></a>
-                        <b>title</b>
+                        <a name="tagline"></a>
+                        <b>tagline</b>
                     </td>
                 </tr>
                 <tr>
@@ -500,11 +500,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="title"></a>
+                    <a name="tagline"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>title</b></span>
-                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>tagline</b></span>
+                        <a href="#tagline"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -567,7 +567,7 @@ import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
 import { AssetUrlPipe } from &#x27;@hra-ui/cdk/app-href&#x27;;
-import { AppsCardComponent } from &#x27;@hra-ui/design-system/apps-card&#x27;;
+import { AppNavButtonComponent } from &#x27;@hra-ui/design-system/buttons/app-nav-button&#x27;;
 import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from &#x27;@hra-ui/design-system/nav-header-buttons&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
@@ -605,7 +605,7 @@ export interface CardData {
     NavHeaderButtonsComponent,
     IconButtonSizeDirective,
     MatSidenavModule,
-    AppsCardComponent,
+    AppNavButtonComponent,
     ScrollingModule,
     AssetUrlPipe,
   ],
@@ -621,7 +621,7 @@ export class NavHeaderComponent {
   /** Current app */
   readonly app &#x3D; input.required&lt;string&gt;();
   /** Name of the app */
-  readonly title &#x3D; input.required&lt;string&gt;();
+  readonly tagline &#x3D; input.required&lt;string&gt;();
   /** Status of the app */
   readonly status &#x3D; input&lt;SoftwareStatus&gt;();
   /** Data to display in sidenav */
@@ -647,7 +647,7 @@ export class NavHeaderComponent {
           @for (card of item.cards; track card) {
             &lt;hra-apps-card
               [icon]&#x3D;&quot;card.icon&quot;
-              [title]&#x3D;&quot;card.name&quot;
+              [tagline]&#x3D;&quot;card.name&quot;
               [description]&#x3D;&quot;card.description&quot;
               [link]&#x3D;&quot;card.link | assetUrl&quot;
             &gt;&lt;/hra-apps-card&gt;
@@ -663,7 +663,7 @@ export class NavHeaderComponent {
         [variant]&#x3D;&quot;variant()&quot;
         [appLink]&#x3D;&quot;link()&quot;
         [app]&#x3D;&quot;app()&quot;
-        [appTitle]&#x3D;&quot;title()&quot;
+        [appTitle]&#x3D;&quot;tagline()&quot;
         [appStatus]&#x3D;&quot;status()&quot;
       &gt;&lt;/hra-nav-header-buttons&gt;
       &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
@@ -702,9 +702,9 @@ export class NavHeaderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="container">  <mat-sidenav #sidenav mode="over" class="apps-sidenav" position="end" [fixedInViewport]="false">    <div class="header">      <span class="sidenav-title"> HuBMAP Tools & Applications </span>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>close</mat-icon>      </button>    </div>    <ng-scrollbar>      @for (item of navigationCategories(); track item) {        <div class="category">          <div class="card-category">{{ item.category }}</div>          @for (card of item.cards; track card) {            <hra-apps-card              [icon]="card.icon"              [title]="card.name"              [description]="card.description"              [link]="card.link | assetUrl"            ></hra-apps-card>          }        </div>      }    </ng-scrollbar>  </mat-sidenav>  <mat-sidenav-content>    <div class="main">      <hra-nav-header-buttons        [variant]="variant()"        [appLink]="link()"        [app]="app()"        [appTitle]="title()"        [appStatus]="status()"      ></hra-nav-header-buttons>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>apps</mat-icon>      </button>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
-    var COMPONENTS = [{'name': 'AppsCardComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackBarComponent', 'selector': 'hra-back-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonStylesComponent', 'selector': 'hra-button-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WebComponentCardComponent', 'selector': 'hra-web-component-card'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
-    var DIRECTIVES = [{'name': 'ButtonSizeDirective', 'selector': '[hraButtonSize]'},{'name': 'CallToActionButtonDirective', 'selector': '[hraCallToActionButton]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'NavigationCategoryButtonDirective', 'selector': '[hraNavCatButton]'},{'name': 'PrimaryButtonDirective', 'selector': '[hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonDirective', 'selector': '[hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+        var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="container">  <mat-sidenav #sidenav mode="over" class="apps-sidenav" position="end" [fixedInViewport]="false">    <div class="header">      <span class="sidenav-title"> HuBMAP Tools & Applications </span>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>close</mat-icon>      </button>    </div>    <ng-scrollbar>      @for (item of navigationCategories(); track item) {        <div class="category">          <div class="card-category">{{ item.category }}</div>          @for (card of item.cards; track card) {            <hra-apps-card              [icon]="card.icon"              [tagline]="card.name"              [description]="card.description"              [link]="card.link | assetUrl"            ></hra-apps-card>          }        </div>      }    </ng-scrollbar>  </mat-sidenav>  <mat-sidenav-content>    <div class="main">      <hra-nav-header-buttons        [variant]="variant()"        [appLink]="link()"        [app]="app()"        [appTitle]="tagline()"        [appStatus]="status()"      ></hra-nav-header-buttons>      <div style="flex-grow: 1"></div>      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">        <mat-icon>apps</mat-icon>      </button>    </div>  </mat-sidenav-content></mat-sidenav-container></div>'
+    var COMPONENTS = [{'name': 'AppNavButtonComponent', 'selector': 'hra-apps-card'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandmarkComponent', 'selector': 'hra-brandmark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonGlobalStylesComponent', 'selector': 'hra-button-global-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WebComponentCardComponent', 'selector': 'hra-web-component-card'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize]:not([hraCtaButton]), a[mat-button][hraButtonSize]:not([hraCtaButton])'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'NavHeaderComponent'};
 </script>
 <script src="../js/tree.js"></script>

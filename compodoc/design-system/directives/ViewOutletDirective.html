@@ -371,7 +371,7 @@
 import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { MatDialog, MatDialogModule, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { ExpansionPanelModule } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
 import { filter, MonoTypeOperatorFunction, pipe } from &#x27;rxjs&#x27;;
 
@@ -446,14 +446,14 @@ export class FullscreenPortalContentComponent {}
 @Component({
   selector: &#x27;hra-fullscreen-portal&#x27;,
   standalone: true,
-  imports: [MatDialogModule, MatIconModule, ButtonModule, ExpansionPanelModule, ViewOutletDirective],
+  imports: [MatDialogModule, MatIconModule, ButtonsModule, ExpansionPanelModule, ViewOutletDirective],
   templateUrl: &#x27;./fullscreen-portal.component.html&#x27;,
   styleUrl: &#x27;./fullscreen-portal.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenPortalComponent {
   /** Heading of the dialog */
-  readonly title &#x3D; input.required&lt;string&gt;();
+  readonly tagline &#x3D; input.required&lt;string&gt;();
 
   /** Classes to apply to the dialog panel in fullscreen mode */
   readonly panelClass &#x3D; input&lt;string | string[]&gt;();
