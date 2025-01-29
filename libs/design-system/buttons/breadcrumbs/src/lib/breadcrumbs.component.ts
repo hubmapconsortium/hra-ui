@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from '@hra-ui/design-system/button';
 
 /** Breadcrumb item */
 interface BreadcrumbItem {
@@ -18,7 +17,7 @@ interface BreadcrumbItem {
 @Component({
   selector: 'hra-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatIconModule],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

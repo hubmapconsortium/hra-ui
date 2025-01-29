@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-/**
- * Applies button styles globally
- */
+/** Global styles for standard buttons */
 @Component({
-  selector: 'hra-button-styles',
+  selector: 'hra-button-global-styles',
   standalone: true,
   template: '',
-  styleUrls: ['./button-styles.component.scss'],
+  styleUrls: ['./global-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonStylesComponent {}
+export class ButtonGlobalStylesComponent {}

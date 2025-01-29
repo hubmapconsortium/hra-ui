@@ -16,7 +16,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { filter, MonoTypeOperatorFunction, pipe } from 'rxjs';
 
@@ -91,7 +91,7 @@ export class FullscreenPortalContentComponent {}
 @Component({
   selector: 'hra-fullscreen-portal',
   standalone: true,
-  imports: [MatDialogModule, MatIconModule, ButtonModule, ExpansionPanelModule, ViewOutletDirective],
+  imports: [MatDialogModule, MatIconModule, ButtonsModule, ExpansionPanelModule, ViewOutletDirective],
   templateUrl: './fullscreen-portal.component.html',
   styleUrl: './fullscreen-portal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
