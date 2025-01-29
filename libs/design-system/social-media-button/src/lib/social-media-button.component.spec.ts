@@ -7,7 +7,7 @@ describe('SocialMediaButtonComponent', () => {
   it('it should render the small logo', async () => {
     await render(SocialMediaButtonComponent, {
       inputs: {
-        name: 'facebook',
+        id: 'facebook',
         size: 'small',
       },
       providers: [provideIcons(), provideHttpClient()],
@@ -22,7 +22,7 @@ describe('SocialMediaButtonComponent', () => {
   it('it should render the large logo', async () => {
     await render(SocialMediaButtonComponent, {
       inputs: {
-        name: 'facebook',
+        id: 'facebook',
         size: 'large',
       },
       providers: [provideIcons(), provideHttpClient()],

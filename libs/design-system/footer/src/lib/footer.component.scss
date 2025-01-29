@@ -1,192 +1,90 @@
-@use 'sass:math';
-
-@function strip-units($number) {
-  @return math.div($number, ($number * 0 + 1));
-}
-
-@function create-scale($from, $to) {
-  @return calc((100vw - $from) / strip-units($to - $from));
-}
-
-@function scale-value($from, $to, $scale) {
-  @return max($from, strip-units($to - $from) * $scale + $from);
-}
-
+// Base case is for <=639px screens
 :host {
   display: flex;
-  min-width: 20rem;
+  flex-direction: column;
+  font: var(--sys-label-medium);
+  letter-spacing: var(--sys-label-medium-tracking);
 
-  .footer-left {
-    display: flex;
+  .left {
     background-color: var(--sys-inverse-surface);
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
-    row-gap: 1.5rem;
-    min-width: 21rem;
+    padding: 2rem 1.25rem;
 
-    img {
-      width: 15.375rem;
-    }
-
-    .copyright {
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
-      color: var(--sys-on-primary);
-
-      mat-icon {
-        vertical-align: bottom;
-      }
-    }
-  }
-
-  .footer-right {
-    background-color: var(--sys-surface-container-high);
-    padding: 2.5rem 2rem;
-    flex-grow: 1;
-
-    .footer-right-content {
-      width: fit-content;
-      margin: 0 auto;
-    }
-
-    .social-funded {
+    .content {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      column-gap: 3.5rem;
-      row-gap: 2rem;
-      margin-bottom: 2rem;
-
-      .social-media {
-        display: flex;
-        align-items: flex-end;
-        width: 100%;
-        justify-content: space-between;
-        max-width: 28rem;
-      }
-
-      .funded-by {
-        width: 100%;
-        max-width: 28rem;
-
-        span {
-          display: block;
-          font: var(--sys-label-large);
-          letter-spacing: var(--sys-label-large-tracking);
-          margin-bottom: 0.75rem;
-          color: var(--sys-primary);
-        }
-
-        .funded-logo {
-          display: flex;
-          justify-content: space-between;
-
-          img,
-          .spacer {
-            height: 3rem;
-            width: 3rem;
-          }
-        }
-      }
-    }
-
-    .disclaimer {
-      color: var(--sys-on-primary-fixed);
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
-    }
-  }
-
-  a {
-    line-height: 0;
-  }
-
-  @media (max-width: 1920px) {
-    .footer-right .footer-right-content {
-      margin: 0rem;
-    }
-  }
-
-  @media (max-width: 766px) {
-    flex-direction: column;
-
-    .footer-right {
-      row-gap: 1.5rem;
-      padding: 0;
-
-      .social-funded {
-        flex-direction: column;
-        margin: 2.5rem 2rem 0 2rem;
-      }
-
-      .disclaimer {
-        margin: 2rem 2rem 2.5rem 2rem;
-      }
-    }
-  }
-
-  @media (max-width: 430px) {
-    $scale: create-scale(320px, 430px);
-
-    --_hra-footer-scale_16px_32px: #{scale-value(16px, 32px, $scale)};
-    --_hra-footer-scale_32px_40px: #{scale-value(32px, 40px, $scale)};
-    --_hra-footer-scale_36px_48px: #{scale-value(36px, 48px, $scale)};
-    --_hra-footer-scale_font-size: #{scale-value(14px, 16px, $scale)};
-    --_hra-footer-scale_line-height: #{scale-value(21px, 24px, $scale)};
-
-    .footer-left {
-      padding: 2rem 2rem 2rem var(--_hra-footer-scale_16px_32px);
-      row-gap: scale-value(16px, 24px, $scale);
-      min-width: unset;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      width: 17.5rem;
+      height: 13.375rem;
+      margin: 0 auto;
+      color: var(--sys-on-primary);
+      --hra-brand-logo-text-color: var(--sys-on-primary);
 
       .copyright {
-        font-size: var(--_hra-footer-scale_font-size);
-        line-height: var(--_hra-footer-scale_line-height);
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
       }
+    }
+  }
 
-      img {
-        width: scale-value(208px, 246px, $scale);
+  .right {
+    background-color: var(--sys-surface-container-high);
+    padding: 2rem 1rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2.5rem;
+      max-width: 78.5rem;
+      margin: 0 auto;
+      color: var(--sys-on-primary-fixed);
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5.125rem 4.125rem;
+    }
+
+    .right {
+      flex-grow: 1;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2.5rem 1rem;
+
+      hra-funding {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  @media (min-width: 1921px) {
+    .left {
+      flex-grow: 1;
+
+      .content {
+        margin: 0 0 0 auto;
       }
     }
 
-    .footer-right {
-      .social-funded {
-        flex-direction: column;
-        margin: var(--_hra-footer-scale_32px_40px) var(--_hra-footer-scale_16px_32px) 0
-          var(--_hra-footer-scale_16px_32px);
+    .right {
+      flex-grow: 1;
+      padding: 2.5rem 7.875rem;
 
-        ::ng-deep hra-social-media-button {
-          mat-icon,
-          mat-icon > svg {
-            height: var(--_hra-footer-scale_36px_48px);
-            width: var(--_hra-footer-scale_36px_48px);
-          }
-        }
-
-        .funded-by {
-          span {
-            font-size: var(--_hra-footer-scale_font-size);
-            line-height: var(--_hra-footer-scale_line-height);
-            margin-bottom: scale-value(8px, 12px, $scale);
-          }
-
-          .funded-logo {
-            width: 100%;
-
-            img,
-            .spacer {
-              height: var(--_hra-footer-scale_36px_48px);
-              width: var(--_hra-footer-scale_36px_48px);
-            }
-          }
-        }
-      }
-
-      .disclaimer {
-        margin: var(--_hra-footer-scale_32px_40px) var(--_hra-footer-scale_16px_32px);
-        font-size: var(--_hra-footer-scale_font-size);
-        line-height: var(--_hra-footer-scale_line-height);
+      .content {
+        margin: 0 auto 0 0;
       }
     }
   }
