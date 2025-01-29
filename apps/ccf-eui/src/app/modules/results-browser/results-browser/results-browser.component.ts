@@ -4,6 +4,14 @@ import { AggregateCount } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ListResult } from '../../../core/models/list-result';
+import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { DonorCardComponent } from '../donor-card/donor-card.component';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -14,6 +22,18 @@ import { ListResult } from '../../../core/models/list-result';
   selector: 'ccf-results-browser',
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
+  imports: [
+    CommonModule,
+    DonorCardComponent,
+    ExpansionPanelModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCheckboxModule,
+    ButtonModule,
+    ScrollingModule,
+    ScrollOverflowFadeDirective,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsBrowserComponent {
@@ -51,12 +71,6 @@ export class ResultsBrowserComponent {
   @Output() readonly listResultDeselected = new EventEmitter<Immutable<ListResult>>();
 
   /**
-   * Keeps track of whether or not the virtual scroll viewport is scrolled all the way to the bottom.
-   * Used to determine whether or not to render the gradient at the bottom.
-   */
-  atScrollBottom = false;
-
-  /**
    * Creates an instance of results browser component.
    *
    * @param ga Analytics service
@@ -85,20 +99,6 @@ export class ResultsBrowserComponent {
    */
   handleLinkClick(link: string): void {
     this.linkClicked.emit(link);
-  }
-
-  /**
-   * Handles the scroll event to detect when scroll is at the bottom.
-   *
-   * @param event The scroll event.
-   */
-  onScroll(event: Event): void {
-    if (!event.target) {
-      return;
-    }
-    const { clientHeight, scrollHeight, scrollTop } = event.target as Element;
-    const diff = scrollHeight - scrollTop - clientHeight;
-    this.atScrollBottom = diff < 64;
   }
 
   asMutable<T>(value: Immutable<T>): T {

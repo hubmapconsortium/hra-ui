@@ -2,7 +2,7 @@
   <div class="results-header">
     Experimental Data
     <button mat-icon-button>
-      <mat-icon>info</mat-icon>
+      <mat-icon>help</mat-icon>
     </button>
   </div>
   <div class="stat-box">
@@ -36,8 +36,8 @@
     <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
   </hra-expansion-panel>
 
-  <ng-scrollbar>
-    <div class="results-browser-list" (scroll)="onScroll($event)">
+  <ng-scrollbar hraScrollOverflowFade>
+    <div class="results-browser-list">
       <div class="browser-item-container" *ngFor="let result of listResults">
         <mat-checkbox
           class="checkbox"
@@ -50,11 +50,10 @@
           [color]="result.color ?? ''"
           (linkClick)="handleLinkClick($event)"
           [selected]="result.selected"
-          (click)="donorCard.toggleExpansion()"
+          (click)="donorCard.toggleExpansion(); handleSelection(result, true)"
         >
         </ccf-donor-card>
       </div>
     </div>
   </ng-scrollbar>
-  <div class="scroll-gradient" [class.hidden]="!!atScrollBottom"></div>
 </div>

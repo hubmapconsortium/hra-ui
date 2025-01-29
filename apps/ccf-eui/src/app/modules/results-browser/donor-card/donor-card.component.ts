@@ -1,6 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ThumbnailListComponent } from '../../../shared/components/thumbnail-list/thumbnail-list.component';
+import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
+import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
 
 /**
  * Donor card component which displays data from a patient
@@ -9,6 +15,15 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-donor-card',
   templateUrl: './donor-card.component.html',
   styleUrls: ['./donor-card.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MetadataCardComponent,
+    TissueSectionVisComponent,
+    ThumbnailListComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonorCardComponent {

@@ -1,8 +1,8 @@
-<ng-container *ngFor="let item of data; trackBy: itemId">
+@for (item of data; track itemId) {
   <div class="slide">
     <div class="thumbnail" [style.background-image]="thumbnailUrl(item)" (click)="linkClicked.emit(item)"></div>
     <div>
       {{ item.technology }}
     </div>
   </div>
-</ng-container>
+}

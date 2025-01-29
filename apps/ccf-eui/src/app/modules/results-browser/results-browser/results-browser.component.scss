@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1.25rem 1rem 0 1rem;
+  padding-top: 1.25rem;
   color: var(--sys-secondary);
+  overflow: hidden;
+
+  .results-header,
+  .stat-box {
+    margin: 0 1rem;
+  }
 
   .results-header {
     font: var(--sys-label-large);
@@ -47,32 +53,28 @@
 
   hra-expansion-panel {
     padding: 0.25rem 0.5rem;
+    margin-left: 0.75rem;
   }
 
   .results-browser-list {
+    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-left: -0.25rem;
+    margin-left: 0.75rem;
+    margin-right: 1rem;
 
     .browser-item-container {
-      display: flex;
-    }
-  }
+      display: grid;
+      grid-template-columns: 3rem auto;
 
-  .scroll-gradient {
-    position: absolute;
-    height: 3rem;
-    bottom: 0;
-    pointer-events: none;
-
-    &.hidden {
-      display: none;
+      mat-checkbox {
+        margin: 0.25rem auto;
+      }
     }
   }
 
   ccf-donor-card {
-    flex-grow: 1;
-    padding-left: 0.25rem;
+    margin-left: 0.25rem;
   }
 }
