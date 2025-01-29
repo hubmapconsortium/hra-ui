@@ -18,7 +18,7 @@ import {
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { FooterComponent } from '@hra-ui/design-system/footer';
@@ -72,7 +72,7 @@ function optionalValue<T>(): T | null {
     MatTableModule,
 
     BreadcrumbsComponent,
-    ButtonModule,
+    ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,
     FooterComponent,

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { reduce, Subscription } from 'rxjs';
 
@@ -34,7 +34,7 @@ export type FileLoadError = FileTypeError | FileParseError;
 @Component({
   selector: 'ccf-file-upload',
   standalone: true,
-  imports: [MatIconModule, ButtonModule, DeleteFileButtonComponent],
+  imports: [MatIconModule, ButtonsModule, DeleteFileButtonComponent],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
