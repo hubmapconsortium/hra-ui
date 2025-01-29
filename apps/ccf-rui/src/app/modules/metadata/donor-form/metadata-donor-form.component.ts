@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
 import { NgxMaskDirective } from 'ngx-mask';
 import { derivedAsync } from 'ngxtension/derived-async';
@@ -71,7 +71,7 @@ function filterAutocompleteOptions<T>(
     MatOptionModule,
     MatSelectModule,
     NgxMaskDirective,
-    ButtonModule,
+    ButtonsModule,
   ],
   templateUrl: './metadata-donor-form.component.html',
   styleUrls: ['./metadata-donor-form.component.scss'],

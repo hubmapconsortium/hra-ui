@@ -1,0 +1,11 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  height: 2.5rem;
+  padding: 0 0.125rem;
+  color: var(--sys-on-primary-fixed);
+  @include utils.use-font('label', 'small');
+}

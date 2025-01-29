@@ -1,4 +1,4 @@
-<hra-back-bar (backClick)="page.cancelRegistration()"></hra-back-bar>
+<hra-back-button-bar (backClick)="page.cancelRegistration()"></hra-back-button-bar>
 <hra-nav-header-buttons
   app="rui"
   [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
@@ -6,7 +6,7 @@
   [brandmark]="true"
 ></hra-nav-header-buttons>
 <ccf-left-sidebar [modalClosed]="registrationStarted"> </ccf-left-sidebar>
-<hra-expansion-panel [title]="'Registration'" disabled class="registration">
+<hra-expansion-panel tagline="Registration" disabled class="registration">
   <hra-expansion-panel-actions>
     <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="large" aria-label="Icon to open nested menu">
       <mat-icon>more_vert</mat-icon>

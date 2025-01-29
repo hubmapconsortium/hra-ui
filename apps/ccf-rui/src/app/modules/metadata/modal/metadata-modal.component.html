@@ -12,7 +12,7 @@
     </div>
 
     <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">
-      <hra-workflow-card class="upload" [title]="'Optional: Upload Previous Registration'" step="1">
+      <hra-workflow-card class="upload" tagline="Optional: Upload Previous Registration" step="1">
         @if (fileErrors) {
           <hra-error-indicator class="errors" [errors]="fileErrors"></hra-error-indicator>
         }
@@ -29,7 +29,7 @@
         </ccf-file-upload>
       </hra-workflow-card>
 
-      <hra-workflow-card class="metadata" [title]="'Add Metadata'" step="2">
+      <hra-workflow-card class="metadata" tagline="Add Metadata" step="2">
         <hra-workflow-card-extra>
           <a
             mat-flat-button
@@ -49,7 +49,7 @@
         <ccf-metadata-donor-form class="donor" [form]="metadataForm.controls.donor"></ccf-metadata-donor-form>
       </hra-workflow-card>
 
-      <hra-workflow-card class="register" [title]="'Register Data Spatially'" step="3">
+      <hra-workflow-card class="register" tagline="Register Data Spatially" step="3">
         @if (metadataForm.invalid) {
           <hra-error-indicator class="error" [errors]="['Please add required metadata.']"></hra-error-indicator>
         }

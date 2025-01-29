@@ -50,7 +50,7 @@ export class ExpansionPanelHeaderContentComponent {}
 })
 export class ExpansionPanelComponent {
   /** Title of the expansion panel */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
 
   /** Flag to check if the body is expanded */
   readonly expanded = input(true, { transform: booleanAttribute });
@@ -65,7 +65,7 @@ export class ExpansionPanelComponent {
   protected readonly id = idCounter++;
 
   /** Id attribute for title based on current id counter */
-  protected readonly titleId = `expansion-panel-title-${this.id}`;
+  protected readonly taglineId = `expansion-panel-tagline-${this.id}`;
 
   /** Id attribute for body based on current id counter */
   protected readonly bodyId = `expansion-panel-body-${this.id}`;
