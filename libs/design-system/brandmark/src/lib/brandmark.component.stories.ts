@@ -5,7 +5,7 @@ import { BrandmarkComponent } from './brandmark.component';
 
 const meta: Meta<BrandmarkComponent> = {
   component: BrandmarkComponent,
-  title: 'BrandmarkComponent',
+  title: 'Design System/Brand/Brandmark',
   parameters: {
     design: {
       type: 'figma',

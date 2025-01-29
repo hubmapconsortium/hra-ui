@@ -1,13 +1,13 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
 @Component({
   selector: 'cde-node-dist-visualization-controls',
   standalone: true,
-  imports: [MatButtonToggleModule, MatIconModule, ButtonModule],
+  imports: [MatButtonToggleModule, MatIconModule, ButtonsModule],
   templateUrl: './node-dist-visualization-controls.component.html',
   styleUrl: './node-dist-visualization-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

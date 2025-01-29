@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { ButtonSizeDirective } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
@@ -52,9 +52,8 @@ export class DefaultToPipe implements PipeTransform {
     DefaultToPipe,
     MatMenuModule,
     IconButtonSizeDirective,
-    IconButtonSizeDirective,
     MicroTooltipDirective,
-    ButtonSizeDirective,
+    ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
   ],
