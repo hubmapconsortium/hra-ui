@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>breadcrumbs/src/lib/breadcrumbs/breadcrumbs.component.ts</code>
+            <code>buttons/breadcrumbs/src/lib/breadcrumbs.component.ts</code>
         </p>
 
 
@@ -263,7 +263,6 @@
 import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
 
 /** Breadcrumb item */
 interface BreadcrumbItem {
@@ -279,7 +278,7 @@ interface BreadcrumbItem {
 @Component({
   selector: &#x27;hra-breadcrumbs&#x27;,
   standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatIconModule],
   templateUrl: &#x27;./breadcrumbs.component.html&#x27;,
   styleUrl: &#x27;./breadcrumbs.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,

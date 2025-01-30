@@ -259,7 +259,7 @@ import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
 import { AssetUrlPipe } from &#x27;@hra-ui/cdk/app-href&#x27;;
-import { AppsCardComponent } from &#x27;@hra-ui/design-system/apps-card&#x27;;
+import { AppNavButtonComponent } from &#x27;@hra-ui/design-system/buttons/app-nav-button&#x27;;
 import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from &#x27;@hra-ui/design-system/nav-header-buttons&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
@@ -297,7 +297,7 @@ export interface CardData {
     NavHeaderButtonsComponent,
     IconButtonSizeDirective,
     MatSidenavModule,
-    AppsCardComponent,
+    AppNavButtonComponent,
     ScrollingModule,
     AssetUrlPipe,
   ],
@@ -313,7 +313,7 @@ export class NavHeaderComponent {
   /** Current app */
   readonly app &#x3D; input.required&lt;string&gt;();
   /** Name of the app */
-  readonly title &#x3D; input.required&lt;string&gt;();
+  readonly tagline &#x3D; input.required&lt;string&gt;();
   /** Status of the app */
   readonly status &#x3D; input&lt;SoftwareStatus&gt;();
   /** Data to display in sidenav */

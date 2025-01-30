@@ -365,7 +365,7 @@
 import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from &#x27;@angular/material/snack-bar&#x27;;
-import { ButtonModule } from &#x27;@hra-ui/design-system/button&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { IconButtonSizeDirective } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 
 /** Type for button position */
@@ -387,7 +387,7 @@ export interface SnackbarData {
 @Component({
   selector: &#x27;hra-snackbar&#x27;,
   standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonModule, IconButtonSizeDirective, MatIconModule],
+  imports: [CommonModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, MatIconModule],
   templateUrl: &#x27;./snackbar.component.html&#x27;,
   styleUrl: &#x27;./snackbar.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
