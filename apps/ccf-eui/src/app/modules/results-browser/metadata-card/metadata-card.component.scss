@@ -1,0 +1,40 @@
+:host {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto min-content;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'header menu-icon'
+    'content content';
+
+  background: var(--sys-on-primary);
+  box-shadow: 0px 5px 16px 0px rgb(from var(--sys-shadow) r g b / 24%);
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font: var(--sys-label-small);
+  letter-spacing: var(--sys-label-small-tracking);
+
+  .header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    color: var(--sys-secondary);
+  }
+
+  .label,
+  .label2,
+  .content {
+    color: var(--sys-primary);
+  }
+
+  .menu-icon {
+    grid-area: menu-icon;
+  }
+
+  .content {
+    grid-area: content;
+  }
+}

@@ -18,7 +18,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
-import { ResultsBrowserModule } from './modules/results-browser/results-browser/results-browser.module';
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
@@ -26,6 +25,7 @@ import { RunSpatialSearchModule } from './shared/components/run-spatial-search/r
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
 import { BackBarComponent } from '@hra-ui/design-system/back-bar';
+import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 
 @NgModule({
   imports: [
@@ -37,7 +37,7 @@ import { BackBarComponent } from '@hra-ui/design-system/back-bar';
     OntologyExplorationModule,
     MatIconModule,
     DualSliderModule,
-    ResultsBrowserModule,
+    ResultsBrowserComponent,
     SpinnerOverlayModule,
     BodyUiModule,
     OrganSelectorModule,

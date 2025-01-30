@@ -90,8 +90,6 @@ export class AppComponent implements OnInit {
 
   biomarkerSelectionLabel = 'biomarker';
 
-  selectionLabel = 'body | cell | biomarker';
-
   selectedtoggleOptions: string[] = [];
 
   /**
@@ -265,12 +263,6 @@ export class AppComponent implements OnInit {
         this.data.updateFilter({ biomarkerTerms: ontologySelection.map((selection) => selection.id) });
         this.biomarkerSelectionLabel = this.createSelectionLabel(ontologySelection);
       }
-
-      this.selectionLabel = [
-        this.ontologySelectionLabel || 'body',
-        this.cellTypeSelectionLabel || 'cell',
-        this.biomarkerSelectionLabel || 'biomarker',
-      ].join(' | ');
 
       if (ontologySelection[0] && ontologySelection[0].label === 'body') {
         this.resetView();

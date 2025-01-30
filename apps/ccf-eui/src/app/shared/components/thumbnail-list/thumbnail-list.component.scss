@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  .slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .thumbnail {
+    cursor: pointer;
+    width: 3.75rem;
+    height: 2.5rem;
+  }
+}
