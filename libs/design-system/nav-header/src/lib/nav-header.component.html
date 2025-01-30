@@ -14,7 +14,7 @@
           @for (card of item.cards; track card) {
             <hra-apps-card
               [icon]="card.icon"
-              [title]="card.name"
+              [tagline]="card.name"
               [description]="card.description"
               [link]="card.link | assetUrl"
             ></hra-apps-card>
@@ -30,7 +30,7 @@
         [variant]="variant()"
         [appLink]="link()"
         [app]="app()"
-        [appTitle]="title()"
+        [appTitle]="tagline()"
         [appStatus]="status()"
       ></hra-nav-header-buttons>
       <div style="flex-grow: 1"></div>

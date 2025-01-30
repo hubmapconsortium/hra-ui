@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
@@ -44,7 +44,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     MatCheckboxModule,
     MatSortModule,
 
-    ButtonModule,
+    ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     IconButtonSizeDirective,

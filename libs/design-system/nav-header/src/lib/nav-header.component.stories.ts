@@ -7,19 +7,19 @@ import { NavHeaderComponent } from './nav-header.component';
 
 const apps: Record<string, Story['args']> = {
   'Cell Distance Explorer': {
-    title: 'Cell Distance Explorer',
+    tagline: 'Cell Distance Explorer',
     app: 'cde',
     link: 'https://apps.humanatlas.io/cde/',
     variant: 'basic',
   },
   'FTU Explorer': {
-    title: 'FTU Explorer',
+    tagline: 'FTU Explorer',
     app: 'ftu',
     link: 'https://apps.humanatlas.io/ftu-explorer/',
     variant: 'basic',
   },
   Dashboard: {
-    title: 'Dashboard',
+    tagline: 'Dashboard',
     app: 'dashboards',
     link: 'https://apps.humanatlas.io/dashboard-ui/',
     variant: 'sidenav',
@@ -178,7 +178,7 @@ export const Primary: Story = {
     app: 'cde',
     variant: 'basic',
     link: 'https://apps.humanatlas.io/cde/',
-    title: 'Cell Distance Explorer',
+    tagline: 'Cell Distance Explorer',
     status: undefined,
     navigationCategories: sidenavData,
   },

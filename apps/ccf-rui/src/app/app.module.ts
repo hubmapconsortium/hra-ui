@@ -8,8 +8,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { BackBarComponent } from '@hra-ui/design-system/back-bar';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -44,9 +44,9 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     MatMenuModule,
     IconButtonSizeDirective,
     MatButtonToggleModule,
-    ButtonModule,
+    ButtonsModule,
     MatDividerModule,
-    BackBarComponent,
+    BackButtonBarComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [

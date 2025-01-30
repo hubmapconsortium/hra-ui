@@ -10,7 +10,7 @@ describe('ExpansionPanelComponent', () => {
     return render(ExpansionPanelComponent, {
       ...options,
       inputs: {
-        title: 'Test Title',
+        tagline: 'Test Title',
         ...options?.inputs,
       },
       providers: [
