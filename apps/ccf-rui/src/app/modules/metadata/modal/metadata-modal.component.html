@@ -32,9 +32,9 @@
       <hra-workflow-card class="metadata" tagline="Add Metadata" step="2">
         <hra-workflow-card-extra>
           <a
-            mat-flat-button
+            mat-button
             hraSecondaryButton
-            hraCallToActionButton
+            hraCtaButton
             class="orcid-help"
             href="https://orcid.org/register"
             target="_blank"
@@ -55,13 +55,7 @@
         }
 
         @if (config.mode === 'create') {
-          <button
-            mat-flat-button
-            hraPrimaryButton
-            hraCallToActionButton
-            type="submit"
-            [disabled]="metadataForm.invalid"
-          >
+          <button mat-button hraPrimaryButton hraCtaButton type="submit" [disabled]="metadataForm.invalid">
             Register
             <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
           </button>

@@ -1,6 +1,7 @@
 @use 'light-theme';
 @use 'theming';
+@use 'utils';
 
-html {
+@include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 }
