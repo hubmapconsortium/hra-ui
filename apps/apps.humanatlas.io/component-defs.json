@@ -1,0 +1,65 @@
+[
+  {
+    "id": "rui",
+    "title": "Registration User Interface (RUI)",
+    "description": "Spatially register human tissue blocks to a 3D organ model using the RUI.",
+    "previewImage": "assets/ui-images/rui.png",
+    "embedAs": "overlay"
+  },
+  {
+    "id": "eui",
+    "title": "Exploration User Interface (EUI)",
+    "description": "View 3D organ models, spatially registered tissue blocks, and cell-type populations.",
+    "previewImage": "assets/ui-images/eui.png",
+    "embedAs": "overlay"
+  },
+  {
+    "id": "eui-organ-information",
+    "title": "EUI > Organ Information",
+    "description": "View data registered to the HRA for a specific organ.",
+    "previewImage": "assets/ui-images/eui-organ-information.png",
+    "embedAs": "overlay"
+  },
+  {
+    "id": "eui-3d-organ-viewer",
+    "title": "EUI > 3D Organ Viewer",
+    "description": "Interact with a 3D scene constructed from extraction sites registered to the HRA.",
+    "previewImage": "assets/ui-images/eui-3d-organ-viewer.png",
+    "embedAs": "inline"
+  },
+  {
+    "id": "asctb-reporter",
+    "title": "ASCT+B Reporter",
+    "description": "Explore and compare ASCT+B Tables and construct OMAPs with this visualization tool.",
+    "previewImage": "assets/ui-images/asctb_reporter.png",
+    "embedAs": "external"
+  },
+  {
+    "id": "ftu-ui",
+    "title": "Functional Tissue Unit (FTU) Explorer",
+    "description": "Explore FTUs by cell types and biomarkers with the full application.",
+    "previewImage": "assets/ui-images/ftu.png",
+    "embedAs": "overlay"
+  },
+  {
+    "id": "ftu-ui-small",
+    "title": "FTU Explorer > Small Web Component",
+    "description": "Analyze FTUs by cell types and biomarkers with a small web component.",
+    "previewImage": "assets/ui-images/ftu-small-web-component.png",
+    "embedAs": "overlay"
+  },
+  {
+    "id": "ftu-medical-illustration",
+    "title": "FTU Explorer > Medical Illustration Viewer",
+    "description": "Interact with FTU medical illustrations with a small web component.",
+    "previewImage": "assets/ui-images/ftu-medical-illustration-viewer.png",
+    "embedAs": "inline"
+  },
+  {
+    "id": "hra-api",
+    "title": "HRA API",
+    "description": "Query and interact with the Human Reference Atlas using APIs.",
+    "previewImage": "assets/ui-images/hra-api.png",
+    "embedAs": "external"
+  }
+]

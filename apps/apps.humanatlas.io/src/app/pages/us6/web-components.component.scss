@@ -2,18 +2,19 @@
   display: block;
 
   .heading-container {
-    margin: 10rem auto 0 auto;
-    max-width: 48.75rem;
+    margin: 160px auto 0 auto;
+    max-width: 780px;
   }
 
   .show-button {
-    margin-top: 2rem;
+    display: flex;
+    margin-top: 10.44px;
   }
 
   .title-logo-div {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 20px;
 
     h1 {
       color: var(--sys-on-background);
@@ -26,7 +27,7 @@
   .description {
     font: var(--sys-body-large);
     color: var(--sys-on-secondary-container);
-    padding-top: 3.5rem;
+    padding-top: 56px;
     margin: 0;
     letter-spacing: var(--sys-body-large-tracking);
   }
@@ -40,9 +41,36 @@
     background-color: var(--sys-secondary-container);
 
     p {
-      margin: 0;
+      margin: 0 0 1rem 0;
+      color: var(--sys-on-background);
       font: var(--sys-title-medium);
       letter-spacing: var(--sys-title-medium-tracking);
+    }
+
+    .organ-select {
+      min-width: 20.5rem;
+    }
+  }
+
+  .component-card {
+    max-width: 24.5rem;
+  }
+
+  .card-collection {
+    display: flex;
+    justify-content: center;
+    padding: 6rem 2.75rem 0 2.75rem;
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 82rem;
+      gap: 4rem;
+    }
+
+    .component-card {
+      flex: 1 1 calc(33.333% - 4rem);
+      max-width: 24.5rem;
     }
   }
 }

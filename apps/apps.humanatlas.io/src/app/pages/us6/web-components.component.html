@@ -13,5 +13,24 @@
 
 <div class="card-container">
   <p>Select organ:</p>
+  <mat-form-field appearance="fill" class="organ-select">
+    <mat-label>Organ</mat-label>
+    <mat-select [(value)]="selectedOrgan">
+      <mat-option *ngFor="let organ of organs" [value]="organ.label">{{ organ.label }}</mat-option>
+    </mat-select>
+  </mat-form-field>
   <button class="show-button" mat-flat-button hraPrimaryButton hraButtonSize="medium">Show</button>
+</div>
+
+<div class="card-collection" *ngIf="selectedOrgan">
+  <div class="cards">
+    <hra-web-component-card
+      *ngFor="let component of components"
+      class="component-card"
+      [imageUrl]="component.previewImage"
+      [productTitle]="component.title"
+      [description]="component.description"
+    >
+    </hra-web-component-card>
+  </div>
 </div>
