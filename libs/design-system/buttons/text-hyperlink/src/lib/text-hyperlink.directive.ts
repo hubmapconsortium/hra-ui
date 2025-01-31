@@ -1,5 +1,6 @@
 import { Directive } from '@angular/core';
 
+/** Applies hyperlink styles when placed on an <a> tag */
 @Directive({
   selector: 'a[hraHyperlink]',
   standalone: true,
