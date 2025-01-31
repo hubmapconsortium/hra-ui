@@ -11,3 +11,9 @@
   outline: $width $style $color;
   outline-offset: calc(-1 * $width);
 }
+
+@mixin global-styles() {
+  .hra-app {
+    @content;
+  }
+}

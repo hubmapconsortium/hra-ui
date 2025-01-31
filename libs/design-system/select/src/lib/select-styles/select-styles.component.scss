@@ -1,76 +1,80 @@
-mat-form-field.mat-mdc-form-field-type-mat-select {
-  --mdc-filled-text-field-container-color: var(--sys-surface-container);
-  --mat-select-focused-arrow-color: var(--sys-tertiary);
+@use '../../../../styles/utils';
 
-  --mat-form-field-container-height: 3rem;
-  --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
-  --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
+@include utils.global-styles() {
+  mat-form-field.mat-mdc-form-field-type-mat-select {
+    --mdc-filled-text-field-container-color: var(--sys-surface-container);
+    --mat-select-focused-arrow-color: var(--sys-tertiary);
 
-  mat-label {
-    font: var(--sys-label-small);
-    letter-spacing: var(--sys-label-small-tracking);
-    color: var(--sys-primary-fixed);
-  }
+    --mat-form-field-container-height: 3rem;
+    --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
 
-  &.mat-focused {
     mat-label {
-      color: var(--sys-tertiary);
+      font: var(--sys-label-small);
+      letter-spacing: var(--sys-label-small-tracking);
+      color: var(--sys-primary-fixed);
     }
 
-    .mdc-line-ripple::after {
-      --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);
+    &.mat-focused {
+      mat-label {
+        color: var(--sys-tertiary);
+      }
+
+      .mdc-line-ripple::after {
+        --mdc-filled-text-field-focus-active-indicator-color: var(--sys-tertiary);
+      }
+
+      mat-select {
+        .mat-mdc-select-value-text .mat-mdc-select-min-line {
+          color: var(--sys-primary-fixed);
+          letter-spacing: var(--sys-label-medium-tracking);
+        }
+      }
     }
 
     mat-select {
       .mat-mdc-select-value-text .mat-mdc-select-min-line {
-        color: var(--sys-primary-fixed);
+        font: var(--sys-label-medium);
         letter-spacing: var(--sys-label-medium-tracking);
+      }
+    }
+
+    &.mat-form-field-disabled {
+      mat-label {
+        color: var(--mdc-filled-text-field-disabled-label-text-color);
       }
     }
   }
 
-  mat-select {
-    .mat-mdc-select-value-text .mat-mdc-select-min-line {
-      font: var(--sys-label-medium);
-      letter-spacing: var(--sys-label-medium-tracking);
-    }
-  }
+  .options-container {
+    --mat-select-panel-background-color: var(--sys-on-primary);
+    --mat-option-selected-state-label-text-color: var(--sys-secondary);
+    --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
+    --mat-select-container-elevation-shadow: 0px 5px 4px 0px rgb(from var(--sys-shadow) r g b / 0.16);
+    --mat-option-label-text-color: var(--sys-primary-container);
+    --mat-option-focus-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
 
-  &.mat-form-field-disabled {
-    mat-label {
-      color: var(--mdc-filled-text-field-disabled-label-text-color);
-    }
-  }
-}
+    mat-option.mat-mdc-option {
+      font: var(--sys-label-large);
+      margin-bottom: 0.5px;
+      min-height: 3.5rem;
 
-.options-container {
-  --mat-select-panel-background-color: var(--sys-on-primary);
-  --mat-option-selected-state-label-text-color: var(--sys-secondary);
-  --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
-  --mat-select-container-elevation-shadow: 0px 5px 4px 0px rgb(from var(--sys-shadow) r g b / 0.16);
-  --mat-option-label-text-color: var(--sys-primary-container);
-  --mat-option-focus-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 4%, transparent);
+      &:active {
+        --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);
+      }
 
-  mat-option.mat-mdc-option {
-    font: var(--sys-label-large);
-    margin-bottom: 0.5px;
-    min-height: 3.5rem;
+      &:focus-visible {
+        outline: 2px solid var(--sys-tertiary);
+      }
 
-    &:active {
-      --mat-option-hover-state-layer-color: color-mix(in srgb, var(--sys-on-surface) 8%, transparent);
-    }
+      &.mdc-list-item--selected.mat-mdc-option-active {
+        --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);
+        background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);
+      }
 
-    &:focus-visible {
-      outline: 2px solid var(--sys-tertiary);
-    }
-
-    &.mdc-list-item--selected.mat-mdc-option-active {
-      --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--sys-on-tertiary-container);
-      background-color: color-mix(in srgb, var(--sys-on-tertiary-container) 8%, transparent);
-    }
-
-    &.mat-mdc-option-active {
-      outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);
+      &.mat-mdc-option-active {
+        outline: 1px solid color-mix(in srgb, var(--sys-on-surface) 32%, transparent);
+      }
     }
   }
 }
