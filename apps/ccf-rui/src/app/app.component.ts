@@ -49,6 +49,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    class: 'hra-app',
     '[class.embedded]': 'embedded()',
     '(document:mousedown)': 'handleClick($event.target)',
   },

@@ -1,7 +1,7 @@
 @for (card of cardData(); track card.label) {
   <a [routerLink]="card.route" class="visual-card cta-flat" rel="noopener noreferrer">
     <img [attr.src]="card.image" [alt]="card.alt" />
-    <button class="label" mat-flat-button hraCallToActionButton hraSecondaryButton>
+    <button class="label" mat-button hraCtaButton hraSecondaryButton>
       {{ card.label }}
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
