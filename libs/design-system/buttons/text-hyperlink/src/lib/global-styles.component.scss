@@ -1,7 +1,11 @@
 @use '../../../../styles/utils';
 
 @include utils.global-styles() {
-  a:not(.mdc-button) {
+  a:not(.hra-text-hyperlink) {
+    text-decoration: none;
+  }
+
+  a.hra-text-hyperlink {
     &:link {
       color: var(--sys-on-tertiary-fixed);
       text-decoration: none;
