@@ -1,33 +1,35 @@
 @use '../../../../styles/utils';
 
 @include utils.global-styles() {
-  a:link {
-    color: var(--sys-on-tertiary-fixed);
-    text-decoration: none;
-  }
+  a:not(.mdc-button) {
+    &:link {
+      color: var(--sys-on-tertiary-fixed);
+      text-decoration: none;
+    }
 
-  a:visited {
-    color: var(--sys-tertiary-fixed);
-  }
+    &:visited {
+      color: var(--sys-tertiary-fixed);
+    }
 
-  a:focus-visible,
-  a:hover,
-  a:active {
-    text-decoration: underline solid currentColor 0.0625rem;
-    text-underline-offset: 0.125rem;
-  }
+    &:focus-visible,
+    &:hover,
+    &:active {
+      text-decoration: underline solid currentColor 0.0625rem;
+      text-underline-offset: 0.125rem;
+    }
 
-  a:focus-visible {
-    color: var(--sys-secondary);
-    outline: 0.125rem solid var(--sys-tertiary);
-    border-radius: 0.25rem;
-  }
+    &:focus-visible {
+      color: var(--sys-secondary);
+      outline: 0.125rem solid var(--sys-tertiary);
+      border-radius: 0.25rem;
+    }
 
-  a:hover {
-    color: var(--sys-on-tertiary-fixed);
-  }
+    &:hover {
+      color: var(--sys-on-tertiary-fixed);
+    }
 
-  a:active {
-    color: var(--sys-on-tertiary-fixed-variant);
+    &:active {
+      color: var(--sys-on-tertiary-fixed-variant);
+    }
   }
 }
