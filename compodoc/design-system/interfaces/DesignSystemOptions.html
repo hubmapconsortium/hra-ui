@@ -265,11 +265,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpFeature, HttpFeatureKind, provideHttpClient } from &#x27;@angular/common/http&#x27;;
-import { EnvironmentProviders, makeEnvironmentProviders } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayContainer } from &#x27;@angular/cdk/overlay&#x27;;
+import { HttpFeature, HttpFeatureKind, provideHttpClient } from &#x27;@angular/common/http&#x27;;
+import { APP_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders } from &#x27;@angular/core&#x27;;
 import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 import { provideIcons } from &#x27;@hra-ui/cdk/icons&#x27;;
 import { provideButtonToggle } from &#x27;@hra-ui/design-system/button-toggle&#x27;;
+import { provideButtons } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { provideCheckboxes } from &#x27;@hra-ui/design-system/checkbox&#x27;;
 import { provideIconButtons } from &#x27;@hra-ui/design-system/icon-button&#x27;;
 import { provideInput } from &#x27;@hra-ui/design-system/input&#x27;;
@@ -278,7 +280,6 @@ import { provideScrolling, ScrollingOptions } from &#x27;@hra-ui/design-system/s
 import { provideSelect } from &#x27;@hra-ui/design-system/select&#x27;;
 import { provideTable } from &#x27;@hra-ui/design-system/table&#x27;;
 import { provideTrees } from &#x27;@hra-ui/design-system/tree&#x27;;
-import { provideButtons } from &#x27;@hra-ui/design-system/buttons&#x27;;
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -291,6 +292,16 @@ export interface DesignSystemOptions {
 /** Get the providers shared between prod and testing */
 export function provideDesignSystemCommon(options?: DesignSystemOptions) {
   return [
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: () &#x3D;&gt; {
+        const overlayContainer &#x3D; inject(OverlayContainer);
+        return () &#x3D;&gt; {
+          overlayContainer.getContainerElement().classList.add(&#x27;hra-app&#x27;);
+        };
+      },
+    },
     provideIcons({
       fontIcons: {
         defaultClasses: [&#x27;material-symbols-rounded&#x27;],

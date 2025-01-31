@@ -219,38 +219,42 @@ export class IconButtonStylesComponent {}
                 <p class="comment">
                     <code>./icon-button-styles.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">button[mat-icon-button],
-a[mat-icon-button] {
-  --mat-icon-button-hover-state-layer-opacity: 0.08;
-  --mat-icon-button-pressed-state-layer-opacity: 0.12;
-  --mat-icon-button-focus-state-layer-opacity: 0;
-  --mdc-icon-button-icon-color: var(--sys-secondary);
-  --mat-icon-button-state-layer-color: var(--sys-secondary);
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
 
-  mat-icon {
-    height: var(--mdc-icon-button-icon-size);
-    width: var(--mdc-icon-button-icon-size);
-    font-size: var(--mdc-icon-button-icon-size);
-  }
-
-  &amp;.icon-button-variant-light {
-    --mdc-icon-button-icon-color: var(--sys-on-primary);
-    --mat-icon-button-state-layer-color: var(--sys-on-primary);
-  }
-
-  &amp;.icon-button-variant-dark {
+@include utils.global-styles() {
+  button[mat-icon-button],
+  a[mat-icon-button] {
+    --mat-icon-button-hover-state-layer-opacity: 0.08;
+    --mat-icon-button-pressed-state-layer-opacity: 0.12;
+    --mat-icon-button-focus-state-layer-opacity: 0;
     --mdc-icon-button-icon-color: var(--sys-secondary);
     --mat-icon-button-state-layer-color: var(--sys-secondary);
-  }
 
-  &amp;.icon-button-variant-color {
-    --mdc-icon-button-icon-color: var(--sys-on-tertiary-fixed);
-    --mat-icon-button-state-layer-color: var(--sys-on-tertiary-fixed);
-  }
+    mat-icon {
+      height: var(--mdc-icon-button-icon-size);
+      width: var(--mdc-icon-button-icon-size);
+      font-size: var(--mdc-icon-button-icon-size);
+    }
 
-  &amp;:focus-visible {
-    --mdc-icon-button-icon-color: var(--sys-secondary);
-    outline: 2px solid var(--sys-tertiary);
+    &amp;.icon-button-variant-light {
+      --mdc-icon-button-icon-color: var(--sys-on-primary);
+      --mat-icon-button-state-layer-color: var(--sys-on-primary);
+    }
+
+    &amp;.icon-button-variant-dark {
+      --mdc-icon-button-icon-color: var(--sys-secondary);
+      --mat-icon-button-state-layer-color: var(--sys-secondary);
+    }
+
+    &amp;.icon-button-variant-color {
+      --mdc-icon-button-icon-color: var(--sys-on-tertiary-fixed);
+      --mat-icon-button-state-layer-color: var(--sys-on-tertiary-fixed);
+    }
+
+    &amp;:focus-visible {
+      --mdc-icon-button-icon-color: var(--sys-secondary);
+      outline: 2px solid var(--sys-tertiary);
+    }
   }
 }
 </code></pre>
