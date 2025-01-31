@@ -220,7 +220,37 @@
       <span>Test</span>
     </mat-menu>
   </hra-expansion-panel-actions>
-  <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+  <hra-expansion-panel-header-content>
+    <form>
+      <mat-form-field class="organ-form-field" subscriptSizing="dynamic">
+        <mat-label>{{ organs().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
+        <input
+          name="currentOrganInput"
+          [placeholder]="organs().length > 0 ? searchTextField() : ''"
+          #organInput
+          matInput
+          [(ngModel)]="currentOrganInput"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-chip-grid #chipGrid aria-label="Organ selection">
+            @for (organ of organs(); track organ) {
+              <mat-chip-row (removed)="remove(organ)">
+                {{ organ }}
+                <button matChipRemove [attr.aria-label]="'remove ' + organ">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+          </mat-chip-grid>
+          @for (organ of filteredOrgans(); track organ) {
+            <mat-option [value]="organ.name">{{ organ.name }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </hra-expansion-panel-header-content>
 </hra-expansion-panel>
 
 <div class="left-panel">
@@ -318,7 +348,6 @@
     (nodeHoverStart)="scene.sceneNodeHovered($event)"
     (nodeHoverStop)="scene.sceneNodeUnhover()"
     [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
-    [class.expanded-stage]="!organListVisible"
   >
   </ccf-body-ui>
 </div>

@@ -315,9 +315,13 @@
     }
   }
 
+  .organ-form-field {
+    width: 100%;
+  }
+
   .vis-panel {
     grid-area: vis-panel;
-    margin: 1.25rem 1rem;
+    margin: 0 1rem;
   }
 
   .left-panel {
@@ -373,4 +377,9 @@
   .content {
     grid-area: content;
   }
+}
+
+mat-chip-grid {
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
 }
