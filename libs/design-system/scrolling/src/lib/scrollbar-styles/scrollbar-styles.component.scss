@@ -1,4 +1,6 @@
-:root {
+@use '../../../../styles/utils';
+
+@include utils.global-styles() {
   --scrollbar-thumb-color: rgb(from var(--sys-primary) r g b / 0.72);
   --scrollbar-border-radius: 1rem;
   --scrollbar-thickness: 8;
