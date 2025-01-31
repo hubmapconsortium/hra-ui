@@ -217,7 +217,9 @@ export class ScrollbarStylesComponent {}
                 <p class="comment">
                     <code>./scrollbar-styles.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">:root {
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
+
+@include utils.global-styles() {
   --scrollbar-thumb-color: rgb(from var(--sys-primary) r g b / 0.72);
   --scrollbar-border-radius: 1rem;
   --scrollbar-thickness: 8;

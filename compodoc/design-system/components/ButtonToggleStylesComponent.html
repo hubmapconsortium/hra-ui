@@ -219,49 +219,53 @@ export class ButtonToggleStylesComponent {}
                 <p class="comment">
                     <code>./button-toggle-styles.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">mat-button-toggle-group {
-  --mat-standard-button-toggle-shape: 0.25rem;
-  --mat-standard-button-toggle-divider-color: var(--sys-primary);
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
 
-  &amp;.mat-button-toggle-group-appearance-standard {
-    border: unset;
-    outline: solid 1px var(--mat-standard-button-toggle-divider-color);
-  }
+@include utils.global-styles() {
+  mat-button-toggle-group {
+    --mat-standard-button-toggle-shape: 0.25rem;
+    --mat-standard-button-toggle-divider-color: var(--sys-primary);
 
-  .mat-button-toggle {
-    width: 100%;
-    font: inherit;
-  }
+    &amp;.mat-button-toggle-group-appearance-standard {
+      border: unset;
+      outline: solid 1px var(--mat-standard-button-toggle-divider-color);
+    }
 
-  .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
-    padding: 0.5rem 1rem;
-  }
+    .mat-button-toggle {
+      width: 100%;
+      font: inherit;
+    }
 
-  .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
-    padding: 0.5rem 1rem;
-  }
-
-  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-    padding: 0;
-  }
-
-  &amp;[hraButtonToggleSize&#x3D;&#x27;medium&#x27;] {
     .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
-      padding: 0.3438rem 0.5rem;
+      padding: 0.5rem 1rem;
     }
 
     .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
-      padding: 0.3438rem 0.5rem;
-    }
-  }
-
-  &amp;[hraButtonToggleSize&#x3D;&#x27;small&#x27;] {
-    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
-      padding: 0.3125rem 0.5rem;
+      padding: 0.5rem 1rem;
     }
 
-    .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
-      padding: 0.3125rem 0.5rem;
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+      padding: 0;
+    }
+
+    &amp;[hraButtonToggleSize&#x3D;&#x27;medium&#x27;] {
+      .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
+        padding: 0.3438rem 0.5rem;
+      }
+
+      .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
+        padding: 0.3438rem 0.5rem;
+      }
+    }
+
+    &amp;[hraButtonToggleSize&#x3D;&#x27;small&#x27;] {
+      .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {
+        padding: 0.3125rem 0.5rem;
+      }
+
+      .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {
+        padding: 0.3125rem 0.5rem;
+      }
     }
   }
 }

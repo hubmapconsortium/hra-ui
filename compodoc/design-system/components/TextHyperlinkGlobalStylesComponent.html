@@ -217,34 +217,40 @@ export class TextHyperlinkGlobalStylesComponent {}
                 <p class="comment">
                     <code>./global-styles.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">a:link {
-  color: var(--sys-on-tertiary-fixed);
-  text-decoration: none;
-}
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
 
-a:visited {
-  color: var(--sys-tertiary-fixed);
-}
+@include utils.global-styles() {
+  a:not(.mdc-button) {
+    &amp;:link {
+      color: var(--sys-on-tertiary-fixed);
+      text-decoration: none;
+    }
 
-a:focus-visible,
-a:hover,
-a:active {
-  text-decoration: underline solid currentColor 0.0625rem;
-  text-underline-offset: 0.125rem;
-}
+    &amp;:visited {
+      color: var(--sys-tertiary-fixed);
+    }
 
-a:focus-visible {
-  color: var(--sys-secondary);
-  outline: 0.125rem solid var(--sys-tertiary);
-  border-radius: 0.25rem;
-}
+    &amp;:focus-visible,
+    &amp;:hover,
+    &amp;:active {
+      text-decoration: underline solid currentColor 0.0625rem;
+      text-underline-offset: 0.125rem;
+    }
 
-a:hover {
-  color: var(--sys-on-tertiary-fixed);
-}
+    &amp;:focus-visible {
+      color: var(--sys-secondary);
+      outline: 0.125rem solid var(--sys-tertiary);
+      border-radius: 0.25rem;
+    }
 
-a:active {
-  color: var(--sys-on-tertiary-fixed-variant);
+    &amp;:hover {
+      color: var(--sys-on-tertiary-fixed);
+    }
+
+    &amp;:active {
+      color: var(--sys-on-tertiary-fixed-variant);
+    }
+  }
 }
 </code></pre>
     </div>

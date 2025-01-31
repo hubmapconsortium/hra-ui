@@ -219,55 +219,59 @@ export class TreeStylesComponent {}
                 <p class="comment">
                     <code>./tree-styles.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">mat-tree {
-  --mat-tree-container-background-color: var(--sys-on-primary);
-}
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
 
-mat-tree-node {
-  --mat-tree-node-text-font: var(--sys-label-medium-font);
-  --mat-tree-node-text-weight: var(--sys-label-medium-weight);
-  --mat-tree-node-text-color: var(--sys-secondary);
-
-  letter-spacing: var(--sys-label-medium-tracking);
-  cursor: pointer;
-  user-select: none;
-  outline: none;
-
-  &amp;:focus-visible .node-content {
-    border-color: var(--sys-tertiary);
-  }
-}
-
-.node-content {
-  button {
-    --mat-icon-button-hover-state-layer-opacity: 0;
-    --mat-icon-button-pressed-state-layer-opacity: 0;
+@include utils.global-styles() {
+  mat-tree {
+    --mat-tree-container-background-color: var(--sys-on-primary);
   }
 
-  display: flex;
-  height: var(--mat-tree-node-min-height);
-  line-height: var(--mat-tree-node-min-height);
-  border-radius: 0.25rem;
-  width: 100%;
-  border-width: 2px;
-  border-style: solid;
-  border-color: transparent;
+  mat-tree-node {
+    --mat-tree-node-text-font: var(--sys-label-medium-font);
+    --mat-tree-node-text-weight: var(--sys-label-medium-weight);
+    --mat-tree-node-text-color: var(--sys-secondary);
 
-  &amp;.leaf {
-    padding-left: 0.5rem;
+    letter-spacing: var(--sys-label-medium-tracking);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+
+    &amp;:focus-visible .node-content {
+      border-color: var(--sys-tertiary);
+    }
   }
 
-  &amp;:hover {
-    background: rgb(from var(--sys-secondary) r g b / 0.08);
-  }
+  .node-content {
+    button {
+      --mat-icon-button-hover-state-layer-opacity: 0;
+      --mat-icon-button-pressed-state-layer-opacity: 0;
+    }
 
-  &amp;:active {
-    background: rgb(from var(--sys-secondary) r g b / 0.16);
+    display: flex;
+    height: var(--mat-tree-node-min-height);
+    line-height: var(--mat-tree-node-min-height);
+    border-radius: 0.25rem;
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
     border-color: transparent;
-  }
 
-  &amp;.selected {
-    background: rgb(from var(--sys-tertiary) r g b / 0.2);
+    &amp;.leaf {
+      padding-left: 0.5rem;
+    }
+
+    &amp;:hover {
+      background: rgb(from var(--sys-secondary) r g b / 0.08);
+    }
+
+    &amp;:active {
+      background: rgb(from var(--sys-secondary) r g b / 0.16);
+      border-color: transparent;
+    }
+
+    &amp;.selected {
+      background: rgb(from var(--sys-tertiary) r g b / 0.2);
+    }
   }
 }
 </code></pre>
