@@ -14,10 +14,10 @@ describe('NavHeaderComponent', () => {
   beforeEach(async () => {
     await render(NavHeaderComponent, {
       providers: globalProviders,
-      componentInputs: {
+      inputs: {
         link: link,
         app: app,
-        title: title,
+        tagline: title,
         status: 'Beta',
         navigationCategories: [],
       },

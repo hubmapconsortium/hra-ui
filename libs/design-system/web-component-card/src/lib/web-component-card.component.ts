@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Component representing a web component card.
@@ -10,7 +10,7 @@ import { ButtonModule } from '@hra-ui/design-system/button';
 @Component({
   selector: 'hra-web-component-card',
   standalone: true,
-  imports: [ButtonModule, CommonModule],
+  imports: [ButtonsModule, CommonModule],
   templateUrl: './web-component-card.component.html',
   styleUrl: './web-component-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

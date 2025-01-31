@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgxMaskDirective } from 'ngx-mask';
 import { removeOrcidBaseUrl } from '../../../shared/utils/orcid';
 
@@ -17,7 +17,7 @@ export interface AuthorFormControls {
 @Component({
   selector: 'ccf-metadata-author-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
   templateUrl: './metadata-author-form.component.html',
   styleUrls: ['./metadata-author-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

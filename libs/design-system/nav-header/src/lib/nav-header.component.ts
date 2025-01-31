@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
-import { AppsCardComponent } from '@hra-ui/design-system/apps-card';
+import { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
@@ -42,7 +42,7 @@ export interface CardData {
     NavHeaderButtonsComponent,
     IconButtonSizeDirective,
     MatSidenavModule,
-    AppsCardComponent,
+    AppNavButtonComponent,
     ScrollingModule,
     AssetUrlPipe,
   ],
@@ -58,7 +58,7 @@ export class NavHeaderComponent {
   /** Current app */
   readonly app = input.required<string>();
   /** Name of the app */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
   /** Status of the app */
   readonly status = input<SoftwareStatus>();
   /** Data to display in sidenav */
