@@ -59,13 +59,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ButtonsModule.html" data-type="entity-link" >ButtonsModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-ButtonsModule-feb63ced611e787da41ff7edc9b3f32a4f3712a40800bb8719976600e89e8b8cca70a341bc610cdaa22b1751ecdff8bf359b5f0bb4e5abfd4dad4c77e90d41a7"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-feb63ced611e787da41ff7edc9b3f32a4f3712a40800bb8719976600e89e8b8cca70a341bc610cdaa22b1751ecdff8bf359b5f0bb4e5abfd4dad4c77e90d41a7"' }>
+                                        'data-bs-target="#directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-feb63ced611e787da41ff7edc9b3f32a4f3712a40800bb8719976600e89e8b8cca70a341bc610cdaa22b1751ecdff8bf359b5f0bb4e5abfd4dad4c77e90d41a7"' :
-                                        'id="xs-directives-links-module-ButtonsModule-feb63ced611e787da41ff7edc9b3f32a4f3712a40800bb8719976600e89e8b8cca70a341bc610cdaa22b1751ecdff8bf359b5f0bb4e5abfd4dad4c77e90d41a7"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' :
+                                        'id="xs-directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' }>
                                         <li class="link">
                                             <a href="directives/ButtonSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonSizeDirective</a>
                                         </li>
@@ -80,6 +80,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                         <li class="link">
                                             <a href="directives/SecondaryButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SecondaryButtonVariantDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/TextHyperlinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TextHyperlinkDirective</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -329,6 +332,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/SoftwareStatusSizeDirective.html" data-type="entity-link" >SoftwareStatusSizeDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/TextHyperlinkDirective.html" data-type="entity-link" >TextHyperlinkDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/ToggleButtonSizeDirective.html" data-type="entity-link" >ToggleButtonSizeDirective</a>

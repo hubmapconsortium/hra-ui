@@ -1411,6 +1411,28 @@
             "extends": []
         },
         {
+            "name": "TextHyperlinkDirective",
+            "id": "directive-TextHyperlinkDirective-ec5e5b7fc9c3e189c77815ce30aaafdeada32321e386a649abb3fa0be26d51f822a0cc8d48bbbf7c1f9f650f77d71964603802e5a83a2ffeb079b29b8aae111c",
+            "file": "buttons/text-hyperlink/src/lib/text-hyperlink.directive.ts",
+            "type": "directive",
+            "description": "<p>Applies hyperlink styles when placed on an <a> tag</p>\n",
+            "rawdescription": "\nApplies hyperlink styles when placed on an <a> tag",
+            "sourceCode": "import { Directive } from '@angular/core';\n\n/** Applies hyperlink styles when placed on an <a> tag */\n@Directive({\n  selector: 'a[hraHyperlink]',\n  standalone: true,\n  host: {\n    class: 'hra-text-hyperlink',\n  },\n})\nexport class TextHyperlinkDirective {}\n",
+            "selector": "a[hraHyperlink]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "extends": []
+        },
+        {
             "name": "ToggleButtonSizeDirective",
             "id": "directive-ToggleButtonSizeDirective-5454d7706e5db4c13c197629ffb8bba964aef6163b8e43d2352da4af10713a8ba97378262ae3244ad8b812e351d775608ce16f71b76ab67cbb7103072acfd7a3",
             "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
@@ -5508,7 +5530,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '../../../../styles/utils';\n\n@include utils.global-styles() {\n  a:not(.mdc-button) {\n    &:link {\n      color: var(--sys-on-tertiary-fixed);\n      text-decoration: none;\n    }\n\n    &:visited {\n      color: var(--sys-tertiary-fixed);\n    }\n\n    &:focus-visible,\n    &:hover,\n    &:active {\n      text-decoration: underline solid currentColor 0.0625rem;\n      text-underline-offset: 0.125rem;\n    }\n\n    &:focus-visible {\n      color: var(--sys-secondary);\n      outline: 0.125rem solid var(--sys-tertiary);\n      border-radius: 0.25rem;\n    }\n\n    &:hover {\n      color: var(--sys-on-tertiary-fixed);\n    }\n\n    &:active {\n      color: var(--sys-on-tertiary-fixed-variant);\n    }\n  }\n}\n",
+                    "data": "@use '../../../../styles/utils';\n\n@include utils.global-styles() {\n  a:not(.hra-text-hyperlink) {\n    text-decoration: none;\n  }\n\n  a.hra-text-hyperlink {\n    &:link {\n      color: var(--sys-on-tertiary-fixed);\n      text-decoration: none;\n    }\n\n    &:visited {\n      color: var(--sys-tertiary-fixed);\n    }\n\n    &:focus-visible,\n    &:hover,\n    &:active {\n      text-decoration: underline solid currentColor 0.0625rem;\n      text-underline-offset: 0.125rem;\n    }\n\n    &:focus-visible {\n      color: var(--sys-secondary);\n      outline: 0.125rem solid var(--sys-tertiary);\n      border-radius: 0.25rem;\n    }\n\n    &:hover {\n      color: var(--sys-on-tertiary-fixed);\n    }\n\n    &:active {\n      color: var(--sys-on-tertiary-fixed-variant);\n    }\n  }\n}\n",
                     "styleUrl": "./global-styles.component.scss"
                 }
             ],
@@ -6184,13 +6206,13 @@
     "modules": [
         {
             "name": "ButtonsModule",
-            "id": "module-ButtonsModule-feb63ced611e787da41ff7edc9b3f32a4f3712a40800bb8719976600e89e8b8cca70a341bc610cdaa22b1751ecdff8bf359b5f0bb4e5abfd4dad4c77e90d41a7",
+            "id": "module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d",
             "description": "<p>Packages up subpackage angular exports for easier use</p>\n",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "buttons/src/lib/buttons.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport {\n  CtaButtonDirective,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  CtaButtonDirective,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport {\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\nimport { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -6217,6 +6239,9 @@
                         },
                         {
                             "name": "SecondaryButtonVariantDirective"
+                        },
+                        {
+                            "name": "TextHyperlinkDirective"
                         }
                     ]
                 },
@@ -6237,6 +6262,9 @@
                         },
                         {
                             "name": "SecondaryButtonVariantDirective"
+                        },
+                        {
+                            "name": "TextHyperlinkDirective"
                         }
                     ]
                 },
@@ -6647,7 +6675,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\n  MatButtonModule,\n  CtaButtonDirective,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n]",
+                "defaultValue": "[\n  MatButtonModule,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n]",
                 "rawdescription": "All re-exported modules, components, directives, etc.",
                 "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
             },
@@ -7519,7 +7547,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\n  MatButtonModule,\n  CtaButtonDirective,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n]",
+                    "defaultValue": "[\n  MatButtonModule,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n]",
                     "rawdescription": "All re-exported modules, components, directives, etc.",
                     "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
                 }
