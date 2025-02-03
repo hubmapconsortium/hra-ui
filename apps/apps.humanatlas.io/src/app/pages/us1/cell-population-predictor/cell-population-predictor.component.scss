@@ -43,8 +43,9 @@
 .cards {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 3.5rem;
+  --hra-workflow-card-header-padding: 0 0 0.5rem 0;
 
   .info-icon {
     display: flex;
@@ -53,6 +54,26 @@
 
   .card-text {
     color: var(--sys-inverse-surface);
+    margin: 0;
+  }
+
+  .buttons-container {
+    padding-top: 2rem;
+  }
+
+  .card-with-file {
+    height: 20.3125rem !important;
+    width: 27rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .file-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
   }
 
   .card {
@@ -81,7 +102,7 @@
   .tooltip-panel {
     background-color: white;
     margin-left: 0.5rem;
-    box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
+    box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
     border-radius: 0.5rem;
     max-width: 21rem;
     font: var(--sys-label-medium);

@@ -18,11 +18,11 @@
 <!-- CARDS -->
 <div class="cards">
   <!-- CARD 1 -->
-  <hra-workflow-card title="Upload" class="card card-1">
+  <hra-workflow-card title="Upload" class="card card-1" [ngClass]="{ 'card-with-file': file }">
     <hra-workflow-card-actions>
       <mat-icon
         aria-hidden="false"
-        aria-label="info icon"
+        aria-label="Upload data informational tooltip"
         class="info-icon"
         fontIcon="info"
         cdkOverlayOrigin
@@ -48,9 +48,33 @@
       sample file.
     </p>
 
-    <div class="buttons">
-      <button mat-button hraButtonSize="medium">Use Sample</button>
-      <button mat-button hraButtonSize="medium">Upload File</button>
+    <div class="buttons-container">
+      @if (!file) {
+        <div class="buttons">
+          <button mat-button hraButtonSize="medium" (click)="onUseSample()">Use Sample</button>
+          <input
+            type="file"
+            accept="application/json"
+            #fileInput
+            style="display: none"
+            (change)="onFileSelected($event)"
+          />
+          <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+        </div>
+      } @else {
+        <div class="file-buttons">
+          <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
+          <button
+            mat-flat-button
+            hraPrimaryButton
+            hraButtonSize="large"
+            [routerLink]="['result']"
+            [state]="{ file: file }"
+          >
+            Predict
+          </button>
+        </div>
+      }
     </div>
   </hra-workflow-card>
 
@@ -59,7 +83,7 @@
     <hra-workflow-card-actions>
       <mat-icon
         aria-hidden="false"
-        aria-label="info icon"
+        aria-label="Create custom data informational tooltip"
         class="info-icon"
         fontIcon="info"
         cdkOverlayOrigin
@@ -86,7 +110,7 @@
       (RUI).
     </p>
 
-    <div class="buttons">
+    <div class="buttons buttons-container">
       <button mat-button hraButtonSize="medium">Create</button>
     </div>
   </hra-workflow-card>
