@@ -5,10 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { SpatialSearchListModule } from 'ccf-shared';
 
 import { CheckboxModule } from '../../../shared/components/checkbox/checkbox.module';
-import { DropdownModule } from '../../../shared/components/dropdown/dropdown.module';
 import { DualSliderModule } from '../../../shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
 import { FiltersContentComponent } from './filters-content.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -18,10 +19,11 @@ import { FiltersContentComponent } from './filters-content.component';
     MatIconModule,
 
     CheckboxModule,
-    DropdownModule,
     DualSliderModule,
     SpatialSearchListModule,
     RunSpatialSearchModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   declarations: [FiltersContentComponent],
   exports: [FiltersContentComponent],

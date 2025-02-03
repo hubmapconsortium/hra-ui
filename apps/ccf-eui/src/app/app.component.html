@@ -196,142 +196,169 @@
   </ccf-drawer-container>
 </div> -->
 
-<hra-back-bar></hra-back-bar>
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav class="sidenav-content" mode="over">
+    <div class="sidenav-header">
+      <span class="sidenav-title"> Data Filters </span>
+      <div style="flex-grow: 1"></div>
+      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
-<hra-nav-header-buttons
-  app="eui"
-  [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
-  appTitle="Exploration User Interface"
-  [brandmark]="true"
-></hra-nav-header-buttons>
-
-<hra-expansion-panel [title]="'Body Visualization'" disabled class="vis-panel">
-  <hra-expansion-panel-actions>
-    <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="large" aria-label="Icon to open nested menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">Info</button>
-      <button mat-menu-item matRipple>Reset view</button>
-      <button mat-menu-item matRipple>Hide all organs</button>
-      <button mat-menu-item matRipple>Show all organs</button>
-    </mat-menu>
-    <mat-menu #submenu="matMenu">
-      <span>Test</span>
-    </mat-menu>
-  </hra-expansion-panel-actions>
-  <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
-</hra-expansion-panel>
-
-<div class="left-panel">
-  <div class="filter-data">
-    <div>Filters</div>
-    <ccf-filters-popover
-      [filters]="$any(data.filter$ | async)"
-      (filtersChange)="data.updateFilter($event)"
+    <ccf-filters-content
       [technologyFilters]="(data.technologyFilterData$ | async) ?? []"
       [providerFilters]="(data.providerFilterData$ | async) ?? []"
       [spatialSearchFilters]="$any(selectableSearches$ | async)"
+      [filters]="$any(data.filter$ | async)"
+      (applyFilters)="data.updateFilter($event)"
       (spatialSearchSelected)="setSelectedSearches($event)"
       (spatialSearchRemoved)="removeSpatialSearch($event)"
-      #filterbox
     >
-    </ccf-filters-popover>
+    </ccf-filters-content>
+  </mat-sidenav>
 
-    <div class="filter-text">
-      <div class="sex filter-tag">
-        Sex: <strong>{{ (data.filter$ | async)?.sex }}</strong>
+  <div class="page-content">
+    <hra-back-bar></hra-back-bar>
+
+    <hra-nav-header-buttons
+      app="eui"
+      [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
+      appTitle="Exploration User Interface"
+      [brandmark]="true"
+    ></hra-nav-header-buttons>
+
+    <hra-expansion-panel [title]="'Body Visualization'" disabled class="vis-panel">
+      <hra-expansion-panel-actions>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          hraIconButtonSize="large"
+          aria-label="Icon to open nested menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">Info</button>
+          <button mat-menu-item matRipple>Reset view</button>
+          <button mat-menu-item matRipple>Hide all organs</button>
+          <button mat-menu-item matRipple>Show all organs</button>
+        </mat-menu>
+        <mat-menu #submenu="matMenu">
+          <span>Test</span>
+        </mat-menu>
+      </hra-expansion-panel-actions>
+      <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+    </hra-expansion-panel>
+
+    <div class="left-panel">
+      <div class="filter-data">
+        <div class="filter-button-label">Filters</div>
+        <!-- <ccf-filters-popover
+          [filters]="$any(data.filter$ | async)"
+          (filtersChange)="data.updateFilter($event)"
+          [technologyFilters]="(data.technologyFilterData$ | async) ?? []"
+          [providerFilters]="(data.providerFilterData$ | async) ?? []"
+          [spatialSearchFilters]="$any(selectableSearches$ | async)"
+          (spatialSearchSelected)="setSelectedSearches($event)"
+          (spatialSearchRemoved)="removeSpatialSearch($event)"
+          #filterbox
+        >
+        </ccf-filters-popover> -->
+        <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+        <div class="filter-text">
+          <div class="sex filter-tag">Sex: {{ (data.filter$ | async)?.sex }}</div>
+          <div class="bmi filter-tag">
+            BMI: {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
+          </div>
+          <div class="age filter-tag">
+            Age: {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }}
+          </div>
+        </div>
       </div>
-      <div class="age filter-tag">
-        Age:
-        <strong> {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }} </strong>
-      </div>
-      <div class="bmi filter-tag">
-        BMI:
-        <strong> {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }} </strong>
+
+      <ccf-button-toggle
+        class="button-toggle-group"
+        [menuOptions]="menuOptions"
+        [enableTooltip]="true"
+        [tooltips]="tooltips"
+        [selectedItems]="selectedtoggleOptions"
+        (selectionChange)="toggleSelection($event)"
+      ></ccf-button-toggle>
+      <div class="ontologies">
+        <ccf-ontology-selection
+          class="ontology-selection"
+          [class.firefox]="isFirefox"
+          *ngIf="isItemSelected('AS')"
+          [showtoggle]="false"
+          [treeModel]="(ontologyTreeModel$ | async)!"
+          [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
+          [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
+          placeholderText="Search anatomical structures..."
+          (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
+          [header]="(header$ | async) ?? false"
+        >
+        </ccf-ontology-selection>
+        <ccf-ontology-selection
+          class="cell-type-selection"
+          [class.firefox]="isFirefox"
+          *ngIf="isItemSelected('CT')"
+          [showtoggle]="false"
+          [treeModel]="(cellTypeTreeModel$ | async)!"
+          [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
+          [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
+          placeholderText="Search cell types..."
+          (ontologySelection)="ontologySelected($any($event), 'cell-type')"
+          [header]="(header$ | async) ?? false"
+        >
+        </ccf-ontology-selection>
+        <ccf-ontology-selection
+          class="biomarker-selection"
+          [class.firefox]="isFirefox"
+          *ngIf="isItemSelected('B')"
+          [showtoggle]="true"
+          [treeModel]="(biomarkersTreeModel$ | async)!"
+          [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
+          [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
+          placeholderText="Search Biomarkers..."
+          (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
+          [header]="(header$ | async) ?? false"
+        >
+        </ccf-ontology-selection>
+
+        <div class="no-selection-notice" *ngIf="selectedtoggleOptions.length === 0">
+          No anatomical structures, cell types, or biomarkers selected. Use the above AS, CT, and B buttons to view the
+          registered listings.
+        </div>
       </div>
     </div>
-  </div>
 
-  <ccf-button-toggle
-    class="button-toggle-group"
-    [menuOptions]="menuOptions"
-    [enableTooltip]="true"
-    [tooltips]="tooltips"
-    [selectedItems]="selectedtoggleOptions"
-    (selectionChange)="toggleSelection($event)"
-  ></ccf-button-toggle>
-  <div class="ontologies">
-    <ccf-ontology-selection
-      class="ontology-selection"
-      [class.firefox]="isFirefox"
-      *ngIf="isItemSelected('AS')"
-      [showtoggle]="false"
-      [treeModel]="(ontologyTreeModel$ | async)!"
-      [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
-      [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
-      placeholderText="Search anatomical structures..."
-      (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
-      [header]="(header$ | async) ?? false"
-    >
-    </ccf-ontology-selection>
-    <ccf-ontology-selection
-      class="cell-type-selection"
-      [class.firefox]="isFirefox"
-      *ngIf="isItemSelected('CT')"
-      [showtoggle]="false"
-      [treeModel]="(cellTypeTreeModel$ | async)!"
-      [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
-      [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
-      placeholderText="Search cell types..."
-      (ontologySelection)="ontologySelected($any($event), 'cell-type')"
-      [header]="(header$ | async) ?? false"
-    >
-    </ccf-ontology-selection>
-    <ccf-ontology-selection
-      class="biomarker-selection"
-      [class.firefox]="isFirefox"
-      *ngIf="isItemSelected('B')"
-      [showtoggle]="true"
-      [treeModel]="(biomarkersTreeModel$ | async)!"
-      [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
-      [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
-      placeholderText="Search Biomarkers..."
-      (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
-      [header]="(header$ | async) ?? false"
-    >
-    </ccf-ontology-selection>
+    <div class="content">
+      <ccf-body-ui
+        #bodyUI
+        class="stage-content"
+        [scene]="$any(scene.scene$ | async)"
+        (nodeClick)="scene.sceneNodeClicked($event)"
+        (nodeHoverStart)="scene.sceneNodeHovered($event)"
+        (nodeHoverStop)="scene.sceneNodeUnhover()"
+        [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
+      >
+      </ccf-body-ui>
+    </div>
 
-    <div class="no-selection-notice" *ngIf="selectedtoggleOptions.length === 0">
-      No anatomical structures, cell types, or biomarkers selected. Use the above AS, CT, and B buttons to view the
-      registered listings.
+    <div class="right-panel">
+      <ccf-results-browser
+        [listResults]="(listResultsState.listResults$ | async) ?? []"
+        [aggregateData]="(data.aggregateData$ | async) ?? []"
+        (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
+        (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
+        (linkClicked)="openiFrameViewer($event)"
+        (itemUnhovered)="listResultsState.unHighlightNode()"
+        [header]="(header$ | async) ?? false"
+      >
+      </ccf-results-browser>
     </div>
   </div>
-</div>
-
-<div class="content">
-  <ccf-body-ui
-    #bodyUI
-    class="stage-content"
-    [scene]="$any(scene.scene$ | async)"
-    (nodeClick)="scene.sceneNodeClicked($event)"
-    (nodeHoverStart)="scene.sceneNodeHovered($event)"
-    (nodeHoverStop)="scene.sceneNodeUnhover()"
-    [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
-    [class.expanded-stage]="!organListVisible"
-  >
-  </ccf-body-ui>
-</div>
-
-<div class="right-panel">
-  <ccf-results-browser
-    [listResults]="(listResultsState.listResults$ | async) ?? []"
-    [aggregateData]="(data.aggregateData$ | async) ?? []"
-    (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
-    (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
-    (linkClicked)="openiFrameViewer($event)"
-    (itemUnhovered)="listResultsState.unHighlightNode()"
-    [header]="(header$ | async) ?? false"
-  >
-  </ccf-results-browser>
-</div>
+</mat-sidenav-container>

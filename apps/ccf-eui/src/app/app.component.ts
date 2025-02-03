@@ -28,8 +28,6 @@ import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
 import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
-import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
-import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
 
 interface AppOptions {
   /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
@@ -91,11 +89,6 @@ export class AppComponent implements OnInit {
   biomarkerSelectionLabel = 'biomarker';
 
   selectedtoggleOptions: string[] = [];
-
-  /**
-   * Whether or not organ carousel is open
-   */
-  organListVisible = true;
 
   /**
    * Emitted url object from the results browser item
@@ -210,22 +203,6 @@ export class AppComponent implements OnInit {
     } else {
       this.themeMode$.next('light');
     }
-  }
-
-  /**
-   * Resets the drawers and filter components to their default state.
-   *
-   * @param left The left drawer component gets passed in so we can call it's methods to control it's state
-   * @param right The right drawer component gets passed in so we can call it's methods to control it's state
-   * @param filterbox The filter's popover component gets passed in so we can control it's popover's state
-   */
-  reset(left: DrawerComponent, right: DrawerComponent, filterbox: FiltersPopoverComponent): void {
-    left.open();
-    left.closeExpanded();
-    right.open();
-    right.closeExpanded();
-    filterbox.removeBox();
-    this.resetView();
   }
 
   resetView(): void {
