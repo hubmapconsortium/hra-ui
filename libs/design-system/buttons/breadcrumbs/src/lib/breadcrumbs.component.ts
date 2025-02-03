@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Breadcrumb item */
 interface BreadcrumbItem {
@@ -17,7 +18,7 @@ interface BreadcrumbItem {
 @Component({
   selector: 'hra-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule],
+  imports: [CommonModule, RouterModule, MatIconModule, TextHyperlinkDirective],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

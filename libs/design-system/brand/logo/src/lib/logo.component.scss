@@ -2,15 +2,15 @@
   display: block;
   color: var(--hra-brand-logo-text-color, var(--sys-on-surface));
 
-  a {
+  .logo {
     display: block;
     color: inherit;
-    height: 6.375rem;
     width: 15.375rem;
+    height: 6.375rem;
+  }
 
-    &.small {
-      height: 3rem;
-      width: 7.25rem;
-    }
+  &.hra-brand-logo-size-small .logo {
+    width: 7.25rem;
+    height: 3rem;
   }
 }

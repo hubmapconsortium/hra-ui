@@ -1,6 +1,6 @@
 @for (crumb of crumbs(); track $index) {
   @if (crumb.route) {
-    <a [routerLink]="crumb.route">{{ crumb.name }}</a>
+    <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
   } @else {
     <span>{{ crumb.name }}</span>
   }
