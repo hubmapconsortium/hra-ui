@@ -95,5 +95,5 @@
       }
     }
   },
-  "tags": ["shared", "theming"]
+  "tags": ["type:lib", "project:shared", "theming"]
 }

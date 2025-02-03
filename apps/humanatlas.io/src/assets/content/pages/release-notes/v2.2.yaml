@@ -97,7 +97,7 @@
                   - 1,288 cell types
                   - 2,018 biomarkers
                 - 22 2D Functional Tissue Units (FTUs)
-                - 71 3D Organ Models
+                - 71 3D Organ Models with 1,224 interior 3D anatomical structures
                 - 23 Organ Mapping Antibody Panel (OMAP) Tables
                 - 10 Crosswalk Tables
                 - 7 Vasculature Common Coordinate Framework (VCCF) Tables
@@ -382,13 +382,13 @@
                   Emma Lundberg, Aastha Mathur, Kedar Narayan, Shuichi Onami, Anne L. Plant, Fred Prior, Jason Swedlow, and Adam Taylor. 2024.
                   "<a href='https://arxiv.org/abs/2401.13023' target="_blank">Enabling Global Image Data Sharing in the Life Sciences</a>".
                   <a href='https://doi.org/10.48550/arXiv.2401.13023' target="_blank">https://doi.org/10.48550/arXiv.2401.13023</a>.
-                  Accepted for Nature Methods.
+                  Accepted for <i>Nature Methods</i>.
                 - Radtke, Andrea J. , Ifeanyichukwu Anidi, Leanne Arakkal, Armando Arroyo-Mejias, Rebecca T. Beuschel, Katy Börner,
                   Colin J. Chu, Beatrice Clark, Menna R. Clatworthy, Jake Colautti, Joshua Croteau, Saven Denha, Rose Dever,
                   Walderez O. Dutra, Sonja Fritzsche, Spencer Fullam, Michael Y. Gerner, Anita Gola, Kenneth J. Gollob,
                   Jonathan M. Hernandez, Jyh Liang Hor, Hiroshi Ichise, Zhixin Jing, Danny Jonigk, Evelyn Kandov, Wolfgang Kastenmueller,
                   Joshua F.E. Koenig, Aanandita Kothurkar, Alexandra Y. Kreins, Ian Lamborn, Yuri Lin,
-                  and et al. (27 additional authors not shown). 2024.
+                  and et al. 2024.
                   "<a href='https://arxiv.org/abs/2407.19059' target="_blank">The IBEX Knowledge-Base: Achieving more together with open science</a>".
                   doi: <a href='https://doi.org/10.48550/arXiv.2407.19059' target="_blank">doi.org/10.48550/arXiv.2407.19059</a>.
                 - Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra,
@@ -397,7 +397,7 @@
                   "Human BioMolecular Atlas Program (HuBMAP):
                   <a href='https://www.biorxiv.org/content/10.1101/2024.03.27.587041v1' target="_blank">3D Human Reference Atlas Construction and Usage</a>".
                   bioRxiv doi: <a href='https://doi.org/10.1101/2024.03.27.587041' target="_blank">https://doi.org/10.1101/2024.03.27.587041</a>.
-                  Accepted as ‘Resource’ paper in Nature Methods.
+                  Accepted as ‘Resource’ paper in <i>Nature Methods</i>.
           styles:
             margin-bottom: 2.5rem
 

@@ -19,6 +19,7 @@ export interface ActiveFtuModel {
   iri?: Iri;
 }
 
+/** State context */
 type Context = StateContext<ActiveFtuModel>;
 
 /**

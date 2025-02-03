@@ -17,43 +17,46 @@
                 "onlyDependOnLibsWithTags": ["*"]
               },
               {
-                "sourceTag": "app",
-                "onlyDependOnLibsWithTags": ["*"]
-              },
-              {
                 "sourceTag": "atoms",
-                "onlyDependOnLibsWithTags": ["cdk", "utils"]
+                "onlyDependOnLibsWithTags": ["project:cdk", "project:utils"]
               },
               {
                 "sourceTag": "molecules",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms"]
+                "onlyDependOnLibsWithTags": ["project:cdk", "project:utils", "atoms"]
               },
               {
                 "sourceTag": "organisms",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "atoms", "molecules"]
+                "onlyDependOnLibsWithTags": ["project:cdk", "project:utils", "atoms", "molecules"]
               },
               {
                 "sourceTag": "behavioral",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "components", "state", "services"]
+                "onlyDependOnLibsWithTags": [
+                  "project:cdk",
+                  "project:utils",
+                  "project:shared",
+                  "project:components",
+                  "state",
+                  "services"
+                ]
               },
               {
                 "sourceTag": "state",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared", "services"]
+                "onlyDependOnLibsWithTags": ["project:cdk", "project:utils", "project:shared", "services"]
               },
               {
                 "sourceTag": "services",
-                "onlyDependOnLibsWithTags": ["cdk", "utils", "shared"]
+                "onlyDependOnLibsWithTags": ["project:cdk", "project:utils", "project:shared"]
               },
               {
-                "sourceTag": "cdk",
-                "onlyDependOnLibsWithTags": ["utils", "shared"]
+                "sourceTag": "project:cdk",
+                "onlyDependOnLibsWithTags": ["project:utils", "project:shared"]
               },
               {
                 "sourceTag": "shared",
-                "onlyDependOnLibsWithTags": ["utils", "shared"]
+                "onlyDependOnLibsWithTags": ["project:utils", "project:shared"]
               },
               {
-                "sourceTag": "ccf",
+                "sourceTag": "project:ccf",
                 "onlyDependOnLibsWithTags": ["*"]
               },
               {

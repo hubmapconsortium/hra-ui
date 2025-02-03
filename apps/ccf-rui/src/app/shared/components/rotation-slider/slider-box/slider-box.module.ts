@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { SliderBoxComponent } from './slider-box.component';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
@@ -19,7 +19,7 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
     MatRippleModule,
     MatInputModule,
     MatFormFieldModule,
-    ButtonModule,
+    ButtonsModule,
     MicroTooltipDirective,
   ],
   exports: [SliderBoxComponent],

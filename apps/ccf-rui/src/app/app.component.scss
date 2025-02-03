@@ -1,14 +1,27 @@
 :host {
   display: grid;
-  grid-template-columns: 21rem minmax(586px, calc(100vw - 44.25rem)) 22.25rem;
-  grid-template-rows: 4.5rem auto;
+  grid-template-columns: 21rem minmax(586px, calc(100vw - 43.25rem - 4px)) 22.25rem;
+  grid-template-rows: 0rem 4.5rem auto;
   grid-template-areas:
+    'back back back'
     'header registration metadata'
     'left content metadata';
   height: 100%;
 
+  &.embedded {
+    grid-template-rows: 3rem 4.5rem auto;
+  }
+
+  &:not(.embedded) hra-back-bar {
+    display: none;
+  }
+
   ccf-registration-modal {
     display: none;
+  }
+
+  hra-back-bar {
+    grid-area: back;
   }
 
   hra-nav-header-buttons {

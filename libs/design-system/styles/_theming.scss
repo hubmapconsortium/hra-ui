@@ -12,5 +12,8 @@
   @include mat.system-level-colors($theme);
   @include mat.system-level-typography($theme, $overrides);
   @include typography.custom-variants();
+  @include mat.system-level-elevation($theme);
+  @include mat.system-level-shape($theme);
+  @include mat.system-level-state($theme);
   @include mat.all-component-themes($theme);
 }

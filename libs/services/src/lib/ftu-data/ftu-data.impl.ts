@@ -43,7 +43,9 @@ export const FTU_DATA_IMPL_FILE_FORMAT_MAPPING = new InjectionToken<Record<strin
   }),
 });
 
+/** Graph json object */
 type Graph<T> = { '@graph': T[] };
+/** Data source array */
 type DataSources = RawDatasets['@graph'][number]['data_sources'];
 
 /** Creates clickable link for the tissue tree element */

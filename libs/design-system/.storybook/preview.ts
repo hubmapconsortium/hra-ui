@@ -1,4 +1,5 @@
-import { Preview } from '@storybook/angular';
+import { provideDesignSystem } from '../src/index';
+import { applicationConfig, Preview } from '@storybook/angular';
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -16,6 +17,11 @@ const preview: Preview = {
       ],
     },
   },
+  decorators: [
+    applicationConfig({
+      providers: [provideDesignSystem()],
+    }),
+  ],
 };
 
 export default preview;

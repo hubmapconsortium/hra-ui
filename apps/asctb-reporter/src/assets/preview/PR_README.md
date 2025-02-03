@@ -18,7 +18,7 @@ In addition, the reporter provides downloadable reports that tabulate counts, un
 
 **Created by user:** Hrishikesh Paul, Bruce W. Herr II, Katy Börner
 
-**Created by username:** hrpaul@iu.edu, bherr@indiana.edu, katy@indiana.edu
+**Created by username:** hrpaul@iu.edu, bherr@iu.edu, katy@iu.edu
 
 ## Screenshot
 
