@@ -11,7 +11,7 @@
     display: flex;
     gap: 0.75rem;
     align-items: center;
-    margin: 0 0 2rem 0;
+    margin: var(--hra-workflow-card-header-padding, 0 0 2rem 0);
     font: var(--sys-title-large);
     letter-spacing: var(--sys-title-large-tracking);
   }
