@@ -6,6 +6,12 @@ import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 /** Logo size */
 export type BrandLogoSize = 'small' | 'large';
 
+/** Urls for different logo sizes */
+const BRAND_LOGO_URLS: Record<BrandLogoSize, string> = {
+  small: 'assets/logo/hra-logo-small.svg',
+  large: 'assets/logo/hra-logo-regular.svg',
+};
+
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
@@ -26,8 +32,5 @@ export class BrandLogoComponent {
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 
   /** Url of the logo svg based on the logo size */
-  protected readonly logoUrl = computed(() => {
-    const sizePostfix = this.size() === 'large' ? 'regular' : 'small';
-    return `assets/logo/hra-logo-${sizePostfix}.svg`;
-  });
+  protected readonly logoUrl = computed(() => BRAND_LOGO_URLS[this.size()]);
 }
