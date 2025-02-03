@@ -8,10 +8,51 @@
 
 <hra-workflow-card title="Cell Population Predictions" class="table-container">
   <hra-workflow-card-actions>
-    <mat-icon aria-hidden="false" aria-label="more icon" class="more-icon" fontIcon="more_vert"></mat-icon>
+    <button mat-icon-button aria-label="more icon button with a menu" aria-hidden="false" [matMenuTriggerFor]="options">
+      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
+    </button>
+
+    <!-- MENU -->
+    <mat-menu #options="matMenu">
+      @for (option of menuOptions; track option) {
+        @if (option.expandedOptions) {
+          <button
+            mat-menu-item
+            matRipple
+            matRippleColor="#201E3D14"
+            cdkOverlayOrigin
+            #tooltipTrigger="cdkOverlayOrigin"
+            (mouseover)="option.tooltipOpen = true"
+            (mouseout)="option.tooltipOpen = false"
+          >
+            <mat-icon>{{ option.icon }}</mat-icon>
+            {{ option.name }}
+            <mat-icon class="expand-arrow">arrow_right</mat-icon>
+          </button>
+
+          <ng-template
+            *ngIf="option.tooltip"
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="tooltipTrigger"
+            [cdkConnectedOverlayOpen]="option.tooltipOpen!"
+            [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+            [cdkConnectedOverlayPositions]="tooltipPosition"
+            [cdkConnectedOverlayViewportMargin]="8"
+            [cdkConnectedOverlayPush]="true"
+          >
+            <hra-tooltip-card [content]="option.tooltip"> </hra-tooltip-card>
+          </ng-template>
+        } @else {
+          <button mat-menu-item>
+            <mat-icon>{{ option.icon }}</mat-icon>
+            {{ option.name }}
+          </button>
+        }
+      }
+    </mat-menu>
   </hra-workflow-card-actions>
   <hra-workflow-card-extra>
-    <hra-delete-file-button [fileName]="'test.csv'"></hra-delete-file-button>
+    <hra-delete-file-button (cancelLoad)="onDeleteButtonClick()" [fileName]="state.file.name"></hra-delete-file-button>
   </hra-workflow-card-extra>
 
   <!-- TABLE -->
@@ -29,11 +70,13 @@
     </ng-container>
     <ng-container matColumnDef="percentage">
       <th mat-header-cell *matHeaderCellDef>% Of Total</th>
-      <td mat-cell *matCellDef="let element">{{ element.percentage }}%</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.percentage < 0.0001 ? '< 0.01%' : (element.percentage | percent: '1.2-2') + '%' }}
+      </td>
     </ng-container>
     <ng-container matColumnDef="count">
       <th mat-header-cell *matHeaderCellDef># Count</th>
-      <td mat-cell *matCellDef="let element">{{ element.count | number: '1.0-2' }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.count | number: '1.2-2' }}</td>
     </ng-container>
     <ng-container matColumnDef="cell_label">
       <th mat-header-cell *matHeaderCellDef>Cell Name in Cell Ontology (CL)</th>

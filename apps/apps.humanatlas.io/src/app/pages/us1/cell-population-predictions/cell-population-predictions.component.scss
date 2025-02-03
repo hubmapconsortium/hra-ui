@@ -11,6 +11,12 @@ h1 {
   margin: 0;
 }
 
+button {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
 .info-text {
   font: var(--sys-body-large);
   letter-spacing: var(--sys-body-large-tracking);
@@ -37,7 +43,7 @@ h1 {
     td {
       font: var(--sys-label-medium);
       letter-spacing: var(--sys-label-medium-tracking);
-      border: 0.0625rem solid #acb5c3;
+      border: 0.0625rem solid var(--sys-outline);
     }
 
     th {
@@ -62,5 +68,18 @@ h1 {
   ::ng-deep .mat-cell:last-of-type,
   ::ng-deep .mat-header-cell:last-of-type {
     padding-right: 1rem;
+  }
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    margin-left: 0.5rem;
+    box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+    color: var(--sys-primary);
   }
 }
