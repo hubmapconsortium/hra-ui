@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIconModule } from '@angular/material/icon';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '@hra-ui/cde-visualization';
 import SAMPLE_DATA from './sample-data.json';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { RouterModule } from '@angular/router';
 
 /**
@@ -22,7 +22,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     AssetUrlPipe,
     SoftwareStatusIndicatorComponent,
-    ButtonModule,
+    ButtonsModule,
     MatIconModule,
     WorkflowCardModule,
     TooltipCardComponent,

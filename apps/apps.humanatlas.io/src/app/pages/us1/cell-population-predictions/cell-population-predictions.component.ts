@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, effect, input, viewChild, HostListe
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/delete-file-button';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { MatMenuModule } from '@angular/material/menu';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
