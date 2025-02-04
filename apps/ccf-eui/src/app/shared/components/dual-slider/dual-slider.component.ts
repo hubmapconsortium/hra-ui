@@ -1,5 +1,5 @@
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { CdkPortal } from '@angular/cdk/portal';
+import { ConnectedPosition, Overlay, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
+import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +13,12 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { Options } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -23,6 +28,17 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-dual-slider',
   templateUrl: './dual-slider.component.html',
   styleUrls: ['./dual-slider.component.scss'],
+  imports: [
+    OverlayModule,
+    PortalModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatSliderModule,
+    FormsModule,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DualSliderComponent implements OnDestroy, OnChanges {
@@ -61,11 +77,6 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
    * Determines whether slider popover is shown.
    */
   isSliderOpen = false;
-
-  /**
-   * Slider options.
-   */
-  options!: Options;
 
   /**
    * Value bound to the slider's low pointer value.
@@ -124,34 +135,16 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
   }
 
   /**
-   * Updates slider options (with optionsChanged) and selection when changes detected.
+   * Updates selection when changes detected.
    *
    * @param changes Changes that have been made to the slider properties.
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['valueRange']) {
-      this.optionsChanged();
-    }
     if (changes['selection']) {
       // Detect when selection is changed and update low/high value.
       this.lowValue = Math.min(...this.selection);
       this.highValue = Math.max(...this.selection);
     }
-  }
-
-  /**
-   * Updates the slider options, and the slider values if necessary.
-   */
-  optionsChanged(): void {
-    this.options = {
-      floor: this.valueRange ? this.valueRange[0] : 0,
-      ceil: this.valueRange ? this.valueRange[1] : 0,
-      step: 1,
-      hideLimitLabels: true,
-      hidePointerLabels: true,
-    };
-    this.lowValue = this.options.floor ?? 0;
-    this.highValue = this.options.ceil ?? 0;
   }
 
   /**
@@ -225,34 +218,21 @@ export class DualSliderComponent implements OnDestroy, OnChanges {
   }
 
   /**
-   * Updates the slider's low pointer value when Enter key is pressed.
+   * Updates the slider's pointer value when Enter key is pressed.
    *
    * @param event Event passed into the component
    */
-  onKeyLow(event: KeyboardEvent): void {
+  updateRangeValue(event: KeyboardEvent, side: 'low' | 'high'): void {
     const newValue = Number((event.target as HTMLInputElement).value);
     if (event.key === 'Enter') {
-      if (newValue >= Number(this.options.floor) && newValue <= Number(this.options.ceil)) {
-        this.lowValue = newValue;
+      if (newValue >= Number(this.valueRange[0]) && newValue <= Number(this.valueRange[1])) {
+        if (side === 'low') {
+          this.lowValue = newValue;
+        } else {
+          this.highValue = newValue;
+        }
       }
-      (event.target as HTMLInputElement).value = String(this.lowValue);
-      (event.target as HTMLInputElement).blur();
-      this.sliderValueChanged();
-    }
-  }
-
-  /**
-   * Updates the slider's high pointer value when Enter key is pressed.
-   *
-   * @param event Event passed into the component
-   */
-  onKeyHigh(event: KeyboardEvent): void {
-    const newValue = Number((event.target as HTMLInputElement).value);
-    if (event.key === 'Enter') {
-      if (newValue >= Number(this.options.floor) && newValue <= Number(this.options.ceil)) {
-        this.highValue = newValue;
-      }
-      (event.target as HTMLInputElement).value = String(this.highValue);
+      (event.target as HTMLInputElement).value = String(newValue);
       (event.target as HTMLInputElement).blur();
       this.sliderValueChanged();
     }

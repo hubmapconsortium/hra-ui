@@ -19,14 +19,13 @@ import { CoreModule } from './core/core.module';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
-import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
 import { BackBarComponent } from '@hra-ui/design-system/back-bar';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FiltersContentModule } from './modules/filters/filters-content/filters-content.module';
+import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
 
 @NgModule({
   imports: [
@@ -36,7 +35,6 @@ import { FiltersContentModule } from './modules/filters/filters-content/filters-
     DrawerModule,
     OntologyExplorationModule,
     MatIconModule,
-    DualSliderModule,
     ResultsBrowserComponent,
     SpinnerOverlayModule,
     BodyUiModule,
@@ -58,7 +56,7 @@ import { FiltersContentModule } from './modules/filters/filters-content/filters-
     MatDividerModule,
     BackBarComponent,
     MatSidenavModule,
-    FiltersContentModule,
+    FiltersContentComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

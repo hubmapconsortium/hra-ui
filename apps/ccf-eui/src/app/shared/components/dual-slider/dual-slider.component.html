@@ -1,37 +1,37 @@
-<div class="ccf-slider wrapper">
-  <div class="container">
-    <div *cdk-portal class="ccf-slider detached" #popover>
-      <div class="label min fade-in {{ contentsVisible }}">
-        <div class="label floor">{{ options.floor }}></div>
-        <input class="input-low" type="text" value="{{ lowValue }}" (keyup)="onKeyLow($event)" />
-      </div>
+<mat-form-field
+  class="slider-form-field"
+  [class.highlight]="isSliderOpen"
+  (click)="toggleSliderPopover()"
+  subscriptSizing="dynamic"
+>
+  <mat-label>{{ label }}</mat-label>
+  <div class="range-label">{{ rangeLabel }}</div>
+  <mat-select></mat-select>
+</mat-form-field>
 
-      <ngx-slider
-        class="slider fade-in {{ contentsVisible }}"
-        [options]="options"
-        [(value)]="lowValue"
-        [(highValue)]="highValue"
-        (userChangeEnd)="sliderValueChanged()"
-      >
-      </ngx-slider>
+<div *cdk-portal class="ccf-slider detached" #popover>
+  <div class="label min fade-in {{ contentsVisible }}">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>{{ valueRange[0] }}></mat-label>
+      <input matInput class="input-low" type="text" value="{{ lowValue }}" (keyup)="updateRangeValue($event, 'low')" />
+    </mat-form-field>
+  </div>
 
-      <div class="label max fade-in {{ contentsVisible }}">
-        <div class="label ceil">{{ options.ceil }}</div>
-        <input class="input-high" type="text" value="{{ highValue }}" (keyup)="onKeyHigh($event)" />
-      </div>
-    </div>
+  <mat-slider class="slider fade-in {{ contentsVisible }}" [min]="valueRange[0]" [max]="valueRange[1]">
+    <input matSliderStartThumb [(ngModel)]="lowValue" (change)="sliderValueChanged()" />
+    <input matSliderEndThumb [(ngModel)]="highValue" (change)="sliderValueChanged()" />
+  </mat-slider>
 
-    <mat-form-field
-      class="slider-form-field"
-      [class.highlight]="isSliderOpen"
-      (click)="toggleSliderPopover()"
-      subscriptSizing="dynamic"
-    >
-      <div class="slider-labels">
-        <span class="name-label">{{ label }}</span>
-        <span class="range-label">{{ rangeLabel }}</span>
-      </div>
-      <mat-select></mat-select>
+  <div class="label max fade-in {{ contentsVisible }}">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>{{ valueRange[1] }}</mat-label>
+      <input
+        matInput
+        class="input-high"
+        type="text"
+        value="{{ highValue }}"
+        (keyup)="updateRangeValue($event, 'high')"
+      />
     </mat-form-field>
   </div>
 </div>

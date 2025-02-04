@@ -83,13 +83,10 @@
   display: flex;
   padding-top: 0.5rem;
   gap: 2rem;
-
-  ccf-dual-slider {
-    margin-left: 0.5rem;
-  }
 }
 
-ccf-dropdown,
-ccf-dual-slider {
-  width: 10rem;
+.dropdown-form-field {
+  ::ng-deep .mdc-floating-label {
+    transform: translateY(-106%);
+  }
 }

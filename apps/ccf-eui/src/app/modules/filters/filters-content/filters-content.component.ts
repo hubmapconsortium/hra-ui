@@ -12,6 +12,14 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { SpatialSearchListModule } from 'ccf-shared';
+import { CheckboxModule } from '../../../shared/components/checkbox/checkbox.module';
+import { DualSliderComponent } from '../../../shared/components/dual-slider/dual-slider.component';
+import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -20,6 +28,17 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   selector: 'ccf-filters-content',
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    CheckboxModule,
+    SpatialSearchListModule,
+    RunSpatialSearchModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    DualSliderComponent,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersContentComponent implements OnChanges {
