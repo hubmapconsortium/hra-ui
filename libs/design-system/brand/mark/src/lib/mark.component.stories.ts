@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { BrandmarkComponent } from './mark.component';
+import { BrandMarkComponent } from './mark.component';
 
-const meta: Meta<BrandmarkComponent> = {
-  component: BrandmarkComponent,
+const meta: Meta<BrandMarkComponent> = {
+  component: BrandMarkComponent,
   title: 'Design System/Brand/Mark',
   parameters: {
     design: {
@@ -22,6 +22,6 @@ const meta: Meta<BrandmarkComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<BrandmarkComponent>;
+type Story = StoryObj<BrandMarkComponent>;
 
 export const Default: Story = {};

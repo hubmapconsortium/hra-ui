@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Breadcrumb item */
-interface BreadcrumbItem {
+export interface BreadcrumbItem {
   /** Name of item */
   name: string;
   /** Route to page */
