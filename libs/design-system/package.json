@@ -33,7 +33,8 @@
     "@angular/cdk": "18.2.1",
     "@angular/animations": "18.2.1",
     "@angular/platform-browser": "18.2.1",
-    "ngx-color-picker": "^17.0.0"
+    "ngx-color-picker": "^17.0.0",
+    "ngx-highlightjs": "^12.0.0"
   },
   "dependencies": {},
   "sideEffects": false
