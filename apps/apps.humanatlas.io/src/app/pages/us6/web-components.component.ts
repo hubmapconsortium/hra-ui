@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
@@ -27,11 +27,23 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   styleUrl: './web-components.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WebComponentsComponent implements OnInit {
-  ngOnInit(): void {
-    this.selectedOrgan = this.organs[0];
-  }
-  protected organs = organs;
-  protected components = components;
+export class WebComponentsComponent {
+  public organs = organs;
+  public components = components.map((component) => {
+    const [productTitle, webComponentName] = component.title.includes('>')
+      ? component.title.split('>').map((part) => part.trim())
+      : [component.title, ''];
+    return {
+      ...component,
+      productTitle: productTitle,
+      webComponentName: webComponentName,
+    };
+  });
   selectedOrgan: any;
+  showComponentCards = false;
+
+  onOrganSelect(organ: any) {
+    this.selectedOrgan = organ;
+    this.showComponentCards = !!this.selectedOrgan;
+  }
 }

@@ -1,0 +1,20 @@
+:host {
+  display: block;
+
+  .code-block {
+    background-color: var(--sys-surface-container);
+    border: solid 0.0625rem var(--sys-outline-variant);
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+  }
+  .code-block-pre {
+    margin: 0;
+    font-family: Roboto Mono;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.3125rem;
+    text-align: left;
+    display: flex;
+    white-space: pre-wrap;
+  }
+}

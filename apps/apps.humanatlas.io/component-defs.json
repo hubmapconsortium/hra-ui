@@ -31,7 +31,7 @@
     "id": "asctb-reporter",
     "title": "ASCT+B Reporter",
     "description": "Explore and compare ASCT+B Tables and construct OMAPs with this visualization tool.",
-    "previewImage": "assets/ui-images/asctb_reporter.png",
+    "previewImage": "assets/ui-images/asctb-reporter.png",
     "embedAs": "external"
   },
   {
