@@ -1,0 +1,13 @@
+<mat-button-toggle class="toggle" [checked]="toggled()" (change)="toggled.set($event.source.checked)">
+  <span class="text">
+    <ng-content></ng-content>
+  </span>
+
+  <mat-icon class="icon">
+    @if (toggled()) {
+      expand_less
+    } @else {
+      expand_more
+    }
+  </mat-icon>
+</mat-button-toggle>

@@ -1,0 +1,31 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: block;
+  --mat-standard-button-toggle-focus-state-layer-opacity: 0;
+  --mat-standard-button-toggle-selected-state-background-color: transparent;
+
+  .toggle {
+    @include utils.use-font(label, large);
+    color: var(--sys-secondary);
+    border: none;
+    border-radius: 0;
+
+    .text {
+      margin-right: 0.125rem;
+    }
+
+    :is(&.mat-button-toggle-checked, &:hover, &:active) .text {
+      text-decoration: underline 0.125rem var(--sys-tertiary);
+      text-underline-offset: 0.375rem;
+    }
+
+    ::ng-deep .mat-button-toggle-label-content {
+      padding: 0 0.5rem;
+    }
+
+    ::ng-deep button:focus-visible {
+      @include utils.inset-outline(var(--sys-tertiary));
+    }
+  }
+}
