@@ -4,7 +4,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 import { OpacitySliderComponent } from './opacity-slider.component';
@@ -17,7 +17,7 @@ import { OpacitySliderComponent } from './opacity-slider.component';
     MatSliderModule,
     MatRippleModule,
     MatInputModule,
-    ButtonModule,
+    ButtonsModule,
     MicroTooltipDirective,
   ],
   providers: [],

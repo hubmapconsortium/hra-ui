@@ -6,7 +6,7 @@ describe('FullscreenComponent', () => {
     return render(FullscreenPortalComponent, {
       ...options,
       inputs: {
-        title: 'Test Title',
+        tagline: 'Test Title',
         ...options?.inputs,
       },
     });

@@ -36,6 +36,9 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
   selector: 'ccf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  host: {
+    class: 'hra-app',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {

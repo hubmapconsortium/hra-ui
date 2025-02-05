@@ -15,8 +15,8 @@
         </button>
       }
 
-      <span class="title" [attr.id]="titleId" [hraMicroTooltip]="tooltip()">
-        {{ title() }}
+      <span class="title" [attr.id]="taglineId" [hraMicroTooltip]="tooltip()">
+        {{ tagline() }}
       </span>
 
       <span>
@@ -31,7 +31,7 @@
       role="region"
       class="content"
       [attr.id]="bodyId"
-      [attr.aria-labelledby]="titleId"
+      [attr.aria-labelledby]="taglineId"
       #body
       [@bodyExpansion]="accordionItem.expanded ? 'expanded' : 'collapsed'"
       (@bodyExpansion.start)="animationStart($event)"

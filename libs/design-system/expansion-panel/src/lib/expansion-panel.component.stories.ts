@@ -1,6 +1,6 @@
 import { MatIconModule } from '@angular/material/icon';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import {
   ExpansionPanelActionsComponent,
@@ -14,7 +14,7 @@ const meta: Meta = {
     moduleMetadata({
       imports: [
         MatIconModule,
-        ButtonModule,
+        ButtonsModule,
         ExpansionPanelActionsComponent,
         ExpansionPanelComponent,
         ExpansionPanelHeaderContentComponent,
@@ -27,7 +27,7 @@ const meta: Meta = {
   render: (args) => ({
     props: args,
     template: `
-      <hra-expansion-panel [title]="'Title'">
+      <hra-expansion-panel [tagline]="'Title'">
         <hra-expansion-panel-actions>
           <button mat-icon-button>
             <mat-icon class="material-symbols-rounded">

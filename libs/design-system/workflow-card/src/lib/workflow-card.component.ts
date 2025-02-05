@@ -35,7 +35,7 @@ export class WorkflowCardExtraComponent {}
 })
 export class WorkflowCardComponent {
   /** Card title */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
   /** Step indicator value */
   readonly step = input(undefined, { transform: numberAttribute });
   /** Load progress */

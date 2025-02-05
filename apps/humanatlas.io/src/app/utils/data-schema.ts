@@ -615,6 +615,7 @@ export const PageData = z.object({
   type: z.literal('page-data'),
   pageData: z
     .object({
+      id: z.string().optional(),
       heading: z.string({ description: 'Title of the data' }),
       descriptions: z.string({ description: 'Description of the data' }),
     })

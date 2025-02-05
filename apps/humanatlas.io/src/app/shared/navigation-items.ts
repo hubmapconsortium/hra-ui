@@ -221,6 +221,11 @@ export const NAVIGATION_ITEMS: NavItems[] = [
         menuName: 'HRA Editorial Board',
         route: 'editorial-board',
       },
+      {
+        menuName: 'Publications',
+        route: 'team',
+        fragment: 'publications',
+      },
     ],
   },
 ];
