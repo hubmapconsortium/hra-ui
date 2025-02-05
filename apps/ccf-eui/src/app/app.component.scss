@@ -277,11 +277,11 @@
     grid-template-rows: 3rem 4.5rem auto;
   }
 
-  &:not(.embedded) hra-back-bar {
+  &:not(.embedded) hra-back-button-bar {
     display: none;
   }
 
-  hra-back-bar {
+  hra-back-button-bar {
     grid-area: back;
   }
 
