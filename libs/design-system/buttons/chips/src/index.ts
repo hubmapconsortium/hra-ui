@@ -1,1 +1,1 @@
-export const greeting = 'Hello World!';
+export { provideChips } from './lib/providers';
