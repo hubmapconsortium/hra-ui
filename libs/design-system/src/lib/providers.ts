@@ -1,9 +1,10 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';
-import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+import { APP_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
-import { provideButtons } from '@hra-ui/design-system/button';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
+import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideInput } from '@hra-ui/design-system/input';
@@ -24,6 +25,16 @@ export interface DesignSystemOptions {
 /** Get the providers shared between prod and testing */
 export function provideDesignSystemCommon(options?: DesignSystemOptions) {
   return [
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: () => {
+        const overlayContainer = inject(OverlayContainer);
+        return () => {
+          overlayContainer.getContainerElement().classList.add('hra-app');
+        };
+      },
+    },
     provideIcons({
       fontIcons: {
         defaultClasses: ['material-symbols-rounded'],

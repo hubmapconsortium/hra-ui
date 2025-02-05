@@ -11,7 +11,7 @@ import { DialogService } from '../../dialog.service';
   template: ` <button mat-flat-button (click)="openDialog()">Open Dialog</button> `,
 })
 class DialogDemoComponent {
-  readonly title = input<string>('');
+  readonly tagline = input<string>('');
   readonly message = input<string>('');
   readonly actionLabel = input<string>();
   readonly actionClick = output();
@@ -27,7 +27,7 @@ class DialogDemoComponent {
             callback: () => this.actionClick.emit(),
           }
         : undefined;
-    this.dialogService.openNotice(this.title(), this.message(), action);
+    this.dialogService.openNotice(this.tagline(), this.message(), action);
   }
 }
 
@@ -35,11 +35,11 @@ const meta: Meta<DialogDemoComponent> = {
   component: DialogDemoComponent,
   title: 'DialogDemoComponent',
   args: {
-    title: 'Dialog Title',
+    tagline: 'Dialog Title',
     message: 'Dialog Message',
   },
   argTypes: {
-    title: {
+    tagline: {
       control: 'text',
     },
     message: {
@@ -66,7 +66,7 @@ type Story = StoryObj<DialogDemoComponent>;
 
 export const WithAction: Story = {
   args: {
-    title: 'No Data',
+    tagline: 'No Data',
     message: 'We currently do not have cell type data for this biomarker. Please email us to discuss your dataset.',
     actionLabel: 'Copy Email',
   },
@@ -74,7 +74,7 @@ export const WithAction: Story = {
 
 export const WithoutAction: Story = {
   args: {
-    title: 'Heads up!',
+    tagline: 'Heads up!',
     message: 'This website is optimized for Chrome or Firefox on a minimum resolution of 1280x832.',
   },
 };

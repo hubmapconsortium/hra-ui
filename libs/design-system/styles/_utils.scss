@@ -1,0 +1,19 @@
+@function with-alpha($color, $alpha) {
+  @return rgb(from #{$color} r g b / #{$alpha});
+}
+
+@mixin use-font($variant, $size) {
+  font: var(--sys-#{$variant}-#{$size});
+  letter-spacing: var(--sys-#{$variant}-#{$size}-tracking);
+}
+
+@mixin inset-outline($color, $style: solid, $width: 2px) {
+  outline: $width $style $color;
+  outline-offset: calc(-1 * $width);
+}
+
+@mixin global-styles() {
+  .hra-app {
+    @content;
+  }
+}

@@ -20,7 +20,7 @@ import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SpatialSearchListModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -38,7 +38,7 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
   imports: [
-    ButtonModule,
+    ButtonsModule,
     MatIconModule,
     SpatialSearchListModule,
     RunSpatialSearchModule,

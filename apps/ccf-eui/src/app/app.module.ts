@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
@@ -22,7 +22,7 @@ import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
-import { BackBarComponent } from '@hra-ui/design-system/back-bar';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
@@ -51,10 +51,10 @@ import { FiltersContentComponent } from './modules/filters/filters-content/filte
 
     NavHeaderButtonsComponent,
     ExpansionPanelModule,
-    ButtonModule,
+    ButtonsModule,
     MatMenuModule,
     MatDividerModule,
-    BackBarComponent,
+    BackButtonBarComponent,
     MatSidenavModule,
     FiltersContentComponent,
   ],

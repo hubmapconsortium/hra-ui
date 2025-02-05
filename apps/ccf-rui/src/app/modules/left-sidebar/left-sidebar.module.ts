@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
@@ -25,7 +25,7 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
     IconButtonSizeDirective,
-    ButtonModule,
+    ButtonsModule,
     MicroTooltipDirective,
   ],
   declarations: [LeftSidebarComponent],

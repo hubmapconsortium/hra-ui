@@ -1,4 +1,4 @@
-<hra-expansion-panel [title]="'Tissue Block Settings'" class="tissue-block-settings">
+<hra-expansion-panel tagline="Tissue Block Settings" class="tissue-block-settings">
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
@@ -97,7 +97,7 @@
   >
   </ccf-slices-input>
 </hra-expansion-panel>
-<hra-expansion-panel [title]="'Anatomical Structure Tags'" class="as-tags">
+<hra-expansion-panel tagline="Anatomical Structure Tags" class="as-tags">
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
   <ccf-tag-list
     *ngIf="(model.organ$ | async)?.name; else tagListPlaceholder"

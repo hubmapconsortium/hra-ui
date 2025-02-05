@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
@@ -19,7 +19,7 @@ import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
     CommonModule,
     VisualCardComponent,
     MatIconModule,
-    ButtonModule,
+    ButtonsModule,
     YouTubePlayerModule,
     FooterComponent,
     AssetUrlPipe,

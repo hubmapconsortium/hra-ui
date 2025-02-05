@@ -64,6 +64,9 @@ function selectData<T, Z extends z.ZodTypeAny>(
   imports: [CommonModule, InteractiveSvgComponent],
   templateUrl: 'medical-illustration.component.html',
   styleUrls: ['medical-illustration.component.scss'],
+  host: {
+    class: 'hra-app',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationComponent implements OnInit, OnChanges {
