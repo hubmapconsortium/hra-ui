@@ -1,25 +1,34 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   EventEmitter,
+  inject,
+  input,
   Input,
+  model,
   OnChanges,
   Output,
+  signal,
   SimpleChanges,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { ButtonModule } from '@hra-ui/design-system/button';
+import { SpatialSearchListModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
-import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { SpatialSearchListModule } from 'ccf-shared';
-import { CheckboxModule } from '../../../shared/components/checkbox/checkbox.module';
 import { DualSliderComponent } from '../../../shared/components/dual-slider/dual-slider.component';
 import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
+import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -29,14 +38,16 @@ import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-s
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
   imports: [
-    MatButtonModule,
+    ButtonModule,
     MatIconModule,
-    CheckboxModule,
     SpatialSearchListModule,
     RunSpatialSearchModule,
     MatFormFieldModule,
     MatSelectModule,
     DualSliderComponent,
+    MatChipsModule,
+    MatAutocompleteModule,
+    FormsModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,7 +66,8 @@ export class FiltersContentComponent implements OnChanges {
   /**
    * List of technologies in the data
    */
-  @Input() technologyFilters!: string[];
+  // @Input() technologyFilters!: string[];
+  // readonly technologyFilters = input.required<string[]>();
 
   /**
    * List of providers in the data
@@ -181,5 +193,49 @@ export class FiltersContentComponent implements OnChanges {
 
   private getFilterValue<T>(key: string, defaultValue: T): T {
     return (this.filters?.[key] as T | undefined) ?? defaultValue;
+  }
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly currentAssay = model('');
+  readonly assays = signal([] as string[]);
+  readonly technologyFilters = input.required<string[]>();
+  readonly filteredAssays = computed(() => {
+    const currentAssay = this.currentAssay().toLowerCase();
+    return currentAssay
+      ? this.technologyFilters().filter((assay) => assay.toLowerCase().includes(currentAssay))
+      : this.technologyFilters().slice();
+  });
+
+  readonly announcer = inject(LiveAnnouncer);
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our assay
+    if (value) {
+      this.assays.update((assay) => [...assay, value]);
+    }
+
+    // Clear the input value
+    this.currentAssay.set('');
+  }
+
+  remove(assay: string): void {
+    this.assays.update((assays) => {
+      const index = assays.indexOf(assay);
+      if (index < 0) {
+        return assays;
+      }
+
+      assays.splice(index, 1);
+      this.announcer.announce(`Removed ${assay}`);
+      return [...assays];
+    });
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.assays.update((assays) => [...assays, event.option.viewValue]);
+    this.currentAssay.set('');
+    event.option.deselect();
   }
 }

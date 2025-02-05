@@ -1,3 +1,4 @@
+<span class="section-title">Demographics</span>
 <div class="patient-filters">
   <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
     <mat-label>Sex</mat-label>
@@ -32,7 +33,39 @@
   ></ccf-dual-slider>
 </div>
 
-<div class="filter assays">
+<span class="section-title">Provenance</span>
+<form>
+  <mat-form-field class="assay-form">
+    <mat-label>Assay Types</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Assay selection">
+      @for (assay of assays(); track assay) {
+        <mat-chip-row (removed)="remove(assay)">
+          {{ assay }}
+          <button matChipRemove [attr.aria-label]="'remove ' + assay">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      name="currentAssay"
+      placeholder="Search"
+      #assayInput
+      [(ngModel)]="currentAssay"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event); assayInput.value = ''">
+      @for (assay of filteredAssays(); track assay) {
+        <mat-option [value]="assay">{{ assay }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<!-- <div class="filter assays">
   <ccf-checkbox
     label="Assay Types"
     [columns]="5"
@@ -50,7 +83,7 @@
     [selection]="tmc"
     (selectionChange)="updateFilter($event, 'tmc')"
   ></ccf-checkbox>
-</div>
+</div> -->
 
 @if (spatialSearchFilters.length > 0) {
   <div class="filter spatial-locations">
