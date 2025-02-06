@@ -211,7 +211,7 @@
       [providerFilters]="(data.providerFilterData$ | async) ?? []"
       [spatialSearchFilters]="$any(selectableSearches$ | async)"
       [filters]="$any(data.filter$ | async)"
-      (applyFilters)="data.updateFilter($event)"
+      (applyFilters)="data.updateFilter($event); sidenav.toggle()"
       (spatialSearchSelected)="setSelectedSearches($event)"
       (spatialSearchRemoved)="removeSpatialSearch($event)"
     >

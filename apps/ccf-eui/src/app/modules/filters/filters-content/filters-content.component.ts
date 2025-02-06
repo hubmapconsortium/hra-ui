@@ -6,20 +6,22 @@ import {
   computed,
   EventEmitter,
   inject,
-  input,
   Input,
+  input,
   model,
   OnChanges,
+  OnInit,
   Output,
   signal,
   SimpleChanges,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { SpatialSearch } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SpatialSearchListModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -38,6 +40,7 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
   imports: [
+    ReactiveFormsModule,
     ButtonsModule,
     MatIconModule,
     SpatialSearchListModule,
@@ -52,7 +55,7 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersContentComponent implements OnChanges {
+export class FiltersContentComponent implements OnChanges, OnInit {
   /**
    * Determines if the filters are visible
    */
@@ -66,8 +69,7 @@ export class FiltersContentComponent implements OnChanges {
   /**
    * List of technologies in the data
    */
-  // @Input() technologyFilters!: string[];
-  // readonly technologyFilters = input.required<string[]>();
+  readonly technologyFilters = input.required<string[]>();
 
   /**
    * List of providers in the data
@@ -99,25 +101,16 @@ export class FiltersContentComponent implements OnChanges {
    */
   @Output() readonly applyFilters = new EventEmitter<Record<string, unknown>>();
 
-  get sex(): Sex {
-    return this.getFilterValue<string>('sex', 'male')?.toLowerCase() as Sex;
-  }
-
-  get ageRange(): number[] {
-    return this.getFilterValue<number[]>('ageRange', []);
-  }
-
-  get bmiRange(): number[] {
-    return this.getFilterValue<number[]>('bmiRange', []);
-  }
-
-  get technologies(): string[] {
-    return this.getFilterValue<string[]>('technologies', []);
-  }
-
-  get tmc(): string[] {
-    return this.getFilterValue<string[]>('tmc', []);
-  }
+  private readonly nnfb = inject(NonNullableFormBuilder);
+  protected readonly filterForm = this.nnfb.group({
+    sex: new FormControl<Sex | null>(null),
+    ageRange: new FormControl<number[]>([0, 0]),
+    bmiRange: new FormControl<number[]>([0, 0]),
+    technologies: new FormControl<string[]>(['']),
+    consortia: new FormControl<string>(''),
+    tmc: new FormControl<string[]>(['']),
+    spatialSearches: new FormControl<SpatialSearch[] | null>(null),
+  });
 
   /**
    * Creates an instance of filters content component.
@@ -125,6 +118,16 @@ export class FiltersContentComponent implements OnChanges {
    * @param ga Analytics service
    */
   constructor(private readonly ga: GoogleAnalyticsService) {}
+
+  ngOnInit(): void {
+    if (this.filters) {
+      this.filterForm.patchValue({
+        sex: this.filters['sex'] as Sex,
+        ageRange: this.filters['ageRange'] as number[],
+        bmiRange: this.filters['bmiRange'] as number[],
+      });
+    }
+  }
 
   /**
    * Handle input changes
@@ -142,9 +145,25 @@ export class FiltersContentComponent implements OnChanges {
    * @param key The key for the filter to be saved at
    */
   updateFilter(value: unknown, key: string): void {
-    this.filters = { ...this.filters, [key]: value };
+    this.filterForm.patchValue({
+      [key]: value,
+    });
     this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
-    this.filtersChange.emit(this.filters);
+    this.filtersChange.emit(this.convertedFilter());
+  }
+
+  convertedFilter(): Record<string, unknown> {
+    const { sex, ageRange, bmiRange, technologies, consortia, tmc, spatialSearches } = this.filterForm.controls;
+
+    return {
+      sex: sex.value,
+      ageRange: ageRange.value,
+      bmiRange: bmiRange.value,
+      technologies: technologies.value,
+      consortia: consortia.value,
+      tmc: tmc.value,
+      spatialSearches: spatialSearches.value,
+    } as Record<string, unknown>;
   }
 
   /**
@@ -153,7 +172,7 @@ export class FiltersContentComponent implements OnChanges {
   applyButtonClick(): void {
     this.updateSearchSelection(this.spatialSearchFilters.filter((item) => item.selected));
     this.ga.event('filters_applied', 'filter_content');
-    this.applyFilters.emit(this.filters);
+    this.applyFilters.emit(this.convertedFilter());
   }
 
   /**
@@ -183,7 +202,7 @@ export class FiltersContentComponent implements OnChanges {
    * Updates sex to `Both` if there is a mismatch between the current selection and the sex
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
-    const currentSex = this.sex;
+    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as Sex;
     const selectedSexes = new Set(items.map((item) => item.sex));
 
     if (items.length > 0 && (selectedSexes.size > 1 || !selectedSexes.has(currentSex))) {
@@ -191,14 +210,9 @@ export class FiltersContentComponent implements OnChanges {
     }
   }
 
-  private getFilterValue<T>(key: string, defaultValue: T): T {
-    return (this.filters?.[key] as T | undefined) ?? defaultValue;
-  }
-
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly currentAssay = model('');
   readonly assays = signal([] as string[]);
-  readonly technologyFilters = input.required<string[]>();
   readonly filteredAssays = computed(() => {
     const currentAssay = this.currentAssay().toLowerCase();
     return currentAssay

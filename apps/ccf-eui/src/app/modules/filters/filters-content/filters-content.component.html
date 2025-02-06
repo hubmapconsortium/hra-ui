@@ -1,40 +1,40 @@
-<span class="section-title">Demographics</span>
-<div class="patient-filters">
-  <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
-    <mat-label>Sex</mat-label>
-    <mat-select
-      class="selected-value"
-      (selectionChange)="updateFilter($event.value, 'sex')"
-      disableOptionCentering="true"
-      panelClass="option-panel"
-      disableRipple
-      hideSingleSelectionIndicator="true"
-      [value]="filters ? filters['sex'] : ''"
-    >
-      @for (option of ['Both', 'Male', 'Female']; track option) {
-        <mat-option [value]="option">
-          <div>{{ option }}</div>
-        </mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+<form [formGroup]="filterForm">
+  <span class="section-title">Demographics</span>
+  <div class="patient-filters">
+    <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
+      <mat-label>Sex</mat-label>
+      <mat-select
+        class="selected-value"
+        (selectionChange)="updateFilter($event.value, 'sex')"
+        disableOptionCentering="true"
+        panelClass="option-panel"
+        disableRipple
+        hideSingleSelectionIndicator="true"
+        [value]="filterForm.controls.sex.value"
+      >
+        @for (option of ['Both', 'Male', 'Female']; track option) {
+          <mat-option [value]="option">
+            <div>{{ option }}</div>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-  <ccf-dual-slider
-    label="Age"
-    [valueRange]="[1, 110]"
-    [selection]="ageRange"
-    (selectionChange)="updateFilter($event, 'ageRange')"
-  ></ccf-dual-slider>
-  <ccf-dual-slider
-    label="BMI"
-    [valueRange]="[13, 83]"
-    [selection]="bmiRange"
-    (selectionChange)="updateFilter($event, 'bmiRange')"
-  ></ccf-dual-slider>
-</div>
+    <ccf-dual-slider
+      label="Age"
+      [valueRange]="[1, 110]"
+      [selection]="filterForm.controls.ageRange.value ?? []"
+      (selectionChange)="updateFilter($event, 'ageRange')"
+    ></ccf-dual-slider>
+    <ccf-dual-slider
+      label="BMI"
+      [valueRange]="[13, 83]"
+      [selection]="filterForm.controls.bmiRange.value ?? []"
+      (selectionChange)="updateFilter($event, 'bmiRange')"
+    ></ccf-dual-slider>
+  </div>
 
-<span class="section-title">Provenance</span>
-<form>
+  <span class="section-title">Provenance</span>
   <mat-form-field class="assay-form">
     <mat-label>Assay Types</mat-label>
     <mat-chip-grid #chipGrid aria-label="Assay selection">
@@ -47,6 +47,7 @@
         </mat-chip-row>
       }
     </mat-chip-grid>
+    <mat-icon matPrefix>search</mat-icon>
     <input
       name="currentAssay"
       placeholder="Search"
@@ -56,6 +57,7 @@
       [matAutocomplete]="auto"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)"
+      formControlName="technologies"
     />
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event); assayInput.value = ''">
       @for (assay of filteredAssays(); track assay) {

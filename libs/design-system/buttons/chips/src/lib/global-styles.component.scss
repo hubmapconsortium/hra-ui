@@ -1,137 +1,7 @@
 @use '../../../../styles/utils';
 
 @include utils.global-styles() {
-  :is(button, a).mdc-button {
-    @include utils.use-font(label, medium);
-
-    --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
-    --mat-text-button-state-layer-color: var(--sys-on-tertiary-fixed);
-    --mdc-text-button-disabled-label-text-color: #{utils.with-alpha(var(--sys-secondary), 38%)};
-    --mat-text-button-ripple-color: #{utils.with-alpha(var(--sys-secondary), 8%)};
-
-    --mdc-text-button-container-height: 2.5rem;
-    --mdc-text-button-container-shape: var(--sys-corner-extra-small);
-    --mat-text-button-horizontal-padding: 1rem;
-    --mat-text-button-icon-offset: 0;
-
-    &:focus-visible {
-      --mdc-text-button-label-text-color: var(--sys-secondary);
-      --mat-text-button-focus-state-layer-opacity: 0;
-      @include utils.inset-outline(var(--sys-tertiary));
-    }
-
-    &.hra-button-variant-secondary.hra-cta-button {
-      --mdc-text-button-container-shape: var(--sys-corner-none);
-    }
-
-    &.hra-button-variant-secondary:not(.hra-cta-button) {
-      --mdc-text-button-label-text-color: var(--sys-secondary);
-      --mat-text-button-state-layer-color: var(--sys-secondary);
-    }
-
-    &.hra-button-size-small {
-      @include utils.use-font(label, small);
-
-      --mdc-text-button-container-height: 1.75rem;
-      --mat-text-button-horizontal-padding: 0.5rem;
-    }
-  }
-
-  :is(button, a).mdc-button[mat-flat-button] {
-    --mdc-filled-button-label-text-color: var(--sys-on-primary);
-    --mat-filled-button-state-layer-color: var(--sys-on-primary);
-    --mdc-filled-button-container-color: var(--sys-tertiary);
-    --mdc-filled-button-disabled-label-text-color: #{utils.with-alpha(var(--sys-secondary), 38%)};
-    --mdc-filled-button-disabled-container-color: #{utils.with-alpha(var(--sys-outline-variant), 38%)};
-    --mat-filled-button-ripple-color: #{utils.with-alpha(var(--sys-secondary), 12%)};
-
-    --mdc-filled-button-container-height: 2.5rem;
-    --mdc-filled-button-container-shape: var(--sys-corner-extra-small);
-    --mat-filled-button-horizontal-padding: 1rem;
-    --mat-filled-button-hover-state-layer-opacity: 0;
-    --mat-filled-button-icon-offset: 0;
-
-    &:hover:not(:active) {
-      box-shadow: 0.0625rem 0.125rem 1rem 0rem utils.with-alpha(var(--sys-tertiary), 56%);
-    }
-
-    &:focus-visible {
-      --mdc-filled-button-label-text-color: var(--sys-secondary);
-      --mdc-filled-button-container-color: transparent;
-      --mat-filled-button-focus-state-layer-opacity: 0;
-      @include utils.inset-outline(var(--sys-tertiary));
-    }
-  }
-
-  :is(button, a).mdc-button.hra-cta-button:not(.hra-button-variant-secondary) {
-    $corner-width: 0.9375rem;
-    $corner-height: 0.8125rem;
-    $border-width: 0.15rem;
-    $x-multiplier: 0.373;
-    $y-multiplier: 0.4566;
-    /* Order of path: bottom left -> top left -> top right -> bottom right y-axis -> bottom right x-axis */
-    $background-clip-path: polygon(
-      0 100%,
-      0 0,
-      100% 0%,
-      100% calc(100% - #{$corner-height}),
-      calc(100% - #{$corner-width}) 100%
-    );
-    $overlay-clip-path: polygon(
-      $border-width calc(100% - $border-width),
-      $border-width $border-width,
-      calc(100% - $border-width) $border-width,
-      calc(100% - $border-width) calc(100% - $corner-height - $border-width * $y-multiplier),
-      calc(100% - $corner-width - $border-width * $x-multiplier) calc(100% - $border-width)
-    );
-
-    --mdc-text-button-label-text-color: var(--sys-on-primary);
-    --mat-text-button-state-layer-color: var(--sys-on-primary);
-    --mdc-text-button-disabled-label-text-color: #{utils.with-alpha(var(--sys-secondary), 38%)};
-    --mat-text-button-ripple-color: #{utils.with-alpha(var(--sys-secondary), 12%)};
-
-    --mdc-text-button-container-shape: var(--sys-corner-none);
-    --mat-text-button-hover-state-layer-opacity: 0;
-
-    background-color: var(--sys-tertiary);
-    clip-path: $background-clip-path;
-
-    &:disabled {
-      background-color: utils.with-alpha(var(--sys-outline-variant), 38%);
-    }
-
-    &:hover:not(:active) {
-      background-color: transparent;
-      clip-path: unset;
-      box-shadow: unset;
-      filter: drop-shadow(0.0625rem 0.125rem 1rem utils.with-alpha(var(--sys-tertiary), 56%));
-
-      &:before {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        inset: 0;
-        background: var(--sys-tertiary);
-        clip-path: $background-clip-path;
-      }
-    }
-
-    &:focus-visible {
-      --mdc-text-button-label-text-color: var(--sys-secondary);
-      outline: unset;
-
-      &::after {
-        content: '';
-        position: absolute;
-        background-color: var(--sys-on-primary);
-        inset: 0;
-        z-index: -1;
-        clip-path: $overlay-clip-path;
-      }
-    }
-  }
-
-  :is(mat-chip-row).mat-mdc-chip {
+  mat-chip-row.mat-mdc-chip {
     --mdc-chip-outline-color: var(--sys-outline-variant);
     --mdc-chip-focus-outline-color: var(--sys-outline-variant);
 
@@ -144,6 +14,7 @@
 
     .mat-mdc-chip-action-label {
       @include utils.use-font(label, medium);
+      line-height: 1.25rem;
     }
 
     &:focus-visible {
@@ -153,7 +24,7 @@
     }
   }
 
-  :is(mat-chip-grid).mat-mdc-chip-set {
+  mat-chip-grid.mat-mdc-chip-set {
     .mdc-evolution-chip-set__chips {
       margin: 0;
       gap: 0.25rem;
