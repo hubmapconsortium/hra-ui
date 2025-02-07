@@ -82,7 +82,6 @@ export class CellPopulationPredictorComponent {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.file = input.files[0];
-      console.log('Selected file:', this.file.name);
     }
   }
 

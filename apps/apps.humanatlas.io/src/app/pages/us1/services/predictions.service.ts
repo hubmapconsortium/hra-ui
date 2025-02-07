@@ -61,7 +61,7 @@ export class PredictionsService {
   loadPredictions(): Observable<Prediction[]> {
     return from(this.file.text()).pipe(
       switchMap((data) =>
-        this.http.post<Prediction[]>(`${this.endpoint}/rui-location-cell-summary`, data, {
+        this.http.post<Prediction[]>(`${this.endpoint}/rui-location-cell-summary`, JSON.parse(data), {
           headers: {
             'Content-Type': 'application/json',
           },

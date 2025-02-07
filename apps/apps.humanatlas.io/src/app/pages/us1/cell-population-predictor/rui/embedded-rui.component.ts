@@ -43,16 +43,10 @@ export class EmbeddedRuiComponent {
   constructor() {
     this.setupScriptAndStyleTags();
 
-    console.log('SUPPORTED ORGANS:', this.supportedOrgans());
-
     effect(() => {
       const el = this.ref().nativeElement;
       el.organOptions = this.supportedOrgans();
-      el.register = (location) => {
-        console.log('REGISTRATION CALLED!', location);
-
-        this.locationCreated.emit(this.createFileFromLocation(location));
-      };
+      el.register = (location) => this.locationCreated.emit(this.createFileFromLocation(location));
       el.cancelRegistration = () => this.closed.emit();
     });
   }
