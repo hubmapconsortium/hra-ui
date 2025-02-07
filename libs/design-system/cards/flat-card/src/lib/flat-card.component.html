@@ -1,0 +1,29 @@
+<div class="flat-card">
+  <div class="component-tagline">
+    <span class="component-title">{{ title() }}</span>
+    @if (showHelpButton()) {
+      <button mat-icon-button hraIconButtonSize="small" class="helpButton" hraIconButtonVariant="dark">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    }
+    <button class="closeButton" mat-icon-button hraIconButtonSize="small">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  @if (showDivider()) {
+    <mat-divider class="top-divider"></mat-divider>
+  }
+
+  <div class="card-content">
+    <ng-content></ng-content>
+  </div>
+
+  @if (showButtonsFooter()) {
+    <div class="card-footer">
+      <button mat-button hraPrimaryButton hraButtonSize="medium">{{ leftButtonText() }}</button>
+      <button disabled="{{ isButtonDisabled() }}" mat-flat-button hraPrimaryButton hraButtonSize="medium">
+        {{ rightButtonText() }}
+      </button>
+    </div>
+  }
+</div>
