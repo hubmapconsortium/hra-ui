@@ -44,9 +44,23 @@
 // }
 
 :host {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .section {
+    .section-title {
+      font: var(--sys-label-large);
+      color: var(--sys-secondary);
+      margin-bottom: 0.5rem;
+    }
+    padding: 0 1.5rem;
+  }
+
   .patient-filters {
     display: flex;
-    padding-top: 0.5rem;
     gap: 2rem;
   }
 
@@ -57,43 +71,25 @@
   }
 
   .assay-form {
+    margin-bottom: 2rem;
+  }
+
+  .assay-form,
+  .providers-form {
     --mdc-filled-text-field-container-color: var(--sys-surface-container);
     width: 100%;
   }
 
+  .filler {
+    flex-grow: 1;
+  }
+
   .button-container {
+    padding: 0 1.5rem;
     display: flex;
+    height: 88px;
     justify-content: space-between;
-    margin-top: 1.5rem;
-
-    .right-group {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .outline-button {
-        border-width: 1px;
-        border-style: solid;
-        width: 11rem;
-        height: 100%;
-        box-shadow: 0.1rem 0.1rem 0.2rem 0rem #0000001d;
-      }
-
-      .refresh-icon {
-        padding: 0.25rem;
-        border-radius: 0.25rem;
-        margin-right: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.6s;
-
-        .refresh {
-          cursor: pointer;
-          transition: 0.6s;
-          transition-property: background;
-        }
-      }
-    }
+    align-items: center;
+    border-top: 1px solid var(--sys-outline-variant);
   }
 }

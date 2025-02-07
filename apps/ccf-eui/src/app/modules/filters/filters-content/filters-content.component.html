@@ -1,110 +1,126 @@
 <form [formGroup]="filterForm">
-  <span class="section-title">Demographics</span>
-  <div class="patient-filters">
-    <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
-      <mat-label>Sex</mat-label>
-      <mat-select
-        class="selected-value"
-        (selectionChange)="updateFilter($event.value, 'sex')"
-        disableOptionCentering="true"
-        panelClass="option-panel"
-        disableRipple
-        hideSingleSelectionIndicator="true"
-        [value]="filterForm.controls.sex.value"
-      >
-        @for (option of ['Both', 'Male', 'Female']; track option) {
-          <mat-option [value]="option">
-            <div>{{ option }}</div>
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+  <div class="section">
+    <div class="section-title">Demographics</div>
+    <div class="patient-filters">
+      <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
+        <mat-label>Sex</mat-label>
+        <mat-select
+          class="selected-value"
+          (selectionChange)="updateFilter($event.value, 'sex')"
+          disableOptionCentering="true"
+          panelClass="option-panel"
+          disableRipple
+          hideSingleSelectionIndicator="true"
+          [value]="filterForm.controls.sex.value"
+        >
+          @for (option of ['Both', 'Male', 'Female']; track option) {
+            <mat-option [value]="option">
+              <div>{{ option }}</div>
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
 
-    <ccf-dual-slider
-      label="Age"
-      [valueRange]="[1, 110]"
-      [selection]="filterForm.controls.ageRange.value ?? []"
-      (selectionChange)="updateFilter($event, 'ageRange')"
-    ></ccf-dual-slider>
-    <ccf-dual-slider
-      label="BMI"
-      [valueRange]="[13, 83]"
-      [selection]="filterForm.controls.bmiRange.value ?? []"
-      (selectionChange)="updateFilter($event, 'bmiRange')"
-    ></ccf-dual-slider>
-  </div>
-
-  <span class="section-title">Provenance</span>
-  <mat-form-field class="assay-form">
-    <mat-label>Assay Types</mat-label>
-    <mat-chip-grid #chipGrid aria-label="Assay selection">
-      @for (assay of assays(); track assay) {
-        <mat-chip-row (removed)="remove(assay)">
-          {{ assay }}
-          <button matChipRemove [attr.aria-label]="'remove ' + assay">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-chip-row>
-      }
-    </mat-chip-grid>
-    <mat-icon matPrefix>search</mat-icon>
-    <input
-      name="currentAssay"
-      placeholder="Search"
-      #assayInput
-      [(ngModel)]="currentAssay"
-      [matChipInputFor]="chipGrid"
-      [matAutocomplete]="auto"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)"
-      formControlName="technologies"
-    />
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event); assayInput.value = ''">
-      @for (assay of filteredAssays(); track assay) {
-        <mat-option [value]="assay">{{ assay }}</mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
-
-<!-- <div class="filter assays">
-  <ccf-checkbox
-    label="Assay Types"
-    [columns]="5"
-    [options]="technologyFilters"
-    [selection]="technologies"
-    (selectionChange)="updateFilter($event, 'technologies')"
-  ></ccf-checkbox>
-</div>
-
-<div class="filter providers">
-  <ccf-checkbox
-    label="Tissue Providers"
-    [columns]="3"
-    [options]="providerFilters"
-    [selection]="tmc"
-    (selectionChange)="updateFilter($event, 'tmc')"
-  ></ccf-checkbox>
-</div> -->
-
-@if (spatialSearchFilters.length > 0) {
-  <div class="filter spatial-locations">
-    <ccf-spatial-search-list
-      label="Spatial Locations"
-      [items]="spatialSearchFilters"
-      (selectionChanged)="updateSearchSelection($event)"
-      (itemRemoved)="spatialSearchRemoved.emit($event.id)"
-    >
-    </ccf-spatial-search-list>
-  </div>
-}
-
-<div class="button-container">
-  <ccf-run-spatial-search></ccf-run-spatial-search>
-  <div class="right-group">
-    <button class="outline-button" mat-button (click)="applyButtonClick()">Apply Filters</button>
-    <div class="refresh-icon">
-      <mat-icon class="icon refresh" (click)="refreshFilters()">refresh</mat-icon>
+      <ccf-dual-slider
+        label="Age"
+        [valueRange]="[1, 110]"
+        [selection]="filterForm.controls.ageRange.value ?? []"
+        (selectionChange)="updateFilter($event, 'ageRange')"
+      ></ccf-dual-slider>
+      <ccf-dual-slider
+        label="BMI"
+        [valueRange]="[13, 83]"
+        [selection]="filterForm.controls.bmiRange.value ?? []"
+        (selectionChange)="updateFilter($event, 'bmiRange')"
+      ></ccf-dual-slider>
     </div>
   </div>
-</div>
+
+  <div class="section">
+    <div class="section-title">Provenance</div>
+    <mat-form-field class="assay-form" subscriptSizing="dynamic">
+      <mat-label>Assay Types</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Assay selection" formControlName="technologies">
+        @for (assay of assays(); track assay) {
+          <mat-chip-row (removed)="remove(assay, 'technologies')">
+            {{ assay }}
+            <button matChipRemove [attr.aria-label]="'remove ' + assay">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        name="currentAssay"
+        placeholder="Search"
+        #assayInput
+        [(ngModel)]="currentAssay"
+        [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event, 'technologies')"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event, 'technologies'); assayInput.value = ''"
+      >
+        @for (assay of filteredAssays(); track assay) {
+          <mat-option [value]="assay">{{ assay }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="providers-form" subscriptSizing="dynamic">
+      <mat-label>Tissue Data Providers</mat-label>
+      <mat-chip-grid #chipGrid2 aria-label="Provider selection" formControlName="providers">
+        @for (provider of providers(); track provider) {
+          <mat-chip-row (removed)="remove(provider, 'providers')">
+            {{ provider }}
+            <button matChipRemove [attr.aria-label]="'remove ' + provider">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        name="currentProvider"
+        placeholder="Search"
+        #providerInput
+        [(ngModel)]="currentProvider"
+        [matChipInputFor]="chipGrid2"
+        [matAutocomplete]="auto2"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event, 'providers')"
+      />
+      <mat-autocomplete
+        #auto2="matAutocomplete"
+        (optionSelected)="selected($event, 'providers'); providerInput.value = ''"
+      >
+        @for (provider of filteredProviders(); track provider) {
+          <mat-option [value]="provider">{{ provider }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="section">
+    <div class="filter spatial-locations">
+      <ccf-spatial-search-list
+        label="Spatial Locations"
+        [items]="spatialSearchFilters()"
+        (selectionChanged)="updateSearchSelection($event)"
+        (itemRemoved)="spatialSearchRemoved.emit($event.id)"
+      >
+      </ccf-spatial-search-list>
+    </div>
+    <ccf-run-spatial-search></ccf-run-spatial-search>
+  </div>
+
+  <div class="filler"></div>
+  <div class="button-container">
+    <button mat-button (click)="refreshFilters()">Reset Filters<mat-icon>refresh</mat-icon></button>
+    <button (click)="applyButtonClick()" mat-flat-button>Apply</button>
+  </div>
+</form>

@@ -272,12 +272,17 @@
       font: var(--sys-title-small);
       height: 4.5rem;
       padding-right: 0.5rem;
-      padding-left: 1rem;
+      padding-left: 1.5rem;
 
       .sidenav-title {
         vertical-align: text-bottom;
         color: var(--sys-secondary);
       }
+    }
+
+    ccf-filters-content {
+      height: calc(100% - 4.5rem);
+      display: flex;
     }
   }
 

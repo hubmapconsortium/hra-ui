@@ -1,17 +1,15 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  EventEmitter,
   inject,
   Input,
   input,
   model,
   OnChanges,
   OnInit,
-  Output,
+  output,
   signal,
   SimpleChanges,
 } from '@angular/core';
@@ -51,6 +49,7 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
     MatChipsModule,
     MatAutocompleteModule,
     FormsModule,
+    ButtonsModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,12 +58,12 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   /**
    * Determines if the filters are visible
    */
-  @Input() hidden!: boolean;
+  readonly hidden = input<boolean>();
 
   /**
    * Allows the filters to be set from outside the component
    */
-  @Input() filters?: Record<string, unknown | unknown[]>;
+  @Input() filters?: Record<string, unknown>;
 
   /**
    * List of technologies in the data
@@ -74,41 +73,41 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   /**
    * List of providers in the data
    */
-  @Input() providerFilters!: string[];
+  readonly providerFilters = input.required<string[]>();
 
   /**
    * List of spatial searches
    */
-  @Input() spatialSearchFilters: SpatialSearchFilterItem[] = [];
+  readonly spatialSearchFilters = input.required<SpatialSearchFilterItem[]>();
 
   /**
    * Emits the filter change when they happen
    */
-  @Output() readonly filtersChange = new EventEmitter<Record<string, unknown>>();
+  filtersChange = output<Record<string, unknown>>();
 
   /**
    * Emits when a spatial search is selected/deselected
    */
-  @Output() readonly spatialSearchSelected = new EventEmitter<SpatialSearchFilterItem[]>();
+  spatialSearchSelected = output<SpatialSearchFilterItem[]>();
 
   /**
    * Emits when a spatial search is removed/deleted
    */
-  @Output() readonly spatialSearchRemoved = new EventEmitter<string>();
+  spatialSearchRemoved = output<string>();
 
   /**
    * Emits the filters to be applied
    */
-  @Output() readonly applyFilters = new EventEmitter<Record<string, unknown>>();
+  applyFilters = output<Record<string, unknown>>();
 
   private readonly nnfb = inject(NonNullableFormBuilder);
-  protected readonly filterForm = this.nnfb.group({
+  protected filterForm = this.nnfb.group({
     sex: new FormControl<Sex | null>(null),
-    ageRange: new FormControl<number[]>([0, 0]),
-    bmiRange: new FormControl<number[]>([0, 0]),
-    technologies: new FormControl<string[]>(['']),
-    consortia: new FormControl<string>(''),
-    tmc: new FormControl<string[]>(['']),
+    ageRange: new FormControl<number[] | null>(null),
+    bmiRange: new FormControl<number[] | null>(null),
+    technologies: new FormControl<string[] | null>(null),
+    consortiums: new FormControl<string[] | null>(null),
+    providers: new FormControl<string[] | null>(null),
     spatialSearches: new FormControl<SpatialSearch[] | null>(null),
   });
 
@@ -134,7 +133,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    */
   ngOnChanges(changes: SimpleChanges): void {
     if ('spatialSearchFilters' in changes) {
-      this.updateSexFromSelection(this.spatialSearchFilters.filter((item) => item.selected));
+      this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
     }
   }
 
@@ -153,15 +152,15 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   }
 
   convertedFilter(): Record<string, unknown> {
-    const { sex, ageRange, bmiRange, technologies, consortia, tmc, spatialSearches } = this.filterForm.controls;
+    const { sex, ageRange, bmiRange, technologies, consortiums, providers, spatialSearches } = this.filterForm.controls;
 
     return {
       sex: sex.value,
       ageRange: ageRange.value,
       bmiRange: bmiRange.value,
       technologies: technologies.value,
-      consortia: consortia.value,
-      tmc: tmc.value,
+      consortiums: consortiums.value,
+      tmc: providers.value,
       spatialSearches: spatialSearches.value,
     } as Record<string, unknown>;
   }
@@ -170,19 +169,33 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Emits the current filters when the apply button is clicked
    */
   applyButtonClick(): void {
-    this.updateSearchSelection(this.spatialSearchFilters.filter((item) => item.selected));
+    this.updateSearchSelection(this.spatialSearchFilters().filter((item) => item.selected));
     this.ga.event('filters_applied', 'filter_content');
     this.applyFilters.emit(this.convertedFilter());
+    console.warn(this.convertedFilter());
   }
 
   /**
    * Refreshes all filter settings
    */
   refreshFilters(): void {
+    this.assays.set([]);
+    this.providers.set([]);
     this.filters = JSON.parse(JSON.stringify(DEFAULT_FILTER));
+    if (this.filters) {
+      this.filterForm.patchValue({
+        sex: this.filters['sex'] as Sex,
+        ageRange: this.filters['ageRange'] as number[],
+        bmiRange: this.filters['bmiRange'] as number[],
+        consortiums: this.filters['consortiums'] as string[],
+        technologies: this.filters['technologies'] as string[],
+        providers: this.filters['tmc'] as string[],
+        spatialSearches: this.filters['spatialSearches'] as SpatialSearch[],
+      });
+    }
     this.ga.event('filters_reset', 'filter_content');
     this.spatialSearchSelected.emit([]);
-    this.filtersChange.emit(this.filters);
+    this.filtersChange.emit(this.filters ?? {});
   }
 
   /**
@@ -211,6 +224,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   }
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   readonly currentAssay = model('');
   readonly assays = signal([] as string[]);
   readonly filteredAssays = computed(() => {
@@ -220,36 +234,79 @@ export class FiltersContentComponent implements OnChanges, OnInit {
       : this.technologyFilters().slice();
   });
 
-  readonly announcer = inject(LiveAnnouncer);
+  readonly currentProvider = model('');
+  readonly providers = signal([] as string[]);
+  readonly filteredProviders = computed(() => {
+    const currentProvider = this.currentProvider().toLowerCase();
+    return currentProvider
+      ? this.providerFilters().filter((provider) => provider.toLowerCase().includes(currentProvider))
+      : this.providerFilters().slice();
+  });
 
-  add(event: MatChipInputEvent): void {
+  add(event: MatChipInputEvent, field: string): void {
     const value = (event.value || '').trim();
 
-    // Add our assay
-    if (value) {
-      this.assays.update((assay) => [...assay, value]);
+    switch (field) {
+      case 'technologies':
+        if (value) {
+          this.assays.update((assay) => [...assay, value]);
+        }
+        this.currentAssay.set('');
+        break;
+      case 'providers':
+        if (value) {
+          this.providers.update((provider) => [...provider, value]);
+        }
+        this.currentProvider.set('');
+        break;
+      default:
+        break;
     }
-
-    // Clear the input value
-    this.currentAssay.set('');
   }
 
-  remove(assay: string): void {
-    this.assays.update((assays) => {
-      const index = assays.indexOf(assay);
-      if (index < 0) {
-        return assays;
-      }
+  remove(assay: string, field: string): void {
+    switch (field) {
+      case 'technologies':
+        this.assays.update((assays) => {
+          const index = assays.indexOf(assay);
+          if (index < 0) {
+            return assays;
+          }
 
-      assays.splice(index, 1);
-      this.announcer.announce(`Removed ${assay}`);
-      return [...assays];
-    });
+          assays.splice(index, 1);
+          return [...assays];
+        });
+        break;
+      case 'providers':
+        this.providers.update((providers) => {
+          const index = providers.indexOf(assay);
+          if (index < 0) {
+            return providers;
+          }
+
+          providers.splice(index, 1);
+          return [...providers];
+        });
+        break;
+      default:
+        break;
+    }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.assays.update((assays) => [...assays, event.option.viewValue]);
-    this.currentAssay.set('');
-    event.option.deselect();
+  selected(event: MatAutocompleteSelectedEvent, field: string): void {
+    switch (field) {
+      case 'technologies':
+        this.assays.update((assays) => [...assays, event.option.viewValue]);
+        this.currentAssay.set('');
+        event.option.deselect();
+        break;
+      case 'providers':
+        this.providers.update((providers) => [...providers, event.option.viewValue]);
+        this.currentProvider.set('');
+        event.option.deselect();
+        break;
+      default:
+        break;
+    }
   }
 }
