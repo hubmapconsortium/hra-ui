@@ -112,6 +112,9 @@
           "buildTarget": "design-system:build-storybook:ci"
         }
       }
+    },
+    "build-header-menus-schema": {
+      "command": "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/menus/menus.schema.ts --name Menus"
     }
   }
 }

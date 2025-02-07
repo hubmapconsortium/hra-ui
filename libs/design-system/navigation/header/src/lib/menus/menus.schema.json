@@ -1,0 +1,132 @@
+{
+  "$ref": "#/definitions/Menus",
+  "definitions": {
+    "MenuDivider": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "divider"
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "MenuGroup": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "group"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/MenuSubGroup"
+              },
+              {
+                "$ref": "#/definitions/MenuItem"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["type", "label", "url"],
+      "additionalProperties": false
+    },
+    "MenuItem": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "item"
+        },
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["type", "label", "url"],
+      "additionalProperties": false
+    },
+    "MenuSection": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "section"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/MenuGroup"
+              },
+              {
+                "$ref": "#/definitions/MenuDivider"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["type", "id", "label", "items"],
+      "additionalProperties": false
+    },
+    "MenuSubGroup": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "subgroup"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuItem"
+          }
+        }
+      },
+      "required": ["type", "label", "items"],
+      "additionalProperties": false
+    },
+    "Menus": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuSection"
+          }
+        }
+      },
+      "required": ["sections"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
