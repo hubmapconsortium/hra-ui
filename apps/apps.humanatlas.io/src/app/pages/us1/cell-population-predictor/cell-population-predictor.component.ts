@@ -1,16 +1,22 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
-import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MatIconModule } from '@angular/material/icon';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '@hra-ui/cde-visualization';
-import SAMPLE_DATA from './sample-data.json';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, effect } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { TOOLTIP_POSITION_RIGHT_SIDE } from '@hra-ui/cde-visualization';
+import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { PredictionsService } from '../services/predictions.service';
+import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
+
+const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
+and metadata (creator name, creation date) for a tissue block. Importantly, an extraction site also contains a
+list of anatomical structures that a tissue block collides with, either via bounding-box or mesh-based
+collision detection. Extraction sites are generated using the Registration User Interface (RUI).`;
 
 /**
  * Cell Population Predictor Page Component
@@ -29,6 +35,7 @@ import { RouterModule } from '@angular/router';
     OverlayModule,
     DeleteFileButtonComponent,
     RouterModule,
+    EmbeddedRuiComponent,
   ],
   templateUrl: './cell-population-predictor.component.html',
   styleUrl: './cell-population-predictor.component.scss',
@@ -44,16 +51,32 @@ export class CellPopulationPredictorComponent {
   /** Whether to show create info tooltip   */
   protected createInfoOpen = false;
 
+  /** Whether to show RUI form */
+  protected ruiOpen = false;
+
+  /** Supported organs */
+  protected supportedOrgans = <string[]>[];
+
   /** Tooltip Position */
   protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
     {
-      description:
-        'An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex) and metadata (creator name, creation date) for a tissue block. Importantly, an extraction site also contains a list of anatomical structures that a tissue block collides with, either via bounding-box or mesh-based collision detection. Extraction sites are generated using the Registration User Interface (RUI).',
+      description: TOOLTIP_CONTENT,
     },
   ];
+
+  /** Predictions Service */
+  protected readonly predictionsService = inject(PredictionsService);
+
+  constructor() {
+    effect(() => {
+      this.predictionsService.loadSupportedReferenceOrgans().subscribe((organs) => {
+        this.supportedOrgans = organs;
+      });
+    });
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -63,12 +86,13 @@ export class CellPopulationPredictorComponent {
     }
   }
 
-  cancelLoad(): void {
-    this.file = undefined;
+  onFileCreated(file: File): void {
+    this.file = file;
+    this.predictionsService.setFile(file);
   }
 
-  onUseSample() {
-    const blob = new Blob([JSON.stringify(SAMPLE_DATA)], { type: 'application/json' });
-    this.file = new File([blob], 'sample.json', { type: 'application/json' });
+  onUseSampleClicked(): void {
+    this.predictionsService.setSampleFile();
+    this.file = this.predictionsService.getFile();
   }
 }

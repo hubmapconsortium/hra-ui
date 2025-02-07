@@ -51,7 +51,7 @@
     <div class="buttons-container">
       @if (!file) {
         <div class="buttons">
-          <button mat-button hraButtonSize="medium" (click)="onUseSample()">Use Sample</button>
+          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
           <input
             type="file"
             accept="application/json"
@@ -63,7 +63,7 @@
         </div>
       } @else {
         <div class="file-buttons">
-          <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
+          <hra-delete-file-button [fileName]="file.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
           <button
             mat-flat-button
             hraPrimaryButton
@@ -111,7 +111,15 @@
     </p>
 
     <div class="buttons buttons-container">
-      <button mat-button hraButtonSize="medium">Create</button>
+      <button mat-button hraButtonSize="medium" (click)="ruiOpen = true">Create</button>
+
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }" [cdkConnectedOverlayOpen]="ruiOpen">
+        <hra-embedded-rui
+          (locationCreated)="onFileCreated($event); ruiOpen = false"
+          (closed)="ruiOpen = false"
+          [supportedOrgans]="supportedOrgans"
+        ></hra-embedded-rui>
+      </ng-template>
     </div>
   </hra-workflow-card>
 </div>
