@@ -1,45 +1,15 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, viewChild, HostListener, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, HostListener, inject, input, viewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
-import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { MatMenuModule } from '@angular/material/menu';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '@hra-ui/cde-visualization';
 import { Router } from '@angular/router';
-
-/**
- * Prediction Result
- */
-export interface Prediction {
-  /**
-   * Tool
-   */
-  tool: string;
-  /**
-   * Modality
-   */
-  modality: string;
-  /**
-   * Cell Type ID in Cell Ontology
-   */
-  cell_id: string;
-  /**
-   * Cell Name in Cell Ontology
-   */
-  cell_label: string;
-  /**
-   * Count
-   */
-  count: number;
-  /**
-   * Percentage
-   */
-  percentage: number;
-}
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { Prediction, PredictionsService } from '../services/predictions.service';
 
 /** Menu option interface */
 export interface MenuOption {
@@ -75,7 +45,7 @@ export interface RouterState {
     MatTableModule,
     MatSortModule,
     MatMenuModule,
-    TooltipCardComponent,
+
     OverlayModule,
   ],
   templateUrl: './cell-population-predictions.component.html',
@@ -92,7 +62,7 @@ export class CellPopulationPredictionsComponent {
   private readonly router = inject(Router);
 
   /** State for accessing the file */
-  protected readonly state = this.router.getCurrentNavigation()?.extras.state as RouterState;
+  protected readonly predictionService = inject(PredictionsService);
 
   /**
    * For sorting Tools column
@@ -108,28 +78,6 @@ export class CellPopulationPredictionsComponent {
    * Columns for prediction table
    */
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
-
-  /** Menu Options */
-  protected readonly menuOptions: MenuOption[] = [
-    {
-      icon: 'info',
-      name: 'Info',
-      expandedOptions: [],
-      tooltip: [
-        {
-          description:
-            'Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations (sc-proteomics datasets).',
-        },
-      ],
-    },
-    {
-      icon: 'download',
-      name: 'CSV',
-    },
-  ];
-
-  /** Tooltip Position */
-  protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /**
    * Constructor that initializes the component and sets up effects for predictions and sorting
