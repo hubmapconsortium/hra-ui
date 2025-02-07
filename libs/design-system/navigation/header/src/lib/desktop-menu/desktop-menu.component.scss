@@ -1,0 +1,16 @@
+@use '../../../../../styles/utils';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--sys-surface-dim);
+  box-shadow: 0rem 0.3125rem 1rem 0px utils.with-alpha(var(--sys-secondary), 20%);
+
+  max-width: 26.75rem; // ??
+
+  .divider {
+    margin: 0.5rem 0;
+  }
+}

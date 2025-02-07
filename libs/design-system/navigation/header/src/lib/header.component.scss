@@ -1,3 +1,26 @@
+@use '../../../../styles/utils';
+
 :host {
   display: block;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(var(--sys-secondary), 20%);
+
+  .header {
+    background-color: utils.with-alpha(var(--sys-surface-dim), 80%);
+    backdrop-filter: blur(10rem);
+
+    .menus,
+    .navigation {
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+
+      .filler {
+        flex-grow: 1;
+      }
+    }
+
+    .menus {
+      height: 4.5rem;
+    }
+  }
 }

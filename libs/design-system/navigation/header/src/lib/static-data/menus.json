@@ -1,0 +1,94 @@
+{
+  "$schema": "../types/menus.schema.json",
+  "menus": [
+    {
+      "type": "menu",
+      "id": "data",
+      "label": "Data",
+      "items": [
+        {
+          "type": "group",
+          "label": "Data Overview",
+          "url": "https://example.com",
+          "items": [
+            {
+              "type": "item",
+              "label": "Anatomical Structure, Cell Type, and Biomarker (ASCT+B) Tables",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "Vasculature Common Coordinate Framework",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "Cell Type Annotations",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "2D Functional Tissue Unit (FTU) Illustrations",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "3D Reference Object Library",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "Organ Mapping Antibody Panel (OMAP) Tables",
+              "url": "https://example.com"
+            },
+            {
+              "type": "item",
+              "label": "Millitome",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
+          "label": "HRA API",
+          "description": "Get API access to all Human Reference Atlas datasets.",
+          "url": "https://example.com"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
+          "label": "HuBMAP Data Portal",
+          "url": "https://example.com"
+        },
+        {
+          "type": "group",
+          "label": "SenNet Data Portal",
+          "url": "https://example.com"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "id": "applications",
+      "label": "Apps",
+      "items": []
+    },
+    {
+      "type": "menu",
+      "id": "training",
+      "label": "Training",
+      "items": []
+    },
+    {
+      "type": "menu",
+      "id": "about",
+      "label": "About",
+      "items": []
+    }
+  ]
+}

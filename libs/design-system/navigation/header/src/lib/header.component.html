@@ -1,1 +1,79 @@
-<p>nav-header works!</p>
+@let ctaConfig = cta();
+@let isLargeScreen = isLargeScreen$ | async;
+
+@if (ctaConfig && !ctaDismissed) {
+  <hra-cta-bar
+    [action]="ctaConfig.action"
+    [description]="ctaConfig.description"
+    [url]="ctaConfig.url"
+    (closeClick)="ctaDismissed = true"
+  >
+  </hra-cta-bar>
+}
+
+<header class="header">
+  <div class="menus">
+    <hra-brand-logo size="small"></hra-brand-logo>
+
+    <div class="filler"></div>
+
+    @if (isLargeScreen) {
+      @for (menu of menus().menus; track menu.id) {
+        <!-- TODO aria attributes -->
+        <hra-navigation-category-toggle
+          cdkOverlayOrigin
+          [toggled]="isMenuActive(menu)"
+          (toggledChange)="toggleMenu(menu)"
+          #menuToggle="cdkOverlayOrigin"
+        >
+          {{ menu.label }}
+        </hra-navigation-category-toggle>
+
+        <ng-template
+          cdkConnectedOverlay
+          cdkConnectedOverlayHasBackdrop="false"
+          cdkConnectedOverlayLockPosition="true"
+          [cdkConnectedOverlayOpen]="isMenuActive(menu)"
+          [cdkConnectedOverlayOrigin]="menuToggle"
+          [cdkConnectedOverlayPositions]="menuPositions"
+          cdkConnectedOverlayPush="true"
+          (overlayOutsideClick)="toggleMenu(menu)"
+        >
+          <hra-desktop-menu [menu]="menu"></hra-desktop-menu>
+        </ng-template>
+      }
+    }
+
+    <!-- TODO aria -label, -expanded, -controls -->
+    <button mat-icon-button cdkOverlayOrigin (click)="toggleMenu('main')" #mainMenuToggle="cdkOverlayOrigin">
+      <mat-icon>
+        @if (isMenuActive('main')) {
+          close
+        } @else if (isLargeScreen) {
+          apps
+        } @else {
+          menu
+        }
+      </mat-icon>
+    </button>
+
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOpen]="isMenuActive('main')"
+      [cdkConnectedOverlayOrigin]="mainMenuToggle"
+    >
+      aaaa
+    </ng-template>
+  </div>
+
+  @if (breadcrumbs().length > 0) {
+    <mat-divider></mat-divider>
+
+    <div class="navigation">
+      <hra-breadcrumbs [crumbs]="breadcrumbs()"> </hra-breadcrumbs>
+      <div class="filler"></div>
+    </div>
+  }
+</header>
+
+<!-- TODO progress -->

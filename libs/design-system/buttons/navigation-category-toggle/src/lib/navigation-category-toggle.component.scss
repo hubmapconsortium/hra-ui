@@ -6,7 +6,6 @@
   --mat-standard-button-toggle-selected-state-background-color: transparent;
 
   .toggle {
-    @include utils.use-font(label, large);
     color: var(--sys-secondary);
     border: none;
     border-radius: 0;
@@ -14,6 +13,7 @@
     .text {
       display: inline-block;
       margin-right: 0.125rem;
+      @include utils.use-font(label, large);
     }
 
     :is(&.mat-button-toggle-checked, &:hover, &:active) .text {

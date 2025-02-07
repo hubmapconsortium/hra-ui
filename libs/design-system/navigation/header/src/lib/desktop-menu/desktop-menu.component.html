@@ -1,0 +1,21 @@
+@let templates = { divider, group, item, subgroup };
+<ng-container *hraMenuObjectOutlet="menu().items; templates: templates"></ng-container>
+
+<ng-template hraMenuDivider #divider>
+  <mat-divider class="divider"></mat-divider>
+</ng-template>
+
+<ng-template hraMenuGroup let-group #group>
+  <a [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
+    {{ group.label }}
+  </a>
+
+  @if (group.items && group.items.length > 0) {
+    <mat-divider class="divider"></mat-divider>
+    <ng-container *hraMenuObjectOutlet="group.items; templates: templates"></ng-container>
+  }
+</ng-template>
+
+<ng-template hraMenuItem let-item #item> TODO </ng-template>
+
+<ng-template hraMenuSubGroup let-subgroup #subgroup> TODO </ng-template>

@@ -64,12 +64,12 @@
       "required": ["type", "label", "url"],
       "additionalProperties": false
     },
-    "MenuSection": {
+    "Menu": {
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "const": "section"
+          "const": "menu"
         },
         "id": {
           "type": "string"
@@ -117,14 +117,17 @@
     "Menus": {
       "type": "object",
       "properties": {
-        "sections": {
+        "$schema": {
+          "type": "string"
+        },
+        "menus": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/MenuSection"
+            "$ref": "#/definitions/Menu"
           }
         }
       },
-      "required": ["sections"],
+      "required": ["$schema", "menus"],
       "additionalProperties": false
     }
   },

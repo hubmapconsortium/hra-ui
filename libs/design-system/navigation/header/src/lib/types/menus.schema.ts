@@ -4,7 +4,7 @@ export type MenuItem = z.infer<typeof MenuItemSchema>;
 export const MenuItemSchema = z.object({
   type: z.literal('item'),
   label: z.string(),
-  url: z.string().url(), // Optional?
+  url: z.string().url(),
 });
 
 export type MenuDivider = z.infer<typeof MenuDividerSchema>;
@@ -28,9 +28,9 @@ export const MenuGroupSchema = z.object({
   items: z.union([MenuSubGroupSchema, MenuItemSchema]).array().optional(),
 });
 
-export type MenuSection = z.infer<typeof MenuSectionSchema>;
-export const MenuSectionSchema = z.object({
-  type: z.literal('section'),
+export type Menu = z.infer<typeof MenuSchema>;
+export const MenuSchema = z.object({
+  type: z.literal('menu'),
   id: z.string(),
   label: z.string(),
   items: z.union([MenuGroupSchema, MenuDividerSchema]).array(),
@@ -38,7 +38,8 @@ export const MenuSectionSchema = z.object({
 
 export type Menus = z.infer<typeof MenusSchema>;
 export const MenusSchema = z.object({
-  sections: MenuSectionSchema.array(),
+  $schema: z.string(),
+  menus: MenuSchema.array(),
 });
 
 export default MenusSchema;
