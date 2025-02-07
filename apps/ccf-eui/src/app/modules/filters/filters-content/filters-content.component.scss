@@ -50,6 +50,7 @@
   .providers-form,
   .consortia-form {
     --mdc-filled-text-field-container-color: var(--sys-surface-container);
+    --mdc-filled-text-field-label-text-color: var(--sys-primary);
     width: 100%;
   }
 
@@ -69,5 +70,14 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--sys-outline-variant);
+
+    button {
+      line-height: normal;
+    }
+
+    .reset.icon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
   }
 }

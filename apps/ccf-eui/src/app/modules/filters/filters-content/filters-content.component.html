@@ -40,7 +40,7 @@
     <div class="section-title">Provenance</div>
     <mat-form-field class="assay-form" subscriptSizing="dynamic">
       <div class="chips-area">
-        <mat-chip-grid #chipGrid aria-label="Assay selection" [formControl]="filterForm.controls.technologies">
+        <mat-chip-grid #chipGrid aria-label="Assay selection" formControlName="technologies">
           @for (assay of assays(); track assay) {
             <mat-chip-row (removed)="remove(assay, 'technologies')">
               {{ assay }}
@@ -80,7 +80,7 @@
     <mat-form-field class="consortia-form" subscriptSizing="dynamic">
       <mat-label>Consortia</mat-label>
       <div class="chips-area">
-        <mat-chip-grid #chipGrid2 aria-label="Consortia selection" [formControl]="filterForm.controls.consortia">
+        <mat-chip-grid #chipGrid2 aria-label="Consortia selection" formControlName="consortia">
           @for (consortium of consortia(); track consortium) {
             <mat-chip-row (removed)="remove(consortium, 'consortia')">
               {{ consortium }}
@@ -119,7 +119,7 @@
     <mat-form-field class="providers-form" subscriptSizing="dynamic">
       <mat-label>Tissue Data Providers</mat-label>
       <div class="chips-area">
-        <mat-chip-grid #chipGrid3 aria-label="Provider selection" [formControl]="filterForm.controls.providers">
+        <mat-chip-grid #chipGrid3 aria-label="Provider selection" formControlName="providers">
           @for (provider of providers(); track provider) {
             <mat-chip-row (removed)="remove(provider, 'providers')">
               {{ provider }}
@@ -171,7 +171,9 @@
 
   <div class="filler"></div>
   <div class="button-container">
-    <button mat-button (click)="refreshFilters()">Reset Filters<mat-icon>refresh</mat-icon></button>
+    <button mat-button (click)="refreshFilters()">
+      Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+    </button>
     <button (click)="applyButtonClick()" mat-flat-button>Apply</button>
   </div>
 </form>
