@@ -30,6 +30,8 @@ import { DualSliderComponent } from '../../../shared/components/dual-slider/dual
 import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 
+const DEFAULT_CONSORTIA = ['HuBMAP', 'SenNet'];
+
 /**
  * Contains components of the filters popup and handles changes in filter settings
  */
@@ -106,7 +108,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     ageRange: new FormControl<number[] | null>(null),
     bmiRange: new FormControl<number[] | null>(null),
     technologies: new FormControl<string[] | null>(null),
-    consortiums: new FormControl<string[] | null>(null),
+    consortia: new FormControl<string[] | null>(null),
     providers: new FormControl<string[] | null>(null),
     spatialSearches: new FormControl<SpatialSearch[] | null>(null),
   });
@@ -152,14 +154,14 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   }
 
   convertedFilter(): Record<string, unknown> {
-    const { sex, ageRange, bmiRange, technologies, consortiums, providers, spatialSearches } = this.filterForm.controls;
+    const { sex, ageRange, bmiRange, technologies, consortia, providers, spatialSearches } = this.filterForm.controls;
 
     return {
       sex: sex.value,
       ageRange: ageRange.value,
       bmiRange: bmiRange.value,
       technologies: technologies.value,
-      consortiums: consortiums.value,
+      consortiums: consortia.value,
       tmc: providers.value,
       spatialSearches: spatialSearches.value,
     } as Record<string, unknown>;
@@ -172,7 +174,6 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.updateSearchSelection(this.spatialSearchFilters().filter((item) => item.selected));
     this.ga.event('filters_applied', 'filter_content');
     this.applyFilters.emit(this.convertedFilter());
-    console.warn(this.convertedFilter());
   }
 
   /**
@@ -187,7 +188,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
         sex: this.filters['sex'] as Sex,
         ageRange: this.filters['ageRange'] as number[],
         bmiRange: this.filters['bmiRange'] as number[],
-        consortiums: this.filters['consortiums'] as string[],
+        consortia: this.filters['consortiums'] as string[],
         technologies: this.filters['technologies'] as string[],
         providers: this.filters['tmc'] as string[],
         spatialSearches: this.filters['spatialSearches'] as SpatialSearch[],
@@ -243,6 +244,15 @@ export class FiltersContentComponent implements OnChanges, OnInit {
       : this.providerFilters().slice();
   });
 
+  readonly currentConsortium = model('');
+  readonly consortia = signal([] as string[]);
+  readonly filteredConsortia = computed(() => {
+    const currentConsortium = this.currentConsortium().toLowerCase();
+    return currentConsortium
+      ? DEFAULT_CONSORTIA.filter((consortium) => consortium.toLowerCase().includes(currentConsortium))
+      : DEFAULT_CONSORTIA.slice();
+  });
+
   add(event: MatChipInputEvent, field: string): void {
     const value = (event.value || '').trim();
 
@@ -258,6 +268,12 @@ export class FiltersContentComponent implements OnChanges, OnInit {
           this.providers.update((provider) => [...provider, value]);
         }
         this.currentProvider.set('');
+        break;
+      case 'consortia':
+        if (value) {
+          this.consortia.update((consortium) => [...consortium, value]);
+        }
+        this.currentConsortium.set('');
         break;
       default:
         break;
@@ -288,6 +304,17 @@ export class FiltersContentComponent implements OnChanges, OnInit {
           return [...providers];
         });
         break;
+      case 'consortia':
+        this.consortia.update((consortia) => {
+          const index = consortia.indexOf(assay);
+          if (index < 0) {
+            return consortia;
+          }
+
+          consortia.splice(index, 1);
+          return [...consortia];
+        });
+        break;
       default:
         break;
     }
@@ -303,6 +330,11 @@ export class FiltersContentComponent implements OnChanges, OnInit {
       case 'providers':
         this.providers.update((providers) => [...providers, event.option.viewValue]);
         this.currentProvider.set('');
+        event.option.deselect();
+        break;
+      case 'consortia':
+        this.consortia.update((consortia) => [...consortia, event.option.viewValue]);
+        this.currentConsortium.set('');
         event.option.deselect();
         break;
       default:

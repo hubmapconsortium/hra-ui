@@ -37,12 +37,18 @@
     margin-bottom: 0.25rem;
   }
 
-  .assay-form {
+  .search-area {
+    display: flex;
+  }
+
+  .assay-form,
+  .consortia-form {
     margin-bottom: 2rem;
   }
 
   .assay-form,
-  .providers-form {
+  .providers-form,
+  .consortia-form {
     --mdc-filled-text-field-container-color: var(--sys-surface-container);
     width: 100%;
   }
