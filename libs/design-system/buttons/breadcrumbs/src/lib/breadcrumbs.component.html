@@ -1,11 +1,17 @@
-@for (crumb of crumbs(); track $index) {
-  @if (crumb.route) {
-    <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
-  } @else {
-    <span>{{ crumb.name }}</span>
-  }
+<nav class="navigation">
+  <ol class="crumbs">
+    @for (crumb of crumbs(); track $index) {
+      <li class="crumb">
+        @if (crumb.route) {
+          <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
+        } @else {
+          {{ crumb.name }}
+        }
 
-  @if (!$last) {
-    <mat-icon>chevron_right</mat-icon>
-  }
-}
+        @if (!$last) {
+          <mat-icon class="icon">chevron_right</mat-icon>
+        }
+      </li>
+    }
+  </ol>
+</nav>
