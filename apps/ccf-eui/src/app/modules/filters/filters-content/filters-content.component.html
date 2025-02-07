@@ -40,16 +40,21 @@
     <div class="section-title">Provenance</div>
     <mat-form-field class="assay-form" subscriptSizing="dynamic">
       <mat-label>Assay Types</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Assay selection" formControlName="technologies">
-        @for (assay of assays(); track assay) {
-          <mat-chip-row (removed)="remove(assay, 'technologies')">
-            {{ assay }}
-            <button matChipRemove [attr.aria-label]="'remove ' + assay">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip-row>
+      <div class="chips-area">
+        <mat-chip-grid #chipGrid aria-label="Assay selection" formControlName="technologies">
+          @for (assay of assays(); track assay) {
+            <mat-chip-row (removed)="remove(assay, 'technologies')">
+              {{ assay }}
+              <button matChipRemove [attr.aria-label]="'remove ' + assay">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+        </mat-chip-grid>
+        @if (assays().length > 0) {
+          <button mat-icon-button (click)="assays.set([])"><mat-icon>delete</mat-icon></button>
         }
-      </mat-chip-grid>
+      </div>
       <mat-icon matPrefix>search</mat-icon>
       <input
         name="currentAssay"
@@ -73,16 +78,21 @@
 
     <mat-form-field class="providers-form" subscriptSizing="dynamic">
       <mat-label>Tissue Data Providers</mat-label>
-      <mat-chip-grid #chipGrid2 aria-label="Provider selection" formControlName="providers">
-        @for (provider of providers(); track provider) {
-          <mat-chip-row (removed)="remove(provider, 'providers')">
-            {{ provider }}
-            <button matChipRemove [attr.aria-label]="'remove ' + provider">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip-row>
+      <div class="chips-area">
+        <mat-chip-grid #chipGrid2 aria-label="Provider selection" formControlName="providers">
+          @for (provider of providers(); track provider) {
+            <mat-chip-row (removed)="remove(provider, 'providers')">
+              {{ provider }}
+              <button matChipRemove [attr.aria-label]="'remove ' + provider">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+        </mat-chip-grid>
+        @if (providers().length > 0) {
+          <button mat-icon-button (click)="providers.set([])"><mat-icon>delete</mat-icon></button>
         }
-      </mat-chip-grid>
+      </div>
       <mat-icon matPrefix>search</mat-icon>
       <input
         name="currentProvider"
@@ -105,17 +115,17 @@
     </mat-form-field>
   </div>
 
-  <div class="section">
-    <div class="filter spatial-locations">
-      <ccf-spatial-search-list
-        label="Spatial Locations"
-        [items]="spatialSearchFilters()"
-        (selectionChanged)="updateSearchSelection($event)"
-        (itemRemoved)="spatialSearchRemoved.emit($event.id)"
-      >
-      </ccf-spatial-search-list>
+  <div class="section spatial-search">
+    <div class="spatial-search-header">
+      <div class="section-title">Spatial Locations</div>
+      <ccf-run-spatial-search></ccf-run-spatial-search>
     </div>
-    <ccf-run-spatial-search></ccf-run-spatial-search>
+    <ccf-spatial-search-list
+      [items]="spatialSearchFilters()"
+      (selectionChanged)="updateSearchSelection($event)"
+      (itemRemoved)="spatialSearchRemoved.emit($event.id)"
+    >
+    </ccf-spatial-search-list>
   </div>
 
   <div class="filler"></div>
