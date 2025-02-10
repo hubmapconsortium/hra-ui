@@ -11,6 +11,7 @@ import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { Prediction, PredictionsService } from '../services/predictions.service';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 
+/** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
 summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
 the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)`;

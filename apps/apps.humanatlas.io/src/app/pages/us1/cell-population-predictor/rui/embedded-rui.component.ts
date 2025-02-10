@@ -19,9 +19,14 @@ interface RuiElement {
   cancelRegistration: () => void;
 }
 
+/** RUI script URL */
 const SCRIPT_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/wc.js';
+/** RUI style URL */
 const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
 
+/**
+ * Embedded Registration User Interface Component
+ */
 @Component({
   selector: 'hra-embedded-rui',
   standalone: true,
@@ -32,12 +37,17 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EmbeddedRuiComponent {
+  /** Supported Organs */
   readonly supportedOrgans = input<string[]>([]);
+  /** File Created after Registration */
   readonly locationCreated = output<File>();
+  /** Close RUI */
   readonly closed = output();
-
+  /** Reference to the rui element in template */
   private readonly ref = viewChild.required<ElementRef<RuiElement>>('rui');
+  /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);
+  /** For manuplating DOM elements */
   private readonly renderer = inject(Renderer2);
 
   constructor() {

@@ -13,6 +13,7 @@ import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { PredictionsService } from '../services/predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
 
+/** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
 and metadata (creator name, creation date) for a tissue block. Importantly, an extraction site also contains a
 list of anatomical structures that a tissue block collides with, either via bounding-box or mesh-based

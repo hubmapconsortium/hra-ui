@@ -3,7 +3,9 @@ import { inject, Injectable, InjectionToken } from '@angular/core';
 import { from, map, Observable, switchMap } from 'rxjs';
 import SAMPLE_DATA from './sample-data.json';
 
+/** Tissue extraction sample JSON file  */
 const SAMPLE_FILE = new File([JSON.stringify(SAMPLE_DATA)], 'sample.json', { type: 'application/json' });
+/** Predictions API endpoint  */
 export const PREDICTIONS_ENDPOINT = new InjectionToken<string>('Cell Predictions Endpoint', {
   providedIn: 'root',
   factory: () => 'https://apps.humanatlas.io/api/hra-pop',
