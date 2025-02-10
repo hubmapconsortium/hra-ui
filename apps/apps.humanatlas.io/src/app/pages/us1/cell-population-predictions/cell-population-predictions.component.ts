@@ -7,23 +7,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
-import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { Prediction, PredictionsService } from '../services/predictions.service';
-
-/** Menu option interface */
-export interface MenuOption {
-  /** Name of option */
-  name: string;
-  /** Material icon name */
-  icon: string;
-  /** Options to open in a second menu */
-  expandedOptions?: MenuOption[];
-  /** Tooltip */
-  tooltip?: TooltipContent[];
-  /** Whether or not show tooltip */
-  tooltipOpen?: boolean;
-}
 
 /** Router state interface for a file */
 export interface RouterState {
