@@ -64,15 +64,7 @@
       } @else {
         <div class="file-buttons">
           <hra-delete-file-button [fileName]="file.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
-          <button
-            mat-flat-button
-            hraPrimaryButton
-            hraButtonSize="large"
-            [routerLink]="['result']"
-            [state]="{ file: file }"
-          >
-            Predict
-          </button>
+          <button mat-flat-button hraPrimaryButton hraButtonSize="large" [routerLink]="['result']">Predict</button>
         </div>
       }
     </div>

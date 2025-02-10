@@ -27,6 +27,9 @@ export interface Prediction {
   percentage: number;
 }
 
+/**
+ * Supported Organs Data
+ */
 export interface SupportedOrgans {
   /** ID with URL */
   id: string;
