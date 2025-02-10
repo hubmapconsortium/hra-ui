@@ -10,12 +10,6 @@ import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { Prediction, PredictionsService } from '../services/predictions.service';
 
-/** Router state interface for a file */
-export interface RouterState {
-  /** File object */
-  file: File;
-}
-
 /**
  * Cell Population Predictions Result Page Component
  */
