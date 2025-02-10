@@ -1,21 +1,51 @@
-@let templates = { divider, group, item, subgroup };
-<ng-container *hraMenuObjectOutlet="menu().items; templates: templates"></ng-container>
+<ng-scrollbar>
+  <div class="content">
+    @for (item of menu().items; track $index) {
+      @let template = item.type === 'group' ? groupTemplate : dividerTemplate;
+      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
+    }
+  </div>
+</ng-scrollbar>
 
-<ng-template hraMenuDivider #divider>
+<ng-template hraMenuDivider #dividerTemplate>
   <mat-divider class="divider"></mat-divider>
 </ng-template>
 
-<ng-template hraMenuGroup let-group #group>
-  <a [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
+<ng-template hraMenuGroup let-group #groupTemplate>
+  <a mat-button class="group-label" [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
     {{ group.label }}
+    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
   </a>
 
-  @if (group.items && group.items.length > 0) {
+  @if (group.description) {
+    <div class="group-description">
+      {{ group.description }}
+    </div>
+  }
+
+  @let items = group.items ?? [];
+  @if (items.length > 0) {
     <mat-divider class="divider"></mat-divider>
-    <ng-container *hraMenuObjectOutlet="group.items; templates: templates"></ng-container>
+    @for (item of items; track $index) {
+      @let template = item.type === 'subgroup' ? subgroupTemplate : itemTemplate;
+      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
+    }
   }
 </ng-template>
 
-<ng-template hraMenuItem let-item #item> TODO </ng-template>
+<ng-template hraMenuItem let-item #itemTemplate>
+  <a mat-button hraSecondaryButton class="item-label" [attr.href]="item.url" target="_blank" rel="noopener noreferrer">
+    {{ item.label }}
+  </a>
+</ng-template>
 
-<ng-template hraMenuSubGroup let-subgroup #subgroup> TODO </ng-template>
+<ng-template hraMenuSubGroup let-subgroup #subgroupTemplate>
+  <div class="subgroup-label">
+    {{ subgroup.label }}
+  </div>
+  <div class="subgroup-items">
+    @for (item of subgroup.items; track $index) {
+      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+    }
+  </div>
+</ng-template>

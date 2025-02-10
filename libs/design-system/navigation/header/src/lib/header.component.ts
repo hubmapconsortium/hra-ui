@@ -1,4 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,10 +10,9 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';
 import { map } from 'rxjs';
-import MENUS_DATA from './static-data/menus.json';
-import { MenusSchema, Menu } from './types/menus.schema';
-import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
+import MENUS_DATA from './static-data/menus.json';
+import { Menu, MenusSchema } from './types/menus.schema';
 
 export interface CtaConfig {
   action: string;
@@ -20,6 +20,9 @@ export interface CtaConfig {
   url: string;
 }
 
+const CTA_ELEMENT_HEIGHT_IN_REM = 2.5;
+const MENUS_ELEMENT_HEIGHT_IN_REM = 4.5;
+const DESKTOP_MENU_BOTTOM_MARGIN_IN_REM = 1;
 const LARGE_SCREEN_BREAKPOINT = '(min-width: 640px)';
 const PARSED_MENUS = MenusSchema.parse(MENUS_DATA);
 const MENU_POSITIONS: ConnectedPosition[] = [
@@ -65,6 +68,14 @@ export class HeaderComponent {
 
   protected ctaDismissed = false;
   private activeMenuId?: string;
+
+  protected get desktopMenuMaxHeight(): string {
+    const offsetInRem =
+      MENUS_ELEMENT_HEIGHT_IN_REM +
+      (this.ctaDismissed ? 0 : CTA_ELEMENT_HEIGHT_IN_REM) +
+      DESKTOP_MENU_BOTTOM_MARGIN_IN_REM;
+    return `calc(100vh - ${offsetInRem}rem)`;
+  }
 
   isMenuActive(menu: Menu | string): boolean {
     return this.activeMenuId === this.getMenuId(menu);
