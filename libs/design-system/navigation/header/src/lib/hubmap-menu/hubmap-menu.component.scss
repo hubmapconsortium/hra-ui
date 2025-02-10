@@ -1,0 +1,9 @@
+@use '../../../../../styles/utils';
+
+:host {
+  display: block;
+  padding: 0.75rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--sys-surface-dim);
+  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--sys-secondary), 20%);
+}

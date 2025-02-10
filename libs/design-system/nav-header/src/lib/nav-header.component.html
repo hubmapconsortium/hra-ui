@@ -12,12 +12,12 @@
         <div class="category">
           <div class="card-category">{{ item.category }}</div>
           @for (card of item.cards; track card) {
-            <hra-apps-card
+            <hra-app-nav-button
               [icon]="card.icon"
               [tagline]="card.name"
               [description]="card.description"
               [link]="card.link | assetUrl"
-            ></hra-apps-card>
+            ></hra-app-nav-button>
           }
         </div>
       }

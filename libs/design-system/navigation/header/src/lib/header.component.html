@@ -35,7 +35,7 @@
           cdkConnectedOverlayLockPosition="true"
           [cdkConnectedOverlayOpen]="isMenuActive(menu)"
           [cdkConnectedOverlayOrigin]="menuToggle"
-          [cdkConnectedOverlayPositions]="menuPositions"
+          [cdkConnectedOverlayPositions]="desktopMenuPositions"
           cdkConnectedOverlayPush="true"
           (overlayOutsideClick)="toggleMenu(menu)"
         >
@@ -59,10 +59,15 @@
 
     <ng-template
       cdkConnectedOverlay
+      cdkConnectedOverlayHasBackdrop="false"
+      cdkConnectedOverlayLockPosition="true"
       [cdkConnectedOverlayOpen]="isMenuActive('main')"
       [cdkConnectedOverlayOrigin]="mainMenuToggle"
+      [cdkConnectedOverlayPositions]="desktopMenuPositions"
+      cdkConnectedOverlayPush="true"
+      (overlayOutsideClick)="toggleMenu('main')"
     >
-      aaaa
+      <hra-hubmap-menu [menu]="hubmapMenu()" [style.max-height]="desktopMenuMaxHeight"></hra-hubmap-menu>
     </ng-template>
   </div>
 

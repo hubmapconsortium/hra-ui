@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import {
   ButtonSizeDirective,
@@ -17,6 +18,7 @@ const REEXPORTS = [
   MatButtonModule,
   MatButtonToggleModule,
 
+  AppNavButtonComponent,
   BreadcrumbsComponent,
   ButtonSizeDirective,
   ButtonVariantDirective,

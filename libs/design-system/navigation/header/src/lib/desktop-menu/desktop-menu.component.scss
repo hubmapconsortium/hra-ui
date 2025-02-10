@@ -6,7 +6,7 @@
   padding: 0.75rem 0;
   border-radius: 0.5rem;
   background-color: var(--sys-surface-dim);
-  box-shadow: 0rem 0.3125rem 1rem 0px utils.with-alpha(var(--sys-secondary), 20%);
+  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--sys-secondary), 20%);
   @include utils.use-font(label, medium);
 
   .content {
@@ -19,7 +19,7 @@
   }
 
   $item-height: 2.5rem;
-  $padding-left: 1.5rem;
+  $padding: 1.5rem;
 
   .group-label,
   .group-description,
@@ -30,15 +30,15 @@
 
   .group-label,
   .item-label {
-    --mat-text-button-horizontal-padding: #{$padding-left};
-    --mat-text-button-with-icon-horizontal-padding: #{$padding-left};
+    --mat-text-button-horizontal-padding: #{$padding};
+    --mat-text-button-with-icon-horizontal-padding: #{$padding};
     justify-content: start;
   }
 
   .group-description,
   .subgroup-label {
     height: $item-height;
-    padding-left: $padding-left;
+    padding: 0 $padding;
     align-content: center;
     color: var(--sys-on-primary-fixed);
   }
@@ -51,7 +51,7 @@
     display: contents;
 
     .item-label {
-      --mat-text-button-horizontal-padding: #{2 * $padding-left};
+      --mat-text-button-horizontal-padding: #{2 * $padding};
     }
   }
 }

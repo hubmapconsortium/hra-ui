@@ -11,7 +11,10 @@ import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';
 import { map } from 'rxjs';
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
+import { HubmapMenuComponent } from './hubmap-menu/hubmap-menu.component';
+import HUBMAP_MENU_DATA from './static-data/hubmap-menu.json';
 import MENUS_DATA from './static-data/menus.json';
+import { HubmapMenuSchema } from './types/hubmap-menu.schema';
 import { Menu, MenusSchema } from './types/menus.schema';
 
 export interface CtaConfig {
@@ -24,8 +27,9 @@ const CTA_ELEMENT_HEIGHT_IN_REM = 2.5;
 const MENUS_ELEMENT_HEIGHT_IN_REM = 4.5;
 const DESKTOP_MENU_BOTTOM_MARGIN_IN_REM = 1;
 const LARGE_SCREEN_BREAKPOINT = '(min-width: 640px)';
+const PARSED_HUBMAP_MENUS = HubmapMenuSchema.parse(HUBMAP_MENU_DATA);
 const PARSED_MENUS = MenusSchema.parse(MENUS_DATA);
-const MENU_POSITIONS: ConnectedPosition[] = [
+const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   {
     originX: 'start',
     originY: 'bottom',
@@ -49,6 +53,7 @@ const MENU_POSITIONS: ConnectedPosition[] = [
     ButtonsModule,
     CtaBarComponent,
     DesktopMenuComponent,
+    HubmapMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -56,10 +61,11 @@ const MENU_POSITIONS: ConnectedPosition[] = [
 })
 export class HeaderComponent {
   readonly cta = input<CtaConfig>();
+  readonly hubmapMenu = input(PARSED_HUBMAP_MENUS);
   readonly menus = input(PARSED_MENUS);
   readonly breadcrumbs = input<BreadcrumbItem[]>([]);
 
-  protected readonly menuPositions = MENU_POSITIONS;
+  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;
 
   protected readonly breakpointObserver = inject(BreakpointObserver);
   protected readonly isLargeScreen$ = this.breakpointObserver
