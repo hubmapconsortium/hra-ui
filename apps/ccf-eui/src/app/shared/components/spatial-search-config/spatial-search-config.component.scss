@@ -34,3 +34,8 @@
     margin-top: 0.25rem;
   }
 }
+
+::ng-deep .spatial-search-config {
+  --mdc-dialog-container-shape: 0.75rem;
+  --mdc-dialog-container-color: var(--sys-surface-container-low);
+}

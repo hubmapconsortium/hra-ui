@@ -20,34 +20,41 @@
       [(value)]="sex"
       (selectionChange)="updateSex.emit($event.value)"
     >
-      @for (option of ['Both', 'Male', 'Female']; track option) {
+      @for (option of ['both', 'male', 'female']; track option) {
         <mat-option class="dropdown-option" [value]="option">
-          <div>{{ option }}</div>
+          <div>{{ option.charAt(0).toUpperCase() + option.slice(1) }}</div>
         </mat-option>
       }
     </mat-select>
   </mat-form-field>
 </div>
 
-<form class="organ-selector">
-  <mat-form-field class="organ-field" subscriptSizing="dynamic">
-    <mat-label>Organ</mat-label>
-    <input
-      matInput
-      hideSingleSelectionIndicator="true"
-      type="text"
-      placeholder="Organ"
-      aria-label="Organ"
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="updateOrgan.emit($event.option.value)">
-      @for (organ of filteredOrgans | async; track organ) {
-        <mat-option [value]="organ.name">{{ organ.name }}</mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+<div class="organ-selector">
+  <form class="organ-selector">
+    <mat-form-field class="organ-field" subscriptSizing="dynamic">
+      <mat-label>Organ</mat-label>
+      <mat-icon class="search-icon" matPrefix>search</mat-icon>
+      <input
+        matInput
+        hideSingleSelectionIndicator="true"
+        type="text"
+        placeholder="Organ"
+        aria-label="Organ"
+        [formControl]="organControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        (optionSelected)="updateOrgan.emit($event.option.value)"
+      >
+        @for (organ of filteredOrgans | async; track organ) {
+          <mat-option [value]="organ">{{ organ.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
 
 <button mat-flat-button class="continue-button" [class.disabled]="!selectedOrgan" (click)="buttonClicked.emit()">
   Continue

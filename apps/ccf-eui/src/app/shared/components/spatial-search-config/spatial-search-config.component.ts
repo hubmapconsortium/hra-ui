@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,7 +35,7 @@ export type Sex = 'male' | 'female';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpatialSearchConfigComponent {
+export class SpatialSearchConfigComponent implements OnInit {
   @HostBinding('class') readonly className = 'ccf-spatial-search-config';
 
   /** Selectable organs */
@@ -62,18 +62,25 @@ export class SpatialSearchConfigComponent {
   /** Emits when the info button is clicked */
   @Output() readonly infoClicked = new EventEmitter();
 
-  myControl = new FormControl('');
-  filteredOrgans: Observable<OrganInfo[]>;
+  organControl = new FormControl<string | OrganInfo>('');
+  filteredOrgans!: Observable<OrganInfo[]>;
 
-  constructor() {
-    this.filteredOrgans = this.myControl.valueChanges.pipe(
+  ngOnInit() {
+    this.filteredOrgans = this.organControl.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value || '')),
+      map((value) => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.organs.slice();
+      }),
     );
   }
 
-  private _filter(value: string): OrganInfo[] {
-    const filterValue = value.toLowerCase();
+  displayFn(user: OrganInfo): string {
+    return user && user.name ? user.name : '';
+  }
+
+  private _filter(name: string): OrganInfo[] {
+    const filterValue = name.toLowerCase();
 
     return this.organs.filter((organ) => organ.name.toLowerCase().includes(filterValue));
   }

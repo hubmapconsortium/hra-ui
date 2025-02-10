@@ -37,7 +37,7 @@ export class RunSpatialSearchComponent {
       .dispatch(new StartSpatialSearchFlow())
       .pipe(
         take(1),
-        tap(() => this.dialog.open(SpatialSearchConfigBehaviorComponent)),
+        tap(() => this.dialog.open(SpatialSearchConfigBehaviorComponent, { panelClass: 'spatial-search-config' })),
       )
       .subscribe();
   }
