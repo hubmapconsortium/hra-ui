@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { SpatialSearch } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SpatialSearchListModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -52,6 +53,7 @@ const DEFAULT_CONSORTIA = ['HuBMAP', 'SenNet'];
     MatAutocompleteModule,
     FormsModule,
     ButtonsModule,
+    ScrollingModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -340,5 +342,9 @@ export class FiltersContentComponent implements OnChanges, OnInit {
       default:
         break;
     }
+  }
+
+  disableSubmit(): boolean {
+    return this.assays().concat(this.consortia()).concat(this.providers()).length === 0;
   }
 }

@@ -263,8 +263,13 @@
 // }
 
 :host {
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden;
+  }
+
   .sidenav-content {
-    width: 40.5rem;
+    --mat-sidenav-container-background-color: var(--sys-surface-container-low);
+    width: fit-content;
 
     .sidenav-header {
       display: flex;
@@ -282,7 +287,6 @@
 
     ccf-filters-content {
       height: calc(100% - 4.5rem);
-      display: block;
     }
   }
 

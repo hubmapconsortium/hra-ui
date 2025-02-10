@@ -1,18 +1,30 @@
 :host {
+  display: grid;
+  grid-template-rows: auto 5.5rem;
+  grid-template-columns: 40.5rem;
+  grid-template-areas:
+    'form'
+    'buttons';
+
   form {
+    grid-area: form;
+    overflow-y: auto;
+  }
+
+  .input-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    height: 100%;
+    grid-area: inputs;
   }
 
   .section {
+    padding: 0 1.25rem;
     .section-title {
       font: var(--sys-label-large);
       color: var(--sys-secondary);
       margin-bottom: 0.5rem;
     }
-    padding: 0 1.5rem;
   }
 
   .patient-filters {
@@ -59,14 +71,10 @@
     justify-content: space-between;
   }
 
-  .filler {
-    flex-grow: 1;
-  }
-
   .button-container {
+    grid-area: buttons;
     padding: 0 1.5rem;
     display: flex;
-    height: 5.5rem;
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--sys-outline-variant);
@@ -79,5 +87,16 @@
       height: 1.5rem;
       width: 1.5rem;
     }
+  }
+}
+
+.dropdown-option {
+  --mdc-list-list-item-label-text-color: var(--sys-primary) !important;
+  font: var(--sys-label-medium) !important;
+  min-height: 3rem !important;
+  outline: none !important;
+
+  &.mdc-list-item--selected {
+    background-color: rgb(from var(--sys-tertiary) r g b / 0.2) !important;
   }
 }
