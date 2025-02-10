@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { Prediction, PredictionsService } from '../services/predictions.service';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+
+const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
+summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
+the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)`;
 
 /**
  * Cell Population Predictions Result Page Component
@@ -24,8 +29,8 @@ import { Prediction, PredictionsService } from '../services/predictions.service'
     MatTableModule,
     MatSortModule,
     MatMenuModule,
-
     OverlayModule,
+    TooltipCardComponent,
   ],
   templateUrl: './cell-population-predictions.component.html',
   styleUrl: './cell-population-predictions.component.scss',
@@ -57,6 +62,13 @@ export class CellPopulationPredictionsComponent {
    * Columns for prediction table
    */
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
+
+  /** Tooltip content */
+  protected readonly tooltip: TooltipContent[] = [
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ];
 
   /**
    * Constructor that initializes the component and sets up effects for predictions and sorting

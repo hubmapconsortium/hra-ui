@@ -70,16 +70,26 @@ button {
     padding-right: 1rem;
   }
 }
-
 ::ng-deep {
   .tooltip-panel {
     background-color: white;
-    margin-left: 0.5rem;
     box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
     border-radius: 0.5rem;
     max-width: 22rem;
     font: var(--sys-label-medium);
     letter-spacing: var(--sys-label-medium-tracking);
     color: var(--sys-primary);
+  }
+
+  .cdk-overlay-connected-position-bounding-box {
+    margin-left: 0.5rem;
+  }
+
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    max-width: 22rem;
+    margin-left: 0.05rem;
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
   }
 }

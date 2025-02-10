@@ -8,7 +8,7 @@
 
 <hra-workflow-card tagline="Cell Population Predictions" class="table-container">
   <hra-workflow-card-actions>
-    <button mat-icon-button aria-label="more icon button with a menu" aria-hidden="false" [matMenuTriggerFor]="options">
+    <button mat-icon-button aria-label="Open table action menu" [matMenuTriggerFor]="options">
       <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
 
@@ -26,12 +26,7 @@
     </mat-menu>
 
     <mat-menu #submenu="matMenu">
-      <div>
-        Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
-        summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations
-        in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations
-        (sc-proteomics datasets)
-      </div>
+      <hra-tooltip-card [content]="tooltip" class="tooltip-panel"> </hra-tooltip-card>
     </mat-menu>
   </hra-workflow-card-actions>
   <hra-workflow-card-extra>
