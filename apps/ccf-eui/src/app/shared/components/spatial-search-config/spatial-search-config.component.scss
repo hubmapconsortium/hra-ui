@@ -1,121 +1,36 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 2rem;
-  gap: 2rem;
-  width: 30.5rem;
-  box-shadow: 0px 25rem 25rem rgba(0, 0, 0, 0.16);
-  border-radius: 0.25rem;
-  font-size: 1rem;
-
-  .button {
-    cursor: pointer;
-  }
+  display: grid;
+  grid-template-areas: 'header header' 'sex organ' '. button';
+  grid-template-rows: auto 3rem auto;
+  row-gap: 1rem;
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
 
   .header {
+    grid-area: header;
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    font-size: 1.25rem;
     align-items: center;
+    font: var(--sys-label-large);
 
     .header-left {
       display: flex;
       align-items: center;
-
-      .title {
-        margin-right: 1rem;
-      }
-    }
-
-    button {
-      padding: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      border-radius: 0.25rem;
-      transition: 0.6s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 
   .sex-toggle {
-    display: flex;
-
-    .label {
-      margin-right: 2rem;
-      line-height: 1.75rem;
-    }
-
-    .radio {
-      margin-right: 4rem;
-
-      ::ng-deep .mdc-radio {
-        padding: 0;
-        padding-right: 0.5rem;
-      }
-    }
+    grid-area: sex;
+    padding-right: 1.5rem;
   }
 
   .organ-selector {
-    .label {
-      height: 0rem;
-    }
-
-    ::ng-deep .mat-mdc-text-field-wrapper {
-      font-size: 1rem;
-      padding-bottom: 0.75rem;
-      padding-top: 3rem;
-      margin-left: 0.5rem;
-      width: 14rem;
-
-      .mat-mdc-form-field-infix {
-        padding: 0;
-        border-top: none;
-      }
-
-      .mdc-line-ripple {
-        bottom: 0rem;
-        height: 0.125rem;
-      }
-
-      .mat-mdc-select-arrow-wrapper {
-        transform: translatey(0rem);
-      }
-    }
+    grid-area: organ;
   }
 
   .continue-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0.25rem 1rem;
-    width: 14rem;
-    height: 2rem;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 0.25rem;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.16);
-
-    &.disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-  }
-}
-
-::ng-deep .organ-select {
-  top: 2.5rem;
-  left: -0.25rem;
-  padding: 0 !important;
-
-  .organ-select-option {
-    height: 3.5rem;
-    border-bottom: 1px solid;
+    grid-area: button;
+    width: fit-content;
+    justify-self: end;
+    margin-top: 0.25rem;
   }
 }

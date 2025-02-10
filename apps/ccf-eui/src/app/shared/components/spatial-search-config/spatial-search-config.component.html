@@ -2,7 +2,7 @@
   <div class="header-left">
     <div class="title">Configure Spatial Search</div>
     <button class="info" mat-icon-button (click)="infoClicked.emit()">
-      <mat-icon>info</mat-icon>
+      <mat-icon>help</mat-icon>
     </button>
   </div>
   <button class="close" mat-icon-button (click)="closeDialog.emit()">
@@ -11,31 +11,44 @@
 </div>
 
 <div class="sex-toggle">
-  <div class="label">Donor Sex:</div>
-  <mat-radio-group class="radio-group" [(ngModel)]="sex" (change)="updateSex.emit($event.value)">
-    <mat-radio-button class="radio" value="male">Male</mat-radio-button>
-    <mat-radio-button class="radio" value="female">Female</mat-radio-button>
-  </mat-radio-group>
-</div>
-
-<div class="organ-selector">
-  <div class="label">Select an organ</div>
-  <mat-form-field class="form-field" appearance="fill" subscriptSizing="dynamic">
-    <div *ngIf="!selectedOrgan" class="label">Organs</div>
+  <mat-form-field class="sex-field" subscriptSizing="dynamic">
+    <mat-label>Donor Sex</mat-label>
     <mat-select
+      panelClass="options-container"
       disableOptionCentering="true"
-      panelClass="organ-select"
-      [(value)]="selectedOrgan"
-      (selectionChange)="updateOrgan.emit($event.value)"
-      hideSingleSelectionIndicator="true"
+      disableRipple
+      [(value)]="sex"
+      (selectionChange)="updateSex.emit($event.value)"
     >
-      <mat-option class="organ-select-option" *ngFor="let organ of organs" [value]="organ">
-        {{ organ.name }}
-      </mat-option>
+      @for (option of ['Both', 'Male', 'Female']; track option) {
+        <mat-option class="dropdown-option" [value]="option">
+          <div>{{ option }}</div>
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
 </div>
 
-<button class="continue-button" [class.disabled]="!selectedOrgan" mat-button (click)="buttonClicked.emit()">
+<form class="organ-selector">
+  <mat-form-field class="organ-field" subscriptSizing="dynamic">
+    <mat-label>Organ</mat-label>
+    <input
+      matInput
+      hideSingleSelectionIndicator="true"
+      type="text"
+      placeholder="Organ"
+      aria-label="Organ"
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="updateOrgan.emit($event.option.value)">
+      @for (organ of filteredOrgans | async; track organ) {
+        <mat-option [value]="organ.name">{{ organ.name }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<button mat-flat-button class="continue-button" [class.disabled]="!selectedOrgan" (click)="buttonClicked.emit()">
   Continue
 </button>

@@ -21,7 +21,7 @@ import { OntologyExplorationModule } from './modules/ontology-exploration/ontolo
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
-import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
+import { RunSpatialSearchComponent } from './shared/components/run-spatial-search/run-spatial-search.component';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
 import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
@@ -46,7 +46,7 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
     ViewerModule,
     TrackingPopupModule,
     MatSnackBarModule,
-    RunSpatialSearchModule,
+    RunSpatialSearchComponent,
     MatSnackBarModule,
     MatButtonToggleModule,
     ButtonToggleModule,

@@ -4,7 +4,6 @@ import { NgxsModule } from '@ngxs/store';
 import { Shallow } from 'shallow-render';
 
 import { RunSpatialSearchComponent } from './run-spatial-search.component';
-import { RunSpatialSearchModule } from './run-spatial-search.module';
 
 describe('RunSpatialSearchComponent', () => {
   let shallow: Shallow<RunSpatialSearchComponent>;
@@ -14,7 +13,7 @@ describe('RunSpatialSearchComponent', () => {
       imports: [NgxsModule.forRoot([], {})],
     });
 
-    shallow = new Shallow(RunSpatialSearchComponent, RunSpatialSearchModule).provide({
+    shallow = new Shallow(RunSpatialSearchComponent).provide({
       provide: MatDialog,
       useValue: jasmine.createSpyObj<MatDialog>(['open']),
     });

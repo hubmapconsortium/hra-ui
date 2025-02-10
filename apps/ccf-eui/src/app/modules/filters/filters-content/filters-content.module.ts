@@ -7,7 +7,7 @@ import { SpatialSearchListModule } from 'ccf-shared';
 import { CheckboxModule } from '../../../shared/components/checkbox/checkbox.module';
 import { DropdownModule } from '../../../shared/components/dropdown/dropdown.module';
 import { DualSliderModule } from '../../../shared/components/dual-slider/dual-slider.module';
-import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
+import { RunSpatialSearchComponent } from '../../../shared/components/run-spatial-search/run-spatial-search.component';
 import { FiltersContentComponent } from './filters-content.component';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { FiltersContentComponent } from './filters-content.component';
     DropdownModule,
     DualSliderModule,
     SpatialSearchListModule,
-    RunSpatialSearchModule,
+    RunSpatialSearchComponent,
   ],
   declarations: [FiltersContentComponent],
   exports: [FiltersContentComponent],

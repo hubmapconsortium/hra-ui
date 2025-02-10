@@ -8,7 +8,6 @@ import { Shallow } from 'shallow-render';
 import { SceneState } from '../../../core/store/scene/scene.state';
 import { SpatialSearchUiState } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchConfigBehaviorComponent } from './spatial-search-config-behavior.component';
-import { SpatialSearchConfigBehaviorModule } from './spatial-search-config-behavior.module';
 
 function wait(duration: number): Promise<void> {
   return new Promise((resolve) => {
@@ -25,7 +24,7 @@ describe('SpatialSearchConfigBehaviorComponent', () => {
       imports: [NgxsModule.forRoot([SpatialSearchUiState])],
     });
 
-    shallow = new Shallow(SpatialSearchConfigBehaviorComponent, SpatialSearchConfigBehaviorModule)
+    shallow = new Shallow(SpatialSearchConfigBehaviorComponent)
       .mock(MatDialogRef, {
         close(): void {
           /* Empty */
