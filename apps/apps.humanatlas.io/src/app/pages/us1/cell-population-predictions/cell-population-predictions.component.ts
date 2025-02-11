@@ -1,6 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, HostListener, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -36,6 +36,9 @@ the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author
   templateUrl: './cell-population-predictions.component.html',
   styleUrl: './cell-population-predictions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:beforeunload)': 'handleBeforeUnload($event)',
+  },
 })
 export class CellPopulationPredictionsComponent {
   /**
@@ -85,7 +88,6 @@ export class CellPopulationPredictionsComponent {
   }
 
   /** Triggered when users tries to close or reload the page */
-  @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload(event: BeforeUnloadEvent) {
     event.preventDefault();
     event.returnValue = true; // For older verions
