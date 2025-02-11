@@ -3,13 +3,16 @@
     <mat-label>{{ organs().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
     <input
       name="currentOrganInput"
-      [placeholder]="organs().length > 0 ? searchTextField() : ''"
+      class="organ-input"
       #organInput
       matInput
       [(ngModel)]="currentOrganInput"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
     />
+    @if (organs().length > 0) {
+      <div class="visible-indicator">{{ searchTextField() }}</div>
+    }
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of organs(); track organ) {

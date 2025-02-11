@@ -27,7 +27,9 @@ export class OrganSelectComponent {
       ? ALL_ORGANS.filter((organ) => organ.name.toLowerCase().includes(currentOrganInput))
       : ALL_ORGANS.slice();
   });
-  readonly searchTextField = computed(() => this.organs().length.toString() + ' Organs Visible');
+  readonly searchTextField = computed(
+    () => `${this.organs().length} Organ${this.organs().length > 1 ? 's' : ''} Visible`,
+  );
 
   constructor(readonly scene: SceneState) {
     scene.selectedReferenceOrgans$.subscribe((selected) => {
