@@ -105,7 +105,16 @@
     <div class="buttons buttons-container">
       <button mat-button hraButtonSize="medium" (click)="ruiOpen = true">Create</button>
 
-      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }" [cdkConnectedOverlayOpen]="ruiOpen">
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayDisableClose]="true"
+        cdkConnectedOverlayDisposeOnNavigation="true"
+        cdkConnectedOverlayHeight="100vh"
+        [cdkConnectedOverlayOpen]="ruiOpen"
+        [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
+        cdkConnectedOverlayPanelClass="rui-panel"
+        cdkConnectedOverlayWidth="100vw"
+      >
         <hra-embedded-rui
           (locationCreated)="onFileCreated($event); ruiOpen = false"
           (closed)="ruiOpen = false"

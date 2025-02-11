@@ -1,14 +1,12 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
   ElementRef,
-  inject,
   input,
   output,
-  Renderer2,
   viewChild,
 } from '@angular/core';
 
@@ -23,11 +21,6 @@ interface RuiElement {
   /** Function to cancel registration */
   cancelRegistration: () => void;
 }
-
-/** RUI script URL */
-const SCRIPT_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/wc.js';
-/** RUI style URL */
-const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
 
 /**
  * Embedded Registration User Interface Component
@@ -50,18 +43,11 @@ export class EmbeddedRuiComponent {
   readonly closed = output();
   /** Reference to the rui element in template */
   private readonly ref = viewChild.required<ElementRef<RuiElement>>('rui');
-  /** For accessing DOM  */
-  private readonly document = inject(DOCUMENT);
-  /** For manuplating DOM elements */
-  private readonly renderer = inject(Renderer2);
 
   /**
-   * Constructor that initializes the component, sets up effect for setting RUI properties & methods, and
-   * sets script and link tags
+   * Constructor that initializes the component, sets up effect for setting RUI properties & methods
    */
   constructor() {
-    this.setupScriptAndStyleTags();
-
     effect(() => {
       const el = this.ref().nativeElement;
       el.organOptions = this.supportedOrgans();
@@ -73,26 +59,5 @@ export class EmbeddedRuiComponent {
   /** Creates new file from location object with the name "rui-location.json" */
   private createFileFromLocation(location: object): File {
     return new File([JSON.stringify(location)], 'rui-location.json');
-  }
-
-  /** Method that sets script and link tags with appropriate URLs */
-  private setupScriptAndStyleTags(): void {
-    const { document, renderer } = this;
-    const script = document.querySelector(`script[src="${SCRIPT_URL}"]`);
-    const styles = document.querySelector(`link[href="${STYLE_URL}"]`);
-
-    if (script === null) {
-      const el = renderer.createElement('script');
-      renderer.setAttribute(el, 'src', SCRIPT_URL);
-      renderer.setAttribute(el, 'type', 'module');
-      document.head.appendChild(el);
-    }
-
-    if (styles == null) {
-      const el = renderer.createElement('link');
-      renderer.setAttribute(el, 'href', STYLE_URL);
-      renderer.setAttribute(el, 'rel', 'stylesheet');
-      document.head.appendChild(el);
-    }
   }
 }

@@ -110,3 +110,9 @@
     color: var(--sys-primary);
   }
 }
+
+::ng-deep {
+  .cdk-overlay-container:has(.rui-panel) {
+    z-index: 900;
+  }
+}
