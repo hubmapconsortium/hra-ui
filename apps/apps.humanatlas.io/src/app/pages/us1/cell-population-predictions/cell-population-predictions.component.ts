@@ -41,7 +41,7 @@ export class CellPopulationPredictionsComponent {
   /**
    * Predictions
    */
-  protected readonly predictions = input<Prediction[]>([]);
+  readonly predictions = input<Prediction[]>([]);
 
   /** Router service */
   private readonly router = inject(Router);
@@ -91,6 +91,7 @@ export class CellPopulationPredictionsComponent {
     event.returnValue = true; // For older verions
   }
 
+  /** Triggered when users clicks delete icon on file */
   onDeleteButtonClick(): void {
     const confirmation = window.confirm('Changes you made might not be saved. Do you really want to leave?');
     if (confirmation) {

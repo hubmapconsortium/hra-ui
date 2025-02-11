@@ -16,9 +16,11 @@ import {
  * RUI Interface
  */
 interface RuiElement {
+  /** Supported organs string array */
   organOptions: string[];
-
+  /** Function to emit registration file */
   register: (location: object) => void;
+  /** Function to cancel registration */
   cancelRegistration: () => void;
 }
 
@@ -53,6 +55,10 @@ export class EmbeddedRuiComponent {
   /** For manuplating DOM elements */
   private readonly renderer = inject(Renderer2);
 
+  /**
+   * Constructor that initializes the component, sets up effect for setting RUI properties & methods, and
+   * sets script and link tags
+   */
   constructor() {
     this.setupScriptAndStyleTags();
 
@@ -64,10 +70,12 @@ export class EmbeddedRuiComponent {
     });
   }
 
+  /** Creates new file from location object with the name "rui-location.json" */
   private createFileFromLocation(location: object): File {
     return new File([JSON.stringify(location)], 'rui-location.json');
   }
 
+  /** Method that sets script and link tags with appropriate URLs */
   private setupScriptAndStyleTags(): void {
     const { document, renderer } = this;
     const script = document.querySelector(`script[src="${SCRIPT_URL}"]`);

@@ -82,6 +82,7 @@ export class CellPopulationPredictorComponent {
     });
   }
 
+  /** Triggered when user uploads a file */
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -90,11 +91,13 @@ export class CellPopulationPredictorComponent {
     }
   }
 
+  /** Output file from RUI */
   onFileCreated(file: File): void {
     this.file = file;
     this.predictionsService.setFile(file);
   }
 
+  /** Use sample JSON file */
   onUseSampleClicked(): void {
     this.predictionsService.setSampleFile();
     this.file = this.predictionsService.getFile();
