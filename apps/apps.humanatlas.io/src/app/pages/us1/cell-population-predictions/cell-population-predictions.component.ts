@@ -84,6 +84,7 @@ export class CellPopulationPredictionsComponent {
     });
   }
 
+  /** Triggered when users tries to close or reload the page */
   @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload(event: BeforeUnloadEvent) {
     event.preventDefault();

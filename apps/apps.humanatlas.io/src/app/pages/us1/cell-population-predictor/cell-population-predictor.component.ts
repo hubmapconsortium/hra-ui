@@ -71,6 +71,9 @@ export class CellPopulationPredictorComponent {
   /** Predictions Service */
   protected readonly predictionsService = inject(PredictionsService);
 
+  /**
+   * Constructor that initializes the component and sets up effects for supported organs
+   */
   constructor() {
     effect(() => {
       this.predictionsService.loadSupportedReferenceOrgans().subscribe((organs) => {

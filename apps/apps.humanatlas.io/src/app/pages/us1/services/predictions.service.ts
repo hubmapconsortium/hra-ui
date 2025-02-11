@@ -39,11 +39,18 @@ export interface SupportedOrgans {
   label: string;
 }
 
+/**
+ * Predictions resolver
+ * @returns Predictions array
+ */
 export function resolvePredictions(): Observable<Prediction[]> {
   const service = inject(PredictionsService);
   return service.loadPredictions();
 }
 
+/**
+ * Predictions Service
+ */
 @Injectable({ providedIn: 'root' })
 export class PredictionsService {
   private file = SAMPLE_FILE;

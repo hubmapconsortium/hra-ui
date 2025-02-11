@@ -12,6 +12,9 @@ import {
   viewChild,
 } from '@angular/core';
 
+/**
+ * RUI Interface
+ */
 interface RuiElement {
   organOptions: string[];
 
