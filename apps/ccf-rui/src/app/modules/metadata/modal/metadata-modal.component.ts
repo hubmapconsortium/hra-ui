@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angu
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
@@ -40,7 +40,7 @@ export interface MetadataModalResult {
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
-    ButtonModule,
+    ButtonsModule,
     ErrorIndicatorComponent,
     ScrollingModule,
     WorkflowCardModule,
@@ -115,6 +115,7 @@ export class MetadataModalComponent {
         author: { firstName, middleName, lastName, email, orcidId },
         donor: { organ: data?.organ, sex: data?.sex, consortium, doi },
       });
+      this.metadataForm.markAsDirty();
     }
   }
 

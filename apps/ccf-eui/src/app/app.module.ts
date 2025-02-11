@@ -12,8 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { BackBarComponent } from '@hra-ui/design-system/back-bar';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BodyUiModule, InfoButtonModule, TrackingPopupModule } from 'ccf-shared';
@@ -28,6 +27,7 @@ import { ButtonToggleModule } from './shared/components/button-toggle/button-tog
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 
 @NgModule({
   imports: [
@@ -50,10 +50,10 @@ import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinne
 
     NavHeaderButtonsComponent,
     ExpansionPanelModule,
-    ButtonModule,
+    ButtonsModule,
     MatMenuModule,
     MatDividerModule,
-    BackBarComponent,
+    BackButtonBarComponent,
     MatFormFieldModule,
     MatAutocompleteModule,
     ReactiveFormsModule,

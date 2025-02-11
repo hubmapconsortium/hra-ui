@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandmarkComponent } from '@hra-ui/design-system/brandmark';
-import { ButtonModule, ButtonSizeDirective, NavigationCategoryButtonDirective } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
@@ -17,11 +17,9 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
   standalone: true,
   imports: [
     CommonModule,
-    AssetUrlPipe,
+    MatButtonToggleModule,
     BrandmarkComponent,
-    NavigationCategoryButtonDirective,
-    ButtonSizeDirective,
-    ButtonModule,
+    ButtonsModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
   ],

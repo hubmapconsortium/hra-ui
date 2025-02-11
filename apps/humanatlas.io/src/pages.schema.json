@@ -37,8 +37,7 @@
                   "required": ["message"],
                   "additionalProperties": false,
                   "description": "The announcementCard field has three optional fields:\n            - route: Route of the page where user will be redirected to when clicked on it.\n            - routeText: Label for the route where we want the user to click.\n            - emoji: Paste any emoji in this field if required."
-                },
-                "description": "The announcementCard field has three optional fields:\n            - route: Route of the page where user will be redirected to when clicked on it.\n            - routeText: Label for the route where we want the user to click.\n            - emoji: Paste any emoji in this field if required."
+                }
               }
             },
             "required": ["type", "announcementCard"],
@@ -100,6 +99,10 @@
               "icon": {
                 "type": "string",
                 "description": "Icon on the button"
+              },
+              "small": {
+                "type": "boolean",
+                "description": "Smaller version of button "
               },
               "styles": {
                 "type": "object",
@@ -167,8 +170,7 @@
                   "required": ["title", "body", "image", "buttonText", "alt"],
                   "additionalProperties": false,
                   "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n\n    Enter either url or route."
-                },
-                "description": "This object has the following optional fields.\n    - url: External Link to redirect to when the button is pressed.\n    - route: Name of the route of the page to be loaded when button is pressed.\n\n    Enter either url or route."
+                }
               }
             },
             "required": ["type", "carouselContainerStyles", "carouselInfo"],
@@ -477,15 +479,13 @@
                         "required": ["label", "links"],
                         "additionalProperties": false,
                         "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
-                      },
-                      "description": "Following properties in this object are optional:\n        - releaseVersion: Release version of the organ.\n        - dot: Digital object type of the organ.\n        - url: External link to be embedded in the organ."
+                      }
                     }
                   },
                   "required": ["version", "rows"],
                   "additionalProperties": false,
                   "description": "Add version and rows data for the table"
-                },
-                "description": "Add version and rows data for the table"
+                }
               }
             },
             "required": ["type", "versions", "versionedData"],
@@ -674,8 +674,7 @@
                   "required": ["icon", "title", "alt"],
                   "additionalProperties": false,
                   "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
-                },
-                "description": "Properties mentioned here are optional. Either use route or externalLink\n- route: route for the page to be redirected\n- externalLink: URL of the page to be opened when the card is clicked\n- color: background color of the image\n- body: Subtitle for the card"
+                }
               }
             },
             "required": ["type", "longCardItems"],
@@ -715,8 +714,7 @@
                   "required": ["heading", "cardData"],
                   "additionalProperties": false,
                   "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
-                },
-                "description": "Properties mentioned here are optional\n    - headerSize: Pass inline styles for the header of the card\n    - id: Pass id as an attribute to the title of the card"
+                }
               }
             },
             "required": ["type", "longCardWithTitleData"],
@@ -1003,6 +1001,9 @@
                 "items": {
                   "type": "object",
                   "properties": {
+                    "id": {
+                      "type": "string"
+                    },
                     "heading": {
                       "type": "string",
                       "description": "Title of the data"
@@ -1122,8 +1123,7 @@
                         "required": ["winner"],
                         "additionalProperties": false,
                         "description": "\n                The following properties are optional in this object:\n                - button: Data of buttons to show on the Prize Card.\n                - kaggleId: kaggle id's of the winners."
-                      },
-                      "description": "\n                The following properties are optional in this object:\n                - button: Data of buttons to show on the Prize Card.\n                - kaggleId: kaggle id's of the winners."
+                      }
                     },
                     "userImage": {
                       "type": "array",
@@ -1155,8 +1155,7 @@
                   "required": ["title", "winner", "matDivider"],
                   "additionalProperties": false,
                   "description": "\n        The following properties are optional in this object:\n        - presentedBy: Name of the presenter.\n        - orgImage: URL to the image of the organization.\n        - userImage: URL(s) to the image of the participants."
-                },
-                "description": "\n        The following properties are optional in this object:\n        - presentedBy: Name of the presenter.\n        - orgImage: URL to the image of the organization.\n        - userImage: URL(s) to the image of the participants."
+                }
               },
               "styles": {
                 "$ref": "#/definitions/mySchema/items/anyOf/2/properties/styles"

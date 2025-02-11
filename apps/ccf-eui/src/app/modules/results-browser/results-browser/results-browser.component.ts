@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { ButtonModule } from '@hra-ui/design-system/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
@@ -29,7 +29,7 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     MatMenuModule,
     MatIconModule,
     MatCheckboxModule,
-    ButtonModule,
+    ButtonsModule,
     ScrollingModule,
     ScrollOverflowFadeDirective,
   ],
