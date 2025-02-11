@@ -1,12 +1,11 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, computed, model, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest, Observable } from 'rxjs';
@@ -160,9 +159,6 @@ export class AppComponent implements OnInit {
     combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
       scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
-    scene.selectedReferenceOrgans$.subscribe((selected) => {
-      this.organs.set(selected.map((organ) => organ.name));
-    });
     this.selectedtoggleOptions = this.menuOptions;
   }
 
@@ -293,38 +289,5 @@ export class AppComponent implements OnInit {
 
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
-  }
-
-  readonly currentOrganInput = model('');
-  readonly organs = model<string[]>([]);
-  readonly filteredOrgans = computed(() => {
-    const currentOrganInput = this.currentOrganInput().toLowerCase();
-    return currentOrganInput
-      ? ALL_ORGANS.filter((organ) => organ.name.toLowerCase().includes(currentOrganInput))
-      : ALL_ORGANS.slice();
-  });
-  readonly searchTextField = computed(() => this.organs().length.toString() + ' Organs Visible');
-
-  remove(organ: string): void {
-    this.organs.update((organs) => {
-      const index = organs.indexOf(organ);
-      if (index < 0) {
-        return organs;
-      }
-
-      organs.splice(index, 1);
-      return [...organs];
-    });
-
-    const selectedOrgans = ALL_ORGANS.filter((organ) => this.organs().includes(organ.name));
-    this.scene.setSelectedReferenceOrgans(selectedOrgans);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.organs.update((organs) => [...organs, event.option.viewValue]);
-    const selectedOrgans = ALL_ORGANS.filter((organ) => this.organs().includes(organ.name));
-    this.scene.setSelectedReferenceOrgans(selectedOrgans);
-    this.currentOrganInput.set('');
-    event.option.deselect();
   }
 }
