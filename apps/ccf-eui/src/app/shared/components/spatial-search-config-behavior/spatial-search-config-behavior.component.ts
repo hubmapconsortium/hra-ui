@@ -11,12 +11,11 @@ import { SetOrgan, SetSex } from '../../../core/store/spatial-search-ui/spatial-
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
 import { Sex, SpatialSearchConfigComponent } from '../spatial-search-config/spatial-search-config.component';
 import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/spatial-search-ui-behavior.component';
-import { SpatialSearchUiBehaviorModule } from '../spatial-search-ui-behavior/spatial-search-ui-behavior.module';
 
 @Component({
   selector: 'ccf-spatial-search-config-behavior',
   templateUrl: './spatial-search-config-behavior.component.html',
-  imports: [CommonModule, SpatialSearchConfigComponent, MatDialogModule, SpatialSearchUiBehaviorModule],
+  imports: [CommonModule, SpatialSearchConfigComponent, MatDialogModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -39,8 +38,6 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
 
   private readonly subscriptions = new Subscription();
 
-  private readonly dialogSubs = new Subscription();
-
   constructor(
     public dialog: MatDialog,
     private readonly dialogRef: MatDialogRef<SpatialSearchConfigComponent>,
@@ -53,7 +50,10 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
   }
 
   buttonClicked(): void {
-    this.spatialSearchDialog.open(SpatialSearchUiBehaviorComponent);
+    this.spatialSearchDialog.open(SpatialSearchUiBehaviorComponent, {
+      panelClass: 'spatial-search-ui',
+      maxWidth: '80vw',
+    });
     this.close();
   }
 

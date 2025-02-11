@@ -27,6 +27,11 @@
     grid-area: organ;
   }
 
+  .sex-field,
+  .organ-field {
+    width: 12.625rem;
+  }
+
   .continue-button {
     grid-area: button;
     width: fit-content;

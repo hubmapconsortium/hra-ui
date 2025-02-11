@@ -46,7 +46,7 @@
       <mat-autocomplete
         #auto="matAutocomplete"
         [displayWith]="displayFn"
-        (optionSelected)="updateOrgan.emit($event.option.value)"
+        (optionSelected)="updateOrgan.emit($event.option.value); selectedOrgan = $event.option.value"
       >
         @for (organ of filteredOrgans | async; track organ) {
           <mat-option [value]="organ">{{ organ.name }}</mat-option>
@@ -56,6 +56,6 @@
   </form>
 </div>
 
-<button mat-flat-button class="continue-button" [class.disabled]="!selectedOrgan" (click)="buttonClicked.emit()">
+<button mat-flat-button class="continue-button" [disabled]="!selectedOrgan" (click)="buttonClicked.emit()">
   Continue
 </button>

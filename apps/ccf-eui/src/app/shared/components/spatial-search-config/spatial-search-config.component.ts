@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -21,7 +21,6 @@ export type Sex = 'male' | 'female';
   templateUrl: './spatial-search-config.component.html',
   styleUrls: ['./spatial-search-config.component.scss'],
   imports: [
-    CommonModule,
     FormsModule,
     MatSelectModule,
     MatIconModule,
@@ -63,6 +62,7 @@ export class SpatialSearchConfigComponent implements OnInit {
   @Output() readonly infoClicked = new EventEmitter();
 
   organControl = new FormControl<string | OrganInfo>('');
+
   filteredOrgans!: Observable<OrganInfo[]>;
 
   ngOnInit() {
@@ -81,7 +81,6 @@ export class SpatialSearchConfigComponent implements OnInit {
 
   private _filter(name: string): OrganInfo[] {
     const filterValue = name.toLowerCase();
-
     return this.organs.filter((organ) => organ.name.toLowerCase().includes(filterValue));
   }
 }
