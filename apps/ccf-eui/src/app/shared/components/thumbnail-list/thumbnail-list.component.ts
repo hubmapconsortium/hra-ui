@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
-import { SwiperOptions } from 'swiper';
-import { NavigationOptions } from 'swiper/types';
 
 // Returns a unique identifier
 const nextUid = (() => {
@@ -14,22 +15,24 @@ const nextUid = (() => {
 })();
 
 /**
- * Carousel containing sample thumbnails in expanded donor cards
+ * List containing sample thumbnails in expanded donor cards
  */
 @Component({
-  selector: 'ccf-thumbnail-carousel',
-  templateUrl: './thumbnail-carousel.component.html',
-  styleUrls: ['./thumbnail-carousel.component.scss'],
+  selector: 'ccf-thumbnail-list',
+  templateUrl: './thumbnail-list.component.html',
+  styleUrls: ['./thumbnail-list.component.scss'],
+  imports: [CommonModule, MatButtonModule, MatIconModule],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThumbnailCarouselComponent {
+export class ThumbnailListComponent {
   /**
    * Primary css class selector
    */
-  @HostBinding('class') readonly className = 'ccf-thumbnail-carousel';
+  @HostBinding('class') readonly className = 'ccf-thumbnail-list';
 
   /**
-   * Items to show in the carousel
+   * Items to show in the list
    */
   @Input() data!: TissueDataset[];
 
@@ -42,42 +45,6 @@ export class ThumbnailCarouselComponent {
    * Per instance unique identifier
    */
   readonly uid = nextUid();
-
-  /**
-   * HTML id for previous slide button
-   */
-  get prevButtonId(): string {
-    return `ccf-thumbnail-carousel-prev-button-${this.uid}`;
-  }
-
-  /**
-   * HTML id for next slide button
-   */
-  get nextButtonId(): string {
-    return `ccf-thumbnail-carousel-next-button-${this.uid}`;
-  }
-
-  /**
-   * Swiper configuration
-   */
-  readonly config: SwiperOptions = {
-    allowTouchMove: false,
-    slidesOffsetBefore: 4,
-    slidesOffsetAfter: 4,
-    slidesPerView: 'auto',
-    spaceBetween: 4,
-    watchOverflow: true,
-  };
-
-  /**
-   * Navigation configuration
-   */
-  readonly navigation: NavigationOptions = {
-    // Normally I would have prefered referencing the elements themselves instead of using selectors
-    // However in this case it does not work with angular swiper
-    prevEl: '#' + this.prevButtonId,
-    nextEl: '#' + this.nextButtonId,
-  };
 
   readonly baseHref$ = this.globalConfig.getOption('baseHref');
 

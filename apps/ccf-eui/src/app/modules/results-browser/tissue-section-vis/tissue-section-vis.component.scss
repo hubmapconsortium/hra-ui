@@ -13,11 +13,14 @@
     display: flex;
     position: relative;
     justify-content: space-evenly;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
 
     .line-tick {
       height: 100%;
       width: 1px;
       z-index: 2;
+      background-color: #00c853;
     }
 
     .x-axis {
@@ -27,6 +30,7 @@
       top: calc(50% - 1px);
       right: 0;
       z-index: 1;
+      background-color: #2979ff;
     }
   }
 }

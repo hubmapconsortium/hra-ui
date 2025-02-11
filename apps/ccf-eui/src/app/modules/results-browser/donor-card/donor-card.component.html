@@ -1,83 +1,37 @@
-<div class="main-container">
-  <div
-    class="checkbox-background"
-    [class.selected]="selected"
-    [class.highlighted]="highlighted"
-    [ngStyle]="{ 'background-color': selected ? color : 'transparent' }"
-    (click)="handleCheckbox()"
-  >
-    <mat-checkbox [checked]="selected" class="checkbox" [class.checkselected]="selected"></mat-checkbox>
+<ccf-metadata-card
+  class="donor-card"
+  [tagline]="'Donor: ' + tissueBlock.donor?.label"
+  [label]="'Provenance: ' + tissueBlock.donor?.description"
+>
+</ccf-metadata-card>
+
+@if (expanded) {
+  <div class="expanded-cards">
+    <ccf-metadata-card
+      class="block-card"
+      tagline="Tissue Block"
+      [label]="tissueBlock.description ?? ''"
+      [label2]="'Thickness of tissue section:'"
+    >
+      @if ((tissueBlock.sections?.length ?? 0) > 1) {
+        <ccf-tissue-section-vis
+          [totalTissueSections]="tissueBlock.sectionCount ?? 0"
+          [tissueSections]="tissueBlock.sections ?? []"
+        ></ccf-tissue-section-vis>
+      }
+
+      @if (tissueBlock.datasets.length > 0) {
+        <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="tissueBlock.datasets">
+        </ccf-thumbnail-list>
+      }
+    </ccf-metadata-card>
+
+    @for (section of tissueBlock.sections; track section) {
+      <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets">
+        @if (section.datasets.length > 0) {
+          <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="section.datasets"> </ccf-thumbnail-list>
+        }
+      </ccf-metadata-card>
+    }
   </div>
-
-  <div
-    class="hoverable default-padding donor mat-elevation-z2"
-    [class.hover-enabled]="selected"
-    [class.expanded]="expanded"
-    [class.highlighted]="highlighted"
-  >
-    <div class="d-flex">
-      <mat-icon class="icon-size icon-dark mr-5">person</mat-icon>
-
-      <div class="donor-info">
-        <div class="title description">{{ tissueBlock.donor?.label }}</div>
-        <div class="description">{{ tissueBlock.donor?.description }}</div>
-      </div>
-    </div>
-    <div class="hover-state mat-elevation-z4" (click)="linkHandler(tissueBlock.donor?.link ?? '')">
-      <div class="hover-title">DONOR</div>
-      <mat-icon class="icon-size hover-icon">open_in_new</mat-icon>
-    </div>
-
-    <mat-icon (click)="toggleExpansion()" class="icon-size ml-5 selectable" *ngIf="selected">{{
-      expanded ? 'expand_less' : 'expand_more'
-    }}</mat-icon>
-  </div>
-</div>
-
-<ng-container *ngIf="expanded">
-  <div class="expanded-view mat-elevation-z2 align-end">
-    <div class="info-block hover-enabled default-padding">
-      <mat-icon class="icon-size icon-dark mr-5">bubble_chart</mat-icon>
-      <div class="text-content">
-        <div class="description">{{ tissueBlock.label }}</div>
-        <div class="description">{{ tissueBlock.description }}</div>
-      </div>
-
-      <div class="hover-state mat-elevation-z4" (click)="linkHandler(tissueBlock.link)">
-        <div class="hover-title">TISSUE BLOCK</div>
-        <mat-icon class="icon-size hover-icon">open_in_new</mat-icon>
-      </div>
-    </div>
-
-    <ccf-tissue-section-vis
-      *ngIf="(tissueBlock.sections?.length ?? 0) > 1"
-      [totalTissueSections]="tissueBlock.sectionCount ?? 0"
-      [tissueSections]="tissueBlock.sections ?? []"
-    ></ccf-tissue-section-vis>
-
-    <ng-container *ngIf="tissueBlock.datasets.length > 0">
-      <ccf-thumbnail-carousel (linkClicked)="linkHandler($event.link)" class="mt-05" [data]="tissueBlock.datasets">
-      </ccf-thumbnail-carousel>
-    </ng-container>
-  </div>
-
-  <div class="expanded-view w-80 mat-elevation-z2 align-end" *ngFor="let section of tissueBlock.sections">
-    <div class="default-padding info-block hover-enabled">
-      <mat-icon class="icon-size mr-5 icon-light">bubble_chart</mat-icon>
-      <div class="text-content">
-        <div class="description">{{ section.label }}</div>
-        <div class="description">{{ section.description }}</div>
-      </div>
-
-      <div class="hover-state mat-elevation-z4" (click)="linkHandler(section.link)">
-        <div class="hover-title">TISSUE SECTION</div>
-        <mat-icon class="icon-size hover-icon">open_in_new</mat-icon>
-      </div>
-    </div>
-
-    <ng-container *ngIf="section.datasets.length > 0">
-      <ccf-thumbnail-carousel (linkClicked)="linkHandler($event.link)" class="mt-05" [data]="section.datasets">
-      </ccf-thumbnail-carousel>
-    </ng-container>
-  </div>
-</ng-container>
+}

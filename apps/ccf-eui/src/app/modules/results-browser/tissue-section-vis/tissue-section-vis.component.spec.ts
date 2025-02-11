@@ -1,7 +1,6 @@
 import { TissueSection } from '@hra-api/ng-client';
 import { Shallow } from 'shallow-render';
 import { TissueSectionVisComponent } from './tissue-section-vis.component';
-import { TissueSectionVisModule } from './tissue-section-vis.module';
 
 function getTissueSections(count: number): TissueSection[] {
   const tempSections: TissueSection[] = [];
@@ -26,7 +25,7 @@ describe('TissueSectionVisComponent', () => {
   let shallow: Shallow<TissueSectionVisComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(TissueSectionVisComponent, TissueSectionVisModule);
+    shallow = new Shallow(TissueSectionVisComponent);
   });
 
   it('should return false when tissueSectionExists is called with a section number that is not registerd', async () => {

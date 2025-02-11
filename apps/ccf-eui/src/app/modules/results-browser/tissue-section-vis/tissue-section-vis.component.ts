@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { TissueSection } from '@hra-api/ng-client';
 
@@ -6,6 +7,8 @@ import { TissueSection } from '@hra-api/ng-client';
   templateUrl: './tissue-section-vis.component.html',
   styleUrls: ['./tissue-section-vis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule],
+  standalone: true,
 })
 export class TissueSectionVisComponent {
   /** HTML Class Name */

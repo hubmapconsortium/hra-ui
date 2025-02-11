@@ -2,18 +2,17 @@ import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 import { of } from 'rxjs/internal/observable/of';
 import { Shallow } from 'shallow-render';
-import { ThumbnailCarouselComponent } from './thumbnail-carousel.component';
-import { ThumbnailCarouselModule } from './thumbnail-carousel.module';
+import { ThumbnailListComponent } from './thumbnail-list.component';
 
 function castPartial<T>(partial: Partial<T>): T {
   return partial as T;
 }
 
-describe('ThumbnailCarouselComponent', () => {
-  let shallow: Shallow<ThumbnailCarouselComponent>;
+describe('ThumbnailListComponent', () => {
+  let shallow: Shallow<ThumbnailListComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(ThumbnailCarouselComponent, ThumbnailCarouselModule).mock(GlobalConfigState, {
+    shallow = new Shallow(ThumbnailListComponent).mock(GlobalConfigState, {
       getOption: () => of(undefined),
     });
   });
