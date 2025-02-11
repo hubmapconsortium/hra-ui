@@ -9,6 +9,7 @@ const meta: Meta<HeaderComponent> = {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=0-1',
     },
+    layout: 'fullscreen',
   },
   args: {
     cta: {

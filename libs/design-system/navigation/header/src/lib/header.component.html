@@ -1,18 +1,27 @@
 @let ctaConfig = cta();
 @let isLargeScreen = isLargeScreen$ | async;
+@let isMobileMenuOpen = !isLargeScreen && isMenuActive('main');
 
 @if (ctaConfig && !ctaDismissed) {
-  <hra-cta-bar
-    [action]="ctaConfig.action"
-    [description]="ctaConfig.description"
-    [url]="ctaConfig.url"
-    (closeClick)="ctaDismissed = true"
-  >
-  </hra-cta-bar>
+  <div class="cta" #ctaEl>
+    <hra-cta-bar
+      [action]="ctaConfig.action"
+      [description]="ctaConfig.description"
+      [url]="ctaConfig.url"
+      (closeClick)="ctaDismissed = true"
+    >
+    </hra-cta-bar>
+  </div>
 }
 
-<header class="header">
-  <div class="menus">
+<header
+  class="header"
+  [class.mobile-menu-open]="isMobileMenuOpen"
+  cdkOverlayOrigin
+  #headerEl
+  #headerOrigin="cdkOverlayOrigin"
+>
+  <div class="menus" #menusEl>
     <hra-brand-logo size="small"></hra-brand-logo>
 
     <div class="filler"></div>
@@ -39,7 +48,7 @@
           cdkConnectedOverlayPush="true"
           (overlayOutsideClick)="toggleMenu(menu)"
         >
-          <hra-desktop-menu [menu]="menu" [style.max-height]="desktopMenuMaxHeight"></hra-desktop-menu>
+          <hra-desktop-menu [menu]="menu" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
         </ng-template>
       }
     }
@@ -57,18 +66,35 @@
       </mat-icon>
     </button>
 
-    <ng-template
-      cdkConnectedOverlay
-      cdkConnectedOverlayHasBackdrop="false"
-      cdkConnectedOverlayLockPosition="true"
-      [cdkConnectedOverlayOpen]="isMenuActive('main')"
-      [cdkConnectedOverlayOrigin]="mainMenuToggle"
-      [cdkConnectedOverlayPositions]="desktopMenuPositions"
-      cdkConnectedOverlayPush="true"
-      (overlayOutsideClick)="toggleMenu('main')"
-    >
-      <hra-hubmap-menu [menu]="hubmapMenu()" [style.max-height]="desktopMenuMaxHeight"></hra-hubmap-menu>
-    </ng-template>
+    @if (isLargeScreen) {
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        [cdkConnectedOverlayOpen]="isMenuActive('main')"
+        [cdkConnectedOverlayOrigin]="mainMenuToggle"
+        [cdkConnectedOverlayPositions]="desktopMenuPositions"
+        cdkConnectedOverlayPush="true"
+        (overlayOutsideClick)="toggleMenu('main')"
+      >
+        <hra-desktop-menu [menu]="hubmapMenu()" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
+      </ng-template>
+    } @else {
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayDisposeOnNavigation="true"
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        [cdkConnectedOverlayHeight]="mobileMenuHeight()"
+        [cdkConnectedOverlayOpen]="isMenuActive('main')"
+        [cdkConnectedOverlayOrigin]="headerOrigin"
+        [cdkConnectedOverlayPositions]="mobileMenuPositions"
+        cdkConnectedOverlayWidth="100%"
+        #mobileMenuOverlay
+      >
+        <hra-mobile-menu [hubmapMenu]="hubmapMenu()" [menus]="menus()"></hra-mobile-menu>
+      </ng-template>
+    }
   </div>
 
   @if (breadcrumbs().length > 0) {

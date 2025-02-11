@@ -1,51 +1,8 @@
 <ng-scrollbar>
-  <div class="content">
-    @for (item of menu().items; track $index) {
-      @let template = item.type === 'group' ? groupTemplate : dividerTemplate;
-      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
-    }
-  </div>
+  @let typed = typedMenu();
+  @if (typed.type === 'menu') {
+    <hra-menu-content variant="desktop" [menu]="typed.menu"></hra-menu-content>
+  } @else {
+    <hra-hubmap-menu-content [menu]="typed.menu"></hra-hubmap-menu-content>
+  }
 </ng-scrollbar>
-
-<ng-template hraMenuDivider #dividerTemplate>
-  <mat-divider class="divider"></mat-divider>
-</ng-template>
-
-<ng-template hraMenuGroup let-group #groupTemplate>
-  <a mat-button class="group-label" [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
-    {{ group.label }}
-    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-  </a>
-
-  @if (group.description) {
-    <div class="group-description">
-      {{ group.description }}
-    </div>
-  }
-
-  @let items = group.items ?? [];
-  @if (items.length > 0) {
-    <mat-divider class="divider"></mat-divider>
-    @for (item of items; track $index) {
-      @let template = item.type === 'subgroup' ? subgroupTemplate : itemTemplate;
-      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
-    }
-  }
-</ng-template>
-
-<ng-template hraMenuItem let-item #itemTemplate>
-  <a mat-button hraSecondaryButton class="item-label" [attr.href]="item.url" target="_blank" rel="noopener noreferrer">
-    {{ item.label }}
-  </a>
-</ng-template>
-
-<ng-template hraMenuSubGroup let-subgroup #subgroupTemplate>
-  <div class="subgroup-label">
-    {{ subgroup.label }}
-  </div>
-  <div class="subgroup-items">
-    @for (item of subgroup.items; track $index) {
-      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
-    }
-  </div>
-</ng-template>

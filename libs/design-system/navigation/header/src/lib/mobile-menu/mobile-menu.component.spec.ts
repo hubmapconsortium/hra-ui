@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HubmapMenuComponent } from './hubmap-menu.component';
+import { MobileMenuComponent } from './mobile-menu.component';
 
-describe('HubmapMenuComponent', () => {
-  let component: HubmapMenuComponent;
-  let fixture: ComponentFixture<HubmapMenuComponent>;
+describe('MobileMenuComponent', () => {
+  let component: MobileMenuComponent;
+  let fixture: ComponentFixture<MobileMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HubmapMenuComponent],
+      imports: [MobileMenuComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HubmapMenuComponent);
+    fixture = TestBed.createComponent(MobileMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

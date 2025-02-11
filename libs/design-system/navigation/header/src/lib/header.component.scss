@@ -22,5 +22,10 @@
     .menus {
       height: 4.5rem;
     }
+
+    &.mobile-menu-open {
+      background-color: var(--sys-surface-dim);
+      backdrop-filter: none;
+    }
   }
 }
