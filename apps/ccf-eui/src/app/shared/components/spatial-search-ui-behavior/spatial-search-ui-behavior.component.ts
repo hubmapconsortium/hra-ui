@@ -13,15 +13,16 @@ import {
   MoveToNode,
   ResetPosition,
   ResetRadius,
+  SetOrgan,
   SetPosition,
   SetRadius,
+  SetSex,
 } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
 import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchConfigBehaviorComponent } from '../spatial-search-config-behavior/spatial-search-config-behavior.component';
 import { Sex } from '../spatial-search-config/spatial-search-config.component';
 import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui.component';
-import { SpatialSearchUiModule } from '../spatial-search-ui/spatial-search-ui.module';
 
 /**
  * Behavioral component for Spatial Search UI
@@ -29,7 +30,7 @@ import { SpatialSearchUiModule } from '../spatial-search-ui/spatial-search-ui.mo
 @Component({
   selector: 'ccf-spatial-search-ui-behavior',
   templateUrl: './spatial-search-ui-behavior.component.html',
-  imports: [AsyncPipe, SpatialSearchUiModule],
+  imports: [AsyncPipe, SpatialSearchUiComponent],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -86,6 +87,12 @@ export class SpatialSearchUiBehaviorComponent {
     this.close();
     return new GenerateSpatialSearch();
   }
+
+  @Dispatch()
+  readonly updateSex = actionAsFn(SetSex);
+
+  @Dispatch()
+  readonly updateOrgan = actionAsFn(SetOrgan);
 
   constructor(
     private readonly dialogRef: MatDialogRef<SpatialSearchUiComponent>,

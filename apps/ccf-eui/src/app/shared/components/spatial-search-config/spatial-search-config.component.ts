@@ -75,8 +75,8 @@ export class SpatialSearchConfigComponent implements OnInit {
     );
   }
 
-  displayFn(user: OrganInfo): string {
-    return user && user.name ? user.name : '';
+  displayFn(organ: OrganInfo): string {
+    return organ && organ.name ? organ.name : '';
   }
 
   private _filter(name: string): OrganInfo[] {

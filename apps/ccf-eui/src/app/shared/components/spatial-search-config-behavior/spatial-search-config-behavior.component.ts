@@ -52,7 +52,7 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
   buttonClicked(): void {
     this.spatialSearchDialog.open(SpatialSearchUiBehaviorComponent, {
       panelClass: 'spatial-search-ui',
-      maxWidth: '80vw',
+      maxWidth: 'calc(100vw - 2rem)',
     });
     this.close();
   }
