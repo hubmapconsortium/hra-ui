@@ -34,7 +34,8 @@
     "@angular/animations": "18.2.1",
     "@angular/platform-browser": "18.2.1",
     "ngx-color-picker": "^17.0.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "ngxtension": "^4.1.0"
   },
   "dependencies": {},
   "sideEffects": false

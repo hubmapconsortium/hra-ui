@@ -13,11 +13,12 @@ const meta: Meta<HeaderComponent> = {
   },
   args: {
     cta: {
-      action: 'a',
-      description: 'b',
-      url: 'c',
+      action: 'Click Me!',
+      description: 'The cta description goes here:',
+      url: 'https://example.com',
     },
-    breadcrumbs: [{ name: 'foo' }],
+    breadcrumbs: [{ name: 'path' }, { name: 'to' }, { name: 'current' }, { name: 'page' }],
+    progress: false,
   },
 };
 
