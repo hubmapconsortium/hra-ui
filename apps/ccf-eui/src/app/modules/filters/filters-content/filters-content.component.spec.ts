@@ -3,6 +3,7 @@ import { Shallow } from 'shallow-render';
 
 import { FiltersContentComponent } from './filters-content.component';
 import { FiltersContentModule } from './filters-content.module';
+import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 
 describe('FiltersContentComponent', () => {
   let shallow: Shallow<FiltersContentComponent>;
@@ -15,7 +16,7 @@ describe('FiltersContentComponent', () => {
 
   beforeEach(() => {
     shallow = new Shallow(FiltersContentComponent, FiltersContentModule)
-      .provide({ provide: MatDialog, useValue: {} })
+      .provide({ provide: MatDialog, useValue: {} }, SpatialSearchFlowService)
       .mock(MatDialog, mockMatDialog);
   });
 
