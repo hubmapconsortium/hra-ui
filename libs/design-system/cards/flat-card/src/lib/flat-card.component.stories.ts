@@ -1,12 +1,12 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { FlatCardComponent } from './flat-card.component';
-import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
 
 const meta: Meta = {
+  component: FlatCardComponent,
   title: 'Design System/Cards/FlatCardComponent',
   decorators: [
     moduleMetadata({
-      imports: [FlatCardComponent, CodeBlockComponent],
+      imports: [],
     }),
   ],
   parameters: {

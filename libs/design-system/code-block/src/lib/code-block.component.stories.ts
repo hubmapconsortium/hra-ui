@@ -1,7 +1,6 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 import { CodeBlockComponent } from './code-block.component';
-import { provideHighlightOptions } from 'ngx-highlightjs';
 
 const meta: Meta = {
   title: 'CodeBlockComponent',
@@ -14,18 +13,7 @@ const meta: Meta = {
   },
   decorators: [
     applicationConfig({
-      providers: [
-        provideDesignSystem(),
-        provideHighlightOptions({
-          coreLibraryLoader: () => import('highlight.js/lib/core'),
-          lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
-          languages: {
-            typescript: () => import('highlight.js/lib/languages/typescript'),
-            css: () => import('highlight.js/lib/languages/css'),
-            xml: () => import('highlight.js/lib/languages/xml'),
-          },
-        }),
-      ],
+      providers: [provideDesignSystem()],
     }),
   ],
 };
@@ -52,5 +40,6 @@ export const appConfig: ApplicationConfig = {
     })
   ]
 };`,
+    language: 'typescript',
   },
 };

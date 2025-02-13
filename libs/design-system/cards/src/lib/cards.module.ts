@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FlatCardModule } from '@hra-ui/design-system/cards/flat-card';
+
+const REEXPORTS = [FlatCardModule];
 
 @NgModule({
-  imports: [CommonModule],
+  imports: REEXPORTS,
+  exports: REEXPORTS,
 })
 export class CardsModule {}

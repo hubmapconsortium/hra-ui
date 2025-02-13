@@ -1,45 +1,77 @@
-<div class="heading-container">
-  <div class="title-logo-div">
-    <hra-product-logo name="web_components" size="large"></hra-product-logo>
-    <div>
-      <h1>Web Components</h1>
-      <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
-    </div>
-  </div>
-  <p class="description">
-    Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
-  </p>
-</div>
-
-<div class="card-container">
-  <p>Select organ:</p>
-  <mat-form-field appearance="fill" class="organ-select">
-    <mat-label>Organ</mat-label>
-    <mat-select [(value)]="selectedOrgan">
-      <mat-option *ngFor="let organ of organs" [value]="organ.label">{{ organ.label }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button
-    class="show-button"
-    mat-flat-button
-    hraPrimaryButton
-    hraButtonSize="medium"
-    (click)="onOrganSelect(selectedOrgan)"
-  >
-    Show
-  </button>
-</div>
-
-<div class="card-collection" *ngIf="showComponentCards">
-  <div class="cards">
-    <hra-web-component-card
-      *ngFor="let component of components"
-      class="component-card"
-      [imageUrl]="component.previewImage"
-      [productTitle]="component.productTitle"
-      [description]="component.description"
-      [webComponentName]="component.webComponentName"
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav opened mode="over" position="end" [(opened)]="showSidenav" #sidenav>
+    <hra-flat-card
+      [showSidenav]="showSidenav"
+      [title]="selectedComponentCard?.productTitle + ' ' + selectedComponentCard?.webComponentName"
+      leftButtonText="Documentation"
+      [isButtonDisabled]="false"
+      rightButtonText="Copy"
+      [showHelpButton]="false"
+      [showDivider]="true"
+      [showButtonsFooter]="true"
+      (closeClick)="showSidenav = false"
     >
-    </hra-web-component-card>
-  </div>
-</div>
+      <hra-code-block code="" language="html"></hra-code-block>
+
+      <hra-flat-card-actions class="card-actions">
+        <button mat-button hraPrimaryButton hraButtonSize="medium">Documentation</button>
+        <div class="filler"></div>
+        <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="''">Copy</button>
+      </hra-flat-card-actions>
+    </hra-flat-card>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <div class="heading-container">
+      <div class="title-logo-div">
+        <hra-product-logo name="web_components" size="large"></hra-product-logo>
+        <div>
+          <h1>Web Components</h1>
+          <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
+        </div>
+      </div>
+      <p class="description">
+        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
+      </p>
+    </div>
+
+    <div class="card-container">
+      <p>Select organ:</p>
+      <mat-form-field appearance="fill" class="organ-select">
+        <mat-label>Organ</mat-label>
+        <mat-select [(value)]="selectedOrgan">
+          @for (organ of organs; track organ.id) {
+            <mat-option [value]="organ.label">{{ organ.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button
+        class="show-button"
+        mat-flat-button
+        hraPrimaryButton
+        hraButtonSize="medium"
+        (click)="onOrganSelect(selectedOrgan)"
+      >
+        Show
+      </button>
+    </div>
+
+    @if (showComponentCards) {
+      <div class="card-collection">
+        <div class="cards">
+          @for (component of components; track component.id) {
+            <hra-web-component-card
+              class="component-card"
+              [imageUrl]="component.previewImage"
+              [productTitle]="component.productTitle"
+              [description]="component.description"
+              [webComponentName]="component.webComponentName"
+              (showSidenav)="onShowSidenav(component, $event)"
+            >
+            </hra-web-component-card>
+          }
+        </div>
+      </div>
+    }
+  </mat-sidenav-content>
+</mat-sidenav-container>

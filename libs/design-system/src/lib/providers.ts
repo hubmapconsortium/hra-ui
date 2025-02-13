@@ -12,6 +12,7 @@ import { provideSelect } from '@hra-ui/design-system/select';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideButtons } from '@hra-ui/design-system/buttons';
+import { provideHighlightOptions } from 'ngx-highlightjs';
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -49,6 +50,15 @@ export function provideDesignSystem(options?: DesignSystemOptions): EnvironmentP
   return makeEnvironmentProviders([
     provideHttpClient(...(options?.http ?? [])),
     provideAnimations(),
+    provideHighlightOptions({
+      coreLibraryLoader: () => import('highlight.js/lib/core'),
+      lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
+      languages: {
+        typescript: () => import('highlight.js/lib/languages/typescript'),
+        css: () => import('highlight.js/lib/languages/css'),
+        xml: () => import('highlight.js/lib/languages/xml'),
+      },
+    }),
     ...provideDesignSystemCommon(options),
   ]);
 }

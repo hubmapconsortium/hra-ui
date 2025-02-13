@@ -1,13 +1,13 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 19.5rem;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-on-background) r g b / 0.24);
+  background-color: var(--sys-surface-container-low);
 
-  .flat-card {
-    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-on-background) r g b / 0.24);
-    background-color: var(--sys-surface-container-low);
-    min-width: 19.5rem;
-  }
   .component-tagline {
-    padding: 0.75rem 1rem 0.75rem 1rem;
+    padding: 0.75rem 1rem;
     justify-content: space-between;
     display: flex;
     align-items: center;
@@ -32,12 +32,14 @@
   .top-divider {
     color: var(--sys-outline-variant);
     height: 0.0625rem;
+    position: sticky;
+    top: 4rem;
   }
 
   .card-content {
-    height: 34.6875rem;
-    overflow-y: auto;
+    flex: 1;
     padding: 1rem;
+    overflow-y: auto;
   }
 
   .card-footer {
@@ -46,6 +48,6 @@
     background-color: var(--sys-surface-container-low);
     display: flex;
     justify-content: space-between;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem;
   }
 }

@@ -1,6 +1,23 @@
 :host {
   display: block;
 
+  .sidenav-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+
+    .sidenav-content {
+      background-color: var(--sys-surface-container-low);
+    }
+
+    mat-sidenav {
+      min-width: 19.5rem;
+      width: fit-content;
+      border-top-left-radius: 0rem;
+      border-bottom-left-radius: 0rem;
+    }
+  }
+
   .heading-container {
     margin: 10rem auto 0 auto;
     max-width: 48.75rem;
@@ -61,13 +78,19 @@
       flex-wrap: wrap;
       justify-content: space-between;
       max-width: 82rem;
-      gap: 4rem;
+      gap: 3rem;
     }
+  }
 
-    .component-card {
-      flex: 1 1 calc(33.333% - 4rem);
-      max-width: 24.5rem;
-      max-width: 24.5rem;
+  .card-actions {
+    display: flex;
+    height: 4.5rem;
+    border-top: 0.0625rem solid var(--sys-outline-variant);
+    background-color: var(--sys-surface-container-low);
+    padding: 1rem;
+
+    .filler {
+      flex-grow: 1;
     }
   }
 }
