@@ -1,14 +1,9 @@
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
-import { map, Observable, startWith } from 'rxjs';
+
+import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 
 /** Sex can either be male or female */
 export type Sex = 'male' | 'female';
@@ -20,67 +15,31 @@ export type Sex = 'male' | 'female';
   selector: 'ccf-spatial-search-config',
   templateUrl: './spatial-search-config.component.html',
   styleUrls: ['./spatial-search-config.component.scss'],
-  imports: [
-    FormsModule,
-    MatSelectModule,
-    MatIconModule,
-    ButtonsModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    AsyncPipe,
-    MatFormFieldModule,
-  ],
+  imports: [MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpatialSearchConfigComponent implements OnInit {
+export class SpatialSearchConfigComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-config';
 
   /** Selectable organs */
-  @Input() organs!: OrganInfo[];
+  organs = input.required<OrganInfo[]>();
 
   /** Currently selected organ */
-  @Input() selectedOrgan?: OrganInfo;
+  selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  @Input() sex!: Sex;
+  sex = input.required<Sex>();
 
   /** Emits when sex is updated */
-  @Output() readonly updateSex = new EventEmitter<Sex>();
+  readonly updateSex = output<Sex>();
 
   /** Emits when organ is updated */
-  @Output() readonly updateOrgan = new EventEmitter<OrganInfo>();
+  readonly updateOrgan = output<OrganInfo>();
 
   /** Emits when the continue button is clicked */
-  @Output() readonly buttonClicked = new EventEmitter();
+  readonly buttonClicked = output();
 
   /** Emits when the close button is clicked */
-  @Output() readonly closeDialog = new EventEmitter();
-
-  /** Emits when the info button is clicked */
-  @Output() readonly infoClicked = new EventEmitter();
-
-  organControl = new FormControl<string | OrganInfo>('');
-
-  filteredOrgans!: Observable<OrganInfo[]>;
-
-  ngOnInit() {
-    this.filteredOrgans = this.organControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.organs.slice();
-      }),
-    );
-  }
-
-  displayFn(organ: OrganInfo): string {
-    return organ && organ.name ? organ.name : '';
-  }
-
-  private _filter(name: string): OrganInfo[] {
-    const filterValue = name.toLowerCase();
-    return this.organs.filter((organ) => organ.name.toLowerCase().includes(filterValue));
-  }
+  readonly closeDialog = output();
 }

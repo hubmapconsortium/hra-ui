@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
-import { GlobalConfigState, OrganInfo, PanelData } from 'ccf-shared';
+import { OrganInfo, PanelData } from 'ccf-shared';
 import { Observable, Subscription } from 'rxjs';
 
 import { actionAsFn } from '../../../core/store/action-as-fn';
@@ -34,20 +34,13 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
 
   panelData!: PanelData;
 
-  baseHref = '';
-
   private readonly subscriptions = new Subscription();
 
   constructor(
     public dialog: MatDialog,
     private readonly dialogRef: MatDialogRef<SpatialSearchConfigComponent>,
     private readonly spatialSearchDialog: MatDialog,
-    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>,
-  ) {
-    this.globalConfig.getOption('baseHref').subscribe((ref) => {
-      this.baseHref = ref;
-    });
-  }
+  ) {}
 
   buttonClicked(): void {
     this.spatialSearchDialog.open(SpatialSearchUiBehaviorComponent, {

@@ -372,5 +372,11 @@
 
   .content {
     grid-area: content;
+
+    .spatial-search-button {
+      position: absolute;
+      margin: 0.75rem;
+      z-index: 1;
+    }
   }
 }

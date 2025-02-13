@@ -51,7 +51,11 @@
 </div>
 
 <div class="button-container" [class.hidden]="hidden">
-  <ccf-run-spatial-search></ccf-run-spatial-search>
+  <button class="run-spatial-search-button" mat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+    Run Spatial Search
+    <mat-icon>travel_explore</mat-icon>
+  </button>
+
   <div class="right-group">
     <button class="outline-button" mat-button (click)="applyButtonClick()">Apply Filters</button>
     <div class="refresh-icon">

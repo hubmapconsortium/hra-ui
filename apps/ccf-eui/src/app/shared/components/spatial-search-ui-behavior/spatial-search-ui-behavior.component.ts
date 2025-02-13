@@ -35,6 +35,8 @@ import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiBehaviorComponent {
+  readonly organs$: Observable<OrganInfo[]> = inject(Store).select(SpatialSearchUiSelectors.organs);
+
   readonly scene$: Observable<SpatialSceneNode[]> = inject(Store).select(SpatialSearchUiSelectors.scene);
 
   readonly sceneBounds$: Observable<Position> = inject(Store).select(SpatialSearchUiSelectors.sceneBounds);

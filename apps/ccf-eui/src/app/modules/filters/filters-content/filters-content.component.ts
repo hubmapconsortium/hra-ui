@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnChanges,
   Output,
@@ -12,6 +13,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
 import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
+import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -87,6 +89,8 @@ export class FiltersContentComponent implements OnChanges {
   get tmc(): string[] {
     return this.getFilterValue<string[]>('tmc', []);
   }
+
+  readonly spatialFlowService = inject(SpatialSearchFlowService);
 
   /**
    * Creates an instance of filters content component.

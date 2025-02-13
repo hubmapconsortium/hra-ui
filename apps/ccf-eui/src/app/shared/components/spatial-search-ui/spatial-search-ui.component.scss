@@ -10,31 +10,28 @@
     display: flex;
     background: black;
 
-    .primary-scene-wrapper {
-      .primary-scene {
-        flex: auto;
-      }
-    }
-
     .sidebar {
       .minimap-scene {
         margin: 1.5rem;
-        width: 12.75rem;
-        height: 11rem;
+        height: 13.5rem;
+        width: 15.5rem;
+
         ::ng-deep .body-ui {
           background-color: #232f3a;
         }
       }
 
       ccf-spatial-search-keyboard-ui-behavior {
-        margin: 1.5rem;
+        margin: 2rem 0 4rem 0;
         display: flex;
         justify-content: center;
       }
 
       ccf-xyz-position {
-        margin: 1.5rem;
-        padding-left: 5rem;
+        color: var(--sys-surface-container);
+        font: var(--sys-label-large);
+        margin: 0 auto;
+        width: fit-content;
       }
     }
   }
@@ -64,12 +61,6 @@
     grid-area: organ-sex-selection;
     display: flex;
     padding: 0 1rem;
-    gap: 1.5rem;
-
-    .sex-field,
-    .organ-field {
-      width: 12.125rem;
-    }
   }
 
   .radius-slider {

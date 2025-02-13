@@ -1,6 +1,7 @@
 @if (organ$ | async) {
   <ccf-spatial-search-ui
     [sex]="(sex$ | async)!"
+    [organs]="(organs$ | async) ?? []"
     [referenceOrgan]="(organ$ | async)!"
     [radius]="(radius$ | async) ?? 0"
     [radiusSettings]="(radiusSettings$ | async)!"

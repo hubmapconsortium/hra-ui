@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-areas: 'header header' 'sex organ' '. button';
+  grid-template-areas: 'header header' 'sex-organ sex-organ' '. button';
   grid-template-rows: auto 3rem auto;
   row-gap: 1rem;
   padding: 0.5rem 1.5rem 1rem 1.5rem;
@@ -18,18 +18,12 @@
     }
   }
 
-  .sex-toggle {
-    grid-area: sex;
-    padding-right: 1.5rem;
-  }
+  ccf-spatial-search-inputs {
+    grid-area: sex-organ;
 
-  .organ-selector {
-    grid-area: organ;
-  }
-
-  .sex-field,
-  .organ-field {
-    width: 12.625rem;
+    ::ng-deep .field {
+      width: 12.625rem;
+    }
   }
 
   .continue-button {

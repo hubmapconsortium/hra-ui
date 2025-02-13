@@ -8,6 +8,8 @@
   }
 
   ::ng-deep ng-scrollbar {
+    height: 100%;
+
     .ng-scroll-content {
       gap: 0.125rem;
       display: flex;
@@ -23,7 +25,7 @@
   }
 
   .tissue-list {
-    height: calc((100vh - 30rem) / 3);
+    height: calc((100vh - 28.5rem) / 3);
     --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
   }
 
