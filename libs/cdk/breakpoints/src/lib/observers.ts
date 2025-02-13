@@ -82,6 +82,12 @@ export function watchBreakpoints(queries: string[]): Signal<BreakpointWatchState
  * @returns A signal containing the latest watch state
  */
 export function watchBreakpoints<T extends string>(mapping: Record<T, string>): Signal<BreakpointWatchState<T>>;
+/**
+ * Watch multiple queries or breakpoints.
+ *
+ * @param arg A list of queries or mapping from breakpoints to queries
+ * @returns A signal containing the latest watch state
+ */
 export function watchBreakpoints(arg: string[] | Record<string, string> = Breakpoints): Signal<BreakpointWatchState> {
   const mapping = Array.isArray(arg) ? {} : arg;
   const queries = Array.isArray(arg) ? arg : Object.values(arg);
