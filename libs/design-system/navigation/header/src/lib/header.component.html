@@ -11,9 +11,10 @@
 
 <header
   class="header"
-  [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
   cdkOverlayOrigin
+  [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
   #mobileMenuOrigin="cdkOverlayOrigin"
+  data-testid="header"
 >
   <div class="menus" #desktopMenuOrigin>
     <hra-brand-logo size="small"></hra-brand-logo>
@@ -101,7 +102,7 @@
     <div class="navigation">
       <hra-breadcrumbs [crumbs]="breadcrumbs()"> </hra-breadcrumbs>
       <div class="filler"></div>
-      <ng-content select="hra-header-actions"></ng-content>
+      <ng-content></ng-content>
     </div>
   }
 </header>

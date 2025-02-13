@@ -1,21 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+import { HUBMAP_MENU } from '../static-data/parsed';
 import { HubmapMenuContentComponent } from './hubmap-menu-content.component';
 
 describe('HubmapMenuContentComponent', () => {
-  let component: HubmapMenuContentComponent;
-  let fixture: ComponentFixture<HubmapMenuContentComponent>;
+  it('renders menu items', async () => {
+    await render(HubmapMenuContentComponent, {
+      inputs: { menu: HUBMAP_MENU },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HubmapMenuContentComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HubmapMenuContentComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    const item = HUBMAP_MENU.groups[0].items[0];
+    screen.getByText(item.label);
   });
 });

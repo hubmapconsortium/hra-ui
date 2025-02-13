@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 
+/** Navigation toggle button */
 @Component({
   selector: 'hra-navigation-category-toggle',
   standalone: true,
@@ -12,5 +13,6 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationCategoryToggleComponent {
+  /** Whether the button is toggled on/off */
   readonly toggled = model(false);
 }

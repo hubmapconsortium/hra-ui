@@ -1,10 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import MENU_DATA from '../static-data/menus.json';
-import { Menu, MenusSchema } from '../types/menus.schema';
+import { MENUS } from '../static-data/parsed';
+import { Menu } from '../types/menus.schema';
 import { MenuContentComponent } from './menu-content.component';
 
-const PARSED_MENUS = MenusSchema.parse(MENU_DATA);
-const MENUS_BY_LABEL = PARSED_MENUS.menus.reduce<Record<string, Menu>>((acc, menu) => {
+const MENUS_BY_LABEL = MENUS.menus.reduce<Record<string, Menu>>((acc, menu) => {
   acc[menu.label] = menu;
   return acc;
 }, {});
@@ -31,7 +30,7 @@ const meta: Meta<MenuContentComponent> = {
   },
   args: {
     variant: 'mobile',
-    menu: PARSED_MENUS.menus[0],
+    menu: MENUS.menus[0],
   },
 };
 

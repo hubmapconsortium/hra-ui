@@ -2,7 +2,8 @@
 
 :host {
   display: block;
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(var(--sys-secondary), 20%);
 

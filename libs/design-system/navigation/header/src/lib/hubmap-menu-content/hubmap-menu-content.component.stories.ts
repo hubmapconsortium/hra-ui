@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import MENU_DATA from '../static-data/hubmap-menu.json';
-import { HubmapMenuSchema } from '../types/hubmap-menu.schema';
+import { HUBMAP_MENU } from '../static-data/parsed';
 import { HubmapMenuContentComponent } from './hubmap-menu-content.component';
 
 const meta: Meta<HubmapMenuContentComponent> = {
@@ -13,7 +12,7 @@ const meta: Meta<HubmapMenuContentComponent> = {
     },
   },
   args: {
-    menu: HubmapMenuSchema.parse(MENU_DATA),
+    menu: HUBMAP_MENU,
   },
 };
 

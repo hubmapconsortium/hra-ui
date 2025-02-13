@@ -1,21 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+import { MENUS } from '../static-data/parsed';
 import { MenuContentComponent } from './menu-content.component';
 
 describe('MenuContentComponent', () => {
-  let component: MenuContentComponent;
-  let fixture: ComponentFixture<MenuContentComponent>;
+  it('should render', async () => {
+    await render(MenuContentComponent, {
+      inputs: { variant: 'desktop', menu: MENUS.menus[0] },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MenuContentComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(MenuContentComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    const group = MENUS.menus[0].items?.find((item) => item.type === 'group');
+    screen.getByText(group?.label ?? '');
   });
 });

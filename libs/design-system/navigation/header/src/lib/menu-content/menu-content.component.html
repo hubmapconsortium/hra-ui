@@ -1,5 +1,4 @@
 @let isDesktop = variant() === 'desktop';
-
 @for (item of menu().items; track $index) {
   @if (item.type === 'group') {
     <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: item }"></ng-container>

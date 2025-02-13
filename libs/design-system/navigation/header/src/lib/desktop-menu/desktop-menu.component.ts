@@ -6,6 +6,9 @@ import { MenuContentComponent } from '../menu-content/menu-content.component';
 import { HubmapMenu } from '../types/hubmap-menu.schema';
 import { Menu } from '../types/menus.schema';
 
+/**
+ * Display a menu for desktop sized screens
+ */
 @Component({
   selector: 'hra-desktop-menu',
   standalone: true,
@@ -15,8 +18,10 @@ import { Menu } from '../types/menus.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DesktopMenuComponent {
+  /** Menu to display */
   readonly menu = input.required<Menu | HubmapMenu>();
 
+  /** Menu object along with whether it is a hubmap or regular menu type */
   protected typedMenu = computed(() => {
     const menu = this.menu();
     return '$schema' in menu ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };

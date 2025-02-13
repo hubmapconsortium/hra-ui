@@ -2,11 +2,11 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { render, screen } from '@testing-library/angular';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { BrandmarkComponent } from './mark.component';
+import { BrandMarkComponent } from './mark.component';
 
-describe('BrandmarkComponent', () => {
+describe('BrandMarkComponent', () => {
   it('should render the brand mark inline', async () => {
-    await render(BrandmarkComponent, {
+    await render(BrandMarkComponent, {
       imports: [InlineSVGModule.forRoot()],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });

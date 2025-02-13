@@ -9,6 +9,9 @@ import { MenuContentComponent } from '../menu-content/menu-content.component';
 import { HubmapMenu } from '../types/hubmap-menu.schema';
 import { Menus } from '../types/menus.schema';
 
+/**
+ * Display a menu for mobile sized screens
+ */
 @Component({
   selector: 'hra-mobile-menu',
   standalone: true,
@@ -26,6 +29,8 @@ import { Menus } from '../types/menus.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileMenuComponent {
+  /** Hubmap menu */
   readonly hubmapMenu = input.required<HubmapMenu>();
+  /** All other menus */
   readonly menus = input.required<Menus>();
 }

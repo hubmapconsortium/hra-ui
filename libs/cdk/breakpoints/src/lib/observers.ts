@@ -48,7 +48,8 @@ export class BreakpointWatchState<T extends string = never> {
 }
 
 /**
- * Watch a single query
+ * Watch a single query.
+ * Must be called in an injection context.
  *
  * @param query Breakpoint query to watch
  * @returns A signal with indicating when the query matches
@@ -59,20 +60,23 @@ export function watchBreakpoint(query: string): Signal<boolean> {
 }
 
 /**
- * Watch the default breakpoints
+ * Watch the default breakpoints.
+ * Must be called in an injection context.
  *
  * @returns A signal containing the latest watch state
  */
 export function watchBreakpoints(): Signal<BreakpointWatchState<Breakpoint>>;
 /**
- * Watch multiple queries
+ * Watch multiple queries.
+ * Must be called in an injection context.
  *
  * @param queries Queries to watch
  * @returns A signal containing the latest watch state
  */
 export function watchBreakpoints(queries: string[]): Signal<BreakpointWatchState>;
 /**
- * Watch multiple breakpoints
+ * Watch multiple breakpoints.
+ * Must be called in an injection context.
  *
  * @param mapping Mapping from breakpoints to queries
  * @returns A signal containing the latest watch state

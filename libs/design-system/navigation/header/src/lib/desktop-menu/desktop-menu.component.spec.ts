@@ -1,21 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
+import { screen } from '@testing-library/dom';
+import { HUBMAP_MENU, MENUS } from '../static-data/parsed';
 import { DesktopMenuComponent } from './desktop-menu.component';
 
 describe('DesktopMenuComponent', () => {
-  let component: DesktopMenuComponent;
-  let fixture: ComponentFixture<DesktopMenuComponent>;
+  it('should render a hubmap menu', async () => {
+    await render(DesktopMenuComponent, {
+      inputs: { menu: HUBMAP_MENU },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [DesktopMenuComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(DesktopMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    const item = HUBMAP_MENU.groups[0].items[0];
+    screen.getByText(item.label);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render a menu', async () => {
+    await render(DesktopMenuComponent, {
+      inputs: { menu: MENUS.menus[0] },
+    });
+
+    const group = MENUS.menus[0].items?.find((item) => item.type === 'group');
+    screen.getByText(group?.label ?? '');
   });
 });
