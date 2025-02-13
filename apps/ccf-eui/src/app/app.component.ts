@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  inject,
   Injector,
   OnInit,
   ViewChild,
@@ -30,6 +31,7 @@ import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter
 import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
 import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
 import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
+import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
 
 interface AppOptions {
   /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
@@ -80,6 +82,8 @@ export class AppComponent implements OnInit {
 
   @Dispatch()
   readonly removeSpatialSearch = actionAsFn(RemoveSearch);
+
+  readonly spatialFlowService = inject(SpatialSearchFlowService);
 
   menuOptions: string[] = ['AS', 'CT', 'B'];
   tooltips: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
