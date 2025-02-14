@@ -1,0 +1,11 @@
+<div class="content">
+  <span class="description">{{ description() }}</span>
+  <a hraHyperlink class="action" [attr.href]="url()" target="_blank" rel="noopener noreferrer">
+    {{ action() }}
+    <mat-icon>arrow_forwards</mat-icon>
+  </a>
+</div>
+
+<button mat-icon-button class="close" aria-label="Hide the call to action bar" (click)="closeClick.emit()">
+  <mat-icon>close</mat-icon>
+</button>
