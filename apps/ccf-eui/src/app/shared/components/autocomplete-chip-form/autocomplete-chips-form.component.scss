@@ -1,0 +1,22 @@
+:host {
+  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+  --mdc-filled-text-field-label-text-color: var(--sys-primary);
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .chips-area {
+    display: flex;
+    justify-content: space-between;
+    --mdc-icon-button-state-layer-size: 2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .search-area {
+    display: flex;
+  }
+}

@@ -38,131 +38,29 @@
 
       <div class="section">
         <div class="section-title">Provenance</div>
-        <mat-form-field class="assay-form" subscriptSizing="dynamic">
-          <div class="chips-area">
-            <mat-chip-grid #chipGrid aria-label="Assay selection" formControlName="technologies">
-              @for (assay of assays(); track assay) {
-                <mat-chip-row (removed)="remove(assay, 'technologies')">
-                  {{ assay }}
-                  <button matChipRemove [attr.aria-label]="'remove ' + assay">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </mat-chip-row>
-              }
-            </mat-chip-grid>
-            @if (assays().length > 0) {
-              <button mat-icon-button (click)="assays.set([])"><mat-icon>delete</mat-icon></button>
-            }
-          </div>
-          <mat-label>Assay Types</mat-label>
-          <div class="search-area">
-            <input
-              name="currentAssay"
-              placeholder="Search"
-              #assayInput
-              [(ngModel)]="currentAssay"
-              [matChipInputFor]="chipGrid"
-              [matAutocomplete]="auto"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              (matChipInputTokenEnd)="add($event, 'technologies')"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </div>
-          <mat-autocomplete
-            #auto="matAutocomplete"
-            autoActiveFirstOption
-            autoSelectActiveOption
-            (optionSelected)="selected($event, 'technologies'); assayInput.value = ''"
-          >
-            @for (assay of filteredAssays(); track assay) {
-              <mat-option [value]="assay">{{ assay }}</mat-option>
-            }
-          </mat-autocomplete>
-        </mat-form-field>
+        <ccf-autocomplete-chips-form
+          class="assay-form"
+          label="Assay Types"
+          [filterOptions]="technologyFilters()"
+          [form]="filterForm.controls.technologies"
+        >
+        </ccf-autocomplete-chips-form>
 
-        <mat-form-field class="consortia-form" subscriptSizing="dynamic">
-          <mat-label>Consortia</mat-label>
-          <div class="chips-area">
-            <mat-chip-grid #chipGrid2 aria-label="Consortia selection" formControlName="consortia">
-              @for (consortium of consortia(); track consortium) {
-                <mat-chip-row (removed)="remove(consortium, 'consortia')">
-                  {{ consortium }}
-                  <button matChipRemove [attr.aria-label]="'remove ' + consortium">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </mat-chip-row>
-              }
-            </mat-chip-grid>
-            @if (consortia().length > 0) {
-              <button mat-icon-button (click)="consortia.set([])"><mat-icon>delete</mat-icon></button>
-            }
-          </div>
-          <div class="search-area">
-            <input
-              name="currentConsortium"
-              placeholder="Search"
-              #consortiaInput
-              [(ngModel)]="currentConsortium"
-              [matChipInputFor]="chipGrid2"
-              [matAutocomplete]="auto2"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              (matChipInputTokenEnd)="add($event, 'consortia')"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </div>
-          <mat-autocomplete
-            #auto2="matAutocomplete"
-            autoActiveFirstOption
-            autoSelectActiveOption
-            (optionSelected)="selected($event, 'consortia'); consortiaInput.value = ''"
-          >
-            @for (consortium of filteredConsortia(); track consortium) {
-              <mat-option [value]="consortium">{{ consortium }}</mat-option>
-            }
-          </mat-autocomplete>
-        </mat-form-field>
+        <ccf-autocomplete-chips-form
+          class="consortia-form"
+          label="Consortia"
+          [filterOptions]="['HuBMAP', 'SenNet']"
+          [form]="filterForm.controls.consortia"
+        >
+        </ccf-autocomplete-chips-form>
 
-        <mat-form-field class="providers-form" subscriptSizing="dynamic">
-          <mat-label>Tissue Data Providers</mat-label>
-          <div class="chips-area">
-            <mat-chip-grid #chipGrid3 aria-label="Provider selection" formControlName="providers">
-              @for (provider of providers(); track provider) {
-                <mat-chip-row (removed)="remove(provider, 'providers')">
-                  {{ provider }}
-                  <button matChipRemove [attr.aria-label]="'remove ' + provider">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </mat-chip-row>
-              }
-            </mat-chip-grid>
-            @if (providers().length > 0) {
-              <button mat-icon-button (click)="providers.set([])"><mat-icon>delete</mat-icon></button>
-            }
-          </div>
-          <div class="search-area">
-            <input
-              name="currentProvider"
-              placeholder="Search"
-              #providerInput
-              [(ngModel)]="currentProvider"
-              [matChipInputFor]="chipGrid3"
-              [matAutocomplete]="auto3"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              (matChipInputTokenEnd)="add($event, 'providers')"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </div>
-          <mat-autocomplete
-            #auto3="matAutocomplete"
-            autoActiveFirstOption
-            autoSelectActiveOption
-            (optionSelected)="selected($event, 'providers'); providerInput.value = ''"
-          >
-            @for (provider of filteredProviders(); track provider) {
-              <mat-option [value]="provider">{{ provider }}</mat-option>
-            }
-          </mat-autocomplete>
-        </mat-form-field>
+        <ccf-autocomplete-chips-form
+          class="providers-form"
+          label="Tissue Data Providers"
+          [filterOptions]="providerFilters()"
+          [form]="filterForm.controls.providers"
+        >
+        </ccf-autocomplete-chips-form>
       </div>
 
       <div class="section spatial-search">
@@ -182,8 +80,10 @@
 </ng-scrollbar>
 
 <div class="button-container">
-  <button mat-button (click)="refreshFilters()" [disabled]="disableSubmit()">
+  <button mat-button (click)="refreshFilters()">
     Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
   </button>
-  <button mat-flat-button (click)="applyButtonClick()" [disabled]="disableSubmit()">Apply</button>
+  <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">
+    Apply
+  </button>
 </div>

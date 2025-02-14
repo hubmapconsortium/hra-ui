@@ -42,30 +42,6 @@
     }
   }
 
-  .chips-area {
-    display: flex;
-    justify-content: space-between;
-    --mdc-icon-button-state-layer-size: 2rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .search-area {
-    display: flex;
-  }
-
-  .assay-form,
-  .consortia-form {
-    margin-bottom: 2rem;
-  }
-
-  .assay-form,
-  .providers-form,
-  .consortia-form {
-    --mdc-filled-text-field-container-color: var(--sys-surface-container);
-    --mdc-filled-text-field-label-text-color: var(--sys-primary);
-    width: 100%;
-  }
-
   .spatial-search-header {
     display: flex;
     justify-content: space-between;
