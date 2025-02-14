@@ -1,0 +1,37 @@
+@use '../../../../styles/utils';
+
+@include utils.global-styles() {
+  mat-chip-row.mat-mdc-chip {
+    --mdc-chip-outline-color: var(--sys-outline-variant);
+    --mdc-chip-focus-outline-color: var(--sys-outline-variant);
+
+    --mdc-chip-elevated-container-color: var(--sys-surface-container-low);
+    --mdc-chip-hover-state-layer-color: var(--sys-secondary);
+    --mdc-chip-focus-state-layer-color: var(--sys-on-primary);
+
+    --mdc-chip-with-trailing-icon-trailing-icon-color: var(--sys-on-primary-fixed);
+    --mdc-chip-label-text-color: var(--sys-on-primary-fixed);
+
+    .mat-mdc-chip-action-label {
+      @include utils.use-font(label, medium);
+      line-height: 1.25rem;
+    }
+
+    &:focus-visible {
+      outline: none;
+      --mdc-chip-outline-color: var(--sys-tertiary);
+      --mdc-chip-elevated-container-color: var(--sys-on-primary);
+    }
+  }
+
+  mat-chip-grid.mat-mdc-chip-set {
+    .mdc-evolution-chip-set__chips {
+      margin: 0;
+      gap: 0.25rem;
+
+      mat-chip-row {
+        margin: 0;
+      }
+    }
+  }
+}

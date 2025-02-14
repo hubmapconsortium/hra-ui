@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { OrganInfo } from 'ccf-shared';
-
-/** Sex can either be male or female */
-export type Sex = 'male' | 'female';
+import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 /**
  * Config popup for spatial search
@@ -23,10 +21,10 @@ export class SpatialSearchConfigComponent {
   @Input() selectedOrgan?: OrganInfo;
 
   /** Currently selected sex */
-  @Input() sex!: Sex;
+  @Input() sex!: SpatialSearchSex;
 
   /** Emits when sex is updated */
-  @Output() readonly updateSex = new EventEmitter<Sex>();
+  @Output() readonly updateSex = new EventEmitter<SpatialSearchSex>();
 
   /** Emits when organ is updated */
   @Output() readonly updateOrgan = new EventEmitter<OrganInfo>();

@@ -16,16 +16,16 @@ import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModul
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
-import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
 import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
 
 @NgModule({
   imports: [
@@ -33,10 +33,8 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
     BrowserModule,
     CoreModule,
     DrawerModule,
-    FiltersPopoverModule,
     OntologyExplorationModule,
     MatIconModule,
-    DualSliderModule,
     ResultsBrowserComponent,
     SpinnerOverlayModule,
     BodyUiModule,
@@ -57,6 +55,8 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
     MatMenuModule,
     MatDividerModule,
     BackButtonBarComponent,
+    MatSidenavModule,
+    FiltersContentComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

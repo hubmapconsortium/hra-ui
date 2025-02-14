@@ -5,9 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { RunSpatialSearchComponent } from './run-spatial-search.component';
 import { SpatialSearchConfigBehaviorModule } from '../spatial-search-config-behavior/spatial-search-config-behavior.module';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, MatIconModule, SpatialSearchConfigBehaviorModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, SpatialSearchConfigBehaviorModule, ButtonsModule],
   declarations: [RunSpatialSearchComponent],
   exports: [RunSpatialSearchComponent],
 })
