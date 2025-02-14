@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import {
   ButtonSizeDirective,
   ButtonVariantDirective,
@@ -12,6 +13,7 @@ import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyper
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
   MatButtonModule,
+  MatChipsModule,
   ButtonSizeDirective,
   ButtonVariantDirective,
   CtaButtonDirective,
