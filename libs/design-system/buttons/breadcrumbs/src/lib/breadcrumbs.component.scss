@@ -1,11 +1,23 @@
 @use '../../../../styles/utils';
 
 :host {
-  display: flex;
-  align-items: center;
-  gap: 0.125rem;
-  height: 2.5rem;
-  padding: 0 0.125rem;
-  color: var(--sys-on-primary-fixed);
-  @include utils.use-font('label', 'small');
+  display: block;
+
+  .navigation .crumbs {
+    list-style-type: none;
+    align-content: center;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    color: var(--sys-on-primary-fixed);
+    @include utils.use-font('label', 'small');
+
+    .crumb {
+      display: inline-block;
+
+      .icon {
+        vertical-align: middle;
+      }
+    }
+  }
 }

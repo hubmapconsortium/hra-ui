@@ -12,11 +12,14 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  * App component for CDE
  */
 @Component({
+  selector: 'cde-root',
   standalone: true,
   imports: [RouterOutlet],
-  selector: 'cde-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  host: {
+    class: 'hra-app',
+  },
 })
 export class AppComponent {
   /**

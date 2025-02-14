@@ -14,7 +14,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'disabled',
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 64],
+      scrollOffset: () => {
+        const toolbar = document.querySelector('.toolbar-class');
+        const height = toolbar?.getBoundingClientRect().height ?? 0;
+        return [0, height + 24];
+      },
       onSameUrlNavigation: 'reload',
     }),
   ],

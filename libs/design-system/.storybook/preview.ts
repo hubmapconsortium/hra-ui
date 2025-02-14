@@ -1,5 +1,5 @@
 import { provideDesignSystem } from '../src/index';
-import { applicationConfig, Preview } from '@storybook/angular';
+import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -21,6 +21,7 @@ const preview: Preview = {
     applicationConfig({
       providers: [provideDesignSystem()],
     }),
+    componentWrapperDecorator((story) => `<div class="hra-app">${story}</div>`),
   ],
 };
 

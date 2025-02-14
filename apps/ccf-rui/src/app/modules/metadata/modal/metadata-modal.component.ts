@@ -115,6 +115,7 @@ export class MetadataModalComponent {
         author: { firstName, middleName, lastName, email, orcidId },
         donor: { organ: data?.organ, sex: data?.sex, consortium, doi },
       });
+      this.metadataForm.markAsDirty();
     }
   }
 

@@ -1,0 +1,63 @@
+@use '../../../../../styles/utils';
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: var(--sys-surface-dim);
+
+  $header-height: 4rem;
+
+  --mat-expansion-container-shape: var(--sys-corner-none);
+  --mat-expansion-container-background-color: var(--sys-surface-dim);
+  --mat-expansion-header-collapsed-state-height: #{$header-height};
+  --mat-expansion-header-expanded-state-height: #{$header-height};
+  --mat-expansion-header-text-font: var(--sys-label-large-font);
+  --mat-expansion-header-text-size: var(--sys-label-large-size);
+  --mat-expansion-header-text-weight: var(--sys-label-large-weight);
+  --mat-expansion-header-text-line-height: var(--sys-label-large-line-height);
+  --mat-expansion-header-text-tracking: var(--sys-label-large-tracking);
+
+  --mat-divider-color: var(--sys-outline);
+
+  .panel {
+    box-shadow: none;
+  }
+
+  .header {
+    padding: 0 1rem;
+
+    .toggle-icon {
+      margin-left: 0.125rem;
+
+      &,
+      &::after {
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+      }
+
+      &::after {
+        display: block;
+        content: 'keyboard_arrow_down';
+      }
+    }
+  }
+
+  .mat-expanded .header {
+    text-decoration: underline 0.125rem var(--sys-tertiary);
+    text-underline-offset: 0.375rem;
+
+    .toggle-icon::after {
+      content: 'keyboard_arrow_up';
+    }
+  }
+
+  .content {
+    margin-bottom: 0.75rem;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0;
+  }
+}

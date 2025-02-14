@@ -68,7 +68,13 @@
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
-        "assets": [{ "input": "libs/design-system/assets", "glob": "**/*", "output": "./assets" }],
+        "assets": [
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "styles": ["libs/design-system/.storybook/styles/preview.scss"]
       },
       "configurations": {
@@ -85,7 +91,13 @@
         "configDir": "libs/design-system/.storybook",
         "browserTarget": "design-system:build-storybook",
         "compodoc": false,
-        "assets": [{ "input": "libs/design-system/assets", "glob": "**/*", "output": "./assets" }],
+        "assets": [
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "styles": ["libs/design-system/.storybook/styles/preview.scss"]
       },
       "configurations": {
@@ -111,6 +123,16 @@
         "ci": {
           "buildTarget": "design-system:build-storybook:ci"
         }
+      }
+    },
+    "build-json-schemas": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/menus.schema.ts --name Menus",
+          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/hubmap-menu.schema.ts --name HubmapMenu"
+        ],
+        "parallel": true
       }
     }
   }
