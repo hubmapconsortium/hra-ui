@@ -252,6 +252,21 @@
                         <li>
                             <a href="#selectSnapshot" title="injectors/src/lib/select/select-snapshot.ts" ><b>selectSnapshot</b>&nbsp;&nbsp;&nbsp;(injectors/.../select-snapshot.ts)</a>
                         </li>
+                        <li>
+                            <a href="#watchBreakpoint" title="breakpoints/src/lib/observers.ts" ><b>watchBreakpoint</b>&nbsp;&nbsp;&nbsp;(breakpoints/.../observers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#watchBreakpoints" title="breakpoints/src/lib/observers.ts" ><b>watchBreakpoints</b>&nbsp;&nbsp;&nbsp;(breakpoints/.../observers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#watchBreakpoints" title="breakpoints/src/lib/observers.ts" ><b>watchBreakpoints</b>&nbsp;&nbsp;&nbsp;(breakpoints/.../observers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#watchBreakpoints" title="breakpoints/src/lib/observers.ts" ><b>watchBreakpoints</b>&nbsp;&nbsp;&nbsp;(breakpoints/.../observers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#watchBreakpoints" title="breakpoints/src/lib/observers.ts" ><b>watchBreakpoints</b>&nbsp;&nbsp;&nbsp;(breakpoints/.../observers.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -3407,6 +3422,321 @@ a new value is available</p>
                         </div>
                             <div class="io-description">
                                 <p>A snapshot function</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>breakpoints/src/lib/observers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchBreakpoint"></a>
+                    <span class="name">
+                        <span ><b>watchBreakpoint</b></span>
+                        <a href="#watchBreakpoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchBreakpoint(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Watch a single query.
+Must be called in an injection context.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Breakpoint query to watch</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Signal&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A signal with indicating when the query matches</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchBreakpoints"></a>
+                    <span class="name">
+                        <span ><b>watchBreakpoints</b></span>
+                        <a href="#watchBreakpoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchBreakpoints()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Watch the default breakpoints.
+Must be called in an injection context.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BreakpointWatchState.html" target="_self" >Signal&lt;BreakpointWatchState&lt;Breakpoint&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A signal containing the latest watch state</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchBreakpoints"></a>
+                    <span class="name">
+                        <span ><b>watchBreakpoints</b></span>
+                        <a href="#watchBreakpoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchBreakpoints(queries)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Watch multiple queries.
+Must be called in an injection context.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>queries</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Queries to watch</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BreakpointWatchState.html" target="_self" >Signal&lt;BreakpointWatchState&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A signal containing the latest watch state</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchBreakpoints"></a>
+                    <span class="name">
+                        <span ><b>watchBreakpoints</b></span>
+                        <a href="#watchBreakpoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchBreakpoints(mapping: Record)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Watch multiple breakpoints.
+Must be called in an injection context.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mapping</td>
+                                            <td>
+                                                        <code>Record</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Mapping from breakpoints to queries</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BreakpointWatchState.html" target="_self" >Signal&lt;BreakpointWatchState&lt;T&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A signal containing the latest watch state</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchBreakpoints"></a>
+                    <span class="name">
+                        <span ><b>watchBreakpoints</b></span>
+                        <a href="#watchBreakpoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchBreakpoints(arg)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Watch multiple queries or breakpoints.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arg</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>Breakpoints</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>A list of queries or mapping from breakpoints to queries</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BreakpointWatchState.html" target="_self" >Signal&lt;BreakpointWatchState&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A signal containing the latest watch state</p>
 
                             </div>
                 </td>

@@ -56,36 +56,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
+                                <a href="modules/BrandModule.html" data-type="entity-link" >BrandModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ButtonsModule.html" data-type="entity-link" >ButtonsModule</a>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' }>
-                                        <span class="icon ion-md-code-working"></span>
-                                        <span>Directives</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' :
-                                        'id="xs-directives-links-module-ButtonsModule-70704c4e9b27ecfad6b764df08c440d4d6bfd04e534d5b2be2e35f5305a531913c7a9ef80bca32532ecefdb5434e52934d6f877edba5007b12e3d30878bb9a6d"' }>
-                                        <li class="link">
-                                            <a href="directives/ButtonSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonSizeDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/ButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonVariantDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/CtaButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CtaButtonDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/PrimaryButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PrimaryButtonVariantDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/SecondaryButtonVariantDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SecondaryButtonVariantDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/TextHyperlinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TextHyperlinkDirective</a>
-                                        </li>
-                                    </ul>
-                                </li>
                             </li>
                             <li class="link">
                                 <a href="modules/ExpansionPanelModule.html" data-type="entity-link" >ExpansionPanelModule</a>
@@ -109,6 +83,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                     </ul>
                                 </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/NavigationModule.html" data-type="entity-link" >NavigationModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/ScrollingModule.html" data-type="entity-link" >ScrollingModule</a>
@@ -153,7 +130,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BrandLogoComponent.html" data-type="entity-link" >BrandLogoComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/BrandmarkComponent.html" data-type="entity-link" >BrandmarkComponent</a>
+                                <a href="components/BrandMarkComponent.html" data-type="entity-link" >BrandMarkComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/BreadcrumbsComponent.html" data-type="entity-link" >BreadcrumbsComponent</a>
@@ -171,10 +148,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ColorPickerComponent.html" data-type="entity-link" >ColorPickerComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CtaBarComponent.html" data-type="entity-link" >CtaBarComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/DeleteFileButtonComponent.html" data-type="entity-link" >DeleteFileButtonComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/DeprecatedWorkflowCardComponent.html" data-type="entity-link" class="deprecated-name">DeprecatedWorkflowCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/DesktopMenuComponent.html" data-type="entity-link" >DesktopMenuComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ErrorIndicatorComponent.html" data-type="entity-link" >ErrorIndicatorComponent</a>
@@ -204,6 +187,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/FundingComponent.html" data-type="entity-link" >FundingComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/HeaderComponent.html" data-type="entity-link" >HeaderComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HubmapMenuContentComponent.html" data-type="entity-link" >HubmapMenuContentComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/IconButtonStylesComponent.html" data-type="entity-link" >IconButtonStylesComponent</a>
                             </li>
                             <li class="link">
@@ -211,6 +200,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/InputStylesComponent.html" data-type="entity-link" >InputStylesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/MenuContentComponent.html" data-type="entity-link" >MenuContentComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/MenuDemoComponent.html" data-type="entity-link" >MenuDemoComponent</a>
@@ -222,10 +214,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/MicroTooltipStylesComponent.html" data-type="entity-link" >MicroTooltipStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/MobileMenuComponent.html" data-type="entity-link" >MobileMenuComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/NavHeaderButtonsComponent.html" data-type="entity-link" >NavHeaderButtonsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/NavHeaderComponent.html" data-type="entity-link" >NavHeaderComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavigationCategoryToggleComponent.html" data-type="entity-link" >NavigationCategoryToggleComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/NoticeComponent.html" data-type="entity-link" >NoticeComponent</a>
@@ -313,10 +311,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/HubmapMenuGroupDirective.html" data-type="entity-link" >HubmapMenuGroupDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/HubmapMenuItemDirective.html" data-type="entity-link" >HubmapMenuItemDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/IconButtonSizeDirective.html" data-type="entity-link" >IconButtonSizeDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/IconButtonVariantDirective.html" data-type="entity-link" >IconButtonVariantDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/MenuGroupDirective.html" data-type="entity-link" >MenuGroupDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/MenuItemDirective.html" data-type="entity-link" >MenuItemDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/MenuSubGroupDirective.html" data-type="entity-link" >MenuSubGroupDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/MicroTooltipDirective.html" data-type="entity-link" >MicroTooltipDirective</a>
@@ -379,6 +392,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/CardData.html" data-type="entity-link" >CardData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CtaConfig.html" data-type="entity-link" >CtaConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/DataItem.html" data-type="entity-link" >DataItem</a>

@@ -2310,6 +2310,238 @@
             "hostListeners": []
         },
         {
+            "name": "BreakpointWatchState",
+            "id": "class-BreakpointWatchState-b7f0b01db7db76cb22fd560717eb772dec46c1eb122492b67703bbc3855028cbe59afcb9d7af66397ebf1645f2795ce7065f348b1c7661c359ad17f272a5c629",
+            "file": "breakpoints/src/lib/observers.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';\nimport { computed, inject, Signal } from '@angular/core';\nimport { toSignal } from '@angular/core/rxjs-interop';\nimport { map } from 'rxjs';\nimport { Breakpoint, Breakpoints } from './breakpoints';\n\n/** State produced by `watchBreakpoints` */\nexport class BreakpointWatchState<T extends string = never> {\n  /**\n   * Initialize the state\n   *\n   * @param state The underlying state provided by @angular/cdk\n   * @param mapping Mapping from breakpoint names to queries\n   */\n  constructor(\n    private readonly state: BreakpointState,\n    private readonly mapping: Record<T, string>,\n  ) {}\n\n  /**\n   * Checks whether at least one query matches\n   *\n   * @returns true if any matches, false otherwise\n   */\n  matchesAny(): boolean {\n    return this.state.matches;\n  }\n\n  /**\n   * Checks whether the specific query matches\n   *\n   * @param query The query to check\n   * @returns true if the query matches, false otherwise\n   */\n  matchesQuery(query: string): boolean {\n    return this.state.breakpoints[query] ?? false;\n  }\n\n  /**\n   * Checks whether a specific breakpoint matches\n   *\n   * @param breakpoint The breakpoint to check\n   * @returns true if the breakpoint matches, false otherwise\n   */\n  matchesBreakpoint(breakpoint: T): boolean {\n    return this.matchesQuery(this.mapping[breakpoint]);\n  }\n}\n\n/**\n * Watch a single query.\n * Must be called in an injection context.\n *\n * @param query Breakpoint query to watch\n * @returns A signal with indicating when the query matches\n */\nexport function watchBreakpoint(query: string): Signal<boolean> {\n  const watcher = watchBreakpoints([query]);\n  return computed(() => watcher().matchesAny());\n}\n\n/**\n * Watch the default breakpoints.\n * Must be called in an injection context.\n *\n * @returns A signal containing the latest watch state\n */\nexport function watchBreakpoints(): Signal<BreakpointWatchState<Breakpoint>>;\n/**\n * Watch multiple queries.\n * Must be called in an injection context.\n *\n * @param queries Queries to watch\n * @returns A signal containing the latest watch state\n */\nexport function watchBreakpoints(queries: string[]): Signal<BreakpointWatchState>;\n/**\n * Watch multiple breakpoints.\n * Must be called in an injection context.\n *\n * @param mapping Mapping from breakpoints to queries\n * @returns A signal containing the latest watch state\n */\nexport function watchBreakpoints<T extends string>(mapping: Record<T, string>): Signal<BreakpointWatchState<T>>;\n/**\n * Watch multiple queries or breakpoints.\n *\n * @param arg A list of queries or mapping from breakpoints to queries\n * @returns A signal containing the latest watch state\n */\nexport function watchBreakpoints(arg: string[] | Record<string, string> = Breakpoints): Signal<BreakpointWatchState> {\n  const mapping = Array.isArray(arg) ? {} : arg;\n  const queries = Array.isArray(arg) ? arg : Object.values(arg);\n  const breakpoints$ = inject(BreakpointObserver).observe(queries);\n  const state$ = breakpoints$.pipe(map((state) => new BreakpointWatchState(state, mapping)));\n  return toSignal(state$, { requireSync: true });\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Initialize the state</p>\n",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "state",
+                        "type": "BreakpointState",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "mapping",
+                        "type": "Record<T | string>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 8,
+                "rawdescription": "\n\nInitialize the state\n\n",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 429,
+                            "end": 434,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
+                            "escapedText": "state"
+                        },
+                        "type": "BreakpointState",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 423,
+                            "end": 428,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>The underlying state provided by</p>\n"
+                    },
+                    {
+                        "name": {
+                            "pos": 493,
+                            "end": 500,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
+                            "escapedText": "mapping"
+                        },
+                        "type": "Record<T | string>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 487,
+                            "end": 492,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16842752,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>Mapping from breakpoint names to queries</p>\n"
+                    }
+                ]
+            },
+            "inputsClass": [],
+            "outputsClass": [],
+            "properties": [],
+            "description": "<p>State produced by <code>watchBreakpoints</code></p>\n",
+            "rawdescription": "\nState produced by `watchBreakpoints`",
+            "methods": [
+                {
+                    "name": "matchesAny",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nChecks whether at least one query matches\n\n",
+                    "description": "<p>Checks whether at least one query matches</p>\n",
+                    "jsdoctags": [
+                        {
+                            "tagName": {
+                                "pos": 729,
+                                "end": 736,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>true if any matches, false otherwise</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "matchesBreakpoint",
+                    "args": [
+                        {
+                            "name": "breakpoint",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nChecks whether a specific breakpoint matches\n\n",
+                    "description": "<p>Checks whether a specific breakpoint matches</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1170,
+                                "end": 1180,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "breakpoint"
+                            },
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 1164,
+                                "end": 1169,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>The breakpoint to check</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 1211,
+                                "end": 1218,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>true if the breakpoint matches, false otherwise</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "matchesQuery",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nChecks whether the specific query matches\n\n",
+                    "description": "<p>Checks whether the specific query matches</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 912,
+                                "end": 917,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "query"
+                            },
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 906,
+                                "end": 911,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>The query to check</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 943,
+                                "end": 950,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>true if the query matches, false otherwise</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "extends": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
             "name": "Clear",
             "id": "class-Clear-bf7759a40e4d0e8e6314490589639d3b7dd6bdcc54fb05fadb475414c800a55e8d35049821318bb00cd59d904882087867195819aead7c752730abddf2833ce1",
             "file": "state/src/storage/storage.actions.ts",
@@ -4569,6 +4801,18 @@
                 "defaultValue": "new Set<string>()",
                 "rawdescription": "Registry of action types",
                 "description": "<p>Registry of action types</p>\n"
+            },
+            {
+                "name": "Breakpoints",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "breakpoints/src/lib/breakpoints.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  Mobile: '(max-width: 639.98px)',\n  Desktop: '(min-width: 640px) and (max-width: 1920.98px)',\n  LargeDesktop: '(min-width: 1921px)',\n}",
+                "rawdescription": "Builtin breakpoints",
+                "description": "<p>Builtin breakpoints</p>\n"
             },
             {
                 "name": "BUILTIN_ENTRY",
@@ -6983,7 +7227,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "4df91091-5c4f-4533-8354-a517bdedd230",
+                        "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
                         "destructuredParameter": true
                     }
                 ],
@@ -7018,7 +7262,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "4df91091-5c4f-4533-8354-a517bdedd230",
+                        "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -7156,7 +7400,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "771d3688-827a-4ffc-bd5e-52264e917aa6",
+                        "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
                         "destructuredParameter": true
                     }
                 ],
@@ -7224,7 +7468,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "771d3688-827a-4ffc-bd5e-52264e917aa6",
+                        "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -7499,6 +7743,253 @@
                         "comment": "<p>A snapshot function</p>\n"
                     }
                 ]
+            },
+            {
+                "name": "watchBreakpoint",
+                "file": "breakpoints/src/lib/observers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Watch a single query.\nMust be called in an injection context.</p>\n",
+                "args": [
+                    {
+                        "name": "query",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "Signal<boolean>",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 1467,
+                            "end": 1472,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "query"
+                        },
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 1461,
+                            "end": 1466,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>Breakpoint query to watch</p>\n"
+                    },
+                    {
+                        "tagName": {
+                            "pos": 1503,
+                            "end": 1510,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>A signal with indicating when the query matches</p>\n"
+                    }
+                ]
+            },
+            {
+                "name": "watchBreakpoints",
+                "file": "breakpoints/src/lib/observers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Watch the default breakpoints.\nMust be called in an injection context.</p>\n",
+                "args": [],
+                "returnType": "Signal<BreakpointWatchState<Breakpoint>>",
+                "jsdoctags": [
+                    {
+                        "tagName": {
+                            "pos": 1814,
+                            "end": 1821,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>A signal containing the latest watch state</p>\n"
+                    }
+                ]
+            },
+            {
+                "name": "watchBreakpoints",
+                "file": "breakpoints/src/lib/observers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Watch multiple queries.\nMust be called in an injection context.</p>\n",
+                "args": [
+                    {
+                        "name": "queries",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "Signal<BreakpointWatchState>",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 2034,
+                            "end": 2041,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "queries"
+                        },
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 2028,
+                            "end": 2033,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>Queries to watch</p>\n"
+                    },
+                    {
+                        "tagName": {
+                            "pos": 2063,
+                            "end": 2070,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>A signal containing the latest watch state</p>\n"
+                    }
+                ]
+            },
+            {
+                "name": "watchBreakpoints",
+                "file": "breakpoints/src/lib/observers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Watch multiple breakpoints.\nMust be called in an injection context.</p>\n",
+                "args": [
+                    {
+                        "name": "mapping",
+                        "type": "Record",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "Signal<BreakpointWatchState<T>>",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 2292,
+                            "end": 2299,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "mapping"
+                        },
+                        "type": "Record",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "pos": 2286,
+                            "end": 2291,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>Mapping from breakpoints to queries</p>\n"
+                    },
+                    {
+                        "tagName": {
+                            "pos": 2340,
+                            "end": 2347,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>A signal containing the latest watch state</p>\n"
+                    }
+                ]
+            },
+            {
+                "name": "watchBreakpoints",
+                "file": "breakpoints/src/lib/observers.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Watch multiple queries or breakpoints.</p>\n",
+                "args": [
+                    {
+                        "name": "arg",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "defaultValue": "Breakpoints"
+                    }
+                ],
+                "returnType": "Signal<BreakpointWatchState>",
+                "jsdoctags": [
+                    {
+                        "name": {
+                            "pos": 2567,
+                            "end": 2570,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "arg"
+                        },
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "defaultValue": "Breakpoints",
+                        "tagName": {
+                            "pos": 2561,
+                            "end": 2566,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "param"
+                        },
+                        "comment": "<p>A list of queries or mapping from breakpoints to queries</p>\n"
+                    },
+                    {
+                        "tagName": {
+                            "pos": 2632,
+                            "end": 2639,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>A signal containing the latest watch state</p>\n"
+                    }
+                ]
             }
         ],
         "typealiases": [
@@ -7512,6 +8003,17 @@
                 "deprecationMessage": "",
                 "description": "<p>Query function returned by {@link ResourceRegistrySelectors.anyEntry}</p>\n",
                 "kind": 184
+            },
+            {
+                "name": "Breakpoint",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "",
+                "file": "breakpoints/src/lib/breakpoints.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Name of a single builtin breakpoint</p>\n",
+                "kind": 198
             },
             {
                 "name": "BuiltinTypes",
@@ -7968,6 +8470,20 @@
                     "defaultValue": "new Set<string>()",
                     "rawdescription": "Registry of action types",
                     "description": "<p>Registry of action types</p>\n"
+                }
+            ],
+            "breakpoints/src/lib/breakpoints.ts": [
+                {
+                    "name": "Breakpoints",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "breakpoints/src/lib/breakpoints.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  Mobile: '(max-width: 639.98px)',\n  Desktop: '(min-width: 640px) and (max-width: 1920.98px)',\n  LargeDesktop: '(min-width: 1921px)',\n}",
+                    "rawdescription": "Builtin breakpoints",
+                    "description": "<p>Builtin breakpoints</p>\n"
                 }
             ],
             "state/src/resource-registry/resource-registry.model.ts": [
@@ -10456,7 +10972,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "4df91091-5c4f-4533-8354-a517bdedd230",
+                            "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
                             "destructuredParameter": true
                         }
                     ],
@@ -10491,7 +11007,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "4df91091-5c4f-4533-8354-a517bdedd230",
+                            "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -10543,7 +11059,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "771d3688-827a-4ffc-bd5e-52264e917aa6",
+                            "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
                             "destructuredParameter": true
                         }
                     ],
@@ -10611,7 +11127,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "771d3688-827a-4ffc-bd5e-52264e917aa6",
+                            "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -10947,6 +11463,255 @@
                         }
                     ]
                 }
+            ],
+            "breakpoints/src/lib/observers.ts": [
+                {
+                    "name": "watchBreakpoint",
+                    "file": "breakpoints/src/lib/observers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Watch a single query.\nMust be called in an injection context.</p>\n",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "Signal<boolean>",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1467,
+                                "end": 1472,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "query"
+                            },
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 1461,
+                                "end": 1466,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Breakpoint query to watch</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 1503,
+                                "end": 1510,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>A signal with indicating when the query matches</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "watchBreakpoints",
+                    "file": "breakpoints/src/lib/observers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Watch the default breakpoints.\nMust be called in an injection context.</p>\n",
+                    "args": [],
+                    "returnType": "Signal<BreakpointWatchState<Breakpoint>>",
+                    "jsdoctags": [
+                        {
+                            "tagName": {
+                                "pos": 1814,
+                                "end": 1821,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>A signal containing the latest watch state</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "watchBreakpoints",
+                    "file": "breakpoints/src/lib/observers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Watch multiple queries.\nMust be called in an injection context.</p>\n",
+                    "args": [
+                        {
+                            "name": "queries",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "Signal<BreakpointWatchState>",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2034,
+                                "end": 2041,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "queries"
+                            },
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 2028,
+                                "end": 2033,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Queries to watch</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 2063,
+                                "end": 2070,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>A signal containing the latest watch state</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "watchBreakpoints",
+                    "file": "breakpoints/src/lib/observers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Watch multiple breakpoints.\nMust be called in an injection context.</p>\n",
+                    "args": [
+                        {
+                            "name": "mapping",
+                            "type": "Record",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "Signal<BreakpointWatchState<T>>",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2292,
+                                "end": 2299,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "mapping"
+                            },
+                            "type": "Record",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 2286,
+                                "end": 2291,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>Mapping from breakpoints to queries</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 2340,
+                                "end": 2347,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>A signal containing the latest watch state</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "watchBreakpoints",
+                    "file": "breakpoints/src/lib/observers.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Watch multiple queries or breakpoints.</p>\n",
+                    "args": [
+                        {
+                            "name": "arg",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "Breakpoints"
+                        }
+                    ],
+                    "returnType": "Signal<BreakpointWatchState>",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2567,
+                                "end": 2570,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "arg"
+                            },
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "Breakpoints",
+                            "tagName": {
+                                "pos": 2561,
+                                "end": 2566,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>A list of queries or mapping from breakpoints to queries</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 2632,
+                                "end": 2639,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>A signal containing the latest watch state</p>\n"
+                        }
+                    ]
+                }
             ]
         },
         "groupedEnumerations": {
@@ -11077,6 +11842,19 @@
                     "deprecationMessage": "",
                     "description": "<p>Query function returned by {@link ResourceRegistrySelectors.field}</p>\n",
                     "kind": 184
+                }
+            ],
+            "breakpoints/src/lib/breakpoints.ts": [
+                {
+                    "name": "Breakpoint",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "",
+                    "file": "breakpoints/src/lib/breakpoints.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Name of a single builtin breakpoint</p>\n",
+                    "kind": 198
                 }
             ],
             "state/src/resource-registry/resource-registry.model.ts": [
