@@ -12,6 +12,7 @@ import { provideInput } from '@hra-ui/design-system/input';
 import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideSelect } from '@hra-ui/design-system/select';
+import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 
@@ -41,17 +42,18 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
         defaultClasses: ['material-symbols-rounded'],
       },
     }),
-    provideButtons(),
-    provideIconButtons(),
-    provideTrees(),
-    provideScrolling(options?.scrolling),
-    provideMenu(),
-    provideTable(),
-    provideSelect(),
-    provideInput(),
     provideButtonToggle(),
+    provideButtons(),
     provideCheckboxes(),
     provideChips(),
+    provideIconButtons(),
+    provideInput(),
+    provideMenu(),
+    provideScrolling(options?.scrolling),
+    provideSelect(),
+    provideSlider(),
+    provideTable(),
+    provideTrees(),
   ];
 }
 
