@@ -8,11 +8,15 @@
 
   .code-block-pre {
     margin: 0;
-    font-family: var(--sys-body-medium-mono);
-    line-height: var(--sys-body-medium-mono-line-height);
+    font: 400 0.875rem / 1.3125rem Roboto Mono;
+    letter-spacing: 0rem;
     text-align: left;
     display: flex;
     max-width: 35.5rem;
     white-space: pre-wrap;
+
+    code {
+      background-color: var(--sys-surface-container);
+    }
   }
 }

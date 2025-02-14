@@ -24,10 +24,13 @@ export class WebComponentCardComponent {
   readonly webComponentName = input<string | undefined>();
   /** Description */
   readonly description = input.required<string>();
+  /** Disable button */
+  readonly disableButton = input<boolean>();
 
   @Output() showSidenav = new EventEmitter<boolean>();
 
   openSideNav() {
     this.showSidenav.emit(true);
+    console.log('disablebuttonopensidenav', this.disableButton);
   }
 }

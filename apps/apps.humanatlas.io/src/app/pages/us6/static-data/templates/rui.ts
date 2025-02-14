@@ -1,4 +1,4 @@
-<!doctype html>
+const ruiEmbedTemplate = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -18,4 +18,6 @@
     >
     </ccf-rui>
   </body>
-</html>
+</html>`;
+
+export default ruiEmbedTemplate;

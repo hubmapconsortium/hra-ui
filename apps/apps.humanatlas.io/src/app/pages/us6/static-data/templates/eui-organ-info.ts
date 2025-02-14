@@ -1,4 +1,4 @@
-<!doctype html>
+const euiOrganInfoEmbedTemplate = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -18,4 +18,6 @@
     >
     </ccf-organ-info>
   </body>
-</html>
+</html>`;
+
+export default euiOrganInfoEmbedTemplate;

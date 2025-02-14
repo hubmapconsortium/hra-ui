@@ -1,4 +1,4 @@
-<!doctype html>
+const euiEmbedTemplate = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -19,4 +19,6 @@
     >
     </ccf-eui>
   </body>
-</html>
+</html>`;
+
+export default euiEmbedTemplate;

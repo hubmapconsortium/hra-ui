@@ -1,4 +1,4 @@
-<!doctype html>
+const ftuMedicalIllustrationEmbedTemplate = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -14,4 +14,6 @@
     >
     </hra-medical-illustration>
   </body>
-</html>
+</html>`;
+
+export default ftuMedicalIllustrationEmbedTemplate;

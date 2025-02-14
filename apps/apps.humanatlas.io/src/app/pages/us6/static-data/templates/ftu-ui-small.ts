@@ -1,4 +1,4 @@
-<!doctype html>
+const ftuUiSmallEmbedTemplate = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -10,17 +10,18 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" type="module"></script>
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" type="module"></script>
+    <link href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/wc.js" defer></script>
   </head>
   <body style="margin: 0">
-    <hra-ftu-ui
-      base-href="https://cdn.humanatlas.io/ui/ftu-ui/"
+    <hra-ftu-ui-small
+      base-href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/"
       selected-illustration="https://purl.humanatlas.io/2d-ftu/{{illustration}}"
       datasets="assets/TEMP/ftu-datasets.jsonld"
       summaries="assets/TEMP/ftu-cell-summaries.jsonld"
     >
-    </hra-ftu-ui>
+    </hra-ftu-ui-small>
   </body>
-</html>
+</html>`;
+
+export default ftuUiSmallEmbedTemplate;

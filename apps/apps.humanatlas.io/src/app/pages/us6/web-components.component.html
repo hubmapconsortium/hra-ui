@@ -11,12 +11,12 @@
       [showButtonsFooter]="true"
       (closeClick)="showSidenav = false"
     >
-      <hra-code-block code="" language="html"></hra-code-block>
+      <hra-code-block [code]="embedCode" language="html"></hra-code-block>
 
       <hra-flat-card-actions class="card-actions">
         <button mat-button hraPrimaryButton hraButtonSize="medium">Documentation</button>
         <div class="filler"></div>
-        <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="''">Copy</button>
+        <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="embedCode">Copy</button>
       </hra-flat-card-actions>
     </hra-flat-card>
   </mat-sidenav>
@@ -41,7 +41,7 @@
         <mat-label>Organ</mat-label>
         <mat-select [(value)]="selectedOrgan">
           @for (organ of organs; track organ.id) {
-            <mat-option [value]="organ.label">{{ organ.label }}</mat-option>
+            <mat-option [value]="organ">{{ organ.label }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -55,7 +55,6 @@
         Show
       </button>
     </div>
-
     @if (showComponentCards) {
       <div class="card-collection">
         <div class="cards">
@@ -66,6 +65,7 @@
               [productTitle]="component.productTitle"
               [description]="component.description"
               [webComponentName]="component.webComponentName"
+              [disableButton]="component.embedAs === 'external'"
               (showSidenav)="onShowSidenav(component, $event)"
             >
             </hra-web-component-card>

@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 @Component({
   selector: 'hra-flat-card-actions',
@@ -27,7 +28,7 @@ export class FlatCardActionsComponent {}
 @Component({
   selector: 'hra-flat-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule],
+  imports: [CommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
   templateUrl: './flat-card.component.html',
   styleUrl: './flat-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

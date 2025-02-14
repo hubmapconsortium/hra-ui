@@ -1,4 +1,4 @@
-<!doctype html>
+const eui3dOrganViewer = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -11,4 +11,6 @@
     <!-- TODO inputs -->
     <ccf-body-ui-wc> </ccf-body-ui-wc>
   </body>
-</html>
+</html>`;
+
+export default eui3dOrganViewer;

@@ -32,6 +32,7 @@
     "@fontsource/material-symbols-rounded": "^5.0.34",
     "@fontsource/metropolis": "^5.0.11",
     "@fontsource/nunito-sans": "^5.0.13",
+    "@fontsource/roboto-mono": "^5.1.1",
     "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",

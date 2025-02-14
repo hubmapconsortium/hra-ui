@@ -36,8 +36,11 @@
     top: 4rem;
   }
 
-  .card-content {
+  ng-scrollbar {
     flex: 1;
+  }
+
+  .card-content {
     padding: 1rem;
     overflow-y: auto;
   }
