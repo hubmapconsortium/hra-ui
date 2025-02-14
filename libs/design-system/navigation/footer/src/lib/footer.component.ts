@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { BrandLogoComponent } from '@hra-ui/design-system/brand/logo';
 import { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from '@hra-ui/design-system/social-media-button';
-import { FundingComponent } from './funding/funding.component';
+import { FUNDER_IDS, FundingComponent } from './funding/funding.component';
 
 /**
  * Global footer component
@@ -17,6 +17,8 @@ import { FundingComponent } from './funding/funding.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  /** List of social media links shown */
-  protected readonly socials = SOCIAL_MEDIA_IDS;
+  /** List of funders to show */
+  readonly funders = input(FUNDER_IDS);
+  /** List of social media link to show */
+  readonly socials = input(SOCIAL_MEDIA_IDS);
 }

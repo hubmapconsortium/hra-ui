@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
-import * as FUNDERS_DATA from './funders.json';
-
-/** Funder id */
-export type FunderId = keyof typeof FUNDERS_DATA;
+import { FUNDERS } from '../static-data/parsed';
+import { FunderId } from '../types/funders.schema';
 
 /** All available funder ids */
-export const FUNDER_IDS = Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[];
+export const FUNDER_IDS = FUNDERS.funders.map((item) => item.id);
 
 /** Displays a list of funders */
 @Component({
@@ -20,8 +18,11 @@ export const FUNDER_IDS = Object.keys(FUNDERS_DATA).filter((id) => id !== 'defau
 })
 export class FundingComponent {
   /** Funders to display */
-  readonly funders = input(FUNDER_IDS);
+  readonly funders = input.required<FunderId[]>();
 
   /** Associated data for each funder displayed */
-  protected readonly fundersData = computed(() => this.funders().map((id) => FUNDERS_DATA[id]));
+  protected readonly fundersData = computed(() => {
+    const ids = new Set(this.funders());
+    return FUNDERS.funders.filter((item) => ids.has(item.id));
+  });
 }

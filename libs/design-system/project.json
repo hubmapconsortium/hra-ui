@@ -129,8 +129,9 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/menus.schema.ts --name Menus",
-          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/hubmap-menu.schema.ts --name HubmapMenu"
+          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/footer/src/lib/types/funders.schema.ts --name Funders",
+          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/hubmap-menu.schema.ts --name HubmapMenu",
+          "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/menus.schema.ts --name Menus"
         ],
         "parallel": true
       }
