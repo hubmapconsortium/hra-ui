@@ -1,0 +1,332 @@
+[
+  {
+    "id": "kidney",
+    "label": "Kidney",
+    "appData": {
+      "rui": {
+        "name": "Kidney",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0004538",
+        "side": "left",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=kidney-v1.4&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "kidney-renal-corpuscle"
+      },
+      "ftu-ui-small": {
+        "illustration": "kidney-renal-corpuscle"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "kidney-renal-corpuscle"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "large-intestine",
+    "label": "Large Intestine",
+    "appData": {
+      "rui": {
+        "name": "Large Intestine",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000059",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000059"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000059"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=large-intestine-v1.3&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "large-intestine-crypt-lieberkuhn"
+      },
+      "ftu-ui-small": {
+        "illustration": "large-intestine-crypt-lieberkuhn"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "large-intestine-crypt-lieberkuhn"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "liver",
+    "label": "Liver",
+    "appData": {
+      "rui": {
+        "name": "Liver",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002107",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002107"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002107"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=liver-v1.2&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "liver-liver-lobule"
+      },
+      "ftu-ui-small": {
+        "illustration": "liver-liver-lobule"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "liver-liver-lobule"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "lung",
+    "label": "Lung",
+    "appData": {
+      "rui": {
+        "name": "Lung",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002048",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002048"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002048"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=lung-v1.4&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "lung-bronchial-submucosal-gland"
+      },
+      "ftu-ui-small": {
+        "illustration": "lung-bronchial-submucosal-gland"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "lung-bronchial-submucosal-gland"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "pancreas",
+    "label": "Pancreas",
+    "appData": {
+      "rui": {
+        "name": "Pancreas",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0001264",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0001264"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0001264"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=pancreas-v1.3&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "pancreas-intercalated-duct"
+      },
+      "ftu-ui-small": {
+        "illustration": "pancreas-intercalated-duct"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "pancreas-intercalated-duct"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "prostate-gland",
+    "label": "Prostate Gland",
+    "appData": {
+      "rui": {
+        "name": "Prostate Gland",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000079",
+        "side": "",
+        "sex": "male"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000079"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0000079"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=Prostate-v1.1&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "prostate-prostate-glandular-acinus"
+      },
+      "ftu-ui-small": {
+        "illustration": "prostate-prostate-glandular-acinus"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "prostate-prostate-glandular-acinus"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "skin",
+    "label": "Skin",
+    "appData": {
+      "rui": {
+        "name": "Skin",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002097",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002097"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002097"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=skin-v1.3&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "skin-dermal-papilla"
+      },
+      "ftu-ui-small": {
+        "illustration": "skin-dermal-papilla"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "skin-dermal-papilla"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "small-intestine",
+    "label": "Small Intestine",
+    "appData": {
+      "rui": {
+        "name": "Small Intestine",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002108",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002108"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002108"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=Small_Intestine-v1.1&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "small-intestine-villus"
+      },
+      "ftu-ui-small": {
+        "illustration": "small-intestine-villus"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "small-intestine-villus"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "spleen",
+    "label": "Spleen",
+    "appData": {
+      "rui": {
+        "name": "Spleen",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002106",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002106"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002106"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=spleen-v1.3&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "spleen-white-pulp"
+      },
+      "ftu-ui-small": {
+        "illustration": "spleen-white-pulp"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "spleen-white-pulp"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  },
+  {
+    "id": "thymus",
+    "label": "Thymus",
+    "appData": {
+      "rui": {
+        "name": "Thymus",
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002370",
+        "side": "",
+        "sex": "female"
+      },
+      "eui": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002370"
+      },
+      "eui-organ-information": {
+        "organ": "http://purl.obolibrary.org/obo/UBERON_0002370"
+      },
+      "asctb-reporter": {
+        "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=thymus-v1.4&playground=false"
+      },
+      "ftu-ui": {
+        "illustration": "thymus-thymus-lobule"
+      },
+      "ftu-ui-small": {
+        "illustration": "thymus-thymus-lobule"
+      },
+      "ftu-medical-illustration": {
+        "illustration": "thymus-thymus-lobule"
+      },
+      "hra-api": {
+        "url": "https://apps.humanatlas.io/api/"
+      }
+    }
+  }
+]
