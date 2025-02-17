@@ -1,13 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';
-import * as SOCIAL_MEDIA_DATA from './social-media.json';
-
-/** Social media id */
-export type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;
-
-/** All available social media ids */
-export const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[];
+import { SocialMediaId } from './types/social-media.schema';
+import { SOCIALS } from './static-data/parsed';
 
 /**
  * Social media buttons for HRA apps
@@ -30,8 +25,12 @@ export class SocialMediaButtonComponent {
   readonly variant = input<IconButtonVariant>('dark');
 
   /** Social media button data */
-  protected readonly data = computed(() => SOCIAL_MEDIA_DATA[this.id()]);
+  protected readonly data = computed(() => {
+    const item = SOCIALS.find(({ id }) => this.id() === id);
+    if (!item) {
+      throw new Error(`No social media with id '${this.id()}'`);
+    }
 
-  /** Whether the icon is a font icon or svg icon */
-  protected readonly isFontIcon = computed(() => 'isFontIcon' in this.data());
+    return item;
+  });
 }

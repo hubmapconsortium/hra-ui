@@ -19,7 +19,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should toggle a menu when the associated button is clicked', async () => {
-    const group = HUBMAP_MENU.groups[0];
+    const group = HUBMAP_MENU[0];
     await render(HeaderComponent, { providers });
 
     // Open the menu
@@ -39,7 +39,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should render the mobile menu on small screens', async () => {
-    const menu = MENUS.menus[0];
+    const menu = MENUS[0];
     await render(HeaderComponent, {
       providers: [...providers, mobileBreakpointsProvider],
     });

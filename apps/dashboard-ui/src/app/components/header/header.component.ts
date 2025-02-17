@@ -10,7 +10,7 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
  * Header Component
  */
 @Component({
-  selector: 'hra-header',
+  selector: 'hra-dashboard-header',
   standalone: true,
   imports: [CommonModule, MatButtonModule, RouterModule, MatMenuModule, MatIconModule, AssetUrlPipe],
   templateUrl: './header.component.html',

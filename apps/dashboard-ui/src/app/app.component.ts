@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FooterComponent } from '@hra-ui/design-system/footer';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { HeaderComponent } from './components/header/header.component';
 
 /**
@@ -9,7 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 @Component({
   selector: 'hra-root',
   standalone: true,
-  imports: [RouterModule, HeaderComponent, FooterComponent],
+  imports: [RouterModule, HeaderComponent, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {

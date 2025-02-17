@@ -6,7 +6,7 @@
   target="_blank"
   rel="noopener noreferrer"
 >
-  @if (isFontIcon()) {
+  @if (data().isFontIcon) {
     <mat-icon [fontIcon]="data().icon"></mat-icon>
   } @else {
     <mat-icon [svgIcon]="data().icon"></mat-icon>

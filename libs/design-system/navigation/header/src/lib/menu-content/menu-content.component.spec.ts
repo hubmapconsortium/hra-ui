@@ -5,10 +5,10 @@ import { MenuContentComponent } from './menu-content.component';
 describe('MenuContentComponent', () => {
   it('should render', async () => {
     await render(MenuContentComponent, {
-      inputs: { variant: 'desktop', menu: MENUS.menus[0] },
+      inputs: { variant: 'desktop', menu: MENUS[0] },
     });
 
-    const group = MENUS.menus[0].items?.find((item) => item.type === 'group');
+    const group = MENUS[0].items?.find((item) => item.type === 'group');
     screen.getByText(group?.label ?? '');
   });
 });
