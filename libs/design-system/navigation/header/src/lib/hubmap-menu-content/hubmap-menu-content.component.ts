@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { HubmapMenu, HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';
+import { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';
 
 /** Directive used to type the context for menu group templates */
 @Directive({
@@ -44,5 +44,5 @@ export class HubmapMenuItemDirective {
 })
 export class HubmapMenuContentComponent {
   /** Menu data to display */
-  readonly menu = input.required<HubmapMenu>();
+  readonly menu = input.required<HubmapMenuGroup[]>();
 }

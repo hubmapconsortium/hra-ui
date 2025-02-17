@@ -9,16 +9,16 @@ describe('DesktopMenuComponent', () => {
       inputs: { menu: HUBMAP_MENU },
     });
 
-    const item = HUBMAP_MENU.groups[0].items[0];
+    const item = HUBMAP_MENU[0].items[0];
     screen.getByText(item.label);
   });
 
   it('should render a menu', async () => {
     await render(DesktopMenuComponent, {
-      inputs: { menu: MENUS.menus[0] },
+      inputs: { menu: MENUS[0] },
     });
 
-    const group = MENUS.menus[0].items?.find((item) => item.type === 'group');
+    const group = MENUS[0].items?.find((item) => item.type === 'group');
     screen.getByText(group?.label ?? '');
   });
 });

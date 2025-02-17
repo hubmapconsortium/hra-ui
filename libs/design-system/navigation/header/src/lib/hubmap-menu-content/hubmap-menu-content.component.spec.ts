@@ -8,7 +8,7 @@ describe('HubmapMenuContentComponent', () => {
       inputs: { menu: HUBMAP_MENU },
     });
 
-    const item = HUBMAP_MENU.groups[0].items[0];
+    const item = HUBMAP_MENU[0].items[0];
     screen.getByText(item.label);
   });
 });

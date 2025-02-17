@@ -8,11 +8,11 @@ describe('MobileMenuComponent', () => {
       inputs: { hubmapMenu: HUBMAP_MENU, menus: MENUS },
     });
 
-    for (const menu of MENUS.menus) {
+    for (const menu of MENUS) {
       const group = menu.items.find((item) => item.type === 'group');
       screen.getByText(group?.label ?? '');
     }
 
-    screen.getByText(HUBMAP_MENU.groups[0].label);
+    screen.getByText(HUBMAP_MENU[0].label);
   });
 });

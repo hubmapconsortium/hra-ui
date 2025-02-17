@@ -4,9 +4,6 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { FUNDERS } from '../static-data/parsed';
 import { FunderId } from '../types/funders.schema';
 
-/** All available funder ids */
-export const FUNDER_IDS = FUNDERS.funders.map((item) => item.id);
-
 /** Displays a list of funders */
 @Component({
   selector: 'hra-funding',
@@ -23,6 +20,6 @@ export class FundingComponent {
   /** Associated data for each funder displayed */
   protected readonly fundersData = computed(() => {
     const ids = new Set(this.funders());
-    return FUNDERS.funders.filter((item) => ids.has(item.id));
+    return FUNDERS.filter((item) => ids.has(item.id));
   });
 }

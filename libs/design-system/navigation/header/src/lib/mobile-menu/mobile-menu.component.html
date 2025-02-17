@@ -1,7 +1,7 @@
 <mat-divider> </mat-divider>
 <ng-scrollbar>
   <mat-accordion displayMode="flat" multi="false">
-    @for (menu of menus().menus; track $index) {
+    @for (menu of menus(); track $index) {
       <mat-expansion-panel class="panel" hideToggle>
         <mat-expansion-panel-header class="header">
           <mat-panel-title>
