@@ -298,7 +298,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import {
   ChangeDetectionStrategy,
@@ -399,6 +399,8 @@ export class HeaderComponent {
   protected readonly mobileMenuPositions &#x3D; MOBILE_MENU_POSITIONS;
   /** Overlay positions for the desktop menu */
   protected readonly desktopMenuPositions &#x3D; DESKTOP_MENU_POSITIONS;
+  /** Blocking overlay scroll strategy */
+  protected readonly mobileMenuBlockScroll &#x3D; inject(Overlay).scrollStrategies.block();
   /** Offset from top to the menu. Used to calculate menu heights and max heights */
   protected readonly menuOffsetPx &#x3D; signal&lt;number&gt;(0);
   /** Mobile menu height. Fills the entire screen */

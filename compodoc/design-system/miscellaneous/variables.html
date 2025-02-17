@@ -142,7 +142,16 @@
                             <a href="#FONT_SIZES" title="tree/src/lib/tree-size/tree-size.directive.ts" ><b>FONT_SIZES</b>&nbsp;&nbsp;&nbsp;(tree/.../tree-size.directive.ts)</a>
                         </li>
                         <li>
-                            <a href="#FUNDER_IDS" title="footer/src/lib/funding/funding.component.ts" ><b>FUNDER_IDS</b>&nbsp;&nbsp;&nbsp;(footer/.../funding.component.ts)</a>
+                            <a href="#FUNDER_IDS" title="navigation/footer/src/lib/static-data/parsed.ts" ><b>FUNDER_IDS</b>&nbsp;&nbsp;&nbsp;(navigation/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FUNDERS" title="navigation/footer/src/lib/static-data/parsed.ts" ><b>FUNDERS</b>&nbsp;&nbsp;&nbsp;(navigation/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FunderSchema" title="navigation/footer/src/lib/types/funders.schema.ts" ><b>FunderSchema</b>&nbsp;&nbsp;&nbsp;(navigation/.../funders.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FundersSchema" title="navigation/footer/src/lib/types/funders.schema.ts" ><b>FundersSchema</b>&nbsp;&nbsp;&nbsp;(navigation/.../funders.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#GRADIENT_BOTTOM_KEYFRAMES" title="scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts" ><b>GRADIENT_BOTTOM_KEYFRAMES</b>&nbsp;&nbsp;&nbsp;(scrolling/.../scroll-overflow-fade.directive.ts)</a>
@@ -217,7 +226,16 @@
                             <a href="#SCROLL_TIMELINE_QUERY_INTERVAL" title="scrolling/src/lib/scroll-timeline/scroll-timeline.ts" ><b>SCROLL_TIMELINE_QUERY_INTERVAL</b>&nbsp;&nbsp;&nbsp;(scrolling/.../scroll-timeline.ts)</a>
                         </li>
                         <li>
-                            <a href="#SOCIAL_MEDIA_IDS" title="social-media-button/src/lib/social-media-button.component.ts" ><b>SOCIAL_MEDIA_IDS</b>&nbsp;&nbsp;&nbsp;(social-media-button/.../social-media-button.component.ts)</a>
+                            <a href="#SOCIAL_IDS" title="buttons/social-media-button/src/lib/static-data/parsed.ts" ><b>SOCIAL_IDS</b>&nbsp;&nbsp;&nbsp;(buttons/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SocialMediaSchema" title="buttons/social-media-button/src/lib/types/social-media.schema.ts" ><b>SocialMediaSchema</b>&nbsp;&nbsp;&nbsp;(buttons/.../social-media.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SOCIALS" title="buttons/social-media-button/src/lib/static-data/parsed.ts" ><b>SOCIALS</b>&nbsp;&nbsp;&nbsp;(buttons/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SocialsSchema" title="buttons/social-media-button/src/lib/types/social-media.schema.ts" ><b>SocialsSchema</b>&nbsp;&nbsp;&nbsp;(buttons/.../social-media.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#STATUS_FONTS" title="software-status-indicator/src/lib/software-status-indicator-size.directive.ts" ><b>STATUS_FONTS</b>&nbsp;&nbsp;&nbsp;(software-status-indicator/.../software-status-indicator-size.directive.ts)</a>
@@ -743,7 +761,7 @@
         </tbody>
     </table>
 </section>
-    <h3>footer/src/lib/funding/funding.component.ts</h3>
+    <h3>navigation/footer/src/lib/static-data/parsed.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -758,13 +776,102 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Object.keys(FUNDERS_DATA).filter((id) &#x3D;&gt; id !&#x3D;&#x3D; &#x27;default&#x27;) as FunderId[]</code>
+                        <i>Default value : </i><code>FUNDERS.map(({ id }) &#x3D;&gt; id)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>All available funder ids</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FUNDERS"></a>
+                    <span class="name">
+                        <span ><b>FUNDERS</b></span>
+                        <a href="#FUNDERS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>FundersSchema.parse(RAW_FUNDERS).funders</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed funders static data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>navigation/footer/src/lib/types/funders.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FunderSchema"></a>
+                    <span class="name">
+                        <span ><b>FunderSchema</b></span>
+                        <a href="#FunderSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: z.string().brand&lt;&#x27;FunderId&#x27;&gt;(),
+  name: z.string(),
+  link: z.string().url(),
+  image: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for a funder item</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FundersSchema"></a>
+                    <span class="name">
+                        <span ><b>FundersSchema</b></span>
+                        <a href="#FundersSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  funders: FunderSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for multiple funders</p>
 </div>
                 </td>
             </tr>
@@ -878,7 +985,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>HubmapMenuSchema.parse(RAW_HUBMAP_MENU)</code>
+                        <i>Default value : </i><code>HubmapMenuSchema.parse(RAW_HUBMAP_MENU).groups</code>
                     </td>
                 </tr>
 
@@ -904,7 +1011,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>MenusSchema.parse(RAW_MENUS)</code>
+                        <i>Default value : </i><code>MenusSchema.parse(RAW_MENUS).menus</code>
                     </td>
                 </tr>
 
@@ -1335,6 +1442,7 @@
   NavigationCategoryToggleComponent,
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
+  SocialMediaButtonComponent,
   TextHyperlinkDirective,
 ]</code>
                     </td>
@@ -1371,7 +1479,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[CtaBarComponent, HeaderComponent]</code>
+                        <i>Default value : </i><code>[CtaBarComponent, FooterComponent, HeaderComponent]</code>
                     </td>
                 </tr>
 
@@ -1469,28 +1577,117 @@ Primarily used to simplify testing.</p>
         </tbody>
     </table>
 </section>
-    <h3>social-media-button/src/lib/social-media-button.component.ts</h3>
+    <h3>buttons/social-media-button/src/lib/static-data/parsed.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="SOCIAL_MEDIA_IDS"></a>
+                    <a name="SOCIAL_IDS"></a>
                     <span class="name">
-                        <span ><b>SOCIAL_MEDIA_IDS</b></span>
-                        <a href="#SOCIAL_MEDIA_IDS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>SOCIAL_IDS</b></span>
+                        <a href="#SOCIAL_IDS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Object.keys(SOCIAL_MEDIA_DATA).filter((id) &#x3D;&gt; id !&#x3D;&#x3D; &#x27;default&#x27;) as SocialMediaId[]</code>
+                        <i>Default value : </i><code>SOCIALS.map(({ id }) &#x3D;&gt; id)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>All available social media ids</p>
+                    <div class="io-description"><p>All available social ids</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOCIALS"></a>
+                    <span class="name">
+                        <span ><b>SOCIALS</b></span>
+                        <a href="#SOCIALS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SocialsSchema.parse(RAW_SOCIALS).socials</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed social media items</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>buttons/social-media-button/src/lib/types/social-media.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SocialMediaSchema"></a>
+                    <span class="name">
+                        <span ><b>SocialMediaSchema</b></span>
+                        <a href="#SocialMediaSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: z.string().brand&lt;&#x27;SocialMediaId&#x27;&gt;(),
+  icon: z.string(),
+  isFontIcon: z.boolean().optional(),
+  link: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for social media item</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SocialsSchema"></a>
+                    <span class="name">
+                        <span ><b>SocialsSchema</b></span>
+                        <a href="#SocialsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  socials: SocialMediaSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for social media items</p>
 </div>
                 </td>
             </tr>

@@ -252,7 +252,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>input.required&lt;Menu | HubmapMenu&gt;()</code>
+                        <i>Default value : </i><code>input.required&lt;Menu | HubmapMenuGroup[]&gt;()</code>
                     </td>
                 </tr>
                     <tr>
@@ -286,7 +286,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
     const menu &#x3D; this.menu();
-    return &#x27;$schema&#x27; in menu ? { type: &#x27;hubmap&#x27; as const, menu } : { type: &#x27;menu&#x27; as const, menu };
+    return Array.isArray(menu) ? { type: &#x27;hubmap&#x27; as const, menu } : { type: &#x27;menu&#x27; as const, menu };
   })</code>
                     </td>
                 </tr>
@@ -316,7 +316,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angul
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 import { HubmapMenuContentComponent } from &#x27;../hubmap-menu-content/hubmap-menu-content.component&#x27;;
 import { MenuContentComponent } from &#x27;../menu-content/menu-content.component&#x27;;
-import { HubmapMenu } from &#x27;../types/hubmap-menu.schema&#x27;;
+import { HubmapMenuGroup } from &#x27;../types/hubmap-menu.schema&#x27;;
 import { Menu } from &#x27;../types/menus.schema&#x27;;
 
 /**
@@ -332,12 +332,12 @@ import { Menu } from &#x27;../types/menus.schema&#x27;;
 })
 export class DesktopMenuComponent {
   /** Menu to display */
-  readonly menu &#x3D; input.required&lt;Menu | HubmapMenu&gt;();
+  readonly menu &#x3D; input.required&lt;Menu | HubmapMenuGroup[]&gt;();
 
   /** Menu object along with whether it is a hubmap or regular menu type */
   protected typedMenu &#x3D; computed(() &#x3D;&gt; {
     const menu &#x3D; this.menu();
-    return &#x27;$schema&#x27; in menu ? { type: &#x27;hubmap&#x27; as const, menu } : { type: &#x27;menu&#x27; as const, menu };
+    return Array.isArray(menu) ? { type: &#x27;hubmap&#x27; as const, menu } : { type: &#x27;menu&#x27; as const, menu };
   });
 }
 </code></pre>

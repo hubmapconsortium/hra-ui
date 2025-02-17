@@ -282,7 +282,7 @@
 import { ChangeDetectionStrategy, Component, Directive, input } from &#x27;@angular/core&#x27;;
 import { AssetUrlPipe } from &#x27;@hra-ui/cdk/app-href&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { HubmapMenu, HubmapMenuGroup, HubmapMenuItem } from &#x27;../types/hubmap-menu.schema&#x27;;
+import { HubmapMenuGroup, HubmapMenuItem } from &#x27;../types/hubmap-menu.schema&#x27;;
 
 /** Directive used to type the context for menu group templates */
 @Directive({
@@ -324,7 +324,7 @@ export class HubmapMenuItemDirective {
 })
 export class HubmapMenuContentComponent {
   /** Menu data to display */
-  readonly menu &#x3D; input.required&lt;HubmapMenu&gt;();
+  readonly menu &#x3D; input.required&lt;HubmapMenuGroup[]&gt;();
 }
 </code></pre>
     </div>

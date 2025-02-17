@@ -120,12 +120,12 @@
         },
         {
             "name": "CtaConfig",
-            "id": "interface-CtaConfig-b716b50e26d1dbf89555edf44617b68d5ac2301c812852831f85a50029bf60b04d5a9c5a802cedda52c7ebde13f8ffc831b3b9279aa747f8903c476b4290830c",
+            "id": "interface-CtaConfig-3824060635633bf8a868ca93d0612ce848bd5eb11628973460412af3bb0433b60d29dd389de3d126275bff40b09c646f6937ce5b48606f625a4bb55173e1e89d",
             "file": "navigation/header/src/lib/header.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  effect,\n  ElementRef,\n  inject,\n  input,\n  signal,\n  viewChild,\n} from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';\nimport { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';\nimport { BrandModule } from '@hra-ui/design-system/brand';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { explicitEffect } from 'ngxtension/explicit-effect';\nimport { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';\nimport { MobileMenuComponent } from './mobile-menu/mobile-menu.component';\nimport { HUBMAP_MENU, MENUS } from './static-data/parsed';\nimport { Menu } from './types/menus.schema';\n\n/** Call to action configuration */\nexport interface CtaConfig {\n  /** Action text */\n  action: string;\n  /** Action description */\n  description: string;\n  /** Action url */\n  url: string;\n}\n\n/** Position of the mobile menu overlay */\nconst MOBILE_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },\n];\n/** Position of the desktop menu overlay */\nconst DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },\n];\n\n/**\n * Global navigation header.\n * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    OverlayModule,\n    MatDividerModule,\n    MatIconModule,\n    MatProgressBarModule,\n    BrandModule,\n    ButtonsModule,\n    CtaBarComponent,\n    DesktopMenuComponent,\n    MobileMenuComponent,\n  ],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /** Call to action configuration */\n  readonly cta = input<CtaConfig>();\n  /** Hubmap menu data */\n  readonly hubmapMenu = input(HUBMAP_MENU);\n  /** All other menus */\n  readonly menus = input(MENUS);\n  /** Breadcrumb items */\n  readonly breadcrumbs = input<BreadcrumbItem[]>([]);\n  /**\n   * Progress bar progress.\n   * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.\n   * Using false disables and hides the progress bar.\n   */\n  readonly progress = input<boolean | number>(false);\n\n  /** Whether the user has dismissed the call to action */\n  protected readonly ctaDismissed = signal(false);\n  /** Progress bar mode */\n  protected readonly progressMode = computed((): ProgressBarMode => {\n    return typeof this.progress() === 'boolean' ? 'indeterminate' : 'determinate';\n  });\n\n  /** Whether the screen is currently mobile sized */\n  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);\n  /** Reference to this component's html element */\n  private readonly elementRef = inject<ElementRef<Element>>(ElementRef);\n\n  /** Overlay positions for the mobile menu */\n  protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;\n  /** Overlay positions for the desktop menu */\n  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;\n  /** Offset from top to the menu. Used to calculate menu heights and max heights */\n  protected readonly menuOffsetPx = signal<number>(0);\n  /** Mobile menu height. Fills the entire screen */\n  protected readonly mobileMenuHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`);\n  /** Desktop menu max height */\n  protected readonly desktopMenuMaxHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px - 16px)`);\n  /** Mobile menu overlay origin */\n  private readonly mobileMenuOrigin = viewChild.required('mobileMenuOrigin', { read: ElementRef });\n  /** Desktop menu overlay origin */\n  private readonly desktopMenuOrigin = viewChild.required('desktopMenuOrigin', { read: ElementRef });\n  /** Reference to the mobile overlay */\n  private readonly mobileMenuOverlay = viewChild('mobileMenuOverlay', { read: CdkConnectedOverlay });\n  /** Currently open menu or undefined */\n  private readonly activeMenu = signal<Menu | 'main' | undefined>(undefined);\n\n  /** Initialize the header */\n  constructor() {\n    effect(\n      (cleanup) => {\n        if (this.activeMenu() !== undefined) {\n          const observer = this.attachResizeObserver();\n          cleanup(() => observer.disconnect());\n        }\n      },\n      { allowSignalWrites: true },\n    );\n\n    explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });\n  }\n\n  /**\n   * Determine whether the specified menu is open\n   *\n   * @param menu The menu to check\n   * @returns true if the menu is open, false otherwise\n   */\n  isMenuActive(menu: Menu | 'main'): boolean {\n    return this.activeMenu() === menu;\n  }\n\n  /**\n   * Toggles a menu open or close\n   *\n   * @param menu Menu to toggle\n   */\n  toggleMenu(menu: Menu | 'main'): void {\n    this.activeMenu.update((current) => (menu !== current ? menu : undefined));\n  }\n\n  /**\n   * Closes any active menu\n   */\n  closeMenu(): void {\n    this.activeMenu.set(undefined);\n  }\n\n  /**\n   * Creates and attaches a resize observer that updates the menu offset\n   * whenever the header size changes\n   *\n   * @returns The resize observer\n   */\n  private attachResizeObserver(): ResizeObserver {\n    const observer = new ResizeObserver(() => this.updateMenuOffset());\n    observer.observe(this.elementRef.nativeElement, { box: 'border-box' });\n    this.updateMenuOffset();\n    return observer;\n  }\n\n  /**\n   * Computes the bounding box for the menu's overlay origin element\n   *\n   * @returns The computed bounding box\n   */\n  private getMenuOriginBbox(): DOMRect {\n    const origin = this.isMobile() ? this.mobileMenuOrigin() : this.desktopMenuOrigin();\n    return (origin.nativeElement as Element).getBoundingClientRect();\n  }\n\n  /**\n   * Updates the menu offset based on the overlay origin's bounding box\n   */\n  private updateMenuOffset(): void {\n    const { bottom } = this.getMenuOriginBbox();\n    this.menuOffsetPx.set(bottom);\n  }\n\n  /**\n   * Notify menu overlays of position changes\n   */\n  private updateMenuPositions(): void {\n    this.mobileMenuOverlay()?.overlayRef?.updatePosition();\n  }\n}\n",
+            "sourceCode": "import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  effect,\n  ElementRef,\n  inject,\n  input,\n  signal,\n  viewChild,\n} from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';\nimport { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';\nimport { BrandModule } from '@hra-ui/design-system/brand';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { explicitEffect } from 'ngxtension/explicit-effect';\nimport { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';\nimport { MobileMenuComponent } from './mobile-menu/mobile-menu.component';\nimport { HUBMAP_MENU, MENUS } from './static-data/parsed';\nimport { Menu } from './types/menus.schema';\n\n/** Call to action configuration */\nexport interface CtaConfig {\n  /** Action text */\n  action: string;\n  /** Action description */\n  description: string;\n  /** Action url */\n  url: string;\n}\n\n/** Position of the mobile menu overlay */\nconst MOBILE_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },\n];\n/** Position of the desktop menu overlay */\nconst DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },\n];\n\n/**\n * Global navigation header.\n * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    OverlayModule,\n    MatDividerModule,\n    MatIconModule,\n    MatProgressBarModule,\n    BrandModule,\n    ButtonsModule,\n    CtaBarComponent,\n    DesktopMenuComponent,\n    MobileMenuComponent,\n  ],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /** Call to action configuration */\n  readonly cta = input<CtaConfig>();\n  /** Hubmap menu data */\n  readonly hubmapMenu = input(HUBMAP_MENU);\n  /** All other menus */\n  readonly menus = input(MENUS);\n  /** Breadcrumb items */\n  readonly breadcrumbs = input<BreadcrumbItem[]>([]);\n  /**\n   * Progress bar progress.\n   * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.\n   * Using false disables and hides the progress bar.\n   */\n  readonly progress = input<boolean | number>(false);\n\n  /** Whether the user has dismissed the call to action */\n  protected readonly ctaDismissed = signal(false);\n  /** Progress bar mode */\n  protected readonly progressMode = computed((): ProgressBarMode => {\n    return typeof this.progress() === 'boolean' ? 'indeterminate' : 'determinate';\n  });\n\n  /** Whether the screen is currently mobile sized */\n  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);\n  /** Reference to this component's html element */\n  private readonly elementRef = inject<ElementRef<Element>>(ElementRef);\n\n  /** Overlay positions for the mobile menu */\n  protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;\n  /** Overlay positions for the desktop menu */\n  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;\n  /** Blocking overlay scroll strategy */\n  protected readonly mobileMenuBlockScroll = inject(Overlay).scrollStrategies.block();\n  /** Offset from top to the menu. Used to calculate menu heights and max heights */\n  protected readonly menuOffsetPx = signal<number>(0);\n  /** Mobile menu height. Fills the entire screen */\n  protected readonly mobileMenuHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`);\n  /** Desktop menu max height */\n  protected readonly desktopMenuMaxHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px - 16px)`);\n  /** Mobile menu overlay origin */\n  private readonly mobileMenuOrigin = viewChild.required('mobileMenuOrigin', { read: ElementRef });\n  /** Desktop menu overlay origin */\n  private readonly desktopMenuOrigin = viewChild.required('desktopMenuOrigin', { read: ElementRef });\n  /** Reference to the mobile overlay */\n  private readonly mobileMenuOverlay = viewChild('mobileMenuOverlay', { read: CdkConnectedOverlay });\n  /** Currently open menu or undefined */\n  private readonly activeMenu = signal<Menu | 'main' | undefined>(undefined);\n\n  /** Initialize the header */\n  constructor() {\n    effect(\n      (cleanup) => {\n        if (this.activeMenu() !== undefined) {\n          const observer = this.attachResizeObserver();\n          cleanup(() => observer.disconnect());\n        }\n      },\n      { allowSignalWrites: true },\n    );\n\n    explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });\n  }\n\n  /**\n   * Determine whether the specified menu is open\n   *\n   * @param menu The menu to check\n   * @returns true if the menu is open, false otherwise\n   */\n  isMenuActive(menu: Menu | 'main'): boolean {\n    return this.activeMenu() === menu;\n  }\n\n  /**\n   * Toggles a menu open or close\n   *\n   * @param menu Menu to toggle\n   */\n  toggleMenu(menu: Menu | 'main'): void {\n    this.activeMenu.update((current) => (menu !== current ? menu : undefined));\n  }\n\n  /**\n   * Closes any active menu\n   */\n  closeMenu(): void {\n    this.activeMenu.set(undefined);\n  }\n\n  /**\n   * Creates and attaches a resize observer that updates the menu offset\n   * whenever the header size changes\n   *\n   * @returns The resize observer\n   */\n  private attachResizeObserver(): ResizeObserver {\n    const observer = new ResizeObserver(() => this.updateMenuOffset());\n    observer.observe(this.elementRef.nativeElement, { box: 'border-box' });\n    this.updateMenuOffset();\n    return observer;\n  }\n\n  /**\n   * Computes the bounding box for the menu's overlay origin element\n   *\n   * @returns The computed bounding box\n   */\n  private getMenuOriginBbox(): DOMRect {\n    const origin = this.isMobile() ? this.mobileMenuOrigin() : this.desktopMenuOrigin();\n    return (origin.nativeElement as Element).getBoundingClientRect();\n  }\n\n  /**\n   * Updates the menu offset based on the overlay origin's bounding box\n   */\n  private updateMenuOffset(): void {\n    const { bottom } = this.getMenuOriginBbox();\n    this.menuOffsetPx.set(bottom);\n  }\n\n  /**\n   * Notify menu overlays of position changes\n   */\n  private updateMenuPositions(): void {\n    this.mobileMenuOverlay()?.overlayRef?.updatePosition();\n  }\n}\n",
             "properties": [
                 {
                     "name": "action",
@@ -1057,12 +1057,12 @@
         },
         {
             "name": "HubmapMenuGroupDirective",
-            "id": "directive-HubmapMenuGroupDirective-6874c87b160885858b8b2628f3f0e758ce1128328321b46e3b0b6d7d013b46b85c63b273aa545becc5d0dab07fb4be6b0aa76cbb634dac0cfd7c0a55dec48884",
+            "id": "directive-HubmapMenuGroupDirective-21e104d80a5d9f12330abde2d834f35243a5cf255e6b820eb39c06ff2ba64037c87f4466f9d20f13649ac1556394b3d5a06c786b686645f322e4aedee9cbd089",
             "file": "navigation/header/src/lib/hubmap-menu-content/hubmap-menu-content.component.ts",
             "type": "directive",
             "description": "<p>Directive used to type the context for menu group templates</p>\n",
             "rawdescription": "\nDirective used to type the context for menu group templates",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenu, HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenu>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenuGroup[]>();\n}\n",
             "selector": "ng-template[hraHubmapMenuGroup]",
             "providers": [],
             "hostDirectives": [],
@@ -1128,12 +1128,12 @@
         },
         {
             "name": "HubmapMenuItemDirective",
-            "id": "directive-HubmapMenuItemDirective-6874c87b160885858b8b2628f3f0e758ce1128328321b46e3b0b6d7d013b46b85c63b273aa545becc5d0dab07fb4be6b0aa76cbb634dac0cfd7c0a55dec48884",
+            "id": "directive-HubmapMenuItemDirective-21e104d80a5d9f12330abde2d834f35243a5cf255e6b820eb39c06ff2ba64037c87f4466f9d20f13649ac1556394b3d5a06c786b686645f322e4aedee9cbd089",
             "file": "navigation/header/src/lib/hubmap-menu-content/hubmap-menu-content.component.ts",
             "type": "directive",
             "description": "<p>Directive used to type the context for menu item templates</p>\n",
             "rawdescription": "\nDirective used to type the context for menu item templates",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenu, HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenu>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenuGroup[]>();\n}\n",
             "selector": "ng-template[hraHubmapMenuItem]",
             "providers": [],
             "hostDirectives": [],
@@ -3348,7 +3348,7 @@
         },
         {
             "name": "DesktopMenuComponent",
-            "id": "component-DesktopMenuComponent-79c9f13c381823d154dd837c3f1980020c5619f6cde356fd9a0aa190654c96145ac7c6fcf71d0d58bc953b153dc84bb0b58ab4d1baeda9e47e6be61bcde78b14",
+            "id": "component-DesktopMenuComponent-12c5f36a7d6e502a54e6b6338c3144bb5e15ffc65a65400507451c59d3939303ee835bae832863bf54ec5881c86a2d5898068e41199fa8e9f15ad463df0ecdc2",
             "file": "navigation/header/src/lib/desktop-menu/desktop-menu.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -3369,7 +3369,7 @@
             "propertiesClass": [
                 {
                     "name": "menu",
-                    "defaultValue": "input.required<Menu | HubmapMenu>()",
+                    "defaultValue": "input.required<Menu | HubmapMenuGroup[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3384,7 +3384,7 @@
                 },
                 {
                     "name": "typedMenu",
-                    "defaultValue": "computed(() => {\n    const menu = this.menu();\n    return '$schema' in menu ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };\n  })",
+                    "defaultValue": "computed(() => {\n    const menu = this.menu();\n    return Array.isArray(menu) ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3425,7 +3425,7 @@
             "description": "<p>Display a menu for desktop sized screens</p>\n",
             "rawdescription": "\n\nDisplay a menu for desktop sized screens\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';\nimport { MenuContentComponent } from '../menu-content/menu-content.component';\nimport { HubmapMenu } from '../types/hubmap-menu.schema';\nimport { Menu } from '../types/menus.schema';\n\n/**\n * Display a menu for desktop sized screens\n */\n@Component({\n  selector: 'hra-desktop-menu',\n  standalone: true,\n  imports: [CommonModule, ScrollingModule, HubmapMenuContentComponent, MenuContentComponent],\n  templateUrl: './desktop-menu.component.html',\n  styleUrl: './desktop-menu.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DesktopMenuComponent {\n  /** Menu to display */\n  readonly menu = input.required<Menu | HubmapMenu>();\n\n  /** Menu object along with whether it is a hubmap or regular menu type */\n  protected typedMenu = computed(() => {\n    const menu = this.menu();\n    return '$schema' in menu ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };\n  });\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';\nimport { MenuContentComponent } from '../menu-content/menu-content.component';\nimport { HubmapMenuGroup } from '../types/hubmap-menu.schema';\nimport { Menu } from '../types/menus.schema';\n\n/**\n * Display a menu for desktop sized screens\n */\n@Component({\n  selector: 'hra-desktop-menu',\n  standalone: true,\n  imports: [CommonModule, ScrollingModule, HubmapMenuContentComponent, MenuContentComponent],\n  templateUrl: './desktop-menu.component.html',\n  styleUrl: './desktop-menu.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DesktopMenuComponent {\n  /** Menu to display */\n  readonly menu = input.required<Menu | HubmapMenuGroup[]>();\n\n  /** Menu object along with whether it is a hubmap or regular menu type */\n  protected typedMenu = computed(() => {\n    const menu = this.menu();\n    return Array.isArray(menu) ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };\n  });\n}\n",
             "styleUrl": "./desktop-menu.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -3833,8 +3833,8 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-96e83c9c4ebc400a2e4abee79347d8e835e5bb24be59e80ea7c222bf72e6e30fc4c80b36d9145bdf444e3029dedf5f53e784ef1a3fd2c27762ad470dfcc108ed",
-            "file": "footer/src/lib/footer.component.ts",
+            "id": "component-FooterComponent-fbf1ac988b1f7f045d50a31cd2afdb4429a6a5bb65d04acbe222c6aeb469e6efe8a02af27609b00ea75318596f210cc54faf2acbb4edaf518829c475795ed128",
+            "file": "navigation/footer/src/lib/footer.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -3849,24 +3849,73 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
+            "inputsClass": [
                 {
-                    "name": "socials",
-                    "defaultValue": "SOCIAL_MEDIA_IDS",
+                    "name": "funders",
+                    "defaultValue": "FUNDER_IDS",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>List of social media links shown</p>\n",
-                    "line": 21,
-                    "rawdescription": "\nList of social media links shown",
+                    "description": "<p>List of funders to show</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nList of funders to show",
                     "modifierKind": [
-                        124,
                         148
-                    ]
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "socials",
+                    "defaultValue": "SOCIAL_IDS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>List of social media link to show</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nList of social media link to show",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "funders",
+                    "defaultValue": "FUNDER_IDS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>List of funders to show</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nList of funders to show",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "socials",
+                    "defaultValue": "SOCIAL_IDS",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>List of social media link to show</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nList of social media link to show",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "methodsClass": [],
@@ -3885,12 +3934,12 @@
                     "type": "module"
                 },
                 {
-                    "name": "BrandLogoComponent",
-                    "type": "component"
+                    "name": "BrandModule",
+                    "type": "module"
                 },
                 {
-                    "name": "SocialMediaButtonComponent",
-                    "type": "component"
+                    "name": "ButtonsModule",
+                    "type": "module"
                 },
                 {
                     "name": "FundingComponent",
@@ -3900,13 +3949,13 @@
             "description": "<p>Global footer component</p>\n",
             "rawdescription": "\n\nGlobal footer component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BrandLogoComponent } from '@hra-ui/design-system/brand/logo';\nimport { SOCIAL_MEDIA_IDS, SocialMediaButtonComponent } from '@hra-ui/design-system/social-media-button';\nimport { FundingComponent } from './funding/funding.component';\n\n/**\n * Global footer component\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatIconModule, BrandLogoComponent, SocialMediaButtonComponent, FundingComponent],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent {\n  /** List of social media links shown */\n  protected readonly socials = SOCIAL_MEDIA_IDS;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatIconModule } from '@angular/material/icon';\nimport { BrandModule } from '@hra-ui/design-system/brand';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';\nimport { FundingComponent } from './funding/funding.component';\nimport { FUNDER_IDS } from './static-data/parsed';\n\n/**\n * Global footer component\n */\n@Component({\n  selector: 'hra-footer',\n  standalone: true,\n  imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterComponent {\n  /** List of funders to show */\n  readonly funders = input(FUNDER_IDS);\n  /** List of social media link to show */\n  readonly socials = input(SOCIAL_IDS);\n}\n",
             "styleUrl": "./footer.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"left\">\n  <div class=\"content\">\n    <hra-brand-logo class=\"logo\"></hra-brand-logo>\n    <span class=\"copyright\">\n      <mat-icon fontSet=\"material-symbols-outlined\">copyright</mat-icon>\n      2024 CNS at Indiana University\n    </span>\n    <div class=\"socials\">\n      @for (id of socials; track id) {\n        <hra-social-media-button [id]=\"$any(id)\" size=\"large\" variant=\"light\"></hra-social-media-button>\n      }\n    </div>\n  </div>\n</div>\n\n<div class=\"right\">\n  <div class=\"content\">\n    <hra-funding></hra-funding>\n    <p class=\"disclaimer\">\n      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or\n      medical or professional advice.\n    </p>\n    <p class=\"data-notice\">\n      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including\n      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in\n      scientific results published by HuBMAP consortium collaborations.\n    </p>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"left\">\n  <div class=\"content\">\n    <hra-brand-logo class=\"logo\"></hra-brand-logo>\n    <span class=\"copyright\">\n      <mat-icon fontSet=\"material-symbols-outlined\">copyright</mat-icon>\n      2024 CNS at Indiana University\n    </span>\n    <div class=\"socials\">\n      @for (id of socials(); track id) {\n        <hra-social-media-button [id]=\"$any(id)\" size=\"large\" variant=\"light\"></hra-social-media-button>\n      }\n    </div>\n  </div>\n</div>\n\n<div class=\"right\">\n  <div class=\"content\">\n    <hra-funding [funders]=\"funders()\"></hra-funding>\n    <p class=\"disclaimer\">\n      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or\n      medical or professional advice.\n    </p>\n    <p class=\"data-notice\">\n      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including\n      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in\n      scientific results published by HuBMAP consortium collaborations.\n    </p>\n  </div>\n</div>\n"
         },
         {
             "name": "FullscreenActionsComponent",
@@ -4278,8 +4327,8 @@
         },
         {
             "name": "FundingComponent",
-            "id": "component-FundingComponent-9740e1259d8a02db8a922ff031a328dfa9e9de7bef34db4796d61a5b86551713b2680596ffbc6effc7acd34ba19a2155d9ebc3261f605a1da460f42c05520ea8",
-            "file": "footer/src/lib/funding/funding.component.ts",
+            "id": "component-FundingComponent-b0dc7de6c8420943d364fd12e745a2b187baa22953fb83c11a4fc0e8a072509ac753905f726a264c4e1cf1b37f690ce301f50536e99d198faea7df83bbb4cdff",
+            "file": "navigation/footer/src/lib/funding/funding.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -4294,52 +4343,34 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "funders",
-                    "defaultValue": "FUNDER_IDS",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Funders to display</p>\n",
-                    "line": 23,
-                    "rawdescription": "\nFunders to display",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                }
-            ],
+            "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
                     "name": "funders",
-                    "defaultValue": "FUNDER_IDS",
+                    "defaultValue": "input.required<FunderId[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Funders to display</p>\n",
-                    "line": 23,
+                    "line": 18,
                     "rawdescription": "\nFunders to display",
                     "modifierKind": [
                         148
-                    ],
-                    "required": false
+                    ]
                 },
                 {
                     "name": "fundersData",
-                    "defaultValue": "computed(() => this.funders().map((id) => FUNDERS_DATA[id]))",
+                    "defaultValue": "computed(() => {\n    const ids = new Set(this.funders());\n    return FUNDERS.filter((item) => ids.has(item.id));\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Associated data for each funder displayed</p>\n",
-                    "line": 26,
+                    "line": 21,
                     "rawdescription": "\nAssociated data for each funder displayed",
                     "modifierKind": [
                         124,
@@ -4366,7 +4397,7 @@
             "description": "<p>Displays a list of funders</p>\n",
             "rawdescription": "\nDisplays a list of funders",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport * as FUNDERS_DATA from './funders.json';\n\n/** Funder id */\nexport type FunderId = keyof typeof FUNDERS_DATA;\n\n/** All available funder ids */\nexport const FUNDER_IDS = Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[];\n\n/** Displays a list of funders */\n@Component({\n  selector: 'hra-funding',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe],\n  templateUrl: './funding.component.html',\n  styleUrl: './funding.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FundingComponent {\n  /** Funders to display */\n  readonly funders = input(FUNDER_IDS);\n\n  /** Associated data for each funder displayed */\n  protected readonly fundersData = computed(() => this.funders().map((id) => FUNDERS_DATA[id]));\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { FUNDERS } from '../static-data/parsed';\nimport { FunderId } from '../types/funders.schema';\n\n/** Displays a list of funders */\n@Component({\n  selector: 'hra-funding',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe],\n  templateUrl: './funding.component.html',\n  styleUrl: './funding.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FundingComponent {\n  /** Funders to display */\n  readonly funders = input.required<FunderId[]>();\n\n  /** Associated data for each funder displayed */\n  protected readonly fundersData = computed(() => {\n    const ids = new Set(this.funders());\n    return FUNDERS.filter((item) => ids.has(item.id));\n  });\n}\n",
             "styleUrl": "./funding.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -4376,7 +4407,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-b716b50e26d1dbf89555edf44617b68d5ac2301c812852831f85a50029bf60b04d5a9c5a802cedda52c7ebde13f8ffc831b3b9279aa747f8903c476b4290830c",
+            "id": "component-HeaderComponent-3824060635633bf8a868ca93d0612ce848bd5eb11628973460412af3bb0433b60d29dd389de3d126275bff40b09c646f6937ce5b48606f625a4bb55173e1e89d",
             "file": "navigation/header/src/lib/header.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -4498,7 +4529,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Desktop menu max height</p>\n",
-                    "line": 107,
+                    "line": 109,
                     "rawdescription": "\nDesktop menu max height",
                     "modifierKind": [
                         124,
@@ -4562,7 +4593,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Offset from top to the menu. Used to calculate menu heights and max heights</p>\n",
-                    "line": 103,
+                    "line": 105,
                     "rawdescription": "\nOffset from top to the menu. Used to calculate menu heights and max heights",
                     "modifierKind": [
                         124,
@@ -4586,6 +4617,22 @@
                     "required": false
                 },
                 {
+                    "name": "mobileMenuBlockScroll",
+                    "defaultValue": "inject(Overlay).scrollStrategies.block()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Blocking overlay scroll strategy</p>\n",
+                    "line": 103,
+                    "rawdescription": "\nBlocking overlay scroll strategy",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
                     "name": "mobileMenuHeight",
                     "defaultValue": "computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`)",
                     "deprecated": false,
@@ -4594,7 +4641,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Mobile menu height. Fills the entire screen</p>\n",
-                    "line": 105,
+                    "line": 107,
                     "rawdescription": "\nMobile menu height. Fills the entire screen",
                     "modifierKind": [
                         124,
@@ -4656,7 +4703,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 154,
+                    "line": 156,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nCloses any active menu\n",
@@ -4675,7 +4722,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 138,
+                    "line": 140,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nDetermine whether the specified menu is open\n\n",
@@ -4683,8 +4730,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5061,
-                                "end": 5065,
+                                "pos": 5199,
+                                "end": 5203,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -4695,8 +4742,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5055,
-                                "end": 5060,
+                                "pos": 5193,
+                                "end": 5198,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -4707,8 +4754,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 5090,
-                                "end": 5097,
+                                "pos": 5228,
+                                "end": 5235,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -4732,7 +4779,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 147,
+                    "line": 149,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nToggles a menu open or close\n\n",
@@ -4740,8 +4787,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5294,
-                                "end": 5298,
+                                "pos": 5432,
+                                "end": 5436,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -4752,8 +4799,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5288,
-                                "end": 5293,
+                                "pos": 5426,
+                                "end": 5431,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -4815,7 +4862,7 @@
             "description": "<p>Global navigation header.\nIncludes a call to action bar, navigation menus, breadcrumbs, and a progress bar.</p>\n",
             "rawdescription": "\n\nGlobal navigation header.\nIncludes a call to action bar, navigation menus, breadcrumbs, and a progress bar.\n",
             "type": "component",
-            "sourceCode": "import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  effect,\n  ElementRef,\n  inject,\n  input,\n  signal,\n  viewChild,\n} from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';\nimport { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';\nimport { BrandModule } from '@hra-ui/design-system/brand';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { explicitEffect } from 'ngxtension/explicit-effect';\nimport { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';\nimport { MobileMenuComponent } from './mobile-menu/mobile-menu.component';\nimport { HUBMAP_MENU, MENUS } from './static-data/parsed';\nimport { Menu } from './types/menus.schema';\n\n/** Call to action configuration */\nexport interface CtaConfig {\n  /** Action text */\n  action: string;\n  /** Action description */\n  description: string;\n  /** Action url */\n  url: string;\n}\n\n/** Position of the mobile menu overlay */\nconst MOBILE_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },\n];\n/** Position of the desktop menu overlay */\nconst DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },\n];\n\n/**\n * Global navigation header.\n * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    OverlayModule,\n    MatDividerModule,\n    MatIconModule,\n    MatProgressBarModule,\n    BrandModule,\n    ButtonsModule,\n    CtaBarComponent,\n    DesktopMenuComponent,\n    MobileMenuComponent,\n  ],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /** Call to action configuration */\n  readonly cta = input<CtaConfig>();\n  /** Hubmap menu data */\n  readonly hubmapMenu = input(HUBMAP_MENU);\n  /** All other menus */\n  readonly menus = input(MENUS);\n  /** Breadcrumb items */\n  readonly breadcrumbs = input<BreadcrumbItem[]>([]);\n  /**\n   * Progress bar progress.\n   * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.\n   * Using false disables and hides the progress bar.\n   */\n  readonly progress = input<boolean | number>(false);\n\n  /** Whether the user has dismissed the call to action */\n  protected readonly ctaDismissed = signal(false);\n  /** Progress bar mode */\n  protected readonly progressMode = computed((): ProgressBarMode => {\n    return typeof this.progress() === 'boolean' ? 'indeterminate' : 'determinate';\n  });\n\n  /** Whether the screen is currently mobile sized */\n  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);\n  /** Reference to this component's html element */\n  private readonly elementRef = inject<ElementRef<Element>>(ElementRef);\n\n  /** Overlay positions for the mobile menu */\n  protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;\n  /** Overlay positions for the desktop menu */\n  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;\n  /** Offset from top to the menu. Used to calculate menu heights and max heights */\n  protected readonly menuOffsetPx = signal<number>(0);\n  /** Mobile menu height. Fills the entire screen */\n  protected readonly mobileMenuHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`);\n  /** Desktop menu max height */\n  protected readonly desktopMenuMaxHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px - 16px)`);\n  /** Mobile menu overlay origin */\n  private readonly mobileMenuOrigin = viewChild.required('mobileMenuOrigin', { read: ElementRef });\n  /** Desktop menu overlay origin */\n  private readonly desktopMenuOrigin = viewChild.required('desktopMenuOrigin', { read: ElementRef });\n  /** Reference to the mobile overlay */\n  private readonly mobileMenuOverlay = viewChild('mobileMenuOverlay', { read: CdkConnectedOverlay });\n  /** Currently open menu or undefined */\n  private readonly activeMenu = signal<Menu | 'main' | undefined>(undefined);\n\n  /** Initialize the header */\n  constructor() {\n    effect(\n      (cleanup) => {\n        if (this.activeMenu() !== undefined) {\n          const observer = this.attachResizeObserver();\n          cleanup(() => observer.disconnect());\n        }\n      },\n      { allowSignalWrites: true },\n    );\n\n    explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });\n  }\n\n  /**\n   * Determine whether the specified menu is open\n   *\n   * @param menu The menu to check\n   * @returns true if the menu is open, false otherwise\n   */\n  isMenuActive(menu: Menu | 'main'): boolean {\n    return this.activeMenu() === menu;\n  }\n\n  /**\n   * Toggles a menu open or close\n   *\n   * @param menu Menu to toggle\n   */\n  toggleMenu(menu: Menu | 'main'): void {\n    this.activeMenu.update((current) => (menu !== current ? menu : undefined));\n  }\n\n  /**\n   * Closes any active menu\n   */\n  closeMenu(): void {\n    this.activeMenu.set(undefined);\n  }\n\n  /**\n   * Creates and attaches a resize observer that updates the menu offset\n   * whenever the header size changes\n   *\n   * @returns The resize observer\n   */\n  private attachResizeObserver(): ResizeObserver {\n    const observer = new ResizeObserver(() => this.updateMenuOffset());\n    observer.observe(this.elementRef.nativeElement, { box: 'border-box' });\n    this.updateMenuOffset();\n    return observer;\n  }\n\n  /**\n   * Computes the bounding box for the menu's overlay origin element\n   *\n   * @returns The computed bounding box\n   */\n  private getMenuOriginBbox(): DOMRect {\n    const origin = this.isMobile() ? this.mobileMenuOrigin() : this.desktopMenuOrigin();\n    return (origin.nativeElement as Element).getBoundingClientRect();\n  }\n\n  /**\n   * Updates the menu offset based on the overlay origin's bounding box\n   */\n  private updateMenuOffset(): void {\n    const { bottom } = this.getMenuOriginBbox();\n    this.menuOffsetPx.set(bottom);\n  }\n\n  /**\n   * Notify menu overlays of position changes\n   */\n  private updateMenuPositions(): void {\n    this.mobileMenuOverlay()?.overlayRef?.updatePosition();\n  }\n}\n",
+            "sourceCode": "import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  computed,\n  effect,\n  ElementRef,\n  inject,\n  input,\n  signal,\n  viewChild,\n} from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';\nimport { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';\nimport { BrandModule } from '@hra-ui/design-system/brand';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { explicitEffect } from 'ngxtension/explicit-effect';\nimport { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';\nimport { MobileMenuComponent } from './mobile-menu/mobile-menu.component';\nimport { HUBMAP_MENU, MENUS } from './static-data/parsed';\nimport { Menu } from './types/menus.schema';\n\n/** Call to action configuration */\nexport interface CtaConfig {\n  /** Action text */\n  action: string;\n  /** Action description */\n  description: string;\n  /** Action url */\n  url: string;\n}\n\n/** Position of the mobile menu overlay */\nconst MOBILE_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },\n];\n/** Position of the desktop menu overlay */\nconst DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [\n  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },\n];\n\n/**\n * Global navigation header.\n * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.\n */\n@Component({\n  selector: 'hra-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    OverlayModule,\n    MatDividerModule,\n    MatIconModule,\n    MatProgressBarModule,\n    BrandModule,\n    ButtonsModule,\n    CtaBarComponent,\n    DesktopMenuComponent,\n    MobileMenuComponent,\n  ],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /** Call to action configuration */\n  readonly cta = input<CtaConfig>();\n  /** Hubmap menu data */\n  readonly hubmapMenu = input(HUBMAP_MENU);\n  /** All other menus */\n  readonly menus = input(MENUS);\n  /** Breadcrumb items */\n  readonly breadcrumbs = input<BreadcrumbItem[]>([]);\n  /**\n   * Progress bar progress.\n   * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.\n   * Using false disables and hides the progress bar.\n   */\n  readonly progress = input<boolean | number>(false);\n\n  /** Whether the user has dismissed the call to action */\n  protected readonly ctaDismissed = signal(false);\n  /** Progress bar mode */\n  protected readonly progressMode = computed((): ProgressBarMode => {\n    return typeof this.progress() === 'boolean' ? 'indeterminate' : 'determinate';\n  });\n\n  /** Whether the screen is currently mobile sized */\n  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);\n  /** Reference to this component's html element */\n  private readonly elementRef = inject<ElementRef<Element>>(ElementRef);\n\n  /** Overlay positions for the mobile menu */\n  protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;\n  /** Overlay positions for the desktop menu */\n  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;\n  /** Blocking overlay scroll strategy */\n  protected readonly mobileMenuBlockScroll = inject(Overlay).scrollStrategies.block();\n  /** Offset from top to the menu. Used to calculate menu heights and max heights */\n  protected readonly menuOffsetPx = signal<number>(0);\n  /** Mobile menu height. Fills the entire screen */\n  protected readonly mobileMenuHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`);\n  /** Desktop menu max height */\n  protected readonly desktopMenuMaxHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px - 16px)`);\n  /** Mobile menu overlay origin */\n  private readonly mobileMenuOrigin = viewChild.required('mobileMenuOrigin', { read: ElementRef });\n  /** Desktop menu overlay origin */\n  private readonly desktopMenuOrigin = viewChild.required('desktopMenuOrigin', { read: ElementRef });\n  /** Reference to the mobile overlay */\n  private readonly mobileMenuOverlay = viewChild('mobileMenuOverlay', { read: CdkConnectedOverlay });\n  /** Currently open menu or undefined */\n  private readonly activeMenu = signal<Menu | 'main' | undefined>(undefined);\n\n  /** Initialize the header */\n  constructor() {\n    effect(\n      (cleanup) => {\n        if (this.activeMenu() !== undefined) {\n          const observer = this.attachResizeObserver();\n          cleanup(() => observer.disconnect());\n        }\n      },\n      { allowSignalWrites: true },\n    );\n\n    explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });\n  }\n\n  /**\n   * Determine whether the specified menu is open\n   *\n   * @param menu The menu to check\n   * @returns true if the menu is open, false otherwise\n   */\n  isMenuActive(menu: Menu | 'main'): boolean {\n    return this.activeMenu() === menu;\n  }\n\n  /**\n   * Toggles a menu open or close\n   *\n   * @param menu Menu to toggle\n   */\n  toggleMenu(menu: Menu | 'main'): void {\n    this.activeMenu.update((current) => (menu !== current ? menu : undefined));\n  }\n\n  /**\n   * Closes any active menu\n   */\n  closeMenu(): void {\n    this.activeMenu.set(undefined);\n  }\n\n  /**\n   * Creates and attaches a resize observer that updates the menu offset\n   * whenever the header size changes\n   *\n   * @returns The resize observer\n   */\n  private attachResizeObserver(): ResizeObserver {\n    const observer = new ResizeObserver(() => this.updateMenuOffset());\n    observer.observe(this.elementRef.nativeElement, { box: 'border-box' });\n    this.updateMenuOffset();\n    return observer;\n  }\n\n  /**\n   * Computes the bounding box for the menu's overlay origin element\n   *\n   * @returns The computed bounding box\n   */\n  private getMenuOriginBbox(): DOMRect {\n    const origin = this.isMobile() ? this.mobileMenuOrigin() : this.desktopMenuOrigin();\n    return (origin.nativeElement as Element).getBoundingClientRect();\n  }\n\n  /**\n   * Updates the menu offset based on the overlay origin's bounding box\n   */\n  private updateMenuOffset(): void {\n    const { bottom } = this.getMenuOriginBbox();\n    this.menuOffsetPx.set(bottom);\n  }\n\n  /**\n   * Notify menu overlays of position changes\n   */\n  private updateMenuPositions(): void {\n    this.mobileMenuOverlay()?.overlayRef?.updatePosition();\n  }\n}\n",
             "styleUrl": "./header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -4826,15 +4873,15 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 115,
+                "line": 117,
                 "rawdescription": "\nInitialize the header"
             },
             "extends": [],
-            "templateData": "@let ctaConfig = cta();\n@if (ctaConfig && !ctaDismissed()) {\n  <hra-cta-bar\n    [action]=\"ctaConfig.action\"\n    [description]=\"ctaConfig.description\"\n    [url]=\"ctaConfig.url\"\n    (closeClick)=\"ctaDismissed.set(true)\"\n  >\n  </hra-cta-bar>\n}\n\n<header\n  class=\"header\"\n  cdkOverlayOrigin\n  [class.mobile-menu-open]=\"isMobile() && isMenuActive('main')\"\n  #mobileMenuOrigin=\"cdkOverlayOrigin\"\n  data-testid=\"header\"\n>\n  <div class=\"menus\" #desktopMenuOrigin>\n    <hra-brand-logo size=\"small\"></hra-brand-logo>\n\n    <div class=\"filler\"></div>\n\n    @if (!isMobile()) {\n      @for (menu of menus().menus; track menu.id) {\n        <hra-navigation-category-toggle\n          cdkOverlayOrigin\n          [toggled]=\"isMenuActive(menu)\"\n          (toggledChange)=\"toggleMenu(menu)\"\n          #navigationCategoryMenuOrigin=\"cdkOverlayOrigin\"\n        >\n          {{ menu.label }}\n        </hra-navigation-category-toggle>\n\n        <ng-template\n          cdkConnectedOverlay\n          cdkConnectedOverlayHasBackdrop=\"false\"\n          cdkConnectedOverlayLockPosition=\"true\"\n          cdkConnectedOverlayPush=\"true\"\n          [cdkConnectedOverlayOpen]=\"isMenuActive(menu)\"\n          [cdkConnectedOverlayOrigin]=\"navigationCategoryMenuOrigin\"\n          [cdkConnectedOverlayPositions]=\"desktopMenuPositions\"\n          (overlayOutsideClick)=\"closeMenu()\"\n        >\n          <hra-desktop-menu [menu]=\"menu\" [style.max-height]=\"desktopMenuMaxHeight()\"></hra-desktop-menu>\n        </ng-template>\n      }\n    }\n\n    <button\n      mat-icon-button\n      cdkOverlayOrigin\n      aria-label=\"Open the main navigation menu\"\n      (click)=\"toggleMenu('main')\"\n      #mainMenuOrigin=\"cdkOverlayOrigin\"\n    >\n      <mat-icon>\n        @if (isMenuActive('main')) {\n          close\n        } @else if (isMobile()) {\n          menu\n        } @else {\n          apps\n        }\n      </mat-icon>\n    </button>\n\n    @if (isMobile()) {\n      <ng-template\n        cdkConnectedOverlay\n        cdkConnectedOverlayDisposeOnNavigation=\"true\"\n        cdkConnectedOverlayHasBackdrop=\"false\"\n        cdkConnectedOverlayLockPosition=\"true\"\n        [cdkConnectedOverlayOpen]=\"isMenuActive('main')\"\n        [cdkConnectedOverlayOrigin]=\"mobileMenuOrigin\"\n        [cdkConnectedOverlayPositions]=\"mobileMenuPositions\"\n        [cdkConnectedOverlayHeight]=\"mobileMenuHeight()\"\n        [cdkConnectedOverlayWidth]=\"'100%'\"\n        #mobileMenuOverlay\n      >\n        <hra-mobile-menu [hubmapMenu]=\"hubmapMenu()\" [menus]=\"menus()\"></hra-mobile-menu>\n      </ng-template>\n    } @else {\n      <ng-template\n        cdkConnectedOverlay\n        cdkConnectedOverlayHasBackdrop=\"false\"\n        cdkConnectedOverlayLockPosition=\"true\"\n        cdkConnectedOverlayPush=\"true\"\n        [cdkConnectedOverlayOpen]=\"isMenuActive('main')\"\n        [cdkConnectedOverlayOrigin]=\"mainMenuOrigin\"\n        [cdkConnectedOverlayPositions]=\"desktopMenuPositions\"\n        (overlayOutsideClick)=\"closeMenu()\"\n      >\n        <hra-desktop-menu [menu]=\"hubmapMenu()\" [style.max-height]=\"desktopMenuMaxHeight()\"></hra-desktop-menu>\n      </ng-template>\n    }\n  </div>\n\n  @if (breadcrumbs().length > 0) {\n    <mat-divider></mat-divider>\n\n    <div class=\"navigation\">\n      <hra-breadcrumbs [crumbs]=\"breadcrumbs()\"> </hra-breadcrumbs>\n      <div class=\"filler\"></div>\n      <ng-content></ng-content>\n    </div>\n  }\n</header>\n\n@if (progress() !== false) {\n  <mat-progress-bar class=\"progress-bar\" [mode]=\"progressMode()\" [value]=\"progress()\"></mat-progress-bar>\n}\n"
+            "templateData": "@let ctaConfig = cta();\n@if (ctaConfig && !ctaDismissed()) {\n  <hra-cta-bar\n    [action]=\"ctaConfig.action\"\n    [description]=\"ctaConfig.description\"\n    [url]=\"ctaConfig.url\"\n    (closeClick)=\"ctaDismissed.set(true)\"\n  >\n  </hra-cta-bar>\n}\n\n<header\n  class=\"header\"\n  cdkOverlayOrigin\n  [class.mobile-menu-open]=\"isMobile() && isMenuActive('main')\"\n  #mobileMenuOrigin=\"cdkOverlayOrigin\"\n  data-testid=\"header\"\n>\n  <div class=\"menus\" #desktopMenuOrigin>\n    <hra-brand-logo size=\"small\"></hra-brand-logo>\n\n    <div class=\"filler\"></div>\n\n    @if (!isMobile()) {\n      @for (menu of menus(); track menu.id) {\n        <hra-navigation-category-toggle\n          cdkOverlayOrigin\n          [toggled]=\"isMenuActive(menu)\"\n          (toggledChange)=\"toggleMenu(menu)\"\n          #navigationCategoryMenuOrigin=\"cdkOverlayOrigin\"\n        >\n          {{ menu.label }}\n        </hra-navigation-category-toggle>\n\n        <ng-template\n          cdkConnectedOverlay\n          cdkConnectedOverlayHasBackdrop=\"false\"\n          cdkConnectedOverlayLockPosition=\"true\"\n          cdkConnectedOverlayPush=\"true\"\n          [cdkConnectedOverlayOpen]=\"isMenuActive(menu)\"\n          [cdkConnectedOverlayOrigin]=\"navigationCategoryMenuOrigin\"\n          [cdkConnectedOverlayPositions]=\"desktopMenuPositions\"\n          (overlayOutsideClick)=\"closeMenu()\"\n        >\n          <hra-desktop-menu [menu]=\"menu\" [style.max-height]=\"desktopMenuMaxHeight()\"></hra-desktop-menu>\n        </ng-template>\n      }\n    }\n\n    <button\n      mat-icon-button\n      cdkOverlayOrigin\n      aria-label=\"Open the main navigation menu\"\n      (click)=\"toggleMenu('main')\"\n      #mainMenuOrigin=\"cdkOverlayOrigin\"\n    >\n      <mat-icon>\n        @if (isMenuActive('main')) {\n          close\n        } @else if (isMobile()) {\n          menu\n        } @else {\n          apps\n        }\n      </mat-icon>\n    </button>\n\n    @if (isMobile()) {\n      <ng-template\n        cdkConnectedOverlay\n        cdkConnectedOverlayDisposeOnNavigation=\"true\"\n        cdkConnectedOverlayHasBackdrop=\"false\"\n        cdkConnectedOverlayLockPosition=\"true\"\n        [cdkConnectedOverlayOpen]=\"isMenuActive('main')\"\n        [cdkConnectedOverlayOrigin]=\"mobileMenuOrigin\"\n        [cdkConnectedOverlayPositions]=\"mobileMenuPositions\"\n        [cdkConnectedOverlayScrollStrategy]=\"mobileMenuBlockScroll\"\n        [cdkConnectedOverlayHeight]=\"mobileMenuHeight()\"\n        [cdkConnectedOverlayWidth]=\"'100%'\"\n        #mobileMenuOverlay\n      >\n        <hra-mobile-menu [hubmapMenu]=\"hubmapMenu()\" [menus]=\"menus()\"></hra-mobile-menu>\n      </ng-template>\n    } @else {\n      <ng-template\n        cdkConnectedOverlay\n        cdkConnectedOverlayHasBackdrop=\"false\"\n        cdkConnectedOverlayLockPosition=\"true\"\n        cdkConnectedOverlayPush=\"true\"\n        [cdkConnectedOverlayOpen]=\"isMenuActive('main')\"\n        [cdkConnectedOverlayOrigin]=\"mainMenuOrigin\"\n        [cdkConnectedOverlayPositions]=\"desktopMenuPositions\"\n        (overlayOutsideClick)=\"closeMenu()\"\n      >\n        <hra-desktop-menu [menu]=\"hubmapMenu()\" [style.max-height]=\"desktopMenuMaxHeight()\"></hra-desktop-menu>\n      </ng-template>\n    }\n  </div>\n\n  @if (breadcrumbs().length > 0) {\n    <mat-divider></mat-divider>\n\n    <div class=\"navigation\">\n      <hra-breadcrumbs [crumbs]=\"breadcrumbs()\"> </hra-breadcrumbs>\n      <div class=\"filler\"></div>\n      <ng-content></ng-content>\n    </div>\n  }\n</header>\n\n@if (progress() !== false) {\n  <mat-progress-bar class=\"progress-bar\" [mode]=\"progressMode()\" [value]=\"progress()\"></mat-progress-bar>\n}\n"
         },
         {
             "name": "HubmapMenuContentComponent",
-            "id": "component-HubmapMenuContentComponent-6874c87b160885858b8b2628f3f0e758ce1128328321b46e3b0b6d7d013b46b85c63b273aa545becc5d0dab07fb4be6b0aa76cbb634dac0cfd7c0a55dec48884",
+            "id": "component-HubmapMenuContentComponent-21e104d80a5d9f12330abde2d834f35243a5cf255e6b820eb39c06ff2ba64037c87f4466f9d20f13649ac1556394b3d5a06c786b686645f322e4aedee9cbd089",
             "file": "navigation/header/src/lib/hubmap-menu-content/hubmap-menu-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -4850,27 +4897,12 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "menu",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Menu data to display</p>\n",
-                    "line": 47,
-                    "rawdescription": "\nMenu data to display",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": true
-                }
-            ],
+            "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
                     "name": "menu",
+                    "defaultValue": "input.required<HubmapMenuGroup[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -4881,8 +4913,7 @@
                     "rawdescription": "\nMenu data to display",
                     "modifierKind": [
                         148
-                    ],
-                    "required": true
+                    ]
                 }
             ],
             "methodsClass": [],
@@ -4916,13 +4947,13 @@
             "description": "<p>Displays the content of a hubmap menu.\nWorks for both mobile and desktop size screens.</p>\n",
             "rawdescription": "\n\nDisplays the content of a hubmap menu.\nWorks for both mobile and desktop size screens.\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenu, HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenu>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { ButtonsModule } from '@hra-ui/design-system/buttons';\nimport { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';\n\n/** Directive used to type the context for menu group templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuGroup]',\n  standalone: true,\n})\nexport class HubmapMenuGroupDirective {\n  /** Types the context as `HubmapMenuGroup` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuGroupDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuGroup } {\n    return true;\n  }\n}\n\n/** Directive used to type the context for menu item templates */\n@Directive({\n  selector: 'ng-template[hraHubmapMenuItem]',\n  standalone: true,\n})\nexport class HubmapMenuItemDirective {\n  /** Types the context as `HubmapMenuItem` */\n  /* istanbul ignore next */\n  static ngTemplateContextGuard(_dir: HubmapMenuItemDirective, _ctx: unknown): _ctx is { $implicit: HubmapMenuItem } {\n    return true;\n  }\n}\n\n/**\n * Displays the content of a hubmap menu.\n * Works for both mobile and desktop size screens.\n */\n@Component({\n  selector: 'hra-hubmap-menu-content',\n  standalone: true,\n  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],\n  templateUrl: './hubmap-menu-content.component.html',\n  styleUrl: './hubmap-menu-content.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HubmapMenuContentComponent {\n  /** Menu data to display */\n  readonly menu = input.required<HubmapMenuGroup[]>();\n}\n",
             "styleUrl": "./hubmap-menu-content.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "@for (group of menu().groups; track $index) {\n  <ng-container *ngTemplateOutlet=\"groupTemplate; context: { $implicit: group }\"></ng-container>\n}\n\n<ng-template hraHubmapMenuGroup let-group #groupTemplate>\n  <div class=\"group-label\">\n    {{ group.label }}\n  </div>\n\n  <div class=\"group-items\">\n    @for (item of group.items; track $index) {\n      <ng-container *ngTemplateOutlet=\"itemTemplate; context: { $implicit: item }\"></ng-container>\n    }\n  </div>\n</ng-template>\n\n<ng-template hraHubmapMenuItem let-item #itemTemplate>\n  <hra-app-nav-button\n    class=\"item-button\"\n    [tagline]=\"item.label\"\n    [description]=\"item.description\"\n    [icon]=\"item.icon | assetUrl\"\n    [link]=\"item.url\"\n  >\n  </hra-app-nav-button>\n</ng-template>\n"
+            "templateData": "@for (group of menu(); track $index) {\n  <ng-container *ngTemplateOutlet=\"groupTemplate; context: { $implicit: group }\"></ng-container>\n}\n\n<ng-template hraHubmapMenuGroup let-group #groupTemplate>\n  <div class=\"group-label\">\n    {{ group.label }}\n  </div>\n\n  <div class=\"group-items\">\n    @for (item of group.items; track $index) {\n      <ng-container *ngTemplateOutlet=\"itemTemplate; context: { $implicit: item }\"></ng-container>\n    }\n  </div>\n</ng-template>\n\n<ng-template hraHubmapMenuItem let-item #itemTemplate>\n  <hra-app-nav-button\n    class=\"item-button\"\n    [tagline]=\"item.label\"\n    [description]=\"item.description\"\n    [icon]=\"item.icon | assetUrl\"\n    [link]=\"item.url\"\n  >\n  </hra-app-nav-button>\n</ng-template>\n"
         },
         {
             "name": "IconButtonStylesComponent",
@@ -5452,7 +5483,7 @@
         },
         {
             "name": "MobileMenuComponent",
-            "id": "component-MobileMenuComponent-a670d78a8a2d51111fb7c5a8cd932d9e801b1562887c750cd4f71c6933b4d48f8f2dc06165e622a19e4dc6727412d58bd562b93857349244ddcbf879ddd276ad",
+            "id": "component-MobileMenuComponent-3c1b33fa3178200bc73ee995a4af80a3ff4240ea8147f5ee6c408640fc13db2ea7845a5f29b2b4b6ebb8fffc1e73be89e57633bec82f591b27b9d36e49c28862",
             "file": "navigation/header/src/lib/mobile-menu/mobile-menu.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -5468,42 +5499,12 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "hubmapMenu",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Hubmap menu</p>\n",
-                    "line": 33,
-                    "rawdescription": "\nHubmap menu",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": true
-                },
-                {
-                    "name": "menus",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>All other menus</p>\n",
-                    "line": 35,
-                    "rawdescription": "\nAll other menus",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": true
-                }
-            ],
+            "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
                     "name": "hubmapMenu",
+                    "defaultValue": "input.required<HubmapMenuGroup[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -5514,11 +5515,11 @@
                     "rawdescription": "\nHubmap menu",
                     "modifierKind": [
                         148
-                    ],
-                    "required": true
+                    ]
                 },
                 {
                     "name": "menus",
+                    "defaultValue": "input.required<Menu[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -5529,8 +5530,7 @@
                     "rawdescription": "\nAll other menus",
                     "modifierKind": [
                         148
-                    ],
-                    "required": true
+                    ]
                 }
             ],
             "methodsClass": [],
@@ -5572,13 +5572,13 @@
             "description": "<p>Display a menu for mobile sized screens</p>\n",
             "rawdescription": "\n\nDisplay a menu for mobile sized screens\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';\nimport { MenuContentComponent } from '../menu-content/menu-content.component';\nimport { HubmapMenu } from '../types/hubmap-menu.schema';\nimport { Menus } from '../types/menus.schema';\n\n/**\n * Display a menu for mobile sized screens\n */\n@Component({\n  selector: 'hra-mobile-menu',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatDividerModule,\n    MatExpansionModule,\n    MatIconModule,\n    ScrollingModule,\n    HubmapMenuContentComponent,\n    MenuContentComponent,\n  ],\n  templateUrl: './mobile-menu.component.html',\n  styleUrl: './mobile-menu.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MobileMenuComponent {\n  /** Hubmap menu */\n  readonly hubmapMenu = input.required<HubmapMenu>();\n  /** All other menus */\n  readonly menus = input.required<Menus>();\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, input } from '@angular/core';\nimport { MatDividerModule } from '@angular/material/divider';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { MatIconModule } from '@angular/material/icon';\nimport { ScrollingModule } from '@hra-ui/design-system/scrolling';\nimport { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';\nimport { MenuContentComponent } from '../menu-content/menu-content.component';\nimport { HubmapMenuGroup } from '../types/hubmap-menu.schema';\nimport { Menu } from '../types/menus.schema';\n\n/**\n * Display a menu for mobile sized screens\n */\n@Component({\n  selector: 'hra-mobile-menu',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatDividerModule,\n    MatExpansionModule,\n    MatIconModule,\n    ScrollingModule,\n    HubmapMenuContentComponent,\n    MenuContentComponent,\n  ],\n  templateUrl: './mobile-menu.component.html',\n  styleUrl: './mobile-menu.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MobileMenuComponent {\n  /** Hubmap menu */\n  readonly hubmapMenu = input.required<HubmapMenuGroup[]>();\n  /** All other menus */\n  readonly menus = input.required<Menu[]>();\n}\n",
             "styleUrl": "./mobile-menu.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<mat-divider> </mat-divider>\n<ng-scrollbar>\n  <mat-accordion displayMode=\"flat\" multi=\"false\">\n    @for (menu of menus().menus; track $index) {\n      <mat-expansion-panel class=\"panel\" hideToggle>\n        <mat-expansion-panel-header class=\"header\">\n          <mat-panel-title>\n            {{ menu.label }}\n            <mat-icon class=\"toggle-icon\"> </mat-icon>\n          </mat-panel-title>\n        </mat-expansion-panel-header>\n\n        <hra-menu-content class=\"content\" variant=\"mobile\" [menu]=\"menu\"></hra-menu-content>\n      </mat-expansion-panel>\n\n      <mat-divider> </mat-divider>\n    }\n\n    <mat-expansion-panel class=\"panel\" hideToggle>\n      <mat-expansion-panel-header class=\"header\">\n        <mat-panel-title>\n          HuBMAP Tools & Applications\n          <mat-icon class=\"toggle-icon\"> </mat-icon>\n        </mat-panel-title>\n      </mat-expansion-panel-header>\n\n      <hra-hubmap-menu-content class=\"content\" [menu]=\"hubmapMenu()\"> </hra-hubmap-menu-content>\n    </mat-expansion-panel>\n\n    <mat-divider> </mat-divider>\n  </mat-accordion>\n</ng-scrollbar>\n"
+            "templateData": "<mat-divider> </mat-divider>\n<ng-scrollbar>\n  <mat-accordion displayMode=\"flat\" multi=\"false\">\n    @for (menu of menus(); track $index) {\n      <mat-expansion-panel class=\"panel\" hideToggle>\n        <mat-expansion-panel-header class=\"header\">\n          <mat-panel-title>\n            {{ menu.label }}\n            <mat-icon class=\"toggle-icon\"> </mat-icon>\n          </mat-panel-title>\n        </mat-expansion-panel-header>\n\n        <hra-menu-content class=\"content\" variant=\"mobile\" [menu]=\"menu\"></hra-menu-content>\n      </mat-expansion-panel>\n\n      <mat-divider> </mat-divider>\n    }\n\n    <mat-expansion-panel class=\"panel\" hideToggle>\n      <mat-expansion-panel-header class=\"header\">\n        <mat-panel-title>\n          HuBMAP Tools & Applications\n          <mat-icon class=\"toggle-icon\"> </mat-icon>\n        </mat-panel-title>\n      </mat-expansion-panel-header>\n\n      <hra-hubmap-menu-content class=\"content\" [menu]=\"hubmapMenu()\"> </hra-hubmap-menu-content>\n    </mat-expansion-panel>\n\n    <mat-divider> </mat-divider>\n  </mat-accordion>\n</ng-scrollbar>\n"
         },
         {
             "name": "NavHeaderButtonsComponent",
@@ -6572,8 +6572,8 @@
         },
         {
             "name": "SocialMediaButtonComponent",
-            "id": "component-SocialMediaButtonComponent-bbce5087d7f9a9d95391b7f3a5fee3e3c409fe46c5813036f0c19e2eec8270c53fd8ae54ba516a7a6f5c877a717093bba95e6acb25be4cf5663450ae07b43852",
-            "file": "social-media-button/src/lib/social-media-button.component.ts",
+            "id": "component-SocialMediaButtonComponent-47d0f2eead2ad235388c8eac32e1727ab7a6f048a7ffbcf8838f3315fbf12683a48f7c43e97883a9e16f3eb596e56c7fb2025b69002d73fa373aa7ec4c10305d",
+            "file": "buttons/social-media-button/src/lib/social-media-button.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -6597,7 +6597,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Social media to display</p>\n",
-                    "line": 24,
+                    "line": 19,
                     "rawdescription": "\nSocial media to display",
                     "modifierKind": [
                         148
@@ -6609,14 +6609,14 @@
             "propertiesClass": [
                 {
                     "name": "data",
-                    "defaultValue": "computed(() => SOCIAL_MEDIA_DATA[this.id()])",
+                    "defaultValue": "computed(() => {\n    const item = SOCIALS.find(({ id }) => this.id() === id);\n    if (!item) {\n      throw new Error(`No social media with id '${this.id()}'`);\n    }\n\n    return item;\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Social media button data</p>\n",
-                    "line": 33,
+                    "line": 28,
                     "rawdescription": "\nSocial media button data",
                     "modifierKind": [
                         124,
@@ -6631,28 +6631,12 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Social media to display</p>\n",
-                    "line": 24,
+                    "line": 19,
                     "rawdescription": "\nSocial media to display",
                     "modifierKind": [
                         148
                     ],
                     "required": true
-                },
-                {
-                    "name": "isFontIcon",
-                    "defaultValue": "computed(() => 'isFontIcon' in this.data())",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Whether the icon is a font icon or svg icon</p>\n",
-                    "line": 36,
-                    "rawdescription": "\nWhether the icon is a font icon or svg icon",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
                 },
                 {
                     "name": "size",
@@ -6663,7 +6647,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button size</p>\n",
-                    "line": 27,
+                    "line": 22,
                     "rawdescription": "\nButton size",
                     "modifierKind": [
                         148
@@ -6678,7 +6662,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button variant</p>\n",
-                    "line": 30,
+                    "line": 25,
                     "rawdescription": "\nButton variant",
                     "modifierKind": [
                         148
@@ -6704,12 +6688,12 @@
             "description": "<p>Social media buttons for HRA apps</p>\n",
             "rawdescription": "\n\nSocial media buttons for HRA apps\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';\nimport * as SOCIAL_MEDIA_DATA from './social-media.json';\n\n/** Social media id */\nexport type SocialMediaId = keyof typeof SOCIAL_MEDIA_DATA;\n\n/** All available social media ids */\nexport const SOCIAL_MEDIA_IDS = Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[];\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, IconButtonModule],\n  templateUrl: './social-media-button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Social media to display */\n  readonly id = input.required<SocialMediaId>();\n\n  /** Button size */\n  readonly size = input<IconButtonSize>('large');\n\n  /** Button variant */\n  readonly variant = input<IconButtonVariant>('dark');\n\n  /** Social media button data */\n  protected readonly data = computed(() => SOCIAL_MEDIA_DATA[this.id()]);\n\n  /** Whether the icon is a font icon or svg icon */\n  protected readonly isFontIcon = computed(() => 'isFontIcon' in this.data());\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';\nimport { SocialMediaId } from './types/social-media.schema';\nimport { SOCIALS } from './static-data/parsed';\n\n/**\n * Social media buttons for HRA apps\n */\n@Component({\n  selector: 'hra-social-media-button',\n  standalone: true,\n  imports: [CommonModule, IconButtonModule],\n  templateUrl: './social-media-button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SocialMediaButtonComponent {\n  /** Social media to display */\n  readonly id = input.required<SocialMediaId>();\n\n  /** Button size */\n  readonly size = input<IconButtonSize>('large');\n\n  /** Button variant */\n  readonly variant = input<IconButtonVariant>('dark');\n\n  /** Social media button data */\n  protected readonly data = computed(() => {\n    const item = SOCIALS.find(({ id }) => this.id() === id);\n    if (!item) {\n      throw new Error(`No social media with id '${this.id()}'`);\n    }\n\n    return item;\n  });\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<a\n  mat-icon-button\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [href]=\"data().link\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n  @if (isFontIcon()) {\n    <mat-icon [fontIcon]=\"data().icon\"></mat-icon>\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\"></mat-icon>\n  }\n</a>\n"
+            "templateData": "<a\n  mat-icon-button\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [href]=\"data().link\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n  @if (data().isFontIcon) {\n    <mat-icon [fontIcon]=\"data().icon\"></mat-icon>\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\"></mat-icon>\n  }\n</a>\n"
         },
         {
             "name": "SoftwareStatusIndicatorComponent",
@@ -7824,13 +7808,13 @@
         },
         {
             "name": "ButtonsModule",
-            "id": "module-ButtonsModule-f6c46cb2015a550cf769c76d295c69243909bfc1f29719c342ef07d68ff29d3c9bfba478194de963236cf005f8e7c8cae1b11e7817750e60ccd01598e46dd587",
+            "id": "module-ButtonsModule-b7930464057a9ecca07cba0a7eed262f4489d1216c19cceefd855da558463c7a21b64478068155b1aee33b04f0284f3a7c35b41646a3cd7eff931225bd49dbce",
             "description": "<p>Packages up subpackage angular exports for easier use</p>\n",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "buttons/src/lib/buttons.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';\nimport { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport {\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\nimport { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';\nimport { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';\nimport { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport {\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\nimport { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';\nimport { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';\nimport { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -7980,13 +7964,13 @@
         },
         {
             "name": "NavigationModule",
-            "id": "module-NavigationModule-7089c2a877cebc2e99310d6adffdaffb8e87848a5db2aebe11f0525efb270ded223bc86d3570a08259285fb8530444cd65588947e5a8d33b33b7c2205591fa2c",
+            "id": "module-NavigationModule-14fafac66b3401f156d49ecd7e62089875419564247538eb51fe2d7cb837ff63d26346a0e0996b8ef0731993e54be9bb41d7b42f6cba54ab9e824cb52a5dcf96",
             "description": "<p>Exports all brand components, modules, etc.</p>\n",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "navigation/src/lib/navigation.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { HeaderComponent } from '@hra-ui/design-system/navigation/header';\n\n/** All sub library components, module, etc. */\nconst REEXPORTS = [CtaBarComponent, HeaderComponent];\n\n/** Exports all brand components, modules, etc. */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class NavigationModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';\nimport { FooterComponent } from '@hra-ui/design-system/navigation/footer';\nimport { HeaderComponent } from '@hra-ui/design-system/navigation/header';\n\n/** All sub library components, module, etc. */\nconst REEXPORTS = [CtaBarComponent, FooterComponent, HeaderComponent];\n\n/** Exports all brand components, modules, etc. */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class NavigationModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -8255,13 +8239,49 @@
                 "name": "FUNDER_IDS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "footer/src/lib/funding/funding.component.ts",
+                "file": "navigation/footer/src/lib/static-data/parsed.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[]",
+                "defaultValue": "FUNDERS.map(({ id }) => id)",
                 "rawdescription": "All available funder ids",
                 "description": "<p>All available funder ids</p>\n"
+            },
+            {
+                "name": "FUNDERS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "navigation/footer/src/lib/static-data/parsed.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "FundersSchema.parse(RAW_FUNDERS).funders",
+                "rawdescription": "Parsed funders static data",
+                "description": "<p>Parsed funders static data</p>\n"
+            },
+            {
+                "name": "FunderSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  id: z.string().brand<'FunderId'>(),\n  name: z.string(),\n  link: z.string().url(),\n  image: z.string(),\n})",
+                "rawdescription": "Schema for a funder item",
+                "description": "<p>Schema for a funder item</p>\n"
+            },
+            {
+                "name": "FundersSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  $schema: z.string(),\n  funders: FunderSchema.array(),\n})",
+                "rawdescription": "Schema for multiple funders",
+                "description": "<p>Schema for multiple funders</p>\n"
             },
             {
                 "name": "GRADIENT_BOTTOM_KEYFRAMES",
@@ -8295,7 +8315,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "HubmapMenuSchema.parse(RAW_HUBMAP_MENU)",
+                "defaultValue": "HubmapMenuSchema.parse(RAW_HUBMAP_MENU).groups",
                 "rawdescription": "Parsed hubmap menu object",
                 "description": "<p>Parsed hubmap menu object</p>\n"
             },
@@ -8415,7 +8435,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "MenusSchema.parse(RAW_MENUS)",
+                "defaultValue": "MenusSchema.parse(RAW_MENUS).menus",
                 "rawdescription": "Parsed menus object",
                 "description": "<p>Parsed menus object</p>\n"
             },
@@ -8511,7 +8531,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n]",
+                "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
                 "rawdescription": "All re-exported modules, components, directives, etc.",
                 "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
             },
@@ -8523,7 +8543,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[CtaBarComponent, HeaderComponent]",
+                "defaultValue": "[CtaBarComponent, FooterComponent, HeaderComponent]",
                 "rawdescription": "All sub library components, module, etc.",
                 "description": "<p>All sub library components, module, etc.</p>\n"
             },
@@ -8552,16 +8572,52 @@
                 "description": "<p>Interval between scroll timeline availability checks.\nPrimarily used to simplify testing.</p>\n"
             },
             {
-                "name": "SOCIAL_MEDIA_IDS",
+                "name": "SOCIAL_IDS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "social-media-button/src/lib/social-media-button.component.ts",
+                "file": "buttons/social-media-button/src/lib/static-data/parsed.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[]",
-                "rawdescription": "All available social media ids",
-                "description": "<p>All available social media ids</p>\n"
+                "defaultValue": "SOCIALS.map(({ id }) => id)",
+                "rawdescription": "All available social ids",
+                "description": "<p>All available social ids</p>\n"
+            },
+            {
+                "name": "SocialMediaSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  id: z.string().brand<'SocialMediaId'>(),\n  icon: z.string(),\n  isFontIcon: z.boolean().optional(),\n  link: z.string(),\n})",
+                "rawdescription": "Schema for social media item",
+                "description": "<p>Schema for social media item</p>\n"
+            },
+            {
+                "name": "SOCIALS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "buttons/social-media-button/src/lib/static-data/parsed.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "SocialsSchema.parse(RAW_SOCIALS).socials",
+                "rawdescription": "Parsed social media items",
+                "description": "<p>Parsed social media items</p>\n"
+            },
+            {
+                "name": "SocialsSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  $schema: z.string(),\n  socials: SocialMediaSchema.array(),\n})",
+                "rawdescription": "Schema for social media items",
+                "description": "<p>Schema for social media items</p>\n"
             },
             {
                 "name": "STATUS_FONTS",
@@ -9030,15 +9086,37 @@
                 "kind": 192
             },
             {
+                "name": "Funder",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>A funder item</p>\n",
+                "kind": 183
+            },
+            {
                 "name": "FunderId",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "",
-                "file": "footer/src/lib/funding/funding.component.ts",
+                "rawtype": "Funder",
+                "file": "navigation/footer/src/lib/types/funders.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "description": "<p>Funder id</p>\n",
-                "kind": 198
+                "description": "<p>Data id of a funder</p>\n",
+                "kind": 199
+            },
+            {
+                "name": "Funders",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Multiple funders object</p>\n",
+                "kind": 183
             },
             {
                 "name": "HubmapMenu",
@@ -9261,15 +9339,37 @@
                 "kind": 183
             },
             {
+                "name": "SocialMedia",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Social media item</p>\n",
+                "kind": 183
+            },
+            {
                 "name": "SocialMediaId",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "",
-                "file": "social-media-button/src/lib/social-media-button.component.ts",
+                "rawtype": "SocialMedia",
+                "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Social media id</p>\n",
-                "kind": 198
+                "kind": 199
+            },
+            {
+                "name": "Socials",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Social media items</p>\n",
+                "kind": 183
             },
             {
                 "name": "SoftwareStatus",
@@ -9504,18 +9604,56 @@
                     "description": "<p>Node heights for each tree size (rem)</p>\n"
                 }
             ],
-            "footer/src/lib/funding/funding.component.ts": [
+            "navigation/footer/src/lib/static-data/parsed.ts": [
                 {
                     "name": "FUNDER_IDS",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "footer/src/lib/funding/funding.component.ts",
+                    "file": "navigation/footer/src/lib/static-data/parsed.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "Object.keys(FUNDERS_DATA).filter((id) => id !== 'default') as FunderId[]",
+                    "defaultValue": "FUNDERS.map(({ id }) => id)",
                     "rawdescription": "All available funder ids",
                     "description": "<p>All available funder ids</p>\n"
+                },
+                {
+                    "name": "FUNDERS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "navigation/footer/src/lib/static-data/parsed.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "FundersSchema.parse(RAW_FUNDERS).funders",
+                    "rawdescription": "Parsed funders static data",
+                    "description": "<p>Parsed funders static data</p>\n"
+                }
+            ],
+            "navigation/footer/src/lib/types/funders.schema.ts": [
+                {
+                    "name": "FunderSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.object({\n  id: z.string().brand<'FunderId'>(),\n  name: z.string(),\n  link: z.string().url(),\n  image: z.string(),\n})",
+                    "rawdescription": "Schema for a funder item",
+                    "description": "<p>Schema for a funder item</p>\n"
+                },
+                {
+                    "name": "FundersSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.object({\n  $schema: z.string(),\n  funders: FunderSchema.array(),\n})",
+                    "rawdescription": "Schema for multiple funders",
+                    "description": "<p>Schema for multiple funders</p>\n"
                 }
             ],
             "scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts": [
@@ -9553,7 +9691,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "HubmapMenuSchema.parse(RAW_HUBMAP_MENU)",
+                    "defaultValue": "HubmapMenuSchema.parse(RAW_HUBMAP_MENU).groups",
                     "rawdescription": "Parsed hubmap menu object",
                     "description": "<p>Parsed hubmap menu object</p>\n"
                 },
@@ -9565,7 +9703,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "MenusSchema.parse(RAW_MENUS)",
+                    "defaultValue": "MenusSchema.parse(RAW_MENUS).menus",
                     "rawdescription": "Parsed menus object",
                     "description": "<p>Parsed menus object</p>\n"
                 }
@@ -9733,7 +9871,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  TextHyperlinkDirective,\n]",
+                    "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
                     "rawdescription": "All re-exported modules, components, directives, etc.",
                     "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
                 }
@@ -9747,7 +9885,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[CtaBarComponent, HeaderComponent]",
+                    "defaultValue": "[CtaBarComponent, FooterComponent, HeaderComponent]",
                     "rawdescription": "All sub library components, module, etc.",
                     "description": "<p>All sub library components, module, etc.</p>\n"
                 }
@@ -9778,18 +9916,56 @@
                     "description": "<p>Interval between scroll timeline availability checks.\nPrimarily used to simplify testing.</p>\n"
                 }
             ],
-            "social-media-button/src/lib/social-media-button.component.ts": [
+            "buttons/social-media-button/src/lib/static-data/parsed.ts": [
                 {
-                    "name": "SOCIAL_MEDIA_IDS",
+                    "name": "SOCIAL_IDS",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "social-media-button/src/lib/social-media-button.component.ts",
+                    "file": "buttons/social-media-button/src/lib/static-data/parsed.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "Object.keys(SOCIAL_MEDIA_DATA).filter((id) => id !== 'default') as SocialMediaId[]",
-                    "rawdescription": "All available social media ids",
-                    "description": "<p>All available social media ids</p>\n"
+                    "defaultValue": "SOCIALS.map(({ id }) => id)",
+                    "rawdescription": "All available social ids",
+                    "description": "<p>All available social ids</p>\n"
+                },
+                {
+                    "name": "SOCIALS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "buttons/social-media-button/src/lib/static-data/parsed.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "SocialsSchema.parse(RAW_SOCIALS).socials",
+                    "rawdescription": "Parsed social media items",
+                    "description": "<p>Parsed social media items</p>\n"
+                }
+            ],
+            "buttons/social-media-button/src/lib/types/social-media.schema.ts": [
+                {
+                    "name": "SocialMediaSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.object({\n  id: z.string().brand<'SocialMediaId'>(),\n  icon: z.string(),\n  isFontIcon: z.boolean().optional(),\n  link: z.string(),\n})",
+                    "rawdescription": "Schema for social media item",
+                    "description": "<p>Schema for social media item</p>\n"
+                },
+                {
+                    "name": "SocialsSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.object({\n  $schema: z.string(),\n  socials: SocialMediaSchema.array(),\n})",
+                    "rawdescription": "Schema for social media items",
+                    "description": "<p>Schema for social media items</p>\n"
                 }
             ],
             "software-status-indicator/src/lib/software-status-indicator-size.directive.ts": [
@@ -10301,17 +10477,39 @@
                     "kind": 192
                 }
             ],
-            "footer/src/lib/funding/funding.component.ts": [
+            "navigation/footer/src/lib/types/funders.schema.ts": [
+                {
+                    "name": "Funder",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>A funder item</p>\n",
+                    "kind": 183
+                },
                 {
                     "name": "FunderId",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "",
-                    "file": "footer/src/lib/funding/funding.component.ts",
+                    "rawtype": "Funder",
+                    "file": "navigation/footer/src/lib/types/funders.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "description": "<p>Funder id</p>\n",
-                    "kind": 198
+                    "description": "<p>Data id of a funder</p>\n",
+                    "kind": 199
+                },
+                {
+                    "name": "Funders",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "navigation/footer/src/lib/types/funders.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Multiple funders object</p>\n",
+                    "kind": 183
                 }
             ],
             "navigation/header/src/lib/types/hubmap-menu.schema.ts": [
@@ -10560,17 +10758,39 @@
                     "kind": 183
                 }
             ],
-            "social-media-button/src/lib/social-media-button.component.ts": [
+            "buttons/social-media-button/src/lib/types/social-media.schema.ts": [
+                {
+                    "name": "SocialMedia",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Social media item</p>\n",
+                    "kind": 183
+                },
                 {
                     "name": "SocialMediaId",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "",
-                    "file": "social-media-button/src/lib/social-media-button.component.ts",
+                    "rawtype": "SocialMedia",
+                    "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Social media id</p>\n",
-                    "kind": 198
+                    "kind": 199
+                },
+                {
+                    "name": "Socials",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "buttons/social-media-button/src/lib/types/social-media.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Social media items</p>\n",
+                    "kind": 183
                 }
             ],
             "software-status-indicator/src/lib/software-status-indicator.component.ts": [
