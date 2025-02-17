@@ -1,0 +1,67 @@
+{
+  "$schema": "../types/hubmap-menu.schema.json",
+  "groups": [
+    {
+      "label": "About HuBMAP",
+      "items": [
+        {
+          "label": "HuBMAP Consortium",
+          "description": "HuBMAP all access: Learn about us, our policies, data, and tools. Explore our publications and how to work with us.",
+          "icon": "assets/logo/hubmap.svg",
+          "url": "https://hubmapconsortium.org/"
+        }
+      ]
+    },
+    {
+      "label": "Data",
+      "items": [
+        {
+          "label": "HuBMAP Data Portal",
+          "description": "Explore, visualize and download consortium-generated spatial and single cell data for the human body.",
+          "icon": "assets/logo/data_portal.svg",
+          "url": "https://portal.hubmapconsortium.org/"
+        },
+        {
+          "label": "Data Portal Workspaces",
+          "description": "Access HuBMAP data in a lightweight exploration platform and perform analyses directly within the portal.",
+          "icon": "assets/logo/data_portal.svg",
+          "url": "https://portal.hubmapconsortium.org/workspaces"
+        }
+      ]
+    },
+    {
+      "label": "Atlas",
+      "items": [
+        {
+          "label": "Human Reference Atlas",
+          "description": "Use the HRA Portal to access atlas data, explore atlas functionality, and contribute to the Human Reference Atlas.",
+          "icon": "assets/logo/hra_small.svg",
+          "url": "https://humanatlas.io/"
+        }
+      ]
+    },
+    {
+      "label": "Analytics Tools",
+      "items": [
+        {
+          "label": "Azimuth",
+          "description": "Azimuth uses a reference dataset to process, analyze, and interpret single-cell RNA-seq or ATAC-seq experiments.",
+          "icon": "assets/logo/azimuth.svg",
+          "url": "https://azimuth.hubmapconsortium.org/"
+        },
+        {
+          "label": "FUSION",
+          "description": "Functional Unit State Identification and Navigation with WSI.",
+          "icon": "assets/logo/fusion.svg",
+          "url": "http://fusion.hubmapconsortium.org/?utm_source=hubmap"
+        },
+        {
+          "label": "Antibody Validation Reports",
+          "description": "Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.",
+          "icon": "assets/logo/antibody-validation-reports.svg",
+          "url": "https://avr.hubmapconsortium.org/"
+        }
+      ]
+    }
+  ]
+}

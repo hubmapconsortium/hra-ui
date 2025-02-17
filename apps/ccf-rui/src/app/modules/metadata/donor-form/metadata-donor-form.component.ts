@@ -95,5 +95,5 @@ export class MetadataDonorFormComponent {
   );
 
   protected readonly doiInputFn = (value: unknown) => removeDoiBase(String(value));
-  protected readonly doiPatterns = { A: { pattern: /[\w.]/ } };
+  protected readonly doiPatterns = { A: { pattern: /[\w.\-_~#[\]'()*%]/ } };
 }

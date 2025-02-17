@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { TextHyperlinkDirective } from './text-hyperlink.directive';
 
 const meta: Meta<{ link: string }> = {
   title: 'Design System/Buttons/TextHyperlink',
@@ -13,8 +14,13 @@ const meta: Meta<{ link: string }> = {
   },
   render: (args) => ({
     props: args,
-    template: `<a href="${args.link}" target="_blank" rel="noopener noreferrer">${args.link}</a>`,
+    template: `<a hraHyperlink href="${args.link}" target="_blank" rel="noopener noreferrer">${args.link}</a>`,
   }),
+  decorators: [
+    moduleMetadata({
+      imports: [TextHyperlinkDirective],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj;

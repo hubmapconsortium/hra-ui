@@ -12,7 +12,7 @@
     grid-template-rows: 3rem 4.5rem auto;
   }
 
-  &:not(.embedded) hra-back-bar {
+  &:not(.embedded) .back-bar {
     display: none;
   }
 
@@ -20,7 +20,7 @@
     display: none;
   }
 
-  hra-back-bar {
+  .back-bar {
     grid-area: back;
   }
 
