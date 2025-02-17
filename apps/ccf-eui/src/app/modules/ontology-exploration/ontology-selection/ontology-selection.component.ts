@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,8 +12,10 @@ import {
 import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
+
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
+import { OntologyTreeModule } from '../ontology-tree/ontology-tree.module';
 
 /**
  * Ontology selection component that encapsulates ontology search and tree components.
@@ -20,8 +23,9 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
 @Component({
   selector: 'ccf-ontology-selection',
   templateUrl: './ontology-selection.component.html',
-  styleUrls: ['./ontology-selection.component.scss'],
   providers: [OntologySearchService],
+  imports: [CommonModule, OntologyTreeModule],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologySelectionComponent implements OnChanges {
@@ -69,11 +73,11 @@ export class OntologySelectionComponent implements OnChanges {
   tooltips!: string[];
   rootNode$: Observable<OntologyTreeNode>;
   biomarkerLabelMap = new Map([
-    ['gene', 'BG'],
-    ['protein', 'BP'],
-    ['lipids', 'BL'],
-    ['metabolites', 'BM'],
-    ['proteoforms', 'BF'],
+    ['gene', 'Genes'],
+    ['protein', 'Proteins'],
+    ['metabolites', 'Metabolites'],
+    ['proteoforms', 'Proteoforms'],
+    ['lipids', 'Lipids'],
   ]);
   /**
    * Creates an instance of ontology selection component.

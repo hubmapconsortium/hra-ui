@@ -5,7 +5,6 @@ import { RecursivePartial, Shallow } from 'shallow-render';
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
 import { OntologySelectionComponent } from './ontology-selection.component';
-import { OntologySelectionModule } from './ontology-selection.module';
 
 function fromPartial<T>(partial: RecursivePartial<T>): T {
   return partial as T;
@@ -21,7 +20,7 @@ describe('OntologySelectionComponent', () => {
     mockStore = jasmine.createSpyObj<Store>(['selectSnapshot']);
     mockStore.selectSnapshot.and.returnValue({ node: ontologyNode });
 
-    shallow = new Shallow(OntologySelectionComponent, OntologySelectionModule)
+    shallow = new Shallow(OntologySelectionComponent)
       .provide(OntologySearchService)
       .mock(Store, mockStore)
       .mock(OntologySearchService, { rootNode$: of(fromPartial<OntologyTreeNode>({})) })

@@ -64,7 +64,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   @Input()
   set nodes(nodes: OntologyTreeNode[] | undefined) {
     this._nodes = nodes;
-    if (this.control) {
+    if (this.treeControl) {
       this.dataSource.data = this._nodes ?? [];
     }
   }
@@ -133,14 +133,12 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
 
   @Input() tooltips!: string[];
 
-  selectedtoggleOptions!: string[];
+  selectedToggleoptions!: string[];
 
   /**
    * Storage for the getter / setter
    */
   private _termData!: Record<string, number>;
-
-  atScrollBottom = false;
 
   /**
    * Creates an instance of ontology tree component.
@@ -178,7 +176,10 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   /**
    * Tree controller.
    */
-  readonly control = new FlatTreeControl<FlatNode>(getLevel, isExpandable);
+  treeControl = new FlatTreeControl<FlatNode>(
+    (node) => node.level,
+    (node) => node.expandable,
+  );
 
   /**
    * Node flattener.
@@ -193,7 +194,9 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   /**
    * Data source of flat nodes.
    */
-  readonly dataSource = new MatTreeFlatDataSource(this.control, this.flattener);
+  readonly dataSource = new MatTreeFlatDataSource(this.treeControl, this.flattener);
+
+  hasChild = (_: number, node: FlatNode) => node.expandable;
 
   /**
    * Storage for getter/setter 'nodes'.
@@ -220,9 +223,10 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
    * Expand the body node when the component is initialized.
    */
   ngOnInit(): void {
-    if (this.control.dataNodes) {
-      this.control.expand(this.control.dataNodes[0]);
+    if (this.treeControl.dataNodes) {
+      this.treeControl.expand(this.treeControl.dataNodes[0]);
     }
+    this.selectedToggleoptions = this.menuOptions;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -242,13 +246,13 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   }
 
   selectByIDs(ids: string[]): void {
-    const dataNodes = this.control.dataNodes;
+    const dataNodes = this.treeControl.dataNodes.filter((node) => node.label !== 'body');
     const selectedNodes: FlatNode[] = dataNodes.filter((node) => ids.indexOf(node.original.id ?? '') > -1);
 
     if (selectedNodes?.length > 0) {
       this.selectedNodes = selectedNodes;
       this.ga.event('nodes_selected_by_ids', 'ontology_tree', selectedNodes.map((node) => node.label).join(','));
-      this.control.collapseAll();
+      this.treeControl.collapseAll();
       this.selectedNodes.forEach((selectedNode) => {
         this.expandAndSelect(
           selectedNode.original,
@@ -269,7 +273,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     getParent: (n: OntologyTreeNode) => OntologyTreeNode,
     additive = false,
   ): void {
-    const { cdr, control } = this;
+    const { cdr, treeControl } = this;
 
     // Add all parents to a set
     const parents = new Set<OntologyTreeNode>();
@@ -281,20 +285,20 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     }
 
     // Find corresponding flat nodes
-    const parentFlatNodes = filter(control.dataNodes, (flat) => parents.has(flat.original));
-    const flatNode = control.dataNodes.find((flat) => flat.original === node);
+    const parentFlatNodes = filter(treeControl.dataNodes, (flat) => parents.has(flat.original));
+    const flatNode = treeControl.dataNodes.find((flat) => flat.original === node);
 
     // Expand nodes
     if (!additive) {
       this.selectedNodes = [];
-      control.collapseAll();
+      treeControl.collapseAll();
     }
 
     for (const flat of parentFlatNodes) {
-      control.expand(flat);
+      treeControl.expand(flat);
     }
-    if ((node.label === 'body' || node.id === 'biomarkers') && control.dataNodes?.length > 0) {
-      control.expand(control.dataNodes[0]);
+    if ((node.label === 'body' || node.id === 'biomarkers') && treeControl.dataNodes?.length > 0) {
+      treeControl.expand(treeControl.dataNodes[0]);
     }
 
     // Select the node
@@ -339,10 +343,9 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
    * @returns True if the node is the currently selected node.
    */
   isSelected(node: FlatNode | undefined): boolean {
-    return (
-      node?.original.id === this.rootNode ||
-      this.selectedNodes.filter((selectedNode) => node?.original.label === selectedNode?.original.label).length > 0
-    );
+    return node?.original.id === this.rootNode
+      ? false
+      : this.selectedNodes.filter((selectedNode) => node?.original.label === selectedNode?.original.label).length > 0;
   }
 
   /**
@@ -386,26 +389,12 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     }
   }
 
-  /**
-   * Handles the scroll event to detect when scroll is at the bottom.
-   *
-   * @param event The scroll event.
-   */
-  onScroll(event: Event): void {
-    if (!event.target) {
-      return;
-    }
-    const { clientHeight, scrollHeight, scrollTop } = event.target as Element;
-    const diff = scrollHeight - scrollTop - clientHeight;
-    this.atScrollBottom = diff < 20;
-  }
-
-  isItemSelected(item: string) {
-    return this.selectedtoggleOptions.includes(item);
+  isItemSelected(item: string): boolean {
+    return this.selectedToggleoptions ? this.selectedToggleoptions.includes(item) : false;
   }
 
   toggleSelection(value: string[]) {
-    this.selectedtoggleOptions = value;
-    this.selectedBiomarkerOptions.emit([...this.selectedtoggleOptions]);
+    this.selectedToggleoptions = value;
+    this.selectedBiomarkerOptions.emit([...this.selectedToggleoptions]);
   }
 }

@@ -8,7 +8,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
@@ -17,15 +19,14 @@ import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
-import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
+import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
+import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
-import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
     CoreModule,
     DrawerModule,
     FiltersPopoverModule,
-    OntologyExplorationModule,
+    OntologySelectionComponent,
     MatIconModule,
     DualSliderModule,
     ResultsBrowserComponent,
@@ -57,6 +58,7 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
     MatMenuModule,
     MatDividerModule,
     BackButtonBarComponent,
+    ToggleButtonSizeDirective,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

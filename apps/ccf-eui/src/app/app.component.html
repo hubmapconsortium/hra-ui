@@ -253,14 +253,26 @@
     </div>
   </div>
 
-  <ccf-button-toggle
+  <!-- <ccf-button-toggle
     class="button-toggle-group"
     [menuOptions]="menuOptions"
     [enableTooltip]="true"
     [tooltips]="tooltips"
     [selectedItems]="selectedtoggleOptions"
     (selectionChange)="toggleSelection($event)"
-  ></ccf-button-toggle>
+  ></ccf-button-toggle> -->
+  <mat-button-toggle-group
+    multiple
+    name="multiSelect"
+    aria-label="Multi Select"
+    hraButtonToggleSize="small"
+    hideMultipleSelectionIndicator
+    (change)="toggleSelection($event.value)"
+  >
+    @for (option of menuOptions; track option) {
+      <mat-button-toggle [value]="option" checked>{{ option }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
   <div class="ontologies">
     <ccf-ontology-selection
       class="ontology-selection"
