@@ -2,35 +2,8 @@
   display: block;
   max-width: 58.75rem;
   margin: 0 auto;
+  padding: 1rem;
   padding-top: 10rem;
-}
-
-.heading-container {
-  display: flex;
-  align-items: center;
-
-  h1 {
-    font: var(--sys-display-large);
-    letter-spacing: var(--sys-display-large-tracking);
-    margin: 0;
-  }
-
-  img {
-    height: 5rem;
-    width: 5rem;
-  }
-
-  .title-container {
-    display: flex;
-    flex-direction: column;
-    justify-items: start;
-    padding-left: 1.25rem;
-  }
-
-  .preview-label {
-    font: var(--sys-label-large);
-    letter-spacing: var(--sys-label-large-tracking);
-  }
 }
 
 .info-text {
@@ -42,8 +15,9 @@
 
 .cards {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
   margin-top: 3.5rem;
   --hra-workflow-card-header-padding: 0 0 0.5rem 0;
 
@@ -114,5 +88,11 @@
 ::ng-deep {
   .cdk-overlay-container:has(.rui-panel) {
     z-index: 900;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .cards {
+    flex-wrap: nowrap;
   }
 }
