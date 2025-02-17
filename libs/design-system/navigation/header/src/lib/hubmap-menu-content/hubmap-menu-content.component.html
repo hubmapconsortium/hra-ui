@@ -1,4 +1,4 @@
-@for (group of menu().groups; track $index) {
+@for (group of menu(); track $index) {
   <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: group }"></ng-container>
 }
 

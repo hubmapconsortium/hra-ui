@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';
 import { MenuContentComponent } from '../menu-content/menu-content.component';
-import { HubmapMenu } from '../types/hubmap-menu.schema';
+import { HubmapMenuGroup } from '../types/hubmap-menu.schema';
 import { Menu } from '../types/menus.schema';
 
 /**
@@ -19,11 +19,11 @@ import { Menu } from '../types/menus.schema';
 })
 export class DesktopMenuComponent {
   /** Menu to display */
-  readonly menu = input.required<Menu | HubmapMenu>();
+  readonly menu = input.required<Menu | HubmapMenuGroup[]>();
 
   /** Menu object along with whether it is a hubmap or regular menu type */
   protected typedMenu = computed(() => {
     const menu = this.menu();
-    return '$schema' in menu ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };
+    return Array.isArray(menu) ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };
   });
 }

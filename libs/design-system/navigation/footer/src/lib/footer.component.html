@@ -6,7 +6,7 @@
       2024 CNS at Indiana University
     </span>
     <div class="socials">
-      @for (id of socials; track id) {
+      @for (id of socials(); track id) {
         <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
       }
     </div>
@@ -15,7 +15,7 @@
 
 <div class="right">
   <div class="content">
-    <hra-funding></hra-funding>
+    <hra-funding [funders]="funders()"></hra-funding>
     <p class="disclaimer">
       Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
       medical or professional advice.

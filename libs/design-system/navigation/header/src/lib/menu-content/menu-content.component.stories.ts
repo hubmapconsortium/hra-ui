@@ -3,7 +3,7 @@ import { MENUS } from '../static-data/parsed';
 import { Menu } from '../types/menus.schema';
 import { MenuContentComponent } from './menu-content.component';
 
-const MENUS_BY_LABEL = MENUS.menus.reduce<Record<string, Menu>>((acc, menu) => {
+const MENUS_BY_LABEL = MENUS.reduce<Record<string, Menu>>((acc, menu) => {
   acc[menu.label] = menu;
   return acc;
 }, {});
@@ -30,7 +30,7 @@ const meta: Meta<MenuContentComponent> = {
   },
   args: {
     variant: 'mobile',
-    menu: MENUS.menus[0],
+    menu: MENUS[0],
   },
 };
 

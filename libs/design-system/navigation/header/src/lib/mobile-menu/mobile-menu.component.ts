@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { HubmapMenuContentComponent } from '../hubmap-menu-content/hubmap-menu-content.component';
 import { MenuContentComponent } from '../menu-content/menu-content.component';
-import { HubmapMenu } from '../types/hubmap-menu.schema';
-import { Menus } from '../types/menus.schema';
+import { HubmapMenuGroup } from '../types/hubmap-menu.schema';
+import { Menu } from '../types/menus.schema';
 
 /**
  * Display a menu for mobile sized screens
@@ -30,7 +30,7 @@ import { Menus } from '../types/menus.schema';
 })
 export class MobileMenuComponent {
   /** Hubmap menu */
-  readonly hubmapMenu = input.required<HubmapMenu>();
+  readonly hubmapMenu = input.required<HubmapMenuGroup[]>();
   /** All other menus */
-  readonly menus = input.required<Menus>();
+  readonly menus = input.required<Menu[]>();
 }

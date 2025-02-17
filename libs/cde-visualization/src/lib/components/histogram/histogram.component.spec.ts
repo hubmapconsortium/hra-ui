@@ -10,7 +10,7 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 
-jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('vega-embed', () => jest.fn());
 
 describe('HistogramComponent', () => {
   const sampleData = [

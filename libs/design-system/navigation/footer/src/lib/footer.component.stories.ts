@@ -5,7 +5,7 @@ import { FooterComponent } from './footer.component';
 
 const meta: Meta<FooterComponent> = {
   component: FooterComponent,
-  title: 'FooterComponent',
+  title: 'Design System/Navigation/Footer',
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],

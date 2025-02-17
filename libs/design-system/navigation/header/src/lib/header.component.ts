@@ -1,4 +1,4 @@
-import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -99,6 +99,8 @@ export class HeaderComponent {
   protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;
   /** Overlay positions for the desktop menu */
   protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;
+  /** Blocking overlay scroll strategy */
+  protected readonly mobileMenuBlockScroll = inject(Overlay).scrollStrategies.block();
   /** Offset from top to the menu. Used to calculate menu heights and max heights */
   protected readonly menuOffsetPx = signal<number>(0);
   /** Mobile menu height. Fills the entire screen */
