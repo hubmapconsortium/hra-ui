@@ -17,12 +17,12 @@ import {
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
-import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
-import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
@@ -75,8 +75,8 @@ function optionalValue<T>(): T | null {
     ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,
-    FooterComponent,
     MarkEmptyFormControlDirective,
+    NavigationModule,
     NavHeaderComponent,
     OverlayModule,
     StepIndicatorComponent,

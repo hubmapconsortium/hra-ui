@@ -4,8 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
 import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 
@@ -21,7 +21,7 @@ import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
     MatIconModule,
     ButtonsModule,
     YouTubePlayerModule,
-    FooterComponent,
+    NavigationModule,
     AssetUrlPipe,
     NavHeaderComponent,
   ],

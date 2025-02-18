@@ -1,0 +1,246 @@
+{
+  "$schema": "../types/menus.schema.json",
+  "menus": [
+    {
+      "type": "menu",
+      "id": "data",
+      "label": "Data",
+      "items": [
+        {
+          "type": "group",
+          "label": "Data Overview",
+          "url": "https://humanatlas.io/overview-data/",
+          "items": [
+            {
+              "type": "item",
+              "label": "Anatomical Structure, Cell Type, and Biomarker (ASCT+B) Tables",
+              "url": "https://humanatlas.io/asctb-tables/"
+            },
+            {
+              "type": "item",
+              "label": "Vasculature Common Coordinate Framework",
+              "url": "https://humanatlas.io/vccf/"
+            },
+            {
+              "type": "item",
+              "label": "Cell Type Annotations",
+              "url": "https://humanatlas.io/cell-type-annotations/"
+            },
+            {
+              "type": "item",
+              "label": "2D Functional Tissue Unit (FTU) Illustrations",
+              "url": "https://humanatlas.io/2d-ftu-illustrations/"
+            },
+            {
+              "type": "item",
+              "label": "3D Reference Object Library",
+              "url": "https://humanatlas.io/3d-reference-library/"
+            },
+            {
+              "type": "item",
+              "label": "Organ Mapping Antibody Panel (OMAP) Tables",
+              "url": "https://humanatlas.io/omap/"
+            },
+            {
+              "type": "item",
+              "label": "Millitome",
+              "url": "https://humanatlas.io/millitome/"
+            }
+          ]
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
+          "label": "HRA API",
+          "description": "Get API access to all Human Reference Atlas datasets.",
+          "url": "https://humanatlas.io/api/"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
+          "label": "HuBMAP Data Portal",
+          "url": "https://portal.hubmapconsortium.org/"
+        },
+        {
+          "type": "group",
+          "label": "SenNet Data Portal",
+          "url": "https://data.sennetconsortium.org/search/"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "id": "applications",
+      "label": "Apps",
+      "items": [
+        {
+          "type": "group",
+          "label": "App Library",
+          "url": "https://apps.humanatlas.io/",
+          "items": [
+            {
+              "type": "subgroup",
+              "label": "Researcher Apps: Usage",
+              "items": [
+                {
+                  "type": "item",
+                  "label": "Cell Distance Explorer",
+                  "url": "https://apps.humanatlas.io/cde/"
+                },
+                {
+                  "type": "item",
+                  "label": "Functional Tissue Unit Explorer",
+                  "url": "https://apps.humanatlas.io/ftu-explorer/"
+                },
+                {
+                  "type": "item",
+                  "label": "Exploration User Interface",
+                  "url": "https://apps.humanatlas.io/eui/"
+                },
+                {
+                  "type": "item",
+                  "label": "HRA Organ Gallery",
+                  "url": "https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/"
+                },
+                {
+                  "type": "item",
+                  "label": "Cell Population Predictor",
+                  "url": "https://apps.humanatlas.io/us1/"
+                },
+                {
+                  "type": "item",
+                  "label": "Tissue Origin Predictor",
+                  "url": "https://apps.humanatlas.io/us2/"
+                },
+                {
+                  "type": "item",
+                  "label": "Dashboards",
+                  "url": "https://apps.humanatlas.io/dashboard/"
+                }
+              ]
+            },
+            {
+              "type": "subgroup",
+              "label": "Researcher Apps: Construction",
+              "items": [
+                {
+                  "type": "item",
+                  "label": "Registration User Interface",
+                  "url": "https://apps.humanatlas.io/rui/"
+                },
+                {
+                  "type": "item",
+                  "label": "ASCT+B Reporter",
+                  "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/"
+                }
+              ]
+            },
+            {
+              "type": "subgroup",
+              "label": "Developer Apps",
+              "items": [
+                {
+                  "type": "item",
+                  "label": "APIs",
+                  "url": "https://apps.humanatlas.io/api/"
+                },
+                {
+                  "type": "item",
+                  "label": "Web Components",
+                  "url": "https://apps.humanatlas.io/us6/"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "id": "training",
+      "label": "Training",
+      "items": [
+        {
+          "type": "group",
+          "label": "Training Overview",
+          "url": "https://humanatlas.io/overview-training/",
+          "items": [
+            {
+              "type": "item",
+              "label": "Visible Human Course",
+              "url": "https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc/"
+            },
+            {
+              "type": "item",
+              "label": "Standard Operating Procedures",
+              "url": "https://humanatlas.io/standard-operating-procedures/"
+            },
+            {
+              "type": "item",
+              "label": "Human Atlas Stories",
+              "url": "https://humanatlas.io/overview-training-outreach#human-atlas-stories"
+            },
+            {
+              "type": "item",
+              "label": "Events",
+              "url": "https://humanatlas.io/overview-training-outreach#events"
+            },
+            {
+              "type": "item",
+              "label": "Kaggle Competitions",
+              "url": "https://humanatlas.io/overview-training#kaggle"
+            },
+            {
+              "type": "item",
+              "label": "Release Notes",
+              "url": "https://humanatlas.io/overview-training#release-notes"
+            },
+            {
+              "type": "item",
+              "label": "Previews",
+              "url": "https://humanatlas.io/overview-training#previews"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "id": "about",
+      "label": "About",
+      "items": [
+        {
+          "type": "group",
+          "label": "Join the HRA Working Group",
+          "url": "https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH",
+          "items": [
+            {
+              "type": "item",
+              "label": "About",
+              "url": "https://humanatlas.io/about/"
+            },
+            {
+              "type": "item",
+              "label": "Editorial Board",
+              "url": "https://humanatlas.io/about#editorial-board"
+            },
+            {
+              "type": "item",
+              "label": "Publications",
+              "url": "https://humanatlas.io/about#publications"
+            },
+            {
+              "type": "item",
+              "label": "Funding",
+              "url": "https://humanatlas.io/about#funding"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

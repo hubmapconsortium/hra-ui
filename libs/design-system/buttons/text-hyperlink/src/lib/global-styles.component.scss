@@ -6,12 +6,15 @@
   }
 
   a.hra-text-hyperlink {
-    &:link {
+    text-decoration: none;
+
+    &:link,
+    &:link mat-icon {
       color: var(--sys-on-tertiary-fixed);
-      text-decoration: none;
     }
 
-    &:visited {
+    &:visited,
+    &:visited mat-icon {
       color: var(--sys-tertiary-fixed);
     }
 
@@ -26,13 +29,19 @@
       color: var(--sys-secondary);
       outline: 0.125rem solid var(--sys-tertiary);
       border-radius: 0.25rem;
+
+      & mat-icon {
+        color: var(--sys-secondary);
+      }
     }
 
-    &:hover {
+    &:hover,
+    &:hover mat-icon {
       color: var(--sys-on-tertiary-fixed);
     }
 
-    &:active {
+    &:active,
+    &:active mat-icon {
       color: var(--sys-on-tertiary-fixed-variant);
     }
   }

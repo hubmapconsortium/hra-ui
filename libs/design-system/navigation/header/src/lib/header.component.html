@@ -1,0 +1,113 @@
+@let ctaConfig = cta();
+@if (ctaConfig && !ctaDismissed()) {
+  <hra-cta-bar
+    [action]="ctaConfig.action"
+    [description]="ctaConfig.description"
+    [url]="ctaConfig.url"
+    (closeClick)="ctaDismissed.set(true)"
+  >
+  </hra-cta-bar>
+}
+
+<header
+  class="header"
+  cdkOverlayOrigin
+  [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
+  #mobileMenuOrigin="cdkOverlayOrigin"
+  data-testid="header"
+>
+  <div class="menus" #desktopMenuOrigin>
+    <hra-brand-logo size="small"></hra-brand-logo>
+
+    <div class="filler"></div>
+
+    @if (!isMobile()) {
+      @for (menu of menus(); track menu.id) {
+        <hra-navigation-category-toggle
+          cdkOverlayOrigin
+          [toggled]="isMenuActive(menu)"
+          (toggledChange)="toggleMenu(menu)"
+          #navigationCategoryMenuOrigin="cdkOverlayOrigin"
+        >
+          {{ menu.label }}
+        </hra-navigation-category-toggle>
+
+        <ng-template
+          cdkConnectedOverlay
+          cdkConnectedOverlayHasBackdrop="false"
+          cdkConnectedOverlayLockPosition="true"
+          cdkConnectedOverlayPush="true"
+          [cdkConnectedOverlayOpen]="isMenuActive(menu)"
+          [cdkConnectedOverlayOrigin]="navigationCategoryMenuOrigin"
+          [cdkConnectedOverlayPositions]="desktopMenuPositions"
+          (overlayOutsideClick)="closeMenu()"
+        >
+          <hra-desktop-menu [menu]="menu" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
+        </ng-template>
+      }
+    }
+
+    <button
+      mat-icon-button
+      cdkOverlayOrigin
+      aria-label="Open the main navigation menu"
+      (click)="toggleMenu('main')"
+      #mainMenuOrigin="cdkOverlayOrigin"
+    >
+      <mat-icon>
+        @if (isMenuActive('main')) {
+          close
+        } @else if (isMobile()) {
+          menu
+        } @else {
+          apps
+        }
+      </mat-icon>
+    </button>
+
+    @if (isMobile()) {
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayDisposeOnNavigation="true"
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        [cdkConnectedOverlayOpen]="isMenuActive('main')"
+        [cdkConnectedOverlayOrigin]="mobileMenuOrigin"
+        [cdkConnectedOverlayPositions]="mobileMenuPositions"
+        [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
+        [cdkConnectedOverlayHeight]="mobileMenuHeight()"
+        [cdkConnectedOverlayWidth]="'100%'"
+        #mobileMenuOverlay
+      >
+        <hra-mobile-menu [hubmapMenu]="hubmapMenu()" [menus]="menus()"></hra-mobile-menu>
+      </ng-template>
+    } @else {
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        cdkConnectedOverlayPush="true"
+        [cdkConnectedOverlayOpen]="isMenuActive('main')"
+        [cdkConnectedOverlayOrigin]="mainMenuOrigin"
+        [cdkConnectedOverlayPositions]="desktopMenuPositions"
+        (overlayOutsideClick)="closeMenu()"
+      >
+        <hra-desktop-menu [menu]="hubmapMenu()" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
+      </ng-template>
+    }
+  </div>
+
+  @if (breadcrumbs().length > 0) {
+    <mat-divider></mat-divider>
+
+    <div class="navigation">
+      <hra-breadcrumbs [crumbs]="breadcrumbs()"> </hra-breadcrumbs>
+      <div class="filler"></div>
+      <ng-content></ng-content>
+    </div>
+  }
+</header>
+
+@if (progress() !== false) {
+  <mat-progress-bar class="progress-bar" [mode]="progressMode()" [value]="progress()"></mat-progress-bar>
+}
