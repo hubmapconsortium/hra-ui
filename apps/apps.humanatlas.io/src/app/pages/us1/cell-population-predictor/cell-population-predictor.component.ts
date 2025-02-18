@@ -1,17 +1,16 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, effect, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '@hra-ui/cde-visualization';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
-import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { ProductHeaderComponent } from '../../../components/product-header/product-header.component';
 import { PredictionsService } from '../services/predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -33,8 +32,6 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
   standalone: true,
   imports: [
     CommonModule,
-    AssetUrlPipe,
-    SoftwareStatusIndicatorComponent,
     ButtonsModule,
     MatIconModule,
     WorkflowCardModule,
@@ -43,6 +40,7 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
     DeleteFileButtonComponent,
     RouterModule,
     EmbeddedRuiComponent,
+    ProductHeaderComponent,
   ],
   templateUrl: './cell-population-predictor.component.html',
   styleUrl: './cell-population-predictor.component.scss',
@@ -61,11 +59,8 @@ export class CellPopulationPredictorComponent {
   /** Whether to show RUI form */
   protected ruiOpen = false;
 
-  /** Supported organs */
-  protected supportedOrgans = <string[]>[];
-
   /** Tooltip Position */
-  protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
+  protected readonly tooltipPosition = []; // TODO
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
@@ -76,6 +71,11 @@ export class CellPopulationPredictorComponent {
 
   /** Predictions Service */
   protected readonly predictionsService = inject(PredictionsService);
+
+  /** Supported organs */
+  protected supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
+    initialValue: [],
+  });
 
   /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);
@@ -88,12 +88,6 @@ export class CellPopulationPredictorComponent {
    */
   constructor() {
     this.setupScriptAndStyleTags();
-
-    effect(() => {
-      this.predictionsService.loadSupportedReferenceOrgans().subscribe((organs) => {
-        this.supportedOrgans = organs;
-      });
-    });
   }
 
   /** Triggered when user uploads a file */

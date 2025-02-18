@@ -43,13 +43,16 @@
     <div class="buttons-container">
       @if (!file) {
         <div class="buttons">
-          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
+          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()" data-testid="use-sample-button">
+            Use Sample
+          </button>
           <input
             type="file"
             accept="application/json"
-            #fileInput
             style="display: none"
             (change)="onFileSelected($event)"
+            data-testid="file-input"
+            #fileInput
           />
           <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
         </div>
@@ -108,9 +111,9 @@
         cdkConnectedOverlayWidth="100vw"
       >
         <hra-embedded-rui
+          [supportedOrgans]="supportedOrgans()"
           (locationCreated)="onFileCreated($event); ruiOpen = false"
           (closed)="ruiOpen = false"
-          [supportedOrgans]="supportedOrgans"
         ></hra-embedded-rui>
       </ng-template>
     </div>
