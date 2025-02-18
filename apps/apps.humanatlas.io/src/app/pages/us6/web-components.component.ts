@@ -1,24 +1,28 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
-import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
-import components from './data/component-defs.json';
-import organs from './data/organs.json';
-import euiEmbedTemplate from './static-data/templates/eui';
-import ruiEmbedTemplate from './static-data/templates/rui';
-import euiOrganInfoEmbedTemplate from './static-data/templates/eui-organ-info';
-import eui3dOrganViewer from './static-data/templates/eui-3d-organ-viewer';
-import ftuUiEmbedTemplate from './static-data/templates/ftu-ui';
-import ftuUiSmallEmbedTemplate from './static-data/templates/ftu-ui-small';
-import ftuMedicalIllustrationEmbedTemplate from './static-data/templates/ftu-medical-illustration';
+import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
+import { ComponentDef, ComponentDefId } from './types/component-defs.schema';
+import { Organ, OrganId } from './types/organs.schema';
+import { OverlayIframeComponent } from './overlay-iframe/overlay-iframe.component';
+import { DomSanitizer } from '@angular/platform-browser';
+
+interface ActiveData {
+  organId: OrganId;
+  defId: ComponentDefId;
+  organ: Organ;
+  def: ComponentDef;
+}
 
 @Component({
   selector: 'hra-web-components',
@@ -29,59 +33,111 @@ import ftuMedicalIllustrationEmbedTemplate from './static-data/templates/ftu-med
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTabsModule,
     ButtonsModule,
     CodeBlockComponent,
     CardsModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     WebComponentCardComponent,
+    OverlayIframeComponent,
   ],
   templateUrl: './web-components.component.html',
-  styleUrl: './web-components.component.scss',
+  styleUrls: ['./web-components.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebComponentsComponent {
-  protected readonly organs = organs;
-  protected readonly components = components;
+  protected readonly organs = ORGANS;
+  protected readonly components = COMPONENT_DEFS;
 
-  embedTemplates = {
-    rui: ruiEmbedTemplate,
-    eui: euiEmbedTemplate,
-    'eui-organ-information': euiOrganInfoEmbedTemplate,
-    'eui-3d-organ-viewer': eui3dOrganViewer,
-    'ftu-ui': ftuUiEmbedTemplate,
-    'ftu-ui-small': ftuUiSmallEmbedTemplate,
-    'ftu-medical-illustration': ftuMedicalIllustrationEmbedTemplate,
-  };
+  protected readonly activeOrgan = signal<OrganId | undefined>(undefined);
+  protected readonly activeDef = signal<ComponentDefId | undefined>(undefined);
 
-  selectedOrgan: any;
-  selectedComponentCard: any;
+  protected readonly activeData = computed((): ActiveData | undefined => {
+    const organId = this.activeOrgan();
+    const defId = this.activeDef();
+    const organ = ORGANS.find((organ) => organ.id === organId);
+    const def = COMPONENT_DEFS.find((def) => def.id === defId);
+    if (organId && defId && organ && def) {
+      return { organId, defId, organ, def };
+    }
+    return undefined;
+  });
+
+  protected readonly iframeSrcDoc = computed(() => {
+    const data = this.activeData();
+    return data && ['inline', 'overlay'].includes(data.def.embedAs) ? this.getIframeSrcDoc(data) : undefined;
+  });
+
   showComponentCards = false;
   showSidenav = false;
   embedCode = '';
 
-  onOrganSelect(organ: any) {
-    this.selectedOrgan = organ;
-    this.showComponentCards = !!this.selectedOrgan;
+  constructor(private sanitizer: DomSanitizer) {}
+
+  onOrganSelect(organId: OrganId) {
+    this.activeOrgan.set(organId);
+    this.showComponentCards = !!this.activeOrgan();
   }
 
-  onShowSidenav(selectedComponentCard: any, show: boolean) {
+  onShowSidenav(defId: ComponentDefId, show: boolean) {
     this.showSidenav = show;
-    this.selectedComponentCard = selectedComponentCard;
-    this.renderEmbedTemplate();
-  }
-
-  renderEmbedTemplate() {
-    if (this.selectedOrgan && this.selectedComponentCard) {
-      const template = this.embedTemplates[this.selectedComponentCard.id as keyof typeof this.embedTemplates];
-      const appData = this.selectedOrgan.appData[this.selectedComponentCard.id];
-      if (template && appData) {
-        this.embedCode = this.interpolateTemplate(template, appData);
+    this.activeDef.set(defId);
+    const data = this.activeData();
+    if (data && ['inline', 'overlay'].includes(data.def.embedAs)) {
+      this.embedCode = this.getIframeSrcDoc(data);
+    }
+    if (data && data.def.embedAs === 'inline') {
+      this.embedCode = this.getIframeSrcDoc(data);
+      this.renderComponentActionLaunchInline();
+    }
+    if (data && data.def.embedAs === 'external') {
+      const targetElement = data.organ.appData[data.defId];
+      if (targetElement) {
+        window.open(targetElement['url'], '_blank');
       }
     }
   }
 
-  interpolateTemplate(template: string, replacements: any): string {
+  renderComponentActionLaunchInline(): void {
+    const componentEl = document.querySelector('.useapp-container') as HTMLElement;
+    if (!componentEl) {
+      console.error('Component element not found');
+      return;
+    }
+
+    const launchEl = document.querySelector('.launch') as HTMLElement;
+    if (!launchEl) {
+      console.error('Launch element not found');
+      return;
+    }
+
+    let appIframe: HTMLIFrameElement | undefined = undefined;
+    launchEl.addEventListener('click', () => {
+      const containerEl = componentEl.querySelector('.embed-app') as HTMLElement;
+      if (!containerEl) {
+        console.error('Container element not found');
+        return;
+      }
+      appIframe ??= this.renderComponentAppIframe(containerEl, this.embedCode, true);
+    });
+  }
+
+  renderComponentAppIframe(containerEl: HTMLElement, srcDoc: string, show: boolean): HTMLIFrameElement {
+    const iframeEl = document.createElement('iframe');
+    iframeEl.srcdoc = srcDoc;
+    iframeEl.style.display = show ? 'block' : 'none';
+    containerEl.appendChild(iframeEl);
+    return iframeEl;
+  }
+
+  private getIframeSrcDoc(data: ActiveData): string {
+    const template = EMBED_TEMPLATES[data.defId];
+    const appData = data.organ.appData[data.defId] ?? {};
+    return this.interpolateTemplate(template, appData);
+  }
+
+  private interpolateTemplate(template: string, replacements: Record<string, unknown>): string {
     return template.replace(/{{(\w+?)}}/g, (_match, key) => {
       const value = replacements[key];
       if (typeof value === 'string') {

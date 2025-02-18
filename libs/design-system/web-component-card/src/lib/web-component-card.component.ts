@@ -31,6 +31,5 @@ export class WebComponentCardComponent {
 
   openSideNav() {
     this.showSidenav.emit(true);
-    console.log('disablebuttonopensidenav', this.disableButton);
   }
 }
