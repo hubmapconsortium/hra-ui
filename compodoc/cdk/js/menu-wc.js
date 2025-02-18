@@ -119,6 +119,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/BaseHrefSelectors.html" data-type="entity-link" >BaseHrefSelectors</a>
                             </li>
                             <li class="link">
+                                <a href="classes/BreakpointWatchState.html" data-type="entity-link" >BreakpointWatchState</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Clear.html" data-type="entity-link" >Clear</a>
                             </li>
                             <li class="link">
