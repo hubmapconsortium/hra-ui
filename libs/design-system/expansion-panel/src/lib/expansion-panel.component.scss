@@ -6,9 +6,14 @@
     align-items: center;
     font: var(--sys-label-large);
     color: var(--sys-secondary);
+    height: 100%;
   }
 
   .filler {
+    flex-grow: 1;
+  }
+
+  .header-content {
     flex-grow: 1;
   }
 

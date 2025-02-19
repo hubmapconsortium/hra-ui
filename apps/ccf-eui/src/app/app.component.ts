@@ -1,13 +1,6 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Injector,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
@@ -15,11 +8,11 @@ import { Select } from '@ngxs/store';
 import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { Observable, ReplaySubject, combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { environment } from '../environments/environment';
 import { OntologySelection } from './core/models/ontology-selection';
-import { ThemingService } from './core/services/theming/theming.service';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
 import { DataState } from './core/store/data/data.state';
@@ -43,6 +36,10 @@ interface AppOptions {
   baseHref?: string;
   filter?: Partial<Filter>;
   loginDisabled?: boolean;
+}
+
+export interface DonorFormControls {
+  organ: FormControl<OrganInfo | string | null>;
 }
 
 /**
@@ -109,10 +106,6 @@ export class AppComponent implements OnInit {
    */
   viewerOpen = false;
 
-  get isLightTheme(): boolean {
-    return this.theming.getTheme().endsWith('light');
-  }
-
   get isFirefox(): boolean {
     return navigator.userAgent.indexOf('Firefox') !== -1;
   }
@@ -125,10 +118,6 @@ export class AppComponent implements OnInit {
   readonly ontologyTerms$: Observable<readonly string[]>;
   readonly cellTypeTerms$: Observable<readonly string[]>;
   readonly biomarkerTerms$: Observable<readonly string[]>;
-
-  readonly theme$ = this.globalConfig.getOption('theme');
-  readonly themeMode$ = new ReplaySubject<'light' | 'dark'>(1);
-
   readonly header$ = this.globalConfig.getOption('header');
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
   readonly logoTooltip$ = this.globalConfig.getOption('logoTooltip');
@@ -143,18 +132,13 @@ export class AppComponent implements OnInit {
    * @param data The data state.
    */
   constructor(
-    el: ElementRef<HTMLElement>,
-    injector: Injector,
     readonly data: DataState,
-    readonly theming: ThemingService,
     readonly scene: SceneState,
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
-    cdr: ChangeDetectorRef,
   ) {
-    theming.initialize(el, injector);
     data.tissueBlockData$.subscribe();
     data.aggregateData$.subscribe();
     data.ontologyTermOccurencesData$.subscribe();
@@ -173,10 +157,6 @@ export class AppComponent implements OnInit {
     combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
       scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
-    combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
-      this.theming.setTheme(`${theme}-theme-${mode}`);
-      cdr.markForCheck();
-    });
     this.selectedtoggleOptions = this.menuOptions;
   }
 
@@ -190,22 +170,6 @@ export class AppComponent implements OnInit {
       panelClass: 'usage-snackbar',
       duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
     });
-
-    if (window.matchMedia) {
-      // Sets initial theme according to user theme preference
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.themeMode$.next('dark');
-      } else {
-        this.themeMode$.next('light');
-      }
-
-      // Listens for changes in user theme preference
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        this.themeMode$.next(e.matches ? 'dark' : 'light');
-      });
-    } else {
-      this.themeMode$.next('light');
-    }
   }
 
   resetView(): void {
@@ -213,13 +177,6 @@ export class AppComponent implements OnInit {
     this.bodyUI.rotation = 0;
     this.bodyUI.rotationX = 0;
     this.bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
-  }
-
-  /**
-   * Toggles scheme between light and dark mode
-   */
-  toggleScheme(): void {
-    this.themeMode$.next(this.isLightTheme ? 'dark' : 'light');
   }
 
   /**
