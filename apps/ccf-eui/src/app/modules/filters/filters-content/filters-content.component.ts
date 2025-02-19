@@ -10,7 +10,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldDefaultOptions,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { SpatialSearch } from '@hra-api/ng-client';
@@ -51,6 +55,12 @@ export type Sex = 'male' | 'female' | 'both';
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { subscriptSizing: 'dynamic' } satisfies MatFormFieldDefaultOptions,
+    },
+  ],
 })
 export class FiltersContentComponent implements OnChanges, OnInit {
   /**

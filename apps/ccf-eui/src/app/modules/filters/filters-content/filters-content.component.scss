@@ -6,6 +6,8 @@
     'form'
     'buttons';
 
+  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+
   form {
     grid-area: form;
     overflow-y: auto;

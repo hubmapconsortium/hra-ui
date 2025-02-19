@@ -4,7 +4,7 @@
       <div class="section">
         <div class="section-title">Demographics</div>
         <div class="patient-filters">
-          <mat-form-field class="dropdown-form-field" subscriptSizing="dynamic">
+          <mat-form-field class="dropdown-form-field">
             <mat-label>Sex</mat-label>
             <mat-select
               (selectionChange)="updateFilter($event.value, 'sex')"
@@ -21,18 +21,15 @@
             </mat-select>
           </mat-form-field>
 
-          <ccf-dual-slider
-            label="Age"
-            [valueRange]="[1, 110]"
-            [selection]="filterForm.controls.ageRange.value ?? []"
-            (selectionChange)="updateFilter($event, 'ageRange')"
-          ></ccf-dual-slider>
-          <ccf-dual-slider
-            label="BMI"
-            [valueRange]="[13, 83]"
-            [selection]="filterForm.controls.bmiRange.value ?? []"
-            (selectionChange)="updateFilter($event, 'bmiRange')"
-          ></ccf-dual-slider>
+          <mat-form-field>
+            <mat-label>Age</mat-label>
+            <ccf-dual-slider formControlName="ageRange" min="1" max="110"> </ccf-dual-slider>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>BMI</mat-label>
+            <ccf-dual-slider formControlName="bmiRange" min="13" max="83"> </ccf-dual-slider>
+          </mat-form-field>
         </div>
       </div>
 

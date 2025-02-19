@@ -3,29 +3,28 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
-
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
 import { OntologyExplorationModule } from './modules/ontology-exploration/ontology-exploration.module';
+import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { ViewerModule } from './shared/components/viewer/viewer.module';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
-import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
 
 @NgModule({
   imports: [
