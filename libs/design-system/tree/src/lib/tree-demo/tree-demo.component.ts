@@ -59,6 +59,7 @@ export class TreeDemoComponent implements AfterViewInit {
   /** Sets dataSource data after view init */
   ngAfterViewInit() {
     this.dataSource = new ArrayDataSource<NestedNode>(this.treeData());
+    console.warn(this.dataSource);
   }
 
   /** Renders node if it is a root node or if all of its ancestors are expanded */
