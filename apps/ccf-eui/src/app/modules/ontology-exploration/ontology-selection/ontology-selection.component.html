@@ -1,16 +1,14 @@
 @if (rootNode$ | async) {
   <ccf-ontology-tree
     class="tree"
-    [showtoggle]="showtoggle"
     [nodes]="[rootNode]"
     [rootNode]="rootNode.id ?? ''"
     [getChildren]="ontologySearchService.getChildren"
     (nodeSelected)="ontologySelection.emit($event)"
-    [occurenceData]="occurenceData"
+    [occurenceData]="occurenceData()"
     (selectedBiomarkerOptions)="filterNodes($event)"
-    [termData]="termData"
-    [ontologyFilter]="ontologyFilter"
-    [header]="header"
+    [termData]="termData()"
+    [ontologyFilter]="ontologyFilter()"
     [tooltips]="tooltips"
     [menuOptions]="biomarkerMenuOptions"
   >

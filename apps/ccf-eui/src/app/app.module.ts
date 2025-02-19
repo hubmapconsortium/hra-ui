@@ -21,7 +21,6 @@ import { CoreModule } from './core/core.module';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
-import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
@@ -50,7 +49,6 @@ import { ViewerModule } from './shared/components/viewer/viewer.module';
     RunSpatialSearchModule,
     MatSnackBarModule,
     MatButtonToggleModule,
-    ButtonToggleModule,
 
     NavHeaderButtonsComponent,
     ExpansionPanelModule,

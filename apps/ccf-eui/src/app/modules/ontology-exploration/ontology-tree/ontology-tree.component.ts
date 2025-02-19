@@ -3,23 +3,31 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Input,
+  input,
   OnChanges,
   OnInit,
-  Output,
+  output,
   SimpleChanges,
 } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { OntologyTreeNode } from '@hra-api/ng-client';
+import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { TreeSizeDirective } from '@hra-ui/design-system/tree';
 import { filter, invoke, property } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { FlatNode } from '../../../core/models/flat-node';
 
 export const labelMap = new Map([
   ['colon', 'large intestine'],
-  ['body', 'Anatomical Structures (AS)'],
-  ['cell', 'Cell Types (CT)'],
+  ['body', 'Anatomical Structures'],
+  ['cell', 'Cell Types'],
 ]);
 
 /** Type of function for getting child nodes from a parent node. */
@@ -42,6 +50,18 @@ const isExpandable = property<FlatNode, boolean>('expandable');
   selector: 'ccf-ontology-tree',
   templateUrl: './ontology-tree.component.html',
   styleUrls: ['./ontology-tree.component.scss'],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatTreeModule,
+    MatButtonToggleModule,
+    ToggleButtonSizeDirective,
+    TreeSizeDirective,
+    ScrollingModule,
+    ScrollOverflowFadeDirective,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologyTreeComponent implements OnInit, OnChanges {
@@ -49,18 +69,16 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
    * Input of ontology filter, used for changing the ontology selections
    * from outside this component.
    */
-  @Input() ontologyFilter!: string[];
+  ontologyFilter = input<string[]>();
 
   /**
    * The root node IRI of the tree
    */
-  @Input() rootNode!: string;
+  rootNode = input.required<string>();
 
-  @Input() showtoggle!: boolean;
   /**
    * The node like objects to display in the tree.
    */
-  // eslint-disable-next-line
   @Input()
   set nodes(nodes: OntologyTreeNode[] | undefined) {
     this._nodes = nodes;
@@ -77,6 +95,11 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   }
 
   /**
+   * Storage for getter/setter 'nodes'.
+   */
+  private _nodes?: OntologyTreeNode[] = undefined;
+
+  /**
    * Method for fetching the children of a node.
    */
   @Input()
@@ -90,9 +113,13 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   }
 
   /**
+   * Storage for getter/setter 'getChildren'.
+   */
+  private _getChildren?: GetChildrenFunc;
+
+  /**
    * Occurence Data is a record of terms that are in the current filter.
    */
-  // eslint-disable-next-line
   @Input()
   set occurenceData(value: Record<string, number>) {
     if (value) {
@@ -127,56 +154,36 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     return this._termData;
   }
 
-  @Input() header!: boolean;
-
-  @Input() menuOptions!: string[];
-
-  @Input() tooltips!: string[];
-
-  selectedToggleoptions!: string[];
-
   /**
    * Storage for the getter / setter
    */
   private _termData!: Record<string, number>;
 
-  /**
-   * Creates an instance of ontology tree component.
-   *
-   * @param cdr The change detector.
-   * @param ga Analytics service
-   */
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly ga: GoogleAnalyticsService,
-  ) {}
+  menuOptions = input.required<string[]>();
+
+  tooltips = input.required<string[]>();
 
   /**
    * Emits an event whenever a node has been selected.
    */
-  @Output() readonly nodeSelected = new EventEmitter<OntologyTreeNode[]>();
+  readonly nodeSelected = output<OntologyTreeNode[]>();
 
   /**
    * Emits an event whenever the node's visibility changed
    */
-  @Output() readonly nodeChanged = new EventEmitter<FlatNode>();
+  readonly nodeChanged = output<FlatNode>();
 
   /**
    * Any time a button is clicked, event is emitted.
    */
-  @Output() readonly selectionChange = new EventEmitter<string[]>();
+  readonly selectionChange = output<string[]>();
 
-  @Output() readonly selectedBiomarkerOptions = new EventEmitter<string[]>();
-
-  /**
-   * Indentation of each level in the tree.
-   */
-  readonly indent: number | string = '1.5rem';
+  readonly selectedBiomarkerOptions = output<string[]>();
 
   /**
    * Tree controller.
    */
-  treeControl = new FlatTreeControl<FlatNode>(
+  readonly treeControl = new FlatTreeControl<FlatNode>(
     (node) => node.level,
     (node) => node.expandable,
   );
@@ -199,34 +206,34 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   hasChild = (_: number, node: FlatNode) => node.expandable;
 
   /**
-   * Storage for getter/setter 'nodes'.
-   */
-  private _nodes?: OntologyTreeNode[] = undefined;
-
-  /**
-   * Storage for getter/setter 'getChildren'.
-   */
-  private _getChildren?: GetChildrenFunc;
-
-  /**
-   * Keeping track of the first selection made allows us to ensure the 'body' node
-   * is unselected as expected.
-   */
-  anySelectionsMade = false;
-
-  /**
    * Currently selected nodes, defaulted to the body node for when the page initially loads.
    */
   selectedNodes: FlatNode[] = [];
+
+  topNode: FlatNode = { level: 0, expandable: true, label: 'body', original: { id: 'body', label: 'body' } };
+
+  selectedToggleOptions: string[] = [];
+
+  /**
+   * Creates an instance of ontology tree component.
+   *
+   * @param cdr The change detector.
+   * @param ga Analytics service
+   */
+  constructor(
+    private readonly cdr: ChangeDetectorRef,
+    private readonly ga: GoogleAnalyticsService,
+  ) {}
 
   /**
    * Expand the body node when the component is initialized.
    */
   ngOnInit(): void {
     if (this.treeControl.dataNodes) {
-      this.treeControl.expand(this.treeControl.dataNodes[0]);
+      this.topNode = this.treeControl.dataNodes[0];
+      this.treeControl.expand(this.topNode);
     }
-    this.selectedToggleoptions = this.menuOptions;
+    this.selectedToggleOptions = this.menuOptions();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -241,7 +248,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
       this.selectByIDs([rootNode]);
     }
     if (changes['nodes']) {
-      this.selectByIDs([this.rootNode]);
+      this.selectByIDs([this.rootNode()]);
     }
   }
 
@@ -327,6 +334,11 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     return !node.original.parent ? 'Tissue Blocks: ' : '';
   }
 
+  getCount(node: FlatNode): string {
+    const id = node.original.id ?? '';
+    return (this.occurenceData[id] || 0).toLocaleString('en-US');
+  }
+
   /**
    * Gets Node label
    * @param label node label
@@ -343,7 +355,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
    * @returns True if the node is the currently selected node.
    */
   isSelected(node: FlatNode | undefined): boolean {
-    return node?.original.id === this.rootNode
+    return node?.original.id === this.rootNode()
       ? false
       : this.selectedNodes.filter((selectedNode) => node?.original.label === selectedNode?.original.label).length > 0;
   }
@@ -355,13 +367,6 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
    * @param ctrlKey Whether or not the selection was made with a ctrl + click event.
    */
   select(ctrlKey: boolean, node: FlatNode | undefined, emit: boolean, select: boolean): void {
-    // This is to ensure the 'body' node is unselected regardless of what the first
-    // selection is
-    if (!this.anySelectionsMade) {
-      this.selectedNodes = [];
-      this.anySelectionsMade = true;
-    }
-
     if (node === undefined) {
       this.selectedNodes = [];
       this.ga.event('nodes_unselected', 'ontology_tree');
@@ -390,11 +395,11 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   }
 
   isItemSelected(item: string): boolean {
-    return this.selectedToggleoptions ? this.selectedToggleoptions.includes(item) : false;
+    return this.selectedToggleOptions ? this.selectedToggleOptions.includes(item) : false;
   }
 
   toggleSelection(value: string[]) {
-    this.selectedToggleoptions = value;
-    this.selectedBiomarkerOptions.emit([...this.selectedToggleoptions]);
+    this.selectedToggleOptions = value;
+    this.selectedBiomarkerOptions.emit([...this.selectedToggleOptions]);
   }
 }

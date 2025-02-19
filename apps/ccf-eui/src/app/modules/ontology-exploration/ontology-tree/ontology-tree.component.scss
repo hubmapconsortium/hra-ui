@@ -1,21 +1,75 @@
 :host {
-  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-top: 1px solid var(--sys-outline-variant);
+  color: var(--sys-secondary);
+
+  .header {
+    display: flex;
+    font: var(--sys-label-medium);
+    min-height: 2.5rem;
+    align-items: center;
+    padding: 0 1rem;
+
+    .header-num-results {
+      display: flex;
+      gap: 0.25rem;
+      font: var(--sys-label-small);
+    }
+  }
+
+  .num-results {
+    color: var(--sys-primary);
+  }
+
+  mat-tree {
+    --mat-tree-container-background-color: var(--sys-surface-container-low);
+  }
 
   mat-tree-node {
     display: flex;
     flex-direction: column;
-
-    .num-results {
-      margin-left: auto;
-    }
+    padding-right: 0.75rem;
+    margin-left: -0.25rem;
   }
 
   .node-content {
-    height: fit-content;
+    padding-left: 0;
+    padding-right: 2px;
+  }
+
+  .node-label {
+    padding-left: 0.375rem;
+  }
+
+  .num-results,
+  .header-num-results {
+    margin-left: auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .biomarkers-toggle {
+    --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+    display: flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0 1rem;
+
+    .mat-button-toggle-group {
+      width: 100%;
+    }
   }
 
   ::ng-deep .mat-mdc-button-touch-target {
     height: 1.5rem;
     width: 1.5rem;
+  }
+
+  ::ng-deep .hra-scroll-overflow-fade-gradient-bottom {
+    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
   }
 }
