@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { ALL_ORGANS } from 'ccf-shared';
+import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
 
 import { SceneState } from '../../../core/store/scene/scene.state';
 
@@ -18,45 +19,35 @@ import { SceneState } from '../../../core/store/scene/scene.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrganSelectComponent {
-  readonly organs = model<string[]>([]);
+  private readonly scene = inject(SceneState);
+  protected readonly selectedOrgans = toSignal(this.scene.selectedReferenceOrgans$, { requireSync: true });
+  protected readonly searchInput = signal('');
 
-  readonly currentOrganInput = model('');
-  readonly filteredOrgans = computed(() => {
-    const currentOrganInput = this.currentOrganInput().toLowerCase();
-    return currentOrganInput
-      ? ALL_ORGANS.filter((organ) => organ.name.toLowerCase().includes(currentOrganInput))
-      : ALL_ORGANS.slice();
+  protected readonly filteredOrgans = computed(() => {
+    const search = this.searchInput().toLowerCase();
+    const options: OrganInfo[] = [];
+    for (const organ of ALL_ORGANS) {
+      if (organ.name.toLowerCase().includes(search) && !this.selectedOrgans().includes(organ)) {
+        options.push(organ);
+      }
+    }
+
+    return options;
   });
-  readonly searchTextField = computed(
-    () => `${this.organs().length} Organ${this.organs().length > 1 ? 's' : ''} Visible`,
+
+  protected readonly searchTextField = computed(
+    () => `${this.selectedOrgans().length} Organ${this.selectedOrgans().length > 1 ? 's' : ''} Visible`,
   );
 
-  constructor(readonly scene: SceneState) {
-    scene.selectedReferenceOrgans$.subscribe((selected) => {
-      this.organs.set(selected.map((organ) => organ.name));
-    });
+  add(event: MatAutocompleteSelectedEvent): void {
+    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), event.option.value]);
+    this.searchInput.set('');
   }
 
-  remove(organ: string): void {
-    this.organs.update((organs) => {
-      const index = organs.indexOf(organ);
-      if (index < 0) {
-        return organs;
-      }
-
-      organs.splice(index, 1);
-      return [...organs];
-    });
-
-    const selectedOrgans = ALL_ORGANS.filter((organ) => this.organs().includes(organ.name));
-    this.scene.setSelectedReferenceOrgans(selectedOrgans);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.organs.update((organs) => [...organs, event.option.viewValue]);
-    const selectedOrgans = ALL_ORGANS.filter((organ) => this.organs().includes(organ.name));
-    this.scene.setSelectedReferenceOrgans(selectedOrgans);
-    this.currentOrganInput.set('');
-    event.option.deselect();
+  remove(organ: OrganInfo): void {
+    const index = this.selectedOrgans().indexOf(organ);
+    const newSelection = [...this.selectedOrgans()];
+    newSelection.splice(index, 1);
+    this.scene.setSelectedReferenceOrgans(newSelection);
   }
 }

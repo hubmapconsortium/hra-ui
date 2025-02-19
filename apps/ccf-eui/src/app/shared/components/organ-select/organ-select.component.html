@@ -1,31 +1,31 @@
 <form>
   <mat-form-field class="organ-form-field" subscriptSizing="dynamic">
-    <mat-label>{{ organs().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
+    <mat-label>{{ selectedOrgans().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
     <input
+      matInput
       name="currentOrganInput"
       class="organ-input"
-      #organInput
-      matInput
-      [(ngModel)]="currentOrganInput"
+      [(ngModel)]="searchInput"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
+      #organInput
     />
-    @if (organs().length > 0) {
+    @if (selectedOrgans().length > 0) {
       <div class="visible-indicator">{{ searchTextField() }}</div>
     }
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
       <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
-        @for (organ of organs(); track organ) {
+        @for (organ of selectedOrgans(); track organ) {
           <mat-chip-row (removed)="remove(organ)">
-            {{ organ }}
-            <button matChipRemove [attr.aria-label]="'remove ' + organ">
+            {{ organ.name }}
+            <button matChipRemove [attr.aria-label]="'remove ' + organ.name">
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
         }
       </mat-chip-grid>
       @for (organ of filteredOrgans(); track organ) {
-        <mat-option [value]="organ.name">{{ organ.name }}</mat-option>
+        <mat-option [value]="organ">{{ organ.name }}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
