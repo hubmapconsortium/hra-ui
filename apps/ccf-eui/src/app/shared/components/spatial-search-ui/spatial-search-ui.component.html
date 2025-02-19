@@ -60,7 +60,7 @@
     <div class="slider-title">Search Radius Size</div>
     <div class="slider-container">
       <mat-slider class="slider" [max]="radiusSettings().max" [min]="radiusSettings().min">
-        <input matSliderThumb [value]="radius" (input)="radiusChange.emit(+slider.value)" #slider />
+        <input matSliderThumb [value]="radius()" (input)="radiusChange.emit(+slider.value)" #slider />
       </mat-slider>
       <span class="radius-value">{{ radius() }} mm</span>
     </div>
@@ -83,7 +83,9 @@
   </div>
 
   <div class="button-container">
-    <button mat-button>Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon></button>
+    <button mat-button (click)="resetSphere.emit(); resetPosition.emit()">
+      Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+    </button>
     <button
       mat-flat-button
       class="run-spatial-search button"

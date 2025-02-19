@@ -39,7 +39,7 @@
   .info-panel {
     grid-area: info-panel;
     display: grid;
-    grid-template-rows: 4.25rem 3rem 4.5rem auto 5.5rem;
+    grid-template-rows: 4.25rem 3rem 4.5rem calc(100% - 17.25rem) 5.5rem;
     grid-template-areas:
       'header'
       'organ-sex-selection'
@@ -102,6 +102,7 @@
   .results {
     grid-area: results;
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:
       'tissues'
       'as'

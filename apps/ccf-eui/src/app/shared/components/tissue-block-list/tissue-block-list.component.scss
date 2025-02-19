@@ -1,16 +1,30 @@
 :host {
-  padding: 0.5rem 0 0rem 1rem;
+  padding: 0.5rem 0 0rem 0rem;
+  overflow: hidden;
 
   ::ng-deep hra-expansion-panel {
-    .title {
+    height: 100%;
+
+    cdk-accordion-item {
+      display: grid;
+      height: 100%;
+      grid-template-rows: 2.5rem calc(100% - 2.5rem);
+    }
+
+    .expansion-body {
+      height: 100%;
+    }
+
+    .header {
       font: var(--sys-label-medium);
+      padding-left: 1rem;
     }
   }
 
   ::ng-deep ng-scrollbar {
-    height: 100%;
-
     .ng-scroll-content {
+      --_viewport-padding-top: 0.25rem;
+      --_viewport-padding-bottom: 0.25rem;
       gap: 0.125rem;
       display: flex;
       flex-direction: column;
@@ -25,7 +39,7 @@
   }
 
   .tissue-list {
-    height: calc((100vh - 28.5rem) / 3);
+    height: 100%;
     --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
   }
 
