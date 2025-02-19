@@ -110,3 +110,12 @@
     grid-area: content;
   }
 }
+
+::ng-deep .hra-app .mat-mdc-menu-panel {
+  min-width: 280px;
+  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
+  .expand-arrow {
+    --mat-menu-item-spacing: 0.75rem;
+  }
+}
