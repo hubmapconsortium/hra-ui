@@ -39,7 +39,6 @@ import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinne
     MatTooltipModule,
     TrackingPopupModule,
     MatSnackBarModule,
-    MatSnackBarModule,
     ButtonToggleModule,
     NavHeaderButtonsComponent,
     ExpansionPanelModule,
