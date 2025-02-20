@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,7 +11,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
-import { BodyUiModule, InfoButtonModule, OrganSelectorModule, TrackingPopupModule } from 'ccf-shared';
+import { BodyUiModule, InfoButtonModule, TrackingPopupModule } from 'ccf-shared';
 
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
@@ -21,18 +19,17 @@ import { CoreModule } from './core/core.module';
 import { FiltersPopoverModule } from './modules/filters/filters-popover/filters-popover.module';
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
-import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { DualSliderModule } from './shared/components/dual-slider/dual-slider.module';
+import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
 import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
-import { ViewerModule } from './shared/components/viewer/viewer.module';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
-    DrawerModule,
     FiltersPopoverModule,
     OntologySelectionComponent,
     MatIconModule,
@@ -40,10 +37,8 @@ import { ViewerModule } from './shared/components/viewer/viewer.module';
     ResultsBrowserComponent,
     SpinnerOverlayModule,
     BodyUiModule,
-    OrganSelectorModule,
     InfoButtonModule,
     MatTooltipModule,
-    ViewerModule,
     TrackingPopupModule,
     MatSnackBarModule,
     RunSpatialSearchModule,
@@ -54,9 +49,9 @@ import { ViewerModule } from './shared/components/viewer/viewer.module';
     ExpansionPanelModule,
     ButtonsModule,
     MatMenuModule,
-    MatDividerModule,
     BackButtonBarComponent,
     ToggleButtonSizeDirective,
+    OrganSelectComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

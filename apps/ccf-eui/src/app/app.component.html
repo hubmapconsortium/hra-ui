@@ -211,16 +211,39 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">Info</button>
-      <button mat-menu-item matRipple>Reset view</button>
-      <button mat-menu-item matRipple>Hide all organs</button>
-      <button mat-menu-item matRipple>Show all organs</button>
+      <button mat-menu-item [matMenuTriggerFor]="submenu">
+        <mat-icon>info</mat-icon>
+        Info
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="submenu2">
+        <mat-icon>visibility</mat-icon>
+        Organ visibility
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+      <button mat-menu-item>Reset visualization view</button>
     </mat-menu>
     <mat-menu #submenu="matMenu">
-      <span>Test</span>
+      <button mat-menu-item>
+        All Human Reference Atlas organs may be viewed in the Body Visualization section. Show/hide organs with the
+        organ search feature. Hiding and showing organs does not filter data results.
+      </button>
+    </mat-menu>
+    <mat-menu #submenu2="matMenu">
+      <button mat-menu-item>
+        <mat-icon>visibility</mat-icon>
+        Show all organs
+      </button>
+      <button mat-menu-item>
+        <mat-icon>visibility_off</mat-icon>
+        Hide all organs
+      </button>
+      <button mat-menu-item>Reset to default organ view</button>
     </mat-menu>
   </hra-expansion-panel-actions>
-  <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+  <hra-expansion-panel-header-content>
+    <ccf-organ-select></ccf-organ-select>
+  </hra-expansion-panel-header-content>
 </hra-expansion-panel>
 
 <div class="left-panel">
@@ -318,7 +341,6 @@
     (nodeHoverStart)="scene.sceneNodeHovered($event)"
     (nodeHoverStop)="scene.sceneNodeUnhover()"
     [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
-    [class.expanded-stage]="!organListVisible"
   >
   </ccf-body-ui>
 </div>
