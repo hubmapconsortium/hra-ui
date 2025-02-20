@@ -50,7 +50,7 @@ function filterAutocompleteOptions<T>(
       const opts = sorted();
       const inputSource$ = isSignal(input) ? input().valueChanges : input;
       return inputSource$.pipe(
-        startWith(''),
+        startWith(isSignal(input) ? input().value : ''),
         distinctUntilChanged(),
         map((value) => filter(value, opts)),
       );
