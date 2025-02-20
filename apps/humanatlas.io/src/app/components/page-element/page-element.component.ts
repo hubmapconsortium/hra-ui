@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { delay, Subscription } from 'rxjs';
 import { LongCard } from '../card-button-long/long-card';
 import { PageDef } from './page-def';
 
@@ -31,7 +31,7 @@ export class PageElementComponent {
     private readonly cdr: ChangeDetectorRef,
   ) {
     this.subscriptions.add(
-      this.route.fragment.subscribe((anchor) => {
+      this.route.fragment.pipe(delay(10)).subscribe((anchor) => {
         if (anchor) {
           this.scroller.scrollToAnchor(anchor);
         }

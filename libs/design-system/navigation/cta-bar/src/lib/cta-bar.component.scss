@@ -1,0 +1,38 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: flex;
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  background-color: utils.with-alpha(var(--sys-on-tertiary-fixed), 8%);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    @include utils.use-font(label, medium);
+
+    .description {
+      color: var(--sys-primary);
+      padding: 0.5rem 0 0 1rem;
+    }
+
+    .action {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      height: 2.5rem;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 535px) {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem 0 0;
+
+      .description {
+        padding: 0;
+      }
+    }
+  }
+}

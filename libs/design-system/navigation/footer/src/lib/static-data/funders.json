@@ -1,0 +1,29 @@
+{
+  "$schema": "../types/funders.schema.json",
+  "funders": [
+    {
+      "id": "nih",
+      "name": "National Institutes of Health",
+      "link": "https://www.nih.gov/",
+      "image": "assets/logo/nih.svg"
+    },
+    {
+      "id": "ada",
+      "name": "American Dental Association",
+      "link": "https://www.ada.org/",
+      "image": "assets/logo/ada.svg"
+    },
+    {
+      "id": "iu",
+      "name": "Indiana University",
+      "link": "https://www.iu.edu/",
+      "image": "assets/logo/iu.svg"
+    },
+    {
+      "id": "cifar",
+      "name": "The Canadian Institute for Advanced Research",
+      "link": "https://cifar.ca/",
+      "image": "assets/logo/cifar.svg"
+    }
+  ]
+}

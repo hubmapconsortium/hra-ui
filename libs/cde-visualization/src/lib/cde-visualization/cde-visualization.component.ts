@@ -85,6 +85,9 @@ export interface DistanceEntry {
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'hra-app',
+  },
 })
 export class CdeVisualizationComponent {
   /** Link to the home page */

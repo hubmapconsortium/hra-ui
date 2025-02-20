@@ -1,0 +1,41 @@
+{
+  "$ref": "#/definitions/Socials",
+  "definitions": {
+    "SocialMedia": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "isFontIcon": {
+          "type": "boolean"
+        },
+        "link": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "icon", "link"],
+      "additionalProperties": false
+    },
+    "Socials": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "socials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SocialMedia"
+          }
+        }
+      },
+      "required": ["$schema", "socials"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

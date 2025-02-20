@@ -84,6 +84,9 @@ const INITIAL_VIEW_STATE = {
   template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>',
   styles: ':host { display: block; position: relative; width: 100%; height: 100%; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'hra-app',
+  },
 })
 export class NodeDistVisComponent {
   /** View mode of the visualization */
