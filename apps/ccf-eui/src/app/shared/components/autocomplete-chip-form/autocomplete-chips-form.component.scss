@@ -1,6 +1,7 @@
 :host {
   --mdc-filled-text-field-container-color: var(--sys-surface-container);
   --mdc-filled-text-field-label-text-color: var(--sys-primary);
+
   display: block;
   width: 100%;
   margin-bottom: 2rem;
@@ -18,5 +19,19 @@
 
   .search-area {
     display: flex;
+  }
+}
+
+::ng-deep .mat-mdc-autocomplete-panel {
+  --mat-autocomplete-background-color: var(--sys-surface-container-low);
+
+  mat-option {
+    background-color: transparent !important;
+    pointer-events: none;
+  }
+
+  .autocomplete-option {
+    display: flex;
+    align-items: center;
   }
 }

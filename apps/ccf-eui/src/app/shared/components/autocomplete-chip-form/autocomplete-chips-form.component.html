@@ -14,6 +14,7 @@
       <button mat-icon-button (click)="options.set([])"><mat-icon>delete</mat-icon></button>
     }
   </div>
+  <mat-icon matPrefix>search</mat-icon>
   <mat-label>{{ label() }}</mat-label>
   <div class="search-area">
     <input
@@ -26,14 +27,18 @@
       (matChipInputTokenEnd)="add($event)"
     />
   </div>
-  <mat-autocomplete
-    #auto="matAutocomplete"
-    autoActiveFirstOption
-    autoSelectActiveOption
-    (optionSelected)="selected($event); searchInput.value = ''"
-  >
-    @for (option of filteredOptions(); track option) {
-      <mat-option [value]="option">{{ option }}</mat-option>
-    }
+  <mat-autocomplete #auto="matAutocomplete">
+    <ng-scrollbar>
+      @for (option of filteredOptions(); track option) {
+        <div class="autocomplete-option">
+          <mat-checkbox
+            class="checkbox"
+            (change)="selected($event, option); searchInput.value = ''"
+            [checked]="options().includes(option)"
+          ></mat-checkbox>
+          <mat-option [value]="option">{{ option }}</mat-option>
+        </div>
+      }
+    </ng-scrollbar>
   </mat-autocomplete>
 </mat-form-field>
