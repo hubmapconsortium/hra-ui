@@ -1,4 +1,4 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -60,7 +60,16 @@ export class CellPopulationPredictorComponent {
   protected ruiOpen = false;
 
   /** Tooltip Position */
-  protected readonly tooltipPosition = []; // TODO
+  protected readonly tooltipPosition: ConnectedPosition[] = [
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: 12,
+      offsetY: 12,
+    },
+  ];
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
