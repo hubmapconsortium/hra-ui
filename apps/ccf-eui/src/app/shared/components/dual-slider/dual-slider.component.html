@@ -1,37 +1,43 @@
-<mat-form-field
-  class="slider-form-field"
-  [class.highlight]="isSliderOpen"
-  (click)="toggleSliderPopover()"
-  subscriptSizing="dynamic"
->
-  <mat-label>{{ label }}</mat-label>
-  <div class="range-label">{{ rangeLabel }}</div>
-  <mat-select></mat-select>
-</mat-form-field>
+<div cdkOverlayOrigin class="content" (click)="open()" #fallbackOrigin="cdkOverlayOrigin">
+  <span class="label">{{ label() }}</span>
 
-<div *cdk-portal class="ccf-slider detached" #popover>
-  <div class="label min fade-in {{ contentsVisible }}">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>{{ valueRange[0] }}></mat-label>
-      <input matInput class="input-low" type="text" value="{{ lowValue }}" (keyup)="updateRangeValue($event, 'low')" />
-    </mat-form-field>
-  </div>
-
-  <mat-slider class="slider fade-in {{ contentsVisible }}" [min]="valueRange[0]" [max]="valueRange[1]">
-    <input matSliderStartThumb [(ngModel)]="lowValue" (change)="sliderValueChanged()" />
-    <input matSliderEndThumb [(ngModel)]="highValue" (change)="sliderValueChanged()" />
-  </mat-slider>
-
-  <div class="label max fade-in {{ contentsVisible }}">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>{{ valueRange[1] }}</mat-label>
-      <input
-        matInput
-        class="input-high"
-        type="text"
-        value="{{ highValue }}"
-        (keyup)="updateRangeValue($event, 'high')"
-      />
-    </mat-form-field>
-  </div>
+  <!-- TODO icon -->
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayBackdropClass="dual-slider-transparent-backdrop"
+  [cdkConnectedOverlayOpen]="panelOpen()"
+  [cdkConnectedOverlayOrigin]="panelOrigin() ?? fallbackOrigin"
+  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
+  (overlayOutsideClick)="panelOpen.set(false)"
+  (detach)="afteClose()"
+>
+  <div
+    cdkTrapFocus
+    cdkTrapFocusAutoCapture
+    class="dual-slider-panel"
+    [attr.id]="panelId"
+    [attr.aria-label]="ariaLabel() || null"
+    [attr.aria-labelledby]="panelLabelledBy()"
+  >
+    <form class="dual-slider-form" [formGroup]="range">
+      <mat-form-field class="number-input min" floatLabel="always">
+        <mat-label>≥{{ min() }}</mat-label>
+        <input matInput type="number" formControlName="low" />
+      </mat-form-field>
+
+      <mat-slider discrete [min]="min()" [max]="max()" step="1" [disabled]="disabled">
+        <input matSliderStartThumb [value]="low()" />
+        <input matSliderEndThumb [value]="high()" />
+      </mat-slider>
+
+      <mat-form-field class="number-input max" floatLabel="always">
+        <mat-label>≤{{ max() }}</mat-label>
+        <input matInput type="number" formControlName="high" />
+      </mat-form-field>
+    </form>
+  </div>
+</ng-template>

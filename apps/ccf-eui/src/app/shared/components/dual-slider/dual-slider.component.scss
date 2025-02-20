@@ -1,79 +1,110 @@
-@use 'sass:math';
-
 :host {
-  .slider-form-field {
-    ::ng-deep .mdc-floating-label {
-      transform: translateY(-106%);
-    }
-  }
+  display: inline-block;
+  outline: none;
 
-  .range-label {
+  .label {
+    color: var(--sys-secondary);
     font: var(--sys-label-medium);
     letter-spacing: var(--sys-label-medium-tracking);
-    color: var(--sys-secondary);
-    position: absolute;
-    line-height: inherit;
   }
 }
 
-@keyframes slideInHorizontalSlider {
-  from {
-    width: 0;
-  }
-  to {
-    width: 22.5rem;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.visible {
-  animation: fadeIn 0.3s;
-  transition-delay: 0.275s;
-  animation-delay: 0.275s;
-}
-
-.invisible {
-  opacity: 0;
-}
-
-.ccf-slider.detached {
-  animation: slideInHorizontalSlider 0.3s;
-  animation-fill-mode: forwards;
-  box-shadow: 0 0.3125rem 0.25rem 0 rgb(from var(--sys-shadow) r g b / 16%);
-  background-color: var(--sys-on-primary);
-
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-
-  --mdc-slider-handle-color: var(--sys-secondary);
-  --mdc-slider-active-track-color: var(--sys-secondary);
-  --mdc-slider-inactive-track-color: #acb5c3;
-
-  mat-form-field {
-    width: 3.75rem;
-    height: 3rem;
-
-    ::ng-deep .mdc-floating-label {
-      transform: translateY(-106%);
-    }
+::ng-deep {
+  .mat-mdc-form-field-type-dual-slider:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    cursor: pointer;
   }
 
-  mat-slider {
-    flex-grow: 1;
+  .dual-slider-panel {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--sys-on-primary);
+    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from var(--sys-secondary) r g b / 16%);
 
-    ::ng-deep .mdc-slider__track--inactive {
-      opacity: 1;
+    .dual-slider-form {
+      display: flex;
+      gap: 1rem;
+
+      .number-input {
+        width: 3.75rem;
+      }
     }
   }
 }
+
+// :host {
+//   .slider-form-field {
+//     ::ng-deep .mdc-floating-label {
+//       transform: translateY(-106%);
+//     }
+//   }
+
+//   .range-label {
+//     font: var(--sys-label-medium);
+//     letter-spacing: var(--sys-label-medium-tracking);
+//     color: var(--sys-secondary);
+//     position: absolute;
+//     line-height: inherit;
+//   }
+// }
+
+// @keyframes slideInHorizontalSlider {
+//   from {
+//     width: 0;
+//   }
+//   to {
+//     width: 22.5rem;
+//   }
+// }
+
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+// .visible {
+//   animation: fadeIn 0.3s;
+//   transition-delay: 0.275s;
+//   animation-delay: 0.275s;
+// }
+
+// .invisible {
+//   opacity: 0;
+// }
+
+// .ccf-slider.detached {
+//   animation: slideInHorizontalSlider 0.3s;
+//   animation-fill-mode: forwards;
+//   box-shadow: 0 0.3125rem 0.25rem 0 rgb(from var(--sys-shadow) r g b / 16%);
+//   background-color: var(--sys-on-primary);
+
+//   display: flex;
+//   justify-content: space-between;
+//   gap: 1rem;
+//   padding: 1rem;
+//   border-radius: 0.5rem;
+
+//   --mdc-slider-handle-color: var(--sys-secondary);
+//   --mdc-slider-active-track-color: var(--sys-secondary);
+//   --mdc-slider-inactive-track-color: #acb5c3;
+
+//   mat-form-field {
+//     width: 3.75rem;
+//     height: 3rem;
+
+//     ::ng-deep .mdc-floating-label {
+//       transform: translateY(-106%);
+//     }
+//   }
+
+//   mat-slider {
+//     flex-grow: 1;
+
+//     ::ng-deep .mdc-slider__track--inactive {
+//       opacity: 1;
+//     }
+//   }
+// }
