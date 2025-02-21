@@ -9,11 +9,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
 
 import { SceneState } from '../../../core/store/scene/scene.state';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'ccf-organ-select',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatAutocompleteModule, MatChipsModule, MatIconModule, FormsModule],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    FormsModule,
+    ScrollingModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './organ-select.component.html',
   styleUrl: './organ-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,5 +60,20 @@ export class OrganSelectComponent {
     const newSelection = [...this.selectedOrgans()];
     newSelection.splice(index, 1);
     this.scene.setSelectedReferenceOrgans(newSelection);
+  }
+
+  selected(event: MatCheckboxChange, option: OrganInfo): void {
+    if (!event.checked) {
+      this.remove(option);
+      return;
+    }
+    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), option]);
+    this.searchInput.set('');
+  }
+
+  isChecked(organ: OrganInfo) {
+    return this.selectedOrgans()
+      .map((organ) => organ.name)
+      .includes(organ.name);
   }
 }

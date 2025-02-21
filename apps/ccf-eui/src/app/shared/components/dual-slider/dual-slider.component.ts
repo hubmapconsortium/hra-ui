@@ -1,20 +1,35 @@
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { CdkPortal } from '@angular/cdk/portal';
+import { A11yModule } from '@angular/cdk/a11y';
+import { hasModifierKey } from '@angular/cdk/keycodes';
+import { Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnChanges,
+  HostAttributeToken,
+  inject,
+  input,
+  model,
+  numberAttribute,
   OnDestroy,
-  Output,
-  SimpleChanges,
-  ViewChild,
+  Renderer2,
+  signal,
+  viewChildren,
 } from '@angular/core';
-import { Options } from '@angular-slider/ngx-slider';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ControlValueAccessor, NgControl, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MAT_FORM_FIELD, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderRangeThumb } from '@angular/material/slider';
+import { SliderModule } from '@hra-ui/design-system/slider';
+import { explicitEffect } from 'ngxtension/explicit-effect';
+import { skip, Subject } from 'rxjs';
+
+export type DualSliderRange = [number, number];
+
+let nextId = 0;
 
 /**
  * Component containing a button that when clicked will show a slider popover.
@@ -23,238 +38,272 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   selector: 'ccf-dual-slider',
   templateUrl: './dual-slider.component.html',
   styleUrls: ['./dual-slider.component.scss'],
+  imports: [
+    A11yModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    OverlayModule,
+    ReactiveFormsModule,
+    SliderModule,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
+  host: {
+    role: 'combobox',
+    'aria-haspopup': 'dialog',
+    '[attr.id]': 'id',
+    '[attr.tabindex]': 'disabled ? -1 : tabIndex()',
+    '[attr.aria-controls]': 'panelOpen() ? panelId : null',
+    '[attr.aria-expanded]': 'panelOpen()',
+    '[attr.aria-label]': 'ariaLabel() || null',
+    '[attr.aria-labelledby]': 'ariaLabel() && ariaLabelledBy() || null',
+    '[attr.aria-required]': 'required.toString()',
+    '[attr.aria-disabled]': 'disabled.toString()',
+    '(focus)': 'onFocus()',
+    '(blur)': 'onBlur()',
+    '(keydown)': 'onKeydown($event)',
+  },
 })
-export class DualSliderComponent implements OnDestroy, OnChanges {
-  /**
-   * Reference to the template for the slider popover.
-   */
-  @ViewChild(CdkPortal, { static: true }) popoverPortal!: CdkPortal;
+export class DualSliderComponent implements ControlValueAccessor, MatFormFieldControl<DualSliderRange>, OnDestroy {
+  readonly min = input.required({ transform: numberAttribute });
+  readonly max = input.required({ transform: numberAttribute });
+  readonly _value = model<DualSliderRange | null>(null, { alias: 'value' });
+  readonly _required = input(false, { alias: 'required', transform: booleanAttribute });
+  readonly _disabled = input(false, { alias: 'disabled', transform: booleanAttribute });
+  readonly tabIndex = input(this.getTabIndexFromHost(), { transform: numberAttribute });
+  readonly ariaLabel = input('', { alias: 'aria-label' });
+  readonly ariaLabelledBy = input('', { alias: 'aria-labelledby' });
+  readonly _userAriaDescribedBy = input('', { alias: 'aria-describedby' });
 
-  /**
-   * Reference to the popover element.
-   * This is undefined until the slider popover is initialized.
-   */
-  @ViewChild('popover', { read: ElementRef, static: false }) popoverElement!: ElementRef<HTMLElement>;
+  readonly id = `dual-slider-input-${nextId++}`;
+  readonly panelId = `${this.id}-panel`;
+  readonly controlType = 'dual-slider';
+  readonly placeholder = '';
+  readonly shouldLabelFloat = true;
+  readonly empty = true;
+  readonly errorState = false;
+  readonly stateChanges = new Subject<void>();
+  readonly ngControl = inject(NgControl, { optional: true, self: true });
 
-  /**
-   * Which criteria the slider is selecting for.
-   */
-  @Input() label!: string;
-
-  /**
-   * The lower and upper range of the slider.
-   */
-  @Input() valueRange!: number[];
-
-  /**
-   * The current range selected.
-   */
-  @Input() selection!: number[];
-
-  /**
-   * Emits the new selection range when a change is made to it.
-   */
-  @Output() readonly selectionChange = new EventEmitter<number[]>();
-
-  /**
-   * Determines whether slider popover is shown.
-   */
-  isSliderOpen = false;
-
-  /**
-   * Slider options.
-   */
-  options!: Options;
-
-  /**
-   * Value bound to the slider's low pointer value.
-   */
-  lowValue!: number;
-
-  /**
-   * Value bound to the slider's high pointer value.
-   */
-  highValue!: number;
-
-  /**
-   * Determines if slider contents are visible (used for fade-in effect).
-   */
-  contentsVisible = 'invisible';
-
-  /**
-   * Computes the current age range for display in the button.
-   */
-  get rangeLabel(): string {
-    const { lowValue, highValue } = this;
-    if (lowValue === highValue) {
-      return `${lowValue}`;
-    }
-    return `${lowValue}-${highValue}`;
+  get value(): DualSliderRange | null {
+    return this._value();
   }
 
-  /**
-   * Reference to the slider popover overlay.
-   */
-  private readonly overlayRef: OverlayRef;
+  get required(): boolean {
+    return this._required();
+  }
 
-  /**
-   * Determines whether slider popover has been created and initialized.
-   */
-  private isSliderInitialized = false;
+  get disabled(): boolean {
+    return this._disabled();
+  }
 
-  /**
-   * Creates an instance of dual slider component.
-   *
-   * @param overlay The overlay service used to create the slider popover.
-   * @param element A reference to the component's element. Used during event handling.
-   * @param ga Analytics service
-   */
-  constructor(
-    overlay: Overlay,
-    private readonly element: ElementRef<HTMLElement>,
-    private readonly ga: GoogleAnalyticsService,
-  ) {
-    const position: ConnectedPosition = { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' };
-    const positionStrategy = overlay.position().flexibleConnectedTo(element).withPositions([position]);
-    this.overlayRef = overlay.create({
-      panelClass: 'slider-pane',
-      positionStrategy,
+  get focused(): boolean {
+    return this._focused() || this.panelOpen();
+  }
+
+  get userAriaDescribedBy(): string {
+    return this._userAriaDescribedBy();
+  }
+
+  protected readonly low = computed(() => this._value()?.[0] ?? this.min());
+  protected readonly high = computed(() => this._value()?.[1] ?? this.max());
+  protected readonly label = computed(() => `${this.low()}-${this.high()}`);
+
+  protected readonly panelOpen = signal(false);
+  protected readonly panelOrigin = signal<ElementRef | undefined>(undefined);
+  protected readonly panelLabelledBy = computed(() => {
+    if (this.ariaLabel()) {
+      return null;
+    }
+
+    const id = this.formField?.getLabelId() ?? null;
+    const labelledBy = this.ariaLabelledBy();
+    return id && labelledBy ? `${id} ${labelledBy}` : labelledBy || id;
+  });
+  protected readonly scrollStrategy = inject(Overlay).scrollStrategies.reposition();
+
+  protected readonly nnfb = inject(NonNullableFormBuilder);
+  protected readonly range = this.nnfb.group(
+    {
+      low: [0],
+      high: [0],
+    },
+    { updateOn: 'blur' },
+  );
+
+  private readonly _focused = signal(false);
+  private readonly elementRef = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly formField = inject(MAT_FORM_FIELD, { optional: true });
+  private readonly sliderThumbs = viewChildren(MatSliderRangeThumb);
+
+  private onChange: (value: unknown) => void = () => undefined;
+  private onTouched: () => void = () => undefined;
+
+  constructor() {
+    const {
+      _disabled,
+      _focused,
+      _required,
+      _userAriaDescribedBy,
+      _value,
+      max,
+      min,
+      ngControl,
+      panelOpen,
+      range,
+      sliderThumbs,
+      stateChanges,
+    } = this;
+
+    if (ngControl) {
+      ngControl.valueAccessor = this;
+    }
+
+    explicitEffect([_required, _disabled, _focused, _userAriaDescribedBy, panelOpen], () => {
+      stateChanges.next();
+    });
+    explicitEffect([_disabled], ([disabled]) => {
+      if (disabled) {
+        range.disable();
+      } else {
+        range.enable();
+      }
+    });
+    explicitEffect([_value, min, max], ([value, min, max]) => {
+      const [low, high] = this.normalizeValue(value, value, min, max);
+      range.setValue({ low, high });
+    });
+
+    const updateLow = (value: number) => this.updateLowHighAndSync(value, undefined);
+    const updateHigh = (value: number) => this.updateLowHighAndSync(undefined, value);
+    explicitEffect([sliderThumbs], ([thumbs]) => {
+      if (thumbs.length === 2) {
+        thumbs[0].registerOnChange(updateLow);
+        thumbs[1].registerOnChange(updateHigh);
+      }
+    });
+
+    range.statusChanges.pipe(takeUntilDestroyed()).subscribe(() => {
+      stateChanges.next();
+    });
+
+    range.valueChanges.pipe(takeUntilDestroyed(), skip(1)).subscribe((value) => {
+      const { low, high } = value;
+      this.updateLowHighAndSync(low, high);
     });
   }
 
-  /**
-   * Updates slider options (with optionsChanged) and selection when changes detected.
-   *
-   * @param changes Changes that have been made to the slider properties.
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['valueRange']) {
-      this.optionsChanged();
-    }
-    if (changes['selection']) {
-      // Detect when selection is changed and update low/high value.
-      this.lowValue = Math.min(...this.selection);
-      this.highValue = Math.max(...this.selection);
-    }
-  }
-
-  /**
-   * Updates the slider options, and the slider values if necessary.
-   */
-  optionsChanged(): void {
-    this.options = {
-      floor: this.valueRange ? this.valueRange[0] : 0,
-      ceil: this.valueRange ? this.valueRange[1] : 0,
-      step: 1,
-      hideLimitLabels: true,
-      hidePointerLabels: true,
-    };
-    this.lowValue = this.options.floor ?? 0;
-    this.highValue = this.options.ceil ?? 0;
-  }
-
-  /**
-   * Angular's OnDestroy hook.
-   * Cleans up the overlay.
-   */
   ngOnDestroy(): void {
-    this.overlayRef.dispose();
+    this.stateChanges.complete();
   }
 
-  /**
-   * Listens to document click, mouse movement, and touch event.
-   * Closes the slider popover when such an event occurs outside the button or popover.
-   *
-   * @param target The element on which the event was fired.
-   */
-  @HostListener('document:click', ['$event.target'])
-  @HostListener('document:touchstart', ['$event.target'])
-  closeSliderPopover(target: HTMLElement): void {
-    const { element, isSliderOpen, popoverElement } = this;
-    const isEventOutside =
-      !isSliderOpen || element.nativeElement.contains(target) || popoverElement?.nativeElement?.contains?.(target);
-    if (isEventOutside) {
+  open(): void {
+    if (this.formField) {
+      this.panelOrigin.set(this.formField.getConnectedOverlayOrigin());
+    }
+
+    this.panelOpen.set(true);
+  }
+
+  afteClose(): void {
+    this.panelOpen.set(false);
+    this.onTouched();
+  }
+
+  onFocus(): void {
+    if (!this.disabled) {
+      this._focused.set(true);
+    }
+  }
+
+  onBlur(): void {
+    this._focused.set(false);
+    if (!this.disabled && !this.panelOpen()) {
+      this.onTouched();
+    }
+  }
+
+  onKeydown(event: KeyboardEvent): void {
+    if (this.disabled) {
       return;
     }
 
-    this.overlayRef.detach();
-    this.isSliderInitialized = false;
-    this.isSliderOpen = false;
-    this.contentsVisible = 'invisible';
+    const isOpenKey = event.key === 'Enter' || event.key === ' ';
+    if (isOpenKey && !hasModifierKey(event)) {
+      event.preventDefault();
+      this.open();
+    }
   }
 
-  /**
-   * Toggles the visibility of the slider popover.
-   */
-  toggleSliderPopover(): void {
-    const { isSliderOpen, isSliderInitialized } = this;
-    if (isSliderInitialized) {
-      this.overlayRef.detach();
-      this.isSliderInitialized = false;
-    } else if (!isSliderInitialized && !isSliderOpen) {
-      this.initializeSliderPopover();
+  onContainerClick(_event: MouseEvent): void {
+    this.open();
+  }
+
+  setDescribedByIds(ids: string[]): void {
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-describedby', ids.join(' '));
+  }
+
+  writeValue(value: DualSliderRange | null): void {
+    this.updateValue(this.normalizeValue(value));
+  }
+
+  registerOnChange(fn: (value: unknown) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  private updateValue(value: DualSliderRange): boolean {
+    const current = this._value();
+    if (current !== null && current[0] === value[0] && current[1] === value[1]) {
+      return false;
     }
 
-    this.contentsVisible = this.contentsVisible === 'visible' ? 'invisible' : 'visible';
-    this.isSliderOpen = !isSliderOpen;
+    this._value.set(value);
+    return true;
   }
 
-  /**
-   * Handler for updates to the slider values.
-   * Emits the updated selection value array.
-   */
-  sliderValueChanged(): void {
-    const { lowValue, highValue } = this;
-
-    this.selection = [lowValue, highValue];
-    this.ga.event('slider_range_change', 'dual_slider', `${this.label}:${lowValue}:${highValue}`);
-    this.selectionChange.emit(this.selection);
+  private updateLowHighAndSync(low: number | undefined, high: number | undefined): void {
+    const normalized = this.normalizeValue([low, high]);
+    const changed = this.updateValue(normalized);
+    if (changed) {
+      this.onChange(normalized);
+    } else {
+      this.range.setValue({ low: normalized[0], high: normalized[1] }, { emitEvent: false });
+    }
   }
 
-  /**
-   * Creates and initializes the slider popover.
-   */
-  private initializeSliderPopover(): void {
-    const { overlayRef, popoverPortal } = this;
-
-    overlayRef.attach(popoverPortal);
-    overlayRef.updatePosition();
-
-    this.isSliderInitialized = true;
-  }
-
-  /**
-   * Updates the slider's low pointer value when Enter key is pressed.
-   *
-   * @param event Event passed into the component
-   */
-  onKeyLow(event: KeyboardEvent): void {
-    const newValue = Number((event.target as HTMLInputElement).value);
-    if (event.key === 'Enter') {
-      if (newValue >= Number(this.options.floor) && newValue <= Number(this.options.ceil)) {
-        this.lowValue = newValue;
+  private normalizeValue(
+    value: Partial<DualSliderRange> | null,
+    current: DualSliderRange | null = this._value(),
+    min = this.min(),
+    max = this.max(),
+  ): DualSliderRange {
+    const currentOrDefaultValue = (index: 0 | 1, defaultValue: number) => {
+      return current?.[index] ?? defaultValue;
+    };
+    const getNormalizedValueAt = (index: 0 | 1, defaultValue: number) => {
+      if (value === null || value[index] === undefined) {
+        return currentOrDefaultValue(index, defaultValue);
       }
-      (event.target as HTMLInputElement).value = String(this.lowValue);
-      (event.target as HTMLInputElement).blur();
-      this.sliderValueChanged();
+      const result = Math.round(value[index]);
+      return result >= min && result <= max ? result : currentOrDefaultValue(index, defaultValue);
+    };
+
+    const result: DualSliderRange = [getNormalizedValueAt(0, min), getNormalizedValueAt(1, max)];
+    if (result[0] > result[1]) {
+      result.reverse();
     }
+    return result;
   }
 
-  /**
-   * Updates the slider's high pointer value when Enter key is pressed.
-   *
-   * @param event Event passed into the component
-   */
-  onKeyHigh(event: KeyboardEvent): void {
-    const newValue = Number((event.target as HTMLInputElement).value);
-    if (event.key === 'Enter') {
-      if (newValue >= Number(this.options.floor) && newValue <= Number(this.options.ceil)) {
-        this.highValue = newValue;
-      }
-      (event.target as HTMLInputElement).value = String(this.highValue);
-      (event.target as HTMLInputElement).blur();
-      this.sliderValueChanged();
-    }
+  private getTabIndexFromHost(): number {
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
+    return (tabIndex && parseInt(tabIndex)) || 0;
   }
 }

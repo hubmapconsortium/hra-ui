@@ -9,8 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
 import { map, Observable, startWith } from 'rxjs';
-
-import { Sex } from '../spatial-search-config/spatial-search-config.component';
+import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 @Component({
   selector: 'ccf-spatial-search-inputs',
@@ -38,10 +37,10 @@ export class SpatialSearchInputsComponent implements OnInit {
   @Input() selectedOrgan?: OrganInfo;
 
   /** Currently selected sex */
-  @Input() sex!: Sex;
+  @Input() sex!: SpatialSearchSex;
 
   /** Emits when sex is updated */
-  @Output() readonly updateSex = new EventEmitter<Sex>();
+  @Output() readonly updateSex = new EventEmitter<SpatialSearchSex>();
 
   /** Emits when organ is updated */
   @Output() readonly updateOrgan = new EventEmitter<OrganInfo>();

@@ -1,162 +1,110 @@
-@use 'sass:math';
-
-.slider-form-field {
-  width: 100%;
-  height: 3rem;
-
-  ::ng-deep .mat-mdc-text-field-wrapper {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    height: calc(3rem - 1px);
-
-    .mat-mdc-form-field-flex {
-      .mat-mdc-form-field-infix {
-        font-size: 0.875rem;
-        border: none;
-
-        .slider-labels {
-          height: 19.25px;
-          display: flex;
-          flex-direction: column;
-
-          .name-label {
-            height: 100%;
-          }
-
-          .range-label {
-            font-weight: bold;
-          }
-        }
-
-        mat-select {
-          font-size: 1rem;
-          font-weight: bold;
-
-          .mat-mdc-select-arrow-wrapper {
-            position: relative;
-            bottom: 0.25rem;
-            right: 0.25rem;
-          }
-        }
-      }
-    }
-
-    .mdc-line-ripple::before {
-      border-bottom-width: 2px;
-    }
-  }
-}
-
-::ng-deep .ccf-slider.wrapper {
-  .mat-select-arrow-wrapper {
-    transform: translatey(-1.5em);
-  }
-}
-
-// Styles for the popover slider
-// NOTE: This must NOT be nested inside the wrapper/container!
-
-@keyframes slideInHorizontalSlider {
-  from {
-    width: 0;
-  }
-  to {
-    width: 20em;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.visible {
-  animation: fadeIn 0.3s;
-  transition-delay: 0.275s;
-  animation-delay: 0.275s;
-}
-
-.invisible {
-  opacity: 0;
-}
-
-::ng-deep .slider-pane {
-  position: absolute !important;
-  top: -1px;
-}
-
-.ccf-slider.detached {
-  animation: slideInHorizontalSlider 0.3s;
-  animation-fill-mode: forwards;
-  box-shadow: 0.2rem 0.2rem 1rem 0rem #0000003e;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 0rem;
-  height: 4.375rem;
-  padding: 0.75rem; // NOTE: Use padding instead of margin!
-
-  .slider ::ng-deep {
-    visibility: hidden;
-    margin-top: 0.9375rem;
-    margin-bottom: 0.9375rem;
-    .ngx-slider-bar {
-      opacity: 0.2;
-      height: 0.15rem;
-    }
-
-    .ngx-slider-selection {
-      opacity: 1;
-    }
-
-    .ngx-slider-pointer {
-      $pointer-size: 1rem;
-
-      width: $pointer-size;
-      height: $pointer-size;
-      top: 0.095rem - math.div($pointer-size, 2);
-
-      &:after {
-        display: none;
-      }
-    }
-  }
+:host {
+  display: inline-block;
+  outline: none;
 
   .label {
-    display: flex;
-    flex-direction: column;
-    width: 2rem;
+    color: var(--sys-secondary);
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+  }
+}
 
-    &.min {
-      margin-right: 1rem;
-    }
+::ng-deep {
+  .mat-mdc-form-field-type-dual-slider:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    cursor: pointer;
+  }
 
-    &.max {
-      margin-left: 1rem;
-      align-items: flex-end;
+  .dual-slider-panel {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--sys-on-primary);
+    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from var(--sys-secondary) r g b / 16%);
 
-      .ceil,
-      input {
-        text-align: right;
+    .dual-slider-form {
+      display: flex;
+      gap: 1rem;
+
+      .number-input {
+        width: 3.75rem;
       }
-    }
-
-    .floor,
-    .ceil {
-      font-size: 0.875rem;
-    }
-
-    input {
-      border: none;
-      width: 1.75rem;
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 0;
     }
   }
 }
+
+// :host {
+//   .slider-form-field {
+//     ::ng-deep .mdc-floating-label {
+//       transform: translateY(-106%);
+//     }
+//   }
+
+//   .range-label {
+//     font: var(--sys-label-medium);
+//     letter-spacing: var(--sys-label-medium-tracking);
+//     color: var(--sys-secondary);
+//     position: absolute;
+//     line-height: inherit;
+//   }
+// }
+
+// @keyframes slideInHorizontalSlider {
+//   from {
+//     width: 0;
+//   }
+//   to {
+//     width: 22.5rem;
+//   }
+// }
+
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+// .visible {
+//   animation: fadeIn 0.3s;
+//   transition-delay: 0.275s;
+//   animation-delay: 0.275s;
+// }
+
+// .invisible {
+//   opacity: 0;
+// }
+
+// .ccf-slider.detached {
+//   animation: slideInHorizontalSlider 0.3s;
+//   animation-fill-mode: forwards;
+//   box-shadow: 0 0.3125rem 0.25rem 0 rgb(from var(--sys-shadow) r g b / 16%);
+//   background-color: var(--sys-on-primary);
+
+//   display: flex;
+//   justify-content: space-between;
+//   gap: 1rem;
+//   padding: 1rem;
+//   border-radius: 0.5rem;
+
+//   --mdc-slider-handle-color: var(--sys-secondary);
+//   --mdc-slider-active-track-color: var(--sys-secondary);
+//   --mdc-slider-inactive-track-color: #acb5c3;
+
+//   mat-form-field {
+//     width: 3.75rem;
+//     height: 3rem;
+
+//     ::ng-deep .mdc-floating-label {
+//       transform: translateY(-106%);
+//     }
+//   }
+
+//   mat-slider {
+//     flex-grow: 1;
+
+//     ::ng-deep .mdc-slider__track--inactive {
+//       opacity: 1;
+//     }
+//   }
+// }

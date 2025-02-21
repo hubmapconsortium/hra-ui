@@ -9,8 +9,9 @@ import { Observable, Subscription } from 'rxjs';
 import { actionAsFn } from '../../../core/store/action-as-fn';
 import { SetOrgan, SetSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
-import { Sex, SpatialSearchConfigComponent } from '../spatial-search-config/spatial-search-config.component';
+import { SpatialSearchConfigComponent } from '../spatial-search-config/spatial-search-config.component';
 import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/spatial-search-ui-behavior.component';
+import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 @Component({
   selector: 'ccf-spatial-search-config-behavior',
@@ -20,7 +21,7 @@ import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
-  readonly sex$: Observable<Sex> = inject(Store).select(SpatialSearchUiSelectors.sex);
+  readonly sex$: Observable<SpatialSearchSex> = inject(Store).select(SpatialSearchUiSelectors.sex);
 
   readonly selectedOrgan$: Observable<OrganInfo | undefined> = inject(Store).select(SpatialSearchUiSelectors.organ);
 

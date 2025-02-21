@@ -2,11 +2,11 @@ import { OntologyTree, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra
 import { Selector } from '@ngxs/store';
 import { getProbingSphereScene } from 'ccf-scene-utils';
 import { OrganInfo } from 'ccf-shared';
-import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { DataStateSelectors } from '../data/data.selectors';
 import {
   Position,
   RadiusSettings,
+  SpatialSearchSex,
   SpatialSearchUiModel,
   SpatialSearchUiState,
   TermResult,
@@ -16,7 +16,7 @@ export class SpatialSearchUiSelectors {
   static readonly organEntity = SpatialSearchUiState.organEntity;
 
   @Selector([SpatialSearchUiState])
-  static sex(state: SpatialSearchUiModel): Sex {
+  static sex(state: SpatialSearchUiModel): SpatialSearchSex {
     return state.sex;
   }
 
@@ -40,11 +40,11 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiSelectors.sex, SpatialSearchUiSelectors.referenceOrgans])
-  static organs(sex: Sex, organs: OrganInfo[]): OrganInfo[] {
+  static organs(sex: SpatialSearchSex, organs: OrganInfo[]): OrganInfo[] {
     return organs.filter((organ) => this.organMatchesSex(organ, sex));
   }
 
-  static organMatchesSex(organ: OrganInfo, sex: Sex): boolean {
+  static organMatchesSex(organ: OrganInfo, sex: SpatialSearchSex): boolean {
     return organ.hasSex || organ.sex === sex;
   }
 

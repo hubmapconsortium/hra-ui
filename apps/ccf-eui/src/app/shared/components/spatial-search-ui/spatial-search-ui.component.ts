@@ -8,8 +8,12 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BodyUiModule, OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
 import { Observable } from 'rxjs';
 
-import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
-import { Sex } from '../spatial-search-config/spatial-search-config.component';
+import {
+  Position,
+  RadiusSettings,
+  SpatialSearchSex,
+  TermResult,
+} from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
 import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
@@ -53,7 +57,7 @@ export class SpatialSearchUiComponent {
   organs = input.required<OrganInfo[]>();
 
   /** Current selected sex */
-  sex = input.required<Sex>();
+  sex = input.required<SpatialSearchSex>();
 
   /** Current selected organ */
   referenceOrgan = input.required<OrganInfo>();
@@ -104,7 +108,7 @@ export class SpatialSearchUiComponent {
   readonly nodeClicked = output<SpatialSceneNode>();
 
   /** Emits when sex is updated */
-  readonly updateSex = output<Sex>();
+  readonly updateSex = output<SpatialSearchSex>();
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();

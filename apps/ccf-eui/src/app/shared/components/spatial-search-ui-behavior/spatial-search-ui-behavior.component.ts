@@ -19,9 +19,13 @@ import {
   SetSex,
 } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
-import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import {
+  Position,
+  RadiusSettings,
+  SpatialSearchSex,
+  TermResult,
+} from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchConfigBehaviorComponent } from '../spatial-search-config-behavior/spatial-search-config-behavior.component';
-import { Sex } from '../spatial-search-config/spatial-search-config.component';
 import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui.component';
 
 /**
@@ -45,7 +49,7 @@ export class SpatialSearchUiBehaviorComponent {
     SpatialSearchUiSelectors.sceneTarget,
   );
 
-  readonly sex$: Observable<Sex> = inject(Store).select(SpatialSearchUiSelectors.sex);
+  readonly sex$: Observable<SpatialSearchSex> = inject(Store).select(SpatialSearchUiSelectors.sex);
 
   readonly organ$: Observable<OrganInfo | undefined> = inject(Store).select(SpatialSearchUiSelectors.organ);
 

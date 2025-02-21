@@ -2,11 +2,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
-
+import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
-
-/** Sex can either be male or female */
-export type Sex = 'male' | 'female';
 
 /**
  * Config popup for spatial search
@@ -29,10 +26,10 @@ export class SpatialSearchConfigComponent {
   selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  sex = input.required<Sex>();
+  sex = input.required<SpatialSearchSex>();
 
   /** Emits when sex is updated */
-  readonly updateSex = output<Sex>();
+  readonly updateSex = output<SpatialSearchSex>();
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
