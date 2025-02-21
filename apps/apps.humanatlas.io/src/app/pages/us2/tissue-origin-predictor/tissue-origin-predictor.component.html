@@ -1,0 +1,35 @@
+<!-- HEADING -->
+<hra-product-header imageUrl="tissue-origin-predictor-icon.svg" title="Tissue Origin Predictor"> </hra-product-header>
+
+<!-- INFO -->
+<p class="info-text">
+  Upload a cell type population file and use the Human Reference Atlas API to predict 3D tissue origin.
+</p>
+
+<!-- CARDS -->
+<div class="cards">
+  <!-- CARD 1 -->
+  <hra-workflow-card tagline="Upload Cell Population" step="1" class="card card-1">
+    <hra-workflow-card-extra>
+      <button mat-button hraButtonSize="medium">View Sample</button>
+    </hra-workflow-card-extra>
+
+    <p class="card-info-text">Upload a cell population CSV file or use the sample file.</p>
+
+    <div class="file-format-info">
+      <div>
+        <span>Required Columns</span>
+        <ul>
+          <li>Cell ID</li>
+          <li>Percentage</li>
+        </ul>
+      </div>
+      <div>
+        <span>Supported Format</span>
+        <ul>
+          <li>CSV</li>
+        </ul>
+      </div>
+    </div>
+  </hra-workflow-card>
+</div>
