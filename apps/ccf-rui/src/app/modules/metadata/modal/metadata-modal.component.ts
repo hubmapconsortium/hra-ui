@@ -23,8 +23,8 @@ export type MetadataModalMode = 'create' | 'edit';
 
 export interface MetadataModalConfig {
   mode: MetadataModalMode;
-  pageSnapshot?: PageStateModel;
-  modelSnapshot?: ModelStateModel;
+  pageSnapshot: PageStateModel;
+  modelSnapshot: ModelStateModel;
 }
 
 export interface MetadataModalResult {
@@ -90,10 +90,15 @@ export class MetadataModalComponent {
   protected previousRegistration?: Partial<SpatialEntityJsonLd> = undefined;
 
   constructor() {
-    this.metadataForm.patchValue({
-      author: this.config.pageSnapshot?.user,
-      donor: this.config.modelSnapshot,
-    });
+    const { mode, pageSnapshot, modelSnapshot } = this.config;
+    const author = pageSnapshot.user;
+    const donor: Partial<ModelStateModel> = { ...modelSnapshot };
+    if (mode === 'create' && !modelSnapshot.organ.name) {
+      delete donor.organ;
+      delete donor.sex;
+    }
+
+    this.metadataForm.patchValue({ author, donor });
   }
 
   setPreviousRegistration(obj: unknown): void {
