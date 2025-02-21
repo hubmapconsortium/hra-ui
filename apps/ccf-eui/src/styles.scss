@@ -9,3 +9,30 @@ html,
 body {
   height: 100%;
 }
+
+.mat-mdc-autocomplete-panel {
+  --mat-autocomplete-background-color: var(--sys-surface-container-low);
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  max-height: none !important;
+
+  ng-scrollbar {
+    max-height: 18rem;
+  }
+
+  mat-option {
+    flex-grow: 1;
+    font: var(--sys-label-medium);
+    padding-left: 0;
+  }
+
+  .autocomplete-option {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.autocomplete-checkbox {
+  padding: 0.25rem;
+}
