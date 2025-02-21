@@ -1,7 +1,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, Component, computed, input, model, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,10 +37,11 @@ export class AutocompleteChipsFormComponent {
   readonly currentInputValue = model('');
   readonly options = signal([] as string[]);
   readonly filteredOptions = computed(() => {
-    const currentAssay = this.currentInputValue().toLowerCase();
-    return currentAssay
-      ? this.filterOptions().filter((assay) => assay.toLowerCase().includes(currentAssay))
-      : this.filterOptions().slice();
+    const currentValue = this.currentInputValue().toLowerCase();
+    const filteredWithoutSelected = this.filterOptions().filter((value) => !this.options().includes(value));
+    return currentValue
+      ? filteredWithoutSelected.filter((value) => value.toLowerCase().includes(currentValue))
+      : filteredWithoutSelected.slice();
   });
 
   add(event: MatChipInputEvent): void {
@@ -62,6 +63,13 @@ export class AutocompleteChipsFormComponent {
       options.splice(index, 1);
       return [...options];
     });
+  }
+
+  optionSelected(event: MatAutocompleteSelectedEvent): void {
+    this.options.update((options) => [...options, event.option.viewValue]);
+    this.currentInputValue.set('');
+    this.form().setValue(['']);
+    event.option.deselect();
   }
 
   selected(event: MatCheckboxChange, option: string): void {

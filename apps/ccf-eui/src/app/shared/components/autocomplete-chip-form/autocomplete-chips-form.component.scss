@@ -19,19 +19,9 @@
 
   .search-area {
     display: flex;
-  }
-}
 
-::ng-deep .mat-mdc-autocomplete-panel {
-  --mat-autocomplete-background-color: var(--sys-surface-container-low);
-
-  mat-option {
-    background-color: transparent !important;
-    pointer-events: none;
-  }
-
-  .autocomplete-option {
-    display: flex;
-    align-items: center;
+    .search-input {
+      margin-left: 0;
+    }
   }
 }

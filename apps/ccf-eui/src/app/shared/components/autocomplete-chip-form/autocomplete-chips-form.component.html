@@ -19,6 +19,7 @@
   <div class="search-area">
     <input
       placeholder="Search"
+      class="search-input"
       #searchInput
       [(ngModel)]="currentInputValue"
       [matChipInputFor]="chipGrid"
@@ -27,13 +28,13 @@
       (matChipInputTokenEnd)="add($event)"
     />
   </div>
-  <mat-autocomplete #auto="matAutocomplete">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
     <ng-scrollbar>
       @for (option of filteredOptions(); track option) {
         <div class="autocomplete-option">
           <mat-checkbox
-            class="checkbox"
-            (change)="selected($event, option); searchInput.value = ''"
+            class="autocomplete-checkbox"
+            (change)="selected($event, option); auto.showPanel = false"
             [checked]="options().includes(option)"
           ></mat-checkbox>
           <mat-option [value]="option">{{ option }}</mat-option>
