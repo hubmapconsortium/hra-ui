@@ -1,7 +1,6 @@
 import { Shallow } from 'shallow-render';
 
 import { SpatialSearchListComponent, SpatialSearchListItem } from './spatial-search-list.component';
-import { SpatialSearchListModule } from './spatial-search-list.module';
 
 describe('SpatialSearchListComponent', () => {
   const item1: SpatialSearchListItem = { selected: false, description: 'abc' };
@@ -11,7 +10,7 @@ describe('SpatialSearchListComponent', () => {
   let shallow: Shallow<SpatialSearchListComponent<SpatialSearchListItem>>;
 
   beforeEach(() => {
-    shallow = new Shallow(SpatialSearchListComponent, SpatialSearchListModule);
+    shallow = new Shallow(SpatialSearchListComponent);
   });
 
   describe('itemId(index, item)', () => {

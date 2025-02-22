@@ -22,10 +22,17 @@
 
   .section {
     padding: 0 1.25rem;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
     .section-title {
       font: var(--sys-label-large);
       color: var(--sys-secondary);
-      margin-bottom: 0.5rem;
     }
   }
 
@@ -44,9 +51,8 @@
     }
   }
 
-  .spatial-search-header {
-    display: flex;
-    justify-content: space-between;
+  .providers-form {
+    margin-bottom: 0;
   }
 
   .button-container {

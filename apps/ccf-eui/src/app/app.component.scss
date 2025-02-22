@@ -83,6 +83,10 @@
   .vis-panel {
     grid-area: vis-panel;
     margin: 0 1rem;
+
+    hra-expansion-panel-header-content {
+      width: 100%;
+    }
   }
 
   .left-panel {

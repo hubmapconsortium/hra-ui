@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
   input,
   OnChanges,
   OnInit,
@@ -20,7 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SpatialSearch } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { SpatialSearchListModule } from 'ccf-shared';
+import { SpatialSearchListComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
@@ -44,7 +43,7 @@ export type Sex = 'male' | 'female' | 'both';
     ReactiveFormsModule,
     ButtonsModule,
     MatIconModule,
-    SpatialSearchListModule,
+    SpatialSearchListComponent,
     MatFormFieldModule,
     MatSelectModule,
     ButtonsModule,
@@ -70,7 +69,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   /**
    * Allows the filters to be set from outside the component
    */
-  @Input() filters?: Record<string, unknown>;
+  readonly filters = input<Record<string, unknown>>();
 
   /**
    * List of technologies in the data
@@ -86,11 +85,6 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * List of spatial searches
    */
   readonly spatialSearchFilters = input.required<SpatialSearchFilterItem[]>();
-
-  /**
-   * Emits the filter change when they happen
-   */
-  filtersChange = output<Record<string, unknown>>();
 
   /**
    * Emits when a spatial search is selected/deselected
@@ -128,11 +122,12 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   constructor(private readonly ga: GoogleAnalyticsService) {}
 
   ngOnInit(): void {
-    if (this.filters) {
+    const f = this.filters();
+    if (f) {
       this.filterForm.patchValue({
-        sex: this.filters['sex'] as Sex,
-        ageRange: this.filters['ageRange'] as number[],
-        bmiRange: this.filters['bmiRange'] as number[],
+        sex: f['sex'] as Sex,
+        ageRange: f['ageRange'] as number[],
+        bmiRange: f['bmiRange'] as number[],
       });
     }
   }
@@ -141,8 +136,9 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Handle input changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('spatialSearchFilters' in changes) {
+    if ('spatialSearchFilters' in changes && !changes['spatialSearchFilters'].isFirstChange()) {
       this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
+      this.filterForm.markAsDirty();
     }
   }
 
@@ -187,24 +183,16 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Refreshes all filter settings
    */
   refreshFilters(): void {
-    this.filterForm.controls.technologies.patchValue([]);
-    this.filterForm.controls.consortia.patchValue([]);
-    this.filterForm.controls.providers.patchValue([]);
-    this.filters = JSON.parse(JSON.stringify(DEFAULT_FILTER));
-    if (this.filters) {
-      this.filterForm.patchValue({
-        sex: this.filters['sex'] as Sex,
-        ageRange: this.filters['ageRange'] as number[],
-        bmiRange: this.filters['bmiRange'] as number[],
-        consortia: this.filters['consortiums'] as string[],
-        technologies: this.filters['technologies'] as string[],
-        providers: this.filters['tmc'] as string[],
-        spatialSearches: this.filters['spatialSearches'] as SpatialSearch[],
-      });
+    const defaults = { ...DEFAULT_FILTER, providers: DEFAULT_FILTER['tmc'], consortia: DEFAULT_FILTER['consortiums'] };
+
+    for (const search of this.spatialSearchFilters()) {
+      this.spatialSearchRemoved.emit(search.id);
     }
+
+    this.updateSearchSelection([]);
+    this.filterForm.patchValue(defaults);
+
     this.ga.event('filters_reset', 'filter_content');
-    this.spatialSearchSelected.emit([]);
-    this.filtersChange.emit(this.filters ?? {});
     this.filterForm.markAsDirty();
   }
 
@@ -219,6 +207,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.spatialSearchSelected.emit(items);
     this.updateFilter(searches, 'spatialSearches');
     this.updateSexFromSelection(items);
+    this.filterForm.markAsDirty();
   }
 
   /**

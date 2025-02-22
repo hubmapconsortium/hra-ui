@@ -36,9 +36,11 @@
         [displayWith]="displayFn"
         (optionSelected)="updateOrgan.emit($event.option.value); selectedOrgan = $event.option.value"
       >
-        @for (organ of filteredOrgans | async; track organ) {
-          <mat-option [value]="organ">{{ organ.name }}</mat-option>
-        }
+        <ng-scrollbar>
+          @for (organ of filteredOrgans | async; track organ) {
+            <mat-option [value]="organ">{{ organ.name }}</mat-option>
+          }
+        </ng-scrollbar>
       </mat-autocomplete>
     </mat-form-field>
   </form>

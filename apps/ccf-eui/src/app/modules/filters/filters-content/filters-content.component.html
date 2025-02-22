@@ -2,7 +2,9 @@
   <form [formGroup]="filterForm">
     <div class="input-container">
       <div class="section">
-        <div class="section-title">Demographics</div>
+        <div class="section-header">
+          <div class="section-title">Demographics</div>
+        </div>
         <div class="patient-filters">
           <mat-form-field class="dropdown-form-field">
             <mat-label>Sex</mat-label>
@@ -34,8 +36,11 @@
       </div>
 
       <div class="section">
-        <div class="section-title">Provenance</div>
+        <div class="section-header">
+          <div class="section-title">Provenance</div>
+        </div>
         <ccf-autocomplete-chips-form
+          #assays
           class="assay-form"
           label="Assay Types"
           [filterOptions]="technologyFilters()"
@@ -44,6 +49,7 @@
         </ccf-autocomplete-chips-form>
 
         <ccf-autocomplete-chips-form
+          #consortia
           class="consortia-form"
           label="Consortia"
           [filterOptions]="['HuBMAP', 'SenNet']"
@@ -52,6 +58,7 @@
         </ccf-autocomplete-chips-form>
 
         <ccf-autocomplete-chips-form
+          #providers
           class="providers-form"
           label="Tissue Data Providers"
           [filterOptions]="providerFilters()"
@@ -61,11 +68,11 @@
       </div>
 
       <div class="section spatial-search">
-        <div class="spatial-search-header">
+        <div class="section-header">
           <div class="section-title">Spatial Locations</div>
           <button class="run-spatial-search-button" mat-button (click)="spatialFlowService.startSpatialSearchFlow()">
-            Run Spatial Search
-            <mat-icon>travel_explore</mat-icon>
+            Spatial Search
+            <mat-icon>add_circle</mat-icon>
           </button>
         </div>
         <ccf-spatial-search-list
@@ -80,7 +87,11 @@
 </ng-scrollbar>
 
 <div class="button-container">
-  <button mat-button (click)="refreshFilters()">
+  <button
+    mat-button
+    [disabled]="filterForm.pristine || filterForm.invalid"
+    (click)="refreshFilters(); assays.options.set([]); consortia.options.set([]); providers.options.set([])"
+  >
     Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
   </button>
   <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">

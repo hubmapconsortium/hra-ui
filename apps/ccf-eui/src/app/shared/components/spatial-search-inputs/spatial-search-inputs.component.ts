@@ -10,6 +10,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
 import { map, Observable, startWith } from 'rxjs';
 import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 @Component({
   selector: 'ccf-spatial-search-inputs',
@@ -24,6 +25,7 @@ import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-
     MatInputModule,
     MatSelectModule,
     ButtonsModule,
+    ScrollingModule,
   ],
   templateUrl: './spatial-search-inputs.component.html',
   styleUrl: './spatial-search-inputs.component.scss',
