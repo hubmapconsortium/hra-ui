@@ -41,6 +41,7 @@
     gap: 2rem;
 
     ::ng-deep mat-form-field {
+      --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
       width: 11.25rem;
     }
   }

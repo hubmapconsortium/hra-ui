@@ -29,8 +29,8 @@ import { AutocompleteChipsFormComponent } from '../../../shared/components/autoc
 import { DualSliderComponent } from '../../../shared/components/dual-slider/dual-slider.component';
 import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 
-/** Sex can either be male or female */
-export type Sex = 'male' | 'female' | 'both';
+/** Sex can be male, female or both */
+export type Sex = 'Male' | 'Female' | 'Both';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -103,7 +103,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
   private readonly nnfb = inject(NonNullableFormBuilder);
   protected filterForm = this.nnfb.group({
-    sex: new FormControl<string>('both', Validators.required),
+    sex: new FormControl<Sex>('Both', Validators.required),
     ageRange: new FormControl<number[]>([], Validators.required),
     bmiRange: new FormControl<number[]>([], Validators.required),
     technologies: new FormControl<string[] | null>(null),
@@ -214,11 +214,11 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Updates sex to `Both` if there is a mismatch between the current selection and the sex
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
-    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as Sex;
+    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
     const selectedSexes = new Set(items.map((item) => item.sex));
 
-    if (items.length > 0 && (selectedSexes.size > 1 || !selectedSexes.has(currentSex as SpatialSearchSex))) {
-      this.updateFilter('both', 'sex');
+    if (selectedSexes.size > 1 || !selectedSexes.has(currentSex)) {
+      this.updateFilter('Both', 'sex');
     }
   }
 }
