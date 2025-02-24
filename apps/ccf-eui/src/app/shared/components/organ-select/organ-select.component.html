@@ -1,5 +1,6 @@
 <form>
   <mat-form-field class="organ-form-field" subscriptSizing="dynamic">
+    <mat-icon matPrefix>search</mat-icon>
     <mat-label>{{ selectedOrgans().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
     <input
       matInput
@@ -19,14 +20,23 @@
           <mat-chip-row (removed)="remove(organ)">
             {{ organ.name }}
             <button matChipRemove [attr.aria-label]="'remove ' + organ.name">
-              <mat-icon>cancel</mat-icon>
+              <mat-icon>close</mat-icon>
             </button>
           </mat-chip-row>
         }
       </mat-chip-grid>
-      @for (organ of filteredOrgans(); track organ) {
-        <mat-option [value]="organ">{{ organ.name }}</mat-option>
-      }
+      <ng-scrollbar class="organ-list">
+        @for (organ of filteredOrgans(); track organ) {
+          <div class="autocomplete-option">
+            <mat-checkbox
+              class="autocomplete-checkbox"
+              (change)="selected($event, organ); auto.showPanel = false"
+              [checked]="isChecked(organ)"
+            ></mat-checkbox>
+            <mat-option [value]="organ">{{ organ.name }}</mat-option>
+          </div>
+        }
+      </ng-scrollbar>
     </mat-autocomplete>
   </mat-form-field>
 </form>

@@ -7,7 +7,6 @@ import { DataSourceService, OrganInfo } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable, forkJoin } from 'rxjs';
 import { debounceTime, mergeMap, take, tap } from 'rxjs/operators';
-import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { UpdateFilter } from '../data/data.actions';
 import { DataStateSelectors } from '../data/data.selectors';
 import { SceneState } from '../scene/scene.state';
@@ -26,6 +25,8 @@ import {
   StartSpatialSearchFlow,
   UpdateSpatialSearch,
 } from './spatial-search-ui.actions';
+
+export type SpatialSearchSex = 'male' | 'female';
 
 export interface Position {
   x: number;
@@ -46,7 +47,7 @@ export interface TermResult {
 }
 
 export interface SpatialSearchUiModel {
-  sex: Sex;
+  sex: SpatialSearchSex;
   organId?: string;
   position?: Position;
   radius?: number;
@@ -314,7 +315,7 @@ export class SpatialSearchUiState {
   /**
    * Used to determine if an organ should be listed if a certain sex is selected
    */
-  private organValidForSex(organId: string, sex: Sex): boolean {
+  private organValidForSex(organId: string, sex: SpatialSearchSex): boolean {
     const organs = this.store.selectSnapshot(SceneState.referenceOrgans);
     const organ = organs.find((o) => o.id === organId);
     return organ?.hasSex || organ?.sex === sex;

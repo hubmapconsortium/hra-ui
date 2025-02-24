@@ -1,12 +1,12 @@
 import { SpatialSearch } from '@hra-api/ng-client';
-import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import type { SpatialSearchFilterItem } from './spatial-search-filter.state';
+import { SpatialSearchSex } from '../spatial-search-ui/spatial-search-ui.state';
 
 export class AddSearch {
   static readonly type = '[Spatial Search Filter] Add';
 
   constructor(
-    readonly sex: Sex,
+    readonly sex: SpatialSearchSex,
     readonly organName: string,
     readonly search: SpatialSearch,
   ) {}
