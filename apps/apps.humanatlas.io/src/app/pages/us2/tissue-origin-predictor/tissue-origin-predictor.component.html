@@ -31,5 +31,42 @@
         </ul>
       </div>
     </div>
+
+    <div class="buttons">
+      <button mat-button hraButtonSize="medium">Use Sample</button>
+      <input type="file" accept="csv" style="display: none" #fileInput />
+      <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 2 -->
+  <hra-workflow-card tagline="Optional: Filter Data" step="2" class="card card-2">
+    <p class="card-info-text">Pick one tool to avoid double counting of predicted cell types.</p>
+
+    <div class="data-filters">
+      <mat-form-field class="filters">
+        <mat-label>Organ</mat-label>
+        <mat-select hraMicroTooltip="Organs that have cell type populations.">
+          <mat-option value="organ-1">Organ 1</mat-option>
+          <mat-option value="organ-2">Organ 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filters">
+        <mat-label>Annotation Tool</mat-label>
+        <mat-select
+          hraMicroTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
+        >
+          <mat-option value="annotation-1">Annotation 1</mat-option>
+          <mat-option value="annotation-2">Annotation 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 3 -->
+  <hra-workflow-card tagline="Predict Tissue Origin" step="3" class="card card-3">
+    <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message"> </hra-error-indicator>
+    <button mat-flat-button disabled>Predict</button>
   </hra-workflow-card>
 </div>

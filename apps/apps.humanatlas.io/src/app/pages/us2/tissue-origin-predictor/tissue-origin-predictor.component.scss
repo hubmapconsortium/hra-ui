@@ -18,6 +18,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 4rem;
+  gap: 3rem;
 
   .card {
     width: 42rem;
@@ -27,7 +28,9 @@
       letter-spacing: var(--sys-label-large-tracking);
       color: var(--sys-primary);
     }
+  }
 
+  .card-1 {
     .file-format-info {
       display: flex;
       margin-top: 2rem;
@@ -49,6 +52,37 @@
       & > div {
         width: 21.25rem;
       }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+  }
+
+  .card-2 {
+    p {
+      margin-top: 2rem;
+    }
+
+    .data-filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+
+      .filters {
+        width: 18.25rem;
+      }
+    }
+  }
+
+  .card-3 {
+    button,
+    .error-message {
+      margin-top: 2rem;
     }
   }
 }
