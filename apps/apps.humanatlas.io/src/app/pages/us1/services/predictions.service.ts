@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
-import { from, map, Observable, switchMap } from 'rxjs';
+import { from, Observable, switchMap } from 'rxjs';
 import SAMPLE_DATA from './sample-data.json';
 
 /** Tissue extraction sample JSON file  */
@@ -99,9 +99,7 @@ export class PredictionsService {
    * Gets supported organs
    * @returns String array observable
    */
-  loadSupportedReferenceOrgans(): Observable<string[]> {
-    return this.http
-      .get<SupportedOrgans[]>(`${this.endpoint}/supported-reference-organs`)
-      .pipe(map((organs) => organs.map((organ) => organ.id)));
+  loadSupportedReferenceOrgans(): Observable<SupportedOrgans[]> {
+    return this.http.get<SupportedOrgans[]>(`${this.endpoint}/supported-reference-organs`);
   }
 }

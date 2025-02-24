@@ -11,6 +11,7 @@ import { ProductHeaderComponent } from '../../../components/product-header/produ
 import { PredictionsService } from '../services/predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -82,9 +83,12 @@ export class CellPopulationPredictorComponent {
   protected readonly predictionsService = inject(PredictionsService);
 
   /** Supported organs */
-  protected supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
-    initialValue: [],
-  });
+  protected supportedOrgans = toSignal(
+    this.predictionsService.loadSupportedReferenceOrgans().pipe(map((organs) => organs.map((organ) => organ.id))),
+    {
+      initialValue: [],
+    },
+  );
 
   /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);
