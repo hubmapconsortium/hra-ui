@@ -10,7 +10,7 @@
       <span *ngFor="let version of sheet?.version">
         <!-- Versions node menu items -->
         <span *ngIf="version">
-          <button (click)="openURL(version.sheetId ?? '', version.gid ?? '')" mat-menu-item color="primary">
+          <button (click)="openURL(version)" mat-menu-item color="primary">
             <span>{{ version.viewValue }}</span>
           </button>
         </span>

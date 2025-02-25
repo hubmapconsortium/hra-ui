@@ -39,13 +39,13 @@ import {
   DOI,
   ResponseData,
   Row,
+  SelectedOrganBeforeFilter,
   Sheet,
   SheetConfig,
   SheetDetails,
   SheetInfo,
   Structure,
   VersionDetail,
-  SelectedOrganBeforeFilter,
 } from '../models/sheet.model';
 import { SheetService } from '../services/sheet.service';
 import { TreeState } from './tree.state';
@@ -1253,20 +1253,22 @@ export class SheetState {
 
     if (state.omapSelectedOrgans.length > 0 && state.omapSelectedOrgans[0] !== '') {
       for (const s of state.omapSelectedOrgans) {
-        const [_omap, _omapNumber, organ, _omapVersion] = s.split('-');
-        const organName = organ.split('_').join(' ');
-        const sheetDetails = this.omapSheetConfig.find((omap) => omap.name.toLowerCase() === organName.toLowerCase());
-        const version = sheetDetails?.version?.find((v) => v.value.toLowerCase() === s.toLowerCase());
-        requests$.push(
-          this.sheetService.fetchSheetData(
-            version?.sheetId ?? '',
-            version?.gid ?? '',
-            version?.csvUrl,
-            undefined,
-            undefined,
-            state.getFromCache,
-          ),
-        );
+        const versions = this.omapSheetConfig
+          .map((omap) => omap.version?.find((v) => v.value === s))
+          .filter((v) => !!v);
+        if (versions.length > 0) {
+          const version = versions[0];
+          requests$.push(
+            this.sheetService.fetchSheetData(
+              version.sheetId ?? '',
+              version.gid ?? '',
+              version.csvUrl,
+              undefined,
+              undefined,
+              state.getFromCache,
+            ),
+          );
+        }
       }
     } else {
       for (const s of this.omapSheetConfig) {

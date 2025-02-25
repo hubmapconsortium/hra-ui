@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
-import { SheetDetails } from '../../models/sheet.model';
+import { SheetDetails, VersionDetail } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-table-nested-menu',
@@ -14,7 +14,8 @@ export class TableNestedMenuComponent {
   @ViewChild('childMenu', { static: true }) public childMenu!: MatMenu;
   sheetURL = 'https://docs.google.com/spreadsheets/d/';
 
-  openURL(sheetId: string, gid: string) {
-    this.window.open(`${this.sheetURL}${sheetId}/edit#gid=${gid}`, '_blank');
+  openURL(version: VersionDetail) {
+    const url = version.link || version.csvUrl || `${this.sheetURL}${version.sheetId}/edit#gid=${version.gid}`;
+    this.window.open(url, '_blank');
   }
 }
