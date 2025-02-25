@@ -1,0 +1,121 @@
+<!-- HEADING -->
+<hra-product-header></hra-product-header>
+
+<!-- INFO -->
+<p class="info-text">
+  Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this
+  site.
+</p>
+
+<!-- CARDS -->
+<div class="cards">
+  <!-- CARD 1 -->
+  <hra-workflow-card tagline="Upload" class="card card-1" [ngClass]="{ 'card-with-file': file }">
+    <hra-workflow-card-actions>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Upload data informational tooltip"
+        class="info-icon"
+        fontIcon="info"
+        cdkOverlayOrigin
+        #uploadDataTooltipTrigger="cdkOverlayOrigin"
+        (mouseover)="uploadInfoOpen = true"
+        (mouseout)="uploadInfoOpen = false"
+      ></mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+        [cdkConnectedOverlayPositions]="tooltipPosition"
+        [cdkConnectedOverlayOrigin]="uploadDataTooltipTrigger"
+        [cdkConnectedOverlayOpen]="uploadInfoOpen"
+        [cdkConnectedOverlayViewportMargin]="8"
+        [cdkConnectedOverlayPush]="true"
+      >
+        <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+      </ng-template>
+    </hra-workflow-card-actions>
+
+    <p class="card-text">
+      Upload an existing extraction site made with the Registration User Interface (RUI) in the JSON format or use the
+      sample file.
+    </p>
+
+    <div class="buttons-container">
+      @if (!file) {
+        <div class="buttons">
+          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()" data-testid="use-sample-button">
+            Use Sample
+          </button>
+          <input
+            type="file"
+            accept="application/json"
+            style="display: none"
+            (change)="onFileSelected($event)"
+            data-testid="file-input"
+            #fileInput
+          />
+          <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+        </div>
+      } @else {
+        <div class="file-buttons">
+          <hra-delete-file-button [fileName]="file.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
+          <button mat-flat-button hraPrimaryButton hraButtonSize="large" [routerLink]="['result']">Predict</button>
+        </div>
+      }
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 2 -->
+  <hra-workflow-card tagline="Create" class="card card-2">
+    <hra-workflow-card-actions>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Create custom data informational tooltip"
+        class="info-icon"
+        fontIcon="info"
+        cdkOverlayOrigin
+        #createDataTooltipTrigger="cdkOverlayOrigin"
+        (mouseover)="createInfoOpen = true"
+        (mouseout)="createInfoOpen = false"
+      >
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
+          [cdkConnectedOverlayPositions]="tooltipPosition"
+          [cdkConnectedOverlayOrigin]="createDataTooltipTrigger"
+          [cdkConnectedOverlayOpen]="createInfoOpen"
+          [cdkConnectedOverlayViewportMargin]="8"
+          [cdkConnectedOverlayPush]="true"
+        >
+          <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+        </ng-template>
+      </mat-icon>
+    </hra-workflow-card-actions>
+
+    <p class="card-text">
+      Create a new tissue extraction site by placing a tissue block spatially using the Registration User Interface
+      (RUI).
+    </p>
+
+    <div class="buttons buttons-container">
+      <button mat-button hraButtonSize="medium" (click)="ruiOpen = true">Create</button>
+
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayDisableClose]="true"
+        cdkConnectedOverlayDisposeOnNavigation="true"
+        cdkConnectedOverlayHeight="100vh"
+        [cdkConnectedOverlayOpen]="ruiOpen"
+        [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
+        cdkConnectedOverlayPanelClass="rui-panel"
+        cdkConnectedOverlayWidth="100vw"
+      >
+        <hra-embedded-rui
+          [supportedOrgans]="supportedOrgans()"
+          (locationCreated)="onFileCreated($event); ruiOpen = false"
+          (closed)="ruiOpen = false"
+        ></hra-embedded-rui>
+      </ng-template>
+    </div>
+  </hra-workflow-card>
+</div>
