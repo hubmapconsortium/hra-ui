@@ -1,5 +1,19 @@
 <mat-list class="list">
-  @for (item of items; track itemId) {
+  @if (items().length > 1) {
+    <mat-list-item class="item">
+      <div class="item-content">
+        <mat-checkbox
+          class="description"
+          labelPosition="after"
+          [checked]="allSelected"
+          (change)="updateAllItemsSelection($event.checked)"
+        >
+        </mat-checkbox>
+        <div class="checkbox-label">All Spatial Locations</div>
+      </div>
+    </mat-list-item>
+  }
+  @for (item of items(); track itemId) {
     <mat-list-item class="item">
       <div class="item-content">
         <mat-checkbox

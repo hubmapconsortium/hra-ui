@@ -59,7 +59,7 @@
   <div class="radius-slider">
     <div class="slider-title">Search Radius Size</div>
     <div class="slider-container">
-      <mat-slider class="slider" [max]="radiusSettings().max" [min]="radiusSettings().min">
+      <mat-slider class="slider" discrete [max]="radiusSettings().max" [min]="radiusSettings().min">
         <input matSliderThumb [value]="radius()" (input)="radiusChange.emit(+slider.value)" #slider />
       </mat-slider>
       <span class="radius-value">{{ radius() }} mm</span>

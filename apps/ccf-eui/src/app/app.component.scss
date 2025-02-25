@@ -10,10 +10,9 @@
     .sidenav-header {
       display: flex;
       align-items: center;
-      font: var(--sys-title-small);
+      font: var(--sys-title-medium);
       height: 4.5rem;
-      padding-right: 0.5rem;
-      padding-left: 1.5rem;
+      padding: 0 1rem 0 1.5rem;
 
       .sidenav-title {
         vertical-align: text-bottom;

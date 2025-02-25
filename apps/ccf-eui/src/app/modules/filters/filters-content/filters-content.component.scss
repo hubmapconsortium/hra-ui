@@ -1,7 +1,6 @@
 :host {
   display: grid;
   grid-template-rows: auto 5.5rem;
-  grid-template-columns: 40.5rem;
   grid-template-areas:
     'form'
     'buttons';
@@ -11,6 +10,7 @@
   form {
     grid-area: form;
     overflow-y: auto;
+    width: 40.5rem;
   }
 
   .input-container {
@@ -21,13 +21,14 @@
   }
 
   .section {
-    padding: 0 1.25rem;
+    padding: 0 1.5rem;
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      height: 2.5rem;
     }
 
     .section-title {
@@ -42,7 +43,6 @@
 
     ::ng-deep mat-form-field {
       --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
-      width: 11.25rem;
     }
   }
 
@@ -54,6 +54,12 @@
 
   .providers-form {
     margin-bottom: 0;
+  }
+
+  .spatial-search {
+    .section-header {
+      margin-bottom: 0.25rem;
+    }
   }
 
   .button-container {

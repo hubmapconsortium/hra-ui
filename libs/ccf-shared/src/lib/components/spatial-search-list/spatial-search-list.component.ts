@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,16 +32,18 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
   @HostBinding('class') readonly clsName = 'ccf-spatial-search-list';
 
   /** Label for the list */
-  @Input() label = '';
+  label = input<string>('');
 
   /** Items to display */
-  @Input() items: T[] = [];
+  items = input<T[]>([]);
 
   /** Emits the new items when a selection changes */
-  @Output() readonly selectionChanged = new EventEmitter<T[]>();
+  selectionChanged = output<T[]>();
 
   /** Emits the item that has been removed from the list */
-  @Output() readonly itemRemoved = new EventEmitter<T>();
+  itemRemoved = output<T>();
+
+  allSelected = true;
 
   /**
    * Computes a unique id for an item
@@ -61,10 +63,11 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
    * @param selected What to set the selected state to
    */
   updateItemSelection(index: number, selected: boolean): void {
-    const newItems = (this.items = [...this.items]);
+    const newItems = [...this.items()];
     newItems[index] = { ...newItems[index], selected };
 
     const selectedItems = newItems.filter((item) => item.selected);
+    this.allSelected = selectedItems.length === newItems.length;
     this.selectionChanged.emit(selectedItems);
   }
 
@@ -74,8 +77,14 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
    * @param index Index of the item to remove
    */
   removeItem(index: number): void {
-    const newItems = (this.items = [...this.items]);
+    const newItems = [...this.items()];
     const [item] = newItems.splice(index, 1);
     this.itemRemoved.emit(item);
+  }
+
+  updateAllItemsSelection(checked: boolean): void {
+    this.allSelected = checked;
+    const newItems = this.items().map((item) => ({ ...item, selected: checked }));
+    this.selectionChanged.emit(newItems);
   }
 }
