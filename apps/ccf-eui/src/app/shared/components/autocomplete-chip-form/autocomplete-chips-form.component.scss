@@ -1,10 +1,17 @@
 :host {
   --mdc-filled-text-field-container-color: var(--sys-surface-container);
-  --mdc-filled-text-field-label-text-color: var(--sys-primary);
+  --mdc-filled-text-field-label-text-color: var(--sys-on-primary-fixed);
+  --mat-form-field-container-height: 3rem;
+  --mat-form-field-filled-with-label-container-padding-top: 1rem;
+  --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
 
   display: block;
-  width: 100%;
   margin-bottom: 2rem;
+
+  mat-label,
+  mat-form-field {
+    font: var(--sys-label-medium);
+  }
 
   mat-form-field {
     width: 100%;
@@ -13,15 +20,12 @@
   .chips-area {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     --mdc-icon-button-state-layer-size: 2rem;
-    margin-bottom: 0.25rem;
   }
 
-  .search-area {
-    display: flex;
-
-    .search-input {
-      margin-left: 0;
-    }
+  .search-input {
+    margin-left: 0;
+    height: 2rem;
   }
 }

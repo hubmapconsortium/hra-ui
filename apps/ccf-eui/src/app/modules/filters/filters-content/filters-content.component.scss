@@ -40,15 +40,21 @@
   .patient-filters {
     display: flex;
     gap: 2rem;
-
-    ::ng-deep mat-form-field {
-      --mat-form-field-filled-with-label-container-padding-top: 1.5rem;
-    }
   }
 
   .dropdown-form-field {
+    --mat-form-field-container-height: 3rem;
+    --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+
     ::ng-deep .mdc-floating-label {
       transform: translateY(-106%);
+
+      mat-label {
+        font: var(--sys-label-small);
+        letter-spacing: var(--sys-label-small-tracking);
+        color: var(--sys-primary-fixed);
+      }
     }
   }
 
