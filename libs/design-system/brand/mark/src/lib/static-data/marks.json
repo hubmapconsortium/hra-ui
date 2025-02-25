@@ -1,0 +1,17 @@
+{
+  "$schema": "../types/marks.schema.json",
+  "marks": [
+    {
+      "variant": "default",
+      "src": "assets/brand/mark/default.svg",
+      "width": 226,
+      "height": 226
+    },
+    {
+      "variant": "contrast",
+      "src": "assets/brand/mark/contrast.svg",
+      "width": 226,
+      "height": 226
+    }
+  ]
+}
