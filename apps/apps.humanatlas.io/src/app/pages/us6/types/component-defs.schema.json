@@ -1,0 +1,48 @@
+{
+  "$ref": "#/definitions/ComponentDefs",
+  "definitions": {
+    "ComponentDef": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "productTitle": {
+          "type": "string"
+        },
+        "webComponentName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "previewImage": {
+          "type": "string"
+        },
+        "embedAs": {
+          "type": "string",
+          "enum": ["inline", "overlay", "external"]
+        }
+      },
+      "required": ["id", "productTitle", "webComponentName", "description", "previewImage", "embedAs"],
+      "additionalProperties": false
+    },
+    "ComponentDefs": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "defs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ComponentDef"
+          }
+        }
+      },
+      "required": ["$schema", "defs"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
