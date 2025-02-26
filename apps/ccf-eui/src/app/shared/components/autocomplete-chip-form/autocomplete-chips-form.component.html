@@ -14,18 +14,23 @@
       <button mat-icon-button (click)="options.set([])"><mat-icon>delete</mat-icon></button>
     }
   </div>
-  <mat-icon matPrefix>search</mat-icon>
+  <mat-icon matPrefix class="search-icon">search</mat-icon>
   <mat-label>{{ label() }}</mat-label>
-  <input
-    placeholder="Search"
-    class="search-input"
-    #searchInput
-    [(ngModel)]="currentInputValue"
-    [matChipInputFor]="chipGrid"
-    [matAutocomplete]="auto"
-    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-    (matChipInputTokenEnd)="add($event)"
-  />
+  <div class="search-container">
+    <input
+      placeholder="Search"
+      class="search-input"
+      #searchInput
+      [(ngModel)]="currentInputValue"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    @if (errorState()) {
+      <mat-icon class="error-icon" svgIcon="error"></mat-icon>
+    }
+  </div>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
     <ng-scrollbar>
       @for (option of filteredOptions(); track option) {

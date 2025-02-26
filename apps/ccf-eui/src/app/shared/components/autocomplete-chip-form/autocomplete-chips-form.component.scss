@@ -17,6 +17,11 @@
   display: block;
   margin-bottom: 2rem;
 
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
   mat-form-field,
   mat-label {
     color: var(--sys-on-primary-fixed);
@@ -31,10 +36,6 @@
     .chips-area {
       margin-top: 0.5rem;
     }
-
-    .search-input {
-      margin-bottom: 2px;
-    }
   }
 
   mat-form-field {
@@ -42,6 +43,7 @@
   }
 
   .chips-area {
+    --mdc-icon-button-state-layer-size: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,11 +52,17 @@
   .search-input {
     margin-left: 0;
     height: 2rem;
+    line-height: 2rem;
   }
 
   mat-error {
     font: var(--sys-label-small);
     margin-left: 1rem;
+  }
+
+  .error-icon {
+    width: 2rem;
+    height: 2rem;
   }
 
   .error {
