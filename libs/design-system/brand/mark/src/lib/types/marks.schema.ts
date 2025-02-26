@@ -3,7 +3,7 @@ import { z } from 'zod';
 /** Mark variant */
 export type BrandMarkVariant = z.infer<typeof BrandMarkVariantSchema>;
 /** Schema for mark variant */
-export const BrandMarkVariantSchema = z.enum(['default', 'contrast']);
+export const BrandMarkVariantSchema = z.enum(['default', 'contrast', 'small']);
 
 /** Mark item */
 export type BrandMark = z.infer<typeof BrandMarkSchema>;

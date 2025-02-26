@@ -12,6 +12,12 @@
       "src": "assets/brand/mark/contrast.svg",
       "width": 226,
       "height": 226
+    },
+    {
+      "variant": "small",
+      "src": "assets/brand/mark/small.svg",
+      "width": 40,
+      "height": 40
     }
   ]
 }

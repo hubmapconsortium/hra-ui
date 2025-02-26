@@ -24,7 +24,7 @@
     },
     "BrandMarkVariant": {
       "type": "string",
-      "enum": ["default", "contrast"]
+      "enum": ["default", "contrast", "small"]
     },
     "BrandMarks": {
       "type": "object",
