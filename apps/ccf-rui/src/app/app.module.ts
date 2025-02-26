@@ -8,7 +8,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
   ExpansionPanelActionsComponent,
