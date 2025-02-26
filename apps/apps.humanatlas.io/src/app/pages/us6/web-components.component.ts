@@ -4,10 +4,8 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
-import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
@@ -15,7 +13,7 @@ import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef, ComponentDefId } from './types/component-defs.schema';
 import { Organ, OrganId } from './types/organs.schema';
 import { OverlayIframeComponent } from './overlay-iframe/overlay-iframe.component';
-import { DomSanitizer } from '@angular/platform-browser';
+import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
 
 interface ActiveData {
   organId: OrganId;
@@ -28,15 +26,14 @@ interface ActiveData {
   selector: 'hra-web-components',
   standalone: true,
   imports: [
+    ButtonsModule,
     CommonModule,
     ClipboardModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
-    MatTabsModule,
-    ButtonsModule,
-    CodeBlockComponent,
     CardsModule,
+    EmbedSidenavContentComponent,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     WebComponentCardComponent,
@@ -66,69 +63,35 @@ export class WebComponentsComponent {
 
   protected readonly iframeSrcDoc = computed(() => {
     const data = this.activeData();
-    return data && ['inline', 'overlay'].includes(data.def.embedAs) ? this.getIframeSrcDoc(data) : undefined;
+    return data && data.def.embedAs === 'overlay' ? this.getIframeSrcDoc(data) : undefined;
   });
 
   showComponentCards = false;
   showSidenav = false;
   embedCode = '';
-
-  constructor(private sanitizer: DomSanitizer) {}
+  selectedTabIndex = 0;
 
   onOrganSelect(organId: OrganId) {
     this.activeOrgan.set(organId);
     this.showComponentCards = !!this.activeOrgan();
   }
 
-  onShowSidenav(defId: ComponentDefId, show: boolean) {
-    this.showSidenav = show;
-    this.activeDef.set(defId);
+  getEmbedCode() {
     const data = this.activeData();
-    if (data && ['inline', 'overlay'].includes(data.def.embedAs)) {
-      this.embedCode = this.getIframeSrcDoc(data);
-    }
-    if (data && data.def.embedAs === 'inline') {
-      this.embedCode = this.getIframeSrcDoc(data);
-      this.renderComponentActionLaunchInline();
-    }
     if (data && data.def.embedAs === 'external') {
       const targetElement = data.organ.appData[data.defId];
       if (targetElement) {
         window.open(targetElement['url'], '_blank');
       }
     }
+    this.embedCode = data ? this.getIframeSrcDoc(data) : '';
   }
 
-  renderComponentActionLaunchInline(): void {
-    const componentEl = document.querySelector('.useapp-container') as HTMLElement;
-    if (!componentEl) {
-      console.error('Component element not found');
-      return;
-    }
-
-    const launchEl = document.querySelector('.launch') as HTMLElement;
-    if (!launchEl) {
-      console.error('Launch element not found');
-      return;
-    }
-
-    let appIframe: HTMLIFrameElement | undefined = undefined;
-    launchEl.addEventListener('click', () => {
-      const containerEl = componentEl.querySelector('.embed-app') as HTMLElement;
-      if (!containerEl) {
-        console.error('Container element not found');
-        return;
-      }
-      appIframe ??= this.renderComponentAppIframe(containerEl, this.embedCode, true);
-    });
-  }
-
-  renderComponentAppIframe(containerEl: HTMLElement, srcDoc: string, show: boolean): HTMLIFrameElement {
-    const iframeEl = document.createElement('iframe');
-    iframeEl.srcdoc = srcDoc;
-    iframeEl.style.display = show ? 'block' : 'none';
-    containerEl.appendChild(iframeEl);
-    return iframeEl;
+  onShowSidenav(defId: ComponentDefId, show: boolean, index: number) {
+    this.showSidenav = show;
+    this.activeDef.set(defId);
+    this.selectedTabIndex = index;
+    this.getEmbedCode();
   }
 
   private getIframeSrcDoc(data: ActiveData): string {
@@ -145,5 +108,10 @@ export class WebComponentsComponent {
       }
       return JSON.stringify(value, undefined, 1).replace(/\n\s*/g, ' ');
     });
+  }
+
+  closeOverlay(): void {
+    this.activeDef.set(undefined);
+    this.showSidenav = false;
   }
 }

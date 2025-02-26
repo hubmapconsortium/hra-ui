@@ -51,7 +51,5 @@ export class FlatCardComponent {
   readonly rightButtonText = input<string>();
   readonly isButtonDisabled = input<boolean>();
 
-  showSidenav = input<boolean>();
-
   readonly closeClick = output<void>();
 }

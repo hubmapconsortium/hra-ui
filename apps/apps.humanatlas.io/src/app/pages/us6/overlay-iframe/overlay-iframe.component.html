@@ -8,5 +8,6 @@
   [cdkConnectedOverlayScrollStrategy]="blockScroll"
   cdkConnectedOverlayWidth="100vw"
 >
-  <iframe [attr.srcdoc]="srcdoc()"></iframe>
+  <hra-back-button-bar class="back-bar" (backClick)="closeClick.emit()"></hra-back-button-bar>
+  <iframe class="iframe" [srcdoc]="safeSrcdoc"></iframe>
 </ng-template>

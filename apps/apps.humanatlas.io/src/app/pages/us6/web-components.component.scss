@@ -1,24 +1,42 @@
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 
   .sidenav-container {
-    height: 100vh;
-    width: 100vw;
     position: relative;
 
     .sidenav-content {
-      background-color: var(--sys-surface-container-low);
+      background: linear-gradient(180deg, var(--sys-surface-dim) 0%, #ffffff 100%);
     }
 
     mat-sidenav {
       min-width: 19.5rem;
       width: fit-content;
+      top: 4.5rem !important;
       border-top-left-radius: 0rem;
       border-bottom-left-radius: 0rem;
     }
   }
 
-  .tab-group {
+  ::ng-deep .mat-mdc-tab-list {
+    max-width: 10.6875rem;
+  }
+
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: var(--sys-on-tertiary-fixed),
+      active-ripple-color: var(--sys-on-tertiary-fixed),
+      active-focus-indicator-color: var(--sys-on-tertiary-fixed),
+      active-hover-indicator-color: var(--sys-on-tertiary-fixed),
+      active-indicator-height: 0.125rem,
+    )
+  );
+
+  .embed-app {
+    display: block;
+    border: none;
+    width: 100%;
   }
 
   .heading-container {
@@ -53,7 +71,7 @@
   }
 
   .card-container {
-    margin: 6rem auto 0 auto;
+    margin: 6rem auto 6rem auto;
     max-width: 24.5rem;
     padding: 2rem;
     border-radius: 0.5rem;
@@ -75,25 +93,14 @@
   .card-collection {
     display: flex;
     justify-content: center;
-    padding: 6rem 2.75rem 10rem 2.75rem;
+    padding: 0 2.75rem 10rem 2.75rem;
+
     .cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       max-width: 82rem;
       gap: 3rem;
-    }
-  }
-
-  .card-actions {
-    display: flex;
-    height: 4.5rem;
-    border-top: 0.0625rem solid var(--sys-outline-variant);
-    background-color: var(--sys-surface-container-low);
-    padding: 1rem;
-
-    .filler {
-      flex-grow: 1;
     }
   }
 }

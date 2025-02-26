@@ -27,9 +27,15 @@ export class WebComponentCardComponent {
   /** Disable button */
   readonly disableButton = input<boolean>();
 
-  @Output() showSidenav = new EventEmitter<boolean>();
+  @Output() showEmbedCode = new EventEmitter<boolean>();
 
-  openSideNav() {
-    this.showSidenav.emit(true);
+  @Output() showUseApp = new EventEmitter<boolean>();
+
+  openEmbedCode() {
+    this.showEmbedCode.emit(true);
+  }
+
+  openUseApp() {
+    this.showUseApp.emit(true);
   }
 }

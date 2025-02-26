@@ -10,8 +10,14 @@
 </div>
 
 <div class="card-footer">
-  <button (click)="openSideNav()" mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
-  <button (click)="openSideNav()" [disabled]="disableButton()" mat-flat-button hraPrimaryButton hraButtonSize="medium">
+  <button (click)="openUseApp()" mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
+  <button
+    (click)="openEmbedCode()"
+    [disabled]="disableButton()"
+    mat-flat-button
+    hraPrimaryButton
+    hraButtonSize="medium"
+  >
     Embed
   </button>
 </div>

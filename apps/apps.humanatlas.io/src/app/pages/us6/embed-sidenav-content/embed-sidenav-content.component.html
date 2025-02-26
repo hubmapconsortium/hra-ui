@@ -1,0 +1,37 @@
+<hra-flat-card
+  [title]="tagline()"
+  leftButtonText="Documentation"
+  [isButtonDisabled]="false"
+  rightButtonText="Copy"
+  [showHelpButton]="false"
+  [showDivider]="true"
+  [showButtonsFooter]="tabIndex() === 0"
+  (closeClick)="closeSidenav.emit()"
+>
+  @if (showApp()) {
+    <mat-tab-group
+      class="tab-group"
+      animationDuration="700ms"
+      (selectedIndexChange)="tabIndex.set($event)"
+      [selectedIndex]="selectedButton() ?? 0"
+    >
+      <mat-tab label="Embed">
+        <hra-code-block [code]="code()" language="html"></hra-code-block>
+      </mat-tab>
+
+      <mat-tab label="Use App">
+        <div class="iframeContainer" #iframeContainer>
+          <iframe class="embed-app" [style.width.px]="iframeWidth()" [srcdoc]="appSrcDoc()"></iframe>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  } @else {
+    <hra-code-block [code]="code()" language="html"></hra-code-block>
+  }
+
+  <hra-flat-card-actions class="card-actions">
+    <button mat-button hraPrimaryButton hraButtonSize="medium">Documentation</button>
+    <div class="filler"></div>
+    <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="code()">Copy</button>
+  </hra-flat-card-actions>
+</hra-flat-card>
