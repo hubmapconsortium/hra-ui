@@ -25,12 +25,24 @@
 
           <mat-form-field class="dropdown-form-field">
             <mat-label>BMI</mat-label>
-            <ccf-dual-slider formControlName="bmiRange" min="13" max="83"> </ccf-dual-slider>
+            <ccf-dual-slider
+              formControlName="bmiRange"
+              min="13"
+              max="83"
+              (valueChange)="updateFilter($event, 'bmiRange')"
+            >
+            </ccf-dual-slider>
           </mat-form-field>
 
           <mat-form-field class="dropdown-form-field">
             <mat-label>Age</mat-label>
-            <ccf-dual-slider formControlName="ageRange" min="1" max="110"> </ccf-dual-slider>
+            <ccf-dual-slider
+              formControlName="ageRange"
+              min="1"
+              max="110"
+              (valueChange)="updateFilter($event, 'ageRange')"
+            >
+            </ccf-dual-slider>
           </mat-form-field>
         </div>
       </div>
@@ -45,6 +57,7 @@
           label="Assay Types"
           [filterOptions]="technologyFilters()"
           [form]="filterForm.controls.technologies"
+          (selectedOptions)="filterhasChanged = true"
         >
         </ccf-autocomplete-chips-form>
 
@@ -54,6 +67,7 @@
           label="Consortia"
           [filterOptions]="['HuBMAP', 'SenNet']"
           [form]="filterForm.controls.consortia"
+          (selectedOptions)="filterhasChanged = true"
         >
         </ccf-autocomplete-chips-form>
 
@@ -63,6 +77,7 @@
           label="Tissue Data Providers"
           [filterOptions]="providerFilters()"
           [form]="filterForm.controls.providers"
+          (selectedOptions)="filterhasChanged = true"
         >
         </ccf-autocomplete-chips-form>
       </div>
@@ -89,12 +104,16 @@
 <div class="button-container">
   <button
     mat-button
-    [disabled]="filterForm.pristine || filterForm.invalid"
+    [disabled]="!filterhasChanged"
     (click)="refreshFilters(); assays.options.set([]); consortia.options.set([]); providers.options.set([])"
   >
     Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
   </button>
-  <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">
+  <button
+    mat-flat-button
+    (click)="applyButtonClick()"
+    [disabled]="!filterhasChanged || filterForm.pristine || filterForm.invalid"
+  >
     Apply
   </button>
 </div>

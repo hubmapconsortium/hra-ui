@@ -106,13 +106,15 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     sex: new FormControl<Sex>('Both', Validators.required),
     ageRange: new FormControl<number[]>([], Validators.required),
     bmiRange: new FormControl<number[]>([], Validators.required),
-    technologies: new FormControl<string[] | null>(null),
-    consortia: new FormControl<string[] | null>(null),
-    providers: new FormControl<string[] | null>(null),
-    spatialSearches: new FormControl<SpatialSearch[] | null>(null),
+    technologies: new FormControl<string[]>([]),
+    consortia: new FormControl<string[]>([]),
+    providers: new FormControl<string[]>([]),
+    spatialSearches: new FormControl<SpatialSearch[]>([]),
   });
 
   readonly spatialFlowService = inject(SpatialSearchFlowService);
+
+  filterhasChanged = false;
 
   /**
    * Creates an instance of filters content component.
@@ -136,7 +138,12 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Handle input changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('spatialSearchFilters' in changes && !changes['spatialSearchFilters'].isFirstChange()) {
+    if (
+      'spatialSearchFilters' in changes &&
+      !changes['spatialSearchFilters'].isFirstChange() &&
+      changes['spatialSearchFilters'].currentValue.toString() !==
+        changes['spatialSearchFilters'].previousValue.toString()
+    ) {
       this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
       this.filterForm.markAsDirty();
     }
@@ -149,10 +156,14 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * @param key The key for the filter to be saved at
    */
   updateFilter(value: unknown, key: string): void {
-    this.filterForm.patchValue({
-      [key]: value,
-    });
-    this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
+    const currentValue = this.filterForm.value[key as keyof typeof this.filterForm.value]?.toString();
+    if (currentValue !== value?.toString()) {
+      this.filterhasChanged = true;
+      this.filterForm.patchValue({
+        [key]: value,
+      });
+      this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
+    }
   }
 
   convertedFilter(): Record<string, unknown> {
@@ -183,7 +194,11 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Refreshes all filter settings
    */
   refreshFilters(): void {
-    const defaults = { ...DEFAULT_FILTER, providers: DEFAULT_FILTER['tmc'], consortia: DEFAULT_FILTER['consortiums'] };
+    const defaults = {
+      ...DEFAULT_FILTER,
+      providers: DEFAULT_FILTER['tmc'],
+      consortia: DEFAULT_FILTER['consortiums'],
+    };
 
     for (const search of this.spatialSearchFilters()) {
       this.spatialSearchRemoved.emit(search.id);
@@ -193,7 +208,8 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.filterForm.patchValue(defaults);
 
     this.ga.event('filters_reset', 'filter_content');
-    this.filterForm.markAsDirty();
+    this.filterhasChanged = false;
+    this.filterForm.markAsPristine();
   }
 
   /**

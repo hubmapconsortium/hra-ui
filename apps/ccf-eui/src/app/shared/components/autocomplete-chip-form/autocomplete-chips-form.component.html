@@ -32,7 +32,7 @@
         <div class="autocomplete-option">
           <mat-checkbox
             class="autocomplete-checkbox"
-            (change)="selected($event, option); auto.showPanel = false"
+            (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="options().includes(option)"
           ></mat-checkbox>
           <mat-option [value]="option">{{ option }}</mat-option>
