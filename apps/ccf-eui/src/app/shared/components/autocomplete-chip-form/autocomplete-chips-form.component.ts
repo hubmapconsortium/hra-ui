@@ -44,13 +44,25 @@ export class AutocompleteChipsFormComponent {
       : filteredWithoutSelected.slice();
   });
 
+  readonly errorState = computed(() => {
+    return (
+      this.currentInputValue().length > 0 &&
+      (this.filteredOptions().length === 0 ||
+        !this.filteredOptions().find((option) => option.toLowerCase().includes(this.currentInputValue().toLowerCase())))
+    );
+  });
+
   add(event: MatChipInputEvent): void {
+    if (this.errorState()) {
+      return;
+    }
     const value = (event.value || '').trim();
 
-    if (value) {
+    if (value && this.filteredOptions().find((option) => option.toLowerCase() === value.toLowerCase())) {
       this.options.update((option) => [...option, value]);
+      this.currentInputValue.set('');
+      event.chipInput.clear();
     }
-    this.currentInputValue.set('');
   }
 
   remove(option: string): void {

@@ -5,12 +5,36 @@
   --mat-form-field-filled-with-label-container-padding-top: 1rem;
   --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
 
+  ::ng-deep .mdc-floating-label--float-above {
+    transform: translateY(-100%);
+
+    mat-label {
+      font: var(--sys-label-small) !important;
+      letter-spacing: var(--sys-label-small-tracking);
+    }
+  }
+
   display: block;
   margin-bottom: 2rem;
 
-  mat-label,
-  mat-form-field {
+  mat-form-field,
+  mat-label {
+    color: var(--sys-on-primary-fixed);
     font: var(--sys-label-medium);
+  }
+
+  .visible {
+    mat-label {
+      margin-bottom: 0.25rem;
+    }
+
+    .chips-area {
+      margin-top: 0.5rem;
+    }
+
+    .search-input {
+      margin-bottom: 2px;
+    }
   }
 
   mat-form-field {
@@ -21,11 +45,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    --mdc-icon-button-state-layer-size: 2rem;
   }
 
   .search-input {
     margin-left: 0;
     height: 2rem;
+  }
+
+  mat-error {
+    font: var(--sys-label-small);
+    margin-left: 1rem;
+  }
+
+  .error {
+    --mdc-filled-text-field-focus-active-indicator-color: var(--sys-error);
+
+    mat-label {
+      color: var(--sys-error);
+    }
   }
 }
