@@ -38,6 +38,7 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
     '(window:click)': 'closeResults($event)',
     '(window:focusin)': 'closeResults($event)',
   },
+  standalone: false,
 })
 export class TagSearchComponent implements OnDestroy {
   /** HTML class name */

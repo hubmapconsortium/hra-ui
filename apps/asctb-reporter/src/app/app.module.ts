@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -61,12 +61,10 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
   ],
   providers: [
     ConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [ConfigService],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const initializerFn = initializeApp(inject(ConfigService));
+      return initializerFn();
+    }),
     provideHttpClient(withInterceptorsFromDi()),
     withNgxsResetPlugin(),
   ],

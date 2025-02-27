@@ -17,7 +17,6 @@ import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/c
  */
 @Component({
   selector: 'cde-visualization-page',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './visualization.component.html',
   styleUrl: './visualization.component.scss',

@@ -10,6 +10,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CheckboxComponent {
   /**

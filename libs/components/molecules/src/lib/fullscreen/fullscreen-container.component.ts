@@ -16,7 +16,6 @@ import { FullscreenContentComponent } from './fullscreen-content.component';
  */
 @Component({
   selector: 'hra-fullscreen-container',
-  standalone: true,
   imports: [CommonModule, FullscreenContentComponent],
   template: '<ng-content></ng-content>',
   styles: [

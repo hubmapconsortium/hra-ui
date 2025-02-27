@@ -50,7 +50,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [
     CommonModule,
     OverlayModule,

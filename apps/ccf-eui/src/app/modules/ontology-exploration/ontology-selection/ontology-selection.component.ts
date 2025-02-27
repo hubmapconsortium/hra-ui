@@ -23,6 +23,7 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
   styleUrls: ['./ontology-selection.component.scss'],
   providers: [OntologySearchService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OntologySelectionComponent implements OnChanges {
   /**

@@ -22,7 +22,6 @@ import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/s
 /** Component for LandingPageContent Behavior */
 @Component({
   selector: 'ftu-landing-page-content',
-  standalone: true,
   imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],
   templateUrl: './landing-page-content.component.html',
   styleUrls: ['./landing-page-content.component.scss'],

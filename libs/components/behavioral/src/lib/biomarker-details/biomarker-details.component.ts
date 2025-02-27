@@ -45,7 +45,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
 @Component({
   selector: 'ftu-biomarker-details',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,

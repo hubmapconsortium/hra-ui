@@ -10,7 +10,6 @@ import { CardData } from '@hra-ui/design-system/nav-header';
 /** Apps Sidenav component */
 @Component({
   selector: 'hra-apps-sidenav',
-  standalone: true,
   imports: [CommonModule, MatSidenavModule, AppNavButtonComponent, MatIconModule, MatButtonModule, ScrollingModule],
   templateUrl: './apps-sidenav-demo.component.html',
   styleUrl: './apps-sidenav-demo.component.scss',
