@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +16,6 @@ import {
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
-import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
@@ -64,7 +62,6 @@ function optionalValue<T>(): T | null {
     ReactiveFormsModule,
     RouterModule,
 
-    MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -80,7 +77,6 @@ function optionalValue<T>(): T | null {
     NavHeaderComponent,
     OverlayModule,
     StepIndicatorComponent,
-    ToggleButtonSizeDirective,
     TooltipCardComponent,
     ErrorIndicatorComponent,
   ],

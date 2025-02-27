@@ -13,7 +13,7 @@
   .funders {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 1rem;
   }
@@ -29,7 +29,9 @@
     letter-spacing: var(--sys-label-small-tracking);
 
     img {
+      min-width: 3rem;
       height: 3rem;
+      object-fit: none;
     }
 
     span {

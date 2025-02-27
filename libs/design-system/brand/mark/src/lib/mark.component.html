@@ -1,6 +1,8 @@
 <div
   class="hra-brandmark"
-  [inlineSVG]="markUrl() | assetUrl"
+  [inlineSVG]="data().src | assetUrl"
   [evalScripts]="NEVER_EVAL_SCRIPTS"
+  [style.width.px]="data().width"
+  [style.height.px]="data().height"
   aria-label="Human Reference Atlas brandmark"
 ></div>

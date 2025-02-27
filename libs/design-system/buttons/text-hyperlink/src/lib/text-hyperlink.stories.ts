@@ -2,7 +2,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { TextHyperlinkDirective } from './text-hyperlink.directive';
 
 const meta: Meta<{ link: string }> = {
-  title: 'Design System/Buttons/TextHyperlink',
+  title: 'Design System/Buttons/Text Hyperlink',
   parameters: {
     design: {
       type: 'figma',

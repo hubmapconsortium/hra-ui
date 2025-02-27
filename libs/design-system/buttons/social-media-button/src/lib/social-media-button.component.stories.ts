@@ -5,7 +5,7 @@ import { SOCIAL_IDS } from './static-data/parsed';
 
 const meta: Meta<SocialMediaButtonComponent> = {
   component: SocialMediaButtonComponent,
-  title: 'Design System/Buttons/SocialMediaButton',
+  title: 'Design System/Buttons/Social Media Button',
   parameters: {
     design: {
       type: 'figma',

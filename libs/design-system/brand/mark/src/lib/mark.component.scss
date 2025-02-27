@@ -1,12 +1,3 @@
 :host {
   color: var(--hra-brand-mark-color, var(--sys-tertiary));
-
-  .hra-brandmark {
-    height: 100%;
-
-    ::ng-deep svg {
-      height: 100%;
-      width: min-content;
-    }
-  }
 }

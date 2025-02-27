@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-/**
- * Applies button toggle styles globally
- */
+/** Global styles for button toggles */
 @Component({
-  selector: 'hra-button-toggle-styles',
+  selector: 'hra-button-toggle-global-styles',
   standalone: true,
   template: '',
-  styleUrls: ['./button-toggle-styles.component.scss'],
+  styleUrls: ['./global-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonToggleStylesComponent {}
+export class ButtonToggleGlobalStylesComponent {}

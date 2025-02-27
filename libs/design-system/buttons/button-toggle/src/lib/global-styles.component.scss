@@ -1,0 +1,49 @@
+@use '../../../../styles/utils';
+
+@include utils.global-styles() {
+  mat-button-toggle-group {
+    --mat-standard-button-toggle-height: var(--mat-standard-button-toggle-label-text-line-height);
+    --mat-standard-button-toggle-shape: var(--sys-corner-extra-small);
+    --mat-standard-button-toggle-divider-color: var(--sys-primary);
+
+    --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+    --mat-standard-button-toggle-selected-state-background-color: #{utils.with-alpha(var(--sys-tertiary), 20%)};
+
+    &.hra-button-toggle-size-small {
+      --mat-standard-button-toggle-label-text-font: var(--sys-label-small-font);
+      --mat-standard-button-toggle-label-text-size: var(--sys-label-small-size);
+      --mat-standard-button-toggle-label-text-line-height: var(--sys-label-small-line-height);
+      --mat-standard-button-toggle-label-text-weight: var(--sys-label-small-weight);
+      --mat-standard-button-toggle-label-text-tracking: var(--sys-label-small-tracking);
+
+      .mat-button-toggle-label-content {
+        padding: 0.3125rem 0.5rem;
+      }
+    }
+
+    &.hra-button-toggle-size-medium {
+      --mat-standard-button-toggle-label-text-font: var(--sys-label-medium-font);
+      --mat-standard-button-toggle-label-text-size: var(--sys-label-medium-size);
+      --mat-standard-button-toggle-label-text-line-height: var(--sys-label-medium-line-height);
+      --mat-standard-button-toggle-label-text-weight: var(--sys-label-medium-weight);
+      --mat-standard-button-toggle-label-text-tracking: var(--sys-label-medium-tracking);
+
+      .mat-button-toggle-label-content {
+        padding: 0.3438rem 0.5rem;
+      }
+    }
+
+    &,
+    &.hra-button-toggle-size-large {
+      --mat-standard-button-toggle-label-text-font: var(--sys-label-large-font);
+      --mat-standard-button-toggle-label-text-size: var(--sys-label-large-size);
+      --mat-standard-button-toggle-label-text-line-height: var(--sys-label-large-line-height);
+      --mat-standard-button-toggle-label-text-weight: var(--sys-label-large-weight);
+      --mat-standard-button-toggle-label-text-tracking: var(--sys-label-large-tracking);
+
+      .mat-button-toggle-label-content {
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+}

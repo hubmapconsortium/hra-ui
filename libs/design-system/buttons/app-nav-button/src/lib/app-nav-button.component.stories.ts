@@ -67,7 +67,7 @@ const apps: Record<string, Story['args']> = {
 
 const meta: Meta = {
   component: AppNavButtonComponent,
-  title: 'Design System/Buttons/AppNavButton',
+  title: 'Design System/Buttons/App Nav Button',
   parameters: {
     design: {
       type: 'figma',
