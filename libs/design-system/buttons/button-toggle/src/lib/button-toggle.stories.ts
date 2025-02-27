@@ -12,7 +12,7 @@ const meta: Meta<ButtonToggleArgs> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=5-842',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=853-284',
     },
   },
   argTypes: {
