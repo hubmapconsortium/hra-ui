@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest, Observable } from 'rxjs';
@@ -274,5 +274,13 @@ export class AppComponent implements OnInit {
 
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
+  }
+
+  selectAllOrgans() {
+    this.scene.setSelectedReferenceOrgans(ALL_ORGANS);
+  }
+
+  clearAllOrgans() {
+    this.scene.setSelectedReferenceOrgans([]);
   }
 }

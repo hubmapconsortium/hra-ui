@@ -60,11 +60,11 @@
           </button>
         </mat-menu>
         <mat-menu #submenu2="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="selectAllOrgans()">
             <mat-icon>visibility</mat-icon>
             Show all organs
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="clearAllOrgans()">
             <mat-icon>visibility_off</mat-icon>
             Hide all organs
           </button>
