@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -43,7 +42,6 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
     IconButtonSizeDirective,
-    MatButtonToggleModule,
     ButtonsModule,
     MatDividerModule,
     BackButtonBarComponent,
