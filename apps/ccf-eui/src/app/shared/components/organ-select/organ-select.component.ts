@@ -38,7 +38,7 @@ export class OrganSelectComponent {
     const search = this.searchInput().toLowerCase();
     const options: OrganInfo[] = [];
     for (const organ of ALL_ORGANS) {
-      if (organ.name.toLowerCase().includes(search) && !this.selectedOrgans().includes(organ)) {
+      if (organ.name.toLowerCase().includes(search)) {
         options.push(organ);
       }
     }
@@ -50,11 +50,6 @@ export class OrganSelectComponent {
     () => `${this.selectedOrgans().length} Organ${this.selectedOrgans().length > 1 ? 's' : ''} Visible`,
   );
 
-  add(event: MatAutocompleteSelectedEvent): void {
-    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), event.option.value]);
-    this.searchInput.set('');
-  }
-
   remove(organ: OrganInfo): void {
     const index = this.selectedOrgans().indexOf(organ);
     const newSelection = [...this.selectedOrgans()];
@@ -62,7 +57,19 @@ export class OrganSelectComponent {
     this.scene.setSelectedReferenceOrgans(newSelection);
   }
 
-  selected(event: MatCheckboxChange, option: OrganInfo): void {
+  optionSelected(event: MatAutocompleteSelectedEvent): void {
+    this.searchInput.set('');
+    if (
+      this.selectedOrgans()
+        .map((organ) => organ.name)
+        .includes(event.option.value.name)
+    ) {
+      return;
+    }
+    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), event.option.value]);
+  }
+
+  checkboxSelected(event: MatCheckboxChange, option: OrganInfo): void {
     if (!event.checked) {
       this.remove(option);
       return;

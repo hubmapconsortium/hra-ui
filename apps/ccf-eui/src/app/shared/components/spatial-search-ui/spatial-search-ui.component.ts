@@ -1,7 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
-import { OrganInfo } from 'ccf-shared';
-import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BodyUiModule, OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
+
+import {
+  Position,
+  RadiusSettings,
+  SpatialSearchSex,
+  TermResult,
+} from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
+import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
+import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
 
 /**
  * Main Spatial Search UI component
@@ -10,6 +23,19 @@ import { Position, RadiusSettings, TermResult } from '../../../core/store/spatia
   selector: 'ccf-spatial-search-ui',
   templateUrl: './spatial-search-ui.component.html',
   styleUrls: ['./spatial-search-ui.component.scss'],
+  imports: [
+    CommonModule,
+    BodyUiModule,
+    XYZPositionModule,
+    SpatialSearchKeyboardUIBehaviorModule,
+    MatIconModule,
+    MatSliderModule,
+    TissueBlockListComponent,
+    TermOccurrenceListComponent,
+    ButtonsModule,
+    SpatialSearchInputsComponent,
+  ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiComponent {
@@ -17,65 +43,71 @@ export class SpatialSearchUiComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
 
   /** Nodes in the scene */
-  @Input() scene!: SpatialSceneNode[];
+  readonly scene = input.required<SpatialSceneNode[]>();
 
   /** Bounds of the scene */
-  @Input() sceneBounds!: Position;
+  readonly sceneBounds = input.required<Position>();
 
   /** Scene target */
-  @Input() sceneTarget!: [number, number, number];
+  readonly sceneTarget = input.required<[number, number, number]>();
+
+  /** Current organs */
+  readonly organs = input.required<OrganInfo[]>();
 
   /** Current selected sex */
-  @Input() sex!: string;
+  readonly sex = input.required<SpatialSearchSex>();
 
   /** Current selected organ */
-  @Input() referenceOrgan!: OrganInfo;
+  readonly referenceOrgan = input.required<OrganInfo>();
 
   /** Current sphere radius setting */
-  @Input() radius!: number;
+  readonly radius = input.required<number>();
 
   /** Maximum, minimum, and default sphere radius values */
-  @Input() radiusSettings!: RadiusSettings;
+  readonly radiusSettings = input.required<RadiusSettings>();
 
   /** Starting position of sphere */
-  @Input() defaultPosition!: Position;
+  readonly defaultPosition = input.required<Position>();
 
   /** Current position of sphere */
-  @Input() position!: Position;
+  readonly position = input.required<Position>();
 
   /** Tissue blocks within the sphere radius */
-  @Input() tissueBlocks!: TissueBlock[];
+  readonly tissueBlocks = input.required<TissueBlock[]>();
 
   /** Anatomical structures within the sphere radius */
-  @Input() anatomicalStructures!: TermResult[];
+  readonly anatomicalStructures = input.required<TermResult[]>();
 
   /** Cell types within the sphere radius */
-  @Input() cellTypes!: TermResult[];
+  readonly cellTypes = input.required<TermResult[]>();
 
   /** Emits when run spatial search button clicked */
-  @Output() readonly addSpatialSearch = new EventEmitter();
+  readonly addSpatialSearch = output();
 
   /** Emits when reset probing sphere button clicked */
-  @Output() readonly resetPosition = new EventEmitter();
+  readonly resetPosition = output();
 
   /** Emits when reset camera button clicked */
-  @Output() readonly resetSphere = new EventEmitter();
+  readonly resetSphere = output();
 
   /** Emits when close button clicked */
-  @Output() readonly closeSpatialSearch = new EventEmitter();
+  readonly closeSpatialSearch = output();
 
   /** Emits when the radius changes */
-  @Output() readonly radiusChange = new EventEmitter<number>();
+  readonly radiusChange = output<number>();
 
   /** Emits when the sphere position changes */
-  @Output() readonly positionChange = new EventEmitter<Position>();
+  readonly positionChange = output<Position>();
 
   /** Emits when the edit organ link is clicked */
-  @Output() readonly editReferenceOrganClicked = new EventEmitter();
-
-  /** Emits when info button in header is clicked */
-  @Output() readonly infoClicked = new EventEmitter();
+  readonly editReferenceOrganClicked = output();
 
   /** Emits when a node in the scene is clicked */
-  @Output() readonly nodeClicked = new EventEmitter<SpatialSceneNode>();
+  readonly nodeClicked = output<SpatialSceneNode>();
+
+  /** Emits when sex is updated */
+  readonly updateSex = output<SpatialSearchSex>();
+
+  /** Emits when organ is updated */
+  readonly updateOrgan = output<OrganInfo>();
 }

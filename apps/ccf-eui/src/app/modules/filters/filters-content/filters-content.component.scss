@@ -1,7 +1,6 @@
 :host {
   display: grid;
   grid-template-rows: auto 5.5rem;
-  grid-template-columns: 40.5rem;
   grid-template-areas:
     'form'
     'buttons';
@@ -11,6 +10,7 @@
   form {
     grid-area: form;
     overflow-y: auto;
+    width: 40.5rem;
   }
 
   .input-container {
@@ -21,32 +21,51 @@
   }
 
   .section {
-    padding: 0 1.25rem;
+    padding: 0 1.5rem;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      height: 2.5rem;
+    }
+
     .section-title {
       font: var(--sys-label-large);
       color: var(--sys-secondary);
-      margin-bottom: 0.5rem;
     }
   }
 
   .patient-filters {
     display: flex;
     gap: 2rem;
-
-    ::ng-deep mat-form-field {
-      width: 11.25rem;
-    }
   }
 
   .dropdown-form-field {
+    --mat-form-field-container-height: 3rem;
+    --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+
     ::ng-deep .mdc-floating-label {
-      transform: translateY(-106%);
+      transform: translateY(-100%);
+
+      mat-label {
+        font: var(--sys-label-small);
+        letter-spacing: var(--sys-label-small-tracking);
+        color: var(--sys-primary-fixed);
+      }
     }
   }
 
-  .spatial-search-header {
-    display: flex;
-    justify-content: space-between;
+  .providers-form {
+    margin-bottom: 0;
+  }
+
+  .spatial-search {
+    .section-header {
+      margin-bottom: 0.25rem;
+    }
   }
 
   .button-container {

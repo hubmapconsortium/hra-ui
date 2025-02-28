@@ -60,11 +60,11 @@
           </button>
         </mat-menu>
         <mat-menu #submenu2="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="selectAllOrgans()">
             <mat-icon>visibility</mat-icon>
             Show all organs
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="clearAllOrgans()">
             <mat-icon>visibility_off</mat-icon>
             Hide all organs
           </button>
@@ -154,6 +154,9 @@
     </div>
 
     <div class="content">
+      <button class="spatial-search-button" mat-flat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+        Spatial Search
+      </button>
       <ccf-body-ui
         #bodyUI
         class="stage-content"

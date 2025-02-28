@@ -21,7 +21,6 @@ import { ResultsBrowserComponent } from './modules/results-browser/results-brows
 import { ButtonToggleModule } from './shared/components/button-toggle/button-toggle.module';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
-import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 
 @NgModule({
@@ -39,9 +38,7 @@ import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinne
     MatTooltipModule,
     TrackingPopupModule,
     MatSnackBarModule,
-    RunSpatialSearchModule,
     ButtonToggleModule,
-
     NavHeaderButtonsComponent,
     ExpansionPanelModule,
     ButtonsModule,

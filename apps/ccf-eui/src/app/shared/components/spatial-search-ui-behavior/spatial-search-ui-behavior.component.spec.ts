@@ -6,7 +6,6 @@ import { of } from 'rxjs/internal/observable/of';
 import { Shallow } from 'shallow-render';
 import { SpatialSearchUiState } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchUiBehaviorComponent } from './spatial-search-ui-behavior.component';
-import { SpatialSearchUiBehaviorModule } from './spatial-search-ui-behavior.module';
 
 function wait(duration: number): Promise<void> {
   return new Promise((resolve) => {
@@ -22,7 +21,7 @@ describe('SpatialSearchUiBehaviorComponent', () => {
       imports: [NgxsModule.forRoot([SpatialSearchUiState], {})],
     });
 
-    shallow = new Shallow(SpatialSearchUiBehaviorComponent, SpatialSearchUiBehaviorModule)
+    shallow = new Shallow(SpatialSearchUiBehaviorComponent)
       .mock(MatDialogRef, {
         close(): void {
           /* Empty */

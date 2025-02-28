@@ -1,58 +1,71 @@
 :host {
-  .tissue-block-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  padding: 0.5rem 0 0rem 0rem;
+  overflow: hidden;
 
-    .title {
-      font-size: 0.875rem;
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    cdk-accordion-item {
+      display: grid;
+      height: 100%;
+      grid-template-rows: 2.5rem calc(100% - 2.5rem);
     }
 
-    .info {
-      padding: 0;
-      background: none;
-      border: none;
-      outline: none;
-      border-radius: 0.25rem;
-      transition: 0.6s;
+    .expansion-body {
+      height: 100%;
     }
+
+    .header {
+      font: var(--sys-label-medium);
+      padding-left: 1rem;
+    }
+  }
+
+  ::ng-deep ng-scrollbar {
+    .ng-scroll-content {
+      --_viewport-padding-top: 0.25rem;
+      --_viewport-padding-bottom: 0.25rem;
+      gap: 0.125rem;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .total-count,
+  .donor-info {
+    font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
+    margin-right: 1rem;
   }
 
   .tissue-list {
-    overflow: auto;
+    height: 100%;
+    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
   }
 
-  .donor {
-    min-height: 3rem;
-    padding-left: 0.5rem;
-    display: flex;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    align-items: center;
-    flex-grow: 1;
-    height: 2.5rem;
-    width: 22rem;
-    padding: 0.5rem;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    cursor: pointer;
-    margin-right: 1rem;
-    margin-bottom: 0.5rem;
+  .donor-info {
+    display: grid;
+    grid-template-areas:
+      'label'
+      'description';
 
-    .icon {
-      margin-right: 0.5rem;
+    background: var(--sys-on-primary);
+    box-shadow: 0px 5px 16px 0px rgb(from var(--sys-shadow) r g b / 24%);
+    padding: 0.25rem 0.5rem 0.25rem 1rem;
+    border-radius: 0.125rem;
+    margin-left: 1rem;
+
+    .label {
+      grid-area: label;
+      color: var(--sys-secondary);
     }
 
-    .donor-info {
-      .title {
-        font-weight: 600;
-      }
-
-      .description {
-        width: 17rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+    .description {
+      grid-area: description;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--sys-primary);
     }
   }
 }

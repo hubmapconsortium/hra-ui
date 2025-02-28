@@ -3,7 +3,6 @@
     <mat-icon matPrefix>search</mat-icon>
     <mat-label>{{ selectedOrgans().length > 0 ? 'Visible Organs' : 'Organs' }}</mat-label>
     <input
-      matInput
       name="currentOrganInput"
       class="organ-input"
       [(ngModel)]="searchInput"
@@ -14,7 +13,7 @@
     @if (selectedOrgans().length > 0) {
       <div class="visible-indicator">{{ searchTextField() }}</div>
     }
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)" hideSingleSelectionIndicator>
       <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of selectedOrgans(); track organ) {
           <mat-chip-row (removed)="remove(organ)">
@@ -30,7 +29,7 @@
           <div class="autocomplete-option">
             <mat-checkbox
               class="autocomplete-checkbox"
-              (change)="selected($event, organ); auto.showPanel = false"
+              (change)="checkboxSelected($event, organ)"
               [checked]="isChecked(organ)"
             ></mat-checkbox>
             <mat-option [value]="organ">{{ organ.name }}</mat-option>

@@ -2,20 +2,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: 1.25rem;
   color: var(--sys-secondary);
   overflow: hidden;
-
-  .results-header,
-  .stat-box {
-    margin: 0 1rem;
-  }
 
   .results-header {
     font: var(--sys-label-large);
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin: 1.25rem 1rem 0.5rem 1rem;
     align-items: center;
 
     button {
@@ -24,7 +18,7 @@
   }
 
   .stat-box {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 1rem;
 
     #title {
       font: var(--sys-label-medium);
@@ -54,6 +48,10 @@
   hra-expansion-panel {
     padding: 0.25rem 0.5rem;
     margin-left: 0.75rem;
+  }
+
+  ng-scrollbar {
+    flex-grow: 1;
   }
 
   .results-browser-list {
