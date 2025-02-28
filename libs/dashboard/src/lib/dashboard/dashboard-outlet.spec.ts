@@ -16,6 +16,7 @@ describe('DashboardComponentOutletDirective/DashboardComponentOutletComponent', 
   });
 
   it('should be empty if it cannot find the dynamic component', async () => {
+    const log = jest.spyOn(console, 'log').mockReturnValue(undefined);
     const { debugElement } = await render(DashboardComponentOutletComponent, {
       providers: [provideDashboardComponents([])],
       componentInputs: {
@@ -26,9 +27,11 @@ describe('DashboardComponentOutletDirective/DashboardComponentOutletComponent', 
     });
 
     expect(debugElement.children.length).toEqual(0);
+    expect(log).toHaveBeenCalled();
   });
 
   it('should be empty if the spec is invalid', async () => {
+    const log = jest.spyOn(console, 'log').mockReturnValue(undefined);
     const { debugElement } = await render(DashboardComponentOutletComponent, {
       providers: [provideDashboardComponents([ImageContainerComponent])],
       componentInputs: {
@@ -41,6 +44,7 @@ describe('DashboardComponentOutletDirective/DashboardComponentOutletComponent', 
     });
 
     expect(debugElement.children.length).toEqual(0);
+    expect(log).toHaveBeenCalled();
   });
 
   it('should replace the content of the component/directive with the dynamic content', async () => {
