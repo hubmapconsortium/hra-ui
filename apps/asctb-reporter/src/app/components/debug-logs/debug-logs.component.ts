@@ -6,6 +6,7 @@ import { Logs } from '../../models/ui.model';
   selector: 'app-debug-logs',
   templateUrl: './debug-logs.component.html',
   styleUrls: ['./debug-logs.component.scss'],
+  standalone: false,
 })
 export class DebugLogsComponent {
   @Input() currentSheet!: Sheet;

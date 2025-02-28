@@ -11,6 +11,7 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
   selector: 'app-organ-table-selector',
   templateUrl: './organ-table-selector.component.html',
   styleUrls: ['./organ-table-selector.component.scss'],
+  standalone: false,
 })
 export class OrganTableSelectorComponent {
   /**
