@@ -17,12 +17,9 @@ import { StyleComponentManagerService } from './style-component-manager.service'
 export function provideStyleComponents<T>(...components: Type<T>[]): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideAppInitializer(() => {
-      const initializerFn = (() => {
-        const injector = inject(Injector);
-        const manager = inject(StyleComponentManagerService);
-        return () => manager.registerStyleComponents(components, { injector });
-      })();
-      return initializerFn();
+      const injector = inject(Injector);
+      const manager = inject(StyleComponentManagerService);
+      manager.registerStyleComponents(components, { injector });
     }),
   ]);
 }

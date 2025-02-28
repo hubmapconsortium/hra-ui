@@ -49,7 +49,7 @@ export class AppComponent {
       setTimeout(resolve, 200);
     });
     const organs = await lastValueFrom(this.organs$.pipe(take(1)));
-    const hasZoomingNode = !!bodyUI.scene?.find((node) => node.zoomToOnLoad) ?? false;
+    const hasZoomingNode = !!bodyUI.scene?.find((node) => node.zoomToOnLoad);
 
     bodyUI.rotation = 0;
     bodyUI.rotationX = 0;

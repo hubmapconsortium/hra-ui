@@ -28,7 +28,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
 
       const asctbData = makeASCTBData(data);
 
-      return res.send({
+      res.send({
         data: asctbData.data,
         metadata: asctbData.metadata,
         warnings: asctbData.warnings,
@@ -38,7 +38,7 @@ export function setupGoogleSheetRoutes(app: Express): void {
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });
@@ -64,12 +64,12 @@ export function setupGoogleSheetRoutes(app: Express): void {
       const asctbData = makeASCTBData(data);
       const graphData = makeGraphData(asctbData.data);
 
-      return res.send({
+      res.send({
         data: graphData,
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });

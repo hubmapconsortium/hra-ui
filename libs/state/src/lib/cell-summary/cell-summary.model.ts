@@ -57,7 +57,7 @@ const AGGREGATE_ROW = z.tuple([z.string(), z.number().optional()]).rest(AGGREGAT
 /**
  * The AGGREGATE is an object that contains the label, columns
  * and rows */
-const AGGREGATE = z.object({
+export const AGGREGATE = z.object({
   label: z.string(),
   columns: z.string().array(),
   rows: AGGREGATE_ROW.array(),

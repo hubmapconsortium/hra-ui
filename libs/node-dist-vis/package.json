@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "bin": "./cli.js",
   "peerDependencies": {
-    "@angular/core": "19.1.8",
+    "@angular/core": "^19.2.0",
     "@hra-ui/webcomponents": "1.0.0",
     "papaparse": "^5.4.1",
-    "rxjs": "7.8.0",
+    "rxjs": "^7.8.2",
     "@deck.gl/carto": "~8.8.20",
     "@deck.gl/core": "~8.8.20",
     "@deck.gl/extensions": "~8.8.20",
@@ -18,7 +18,7 @@
     "@nebula.gl/layers": "^1.1.0-alpha.5",
     "@turf/bbox": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "commander": "^12.1.0"
+    "commander": "^13.1.0"
   },
   "sideEffects": [
     "index.ts"
