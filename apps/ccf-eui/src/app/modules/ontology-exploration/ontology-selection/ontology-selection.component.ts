@@ -1,16 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
+
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
 
@@ -20,47 +13,33 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
 @Component({
   selector: 'ccf-ontology-selection',
   templateUrl: './ontology-selection.component.html',
-  styleUrls: ['./ontology-selection.component.scss'],
   providers: [OntologySearchService],
+  imports: [CommonModule, OntologyTreeComponent],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OntologySelectionComponent implements OnChanges {
-  /**
-   * View child of search component
-   */
-  @ViewChild(OntologyTreeComponent, { static: false }) tree!: OntologyTreeComponent;
-
+export class OntologySelectionComponent {
   /**
    * A record of terms within the current filter.  To be passed on to ontology-tree
    */
-  @Input() occurenceData!: Record<string, number>;
+  readonly occurenceData = input.required<Record<string, number>>();
 
   /**
    * A record of terms the app currently has data for.  To be passed on to ontology-tree
    */
-  @Input() termData!: Record<string, number>;
+  readonly termData = input.required<Record<string, number>>();
 
   /**
    * The ontology tree model to display
    */
-  @Input() treeModel!: OntologyTree;
+  readonly treeModel = input.required<OntologyTree | null>();
 
-  /**
-   * Input list of selected ontology terms passed down to ontology-tree.
-   * Used to change display of ontology tree when selection is made from
-   * outside the component.
-   */
-  @Input() ontologyFilter!: string[];
-
-  @Input() header!: boolean;
-  @Input() placeholderText!: string;
-
-  @Input() showtoggle!: boolean;
+  readonly placeholderText = input.required<string>();
 
   /**
    * Captures and passes along the change in ontologySelections.
    */
-  @Output() readonly ontologySelection = new EventEmitter<OntologyTreeNode[]>();
+  readonly ontologySelection = output<OntologyTreeNode[]>();
 
   currentNodes!: string[];
 
@@ -69,11 +48,11 @@ export class OntologySelectionComponent implements OnChanges {
   tooltips!: string[];
   rootNode$: Observable<OntologyTreeNode>;
   biomarkerLabelMap = new Map([
-    ['gene', 'BG'],
-    ['protein', 'BP'],
-    ['lipids', 'BL'],
-    ['metabolites', 'BM'],
-    ['proteoforms', 'BF'],
+    ['gene', 'Genes'],
+    ['protein', 'Proteins'],
+    ['metabolites', 'Metabolites'],
+    ['proteoforms', 'Proteoforms'],
+    ['lipids', 'Lipids'],
   ]);
   /**
    * Creates an instance of ontology selection component.
@@ -93,26 +72,17 @@ export class OntologySelectionComponent implements OnChanges {
         }
       }),
     );
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('treeModel' in changes && this.treeModel) {
-      this.ontologySearchService.setTreeModel(this.treeModel);
-    }
-  }
-
-  /**
-   * Ontology selection event when node is selected from the search results.
-   *
-   * @param ontologyNode selected ontology node.
-   */
-  selected(ontologyNode: OntologyTreeNode): void {
-    const nodes = this.treeModel?.nodes ?? {};
-    this.tree.expandAndSelect(ontologyNode, (node) => nodes[node.parent ?? '']);
+    effect(() => {
+      const model = this.treeModel();
+      if (model) {
+        this.ontologySearchService.setTreeModel(model);
+      }
+    });
   }
 
   filterNodes(selectedTypes: string[]): void {
-    const nodes = Object.values(this.treeModel.nodes);
+    const nodes = Object.values(this.treeModel()?.nodes ?? {});
     const filteredNodes = nodes
       .filter((node) => selectedTypes.includes(this.biomarkerLabelMap.get(node.parent ?? '') ?? ''))
       .sort((node1, node2) =>
