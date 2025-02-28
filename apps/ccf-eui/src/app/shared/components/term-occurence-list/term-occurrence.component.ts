@@ -28,17 +28,17 @@ export class TermOccurrenceListComponent {
   @HostBinding('class') readonly className = 'ccf-term-occurrence-list';
 
   /**
-   * array that contains the terms and their counts
+   * Array that contains the terms and their counts
    */
-  termList = input<TermResult[]>([]);
+  readonly termList = input<TermResult[]>([]);
 
   /**
    * Holds title for section
    */
-  title = input.required<string>();
+  readonly title = input.required<string>();
 
   /**
    * Text to be included in the tool tip
    */
-  toolTipText = input.required<string>();
+  readonly toolTipText = input.required<string>();
 }

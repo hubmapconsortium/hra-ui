@@ -20,13 +20,13 @@ export class SpatialSearchConfigComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-config';
 
   /** Selectable organs */
-  organs = input.required<OrganInfo[]>();
+  readonly organs = input.required<OrganInfo[]>();
 
   /** Currently selected organ */
-  selectedOrgan = input<OrganInfo>();
+  readonly selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  sex = input.required<SpatialSearchSex>();
+  readonly sex = input.required<SpatialSearchSex>();
 
   /** Emits when sex is updated */
   readonly updateSex = output<SpatialSearchSex>();

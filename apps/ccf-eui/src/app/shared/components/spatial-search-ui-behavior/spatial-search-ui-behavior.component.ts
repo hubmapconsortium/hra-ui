@@ -100,10 +100,9 @@ export class SpatialSearchUiBehaviorComponent {
   @Dispatch()
   readonly updateOrgan = actionAsFn(SetOrgan);
 
-  constructor(
-    private readonly dialogRef: MatDialogRef<SpatialSearchUiComponent>,
-    public dialog: MatDialog,
-  ) {}
+  private readonly dialogRef = inject(MatDialogRef<SpatialSearchUiComponent>);
+
+  public dialog = inject(MatDialog);
 
   /**
    * Closes the spatial search UI and opens spatial search config

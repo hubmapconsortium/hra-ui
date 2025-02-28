@@ -1,5 +1,5 @@
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,15 +7,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { OrganInfo } from 'ccf-shared';
 import { map, Observable, startWith } from 'rxjs';
+
 import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
-import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 @Component({
   selector: 'ccf-spatial-search-inputs',
   standalone: true,
   imports: [
+    CommonModule,
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
@@ -31,35 +33,36 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   styleUrl: './spatial-search-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpatialSearchInputsComponent implements OnInit {
+export class SpatialSearchInputsComponent {
   /** Selectable organs */
-  @Input() organs!: OrganInfo[];
+  readonly organs = input.required<OrganInfo[]>();
 
   /** Currently selected organ */
-  @Input() selectedOrgan?: OrganInfo;
+  readonly selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  @Input() sex!: SpatialSearchSex;
+  readonly sex = input.required<SpatialSearchSex>();
 
   /** Emits when sex is updated */
-  @Output() readonly updateSex = new EventEmitter<SpatialSearchSex>();
+  readonly updateSex = output<SpatialSearchSex>();
 
   /** Emits when organ is updated */
-  @Output() readonly updateOrgan = new EventEmitter<OrganInfo>();
+  readonly updateOrgan = output<OrganInfo>();
 
-  organControl = new FormControl<string | OrganInfo>('');
+  readonly organControl = new FormControl<string | OrganInfo>('');
 
-  filteredOrgans!: Observable<OrganInfo[]>;
+  readonly filteredOrgans: Observable<OrganInfo[]> = this.organControl.valueChanges.pipe(
+    startWith(''),
+    map((value) => {
+      const name = typeof value === 'string' ? value : '';
+      return name ? this._filter(name as string) : this.organs().slice();
+    }),
+  );
 
-  ngOnInit() {
-    this.organControl.patchValue(this.selectedOrgan as OrganInfo);
-    this.filteredOrgans = this.organControl.valueChanges.pipe(
-      startWith([]),
-      map((value) => {
-        const name = typeof value === 'string' ? value : '';
-        return name ? this._filter(name as string) : this.organs.slice();
-      }),
-    );
+  constructor() {
+    effect(() => {
+      this.organControl.patchValue(this.selectedOrgan() as OrganInfo);
+    });
   }
 
   displayFn(organ: OrganInfo): string {
@@ -68,6 +71,6 @@ export class SpatialSearchInputsComponent implements OnInit {
 
   private _filter(name: string): OrganInfo[] {
     const filterValue = name.toLowerCase();
-    return this.organs.filter((organ) => organ.name.toLowerCase().includes(filterValue));
+    return this.organs().filter((organ) => organ.name.toLowerCase().includes(filterValue));
   }
 }

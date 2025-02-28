@@ -5,12 +5,12 @@
       panelClass="options-container"
       disableOptionCentering="true"
       disableRipple
-      [(value)]="sex"
+      [value]="sex()"
       (selectionChange)="updateSex.emit($event.value)"
     >
       @for (option of ['male', 'female']; track option) {
         <mat-option class="dropdown-option" [value]="option">
-          <div>{{ option.charAt(0).toUpperCase() + option.slice(1) }}</div>
+          <div>{{ option | titlecase }}</div>
         </mat-option>
       }
     </mat-select>
@@ -34,7 +34,7 @@
       <mat-autocomplete
         #auto="matAutocomplete"
         [displayWith]="displayFn"
-        (optionSelected)="updateOrgan.emit($event.option.value); selectedOrgan = $event.option.value"
+        (optionSelected)="updateOrgan.emit($event.option.value)"
       >
         <ng-scrollbar>
           @for (organ of filteredOrgans | async; track organ) {

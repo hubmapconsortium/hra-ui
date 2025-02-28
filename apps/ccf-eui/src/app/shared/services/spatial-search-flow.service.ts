@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { take, tap } from 'rxjs';
@@ -9,10 +9,9 @@ import { SpatialSearchConfigBehaviorComponent } from '../components/spatial-sear
   providedIn: 'root',
 })
 export class SpatialSearchFlowService {
-  constructor(
-    private readonly store: Store,
-    private readonly dialog: MatDialog,
-  ) {}
+  private readonly store = inject(Store);
+
+  private readonly dialog = inject(MatDialog);
 
   /**
    * Starts spatial search flow

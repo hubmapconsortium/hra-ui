@@ -32,16 +32,16 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
   @HostBinding('class') readonly clsName = 'ccf-spatial-search-list';
 
   /** Label for the list */
-  label = input<string>('');
+  readonly label = input<string>('');
 
   /** Items to display */
-  items = input<T[]>([]);
+  readonly items = input<T[]>([]);
 
   /** Emits the new items when a selection changes */
-  selectionChanged = output<T[]>();
+  readonly selectionChanged = output<T[]>();
 
   /** Emits the item that has been removed from the list */
-  itemRemoved = output<T>();
+  readonly itemRemoved = output<T>();
 
   allSelected = true;
 

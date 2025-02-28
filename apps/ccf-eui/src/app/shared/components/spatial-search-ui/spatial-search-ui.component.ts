@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BodyUiModule, OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
-import { Observable } from 'rxjs';
 
 import {
   Position,
@@ -45,43 +43,43 @@ export class SpatialSearchUiComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
 
   /** Nodes in the scene */
-  scene = input.required<SpatialSceneNode[]>();
+  readonly scene = input.required<SpatialSceneNode[]>();
 
   /** Bounds of the scene */
-  sceneBounds = input.required<Position>();
+  readonly sceneBounds = input.required<Position>();
 
   /** Scene target */
-  sceneTarget = input.required<[number, number, number]>();
+  readonly sceneTarget = input.required<[number, number, number]>();
 
   /** Current organs */
-  organs = input.required<OrganInfo[]>();
+  readonly organs = input.required<OrganInfo[]>();
 
   /** Current selected sex */
-  sex = input.required<SpatialSearchSex>();
+  readonly sex = input.required<SpatialSearchSex>();
 
   /** Current selected organ */
-  referenceOrgan = input.required<OrganInfo>();
+  readonly referenceOrgan = input.required<OrganInfo>();
 
   /** Current sphere radius setting */
-  radius = input.required<number>();
+  readonly radius = input.required<number>();
 
   /** Maximum, minimum, and default sphere radius values */
-  radiusSettings = input.required<RadiusSettings>();
+  readonly radiusSettings = input.required<RadiusSettings>();
 
   /** Starting position of sphere */
-  defaultPosition = input.required<Position>();
+  readonly defaultPosition = input.required<Position>();
 
   /** Current position of sphere */
-  position = input.required<Position>();
+  readonly position = input.required<Position>();
 
   /** Tissue blocks within the sphere radius */
-  tissueBlocks = input.required<TissueBlock[]>();
+  readonly tissueBlocks = input.required<TissueBlock[]>();
 
   /** Anatomical structures within the sphere radius */
-  anatomicalStructures = input.required<TermResult[]>();
+  readonly anatomicalStructures = input.required<TermResult[]>();
 
   /** Cell types within the sphere radius */
-  cellTypes = input.required<TermResult[]>();
+  readonly cellTypes = input.required<TermResult[]>();
 
   /** Emits when run spatial search button clicked */
   readonly addSpatialSearch = output();
@@ -112,8 +110,4 @@ export class SpatialSearchUiComponent {
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
-
-  organControl = new FormControl<string | OrganInfo>('');
-
-  filteredOrgans!: Observable<OrganInfo[]>;
 }

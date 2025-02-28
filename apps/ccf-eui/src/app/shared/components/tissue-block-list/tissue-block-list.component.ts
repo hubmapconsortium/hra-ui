@@ -32,5 +32,5 @@ export class TissueBlockListComponent {
   @HostBinding('class') readonly className = 'ccf-tissue-block-list';
 
   /** Tissue blocks to be displayed */
-  tissueBlocks = input<TissueBlock[]>([]);
+  readonly tissueBlocks = input<TissueBlock[]>([]);
 }
