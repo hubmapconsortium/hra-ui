@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Header Component
@@ -12,7 +12,7 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 @Component({
   selector: 'hra-dashboard-header',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterModule, MatMenuModule, MatIconModule, AssetUrlPipe],
+  imports: [CommonModule, RouterModule, MatMenuModule, MatIconModule, ButtonsModule, AssetUrlPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
