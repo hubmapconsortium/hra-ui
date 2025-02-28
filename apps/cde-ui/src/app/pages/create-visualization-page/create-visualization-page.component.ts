@@ -58,19 +58,16 @@ function optionalValue<T>(): T | null {
 /** Visualization customization page */
 @Component({
   selector: 'cde-create-visualization-page',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-
     MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-
     BreadcrumbsComponent,
     ButtonsModule,
     DeprecatedWorkflowCardComponent,

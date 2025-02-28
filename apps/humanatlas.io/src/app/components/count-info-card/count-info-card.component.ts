@@ -6,6 +6,7 @@ import { CountInfoCard } from './count-info-card';
   selector: 'count-info-card',
   templateUrl: './count-info-card.component.html',
   styleUrls: ['./count-info-card.component.scss'],
+  standalone: false,
 })
 export class CountInfoCardComponent {
   /** Metrics and other details to be displayed inside the card */

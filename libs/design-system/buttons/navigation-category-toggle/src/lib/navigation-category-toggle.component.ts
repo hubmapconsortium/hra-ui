@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 /** Navigation toggle button */
 @Component({
   selector: 'hra-navigation-category-toggle',
-  standalone: true,
   imports: [CommonModule, MatButtonToggleModule, MatIconModule],
   templateUrl: './navigation-category-toggle.component.html',
   styleUrl: './navigation-category-toggle.component.scss',

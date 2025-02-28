@@ -50,10 +50,8 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
  */
 @Component({
   selector: 'cde-node-dist-visualization',
-  standalone: true,
   imports: [
     OverlayModule,
-
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
@@ -61,14 +59,13 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
     FullscreenPortalComponent,
     FullscreenPortalContentComponent,
     InfoModalComponent,
-
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows custom elements in the template
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
   readonly nodes = input.required<NodesView>();

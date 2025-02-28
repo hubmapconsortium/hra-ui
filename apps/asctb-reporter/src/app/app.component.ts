@@ -13,6 +13,7 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
   selector: 'app-reporter',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   constructor(

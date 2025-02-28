@@ -3,8 +3,10 @@
 
 $_theme: main-theme.$theme;
 
-@include mat.core();
-@include mat.core-theme($_theme);
+@include mat.elevation-classes();
+@include mat.app-background();
+@include mat.elevation-classes();
+@include mat.app-background();
 @include mat.typography-hierarchy($_theme);
 
 // Add theme mixin for material components here!

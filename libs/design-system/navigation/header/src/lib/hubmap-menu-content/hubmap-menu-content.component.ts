@@ -36,7 +36,6 @@ export class HubmapMenuItemDirective {
  */
 @Component({
   selector: 'hra-hubmap-menu-content',
-  standalone: true,
   imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],
   templateUrl: './hubmap-menu-content.component.html',
   styleUrl: './hubmap-menu-content.component.scss',

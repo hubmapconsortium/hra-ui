@@ -11,6 +11,7 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
   templateUrl: './tag-list.component.html',
   styleUrls: ['./tag-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TagListComponent {
   /** HTML class name */

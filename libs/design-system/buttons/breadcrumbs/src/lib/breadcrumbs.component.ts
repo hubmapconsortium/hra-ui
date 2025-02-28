@@ -17,7 +17,6 @@ export interface BreadcrumbItem {
  */
 @Component({
   selector: 'hra-breadcrumbs',
-  standalone: true,
   imports: [CommonModule, RouterModule, MatIconModule, TextHyperlinkDirective],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',

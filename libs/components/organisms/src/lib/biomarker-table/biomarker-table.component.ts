@@ -69,7 +69,6 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 /** Cell types table, describing the types and quanitites of cells for a specific organ */
 @Component({
   selector: 'hra-biomarker-table',
-  standalone: true,
   imports: [
     CommonModule,
     MatTableModule,

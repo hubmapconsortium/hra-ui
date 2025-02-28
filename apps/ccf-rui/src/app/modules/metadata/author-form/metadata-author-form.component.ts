@@ -16,7 +16,6 @@ export interface AuthorFormControls {
 
 @Component({
   selector: 'ccf-metadata-author-form',
-  standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
   templateUrl: './metadata-author-form.component.html',
   styleUrls: ['./metadata-author-form.component.scss'],

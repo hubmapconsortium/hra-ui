@@ -9,7 +9,6 @@ import { LONG_CARD_DEF, LongCardComponent } from '../long-card/long-card.compone
  */
 @Component({
   selector: 'hra-dashboard-index',
-  standalone: true,
   imports: [CommonModule, LongCardComponent],
   templateUrl: './dashboard-index.component.html',
   styleUrl: './dashboard-index.component.scss',

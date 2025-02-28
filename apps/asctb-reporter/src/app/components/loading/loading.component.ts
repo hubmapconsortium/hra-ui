@@ -8,6 +8,7 @@ import { UIState, UIStateModel } from '../../store/ui.state';
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
+  standalone: false,
 })
 export class LoadingComponent implements OnInit {
   @Select(UIState) loadingText$!: Observable<UIStateModel>;

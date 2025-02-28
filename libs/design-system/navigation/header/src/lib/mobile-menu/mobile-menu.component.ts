@@ -14,7 +14,6 @@ import { Menu } from '../types/menus.schema';
  */
 @Component({
   selector: 'hra-mobile-menu',
-  standalone: true,
   imports: [
     CommonModule,
     MatDividerModule,

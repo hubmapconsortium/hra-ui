@@ -6,6 +6,7 @@ import { REGISTRY } from '../../../static/docs';
   selector: 'app-docs-nav',
   templateUrl: './docs-nav.component.html',
   styleUrls: ['./docs-nav.component.scss'],
+  standalone: false,
 })
 export class DocsNavComponent {
   REGISTRY = REGISTRY;

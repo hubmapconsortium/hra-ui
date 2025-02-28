@@ -64,6 +64,7 @@ import { TreeService } from './../tree/tree.service';
   selector: 'app-root',
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss'],
+  standalone: false,
 })
 export class RootComponent implements OnDestroy {
   /**

@@ -19,7 +19,6 @@ import { map, takeUntil } from 'rxjs';
  */
 @Component({
   selector: 'hra-email-input',
-  standalone: true,
   imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './email-input.component.html',
   styleUrls: ['./email-input.component.scss'],

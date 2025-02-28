@@ -146,8 +146,11 @@ export class NodeDistVisComponent {
    */
   readonly selection = input<string[] | string>();
 
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
   /** Emits when the user clicks on a node */

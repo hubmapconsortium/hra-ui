@@ -6,6 +6,7 @@ import { UploadForm } from '../../models/sheet.model';
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
+  standalone: false,
 })
 export class UploadComponent implements OnInit {
   @Output() uploadForm = new EventEmitter<UploadForm>();

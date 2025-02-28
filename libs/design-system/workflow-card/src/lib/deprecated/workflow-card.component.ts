@@ -8,7 +8,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
  */
 @Component({
   selector: 'hra-workflow-card',
-  standalone: true,
   imports: [CommonModule, MatProgressBarModule],
   templateUrl: './workflow-card.component.html',
   styleUrl: './workflow-card.component.scss',

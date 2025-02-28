@@ -98,6 +98,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   host: {
     class: 'hra-app',
   },
+  standalone: false,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;

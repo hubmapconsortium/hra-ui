@@ -48,7 +48,6 @@ export function openScreenSizeNotice(dialog: MatDialog): Subscription {
  */
 @Component({
   selector: 'ccf-screen-size-notice',
-  standalone: true,
   imports: [CommonModule, ButtonsModule, MatDialogModule, MatIconModule],
   templateUrl: './screen-size-notice.component.html',
   styleUrl: './screen-size-notice.component.scss',

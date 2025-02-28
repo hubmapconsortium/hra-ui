@@ -60,6 +60,7 @@ interface AppOptions {
     class: 'hra-app',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;

@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   templateUrl: './button-toggle.component.html',
   styleUrls: ['./button-toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ButtonToggleComponent {
   @Input() menuOptions!: string[];

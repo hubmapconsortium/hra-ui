@@ -6,6 +6,7 @@ import { TissueSection } from '@hra-api/ng-client';
   templateUrl: './tissue-section-vis.component.html',
   styleUrls: ['./tissue-section-vis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TissueSectionVisComponent {
   /** HTML Class Name */

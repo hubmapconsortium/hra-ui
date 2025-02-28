@@ -7,6 +7,7 @@ import { Consent, ConsentService } from '../../services/consent.service';
   templateUrl: './tracking-popup.component.html',
   styleUrls: ['./tracking-popup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TrackingPopupComponent {
   @HostBinding('class') readonly clsName = 'app-tracking-popup';

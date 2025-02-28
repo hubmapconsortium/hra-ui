@@ -21,6 +21,7 @@ import { Sex } from '../../../shared/components/spatial-search-config/spatial-se
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FiltersContentComponent implements OnChanges {
   /**

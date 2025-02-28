@@ -5,6 +5,7 @@ import { Error } from '../../models/response.model';
   selector: 'app-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
+  standalone: false,
 })
 export class ErrorComponent {
   @Input() error!: Error;

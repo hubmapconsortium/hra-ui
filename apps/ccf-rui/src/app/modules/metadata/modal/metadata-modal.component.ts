@@ -35,7 +35,6 @@ export interface MetadataModalResult {
 
 @Component({
   selector: 'ccf-metadata-modal',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatDialogModule,

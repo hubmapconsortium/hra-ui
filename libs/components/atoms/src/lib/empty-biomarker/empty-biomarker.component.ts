@@ -10,7 +10,6 @@ import { MarkdownModule } from 'ngx-markdown';
  */
 @Component({
   selector: 'hra-empty-biomarker',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MarkdownModule],
   templateUrl: './empty-biomarker.component.html',
   styleUrls: ['./empty-biomarker.component.scss'],

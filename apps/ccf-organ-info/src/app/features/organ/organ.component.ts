@@ -19,6 +19,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   templateUrl: './organ.component.html',
   styleUrls: ['./organ.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganComponent implements AfterViewChecked, OnChanges {
   @Input() organ?: SpatialEntity;

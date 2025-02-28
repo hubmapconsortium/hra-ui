@@ -6,6 +6,7 @@ import { PageDef } from '../page-element/page-def';
   selector: 'ccf-page-renderer',
   templateUrl: './page-renderer.component.html',
   styleUrls: ['./page-renderer.component.scss'],
+  standalone: false,
 })
 export class PageRendererComponent {
   /** Elements data to be displayed on the page */

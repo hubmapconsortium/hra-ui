@@ -11,6 +11,7 @@ import { delay } from 'rxjs';
   selector: 'app-legend',
   templateUrl: './legend.component.html',
   styleUrls: ['./legend.component.scss'],
+  standalone: false,
 })
 export class LegendComponent implements OnInit, OnChanges {
   legends: Legend[] = [];

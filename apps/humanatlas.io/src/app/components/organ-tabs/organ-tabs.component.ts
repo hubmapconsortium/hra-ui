@@ -6,6 +6,7 @@ import { OrganData } from '../two-dim-image/two-dim-image';
   selector: 'ccf-organ-tabs',
   templateUrl: './organ-tabs.component.html',
   styleUrls: ['./organ-tabs.component.scss'],
+  standalone: false,
 })
 export class OrganTabsComponent {
   /** Details of images to be displayed as tabs */

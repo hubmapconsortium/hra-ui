@@ -6,6 +6,7 @@ import { SheetDetails } from '../../models/sheet.model';
   selector: 'app-table-nested-menu',
   templateUrl: './table-nested-menu.component.html',
   styleUrls: ['./table-nested-menu.component.scss'],
+  standalone: false,
 })
 export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];

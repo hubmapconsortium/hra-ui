@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
  */
 @Component({
   selector: 'hra-dashboard-layout',
-  standalone: true,
   imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule, MatButtonModule],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',

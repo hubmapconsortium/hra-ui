@@ -24,6 +24,7 @@ import {
       useExisting: FileUploadComponent,
     },
   ],
+  standalone: false,
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   fileName = '';

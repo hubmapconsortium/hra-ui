@@ -20,7 +20,6 @@ const WIDE_CARD_MIN_ITEM_COUNT = 4;
   templateUrl: './metrics-container.component.html',
   styleUrl: './metrics-container.component.scss',
   imports: [TitleCardComponent, MetricsItemComponent],
-  standalone: true,
 })
 export class MetricsContainerComponent implements DashboardComponent<typeof MetricsContainerComponent> {
   /** Input type for Metrics Container Component */

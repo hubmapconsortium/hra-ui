@@ -18,7 +18,6 @@ export const LONG_CARD_DEF = z.object({
  */
 @Component({
   selector: 'hra-long-card',
-  standalone: true,
   imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './long-card.component.html',
   styleUrl: './long-card.component.scss',

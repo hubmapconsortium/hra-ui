@@ -22,6 +22,7 @@ interface FlatNode {
   selector: 'app-indent',
   templateUrl: './indented-list.component.html',
   styleUrls: ['./indented-list.component.scss'],
+  standalone: false,
 })
 export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
   indentData = [];

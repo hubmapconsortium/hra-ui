@@ -25,6 +25,7 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   templateUrl: './slices-input.component.html',
   styleUrls: ['./slices-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SlicesInputComponent {
   /** HTML class name */

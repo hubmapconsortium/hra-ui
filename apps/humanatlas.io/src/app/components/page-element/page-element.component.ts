@@ -11,6 +11,7 @@ import { PageDef } from './page-def';
   templateUrl: './page-element.component.html',
   styleUrls: ['./page-element.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PageElementComponent {
   /** Details of element to be displayed */

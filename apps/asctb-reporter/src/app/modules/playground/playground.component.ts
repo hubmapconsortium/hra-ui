@@ -14,6 +14,7 @@ import { SheetState } from '../../store/sheet.state';
   selector: 'app-playground',
   templateUrl: './playground.component.html',
   styleUrls: ['./playground.component.scss'],
+  standalone: false,
 })
 export class PlaygroundComponent implements AfterViewInit {
   @ViewChild('spreadsheet') spreadsheet!: ElementRef;

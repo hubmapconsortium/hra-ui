@@ -7,6 +7,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
   selector: 'copy-clipboard',
   templateUrl: './copy-clipboard.component.html',
   styleUrls: ['./copy-clipboard.component.scss'],
+  standalone: false,
 })
 export class CopyClipboardComponent {
   /** Details of the APIs and buttons */

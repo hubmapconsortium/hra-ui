@@ -8,6 +8,7 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
   selector: 'app-vis-controls',
   templateUrl: './vis-controls.component.html',
   styleUrls: ['./vis-controls.component.scss'],
+  standalone: false,
 })
 export class VisControlsComponent {
   @Input() config!: SheetConfig;

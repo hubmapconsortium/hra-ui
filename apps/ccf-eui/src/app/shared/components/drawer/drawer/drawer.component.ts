@@ -91,7 +91,6 @@ class InitializationState {
         }),
       ),
       state('closed', style({})),
-
       transition('closed => open-instant', animate(0)),
       transition('closed <=> open, open-instant => closed', animate('.5s ease-in-out')),
     ]),
@@ -118,11 +117,11 @@ class InitializationState {
         }),
         EXPAND_COLLAPSE_PARAMS_DEFAULT,
       ),
-
       transition('* <=> *', animate('.5s ease-in-out')),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DrawerComponent implements AfterViewInit, OnDestroy {
   /** HTML class */

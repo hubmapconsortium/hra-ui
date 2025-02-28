@@ -10,6 +10,7 @@ import { SheetInfo } from '../../models/sheet.model';
   selector: 'app-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
+  standalone: false,
 })
 export class InfoComponent implements OnInit {
   loading = true;

@@ -8,6 +8,7 @@ import { TableData, TissueTableInfo } from './tissue-info-table';
   selector: 'ccf-tissue-info',
   templateUrl: './tissue-info-table.component.html',
   styleUrls: ['./tissue-info-table.component.scss'],
+  standalone: false,
 })
 export class TissueInfoTableComponent {
   /** Sorts the table data */

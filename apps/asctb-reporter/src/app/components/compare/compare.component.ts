@@ -9,6 +9,7 @@ import { CompareData } from '../../models/sheet.model';
   selector: 'app-compare',
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
+  standalone: false,
 })
 export class CompareComponent implements OnInit {
   @Output() closeCompare = new EventEmitter<boolean>();

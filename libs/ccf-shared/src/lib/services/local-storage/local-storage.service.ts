@@ -72,7 +72,7 @@ export class LocalStorageService {
     try {
       LocalStorageService.storage?.setItem(key, value);
       return true;
-    } catch (_error) {
+    } catch {
       return false;
     }
   }

@@ -14,7 +14,6 @@ export interface TooltipContent {
  */
 @Component({
   selector: 'hra-tooltip-card',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './tooltip-card.component.html',
   styleUrl: './tooltip-card.component.scss',

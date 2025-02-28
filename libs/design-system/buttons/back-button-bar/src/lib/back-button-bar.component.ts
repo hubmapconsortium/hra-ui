@@ -6,7 +6,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 /** Back bar component used when an application is embedded */
 @Component({
   selector: 'hra-back-button-bar',
-  standalone: true,
   imports: [MatCommonModule, MatIconModule, ButtonsModule],
   templateUrl: './back-button-bar.component.html',
   styleUrl: './back-button-bar.component.scss',

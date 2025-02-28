@@ -15,6 +15,7 @@ import { MetadataService } from '../metadata/metadata.service';
   templateUrl: './right-sidebar.component.html',
   styleUrls: ['./right-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RightSidebarComponent {
   /** HTML class name */

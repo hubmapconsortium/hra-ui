@@ -12,7 +12,6 @@ import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
  */
 @Component({
   selector: 'ftu-tissue-library-behavior',
-  standalone: true,
   imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],
   templateUrl: './tissue-library-behavior.component.html',
   styleUrls: ['./tissue-library-behavior.component.scss'],

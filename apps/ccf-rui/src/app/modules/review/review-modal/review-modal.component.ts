@@ -23,6 +23,7 @@ interface ReviewModalData {
   templateUrl: './review-modal.component.html',
   styleUrls: ['./review-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReviewModalComponent {
   /** HTML class name */

@@ -11,7 +11,6 @@ import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.c
 /** Component for Header Behavior */
 @Component({
   selector: 'ftu-header-behavior',
-  standalone: true,
   imports: [CommonModule, HeaderComponent],
   templateUrl: './header-behavior.component.html',
   styleUrls: ['./header-behavior.component.scss'],

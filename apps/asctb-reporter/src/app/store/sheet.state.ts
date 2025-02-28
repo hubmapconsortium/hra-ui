@@ -1304,7 +1304,7 @@ export class SheetState {
           });
         }
       });
-      const filteredProtiens = new Set([...existingProtiens].filter((i) => allOmapProtiens.has(i))) ?? [];
+      const filteredProtiens = new Set([...existingProtiens].filter((i) => allOmapProtiens.has(i)));
       patchState({
         filteredProtiens: [...filteredProtiens],
       });

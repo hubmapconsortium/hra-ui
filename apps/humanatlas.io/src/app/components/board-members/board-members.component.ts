@@ -6,6 +6,7 @@ import { BoardMemberItems } from './board-members';
   selector: 'ccf-board-members',
   templateUrl: './board-members.component.html',
   styleUrls: ['./board-members.component.scss'],
+  standalone: false,
 })
 export class BoardMembersComponent {
   /** Details for each board member card */

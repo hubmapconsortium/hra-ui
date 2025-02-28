@@ -10,6 +10,7 @@ import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search
   templateUrl: './term-occurrence.component.html',
   styleUrls: ['./term-occurrence.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TermOccurrenceListComponent {
   @HostBinding('class') readonly className = 'ccf-term-occurrence-list';

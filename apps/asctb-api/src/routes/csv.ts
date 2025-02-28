@@ -54,25 +54,25 @@ export function setupCSVRoutes(app: Express): void {
       if (output === 'owl') {
         const graphData = await makeOwlData(makeJsonLdData(makeGraphData(asctbData), withSubclasses));
         res.type('application/rdf+xml');
-        return res.send(graphData);
+        res.send(graphData);
       } else if (output === 'jsonld') {
         let graphData = makeJsonLdData(makeGraphData(asctbData), withSubclasses);
         if (expanded) {
           graphData = await expand(graphData);
         }
-        return res.send(graphData);
+        res.send(graphData);
       } else if (output === 'graph') {
         const graphData = makeGraphData(asctbData);
-        return res.send({
+        res.send({
           data: graphData,
         });
       } else if (output === 'validate') {
         const reports = asctbDataResponses.map(makeValidationReport);
         res.type('text/plain');
-        return res.send(reports[0]);
+        res.send(reports[0]);
       } else {
         // The default is returning the json
-        return res.send({
+        res.send({
           data: asctbData,
           metadata: asctbDataResponse.metadata,
           csv: asctbDataResponse.csv,
@@ -83,7 +83,7 @@ export function setupCSVRoutes(app: Express): void {
       }
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please provide a either a valid csv url or a valid public google sheet url. If you are uploading either of these methods, please check the CSV format',
         code: 500,
       });
@@ -96,19 +96,21 @@ export function setupCSVRoutes(app: Express): void {
   app.post('/v2/csv', async (req: Request, res: Response) => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
     if (!req.files || !req.files.csvFile) {
-      return res.status(400).send({
+      res.status(400).send({
         msg: 'This route only accepts CSVs POSTed and called csvFile',
         code: 400,
       });
+      return;
     }
 
     const file = req.files.csvFile as UploadedFile;
 
     if (file.mimetype !== 'text/csv' || file.size > 10000000) {
-      return res.status(400).send({
+      res.status(400).send({
         msg: 'File must be a CSV less than 10 MB.',
         code: 400,
       });
+      return;
     }
 
     const dataString = file.data.toString();
@@ -120,7 +122,7 @@ export function setupCSVRoutes(app: Express): void {
       });
       const asctbData = makeASCTBData(data);
 
-      return res.send({
+      res.send({
         data: asctbData.data,
         metadata: asctbData.metadata,
         csv: dataString,
@@ -130,7 +132,7 @@ export function setupCSVRoutes(app: Express): void {
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the CSV format',
         code: 500,
       });

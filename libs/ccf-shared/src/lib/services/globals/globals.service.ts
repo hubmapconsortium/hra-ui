@@ -128,7 +128,7 @@ export class GlobalsService {
       // One last try - may fail depending on content security policy (CSP) settings
       // eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
       return new Function('return this;')() as GlobalThis | undefined;
-    } catch (_ignored) {
+    } catch {
       /* Ignore errors */
     }
 

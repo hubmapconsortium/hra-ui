@@ -7,7 +7,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 @Component({
   selector: 'cde-violin-menu',
-  standalone: true,
   imports: [CommonModule, MatIconModule, MatMenuModule, IconButtonSizeDirective, ButtonsModule],
   templateUrl: './violin-menu.component.html',
   styleUrl: './violin-menu.component.scss',

@@ -19,6 +19,7 @@ import { VegaService } from '../tree/vega.service';
   selector: 'app-control-pane',
   templateUrl: './control-pane.component.html',
   styleUrls: ['./control-pane.component.scss'],
+  standalone: false,
 })
 export class ControlPaneComponent implements OnInit {
   @Input() error!: Error;

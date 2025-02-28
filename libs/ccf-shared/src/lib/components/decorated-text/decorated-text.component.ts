@@ -33,6 +33,7 @@ interface StackOp {
   templateUrl: './decorated-text.component.html',
   styleUrls: ['./decorated-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DecoratedTextComponent implements OnChanges {
   /** HTML class name */

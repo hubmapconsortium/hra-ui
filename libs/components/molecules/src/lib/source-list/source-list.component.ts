@@ -39,7 +39,6 @@ export interface SourceListItem {
 /** This component shows list of sources with title and links to the datasets */
 @Component({
   selector: 'hra-source-list',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,
