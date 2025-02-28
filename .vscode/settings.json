@@ -31,5 +31,6 @@
     "lib:utils",
     "lib:webcomponents",
     "lib:state"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }
