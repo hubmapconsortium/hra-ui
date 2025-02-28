@@ -1,14 +1,11 @@
+@let root = rootNode();
+
 <div class="header">
-  {{ getNodeLabel(topNode.label) }}
-  <div class="header-num-results">
-    {{ getCountLabel(topNode) }}
-    <div class="num-results">
-      {{ getCount(topNode) }}
-    </div>
-  </div>
+  {{ getNodeLabel(root.label ?? '') }}
+  <div class="header-num-results">Tissue Blocks: {{ getCount(root) }}</div>
 </div>
 
-@if (topNode.original.id === 'biomarkers') {
+@if (root.id === 'biomarkers') {
   <div class="biomarkers-toggle">
     <mat-button-toggle-group
       multiple
@@ -18,21 +15,20 @@
       hraButtonToggleSize="small"
       (change)="toggleSelection($event.value)"
     >
-      @for (option of menuOptions(); track option) {
-        <mat-button-toggle [value]="option" [checked]="isItemSelected(option)">{{ option }}</mat-button-toggle>
+      @for (option of biomarkerMenuOptions(); track option) {
+        <mat-button-toggle [value]="option" [checked]="isOptionSelected(option)">{{ option }}</mat-button-toggle>
       }
     </mat-button-toggle-group>
   </div>
 }
 
 <ng-scrollbar hraScrollOverflowFade>
-  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" hraTreeSize="small">
+  <mat-tree [dataSource]="nodes()" [childrenAccessor]="getChildren()" hraTreeSize="small" #tree>
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node
       *matTreeNodeDef="let node"
       matTreeNodePadding
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
-      [class.hidden]="node.level === 0"
       matTreeNodePaddingIndent="12"
     >
       <div class="node-content leaf" [class.selected]="isSelected(node)">
@@ -41,29 +37,27 @@
           <button mat-icon-button disabled></button>
         }
         <div class="node-label">{{ node.label }}</div>
-        <div class="num-results" [class.suborgan]="node.level > 1">{{ getCountLabel(node) }}{{ getCount(node) }}</div>
+        <div class="num-results">{{ getCount(node) }}</div>
       </div>
     </mat-tree-node>
 
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node
-      *matTreeNodeDef="let node; when: hasChild"
+      *matTreeNodeDef="let node; when: hasChildren"
       matTreeNodePadding
       matTreeNodeToggle
       [cdkTreeNodeTypeaheadLabel]="node.label"
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
-      [class.hidden]="node.level === 0"
-      [isDisabled]="node.level === 0"
       matTreeNodePaddingIndent="12"
     >
       <div class="node-content leaf" [class.selected]="isSelected(node)">
         <button class="tree-expand-icon" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.label">
           <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? 'expand_less' : 'expand_more' }}
+            {{ tree.isExpanded(node) ? 'expand_less' : 'expand_more' }}
           </mat-icon>
         </button>
         <div class="node-label">{{ node.label }}</div>
-        <div class="num-results" [class.suborgan]="node.level > 1">{{ getCountLabel(node) }}{{ getCount(node) }}</div>
+        <div class="num-results">{{ getCount(node) }}</div>
       </div>
     </mat-tree-node>
   </mat-tree>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, OnChanges, output, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
@@ -18,35 +18,23 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OntologySelectionComponent implements OnChanges {
-  /**
-   * View child of search component
-   */
-  @ViewChild(OntologyTreeComponent, { static: false }) tree!: OntologyTreeComponent;
-
+export class OntologySelectionComponent {
   /**
    * A record of terms within the current filter.  To be passed on to ontology-tree
    */
-  occurenceData = input.required<Record<string, number>>();
+  readonly occurenceData = input.required<Record<string, number>>();
 
   /**
    * A record of terms the app currently has data for.  To be passed on to ontology-tree
    */
-  termData = input.required<Record<string, number>>();
+  readonly termData = input.required<Record<string, number>>();
 
   /**
    * The ontology tree model to display
    */
-  treeModel = input.required<OntologyTree>();
+  readonly treeModel = input.required<OntologyTree | null>();
 
-  /**
-   * Input list of selected ontology terms passed down to ontology-tree.
-   * Used to change display of ontology tree when selection is made from
-   * outside the component.
-   */
-  ontologyFilter = input<string[]>();
-
-  placeholderText = input.required<string>();
+  readonly placeholderText = input.required<string>();
 
   /**
    * Captures and passes along the change in ontologySelections.
@@ -84,26 +72,17 @@ export class OntologySelectionComponent implements OnChanges {
         }
       }),
     );
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('treeModel' in changes && this.treeModel) {
-      this.ontologySearchService.setTreeModel(this.treeModel());
-    }
-  }
-
-  /**
-   * Ontology selection event when node is selected from the search results.
-   *
-   * @param ontologyNode selected ontology node.
-   */
-  selected(ontologyNode: OntologyTreeNode): void {
-    const nodes = this.treeModel()?.nodes ?? {};
-    this.tree.expandAndSelect(ontologyNode, (node) => nodes[node.parent ?? '']);
+    effect(() => {
+      const model = this.treeModel();
+      if (model) {
+        this.ontologySearchService.setTreeModel(model);
+      }
+    });
   }
 
   filterNodes(selectedTypes: string[]): void {
-    const nodes = Object.values(this.treeModel().nodes);
+    const nodes = Object.values(this.treeModel()?.nodes ?? {});
     const filteredNodes = nodes
       .filter((node) => selectedTypes.includes(this.biomarkerLabelMap.get(node.parent ?? '') ?? ''))
       .sort((node1, node2) =>

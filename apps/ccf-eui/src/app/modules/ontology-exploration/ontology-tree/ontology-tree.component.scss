@@ -25,6 +25,7 @@
 
   mat-tree {
     --mat-tree-container-background-color: var(--sys-surface-container-low);
+    padding-left: 0.75rem;
   }
 
   mat-tree-node {
@@ -46,10 +47,6 @@
   .num-results,
   .header-num-results {
     margin-left: auto;
-  }
-
-  .hidden {
-    display: none;
   }
 
   .biomarkers-toggle {
