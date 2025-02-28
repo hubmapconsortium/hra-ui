@@ -19,16 +19,20 @@
     height: 5.25rem;
 
     .logos {
+      display: flex;
+
       img {
         max-height: 3rem;
       }
       .hra-logo {
         margin-right: 1rem;
+        width: 7.25rem;
       }
 
       .hra-mini-logo {
         display: none;
         margin-right: 0.25rem;
+        width: 3rem;
       }
 
       .dashboards-home {
