@@ -22,6 +22,7 @@ import { ButtonToggleModule } from './shared/components/button-toggle/button-tog
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinne
     MatSidenavModule,
     FiltersContentComponent,
     OrganSelectComponent,
+    MatDividerModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],
