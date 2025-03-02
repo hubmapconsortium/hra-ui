@@ -114,7 +114,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
   readonly spatialFlowService = inject(SpatialSearchFlowService);
 
-  filterhasChanged = false;
+  filterHasChanged = false;
 
   /**
    * Creates an instance of filters content component.
@@ -145,7 +145,10 @@ export class FiltersContentComponent implements OnChanges, OnInit {
         changes['spatialSearchFilters'].previousValue.toString()
     ) {
       this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
-      this.filterForm.markAsDirty();
+      if (this.spatialSearchFilters().length > 0) {
+        this.filterHasChanged = true;
+        this.filterForm.markAsDirty();
+      }
     }
   }
 
@@ -158,12 +161,13 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   updateFilter(value: unknown, key: string): void {
     const currentValue = this.filterForm.value[key as keyof typeof this.filterForm.value]?.toString();
     if (currentValue !== value?.toString()) {
-      this.filterhasChanged = true;
+      this.filterHasChanged = true;
       this.filterForm.patchValue({
         [key]: value,
       });
       this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
     }
+    this.filterForm.markAsDirty();
   }
 
   convertedFilter(): Record<string, unknown> {
@@ -208,7 +212,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.filterForm.patchValue(defaults);
 
     this.ga.event('filters_reset', 'filter_content');
-    this.filterhasChanged = false;
+    this.filterHasChanged = false;
     this.filterForm.markAsPristine();
   }
 
@@ -223,6 +227,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.spatialSearchSelected.emit(items);
     this.updateFilter(searches, 'spatialSearches');
     this.updateSexFromSelection(items);
+    this.filterHasChanged = true;
     this.filterForm.markAsDirty();
   }
 
@@ -233,7 +238,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
     const selectedSexes = new Set(items.map((item) => item.sex));
 
-    if (selectedSexes.size > 1 || !selectedSexes.has(currentSex)) {
+    if (selectedSexes.size > 1 && !selectedSexes.has(currentSex)) {
       this.updateFilter('Both', 'sex');
     }
   }
