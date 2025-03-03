@@ -14,21 +14,21 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '@hra-ui/components/atoms';
-import { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';
+import { SourceListComponent } from '@hra-ui/components/molecules';
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
+  CellSummaryAggregate,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
-  CellSummaryAggregate,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -51,7 +51,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     MatTabsModule,
     MatDialogModule,
     BiomarkerTableComponent,
-    BiomarkerTableDataCardComponent,
     GradientLegendComponent,
     HoverDirective,
     LabelBoxComponent,
