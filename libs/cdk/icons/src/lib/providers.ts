@@ -138,6 +138,6 @@ export function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {
  * @param config Configuration object
  * @returns Application providers
  */
-export function provideIcons(config?: IconsConfig): EnvironmentProviders {
-  return makeEnvironmentProviders([provideFontIcons(config?.fontIcons), provideSvgIcons(config?.svgIcons)]);
+export function provideIcons(config: IconsConfig = {}): EnvironmentProviders {
+  return makeEnvironmentProviders([provideFontIcons(config.fontIcons), provideSvgIcons(config.svgIcons)]);
 }
