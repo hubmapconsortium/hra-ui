@@ -94,7 +94,7 @@ export class WebComponentsComponent {
 
   openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
     this.sidenavData.set({
-      tagline: def?.productTitle + ' ' + def?.webComponentName,
+      tagline: `${def?.productTitle} ${def?.webComponentName}`,
       code: this.getEmbedTemplate(organ, def),
       showApp: def.embedAs === 'inline',
       tabIndex: tabIndex,
