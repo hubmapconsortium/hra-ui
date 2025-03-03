@@ -1,20 +1,28 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { FlatCardComponent } from './flat-card.component';
+import { FlatCardActionsComponent, FlatCardComponent } from './flat-card.component';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
-const meta: Meta = {
+const meta: Meta<FlatCardComponent> = {
+  title: 'Design System/Cards/Flat Card',
   component: FlatCardComponent,
-  title: 'Design System/Cards/FlatCardComponent',
-  decorators: [
-    moduleMetadata({
-      imports: [],
-    }),
-  ],
+  subcomponents: [FlatCardActionsComponent],
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=8607-27441',
     },
   },
+  args: {
+    tagline: 'Flat Card Title',
+    showButtonsFooter: true,
+    showDivider: true,
+    showHelpButton: true,
+  },
+  decorators: [
+    moduleMetadata({
+      imports: [ButtonsModule],
+    }),
+  ],
 };
 export default meta;
 type Story = StoryObj<FlatCardComponent>;
@@ -24,14 +32,15 @@ export const Default: Story = {
     props: args,
     template: `
     <hra-flat-card
-    title="Component Title"
-    leftButtonText="Action"
-    [isButtonDisabled]=true
-    rightButtonText="Action"
-    [showHelpButton]=true
-    [showDivider]=true
-    [showButtonsFooter]=true>
+      [tagline]="tagline"
+      [showButtonsFooter]="showButtonsFooter"
+      [showDivider]="showDivider"
+      [showHelpButton]="showHelpButton"
+    >
       <div class="placeholder">placeholder content</div>
+      <hra-flat-card-actions>
+        <button mat-button>Action</button>
+      </hra-flat-card-actions>
     </hra-flat-card>
     `,
     styles: [

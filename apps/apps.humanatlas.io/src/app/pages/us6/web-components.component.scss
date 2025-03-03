@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../../../../styles/utils';
 
 :host {
   display: block;
@@ -7,20 +8,6 @@
   .content-container {
     transition: 0.3s ease-out;
   }
-
-  ::ng-deep .mat-mdc-tab-list {
-    max-width: 10.6875rem;
-  }
-
-  @include mat.tabs-overrides(
-    (
-      active-indicator-color: var(--sys-on-tertiary-fixed),
-      active-ripple-color: var(--sys-on-tertiary-fixed),
-      active-focus-indicator-color: var(--sys-on-tertiary-fixed),
-      active-hover-indicator-color: var(--sys-on-tertiary-fixed),
-      active-indicator-height: 0.125rem,
-    )
-  );
 
   .heading-container {
     margin: 10rem auto 0 auto;
@@ -35,13 +22,13 @@
     h1 {
       color: var(--sys-on-background);
       margin: 0;
-      font: var(--sys-display-large);
+      @include utils.use-font(title, large);
       letter-spacing: var(--sys-display-large-tracking);
     }
   }
 
   .description {
-    font: var(--sys-body-large);
+    @include utils.use-font(body, large);
     color: var(--sys-on-secondary-container);
     padding-top: 3.5rem;
     margin: 0;
@@ -59,7 +46,7 @@
     p {
       margin: 0 0 1rem 0;
       color: var(--sys-on-background);
-      font: var(--sys-title-medium);
+      @include utils.use-font(title, medium);
       letter-spacing: var(--sys-title-medium-tracking);
     }
 
@@ -81,4 +68,30 @@
       gap: 3rem;
     }
   }
+}
+
+::ng-deep .app-iframe-panel {
+  display: flex;
+  flex-direction: column;
+
+  .app-iframe {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+  }
+}
+
+::ng-deep .mat-mdc-tab-list {
+  max-width: 10.6875rem;
+
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: var(--sys-on-tertiary-fixed),
+      active-ripple-color: var(--sys-on-tertiary-fixed),
+      active-focus-indicator-color: var(--sys-on-tertiary-fixed),
+      active-hover-indicator-color: var(--sys-on-tertiary-fixed),
+      active-indicator-height: 0.125rem,
+    )
+  );
 }

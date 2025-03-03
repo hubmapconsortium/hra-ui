@@ -45,15 +45,22 @@
   }
 </div>
 
-<hra-overlay-sidenav
-  [isOpen]="sidenavData() !== undefined"
-  [tagline]="sidenavData()?.tagline ?? ''"
-  [code]="sidenavData()?.code ?? ''"
-  [showApp]="sidenavData()?.showApp ?? false"
-  [tabIndex]="sidenavData()?.tabIndex ?? 0"
-  (close)="sidenavData.set(undefined)"
-></hra-overlay-sidenav>
+<ng-template #sidenavTemplate>
+  @if (sidenavData(); as data) {
+    <hra-embed-sidenav-content
+      [tagline]="data.tagline"
+      [code]="data.code"
+      [showApp]="data.showApp"
+      [tabIndex]="data.tabIndex"
+      (closeSidenav)="sidenavData.set(undefined)"
+    >
+    </hra-embed-sidenav-content>
+  }
+</ng-template>
 
-@if (overlayData(); as data) {
-  <hra-overlay-iframe [srcdoc]="data.code" (closeClick)="overlayData.set(undefined)"></hra-overlay-iframe>
-}
+<ng-template #appIframeTemplate>
+  @if (appIframeData(); as data) {
+    <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)"></hra-back-button-bar>
+    <iframe title="" class="app-iframe" [srcdoc]="data.code"></iframe>
+  }
+</ng-template>

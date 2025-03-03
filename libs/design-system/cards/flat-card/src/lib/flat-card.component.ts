@@ -46,10 +46,5 @@ export class FlatCardComponent {
   /** Optional footer content */
   readonly showButtonsFooter = input.required<boolean>();
 
-  /** Optional footer content */
-  readonly leftButtonText = input<string>();
-  readonly rightButtonText = input<string>();
-  readonly isButtonDisabled = input<boolean>();
-
   readonly closeClick = output<void>();
 }

@@ -1,17 +1,30 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from '@angular/core';
 
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { CardsModule } from '@hra-ui/design-system/cards';
+import { Overlay } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { OverlayIframeComponent } from './overlay-iframe/overlay-iframe.component';
-import { OverlaySidenavComponent } from './overlay-sidenav/overlay-sidenav.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { CardsModule } from '@hra-ui/design-system/cards';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
+import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
@@ -23,8 +36,9 @@ interface SidenavData {
   tabIndex: number;
 }
 
-interface OverlayData {
-  code: string;
+interface AppIframeData {
+  tagline: string;
+  code: SafeHtml;
 }
 
 interface ExternalAppData {
@@ -43,8 +57,8 @@ interface ExternalAppData {
     MatSelectModule,
     MatSidenavModule,
 
-    OverlayIframeComponent,
-    OverlaySidenavComponent,
+    BackButtonBarComponent,
+    EmbedSidenavContentComponent,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     WebComponentCardComponent,
@@ -59,21 +73,56 @@ export class WebComponentsComponent {
 
   protected readonly activeOrgan = signal<Organ | undefined>(undefined);
   protected readonly sidenavData = signal<SidenavData | undefined>(undefined);
-  protected readonly overlayData = signal<OverlayData | undefined>(undefined);
+  protected readonly appIframeData = signal<AppIframeData | undefined>(undefined);
 
-  private readonly document = inject(DOCUMENT);
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly overlay = inject(Overlay);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly sidenavTemplate = viewChild.required('sidenavTemplate', { read: TemplateRef });
+  private readonly sidenavPortal = computed(() => new TemplatePortal(this.sidenavTemplate(), this.viewContainerRef));
+  private readonly appIframeTemplate = viewChild.required('appIframeTemplate', { read: TemplateRef });
+  private readonly appIframePortal = computed(
+    () => new TemplatePortal(this.appIframeTemplate(), this.viewContainerRef),
+  );
 
-  protected readonly overlayOpen = signal(false);
+  private readonly sidenavOverlay = this.overlay.create({
+    disposeOnNavigation: true,
+    hasBackdrop: true,
+    height: '100vh',
+    maxWidth: '50vw',
+    positionStrategy: this.overlay.position().global().top().right(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
+
+  private readonly appIframeOverlay = this.overlay.create({
+    disposeOnNavigation: true,
+    height: '100vh',
+    width: '100vw',
+    panelClass: 'app-iframe-panel',
+    positionStrategy: this.overlay.position().global().top().left(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
 
   constructor() {
-    effect((cleanup) => {
-      if (this.sidenavData() !== undefined) {
-        const { body } = this.document;
-        const previousOverflowValue = body.style.overflow;
-        body.style.overflow = 'hidden';
-        cleanup(() => (body.style.overflow = previousOverflowValue));
-      }
-    });
+    effect(
+      (cleanup) => {
+        if (this.sidenavData() !== undefined) {
+          this.sidenavOverlay.attach(this.sidenavPortal());
+          cleanup(() => this.sidenavOverlay.detach());
+        }
+      },
+      { allowSignalWrites: true },
+    );
+
+    effect(
+      (cleanup) => {
+        if (this.appIframeData() !== undefined) {
+          this.appIframeOverlay.attach(this.appIframePortal());
+          cleanup(() => this.appIframeOverlay.detach());
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   onUseApp(organ: Organ, def: ComponentDef): void {
@@ -94,7 +143,7 @@ export class WebComponentsComponent {
 
   openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
     this.sidenavData.set({
-      tagline: `${def?.productTitle} ${def?.webComponentName}`,
+      tagline: `${def.productTitle} ${def.webComponentName}`,
       code: this.getEmbedTemplate(organ, def),
       showApp: def.embedAs === 'inline',
       tabIndex: tabIndex,
@@ -102,8 +151,9 @@ export class WebComponentsComponent {
   }
 
   openOverlay(organ: Organ, def: ComponentDef): void {
-    this.overlayData.set({
-      code: this.getEmbedTemplate(organ, def),
+    this.appIframeData.set({
+      tagline: `${def.productTitle} ${def.webComponentName}`,
+      code: this.sanitizer.bypassSecurityTrustHtml(this.getEmbedTemplate(organ, def)),
     });
   }
 
@@ -113,7 +163,7 @@ export class WebComponentsComponent {
   }
 
   closeOverlay(): void {
-    this.overlayData.set(undefined);
+    this.appIframeData.set(undefined);
   }
 
   private getEmbedTemplate(organ: Organ, def: ComponentDef): string {
