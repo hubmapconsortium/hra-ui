@@ -26,13 +26,8 @@ export interface DesignSystemOptions {
 export function provideDesignSystemCommon(options?: DesignSystemOptions) {
   return [
     provideAppInitializer(() => {
-      const initializerFn = (() => {
-        const overlayContainer = inject(OverlayContainer);
-        return () => {
-          overlayContainer.getContainerElement().classList.add('hra-app');
-        };
-      })();
-      return initializerFn();
+      const overlayContainer = inject(OverlayContainer);
+      overlayContainer.getContainerElement().classList.add('hra-app');
     }),
     provideIcons({
       fontIcons: {

@@ -117,15 +117,12 @@ export class HeaderComponent {
 
   /** Initialize the header */
   constructor() {
-    effect(
-      (cleanup) => {
-        if (this.activeMenu() !== undefined) {
-          const observer = this.attachResizeObserver();
-          cleanup(() => observer.disconnect());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect((cleanup) => {
+      if (this.activeMenu() !== undefined) {
+        const observer = this.attachResizeObserver();
+        cleanup(() => observer.disconnect());
+      }
+    });
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
   }

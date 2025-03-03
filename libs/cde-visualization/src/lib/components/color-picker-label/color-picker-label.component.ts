@@ -36,7 +36,7 @@ export class ColorPickerLabelComponent {
   readonly hexColor = signal('#000000');
 
   /** Effect to sync the hex color with the RGB color */
-  readonly hexColorSyncRef = effect(() => this.hexColor.set(rgbToHex(this.color())), { allowSignalWrites: true });
+  readonly hexColorSyncRef = effect(() => this.hexColor.set(rgbToHex(this.color())));
 
   /** Tooltip position for the color picker label */
   readonly tooltipPosition = TOOLTIP_POSITION_COLOR_PICKER_LABEL;

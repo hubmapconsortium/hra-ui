@@ -50,7 +50,7 @@ describe('CdeVisualizationComponent', () => {
         ...options?.inputs,
       },
       providers: [
-        provideDesignSystemCommon({ scrolling: { disableSensor: true } }),
+        provideDesignSystemCommon(),
         provideHttpClient(),
         provideHttpClientTesting(),
         ...(options?.providers ?? []),

@@ -120,13 +120,10 @@ export class CellTypesComponent {
   protected readonly selectionModel = new SelectionModel<string>(true);
 
   /** Bind selection model to cell types selection */
-  protected readonly selectionModelBindRef = effect(
-    () => {
-      this.selectionModel.setSelection(...this.cellTypesSelection());
-      this.cdr.markForCheck();
-    },
-    { allowSignalWrites: true },
-  );
+  protected readonly selectionModelBindRef = effect(() => {
+    this.selectionModel.setSelection(...this.cellTypesSelection());
+    this.cdr.markForCheck();
+  });
 
   /** Observable stream of selection changes */
   protected readonly selection$ = this.selectionModel.changed.pipe(map(() => this.selectionModel.selected));

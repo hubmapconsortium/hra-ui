@@ -221,23 +221,20 @@ export class HistogramComponent {
   protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
   /** Effect for creating the Vega view */
-  protected readonly viewCreateRef = effect(
-    async (onCleanup) => {
-      const el = this.histogramEl().rootNodes()[0];
-      await this.ensureFontsLoaded();
+  protected readonly viewCreateRef = effect(async (onCleanup) => {
+    const el = this.histogramEl().rootNodes()[0];
+    await this.ensureFontsLoaded();
 
-      const spec = produce(HISTOGRAM_SPEC, (draft) => {
-        draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
-      });
-      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
-        actions: false,
-      });
+    const spec = produce(HISTOGRAM_SPEC, (draft) => {
+      draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+    });
+    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
 
-      onCleanup(finalize);
-      this.view.set(view);
-    },
-    { allowSignalWrites: true },
-  );
+    onCleanup(finalize);
+    this.view.set(view);
+  });
 
   /* istanbul ignore next */
   resizeAndSyncView() {

@@ -170,29 +170,26 @@ export class ViolinComponent {
   });
 
   /** Effect for creating the Vega view */
-  protected readonly viewCreateRef = effect(
-    async (onCleanup) => {
-      const container: HTMLElement = this.violinEl().rootNodes()[0];
-      const el = container.querySelector('.violin-container') as HTMLElement;
-      await this.ensureFontsLoaded();
+  protected readonly viewCreateRef = effect(async (onCleanup) => {
+    const container: HTMLElement = this.violinEl().rootNodes()[0];
+    const el = container.querySelector('.violin-container') as HTMLElement;
+    await this.ensureFontsLoaded();
 
-      const spec = produce(VIOLIN_SPEC, (draft) => {
-        for (const layer of draft.spec.layer) {
-          if (layer.encoding.color.legend === null) {
-            layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
-          }
+    const spec = produce(VIOLIN_SPEC, (draft) => {
+      for (const layer of draft.spec.layer) {
+        if (layer.encoding.color.legend === null) {
+          layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
-      });
+      }
+    });
 
-      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
-        actions: false,
-      });
+    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
 
-      onCleanup(finalize);
-      this.view.set(view);
-    },
-    { allowSignalWrites: true },
-  );
+    onCleanup(finalize);
+    this.view.set(view);
+  });
 
   /* istanbul ignore next */
   resizeAndSyncView() {
