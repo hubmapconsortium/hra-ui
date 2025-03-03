@@ -6,6 +6,7 @@ import { SnackbarService } from './snackbar.service';
 describe('SnackbarComponent', () => {
   let service: SnackbarService;
   const MESSAGE = 'Test message';
+
   beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [provideNoopAnimations()],
@@ -16,8 +17,8 @@ describe('SnackbarComponent', () => {
 
   it('should open snackbar and show details', async () => {
     service.open(MESSAGE, 'Action', true, 'end');
-    const label = screen.findAllByText(MESSAGE);
-    const action = screen.findAllByText('Action');
+    const label = screen.findByText(MESSAGE);
+    const action = screen.findByText('Action');
     expect(label).resolves.toBeInTheDocument();
     expect(action).resolves.toBeInTheDocument();
   });

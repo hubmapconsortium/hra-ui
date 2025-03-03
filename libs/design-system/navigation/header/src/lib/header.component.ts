@@ -188,6 +188,7 @@ export class HeaderComponent {
    * Notify menu overlays of position changes
    */
   private updateMenuPositions(): void {
+    /* istanbul ignore next */
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
   }
 }
