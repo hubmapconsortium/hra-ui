@@ -10,9 +10,9 @@
 </div>
 
 <div class="card-footer">
-  <button (click)="openUseApp()" mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
+  <button (click)="useAppClick.emit()" mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
   <button
-    (click)="openEmbedCode()"
+    (click)="embedClick.emit()"
     [disabled]="disableButton()"
     mat-flat-button
     hraPrimaryButton

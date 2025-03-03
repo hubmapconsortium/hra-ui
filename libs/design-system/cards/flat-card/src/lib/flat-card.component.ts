@@ -35,7 +35,7 @@ export class FlatCardActionsComponent {}
 })
 export class FlatCardComponent {
   /** Title of the card */
-  readonly title = input.required<string>();
+  readonly tagline = input.required<string>();
 
   /** Optional help icon */
   readonly showHelpButton = input<boolean>();

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -27,15 +27,7 @@ export class WebComponentCardComponent {
   /** Disable button */
   readonly disableButton = input<boolean>();
 
-  @Output() showEmbedCode = new EventEmitter<boolean>();
+  readonly embedClick = output();
 
-  @Output() showUseApp = new EventEmitter<boolean>();
-
-  openEmbedCode() {
-    this.showEmbedCode.emit(true);
-  }
-
-  openUseApp() {
-    this.showUseApp.emit(true);
-  }
+  readonly useAppClick = output();
 }

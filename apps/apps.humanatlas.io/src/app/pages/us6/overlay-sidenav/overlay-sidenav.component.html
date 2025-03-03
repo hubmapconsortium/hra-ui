@@ -1,0 +1,19 @@
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOpen]="isOpen()"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'cdk-overlay-dark-backdrop'"
+  cdkConnectedOverlayHeight="100vh"
+  [cdkConnectedOverlayPanelClass]="'custom-overlay-position'"
+  (backdropClick)="close.emit()"
+>
+  <div class="overlay-content">
+    <hra-embed-sidenav-content
+      [tagline]="tagline()"
+      [code]="code()"
+      [showApp]="showApp()"
+      [tabIndex]="tabIndex()"
+      (closeSidenav)="close.emit()"
+    ></hra-embed-sidenav-content>
+  </div>
+</ng-template>

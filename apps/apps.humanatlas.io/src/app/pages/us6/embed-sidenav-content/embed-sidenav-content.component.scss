@@ -14,7 +14,9 @@
     }
   }
 
-  .embed-app {
+  .iframe-container .app-iframe {
     border: none;
+    width: 37.875rem;
+    height: calc(100vh - 7.625rem);
   }
 }

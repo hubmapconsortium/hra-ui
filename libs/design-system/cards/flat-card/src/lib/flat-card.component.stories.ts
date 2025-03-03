@@ -23,7 +23,14 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-flat-card title="Component Title" leftButtonText="Action" [isButtonDisabled]=true rightButtonText="Action" [showHelpButton]=true [showDivider]=true [showButtonsFooter]=true>
+    <hra-flat-card
+    title="Component Title"
+    leftButtonText="Action"
+    [isButtonDisabled]=true
+    rightButtonText="Action"
+    [showHelpButton]=true
+    [showDivider]=true
+    [showButtonsFooter]=true>
       <div class="placeholder">placeholder content</div>
     </hra-flat-card>
     `,

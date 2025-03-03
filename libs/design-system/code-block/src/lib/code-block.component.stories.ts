@@ -22,9 +22,7 @@ type Story = StoryObj<CodeBlockComponent>;
 
 export const Default: Story = {
   args: {
-    code: `placeholder code
-
-import { provideHighlightOptions } from 'ngx-highlightjs';
+    code: `import { provideHighlightOptions } from 'ngx-highlightjs';
 
 export const appConfig: ApplicationConfig = {
   providers: [

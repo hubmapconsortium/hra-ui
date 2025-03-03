@@ -1,6 +1,6 @@
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, computed } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 
@@ -13,7 +13,7 @@ import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-butto
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverlayIframeComponent {
-  private sanitizer = inject(DomSanitizer);
+  protected readonly sanitizer = inject(DomSanitizer);
 
   readonly srcdoc = input.required<string | undefined>();
 
@@ -21,8 +21,8 @@ export class OverlayIframeComponent {
 
   protected readonly blockScroll = inject(Overlay).scrollStrategies.block();
 
-  protected get safeSrcdoc(): SafeHtml | undefined {
+  protected readonly safeSrcdoc = computed((): SafeHtml | undefined => {
     const srcdocValue = this.srcdoc();
     return srcdocValue ? this.sanitizer.bypassSecurityTrustHtml(srcdocValue) : undefined;
-  }
+  });
 }

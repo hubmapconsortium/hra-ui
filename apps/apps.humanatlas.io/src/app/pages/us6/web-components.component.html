@@ -1,74 +1,59 @@
-@let embedAs = activeData()?.def?.embedAs;
+<div class="content-container">
+  <div class="heading-container">
+    <div class="title-logo-div">
+      <hra-product-logo name="web_components" size="large"></hra-product-logo>
+      <div>
+        <h1>Web Components</h1>
+        <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
+      </div>
+    </div>
+    <p class="description">
+      Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
+    </p>
+  </div>
 
-<mat-sidenav-container class="sidenav-container">
-  @if (!(embedAs === 'external')) {
-    <mat-sidenav opened mode="over" position="end" [(opened)]="showSidenav" fixedInViewport="true">
-      <hra-embed-sidenav-content
-        [tagline]="activeData()?.def?.productTitle + ' ' + activeData()?.def?.webComponentName"
-        [code]="embedCode"
-        [showApp]="embedAs === 'inline'"
-        (closeSidenav)="showSidenav = false"
-        [selectedButton]="selectedTabIndex"
-      ></hra-embed-sidenav-content>
-    </mat-sidenav>
+  <div class="card-container">
+    <p>Select organ:</p>
+    <mat-form-field appearance="fill" class="organ-select">
+      <mat-label>Organ</mat-label>
+      <mat-select [(value)]="activeOrgan">
+        @for (organ of organs; track organ.id) {
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (activeOrgan(); as organ) {
+    <div class="card-collection">
+      <div class="cards">
+        @for (component of components; track component.id) {
+          <hra-web-component-card
+            class="component-card"
+            [imageUrl]="component.previewImage"
+            [productTitle]="component.productTitle"
+            [description]="component.description"
+            [webComponentName]="component.webComponentName"
+            [disableButton]="component.embedAs === 'external'"
+            (embedClick)="openSidenav(organ, component, 0)"
+            (useAppClick)="onUseApp(organ, component)"
+          >
+          </hra-web-component-card>
+        }
+      </div>
+    </div>
   }
+</div>
 
-  <mat-sidenav-content class="sidenav-content">
-    <div class="heading-container">
-      <div class="title-logo-div">
-        <hra-product-logo name="web_components" size="large"></hra-product-logo>
-        <div>
-          <h1>Web Components</h1>
-          <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
-        </div>
-      </div>
-      <p class="description">
-        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
-      </p>
-    </div>
+<hra-overlay-sidenav
+  [isOpen]="sidenavData() !== undefined"
+  [tagline]="sidenavData()?.tagline ?? ''"
+  [code]="sidenavData()?.code ?? ''"
+  [showApp]="sidenavData()?.showApp ?? false"
+  [tabIndex]="sidenavData()?.tabIndex ?? 0"
+  (close)="sidenavData.set(undefined)"
+></hra-overlay-sidenav>
 
-    <div class="card-container">
-      <p>Select organ:</p>
-      <mat-form-field appearance="fill" class="organ-select">
-        <mat-label>Organ</mat-label>
-        <mat-select [(value)]="activeOrgan">
-          @for (organ of organs; track organ.id) {
-            <mat-option [value]="organ.id">{{ organ.label }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <button
-        class="show-button"
-        mat-flat-button
-        hraPrimaryButton
-        hraButtonSize="medium"
-        (click)="activeOrgan() && onOrganSelect(activeOrgan()!)"
-      >
-        Show
-      </button>
-    </div>
-    @if (showComponentCards) {
-      <div class="card-collection">
-        <div class="cards">
-          @for (component of components; track component.id) {
-            <hra-web-component-card
-              class="component-card"
-              [imageUrl]="component.previewImage"
-              [productTitle]="component.productTitle"
-              [description]="component.description"
-              [webComponentName]="component.webComponentName"
-              [disableButton]="component.embedAs === 'external'"
-              (showEmbedCode)="onShowSidenav(component.id, $event, 0)"
-              (showUseApp)="onShowSidenav(component.id, $event, 1)"
-            >
-            </hra-web-component-card>
-          }
-        </div>
-      </div>
-    }
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-@if (embedAs === 'overlay' && selectedTabIndex === 1) {
-  <hra-overlay-iframe [srcdoc]="iframeSrcDoc()" (closeClick)="closeOverlay()"></hra-overlay-iframe>
+@if (overlayData(); as data) {
+  <hra-overlay-iframe [srcdoc]="data.code" (closeClick)="overlayData.set(undefined)"></hra-overlay-iframe>
 }

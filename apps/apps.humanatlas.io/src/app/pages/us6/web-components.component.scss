@@ -2,21 +2,10 @@
 
 :host {
   display: block;
+  background: linear-gradient(180deg, var(--sys-surface-dim) 0%, #ffffff 100%);
 
-  .sidenav-container {
-    position: relative;
-
-    .sidenav-content {
-      background: linear-gradient(180deg, var(--sys-surface-dim) 0%, #ffffff 100%);
-    }
-
-    mat-sidenav {
-      min-width: 19.5rem;
-      width: fit-content;
-      top: 4.5rem !important;
-      border-top-left-radius: 0rem;
-      border-bottom-left-radius: 0rem;
-    }
+  .content-container {
+    transition: 0.3s ease-out;
   }
 
   ::ng-deep .mat-mdc-tab-list {
@@ -33,20 +22,9 @@
     )
   );
 
-  .embed-app {
-    display: block;
-    border: none;
-    width: 100%;
-  }
-
   .heading-container {
     margin: 10rem auto 0 auto;
     max-width: 48.75rem;
-  }
-
-  .show-button {
-    display: flex;
-    margin-top: 0.6525rem;
   }
 
   .title-logo-div {

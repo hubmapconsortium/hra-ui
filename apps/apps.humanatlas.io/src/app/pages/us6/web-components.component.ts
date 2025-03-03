@@ -1,25 +1,34 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { CardsModule } from '@hra-ui/design-system/cards';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { CardsModule } from '@hra-ui/design-system/cards';
+import { OverlayIframeComponent } from './overlay-iframe/overlay-iframe.component';
+import { OverlaySidenavComponent } from './overlay-sidenav/overlay-sidenav.component';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
-import { ComponentDef, ComponentDefId } from './types/component-defs.schema';
-import { Organ, OrganId } from './types/organs.schema';
-import { OverlayIframeComponent } from './overlay-iframe/overlay-iframe.component';
-import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
+import { ComponentDef } from './types/component-defs.schema';
+import { Organ } from './types/organs.schema';
 
-interface ActiveData {
-  organId: OrganId;
-  defId: ComponentDefId;
-  organ: Organ;
-  def: ComponentDef;
+interface SidenavData {
+  tagline: string;
+  code: string;
+  showApp: boolean;
+  tabIndex: number;
+}
+
+interface OverlayData {
+  code: string;
+}
+
+interface ExternalAppData {
+  url: string;
 }
 
 @Component({
@@ -29,15 +38,16 @@ interface ActiveData {
     ButtonsModule,
     CommonModule,
     ClipboardModule,
+    CardsModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
-    CardsModule,
-    EmbedSidenavContentComponent,
+
+    OverlayIframeComponent,
+    OverlaySidenavComponent,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     WebComponentCardComponent,
-    OverlayIframeComponent,
   ],
   templateUrl: './web-components.component.html',
   styleUrls: ['./web-components.component.scss'],
@@ -47,56 +57,68 @@ export class WebComponentsComponent {
   protected readonly organs = ORGANS;
   protected readonly components = COMPONENT_DEFS;
 
-  protected readonly activeOrgan = signal<OrganId | undefined>(undefined);
-  protected readonly activeDef = signal<ComponentDefId | undefined>(undefined);
+  protected readonly activeOrgan = signal<Organ | undefined>(undefined);
+  protected readonly sidenavData = signal<SidenavData | undefined>(undefined);
+  protected readonly overlayData = signal<OverlayData | undefined>(undefined);
 
-  protected readonly activeData = computed((): ActiveData | undefined => {
-    const organId = this.activeOrgan();
-    const defId = this.activeDef();
-    const organ = ORGANS.find((organ) => organ.id === organId);
-    const def = COMPONENT_DEFS.find((def) => def.id === defId);
-    if (organId && defId && organ && def) {
-      return { organId, defId, organ, def };
-    }
-    return undefined;
-  });
+  private readonly document = inject(DOCUMENT);
 
-  protected readonly iframeSrcDoc = computed(() => {
-    const data = this.activeData();
-    return data && data.def.embedAs === 'overlay' ? this.getIframeSrcDoc(data) : undefined;
-  });
+  protected readonly overlayOpen = signal(false);
 
-  showComponentCards = false;
-  showSidenav = false;
-  embedCode = '';
-  selectedTabIndex = 0;
-
-  onOrganSelect(organId: OrganId) {
-    this.activeOrgan.set(organId);
-    this.showComponentCards = !!this.activeOrgan();
-  }
-
-  getEmbedCode() {
-    const data = this.activeData();
-    if (data && data.def.embedAs === 'external') {
-      const targetElement = data.organ.appData[data.defId];
-      if (targetElement) {
-        window.open(targetElement['url'], '_blank');
+  constructor() {
+    effect((cleanup) => {
+      if (this.sidenavData() !== undefined) {
+        const { body } = this.document;
+        const previousOverflowValue = body.style.overflow;
+        body.style.overflow = 'hidden';
+        cleanup(() => (body.style.overflow = previousOverflowValue));
       }
+    });
+  }
+
+  onUseApp(organ: Organ, def: ComponentDef): void {
+    switch (def.embedAs) {
+      case 'inline':
+        this.openSidenav(organ, def, 1);
+        break;
+
+      case 'overlay':
+        this.openOverlay(organ, def);
+        break;
+
+      case 'external':
+        this.openExternal(organ, def);
+        break;
     }
-    this.embedCode = data ? this.getIframeSrcDoc(data) : '';
   }
 
-  onShowSidenav(defId: ComponentDefId, show: boolean, index: number) {
-    this.showSidenav = show;
-    this.activeDef.set(defId);
-    this.selectedTabIndex = index;
-    this.getEmbedCode();
+  openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
+    this.sidenavData.set({
+      tagline: def?.productTitle + ' ' + def?.webComponentName,
+      code: this.getEmbedTemplate(organ, def),
+      showApp: def.embedAs === 'inline',
+      tabIndex: tabIndex,
+    });
   }
 
-  private getIframeSrcDoc(data: ActiveData): string {
-    const template = EMBED_TEMPLATES[data.defId];
-    const appData = data.organ.appData[data.defId] ?? {};
+  openOverlay(organ: Organ, def: ComponentDef): void {
+    this.overlayData.set({
+      code: this.getEmbedTemplate(organ, def),
+    });
+  }
+
+  openExternal(organ: Organ, def: ComponentDef): void {
+    const { url } = organ.appData[def.id] as ExternalAppData;
+    window.open(url, '_blank');
+  }
+
+  closeOverlay(): void {
+    this.overlayData.set(undefined);
+  }
+
+  private getEmbedTemplate(organ: Organ, def: ComponentDef): string {
+    const template = EMBED_TEMPLATES[def.id];
+    const appData = organ.appData[def.id] ?? {};
     return this.interpolateTemplate(template, appData);
   }
 
@@ -108,10 +130,5 @@ export class WebComponentsComponent {
       }
       return JSON.stringify(value, undefined, 1).replace(/\n\s*/g, ' ');
     });
-  }
-
-  closeOverlay(): void {
-    this.activeDef.set(undefined);
-    this.showSidenav = false;
   }
 }
