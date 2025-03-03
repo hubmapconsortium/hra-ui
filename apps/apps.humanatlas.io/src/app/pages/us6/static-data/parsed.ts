@@ -23,3 +23,16 @@ export const EMBED_TEMPLATES: Record<ComponentDefId, string> = {
   ['ftu-ui-small' as ComponentDefId]: ftuUiSmallEmbedTemplate,
   ['ftu-medical-illustration' as ComponentDefId]: ftuMedicalIllustrationEmbedTemplate,
 };
+
+export const DOC_LINKS: Record<ComponentDefId, string> = {
+  ['rui' as ComponentDefId]: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-rui/EMBEDDING.md',
+  ['eui' as ComponentDefId]: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-eui/EMBEDDING.md',
+  ['eui-organ-information' as ComponentDefId]: '',
+  ['eui-3d-organ-viewer' as ComponentDefId]:
+    'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-body-ui-wc/README.md',
+  ['ftu-ui' as ComponentDefId]: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui/EMBEDDING.md',
+  ['ftu-ui-small' as ComponentDefId]:
+    'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui-small-wc/EMBEDDING.md',
+  ['ftu-medical-illustration' as ComponentDefId]:
+    'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/medical-illustration/EMBEDDING.md',
+};

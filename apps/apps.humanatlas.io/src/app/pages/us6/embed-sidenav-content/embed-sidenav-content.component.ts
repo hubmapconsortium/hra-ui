@@ -20,10 +20,15 @@ export class EmbedSidenavContentComponent {
   readonly code = input.required<string>();
   readonly showApp = input.required<boolean>();
   readonly tabIndex = model(0);
+  readonly documentLink = input<string>();
 
   readonly closeSidenav = output();
 
   protected readonly appSrcDoc = computed(() => this.sanitizer.bypassSecurityTrustHtml(this.code()));
 
   private readonly sanitizer = inject(DomSanitizer);
+
+  openDocumentLink() {
+    window.open(this.documentLink(), '_blank');
+  }
 }

@@ -13,7 +13,7 @@
 
       <mat-tab label="Use App">
         <div class="iframe-container">
-          <iframe title="" class="app-iframe" [srcdoc]="appSrcDoc()"></iframe>
+          <iframe title="useAppIframe" class="app-iframe" [srcdoc]="appSrcDoc()"></iframe>
         </div>
       </mat-tab>
     </mat-tab-group>
@@ -22,7 +22,15 @@
   }
 
   <hra-flat-card-actions class="card-actions">
-    <button mat-button hraPrimaryButton hraButtonSize="medium">Documentation</button>
+    <button
+      mat-button
+      hraPrimaryButton
+      hraButtonSize="medium"
+      [disabled]="documentLink() === ''"
+      (click)="openDocumentLink()"
+    >
+      Documentation
+    </button>
     <div class="filler"></div>
     <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="code()">Copy</button>
   </hra-flat-card-actions>
