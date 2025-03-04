@@ -26,11 +26,21 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">Info</button>
-        <button mat-menu-item matRipple>Reset all selections</button>
+        <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">
+          <mat-icon>info</mat-icon>
+          Info
+        </button>
+        <mat-divider class="menu-divider"></mat-divider>
+        <button mat-menu-item matRipple (click)="resetSelections()">
+          <mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+          Reset all selections
+        </button>
       </mat-menu>
       <mat-menu #submenu="matMenu">
-        <span>Test</span>
+        <button mat-menu-item>
+          Metadata on donors, tissue blocks/sections, and datasets given the current filters. Use the “More” menu to
+          access more information.
+        </button>
       </mat-menu>
     </hra-expansion-panel-actions>
     <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>

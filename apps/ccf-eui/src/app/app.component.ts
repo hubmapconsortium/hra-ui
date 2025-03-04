@@ -1,11 +1,11 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
-import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest, Observable } from 'rxjs';
@@ -21,6 +21,7 @@ import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
 import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
+import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
 
 interface AppOptions {
   /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
@@ -75,6 +76,8 @@ export class AppComponent implements OnInit {
 
   @Dispatch()
   readonly removeSpatialSearch = actionAsFn(RemoveSearch);
+
+  readonly spatialFlowService = inject(SpatialSearchFlowService);
 
   menuOptions: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
   tooltips: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
@@ -271,5 +274,13 @@ export class AppComponent implements OnInit {
 
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
+  }
+
+  selectAllOrgans() {
+    this.scene.setSelectedReferenceOrgans(ALL_ORGANS);
+  }
+
+  clearAllOrgans() {
+    this.scene.setSelectedReferenceOrgans([]);
   }
 }

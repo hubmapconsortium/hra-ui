@@ -2,7 +2,9 @@
   <form [formGroup]="filterForm">
     <div class="input-container">
       <div class="section">
-        <div class="section-title">Demographics</div>
+        <div class="section-header">
+          <div class="section-title">Demographics</div>
+        </div>
         <div class="patient-filters">
           <mat-form-field class="dropdown-form-field">
             <mat-label>Sex</mat-label>
@@ -21,49 +23,72 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Age</mat-label>
-            <ccf-dual-slider formControlName="ageRange" min="1" max="110"> </ccf-dual-slider>
+          <mat-form-field class="dropdown-form-field">
+            <mat-label>BMI</mat-label>
+            <ccf-dual-slider
+              formControlName="bmiRange"
+              min="13"
+              max="83"
+              (valueChange)="updateFilter($event, 'bmiRange')"
+            >
+            </ccf-dual-slider>
           </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>BMI</mat-label>
-            <ccf-dual-slider formControlName="bmiRange" min="13" max="83"> </ccf-dual-slider>
+          <mat-form-field class="dropdown-form-field">
+            <mat-label>Age</mat-label>
+            <ccf-dual-slider
+              formControlName="ageRange"
+              min="1"
+              max="110"
+              (valueChange)="updateFilter($event, 'ageRange')"
+            >
+            </ccf-dual-slider>
           </mat-form-field>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Provenance</div>
+        <div class="section-header">
+          <div class="section-title">Provenance</div>
+        </div>
         <ccf-autocomplete-chips-form
+          #assays
           class="assay-form"
           label="Assay Types"
           [filterOptions]="technologyFilters()"
           [form]="filterForm.controls.technologies"
+          (selectedOptions)="filterHasChanged = true"
         >
         </ccf-autocomplete-chips-form>
 
         <ccf-autocomplete-chips-form
+          #consortia
           class="consortia-form"
           label="Consortia"
           [filterOptions]="['HuBMAP', 'SenNet']"
           [form]="filterForm.controls.consortia"
+          (selectedOptions)="filterHasChanged = true"
         >
         </ccf-autocomplete-chips-form>
 
         <ccf-autocomplete-chips-form
+          #providers
           class="providers-form"
           label="Tissue Data Providers"
           [filterOptions]="providerFilters()"
           [form]="filterForm.controls.providers"
+          (selectedOptions)="filterHasChanged = true"
         >
         </ccf-autocomplete-chips-form>
       </div>
 
       <div class="section spatial-search">
-        <div class="spatial-search-header">
+        <div class="section-header">
           <div class="section-title">Spatial Locations</div>
-          <ccf-run-spatial-search></ccf-run-spatial-search>
+          <button class="run-spatial-search-button" mat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+            Spatial Search
+            <mat-icon>add_circle</mat-icon>
+          </button>
         </div>
         <ccf-spatial-search-list
           [items]="spatialSearchFilters()"
@@ -77,10 +102,18 @@
 </ng-scrollbar>
 
 <div class="button-container">
-  <button mat-button (click)="refreshFilters()">
+  <button
+    mat-button
+    [disabled]="!filterHasChanged"
+    (click)="refreshFilters(); assays.options.set([]); consortia.options.set([]); providers.options.set([])"
+  >
     Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
   </button>
-  <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">
+  <button
+    mat-flat-button
+    (click)="applyButtonClick()"
+    [disabled]="!filterHasChanged || filterForm.pristine || filterForm.invalid"
+  >
     Apply
   </button>
 </div>

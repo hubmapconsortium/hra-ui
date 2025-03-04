@@ -243,4 +243,11 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     const filteredOrgans = organs.filter(({ id }) => selectedSet.has(id as string));
     this.setSelectedReferenceOrgans(filteredOrgans);
   }
+
+  setDefaultOrgans() {
+    const defaults = ALL_POSSIBLE_ORGANS.filter(
+      ({ id, disabled }) => !disabled && new Set(DEFAULT_SELECTED_ORGANS).has(id as string),
+    );
+    this.setSelectedReferenceOrgans(defaults);
+  }
 }

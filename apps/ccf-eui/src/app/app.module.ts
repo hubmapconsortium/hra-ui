@@ -21,9 +21,9 @@ import { OntologySelectionComponent } from './modules/ontology-exploration/ontol
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
-import { RunSpatialSearchModule } from './shared/components/run-spatial-search/run-spatial-search.module';
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -40,10 +40,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatTooltipModule,
     TrackingPopupModule,
     MatSnackBarModule,
-    RunSpatialSearchModule,
-    MatSnackBarModule,
     MatButtonToggleModule,
-
     NavHeaderButtonsComponent,
     ExpansionPanelModule,
     ButtonsModule,
@@ -53,6 +50,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSidenavModule,
     FiltersContentComponent,
     OrganSelectComponent,
+    MatDividerModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

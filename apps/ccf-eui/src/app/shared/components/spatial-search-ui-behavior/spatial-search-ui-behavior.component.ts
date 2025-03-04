@@ -1,18 +1,22 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Select } from '@ngxs/store';
-import { GlobalConfigState, InfoButtonService, InfoDialogComponent, OrganInfo, PanelData } from 'ccf-shared';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { OrganInfo } from 'ccf-shared';
+import { Observable } from 'rxjs';
+
 import { actionAsFn } from '../../../core/store/action-as-fn';
 import {
   GenerateSpatialSearch,
   MoveToNode,
   ResetPosition,
   ResetRadius,
+  SetOrgan,
   SetPosition,
   SetRadius,
+  SetSex,
 } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
 import {
@@ -30,44 +34,40 @@ import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui
 @Component({
   selector: 'ccf-spatial-search-ui-behavior',
   templateUrl: './spatial-search-ui-behavior.component.html',
+  imports: [AsyncPipe, SpatialSearchUiComponent],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiBehaviorComponent {
-  @Select(SpatialSearchUiSelectors.scene)
-  readonly scene$!: Observable<SpatialSceneNode[]>;
+  readonly organs$: Observable<OrganInfo[]> = inject(Store).select(SpatialSearchUiSelectors.organs);
 
-  @Select(SpatialSearchUiSelectors.sceneBounds)
-  readonly sceneBounds$!: Observable<Position>;
+  readonly scene$: Observable<SpatialSceneNode[]> = inject(Store).select(SpatialSearchUiSelectors.scene);
 
-  @Select(SpatialSearchUiSelectors.sceneTarget)
-  readonly sceneTarget$!: Observable<Position>;
+  readonly sceneBounds$: Observable<Position> = inject(Store).select(SpatialSearchUiSelectors.sceneBounds);
 
-  @Select(SpatialSearchUiSelectors.sex)
-  readonly sex$!: Observable<SpatialSearchSex>;
+  readonly sceneTarget$: Observable<[number, number, number]> = inject(Store).select(
+    SpatialSearchUiSelectors.sceneTarget,
+  );
 
-  @Select(SpatialSearchUiSelectors.organ)
-  readonly organ$!: Observable<OrganInfo | undefined>;
+  readonly sex$: Observable<SpatialSearchSex> = inject(Store).select(SpatialSearchUiSelectors.sex);
 
-  @Select(SpatialSearchUiSelectors.position)
-  readonly position$!: Observable<Position>;
+  readonly organ$: Observable<OrganInfo | undefined> = inject(Store).select(SpatialSearchUiSelectors.organ);
 
-  @Select(SpatialSearchUiSelectors.defaultPosition)
-  readonly defaultPosition$!: Observable<Position>;
+  readonly position$: Observable<Position> = inject(Store).select(SpatialSearchUiSelectors.position);
 
-  @Select(SpatialSearchUiSelectors.radius)
-  readonly radius$!: Observable<number>;
+  readonly defaultPosition$: Observable<Position> = inject(Store).select(SpatialSearchUiSelectors.defaultPosition);
 
-  @Select(SpatialSearchUiSelectors.radiusSettings)
-  readonly radiusSettings$!: Observable<RadiusSettings>;
+  readonly radius$: Observable<number> = inject(Store).select(SpatialSearchUiSelectors.radius);
 
-  @Select(SpatialSearchUiSelectors.tissueBlocks)
-  readonly tissueBlocks$!: Observable<TissueBlock[]>;
+  readonly radiusSettings$: Observable<RadiusSettings> = inject(Store).select(SpatialSearchUiSelectors.radiusSettings);
 
-  @Select(SpatialSearchUiSelectors.anatomicalStructures)
-  readonly anatomicalStructures$!: Observable<TermResult[]>;
+  readonly tissueBlocks$: Observable<TissueBlock[]> = inject(Store).select(SpatialSearchUiSelectors.tissueBlocks);
 
-  @Select(SpatialSearchUiSelectors.cellTypes)
-  readonly cellTypes$!: Observable<TermResult[]>;
+  readonly anatomicalStructures$: Observable<TermResult[]> = inject(Store).select(
+    SpatialSearchUiSelectors.anatomicalStructures,
+  );
+
+  readonly cellTypes$: Observable<TermResult[]> = inject(Store).select(SpatialSearchUiSelectors.cellTypes);
 
   @Dispatch()
   readonly updatePosition = actionAsFn(SetPosition);
@@ -84,70 +84,6 @@ export class SpatialSearchUiBehaviorComponent {
   @Dispatch()
   readonly resetRadius = actionAsFn(ResetRadius);
 
-  /** Data to be displayed in the info panel */
-  panelData!: PanelData;
-
-  baseHref = '';
-
-  /** Subscriptions for the info panel data */
-  private readonly subscriptions = new Subscription();
-
-  constructor(
-    private readonly dialogRef: MatDialogRef<SpatialSearchUiComponent>,
-    public dialog: MatDialog,
-    private readonly infoService: InfoButtonService,
-    private readonly globalConfig: GlobalConfigState<{ baseHref: string }>,
-  ) {
-    this.globalConfig.getOption('baseHref').subscribe((ref) => {
-      this.baseHref = ref;
-    });
-  }
-
-  /**
-   * Launchs info dialog with the input data
-   * @param data Data for the info dialog
-   */
-  launchInfoDialog(data: PanelData): void {
-    this.subscriptions.unsubscribe();
-    this.dialog.open(InfoDialogComponent, {
-      autoFocus: false,
-      panelClass: 'modal-animated',
-      width: '72rem',
-      data: {
-        title: data.infoTitle,
-        content: data.content,
-        videoID: data.videoID,
-      },
-    });
-  }
-
-  /**
-   * Updates dialog with spatial search information
-   */
-  onDialogButtonClick(): void {
-    this.infoService.updateData(
-      this.baseHref + 'assets/docs/SPATIAL_SEARCH_README.md',
-      'UfxMpzatowE',
-      'Spatial Search',
-    );
-    const panelContent$ = this.infoService.panelContent.asObservable();
-    this.subscriptions.add(
-      panelContent$.subscribe((data) => {
-        if (data.content.length) {
-          this.panelData = data;
-          this.launchInfoDialog(this.panelData);
-        }
-      }),
-    );
-  }
-
-  /**
-   * Closes spatial search UI
-   */
-  close(): void {
-    this.dialogRef.close();
-  }
-
   /**
    * Adds a new spatial search and closes the spatial search UI
    * @returns spatial search
@@ -158,11 +94,28 @@ export class SpatialSearchUiBehaviorComponent {
     return new GenerateSpatialSearch();
   }
 
+  @Dispatch()
+  readonly updateSex = actionAsFn(SetSex);
+
+  @Dispatch()
+  readonly updateOrgan = actionAsFn(SetOrgan);
+
+  private readonly dialogRef = inject(MatDialogRef<SpatialSearchUiComponent>);
+
+  public dialog = inject(MatDialog);
+
   /**
    * Closes the spatial search UI and opens spatial search config
    */
   openSpatialSearchConfig(): void {
     this.close();
     this.dialog.open(SpatialSearchConfigBehaviorComponent);
+  }
+
+  /**
+   * Closes spatial search UI
+   */
+  close(): void {
+    this.dialogRef.close();
   }
 }

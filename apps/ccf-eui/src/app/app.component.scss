@@ -10,10 +10,9 @@
     .sidenav-header {
       display: flex;
       align-items: center;
-      font: var(--sys-title-small);
+      font: var(--sys-title-medium);
       height: 4.5rem;
-      padding-right: 0.5rem;
-      padding-left: 1.5rem;
+      padding: 0 1rem 0 1.5rem;
 
       .sidenav-title {
         vertical-align: text-bottom;
@@ -83,6 +82,10 @@
   .vis-panel {
     grid-area: vis-panel;
     margin: 0 1rem;
+
+    hra-expansion-panel-header-content {
+      width: 100%;
+    }
   }
 
   .left-panel {
@@ -150,6 +153,21 @@
 
   .content {
     grid-area: content;
+
+    .spatial-search-button {
+      position: absolute;
+      margin: 0.75rem;
+      z-index: 1;
+    }
+  }
+}
+
+::ng-deep .hra-app .mat-mdc-menu-panel {
+  min-width: 280px;
+  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
+  .expand-arrow {
+    --mat-menu-item-spacing: 0.75rem;
   }
 
   .no-selection-notice {

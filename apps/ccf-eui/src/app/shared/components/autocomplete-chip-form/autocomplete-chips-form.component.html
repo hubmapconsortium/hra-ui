@@ -1,4 +1,4 @@
-<mat-form-field subscriptSizing="dynamic">
+<mat-form-field [class.visible]="options().length > 0" [class.error]="errorState()" subscriptSizing="dynamic">
   <div class="chips-area">
     <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
       @for (option of options(); track option) {
@@ -14,9 +14,9 @@
       <button mat-icon-button (click)="options.set([])"><mat-icon>delete</mat-icon></button>
     }
   </div>
-  <mat-icon matPrefix>search</mat-icon>
+  <mat-icon matPrefix class="search-icon">search</mat-icon>
   <mat-label>{{ label() }}</mat-label>
-  <div class="search-area">
+  <div class="search-container">
     <input
       placeholder="Search"
       class="search-input"
@@ -27,6 +27,9 @@
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)"
     />
+    @if (errorState()) {
+      <mat-icon class="error-icon" svgIcon="error"></mat-icon>
+    }
   </div>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
     <ng-scrollbar>
@@ -34,7 +37,7 @@
         <div class="autocomplete-option">
           <mat-checkbox
             class="autocomplete-checkbox"
-            (change)="selected($event, option); auto.showPanel = false"
+            (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="options().includes(option)"
           ></mat-checkbox>
           <mat-option [value]="option">{{ option }}</mat-option>
@@ -43,3 +46,7 @@
     </ng-scrollbar>
   </mat-autocomplete>
 </mat-form-field>
+
+@if (errorState()) {
+  <mat-error>No matches found</mat-error>
+}

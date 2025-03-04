@@ -1,38 +1,54 @@
 :host {
-  padding-top: 1rem;
-  .term-list-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  padding: 0.5rem 0 0rem 1rem;
+  overflow: hidden;
 
-    .title {
-      font-size: 0.875rem;
-    }
-    .counter {
-      font-size: 1rem;
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    cdk-accordion-item {
+      display: grid;
+      height: 100%;
+      grid-template-rows: 2.5rem calc(100% - 2.5rem);
     }
 
-    .info {
-      padding-right: 0;
-      background: none;
-      border: none;
-      outline: none;
-      border-radius: 0.25rem;
-      transition: 0.6s;
+    .expansion-body {
+      height: 100%;
+    }
+
+    .header {
+      font: var(--sys-label-medium);
     }
   }
+
+  .total-count,
+  .term-bloc {
+    font: var(--sys-label-small);
+    letter-spacing: var(--sys-label-small-tracking);
+    margin-right: 1rem;
+  }
+
   .term-list {
-    overflow: auto;
-    padding-left: 2rem;
-    font-size: 1rem;
-    .term-bloc {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      overflow: auto;
+    height: 100%;
+    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+  }
+
+  ::ng-deep ng-scrollbar {
+    .ng-scroll-content {
+      --_viewport-padding-top: 0.25rem;
+      --_viewport-padding-bottom: 0.25rem;
     }
-    .term-line {
-      padding-right: 2rem;
+  }
+
+  .term-bloc {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    height: 1.5rem;
+    color: var(--sys-secondary);
+    align-items: center;
+
+    .count {
+      color: var(--sys-primary);
     }
   }
 }
