@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/asctb-reporter/src",
   "prefix": "app",
-  "tags": ["type:app", "project:asctb", "karma-test-runner"],
+  "tags": ["type:app", "project:asctb"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
