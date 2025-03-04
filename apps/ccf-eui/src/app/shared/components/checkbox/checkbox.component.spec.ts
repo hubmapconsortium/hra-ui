@@ -23,7 +23,7 @@ describe('FiltersCheckboxComponent', () => {
     const spy = jest.spyOn(instance, 'filterOnChange');
     const checkbox = findComponent(MatCheckbox);
 
-    checkbox.change.emit();
+    checkbox.change.emit({ checked: true } as MatCheckboxChange);
     expect(spy).toHaveBeenCalled();
   });
 
