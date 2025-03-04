@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-eui/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
