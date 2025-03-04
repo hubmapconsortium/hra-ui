@@ -20,7 +20,7 @@ describe('FiltersCheckboxComponent', () => {
 
   it('should trigger filterOnChange when an option is changed', async () => {
     const { findComponent, instance } = await shallow.render({ bind: { options: ['Test1'] } });
-    const spy = spyOn(instance, 'filterOnChange');
+    const spy = jest.spyOn(instance, 'filterOnChange');
     const checkbox = findComponent(MatCheckbox);
 
     checkbox.change.emit();

@@ -36,7 +36,7 @@ describe('FiltersContentComponent', () => {
 
   it('should call applyButtonClick when the apply button is clicked', async () => {
     const { find, instance } = await shallow.render({ bind: {} });
-    const spy = spyOn(instance, 'applyButtonClick');
+    const spy = jest.spyOn(instance, 'applyButtonClick');
     const button = find('.outline-button');
 
     button.triggerEventHandler('click', {});

@@ -48,11 +48,11 @@ describe('DonorCardComponent', () => {
 
     instance.expanded = false;
     instance.toggleExpansion();
-    expect(instance.expanded).not.toBeTrue();
+    expect(instance.expanded).not.toBeTruthy();
 
     instance.expanded = true;
     instance.toggleExpansion();
-    expect(instance.expanded).toBeTrue();
+    expect(instance.expanded).toBeTruthy();
   });
 
   it('should toggle the expanded variable if selected is true', async () => {
@@ -60,22 +60,22 @@ describe('DonorCardComponent', () => {
 
     instance.expanded = false;
     instance.toggleExpansion();
-    expect(instance.expanded).toBeTrue();
+    expect(instance.expanded).toBeTruthy();
 
     instance.expanded = true;
     instance.toggleExpansion();
-    expect(instance.expanded).not.toBeTrue();
+    expect(instance.expanded).not.toBeTruthy();
   });
 
   it('should toggle selected whenever handleCheckbox is called', async () => {
     const { instance } = await shallow.render({ bind: { tissueBlock, selected: false } });
 
     instance.handleCheckbox();
-    expect(instance.selected).toBeTrue();
+    expect(instance.selected).toBeTruthy();
 
     instance.selected = true;
     instance.handleCheckbox();
-    expect(instance.expanded).not.toBeTrue();
+    expect(instance.expanded).not.toBeTruthy();
   });
 
   it('should emit the new selected value whenever handleCheckbox is called', async () => {
@@ -89,7 +89,7 @@ describe('DonorCardComponent', () => {
     const { instance } = await shallow.render({ bind: { tissueBlock, selected: false } });
     instance.expanded = true;
     instance.handleCheckbox();
-    expect(instance.expanded).not.toBeTrue();
+    expect(instance.expanded).not.toBeTruthy();
   });
 
   it('should emit linkClick when linkHandler is called if selected is true', async () => {
@@ -110,6 +110,6 @@ describe('DonorCardComponent', () => {
     const { instance } = await shallow.render({ bind: { tissueBlock, selected: false } });
 
     instance.linkHandler('test.com');
-    expect(instance.selected).toBeTrue();
+    expect(instance.selected).toBeTruthy();
   });
 });
