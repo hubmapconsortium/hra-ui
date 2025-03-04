@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import * as moment from 'moment';
+import moment from 'moment';
 import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
 import { View } from 'vega';
