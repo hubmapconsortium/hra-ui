@@ -33,12 +33,12 @@
     </div>
 
     <div class="buttons">
-      @if (!file) {
-        <button mat-button hraButtonSize="medium">Use Sample</button>
+      @if (!file()) {
+        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
         <input type="file" accept=".csv" style="display: none" (change)="onFileSelected($event)" #fileInput />
         <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
       } @else {
-        <hra-delete-file-button [fileName]="file.name" (cancelLoad)="file = null"></hra-delete-file-button>
+        <hra-delete-file-button [fileName]="file()!.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
       }
     </div>
   </hra-workflow-card>
@@ -50,11 +50,10 @@
     <div class="data-filters">
       <mat-form-field class="filters">
         <mat-label>Organ</mat-label>
-        <mat-select hraMicroTooltip="Organs that have cell type populations.">
+        <mat-select hraMicroTooltip="Organs that have cell type populations." [(ngModel)]="supportedOrgan">
           @for (organ of supportedOrgans(); track $index) {
             <mat-option [value]="organ.label">{{ organ.label | titlecase }}</mat-option>
           }
-          <mat-option value="organ-2">Organ 2</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -62,9 +61,11 @@
         <mat-label>Annotation Tool</mat-label>
         <mat-select
           hraMicroTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
+          [(ngModel)]="supportedTool"
         >
-          <mat-option value="annotation-1">Annotation 1</mat-option>
-          <mat-option value="annotation-2">Annotation 2</mat-option>
+          @for (tool of supportedTools(); track $index) {
+            <mat-option [value]="tool.label">{{ tool.label | titlecase }}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
     </div>
