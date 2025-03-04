@@ -5,7 +5,7 @@ import { firstValueFrom, from, Observable, of, switchMap } from 'rxjs';
 /** Sample JSON file URL  */
 const SAMPLE_FILE_URL = 'assets/sample-data/cell-population-sample.json';
 
-/** Injection token for predictions API endpoint  */
+/** Injection token for cell population predictions API endpoint  */
 export const PREDICTIONS_ENDPOINT = new InjectionToken<string>('Cell Predictions Endpoint', {
   providedIn: 'root',
   factory: () => 'https://apps.humanatlas.io/api/hra-pop',
