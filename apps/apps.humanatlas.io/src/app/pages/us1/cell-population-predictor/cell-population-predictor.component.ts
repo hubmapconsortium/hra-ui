@@ -1,6 +1,6 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Renderer2, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -49,7 +49,7 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
 })
 export class CellPopulationPredictorComponent {
   /** File */
-  protected file?: File;
+  protected file = signal<File | null>(null);
 
   /** Whether to show upload info tooltip */
   protected uploadInfoOpen = false;
@@ -107,21 +107,23 @@ export class CellPopulationPredictorComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.file = input.files[0];
-      this.predictionsService.setFile(this.file);
+      this.file.set(input.files[0]);
+      this.predictionsService.setFile(input.files[0]);
     }
   }
 
   /** Output file from RUI */
   onFileCreated(file: File): void {
-    this.file = file;
+    this.file.set(file);
     this.predictionsService.setFile(file);
   }
 
   /** Use sample JSON file */
-  onUseSampleClicked(): void {
-    this.predictionsService.setSampleFile();
-    this.file = this.predictionsService.getFile();
+  async onUseSampleClicked(): Promise<void> {
+    if (this.predictionsService.getFile() === null) {
+      await this.predictionsService.setSampleFile();
+    }
+    this.file.set(this.predictionsService.getFile());
   }
 
   /** Method that sets script and link tags with appropriate URLs */

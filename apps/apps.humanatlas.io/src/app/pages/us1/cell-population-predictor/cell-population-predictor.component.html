@@ -13,7 +13,7 @@
 <!-- CARDS -->
 <div class="cards">
   <!-- CARD 1 -->
-  <hra-workflow-card tagline="Upload" class="card card-1" [ngClass]="{ 'card-with-file': file }">
+  <hra-workflow-card tagline="Upload" class="card card-1" [ngClass]="{ 'card-with-file': file() }">
     <hra-workflow-card-actions>
       <mat-icon
         aria-hidden="false"
@@ -44,7 +44,7 @@
     </p>
 
     <div class="buttons-container">
-      @if (!file) {
+      @if (!file()) {
         <div class="buttons">
           <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()" data-testid="use-sample-button">
             Use Sample
@@ -61,7 +61,7 @@
         </div>
       } @else {
         <div class="file-buttons">
-          <hra-delete-file-button [fileName]="file.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
+          <hra-delete-file-button [fileName]="file()!.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
           <button mat-flat-button hraPrimaryButton hraButtonSize="large" [routerLink]="['result']">Predict</button>
         </div>
       }

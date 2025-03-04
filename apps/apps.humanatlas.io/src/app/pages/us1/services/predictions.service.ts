@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
-import { from, Observable, switchMap } from 'rxjs';
-import SAMPLE_DATA from './sample-data.json';
+import { firstValueFrom, from, Observable, of, switchMap } from 'rxjs';
 
-/** Tissue extraction sample JSON file  */
-const SAMPLE_FILE = new File([JSON.stringify(SAMPLE_DATA)], 'sample.json', { type: 'application/json' });
+/** Sample JSON file URL  */
+const SAMPLE_FILE_URL = 'assets/sample-data/sample-data.json';
 
 /** Injection token for predictions API endpoint  */
 export const PREDICTIONS_ENDPOINT = new InjectionToken<string>('Cell Predictions Endpoint', {
@@ -53,10 +52,15 @@ export function resolvePredictions(): Observable<Prediction[]> {
  */
 @Injectable({ providedIn: 'root' })
 export class PredictionsService {
+  /** JSON file */
+  private file: File | null = null;
+
   /** Sample JSON file */
-  private file = SAMPLE_FILE;
+  private sampleFile?: File = undefined;
+
   /** Predictions API ednpoint */
   private readonly endpoint = inject(PREDICTIONS_ENDPOINT);
+
   /** http client to make http requests */
   private readonly http = inject(HttpClient);
 
@@ -66,15 +70,16 @@ export class PredictionsService {
   }
 
   /** Sets current file to the Sample file */
-  setSampleFile(): void {
-    this.file = SAMPLE_FILE;
+  async setSampleFile(): Promise<void> {
+    this.sampleFile ??= await this.loadSampleFile();
+    this.setFile(this.sampleFile);
   }
 
   /**
    * Returns current file
    * @returns File
    */
-  getFile(): File {
+  getFile(): File | null {
     return this.file;
   }
 
@@ -83,6 +88,10 @@ export class PredictionsService {
    * @returns Predictions array observable
    */
   loadPredictions(): Observable<Prediction[]> {
+    if (this.file === null) {
+      return of([]);
+    }
+
     return from(this.file.text()).pipe(
       switchMap((data) =>
         this.http.post<Prediction[]>(`${this.endpoint}/rui-location-cell-summary`, JSON.parse(data), {
@@ -93,6 +102,16 @@ export class PredictionsService {
         }),
       ),
     );
+  }
+
+  /**
+   * Loads sample JSON file
+   * @returns File promise
+   */
+  async loadSampleFile(): Promise<File> {
+    const content$ = this.http.get(SAMPLE_FILE_URL, { responseType: 'text' });
+    const content = await firstValueFrom(content$);
+    return new File([content], 'sample.json', { type: 'application/json' });
   }
 
   /**
