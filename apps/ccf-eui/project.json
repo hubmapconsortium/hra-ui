@@ -28,7 +28,6 @@
           "includePaths": ["node_modules/swiper"]
         },
         "scripts": [],
-        "webWorkerTsConfig": "apps/ccf-eui/tsconfig.worker.json",
         "vendorChunk": true,
         "extractLicenses": false,
         "buildOptimizer": false,
