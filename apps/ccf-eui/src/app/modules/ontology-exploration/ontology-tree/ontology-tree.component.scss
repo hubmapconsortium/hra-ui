@@ -1,4 +1,6 @@
 :host {
+  --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -64,9 +66,5 @@
   ::ng-deep .mat-mdc-button-touch-target {
     height: 1.5rem;
     width: 1.5rem;
-  }
-
-  ::ng-deep .hra-scroll-overflow-fade-gradient-bottom {
-    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
   }
 }
