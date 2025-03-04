@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ChangeDetectionStrategy, Component, computed, input, model, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
@@ -44,13 +44,27 @@ export class AutocompleteChipsFormComponent {
       : filteredWithoutSelected.slice();
   });
 
+  readonly errorState = computed(() => {
+    return (
+      this.currentInputValue().length > 0 &&
+      (this.filteredOptions().length === 0 ||
+        !this.filteredOptions().find((option) => option.toLowerCase().includes(this.currentInputValue().toLowerCase())))
+    );
+  });
+
+  readonly selectedOptions = output();
+
   add(event: MatChipInputEvent): void {
+    if (this.errorState()) {
+      return;
+    }
     const value = (event.value || '').trim();
 
-    if (value) {
+    if (value && this.filteredOptions().find((option) => option.toLowerCase() === value.toLowerCase())) {
       this.options.update((option) => [...option, value]);
+      this.currentInputValue.set('');
+      event.chipInput.clear();
     }
-    this.currentInputValue.set('');
   }
 
   remove(option: string): void {
@@ -68,17 +82,19 @@ export class AutocompleteChipsFormComponent {
   optionSelected(event: MatAutocompleteSelectedEvent): void {
     this.options.update((options) => [...options, event.option.viewValue]);
     this.currentInputValue.set('');
-    this.form().setValue(['']);
+    this.selectedOptions.emit();
+    this.form().setValue([]);
     event.option.deselect();
   }
 
-  selected(event: MatCheckboxChange, option: string): void {
+  checkboxSelected(event: MatCheckboxChange, option: string): void {
     if (!event.checked) {
       this.remove(option);
       return;
     }
     this.options.update((options) => [...options, option]);
     this.currentInputValue.set('');
-    this.form().setValue(['']);
+    this.selectedOptions.emit();
+    this.form().setValue([]);
   }
 }

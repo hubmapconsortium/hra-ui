@@ -12,6 +12,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -32,6 +33,7 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     ButtonsModule,
     ScrollingModule,
     ScrollOverflowFadeDirective,
+    MatDividerModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -103,5 +105,12 @@ export class ResultsBrowserComponent {
 
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
+  }
+
+  resetSelections(): void {
+    const selectedResults = this.listResults.filter((result) => result.selected);
+    for (const result of selectedResults) {
+      this.listResultDeselected.next({ ...result, selected: false });
+    }
   }
 }

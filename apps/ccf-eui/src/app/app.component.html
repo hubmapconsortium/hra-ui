@@ -51,7 +51,11 @@
             Organ visibility
             <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
-          <button mat-menu-item>Reset visualization view</button>
+          <mat-divider class="menu-divider"></mat-divider>
+          <button mat-menu-item (click)="resetView()">
+            <mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+            Reset visualization view
+          </button>
         </mat-menu>
         <mat-menu #submenu="matMenu">
           <button mat-menu-item>
@@ -60,15 +64,19 @@
           </button>
         </mat-menu>
         <mat-menu #submenu2="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="selectAllOrgans()">
             <mat-icon>visibility</mat-icon>
             Show all organs
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="clearAllOrgans()">
             <mat-icon>visibility_off</mat-icon>
             Hide all organs
           </button>
-          <button mat-menu-item>Reset to default organ view</button>
+          <mat-divider class="menu-divider"></mat-divider>
+          <button mat-menu-item (click)="scene.setDefaultOrgans()">
+            <mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+            Reset to default organ view
+          </button>
         </mat-menu>
       </hra-expansion-panel-actions>
       <hra-expansion-panel-header-content>
@@ -154,6 +162,9 @@
     </div>
 
     <div class="content">
+      <button class="spatial-search-button" mat-flat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+        Spatial Search
+      </button>
       <ccf-body-ui
         #bodyUI
         class="stage-content"

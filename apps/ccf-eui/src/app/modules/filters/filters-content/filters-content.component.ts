@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Input,
   input,
   OnChanges,
   OnInit,
@@ -20,18 +19,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { SpatialSearch } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { SpatialSearchListModule } from 'ccf-shared';
+import { SpatialSearchListComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
+import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { AutocompleteChipsFormComponent } from '../../../shared/components/autocomplete-chip-form/autocomplete-chips-form.component';
 import { DualSliderComponent } from '../../../shared/components/dual-slider/dual-slider.component';
-import { RunSpatialSearchModule } from '../../../shared/components/run-spatial-search/run-spatial-search.module';
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 
-/** Sex can either be male or female */
-export type Sex = 'male' | 'female' | 'both';
+/** Sex can be male, female or both */
+export type Sex = 'Male' | 'Female' | 'Both';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -44,8 +43,7 @@ export type Sex = 'male' | 'female' | 'both';
     ReactiveFormsModule,
     ButtonsModule,
     MatIconModule,
-    SpatialSearchListModule,
-    RunSpatialSearchModule,
+    SpatialSearchListComponent,
     MatFormFieldModule,
     MatSelectModule,
     ButtonsModule,
@@ -71,7 +69,7 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   /**
    * Allows the filters to be set from outside the component
    */
-  @Input() filters?: Record<string, unknown>;
+  readonly filters = input<Record<string, unknown>>();
 
   /**
    * List of technologies in the data
@@ -87,11 +85,6 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * List of spatial searches
    */
   readonly spatialSearchFilters = input.required<SpatialSearchFilterItem[]>();
-
-  /**
-   * Emits the filter change when they happen
-   */
-  filtersChange = output<Record<string, unknown>>();
 
   /**
    * Emits when a spatial search is selected/deselected
@@ -110,14 +103,18 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
   private readonly nnfb = inject(NonNullableFormBuilder);
   protected filterForm = this.nnfb.group({
-    sex: new FormControl<string>('both', Validators.required),
+    sex: new FormControl<Sex>('Both', Validators.required),
     ageRange: new FormControl<number[]>([], Validators.required),
     bmiRange: new FormControl<number[]>([], Validators.required),
-    technologies: new FormControl<string[] | null>(null),
-    consortia: new FormControl<string[] | null>(null),
-    providers: new FormControl<string[] | null>(null),
-    spatialSearches: new FormControl<SpatialSearch[] | null>(null),
+    technologies: new FormControl<string[]>([]),
+    consortia: new FormControl<string[]>([]),
+    providers: new FormControl<string[]>([]),
+    spatialSearches: new FormControl<SpatialSearch[]>([]),
   });
+
+  readonly spatialFlowService = inject(SpatialSearchFlowService);
+
+  filterHasChanged = false;
 
   /**
    * Creates an instance of filters content component.
@@ -127,11 +124,12 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   constructor(private readonly ga: GoogleAnalyticsService) {}
 
   ngOnInit(): void {
-    if (this.filters) {
+    const f = this.filters();
+    if (f) {
       this.filterForm.patchValue({
-        sex: this.filters['sex'] as Sex,
-        ageRange: this.filters['ageRange'] as number[],
-        bmiRange: this.filters['bmiRange'] as number[],
+        sex: f['sex'] as Sex,
+        ageRange: f['ageRange'] as number[],
+        bmiRange: f['bmiRange'] as number[],
       });
     }
   }
@@ -140,8 +138,17 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Handle input changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if ('spatialSearchFilters' in changes) {
+    if (
+      'spatialSearchFilters' in changes &&
+      !changes['spatialSearchFilters'].isFirstChange() &&
+      changes['spatialSearchFilters'].currentValue.toString() !==
+        changes['spatialSearchFilters'].previousValue.toString()
+    ) {
       this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
+      if (this.spatialSearchFilters().length > 0) {
+        this.filterHasChanged = true;
+        this.filterForm.markAsDirty();
+      }
     }
   }
 
@@ -152,10 +159,15 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * @param key The key for the filter to be saved at
    */
   updateFilter(value: unknown, key: string): void {
-    this.filterForm.patchValue({
-      [key]: value,
-    });
-    this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
+    const currentValue = this.filterForm.value[key as keyof typeof this.filterForm.value]?.toString();
+    if (currentValue !== value?.toString()) {
+      this.filterHasChanged = true;
+      this.filterForm.patchValue({
+        [key]: value,
+      });
+      this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
+    }
+    this.filterForm.markAsDirty();
   }
 
   convertedFilter(): Record<string, unknown> {
@@ -186,25 +198,22 @@ export class FiltersContentComponent implements OnChanges, OnInit {
    * Refreshes all filter settings
    */
   refreshFilters(): void {
-    this.filterForm.controls.technologies.patchValue([]);
-    this.filterForm.controls.consortia.patchValue([]);
-    this.filterForm.controls.providers.patchValue([]);
-    this.filters = JSON.parse(JSON.stringify(DEFAULT_FILTER));
-    if (this.filters) {
-      this.filterForm.patchValue({
-        sex: this.filters['sex'] as Sex,
-        ageRange: this.filters['ageRange'] as number[],
-        bmiRange: this.filters['bmiRange'] as number[],
-        consortia: this.filters['consortiums'] as string[],
-        technologies: this.filters['technologies'] as string[],
-        providers: this.filters['tmc'] as string[],
-        spatialSearches: this.filters['spatialSearches'] as SpatialSearch[],
-      });
+    const defaults = {
+      ...DEFAULT_FILTER,
+      providers: DEFAULT_FILTER['tmc'],
+      consortia: DEFAULT_FILTER['consortiums'],
+    };
+
+    for (const search of this.spatialSearchFilters()) {
+      this.spatialSearchRemoved.emit(search.id);
     }
+
+    this.updateSearchSelection([]);
+    this.filterForm.patchValue(defaults);
+
     this.ga.event('filters_reset', 'filter_content');
-    this.spatialSearchSelected.emit([]);
-    this.filtersChange.emit(this.filters ?? {});
-    this.filterForm.markAsDirty();
+    this.filterHasChanged = false;
+    this.filterForm.markAsPristine();
   }
 
   /**
@@ -218,17 +227,19 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.spatialSearchSelected.emit(items);
     this.updateFilter(searches, 'spatialSearches');
     this.updateSexFromSelection(items);
+    this.filterHasChanged = true;
+    this.filterForm.markAsDirty();
   }
 
   /**
    * Updates sex to `Both` if there is a mismatch between the current selection and the sex
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
-    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as Sex;
+    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
     const selectedSexes = new Set(items.map((item) => item.sex));
 
-    if (items.length > 0 && (selectedSexes.size > 1 || !selectedSexes.has(currentSex as SpatialSearchSex))) {
-      this.updateFilter('both', 'sex');
+    if (selectedSexes.size > 1 && !selectedSexes.has(currentSex)) {
+      this.updateFilter('Both', 'sex');
     }
   }
 }
