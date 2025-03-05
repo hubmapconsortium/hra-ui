@@ -222,12 +222,12 @@
         },
         {
             "name": "FontIconsConfig",
-            "id": "interface-FontIconsConfig-58fc7dae4cda83abb24c08a1d3a3bfd44089ca30679d537e7751aaf61739c9e969081c814f8797341646d038e48d1ba744b8a33a29377cd2ae22c35c007c479b",
+            "id": "interface-FontIconsConfig-6505a5c6b505fd0f89096763ca0276c56fb5a8eb17c333bdf4a0e98caffea9ea1f571700721cf36b01133629bf438d5b25c93d64025355fe3fb27b80098c31ae",
             "file": "icons/src/lib/providers.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerDefaultFontSetClassesFactory,\n      deps: [MatIconRegistry, FONT_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerSvgIconResolverFactory,\n      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config?: IconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config?.fontIcons), provideSvgIcons(config?.svgIcons)]);\n}\n",
+            "sourceCode": "import {\n  EnvironmentProviders,\n  InjectionToken,\n  makeEnvironmentProviders,\n  inject,\n  provideAppInitializer,\n} from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerDefaultFontSetClassesFactory(inject(MatIconRegistry), inject(FONT_ICONS_CONFIG));\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerSvgIconResolverFactory(\n        inject(MatIconRegistry),\n        inject(AppHrefService),\n        inject(DomSanitizer),\n        inject(SVG_ICONS_CONFIG),\n      );\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config: IconsConfig = {}): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config.fontIcons), provideSvgIcons(config.svgIcons)]);\n}\n",
             "properties": [
                 {
                     "name": "defaultClasses",
@@ -237,7 +237,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Default classes to apply when no font set is specified</p>\n",
-                    "line": 10,
+                    "line": 16,
                     "rawdescription": "\nDefault classes to apply when no font set is specified"
                 }
             ],
@@ -278,12 +278,12 @@
         },
         {
             "name": "IconsConfig",
-            "id": "interface-IconsConfig-58fc7dae4cda83abb24c08a1d3a3bfd44089ca30679d537e7751aaf61739c9e969081c814f8797341646d038e48d1ba744b8a33a29377cd2ae22c35c007c479b",
+            "id": "interface-IconsConfig-6505a5c6b505fd0f89096763ca0276c56fb5a8eb17c333bdf4a0e98caffea9ea1f571700721cf36b01133629bf438d5b25c93d64025355fe3fb27b80098c31ae",
             "file": "icons/src/lib/providers.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerDefaultFontSetClassesFactory,\n      deps: [MatIconRegistry, FONT_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerSvgIconResolverFactory,\n      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config?: IconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config?.fontIcons), provideSvgIcons(config?.svgIcons)]);\n}\n",
+            "sourceCode": "import {\n  EnvironmentProviders,\n  InjectionToken,\n  makeEnvironmentProviders,\n  inject,\n  provideAppInitializer,\n} from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerDefaultFontSetClassesFactory(inject(MatIconRegistry), inject(FONT_ICONS_CONFIG));\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerSvgIconResolverFactory(\n        inject(MatIconRegistry),\n        inject(AppHrefService),\n        inject(DomSanitizer),\n        inject(SVG_ICONS_CONFIG),\n      );\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config: IconsConfig = {}): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config.fontIcons), provideSvgIcons(config.svgIcons)]);\n}\n",
             "properties": [
                 {
                     "name": "fontIcons",
@@ -293,7 +293,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Font icon configuration</p>\n",
-                    "line": 22,
+                    "line": 28,
                     "rawdescription": "\nFont icon configuration"
                 },
                 {
@@ -304,7 +304,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Svg icon configuration</p>\n",
-                    "line": 24,
+                    "line": 30,
                     "rawdescription": "\nSvg icon configuration"
                 }
             ],
@@ -395,12 +395,12 @@
         },
         {
             "name": "SvgIconsConfig",
-            "id": "interface-SvgIconsConfig-58fc7dae4cda83abb24c08a1d3a3bfd44089ca30679d537e7751aaf61739c9e969081c814f8797341646d038e48d1ba744b8a33a29377cd2ae22c35c007c479b",
+            "id": "interface-SvgIconsConfig-6505a5c6b505fd0f89096763ca0276c56fb5a8eb17c333bdf4a0e98caffea9ea1f571700721cf36b01133629bf438d5b25c93d64025355fe3fb27b80098c31ae",
             "file": "icons/src/lib/providers.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerDefaultFontSetClassesFactory,\n      deps: [MatIconRegistry, FONT_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    {\n      provide: APP_INITIALIZER,\n      multi: true,\n      useFactory: registerSvgIconResolverFactory,\n      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],\n    },\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config?: IconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config?.fontIcons), provideSvgIcons(config?.svgIcons)]);\n}\n",
+            "sourceCode": "import {\n  EnvironmentProviders,\n  InjectionToken,\n  makeEnvironmentProviders,\n  inject,\n  provideAppInitializer,\n} from '@angular/core';\nimport { MatIconRegistry } from '@angular/material/icon';\nimport { DomSanitizer } from '@angular/platform-browser';\nimport { AppHrefService } from '@hra-ui/cdk/app-href';\nimport { createSvgIconResolver } from './resolvers';\n\n/** Font icon provider configuration */\nexport interface FontIconsConfig {\n  /** Default classes to apply when no font set is specified */\n  defaultClasses?: string[];\n}\n\n/** Svg icon provider configuration */\nexport interface SvgIconsConfig {\n  /** Base directory containing icons and namespace folders */\n  directory?: string;\n}\n\n/** Configuration when providing font icons and svg icon at the same time */\nexport interface IconsConfig {\n  /** Font icon configuration */\n  fontIcons?: FontIconsConfig;\n  /** Svg icon configuration */\n  svgIcons?: SvgIconsConfig;\n}\n\n/** Injection token for font icon configuration */\nconst FONT_ICONS_CONFIG = new InjectionToken<Required<FontIconsConfig>>('FONT_ICONS_CONFIG');\n\n/** Injection token for svg icon configuration */\nconst SVG_ICONS_CONFIG = new InjectionToken<Required<SvgIconsConfig>>('SVG_ICONS_CONFIG');\n\n/** Default values for font icon configuration */\nconst DEFAULT_FONT_ICONS_CONFIG: Required<FontIconsConfig> = {\n  defaultClasses: [],\n};\n\n/** Default values for svg icon configuration */\nconst DEFAULT_SVG_ICONS_CONFIG: Required<SvgIconsConfig> = {\n  directory: 'assets/icons',\n};\n\n/**\n * Factory for registering default font icon classes\n *\n * @param registry Material icon registry\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerDefaultFontSetClassesFactory(\n  registry: MatIconRegistry,\n  { defaultClasses }: Required<FontIconsConfig>,\n): () => void {\n  return () => {\n    const existingClasses = registry.getDefaultFontSetClass();\n    registry.setDefaultFontSetClass(...defaultClasses, ...existingClasses);\n  };\n}\n\n/**\n * Factory for registering a svg icon resolver\n *\n * @param registry Material icon registry\n * @param location Location service\n * @param sanitizer Resource url sanitizer\n * @param config Configuration object\n * @returns Registration function\n */\nfunction registerSvgIconResolverFactory(\n  registry: MatIconRegistry,\n  appHrefService: AppHrefService,\n  sanitizer: DomSanitizer,\n  { directory }: Required<SvgIconsConfig>,\n): () => void {\n  return () => {\n    const resolver = createSvgIconResolver({\n      appHref: appHrefService.appHref,\n      sanitizer,\n      directory,\n    });\n\n    registry.addSvgIconResolver(resolver);\n  };\n}\n\n/**\n * Provides font icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: FONT_ICONS_CONFIG,\n      useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerDefaultFontSetClassesFactory(inject(MatIconRegistry), inject(FONT_ICONS_CONFIG));\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    {\n      provide: SVG_ICONS_CONFIG,\n      useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },\n    },\n    provideAppInitializer(() => {\n      const initializerFn = registerSvgIconResolverFactory(\n        inject(MatIconRegistry),\n        inject(AppHrefService),\n        inject(DomSanitizer),\n        inject(SVG_ICONS_CONFIG),\n      );\n      return initializerFn();\n    }),\n  ]);\n}\n\n/**\n * Provides both font and svg icons\n *\n * @param config Configuration object\n * @returns Application providers\n */\nexport function provideIcons(config: IconsConfig = {}): EnvironmentProviders {\n  return makeEnvironmentProviders([provideFontIcons(config.fontIcons), provideSvgIcons(config.svgIcons)]);\n}\n",
             "properties": [
                 {
                     "name": "directory",
@@ -410,7 +410,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Base directory containing icons and namespace folders</p>\n",
-                    "line": 16,
+                    "line": 22,
                     "rawdescription": "\nBase directory containing icons and namespace folders"
                 }
             ],
@@ -6673,8 +6673,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 744,
-                            "end": 748,
+                            "pos": 750,
+                            "end": 754,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6685,8 +6685,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 738,
-                            "end": 743,
+                            "pos": 744,
+                            "end": 749,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6697,8 +6697,8 @@
                     },
                     {
                         "name": {
-                            "pos": 785,
-                            "end": 791,
+                            "pos": 791,
+                            "end": 797,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6709,8 +6709,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 779,
-                            "end": 784,
+                            "pos": 785,
+                            "end": 790,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6747,8 +6747,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 1559,
-                            "end": 1563,
+                            "pos": 1565,
+                            "end": 1569,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6759,8 +6759,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 1553,
-                            "end": 1558,
+                            "pos": 1559,
+                            "end": 1564,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6771,8 +6771,8 @@
                     },
                     {
                         "name": {
-                            "pos": 1600,
-                            "end": 1607,
+                            "pos": 1606,
+                            "end": 1613,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6783,8 +6783,8 @@
                         "deprecationMessage": "",
                         "defaultValue": "PATCHABLE_PLATFORM_LOCATION_HISTORY_METHODS",
                         "tagName": {
-                            "pos": 1594,
-                            "end": 1599,
+                            "pos": 1600,
+                            "end": 1605,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6929,8 +6929,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 2635,
-                            "end": 2641,
+                            "pos": 2660,
+                            "end": 2666,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6942,8 +6942,8 @@
                         "deprecationMessage": "",
                         "optional": true,
                         "tagName": {
-                            "pos": 2629,
-                            "end": 2634,
+                            "pos": 2654,
+                            "end": 2659,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6954,8 +6954,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 2667,
-                            "end": 2674,
+                            "pos": 2692,
+                            "end": 2699,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6980,15 +6980,15 @@
                         "type": "IconsConfig",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "optional": true
+                        "defaultValue": "{}"
                     }
                 ],
                 "returnType": "EnvironmentProviders",
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 3690,
-                            "end": 3696,
+                            "pos": 3812,
+                            "end": 3818,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -6998,10 +6998,10 @@
                         "type": "IconsConfig",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "optional": true,
+                        "defaultValue": "{}",
                         "tagName": {
-                            "pos": 3684,
-                            "end": 3689,
+                            "pos": 3806,
+                            "end": 3811,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7012,8 +7012,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 3722,
-                            "end": 3729,
+                            "pos": 3844,
+                            "end": 3851,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7037,8 +7037,8 @@
                 "jsdoctags": [
                     {
                         "tagName": {
-                            "pos": 2144,
-                            "end": 2151,
+                            "pos": 2150,
+                            "end": 2157,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7069,8 +7069,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 300,
-                            "end": 310,
+                            "pos": 319,
+                            "end": 329,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7081,8 +7081,8 @@
                         "deprecationMessage": "",
                         "dotDotDotToken": true,
                         "tagName": {
-                            "pos": 294,
-                            "end": 299,
+                            "pos": 313,
+                            "end": 318,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7093,8 +7093,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 333,
-                            "end": 340,
+                            "pos": 352,
+                            "end": 359,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7126,8 +7126,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 3146,
-                            "end": 3152,
+                            "pos": 3191,
+                            "end": 3197,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7139,8 +7139,8 @@
                         "deprecationMessage": "",
                         "optional": true,
                         "tagName": {
-                            "pos": 3140,
-                            "end": 3145,
+                            "pos": 3185,
+                            "end": 3190,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7151,8 +7151,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 3178,
-                            "end": 3185,
+                            "pos": 3223,
+                            "end": 3230,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7227,7 +7227,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
+                        "destrucuredGroupId": "8639e230-3b93-4bbe-b4f4-287a1747b93a",
                         "destructuredParameter": true
                     }
                 ],
@@ -7235,8 +7235,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 1546,
-                            "end": 1554,
+                            "pos": 1571,
+                            "end": 1579,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7247,8 +7247,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 1540,
-                            "end": 1545,
+                            "pos": 1565,
+                            "end": 1570,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7262,7 +7262,7 @@
                         "type": "Required<FontIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
+                        "destrucuredGroupId": "8639e230-3b93-4bbe-b4f4-287a1747b93a",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -7270,8 +7270,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 1620,
-                            "end": 1627,
+                            "pos": 1645,
+                            "end": 1652,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7400,7 +7400,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
+                        "destrucuredGroupId": "5cdd8356-83d7-4254-a908-7b77e3847814",
                         "destructuredParameter": true
                     }
                 ],
@@ -7408,8 +7408,8 @@
                 "jsdoctags": [
                     {
                         "name": {
-                            "pos": 2023,
-                            "end": 2031,
+                            "pos": 2048,
+                            "end": 2056,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7420,8 +7420,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 2017,
-                            "end": 2022,
+                            "pos": 2042,
+                            "end": 2047,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7441,8 +7441,8 @@
                     },
                     {
                         "name": {
-                            "pos": 2101,
-                            "end": 2110,
+                            "pos": 2126,
+                            "end": 2135,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7453,8 +7453,8 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
-                            "pos": 2095,
-                            "end": 2100,
+                            "pos": 2120,
+                            "end": 2125,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -7468,7 +7468,7 @@
                         "type": "Required<SvgIconsConfig>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
+                        "destrucuredGroupId": "5cdd8356-83d7-4254-a908-7b77e3847814",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -7476,8 +7476,8 @@
                     },
                     {
                         "tagName": {
-                            "pos": 2176,
-                            "end": 2183,
+                            "pos": 2201,
+                            "end": 2208,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -10583,8 +10583,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 744,
-                                "end": 748,
+                                "pos": 750,
+                                "end": 754,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10595,8 +10595,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 738,
-                                "end": 743,
+                                "pos": 744,
+                                "end": 749,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10607,8 +10607,8 @@
                         },
                         {
                             "name": {
-                                "pos": 785,
-                                "end": 791,
+                                "pos": 791,
+                                "end": 797,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10619,8 +10619,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 779,
-                                "end": 784,
+                                "pos": 785,
+                                "end": 790,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10657,8 +10657,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1559,
-                                "end": 1563,
+                                "pos": 1565,
+                                "end": 1569,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10669,8 +10669,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1553,
-                                "end": 1558,
+                                "pos": 1559,
+                                "end": 1564,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10681,8 +10681,8 @@
                         },
                         {
                             "name": {
-                                "pos": 1600,
-                                "end": 1607,
+                                "pos": 1606,
+                                "end": 1613,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10693,8 +10693,8 @@
                             "deprecationMessage": "",
                             "defaultValue": "PATCHABLE_PLATFORM_LOCATION_HISTORY_METHODS",
                             "tagName": {
-                                "pos": 1594,
-                                "end": 1599,
+                                "pos": 1600,
+                                "end": 1605,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10718,8 +10718,8 @@
                     "jsdoctags": [
                         {
                             "tagName": {
-                                "pos": 2144,
-                                "end": 2151,
+                                "pos": 2150,
+                                "end": 2157,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10799,8 +10799,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2635,
-                                "end": 2641,
+                                "pos": 2660,
+                                "end": 2666,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10812,8 +10812,8 @@
                             "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
-                                "pos": 2629,
-                                "end": 2634,
+                                "pos": 2654,
+                                "end": 2659,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10824,8 +10824,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2667,
-                                "end": 2674,
+                                "pos": 2692,
+                                "end": 2699,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10850,15 +10850,15 @@
                             "type": "IconsConfig",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "optional": true
+                            "defaultValue": "{}"
                         }
                     ],
                     "returnType": "EnvironmentProviders",
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3690,
-                                "end": 3696,
+                                "pos": 3812,
+                                "end": 3818,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10868,10 +10868,10 @@
                             "type": "IconsConfig",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "optional": true,
+                            "defaultValue": "{}",
                             "tagName": {
-                                "pos": 3684,
-                                "end": 3689,
+                                "pos": 3806,
+                                "end": 3811,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10882,8 +10882,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3722,
-                                "end": 3729,
+                                "pos": 3844,
+                                "end": 3851,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10915,8 +10915,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3146,
-                                "end": 3152,
+                                "pos": 3191,
+                                "end": 3197,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10928,8 +10928,8 @@
                             "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
-                                "pos": 3140,
-                                "end": 3145,
+                                "pos": 3185,
+                                "end": 3190,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10940,8 +10940,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 3178,
-                                "end": 3185,
+                                "pos": 3223,
+                                "end": 3230,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10972,7 +10972,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
+                            "destrucuredGroupId": "8639e230-3b93-4bbe-b4f4-287a1747b93a",
                             "destructuredParameter": true
                         }
                     ],
@@ -10980,8 +10980,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1546,
-                                "end": 1554,
+                                "pos": 1571,
+                                "end": 1579,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10992,8 +10992,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1540,
-                                "end": 1545,
+                                "pos": 1565,
+                                "end": 1570,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11007,7 +11007,7 @@
                             "type": "Required<FontIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "38e05156-60c0-4295-bcad-748bd1517946",
+                            "destrucuredGroupId": "8639e230-3b93-4bbe-b4f4-287a1747b93a",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -11015,8 +11015,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 1620,
-                                "end": 1627,
+                                "pos": 1645,
+                                "end": 1652,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11059,7 +11059,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
+                            "destrucuredGroupId": "5cdd8356-83d7-4254-a908-7b77e3847814",
                             "destructuredParameter": true
                         }
                     ],
@@ -11067,8 +11067,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2023,
-                                "end": 2031,
+                                "pos": 2048,
+                                "end": 2056,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11079,8 +11079,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2017,
-                                "end": 2022,
+                                "pos": 2042,
+                                "end": 2047,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11100,8 +11100,8 @@
                         },
                         {
                             "name": {
-                                "pos": 2101,
-                                "end": 2110,
+                                "pos": 2126,
+                                "end": 2135,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11112,8 +11112,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2095,
-                                "end": 2100,
+                                "pos": 2120,
+                                "end": 2125,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11127,7 +11127,7 @@
                             "type": "Required<SvgIconsConfig>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "2c5bc134-ab41-4a74-a3f6-e588e36d3384",
+                            "destrucuredGroupId": "5cdd8356-83d7-4254-a908-7b77e3847814",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -11135,8 +11135,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2176,
-                                "end": 2183,
+                                "pos": 2201,
+                                "end": 2208,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11169,8 +11169,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 300,
-                                "end": 310,
+                                "pos": 319,
+                                "end": 329,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11181,8 +11181,8 @@
                             "deprecationMessage": "",
                             "dotDotDotToken": true,
                             "tagName": {
-                                "pos": 294,
-                                "end": 299,
+                                "pos": 313,
+                                "end": 318,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -11193,8 +11193,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 333,
-                                "end": 340,
+                                "pos": 352,
+                                "end": 359,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,

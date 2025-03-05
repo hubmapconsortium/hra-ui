@@ -214,7 +214,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { APP_INITIALIZER, EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  EnvironmentProviders,
+  InjectionToken,
+  makeEnvironmentProviders,
+  inject,
+  provideAppInitializer,
+} from &#x27;@angular/core&#x27;;
 import { MatIconRegistry } from &#x27;@angular/material/icon&#x27;;
 import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 import { AppHrefService } from &#x27;@hra-ui/cdk/app-href&#x27;;
@@ -311,12 +317,10 @@ export function provideFontIcons(config?: FontIconsConfig): EnvironmentProviders
       provide: FONT_ICONS_CONFIG,
       useValue: { ...DEFAULT_FONT_ICONS_CONFIG, ...config },
     },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: registerDefaultFontSetClassesFactory,
-      deps: [MatIconRegistry, FONT_ICONS_CONFIG],
-    },
+    provideAppInitializer(() &#x3D;&gt; {
+      const initializerFn &#x3D; registerDefaultFontSetClassesFactory(inject(MatIconRegistry), inject(FONT_ICONS_CONFIG));
+      return initializerFn();
+    }),
   ]);
 }
 
@@ -332,12 +336,15 @@ export function provideSvgIcons(config?: SvgIconsConfig): EnvironmentProviders {
       provide: SVG_ICONS_CONFIG,
       useValue: { ...DEFAULT_SVG_ICONS_CONFIG, ...config },
     },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: registerSvgIconResolverFactory,
-      deps: [MatIconRegistry, AppHrefService, DomSanitizer, SVG_ICONS_CONFIG],
-    },
+    provideAppInitializer(() &#x3D;&gt; {
+      const initializerFn &#x3D; registerSvgIconResolverFactory(
+        inject(MatIconRegistry),
+        inject(AppHrefService),
+        inject(DomSanitizer),
+        inject(SVG_ICONS_CONFIG),
+      );
+      return initializerFn();
+    }),
   ]);
 }
 

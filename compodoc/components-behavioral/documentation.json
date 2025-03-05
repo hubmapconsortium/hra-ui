@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "BiomarkerDetailsComponent",
-            "id": "component-BiomarkerDetailsComponent-4535de57741da86884d4ba147c3b23c7dd683150a22562711443fe8aaf77958c2f28ec1a3d3432ffd6bb14ad9859ecaa1e4281314ba691820af9b8862b742cfb",
+            "id": "component-BiomarkerDetailsComponent-22cdd90ab131f5751c3b7c835dc675a11b8c61af6077063d643338cd560ed8a5817c06c10699f237099f550704777ee1445460479377a0b426746faabdfdfa20",
             "file": "src/lib/biomarker-details/biomarker-details.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -39,7 +39,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 154,
+                    "line": 152,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         148
@@ -54,7 +54,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 72,
+                    "line": 70,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         148
@@ -69,7 +69,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 75,
+                    "line": 73,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         148
@@ -84,7 +84,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 84,
+                    "line": 82,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         148
@@ -99,7 +99,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Action to highlight a cell type</p>\n",
-                    "line": 111,
+                    "line": 109,
                     "rawdescription": "\nAction to highlight a cell type",
                     "modifierKind": [
                         148
@@ -114,7 +114,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 97,
+                    "line": 95,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         148
@@ -129,7 +129,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 81,
+                    "line": 79,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -141,7 +141,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Illustration mapping data</p>\n",
-                    "line": 108,
+                    "line": 106,
                     "rawdescription": "\nIllustration mapping data",
                     "modifierKind": [
                         148
@@ -156,7 +156,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 159,
+                    "line": 157,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         148
@@ -171,7 +171,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Selects the cells hovered currently to highlight in table</p>\n",
-                    "line": 105,
+                    "line": 103,
                     "rawdescription": "\nSelects the cells hovered currently to highlight in table",
                     "modifierKind": [
                         148
@@ -186,7 +186,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Action to set selected sources</p>\n",
-                    "line": 114,
+                    "line": 112,
                     "rawdescription": "\nAction to set selected sources",
                     "modifierKind": [
                         148
@@ -201,7 +201,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 78,
+                    "line": 76,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         148
@@ -216,7 +216,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 89,
+                    "line": 87,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         148
@@ -231,7 +231,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 92,
+                    "line": 90,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         148
@@ -245,7 +245,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Reference to biomarker table</p>\n",
-                    "line": 69,
+                    "line": 67,
                     "rawdescription": "\nReference to biomarker table",
                     "decorators": [
                         {
@@ -266,7 +266,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 102,
+                    "line": 100,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         148
@@ -280,7 +280,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 201,
+                    "line": 199,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -300,7 +300,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 212,
+                    "line": 210,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nHighlights cells matching the label\n",
@@ -331,7 +331,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 220,
+                    "line": 218,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nLogs tab change event\n",
@@ -339,8 +339,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 6814,
-                                "end": 6819,
+                                "pos": 6724,
+                                "end": 6729,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -351,8 +351,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 6808,
-                                "end": 6813,
+                                "pos": 6718,
+                                "end": 6723,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -369,7 +369,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 191,
+                    "line": 189,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -394,7 +394,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 184,
+                    "line": 182,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTrack a tab by it's label\n\n",
@@ -402,8 +402,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5880,
-                                "end": 5886,
+                                "pos": 5790,
+                                "end": 5796,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -414,8 +414,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5874,
-                                "end": 5879,
+                                "pos": 5784,
+                                "end": 5789,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -426,8 +426,8 @@
                         },
                         {
                             "name": {
-                                "pos": 5919,
-                                "end": 5922,
+                                "pos": 5829,
+                                "end": 5832,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -438,8 +438,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5913,
-                                "end": 5918,
+                                "pos": 5823,
+                                "end": 5828,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -455,7 +455,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -475,10 +475,6 @@
                 },
                 {
                     "name": "BiomarkerTableComponent",
-                    "type": "component"
-                },
-                {
-                    "name": "BiomarkerTableDataCardComponent",
                     "type": "component"
                 },
                 {
@@ -509,7 +505,7 @@
             "description": "<p>The component displays the biomarker details which includes the details, gradient legends, size legends and source lists</p>\n",
             "rawdescription": "\nThe component displays the biomarker details which includes the details, gradient legends, size legends and source lists",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { BiomarkerTableDataCardComponent, SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';\nimport { IllustrationMappingItem } from '@hra-ui/services';\nimport {\n  ActiveFtuSelectors,\n  CellSummarySelectors,\n  IllustratorActions,\n  IllustratorSelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  ScreenModeAction,\n  SourceRefsActions,\n  SourceRefsSelectors,\n  TissueLibrarySelectors,\n  CellSummaryAggregate,\n} from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    MatDialogModule,\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Reference to biomarker table */\n  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;\n\n  /** Table tabs */\n  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /** Illustration mapping data */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /** Action to highlight a cell type */\n  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);\n\n  /** Action to set selected sources */\n  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);\n\n  /** Table tabs */\n  get tabs(): CellSummaryAggregate[] {\n    const tabs = this.getTabs();\n    if (tabs.length !== 0) {\n      this.tabs_ = tabs;\n    }\n    return this.tabs_;\n  }\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined || tissues === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    const mapping = this.mapping();\n    if (mapping !== this.mapping_) {\n      this.mapping_ = mapping;\n      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n    }\n\n    return this.illustrationIds_;\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** Table tabs */\n  private tabs_: CellSummaryAggregate[] = [];\n  /** Mapping items reference */\n  private mapping_: IllustrationMappingItem[] = [];\n  /** Illustration ids reference */\n  private illustrationIds_: string[] = [];\n\n  /**\n   * Track a tab by it's label\n   *\n   * @param _index Unused index of tab\n   * @param tab Tab data\n   */\n  trackByLabel(_index: number, tab: CellSummaryAggregate): string {\n    return tab.label;\n  }\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    setTimeout(() => {\n      this.table.checkDisplayedColumns();\n    }, 250);\n\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Highlights cells matching the label\n   * @param event\n   */\n  highlightCells(label?: string) {\n    this.highlightCell(label);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport { SourceListComponent } from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';\nimport { IllustrationMappingItem } from '@hra-ui/services';\nimport {\n  ActiveFtuSelectors,\n  CellSummaryAggregate,\n  CellSummarySelectors,\n  ResourceIds as Ids,\n  IllustratorActions,\n  IllustratorSelectors,\n  ResourceTypes as RTypes,\n  ScreenModeAction,\n  SourceRefsActions,\n  SourceRefsSelectors,\n  TissueLibrarySelectors,\n} from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/\n@Component({\n  selector: 'ftu-biomarker-details',\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    MatDialogModule,\n    BiomarkerTableComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n  ],\n  templateUrl: './biomarker-details.component.html',\n  styleUrls: ['./biomarker-details.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsComponent {\n  /** Reference to biomarker table */\n  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;\n\n  /** Table tabs */\n  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /** Selects the cells hovered currently to highlight in table */\n  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);\n\n  /** Illustration mapping data */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /** Action to highlight a cell type */\n  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);\n\n  /** Action to set selected sources */\n  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);\n\n  /** Table tabs */\n  get tabs(): CellSummaryAggregate[] {\n    const tabs = this.getTabs();\n    if (tabs.length !== 0) {\n      this.tabs_ = tabs;\n    }\n    return this.tabs_;\n  }\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined || tissues === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    const mapping = this.mapping();\n    if (mapping !== this.mapping_) {\n      this.mapping_ = mapping;\n      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n    }\n\n    return this.illustrationIds_;\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n  <br><br> Please contact us to discuss your dataset.`;\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** Table tabs */\n  private tabs_: CellSummaryAggregate[] = [];\n  /** Mapping items reference */\n  private mapping_: IllustrationMappingItem[] = [];\n  /** Illustration ids reference */\n  private illustrationIds_: string[] = [];\n\n  /**\n   * Track a tab by it's label\n   *\n   * @param _index Unused index of tab\n   * @param tab Tab data\n   */\n  trackByLabel(_index: number, tab: CellSummaryAggregate): string {\n    return tab.label;\n  }\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    setTimeout(() => {\n      this.table.checkDisplayedColumns();\n    }, 250);\n\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Highlights cells matching the label\n   * @param event\n   */\n  highlightCells(label?: string) {\n    this.highlightCell(label);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -526,7 +522,7 @@
                         "name": "tabs",
                         "type": "[]",
                         "returnType": "CellSummaryAggregate[]",
-                        "line": 117,
+                        "line": 115,
                         "rawdescription": "\nTable tabs",
                         "description": "<p>Table tabs</p>\n"
                     }
@@ -537,7 +533,7 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 128,
+                        "line": 126,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -548,7 +544,7 @@
                         "name": "illustrationIds",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 141,
+                        "line": 139,
                         "rawdescription": "\n\nGets ids for cells in the illustration\n",
                         "description": "<p>Gets ids for cells in the illustration</p>\n"
                     }
@@ -558,7 +554,7 @@
         },
         {
             "name": "BiomarkerDetailsWcComponent",
-            "id": "component-BiomarkerDetailsWcComponent-2ab5efe586c361ea46c09cbb99e7c3a81818d11bf260bb079f1ac59e527ebebff85f2c8f47487f49fd5a9f4863065149baa379d2d39db09a571a993f36f6ab32",
+            "id": "component-BiomarkerDetailsWcComponent-2c72d9dfca9e7dd06ac8013f7efd0c97e07d6abce462261bb9beb6f475c116d9b71411d9f0016a3c269ceebb864ee6e20ef922c64f354ddd347436d9308165e4",
             "file": "src/lib/biomarker-details-wc/biomarker-details-wc.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -588,7 +584,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>button text of empty biomarker component.</p>\n",
-                    "line": 181,
+                    "line": 179,
                     "rawdescription": "\n\nbutton text of empty biomarker component.\n",
                     "modifierKind": [
                         148
@@ -603,7 +599,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Current illustration url</p>\n",
-                    "line": 81,
+                    "line": 79,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
                         148
@@ -618,7 +614,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Table tabs</p>\n",
-                    "line": 118,
+                    "line": 116,
                     "rawdescription": "\nTable tabs",
                     "modifierKind": [
                         148
@@ -633,7 +629,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Gradient Legend</p>\n",
-                    "line": 121,
+                    "line": 119,
                     "rawdescription": "\nInfo to be shown on the tooltip for Gradient Legend",
                     "modifierKind": [
                         148
@@ -648,7 +644,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Gradient colors along with their stop points</p>\n",
-                    "line": 130,
+                    "line": 128,
                     "rawdescription": "\nGradient colors along with their stop points",
                     "modifierKind": [
                         148
@@ -663,7 +659,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 91,
+                    "line": 89,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         148
@@ -678,7 +674,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Indicates if the table is fully shown, defaults to false</p>\n",
-                    "line": 127,
+                    "line": 125,
                     "rawdescription": "\nIndicates if the table is fully shown, defaults to false"
                 },
                 {
@@ -690,7 +686,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Current mapping file</p>\n",
-                    "line": 86,
+                    "line": 84,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
                         148
@@ -705,7 +701,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>message markdown of empty biomarker component.</p>\n",
-                    "line": 186,
+                    "line": 184,
                     "rawdescription": "\n\nmessage markdown of empty biomarker component.\n",
                     "modifierKind": [
                         148
@@ -720,7 +716,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Sets currently selected sources</p>\n",
-                    "line": 190,
+                    "line": 188,
                     "rawdescription": "\nSets currently selected sources",
                     "modifierKind": [
                         148
@@ -735,7 +731,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Info to be shown on the tooltip for Size Legend</p>\n",
-                    "line": 124,
+                    "line": 122,
                     "rawdescription": "\nInfo to be shown on the tooltip for Size Legend",
                     "modifierKind": [
                         148
@@ -750,7 +746,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Taking input for the radius of the circle and the label to be displayed.</p>\n",
-                    "line": 135,
+                    "line": 133,
                     "rawdescription": "\nTaking input for the radius of the circle and the label to be displayed.",
                     "modifierKind": [
                         148
@@ -765,7 +761,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>List of sources with titles and links displayed to the user</p>\n",
-                    "line": 138,
+                    "line": 136,
                     "rawdescription": "\nList of sources with titles and links displayed to the user",
                     "modifierKind": [
                         148
@@ -779,7 +775,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Reference to the biomarker table component</p>\n",
-                    "line": 76,
+                    "line": 74,
                     "rawdescription": "\n\nReference to the biomarker table component\n",
                     "decorators": [
                         {
@@ -800,7 +796,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 96,
+                    "line": 94,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         148
@@ -815,7 +811,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node click</p>\n",
-                    "line": 115,
+                    "line": 113,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
                         148
@@ -830,7 +826,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node hover</p>\n",
-                    "line": 110,
+                    "line": 108,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
                         148
@@ -844,7 +840,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 226,
+                    "line": 224,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -863,7 +859,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 237,
+                    "line": 235,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nLogs tab change event\n",
@@ -871,8 +867,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 6895,
-                                "end": 6900,
+                                "pos": 6874,
+                                "end": 6879,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -883,8 +879,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 6889,
-                                "end": 6894,
+                                "pos": 6868,
+                                "end": 6873,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -901,7 +897,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 216,
+                    "line": 214,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function that toggles isTableFullScreen and\ncalls the setScreenMode function.\n",
@@ -920,7 +916,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 209,
+                    "line": 207,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nReturns the index number",
@@ -942,7 +938,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -996,7 +992,7 @@
             "description": "<p>Component for Biomarker Table Details Web component</p>\n",
             "rawdescription": "\nComponent for Biomarker Table Details Web component",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';\nimport { IllustrationMappingItem } from '@hra-ui/services';\nimport {\n  ActiveFtuSelectors,\n  CellSummaryAggregate,\n  CellSummarySelectors,\n  IllustratorActions,\n  IllustratorSelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  ScreenModeAction,\n  SourceRefsActions,\n  SourceRefsSelectors,\n  TissueLibrarySelectors,\n} from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  standalone: true,\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Reference to the biomarker table component\n   */\n  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;\n\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets tabs containing cell summary aggregate data\n   */\n  get tabs(): CellSummaryAggregate[] {\n    const tabs = this.getTabs();\n    if (tabs !== this.tabs_ && tabs.length !== 0) {\n      this.tabs_ = tabs;\n    }\n\n    return this.tabs_;\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    const mapping = this.mapping();\n    if (mapping !== this.mapping_) {\n      this.mapping_ = mapping;\n      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n    }\n\n    return this.illustrationIds_;\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** Sets currently selected sources */\n  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** Mapping item reference */\n  private mapping_: IllustrationMappingItem[] = [];\n  /** Illustration ids reference */\n  private illustrationIds_: string[] = [];\n  /** Tabs reference */\n  private tabs_: CellSummaryAggregate[] = [];\n\n  /** Returns the index number */\n  trackByIndex(index: number): number {\n    return index;\n  }\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    setTimeout(() => {\n      this.table.checkDisplayedColumns();\n    }, 250);\n\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';\nimport { HoverDirective } from '@hra-ui/cdk';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport {\n  EmptyBiomarkerComponent,\n  GradientLegendComponent,\n  GradientPoint,\n  LabelBoxComponent,\n  SizeLegend,\n  SizeLegendComponent,\n} from '@hra-ui/components/atoms';\nimport {\n  BiomarkerTableDataCardComponent,\n  InteractiveSvgComponent,\n  SourceListComponent,\n} from '@hra-ui/components/molecules';\nimport { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';\nimport { IllustrationMappingItem } from '@hra-ui/services';\nimport {\n  ActiveFtuSelectors,\n  CellSummaryAggregate,\n  CellSummarySelectors,\n  IllustratorActions,\n  IllustratorSelectors,\n  ResourceIds as Ids,\n  ResourceTypes as RTypes,\n  ScreenModeAction,\n  SourceRefsActions,\n  SourceRefsSelectors,\n  TissueLibrarySelectors,\n} from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/**\n * PlaceHolder for Empty Tissue Info\n */\nconst EMPTY_TISSUE_INFO: TissueInfo = {\n  id: '',\n  label: '',\n};\n\n/** Component for Biomarker Table Details Web component */\n@Component({\n  selector: 'ftu-wc-biomarker-details',\n  imports: [\n    CommonModule,\n    MatIconModule,\n    MatTabsModule,\n    BiomarkerTableComponent,\n    BiomarkerTableDataCardComponent,\n    GradientLegendComponent,\n    HoverDirective,\n    LabelBoxComponent,\n    SizeLegendComponent,\n    SourceListComponent,\n    EmptyBiomarkerComponent,\n    InteractiveSvgComponent,\n  ],\n  templateUrl: './biomarker-details-wc.component.html',\n  styleUrls: ['./biomarker-details-wc.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BiomarkerDetailsWcComponent {\n  /**\n   * Reference to the biomarker table component\n   */\n  @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;\n\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n\n  /** Table tabs */\n  readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);\n\n  /** Info to be shown on the tooltip for Gradient Legend */\n  readonly gradientHoverInfo = selectQuerySnapshot(RR.anyText, Ids.GradientLegendInfo);\n\n  /** Info to be shown on the tooltip for Size Legend */\n  readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);\n\n  /** Indicates if the table is fully shown, defaults to false*/\n  isTableFullScreen = false;\n\n  /** Gradient colors along with their stop points */\n  readonly gradients = selectQuerySnapshot(RR.field, Ids.GradientLegend, RTypes.Gradient, 'points' as const, [])<\n    GradientPoint[]\n  >;\n\n  /** Taking input for the radius of the circle and the label to be displayed. */\n  readonly sizes = selectQuerySnapshot(RR.field, Ids.SizeLegend, RTypes.Size, 'sizes' as const, [])<SizeLegend[]>;\n\n  /** List of sources with titles and links displayed to the user */\n  readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueInfo(): TissueInfo {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    if (iri === undefined) {\n      return EMPTY_TISSUE_INFO;\n    }\n    const { id, label } = tissues[iri];\n    return { id, label };\n  }\n\n  /**\n   * Gets tabs containing cell summary aggregate data\n   */\n  get tabs(): CellSummaryAggregate[] {\n    const tabs = this.getTabs();\n    if (tabs !== this.tabs_ && tabs.length !== 0) {\n      this.tabs_ = tabs;\n    }\n\n    return this.tabs_;\n  }\n\n  /**\n   * Gets ids for cells in the illustration\n   */\n  get illustrationIds(): string[] {\n    const mapping = this.mapping();\n    if (mapping !== this.mapping_) {\n      this.mapping_ = mapping;\n      this.illustrationIds_ = Array.from(new Set(this.mapping().map((data) => data.ontologyId)));\n    }\n\n    return this.illustrationIds_;\n  }\n\n  /**\n   * button text of empty biomarker component.\n   */\n  readonly collaborateText = 'Collaborate with the HRA Team';\n\n  /**\n   * message markdown of empty biomarker component.\n   */\n  readonly message = `We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.`;\n\n  /** Sets currently selected sources */\n  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);\n\n  /** A dispatcher function to set the screen mode */\n  private readonly setScreenMode = dispatch(ScreenModeAction.Set);\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** Mapping item reference */\n  private mapping_: IllustrationMappingItem[] = [];\n  /** Illustration ids reference */\n  private illustrationIds_: string[] = [];\n  /** Tabs reference */\n  private tabs_: CellSummaryAggregate[] = [];\n\n  /** Returns the index number */\n  trackByIndex(index: number): number {\n    return index;\n  }\n\n  /** A function that toggles isTableFullScreen and\n   * calls the setScreenMode function.\n   */\n  toggleFullscreen(): void {\n    setTimeout(() => {\n      this.table.checkDisplayedColumns();\n    }, 250);\n\n    this.isTableFullScreen = !this.isTableFullScreen;\n    this.setScreenMode(this.isTableFullScreen);\n  }\n\n  /** A function which opens the contact modal dialog box */\n  collaborate(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.ga.event('contact_open', 'modal');\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n  }\n\n  /**\n   * Logs tab change event\n   * @param event tab change event\n   */\n  logTabChange(event: MatTabChangeEvent) {\n    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1013,7 +1009,7 @@
                         "name": "tissueTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 101,
+                        "line": 99,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -1024,7 +1020,7 @@
                         "name": "tissueInfo",
                         "type": "",
                         "returnType": "TissueInfo",
-                        "line": 143,
+                        "line": 141,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -1035,7 +1031,7 @@
                         "name": "tabs",
                         "type": "[]",
                         "returnType": "CellSummaryAggregate[]",
-                        "line": 156,
+                        "line": 154,
                         "rawdescription": "\n\nGets tabs containing cell summary aggregate data\n",
                         "description": "<p>Gets tabs containing cell summary aggregate data</p>\n"
                     }
@@ -1046,7 +1042,7 @@
                         "name": "illustrationIds",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 168,
+                        "line": 166,
                         "rawdescription": "\n\nGets ids for cells in the illustration\n",
                         "description": "<p>Gets ids for cells in the illustration</p>\n"
                     }
@@ -1056,7 +1052,7 @@
         },
         {
             "name": "ContactBehaviorComponent",
-            "id": "component-ContactBehaviorComponent-4f4af5c5415c9c08ae8febf1bf2ca9ee58e289a9ae2a18dc281a0092ce7c29b008ef50d731e559dc667146ce39204b35cfc4917d4e65fef2f71de44a8774984e",
+            "id": "component-ContactBehaviorComponent-8ff8cf0dc240f4305f9c1a8d48b70b08c8d96a49011f50900541e857286ec146004aaa905309d0d4ea445e4fc82a4f112280874e2eefa732c755dd45891bf4ed",
             "file": "src/lib/contact-behavior/contact-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1086,7 +1082,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Information modal message to the user</p>\n",
-                    "line": 30,
+                    "line": 29,
                     "rawdescription": "\nInformation modal message to the user",
                     "modifierKind": [
                         148
@@ -1100,7 +1096,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>A template to post a message</p>\n",
-                    "line": 21,
+                    "line": 20,
                     "rawdescription": "\nA template to post a message",
                     "decorators": [
                         {
@@ -1122,7 +1118,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 24,
+                    "line": 23,
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "modifierKind": [
                         148
@@ -1137,7 +1133,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 27,
+                    "line": 26,
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "modifierKind": [
                         148
@@ -1152,7 +1148,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>A dispatcher function to send message entered by user</p>\n",
-                    "line": 33,
+                    "line": 32,
                     "rawdescription": "\nA dispatcher function to send message entered by user",
                     "modifierKind": [
                         148
@@ -1166,7 +1162,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 54,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which closes the 'Contact us' dialog and the acknowledgement dialog.",
@@ -1185,7 +1181,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box.",
@@ -1207,7 +1203,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -1229,7 +1225,7 @@
             "description": "<p>A Component for contact behavior which sends the message entered by the user and shows an acknowledgement</p>\n",
             "rawdescription": "\nA Component for contact behavior which sends the message entered by the user and shows an acknowledgement",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, ContactActions } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */\n@Component({\n  selector: 'ftu-contact-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],\n  templateUrl: './contact-behavior.component.html',\n  styleUrls: ['./contact-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactBehaviorComponent {\n  /** A template to post a message */\n  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Information modal message to the user */\n  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);\n\n  /** A dispatcher function to send message entered by user */\n  readonly sendMessage = dispatch(ContactActions.SendMessage);\n\n  /** A dialog box which shows user an acknowledgement after clicking on submit */\n  private readonly dialog = inject(MatDialog);\n\n  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */\n  private readonly selfRef = inject(MatDialogRef, { optional: true });\n\n  /** Dialog box which references the acknowledgement dialog box */\n  private postRef?: MatDialogRef<void>;\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */\n  submit(message: ContactData): void {\n    this.sendMessage(message);\n    this.selfRef?.close();\n    this.postRef = this.dialog.open(this.postMessageTemplate);\n  }\n\n  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */\n  close(): void {\n    if (this.postRef) {\n      this.postRef.close();\n      this.ga.event('acknowedgement_close', 'modal');\n    }\n    if (this.selfRef) {\n      this.selfRef.close();\n      this.ga.event('contact_close', 'modal');\n    }\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } from '@angular/core';\nimport { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, ContactActions } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\n\n/** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */\n@Component({\n  selector: 'ftu-contact-behavior',\n  imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],\n  templateUrl: './contact-behavior.component.html',\n  styleUrls: ['./contact-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ContactBehaviorComponent {\n  /** A template to post a message */\n  @ViewChild('postMessage') readonly postMessageTemplate!: TemplateRef<void>;\n\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Information modal message to the user */\n  readonly description = selectQuerySnapshot(RR.anyText, Ids.ContactAcknowledgement);\n\n  /** A dispatcher function to send message entered by user */\n  readonly sendMessage = dispatch(ContactActions.SendMessage);\n\n  /** A dialog box which shows user an acknowledgement after clicking on submit */\n  private readonly dialog = inject(MatDialog);\n\n  /** A mat form field dialog which accepts the email, subject, and message of user and validates it */\n  private readonly selfRef = inject(MatDialogRef, { optional: true });\n\n  /** Dialog box which references the acknowledgement dialog box */\n  private postRef?: MatDialogRef<void>;\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which sends/dispatches a message which contains email, subject, and message. And also opens the acknowledgement dialog box. */\n  submit(message: ContactData): void {\n    this.sendMessage(message);\n    this.selfRef?.close();\n    this.postRef = this.dialog.open(this.postMessageTemplate);\n  }\n\n  /** A function which closes the 'Contact us' dialog and the acknowledgement dialog.  */\n  close(): void {\n    if (this.postRef) {\n      this.postRef.close();\n      this.ga.event('acknowedgement_close', 'modal');\n    }\n    if (this.selfRef) {\n      this.selfRef.close();\n      this.ga.event('contact_close', 'modal');\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1243,7 +1239,7 @@
         },
         {
             "name": "FooterBehaviorComponent",
-            "id": "component-FooterBehaviorComponent-6e2226fd2823ec45b12deabb74bd2bea27f41a93217056233fb4da97a374e8d509787a2e736f773f176b9c6a7e1596d94625647c28a0bdcdbf503d9f68386087",
+            "id": "component-FooterBehaviorComponent-d8c500474c354b0250dc3728c26e98d2605beb57763a74f5558eba94163e733313830c08917b9becdf7567042dabcf243b127ed1056ce95cceb2ac713f73e4bd",
             "file": "src/lib/footer-behavior/footer-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1273,7 +1269,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for about link for user click action.</p>\n",
-                    "line": 37,
+                    "line": 36,
                     "rawdescription": "\nInput for about link for user click action.",
                     "modifierKind": [
                         148
@@ -1288,7 +1284,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>A dispatcher function to download file in specified format</p>\n",
-                    "line": 43,
+                    "line": 42,
                     "rawdescription": "\nA dispatcher function to download file in specified format",
                     "modifierKind": [
                         148
@@ -1303,7 +1299,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Selects a snapshot of the current value of the available download formats</p>\n",
-                    "line": 28,
+                    "line": 27,
                     "rawdescription": "\nSelects a snapshot of the current value of the available download formats",
                     "modifierKind": [
                         148
@@ -1318,7 +1314,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Embed link routing after clicking on Embed</p>\n",
-                    "line": 40,
+                    "line": 39,
                     "rawdescription": "\nEmbed link routing after clicking on Embed",
                     "modifierKind": [
                         148
@@ -1333,7 +1329,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
-                    "line": 31,
+                    "line": 30,
                     "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
                     "modifierKind": [
                         148
@@ -1348,7 +1344,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Metadata page link routing after clicking on Illustration</p>\n",
-                    "line": 34,
+                    "line": 33,
                     "rawdescription": "\nMetadata page link routing after clicking on Illustration",
                     "modifierKind": [
                         148
@@ -1363,7 +1359,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 22,
+                    "line": 21,
                     "rawdescription": "\nInput for product logo URL to displayed on the left side.",
                     "modifierKind": [
                         148
@@ -1378,7 +1374,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 25,
+                    "line": 24,
                     "rawdescription": "\nInput for product title to displayed on the left side.",
                     "modifierKind": [
                         148
@@ -1393,7 +1389,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Selects the current value of the available ScreenMode Size</p>\n",
-                    "line": 45,
+                    "line": 44,
                     "rawdescription": "\nSelects the current value of the available ScreenMode Size",
                     "modifierKind": [
                         148
@@ -1405,7 +1401,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -1427,7 +1423,7 @@
             "description": "<p>A component for footer behavior which provides functionality for various buttons in footer</p>\n",
             "rawdescription": "\nA component for footer behavior which provides functionality for various buttons in footer",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  standalone: true,\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Input for about link for user click action. */\n  readonly aboutLink = LinkIds.About;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { MatDialogModule } from '@angular/material/dialog';\nimport { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { FooterComponent } from '@hra-ui/components/molecules';\nimport { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';\n\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** A component for footer behavior which provides functionality for various buttons in footer */\n@Component({\n  selector: 'ftu-footer-behavior',\n  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],\n  templateUrl: './footer-behavior.component.html',\n  styleUrls: ['./footer-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FooterBehaviorComponent {\n  /** Input for product logo URL to displayed on the left side. */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /** Input for product title to displayed on the left side. */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /** Selects a snapshot of the current value of the available download formats */\n  readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);\n\n  /** Hra portal link routing after clicking on HRA Portal */\n  readonly hraPortal = LinkIds.Portal;\n\n  /** Metadata page link routing after clicking on Illustration */\n  readonly illustrationMetadata = LinkIds.Illustration;\n\n  /** Input for about link for user click action. */\n  readonly aboutLink = LinkIds.About;\n\n  /** Embed link routing after clicking on Embed */\n  readonly embed = LinkIds.Embed;\n\n  /** A dispatcher function to download file in specified format */\n  readonly download = dispatch(DownloadActions.Download);\n  /** Selects the current value of the available ScreenMode Size */\n  readonly size = selectSnapshot(ScreenModeSelectors.size);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1441,7 +1437,7 @@
         },
         {
             "name": "HeaderBehaviorComponent",
-            "id": "component-HeaderBehaviorComponent-47ad8629119752310648b797d1c8e62460925a18b64357c1369e720087db17e5e744d9c95f672082b2da7711f578caa69e7803bc099b8063104255d52466cef1",
+            "id": "component-HeaderBehaviorComponent-eeaaf12c4d6e328ba58245417592b06ae5875e7ec660ceb05ae4496c476f7a1d505045177788469b37bf0927ed5f38a228f167ff9af042548f6f935dd1e366cc",
             "file": "src/lib/header-behavior/header-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1471,7 +1467,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for about link for user click action.</p>\n",
-                    "line": 44,
+                    "line": 43,
                     "rawdescription": "\n\nInput for about link for user click action.\n",
                     "modifierKind": [
                         148
@@ -1486,7 +1482,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for app title to show on the left side.</p>\n",
-                    "line": 34,
+                    "line": 33,
                     "rawdescription": "\n\nInput for app title to show on the left side.\n",
                     "modifierKind": [
                         148
@@ -1501,7 +1497,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product logo URL to displayed on the left side.</p>\n",
-                    "line": 24,
+                    "line": 23,
                     "rawdescription": "\n\nInput for product logo URL to displayed on the left side.\n",
                     "modifierKind": [
                         148
@@ -1516,7 +1512,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product title to displayed on the left side.</p>\n",
-                    "line": 29,
+                    "line": 28,
                     "rawdescription": "\n\nInput for product title to displayed on the left side.\n",
                     "modifierKind": [
                         148
@@ -1531,7 +1527,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for product title link for user click action</p>\n",
-                    "line": 39,
+                    "line": 38,
                     "rawdescription": "\n\nInput for product title link for user click action\n",
                     "modifierKind": [
                         148
@@ -1545,7 +1541,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 53,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which opens the contact modal dialog box",
@@ -1556,7 +1552,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -1570,7 +1566,7 @@
             "description": "<p>Component for Header Behavior</p>\n",
             "rawdescription": "\nComponent for Header Behavior",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { HeaderComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, LinkIds } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** Component for Header Behavior */\n@Component({\n  selector: 'ftu-header-behavior',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  templateUrl: './header-behavior.component.html',\n  styleUrls: ['./header-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderBehaviorComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);\n\n  /**\n   * Input for product title link for user click action\n   */\n  readonly productTitleLink = LinkIds.ProductTitle;\n\n  /**\n   * Input for about link for user click action.\n   */\n  readonly aboutLink = LinkIds.About;\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n    this.ga.event('contact_open', 'modal');\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { MatDialog, MatDialogConfig } from '@angular/material/dialog';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';\nimport { HeaderComponent } from '@hra-ui/components/molecules';\nimport { ResourceIds as Ids, LinkIds } from '@hra-ui/state';\nimport { GoogleAnalyticsService } from 'ngx-google-analytics';\nimport { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';\n\n/** Component for Header Behavior */\n@Component({\n  selector: 'ftu-header-behavior',\n  imports: [CommonModule, HeaderComponent],\n  templateUrl: './header-behavior.component.html',\n  styleUrls: ['./header-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderBehaviorComponent {\n  /**\n   * Input for product logo URL to displayed on the left side.\n   */\n  readonly productLogoUrl = selectQuerySnapshot(RR.url, Ids.ProductLogoUrl);\n\n  /**\n   * Input for product title to displayed on the left side.\n   */\n  readonly productTitle = selectQuerySnapshot(RR.anyText, Ids.ProductTitle);\n\n  /**\n   * Input for app title to show on the left side.\n   */\n  readonly appTitle = selectQuerySnapshot(RR.anyText, Ids.AppTitle);\n\n  /**\n   * Input for product title link for user click action\n   */\n  readonly productTitleLink = LinkIds.ProductTitle;\n\n  /**\n   * Input for about link for user click action.\n   */\n  readonly aboutLink = LinkIds.About;\n\n  /** A dialog box which shows contact modal after clicking on contact */\n  private readonly dialog = inject(MatDialog);\n\n  /** Google analytics tracking service */\n  private readonly ga = inject(GoogleAnalyticsService);\n\n  /** A function which opens the contact modal dialog box */\n  contact(): void {\n    const dialogConfig = new MatDialogConfig();\n    dialogConfig.disableClose = true;\n    this.dialog.open(ContactBehaviorComponent, dialogConfig);\n    this.ga.event('contact_open', 'modal');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1584,7 +1580,7 @@
         },
         {
             "name": "HraLandingPageIntroWcBehaviourComponent",
-            "id": "component-HraLandingPageIntroWcBehaviourComponent-b8c2509d12b92bff8ab139855b712563f2a92e8aa91e8ecc05714063b91b1765ade0e9c6e691367a2eaa4724d94d6dfe4ade28c89da03cfcf6eae21630452b23",
+            "id": "component-HraLandingPageIntroWcBehaviourComponent-68b9d8cd667b427ebef6b83b05b8cc64c18899e5b144c2d5bf2ef1b91aae9b098f738687da1b6703eadb4c4abdf4013cf33aee7db8dc5a700f079bc5703ee17c",
             "file": "src/lib/hra-landing-page-intro-wc-behaviour/hra-landing-page-intro-wc-behaviour.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1614,7 +1610,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro description</p>\n",
-                    "line": 21,
+                    "line": 20,
                     "rawdescription": "\nselect snapshot for landing page intro description",
                     "modifierKind": [
                         148
@@ -1629,7 +1625,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro partners</p>\n",
-                    "line": 25,
+                    "line": 24,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
                         148
@@ -1644,7 +1640,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro partners</p>\n",
-                    "line": 23,
+                    "line": 22,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
                         148
@@ -1659,7 +1655,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for Landing Page title</p>\n",
-                    "line": 19,
+                    "line": 18,
                     "rawdescription": "\nselect snapshot for Landing Page title",
                     "modifierKind": [
                         148
@@ -1671,7 +1667,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -1685,7 +1681,7 @@
             "description": "<p>Component for LandingPage Intro Behaviour: Web component</p>\n",
             "rawdescription": "\nComponent for LandingPage Intro Behaviour: Web component",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HraLandingPageIntroWcComponent } from '@hra-ui/components/molecules';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceIds as RIds } from '@hra-ui/state';\n\n/** Component for LandingPage Intro Behaviour: Web component */\n@Component({\n  selector: 'ftu-wc-intro',\n  standalone: true,\n  imports: [CommonModule, HraLandingPageIntroWcComponent],\n  templateUrl: './hra-landing-page-intro-wc-behaviour.component.html',\n  styleUrls: ['./hra-landing-page-intro-wc-behaviour.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HraLandingPageIntroWcBehaviourComponent {\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroReadMore);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HraLandingPageIntroWcComponent } from '@hra-ui/components/molecules';\nimport { ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport { selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceIds as RIds } from '@hra-ui/state';\n\n/** Component for LandingPage Intro Behaviour: Web component */\n@Component({\n  selector: 'ftu-wc-intro',\n  imports: [CommonModule, HraLandingPageIntroWcComponent],\n  templateUrl: './hra-landing-page-intro-wc-behaviour.component.html',\n  styleUrls: ['./hra-landing-page-intro-wc-behaviour.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HraLandingPageIntroWcBehaviourComponent {\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroReadMore = selectQuerySnapshot(RRS.markdown, RIds.LandingPageIntroReadMore);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1699,7 +1695,7 @@
         },
         {
             "name": "LandingPageContentComponent",
-            "id": "component-LandingPageContentComponent-696c82fc71660365feaedb0f185b4186d989c8f34bb7e841ec8c10a08a87a215bd6ecd8f3b7138ab610e73fb4e607a772ca7924271ff8395ccf6f79e62d9cdf4",
+            "id": "component-LandingPageContentComponent-20cf3e7e003939e49779bb6a6b0299fc59e314e0697ef7d59a071ebe899c845b3e20c09894168a36f76ab286d677055b11cd16334e6a7bfca2ade80a6855db1e",
             "file": "src/lib/landing-page-content/landing-page-content.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1729,7 +1725,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Base href</p>\n",
-                    "line": 37,
+                    "line": 36,
                     "rawdescription": "\nBase href",
                     "modifierKind": [
                         148
@@ -1743,7 +1739,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>array of element refs for intersectables</p>\n",
-                    "line": 34,
+                    "line": 33,
                     "rawdescription": "\narray of element refs for intersectables",
                     "decorators": [
                         {
@@ -1765,7 +1761,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth description</p>\n",
-                    "line": 57,
+                    "line": 56,
                     "rawdescription": "\nselect snapshot for landing page depth description",
                     "modifierKind": [
                         148
@@ -1780,7 +1776,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth img</p>\n",
-                    "line": 61,
+                    "line": 60,
                     "rawdescription": "\nselect snapshot for landing page depth img",
                     "modifierKind": [
                         148
@@ -1795,7 +1791,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot forlanding page depth more text</p>\n",
-                    "line": 59,
+                    "line": 58,
                     "rawdescription": "\nselect snapshot forlanding page depth more text",
                     "modifierKind": [
                         148
@@ -1810,7 +1806,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page depth title</p>\n",
-                    "line": 55,
+                    "line": 54,
                     "rawdescription": "\nselect snapshot for landing page depth title",
                     "modifierKind": [
                         148
@@ -1825,7 +1821,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro description</p>\n",
-                    "line": 41,
+                    "line": 40,
                     "rawdescription": "\nselect snapshot for landing page intro description",
                     "modifierKind": [
                         148
@@ -1840,7 +1836,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro img</p>\n",
-                    "line": 47,
+                    "line": 46,
                     "rawdescription": "\nselect snapshot for landing page intro img",
                     "modifierKind": [
                         148
@@ -1855,7 +1851,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro more text</p>\n",
-                    "line": 45,
+                    "line": 44,
                     "rawdescription": "\nselect snapshot for landing page intro more text",
                     "modifierKind": [
                         148
@@ -1870,7 +1866,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for landing page intro partners</p>\n",
-                    "line": 43,
+                    "line": 42,
                     "rawdescription": "\nselect snapshot for landing page intro partners",
                     "modifierKind": [
                         148
@@ -1885,7 +1881,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for Landing Page title</p>\n",
-                    "line": 39,
+                    "line": 38,
                     "rawdescription": "\nselect snapshot for Landing Page title",
                     "modifierKind": [
                         148
@@ -1900,7 +1896,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Expose links for use it template</p>\n",
-                    "line": 64,
+                    "line": 63,
                     "rawdescription": "\nExpose links for use it template",
                     "modifierKind": [
                         148
@@ -1915,7 +1911,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics</p>\n",
-                    "line": 49,
+                    "line": 48,
                     "rawdescription": "\nselect snapshot for metrics",
                     "modifierKind": [
                         148
@@ -1930,7 +1926,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics logo</p>\n",
-                    "line": 53,
+                    "line": 52,
                     "rawdescription": "\nselect snapshot for metrics logo",
                     "modifierKind": [
                         148
@@ -1945,7 +1941,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>select snapshot for metrics title</p>\n",
-                    "line": 51,
+                    "line": 50,
                     "rawdescription": "\nselect snapshot for metrics title",
                     "modifierKind": [
                         148
@@ -1972,7 +1968,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 82,
+                    "line": 81,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\ncallback function for intersection observer",
@@ -2003,7 +1999,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -2025,7 +2021,7 @@
             "description": "<p>Component for LandingPageContent Behavior</p>\n",
             "rawdescription": "\nComponent for LandingPageContent Behavior",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  inject,\n  QueryList,\n  Renderer2,\n  ViewChildren,\n} from '@angular/core';\nimport { injectDestroy$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { BaseHrefSelectors, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport {\n  LandingPageInDepthComponent,\n  LandingPageIntroComponent,\n  MetricItem,\n  MetricsComponent,\n} from '@hra-ui/components/molecules';\nimport { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';\n\n/** Component for LandingPageContent Behavior */\n@Component({\n  selector: 'ftu-landing-page-content',\n  standalone: true,\n  imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],\n  templateUrl: './landing-page-content.component.html',\n  styleUrls: ['./landing-page-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageContentComponent implements AfterViewInit {\n  /** array of element refs for intersectables */\n  @ViewChildren('intersectable', { read: ElementRef })\n  readonly intersectableEls!: QueryList<ElementRef>;\n\n  /** Base href */\n  readonly baseHref = selectSnapshot(BaseHrefSelectors.baseHref);\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n  /** select snapshot for landing page intro more text */\n  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);\n  /** select snapshot for landing page intro img */\n  readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);\n  /** select snapshot for metrics */\n  readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;\n  /** select snapshot for metrics title */\n  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);\n  /** select snapshot for metrics logo */\n  readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);\n  /** select snapshot for landing page depth title */\n  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);\n  /** select snapshot for landing page depth description */\n  readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);\n  /** select snapshot forlanding page depth more text */\n  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);\n  /** select snapshot for landing page depth img */\n  readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);\n\n  /** Expose links for use it template */\n  readonly LinkIds = LinkIds;\n\n  /** Renderer to add class for animation */\n  private readonly renderer = inject(Renderer2);\n  /** destroys observer */\n  private readonly destroy$ = injectDestroy$();\n\n  /** creates an observer after view init */\n  ngAfterViewInit(): void {\n    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {\n      threshold: 0.18,\n    });\n\n    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));\n    this.destroy$.subscribe(() => observer.disconnect());\n  }\n\n  /** callback function for intersection observer */\n  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {\n    for (const { isIntersecting, target } of entries) {\n      if (isIntersecting) {\n        this.renderer.addClass(target, 'visible');\n        observer.unobserve(target);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  inject,\n  QueryList,\n  Renderer2,\n  ViewChildren,\n} from '@angular/core';\nimport { injectDestroy$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { BaseHrefSelectors, ResourceRegistrySelectors as RRS } from '@hra-ui/cdk/state';\nimport {\n  LandingPageInDepthComponent,\n  LandingPageIntroComponent,\n  MetricItem,\n  MetricsComponent,\n} from '@hra-ui/components/molecules';\nimport { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';\n\n/** Component for LandingPageContent Behavior */\n@Component({\n  selector: 'ftu-landing-page-content',\n  imports: [CommonModule, LandingPageIntroComponent, MetricsComponent, LandingPageInDepthComponent],\n  templateUrl: './landing-page-content.component.html',\n  styleUrls: ['./landing-page-content.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LandingPageContentComponent implements AfterViewInit {\n  /** array of element refs for intersectables */\n  @ViewChildren('intersectable', { read: ElementRef })\n  readonly intersectableEls!: QueryList<ElementRef>;\n\n  /** Base href */\n  readonly baseHref = selectSnapshot(BaseHrefSelectors.baseHref);\n  /** select snapshot for Landing Page title */\n  readonly landingPageIntroTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageTitle);\n  /** select snapshot for landing page intro description */\n  readonly landingPageIntroDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDescription);\n  /** select snapshot for landing page intro partners */\n  readonly landingPageIntroPartners = selectQuerySnapshot(RRS.markdown, RIds.LandingPagePartners);\n  /** select snapshot for landing page intro more text */\n  readonly landingPageIntroMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageIntroMoreText);\n  /** select snapshot for landing page intro img */\n  readonly landingPageIntroImg = selectQuerySnapshot(RRS.url, RIds.LandingPageIntroImg);\n  /** select snapshot for metrics */\n  readonly metrics = selectQuerySnapshot(RRS.field, RIds.Metrics, RTypes.Metrics, 'metrics' as const, [])<MetricItem[]>;\n  /** select snapshot for metrics title */\n  readonly metricsTitle = selectQuerySnapshot(RRS.anyText, RIds.MetricsTitle);\n  /** select snapshot for metrics logo */\n  readonly metricsLogo = selectQuerySnapshot(RRS.url, RIds.MetricsLogo);\n  /** select snapshot for landing page depth title */\n  readonly landingPageDepthTitle = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthTitle);\n  /** select snapshot for landing page depth description */\n  readonly landingPageDepthDescription = selectQuerySnapshot(RRS.markdown, RIds.LandingPageDepthDescription);\n  /** select snapshot forlanding page depth more text */\n  readonly landingPageDepthMoreText = selectQuerySnapshot(RRS.anyText, RIds.LandingPageDepthMoreText);\n  /** select snapshot for landing page depth img */\n  readonly landingPageDepthImg = selectQuerySnapshot(RRS.url, RIds.LandingPageDepthImg);\n\n  /** Expose links for use it template */\n  readonly LinkIds = LinkIds;\n\n  /** Renderer to add class for animation */\n  private readonly renderer = inject(Renderer2);\n  /** destroys observer */\n  private readonly destroy$ = injectDestroy$();\n\n  /** creates an observer after view init */\n  ngAfterViewInit(): void {\n    const observer = new IntersectionObserver(this.handleIntersection.bind(this), {\n      threshold: 0.18,\n    });\n\n    this.intersectableEls.forEach((el) => observer.observe(el.nativeElement));\n    this.destroy$.subscribe(() => observer.disconnect());\n  }\n\n  /** callback function for intersection observer */\n  handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {\n    for (const { isIntersecting, target } of entries) {\n      if (isIntersecting) {\n        this.renderer.addClass(target, 'visible');\n        observer.unobserve(target);\n      }\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2042,7 +2038,7 @@
         },
         {
             "name": "MedicalIllustrationBehaviorComponent",
-            "id": "component-MedicalIllustrationBehaviorComponent-823361ddfcce21a4d4493b3c1e2042c3130364cc3e39339f6be4072ea9c5c93761fa0fc13c915d91503b3eb21b1a6df64cb1e56c9a96a207b394a287911ad4c1",
+            "id": "component-MedicalIllustrationBehaviorComponent-3fa9009f9a8b3bd6194dcfeda7ba257fe434f482cde1449b5c7b9ebb9e6e83c51b9b63f7d3284cf2ca6552493ba61772cf0ae6d21f6b0fd0116222754208bb96",
             "file": "src/lib/medical-illustration-behavior/medical-illustration-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2072,7 +2068,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Current illustration url</p>\n",
-                    "line": 23,
+                    "line": 22,
                     "rawdescription": "\n\nCurrent illustration url\n",
                     "modifierKind": [
                         148
@@ -2087,7 +2083,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Curent highlighted cell id</p>\n",
-                    "line": 33,
+                    "line": 32,
                     "rawdescription": "\n\nCurent highlighted cell id\n",
                     "modifierKind": [
                         148
@@ -2102,7 +2098,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Iri  of medical illustration behavior component</p>\n",
-                    "line": 38,
+                    "line": 37,
                     "rawdescription": "\n\nIri  of medical illustration behavior component\n",
                     "modifierKind": [
                         148
@@ -2117,7 +2113,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Current mapping file</p>\n",
-                    "line": 28,
+                    "line": 27,
                     "rawdescription": "\n\nCurrent mapping file\n",
                     "modifierKind": [
                         148
@@ -2132,7 +2128,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Get all tissues</p>\n",
-                    "line": 43,
+                    "line": 42,
                     "rawdescription": "\n\nGet all tissues\n",
                     "modifierKind": [
                         148
@@ -2147,7 +2143,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node click</p>\n",
-                    "line": 62,
+                    "line": 61,
                     "rawdescription": "\n\nUpdates the active node on node click\n",
                     "modifierKind": [
                         148
@@ -2162,7 +2158,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Updates the active node on node hover</p>\n",
-                    "line": 57,
+                    "line": 56,
                     "rawdescription": "\n\nUpdates the active node on node hover\n",
                     "modifierKind": [
                         148
@@ -2174,7 +2170,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -2192,7 +2188,7 @@
             "description": "<p>Behavior component for medical illustration component</p>\n",
             "rawdescription": "\n\nBehavior component for medical illustration component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  standalone: true,\n  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Curent highlighted cell id\n   */\n  readonly highlightId = selectSnapshot(IllustratorSelectors.highlightedCell);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri && tissues ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { InteractiveSvgComponent } from '@hra-ui/components/molecules';\nimport { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Behavior component for medical illustration component\n */\n@Component({\n  selector: 'ftu-medical-illustration-behavior',\n  imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],\n  templateUrl: './medical-illustration-behavior.component.html',\n  styleUrls: ['./medical-illustration-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MedicalIllustrationBehaviorComponent {\n  /**\n   * Current illustration url\n   */\n  readonly currentUrl = selectSnapshot(IllustratorSelectors.url);\n\n  /**\n   * Current mapping file\n   */\n  readonly mapping = selectSnapshot(IllustratorSelectors.mapping);\n\n  /**\n   * Curent highlighted cell id\n   */\n  readonly highlightId = selectSnapshot(IllustratorSelectors.highlightedCell);\n\n  /**\n   * Iri  of medical illustration behavior component\n   */\n  readonly iri = selectSnapshot(ActiveFtuSelectors.iri);\n\n  /**\n   * Get all tissues\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Gets tissue title from the list of tissues\n   */\n  get tissueTitle(): string {\n    const iri = this.iri();\n    const tissues = this.tissues();\n    return iri && tissues ? tissues[iri].label : '';\n  }\n\n  /**\n   * Updates the active node on node hover\n   */\n  readonly updateNodeOnHover = dispatch(IllustratorActions.SetHover);\n\n  /**\n   * Updates the active node on node click\n   */\n  readonly updateNodeOnClicked = dispatch(IllustratorActions.SetClicked);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2209,7 +2205,7 @@
                         "name": "tissueTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 48,
+                        "line": 47,
                         "rawdescription": "\n\nGets tissue title from the list of tissues\n",
                         "description": "<p>Gets tissue title from the list of tissues</p>\n"
                     }
@@ -2219,7 +2215,7 @@
         },
         {
             "name": "ScreenNoticeBehaviorComponent",
-            "id": "component-ScreenNoticeBehaviorComponent-de4fc156bf7f658d9ca0a8d114626d829387a03f3b206cb5439f1ad22b9e157cbc51e850b06eb8f0b9dd48a75acb723b42c7fd79d0c50694757e9d23cac9f416",
+            "id": "component-ScreenNoticeBehaviorComponent-14e97ac8afe2c956b3d6fa71baad59c79b4f032e4e76f310164417ec522b65c484831d81e686fdf7902aeefb193cf2918badfa7f9f3791b0f70893ac3e8aedbe",
             "file": "src/lib/screen-notice-behavior/screen-notice-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2249,7 +2245,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Content  of screen notice behavior component</p>\n",
-                    "line": 21,
+                    "line": 20,
                     "rawdescription": "\nContent  of screen notice behavior component",
                     "modifierKind": [
                         148
@@ -2264,7 +2260,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Hra portal link routing after clicking on HRA Portal</p>\n",
-                    "line": 24,
+                    "line": 23,
                     "rawdescription": "\nHra portal link routing after clicking on HRA Portal",
                     "modifierKind": [
                         148
@@ -2278,7 +2274,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nA function which closes the screen size notice dialog box",
@@ -2289,7 +2285,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -2303,7 +2299,7 @@
             "description": "<p>A component for screen size notice behavior which provides the content to be displayed and provides functionality\nfor the buttons on the notice modal</p>\n",
             "rawdescription": "\nA component for screen size notice behavior which provides the content to be displayed and provides functionality\nfor the buttons on the notice modal",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR, StorageActions, StorageId } from '@hra-ui/cdk/state';\nimport { ResourceIds, LinkIds } from '@hra-ui/state';\nimport { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';\nimport { MatDialogRef } from '@angular/material/dialog';\n\n/** A component for screen size notice behavior which provides the content to be displayed and provides functionality\n * for the buttons on the notice modal */\n@Component({\n  selector: 'ftu-ui-screen-notice-behavior',\n  standalone: true,\n  imports: [CommonModule, ScreenSizeNoticeComponent],\n  templateUrl: './screen-notice-behavior.component.html',\n  styleUrls: ['./screen-notice-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScreenNoticeBehaviorComponent {\n  /** Content  of screen notice behavior component*/\n  readonly content = selectQuerySnapshot(RR.anyText, ResourceIds.ScreenSizeNoticeContent);\n\n  /** Hra portal link routing after clicking on HRA Portal*/\n  readonly portal = LinkIds.Portal;\n\n  /** Reference for the screen size notice dialog box*/\n  private readonly ref = inject(MatDialogRef, { optional: true });\n\n  /** A dispatcher function that sets the Local Storage as 'shown'*/\n  private readonly setScreenNoticeShown = dispatch(StorageActions.Set, StorageId.Local, 'screen-size-notice', 'shown');\n\n  /** A function which closes the screen size notice dialog box*/\n  close(): void {\n    this.setScreenNoticeShown();\n    this.ref?.close();\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';\nimport { ResourceRegistrySelectors as RR, StorageActions, StorageId } from '@hra-ui/cdk/state';\nimport { ResourceIds, LinkIds } from '@hra-ui/state';\nimport { ScreenSizeNoticeComponent } from '@hra-ui/components/molecules';\nimport { MatDialogRef } from '@angular/material/dialog';\n\n/** A component for screen size notice behavior which provides the content to be displayed and provides functionality\n * for the buttons on the notice modal */\n@Component({\n  selector: 'ftu-ui-screen-notice-behavior',\n  imports: [CommonModule, ScreenSizeNoticeComponent],\n  templateUrl: './screen-notice-behavior.component.html',\n  styleUrls: ['./screen-notice-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScreenNoticeBehaviorComponent {\n  /** Content  of screen notice behavior component*/\n  readonly content = selectQuerySnapshot(RR.anyText, ResourceIds.ScreenSizeNoticeContent);\n\n  /** Hra portal link routing after clicking on HRA Portal*/\n  readonly portal = LinkIds.Portal;\n\n  /** Reference for the screen size notice dialog box*/\n  private readonly ref = inject(MatDialogRef, { optional: true });\n\n  /** A dispatcher function that sets the Local Storage as 'shown'*/\n  private readonly setScreenNoticeShown = dispatch(StorageActions.Set, StorageId.Local, 'screen-size-notice', 'shown');\n\n  /** A function which closes the screen size notice dialog box*/\n  close(): void {\n    this.setScreenNoticeShown();\n    this.ref?.close();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2317,7 +2313,7 @@
         },
         {
             "name": "TissueLibraryBehaviorComponent",
-            "id": "component-TissueLibraryBehaviorComponent-0438ffe8ce35a7bdddc419376b1dec7149d1ed4646027ba49b1fa5b3ffd1f5d80e34e5e888e5b5e168197a721efb2a2e594efadcfd1705b97c7de48a2765fd0a",
+            "id": "component-TissueLibraryBehaviorComponent-e1118ef49a639ca159419d4b9d97db954a3e7a7c7c30766d85678be487f797f5cac5eeefb4047407649b754de258cb69ba5ae670558e49ffe0c8aabc7cc81747",
             "file": "src/lib/tissue-library-behavior/tissue-library-behavior.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2346,7 +2342,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Reference to the TissueTreeListComponent.</p>\n",
-                    "line": 26,
+                    "line": 25,
                     "rawdescription": "\n\nReference to the TissueTreeListComponent.\n",
                     "decorators": [
                         {
@@ -2368,7 +2364,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Navigates to a tissue page</p>\n",
-                    "line": 41,
+                    "line": 40,
                     "rawdescription": "\n\nNavigates to a tissue page\n"
                 },
                 {
@@ -2379,7 +2375,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Selected  of tissue library behavior component</p>\n",
-                    "line": 36,
+                    "line": 35,
                     "rawdescription": "\n\nSelected  of tissue library behavior component\n"
                 },
                 {
@@ -2391,7 +2387,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Input for tissues data</p>\n",
-                    "line": 31,
+                    "line": 30,
                     "rawdescription": "\n\nInput for tissues data\n",
                     "modifierKind": [
                         148
@@ -2403,7 +2399,7 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": true,
+            "standalone": false,
             "imports": [
                 {
                     "name": "CommonModule",
@@ -2421,7 +2417,7 @@
             "description": "<p>Component for Tissue Library Behavior</p>\n",
             "rawdescription": "\n\nComponent for Tissue Library Behavior\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LinkRegistryActions } from '@hra-ui/cdk/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  standalone: true,\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list?: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Navigates to a tissue page\n   */\n  navigate = dispatch(LinkRegistryActions.Navigate);\n\n  /**\n   * Sets the TissueItem instance as undefined if the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if iri is undefined */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues() && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list?.resetSelection();\n      }\n    });\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';\nimport { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';\nimport { LinkRegistryActions } from '@hra-ui/cdk/state';\nimport { LabelBoxComponent } from '@hra-ui/components/atoms';\nimport { TissueTreeListComponent } from '@hra-ui/components/molecules';\nimport { Tissue } from '@hra-ui/services';\nimport { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';\n\n/**\n * Component for Tissue Library Behavior\n */\n@Component({\n  selector: 'ftu-tissue-library-behavior',\n  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],\n  templateUrl: './tissue-library-behavior.component.html',\n  styleUrls: ['./tissue-library-behavior.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class TissueLibraryBehaviorComponent {\n  /**\n   * Reference to the TissueTreeListComponent.\n   */\n  @ViewChild('list', { static: true })\n  readonly list?: TissueTreeListComponent<never, never>;\n\n  /**\n   * Input for tissues data\n   */\n  readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);\n\n  /**\n   * Selected  of tissue library behavior component\n   */\n  selected?: Tissue;\n\n  /**\n   * Navigates to a tissue page\n   */\n  navigate = dispatch(LinkRegistryActions.Navigate);\n\n  /**\n   * Sets the TissueItem instance as undefined if the url is undefined\n   */\n  constructor() {\n    /** Get iris from the observable else reset selection if iri is undefined */\n    select$(ActiveFtuSelectors.iri).subscribe((iri) => {\n      this.selected = iri && this.tissues() && this.tissues()[iri];\n      if (iri === undefined) {\n        this.list?.resetSelection();\n      }\n    });\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2436,7 +2432,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 41,
+                "line": 40,
                 "rawdescription": "\n\nSets the TissueItem instance as undefined if the url is undefined\n"
             },
             "extends": [],

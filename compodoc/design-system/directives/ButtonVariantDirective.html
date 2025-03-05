@@ -226,7 +226,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/BaseButtonVariantDirective.html#source" target="_self" >BaseButtonVariantDirective:32</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseButtonVariantDirective.html#source" target="_self" >BaseButtonVariantDirective:33</a></code>
 </div>
                         </td>
                     </tr>
@@ -322,6 +322,7 @@ export abstract class BaseButtonVariantDirective {
 })
 export class ButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly variant &#x3D; input.required&lt;ButtonVariant&gt;({ alias: &#x27;hraButtonVariant&#x27; });
 }
 

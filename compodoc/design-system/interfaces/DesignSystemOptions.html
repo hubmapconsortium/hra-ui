@@ -267,7 +267,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayContainer } from &#x27;@angular/cdk/overlay&#x27;;
 import { HttpFeature, HttpFeatureKind, provideHttpClient } from &#x27;@angular/common/http&#x27;;
-import { APP_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders } from &#x27;@angular/core&#x27;;
+import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from &#x27;@angular/core&#x27;;
 import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 import { provideIcons } from &#x27;@hra-ui/cdk/icons&#x27;;
 import { provideButtonToggle } from &#x27;@hra-ui/design-system/button-toggle&#x27;;
@@ -292,16 +292,10 @@ export interface DesignSystemOptions {
 /** Get the providers shared between prod and testing */
 export function provideDesignSystemCommon(options?: DesignSystemOptions) {
   return [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () &#x3D;&gt; {
-        const overlayContainer &#x3D; inject(OverlayContainer);
-        return () &#x3D;&gt; {
-          overlayContainer.getContainerElement().classList.add(&#x27;hra-app&#x27;);
-        };
-      },
-    },
+    provideAppInitializer(() &#x3D;&gt; {
+      const overlayContainer &#x3D; inject(OverlayContainer);
+      overlayContainer.getContainerElement().classList.add(&#x27;hra-app&#x27;);
+    }),
     provideIcons({
       fontIcons: {
         defaultClasses: [&#x27;material-symbols-rounded&#x27;],

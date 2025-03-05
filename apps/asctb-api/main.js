@@ -123,29 +123,29 @@ function setupCSVRoutes(app) {
             if (output === 'owl') {
                 const graphData = await (0, graph_owl_functions_1.makeOwlData)((0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses));
                 res.type('application/rdf+xml');
-                return res.send(graphData);
+                res.send(graphData);
             }
             else if (output === 'jsonld') {
                 let graphData = (0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses);
                 if (expanded) {
                     graphData = await (0, jsonld_1.expand)(graphData);
                 }
-                return res.send(graphData);
+                res.send(graphData);
             }
             else if (output === 'graph') {
                 const graphData = (0, graph_functions_1.makeGraphData)(asctbData);
-                return res.send({
+                res.send({
                     data: graphData,
                 });
             }
             else if (output === 'validate') {
                 const reports = asctbDataResponses.map(validation_report_function_1.makeValidationReport);
                 res.type('text/plain');
-                return res.send(reports[0]);
+                res.send(reports[0]);
             }
             else {
                 // The default is returning the json
-                return res.send({
+                res.send({
                     data: asctbData,
                     metadata: asctbDataResponse.metadata,
                     csv: asctbDataResponse.csv,
@@ -157,7 +157,7 @@ function setupCSVRoutes(app) {
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: 'Please provide a either a valid csv url or a valid public google sheet url. If you are uploading either of these methods, please check the CSV format',
                 code: 500,
             });
@@ -169,17 +169,19 @@ function setupCSVRoutes(app) {
     app.post('/v2/csv', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         if (!req.files || !req.files.csvFile) {
-            return res.status(400).send({
+            res.status(400).send({
                 msg: 'This route only accepts CSVs POSTed and called csvFile',
                 code: 400,
             });
+            return;
         }
         const file = req.files.csvFile;
         if (file.mimetype !== 'text/csv' || file.size > 10000000) {
-            return res.status(400).send({
+            res.status(400).send({
                 msg: 'File must be a CSV less than 10 MB.',
                 code: 400,
             });
+            return;
         }
         const dataString = file.data.toString();
         console.log('File uploaded: ', file.name);
@@ -188,7 +190,7 @@ function setupCSVRoutes(app) {
                 skipEmptyLines: 'greedy',
             });
             const asctbData = (0, api_functions_1.makeASCTBData)(data);
-            return res.send({
+            res.send({
                 data: asctbData.data,
                 metadata: asctbData.metadata,
                 csv: dataString,
@@ -199,7 +201,7 @@ function setupCSVRoutes(app) {
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: 'Please check the CSV format',
                 code: 500,
             });
@@ -1053,7 +1055,7 @@ function makeJsonLdData(data, withSubclasses = true) {
     nodes.forEach((node, index) => {
         let ontologyId = node.metadata.ontologyId;
         let iri;
-        if (ontologyId?.trim().length > 0 ?? false) {
+        if (ontologyId?.trim().length > 0) {
             ontologyId = (0, lookup_functions_1.fixOntologyId)(ontologyId);
             iri = (0, lookup_functions_1.guessIri)(ontologyId);
         }
@@ -1382,13 +1384,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.makeOwlData = makeOwlData;
 const stream_browserify_1 = __webpack_require__(19);
@@ -1650,7 +1662,7 @@ function setupGoogleSheetRoutes(app) {
             }
             const { data } = papaparse_1.default.parse(response.data);
             const asctbData = (0, api_functions_1.makeASCTBData)(data);
-            return res.send({
+            res.send({
                 data: asctbData.data,
                 metadata: asctbData.metadata,
                 warnings: asctbData.warnings,
@@ -1661,7 +1673,7 @@ function setupGoogleSheetRoutes(app) {
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: 'Please check the table format or the sheet access',
                 code: 500,
             });
@@ -1685,13 +1697,13 @@ function setupGoogleSheetRoutes(app) {
             const { data } = papaparse_1.default.parse(resp.data);
             const asctbData = (0, api_functions_1.makeASCTBData)(data);
             const graphData = (0, graph_functions_1.makeGraphData)(asctbData.data);
-            return res.send({
+            res.send({
                 data: graphData,
             });
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: 'Please check the table format or the sheet access',
                 code: 500,
             });
@@ -1857,7 +1869,7 @@ function setupPlaygroundRoutes(app) {
         try {
             const parsed = papaparse_1.default.parse(const_1.PLAYGROUND_CSV).data;
             const asctbData = (0, api_functions_1.makeASCTBData)(parsed);
-            return res.send({
+            res.send({
                 data: asctbData.data,
                 metadata: asctbData.metadata,
                 csv: const_1.PLAYGROUND_CSV,
@@ -1867,7 +1879,7 @@ function setupPlaygroundRoutes(app) {
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: JSON.stringify(err),
                 code: 500,
             });
@@ -1880,7 +1892,7 @@ function setupPlaygroundRoutes(app) {
         const csv = papaparse_1.default.unparse(req.body);
         try {
             const asctbData = (0, api_functions_1.makeASCTBData)(req.body.data);
-            return res.send({
+            res.send({
                 data: asctbData.data,
                 metadata: asctbData.metadata,
                 parsed: req.body,
@@ -1890,7 +1902,7 @@ function setupPlaygroundRoutes(app) {
         }
         catch (err) {
             console.log(err);
-            return res.status(500).send({
+            res.status(500).send({
                 msg: JSON.stringify(err),
                 code: 500,
             });
@@ -1998,7 +2010,7 @@ module.exports = require("memory-cache");
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__(0);
 /******/ 	var __webpack_export_target__ = exports;
-/******/ 	for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
+/******/ 	for(var __webpack_i__ in __webpack_exports__) __webpack_export_target__[__webpack_i__] = __webpack_exports__[__webpack_i__];
 /******/ 	if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
 /******/ 	
 /******/ })()

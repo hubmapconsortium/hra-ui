@@ -161,10 +161,6 @@ This input field component also had required validation check.</p>
                 <td class="col-md-9"><code>hra-required-input</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
             <tr>
                 <td class="col-md-3">imports</td>
@@ -271,7 +267,7 @@ This input field component also had required validation check.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/required-input/required-input.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/required-input/required-input.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -310,7 +306,7 @@ before output emmiter is triggered</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/lib/required-input/required-input.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/required-input/required-input.component.ts:24</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -340,7 +336,7 @@ before output emmiter is triggered</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/lib/required-input/required-input.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/lib/required-input/required-input.component.ts:29</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -382,7 +378,7 @@ before output emmiter is triggered</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/required-input/required-input.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/lib/required-input/required-input.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -414,7 +410,7 @@ before output emmiter is triggered</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/lib/required-input/required-input.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/lib/required-input/required-input.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -447,7 +443,6 @@ import { map, takeUntil } from &#x27;rxjs&#x27;;
  */
 @Component({
   selector: &#x27;hra-required-input&#x27;,
-  standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: &#x27;./required-input.component.html&#x27;,
   styleUrls: [&#x27;./required-input.component.scss&#x27;],
@@ -487,7 +482,7 @@ export class RequiredInputComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) &#x3D;&gt; (control.valid ? (value as string) : undefined))
+        map((value) &#x3D;&gt; (control.valid ? (value as string) : undefined)),
       )
       .subscribe(inputChange);
   }

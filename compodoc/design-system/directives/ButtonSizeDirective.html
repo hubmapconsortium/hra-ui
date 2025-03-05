@@ -136,7 +136,7 @@
 
                     <tr>
                         <td class="col-md-3">Selector</td>
-                        <td class="col-md-9"><code>button[mat-button][hraButtonSize]:not([hraCtaButton]), a[mat-button][hraButtonSize]:not([hraCtaButton])</code></td>
+                        <td class="col-md-9"><code>button[mat-button][hraButtonSize], a[mat-button][hraButtonSize]</code></td>
                     </tr>
 
                     <tr>
@@ -209,7 +209,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">buttons/button/src/lib/directives/size.directive.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">buttons/button/src/lib/directives/size.directive.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -236,7 +236,7 @@ export type ButtonSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27;;
 
 /** Style a mat-button to a specific named size */
 @Directive({
-  selector: &#x27;button[mat-button][hraButtonSize]:not([hraCtaButton]), a[mat-button][hraButtonSize]:not([hraCtaButton])&#x27;,
+  selector: &#x27;button[mat-button][hraButtonSize], a[mat-button][hraButtonSize]&#x27;,
   standalone: true,
   host: {
     &#x27;[class]&#x27;: &#x27;&quot;hra-button-size-&quot; + size()&#x27;,
@@ -244,6 +244,7 @@ export type ButtonSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27;;
 })
 export class ButtonSizeDirective {
   /** Size of button */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly size &#x3D; input.required&lt;ButtonSize&gt;({ alias: &#x27;hraButtonSize&#x27; });
 }
 </code></pre>
