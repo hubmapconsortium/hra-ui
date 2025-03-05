@@ -12,6 +12,7 @@ export type Sex = 'male' | 'female';
   templateUrl: './spatial-search-config.component.html',
   styleUrls: ['./spatial-search-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchConfigComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-config';

@@ -14,7 +14,6 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
  */
 @Component({
   selector: 'hra-nav-header-buttons',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonToggleModule,

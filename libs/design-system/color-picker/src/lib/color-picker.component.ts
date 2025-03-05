@@ -6,7 +6,6 @@ import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 /** Color Picker Component */
 @Component({
   selector: 'hra-color-picker',
-  standalone: true,
   imports: [CommonModule, ColorPickerModule],
   templateUrl: './color-picker.component.html',
   styleUrl: './color-picker.component.scss',

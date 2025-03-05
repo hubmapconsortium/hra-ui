@@ -19,6 +19,7 @@ import { UIState, UIStateModel } from '../../store/ui.state';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  standalone: false,
 })
 export class SearchComponent {
   @Input() disabled = false;

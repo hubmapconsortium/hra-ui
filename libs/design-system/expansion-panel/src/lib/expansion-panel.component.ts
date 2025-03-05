@@ -41,7 +41,6 @@ export class ExpansionPanelHeaderContentComponent {}
 /** Expansion panel component */
 @Component({
   selector: 'hra-expansion-panel',
-  standalone: true,
   imports: [CdkAccordionModule, MatIconButton, MatIconModule, MicroTooltipDirective],
   animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',

@@ -6,7 +6,6 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/karma.conf.[jt]s",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/.storybook/**/*",
@@ -69,10 +68,6 @@
           "codeCoverage": true
         }
       }
-    },
-    "@angular-devkit/build-angular:karma": {
-      "inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"],
-      "cache": true
     },
     "build-webcomponent": {
       "dependsOn": [
@@ -137,5 +132,6 @@
     }
   },
   "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU=",
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "useLegacyCache": true
 }

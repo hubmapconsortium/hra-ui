@@ -25,7 +25,7 @@ describe('ResultsBrowserComponent', () => {
   it('should re-run the gradient display logic on a scroll event', async () => {
     const { instance, find } = await shallow.render();
     const list = find(resultsBrowserListSelector);
-    const spy = spyOn(instance, 'onScroll');
+    const spy = jest.spyOn(instance, 'onScroll');
 
     list.triggerEventHandler('scroll', {});
     expect(spy).toHaveBeenCalled();
@@ -59,8 +59,8 @@ describe('ResultsBrowserComponent', () => {
     const { instance } = await shallow.render();
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const testResult = {} as ListResult;
-    const spy1 = spyOn(instance.listResultSelected, 'next');
-    const spy2 = spyOn(instance.listResultDeselected, 'next');
+    const spy1 = jest.spyOn(instance.listResultSelected, 'next');
+    const spy2 = jest.spyOn(instance.listResultDeselected, 'next');
     instance.handleSelection(testResult, true);
     expect(spy1).toHaveBeenCalled();
     instance.handleSelection(testResult, false);
@@ -73,8 +73,9 @@ describe('ResultsBrowserComponent', () => {
       target: null,
     } as UIEvent;
     const { instance } = await shallow.render();
+    instance.atScrollBottom = true;
     instance.onScroll(mockEvent);
-    expect().nothing();
+    expect(instance.atScrollBottom).toBeTruthy();
   });
 
   it('should emit the item id when hovered over', async () => {

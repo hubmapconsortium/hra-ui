@@ -3,25 +3,26 @@ import { Shallow } from 'shallow-render';
 
 import { DualSliderComponent } from './dual-slider.component';
 import { DualSliderModule } from './dual-slider.module';
+import { mock, MockProxy } from 'jest-mock-extended';
 
 describe('DualSliderComponent', () => {
   let shallow: Shallow<DualSliderComponent>;
-  let mockOverlay: jasmine.SpyObj<Overlay>;
-  let mockPositionBuilder: jasmine.SpyObj<OverlayPositionBuilder>;
-  let mockPositionStrategy: jasmine.SpyObj<FlexibleConnectedPositionStrategy>;
-  let mockOverlayRef: jasmine.SpyObj<OverlayRef>;
+  let mockOverlay: MockProxy<Overlay>;
+  let mockPositionBuilder: MockProxy<OverlayPositionBuilder>;
+  let mockPositionStrategy: MockProxy<FlexibleConnectedPositionStrategy>;
+  let mockOverlayRef: MockProxy<OverlayRef>;
 
   beforeEach(() => {
     // Create mocks
-    mockOverlay = jasmine.createSpyObj<Overlay>(['create', 'position']);
-    mockPositionBuilder = jasmine.createSpyObj<OverlayPositionBuilder>(['flexibleConnectedTo']);
-    mockPositionStrategy = jasmine.createSpyObj<FlexibleConnectedPositionStrategy>(['withPositions']);
-    mockOverlayRef = jasmine.createSpyObj<OverlayRef>(['attach', 'detach', 'updatePosition', 'dispose']);
+    mockOverlay = mock();
+    mockPositionBuilder = mock();
+    mockPositionStrategy = mock();
+    mockOverlayRef = mock();
 
     // Connect mocks
-    mockOverlay.create.and.returnValue(mockOverlayRef);
-    mockOverlay.position.and.returnValue(mockPositionBuilder);
-    mockPositionBuilder.flexibleConnectedTo.and.returnValue(mockPositionStrategy);
+    mockOverlay.create.mockReturnValue(mockOverlayRef);
+    mockOverlay.position.mockReturnValue(mockPositionBuilder);
+    mockPositionBuilder.flexibleConnectedTo.mockReturnValue(mockPositionStrategy);
 
     shallow = new Shallow(DualSliderComponent, DualSliderModule).mock(Overlay, mockOverlay);
   });
@@ -46,7 +47,7 @@ describe('DualSliderComponent', () => {
   it('should call toggleSliderPopover if clicked', async () => {
     const { find, instance } = await shallow.render();
     const formField = find('.slider-form-field');
-    const spy = spyOn(instance, 'toggleSliderPopover');
+    const spy = jest.spyOn(instance, 'toggleSliderPopover');
     formField.triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalled();
   });

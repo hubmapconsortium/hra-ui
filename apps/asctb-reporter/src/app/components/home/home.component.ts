@@ -14,6 +14,7 @@ import { CONTIRBUTORS, IMAGES, VIDEO_ACTIONS } from '../../static/home';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: false,
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   window = window;

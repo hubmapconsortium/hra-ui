@@ -11,7 +11,6 @@ import { Menu } from '../types/menus.schema';
  */
 @Component({
   selector: 'hra-desktop-menu',
-  standalone: true,
   imports: [CommonModule, ScrollingModule, HubmapMenuContentComponent, MenuContentComponent],
   templateUrl: './desktop-menu.component.html',
   styleUrl: './desktop-menu.component.scss',

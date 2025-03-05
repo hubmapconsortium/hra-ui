@@ -3,8 +3,8 @@
   width: 42rem;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
-  background-color: var(--sys-surface-container-low);
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.24);
+  background-color: var(--mat-sys-surface-container-low);
 
   .content {
     display: flex;
@@ -20,8 +20,8 @@
   mat-progress-bar {
     --mdc-linear-progress-track-height: 0.5rem;
     --mdc-linear-progress-active-indicator-height: 0.5rem;
-    --mdc-linear-progress-active-indicator-color: var(--sys-inverse-surface);
-    --mdc-linear-progress-track-color: var(--sys-surface-container-high);
+    --mdc-linear-progress-active-indicator-color: var(--mat-sys-inverse-surface);
+    --mdc-linear-progress-track-color: var(--mat-sys-surface-container-high);
 
     &.ready {
       --mdc-linear-progress-track-color: transparent;

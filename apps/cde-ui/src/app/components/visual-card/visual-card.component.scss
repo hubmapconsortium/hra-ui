@@ -28,7 +28,7 @@
 
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 5px 1rem 0px rgb(from var(--sys-shadow) r g b / 0.24);
+    box-shadow: 0px 5px 1rem 0px rgb(from var(--mat-sys-shadow) r g b / 0.24);
     outline-offset: 0;
     cursor: pointer;
     display: flex;
@@ -38,7 +38,7 @@
     height: 17.5rem;
 
     &:hover {
-      box-shadow: 0px 5px 1rem 5px rgb(from var(--sys-shadow) r g b / 0.24);
+      box-shadow: 0px 5px 1rem 5px rgb(from var(--mat-sys-shadow) r g b / 0.24);
     }
 
     img {

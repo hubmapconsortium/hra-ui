@@ -6,6 +6,7 @@ import { AggregateCount } from '@hra-api/ng-client';
   templateUrl: './stats-list.component.html',
   styleUrls: ['./stats-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class StatsListComponent {
   @Input() statsLabel!: string;

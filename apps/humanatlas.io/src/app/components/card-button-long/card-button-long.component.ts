@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'ccf-card-button-long',
   templateUrl: './card-button-long.component.html',
   styleUrls: ['./card-button-long.component.scss'],
+  standalone: false,
 })
 export class CardButtonLongComponent {
   /** Details to be displayed inside the card */

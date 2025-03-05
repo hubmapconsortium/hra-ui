@@ -60,6 +60,7 @@ interface AppOptions {
     class: 'hra-app',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;
@@ -186,7 +187,7 @@ export class AppComponent implements OnInit {
       scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
     combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
-      this.theming.setTheme(`${theme}-theme-${mode}`);
+      this.theming.setTheme(`${theme ?? 'default'}-theme-${mode}`);
       cdr.markForCheck();
     });
     this.selectedtoggleOptions = this.menuOptions;

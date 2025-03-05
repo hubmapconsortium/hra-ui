@@ -12,7 +12,6 @@ import { map, takeUntil } from 'rxjs';
  */
 @Component({
   selector: 'hra-required-input',
-  standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './required-input.component.html',
   styleUrls: ['./required-input.component.scss'],
@@ -52,7 +51,7 @@ export class RequiredInputComponent {
     control.valueChanges
       .pipe(
         takeUntil(destroy$),
-        map((value) => (control.valid ? (value as string) : undefined))
+        map((value) => (control.valid ? (value as string) : undefined)),
       )
       .subscribe(inputChange);
   }

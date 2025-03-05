@@ -8,6 +8,7 @@ import { RecursivePartial, Shallow } from 'shallow-render';
 import { OntologySearchService, SearchResult } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologySearchComponent } from './ontology-search.component';
 import { OntologySearchModule } from './ontology-search.module';
+import { mock, MockProxy } from 'jest-mock-extended';
 
 @NgModule({})
 class EmptyModule {}
@@ -18,11 +19,11 @@ function fromPartial<T>(partial: RecursivePartial<T>): T {
 
 describe('OntologySearchComponent', () => {
   let shallow: Shallow<OntologySearchComponent>;
-  let mockSearchService: jasmine.SpyObj<OntologySearchService>;
+  let mockSearchService: MockProxy<OntologySearchService>;
 
   beforeEach(() => {
-    mockSearchService = jasmine.createSpyObj<OntologySearchService>(['filter']);
-    mockSearchService.filter.and.returnValue(of([]));
+    mockSearchService = mock();
+    mockSearchService.filter.mockReturnValue(of([]));
 
     shallow = new Shallow(OntologySearchComponent, OntologySearchModule)
       .replaceModule(FormsModule, EmptyModule)
@@ -107,7 +108,7 @@ describe('OntologySearchComponent', () => {
     });
     const { instance, findComponent } = await shallow.render({ bind: {} });
     const matComplete = findComponent(MatAutocomplete);
-    const spy = spyOn(instance, 'onSelect');
+    const spy = jest.spyOn(instance, 'onSelect');
 
     matComplete.optionSelected.emit(event);
     expect(spy).toHaveBeenCalledWith(event);

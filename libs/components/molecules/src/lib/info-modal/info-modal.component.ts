@@ -7,7 +7,6 @@ import { MarkdownModule } from 'ngx-markdown';
 /** Displays an information modal to the user with the product title and logo and description */
 @Component({
   selector: 'hra-info-modal',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MarkdownModule],
   templateUrl: './info-modal.component.html',
   styleUrls: ['./info-modal.component.scss'],

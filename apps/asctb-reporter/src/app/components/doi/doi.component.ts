@@ -7,6 +7,7 @@ import { DOI } from '../../models/sheet.model';
   selector: 'app-doi',
   templateUrl: './doi.component.html',
   styleUrls: ['./doi.component.scss'],
+  standalone: false,
 })
 export class DoiComponent implements OnInit {
   loading = true;

@@ -38,7 +38,6 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
 /** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: 'hra-title-card',
-  standalone: true,
   imports: [CommonModule, MatIconModule, OverlayModule],
   templateUrl: './title-card.component.html',
   styleUrl: './title-card.component.scss',

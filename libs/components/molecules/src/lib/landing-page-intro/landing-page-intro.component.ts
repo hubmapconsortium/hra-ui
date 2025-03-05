@@ -8,7 +8,6 @@ import { MarkdownModule } from 'ngx-markdown';
 /** Component for LandingPage Intro */
 @Component({
   selector: 'hra-landing-page-intro',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MarkdownModule, LinkDirective],
   templateUrl: './landing-page-intro.component.html',
   styleUrls: ['./landing-page-intro.component.scss'],

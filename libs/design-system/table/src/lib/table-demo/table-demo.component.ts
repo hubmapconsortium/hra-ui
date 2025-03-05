@@ -17,7 +17,6 @@ export interface TableDemoData {
 @Component({
   selector: 'hra-table-demo',
   templateUrl: 'table-demo.component.html',
-  standalone: true,
   imports: [MatTableModule, MatSortModule, CommonModule],
 })
 export class TableDemoComponent {

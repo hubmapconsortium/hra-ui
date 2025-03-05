@@ -1,12 +1,12 @@
 :host {
   .app-description {
-    font: var(--sys-label-micro);
-    letter-spacing: var(--sys-label-micro-tracking);
+    font: var(--mat-sys-label-micro);
+    letter-spacing: var(--mat-sys-label-micro-tracking);
     border-radius: 0.125rem;
     width: fit-content;
     padding: 0.125rem 0.25rem;
-    color: var(--sys-on-tertiary-fixed);
-    background: rgb(from var(--sys-on-tertiary-container) r g b / 0.08);
+    color: var(--mat-sys-on-tertiary-fixed);
+    background: rgb(from var(--mat-sys-on-tertiary-container) r g b / 0.08);
     cursor: default;
   }
 }

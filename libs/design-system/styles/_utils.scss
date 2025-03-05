@@ -3,8 +3,8 @@
 }
 
 @mixin use-font($variant, $size) {
-  font: var(--sys-#{$variant}-#{$size});
-  letter-spacing: var(--sys-#{$variant}-#{$size}-tracking);
+  font: var(--mat-sys-#{$variant}-#{$size});
+  letter-spacing: var(--mat-sys-#{$variant}-#{$size}-tracking);
 }
 
 @mixin inset-outline($color, $style: solid, $width: 2px) {

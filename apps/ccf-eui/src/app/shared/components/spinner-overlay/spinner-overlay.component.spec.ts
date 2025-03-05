@@ -12,12 +12,12 @@ describe('SpinnerOverlayComponent', () => {
 
   it('is invisible when not active', async () => {
     const { element } = await shallow.render({ bind: { active: false } });
-    expect(element.nativeElement).not.toHaveClass('active');
+    expect((element.nativeElement as Element).classList.contains('active')).toBeFalsy();
   });
 
   it('is visible when active', async () => {
     const { element } = await shallow.render({ bind: { active: true } });
-    expect(element.nativeElement).toHaveClass('active');
+    expect((element.nativeElement as Element).classList.contains('active')).toBeTruthy();
   });
 
   it('contains a text description', async () => {

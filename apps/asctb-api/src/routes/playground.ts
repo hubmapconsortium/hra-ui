@@ -13,7 +13,7 @@ export function setupPlaygroundRoutes(app: Express): void {
     try {
       const parsed = papa.parse<string[]>(PLAYGROUND_CSV).data;
       const asctbData = makeASCTBData(parsed);
-      return res.send({
+      res.send({
         data: asctbData.data,
         metadata: asctbData.metadata,
         csv: PLAYGROUND_CSV,
@@ -22,7 +22,7 @@ export function setupPlaygroundRoutes(app: Express): void {
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: JSON.stringify(err),
         code: 500,
       });
@@ -36,7 +36,7 @@ export function setupPlaygroundRoutes(app: Express): void {
     const csv = papa.unparse(req.body);
     try {
       const asctbData = makeASCTBData(req.body.data);
-      return res.send({
+      res.send({
         data: asctbData.data,
         metadata: asctbData.metadata,
         parsed: req.body,
@@ -45,7 +45,7 @@ export function setupPlaygroundRoutes(app: Express): void {
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: JSON.stringify(err),
         code: 500,
       });

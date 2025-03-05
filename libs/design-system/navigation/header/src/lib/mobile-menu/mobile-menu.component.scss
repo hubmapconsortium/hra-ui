@@ -3,21 +3,21 @@
 :host {
   display: block;
   width: 100%;
-  background-color: var(--sys-surface-dim);
+  background-color: var(--mat-sys-surface-dim);
 
   $header-height: 4rem;
 
-  --mat-expansion-container-shape: var(--sys-corner-none);
-  --mat-expansion-container-background-color: var(--sys-surface-dim);
+  --mat-expansion-container-shape: var(--mat-sys-corner-none);
+  --mat-expansion-container-background-color: var(--mat-sys-surface-dim);
   --mat-expansion-header-collapsed-state-height: #{$header-height};
   --mat-expansion-header-expanded-state-height: #{$header-height};
-  --mat-expansion-header-text-font: var(--sys-label-large-font);
-  --mat-expansion-header-text-size: var(--sys-label-large-size);
-  --mat-expansion-header-text-weight: var(--sys-label-large-weight);
-  --mat-expansion-header-text-line-height: var(--sys-label-large-line-height);
-  --mat-expansion-header-text-tracking: var(--sys-label-large-tracking);
+  --mat-expansion-header-text-font: var(--mat-sys-label-large-font);
+  --mat-expansion-header-text-size: var(--mat-sys-label-large-size);
+  --mat-expansion-header-text-weight: var(--mat-sys-label-large-weight);
+  --mat-expansion-header-text-line-height: var(--mat-sys-label-large-line-height);
+  --mat-expansion-header-text-tracking: var(--mat-sys-label-large-tracking);
 
-  --mat-divider-color: var(--sys-outline);
+  --mat-divider-color: var(--mat-sys-outline);
 
   .panel {
     box-shadow: none;
@@ -45,7 +45,7 @@
   }
 
   .mat-expanded .header {
-    text-decoration: underline 0.125rem var(--sys-tertiary);
+    text-decoration: underline 0.125rem var(--mat-sys-tertiary);
     text-underline-offset: 0.375rem;
 
     .toggle-icon::after {

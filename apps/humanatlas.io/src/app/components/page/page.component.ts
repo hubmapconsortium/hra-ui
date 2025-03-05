@@ -10,6 +10,7 @@ import { PageDef } from '../page-element/page-def';
   selector: 'page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss'],
+  standalone: false,
 })
 export class PageComponent {
   /** Observable of file content */

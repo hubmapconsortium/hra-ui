@@ -7,6 +7,8 @@ import { Filter, FilterSexEnum, OntologyTree } from '@hra-api/ng-client';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
+import { mock, MockProxy } from 'jest-mock-extended';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 import { Observable, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
@@ -29,9 +31,9 @@ function collapseWhitespaces(value: string | undefined | null): string | undefin
 
 describe('AppComponent', () => {
   let shallow: Shallow<AppComponent>;
-  let left: jasmine.SpyObj<DrawerComponent>;
-  let right: jasmine.SpyObj<DrawerComponent>;
-  let filterbox: jasmine.SpyObj<FiltersPopoverComponent>;
+  let left: MockProxy<DrawerComponent>;
+  let right: MockProxy<DrawerComponent>;
+  let filterbox: MockProxy<FiltersPopoverComponent>;
   const testFilter: Filter = {
     sex: FilterSexEnum.Both,
     ageRange: [5, 99],
@@ -64,13 +66,13 @@ describe('AppComponent', () => {
       imports: [NgxsModule.forRoot([DataState], {})],
     });
 
-    const mockConsentService = jasmine.createSpyObj<ConsentService>(['setConsent']);
-    left = jasmine.createSpyObj<DrawerComponent>('Drawer', ['open', 'closeExpanded']);
-    right = jasmine.createSpyObj<DrawerComponent>('Drawer', ['open', 'closeExpanded']);
-    filterbox = jasmine.createSpyObj<FiltersPopoverComponent>('FiltersPopover', ['removeBox']);
+    left = mock();
+    right = mock();
+    filterbox = mock();
     shallow = new Shallow(AppComponent, AppModule)
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
       .replaceModule(StoreModule, EmptyModule)
+      .dontMock(NgxGoogleAnalyticsModule)
       .mock(ListResultsState, {
         listResults$: of([]),
       })
@@ -97,7 +99,7 @@ describe('AppComponent', () => {
         updateFilter: () => undefined,
       })
       .mock(ConsentService, {
-        ...mockConsentService,
+        setConsent: jest.fn(),
         consent: 'not-set',
       })
       .mock(MatSnackBar, {
@@ -114,6 +116,13 @@ describe('AppComponent', () => {
         patchConfig: () => undefined,
         getOption: () => of(undefined),
         patchState: () => undefined,
+      })
+      .mock(DrawerComponent, {
+        open: jest.fn(),
+        closeExpanded: jest.fn(),
+      })
+      .mock(FiltersPopoverComponent, {
+        removeBox: jest.fn(),
       });
   });
 
@@ -147,7 +156,7 @@ describe('AppComponent', () => {
 
   it('should call reset when refresh button is clicked', async () => {
     const { find, instance } = await shallow.render();
-    const spy = spyOn(instance, 'reset');
+    const spy = jest.spyOn(instance, 'reset');
     const resetButton = find('.refresh');
     resetButton.triggerEventHandler('click', {});
     expect(spy).toHaveBeenCalled();
@@ -184,14 +193,14 @@ describe('AppComponent', () => {
     instance.acceptableViewerDomains = ['test.com'];
     instance.viewerOpen = false;
     instance.openiFrameViewer('test.com');
-    expect(instance.viewerOpen).toBeTrue();
+    expect(instance.viewerOpen).toBeTruthy();
   });
 
   it('should set this.viewerOpen to false whenever closeiFrameViewer is called', async () => {
     const { instance } = await shallow.render();
     instance.viewerOpen = true;
     instance.closeiFrameViewer();
-    expect(instance.viewerOpen).not.toBeTrue();
+    expect(instance.viewerOpen).not.toBeTruthy();
   });
 
   it('resets the view', async () => {
@@ -207,7 +216,7 @@ describe('AppComponent', () => {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockOntologySelection = [{ label: 'body' } as OntologySelection];
     const { instance } = await shallow.render();
-    const spy = spyOn(instance, 'resetView');
+    const spy = jest.spyOn(instance, 'resetView');
     instance.ontologySelected(undefined, 'anatomical-structures');
     expect(spy).toHaveBeenCalledTimes(0);
     instance.ontologySelected(mockOntologySelection, 'anatomical-structures');
