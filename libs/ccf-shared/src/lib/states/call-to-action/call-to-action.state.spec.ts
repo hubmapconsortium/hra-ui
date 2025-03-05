@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { StateContext } from '@ngxs/store';
+import { mock, MockProxy } from 'jest-mock-extended';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { of } from 'rxjs';
-
 import { DocumentationContent, InfoButtonService } from '../../components/info/info-button/info-button.service';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 import { CallToActionModel, CallToActionState } from './call-to-action.state';
@@ -18,35 +18,35 @@ describe('CallToActionState', () => {
     popupShown: false,
   };
 
-  let dialog: jasmine.SpyObj<MatDialog>;
-  let ga: jasmine.SpyObj<GoogleAnalyticsService>;
-  let storage: jasmine.SpyObj<LocalStorageService>;
-  let ctx: jasmine.SpyObj<StateContext<CallToActionModel>>;
-  let infoService: jasmine.SpyObj<InfoButtonService>;
-  let http: jasmine.SpyObj<HttpClient>;
+  let dialog: MockProxy<MatDialog>;
+  let ga: MockProxy<GoogleAnalyticsService>;
+  let storage: MockProxy<LocalStorageService>;
+  let ctx: MockProxy<StateContext<CallToActionModel>>;
+  let infoService: MockProxy<InfoButtonService>;
+  let http: MockProxy<HttpClient>;
   let state: CallToActionState;
 
   beforeEach(() => {
-    dialog = jasmine.createSpyObj<MatDialog>(['open', 'closeAll']);
-    ga = jasmine.createSpyObj<GoogleAnalyticsService>(['event']);
-    storage = jasmine.createSpyObj<LocalStorageService>(['getItem', 'setItem']);
-    ctx = jasmine.createSpyObj<StateContext<CallToActionModel>>(['getState', 'setState', 'patchState', 'dispatch']);
-    http = jasmine.createSpyObj<HttpClient>(['get']);
-    infoService = jasmine.createSpyObj<InfoButtonService>(['parseMarkdown']);
+    dialog = mock();
+    ga = mock();
+    storage = mock();
+    ctx = mock();
+    http = mock();
+    infoService = mock();
 
     state = new CallToActionState(dialog, ga, storage, infoService, http);
   });
 
   beforeEach(() => {
-    storage.getItem.and.returnValue('');
-    ctx.getState.and.returnValue({ ...defaultState, expirationDate: 'December 22,3024' });
-    http.get.and.returnValue(of(''));
+    storage.getItem.mockReturnValue('');
+    ctx.getState.mockReturnValue({ ...defaultState, expirationDate: 'December 22,3024' });
+    http.get.mockReturnValue(of(''));
   });
 
   describe('ngxsOnInit(ctx)', () => {
     it('checks for ExpirationDate and succeeds', () => {
       const datePassed = CallToActionState.ctaDatePassed(ctx.getState().expirationDate);
-      expect(datePassed).toBeFalse();
+      expect(datePassed).toBeFalsy();
     });
   });
 
@@ -67,7 +67,7 @@ describe('CallToActionState', () => {
 
   it('checks for ExpirationDate and fails', () => {
     const datePassed = CallToActionState.ctaDatePassed(defaultState.expirationDate);
-    expect(datePassed).toBeTrue();
+    expect(datePassed).toBeTruthy();
   });
 
   it('opens dialog box', () => {

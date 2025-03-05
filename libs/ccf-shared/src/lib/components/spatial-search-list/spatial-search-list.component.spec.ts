@@ -42,7 +42,7 @@ describe('SpatialSearchListComponent', () => {
     it('sets the selection of the item at the index', async () => {
       const { instance } = await shallow.render({ bind: { items } });
       instance.updateItemSelection(0, true);
-      expect(instance.items[0].selected).toBeTrue();
+      expect(instance.items[0].selected).toBeTruthy();
     });
 
     it('emits the new list', async () => {
