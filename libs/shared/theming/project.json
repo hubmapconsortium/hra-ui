@@ -67,7 +67,8 @@
         "port": 4400,
         "configDir": "libs/shared/theming/.storybook",
         "browserTarget": "shared-theming:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "experimentalZoneless": true
       },
       "configurations": {
         "ci": {
@@ -86,7 +87,8 @@
         "styles": [".storybook/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        }
+        },
+        "experimentalZoneless": true
       },
       "configurations": {
         "ci": {
