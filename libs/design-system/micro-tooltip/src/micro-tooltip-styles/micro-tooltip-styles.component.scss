@@ -2,8 +2,8 @@
 
 @include utils.global-styles() {
   .hra-micro-tooltip {
-    --mdc-plain-tooltip-supporting-text-color: var(--sys-on-primary);
-    --mdc-plain-tooltip-container-color: color-mix(in srgb, var(--sys-secondary) 96%, transparent);
+    --mdc-plain-tooltip-supporting-text-color: var(--mat-sys-on-primary);
+    --mdc-plain-tooltip-container-color: color-mix(in srgb, var(--mat-sys-secondary) 96%, transparent);
 
     .mat-mdc-tooltip-surface {
       padding: 0.25rem 0.5rem;
@@ -13,13 +13,13 @@
 
   .hra-micro-tooltip-medium {
     .mat-mdc-tooltip-surface {
-      font: var(--sys-label-medium);
+      font: var(--mat-sys-label-medium);
     }
   }
 
   .hra-micro-tooltip-small {
     .mat-mdc-tooltip-surface {
-      font: var(--sys-label-small);
+      font: var(--mat-sys-label-small);
     }
   }
 }

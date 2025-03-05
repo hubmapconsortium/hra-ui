@@ -15,15 +15,15 @@ interface ButtonToggleConfig {
 const BUTTON_CONFIG: Record<IconButtonSize, ButtonToggleConfig> = {
   small: {
     lineHeight: 18,
-    font: '--sys-label-small',
+    font: '--mat-sys-label-small',
   },
   medium: {
     lineHeight: 21,
-    font: '--sys-label-medium',
+    font: '--mat-sys-label-medium',
   },
   large: {
     lineHeight: 24,
-    font: '--sys-label-large',
+    font: '--mat-sys-label-large',
   },
 };
 

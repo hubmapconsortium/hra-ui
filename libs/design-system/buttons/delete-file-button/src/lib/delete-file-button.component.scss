@@ -7,7 +7,7 @@
   gap: 0.25rem;
   padding-left: 1.25rem;
   border-radius: 2rem;
-  color: var(--sys-primary);
-  background: var(--sys-surface-container);
+  color: var(--mat-sys-primary);
+  background: var(--mat-sys-surface-container);
   @include utils.use-font('label', 'large');
 }

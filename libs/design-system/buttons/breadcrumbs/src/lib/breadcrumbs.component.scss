@@ -9,7 +9,7 @@
     height: 2.5rem;
     margin: 0;
     padding: 0;
-    color: var(--sys-on-primary-fixed);
+    color: var(--mat-sys-on-primary-fixed);
     @include utils.use-font('label', 'small');
 
     .crumb {
