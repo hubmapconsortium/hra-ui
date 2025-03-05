@@ -8,7 +8,7 @@
   <div class="stat-box">
     <div id="title">Summary Statistics</div>
     <div class="stat-table">
-      <div class="stat-row" *ngFor="let stat of aggregateData">
+      <div class="stat-row" *ngFor="let stat of aggregateData()">
         <div class="stat-value">{{ stat.count }}</div>
         <div class="stat-label">{{ stat.label }}</div>
       </div>
@@ -48,7 +48,7 @@
 
   <ng-scrollbar hraScrollOverflowFade>
     <div class="results-browser-list">
-      <div class="browser-item-container" *ngFor="let result of listResults">
+      <div class="browser-item-container" *ngFor="let result of listResults()">
         <mat-checkbox
           class="checkbox"
           (change)="handleSelection(result, $event.checked)"
@@ -60,7 +60,7 @@
           [color]="result.color ?? ''"
           (linkClick)="handleLinkClick($event)"
           [selected]="result.selected"
-          (click)="donorCard.toggleExpansion(); handleSelection(result, true)"
+          (selectOption)="listResultSelected.emit(result)"
         >
         </ccf-donor-card>
       </div>

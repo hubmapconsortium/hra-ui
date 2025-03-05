@@ -1,32 +1,34 @@
 <ccf-metadata-card
   class="donor-card"
-  [tagline]="'Donor: ' + tissueBlock.donor?.label"
-  [label]="'Provenance: ' + tissueBlock.donor?.description"
+  [tagline]="'Donor: ' + tissueBlock().donor?.label"
+  [label]="'Provenance: ' + tissueBlock().donor?.description"
+  (toggleExpansion)="toggleExpansion()"
 >
 </ccf-metadata-card>
 
-@if (expanded) {
+@if (expanded()) {
   <div class="expanded-cards">
     <ccf-metadata-card
       class="block-card"
       tagline="Tissue Block"
-      [label]="tissueBlock.description ?? ''"
-      [label2]="'Thickness of tissue section:'"
+      [label]="'3D size: ' + size()"
+      [label2]="'Thickness of tissue section: ' + thickness()"
     >
-      @if ((tissueBlock.sections?.length ?? 0) > 1) {
+      @if ((tissueBlock().sections?.length ?? 0) > 1) {
         <ccf-tissue-section-vis
-          [totalTissueSections]="tissueBlock.sectionCount ?? 0"
-          [tissueSections]="tissueBlock.sections ?? []"
+          [totalTissueSections]="tissueBlock().sectionCount ?? 0"
+          [tissueSections]="tissueBlock().sections ?? []"
         ></ccf-tissue-section-vis>
       }
 
-      @if (tissueBlock.datasets.length > 0) {
-        <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="tissueBlock.datasets">
+      @if (tissueBlock().datasets.length > 0) {
+        <div>Datasets</div>
+        <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="tissueBlock().datasets">
         </ccf-thumbnail-list>
       }
     </ccf-metadata-card>
 
-    @for (section of tissueBlock.sections; track section) {
+    @for (section of tissueBlock().sections; track section) {
       <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets">
         @if (section.datasets.length > 0) {
           <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="section.datasets"> </ccf-thumbnail-list>

@@ -1,18 +1,18 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { AggregateCount } from '@hra-api/ng-client';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
-import { ListResult } from '../../../core/models/list-result';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { AggregateCount } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
+import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
-import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -42,35 +42,30 @@ export class ResultsBrowserComponent {
   /**
    * Input array of List Results to display
    */
-  @Input() listResults!: Immutable<ListResult[]>;
+  readonly listResults = input.required<Immutable<ListResult[]>>();
 
   /**
    * Input used to add a list of stats at the top the results browser
    */
-  @Input() aggregateData!: Immutable<AggregateCount[]>;
+  readonly aggregateData = input.required<Immutable<AggregateCount[]>>();
 
-  /**
-   * Input allowing the title of the result browser to be set outside of the component
-   */
-  @Input() resultLabel!: string;
-
-  @Input() header!: boolean;
+  readonly header = input.required<boolean>();
 
   /**
    * Output emitting the result that was clicked on and its relevant information.
    * Used for opening and rendering the result viewer.
    */
-  @Output() readonly linkClicked = new EventEmitter<string>();
+  readonly linkClicked = output<string>();
 
   /**
    * Output emitting the link result selected
    */
-  @Output() readonly listResultSelected = new EventEmitter<Immutable<ListResult>>();
+  readonly listResultSelected = output<Immutable<ListResult>>();
 
   /**
    * Output emitting the link result deselected
    */
-  @Output() readonly listResultDeselected = new EventEmitter<Immutable<ListResult>>();
+  readonly listResultDeselected = output<Immutable<ListResult>>();
 
   /**
    * Creates an instance of results browser component.
@@ -86,11 +81,11 @@ export class ResultsBrowserComponent {
    * @param selected whether to select or deselect the result
    */
   handleSelection(result: Immutable<ListResult>, selected: boolean): void {
-    this.ga.event('list_result_selected', 'results_browser', this.resultLabel, +selected);
+    this.ga.event('list_result_selected', 'results_browser', result.tissueBlock.label, +selected);
     if (selected) {
-      this.listResultSelected.next(result);
+      this.listResultSelected.emit(result);
     } else {
-      this.listResultDeselected.next(result);
+      this.listResultDeselected.emit(result);
     }
   }
 
@@ -108,9 +103,9 @@ export class ResultsBrowserComponent {
   }
 
   resetSelections(): void {
-    const selectedResults = this.listResults.filter((result) => result.selected);
+    const selectedResults = this.listResults().filter((result) => result.selected);
     for (const result of selectedResults) {
-      this.listResultDeselected.next({ ...result, selected: false });
+      this.listResultDeselected.emit({ ...result, selected: false });
     }
   }
 }
