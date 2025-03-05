@@ -9,6 +9,7 @@ import { TableData } from './table';
   selector: 'ccf-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  standalone: false,
 })
 export class TableComponent {
   /** Sorts the current selected data */

@@ -22,6 +22,7 @@ import { VisibilityItem } from '../../../core/models/visibility-item';
   host: {
     '(window:mouseup)': 'closeSlider($event)',
   },
+  standalone: false,
 })
 export class VisibilityMenuComponent {
   /**

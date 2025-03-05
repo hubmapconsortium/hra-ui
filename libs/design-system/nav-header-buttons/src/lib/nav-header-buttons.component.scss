@@ -9,7 +9,7 @@
   .hra-logo,
   .app-logo {
     display: inline-flex;
-    color: var(--sys-secondary);
+    color: var(--mat-sys-secondary);
   }
 
   .hra-logo {
@@ -26,14 +26,14 @@
     flex-direction: column;
     justify-content: center;
     .app-label {
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
+      font: var(--mat-sys-label-large);
+      letter-spacing: var(--mat-sys-label-large-tracking);
     }
   }
 
   .app-name {
     margin-left: 0.5rem;
-    color: var(--sys-secondary);
+    color: var(--mat-sys-secondary);
   }
 
   mat-button-toggle {

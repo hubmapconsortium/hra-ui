@@ -9,7 +9,6 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
  */
 @Component({
   selector: 'hra-delete-file-button',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, IconButtonSizeDirective],
   templateUrl: './delete-file-button.component.html',
   styleUrl: './delete-file-button.component.scss',

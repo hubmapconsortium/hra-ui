@@ -8,6 +8,7 @@ import { OrganData } from './two-dim-image';
   selector: 'ccf-two-dim-image',
   templateUrl: './two-dim-image.component.html',
   styleUrls: ['./two-dim-image.component.scss'],
+  standalone: false,
 })
 export class TwoDimImageComponent {
   /** Title of the card */

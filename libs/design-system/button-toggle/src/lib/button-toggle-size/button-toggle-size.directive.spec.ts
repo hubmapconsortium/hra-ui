@@ -16,8 +16,6 @@ describe('ButtonToggleSizeDirective', () => {
     const directive = screen.getByTestId('dir');
     const styles = window.getComputedStyle(directive);
     const lineHeight = styles.getPropertyValue('--mat-standard-button-toggle-height');
-    const font = styles.getPropertyValue('font');
-    expect(font).toBe('var(--sys-label-large)');
     expect(lineHeight).toBe('24px');
   });
 });

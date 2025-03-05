@@ -5,7 +5,6 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
 /** Main application component */
 @Component({
   selector: 'hra-root',
-  standalone: true,
   imports: [RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

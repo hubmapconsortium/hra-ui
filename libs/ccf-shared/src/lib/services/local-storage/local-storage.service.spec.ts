@@ -1,22 +1,19 @@
+import { mock, MockProxy } from 'jest-mock-extended';
 import { LocalStorageService } from './local-storage.service';
 
 describe('LocalStorageService', () => {
-  let storageSpy: jasmine.SpyObj<Storage>;
+  let storageSpy: MockProxy<Storage>;
   let ls: LocalStorageService;
 
   describe('with storage', () => {
     beforeEach(() => {
-      storageSpy = jasmine.createSpyObj<Storage>(['key', 'getItem', 'setItem', 'removeItem', 'clear'], { length: 0 });
+      storageSpy = mock({ length: 0 });
       ls = new LocalStorageService();
       LocalStorageService.storage = storageSpy;
     });
 
     it('should return length', async () => {
-      if (Object.getOwnPropertyDescriptor(storageSpy, 'length')) {
-        const lengthSpy = Object.getOwnPropertyDescriptor(storageSpy, 'length')?.get;
-        expect(ls.length).toEqual(0);
-        expect(lengthSpy).toHaveBeenCalled();
-      }
+      expect(ls.length).toEqual(0);
     });
 
     it('should get proper key at index 0', async () => {
@@ -40,14 +37,16 @@ describe('LocalStorageService', () => {
     });
 
     it('should return false at failed setItem call', async () => {
-      storageSpy.setItem.and.throwError('Error, no storage');
-      expect(ls.setItem('key', 'value')).toBeFalse();
+      storageSpy.setItem.mockImplementationOnce(() => {
+        throw new Error('no storage');
+      });
+      expect(ls.setItem('key', 'value')).toBeFalsy();
     });
   });
 
   describe('with no storage', () => {
     beforeEach(() => {
-      storageSpy = jasmine.createSpyObj<Storage>(['key', 'getItem', 'setItem', 'removeItem', 'clear'], { length: 0 });
+      storageSpy = mock({ length: 0 });
       ls = new LocalStorageService();
       LocalStorageService.storage = undefined;
     });

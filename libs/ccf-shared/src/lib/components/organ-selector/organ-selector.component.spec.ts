@@ -1,8 +1,11 @@
-import * as resizeModule from 'css-element-queries';
+import { mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
-
 import { ALL_ORGANS, OrganInfo, OrganSelectorComponent } from './organ-selector.component';
 import { OrganSelectorModule } from './organ-selector.module';
+
+jest.mock('css-element-queries', () => ({
+  ResizeSensor: jest.fn(() => mock()),
+}));
 
 function wait(duration: number): Promise<void> {
   return new Promise((resolve) => {
@@ -19,13 +22,6 @@ describe('OrganSelectorComponent', () => {
 
   beforeEach(() => {
     shallow = new Shallow(OrganSelectorComponent, OrganSelectorModule);
-    spyOn(resizeModule, 'ResizeSensor').and.callFake(function (_element, callback): resizeModule.ResizeSensor {
-      (async () => {
-        await wait(100);
-        callback({ width: 0, height: 0 });
-      })();
-      return jasmine.createSpyObj<resizeModule.ResizeSensor>('', ['detach']);
-    });
   });
 
   it('should shift the carousel left if dir === left.', async () => {
@@ -76,8 +72,8 @@ describe('OrganSelectorComponent', () => {
     const testOrgan: OrganInfo = { name: 'test', src: 'test', organ: 'test' };
     const testOrgan2: OrganInfo = { name: 'test2', src: 'test2', organ: 'test2' };
     instance.selectOrgan(testOrgan);
-    expect(instance.isSelected(testOrgan)).toBeTrue();
-    expect(instance.isSelected(testOrgan2)).toBeFalse();
+    expect(instance.isSelected(testOrgan)).toBeTruthy();
+    expect(instance.isSelected(testOrgan2)).toBeFalsy();
   });
 
   it('should set the icon class to disabled if disabled is true', async () => {
@@ -112,25 +108,25 @@ describe('OrganSelectorComponent', () => {
   it('getError() should return false if displayErrors is set to false', async () => {
     const { instance } = await shallow.render({ bind: { displayErrors: false } });
     const value = instance.error;
-    expect(value).toBeFalse();
+    expect(value).toBeFalsy();
   });
 
   it('getError() should return false if there are no selected organs', async () => {
     const { instance } = await shallow.render({ bind: { selectedOrgans: [] } });
     const value = instance.error;
-    expect(value).toBeFalse();
+    expect(value).toBeFalsy();
   });
 
   it('getError() should return true if displayErrors is set to true and there is an organ selected', async () => {
     const testOrgan: OrganInfo = { src: 'test', name: 'test', organ: 'test' };
     const { instance } = await shallow.render({ bind: { displayErrors: true, selectedOrgans: [testOrgan] } });
     const value = instance.error;
-    expect(value).toBeTrue();
+    expect(value).toBeTruthy();
   });
 
   it('should shift the carousel when scroll is called', async () => {
     const { instance } = await shallow.render();
-    const spy = spyOn(instance, 'shift');
+    const spy = jest.spyOn(instance, 'shift');
     instance.scroll('left');
     await wait(250);
     instance.stopScroll();
@@ -162,10 +158,10 @@ describe('OrganSelectorComponent', () => {
       bind: { organList: [testOrgan, testOrgan, testOrgan, testOrgan] },
     });
     const list = find(carouselItemListClass).nativeElement as HTMLElement;
-    list.style.width = '288px';
+    Object.defineProperty(list, 'offsetWidth', { value: 288 });
     instance.set();
-    expect(instance.onLeft).toBeTrue();
-    expect(instance.onRight).toBeTrue();
+    expect(instance.onLeft).toBeTruthy();
+    expect(instance.onRight).toBeTruthy();
   });
 
   it('should set onRight to true if the list of organs is larger than the container and carousel is scrolled to end', async () => {
@@ -175,11 +171,10 @@ describe('OrganSelectorComponent', () => {
     });
     const list = find(carouselItemListClass).nativeElement as HTMLElement;
     const container = find(carouselItemContainerClass).nativeElement as HTMLElement;
-    list.style.left = '-124px';
-    list.style.width = '150px';
-    container.style.width = '164px';
+    Object.defineProperty(list, 'offsetWidth', { value: 288 });
+    Object.defineProperty(container, 'offsetWidth', { value: 164 });
     instance.set();
-    expect(instance.onRight).toBeTrue();
+    expect(instance.onRight).toBeTruthy();
   });
 
   it('should set set the container width to a multiple of the icon width', async () => {
@@ -189,7 +184,7 @@ describe('OrganSelectorComponent', () => {
     });
     const carouselContainer = find(carouselContainerClass).nativeElement as HTMLElement;
     const itemContainer = find(carouselItemContainerClass).nativeElement as HTMLElement;
-    carouselContainer.style.width = '300px';
+    Object.defineProperty(carouselContainer, 'offsetWidth', { value: 300 });
     instance.setWidth();
     expect(itemContainer.style.width).toBe('224px');
   });

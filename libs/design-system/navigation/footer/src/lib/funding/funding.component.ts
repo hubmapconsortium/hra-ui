@@ -7,7 +7,6 @@ import { FunderId } from '../types/funders.schema';
 /** Displays a list of funders */
 @Component({
   selector: 'hra-funding',
-  standalone: true,
   imports: [CommonModule, AssetUrlPipe],
   templateUrl: './funding.component.html',
   styleUrl: './funding.component.scss',

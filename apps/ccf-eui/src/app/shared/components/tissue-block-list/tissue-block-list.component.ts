@@ -9,6 +9,7 @@ import { TissueBlock } from '@hra-api/ng-client';
   templateUrl: './tissue-block-list.component.html',
   styleUrls: ['./tissue-block-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TissueBlockListComponent {
   /** HTML class */

@@ -1,24 +1,24 @@
 :host {
   display: block;
-  color: var(--sys-secondary);
+  color: var(--mat-sys-secondary);
 
   .container {
     height: calc(100vh - 3rem);
-    font: var(--sys-headline-small);
-    letter-spacing: var(--sys-headline-small-tracking);
+    font: var(--mat-sys-headline-small);
+    letter-spacing: var(--mat-sys-headline-small-tracking);
   }
 
   .header {
     display: flex;
     align-items: center;
-    font: var(--sys-title-small);
+    font: var(--mat-sys-title-small);
     height: 4.5rem;
     padding-right: 0.5rem;
     padding-left: 1rem;
 
     .sidenav-title {
       vertical-align: text-bottom;
-      color: var(--sys-secondary);
+      color: var(--mat-sys-secondary);
     }
   }
 
@@ -33,7 +33,7 @@
     .main {
       display: flex;
       align-items: center;
-      background-color: var(--sys-surface-container-high);
+      background-color: var(--mat-sys-surface-container-high);
       height: 4.5rem;
       padding: 0 0.5rem 0 0.75rem;
       pointer-events: all;
@@ -48,7 +48,7 @@
   .apps-sidenav {
     --mat-sidenav-container-width: 35.25rem;
     border-radius: 0;
-    background-color: var(--sys-surface-container-high);
+    background-color: var(--mat-sys-surface-container-high);
     pointer-events: all;
 
     .category {
@@ -57,13 +57,13 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      border-top: 1px solid var(--sys-outline);
+      border-top: 1px solid var(--mat-sys-outline);
     }
 
     .card-category {
-      font: var(--sys-title-small);
-      letter-spacing: var(--sys-title-small-tracking);
-      color: var(--sys-primary-fixed);
+      font: var(--mat-sys-title-small);
+      letter-spacing: var(--mat-sys-title-small-tracking);
+      color: var(--mat-sys-primary-fixed);
     }
 
     .card-category,

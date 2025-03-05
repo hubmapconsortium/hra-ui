@@ -6,6 +6,7 @@ import { PageDataItems } from './page-data';
   selector: 'ccf-page-data',
   templateUrl: './page-data.component.html',
   styleUrls: ['./page-data.component.scss'],
+  standalone: false,
 })
 export class PageDataComponent {
   /** Details to be displayed on the page */

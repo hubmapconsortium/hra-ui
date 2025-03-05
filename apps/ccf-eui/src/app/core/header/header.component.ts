@@ -30,6 +30,7 @@ const LOGOS: Record<string, string> & Record<'default', string> = {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class HeaderComponent implements OnChanges {
   /**

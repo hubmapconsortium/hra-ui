@@ -29,7 +29,7 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
   nodes.forEach((node, index) => {
     let ontologyId = node.metadata.ontologyId;
     let iri: string;
-    if (ontologyId?.trim().length > 0 ?? false) {
+    if (ontologyId?.trim().length > 0) {
       ontologyId = fixOntologyId(ontologyId);
       iri = guessIri(ontologyId);
     }

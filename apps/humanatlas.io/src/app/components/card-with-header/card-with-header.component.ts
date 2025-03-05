@@ -7,6 +7,7 @@ import { CardBlock } from '../card-button-long/long-card';
   selector: 'card-with-header',
   templateUrl: './card-with-header.component.html',
   styleUrls: ['./card-with-header.component.scss'],
+  standalone: false,
 })
 export class CardWithHeaderComponent {
   /** Title and details to be displayed inside the card */

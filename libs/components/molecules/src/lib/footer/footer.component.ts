@@ -44,7 +44,6 @@ const DOWNLOADS_LIST_POSITION: ConnectedPosition[] = [
  */
 @Component({
   selector: 'hra-footer',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule, MatListModule, LinkDirective],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],

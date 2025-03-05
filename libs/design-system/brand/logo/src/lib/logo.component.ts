@@ -15,7 +15,6 @@ const BRAND_LOGO_URLS: Record<BrandLogoSize, string> = {
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',

@@ -90,8 +90,6 @@ const parseBoundsInput = BOUNDS_INPUT.parse.bind(BOUNDS_INPUT);
 
 /** HRA Body UI Component */
 @Component({
-  standalone: true,
-  imports: [],
   selector: 'hra-body-ui',
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',

@@ -11,7 +11,6 @@ const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 /** Vega Container Component, embeds a vega lite visualization inside a card */
 @Component({
   selector: 'hra-vega-container',
-  standalone: true,
   imports: [CommonModule, TitleCardComponent],
   templateUrl: './vega-container.component.html',
   styleUrl: './vega-container.component.scss',

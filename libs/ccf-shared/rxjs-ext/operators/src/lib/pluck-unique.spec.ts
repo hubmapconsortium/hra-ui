@@ -37,7 +37,7 @@ describe('pluckUnique(...props, [opts])', () => {
       const obj1 = [1];
       const obj2 = [2];
       const obj3 = [0];
-      const compare = jasmine.createSpy().and.callFake((lhs: number, rhs: number) => lhs <= rhs);
+      const compare = jest.fn((lhs: number, rhs: number) => lhs <= rhs);
       const source = cold('abc|', { a: obj1, b: obj2, c: obj3 }).pipe(pluckUnique(0, { compare }));
       const expected = '   a-c|';
 
@@ -45,7 +45,7 @@ describe('pluckUnique(...props, [opts])', () => {
       flush();
 
       expect(compare).toHaveBeenCalledTimes(2);
-      expect(compare.calls.allArgs()).toEqual([
+      expect(compare.mock.calls).toEqual([
         [1, 2],
         [1, 0],
       ]);
