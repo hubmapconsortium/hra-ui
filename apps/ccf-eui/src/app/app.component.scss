@@ -90,8 +90,15 @@
 
   .left-panel {
     grid-area: left;
+    display: grid;
+    grid-template-rows: 3.375rem 3rem auto;
+    grid-template-areas:
+      'filter'
+      'toggle'
+      'ontologies';
 
     .filter-data {
+      grid-area: filter;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -114,32 +121,28 @@
       margin-left: 3rem;
     }
 
+    .toggle-settings {
+      grid-area: toggle;
+      padding: 0 1rem;
+    }
+
+    mat-button-toggle-group {
+      --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+      width: 100%;
+    }
+
     .ontologies {
-      height: calc(100% - 9rem);
       display: flex;
-      gap: 1.5rem;
       flex-direction: column;
+      max-height: calc(100vh - 11.375rem);
 
       ccf-ontology-selection {
         flex: 1 1;
-        overflow: auto;
-        scrollbar-width: thin;
-        &::-webkit-scrollbar {
-          width: 0.25rem;
-        }
+        overflow: hidden;
 
         &.firefox {
           padding-right: 0.5rem;
         }
-
-        &.biomarker-selection {
-          flex-basis: 30%;
-        }
-      }
-
-      .no-selection-notice {
-        font-weight: 400;
-        line-height: normal;
       }
     }
   }
@@ -165,6 +168,12 @@
   --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
   .expand-arrow {
     --mat-menu-item-spacing: 0.75rem;
+  }
+
+  .no-selection-notice {
+    font: var(--sys-body-medium);
+    color: var(--sys-secondary);
+    padding: 0 1rem;
   }
 }
 

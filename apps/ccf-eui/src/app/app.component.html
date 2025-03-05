@@ -101,61 +101,62 @@
         </div>
       </div>
 
-      <ccf-button-toggle
-        class="button-toggle-group"
-        [menuOptions]="menuOptions"
-        [enableTooltip]="true"
-        [tooltips]="tooltips"
-        [selectedItems]="selectedtoggleOptions"
-        (selectionChange)="toggleSelection($event)"
-      ></ccf-button-toggle>
+      <div class="toggle-settings">
+        <mat-button-toggle-group
+          multiple
+          name="multiSelect"
+          aria-label="Multi Select"
+          hraButtonToggleSize="small"
+          hideMultipleSelectionIndicator
+          (change)="toggleSelection($event.value)"
+        >
+          @for (option of menuOptions; track option) {
+            <mat-button-toggle [value]="option" checked>{{ option }}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
       <div class="ontologies">
-        @if (isItemSelected('AS')) {
+        @if (isItemSelected('Anatomical Structures')) {
           <ccf-ontology-selection
             class="ontology-selection"
             [class.firefox]="isFirefox"
-            [showtoggle]="false"
             [treeModel]="(ontologyTreeModel$ | async)!"
             [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
             placeholderText="Search anatomical structures..."
             (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
-            [header]="(header$ | async) ?? false"
           >
           </ccf-ontology-selection>
         }
-        @if (isItemSelected('CT')) {
+        @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
             class="cell-type-selection"
             [class.firefox]="isFirefox"
-            [showtoggle]="false"
             [treeModel]="(cellTypeTreeModel$ | async)!"
             [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
             placeholderText="Search cell types..."
             (ontologySelection)="ontologySelected($any($event), 'cell-type')"
-            [header]="(header$ | async) ?? false"
           >
           </ccf-ontology-selection>
         }
-        @if (isItemSelected('B')) {
+        @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
             class="biomarker-selection"
             [class.firefox]="isFirefox"
-            [showtoggle]="true"
             [treeModel]="(biomarkersTreeModel$ | async)!"
             [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
             placeholderText="Search Biomarkers..."
             (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
-            [header]="(header$ | async) ?? false"
           >
           </ccf-ontology-selection>
         }
+
         @if (selectedtoggleOptions.length === 0) {
           <div class="no-selection-notice">
-            No anatomical structures, cell types, or biomarkers selected. Use the above AS, CT, and B buttons to view
-            the registered listings.
+            No anatomical structures, cell types, or biomarkers selected. Use the above buttons to view the registered
+            listings.
           </div>
         }
       </div>
