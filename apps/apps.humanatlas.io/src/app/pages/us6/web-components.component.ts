@@ -25,7 +25,7 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
-import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS, DOC_LINKS } from './static-data/parsed';
+import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
 
@@ -148,7 +148,7 @@ export class WebComponentsComponent {
       code: this.getEmbedTemplate(organ, def),
       showApp: def.embedAs === 'inline',
       tabIndex: tabIndex,
-      docLink: DOC_LINKS[def.id],
+      docLink: def.docLink,
     });
   }
 

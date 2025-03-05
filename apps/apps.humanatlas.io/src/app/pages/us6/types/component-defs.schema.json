@@ -22,6 +22,9 @@
         "embedAs": {
           "type": "string",
           "enum": ["inline", "overlay", "external"]
+        },
+        "docLink": {
+          "type": "string"
         }
       },
       "required": ["id", "productTitle", "webComponentName", "description", "previewImage", "embedAs"],

@@ -11,6 +11,7 @@ export const ComponentDefSchema = z.object({
   description: z.string(),
   previewImage: z.string(),
   embedAs: z.enum(['inline', 'overlay', 'external']),
+  docLink: z.string(),
 });
 
 export type ComponentDefs = z.infer<typeof ComponentDefsSchema>;
