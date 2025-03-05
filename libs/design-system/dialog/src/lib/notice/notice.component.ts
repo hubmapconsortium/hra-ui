@@ -30,7 +30,6 @@ export interface DialogData {
 /** Notice Component */
 @Component({
   selector: 'hra-notice',
-  standalone: true,
   imports: [
     CommonModule,
     IconButtonSizeDirective,

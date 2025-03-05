@@ -73,7 +73,7 @@ describe('PageState', () => {
     state.setUserName(newName);
 
     const value = await nextValue(state.user$);
-    expect(value).toEqual(jasmine.objectContaining(newName));
+    expect(value).toEqual(expect.objectContaining(newName));
   });
 
   it('sets orcid', async () => {
@@ -88,12 +88,12 @@ describe('PageState', () => {
   it('updates registrationStarted', async () => {
     state.registrationStarted();
     const value = await nextValue(state.registrationStarted$);
-    expect(value).toBeTrue();
+    expect(value).toBeTruthy();
   });
 
   it('updates useCancelRegistrationCallback', async () => {
     state.setUseCancelRegistrationCallback(true);
     const value = await nextValue(state.useCancelRegistrationCallback$);
-    expect(value).toBeTrue();
+    expect(value).toBeTruthy();
   });
 });

@@ -5,7 +5,6 @@ import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
 @Component({
   selector: 'cde-node-dist-visualization-controls',
-  standalone: true,
   imports: [MatIconModule, ButtonsModule],
   templateUrl: './node-dist-visualization-controls.component.html',
   styleUrl: './node-dist-visualization-controls.component.scss',

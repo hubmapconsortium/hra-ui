@@ -9,7 +9,6 @@ import { BrandLogoSize } from './types/logos.schema';
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',

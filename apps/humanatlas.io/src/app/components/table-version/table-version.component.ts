@@ -15,6 +15,7 @@ const TABLE_SCROLL_END_MARGIN = 10;
   selector: 'table-version',
   templateUrl: './table-version.component.html',
   styleUrls: ['./table-version.component.scss'],
+  standalone: false,
 })
 export class TableVersionComponent implements OnInit {
   /** Maintains horizontal scrolling of the table */

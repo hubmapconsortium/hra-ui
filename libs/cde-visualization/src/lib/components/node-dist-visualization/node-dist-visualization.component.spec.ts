@@ -40,7 +40,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 1,
         ...options?.inputs,
       },
-      providers: [provideDesignSystemCommon({ scrolling: { disableSensor: true } }), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
     });
   }
 
@@ -137,6 +137,7 @@ describe('NodeDistVisualizationComponent', () => {
       expect(await deleteButton.isDisabled()).toBeFalsy();
 
       fixture.componentInstance.deleteSelection();
+      fixture.detectChanges();
       const el = await getVisualizationEl();
       expect((el.nodeFilter as NodeFilterView).exclude).toEqual([0]);
     });

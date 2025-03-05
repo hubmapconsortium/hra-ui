@@ -43,6 +43,7 @@ const isExpandable = property<FlatNode, boolean>('expandable');
   templateUrl: './ontology-tree.component.html',
   styleUrls: ['./ontology-tree.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OntologyTreeComponent implements OnInit, OnChanges {
   /**
@@ -109,7 +110,7 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
   /**
    * Storage for the getter / setter
    */
-  private _occurenceData!: Record<string, number>;
+  private _occurenceData: Record<string, number> = {};
 
   /**
    * Term Data is a record of terms that the app currently has data for.
@@ -127,18 +128,18 @@ export class OntologyTreeComponent implements OnInit, OnChanges {
     return this._termData;
   }
 
-  @Input() header!: boolean;
+  @Input() header = true;
 
-  @Input() menuOptions!: string[];
+  @Input() menuOptions: string[] = [];
 
-  @Input() tooltips!: string[];
+  @Input() tooltips: string[] = [];
 
-  selectedtoggleOptions!: string[];
+  selectedtoggleOptions: string[] = [];
 
   /**
    * Storage for the getter / setter
    */
-  private _termData!: Record<string, number>;
+  private _termData: Record<string, number> = {};
 
   atScrollBottom = false;
 

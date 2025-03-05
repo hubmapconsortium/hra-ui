@@ -6,7 +6,6 @@ import { ActiveFtuActions } from '@hra-ui/state';
 
 @Component({
   selector: 'ftu-landing',
-  standalone: true,
   imports: [CommonModule, LandingPageContentComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],

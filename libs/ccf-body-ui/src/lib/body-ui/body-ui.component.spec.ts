@@ -62,7 +62,7 @@ describe('BodyUiComponent', () => {
       },
     });
 
-    await fixture.whenStable();
+    fixture.detectChanges();
     expect(getBodyUi().setScene).toHaveBeenCalledWith(scenes);
   });
 
@@ -79,7 +79,7 @@ describe('BodyUiComponent', () => {
     const req = controller.expectOne(URL);
     req.flush([sampleSpatialSceneNode]);
 
-    await fixture.whenStable();
+    fixture.detectChanges();
     expect(getBodyUi().setScene).toHaveBeenCalledWith([sampleSpatialSceneNode]);
   });
 
@@ -97,7 +97,7 @@ describe('BodyUiComponent', () => {
     const req = controller.expectOne(URL);
     req.flush('Error Data');
 
-    await fixture.whenStable();
+    fixture.detectChanges();
     expect(getBodyUi().setScene).not.toHaveBeenCalledWith([sampleSpatialSceneNode]);
     expect(errorHandler.handleError).toHaveBeenCalled();
   });
@@ -116,7 +116,7 @@ describe('BodyUiComponent', () => {
         nodeClick,
       },
     });
-    await fixture.whenStable();
+    fixture.detectChanges();
 
     const nodeClick$ = getBodyUi().nodeClick$ as Subject<NodeClickEvent>;
     nodeClick$.next(event);

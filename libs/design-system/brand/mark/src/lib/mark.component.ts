@@ -11,7 +11,6 @@ import { BrandMarkVariant } from './types/marks.schema';
  */
 @Component({
   selector: 'hra-brand-mark',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './mark.component.html',
   styleUrl: './mark.component.scss',

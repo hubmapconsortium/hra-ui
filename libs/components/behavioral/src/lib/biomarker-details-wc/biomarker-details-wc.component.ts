@@ -49,12 +49,10 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 /** Component for Biomarker Table Details Web component */
 @Component({
   selector: 'ftu-wc-biomarker-details',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
     MatTabsModule,
-
     BiomarkerTableComponent,
     BiomarkerTableDataCardComponent,
     GradientLegendComponent,

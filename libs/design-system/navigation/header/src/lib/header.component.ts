@@ -50,7 +50,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [
     CommonModule,
     OverlayModule,
@@ -118,15 +117,12 @@ export class HeaderComponent {
 
   /** Initialize the header */
   constructor() {
-    effect(
-      (cleanup) => {
-        if (this.activeMenu() !== undefined) {
-          const observer = this.attachResizeObserver();
-          cleanup(() => observer.disconnect());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect((cleanup) => {
+      if (this.activeMenu() !== undefined) {
+        const observer = this.attachResizeObserver();
+        cleanup(() => observer.disconnect());
+      }
+    });
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
   }
@@ -192,6 +188,7 @@ export class HeaderComponent {
    * Notify menu overlays of position changes
    */
   private updateMenuPositions(): void {
+    /* istanbul ignore next */
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
   }
 }

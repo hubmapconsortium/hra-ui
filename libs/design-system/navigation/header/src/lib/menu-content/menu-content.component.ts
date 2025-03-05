@@ -53,7 +53,6 @@ export class MenuSubGroupDirective {
  */
 @Component({
   selector: 'hra-menu-content',
-  standalone: true,
   imports: [
     CommonModule,
     MatDivider,

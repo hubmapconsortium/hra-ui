@@ -19,7 +19,7 @@ describe('DropdownComponent', () => {
   it('should open options if clicked', async () => {
     const { findComponent, instance } = await shallow.render();
     const matSelect = findComponent(MatSelect);
-    const spy = spyOn(instance, 'toggleOptions');
+    const spy = jest.spyOn(instance, 'toggleOptions');
     matSelect.openedChange.emit();
     expect(spy).toHaveBeenCalled();
   });
@@ -27,7 +27,7 @@ describe('DropdownComponent', () => {
   it('should change options if clicked', async () => {
     const { findComponent, instance } = await shallow.render();
     const matSelect = findComponent(MatSelect);
-    const spy = spyOn(instance, 'selectionChanged');
+    const spy = jest.spyOn(instance, 'selectionChanged');
     matSelect.selectionChange.emit({ value: 'two' } as MatSelectChange);
     expect(spy).toHaveBeenCalledWith('two');
   });

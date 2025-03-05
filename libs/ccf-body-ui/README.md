@@ -18,7 +18,7 @@ After building your library with `ng build ccf-body-ui`, go to the dist folder `
 
 ## Running unit tests
 
-Run `ng test ccf-body-ui` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test ccf-body-ui` to execute the unit tests via [Jest](https://jestjs.io/).
 
 ## Further help
 

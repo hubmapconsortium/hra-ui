@@ -11,6 +11,6 @@ describe('XYZPositionComponent', () => {
   });
 
   it('creates', async () => {
-    await expectAsync(shallow.render()).toBeResolved();
+    await expect(shallow.render()).resolves.toBeDefined();
   });
 });

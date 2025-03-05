@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-body-ui-wc/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -120,18 +120,10 @@
       }
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "apps/ccf-body-ui-wc/src/test.ts",
-        "polyfills": "apps/ccf-body-ui-wc/src/polyfills.ts",
-        "tsConfig": "apps/ccf-body-ui-wc/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-body-ui-wc/karma.conf.js",
-        "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
-        "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": []
+        "jestConfig": "apps/ccf-body-ui-wc/jest.config.ts"
       }
     },
     "lint": {

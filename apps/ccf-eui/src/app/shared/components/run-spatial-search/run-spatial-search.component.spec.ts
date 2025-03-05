@@ -5,6 +5,7 @@ import { Shallow } from 'shallow-render';
 
 import { RunSpatialSearchComponent } from './run-spatial-search.component';
 import { RunSpatialSearchModule } from './run-spatial-search.module';
+import { mock } from 'jest-mock-extended';
 
 describe('RunSpatialSearchComponent', () => {
   let shallow: Shallow<RunSpatialSearchComponent>;
@@ -16,7 +17,7 @@ describe('RunSpatialSearchComponent', () => {
 
     shallow = new Shallow(RunSpatialSearchComponent, RunSpatialSearchModule).provide({
       provide: MatDialog,
-      useValue: jasmine.createSpyObj<MatDialog>(['open']),
+      useValue: mock(),
     });
   });
 

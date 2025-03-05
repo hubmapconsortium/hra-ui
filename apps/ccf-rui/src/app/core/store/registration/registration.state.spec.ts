@@ -3,10 +3,9 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
-import * as fileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { Observable, ReplaySubject, lastValueFrom, of } from 'rxjs';
 import { skip, take } from 'rxjs/operators';
-
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { GLOBAL_CONFIG } from '../../services/config/config';
@@ -15,6 +14,10 @@ import { PageState, PageStateModel, Person } from '../page/page.state';
 import { ReferenceDataState, ReferenceDataStateModel } from '../reference-data/reference-data.state';
 import { AnatomicalStructureTagState } from './../anatomical-structure-tags/anatomical-structure-tags.state';
 import { RegistrationState } from './registration.state';
+
+jest.mock('file-saver', () => ({
+  saveAs: jest.fn(),
+}));
 
 const testVisibilityItems: VisibilityItem[] = [{ id: 0, name: 'test', visible: true }];
 const testExtractionSets: ExtractionSet[] = [{ name: 'test', sites: [] }];
@@ -87,6 +90,7 @@ describe('RegistrationState', () => {
       thickness: NaN,
       numSlices: NaN,
     },
+    anatomicalStructures: [],
   };
   const initialReferenceDataState: Partial<ReferenceDataStateModel> = {
     anatomicalStructures: {},
@@ -136,6 +140,9 @@ describe('RegistrationState', () => {
             patchState: () => undefined,
             setOrcidId: () => undefined,
             registrationStarted: () => undefined,
+            uriToOrcid: jest.fn(),
+            setUserName: jest.fn(),
+            setEmail: jest.fn(),
           },
         },
         {
@@ -144,6 +151,11 @@ describe('RegistrationState', () => {
             state$: modelStateSubject,
             snapshot: initialModelState,
             setOrganDefaults: () => undefined,
+            setBlockSize: jest.fn(),
+            setRotation: jest.fn(),
+            setSlicesConfig: jest.fn(),
+            setPosition: jest.fn(),
+            setPlacementDate: jest.fn(),
           },
         },
         {
@@ -154,6 +166,8 @@ describe('RegistrationState', () => {
             getSourceDB: () => ({
               subscribe: () => undefined,
             }),
+            normalizePlacement: jest.fn(() => ({})),
+            getOrganData: jest.fn(),
           },
         },
         {
@@ -179,26 +193,26 @@ describe('RegistrationState', () => {
   describe('.valid$', () => {
     it('creates valid$ boolean', async () => {
       const value = await nextValue(state.valid$);
-      expect(value).toBeInstanceOf(Boolean);
+      expect(typeof value).toEqual('boolean');
     });
 
     it('should consider isDataValid true if the user and organ are set', async () => {
       const result = state.isDataValid(testPage, testModel);
-      expect(result).toBeTrue();
+      expect(result).toBeTruthy();
     });
 
     it('should consider isDataValid false if the organ is not set', async () => {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const invalidModel = { ...testModel, organ: {} as OrganInfo };
       const result = state.isDataValid(testPage, invalidModel);
-      expect(result).toBeFalse();
+      expect(result).toBeFalsy();
     });
 
     it('should consider isDataValid false if the user is not set', async () => {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const invalidPage = { ...testPage, user: {} as Person };
       const result = state.isDataValid(invalidPage, testModel);
-      expect(result).toBeFalse();
+      expect(result).toBeFalsy();
     });
   });
 
@@ -229,11 +243,11 @@ describe('RegistrationState', () => {
     });
 
     it('combines the results from fetchPreviousRegistrations and local registrations', async () => {
-      const spy = jasmine.createSpy().and.returnValue([[reg2]]);
+      const spy = jest.fn().mockReturnValue([[reg2]]);
       TestBed.inject(GlobalConfigState).setConfig({ fetchPreviousRegistrations: spy });
 
       const value = await nextValue(state.previousRegistrations$.pipe(skip(1)));
-      expect(value).toEqual(jasmine.arrayWithExactContents([reg1, reg2]));
+      expect(value).toEqual(expect.arrayContaining([reg1, reg2]));
     });
   });
 
@@ -241,7 +255,7 @@ describe('RegistrationState', () => {
     it('updates use registration callback', async () => {
       state.setUseRegistrationCallback(true);
       const value = await nextValue(state.state$);
-      expect(value.useRegistrationCallback).toBeTrue();
+      expect(value.useRegistrationCallback).toBeTruthy();
     });
   });
 
@@ -249,26 +263,24 @@ describe('RegistrationState', () => {
     it('updates displayErrors variable', async () => {
       state.setDisplayErrors(true);
       const value = await nextValue(state.state$);
-      expect(value.displayErrors).toBeTrue();
+      expect(value.displayErrors).toBeTruthy();
     });
   });
 
   describe('register(useCallback)', () => {
-    let callback: jasmine.Spy<(json: string) => void>;
-    let download: jasmine.Spy;
+    let callback: jest.Mock<void, [string]>;
 
     beforeEach(() => {
-      callback = jasmine.createSpy();
-      download = spyOn(fileSaver, 'saveAs');
+      callback = jest.fn();
       patchStore('globalConfig', { register: callback });
-      spyOn(state, 'isDataValid').and.returnValue(true);
+      jest.spyOn(state, 'isDataValid').mockReturnValue(true);
     });
 
     it('does nothing if isDataValid() is false', () => {
-      (state.isDataValid as jasmine.Spy).and.returnValue(false);
+      (state.isDataValid as jest.Mock).mockReturnValue(false);
       state.register();
       expect(callback).not.toHaveBeenCalled();
-      expect(download).not.toHaveBeenCalled();
+      expect(saveAs).not.toHaveBeenCalled();
     });
 
     it('uses the callback when useCallback argument is true', () => {
@@ -278,7 +290,7 @@ describe('RegistrationState', () => {
 
     it('uses download when useCallback argument is false', () => {
       state.register(false);
-      expect(download).toHaveBeenCalled();
+      expect(saveAs).toHaveBeenCalled();
     });
 
     it('uses the callback if the state useRegistrationCallback is true and no argument is provided', () => {
@@ -290,7 +302,7 @@ describe('RegistrationState', () => {
     it('uses download when the state useRegistrationCallback is false and no argument is provided', async () => {
       patchStore('registration', { useRegistrationCallback: false });
       state.register();
-      expect(download).toHaveBeenCalled();
+      expect(saveAs).toHaveBeenCalled();
     });
 
     it('does nothing if there is no callback and the registration method is selected', () => {
@@ -302,7 +314,7 @@ describe('RegistrationState', () => {
 
   describe('setToInitialRegistration', () => {
     it('reverts registration to initial state', async () => {
-      const spy = spyOn(state, 'editRegistration');
+      const spy = jest.spyOn(state, 'editRegistration');
       state.setToInitialRegistration();
       expect(spy).toHaveBeenCalled();
     });

@@ -75,7 +75,8 @@
             "output": "./assets"
           }
         ],
-        "styles": ["libs/design-system/.storybook/styles/preview.scss"]
+        "styles": ["libs/design-system/.storybook/styles/preview.scss"],
+        "experimentalZoneless": true
       },
       "configurations": {
         "ci": {
@@ -98,7 +99,8 @@
             "output": "./assets"
           }
         ],
-        "styles": ["libs/design-system/.storybook/styles/preview.scss"]
+        "styles": ["libs/design-system/.storybook/styles/preview.scss"],
+        "experimentalZoneless": true
       },
       "configurations": {
         "ci": {

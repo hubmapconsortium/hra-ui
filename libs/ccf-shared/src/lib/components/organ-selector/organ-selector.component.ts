@@ -524,6 +524,7 @@ export interface OrganInfo {
   templateUrl: './organ-selector.component.html',
   styleUrls: ['./organ-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestroy {
   /** HTML class */

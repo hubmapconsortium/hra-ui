@@ -4,8 +4,8 @@
   .header {
     display: flex;
     align-items: center;
-    font: var(--sys-label-medium);
-    color: var(--sys-secondary);
+    font: var(--mat-sys-label-medium);
+    color: var(--mat-sys-secondary);
   }
 
   .filler {
@@ -13,7 +13,7 @@
   }
 
   .content {
-    font: var(--sys-label-large);
+    font: var(--mat-sys-label-large);
     display: flex;
     flex-direction: column;
     ::ng-deep &[style*='visibility: hidden'] * {

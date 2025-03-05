@@ -28,7 +28,8 @@
 @use '../../app/shared/components/button-toggle/button-toggle.theme.scss' as buttonToggle;
 
 @mixin ccf-theme($theme) {
-  @include mat.core-theme($theme);
+  @include mat.elevation-classes();
+  @include mat.app-background();
 
   @include mat.checkbox-theme($theme);
   @include mat.expansion-theme($theme);

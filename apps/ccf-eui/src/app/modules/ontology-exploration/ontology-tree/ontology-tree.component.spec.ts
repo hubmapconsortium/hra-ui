@@ -4,6 +4,7 @@ import { RecursivePartial, Shallow } from 'shallow-render';
 import { FlatNode } from '../../../core/models/flat-node';
 import { OntologyTreeComponent } from './ontology-tree.component';
 import { OntologyTreeModule } from './ontology-tree.module';
+import { MatTreeModule } from '@angular/material/tree';
 
 function fromPartial<T>(partial: RecursivePartial<T>): T {
   return partial as T;
@@ -18,13 +19,13 @@ describe('OntologyTreeComponent', () => {
   let shallow: Shallow<OntologyTreeComponent>;
 
   beforeEach(() => {
-    shallow = new Shallow(OntologyTreeComponent, OntologyTreeModule);
+    shallow = new Shallow(OntologyTreeComponent, OntologyTreeModule).dontMock(MatTreeModule);
   });
 
   it('should check if the node is selected node or not', async () => {
     const { instance } = await shallow.render();
     instance.selectedNodes = [flatNode1];
-    expect(instance.isSelected(flatNode1)).toBeTrue();
+    expect(instance.isSelected(flatNode1)).toBeTruthy();
   });
 
   it('should call set nodes', async () => {
@@ -41,6 +42,7 @@ describe('OntologyTreeComponent', () => {
     const { instance } = await shallow.render();
     instance.getChildren = () => [];
   });
+
   it('should set and get occurenceData', async () => {
     const { instance } = await shallow.render({});
     instance.occurenceData = null as never;
@@ -59,7 +61,7 @@ describe('OntologyTreeComponent', () => {
 
   it('should call selectByIDs when rootNode changes', async () => {
     const { instance } = await shallow.render({ bind: { rootNode: '1', nodes: [node1, node2] } });
-    spyOn(instance, 'selectByIDs').and.callThrough();
+    jest.spyOn(instance, 'selectByIDs');
     const changes: SimpleChanges = {
       rootNode: { currentValue: '2', previousValue: '1', isFirstChange: () => true, firstChange: true },
     };
@@ -71,7 +73,7 @@ describe('OntologyTreeComponent', () => {
     const { instance } = await shallow.render({
       bind: { ontologyFilter: ['1'], rootNode: '1', nodes: [node1, node2] },
     });
-    spyOn(instance, 'selectByIDs').and.callThrough();
+    jest.spyOn(instance, 'selectByIDs');
     const changes: SimpleChanges = {
       ontologyFilter: { currentValue: ['2'], previousValue: '1', isFirstChange: () => true, firstChange: true },
     };
@@ -81,7 +83,7 @@ describe('OntologyTreeComponent', () => {
 
   it('should call onScroll when mat-tree emits scroll', async () => {
     const { instance, find } = await shallow.render();
-    spyOn(instance, 'onScroll').and.callThrough();
+    jest.spyOn(instance, 'onScroll');
     find('mat-tree')[0].triggerEventHandler('scroll', new UIEvent('scroll'));
     expect(instance.onScroll).toHaveBeenCalled();
   });
@@ -89,12 +91,13 @@ describe('OntologyTreeComponent', () => {
   it('should check if the root node is selected too or not', async () => {
     const { instance } = await shallow.render();
     instance.selectedNodes = [flatNode2];
-    expect(instance.isSelected(flatNode1)).toBeFalse();
+    expect(instance.isSelected(flatNode1)).toBeFalsy();
   });
+
   it('should check if  node is selected too or not', async () => {
     const { instance } = await shallow.render();
     instance.selectedNodes = [flatNode2];
-    expect(instance.isSelected(flatNode2)).toBeTrue();
+    expect(instance.isSelected(flatNode2)).toBeTruthy();
   });
 
   it('should set the current selection when a different node is selected', async () => {
@@ -147,12 +150,12 @@ describe('OntologyTreeComponent', () => {
 
   it('isInnerNode should return true when a node can be expanded', async () => {
     const { instance } = await shallow.render();
-    expect(instance.isInnerNode(1, flatNode1)).toBeTrue();
+    expect(instance.isInnerNode(1, flatNode1)).toBeTruthy();
   });
 
   it('isInnerNode should return false when a node cannot be expanded', async () => {
     const { instance } = await shallow.render();
-    expect(instance.isInnerNode(1, flatNode2)).toBeFalse();
+    expect(instance.isInnerNode(1, flatNode2)).toBeFalsy();
   });
 
   it('should return number of children when getNumResults is called', async () => {
@@ -171,7 +174,7 @@ describe('OntologyTreeComponent', () => {
   it('should re-run the gradient display logic on a scroll event', async () => {
     const { instance, find } = await shallow.render();
     const list = find('.ccf-ontology-tree');
-    const spy = spyOn(instance, 'onScroll');
+    const spy = jest.spyOn(instance, 'onScroll');
 
     list.triggerEventHandler('scroll', {});
     expect(spy).toHaveBeenCalled();

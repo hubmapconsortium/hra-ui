@@ -23,7 +23,6 @@ export interface SectionItem {
 /** This component displays a table with sections, where each section contains a list of items with a label and a value. */
 @Component({
   selector: 'hra-biomarker-table-data-card',
-  standalone: true,
   imports: [CommonModule, MatTableModule],
   templateUrl: './biomarker-table-data-card.component.html',
   styleUrls: ['./biomarker-table-data-card.component.scss'],

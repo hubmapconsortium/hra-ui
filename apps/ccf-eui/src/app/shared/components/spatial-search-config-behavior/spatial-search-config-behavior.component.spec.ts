@@ -9,6 +9,7 @@ import { SceneState } from '../../../core/store/scene/scene.state';
 import { SpatialSearchUiState } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchConfigBehaviorComponent } from './spatial-search-config-behavior.component';
 import { SpatialSearchConfigBehaviorModule } from './spatial-search-config-behavior.module';
+import { mock } from 'jest-mock-extended';
 
 function wait(duration: number): Promise<void> {
   return new Promise((resolve) => {
@@ -18,7 +19,7 @@ function wait(duration: number): Promise<void> {
 
 describe('SpatialSearchConfigBehaviorComponent', () => {
   let shallow: Shallow<SpatialSearchConfigBehaviorComponent>;
-  const http = jasmine.createSpyObj<HttpClient>(['get']);
+  const http = mock();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

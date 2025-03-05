@@ -11,6 +11,7 @@ import { Position, RadiusSettings, TermResult } from '../../../core/store/spatia
   templateUrl: './spatial-search-ui.component.html',
   styleUrls: ['./spatial-search-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchUiComponent {
   /** HTML Class */

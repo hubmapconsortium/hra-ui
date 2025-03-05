@@ -16,6 +16,7 @@ import { OntologySearchService, SearchResult } from '../../../core/services/onto
   templateUrl: './ontology-search.component.html',
   styleUrls: ['./ontology-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OntologySearchComponent implements OnInit {
   @Input() placeholderText!: string;

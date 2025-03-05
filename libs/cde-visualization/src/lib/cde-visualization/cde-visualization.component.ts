@@ -70,11 +70,9 @@ export interface DistanceEntry {
  */
 @Component({
   selector: 'cde-visualization-root',
-  standalone: true,
   imports: [
     CommonModule,
     MatProgressBarModule,
-
     CellTypesComponent,
     HistogramComponent,
     MetadataComponent,
@@ -175,8 +173,11 @@ export class CdeVisualizationComponent {
   /** Event emitted when a node is hovered */
   readonly nodeHover = output<NodeEvent | undefined>();
 
+  // eslint-disable-next-line @angular-eslint/no-output-rename -- Backwards compatibility
   readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename -- Backwards compatibility
   readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename -- Backwards compatibility
   readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
@@ -303,16 +304,13 @@ export class CdeVisualizationComponent {
   protected readonly cellTypesSelectionFromNodes = computed(() => this.cellTypesFromNodes().map((entry) => entry.name));
 
   /** Effect to create cell types */
-  readonly cellTypesCreateRef = effect(
-    () => {
-      // Grab dependency on the reset counter
-      this.cellTypesResetCounter();
+  readonly cellTypesCreateRef = effect(() => {
+    // Grab dependency on the reset counter
+    this.cellTypesResetCounter();
 
-      this.cellTypes.set(this.cellTypesFromNodes());
-      this.cellTypesSelection.set(this.cellTypesSelectionFromNodes());
-    },
-    { allowSignalWrites: true },
-  );
+    this.cellTypes.set(this.cellTypesFromNodes());
+    this.cellTypesSelection.set(this.cellTypesSelectionFromNodes());
+  });
 
   /** List of filtered cell types based on selection */
   protected readonly filteredCellTypes = computed(
@@ -343,14 +341,11 @@ export class CdeVisualizationComponent {
     // Not populated for standalone/custom components so we forcefully insert ourself
     inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
 
-    effect(
-      () => {
-        const selection = this.cellTypesSelection();
-        const filter = untracked(this.nodeFilterView);
-        this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      const selection = this.cellTypesSelection();
+      const filter = untracked(this.nodeFilterView);
+      this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
+    });
 
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);

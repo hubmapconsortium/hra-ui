@@ -9,6 +9,7 @@ import { FtuData, FtuVersionData } from './download-ftu';
   selector: 'ccf-download-ftu',
   templateUrl: './download-ftu.component.html',
   styleUrls: ['./download-ftu.component.scss'],
+  standalone: false,
 })
 export class DownloadFtuComponent {
   /** Sorts the current selected data */

@@ -19,6 +19,7 @@ export interface SpatialSearchListItem {
   templateUrl: './spatial-search-list.component.html',
   styleUrls: ['./spatial-search-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
   /** HTML class */

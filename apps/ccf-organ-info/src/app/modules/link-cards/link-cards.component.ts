@@ -11,6 +11,7 @@ interface LinkCard {
   templateUrl: './link-cards.component.html',
   styleUrls: ['./link-cards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class LinkCardsComponent implements OnInit {
   @Input() ruiUrl!: string;

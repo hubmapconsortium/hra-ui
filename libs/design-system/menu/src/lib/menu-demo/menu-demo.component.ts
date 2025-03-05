@@ -19,7 +19,6 @@ export interface MenuDemoOption {
  */
 @Component({
   selector: 'hra-menu',
-  standalone: true,
   imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule],
   templateUrl: './menu-demo.component.html',
   encapsulation: ViewEncapsulation.None,

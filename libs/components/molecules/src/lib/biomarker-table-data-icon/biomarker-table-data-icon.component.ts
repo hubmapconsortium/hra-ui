@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
  */
 @Component({
   selector: 'hra-biomarker-table-data-icon',
-  standalone: true,
   imports: [CommonModule],
   template: '',
   styleUrls: ['./biomarker-table-data-icon.component.scss'],

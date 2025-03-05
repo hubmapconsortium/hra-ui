@@ -27,6 +27,7 @@ function toJsonLd(data: unknown): JsonLdObj[] {
   template:
     '<ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)"></ccf-root>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() data!: InputDataFormat[];

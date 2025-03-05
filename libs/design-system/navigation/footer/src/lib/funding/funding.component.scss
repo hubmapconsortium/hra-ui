@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--sys-primary);
+  color: var(--mat-sys-primary);
 
   .title {
     margin-bottom: 0.5rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
   }
 
   .funders {
@@ -24,9 +24,9 @@
     align-items: center;
     text-align: center;
     width: 10.75rem;
-    color: var(--sys-primary);
-    font: var(--sys-label-small);
-    letter-spacing: var(--sys-label-small-tracking);
+    color: var(--mat-sys-primary);
+    font: var(--mat-sys-label-small);
+    letter-spacing: var(--mat-sys-label-small-tracking);
 
     img {
       min-width: 3rem;

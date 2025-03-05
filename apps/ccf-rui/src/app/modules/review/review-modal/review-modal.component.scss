@@ -4,18 +4,18 @@
     display: flex;
     flex-direction: column;
     max-height: 100vh;
-    color: var(--sys-secondary);
+    color: var(--mat-sys-secondary);
   }
 
   .type-title,
   .data-value {
-    color: var(--sys-primary-fixed);
+    color: var(--mat-sys-primary-fixed);
   }
 
   .header {
     display: flex;
     align-items: center;
-    font: var(--sys-headline-small);
+    font: var(--mat-sys-headline-small);
     margin-bottom: 0.75rem;
 
     .filler {
@@ -30,14 +30,14 @@
   }
 
   .type-title {
-    font: var(--sys-title-small);
+    font: var(--mat-sys-title-small);
     margin-bottom: 0.5rem;
   }
 
   table {
     width: 100%;
     border-spacing: 0;
-    font: var(--sys-label-medium);
+    font: var(--mat-sys-label-medium);
 
     td {
       padding: 0.5rem 1rem;
@@ -48,7 +48,7 @@
     tr td:first-child {
       border-left: 1px solid #acb5c3;
       width: 14.5rem;
-      background-color: var(--sys-surface-container);
+      background-color: var(--mat-sys-surface-container);
     }
 
     tr:first-child {

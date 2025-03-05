@@ -29,6 +29,7 @@ export abstract class BaseButtonVariantDirective {
 })
 export class ButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly variant = input.required<ButtonVariant>({ alias: 'hraButtonVariant' });
 }
 

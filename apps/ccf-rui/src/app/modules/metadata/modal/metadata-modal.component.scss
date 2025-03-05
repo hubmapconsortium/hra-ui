@@ -37,8 +37,8 @@
       margin-bottom: 2rem;
 
       .title {
-        font: var(--sys-headline-large);
-        letter-spacing: var(--sys-headline-large-tracking);
+        font: var(--mat-sys-headline-large);
+        letter-spacing: var(--mat-sys-headline-large-tracking);
       }
     }
 
@@ -67,7 +67,7 @@
 ::ng-deep {
   .metadata-modal {
     --mdc-dialog-container-shape: 0;
-    --mdc-dialog-container-color: var(--sys-surface-container-low);
+    --mdc-dialog-container-color: var(--mat-sys-surface-container-low);
 
     .mat-mdc-dialog-surface {
       overflow-y: hidden !important;
@@ -75,6 +75,6 @@
   }
 
   .metadata-confirmation-modal {
-    --mdc-dialog-container-color: var(--sys-surface-container-low);
+    --mdc-dialog-container-color: var(--mat-sys-surface-container-low);
   }
 }
