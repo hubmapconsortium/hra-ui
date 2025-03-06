@@ -255,6 +255,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     this.page = this.injector.get(PageState);
 
     this.referenceData.state$.subscribe(() => this.onReferenceDataChange());
+    this.globalConfig.getOption('consortium').subscribe((consortium) => this.setConsortium(consortium));
   }
 
   idMatches(ontologyId?: string, organSide?: string): OrganInfo | undefined {

@@ -86,6 +86,11 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ## @hra-ui/ccf-rui
 
+### 4.2.0 - 2025-02-21
+
+- Add the ability to set `consortium` programmatically. Previously it could only be set and updated in the UI.
+- Css styles are now scoped to the application to prevent them from interfering with the embedding environment's styles.
+
 ### 4.1.0 - 2024-12-13
 
 - Updated UI to use [@hra-ui/design-system@1.0.0](#hra-uidesign-system)

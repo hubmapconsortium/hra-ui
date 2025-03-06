@@ -1,9 +1,9 @@
 <div class="header">
   <div class="logos">
     <a href="https://humanatlas.io/" target="_blank" rel="noopener noreferrer">
-      <img [attr.src]="'assets/logo/hra-logo.svg' | assetUrl" alt="Human Reference Atlas logo" class="hra-logo" />
+      <img [attr.src]="'assets/logo/hra-logo-2.svg' | assetUrl" alt="Human Reference Atlas logo" class="hra-logo" />
       <img
-        [attr.src]="'assets/logo/hra-logo-small.svg' | assetUrl"
+        [attr.src]="'assets/logo/hra-logo-small-2.svg' | assetUrl"
         alt="Small Size Human Reference Atlas logo"
         class="hra-mini-logo"
       />
@@ -17,15 +17,14 @@
     </a>
   </div>
   <span class="menu-btns">
-    <button [routerLink]="'data'" disableRipple mat-button>Data</button>
-    <button [routerLink]="'usage'" disableRipple mat-button>Usage</button>
-    <button [routerLink]="'publications'" disableRipple mat-button>Publications</button>
-    <button [routerLink]="'experimental-data'" disableRipple mat-button>Experimental Data</button>
-    <button [routerLink]="'diversity-and-inclusion'" disableRipple mat-button>Diversity & Inclusion</button>
+    <button [routerLink]="'data'" mat-button hraPrimaryButton>Data</button>
+    <button [routerLink]="'usage'" mat-button hraPrimaryButton>Usage</button>
+    <button [routerLink]="'publications'" mat-button hraPrimaryButton>Publications</button>
+    <button [routerLink]="'experimental-data'" mat-button hraPrimaryButton>Experimental Data</button>
+    <button [routerLink]="'diversity-and-inclusion'" mat-button hraPrimaryButton>Diversity & Inclusion</button>
   </span>
   <button
-    mat-button
-    disableRipple
+    mat-icon-button
     #menuTrigger="matMenuTrigger"
     [matMenuTriggerFor]="menu"
     aria-label="Icon button with a menu"
@@ -38,10 +37,10 @@
     </mat-icon>
   </button>
   <mat-menu #menu="matMenu" class="menu-panel">
-    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'data'"> Data </a>
-    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'usage'"> Usage </a>
-    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'publications'"> Publications </a>
-    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'experimental-data'"> Experimental Data </a>
-    <a mat-menu-item disableRipple class="cta-flat" [routerLink]="'diversity-and-inclusion'"> Diversity & Inclusion </a>
+    <a mat-menu-item class="cta-flat" [routerLink]="'data'"> Data </a>
+    <a mat-menu-item class="cta-flat" [routerLink]="'usage'"> Usage </a>
+    <a mat-menu-item class="cta-flat" [routerLink]="'publications'"> Publications </a>
+    <a mat-menu-item class="cta-flat" [routerLink]="'experimental-data'"> Experimental Data </a>
+    <a mat-menu-item class="cta-flat" [routerLink]="'diversity-and-inclusion'"> Diversity & Inclusion </a>
   </mat-menu>
 </div>
