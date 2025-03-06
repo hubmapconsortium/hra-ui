@@ -113,10 +113,8 @@ export class AppComponent implements OnInit {
     return navigator.userAgent.indexOf('Firefox') !== -1;
   }
 
-  /** Emits true whenever the overlay spinner should activate. */
-  readonly spinnerActive$ = this.data.state$.pipe(map((state) => state?.status !== 'Ready'));
-
-  readonly loadingMessage$ = this.data.state$.pipe(map((x) => x?.statusMessage));
+  /** Emits true whenever the progress bar should activate. */
+  readonly progressBarActive$ = this.data.state$.pipe(map((state) => state?.status !== 'Ready'));
 
   readonly ontologyTerms$: Observable<readonly string[]>;
   readonly cellTypeTerms$: Observable<readonly string[]>;

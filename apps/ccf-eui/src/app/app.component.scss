@@ -28,8 +28,9 @@
   .page-content {
     display: grid;
     grid-template-columns: 24.5rem auto 24.625rem;
-    grid-template-rows: 0rem 5rem calc(100vh - 5rem);
+    grid-template-rows: 0rem 0rem 5rem calc(100vh - 5rem);
     grid-template-areas:
+      'progress progress progress'
       'back back back'
       'header vis-panel right'
       'left content right';
@@ -43,6 +44,12 @@
 
   &:not(.embedded) .page-content hra-back-button-bar {
     display: none;
+  }
+
+  mat-progress-bar {
+    --mdc-linear-progress-active-indicator-color: var(--sys-tertiary);
+    --mdc-linear-progress-track-color: transparent;
+    grid-area: progress;
   }
 
   hra-back-button-bar {
