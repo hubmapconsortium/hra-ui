@@ -3,8 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { render } from '@testing-library/angular';
 import configuration from '../assets/configuration.json';
-import omapSheetConfig from '../assets/omap-sheet-config.json';
-import sheetConfig from '../assets/sheet-config.json';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
@@ -29,8 +28,8 @@ describe('AppComponent', () => {
 
     const controller = TestBed.inject(HttpTestingController);
     controller.expectOne('assets/configuration.json').flush(configuration);
-    controller.expectOne('assets/omap-sheet-config.json').flush(omapSheetConfig);
-    controller.expectOne('assets/sheet-config.json').flush(sheetConfig);
+    controller.expectOne(environment.omapSheetConfigUrl).flush([]);
+    controller.expectOne(environment.sheetConfigUrl).flush([]);
 
     await expect(result).resolves.toBeDefined();
   });
