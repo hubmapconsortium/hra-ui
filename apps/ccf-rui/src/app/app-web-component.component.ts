@@ -35,6 +35,7 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() referenceData!: string;
   @Input() user!: string | User;
   @Input() organ!: string | Organ;
+  @Input() consortium!: string;
   @Input() editRegistration!: string | SpatialEntityJsonLd;
   @Input() register!: string | RegistrationCallback;
   @Input() cancelRegistration!: string | CancelRegistrationCallback;

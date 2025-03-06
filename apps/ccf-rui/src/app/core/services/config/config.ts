@@ -11,6 +11,7 @@ export interface GlobalConfig {
     lastName: string;
     email: string;
   };
+  consortium?: string;
 
   register?: (data: string) => void;
   useDownload?: boolean;
