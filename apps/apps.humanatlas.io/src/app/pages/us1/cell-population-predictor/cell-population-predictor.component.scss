@@ -7,9 +7,9 @@
 
 .info-text {
   margin-top: 3.5rem;
-  font: var(--sys-body-large);
-  letter-spacing: var(--sys-body-large-tracking);
-  color: var(--sys-on-secondary-container);
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
 }
 
 .cards {
@@ -26,7 +26,7 @@
   }
 
   .card-text {
-    color: var(--sys-inverse-surface);
+    color: var(--mat-sys-inverse-surface);
     margin: 0;
   }
 
@@ -52,8 +52,8 @@
   .card {
     height: 15.8125rem;
     width: 27rem;
-    font: var(--sys-label-large);
-    letter-spacing: var(--sys-label-large-tracking);
+    font: var(--mat-sys-label-large);
+    letter-spacing: var(--mat-sys-label-large-tracking);
 
     &-1 {
       .buttons {
@@ -75,12 +75,12 @@
   .tooltip-panel {
     background-color: white;
     margin-left: 0.5rem;
-    box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
+    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
     border-radius: 0.5rem;
     max-width: 21rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    color: var(--sys-primary);
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: var(--mat-sys-primary);
   }
 }
 
