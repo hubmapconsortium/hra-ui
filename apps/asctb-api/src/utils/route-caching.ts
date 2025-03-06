@@ -4,7 +4,7 @@ import mcache from 'memory-cache';
 export function routeCache(duration: number): RequestHandler {
   return (req, res, next) => {
     // query parameters
-    const cache = req.query.cache as string;
+    const cache = req.query['cache'] as string;
     if (cache !== 'true') {
       next();
     } else {

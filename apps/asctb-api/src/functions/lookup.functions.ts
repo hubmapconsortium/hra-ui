@@ -37,7 +37,7 @@ export function fixOntologyId(id: string): string {
   return id;
 }
 
-export function guessIri(id: string): string {
+export function guessIri(id: string): string | undefined {
   const [code, idNumber] = id.split(':');
   if (idNumber) {
     switch (code) {

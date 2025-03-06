@@ -1,4 +1,5 @@
 import { JsonLd } from 'jsonld/jsonld-spec';
+// @ts-expect-error No declarations
 import { Readable } from 'stream-browserify';
 
 export async function makeOwlData(data: JsonLd): Promise<string> {

@@ -8,7 +8,7 @@ export class OmapDataTransformer {
   private readonly metaData: Record<string, string | string[]>;
   private readonly _transformedData: string[][];
   private readonly isLegacyOmap: boolean;
-  private columns: string[];
+  private columns: string[] = [];
 
   constructor(data: string[][], legacy = false) {
     this.isLegacyOmap = legacy;
@@ -45,65 +45,67 @@ export class OmapDataTransformer {
     const dataObject: Record<string, string>[] = this.createMapOfOldColumnsAndValues();
     // Decides whether to take organs from table or constants
     const organColumnsPresent = ['organ', 'organ_uberon'].every((column) => this.columns.includes(column));
-    const organ = OMAP_ORGAN[this.metaData.data_doi as string] ?? OMAP_ORGAN.default;
+    const organ = OMAP_ORGAN[this.metaData['data_doi'] as string] ?? OMAP_ORGAN['default'];
     if (!(this.isLegacyOmap || organColumnsPresent)) {
       this._warnings.add('WARNING: Organ Columns Missing. Adding default Organ Columns');
     }
-    if (this.isLegacyOmap && !OMAP_ORGAN[this.metaData.data_doi as string]) {
+    if (this.isLegacyOmap && !OMAP_ORGAN[this.metaData['data_doi'] as string]) {
       this._warnings.add('WARNING: DOI mapping not present; Adding default Organ Columns.');
     }
 
     const transformedData: string[][] = [];
-    const title = this.metaData.title;
+    const title = this.metaData['title'];
     const alternateOrgan = 'missing organ label';
     const alternateOrganUberon = 'missing organ UBERON id';
     let organLabelMissingWarningAdded = false;
     let organUberonMissingWarningAdded = false;
 
     dataObject.forEach((data) => {
-      const uniprots = data.uniprot_accession_number.split(', ');
-      const hgncIds = data.HGNC_ID.split(', ');
-      const targetNames = data.target_symbol?.split(', ') ?? [];
+      const uniprots = data['uniprot_accession_number'].split(', ');
+      const hgncIds = data['HGNC_ID'].split(', ');
+      const targetNames = data['target_symbol']?.split(', ') ?? [];
       if (!(uniprots.length === hgncIds.length && hgncIds.length === targetNames.length)) {
         this.warnings.add(
           'WARNING: Number of entires in column uniprot_accession_number, HGNC_ID,' +
-            `target_symbol are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
+            `target_symbol are not equal in row ${data['rowNo']}. uniprot_accession_number: ${uniprots.length};` +
             `HGNC_ID: ${hgncIds.length}; target_symbol: ${targetNames.length}`,
         );
       }
-      let notes = `Extra information in "${title}", Row ${data.rowNo} \n`;
-      notes += data.notes;
-      if (!this.isLegacyOmap && !data.organ) {
-        data.organ = alternateOrgan;
+      let notes = `Extra information in "${title}", Row ${data['rowNo']} \n`;
+      notes += data['notes'];
+      if (!this.isLegacyOmap && !data['organ']) {
+        data['organ'] = alternateOrgan;
         if (!organLabelMissingWarningAdded) {
           this._warnings.add('WARNING: Organ Label Missing.');
           organLabelMissingWarningAdded = true;
         }
       }
-      if (!this.isLegacyOmap && !data.organ_uberon) {
-        data.organ_uberon = alternateOrganUberon;
+      if (!this.isLegacyOmap && !data['organ_uberon']) {
+        data['organ_uberon'] = alternateOrganUberon;
         if (!organUberonMissingWarningAdded) {
           this._warnings.add('WARNING: Organ Uberon ID Missing.');
           organUberonMissingWarningAdded = true;
         }
       }
       if (
-        data.uniprot_accession_number !== '' &&
-        data.HGNC_ID !== '' &&
-        data.target_symbol !== '' &&
-        data.target_symbol !== undefined
+        data['uniprot_accession_number'] !== '' &&
+        data['HGNC_ID'] !== '' &&
+        data['target_symbol'] !== '' &&
+        data['target_symbol'] !== undefined
       ) {
         const newrow = this.isLegacyOmap
           ? [organ.name, organ.rdfs_label, organ.id]
-          : [data.organ, data.organ, data.organ_uberon];
+          : [data['organ'], data['organ'], data['organ_uberon']];
         const maxBPs = Math.max(uniprots.length, hgncIds.length, targetNames.length);
         for (let i = 0; i < maxBPs; i++) {
           newrow.push(targetNames[i] ?? '', uniprots[i] ?? '', hgncIds[i] ?? '', notes ?? '');
         }
-        transformedData.push(newrow);
+        transformedData.push(newrow as string[]);
       } else {
         transformedData.push(
-          this.isLegacyOmap ? [organ.name, organ.rdfs_label, organ.id] : [data.organ, data.organ, data.organ_uberon],
+          (this.isLegacyOmap
+            ? [organ.name, organ.rdfs_label, organ.id]
+            : [data['organ'], data['organ'], data['organ_uberon']]) as string[],
         );
       }
     });
@@ -129,7 +131,7 @@ export class OmapDataTransformer {
         return acc;
       }, {});
       // 4 = Two blank rows + 1 for 0 indexing of headerrow + 1 for 0 indexing for subArr
-      keyValuePairs.rowNo = (index + this.headerRow + 4).toString();
+      keyValuePairs['rowNo'] = (index + this.headerRow + 4).toString();
       dataObject.push(keyValuePairs);
     });
     dataObject = this.createNotes(dataObject);
@@ -144,7 +146,7 @@ export class OmapDataTransformer {
         .filter(([key, value]) => value !== undefined && value !== null && value !== '' && !excludedKeys.includes(key))
         .map(([key, value]) => `**${key}:** ${value}`);
       const result = `- ${formattedEntries.join('\n- ')}`;
-      obj.notes = result;
+      obj['notes'] = result;
     });
     return dataObject;
   }

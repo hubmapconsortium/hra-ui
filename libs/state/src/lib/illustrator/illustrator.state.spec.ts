@@ -10,7 +10,7 @@ import {
 import { StateContext } from '@ngxs/store';
 import { MockProxy, mock } from 'jest-mock-extended';
 import { firstValueFrom, of } from 'rxjs';
-import { Load, SetClicked, SetHover } from './illustrator.actions';
+import { HighlightCellType, Load, SetClicked, SetHover } from './illustrator.actions';
 import { IllustratorModel, IllustratorState } from './illustrator.state';
 
 describe('IllustratorState', () => {
@@ -70,12 +70,12 @@ describe('IllustratorState', () => {
         ontologyId: 'Mock id',
         source: {} as RawCellEntry,
       };
-      state.SetHover(ctx, new SetHover(mockSelected));
+      state.setHover(ctx, new SetHover(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnHover: mockSelected });
     });
   });
 
-  describe('seClicked(ctx, action)', () => {
+  describe('setClicked(ctx, action)', () => {
     it('should set selected item on clicked', async () => {
       const mockSelected: IllustrationMappingItem = {
         label: 'Mock Label',
@@ -84,7 +84,7 @@ describe('IllustratorState', () => {
         ontologyId: 'Mock id',
         source: {} as RawCellEntry,
       };
-      state.SetClicked(ctx, new SetClicked(mockSelected));
+      state.setClicked(ctx, new SetClicked(mockSelected));
       expect(ctx.patchState).toHaveBeenCalledWith({ selectedOnClick: mockSelected });
     });
   });
@@ -100,6 +100,21 @@ describe('IllustratorState', () => {
     it('should reset the mapping', () => {
       state.reset(ctx);
       expect(ctx.setState).toHaveBeenCalledWith({ mapping: [] });
+    });
+  });
+
+  describe('highlightCellType', () => {
+    it('should set hoveredCellTypeId', () => {
+      const item: IllustrationMappingItem = {
+        label: 'Mock Label',
+        id: 'Mock Name',
+        groupId: 'Mock Group',
+        ontologyId: 'Mock id',
+        source: {} as RawCellEntry,
+      };
+      ctx.getState.mockReturnValue({ mapping: [item] });
+      state.highlightCellType(ctx, new HighlightCellType('Mock id'));
+      expect(ctx.patchState).toHaveBeenCalledWith({ hoveredCellTypeId: 'Mock id' });
     });
   });
 });

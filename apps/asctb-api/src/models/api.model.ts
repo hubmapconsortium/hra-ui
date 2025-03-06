@@ -27,7 +27,7 @@ export enum BM_TYPE {
   BF = 'proteoforms',
 }
 
-export const OMAP_ORGAN: Record<string, Structure> = {
+export const OMAP_ORGAN = {
   'https://doi.org/10.48539/HBM467.LRKZ.884': {
     name: 'skin',
     rdfs_label: 'skin of body',
@@ -91,7 +91,7 @@ export const OMAP_ORGAN: Record<string, Structure> = {
     setBiomarkerProperties: undefined,
     isValid: undefined,
   },
-};
+} as unknown as Record<string, Structure>;
 
 export enum PROTEIN_PRESENCE {
   POS = 'Positive',
@@ -165,9 +165,9 @@ export class Reference {
 }
 
 export class Structure {
-  name?: string;
-  id?: string = '';
-  rdfs_label?: string = '';
+  name: string;
+  id = '';
+  rdfs_label = '';
   b_type?: BM_TYPE;
   proteinPresence?: PROTEIN_PRESENCE;
   notes?: string;

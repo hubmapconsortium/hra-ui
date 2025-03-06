@@ -17,7 +17,7 @@ export function buildgraphAS(data: Row[], graphData: GraphData) {
   root.comparator = root.metadata.name;
   root.comparatorName = root.metadata.name;
   root.comparatorId = root.metadata.ontologyId;
-  delete root.parent;
+  delete (root as Partial<GNode>).parent;
   graphData.nodes.push(root);
 
   data.forEach((row: Row) => {
@@ -60,7 +60,7 @@ export function buildgraphAS(data: Row[], graphData: GraphData) {
     });
   });
   graphData.nodes.shift();
-  delete graphData.nodes[0].parent;
+  delete (graphData.nodes[0] as Partial<GNode>).parent;
   return id;
 }
 export function buildgraphCT(data: Row[], graphData: GraphData, id: number) {
@@ -165,7 +165,7 @@ export function makeGraphData(data: Row[]) {
   id = buildgraphCT(data, graphData, id);
   buildgraphBM(data, graphData, id);
   graphData.edges.shift();
-  graphData.nodes.forEach((node: GNode) => {
+  graphData.nodes.forEach((node: Partial<GNode>) => {
     delete node.parent;
     delete node.comparatorName;
     delete node.comparatorId;

@@ -14,11 +14,11 @@ export function setupPlaygroundRoutes(app: Express): void {
       const parsed = papa.parse<string[]>(PLAYGROUND_CSV).data;
       const asctbData = makeASCTBData(parsed);
       res.send({
-        data: asctbData.data,
-        metadata: asctbData.metadata,
+        data: asctbData?.data ?? [],
+        metadata: asctbData?.metadata ?? {},
         csv: PLAYGROUND_CSV,
         parsed: parsed,
-        warnings: asctbData.warnings,
+        warnings: asctbData?.warnings ?? [],
       });
     } catch (err) {
       console.log(err);
@@ -37,11 +37,11 @@ export function setupPlaygroundRoutes(app: Express): void {
     try {
       const asctbData = makeASCTBData(req.body.data);
       res.send({
-        data: asctbData.data,
-        metadata: asctbData.metadata,
+        data: asctbData?.data ?? [],
+        metadata: asctbData?.metadata ?? {},
         parsed: req.body,
         csv: csv,
-        warnings: asctbData.warnings,
+        warnings: asctbData?.warnings ?? [],
       });
     } catch (err) {
       console.log(err);

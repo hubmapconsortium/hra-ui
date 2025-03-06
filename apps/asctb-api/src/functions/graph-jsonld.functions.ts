@@ -28,10 +28,10 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
 
   nodes.forEach((node, index) => {
     let ontologyId = node.metadata.ontologyId;
-    let iri: string;
+    let iri = '';
     if (ontologyId?.trim().length > 0) {
       ontologyId = fixOntologyId(ontologyId);
-      iri = guessIri(ontologyId);
+      iri = guessIri(ontologyId) ?? '';
     }
     if (!iri) {
       const suffix = node.name

@@ -222,7 +222,7 @@ function checkMissingIds(
    * check for missing Uberon/CL IDs:
    */
   const lastElement = column[column.length - 1];
-  const isId = lastElement.toLowerCase() === objectFieldMap.ID;
+  const isId = lastElement.toLowerCase() === objectFieldMap['ID'];
   if (isId) {
     const nameValue = rowData[index - 2]?.trim() ?? '';
     const idValue = value.trim();
@@ -277,12 +277,8 @@ export function getHeaderRow(
 }
 
 export function makeASCTBData(data: string[][]): ASCTBData | undefined {
-  const header = getHeaderRow(
-    data,
-    OMAP_HEADER_FIRST_COLUMN,
-    ASCT_HEADER_FIRST_COLUMN,
-    LEGACY_OMAP_HEADER_FIRST_COLUMN,
-  );
+  const header =
+    getHeaderRow(data, OMAP_HEADER_FIRST_COLUMN, ASCT_HEADER_FIRST_COLUMN, LEGACY_OMAP_HEADER_FIRST_COLUMN) ?? [];
 
   if (header[0] === LEGACY_OMAP_HEADER_FIRST_COLUMN) {
     const omapTransformer = new OmapDataTransformer(data, true);
