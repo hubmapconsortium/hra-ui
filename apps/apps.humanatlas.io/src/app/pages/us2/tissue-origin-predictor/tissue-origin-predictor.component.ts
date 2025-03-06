@@ -11,8 +11,9 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { ProductHeaderComponent } from '../../../components/product-header/product-header.component';
 import { PredictionsService } from '../../us1/services/predictions.service';
-import { TissueOriginService } from '../services/tissue-origin.service';
+import { TissueOriginService, UserSelectionService } from '../services/tissue-origin.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hra-tissue-origin-predictor',
@@ -43,6 +44,12 @@ export class TissueOriginPredictorComponent {
 
   /** Tissue Origin Service */
   protected readonly tissueOriginService = inject(TissueOriginService);
+
+  /** User Selection Service */
+  protected readonly userSelectionService = inject(UserSelectionService);
+
+  /** Router */
+  private readonly router = inject(Router);
 
   /** Supported organs */
   protected supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
@@ -75,5 +82,11 @@ export class TissueOriginPredictorComponent {
       this.file.set(input.files[0]);
       this.tissueOriginService.setFile(input.files[0]);
     }
+  }
+
+  /** Triggered when user click the predict button */
+  onPredictClicked(): void {
+    this.userSelectionService.updateSelection(this.supportedOrgan, this.supportedTool);
+    this.router.navigate(['us2/result']);
   }
 }

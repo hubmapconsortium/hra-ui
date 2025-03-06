@@ -75,6 +75,6 @@
   <hra-workflow-card tagline="Predict Tissue Origin" step="3" class="card card-3">
     <hra-error-indicator *ngIf="!file()" [errors]="['Please upload a dataset.']" class="error-message">
     </hra-error-indicator>
-    <button mat-flat-button [disabled]="!file()">Predict</button>
+    <button mat-flat-button [disabled]="!file()" (click)="onPredictClicked()">Predict</button>
   </hra-workflow-card>
 </div>
