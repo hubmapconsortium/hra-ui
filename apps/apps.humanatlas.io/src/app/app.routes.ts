@@ -3,6 +3,8 @@ import { CellPopulationPredictorComponent } from './pages/us1/cell-population-pr
 import { CellPopulationPredictionsComponent } from './pages/us1/cell-population-predictions/cell-population-predictions.component';
 import { TissueOriginPredictorComponent } from './pages/us2/tissue-origin-predictor/tissue-origin-predictor.component';
 import { resolvePredictions } from './pages/us1/services/predictions.service';
+import { TissueOriginPredictionsComponent } from './pages/us2/tissue-origin-predictions/tissue-origin-predictions.component';
+import { resolveTissueOriginPredictions } from './pages/us2/services/tissue-origin.service';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -16,6 +18,13 @@ export const appRoutes: Route[] = [
   {
     path: 'us1',
     component: CellPopulationPredictorComponent,
+  },
+  {
+    path: 'us2/result',
+    component: TissueOriginPredictionsComponent,
+    resolve: {
+      predictions: resolveTissueOriginPredictions,
+    },
   },
   {
     path: 'us2',

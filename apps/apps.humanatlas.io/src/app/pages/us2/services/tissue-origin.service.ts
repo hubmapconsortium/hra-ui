@@ -22,6 +22,64 @@ export interface SupportedTools {
 }
 
 /**
+ * User Selection Data
+ */
+export interface UserSelection {
+  /** Organ */
+  selectedOrganIri: string;
+  /** Tool */
+  selectedToolIri: string;
+}
+
+/**
+ * Sources Data
+ */
+export interface Sources {
+  /** Cell source */
+  cell_source: string;
+  /** Cell source type */
+  cell_source_type: string;
+  /** Cell source label */
+  cell_source_label: string;
+  /** Tool */
+  tool: string;
+  /** Modality */
+  modality: string;
+  /** Similarity */
+  similarity: number;
+}
+
+/** Tissue Origin Predictions */
+export interface TissueOriginPredictions {
+  /** Sources array */
+  sources: Sources[];
+}
+
+/** User Selection Service */
+@Injectable({ providedIn: 'root' })
+export class UserSelectionService {
+  private selections: UserSelection = { selectedOrganIri: '', selectedToolIri: '' };
+
+  updateSelection(selectedOrganIri: string, selectedToolIri: string): void {
+    this.selections = { selectedOrganIri, selectedToolIri };
+  }
+
+  getSelections(): UserSelection {
+    return this.selections;
+  }
+}
+
+/** Resolver for Tisseu Origin Predictions page */
+export function resolveTissueOriginPredictions(): Observable<TissueOriginPredictions> {
+  const userSelectionService = inject(UserSelectionService).getSelections();
+
+  return inject(TissueOriginService).loadTissuePredictions(
+    userSelectionService.selectedOrganIri,
+    userSelectionService.selectedToolIri,
+  );
+}
+
+/**
  * Injectable
  */
 @Injectable({ providedIn: 'root' })
@@ -57,23 +115,26 @@ export class TissueOriginService {
     return this.file;
   }
 
-  // TODO: add return type for this function
   /**
    * Gets Predictions for the current csv file
    * @returns Predictions array observable
    */
-  loadTissuePredictions(selectedOrganIri: string, selectedToolIri: string) {
+  loadTissuePredictions(selectedOrganIri: string, selectedToolIri: string): Observable<TissueOriginPredictions> {
     if (this.file === null) {
-      return of({});
+      return of({ sources: [] });
     }
+
+    const body = {
+      ...(selectedOrganIri && { organ: selectedOrganIri }),
+      ...(selectedToolIri && { tool: selectedToolIri }),
+    };
 
     return from(this.file.text()).pipe(
       switchMap((data) =>
-        this.http.post(
+        this.http.post<TissueOriginPredictions>(
           `${this.endpoint}/cell-summary-report`,
           {
-            tool: selectedToolIri,
-            organ: selectedOrganIri,
+            ...body,
             csvString: data,
           },
           {
