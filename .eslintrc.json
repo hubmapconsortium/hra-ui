@@ -70,6 +70,10 @@
               {
                 "sourceTag": "project:node-dist-vis",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "project:dashboard",
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }

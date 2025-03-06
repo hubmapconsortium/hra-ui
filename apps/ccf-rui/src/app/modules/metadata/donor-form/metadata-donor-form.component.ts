@@ -34,8 +34,8 @@ function filterAutocompleteOptions<T>(
     return opts;
   });
 
-  const filter = (value: T | string | null, opts: T[]) => {
-    if (value === null || value === '') {
+  const filter = (value: T | string | null | undefined, opts: T[]) => {
+    if (value === null || value === undefined || value === '') {
       return opts;
     } else if (typeof value !== 'string') {
       value = getValue(value);
@@ -50,7 +50,7 @@ function filterAutocompleteOptions<T>(
       const opts = sorted();
       const inputSource$ = isSignal(input) ? input().valueChanges : input;
       return inputSource$.pipe(
-        startWith(''),
+        startWith(isSignal(input) ? input().value : ''),
         distinctUntilChanged(),
         map((value) => filter(value, opts)),
       );

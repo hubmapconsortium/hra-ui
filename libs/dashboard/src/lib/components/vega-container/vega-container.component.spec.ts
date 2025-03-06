@@ -3,13 +3,11 @@ import embed, { Result } from 'vega-embed';
 import { VegaContainerComponent } from './vega-container.component';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 
-jest.mock('vega-embed', () => {
-  return {
-    default: jest.fn().mockReturnValue({
-      finalize: jest.fn(),
-    }),
-  };
-});
+jest.mock('vega-embed', () =>
+  jest.fn().mockReturnValue({
+    finalize: jest.fn(),
+  }),
+);
 
 describe('VegaContainerComponent', () => {
   const embedResult = mockDeep<Result>();
