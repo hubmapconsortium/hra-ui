@@ -31,7 +31,7 @@
   </hra-workflow-card-actions>
   <hra-workflow-card-extra>
     <hra-delete-file-button
-      [fileName]="predictionService.getFile().name"
+      [fileName]="predictionService.getFile()!.name"
       (cancelLoad)="onDeleteButtonClick()"
       data-testid="delete-file-button"
     ></hra-delete-file-button>

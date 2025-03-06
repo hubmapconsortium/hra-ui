@@ -1,5 +1,5 @@
-<img [src]="'images/cell-population-predictor-icon.svg' | assetUrl" alt="" />
+<img [src]="'images/' + imageUrl() | assetUrl" alt="" />
 <div class="title">
-  <h1>Cell Population Predictor</h1>
+  <h1>{{ title() }}</h1>
   <hra-software-status-indicator status="Preview" size="medium"></hra-software-status-indicator>
 </div>
