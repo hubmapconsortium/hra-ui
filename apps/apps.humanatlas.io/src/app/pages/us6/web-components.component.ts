@@ -1,4 +1,6 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { Overlay } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -11,9 +13,6 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-
-import { Overlay } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -105,25 +104,19 @@ export class WebComponentsComponent {
   });
 
   constructor() {
-    effect(
-      (cleanup) => {
-        if (this.sidenavData() !== undefined) {
-          this.sidenavOverlay.attach(this.sidenavPortal());
-          cleanup(() => this.sidenavOverlay.detach());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect((cleanup) => {
+      if (this.sidenavData() !== undefined) {
+        this.sidenavOverlay.attach(this.sidenavPortal());
+        cleanup(() => this.sidenavOverlay.detach());
+      }
+    });
 
-    effect(
-      (cleanup) => {
-        if (this.appIframeData() !== undefined) {
-          this.appIframeOverlay.attach(this.appIframePortal());
-          cleanup(() => this.appIframeOverlay.detach());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect((cleanup) => {
+      if (this.appIframeData() !== undefined) {
+        this.appIframeOverlay.attach(this.appIframePortal());
+        cleanup(() => this.appIframeOverlay.detach());
+      }
+    });
   }
 
   onUseApp(organ: Organ, def: ComponentDef): void {
