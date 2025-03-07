@@ -131,6 +131,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "node tools/scripts/build-json-schema.mjs libs/design-system/brand/logo/src/lib/types/logos.schema.ts --name BrandLogos",
+          "node tools/scripts/build-json-schema.mjs libs/design-system/brand/mark/src/lib/types/marks.schema.ts --name BrandMarks",
           "node tools/scripts/build-json-schema.mjs libs/design-system/buttons/social-media-button/src/lib/types/social-media.schema.ts --name Socials",
           "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/footer/src/lib/types/funders.schema.ts --name Funders",
           "node tools/scripts/build-json-schema.mjs libs/design-system/navigation/header/src/lib/types/hubmap-menu.schema.ts --name HubmapMenu",

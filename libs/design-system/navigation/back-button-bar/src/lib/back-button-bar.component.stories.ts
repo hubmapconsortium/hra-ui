@@ -3,7 +3,7 @@ import { BackButtonBarComponent } from './back-button-bar.component';
 
 const meta: Meta<BackButtonBarComponent> = {
   component: BackButtonBarComponent,
-  title: 'Design System/Buttons/BackButtonBar',
+  title: 'Design System/Navigation/BackButtonBar',
   parameters: {
     design: {
       type: 'figma',

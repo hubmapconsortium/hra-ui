@@ -13,6 +13,7 @@ import {
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -22,6 +23,7 @@ const REEXPORTS = [
   AppNavButtonComponent,
   BreadcrumbsComponent,
   ButtonSizeDirective,
+  ButtonToggleSizeDirective,
   ButtonVariantDirective,
   CtaButtonDirective,
   NavigationCategoryToggleComponent,
