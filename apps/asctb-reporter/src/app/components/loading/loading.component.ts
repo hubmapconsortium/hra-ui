@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -11,9 +11,9 @@ import { UIState, UIStateModel } from '../../store/ui.state';
   standalone: false,
 })
 export class LoadingComponent implements OnInit {
-  @Select(UIState) loadingText$!: Observable<UIStateModel>;
+  data = inject<string>(MAT_DIALOG_DATA);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string) {}
+  @Select(UIState) loadingText$!: Observable<UIStateModel>;
 
   ngOnInit(): void {
     this.loadingText$.subscribe((l) => {

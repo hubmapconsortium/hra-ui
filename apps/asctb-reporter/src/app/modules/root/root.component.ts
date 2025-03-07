@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output, ViewChild, inject } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
@@ -67,6 +67,19 @@ import { TreeService } from './../tree/tree.service';
   standalone: false,
 })
 export class RootComponent implements OnDestroy {
+  readonly configService = inject(ConfigService);
+  readonly store = inject(Store);
+  readonly ts = inject(TreeService);
+  readonly route = inject(ActivatedRoute);
+  readonly dialog = inject(MatDialog);
+  readonly indent = inject(IndentedListService);
+  readonly report = inject(ReportService);
+  readonly sheetService = inject(SheetService);
+  readonly router = inject(Router);
+  readonly bms = inject(BimodalService);
+  private readonly snackbar = inject(MatSnackBar);
+  private readonly infoSheet = inject(MatBottomSheet);
+
   /**
    * Organ sheet data
    */
@@ -171,20 +184,9 @@ export class RootComponent implements OnDestroy {
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
 
-  constructor(
-    public configService: ConfigService,
-    public store: Store,
-    public ts: TreeService,
-    public route: ActivatedRoute,
-    public dialog: MatDialog,
-    private readonly snackbar: MatSnackBar,
-    public indent: IndentedListService,
-    public report: ReportService,
-    private readonly infoSheet: MatBottomSheet,
-    public sheetService: SheetService,
-    public router: Router,
-    public bms: BimodalService,
-  ) {
+  constructor() {
+    const store = this.store;
+
     this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
       this.sheetConfig = sheetOptions;
     });
@@ -365,7 +367,7 @@ export class RootComponent implements OnDestroy {
 
     this.pane$.subscribe((_unused) => {
       if (this.data) {
-        ts.makeTreeData(this.sheet, this.data, []);
+        this.ts.makeTreeData(this.sheet, this.data, []);
       }
     });
 
