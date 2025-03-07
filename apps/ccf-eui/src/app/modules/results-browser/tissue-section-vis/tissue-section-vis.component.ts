@@ -22,7 +22,7 @@ export class TissueSectionVisComponent {
 
   /** Returns whether or not the given section number exists in the tissueSection array */
   tissueSectionExists(sectionNumber: number): boolean {
-    if (this.tissueSections().filter((section) => section.sectionNumber === sectionNumber).length > 0) {
+    if (this.tissueSections().some((section) => section.sectionNumber === sectionNumber)) {
       return true;
     }
 

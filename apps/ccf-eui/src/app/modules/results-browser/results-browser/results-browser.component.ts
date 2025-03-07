@@ -49,8 +49,6 @@ export class ResultsBrowserComponent {
 
   readonly header = input.required<boolean>();
 
-  selectedListResults: ListResult[] = [];
-
   /**
    * Output emitting the result that was clicked on and its relevant information.
    * Used for opening and rendering the result viewer.
@@ -71,6 +69,8 @@ export class ResultsBrowserComponent {
 
   readonly showSelected = signal(false);
 
+  anyItemsSelected = false;
+
   /**
    * Creates an instance of results browser component.
    *
@@ -79,7 +79,7 @@ export class ResultsBrowserComponent {
   constructor(private readonly ga: GoogleAnalyticsService) {
     effect(() => {
       const results = this.listResults() as ListResult[];
-      this.selectedListResults = results.filter((result) => result.selected);
+      this.anyItemsSelected = results.some((result) => result.selected);
     });
   }
 

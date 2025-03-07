@@ -63,11 +63,11 @@ export class DonorCardComponent {
    */
   toggleExpansion(): void {
     if (this.selected()) {
-      this.expanded.update(() => !this.expanded());
+      this.expanded.update((value) => !value);
       this.ga.event('expanded_toggled', 'donor_card', this.tissueBlock().label, +this.expanded());
       this.expansionChange.emit(this.expanded());
     } else {
-      this.selected.update(() => true);
+      this.selected.set(true);
       this.selectOption.emit();
     }
   }
@@ -84,7 +84,7 @@ export class DonorCardComponent {
     if (this.selected()) {
       window.open(url, '_blank');
     } else {
-      this.selected.update(() => true);
+      this.selected.set(true);
     }
   }
 }
