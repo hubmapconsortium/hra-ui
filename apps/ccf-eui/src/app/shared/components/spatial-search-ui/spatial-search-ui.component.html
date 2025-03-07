@@ -100,9 +100,28 @@
   </div>
 
   <div class="button-container">
-    <button mat-button (click)="resetSphere.emit(); resetPosition.emit()">
-      Reset Options<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+    <button mat-button [matMenuTriggerFor]="menu">
+      Reset Options<mat-icon class="reset icon">reset_settings</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="resetSphere.emit()">
+        <mat-icon class="reset icon">reset_settings</mat-icon>
+        Reset probing sphere size
+      </button>
+      <button mat-menu-item (click)="resetView()">
+        <mat-icon class="reset icon">reset_settings</mat-icon>
+        Reset camera view
+      </button>
+      <button mat-menu-item (click)="resetPosition.emit()">
+        <mat-icon class="reset icon">reset_settings</mat-icon>
+        Reset position
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="resetSphere.emit(); resetPosition.emit(); resetView()">
+        <mat-icon class="reset icon">reset_settings</mat-icon>
+        Reset all settings
+      </button>
+    </mat-menu>
     <button
       mat-flat-button
       class="run-spatial-search button"

@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
-import { BodyUiModule, OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
+import {
+  BodyUiComponent,
+  BodyUiModule,
+  OrganInfo,
+  SpatialSearchKeyboardUIBehaviorModule,
+  XYZPositionModule,
+} from 'ccf-shared';
 
 import {
   Position,
@@ -16,6 +23,7 @@ import {
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
 import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * Main Spatial Search UI component
@@ -36,6 +44,8 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
     ButtonsModule,
     SpatialSearchInputsComponent,
     MicroTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,6 +53,9 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
 export class SpatialSearchUiComponent {
   /** HTML Class */
   @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
+
+  @ViewChild('primary', { static: false }) primaryUI!: BodyUiComponent;
+  @ViewChild('minimap', { static: false }) minimapUI!: BodyUiComponent;
 
   /** Nodes in the scene */
   readonly scene = input.required<SpatialSceneNode[]>();
@@ -86,10 +99,10 @@ export class SpatialSearchUiComponent {
   /** Emits when run spatial search button clicked */
   readonly addSpatialSearch = output();
 
-  /** Emits when reset probing sphere button clicked */
+  /** Emits when reset position button clicked */
   readonly resetPosition = output();
 
-  /** Emits when reset camera button clicked */
+  /** Emits when reset probing sphere button clicked */
   readonly resetSphere = output();
 
   /** Emits when close button clicked */
@@ -112,4 +125,13 @@ export class SpatialSearchUiComponent {
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
+
+  resetView(): void {
+    for (const ui of [this.primaryUI, this.minimapUI]) {
+      ui.target = this.sceneTarget();
+      ui.rotation = 0;
+      ui.rotationX = 0;
+      ui.bounds = this.sceneBounds();
+    }
+  }
 }
