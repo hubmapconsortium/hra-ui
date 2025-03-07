@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { map, shareReplay, take } from 'rxjs/operators';
 import { environment } from '../environments/environment';
@@ -7,6 +7,8 @@ import { SheetDetails } from './models/sheet.model';
 
 @Injectable()
 export class ConfigService {
+  private readonly http = inject(HttpClient);
+
   allSheetConfigurations$ = this.http.get<SheetDetails[]>(environment.sheetConfigUrl).pipe(take(1), shareReplay(1));
   allOMAPSheetConfigurations$ = this.http
     .get<SheetDetails[]>(environment.omapSheetConfigUrl)
@@ -35,6 +37,4 @@ export class ConfigService {
   );
 
   config$ = this.http.get<Record<string, unknown>>('assets/configuration.json').pipe(take(1), shareReplay(1));
-
-  constructor(private readonly http: HttpClient) {}
 }

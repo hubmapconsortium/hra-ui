@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Consent, ConsentService } from 'ccf-shared/analytics';
 
@@ -16,16 +16,9 @@ export class TrackingPopupComponent {
     return this.consentService.consent;
   }
 
-  container: HTMLElement;
-
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    readonly consentService: ConsentService,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Inject(MAT_SNACK_BAR_DATA) public data: any,
-  ) {
-    this.container = elementRef.nativeElement;
-  }
+  readonly consentService = inject(ConsentService);
+  readonly data = inject(MAT_SNACK_BAR_DATA);
+  readonly container = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
   dismiss(): void {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call

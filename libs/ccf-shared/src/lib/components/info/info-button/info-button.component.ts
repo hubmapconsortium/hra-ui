@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
@@ -17,6 +17,9 @@ import { InfoButtonService } from './info-button.service';
   standalone: false,
 })
 export class InfoButtonComponent implements OnDestroy {
+  private readonly dialog = inject(MatDialog);
+  private readonly infoButtonService = inject(InfoButtonService);
+
   /**
    * Title of the info dialog
    */
@@ -33,14 +36,10 @@ export class InfoButtonComponent implements OnDestroy {
 
   /**
    * Creates an instance of info button component.
-   *
-   * @param dialog Reference to the dialog creation service.
-   * @param infoButtonService Reference to the info button service
    */
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly infoButtonService: InfoButtonService,
-  ) {
+  constructor() {
+    const infoButtonService = this.infoButtonService;
+
     this.subscriptions.add(
       infoButtonService.panelContent.subscribe((data) => {
         if (data.content.length) {

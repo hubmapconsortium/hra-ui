@@ -66,7 +66,7 @@ export class IllustratorState {
    * Sets the current selection to the state for SetHover
    */
   @Action(SetHover)
-  SetHover({ patchState }: Context, { selectedOnHover }: SetHover): void {
+  setHover({ patchState }: Context, { selectedOnHover }: SetHover): void {
     patchState({ selectedOnHover });
   }
 
@@ -74,7 +74,7 @@ export class IllustratorState {
    * Sets the current selection to the state for SetClicked
    */
   @Action(SetClicked)
-  SetClicked({ patchState }: Context, { selectedOnClick }: SetClicked): void {
+  setClicked({ patchState }: Context, { selectedOnClick }: SetClicked): void {
     patchState({ selectedOnClick });
   }
 
@@ -98,7 +98,7 @@ export class IllustratorState {
    * Sets hover id of highlighted cell type from hover label
    */
   @Action(HighlightCellType)
-  HighlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
+  highlightCellType({ patchState, getState }: Context, { hoverLabel }: HighlightCellType): void {
     const match = getState().mapping.find((entry) => entry.ontologyId === hoverLabel);
     patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
   }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { REGISTRY } from '../static/docs';
 
@@ -7,6 +7,8 @@ import { REGISTRY } from '../static/docs';
   providedIn: 'root',
 })
 export class DocsService {
+  private readonly http = inject(HttpClient);
+
   /**
    * List of all the docs pages
    */
@@ -16,7 +18,6 @@ export class DocsService {
    * Behavior subject to return the markdown
    */
   docsData = new BehaviorSubject<string>('');
-  constructor(private readonly http: HttpClient) {}
 
   getData(title: string) {
     const index = REGISTRY.map((e) => e.urlTitle).indexOf(title);

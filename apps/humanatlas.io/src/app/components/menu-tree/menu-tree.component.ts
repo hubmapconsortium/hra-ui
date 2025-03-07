@@ -1,7 +1,7 @@
 import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { ViewportScroller } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Router } from '@angular/router';
 import { HUBMAP_NAV_ITEMS } from '../../shared/hubmap-navigation-items';
@@ -15,6 +15,10 @@ import { NavItems } from '../toolbar/nav-items';
   standalone: false,
 })
 export class MenuTreeComponent {
+  private readonly router = inject(Router);
+  private readonly scroller = inject(ViewportScroller);
+  private readonly overlay = inject(Overlay);
+
   /** Sets the menu items to the datasource */
   @Input() set treeItems(items: NavItems[]) {
     this.dataSource.data = items;
@@ -49,13 +53,6 @@ export class MenuTreeComponent {
 
   /** Hubmap nav Data */
   hubmapNavData = HUBMAP_NAV_ITEMS;
-
-  /** Creates instance of Router, ViewportScroller and Overlay */
-  constructor(
-    private readonly router: Router,
-    private readonly scroller: ViewportScroller,
-    private readonly overlay: Overlay,
-  ) {}
 
   /** Checks if current node has children */
   hasChild = (_: number, node: NavItems) => !!node.children && node.children.length > 0;

@@ -1,5 +1,15 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatTree, MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ILNode } from '../../models/indent.model';
 import { Row, Sheet } from '../../models/sheet.model';
@@ -25,6 +35,8 @@ interface FlatNode {
   standalone: false,
 })
 export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
+  readonly indentService = inject(IndentedListService);
+
   indentData = [];
   activateNode?: unknown;
   visible = false;
@@ -64,8 +76,6 @@ export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
   );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  constructor(public indentService: IndentedListService) {}
 
   ngOnInit(): void {
     this.indentService.indentData$.subscribe((data) => {

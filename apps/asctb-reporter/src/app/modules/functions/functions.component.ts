@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { faDna } from '@fortawesome/free-solid-svg-icons';
 import { Select, Store } from '@ngxs/store';
@@ -25,6 +25,10 @@ import { TreeState } from '../../store/tree.state';
   standalone: false,
 })
 export class FunctionsComponent {
+  readonly store = inject(Store);
+  readonly bms = inject(BimodalService);
+  readonly ga = inject(GoogleAnalyticsService);
+
   bmSizeOptions = bimodalBSizeOptions;
   sortOptions = bimodalSortOptions;
   ctSizeOptions = bimodalCTSizeOptions;
@@ -36,11 +40,7 @@ export class FunctionsComponent {
 
   @Select(TreeState.getBimodalConfig) config$!: Observable<BimodalConfig>;
 
-  constructor(
-    public store: Store,
-    public bms: BimodalService,
-    public ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
     this.config$.subscribe((config) => {
       this.bimodalConfig = config;
     });

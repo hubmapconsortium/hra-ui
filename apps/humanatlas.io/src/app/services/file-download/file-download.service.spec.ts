@@ -1,6 +1,7 @@
-import { FileDownloadService } from './file-download.service';
-import { DeepMockProxy, MockProxy, mock, mockDeep } from 'jest-mock-extended';
 import { ErrorHandler } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { MockProxy, mock } from 'jest-mock-extended';
+import { FileDownloadService } from './file-download.service';
 
 describe('FileDownloadService', () => {
   const url =
@@ -13,7 +14,6 @@ describe('FileDownloadService', () => {
   let mockResponse: MockProxy<Response>;
   let mockCreateObjectUrl: jest.Mock;
   let mockRevokeObjectUrl: jest.Mock;
-  let mockDocument: DeepMockProxy<Document>;
   let mockErrorHandler: MockProxy<ErrorHandler>;
   let mockElement: MockProxy<HTMLAnchorElement>;
 
@@ -22,20 +22,24 @@ describe('FileDownloadService', () => {
     mockResponse = mock();
     mockCreateObjectUrl = jest.fn();
     mockRevokeObjectUrl = jest.fn();
-    mockDocument = mockDeep();
     mockErrorHandler = mock();
     mockElement = mock();
 
     mockFetch.mockResolvedValue(mockResponse);
     mockResponse.blob.mockResolvedValue(data);
     mockCreateObjectUrl.mockReturnValue(objectUrl);
-    mockDocument.createElement.mockReturnValue(mockElement);
 
     global.fetch = mockFetch;
     URL.createObjectURL = mockCreateObjectUrl;
     URL.revokeObjectURL = mockRevokeObjectUrl;
 
-    service = new FileDownloadService(mockDocument, mockErrorHandler);
+    TestBed.configureTestingModule({
+      providers: [{ provide: ErrorHandler, useValue: mockErrorHandler }],
+    });
+
+    jest.spyOn(document, 'createElement').mockReturnValue(mockElement);
+    jest.spyOn(document.body, 'appendChild').mockImplementation();
+    service = TestBed.inject(FileDownloadService);
   });
 
   afterEach(() => {

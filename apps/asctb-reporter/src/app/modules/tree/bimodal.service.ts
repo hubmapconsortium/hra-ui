@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Spec, ValuesData, View } from 'vega';
 import { ReportLog } from '../../actions/logs.actions';
@@ -17,7 +17,7 @@ import { makeAS, makeBioMarkers, makeCellTypes } from './tree.functions';
   providedIn: 'root',
 })
 export class BimodalService {
-  constructor(private readonly store: Store) {}
+  private readonly store = inject(Store);
 
   /**
    * Function to create the bimodal network

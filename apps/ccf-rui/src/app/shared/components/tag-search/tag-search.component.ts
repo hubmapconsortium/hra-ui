@@ -9,6 +9,7 @@ import {
   Input,
   OnDestroy,
   Output,
+  inject,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -41,6 +42,9 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
   standalone: false,
 })
 export class TagSearchComponent implements OnDestroy {
+  private readonly el = inject<ElementRef<Node>>(ElementRef);
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
@@ -73,16 +77,10 @@ export class TagSearchComponent implements OnDestroy {
 
   /**
    * Creates an instance of tag search component.
-   *
-   * @param el Element for this component
-   * @param ga Analytics service
-   * @param cdr Reference to change detector
    */
-  constructor(
-    private readonly el: ElementRef<Node>,
-    private readonly ga: GoogleAnalyticsService,
-    cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
+    const cdr = inject(ChangeDetectorRef);
+
     this.searchControl.valueChanges
       .pipe(
         takeUntil(this.destroy$),

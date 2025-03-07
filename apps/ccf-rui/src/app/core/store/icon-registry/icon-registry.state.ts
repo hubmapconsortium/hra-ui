@@ -1,6 +1,6 @@
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { State } from '@ngxs/store';
@@ -41,19 +41,9 @@ export interface IconDefinition {
 @State<void>({ name: 'iconRegistry' })
 @Injectable()
 export class IconRegistryState extends NgxsDataRepository<void> {
-  /**
-   * Creates an instance of icon registry state.
-   *
-   * @param registry Material icon registry.
-   * @param sanitizer Service used to sanitize default imported urls and html.
-   */
-  constructor(
-    @Optional() private readonly registry: MatIconRegistry | null,
-    private readonly sanitizer: DomSanitizer,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
+  private readonly registry = inject(MatIconRegistry, { optional: true });
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
   override ngxsOnInit(): void {
     // Register html icons as they don't depend on baseHref

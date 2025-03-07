@@ -1,7 +1,7 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { insertItem, patch } from '@ngxs/store/operators';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
@@ -55,6 +55,9 @@ function undefIfNaN(value: number): number | undefined {
 })
 @Injectable()
 export class RegistrationState extends NgxsImmutableDataRepository<RegistrationStateModel> {
+  private readonly injector = inject(Injector);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
   readonly displayErrors$ = this.state$.pipe(map((x) => x?.displayErrors));
 
   /** Observable of registration metadata */
@@ -125,19 +128,6 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
 
   /** Reference to the reference data state */
   private refData!: ReferenceDataState;
-
-  /**
-   * Creates an instance of registration state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   * @param globalConfig The global configuration
-   */
-  constructor(
-    private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
 
   /**
    * Initializes this state service.

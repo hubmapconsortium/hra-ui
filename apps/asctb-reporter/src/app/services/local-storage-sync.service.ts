@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken, OnDestroy } from '@angular/core';
+import { Injectable, InjectionToken, OnDestroy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Consent, ConsentService } from './consent.service';
@@ -10,13 +10,14 @@ export const LOCAL_STORAGE_CONSENT_KEY = new InjectionToken('Key under which con
 
 @Injectable()
 export class LocalStorageSyncService implements OnDestroy {
+  private readonly key = inject(LOCAL_STORAGE_CONSENT_KEY);
+
   private readonly storage?: typeof localStorage;
   private readonly subscriptions = new Subscription();
 
-  constructor(
-    consentService: ConsentService,
-    @Inject(LOCAL_STORAGE_CONSENT_KEY) private readonly key: string,
-  ) {
+  constructor() {
+    const consentService = inject(ConsentService);
+
     try {
       this.storage = localStorage;
     } catch {

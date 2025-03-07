@@ -1,7 +1,7 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { State } from '@ngxs/store';
 import { SpatialPlacementJsonLd, SpatialSceneNode } from 'ccf-body-ui';
@@ -82,12 +82,8 @@ export interface OrganData {
 })
 @Injectable()
 export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDataStateModel> {
-  constructor(
-    private readonly globals: GlobalsService,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
+  private readonly globals = inject(GlobalsService);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
   /**
    * Initializes this state service.

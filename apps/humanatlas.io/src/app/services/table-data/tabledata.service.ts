@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { parse } from 'papaparse';
 import { map, Observable, shareReplay } from 'rxjs';
 import { TableData } from '../../components/table/table';
@@ -17,8 +17,7 @@ export interface TableDataWithColumns {
   providedIn: 'root',
 })
 export class TableDataService {
-  /** Initializes the HttpClient */
-  constructor(private readonly http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   /** Parses the CSV file and returns an observable */
   getData(file: string | undefined, validColumns: string[]): Observable<TableDataWithColumns> {

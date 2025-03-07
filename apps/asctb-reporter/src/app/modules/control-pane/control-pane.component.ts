@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FetchSelectedOrganData, ToggleShowAllAS, UpdateConfig } from '../../actions/sheet.actions';
@@ -22,6 +22,11 @@ import { VegaService } from '../tree/vega.service';
   standalone: false,
 })
 export class ControlPaneComponent implements OnInit {
+  readonly store = inject(Store);
+  readonly bm = inject(BimodalService);
+  readonly vs = inject(VegaService);
+  readonly configService = inject(ConfigService);
+
   @Input() error!: Error;
 
   @Select(SheetState.getSheetConfig) config$!: Observable<SheetConfig>;
@@ -46,12 +51,7 @@ export class ControlPaneComponent implements OnInit {
   view: any;
   groupName = 'Anatomical Structures';
 
-  constructor(
-    public store: Store,
-    public bm: BimodalService,
-    public vs: VegaService,
-    public configService: ConfigService,
-  ) {
+  constructor() {
     this.tree$.subscribe((tree) => {
       this.treeData = tree.treeData;
       this.nodes = tree.bimodal.nodes;

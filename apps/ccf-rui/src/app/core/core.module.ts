@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { MousePositionTrackerModule } from 'ccf-shared';
 import { AnalyticsModule } from 'ccf-shared/analytics';
 
@@ -23,7 +23,9 @@ import { StoreModule } from './store/store.module';
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() core: CoreModule) {
+  constructor() {
+    const core = inject(CoreModule, { optional: true, skipSelf: true });
+
     if (core) {
       throw new Error('The core module should only be imported once in the root module');
     }

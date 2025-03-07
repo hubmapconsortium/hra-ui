@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Directive, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { GlobalConfigState } from 'ccf-shared';
 
 import { ConfigManager, ConfigManagerOptions, GenericGlobalConfig } from './config-manager';
@@ -9,16 +9,15 @@ export interface BaseWebComponentOptions extends ConfigManagerOptions {
 
 @Directive()
 export class BaseWebComponent implements OnInit, OnChanges, OnDestroy {
+  readonly configState = inject<GlobalConfigState<GenericGlobalConfig>>(GlobalConfigState);
+  readonly cdr = inject(ChangeDetectorRef);
+
   initialized = false;
   configManager: ConfigManager;
 
   private _init?: ReturnType<typeof setTimeout>;
 
-  constructor(
-    readonly configState: GlobalConfigState<GenericGlobalConfig>,
-    readonly cdr: ChangeDetectorRef,
-    readonly options: BaseWebComponentOptions = {},
-  ) {
+  constructor(readonly options: BaseWebComponentOptions = {}) {
     this.configManager = new ConfigManager(this.configState, this.options);
   }
 

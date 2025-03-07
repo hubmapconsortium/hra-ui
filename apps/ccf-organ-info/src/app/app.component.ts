@@ -7,6 +7,7 @@ import {
   EventEmitter,
   Output,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
@@ -43,6 +44,9 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
   standalone: false,
 })
 export class AppComponent implements AfterViewInit {
+  private readonly ga = inject(GoogleAnalyticsService);
+  private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
   @ViewChild('left', { read: ElementRef, static: true }) left!: ElementRef<HTMLElement>;
   @ViewChild('right', { read: ElementRef, static: true }) right!: ElementRef<HTMLElement>;
 
@@ -74,12 +78,10 @@ export class AppComponent implements AfterViewInit {
   private latestConfig: Immutable<GlobalConfig> = {};
   private latestOrganInfo?: OrganInfo;
 
-  constructor(
-    lookup: OrganLookupService,
-    private readonly ga: GoogleAnalyticsService,
-    private readonly configState: GlobalConfigState<GlobalConfig>,
-  ) {
-    this.organInfo$ = configState.config$.pipe(
+  constructor() {
+    const lookup = inject(OrganLookupService);
+
+    this.organInfo$ = this.configState.config$.pipe(
       tap((config) => (this.latestConfig = config)),
       switchMap((config) =>
         lookup.getOrganInfo(config.organIri ?? '', config.side?.toLowerCase?.() as OrganInfo['side'], config.sex),

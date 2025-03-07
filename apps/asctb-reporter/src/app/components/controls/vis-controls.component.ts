@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
@@ -11,6 +11,8 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
   standalone: false,
 })
 export class VisControlsComponent {
+  readonly ga = inject(GoogleAnalyticsService);
+
   @Input() config!: SheetConfig;
   @Input() error!: Error;
   @Input() currentSheet!: Sheet;
@@ -20,7 +22,6 @@ export class VisControlsComponent {
     property: string;
     config: SheetConfig;
   }>();
-  constructor(public ga: GoogleAnalyticsService) {}
 
   changeWidth() {
     this.updatedConfig.emit({

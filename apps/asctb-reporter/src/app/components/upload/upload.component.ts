@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { UploadForm } from '../../models/sheet.model';
 
@@ -9,12 +9,12 @@ import { UploadForm } from '../../models/sheet.model';
   standalone: false,
 })
 export class UploadComponent implements OnInit {
+  readonly fb = inject(FormBuilder);
+
   @Output() uploadForm = new EventEmitter<UploadForm>();
 
   formGroup!: FormGroup;
   formValid = true;
-
-  constructor(public fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup(

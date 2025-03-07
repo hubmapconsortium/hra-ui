@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { StateReset } from 'ngxs-reset-plugin';
@@ -205,6 +205,12 @@ const FETCHING_TEXT = 'Fetching data...';
 })
 @Injectable()
 export class SheetState {
+  readonly configService = inject(ConfigService);
+  readonly ga = inject(GoogleAnalyticsService);
+  readonly reportService = inject(ReportService);
+  readonly store = inject(Store);
+  private readonly sheetService = inject(SheetService);
+
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
   exampleSheet?: SheetDetails;
@@ -213,13 +219,7 @@ export class SheetState {
   bodyId = 'UBERON:0013702';
   bodyLabel = 'body proper';
 
-  constructor(
-    public configService: ConfigService,
-    private readonly sheetService: SheetService,
-    public readonly ga: GoogleAnalyticsService,
-    public reportService: ReportService,
-    public store: Store,
-  ) {
+  constructor() {
     this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
       this.sheetConfig = sheetOptions;
     });

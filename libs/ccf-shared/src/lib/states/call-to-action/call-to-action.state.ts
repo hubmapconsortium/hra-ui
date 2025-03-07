@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -52,6 +52,12 @@ const SPATIAL_SEARCH_README = 'assets/docs/SPATIAL_SEARCH_README.md';
  */
 @Injectable()
 export class CallToActionState implements NgxsOnInit {
+  private readonly dialog = inject(MatDialog);
+  private readonly ga = inject(GoogleAnalyticsService);
+  private readonly storage = inject(LocalStorageService);
+  private readonly infoService = inject(InfoButtonService);
+  private readonly http = inject(HttpClient);
+
   /** Used to break cyclical import */
   static callToActionComponent: typeof CallToActionBehaviorComponent;
 
@@ -67,14 +73,6 @@ export class CallToActionState implements NgxsOnInit {
 
     return +today > +expire;
   }
-
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly ga: GoogleAnalyticsService,
-    private readonly storage: LocalStorageService,
-    private readonly infoService: InfoButtonService,
-    private readonly http: HttpClient,
-  ) {}
 
   ngxsOnInit(ctx: StateContext<CallToActionModel>): void {
     const { expirationDate, popupShown } = ctx.getState();

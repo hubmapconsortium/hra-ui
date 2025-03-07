@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ValuesData } from 'vega';
@@ -19,6 +19,10 @@ import { VegaService } from './vega.service';
   providedIn: 'root',
 })
 export class TreeService {
+  readonly store = inject(Store);
+  readonly vs = inject(VegaService);
+  readonly bm = inject(BimodalService);
+
   /**
    * Height of the tree
    */
@@ -47,11 +51,7 @@ export class TreeService {
    */
   @Select(SheetState.getSheetConfig) sc$!: Observable<SheetConfig>;
 
-  constructor(
-    public readonly store: Store,
-    public readonly vs: VegaService,
-    public readonly bm: BimodalService,
-  ) {
+  constructor() {
     this.tree$.subscribe((state) => {
       this.height = state.height;
       const view = TreeState.getVegaView(state);
@@ -172,7 +172,7 @@ export class TreeService {
             id += 1;
             const newNode = new TNode(
               id,
-              structure.id && idNameSet[structure.id] ? idNameSet[structure.id] : structure.name ?? '',
+              structure.id && idNameSet[structure.id] ? idNameSet[structure.id] : (structure.name ?? ''),
               parent.id,
               structure.id ?? '',
               structure.notes ?? '',
