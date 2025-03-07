@@ -208,7 +208,7 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#logoUrl" >logoUrl</a>
+                                <a href="#data" >data</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -247,29 +247,29 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="logoUrl"></a>
+                    <a name="data"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>logoUrl</b></span>
-                        <a href="#logoUrl"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; BRAND_LOGO_URLS[this.size()])</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; findOrThrow(LOGOS, ({ size }) &#x3D;&gt; size &#x3D;&#x3D;&#x3D; this.size()))</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">brand/logo/src/lib/logo.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">brand/logo/src/lib/logo.component.ts:28</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Url of the logo svg based on the logo size</p>
+                    <div class="io-description"><p>Logo data</p>
 </div>
                 </td>
             </tr>
@@ -296,7 +296,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">brand/logo/src/lib/logo.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">brand/logo/src/lib/logo.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -323,12 +323,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>input&lt;BrandLogoSize&gt;(&#x27;large&#x27;)</code>
+                        <i>Default value : </i><code>input&lt;BrandLogoSize&gt;(&#x27;regular&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">brand/logo/src/lib/logo.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">brand/logo/src/lib/logo.component.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -350,16 +350,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 import { AssetUrlPipe } from &#x27;@hra-ui/cdk/app-href&#x27;;
+import { findOrThrow } from &#x27;@hra-ui/common/array-util&#x27;;
 import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
-
-/** Logo size */
-export type BrandLogoSize &#x3D; &#x27;small&#x27; | &#x27;large&#x27;;
-
-/** Urls for different logo sizes */
-const BRAND_LOGO_URLS: Record&lt;BrandLogoSize, string&gt; &#x3D; {
-  small: &#x27;assets/logo/hra-logo-small.svg&#x27;,
-  large: &#x27;assets/logo/hra-logo-regular.svg&#x27;,
-};
+import { LOGOS } from &#x27;./static-data/parsed&#x27;;
+import { BrandLogoSize } from &#x27;./types/logos.schema&#x27;;
 
 /** Brand Logo Component */
 @Component({
@@ -374,13 +368,13 @@ const BRAND_LOGO_URLS: Record&lt;BrandLogoSize, string&gt; &#x3D; {
 })
 export class BrandLogoComponent {
   /** Size of the logo */
-  readonly size &#x3D; input&lt;BrandLogoSize&gt;(&#x27;large&#x27;);
+  readonly size &#x3D; input&lt;BrandLogoSize&gt;(&#x27;regular&#x27;);
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;
 
-  /** Url of the logo svg based on the logo size */
-  protected readonly logoUrl &#x3D; computed(() &#x3D;&gt; BRAND_LOGO_URLS[this.size()]);
+  /** Logo data */
+  protected readonly data &#x3D; computed(() &#x3D;&gt; findOrThrow(LOGOS, ({ size }) &#x3D;&gt; size &#x3D;&#x3D;&#x3D; this.size()));
 }
 </code></pre>
     </div>
@@ -388,8 +382,10 @@ export class BrandLogoComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;a
   class&#x3D;&quot;logo&quot;
-  [inlineSVG]&#x3D;&quot;logoUrl() | assetUrl&quot;
+  [inlineSVG]&#x3D;&quot;data().src | assetUrl&quot;
   [evalScripts]&#x3D;&quot;NEVER_EVAL_SCRIPTS&quot;
+  [style.width.px]&#x3D;&quot;data().width&quot;
+  [style.height.px]&#x3D;&quot;data().height&quot;
   aria-label&#x3D;&quot;Visit Human Reference Atlas&quot;
   href&#x3D;&quot;https://humanatlas.io/&quot;
   target&#x3D;&quot;_blank&quot;
@@ -425,9 +421,9 @@ export class BrandLogoComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a  class="logo"  [inlineSVG]="logoUrl() | assetUrl"  [evalScripts]="NEVER_EVAL_SCRIPTS"  aria-label="Visit Human Reference Atlas"  href="https://humanatlas.io/"  target="_blank"  rel="noopener noreferrer"></a></div>'
-    var COMPONENTS = [{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonGlobalStylesComponent', 'selector': 'hra-button-global-styles'},{'name': 'ButtonToggleStylesComponent', 'selector': 'hra-button-toggle-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WebComponentCardComponent', 'selector': 'hra-web-component-card'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
-    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'ToggleButtonSizeDirective', 'selector': '[hraButtonToggleSize]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+        var COMPONENT_TEMPLATE = '<div><a  class="logo"  [inlineSVG]="data().src | assetUrl"  [evalScripts]="NEVER_EVAL_SCRIPTS"  [style.width.px]="data().width"  [style.height.px]="data().height"  aria-label="Visit Human Reference Atlas"  href="https://humanatlas.io/"  target="_blank"  rel="noopener noreferrer"></a></div>'
+    var COMPONENTS = [{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'AppsSidenavDemoComponent', 'selector': 'hra-apps-sidenav'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonGlobalStylesComponent', 'selector': 'hra-button-global-styles'},{'name': 'ButtonToggleGlobalStylesComponent', 'selector': 'hra-button-toggle-global-styles'},{'name': 'CheckboxStylesComponent', 'selector': 'hra-checkbox-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconButtonStylesComponent', 'selector': 'hra-icon-button-styles'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'InputStylesComponent', 'selector': 'hra-input-styles'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MenuStylesComponent', 'selector': 'hra-menu-styles'},{'name': 'MicroTooltipStylesComponent', 'selector': 'hra-micro-tooltip-styles'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavHeaderComponent', 'selector': 'hra-nav-header'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'ProductLogoComponent', 'selector': 'hra-product-logo'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SelectStylesComponent', 'selector': 'hra-select-styles'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableDemoComponent', 'selector': 'hra-table-demo'},{'name': 'TableStylesComponent', 'selector': 'hra-table-styles'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'WebComponentCardComponent', 'selector': 'hra-web-component-card'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'MicroTooltipDirective', 'selector': '[hraMicroTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'BrandLogoComponent'};
 </script>
 <script src="../js/tree.js"></script>

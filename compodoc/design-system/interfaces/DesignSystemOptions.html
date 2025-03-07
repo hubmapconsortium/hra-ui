@@ -270,7 +270,6 @@ import { HttpFeature, HttpFeatureKind, provideHttpClient } from &#x27;@angular/c
 import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from &#x27;@angular/core&#x27;;
 import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 import { provideIcons } from &#x27;@hra-ui/cdk/icons&#x27;;
-import { provideButtonToggle } from &#x27;@hra-ui/design-system/button-toggle&#x27;;
 import { provideButtons } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { provideCheckboxes } from &#x27;@hra-ui/design-system/checkbox&#x27;;
 import { provideIconButtons } from &#x27;@hra-ui/design-system/icon-button&#x27;;
@@ -309,7 +308,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideTable(),
     provideSelect(),
     provideInput(),
-    provideButtonToggle(),
     provideCheckboxes(),
   ];
 }

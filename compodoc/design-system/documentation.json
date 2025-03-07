@@ -41,45 +41,6 @@
             "extends": []
         },
         {
-            "name": "ButtonToggleConfig",
-            "id": "interface-ButtonToggleConfig-90faefe2b6489c8ed4d3fe4f0cc49542b7015a656c2066eae668726a9ed9b30043cd9c4d58c53c37a642bb30e50ec531e7e644cb228a1ca6e60d9615c498cfd2",
-            "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import { computed, Directive, input } from '@angular/core';\n\n/** Input options for icon button size */\nexport type IconButtonSize = 'small' | 'medium' | 'large';\n\n/** Interface for ButtonToggle Config */\ninterface ButtonToggleConfig {\n  /** Line height of the button */\n  lineHeight: number;\n  /** Font variable of the button toggle */\n  font: string;\n}\n\n/** Record of button sizes (number in rem) */\nconst BUTTON_CONFIG: Record<IconButtonSize, ButtonToggleConfig> = {\n  small: {\n    lineHeight: 18,\n    font: '--mat-sys-label-small',\n  },\n  medium: {\n    lineHeight: 21,\n    font: '--mat-sys-label-medium',\n  },\n  large: {\n    lineHeight: 24,\n    font: '--mat-sys-label-large',\n  },\n};\n\n/**\n * Directive for icon buttons\n */\n@Directive({\n  selector: '[hraButtonToggleSize]',\n  standalone: true,\n  host: {\n    '[style.--mat-standard-button-toggle-height]': 'lineHeight()',\n    '[style.--mat-standard-button-toggle-label-text-line-height]': 'lineHeight()',\n    '[style.font]': 'fontVar()',\n  },\n})\nexport class ToggleButtonSizeDirective {\n  /** Size of icon button to use */\n  readonly size = input.required<IconButtonSize>({ alias: 'hraButtonToggleSize' });\n\n  /** Gets the font variable for the current button size */\n  protected readonly fontVar = computed(() => `var(${BUTTON_CONFIG[this.size()].font})`);\n\n  /** Gets the line height for the current button size */\n  protected readonly lineHeight = computed(() => `${BUTTON_CONFIG[this.size()].lineHeight}px`);\n}\n",
-            "properties": [
-                {
-                    "name": "font",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Font variable of the button toggle</p>\n",
-                    "line": 11,
-                    "rawdescription": "\nFont variable of the button toggle"
-                },
-                {
-                    "name": "lineHeight",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Line height of the button</p>\n",
-                    "line": 9,
-                    "rawdescription": "\nLine height of the button"
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "description": "<p>Interface for ButtonToggle Config</p>\n",
-            "rawdescription": "\nInterface for ButtonToggle Config",
-            "methods": [],
-            "extends": []
-        },
-        {
             "name": "CardData",
             "id": "interface-CardData-a850dba1dd07f42be528800fd9e506b4362a6337a3764ee05a324689ea57f01c4fc08ca0f695d3eb880750ab780557787899370ab2c1ffd166c2e5f590a5b778",
             "file": "nav-header/src/lib/nav-header.component.ts",
@@ -209,12 +170,12 @@
         },
         {
             "name": "DesignSystemOptions",
-            "id": "interface-DesignSystemOptions-4e733c261d106e2e031940be96faecdb33a911cc1740997f630d61c87972a153b99fe911c7dafe8dd9878155aa2f04aa518349082b6a11cf580394a15206f551",
+            "id": "interface-DesignSystemOptions-b0cb8d82f00fa209c8e19133e088bcd58ca4847cd816809857444a633b0576376f242d7d21d866a9b8e64472b3c0b652e12a1a53777259764b9ef839d8abdd6a",
             "file": "src/lib/providers.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { OverlayContainer } from '@angular/cdk/overlay';\nimport { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';\nimport { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';\nimport { provideAnimations } from '@angular/platform-browser/animations';\nimport { provideIcons } from '@hra-ui/cdk/icons';\nimport { provideButtonToggle } from '@hra-ui/design-system/button-toggle';\nimport { provideButtons } from '@hra-ui/design-system/buttons';\nimport { provideCheckboxes } from '@hra-ui/design-system/checkbox';\nimport { provideIconButtons } from '@hra-ui/design-system/icon-button';\nimport { provideInput } from '@hra-ui/design-system/input';\nimport { provideMenu } from '@hra-ui/design-system/menu';\nimport { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';\nimport { provideSelect } from '@hra-ui/design-system/select';\nimport { provideTable } from '@hra-ui/design-system/table';\nimport { provideTrees } from '@hra-ui/design-system/tree';\n\n/** Design system provider options */\nexport interface DesignSystemOptions {\n  /** Http features */\n  http?: HttpFeature<HttpFeatureKind>[];\n  /** Scrolling options */\n  scrolling?: ScrollingOptions;\n}\n\n/** Get the providers shared between prod and testing */\nexport function provideDesignSystemCommon(options?: DesignSystemOptions) {\n  return [\n    provideAppInitializer(() => {\n      const overlayContainer = inject(OverlayContainer);\n      overlayContainer.getContainerElement().classList.add('hra-app');\n    }),\n    provideIcons({\n      fontIcons: {\n        defaultClasses: ['material-symbols-rounded'],\n      },\n    }),\n    provideButtons(),\n    provideIconButtons(),\n    provideTrees(),\n    provideScrolling(options?.scrolling),\n    provideMenu(),\n    provideTable(),\n    provideSelect(),\n    provideInput(),\n    provideButtonToggle(),\n    provideCheckboxes(),\n  ];\n}\n\n/**\n * Returns design system providers\n */\nexport function provideDesignSystem(options?: DesignSystemOptions): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    provideHttpClient(...(options?.http ?? [])),\n    provideAnimations(),\n    ...provideDesignSystemCommon(options),\n  ]);\n}\n",
+            "sourceCode": "import { OverlayContainer } from '@angular/cdk/overlay';\nimport { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';\nimport { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';\nimport { provideAnimations } from '@angular/platform-browser/animations';\nimport { provideIcons } from '@hra-ui/cdk/icons';\nimport { provideButtons } from '@hra-ui/design-system/buttons';\nimport { provideCheckboxes } from '@hra-ui/design-system/checkbox';\nimport { provideIconButtons } from '@hra-ui/design-system/icon-button';\nimport { provideInput } from '@hra-ui/design-system/input';\nimport { provideMenu } from '@hra-ui/design-system/menu';\nimport { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';\nimport { provideSelect } from '@hra-ui/design-system/select';\nimport { provideTable } from '@hra-ui/design-system/table';\nimport { provideTrees } from '@hra-ui/design-system/tree';\n\n/** Design system provider options */\nexport interface DesignSystemOptions {\n  /** Http features */\n  http?: HttpFeature<HttpFeatureKind>[];\n  /** Scrolling options */\n  scrolling?: ScrollingOptions;\n}\n\n/** Get the providers shared between prod and testing */\nexport function provideDesignSystemCommon(options?: DesignSystemOptions) {\n  return [\n    provideAppInitializer(() => {\n      const overlayContainer = inject(OverlayContainer);\n      overlayContainer.getContainerElement().classList.add('hra-app');\n    }),\n    provideIcons({\n      fontIcons: {\n        defaultClasses: ['material-symbols-rounded'],\n      },\n    }),\n    provideButtons(),\n    provideIconButtons(),\n    provideTrees(),\n    provideScrolling(options?.scrolling),\n    provideMenu(),\n    provideTable(),\n    provideSelect(),\n    provideInput(),\n    provideCheckboxes(),\n  ];\n}\n\n/**\n * Returns design system providers\n */\nexport function provideDesignSystem(options?: DesignSystemOptions): EnvironmentProviders {\n  return makeEnvironmentProviders([\n    provideHttpClient(...(options?.http ?? [])),\n    provideAnimations(),\n    ...provideDesignSystemCommon(options),\n  ]);\n}\n",
             "properties": [
                 {
                     "name": "http",
@@ -224,7 +185,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Http features</p>\n",
-                    "line": 20,
+                    "line": 19,
                     "rawdescription": "\nHttp features"
                 },
                 {
@@ -235,7 +196,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "<p>Scrolling options</p>\n",
-                    "line": 22,
+                    "line": 21,
                     "rawdescription": "\nScrolling options"
                 }
             ],
@@ -876,6 +837,44 @@
                     "description": "<p>Size of button</p>\n",
                     "line": 17,
                     "rawdescription": "\nSize of button",
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "extends": []
+        },
+        {
+            "name": "ButtonToggleSizeDirective",
+            "id": "directive-ButtonToggleSizeDirective-79c713300388290d539070e5a22ea60aef8f1f824c3921933f261975d641b6c8a03d899d74428f72acce1985e9ab369f8973cc755c0ea8438f2623af1c2fde9e",
+            "file": "buttons/button-toggle/src/lib/directives/button-toggle-size.directive.ts",
+            "type": "directive",
+            "description": "<p>Applies sizing to button toggle groups</p>\n",
+            "rawdescription": "\nApplies sizing to button toggle groups",
+            "sourceCode": "import { Directive, input } from '@angular/core';\n\n/** Button toggle size */\nexport type ButtonToggleSize = 'small' | 'medium' | 'large';\n\n/** Applies sizing to button toggle groups */\n@Directive({\n  selector: 'mat-button-toggle-group[hraButtonToggleSize]',\n  standalone: true,\n  host: {\n    '[class]': '\"hra-button-toggle-size-\" + size()',\n  },\n})\nexport class ButtonToggleSizeDirective {\n  /** Size of buttons */\n  readonly size = input.required<ButtonToggleSize>({ alias: 'hraButtonToggleSize' });\n}\n",
+            "selector": "mat-button-toggle-group[hraButtonToggleSize]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "size",
+                    "defaultValue": "input.required<ButtonToggleSize>({ alias: 'hraButtonToggleSize' })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Size of buttons</p>\n",
+                    "line": 16,
+                    "rawdescription": "\nSize of buttons",
                     "modifierKind": [
                         148
                     ]
@@ -1838,76 +1837,6 @@
             "extends": []
         },
         {
-            "name": "ToggleButtonSizeDirective",
-            "id": "directive-ToggleButtonSizeDirective-90faefe2b6489c8ed4d3fe4f0cc49542b7015a656c2066eae668726a9ed9b30043cd9c4d58c53c37a642bb30e50ec531e7e644cb228a1ca6e60d9615c498cfd2",
-            "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
-            "type": "directive",
-            "description": "<p>Directive for icon buttons</p>\n",
-            "rawdescription": "\n\nDirective for icon buttons\n",
-            "sourceCode": "import { computed, Directive, input } from '@angular/core';\n\n/** Input options for icon button size */\nexport type IconButtonSize = 'small' | 'medium' | 'large';\n\n/** Interface for ButtonToggle Config */\ninterface ButtonToggleConfig {\n  /** Line height of the button */\n  lineHeight: number;\n  /** Font variable of the button toggle */\n  font: string;\n}\n\n/** Record of button sizes (number in rem) */\nconst BUTTON_CONFIG: Record<IconButtonSize, ButtonToggleConfig> = {\n  small: {\n    lineHeight: 18,\n    font: '--mat-sys-label-small',\n  },\n  medium: {\n    lineHeight: 21,\n    font: '--mat-sys-label-medium',\n  },\n  large: {\n    lineHeight: 24,\n    font: '--mat-sys-label-large',\n  },\n};\n\n/**\n * Directive for icon buttons\n */\n@Directive({\n  selector: '[hraButtonToggleSize]',\n  standalone: true,\n  host: {\n    '[style.--mat-standard-button-toggle-height]': 'lineHeight()',\n    '[style.--mat-standard-button-toggle-label-text-line-height]': 'lineHeight()',\n    '[style.font]': 'fontVar()',\n  },\n})\nexport class ToggleButtonSizeDirective {\n  /** Size of icon button to use */\n  readonly size = input.required<IconButtonSize>({ alias: 'hraButtonToggleSize' });\n\n  /** Gets the font variable for the current button size */\n  protected readonly fontVar = computed(() => `var(${BUTTON_CONFIG[this.size()].font})`);\n\n  /** Gets the line height for the current button size */\n  protected readonly lineHeight = computed(() => `${BUTTON_CONFIG[this.size()].lineHeight}px`);\n}\n",
-            "selector": "[hraButtonToggleSize]",
-            "providers": [],
-            "hostDirectives": [],
-            "standalone": true,
-            "inputsClass": [],
-            "outputsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "propertiesClass": [
-                {
-                    "name": "fontVar",
-                    "defaultValue": "computed(() => `var(${BUTTON_CONFIG[this.size()].font})`)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Gets the font variable for the current button size</p>\n",
-                    "line": 47,
-                    "rawdescription": "\nGets the font variable for the current button size",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                },
-                {
-                    "name": "lineHeight",
-                    "defaultValue": "computed(() => `${BUTTON_CONFIG[this.size()].lineHeight}px`)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Gets the line height for the current button size</p>\n",
-                    "line": 50,
-                    "rawdescription": "\nGets the line height for the current button size",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "input.required<IconButtonSize>({ alias: 'hraButtonToggleSize' })",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Size of icon button to use</p>\n",
-                    "line": 44,
-                    "rawdescription": "\nSize of icon button to use",
-                    "modifierKind": [
-                        148
-                    ]
-                }
-            ],
-            "methodsClass": [],
-            "extends": []
-        },
-        {
             "name": "TreeSizeDirective",
             "id": "directive-TreeSizeDirective-08d21392cbcaab6b2b4c885a4cefdb26b3c1ace1f2284843dcca2a852c1fd65457bf3860553cf287c0052c09d5cfa50ce6e1fc6b65da68b66907dea95c0756b9",
             "file": "tree/src/lib/tree-size/tree-size.directive.ts",
@@ -2320,7 +2249,7 @@
         {
             "name": "BackButtonBarComponent",
             "id": "component-BackButtonBarComponent-bd9dc95083585034e9099454ce9df444284e8a6dc9eb7c343f0ea401973b8b40cd164ecf14a398fe84f4487377ee1bc5d64c6f1c68fd426298e61ed2bff8ae17",
-            "file": "buttons/back-button-bar/src/lib/back-button-bar.component.ts",
+            "file": "navigation/back-button-bar/src/lib/back-button-bar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -2403,7 +2332,7 @@
         },
         {
             "name": "BrandLogoComponent",
-            "id": "component-BrandLogoComponent-0675a266dfcd982cad3effcd986d05d079e27864237780261f93f49489197e79da2dec6a17b85005b2d43fafca926c6ba657d83160cdef3da44351d855efa54d",
+            "id": "component-BrandLogoComponent-0b4acb40c9f5ff12aeb181d1ff8594ca2933b2716e7a395c11323b6d2c64d5ef3698c320c23fc1262ca24aea63712d6714abb4cd072b7729b5ce930b223ad4da",
             "file": "brand/logo/src/lib/logo.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2424,16 +2353,16 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "logoUrl",
-                    "defaultValue": "computed(() => BRAND_LOGO_URLS[this.size()])",
+                    "name": "data",
+                    "defaultValue": "computed(() => findOrThrow(LOGOS, ({ size }) => size === this.size()))",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Url of the logo svg based on the logo size</p>\n",
-                    "line": 34,
-                    "rawdescription": "\nUrl of the logo svg based on the logo size",
+                    "description": "<p>Logo data</p>\n",
+                    "line": 28,
+                    "rawdescription": "\nLogo data",
                     "modifierKind": [
                         124,
                         148
@@ -2448,7 +2377,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>SVG script eval mode</p>\n",
-                    "line": 31,
+                    "line": 25,
                     "rawdescription": "\nSVG script eval mode",
                     "modifierKind": [
                         124,
@@ -2457,14 +2386,14 @@
                 },
                 {
                     "name": "size",
-                    "defaultValue": "input<BrandLogoSize>('large')",
+                    "defaultValue": "input<BrandLogoSize>('regular')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Size of the logo</p>\n",
-                    "line": 28,
+                    "line": 22,
                     "rawdescription": "\nSize of the logo",
                     "modifierKind": [
                         148
@@ -2494,17 +2423,17 @@
             "description": "<p>Brand Logo Component</p>\n",
             "rawdescription": "\nBrand Logo Component",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\n\n/** Logo size */\nexport type BrandLogoSize = 'small' | 'large';\n\n/** Urls for different logo sizes */\nconst BRAND_LOGO_URLS: Record<BrandLogoSize, string> = {\n  small: 'assets/logo/hra-logo-small.svg',\n  large: 'assets/logo/hra-logo-regular.svg',\n};\n\n/** Brand Logo Component */\n@Component({\n  selector: 'hra-brand-logo',\n  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],\n  templateUrl: './logo.component.html',\n  styleUrl: './logo.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  host: {\n    '[class]': '\"hra-brand-logo-size-\" + size()',\n  },\n})\nexport class BrandLogoComponent {\n  /** Size of the logo */\n  readonly size = input<BrandLogoSize>('large');\n\n  /** SVG script eval mode */\n  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Url of the logo svg based on the logo size */\n  protected readonly logoUrl = computed(() => BRAND_LOGO_URLS[this.size()]);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { findOrThrow } from '@hra-ui/common/array-util';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { LOGOS } from './static-data/parsed';\nimport { BrandLogoSize } from './types/logos.schema';\n\n/** Brand Logo Component */\n@Component({\n  selector: 'hra-brand-logo',\n  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],\n  templateUrl: './logo.component.html',\n  styleUrl: './logo.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  host: {\n    '[class]': '\"hra-brand-logo-size-\" + size()',\n  },\n})\nexport class BrandLogoComponent {\n  /** Size of the logo */\n  readonly size = input<BrandLogoSize>('regular');\n\n  /** SVG script eval mode */\n  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Logo data */\n  protected readonly data = computed(() => findOrThrow(LOGOS, ({ size }) => size === this.size()));\n}\n",
             "styleUrl": "./logo.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<a\n  class=\"logo\"\n  [inlineSVG]=\"logoUrl() | assetUrl\"\n  [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n  aria-label=\"Visit Human Reference Atlas\"\n  href=\"https://humanatlas.io/\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n</a>\n"
+            "templateData": "<a\n  class=\"logo\"\n  [inlineSVG]=\"data().src | assetUrl\"\n  [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n  [style.width.px]=\"data().width\"\n  [style.height.px]=\"data().height\"\n  aria-label=\"Visit Human Reference Atlas\"\n  href=\"https://humanatlas.io/\"\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n>\n</a>\n"
         },
         {
             "name": "BrandMarkComponent",
-            "id": "component-BrandMarkComponent-611c3b30e8107aad4b52734479679a1443acd6e16b4a137f47e4935d9597a0fdbf0eaad4979db9f9dbc2e3ee0f10c8b132403f79f29f9dc2f968aaf79257dc50",
+            "id": "component-BrandMarkComponent-85372be079e0db3452222a1909c25ebdb1e653bdbede9678d3783bbe365834301e80ddba56c32cd9620a6b6bf601322d5e1907903ab08b8770e923771679c655",
             "file": "brand/mark/src/lib/mark.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2524,16 +2453,16 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "markUrl",
-                    "defaultValue": "computed(() => BRAND_MARK_URLS[this.variant()])",
+                    "name": "data",
+                    "defaultValue": "computed(() => findOrThrow(MARKS, ({ variant }) => variant === this.variant()))",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Url based on variant</p>\n",
-                    "line": 33,
-                    "rawdescription": "\nUrl based on variant",
+                    "description": "<p>Mark data</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nMark data",
                     "modifierKind": [
                         124,
                         148
@@ -2548,7 +2477,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>SVG script eval mode</p>\n",
-                    "line": 30,
+                    "line": 24,
                     "rawdescription": "\nSVG script eval mode",
                     "modifierKind": [
                         124,
@@ -2564,7 +2493,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Mark variant</p>\n",
-                    "line": 27,
+                    "line": 21,
                     "rawdescription": "\nMark variant",
                     "modifierKind": [
                         148
@@ -2594,13 +2523,13 @@
             "description": "<p>HRA brandmark component</p>\n",
             "rawdescription": "\n\nHRA brandmark component\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\n\n/** Brand mark variant */\nexport type BrandMarkVariant = 'default' | 'contrast';\n\n/** Urls for different mark variants */\nconst BRAND_MARK_URLS: Record<BrandMarkVariant, string> = {\n  default: 'assets/logo/hra_brandmark.svg',\n  contrast: 'assets/logo/hra_brandmark_contrast.svg',\n};\n\n/**\n * HRA brandmark component\n */\n@Component({\n  selector: 'hra-brand-mark',\n  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],\n  templateUrl: './mark.component.html',\n  styleUrl: './mark.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BrandMarkComponent {\n  /** Mark variant */\n  readonly variant = input<BrandMarkVariant>('default');\n\n  /** SVG script eval mode */\n  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Url based on variant */\n  protected readonly markUrl = computed(() => BRAND_MARK_URLS[this.variant()]);\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';\nimport { AssetUrlPipe } from '@hra-ui/cdk/app-href';\nimport { findOrThrow } from '@hra-ui/common/array-util';\nimport { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';\nimport { MARKS } from './static-data/parsed';\nimport { BrandMarkVariant } from './types/marks.schema';\n\n/**\n * HRA brandmark component\n */\n@Component({\n  selector: 'hra-brand-mark',\n  imports: [CommonModule, InlineSVGModule, AssetUrlPipe],\n  templateUrl: './mark.component.html',\n  styleUrl: './mark.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BrandMarkComponent {\n  /** Mark variant */\n  readonly variant = input<BrandMarkVariant>('default');\n\n  /** SVG script eval mode */\n  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;\n\n  /** Mark data */\n  protected readonly data = computed(() => findOrThrow(MARKS, ({ variant }) => variant === this.variant()));\n}\n",
             "styleUrl": "./mark.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div\n  class=\"hra-brandmark\"\n  [inlineSVG]=\"markUrl() | assetUrl\"\n  [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n  aria-label=\"Human Reference Atlas brandmark\"\n></div>\n"
+            "templateData": "<div\n  class=\"hra-brandmark\"\n  [inlineSVG]=\"data().src | assetUrl\"\n  [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n  [style.width.px]=\"data().width\"\n  [style.height.px]=\"data().height\"\n  aria-label=\"Human Reference Atlas brandmark\"\n></div>\n"
         },
         {
             "name": "BreadcrumbsComponent",
@@ -2720,9 +2649,9 @@
             "extends": []
         },
         {
-            "name": "ButtonToggleStylesComponent",
-            "id": "component-ButtonToggleStylesComponent-250e00cdab826bae5daee9dde6519e204387f7e8d14af05e9dcf1a729117e79de49e789a5cd035d8c822f383edfbc915ba67d5f21ca9622ae5a0b495f4f28822",
-            "file": "button-toggle/src/lib/button-toggle-styles/button-toggle-styles.component.ts",
+            "name": "ButtonToggleGlobalStylesComponent",
+            "id": "component-ButtonToggleGlobalStylesComponent-b0821542a8e70e9edf17b59296abf8367d76258f3c76fffa6e6159de5cca80922c47779b6a6fbd92bb9dc1b44f0cc180bda9f64eeb8c751b65a14363f7625a82",
+            "file": "buttons/button-toggle/src/lib/global-styles.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -2731,9 +2660,9 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "hra-button-toggle-styles",
+            "selector": "hra-button-toggle-global-styles",
             "styleUrls": [
-                "./button-toggle-styles.component.scss"
+                "./global-styles.component.scss"
             ],
             "styles": [],
             "template": "",
@@ -2750,15 +2679,15 @@
             "hostListeners": [],
             "standalone": true,
             "imports": [],
-            "description": "<p>Applies button toggle styles globally</p>\n",
-            "rawdescription": "\n\nApplies button toggle styles globally\n",
+            "description": "<p>Global styles for button toggles</p>\n",
+            "rawdescription": "\nGlobal styles for button toggles",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\n\n/**\n * Applies button toggle styles globally\n */\n@Component({\n  selector: 'hra-button-toggle-styles',\n  standalone: true,\n  template: '',\n  styleUrls: ['./button-toggle-styles.component.scss'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonToggleStylesComponent {}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\n\n/** Global styles for button toggles */\n@Component({\n  selector: 'hra-button-toggle-global-styles',\n  standalone: true,\n  template: '',\n  styleUrls: ['./global-styles.component.scss'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonToggleGlobalStylesComponent {}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '../../../../styles/utils';\n\n@include utils.global-styles() {\n  mat-button-toggle-group {\n    --mat-standard-button-toggle-shape: 0.25rem;\n    --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);\n\n    &.mat-button-toggle-group-appearance-standard {\n      border: unset;\n      outline: solid 1px var(--mat-standard-button-toggle-divider-color);\n    }\n\n    .mat-button-toggle {\n      width: 100%;\n      font: inherit;\n    }\n\n    .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n      padding: 0.5rem 1rem;\n    }\n\n    .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n      padding: 0.5rem 1rem;\n    }\n\n    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {\n      padding: 0;\n    }\n\n    &[hraButtonToggleSize='medium'] {\n      .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n        padding: 0.3438rem 0.5rem;\n      }\n\n      .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n        padding: 0.3438rem 0.5rem;\n      }\n    }\n\n    &[hraButtonToggleSize='small'] {\n      .mat-button-toggle:not(.mat-button-toggle-checked) .mat-button-toggle-button {\n        padding: 0.3125rem 0.5rem;\n      }\n\n      .mat-button-toggle.mat-button-toggle-checked .mat-button-toggle-button {\n        padding: 0.3125rem 0.5rem;\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./button-toggle-styles.component.scss"
+                    "data": "@use '../../../../styles/utils';\n\n@include utils.global-styles() {\n  mat-button-toggle-group {\n    --mat-standard-button-toggle-height: var(--mat-standard-button-toggle-label-text-line-height);\n    --mat-standard-button-toggle-shape: var(--mat-sys-corner-extra-small);\n    --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);\n\n    --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);\n    --mat-standard-button-toggle-selected-state-background-color: #{utils.with-alpha(var(--mat-sys-tertiary), 20%)};\n\n    &.hra-button-toggle-size-small {\n      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-small-font);\n      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-small-size);\n      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-small-line-height);\n      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-small-weight);\n      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-small-tracking);\n\n      .mat-button-toggle-label-content {\n        padding: 0.3125rem 0.5rem;\n      }\n    }\n\n    &.hra-button-toggle-size-medium {\n      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-medium-font);\n      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-medium-size);\n      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-medium-line-height);\n      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-medium-weight);\n      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-medium-tracking);\n\n      .mat-button-toggle-label-content {\n        padding: 0.3438rem 0.5rem;\n      }\n    }\n\n    &,\n    &.hra-button-toggle-size-large {\n      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-large-font);\n      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-large-size);\n      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-large-line-height);\n      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-large-weight);\n      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-large-tracking);\n\n      .mat-button-toggle-label-content {\n        padding: 0.5rem 1rem;\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./global-styles.component.scss"
                 }
             ],
             "stylesData": "",
@@ -5811,7 +5740,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "@if (brandmark()) {\n  <a\n    class=\"hra-logo\"\n    href=\"https://humanatlas.io\"\n    target=\"_blank\"\n    rel=\"noopener noreferrer\"\n    aria-label=\"Visit Human Reference Atlas\"\n  >\n    <hra-brand-mark></hra-brand-mark>\n  </a>\n}\n<a class=\"app-logo\" [href]=\"appLink()\" [attr.alt]=\"appTitle() + ' logo'\">\n  <hra-product-logo [name]=\"app()\" size=\"small\"></hra-product-logo>\n</a>\n\n<span class=\"logos-text\">\n  @if (variant() === 'sidenav') {\n    <mat-button-toggle class=\"app-name-nav\" value=\"bold\" disableRipple>\n      <span class=\"label\">{{ appTitle() }}</span>\n    </mat-button-toggle>\n  } @else {\n    <a class=\"app-name\" [href]=\"appLink()\" aria-label=\"Return to app home\">\n      <span class=\"app-label\">{{ appTitle() }}</span>\n    </a>\n  }\n  @if (appStatus()) {\n    <hra-software-status-indicator [status]=\"appStatus()!\" size=\"small\"></hra-software-status-indicator>\n  }\n</span>\n"
+            "templateData": "@if (brandmark()) {\n  <a\n    class=\"hra-logo\"\n    href=\"https://humanatlas.io\"\n    target=\"_blank\"\n    rel=\"noopener noreferrer\"\n    aria-label=\"Visit Human Reference Atlas\"\n  >\n    <hra-brand-mark variant=\"small\"></hra-brand-mark>\n  </a>\n}\n<a class=\"app-logo\" [href]=\"appLink()\" [attr.alt]=\"appTitle() + ' logo'\">\n  <hra-product-logo [name]=\"app()\" size=\"small\"></hra-product-logo>\n</a>\n\n<span class=\"logos-text\">\n  @if (variant() === 'sidenav') {\n    <mat-button-toggle class=\"app-name-nav\" value=\"bold\" disableRipple>\n      <span class=\"label\">{{ appTitle() }}</span>\n    </mat-button-toggle>\n  } @else {\n    <a class=\"app-name\" [href]=\"appLink()\" aria-label=\"Return to app home\">\n      <span class=\"app-label\">{{ appTitle() }}</span>\n    </a>\n  }\n  @if (appStatus()) {\n    <hra-software-status-indicator [status]=\"appStatus()!\" size=\"small\"></hra-software-status-indicator>\n  }\n</span>\n"
         },
         {
             "name": "NavHeaderComponent",
@@ -7808,13 +7737,13 @@
         },
         {
             "name": "ButtonsModule",
-            "id": "module-ButtonsModule-b7930464057a9ecca07cba0a7eed262f4489d1216c19cceefd855da558463c7a21b64478068155b1aee33b04f0284f3a7c35b41646a3cd7eff931225bd49dbce",
+            "id": "module-ButtonsModule-ea452ed24f55b877753066ad43cd21d4a6dcd6f29687bac504d45be0773516c05ffa2d577499fa4ceff8326de2227b5bf721407b4afa84bede3a5911b338df1a",
             "description": "<p>Packages up subpackage angular exports for easier use</p>\n",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "buttons/src/lib/buttons.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';\nimport { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport {\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\nimport { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';\nimport { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';\nimport { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';\nimport { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';\nimport {\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n} from '@hra-ui/design-system/buttons/button';\nimport { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';\nimport { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';\nimport { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';\nimport { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';\n\n/** All re-exported modules, components, directives, etc. */\nconst REEXPORTS = [\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonToggleSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n];\n\n/** Packages up subpackage angular exports for easier use */\n@NgModule({\n  imports: REEXPORTS,\n  exports: REEXPORTS,\n})\nexport class ButtonsModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -8128,40 +8057,76 @@
                 "description": "<p>Animation for Body Expansion</p>\n"
             },
             {
-                "name": "BRAND_LOGO_URLS",
+                "name": "BrandLogoSchema",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "brand/logo/src/lib/logo.component.ts",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Record<BrandLogoSize, string>",
-                "defaultValue": "{\n  small: 'assets/logo/hra-logo-small.svg',\n  large: 'assets/logo/hra-logo-regular.svg',\n}",
-                "rawdescription": "Urls for different logo sizes",
-                "description": "<p>Urls for different logo sizes</p>\n"
+                "type": "",
+                "defaultValue": "z.object({\n  size: BrandLogoSizeSchema,\n  src: z.string(),\n  width: z.number().positive(),\n  height: z.number().positive(),\n})",
+                "rawdescription": "Schema for logo item",
+                "description": "<p>Schema for logo item</p>\n"
             },
             {
-                "name": "BRAND_MARK_URLS",
+                "name": "BrandLogoSizeSchema",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "brand/mark/src/lib/mark.component.ts",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Record<BrandMarkVariant, string>",
-                "defaultValue": "{\n  default: 'assets/logo/hra_brandmark.svg',\n  contrast: 'assets/logo/hra_brandmark_contrast.svg',\n}",
-                "rawdescription": "Urls for different mark variants",
-                "description": "<p>Urls for different mark variants</p>\n"
+                "type": "",
+                "defaultValue": "z.enum(['small', 'regular'])",
+                "rawdescription": "Schema for logo size",
+                "description": "<p>Schema for logo size</p>\n"
             },
             {
-                "name": "BUTTON_CONFIG",
+                "name": "BrandLogosSchema",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Record<IconButtonSize, ButtonToggleConfig>",
-                "defaultValue": "{\n  small: {\n    lineHeight: 18,\n    font: '--mat-sys-label-small',\n  },\n  medium: {\n    lineHeight: 21,\n    font: '--mat-sys-label-medium',\n  },\n  large: {\n    lineHeight: 24,\n    font: '--mat-sys-label-large',\n  },\n}",
-                "rawdescription": "Record of button sizes (number in rem)",
-                "description": "<p>Record of button sizes (number in rem)</p>\n"
+                "type": "",
+                "defaultValue": "z.object({\n  $schema: z.string(),\n  logos: BrandLogoSchema.array(),\n})",
+                "rawdescription": "Schema for logos",
+                "description": "<p>Schema for logos</p>\n"
+            },
+            {
+                "name": "BrandMarkSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  variant: BrandMarkVariantSchema,\n  src: z.string(),\n  width: z.number().positive(),\n  height: z.number().positive(),\n})",
+                "rawdescription": "Schema for mark item",
+                "description": "<p>Schema for mark item</p>\n"
+            },
+            {
+                "name": "BrandMarksSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.object({\n  $schema: z.string(),\n  marks: BrandMarkSchema.array(),\n})",
+                "rawdescription": "Schema for marks",
+                "description": "<p>Schema for marks</p>\n"
+            },
+            {
+                "name": "BrandMarkVariantSchema",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "z.enum(['default', 'contrast', 'small'])",
+                "rawdescription": "Schema for mark variant",
+                "description": "<p>Schema for mark variant</p>\n"
             },
             {
                 "name": "BUTTON_SIZES",
@@ -8392,6 +8357,30 @@
                 "description": "<p>Counter to keep track of distinct panels</p>\n"
             },
             {
+                "name": "LOGOS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "brand/logo/src/lib/static-data/parsed.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "BrandLogosSchema.parse(RAW_LOGOS).logos",
+                "rawdescription": "Data for all logos",
+                "description": "<p>Data for all logos</p>\n"
+            },
+            {
+                "name": "MARKS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "brand/mark/src/lib/static-data/parsed.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "BrandMarksSchema.parse(RAW_MARKS).marks",
+                "rawdescription": "All marks data",
+                "description": "<p>All marks data</p>\n"
+            },
+            {
                 "name": "MenuDividerSchema",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -8531,7 +8520,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
+                "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonToggleSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
                 "rawdescription": "All re-exported modules, components, directives, etc.",
                 "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
             },
@@ -8744,8 +8733,8 @@
                 "jsdoctags": [
                     {
                         "tagName": {
-                            "pos": 317,
-                            "end": 324,
+                            "pos": 400,
+                            "end": 407,
                             "kind": 80,
                             "id": 0,
                             "flags": 16777216,
@@ -8758,14 +8747,28 @@
             },
             {
                 "name": "provideButtonToggle",
-                "file": "button-toggle/src/lib/providers.ts",
+                "file": "buttons/button-toggle/src/lib/providers.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "description": "<p>Returns providers for button toggle</p>\n",
+                "description": "<p>Applies global styles to button toggles</p>\n",
                 "args": [],
-                "returnType": "EnvironmentProviders"
+                "returnType": "EnvironmentProviders",
+                "jsdoctags": [
+                    {
+                        "tagName": {
+                            "pos": 392,
+                            "end": 399,
+                            "kind": 80,
+                            "id": 0,
+                            "flags": 16777216,
+                            "transformFlags": 0,
+                            "escapedText": "returns"
+                        },
+                        "comment": "<p>Button toggle providers</p>\n"
+                    }
+                ]
             },
             {
                 "name": "provideCheckboxes",
@@ -9031,26 +9034,70 @@
         ],
         "typealiases": [
             {
+                "name": "BrandLogo",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Logo item</p>\n",
+                "kind": 183
+            },
+            {
+                "name": "BrandLogos",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Logos</p>\n",
+                "kind": 183
+            },
+            {
                 "name": "BrandLogoSize",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"small\" | \"large\"",
-                "file": "brand/logo/src/lib/logo.component.ts",
+                "rawtype": "z.infer<>",
+                "file": "brand/logo/src/lib/types/logos.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Logo size</p>\n",
-                "kind": 192
+                "kind": 183
+            },
+            {
+                "name": "BrandMark",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Mark item</p>\n",
+                "kind": 183
+            },
+            {
+                "name": "BrandMarks",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "z.infer<>",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Marks</p>\n",
+                "kind": 183
             },
             {
                 "name": "BrandMarkVariant",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"default\" | \"contrast\"",
-                "file": "brand/mark/src/lib/mark.component.ts",
+                "rawtype": "z.infer<>",
+                "file": "brand/mark/src/lib/types/marks.schema.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "description": "<p>Brand mark variant</p>\n",
-                "kind": 192
+                "description": "<p>Mark variant</p>\n",
+                "kind": 183
             },
             {
                 "name": "ButtonPosition",
@@ -9072,6 +9119,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "<p>Named button sizes</p>\n",
+                "kind": 192
+            },
+            {
+                "name": "ButtonToggleSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\"",
+                "file": "buttons/button-toggle/src/lib/directives/button-toggle-size.directive.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Button toggle size</p>\n",
                 "kind": 192
             },
             {
@@ -9150,17 +9208,6 @@
                 "deprecationMessage": "",
                 "description": "<p>A hubmap menu item</p>\n",
                 "kind": 183
-            },
-            {
-                "name": "IconButtonSize",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"small\" | \"medium\" | \"large\"",
-                "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "<p>Input options for icon button size</p>\n",
-                "kind": 192
             },
             {
                 "name": "IconButtonSize",
@@ -9444,46 +9491,80 @@
                     "description": "<p>Animation for the expansion panel</p>\n"
                 }
             ],
-            "brand/logo/src/lib/logo.component.ts": [
+            "brand/logo/src/lib/types/logos.schema.ts": [
                 {
-                    "name": "BRAND_LOGO_URLS",
+                    "name": "BrandLogoSchema",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "brand/logo/src/lib/logo.component.ts",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Record<BrandLogoSize, string>",
-                    "defaultValue": "{\n  small: 'assets/logo/hra-logo-small.svg',\n  large: 'assets/logo/hra-logo-regular.svg',\n}",
-                    "rawdescription": "Urls for different logo sizes",
-                    "description": "<p>Urls for different logo sizes</p>\n"
+                    "type": "",
+                    "defaultValue": "z.object({\n  size: BrandLogoSizeSchema,\n  src: z.string(),\n  width: z.number().positive(),\n  height: z.number().positive(),\n})",
+                    "rawdescription": "Schema for logo item",
+                    "description": "<p>Schema for logo item</p>\n"
+                },
+                {
+                    "name": "BrandLogoSizeSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.enum(['small', 'regular'])",
+                    "rawdescription": "Schema for logo size",
+                    "description": "<p>Schema for logo size</p>\n"
+                },
+                {
+                    "name": "BrandLogosSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.object({\n  $schema: z.string(),\n  logos: BrandLogoSchema.array(),\n})",
+                    "rawdescription": "Schema for logos",
+                    "description": "<p>Schema for logos</p>\n"
                 }
             ],
-            "brand/mark/src/lib/mark.component.ts": [
+            "brand/mark/src/lib/types/marks.schema.ts": [
                 {
-                    "name": "BRAND_MARK_URLS",
+                    "name": "BrandMarkSchema",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "brand/mark/src/lib/mark.component.ts",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Record<BrandMarkVariant, string>",
-                    "defaultValue": "{\n  default: 'assets/logo/hra_brandmark.svg',\n  contrast: 'assets/logo/hra_brandmark_contrast.svg',\n}",
-                    "rawdescription": "Urls for different mark variants",
-                    "description": "<p>Urls for different mark variants</p>\n"
-                }
-            ],
-            "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts": [
+                    "type": "",
+                    "defaultValue": "z.object({\n  variant: BrandMarkVariantSchema,\n  src: z.string(),\n  width: z.number().positive(),\n  height: z.number().positive(),\n})",
+                    "rawdescription": "Schema for mark item",
+                    "description": "<p>Schema for mark item</p>\n"
+                },
                 {
-                    "name": "BUTTON_CONFIG",
+                    "name": "BrandMarksSchema",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Record<IconButtonSize, ButtonToggleConfig>",
-                    "defaultValue": "{\n  small: {\n    lineHeight: 18,\n    font: '--mat-sys-label-small',\n  },\n  medium: {\n    lineHeight: 21,\n    font: '--mat-sys-label-medium',\n  },\n  large: {\n    lineHeight: 24,\n    font: '--mat-sys-label-large',\n  },\n}",
-                    "rawdescription": "Record of button sizes (number in rem)",
-                    "description": "<p>Record of button sizes (number in rem)</p>\n"
+                    "type": "",
+                    "defaultValue": "z.object({\n  $schema: z.string(),\n  marks: BrandMarkSchema.array(),\n})",
+                    "rawdescription": "Schema for marks",
+                    "description": "<p>Schema for marks</p>\n"
+                },
+                {
+                    "name": "BrandMarkVariantSchema",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "z.enum(['default', 'contrast', 'small'])",
+                    "rawdescription": "Schema for mark variant",
+                    "description": "<p>Schema for mark variant</p>\n"
                 }
             ],
             "icon-button/src/lib/icon-button-size/icon-button-size.directive.ts": [
@@ -9760,6 +9841,34 @@
                     "description": "<p>Counter to keep track of distinct panels</p>\n"
                 }
             ],
+            "brand/logo/src/lib/static-data/parsed.ts": [
+                {
+                    "name": "LOGOS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "brand/logo/src/lib/static-data/parsed.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "BrandLogosSchema.parse(RAW_LOGOS).logos",
+                    "rawdescription": "Data for all logos",
+                    "description": "<p>Data for all logos</p>\n"
+                }
+            ],
+            "brand/mark/src/lib/static-data/parsed.ts": [
+                {
+                    "name": "MARKS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "brand/mark/src/lib/static-data/parsed.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "BrandMarksSchema.parse(RAW_MARKS).marks",
+                    "rawdescription": "All marks data",
+                    "description": "<p>All marks data</p>\n"
+                }
+            ],
             "navigation/header/src/lib/types/menus.schema.ts": [
                 {
                     "name": "MenuDividerSchema",
@@ -9871,7 +9980,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
+                    "defaultValue": "[\n  MatButtonModule,\n  MatButtonToggleModule,\n\n  AppNavButtonComponent,\n  BreadcrumbsComponent,\n  ButtonSizeDirective,\n  ButtonToggleSizeDirective,\n  ButtonVariantDirective,\n  CtaButtonDirective,\n  NavigationCategoryToggleComponent,\n  PrimaryButtonVariantDirective,\n  SecondaryButtonVariantDirective,\n  SocialMediaButtonComponent,\n  TextHyperlinkDirective,\n]",
                     "rawdescription": "All re-exported modules, components, directives, etc.",
                     "description": "<p>All re-exported modules, components, directives, etc.</p>\n"
                 }
@@ -10129,8 +10238,8 @@
                     "jsdoctags": [
                         {
                             "tagName": {
-                                "pos": 317,
-                                "end": 324,
+                                "pos": 400,
+                                "end": 407,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16777216,
@@ -10142,17 +10251,31 @@
                     ]
                 }
             ],
-            "button-toggle/src/lib/providers.ts": [
+            "buttons/button-toggle/src/lib/providers.ts": [
                 {
                     "name": "provideButtonToggle",
-                    "file": "button-toggle/src/lib/providers.ts",
+                    "file": "buttons/button-toggle/src/lib/providers.ts",
                     "ctype": "miscellaneous",
                     "subtype": "function",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "description": "<p>Returns providers for button toggle</p>\n",
+                    "description": "<p>Applies global styles to button toggles</p>\n",
                     "args": [],
-                    "returnType": "EnvironmentProviders"
+                    "returnType": "EnvironmentProviders",
+                    "jsdoctags": [
+                        {
+                            "tagName": {
+                                "pos": 392,
+                                "end": 399,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16777216,
+                                "transformFlags": 0,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>Button toggle providers</p>\n"
+                        }
+                    ]
                 }
             ],
             "checkbox/src/lib/providers.ts": [
@@ -10412,30 +10535,74 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "brand/logo/src/lib/logo.component.ts": [
+            "brand/logo/src/lib/types/logos.schema.ts": [
+                {
+                    "name": "BrandLogo",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Logo item</p>\n",
+                    "kind": 183
+                },
+                {
+                    "name": "BrandLogos",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Logos</p>\n",
+                    "kind": 183
+                },
                 {
                     "name": "BrandLogoSize",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"small\" | \"large\"",
-                    "file": "brand/logo/src/lib/logo.component.ts",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/logo/src/lib/types/logos.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Logo size</p>\n",
-                    "kind": 192
+                    "kind": 183
                 }
             ],
-            "brand/mark/src/lib/mark.component.ts": [
+            "brand/mark/src/lib/types/marks.schema.ts": [
+                {
+                    "name": "BrandMark",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Mark item</p>\n",
+                    "kind": 183
+                },
+                {
+                    "name": "BrandMarks",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Marks</p>\n",
+                    "kind": 183
+                },
                 {
                     "name": "BrandMarkVariant",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"default\" | \"contrast\"",
-                    "file": "brand/mark/src/lib/mark.component.ts",
+                    "rawtype": "z.infer<>",
+                    "file": "brand/mark/src/lib/types/marks.schema.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "description": "<p>Brand mark variant</p>\n",
-                    "kind": 192
+                    "description": "<p>Mark variant</p>\n",
+                    "kind": 183
                 }
             ],
             "snackbar/src/lib/snackbar.component.ts": [
@@ -10461,6 +10628,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "<p>Named button sizes</p>\n",
+                    "kind": 192
+                }
+            ],
+            "buttons/button-toggle/src/lib/directives/button-toggle-size.directive.ts": [
+                {
+                    "name": "ButtonToggleSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\"",
+                    "file": "buttons/button-toggle/src/lib/directives/button-toggle-size.directive.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Button toggle size</p>\n",
                     "kind": 192
                 }
             ],
@@ -10545,19 +10725,6 @@
                     "deprecationMessage": "",
                     "description": "<p>A hubmap menu item</p>\n",
                     "kind": 183
-                }
-            ],
-            "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts": [
-                {
-                    "name": "IconButtonSize",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"small\" | \"medium\" | \"large\"",
-                    "file": "button-toggle/src/lib/button-toggle-size/button-toggle-size.directive.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "<p>Input options for icon button size</p>\n",
-                    "kind": 192
                 }
             ],
             "icon-button/src/lib/icon-button-size/icon-button-size.directive.ts": [
