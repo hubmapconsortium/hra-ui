@@ -1,5 +1,4 @@
-import { By } from '@angular/platform-browser';
-import { DomSanitizer } from '@angular/platform-browser';
+import { By, DomSanitizer } from '@angular/platform-browser';
 import { render, screen, fireEvent } from '@testing-library/angular';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
