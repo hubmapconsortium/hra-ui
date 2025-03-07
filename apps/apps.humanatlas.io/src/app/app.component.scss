@@ -1,6 +1,10 @@
 :host {
   display: block;
-  background: linear-gradient(to bottom, var(--sys-surface-container-high), var(--sys-surface-container-lowest));
+  background: linear-gradient(
+    to bottom,
+    var(--mat-sys-surface-container-high),
+    var(--mat-sys-surface-container-lowest)
+  );
 
   .content {
     display: flex;

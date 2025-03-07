@@ -12,8 +12,8 @@
 }
 
 h1 {
-  font: var(--sys-display-large);
-  letter-spacing: var(--sys-display-large-tracking);
+  font: var(--mat-sys-display-large);
+  letter-spacing: var(--mat-sys-display-large-tracking);
   margin: 0;
 }
 
@@ -23,8 +23,8 @@ img {
 }
 
 .preview-label {
-  font: var(--sys-label-large);
-  letter-spacing: var(--sys-label-large-tracking);
+  font: var(--mat-sys-label-large);
+  letter-spacing: var(--mat-sys-label-large-tracking);
 }
 
 @media only screen and (min-width: 640px) {
