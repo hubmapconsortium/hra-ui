@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   AggregateCount,
   Filter,
@@ -15,9 +15,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class OrganLookupService {
+  private readonly source = inject(DataSourceService);
   private readonly organs = ALL_POSSIBLE_ORGANS;
-
-  constructor(private readonly source: DataSourceService) {}
 
   getOrganInfo(
     iri: string,

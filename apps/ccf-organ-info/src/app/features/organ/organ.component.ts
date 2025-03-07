@@ -8,6 +8,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
@@ -22,6 +23,8 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   standalone: false,
 })
 export class OrganComponent implements AfterViewChecked, OnChanges {
+  readonly ga = inject(GoogleAnalyticsService);
+
   @Input() organ?: SpatialEntity;
   @Input() scene!: SpatialSceneNode[];
   @Input() organIri!: string;
@@ -38,8 +41,6 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
 
   highlightedNodeId!: string;
   filteredBlocks!: string[];
-
-  constructor(readonly ga: GoogleAnalyticsService) {}
 
   ngAfterViewChecked(): void {
     this.updateHighlighting();
