@@ -38,13 +38,13 @@ export class FlatCardComponent {
   readonly tagline = input.required<string>();
 
   /** Optional help icon */
-  readonly showHelpButton = input<boolean>();
+  readonly showHelpButton = input<boolean>(false);
 
   /** Optional divider */
-  readonly showDivider = input.required<boolean>();
+  readonly showDivider = input<boolean>(false);
 
   /** Optional footer content */
-  readonly showButtonsFooter = input.required<boolean>();
+  readonly showButtonsFooter = input<boolean>(false);
 
   readonly closeClick = output<void>();
 }
