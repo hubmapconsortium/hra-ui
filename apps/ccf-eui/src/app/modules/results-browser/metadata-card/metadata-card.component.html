@@ -4,9 +4,15 @@
   <span class="label" [title]="label2()">{{ label2() }}</span>
 </div>
 
-<button class="menu-icon" mat-icon-button>
+<button class="menu-icon" mat-icon-button [matMenuTriggerFor]="menu">
   <mat-icon>more_vert</mat-icon>
 </button>
+
+<mat-menu #menu="matMenu">
+  <a target="_blank" rel="noopener noreferrer" [href]="menuLink() ?? ''">
+    <button mat-menu-item [disabled]="!menuLink()">Resource Link</button>
+  </a>
+</mat-menu>
 
 <div class="content">
   <ng-content></ng-content>

@@ -18,4 +18,5 @@ export class MetadataCardComponent {
   readonly label2 = input<string>();
 
   readonly toggleExpansion = output();
+  readonly menuLink = input<string | undefined>();
 }

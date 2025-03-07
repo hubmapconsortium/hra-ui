@@ -37,9 +37,6 @@ export class DonorCardComponent {
   /** Allows the selected state to be set from outside the component */
   readonly selected = model<boolean>(false);
 
-  /** Allows color of the checkbox background to be set from outside the component */
-  readonly color = input.required<string>();
-
   /** Allows the expanded state of the card to be set from outside the component */
   readonly expanded = model<boolean>(false);
 
@@ -47,9 +44,12 @@ export class DonorCardComponent {
   readonly linkClick = output<string>();
 
   readonly selectOption = output();
+  readonly expansionChange = output<boolean>();
 
   readonly thickness = computed(() => this.tissueBlock().description?.split(',')[1]);
   readonly size = computed(() => this.tissueBlock().description?.split(',')[0]);
+
+  readonly sectionLinks = computed(() => this.tissueBlock().sections?.map((section) => section.link) ?? []);
 
   /**
    * Creates an instance of donor card component.
@@ -65,6 +65,7 @@ export class DonorCardComponent {
     if (this.selected()) {
       this.expanded.update(() => !this.expanded());
       this.ga.event('expanded_toggled', 'donor_card', this.tissueBlock().label, +this.expanded());
+      this.expansionChange.emit(this.expanded());
     } else {
       this.selected.update(() => true);
       this.selectOption.emit();

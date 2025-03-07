@@ -1,8 +1,7 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
@@ -33,7 +32,6 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     ButtonsModule,
     ScrollingModule,
     ScrollOverflowFadeDirective,
-    MatDividerModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,6 +49,8 @@ export class ResultsBrowserComponent {
 
   readonly header = input.required<boolean>();
 
+  selectedListResults: ListResult[] = [];
+
   /**
    * Output emitting the result that was clicked on and its relevant information.
    * Used for opening and rendering the result viewer.
@@ -67,12 +67,21 @@ export class ResultsBrowserComponent {
    */
   readonly listResultDeselected = output<Immutable<ListResult>>();
 
+  readonly listResultExpansionChange = output<Immutable<ListResult>>();
+
+  readonly showSelected = signal(false);
+
   /**
    * Creates an instance of results browser component.
    *
    * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  constructor(private readonly ga: GoogleAnalyticsService) {
+    effect(() => {
+      const results = this.listResults() as ListResult[];
+      this.selectedListResults = results.filter((result) => result.selected);
+    });
+  }
 
   /**
    * Notifies listeners when a selection/deselection is made
@@ -107,5 +116,18 @@ export class ResultsBrowserComponent {
     for (const result of selectedResults) {
       this.listResultDeselected.emit({ ...result, selected: false });
     }
+    this.showSelected.set(false);
+  }
+
+  changeExpansion(result: Immutable<ListResult>, value: boolean) {
+    this.listResultExpansionChange.emit({ ...result, expanded: value });
+  }
+
+  getColor(result: Immutable<ListResult>): string {
+    return result.selected ? result.color || '' : 'transparent';
+  }
+
+  toggleShowSelected(): void {
+    this.showSelected.set(!this.showSelected());
   }
 }

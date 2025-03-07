@@ -3,6 +3,7 @@
   [tagline]="'Donor: ' + tissueBlock().donor?.label"
   [label]="'Provenance: ' + tissueBlock().donor?.description"
   (toggleExpansion)="toggleExpansion()"
+  [menuLink]="tissueBlock().donor?.link ?? ''"
 >
 </ccf-metadata-card>
 
@@ -13,6 +14,7 @@
       tagline="Tissue Block"
       [label]="'3D size: ' + size()"
       [label2]="'Thickness of tissue section: ' + thickness()"
+      [menuLink]="tissueBlock().link"
     >
       @if ((tissueBlock().sections?.length ?? 0) > 1) {
         <ccf-tissue-section-vis
@@ -28,8 +30,8 @@
       }
     </ccf-metadata-card>
 
-    @for (section of tissueBlock().sections; track section) {
-      <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets">
+    @for (section of tissueBlock().sections; track section; let i = $index) {
+      <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets" [menuLink]="sectionLinks()[i]">
         @if (section.datasets.length > 0) {
           <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="section.datasets"> </ccf-thumbnail-list>
         }
