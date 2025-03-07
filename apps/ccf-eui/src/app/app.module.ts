@@ -24,6 +24,7 @@ import { OrganSelectComponent } from './shared/components/organ-select/organ-sel
 import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { MatDividerModule } from '@angular/material/divider';
     FiltersContentComponent,
     OrganSelectComponent,
     MatDividerModule,
+    MatProgressBarModule,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

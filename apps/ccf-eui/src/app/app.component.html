@@ -21,6 +21,9 @@
   </mat-sidenav>
 
   <div class="page-content">
+    @if (progressBarActive$ | async) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
     <hra-back-button-bar></hra-back-button-bar>
 
     <hra-nav-header-buttons
