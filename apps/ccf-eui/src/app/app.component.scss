@@ -121,6 +121,12 @@
       }
     }
 
+    .filter-button-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .filter-text {
       display: flex;
       gap: 1.5rem;
@@ -169,26 +175,8 @@
   }
 }
 
-::ng-deep .hra-app .mat-mdc-menu-panel {
-  min-width: 280px;
-  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
-  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
-  .expand-arrow {
-    --mat-menu-item-spacing: 0.75rem;
-  }
-
-  .no-selection-notice {
-    font: var(--sys-body-medium);
-    color: var(--sys-secondary);
-    padding: 0 1rem;
-  }
-}
-
-::ng-deep .hra-app .mat-mdc-menu-panel {
-  min-width: 280px;
-  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
-  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
-  .expand-arrow {
-    --mat-menu-item-spacing: 0.75rem;
-  }
+.no-selection-notice {
+  font: var(--sys-body-medium);
+  color: var(--sys-secondary);
+  padding: 0 1rem;
 }

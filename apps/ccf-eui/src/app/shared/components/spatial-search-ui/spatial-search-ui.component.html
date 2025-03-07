@@ -39,11 +39,18 @@
       target="_blank"
       rel="noopener noreferrer"
       href="https://github.com/hubmapconsortium/hra-ui/wiki/Exploration-User-Interface-Guide#how-to-use-the-spatial-search"
+      hraMicroTooltip="App guide"
     >
       <mat-icon>help</mat-icon>
     </a>
     <div style="flex-grow: 1"></div>
-    <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="closeSpatialSearch.emit()">
+    <button
+      mat-icon-button
+      hraIconButtonSize="large"
+      disableRipple
+      (click)="closeSpatialSearch.emit()"
+      hraMicroTooltip="Close"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>
@@ -57,7 +64,12 @@
     ></ccf-spatial-search-inputs>
   </div>
   <div class="radius-slider">
-    <div class="slider-title">Search Radius Size</div>
+    <div
+      class="slider-title"
+      hraMicroTooltip="The probing sphere is a radius detecting registered tissue blocks and reports predicted anatomical structures and cell types."
+    >
+      Probing Sphere Size
+    </div>
     <div class="slider-container">
       <mat-slider class="slider" discrete [max]="radiusSettings().max" [min]="radiusSettings().min">
         <input matSliderThumb [value]="radius()" (input)="radiusChange.emit(+slider.value)" #slider />
@@ -66,25 +78,30 @@
     </div>
   </div>
   <div class="results">
-    <ccf-tissue-block-list class="tissue-block list" [tissueBlocks]="tissueBlocks()"></ccf-tissue-block-list>
+    <ccf-tissue-block-list
+      class="tissue-block list"
+      [tissueBlocks]="tissueBlocks()"
+      title="Tissue Blocks"
+      toolTipText="Total quantity of registered tissue blocks detected by the probing sphere."
+    ></ccf-tissue-block-list>
     <ccf-term-occurrence-list
       class="anatomical-structures list"
       [termList]="anatomicalStructures()"
       title="Anatomical Structure Predictions"
-      toolTipText="Total quantity of predicted anatomical structures detected by the Probing Sphere"
+      toolTipText="Total quantity of predicted anatomical structures detected by the probing sphere."
     >
     </ccf-term-occurrence-list>
     <ccf-term-occurrence-list
       class="cell-type list"
       [termList]="cellTypes()"
       title="Cell Type Predictions"
-      toolTipText="Total quantity of predicted cell types detected by the Probing Sphere"
+      toolTipText="Total quantity of predicted cell types detected by the probing sphere."
     ></ccf-term-occurrence-list>
   </div>
 
   <div class="button-container">
     <button mat-button (click)="resetSphere.emit(); resetPosition.emit()">
-      Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+      Reset Options<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
     </button>
     <button
       mat-flat-button

@@ -1,11 +1,13 @@
 <div class="results-browser-container">
   <div class="results-header">
-    Experimental Data
-    <button mat-icon-button>
+    <div hraMicroTooltip="Donors, tissue blocks, and datasets that have been registered into a 3D organ.">
+      Experimental Data
+    </div>
+    <button mat-icon-button hraMicroTooltip="Help Center">
       <mat-icon>help</mat-icon>
     </button>
   </div>
-  <div class="stat-box">
+  <div class="stat-box" hraMicroTooltip="Summarizes the experimental data shown given the current filters.">
     <div id="title">Summary Statistics</div>
     <div class="stat-table">
       <div class="stat-row" *ngFor="let stat of aggregateData">

@@ -13,6 +13,7 @@ import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -34,6 +35,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ScrollingModule,
     ScrollOverflowFadeDirective,
     MatDividerModule,
+    MicroTooltipDirective,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,

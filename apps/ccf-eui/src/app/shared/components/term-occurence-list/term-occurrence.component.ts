@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
-
-import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 
+import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+
 /**
- * Component for a dropdown menu
+ * Term occurrence list in spatial search UI
  */
 @Component({
   selector: 'ccf-term-occurrence-list',
   templateUrl: './term-occurrence.component.html',
   styleUrls: ['./term-occurrence.component.scss'],
   imports: [
-    MatTooltipModule,
     MatIconModule,
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,
     ScrollingModule,
     ScrollOverflowFadeDirective,
+    MicroTooltipDirective,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,

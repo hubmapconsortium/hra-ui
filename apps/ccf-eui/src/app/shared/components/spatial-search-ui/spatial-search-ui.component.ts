@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { BodyUiModule, OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
 
 import {
@@ -34,6 +35,7 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
     TermOccurrenceListComponent,
     ButtonsModule,
     SpatialSearchInputsComponent,
+    MicroTooltipDirective,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
