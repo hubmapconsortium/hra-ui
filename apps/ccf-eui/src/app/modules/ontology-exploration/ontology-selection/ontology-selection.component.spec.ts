@@ -6,6 +6,7 @@ import { OntologySearchService } from '../../../core/services/ontology-search/on
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
 import { OntologySelectionComponent } from './ontology-selection.component';
 import { OntologySelectionModule } from './ontology-selection.module';
+import { mock, MockProxy } from 'jest-mock-extended';
 
 function fromPartial<T>(partial: RecursivePartial<T>): T {
   return partial as T;
@@ -15,11 +16,11 @@ describe('OntologySelectionComponent', () => {
   const ontologyNode = fromPartial<OntologyTreeNode>({ label: 'label' });
 
   let shallow: Shallow<OntologySelectionComponent>;
-  let mockStore: jasmine.SpyObj<Store>;
+  let mockStore: MockProxy<Store>;
 
   beforeEach(() => {
-    mockStore = jasmine.createSpyObj<Store>(['selectSnapshot']);
-    mockStore.selectSnapshot.and.returnValue({ node: ontologyNode });
+    mockStore = mock();
+    mockStore.selectSnapshot.mockReturnValue({ node: ontologyNode });
 
     shallow = new Shallow(OntologySelectionComponent, OntologySelectionModule)
       .provide(OntologySearchService)
@@ -43,7 +44,7 @@ describe('OntologySelectionComponent', () => {
       root: '',
       nodes: {},
     };
-    spyOn(instance, 'filterNodes').and.callThrough();
+    jest.spyOn(instance, 'filterNodes');
     findComponent(OntologyTreeComponent).selectedBiomarkerOptions.emit(['gene']);
     expect(instance.filterNodes).toHaveBeenCalled();
   });

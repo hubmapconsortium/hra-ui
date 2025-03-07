@@ -2,9 +2,9 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
-import { Observable, lastValueFrom, of } from 'rxjs';
+import { mock, MockProxy } from 'jest-mock-extended';
+import { lastValueFrom, Observable, of } from 'rxjs';
 import { take } from 'rxjs/operators';
-
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { PageState } from '../page/page.state';
@@ -37,14 +37,14 @@ describe('ModelState', () => {
   const initialSlicesConfig: SlicesConfig = { thickness: 0, numSlices: 1 };
   const initialViewType: ViewType = 'register';
   const initialViewSide: ViewSide = 'anterior';
-  let mockDataSource: jasmine.SpyObj<ReferenceDataState>;
+  let mockDataSource: MockProxy<ReferenceDataState>;
   let state: ModelState;
-  let mockGlobalConfig: jasmine.SpyObj<GlobalConfig>;
+  let mockGlobalConfig: MockProxy<GlobalConfig>;
 
   beforeEach(async () => {
-    mockDataSource = jasmine.createSpyObj<ReferenceDataState>('ReferenceDataState', ['getReferenceOrganIri']);
-    mockDataSource.getReferenceOrganIri.and.returnValue(undefined);
-    mockGlobalConfig = jasmine.createSpyObj<GlobalConfig>('GlobalConfig', ['organ']);
+    mockDataSource = mock();
+    mockDataSource.getReferenceOrganIri.mockReturnValue(undefined);
+    mockGlobalConfig = mock();
     mockGlobalConfig.organ = {
       name: 'kidney',
       ontologyId: 'http://purl.obolibrary.org/obo/UBERON_0004538',
@@ -244,13 +244,13 @@ describe('ModelState', () => {
   });
 
   it('should call setShowPrevious with visible boolean when toggleRegistrationBlocks is called', async () => {
-    const spy = spyOn(state, 'setShowPrevious');
+    const spy = jest.spyOn(state, 'setShowPrevious');
     state.toggleRegistrationBlocksVisibility(true, []);
     expect(spy).toHaveBeenCalledWith(true);
   });
 
   it('should call setAnatomicalStructures() with the passed in visibilityItems if visible is set to false', async () => {
-    const spy = spyOn(state, 'setAnatomicalStructures');
+    const spy = jest.spyOn(state, 'setAnatomicalStructures');
     const testVisibilityItems: VisibilityItem[] = [{ id: 1, name: 'test', visible: true }];
     state.toggleRegistrationBlocksVisibility(false, testVisibilityItems);
     expect(spy).toHaveBeenCalledWith(testVisibilityItems);

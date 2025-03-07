@@ -2,21 +2,21 @@
 
 @include utils.global-styles() {
   mat-tree {
-    --mat-tree-container-background-color: var(--sys-on-primary);
+    --mat-tree-container-background-color: var(--mat-sys-on-primary);
   }
 
   mat-tree-node {
-    --mat-tree-node-text-font: var(--sys-label-medium-font);
-    --mat-tree-node-text-weight: var(--sys-label-medium-weight);
-    --mat-tree-node-text-color: var(--sys-secondary);
+    --mat-tree-node-text-font: var(--mat-sys-label-medium-font);
+    --mat-tree-node-text-weight: var(--mat-sys-label-medium-weight);
+    --mat-tree-node-text-color: var(--mat-sys-secondary);
 
-    letter-spacing: var(--sys-label-medium-tracking);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
     cursor: pointer;
     user-select: none;
     outline: none;
 
     &:focus-visible .node-content {
-      border-color: var(--sys-tertiary);
+      border-color: var(--mat-sys-tertiary);
     }
   }
 
@@ -40,16 +40,16 @@
     }
 
     &:hover {
-      background: rgb(from var(--sys-secondary) r g b / 0.08);
+      background: rgb(from var(--mat-sys-secondary) r g b / 0.08);
     }
 
     &:active {
-      background: rgb(from var(--sys-secondary) r g b / 0.16);
+      background: rgb(from var(--mat-sys-secondary) r g b / 0.16);
       border-color: transparent;
     }
 
     &.selected {
-      background: rgb(from var(--sys-tertiary) r g b / 0.2);
+      background: rgb(from var(--mat-sys-tertiary) r g b / 0.2);
     }
   }
 }

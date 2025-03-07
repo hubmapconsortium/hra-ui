@@ -3,11 +3,11 @@
   height: fit-content;
   position: sticky;
   --mdc-filled-button-container-height: 2rem;
-  --mat-expansion-container-background-color: var(--sys-on-primary);
+  --mat-expansion-container-background-color: var(--mat-sys-on-primary);
   --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
   --mat-expansion-container-shape: 0;
-  --mat-expansion-container-background-color: var(--sys-surface-container-low);
+  --mat-expansion-container-background-color: var(--mat-sys-surface-container-low);
 
   ::ng-deep {
     .header {
@@ -31,7 +31,7 @@
       }
 
       .legend {
-        --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+        --hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
         overflow-y: auto;
         flex-grow: 1;
         margin-left: 0.125rem;
@@ -53,7 +53,7 @@
       hra-expansion-panel-header-content {
         cde-color-picker-label {
           .label {
-            font: var(--sys-label-small);
+            font: var(--mat-sys-label-small);
             display: flex;
             white-space: unset;
             max-width: unset;

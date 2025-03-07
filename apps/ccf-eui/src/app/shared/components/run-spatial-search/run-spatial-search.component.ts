@@ -14,6 +14,7 @@ import { SpatialSearchConfigBehaviorComponent } from '../spatial-search-config-b
   templateUrl: './run-spatial-search.component.html',
   styleUrls: ['./run-spatial-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RunSpatialSearchComponent {
   /** HTML class */

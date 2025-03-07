@@ -108,10 +108,10 @@ describe('BiomarkerDetailsComponent', () => {
   });
   describe('collaborate', () => {
     it('should open the contact modal dialog box', async () => {
-      const { instance, inject } = await shallow.render();
-      const spy = jest.spyOn(inject(MatDialog), 'open');
+      const open = jest.fn();
+      const { instance } = await shallow.mock(MatDialog, { open }).render();
       instance.collaborate();
-      expect(spy).toHaveBeenCalled();
+      expect(open).toHaveBeenCalled();
     });
   });
 

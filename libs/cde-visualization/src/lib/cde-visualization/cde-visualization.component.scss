@@ -7,18 +7,18 @@
   grid-template-areas:
     'header visualization'
     'metadata visualization';
-  color: var(--sys-secondary);
-  background: var(--sys-surface-container-low);
+  color: var(--mat-sys-secondary);
+  background: var(--mat-sys-surface-container-low);
 
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    --mdc-linear-progress-active-indicator-color: var(--sys-tertiary);
+    --mdc-linear-progress-active-indicator-color: var(--mat-sys-tertiary);
   }
 
   .header {
     grid-area: header;
-    border-color: var(--sys-outline-variant);
+    border-color: var(--mat-sys-outline-variant);
     border-width: 0 0px 2px 0px;
     border-style: solid;
     height: 4rem;
@@ -47,7 +47,7 @@
     }
 
     cde-node-dist-visualization {
-      border-color: var(--sys-outline-variant);
+      border-color: var(--mat-sys-outline-variant);
       border-width: 0 0 2px 0;
       border-style: solid;
       height: 100%;
@@ -69,14 +69,14 @@
   .vis-overlay,
   .violin-overlay {
     .mat-mdc-menu-content {
-      background-color: var(--sys-on-primary);
-      color: var(--sys-secondary);
+      background-color: var(--mat-sys-on-primary);
+      color: var(--mat-sys-secondary);
       .mat-mdc-menu-item {
         --mat-menu-item-with-icon-leading-spacing: 1rem;
         --mat-menu-item-with-icon-trailing-spacing: 1rem;
 
         .mat-mdc-menu-item-text {
-          font: var(--sys-label-medium);
+          font: var(--mat-sys-label-medium);
         }
       }
     }
@@ -87,24 +87,24 @@
     min-width: 208px;
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 0.75rem 1rem;
-      background-color: var(--sys-on-primary);
-      font: var(--sys-label-medium);
+      background-color: var(--mat-sys-on-primary);
+      font: var(--mat-sys-label-medium);
     }
 
     &.download-sub-menu .mat-mdc-menu-content {
-      background-color: var(--sys-on-primary);
-      font: var(--sys-label-medium);
+      background-color: var(--mat-sys-on-primary);
+      font: var(--mat-sys-label-medium);
 
       .mat-mdc-menu-item-text {
-        font: var(--sys-label-medium);
+        font: var(--mat-sys-label-medium);
       }
     }
   }
 }
 
 ::ng-deep .download-snackbar-panel {
-  --mdc-snackbar-container-color: var(--sys-surface-container);
-  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+  --mdc-snackbar-container-color: var(--mat-sys-surface-container);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-secondary);
   translate: 0 -2rem;
   text-align: center;
 

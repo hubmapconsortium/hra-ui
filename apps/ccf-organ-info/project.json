@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-organ-info/src",
   "prefix": "app",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -117,18 +117,10 @@
       }
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "apps/ccf-organ-info/src/test.ts",
-        "polyfills": "apps/ccf-organ-info/src/polyfills.ts",
-        "tsConfig": "apps/ccf-organ-info/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-organ-info/karma.conf.js",
-        "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
-        "styles": ["apps/ccf-organ-info/src/styles.scss"],
-        "scripts": []
+        "jestConfig": "apps/ccf-organ-info/jest.config.ts"
       }
     },
     "lint": {

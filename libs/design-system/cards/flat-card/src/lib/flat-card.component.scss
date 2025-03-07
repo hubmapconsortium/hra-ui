@@ -5,8 +5,8 @@
   flex-direction: column;
   height: 100%;
   min-width: 19.5rem;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-on-background) r g b / 0.24);
-  background-color: var(--sys-surface-container-low);
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b / 0.24);
+  background-color: var(--mat-sys-surface-container-low);
 
   .component-tagline {
     display: flex;
@@ -15,16 +15,16 @@
 
     .component-title {
       @include utils.use-font(title, medium);
-      color: var(--sys-on-background);
+      color: var(--mat-sys-on-background);
     }
 
     .helpButton {
-      background-color: var(--sys-surface-container-low);
+      background-color: var(--mat-sys-surface-container-low);
     }
   }
 
   .top-divider {
-    color: var(--sys-outline-variant);
+    color: var(--mat-sys-outline-variant);
   }
 
   ng-scrollbar {
@@ -38,8 +38,8 @@
 
   .card-footer {
     height: 4.5rem;
-    border-top: 0.0625rem solid var(--sys-outline-variant);
-    background-color: var(--sys-surface-container-low);
+    border-top: 0.0625rem solid var(--mat-sys-outline-variant);
+    background-color: var(--mat-sys-surface-container-low);
     display: flex;
     justify-content: space-between;
     padding: 1rem;

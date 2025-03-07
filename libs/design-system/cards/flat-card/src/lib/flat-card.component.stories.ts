@@ -47,12 +47,12 @@ export const Default: Story = {
       `.placeholder {
           padding: 3rem;
           gap: .5rem;
-          background: var(--sys-outline-variant);
+          background: var(--mat-sys-outline-variant);
           height: 908px;
           text-align: center;
-          font: var(--sys-display-small);
-          letter-spacing: var(--sys-display-small-tracking);
-          color: var(--sys-tertiary);
+          font: var(--mat-sys-display-small);
+          letter-spacing: var(--mat-sys-display-small-tracking);
+          color: var(--mat-sys-tertiary);
       }`,
     ],
   }),

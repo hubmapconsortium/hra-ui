@@ -126,6 +126,7 @@ export interface VersionDetail {
   value: string;
   viewValue: string;
   hraVersion?: string;
+  link?: string;
   csvUrl?: string;
   sheetId?: string;
   gid?: string;

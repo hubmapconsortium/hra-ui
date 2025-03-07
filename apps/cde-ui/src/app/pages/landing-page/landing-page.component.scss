@@ -8,21 +8,21 @@
   top: 4.5rem;
 
   h4 {
-    color: var(--sys-primary);
+    color: var(--mat-sys-primary);
   }
 
   .create-explore-content {
     padding: 3rem 1rem 5rem 1rem;
 
     .header .title {
-      font: var(--sys-display-small);
-      letter-spacing: var(--sys-display-small-tracking);
+      font: var(--mat-sys-display-small);
+      letter-spacing: var(--mat-sys-display-small-tracking);
       margin: 0 0 0.5rem 0;
     }
 
     .header .description {
-      font: var(--sys-body-splash);
-      letter-spacing: var(--sys-body-splash-tracking);
+      font: var(--mat-sys-body-splash);
+      letter-spacing: var(--mat-sys-body-splash-tracking);
       margin: 0 0 3rem 0;
     }
   }
@@ -49,10 +49,10 @@
 
   .vccf .content-container {
     grid-area: content-container;
-    background: var(--sys-on-primary);
+    background: var(--mat-sys-on-primary);
     padding: 2rem 1.5rem;
     border-radius: 1rem;
-    box-shadow: 0px 5px 16px 0px rgb(from var(--sys-shadow) r g b / 0.24);
+    box-shadow: 0px 5px 16px 0px rgb(from var(--mat-sys-shadow) r g b / 0.24);
   }
 
   .vccf .content {
@@ -67,15 +67,15 @@
 
   .background-header {
     grid-area: header;
-    font: var(--sys-headline-small);
-    letter-spacing: var(--sys-headline-small-tracking);
+    font: var(--mat-sys-headline-small);
+    letter-spacing: var(--mat-sys-headline-small-tracking);
     line-height: 2.25rem;
     margin: 0 0 0.5rem 0;
   }
 
   .background-text {
-    font: var(--sys-body-medium);
-    letter-spacing: var(--sys-body-medium-tracking);
+    font: var(--mat-sys-body-medium);
+    letter-spacing: var(--mat-sys-body-medium-tracking);
     margin: 0 0 2rem 0;
   }
 
@@ -129,13 +129,13 @@
       }
 
       .background-header {
-        font: var(--sys-headline-medium);
-        letter-spacing: var(--sys-headline-medium-tracking);
+        font: var(--mat-sys-headline-medium);
+        letter-spacing: var(--mat-sys-headline-medium-tracking);
       }
 
       .background-text {
-        font: var(--sys-body-large);
-        letter-spacing: var(--sys-body-large-tracking);
+        font: var(--mat-sys-body-large);
+        letter-spacing: var(--mat-sys-body-large-tracking);
       }
     }
   }
@@ -143,8 +143,8 @@
   @media (min-width: 544px) {
     .create-explore-content {
       .header .title {
-        font: var(--sys-display-medium);
-        letter-spacing: var(--sys-display-medium-tracking);
+        font: var(--mat-sys-display-medium);
+        letter-spacing: var(--mat-sys-display-medium-tracking);
       }
     }
 
@@ -174,8 +174,8 @@
 
     .create-explore-content {
       .header .title {
-        font: var(--sys-display-large);
-        letter-spacing: var(--sys-display-large-tracking);
+        font: var(--mat-sys-display-large);
+        letter-spacing: var(--mat-sys-display-large-tracking);
       }
     }
 
@@ -213,8 +213,8 @@
       }
 
       .background-header {
-        font: var(--sys-headline-large);
-        letter-spacing: var(--sys-headline-large-tracking);
+        font: var(--mat-sys-headline-large);
+        letter-spacing: var(--mat-sys-headline-large-tracking);
       }
     }
 

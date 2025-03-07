@@ -34,10 +34,10 @@ export const Default: Story = {
       `div {
         height: 3rem;
         text-align: center;
-        font: var(--sys-display-small);
-        letter-spacing: var(--sys-display-small-tracking);
-        color: var(--sys-tertiary);
-        background: var(--sys-outline-variant);
+        font: var(--mat-sys-display-small);
+        letter-spacing: var(--mat-sys-display-small-tracking);
+        color: var(--mat-sys-tertiary);
+        background: var(--mat-sys-outline-variant);
       }`,
     ],
   }),

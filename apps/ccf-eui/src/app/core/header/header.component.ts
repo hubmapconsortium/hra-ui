@@ -1,4 +1,25 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { ThemingService } from '../services/theming/theming.service';
+
+const LOGOS: Record<string, string> & Record<'default', string> = {
+  'hubmap-theme-dark': 'hubmap-logo.svg',
+  'hubmap-theme-light': 'hubmap-logo.svg',
+  'sennet-theme-dark': 'sennet-logo.svg',
+  'sennet-theme-light': 'sennet-logo.svg',
+  'gtex-theme-dark': 'gtex-logo.png',
+  'gtex-theme-light': 'gtex-logo.png',
+  default: 'default-logo.svg',
+};
 
 /**
  * Header which is always displayed on the site; contains current filter info,
@@ -9,8 +30,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnChanges {
   /**
    * URL to Portal site
    */
@@ -42,17 +64,19 @@ export class HeaderComponent implements OnInit {
    */
   @Output() readonly downloadClicked = new EventEmitter<void>();
 
-  ngOnInit() {
-    const theme = document.getElementsByTagName('ccf-root')[0].classList[0];
-    const logo = document.getElementsByClassName('logo')[0] as HTMLElement;
-    if (['hubmap-theme-dark', 'hubmap-theme-light'].includes(theme)) {
-      logo.style.backgroundImage = `url(${this.baseRef}assets/icons/app/hubmap-logo.svg)`;
-    } else if (['sennet-theme-dark', 'sennet-theme-light'].includes(theme)) {
-      logo.style.backgroundImage = `url(${this.baseRef}assets/icons/app/sennet-logo.svg)`;
-    } else if (['gtex-theme-dark', 'gtex-theme-light'].includes(theme)) {
-      logo.style.backgroundImage = `url(${this.baseRef}assets/icons/app/gtex-logo.png)`;
-    } else {
-      logo.style.backgroundImage = `url(${this.baseRef}assets/icons/app/default-logo.svg)`;
+  private readonly themeChanges$ = inject(ThemingService).themeChanges$;
+  private readonly baseHref$ = new BehaviorSubject('');
+
+  readonly logoUrl$ = combineLatest([this.themeChanges$, this.baseHref$]).pipe(
+    map(([theme, baseHref]) => {
+      const logo = LOGOS[theme] ?? LOGOS.default;
+      return `url(${baseHref}assets/icons/app/${logo})`;
+    }),
+  );
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('baseRef' in changes) {
+      this.baseHref$.next(this.baseRef);
     }
   }
 }

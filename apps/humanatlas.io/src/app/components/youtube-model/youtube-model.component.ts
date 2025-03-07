@@ -6,6 +6,7 @@ import { YoutubeModel } from './youtube-model';
   selector: 'youtube-model',
   templateUrl: './youtube-model.component.html',
   styleUrls: ['./youtube-model.component.scss'],
+  standalone: false,
 })
 export class YoutubeModelComponent implements OnInit {
   /** Details of youtube player and video */

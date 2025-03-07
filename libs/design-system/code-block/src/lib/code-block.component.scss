@@ -1,7 +1,7 @@
 :host {
   display: block;
-  background-color: var(--sys-surface-container);
-  border: solid 0.0625rem var(--sys-outline-variant);
+  background-color: var(--mat-sys-surface-container);
+  border: solid 0.0625rem var(--mat-sys-outline-variant);
   border-radius: 0.25rem;
   padding: 0.75rem;
   height: fit-content;
@@ -16,7 +16,7 @@
     white-space: pre-wrap;
 
     code {
-      background-color: var(--sys-surface-container);
+      background-color: var(--mat-sys-surface-container);
     }
   }
 }

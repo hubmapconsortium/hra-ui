@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   templateUrl: './call-to-action.component.html',
   styleUrls: ['./call-to-action.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CallToActionComponent {
   /**HTML class */

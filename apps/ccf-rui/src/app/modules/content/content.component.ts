@@ -26,6 +26,7 @@ import { SceneState } from '../../core/store/scene/scene.state';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ContentComponent implements OnInit, OnDestroy {
   /** HTML class name */

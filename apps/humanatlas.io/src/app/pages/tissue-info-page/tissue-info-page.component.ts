@@ -8,6 +8,7 @@ import { descriptionData, tissueData } from './tissue-info-page.content';
   selector: 'ccf-tissue-info-page',
   templateUrl: './tissue-info-page.component.html',
   styleUrls: ['./tissue-info-page.component.scss'],
+  standalone: false,
 })
 export class TissueInfoPageComponent {
   /** Description of the tissue */

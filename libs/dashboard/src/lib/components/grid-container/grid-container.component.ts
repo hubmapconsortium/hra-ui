@@ -11,7 +11,6 @@ import { DashboardComponentOutletDirective } from '../../dashboard/dashboard-out
 /** Grid Container Component. Renders items based on number of columns provided */
 @Component({
   selector: 'hra-grid-container',
-  standalone: true,
   imports: [CommonModule, DashboardComponentOutletDirective],
   templateUrl: './grid-container.component.html',
   styleUrl: './grid-container.component.scss',

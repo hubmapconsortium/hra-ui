@@ -9,7 +9,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 @Component({
   selector: 'hra-web-component-card',
-  standalone: true,
   imports: [ButtonsModule, CommonModule],
   templateUrl: './web-component-card.component.html',
   styleUrl: './web-component-card.component.scss',

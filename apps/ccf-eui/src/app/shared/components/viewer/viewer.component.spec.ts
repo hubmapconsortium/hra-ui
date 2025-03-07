@@ -15,6 +15,6 @@ describe('ViewerComponent', () => {
   it('should set loading to true when input changes', async () => {
     const { instance } = await shallow.render({ bind: { url } });
     instance.ngOnChanges({ url: {} as SimpleChange });
-    expect(instance.loading).toBeTrue();
+    expect(instance.loading).toBeTruthy();
   });
 });

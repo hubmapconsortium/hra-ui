@@ -95,7 +95,6 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   host: {
     class: 'hra-app',
   },

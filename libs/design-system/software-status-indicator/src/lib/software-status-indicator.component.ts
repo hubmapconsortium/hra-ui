@@ -14,7 +14,6 @@ export type SoftwareStatusSize = 'small' | 'medium' | 'large';
  */
 @Component({
   selector: 'hra-software-status-indicator',
-  standalone: true,
   imports: [CommonModule, MicroTooltipDirective, SoftwareStatusSizeDirective],
   templateUrl: './software-status-indicator.component.html',
   styleUrl: './software-status-indicator.component.scss',

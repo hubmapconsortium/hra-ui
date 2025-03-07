@@ -5,7 +5,7 @@ import { ReportService } from './report.service';
 
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as moment from 'moment';
+import moment from 'moment';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import * as XLSX from 'xlsx';
@@ -17,6 +17,7 @@ import { TreeService } from '../../modules/tree/tree.service';
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
+  standalone: false,
 })
 export class ReportComponent implements OnInit {
   reportData: Report = {

@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   host: {
     class: 'hra-app',
   },
+  standalone: false,
 })
 export class AppComponent {}

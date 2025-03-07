@@ -1,13 +1,13 @@
 {
   "name": "ccf-rui",
   "metadata": {
-    "version": "4.1.0"
+    "version": "4.2.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/ccf-rui/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -114,25 +114,10 @@
       }
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "apps/ccf-rui/src/test.ts",
-        "polyfills": "apps/ccf-rui/src/polyfills.ts",
-        "tsConfig": "apps/ccf-rui/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-rui/karma.conf.js",
-        "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": [
-          "apps/ccf-rui/src/test.ts",
-          "apps/ccf-rui/src/polyfills.ts",
-          "apps/ccf-rui/src/environments/**/*.ts",
-          "apps/ccf-rui/src/app/**/*.module.ts"
-        ],
-        "styles": ["apps/ccf-rui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["libs/design-system/styles"]
-        },
-        "scripts": []
+        "jestConfig": "apps/ccf-rui/jest.config.ts"
       }
     },
     "lint": {

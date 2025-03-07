@@ -16,15 +16,15 @@
     border-radius: 0.5rem;
 
     &:hover {
-      background: utils.with-alpha(var(--sys-secondary), 8%);
+      background: utils.with-alpha(var(--mat-sys-secondary), 8%);
     }
 
     &:active {
-      background: utils.with-alpha(var(--sys-secondary), 16%);
+      background: utils.with-alpha(var(--mat-sys-secondary), 16%);
     }
 
     &:focus-visible {
-      @include utils.inset-outline(var(--sys-tertiary));
+      @include utils.inset-outline(var(--mat-sys-tertiary));
     }
 
     .icon {
@@ -35,13 +35,13 @@
 
     .tagline {
       grid-area: tagline;
-      color: var(--sys-secondary);
+      color: var(--mat-sys-secondary);
       @include utils.use-font('label', 'large');
     }
 
     .description {
       grid-area: description;
-      color: var(--sys-inverse-surface);
+      color: var(--mat-sys-inverse-surface);
       @include utils.use-font('label', 'medium');
     }
   }

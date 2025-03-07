@@ -27,6 +27,7 @@ function parseOrgan(value: unknown): string | Organ {
   selector: 'ccf-root-wc',
   template: '<ccf-root *ngIf="initialized"></ccf-root>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() baseHref!: string;
@@ -34,6 +35,7 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() referenceData!: string;
   @Input() user!: string | User;
   @Input() organ!: string | Organ;
+  @Input() consortium!: string;
   @Input() editRegistration!: string | SpatialEntityJsonLd;
   @Input() register!: string | RegistrationCallback;
   @Input() cancelRegistration!: string | CancelRegistrationCallback;

@@ -19,7 +19,7 @@ export class LocalStorageSyncService implements OnDestroy {
   ) {
     try {
       this.storage = localStorage;
-    } catch (_error) {
+    } catch {
       /* Ignored */
     }
 

@@ -9,6 +9,7 @@ import {
   Optional,
   Renderer2,
 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 /** Token for specifying the default theme class. */
 export const DEFAULT_THEME = new InjectionToken<string>('Default theme class');
@@ -25,6 +26,9 @@ export class ThemingService {
   /** Currently active theme class. */
   private theme: string;
 
+  private readonly _themeChanges = new BehaviorSubject('');
+  readonly themeChanges$ = this._themeChanges.asObservable();
+
   /** Initializer called during bootstrap to set up theming. */
   static initialize(component: ComponentRef<unknown>): void {
     const { injector, location } = component;
@@ -39,6 +43,7 @@ export class ThemingService {
    */
   constructor(@Optional() @Inject(DEFAULT_THEME) defaultTheme: string | null) {
     this.defaultTheme = this.theme = defaultTheme ?? '';
+    this._themeChanges.next(this.theme);
   }
 
   /**
@@ -60,6 +65,7 @@ export class ThemingService {
     this.applyThemeClass(this.theme, 'remove');
     this.applyThemeClass(theme);
     this.theme = theme;
+    this._themeChanges.next(theme);
   }
 
   /**

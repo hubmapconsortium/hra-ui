@@ -19,6 +19,7 @@ export interface InfoDialogData {
   templateUrl: './info-dialog.component.html',
   styleUrls: ['./info-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InfoDialogComponent implements OnInit {
   /**

@@ -28,6 +28,7 @@ const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
     '(document:keydown)': 'handleKey($event)',
     '(document:keyup)': 'keyUp($event)',
   },
+  standalone: false,
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
   /** HTML class */

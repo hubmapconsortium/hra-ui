@@ -2,20 +2,20 @@
 
 @include utils.global-styles() {
   table[matSort] {
-    --mat-sort-arrow-color: var(--sys-secondary);
-    --mat-table-background-color: var(--sys-surface-container-low);
+    --mat-sort-arrow-color: var(--mat-sys-secondary);
+    --mat-table-background-color: var(--mat-sys-surface-container-low);
     --mat-table-header-container-height: 2rem;
     --mat-table-row-item-container-height: 2rem;
 
     th,
     tr > td {
       padding: 0 0.5rem;
-      font: var(--sys-label-medium);
-      letter-spacing: var(--sys-label-medium-tracking);
+      font: var(--mat-sys-label-medium);
+      letter-spacing: var(--mat-sys-label-medium-tracking);
     }
 
     th {
-      color: var(--sys-secondary);
+      color: var(--mat-sys-secondary);
       line-height: normal;
     }
 
@@ -29,7 +29,7 @@
       max-width: 4.375rem;
 
       &:focus-visible {
-        border-color: var(--sys-secondary);
+        border-color: var(--mat-sys-secondary);
       }
 
       .mat-sort-header-arrow {

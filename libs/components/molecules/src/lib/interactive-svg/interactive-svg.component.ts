@@ -78,7 +78,6 @@ export interface NodeMapEntry {
  */
 @Component({
   selector: 'hra-interactive-svg',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],

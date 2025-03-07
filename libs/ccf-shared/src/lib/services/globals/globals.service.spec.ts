@@ -29,19 +29,19 @@ describe('GlobalsService', () => {
 
   describe('.has(key)', () => {
     it('returns true if the key exist', () => {
-      expect(globals.has('a')).toBeTrue();
+      expect(globals.has('a')).toBeTruthy();
     });
 
     it('returns true even when the value is undefined or null', () => {
-      expect(globals.has('b')).toBeTrue();
+      expect(globals.has('b')).toBeTruthy();
     });
 
     it('returns false if the key does not exist', () => {
-      expect(globals.has('c')).toBeFalse();
+      expect(globals.has('c')).toBeFalsy();
     });
 
     it('returns false if there is no global object', () => {
-      expect(noGlobals.has('c')).toBeFalse();
+      expect(noGlobals.has('c')).toBeFalsy();
     });
   });
 
@@ -70,12 +70,12 @@ describe('GlobalsService', () => {
   describe('.set(key, value)', () => {
     it('adds a new value if the key does not exist', () => {
       globals.set('foo', 3);
-      expect(globals.obj).toEqual(jasmine.objectContaining({ foo: 3 }));
+      expect(globals.obj).toEqual(expect.objectContaining({ foo: 3 }));
     });
 
     it('updates the current value', () => {
       globals.set('a', 3);
-      expect(globals.obj).toEqual(jasmine.objectContaining({ a: 3 }));
+      expect(globals.obj).toEqual(expect.objectContaining({ a: 3 }));
     });
 
     it('has no effect if there is no global object', () => {
@@ -90,7 +90,7 @@ describe('GlobalsService', () => {
   describe('.remove(key)', () => {
     it('removes the key if it exists', () => {
       globals.remove('a');
-      expect(globals.obj).not.toEqual(jasmine.objectContaining({ a: 1 }));
+      expect(globals.obj).not.toEqual(expect.objectContaining({ a: 1 }));
     });
 
     it('has no effect if there is no global object', () => {
