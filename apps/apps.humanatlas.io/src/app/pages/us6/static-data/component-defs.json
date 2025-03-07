@@ -43,7 +43,8 @@
       "webComponentName": "",
       "description": "Explore and compare ASCT+B Tables and construct OMAPs with this visualization tool.",
       "previewImage": "assets/ui-images/asctb-reporter.png",
-      "embedAs": "external"
+      "embedAs": "external",
+      "docLink": ""
     },
     {
       "id": "ftu-ui",
@@ -78,7 +79,8 @@
       "webComponentName": "",
       "description": "Query and interact with the Human Reference Atlas using APIs.",
       "previewImage": "assets/ui-images/hra-api.png",
-      "embedAs": "external"
+      "embedAs": "external",
+      "docLink": ""
     }
   ]
 }
