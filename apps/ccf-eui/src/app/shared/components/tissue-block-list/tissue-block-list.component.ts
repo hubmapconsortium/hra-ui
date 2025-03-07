@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 
 /**
@@ -16,7 +16,7 @@ import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-sys
   styleUrls: ['./tissue-block-list.component.scss'],
   imports: [
     MatIconModule,
-    MatTooltipModule,
+    MicroTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,
@@ -33,4 +33,14 @@ export class TissueBlockListComponent {
 
   /** Tissue blocks to be displayed */
   readonly tissueBlocks = input<TissueBlock[]>([]);
+
+  /**
+   * Holds title for section
+   */
+  readonly title = input.required<string>();
+
+  /**
+   * Text to be included in the tool tip
+   */
+  readonly toolTipText = input.required<string>();
 }

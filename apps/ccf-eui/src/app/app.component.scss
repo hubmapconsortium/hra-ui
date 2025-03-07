@@ -25,6 +25,20 @@
     }
   }
 
+  .left-panel,
+  hra-nav-header-buttons {
+    border-right: 1px solid var(--sys-outline-variant);
+  }
+
+  hra-nav-header-buttons,
+  .vis-panel {
+    border-bottom: 1px solid var(--sys-outline-variant);
+  }
+
+  .right-panel {
+    border-left: 1px solid var(--sys-outline-variant);
+  }
+
   .page-content {
     display: grid;
     grid-template-columns: 24.5rem auto 24.625rem;
@@ -58,9 +72,9 @@
 
   ::ng-deep hra-nav-header-buttons {
     grid-area: header;
-    height: 3rem;
-    margin: 1rem 0rem;
+    height: 100%;
     justify-content: center;
+    align-items: center;
 
     hra-brandmark,
     mat-icon {
@@ -74,6 +88,7 @@
 
     .app-logo {
       margin-right: 0rem !important;
+      height: 3rem;
     }
 
     .app-name {
@@ -88,7 +103,7 @@
 
   .vis-panel {
     grid-area: vis-panel;
-    margin: 0 1rem;
+    padding: 0 1rem;
 
     hra-expansion-panel-header-content {
       width: 100%;
@@ -119,6 +134,12 @@
         font: var(--sys-label-small);
         color: var(--sys-primary);
       }
+    }
+
+    .filter-button-container {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
 
     .filter-text {
@@ -169,26 +190,8 @@
   }
 }
 
-::ng-deep .hra-app .mat-mdc-menu-panel {
-  min-width: 280px;
-  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
-  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
-  .expand-arrow {
-    --mat-menu-item-spacing: 0.75rem;
-  }
-
-  .no-selection-notice {
-    font: var(--sys-body-medium);
-    color: var(--sys-secondary);
-    padding: 0 1rem;
-  }
-}
-
-::ng-deep .hra-app .mat-mdc-menu-panel {
-  min-width: 280px;
-  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
-  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
-  .expand-arrow {
-    --mat-menu-item-spacing: 0.75rem;
-  }
+.no-selection-notice {
+  font: var(--sys-body-medium);
+  color: var(--sys-secondary);
+  padding: 0 1rem;
 }

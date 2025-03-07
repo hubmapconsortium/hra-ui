@@ -1,6 +1,7 @@
 :host {
   .donor-card {
     cursor: pointer;
+    grid-template-columns: 16.75rem min-content;
   }
 
   .expanded-cards {
@@ -11,11 +12,12 @@
 
     .block-card {
       margin-left: 0.5rem;
+      grid-template-columns: 16.25rem min-content;
     }
 
     .section-card {
       margin-left: 0.75rem;
-      margin-right: -0.25rem;
+      grid-template-columns: 16rem min-content;
     }
   }
 }

@@ -213,7 +213,6 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
     this.ga.event('filters_reset', 'filter_content');
     this.filterHasChanged = false;
-    this.filterForm.markAsPristine();
   }
 
   /**

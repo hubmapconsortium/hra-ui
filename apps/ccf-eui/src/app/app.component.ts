@@ -80,7 +80,12 @@ export class AppComponent implements OnInit {
   readonly spatialFlowService = inject(SpatialSearchFlowService);
 
   menuOptions: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
-  tooltips: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
+  ontologyTooltips: Record<string, string> = {
+    as: 'Parts of the body in defined locations and regions, including the surface, internal organs and tissues. These structures may be described by gross or microscopic morphology and include functional tissue units and highly organized cellular ecosystems (such as alveoli in the lungs).',
+    ct: 'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. For example, epithelial cells in the skin, lungs and kidneys may have shared and specialized functions according to tissue localization.',
+    b: 'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type.',
+  };
+
   /**
    * Used to keep track of the ontology label to be passed down to the
    * results-browser component.
