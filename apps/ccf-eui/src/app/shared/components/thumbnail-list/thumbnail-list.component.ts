@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
@@ -34,12 +34,12 @@ export class ThumbnailListComponent {
   /**
    * Items to show in the list
    */
-  @Input() data!: TissueDataset[];
+  readonly data = input.required<TissueDataset[]>();
 
   /**
    * Outputs the result whose link was clicked
    */
-  @Output() readonly linkClicked = new EventEmitter<TissueDataset>();
+  readonly linkClicked = output<TissueDataset>();
 
   /**
    * Per instance unique identifier

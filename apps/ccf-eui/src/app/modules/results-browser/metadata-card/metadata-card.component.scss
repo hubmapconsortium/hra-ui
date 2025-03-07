@@ -1,7 +1,6 @@
 :host {
   display: grid;
   align-items: center;
-  grid-template-columns: auto min-content;
   grid-template-rows: auto auto;
   grid-template-areas:
     'header menu-icon'
@@ -25,9 +24,11 @@
   }
 
   .label,
-  .label2,
   .content {
     color: var(--sys-primary);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .menu-icon {

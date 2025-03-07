@@ -1,7 +1,8 @@
 :host {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
+  row-gap: 0.5rem;
 
   .slide {
     display: flex;
@@ -13,5 +14,10 @@
     cursor: pointer;
     width: 3.75rem;
     height: 2.5rem;
+    background-color: black;
+
+    &:hover {
+      mix-blend-mode: hard-light;
+    }
   }
 }

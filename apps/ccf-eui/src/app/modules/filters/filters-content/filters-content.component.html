@@ -109,11 +109,7 @@
   >
     Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
   </button>
-  <button
-    mat-flat-button
-    (click)="applyButtonClick()"
-    [disabled]="!filterHasChanged || filterForm.pristine || filterForm.invalid"
-  >
+  <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">
     Apply
   </button>
 </div>
