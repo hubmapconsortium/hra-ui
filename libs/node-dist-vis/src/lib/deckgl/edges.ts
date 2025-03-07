@@ -33,7 +33,7 @@ export function createEdgesLayer(
   nodeFilter: Signal<NodeFilterView>,
   colorMap: Signal<ColorMapView>,
   disabled: Signal<boolean>,
-): Signal<EdgesLayer> {
+): Signal<EdgesLayer | undefined> {
   const sourcePositionAccessor = computed(() => {
     const accessor = edges().getSourcePositionFor;
     const dimensions = nodes().getDimensions();
@@ -72,6 +72,10 @@ export function createEdgesLayer(
   });
 
   return computed(() => {
+    if (nodes().length === 0) {
+      return undefined;
+    }
+
     return new LineLayer({
       id: 'edges',
       visible: !disabled(),
