@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
-import { GlobalConfigState } from 'ccf-shared';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { ObservableInput } from 'rxjs';
 
@@ -48,10 +47,10 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() view!: ViewType;
   @Input() viewSide!: ViewSide;
 
-  constructor(configStore: GlobalConfigState<GlobalConfig>, cdr: ChangeDetectorRef) {
+  constructor() {
     const BP = BUILTIN_PARSERS;
 
-    super(configStore, cdr, {
+    super({
       initialConfig: {
         ...environment.dbOptions,
         ...(globalThis['ruiConfig' as never] as object),

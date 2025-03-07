@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { GlobalConfigState } from 'ccf-shared';
-import { BaseWebComponent, BUILTIN_PARSERS, GenericGlobalConfig } from 'ccf-shared/web-components';
+import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
 
 function parseDataSources(value: unknown): string[] {
@@ -74,8 +73,8 @@ export class AppWebComponent extends BaseWebComponent {
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
   @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
 
-  constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
-    super(configStore, cdr, {
+  constructor() {
+    super({
       initialDelay: 10,
 
       initialConfig: {

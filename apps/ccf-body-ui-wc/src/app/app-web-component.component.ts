@@ -1,7 +1,6 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { GlobalConfigState } from 'ccf-shared';
-import { BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { BaseWebComponent } from 'ccf-shared/web-components';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 
 import { environment } from '../environments/environment';
@@ -38,8 +37,8 @@ export class AppWebComponent extends BaseWebComponent {
   @Output() readonly onMouseLeave = new EventEmitter<string>();
   @Output() readonly onClick = new EventEmitter<string>();
 
-  constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
-    super(configStore, cdr, {
+  constructor() {
+    super({
       initialDelay: 10,
 
       initialConfig: {
