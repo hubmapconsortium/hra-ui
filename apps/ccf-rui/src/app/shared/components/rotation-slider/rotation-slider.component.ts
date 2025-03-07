@@ -6,6 +6,7 @@ import {
   HostBinding,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -45,6 +46,9 @@ export type Axis = 'x' | 'y' | 'z';
   standalone: false,
 })
 export class RotationSliderComponent {
+  private readonly el = inject<ElementRef<Node>>(ElementRef);
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-rotation-slider';
 
@@ -59,16 +63,6 @@ export class RotationSliderComponent {
   axisOptions: Axis[] = ['x', 'y', 'z'];
 
   step = 1;
-
-  /**
-   * Creates an instance of rotation slider component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(
-    private readonly el: ElementRef<Node>,
-    private readonly ga: GoogleAnalyticsService,
-  ) {}
 
   /**
    * Function that handles updating the rotation and emitting the new value

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { Tag } from '../../../core/models/anatomical-structure-tag';
@@ -14,6 +14,8 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
   standalone: false,
 })
 export class TagListComponent {
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-list';
 
@@ -31,13 +33,6 @@ export class TagListComponent {
    * Emits the new array of tags when a tag has been removed
    */
   @Output() readonly tagsChange = new EventEmitter<Tag[]>();
-
-  /**
-   * Creates an instance of tag list component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Gets the unique identifier for a tag

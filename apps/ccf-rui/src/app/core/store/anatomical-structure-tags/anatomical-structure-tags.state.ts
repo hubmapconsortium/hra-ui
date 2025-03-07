@@ -1,7 +1,7 @@
 import { createEntityCollections, EntityCollections } from '@angular-ru/cdk/entity';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { combineLatest, Observable, ObservableInput } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -31,6 +31,8 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   TagId,
   AnatomicalStructureTagStateModel
 > {
+  private readonly injector = inject(Injector);
+
   /** Observable of tags */
   @Computed()
   get tags$(): Observable<Tag[]> {
@@ -75,15 +77,6 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   private scene!: SceneState;
 
   private page!: PageState;
-
-  /**
-   * Creates an instance of scene state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   */
-  constructor(private readonly injector: Injector) {
-    super();
-  }
 
   /**
    * Initializes this state service.

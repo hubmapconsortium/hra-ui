@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -28,6 +28,8 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   standalone: false,
 })
 export class SlicesInputComponent {
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-slices-input';
 
@@ -40,13 +42,6 @@ export class SlicesInputComponent {
    * Emitter for slice data values
    */
   @Output() readonly slicesConfigChange = new EventEmitter<SlicesConfig>();
-
-  /**
-   * Creates an instance of slices input component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   emptyStringIfNaN(value: number): number | string {
     return Number.isNaN(value) ? '' : value;

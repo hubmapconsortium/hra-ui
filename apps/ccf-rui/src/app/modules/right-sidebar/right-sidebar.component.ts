@@ -18,6 +18,11 @@ import { MetadataService } from '../metadata/metadata.service';
   standalone: false,
 })
 export class RightSidebarComponent {
+  readonly model = inject(ModelState);
+  readonly registration = inject(RegistrationState);
+  readonly page = inject(PageState);
+  readonly astags = inject(AnatomicalStructureTagState);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-right-sidebar';
 
@@ -31,21 +36,6 @@ export class RightSidebarComponent {
   );
 
   protected readonly metadata = inject(MetadataService);
-
-  /**
-   * Creates an instance of right sidebar component.
-   *
-   * @param model Model state service
-   * @param registration Registration state service
-   * @param page The page state
-   * @param astags The anatomical structure tags state
-   */
-  constructor(
-    readonly model: ModelState,
-    readonly registration: RegistrationState,
-    readonly page: PageState,
-    readonly astags: AnatomicalStructureTagState,
-  ) {}
 
   setDefaultPosition() {
     if (this.registration.snapshot.initialRegistration) {

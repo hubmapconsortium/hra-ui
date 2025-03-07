@@ -9,6 +9,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
@@ -22,7 +23,6 @@ import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
 import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 export interface User {
   firstName: string;
@@ -56,6 +56,15 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   standalone: false,
 })
 export class AppComponent implements OnDestroy, OnInit {
+  readonly model = inject(ModelState);
+  readonly page = inject(PageState);
+  readonly consentService = inject(ConsentService);
+  readonly snackbar = inject(MatSnackBar);
+  readonly theming = inject(ThemingService);
+  private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
+  private readonly ga = inject(GoogleAnalyticsService);
+  readonly registration = inject(RegistrationState);
+
   /** False until the initial registration modal is closed */
   registrationStarted = false;
 
@@ -84,28 +93,19 @@ export class AppComponent implements OnDestroy, OnInit {
 
   private readonly metadata = inject(MetadataService);
 
-  protected readonly embedded = toSignal(inject(PageState).useCancelRegistrationCallback$);
+  protected readonly embedded = toSignal(this.page.useCancelRegistrationCallback$);
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
 
-  constructor(
-    readonly model: ModelState,
-    readonly page: PageState,
-    readonly consentService: ConsentService,
-    readonly snackbar: MatSnackBar,
-    readonly theming: ThemingService,
-    public dialog: MatDialog,
-    el: ElementRef<unknown>,
-    injector: Injector,
-    private readonly globalConfig: GlobalConfigState<AppOptions>,
-    cdr: ChangeDetectorRef,
-    private readonly ga: GoogleAnalyticsService,
-    readonly registration: RegistrationState,
-  ) {
-    theming.initialize(el, injector);
+  constructor() {
+    const el = inject<ElementRef<unknown>>(ElementRef);
+    const injector = inject(Injector);
+    const cdr = inject(ChangeDetectorRef);
+
+    this.theming.initialize(el, injector);
     this.subscriptions.add(
-      page.registrationStarted$.subscribe((registrationStarted) => {
+      this.page.registrationStarted$.subscribe((registrationStarted) => {
         this.registrationStarted = registrationStarted;
       }),
     );
@@ -121,7 +121,7 @@ export class AppComponent implements OnDestroy, OnInit {
       cdr.markForCheck();
     });
 
-    openScreenSizeNotice(dialog);
+    openScreenSizeNotice(inject(MatDialog));
   }
 
   ngOnInit(): void {

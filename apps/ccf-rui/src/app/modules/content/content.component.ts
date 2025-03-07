@@ -7,6 +7,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
 import { ResizeSensor } from 'css-element-queries';
@@ -29,6 +30,13 @@ import { SceneState } from '../../core/store/scene/scene.state';
   standalone: false,
 })
 export class ContentComponent implements OnInit, OnDestroy {
+  readonly model = inject(ModelState);
+  readonly page = inject(PageState);
+  readonly registration = inject(RegistrationState);
+  readonly scene = inject(SceneState);
+  private readonly rootRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
 
@@ -66,24 +74,6 @@ export class ContentComponent implements OnInit, OnDestroy {
 
   /** Resize detection */
   private sensor!: ResizeSensor;
-
-  /**
-   * Creates an instance of content component.
-   *
-   * @param model The model state
-   * @param page The page state
-   * @param registration The registration state
-   * @param rootRef Component's root element
-   * @param cdr Change detector
-   */
-  constructor(
-    readonly model: ModelState,
-    readonly page: PageState,
-    readonly registration: RegistrationState,
-    readonly scene: SceneState,
-    private readonly rootRef: ElementRef<HTMLElement>,
-    private readonly cdr: ChangeDetectorRef,
-  ) {}
 
   /**
    * Sets up the resize sensor

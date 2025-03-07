@@ -1,6 +1,6 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { iif, patch } from '@ngxs/store/operators';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
@@ -58,6 +58,9 @@ export interface PageStateModel {
 })
 @Injectable()
 export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+  private readonly reg = inject(RegistrationState);
+
   /** Active user observable */
   readonly user$ = this.state$.pipe(map((x) => x?.user));
   /** registrationStarted observable */
@@ -83,18 +86,6 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
   @Computed()
   get hasChanges$(): Observable<boolean> {
     return this.state$.pipe(pluckUnique('hasChanges'));
-  }
-
-  /**
-   * Creates an instance of page state.
-   *
-   * @param globalConfig The global configuration
-   */
-  constructor(
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-    private readonly reg: RegistrationState,
-  ) {
-    super();
   }
 
   /**

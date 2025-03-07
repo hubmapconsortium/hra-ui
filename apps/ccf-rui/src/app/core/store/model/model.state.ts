@@ -1,6 +1,6 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
@@ -118,6 +118,10 @@ export const MODEL_DEFAULTS: ModelStateModel = {
 })
 @Injectable()
 export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
+  private readonly ga = inject(GoogleAnalyticsService);
+  private readonly injector = inject(Injector);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
   /** Identifier observable */
   readonly id$ = this.state$.pipe(
     map((x) => x?.id),
@@ -231,19 +235,6 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   private referenceData!: ReferenceDataState;
 
   private page!: PageState;
-
-  /**
-   * Creates an instance of model state.
-   *
-   * @param injector Injector service used to lazy load reference data state
-   */
-  constructor(
-    private readonly ga: GoogleAnalyticsService,
-    private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
 
   /**
    * Initializes this state service.

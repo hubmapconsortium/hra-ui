@@ -1,14 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import {
-  ComponentRef,
-  ElementRef,
-  Inject,
-  Injector,
-  Injectable,
-  InjectionToken,
-  Optional,
-  Renderer2,
-} from '@angular/core';
+import { ComponentRef, ElementRef, Injector, Injectable, InjectionToken, Renderer2, inject } from '@angular/core';
 
 /** Token for specifying the default theme class. */
 export const DEFAULT_THEME = new InjectionToken<string>('Default theme class');
@@ -37,7 +28,8 @@ export class ThemingService {
    *
    * @param defaultTheme An optional default theme.
    */
-  constructor(@Optional() @Inject(DEFAULT_THEME) defaultTheme: string | null) {
+  constructor() {
+    const defaultTheme = inject(DEFAULT_THEME, { optional: true });
     this.defaultTheme = this.theme = defaultTheme ?? '';
   }
 

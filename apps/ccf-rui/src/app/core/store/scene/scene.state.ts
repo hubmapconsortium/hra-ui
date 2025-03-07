@@ -1,7 +1,7 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
@@ -68,6 +68,10 @@ function getNodeBbox(model: SpatialSceneNode): AABB {
 })
 @Injectable()
 export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> implements NgxsOnInit {
+  private readonly injector = inject(Injector);
+  private readonly http = inject(HttpClient);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
   @Computed()
   get nodes$(): Observable<SpatialSceneNode[]> {
     return combineLatest([
@@ -310,19 +314,6 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       concatMap(([deferCollisions, jsonld]) => (deferCollisions ? of([]) : this.getCollisions(jsonld))),
       startWith([]),
     );
-  }
-
-  /**
-   * Creates an instance of scene state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   */
-  constructor(
-    private readonly injector: Injector,
-    private readonly http: HttpClient,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
   }
 
   /**
