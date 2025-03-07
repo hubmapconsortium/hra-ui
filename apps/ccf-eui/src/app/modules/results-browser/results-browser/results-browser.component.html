@@ -10,10 +10,12 @@
   <div class="stat-box" hraMicroTooltip="Summarizes the experimental data shown given the current filters.">
     <div id="title">Summary Statistics</div>
     <div class="stat-table">
-      <div class="stat-row" *ngFor="let stat of aggregateData">
-        <div class="stat-value">{{ stat.count }}</div>
-        <div class="stat-label">{{ stat.label }}</div>
-      </div>
+      @for (stat of aggregateData(); track stat) {
+        <div class="stat-row">
+          <div class="stat-value">{{ stat.count.toLocaleString() }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      }
     </div>
   </div>
 
@@ -32,8 +34,11 @@
           <mat-icon>info</mat-icon>
           Info
         </button>
-        <mat-divider class="menu-divider"></mat-divider>
-        <button mat-menu-item matRipple (click)="resetSelections()">
+        <button mat-menu-item matRipple (click)="toggleShowSelected()" [disabled]="!anyItemsSelected">
+          <mat-icon>visibility</mat-icon>
+          {{ showSelected() ? 'Show all' : 'Show selected' }}
+        </button>
+        <button mat-menu-item matRipple (click)="resetSelections()" [disabled]="!anyItemsSelected">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset all selections
         </button>
@@ -41,7 +46,9 @@
       <mat-menu #submenu="matMenu">
         <button mat-menu-item>
           Metadata on donors, tissue blocks/sections, and datasets given the current filters. Use the “More” menu to
-          access more information.
+          access additional information. Selecting metadata in the Tissue Block Metadata list results in a selected
+          checkbox of a unique color. The selected metadata’s corresponding 3D tissue block in the 3D Body Visualization
+          scene (to the left) will appear in the same unique color.
         </button>
       </mat-menu>
     </hra-expansion-panel-actions>
@@ -50,22 +57,32 @@
 
   <ng-scrollbar hraScrollOverflowFade>
     <div class="results-browser-list">
-      <div class="browser-item-container" *ngFor="let result of listResults">
-        <mat-checkbox
-          class="checkbox"
-          (change)="handleSelection(result, $event.checked)"
-          [checked]="result.selected"
-        ></mat-checkbox>
-        <ccf-donor-card
-          #donorCard
-          [tissueBlock]="asMutable(result.tissueBlock)"
-          [color]="result.color ?? ''"
-          (linkClick)="handleLinkClick($event)"
-          [selected]="result.selected"
-          (click)="donorCard.toggleExpansion(); handleSelection(result, true)"
-        >
-        </ccf-donor-card>
-      </div>
+      @for (result of listResults(); track result) {
+        @if (!(showSelected() && !result.selected)) {
+          <div class="browser-item-container">
+            <mat-checkbox
+              class="checkbox"
+              (change)="handleSelection(result, $event.checked)"
+              [ngStyle]="{
+                '--mdc-checkbox-selected-icon-color': getColor(result),
+                '--mdc-checkbox-selected-hover-icon-color': getColor(result),
+                '--mdc-checkbox-selected-focus-icon-color': getColor(result),
+              }"
+              [checked]="result.selected"
+            ></mat-checkbox>
+            <ccf-donor-card
+              #donorCard
+              [tissueBlock]="asMutable(result.tissueBlock)"
+              (linkClick)="handleLinkClick($event)"
+              [selected]="result.selected"
+              (selectOption)="handleSelection(result, true)"
+              (expansionChange)="changeExpansion(result, $event)"
+              [expanded]="result.expanded ?? false"
+            >
+            </ccf-donor-card>
+          </div>
+        }
+      }
     </div>
   </ng-scrollbar>
 </div>

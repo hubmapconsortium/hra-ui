@@ -5,4 +5,5 @@ export interface ListResult {
   color?: string;
   tissueBlock: TissueBlock;
   rank?: number;
+  expanded?: boolean;
 }
