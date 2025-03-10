@@ -3,9 +3,9 @@ import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { DataSourceService } from 'ccf-shared';
-import { sortBy } from 'lodash';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+
 import { ListResult } from '../../models/list-result';
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
 import { DataState } from '../data/data.state';
@@ -67,7 +67,16 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
   }
 
   deselectListResult(result: ListResult): void {
-    this.colorAssignments.unassignColor(result.tissueBlock.spatialEntityId ?? '');
+    const newResult = { ...result, expanded: false };
+    this.changeExpansion(newResult);
+    this.colorAssignments.unassignColor(newResult.tissueBlock.spatialEntityId ?? '');
+  }
+
+  changeExpansion(result: ListResult): void {
+    const listResultsCopy = [...this.ctx.getState().listResults];
+    const i = listResultsCopy.findIndex((r) => r.tissueBlock['@id'] === result.tissueBlock['@id']);
+    listResultsCopy[i] = result;
+    this.setListResults(listResultsCopy as ListResult[]);
   }
 
   highlightNode(id: string): void {
@@ -92,27 +101,30 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
     combineLatest([this.dataState.tissueBlockData$, this.colorAssignments.colorAssignments$])
       .pipe(
         map(([tissueBlocks, colors]) => {
-          const topBlocks: ListResult[] = [];
-          const otherBlocks: ListResult[] = [];
-
+          const updatedBlocks: ListResult[] = [];
           for (const tissueBlock of tissueBlocks) {
             const color = colors[tissueBlock.spatialEntityId ?? ''];
+            const expanded =
+              this.ctx.getState().listResults.find((r) => r.tissueBlock['@id'] === tissueBlock['@id'])?.expanded ??
+              false;
             if (color) {
-              topBlocks.push({
+              updatedBlocks.push({
                 selected: true,
                 color: color.color,
-                tissueBlock,
                 rank: color.rank,
+                tissueBlock,
+                expanded,
               });
             } else {
-              otherBlocks.push({
+              updatedBlocks.push({
                 selected: false,
                 tissueBlock,
+                expanded,
               });
             }
           }
 
-          return sortBy(topBlocks, ['rank']).concat(otherBlocks);
+          return updatedBlocks;
         }),
         tap((results) => this.setListResults(results)),
       )

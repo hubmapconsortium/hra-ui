@@ -1,6 +1,6 @@
 @let root = rootNode();
 
-<div class="header">
+<div class="header" [hraMicroTooltip]="tooltip()">
   {{ getNodeLabel(root.label ?? '') }}
   <div class="header-num-results">Tissue Blocks: {{ getCount(root) }}</div>
 </div>
@@ -16,7 +16,12 @@
       (change)="toggleSelection($event.value)"
     >
       @for (option of biomarkerMenuOptions(); track option) {
-        <mat-button-toggle [value]="option" [checked]="isOptionSelected(option)">{{ option }}</mat-button-toggle>
+        <mat-button-toggle
+          [value]="option"
+          [checked]="isOptionSelected(option)"
+          [hraMicroTooltip]="(isOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+          >{{ option }}</mat-button-toggle
+        >
       }
     </mat-button-toggle-group>
   </div>

@@ -36,6 +36,8 @@ export class OntologySelectionComponent {
 
   readonly placeholderText = input.required<string>();
 
+  readonly tooltip = input.required<string>();
+
   /**
    * Captures and passes along the change in ontologySelections.
    */
@@ -45,7 +47,6 @@ export class OntologySelectionComponent {
 
   biomarkerMenuOptions!: string[];
   rootNode!: OntologyTreeNode;
-  tooltips!: string[];
   rootNode$: Observable<OntologyTreeNode>;
   biomarkerLabelMap = new Map([
     ['gene', 'Genes'],
@@ -64,7 +65,6 @@ export class OntologySelectionComponent {
       tap((rootNode) => {
         this.rootNode = { ...rootNode };
         if (this.rootNode.id === 'biomarkers') {
-          this.tooltips = [...(rootNode.children ?? [])];
           this.biomarkerMenuOptions = [...(rootNode.children ?? [])]
             .map((option) => this.biomarkerLabelMap.get(option))
             .filter((x): x is string => x !== undefined);

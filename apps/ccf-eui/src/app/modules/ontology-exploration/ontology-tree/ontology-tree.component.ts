@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input, ou
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OntologyTreeNode } from '@hra-api/ng-client';
 import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { TreeSizeDirective } from '@hra-ui/design-system/tree';
 import { produce } from 'immer';
@@ -30,13 +30,13 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
   imports: [
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule,
     MatTreeModule,
     MatButtonToggleModule,
     ToggleButtonSizeDirective,
     TreeSizeDirective,
     ScrollingModule,
     ScrollOverflowFadeDirective,
+    MicroTooltipDirective,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +60,8 @@ export class OntologyTreeComponent {
   readonly termData = input.required<Record<string, number>>();
 
   readonly biomarkerMenuOptions = input.required<string[]>();
+
+  readonly tooltip = input<string>();
 
   /**
    * Emits an event whenever a node has been selected.

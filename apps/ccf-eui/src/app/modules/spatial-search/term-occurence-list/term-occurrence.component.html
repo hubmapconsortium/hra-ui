@@ -1,0 +1,15 @@
+<hra-expansion-panel [tagline]="title()" [tooltip]="toolTipText()">
+  <hra-expansion-panel-header-content class="total-count" [hraMicroTooltip]="toolTipText()">
+    {{ termList().length.toLocaleString() }}
+  </hra-expansion-panel-header-content>
+  <div class="term-list">
+    <ng-scrollbar hraScrollOverflowFade>
+      @for (term of termList(); track term) {
+        <div class="term-bloc">
+          <div class="term-line">{{ term.label }}</div>
+          <div class="term-line count">{{ term.count.toLocaleString() }}</div>
+        </div>
+      }
+    </ng-scrollbar>
+  </div>
+</hra-expansion-panel>
