@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { ThumbnailListComponent } from '../../../shared/components/thumbnail-list/thumbnail-list.component';
+import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
 import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
 
