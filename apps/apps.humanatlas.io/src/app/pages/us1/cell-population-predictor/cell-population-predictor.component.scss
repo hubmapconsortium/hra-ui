@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  max-width: 58.75rem;
+  margin: 0 auto;
+  padding: 10rem 1rem;
+}
+
+.info-text {
+  margin-top: 3.5rem;
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  --hra-workflow-card-header-padding: 0 0 0.5rem 0;
+
+  .info-icon {
+    display: flex;
+    align-self: center;
+  }
+
+  .card-text {
+    color: var(--mat-sys-inverse-surface);
+    margin: 0;
+  }
+
+  .buttons-container {
+    padding-top: 2rem;
+  }
+
+  .card-with-file {
+    height: 20.3125rem !important;
+    width: 27rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .file-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+  }
+
+  .card {
+    height: 15.8125rem;
+    width: 27rem;
+    font: var(--mat-sys-label-large);
+    letter-spacing: var(--mat-sys-label-large-tracking);
+
+    &-1 {
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &-2 {
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    margin-left: 0.5rem;
+    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 21rem;
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: var(--mat-sys-primary);
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-container:has(.rui-panel) {
+    z-index: 900;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .cards {
+    flex-wrap: nowrap;
+  }
+}
