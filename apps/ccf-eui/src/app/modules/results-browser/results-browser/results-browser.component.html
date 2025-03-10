@@ -10,7 +10,7 @@
   <div class="stat-box" hraMicroTooltip="Summarizes the experimental data shown given the current filters.">
     <div id="title">Summary Statistics</div>
     <div class="stat-table">
-      @for (stat of aggregateData(); track stat) {
+      @for (stat of aggregateData(); track stat.label) {
         <div class="stat-row">
           <div class="stat-value">{{ stat.count.toLocaleString() }}</div>
           <div class="stat-label">{{ stat.label }}</div>
