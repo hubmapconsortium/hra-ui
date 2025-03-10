@@ -4,21 +4,16 @@ import { ApiEndpointDataSourceService, DataSourceService, MousePositionTrackerMo
 import { AnalyticsModule } from 'ccf-shared/analytics';
 
 import { environment } from '../../environments/environment';
-import { HeaderModule } from './header/header.module';
-import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
-  exports: [HeaderModule],
   imports: [
     AnalyticsModule.forRoot({
       gaToken: environment.googleAnalyticsToken,
       appName: 'eui',
     }),
     MousePositionTrackerModule,
-    HeaderModule,
     StoreModule,
-    ThemingModule,
   ],
   providers: [
     { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
