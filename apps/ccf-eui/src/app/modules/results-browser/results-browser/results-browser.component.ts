@@ -54,12 +54,6 @@ export class ResultsBrowserComponent {
   readonly header = input.required<boolean>();
 
   /**
-   * Output emitting the result that was clicked on and its relevant information.
-   * Used for opening and rendering the result viewer.
-   */
-  readonly linkClicked = output<string>();
-
-  /**
    * Output emitting the link result selected
    */
   readonly listResultSelected = output<Immutable<ListResult>>();
@@ -100,15 +94,6 @@ export class ResultsBrowserComponent {
     } else {
       this.listResultDeselected.emit(result);
     }
-  }
-
-  /**
-   * Notifies on link click
-   *
-   * @param link the link clicked
-   */
-  handleLinkClick(link: string): void {
-    this.linkClicked.emit(link);
   }
 
   asMutable<T>(value: Immutable<T>): T {

@@ -40,9 +40,6 @@ export class DonorCardComponent {
   /** Allows the expanded state of the card to be set from outside the component */
   readonly expanded = model<boolean>(false);
 
-  /** Emit the url of any link when clicked. */
-  readonly linkClick = output<string>();
-
   readonly selectOption = output();
   readonly expansionChange = output<boolean>();
 

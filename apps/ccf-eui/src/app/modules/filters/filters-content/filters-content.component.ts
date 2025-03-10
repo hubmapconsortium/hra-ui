@@ -237,13 +237,16 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
   /**
    * Updates sex to `Both` if there is a mismatch between the current selection and the sex
+   * If the spatial searches are all for one sex, update the sex to match it if there is a mismatch
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
     const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
     const selectedSexes = new Set(items.map((item) => item.sex));
-
     if (selectedSexes.size > 1 && !selectedSexes.has(currentSex)) {
       this.updateFilter('Both', 'sex');
+    }
+    if (selectedSexes.size === 1 && !selectedSexes.has(currentSex)) {
+      this.updateFilter(items[0].sex[0].toUpperCase() + items[0].sex.slice(1), 'sex');
     }
   }
 }

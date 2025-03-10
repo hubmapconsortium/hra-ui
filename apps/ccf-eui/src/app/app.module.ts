@@ -23,20 +23,16 @@ import { CoreModule } from './core/core.module';
 import { FiltersContentComponent } from './modules/filters/filters-content/filters-content.component';
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
-import { DrawerModule } from './shared/components/drawer/drawer.module';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
-import { SpinnerOverlayModule } from './shared/components/spinner-overlay/spinner-overlay.module';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
-    DrawerModule,
     OntologySelectionComponent,
     MatIconModule,
     ResultsBrowserComponent,
-    SpinnerOverlayModule,
     BodyUiModule,
     InfoButtonModule,
     TrackingPopupModule,

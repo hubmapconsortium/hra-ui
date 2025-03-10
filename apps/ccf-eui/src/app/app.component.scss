@@ -1,8 +1,4 @@
 :host {
-  ::ng-deep .mat-drawer-inner-container {
-    overflow: hidden;
-  }
-
   .sidenav-content {
     --mat-sidenav-container-background-color: var(--sys-surface-container-low);
     width: fit-content;
@@ -53,7 +49,11 @@
   }
 
   &.embedded .page-content {
-    grid-template-rows: 3rem 4.5rem auto;
+    grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
+
+    .ontologies {
+      max-height: calc(100vh - 14.375rem);
+    }
   }
 
   &:not(.embedded) .page-content hra-back-button-bar {
@@ -167,11 +167,13 @@
       ccf-ontology-selection {
         flex: 1 1;
         overflow: hidden;
-
-        &.firefox {
-          padding-right: 0.5rem;
-        }
       }
+    }
+
+    .no-selection-notice {
+      font: var(--sys-body-medium);
+      color: var(--sys-secondary);
+      padding: 0 1rem;
     }
   }
 
@@ -190,8 +192,7 @@
   }
 }
 
-.no-selection-notice {
-  font: var(--sys-body-medium);
-  color: var(--sys-secondary);
-  padding: 0 1rem;
+::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
+  --mdc-snackbar-container-color: var(--sys-surface-dim);
+  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
 }

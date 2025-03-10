@@ -73,7 +73,6 @@
             <ccf-donor-card
               #donorCard
               [tissueBlock]="asMutable(result.tissueBlock)"
-              (linkClick)="handleLinkClick($event)"
               [selected]="result.selected"
               (selectOption)="handleSelection(result, true)"
               (expansionChange)="changeExpansion(result, $event)"
