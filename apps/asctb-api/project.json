@@ -39,7 +39,10 @@
       }
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc"
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/asctb-api/tsconfig.app.json"
+      }
     }
   }
 }

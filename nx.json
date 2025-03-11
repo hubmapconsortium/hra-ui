@@ -124,7 +124,6 @@
       "inputs": ["production"],
       "outputs": ["{options.outputPath}"],
       "options": {
-        "tsConfig": "{projectRoot}/tsconfig.app.json",
         "outputPath": "dist/compodoc/{projectName}",
         "name": "Code Documentation for {projectName}"
       },

@@ -29,7 +29,10 @@
       "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc"
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/apps.humanatlas.io/tsconfig.app.json"
+      }
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/apps.humanatlas.io/browser/"

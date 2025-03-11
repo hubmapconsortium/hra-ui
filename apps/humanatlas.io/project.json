@@ -55,7 +55,10 @@
       "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc"
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/humanatlas.io/tsconfig.app.json"
+      }
     },
     "build-pages-schema": {
       "executor": "nx:run-commands",

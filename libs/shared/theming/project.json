@@ -10,7 +10,10 @@
       "executor": "@nx/angular:package"
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc"
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/shared/theming/tsconfig.lib.json"
+      }
     },
     "storybook": {
       "options": {

@@ -44,7 +44,10 @@
       "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc"
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/dashboard-ui/tsconfig.app.json"
+      }
     }
   }
 }
