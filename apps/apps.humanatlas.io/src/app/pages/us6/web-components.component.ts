@@ -31,21 +31,29 @@ import { Organ } from './types/organs.schema';
 
 /** Sidenav Data */
 interface SidenavData {
+  /** Tagline for the app */
   tagline: string;
+  /** Code to be displayed in the sidenav */
   code: string;
+  /** Whether to show tabs for Embed and Use App iframe */
   showApp: boolean;
+  /** Tab index for the tabs inside sidenav */
   tabIndex: number;
+  /** Link to the documentation */
   docLink: string;
 }
 
 /** App Iframe Data */
 interface AppIframeData {
+  /** Tagline for the app */
   tagline: string;
+  /** Code to be displayed in the iframe */
   code: SafeHtml;
 }
 
 /** External App Data */
 interface ExternalAppData {
+  /** URL to the external app */
   url: string;
 }
 
