@@ -12,6 +12,8 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -32,6 +34,8 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     ButtonsModule,
     ScrollingModule,
     ScrollOverflowFadeDirective,
+    MatDividerModule,
+    MicroTooltipDirective,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,12 +52,6 @@ export class ResultsBrowserComponent {
   readonly aggregateData = input.required<Immutable<AggregateCount[]>>();
 
   readonly header = input.required<boolean>();
-
-  /**
-   * Output emitting the result that was clicked on and its relevant information.
-   * Used for opening and rendering the result viewer.
-   */
-  readonly linkClicked = output<string>();
 
   /**
    * Output emitting the link result selected
@@ -96,15 +94,6 @@ export class ResultsBrowserComponent {
     } else {
       this.listResultDeselected.emit(result);
     }
-  }
-
-  /**
-   * Notifies on link click
-   *
-   * @param link the link clicked
-   */
-  handleLinkClick(link: string): void {
-    this.linkClicked.emit(link);
   }
 
   asMutable<T>(value: Immutable<T>): T {

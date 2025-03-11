@@ -31,6 +31,7 @@
       [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
       appTitle="Exploration User Interface"
       [brandmark]="true"
+      [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
     ></hra-nav-header-buttons>
 
     <hra-expansion-panel [tagline]="'Body Visualization'" disabled class="vis-panel">
@@ -40,6 +41,7 @@
           [matMenuTriggerFor]="menu"
           hraIconButtonSize="large"
           aria-label="Icon to open nested menu"
+          hraMicroTooltip="More"
         >
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -56,7 +58,7 @@
           </button>
           <mat-divider class="menu-divider"></mat-divider>
           <button mat-menu-item (click)="resetView()">
-            <mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+            <mat-icon class="reset icon">reset_settings</mat-icon>
             Reset visualization view
           </button>
         </mat-menu>
@@ -77,23 +79,25 @@
           </button>
           <mat-divider class="menu-divider"></mat-divider>
           <button mat-menu-item (click)="scene.setDefaultOrgans()">
-            <mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+            <mat-icon class="reset icon">reset_settings</mat-icon>
             Reset to default organ view
           </button>
         </mat-menu>
       </hra-expansion-panel-actions>
       <hra-expansion-panel-header-content>
-        <ccf-organ-select></ccf-organ-select>
+        <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
       </hra-expansion-panel-header-content>
     </hra-expansion-panel>
 
     <div class="left-panel">
       <div class="filter-data">
-        <div class="filter-button-label">Filters</div>
-        <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
-          <mat-icon>filter_list</mat-icon>
-        </button>
-        <div class="filter-text">
+        <div class="filter-button-container" hraMicroTooltip="Select filters">
+          <div class="filter-button-label">Filters</div>
+          <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </div>
+        <div class="filter-text" hraMicroTooltip="Current filters">
           <div class="sex filter-tag">Sex: {{ (data.filter$ | async)?.sex }}</div>
           <div class="bmi filter-tag">
             BMI: {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
@@ -114,7 +118,12 @@
           (change)="toggleSelection($event.value)"
         >
           @for (option of menuOptions; track option) {
-            <mat-button-toggle [value]="option" checked>{{ option }}</mat-button-toggle>
+            <mat-button-toggle
+              [value]="option"
+              checked
+              [hraMicroTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+              >{{ option }}</mat-button-toggle
+            >
           }
         </mat-button-toggle-group>
       </div>
@@ -122,36 +131,36 @@
         @if (isItemSelected('Anatomical Structures')) {
           <ccf-ontology-selection
             class="ontology-selection"
-            [class.firefox]="isFirefox"
             [treeModel]="(ontologyTreeModel$ | async)!"
             [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
             placeholderText="Search anatomical structures..."
             (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
+            [tooltip]="ontologyTooltips['as']"
           >
           </ccf-ontology-selection>
         }
         @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
             class="cell-type-selection"
-            [class.firefox]="isFirefox"
             [treeModel]="(cellTypeTreeModel$ | async)!"
             [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
             placeholderText="Search cell types..."
             (ontologySelection)="ontologySelected($any($event), 'cell-type')"
+            [tooltip]="ontologyTooltips['ct']"
           >
           </ccf-ontology-selection>
         }
         @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
             class="biomarker-selection"
-            [class.firefox]="isFirefox"
             [treeModel]="(biomarkersTreeModel$ | async)!"
             [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
             placeholderText="Search Biomarkers..."
             (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
+            [tooltip]="ontologyTooltips['b']"
           >
           </ccf-ontology-selection>
         }
@@ -166,7 +175,12 @@
     </div>
 
     <div class="content">
-      <button class="spatial-search-button" mat-flat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+      <button
+        class="spatial-search-button"
+        mat-flat-button
+        (click)="spatialFlowService.startSpatialSearchFlow()"
+        hraMicroTooltip="Filter experimental data spatially"
+      >
         Spatial Search
       </button>
       <ccf-body-ui
@@ -188,7 +202,6 @@
         (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
         (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
         (listResultExpansionChange)="listResultsState.changeExpansion(asMutable($event))"
-        (linkClicked)="openiFrameViewer($event)"
         (itemUnhovered)="listResultsState.unHighlightNode()"
         [header]="(header$ | async) ?? false"
       >

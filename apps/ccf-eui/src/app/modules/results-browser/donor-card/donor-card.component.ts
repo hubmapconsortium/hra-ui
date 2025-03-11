@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { ThumbnailListComponent } from '../../../shared/components/thumbnail-list/thumbnail-list.component';
+import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
 import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
 
@@ -39,9 +39,6 @@ export class DonorCardComponent {
 
   /** Allows the expanded state of the card to be set from outside the component */
   readonly expanded = model<boolean>(false);
-
-  /** Emit the url of any link when clicked. */
-  readonly linkClick = output<string>();
 
   readonly selectOption = output();
   readonly expansionChange = output<boolean>();

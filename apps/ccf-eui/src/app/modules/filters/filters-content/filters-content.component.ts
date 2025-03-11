@@ -25,8 +25,8 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
 import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
-import { AutocompleteChipsFormComponent } from '../../../shared/components/autocomplete-chip-form/autocomplete-chips-form.component';
-import { DualSliderComponent } from '../../../shared/components/dual-slider/dual-slider.component';
+import { AutocompleteChipsFormComponent } from '../autocomplete-chip-form/autocomplete-chips-form.component';
+import { DualSliderComponent } from '../dual-slider/dual-slider.component';
 import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 
 /** Sex can be male, female or both */
@@ -114,7 +114,11 @@ export class FiltersContentComponent implements OnChanges, OnInit {
 
   readonly spatialFlowService = inject(SpatialSearchFlowService);
 
-  filterHasChanged = false;
+  enableReset = false;
+
+  enableApply = false;
+
+  justReset = false;
 
   /**
    * Creates an instance of filters content component.
@@ -146,8 +150,8 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     ) {
       this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
       if (this.spatialSearchFilters().length > 0) {
-        this.filterHasChanged = true;
-        this.filterForm.markAsDirty();
+        this.enableReset = true;
+        this.enableApply = true;
       }
     }
   }
@@ -161,13 +165,13 @@ export class FiltersContentComponent implements OnChanges, OnInit {
   updateFilter(value: unknown, key: string): void {
     const currentValue = this.filterForm.value[key as keyof typeof this.filterForm.value]?.toString();
     if (currentValue !== value?.toString()) {
-      this.filterHasChanged = true;
+      this.enableReset = true;
+      this.enableApply = true;
       this.filterForm.patchValue({
         [key]: value,
       });
       this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
     }
-    this.filterForm.markAsDirty();
   }
 
   convertedFilter(): Record<string, unknown> {
@@ -191,7 +195,9 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.updateSearchSelection(this.spatialSearchFilters().filter((item) => item.selected));
     this.ga.event('filters_applied', 'filter_content');
     this.applyFilters.emit(this.convertedFilter());
-    this.filterForm.markAsPristine();
+    this.enableApply = false;
+    this.enableReset = !this.justReset;
+    this.justReset = false;
   }
 
   /**
@@ -212,7 +218,8 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.filterForm.patchValue(defaults);
 
     this.ga.event('filters_reset', 'filter_content');
-    this.filterHasChanged = false;
+    this.enableReset = false;
+    this.justReset = true;
   }
 
   /**
@@ -226,19 +233,20 @@ export class FiltersContentComponent implements OnChanges, OnInit {
     this.spatialSearchSelected.emit(items);
     this.updateFilter(searches, 'spatialSearches');
     this.updateSexFromSelection(items);
-    this.filterHasChanged = true;
-    this.filterForm.markAsDirty();
   }
 
   /**
    * Updates sex to `Both` if there is a mismatch between the current selection and the sex
+   * If the spatial searches are all for one sex, update the sex to match it if there is a mismatch
    */
   updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
     const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
     const selectedSexes = new Set(items.map((item) => item.sex));
-
     if (selectedSexes.size > 1 && !selectedSexes.has(currentSex)) {
       this.updateFilter('Both', 'sex');
+    }
+    if (selectedSexes.size === 1 && !selectedSexes.has(currentSex)) {
+      this.updateFilter(items[0].sex[0].toUpperCase() + items[0].sex.slice(1), 'sex');
     }
   }
 }

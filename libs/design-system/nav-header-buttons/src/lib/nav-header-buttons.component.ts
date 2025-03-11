@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandmarkComponent } from '@hra-ui/design-system/brandmark';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
@@ -22,6 +23,7 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
     ButtonsModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
+    MicroTooltipDirective,
   ],
   templateUrl: './nav-header-buttons.component.html',
   styleUrl: './nav-header-buttons.component.scss',
@@ -40,4 +42,6 @@ export class NavHeaderButtonsComponent {
   readonly appLink = input.required<string>();
   /** App title */
   readonly appTitle = input.required<string>();
+  /** Tooltip displayed when user hovers over the HRA logo */
+  readonly hraTooltip = input<string>();
 }

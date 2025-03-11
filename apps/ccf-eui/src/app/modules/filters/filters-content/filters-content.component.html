@@ -57,7 +57,7 @@
           label="Assay Types"
           [filterOptions]="technologyFilters()"
           [form]="filterForm.controls.technologies"
-          (selectedOptions)="filterHasChanged = true"
+          (selectedOptions)="enableReset = true; enableApply = true"
         >
         </ccf-autocomplete-chips-form>
 
@@ -67,7 +67,7 @@
           label="Consortia"
           [filterOptions]="['HuBMAP', 'SenNet']"
           [form]="filterForm.controls.consortia"
-          (selectedOptions)="filterHasChanged = true"
+          (selectedOptions)="enableReset = true; enableApply = true"
         >
         </ccf-autocomplete-chips-form>
 
@@ -77,7 +77,7 @@
           label="Tissue Data Providers"
           [filterOptions]="providerFilters()"
           [form]="filterForm.controls.providers"
-          (selectedOptions)="filterHasChanged = true"
+          (selectedOptions)="enableReset = true; enableApply = true"
         >
         </ccf-autocomplete-chips-form>
       </div>
@@ -104,12 +104,10 @@
 <div class="button-container">
   <button
     mat-button
-    [disabled]="!filterHasChanged"
+    [disabled]="!enableReset"
     (click)="refreshFilters(); assays.options.set([]); consortia.options.set([]); providers.options.set([])"
   >
-    Reset Filters<mat-icon class="reset icon" svgIcon="reset_wrench"></mat-icon>
+    Reset Filters<mat-icon class="reset icon">reset_settings</mat-icon>
   </button>
-  <button mat-flat-button (click)="applyButtonClick()" [disabled]="filterForm.pristine || filterForm.invalid">
-    Apply
-  </button>
+  <button mat-flat-button (click)="applyButtonClick()" [disabled]="!enableApply || filterForm.invalid">Apply</button>
 </div>

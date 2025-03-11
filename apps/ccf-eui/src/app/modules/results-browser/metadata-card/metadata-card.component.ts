@@ -3,13 +3,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 @Component({
   selector: 'ccf-metadata-card',
   templateUrl: './metadata-card.component.html',
   styleUrls: ['./metadata-card.component.scss'],
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatMenuModule, ButtonsModule],
+  imports: [MatIconModule, MatButtonModule, MatMenuModule, ButtonsModule, MicroTooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataCardComponent {
