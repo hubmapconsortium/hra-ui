@@ -1,128 +1,112 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSelectModule } from '@angular/material/select';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { WebComponentsComponent } from './web-components.component';
+import { provideDesignSystemCommon } from '@hra-ui/design-system';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { render, RenderComponentOptions } from '@testing-library/angular';
+import { screen } from '@testing-library/dom';
+import { Organ } from './types/organs.schema';
 import { ComponentDef } from './types/component-defs.schema';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
-import { Organ } from './types/organs.schema';
+import { WebComponentsComponent, WINDOW } from './web-components.component';
 
 describe('WebComponentsComponent', () => {
-  let component: WebComponentsComponent;
-  let fixture: ComponentFixture<WebComponentsComponent>;
+  let organ: Organ;
+  let def: ComponentDef;
+  let inlineDef: ComponentDef, overlayDef: ComponentDef, externalDef: ComponentDef;
+  const setup = async (options: RenderComponentOptions<WebComponentsComponent> = {}) => {
+    const renderComponent = await render(WebComponentsComponent, {
+      ...options,
+      providers: [
+        provideDesignSystemCommon(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        ...(options.providers ?? []),
+      ],
+    });
+    return { ...renderComponent, component: renderComponent.fixture.componentInstance };
+  };
+
+  it('should create', async () => {
+    await expect(setup()).resolves.toBeTruthy();
+  });
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [WebComponentsComponent, OverlayModule, MatSelectModule, BrowserAnimationsModule],
-    }).compileComponents();
+    organ = ORGANS[0];
+    def = COMPONENT_DEFS[0];
+    inlineDef = COMPONENT_DEFS.find((d) => d.embedAs === 'inline') as ComponentDef;
+    overlayDef = COMPONENT_DEFS.find((def) => def.embedAs === 'overlay') as ComponentDef;
+    externalDef = COMPONENT_DEFS.find((def) => def.embedAs === 'external') as ComponentDef;
+  });
 
-    fixture = TestBed.createComponent(WebComponentsComponent);
-    component = fixture.componentInstance;
+  it('should set sidenavData on useApp click with embedAs inline', async () => {
+    const { component, fixture } = await setup();
+    component.onUseApp(organ, inlineDef);
     fixture.detectChanges();
+
+    expect(screen.getByTestId('sidenav-overlay')).toBeDefined();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should set appIframeData on useApp click with embedAs overlay', async () => {
+    const { component, fixture } = await setup();
+    component.onUseApp(organ, overlayDef);
+    fixture.detectChanges();
+
+    expect(screen.getByTestId('iframe-overlay')).toBeDefined();
+    expect(component['appIframeData']).toBeDefined();
   });
 
-  describe('onUseApp', () => {
-    it('should call openSidenav for embedAs inline', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS.find((d) => d.embedAs === 'inline') as ComponentDef;
-      const openSidenavSpy = jest.spyOn(component, 'openSidenav');
-      component.onUseApp(organ, def);
-      expect(openSidenavSpy).toHaveBeenCalledTimes(1);
-      expect(openSidenavSpy).toHaveBeenCalledWith(organ, def, 1);
+  it('should open a new window on useApp click with embedAs external', async () => {
+    const appData = organ.appData[externalDef.id];
+    const url = appData ? appData['url'] : '';
+    const openSpy = jest.fn();
+    const { component } = await setup({
+      providers: [{ provide: WINDOW, useValue: { open: openSpy } }],
     });
 
-    it('should call openOverlay for embedAs overlay', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS.find((d) => d.embedAs === 'overlay') as ComponentDef;
-      const openOverlaySpy = jest.spyOn(component, 'openOverlay');
-
-      component.onUseApp(organ, def);
-
-      expect(openOverlaySpy).toHaveBeenCalledTimes(1);
-      expect(openOverlaySpy).toHaveBeenCalledWith(organ, def);
-    });
-
-    it('should call openExternal for embedAs external', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS.find((d) => d.embedAs === 'external') as ComponentDef;
-      const openExternalSpy = jest.spyOn(component, 'openExternal');
-
-      component.onUseApp(organ, def);
-
-      expect(openExternalSpy).toHaveBeenCalledTimes(1);
-      expect(openExternalSpy).toHaveBeenCalledWith(organ, def);
-    });
+    component.onUseApp(organ, externalDef);
+    expect(openSpy).toHaveBeenCalledWith(url, '_blank');
   });
 
-  describe('openSidenav', () => {
-    it('should set sidenavData correctly', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS[0];
-      const tabIndex = 1;
-      component.openSidenav(organ, def, tabIndex);
-      expect(component['sidenavData']()).toEqual({
-        tagline: `${def.productTitle} ${def.webComponentName}`,
-        code: component['getEmbedTemplate'](organ, def),
-        showApp: def.embedAs === 'inline',
-        tabIndex: tabIndex,
-        docLink: def.docLink,
-      });
+  it('should handle sidenavData correctly', async () => {
+    const { component } = await setup();
+    component.openSidenav(organ, def, 1);
+    expect(component['sidenavData']()).toEqual({
+      tagline: `${def.productTitle} ${def.webComponentName}`,
+      code: component['getEmbedTemplate'](organ, def),
+      showApp: def.embedAs === 'inline',
+      tabIndex: 1,
+      docLink: def.docLink,
     });
   });
 
-  describe('openOverlay', () => {
-    it('should set appIframeData correctly', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS[0];
-      component.openOverlay(organ, def);
-      expect(component['appIframeData']()).toEqual({
-        tagline: `${def.productTitle} ${def.webComponentName}`,
-        code: expect.any(Object),
-      });
+  it('should handle overlay data correctly', async () => {
+    const { component } = await setup();
+    component.openOverlay(ORGANS[0], COMPONENT_DEFS[0]);
+    expect(component['appIframeData']()).toEqual({
+      tagline: `${COMPONENT_DEFS[0].productTitle} ${COMPONENT_DEFS[0].webComponentName}`,
+      code: expect.any(Object),
     });
   });
 
-  describe('openExternal', () => {
-    it('should open a new window', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS.find((d) => d.embedAs === 'external') as ComponentDef;
-      const appData = organ.appData[def.id];
-      const url = appData ? appData['url'] : '';
-      const windowOpenSpy = jest.spyOn(window, 'open');
-      component.openExternal(organ, def);
-      expect(windowOpenSpy).toHaveBeenCalledTimes(1);
-      expect(windowOpenSpy).toHaveBeenCalledWith(url, '_blank');
-    });
+  it('should close overlay correctly', async () => {
+    const { component } = await setup();
+    component['appIframeData'].set({ tagline: 'Test Code', code: expect.any(Object) });
+    component.closeOverlay();
+    expect(component['appIframeData']()).toBeUndefined();
   });
 
-  describe('closeOverlay', () => {
-    it('should set appIframeData to undefined', () => {
-      component['appIframeData'].set({ tagline: 'Test Code', code: expect.any(Object) });
-      component.closeOverlay();
-      expect(component['appIframeData']()).toBeUndefined();
-    });
+  it('should return the interpolated template', async () => {
+    const organ: Organ = ORGANS[0];
+    const def: ComponentDef = COMPONENT_DEFS[0];
+    const template = EMBED_TEMPLATES[def.id];
+    const { component } = await setup();
+    const result = component['getEmbedTemplate'](organ, def);
+    expect(result).not.toBe(template);
   });
 
-  describe('getEmbedTemplate', () => {
-    it('should return the interpolated template', () => {
-      const organ: Organ = ORGANS[0];
-      const def: ComponentDef = COMPONENT_DEFS[0];
-      const template = EMBED_TEMPLATES[def.id];
-      const result = component['getEmbedTemplate'](organ, def);
-      expect(result).not.toBe(template);
-    });
-  });
-
-  describe('interpolateTemplate', () => {
-    it('should interpolate template correctly', () => {
-      const template = '{{key1}} {{key2}}';
-      const replacements = { key1: 'Test', key2: 'Code' };
-      const result = component['interpolateTemplate'](template, replacements);
-      expect(result).toBe('Test Code');
-    });
+  it('should return the correct template interpolation', async () => {
+    const { component } = await setup();
+    const template = '{{key1}} {{key2}}';
+    const result = component['interpolateTemplate'](template, { key1: 'Test', key2: 'Code' });
+    expect(result).toBe('Test Code');
   });
 });

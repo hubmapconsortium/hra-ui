@@ -8,6 +8,7 @@ import {
   computed,
   effect,
   inject,
+  InjectionToken,
   signal,
   TemplateRef,
   viewChild,
@@ -45,6 +46,11 @@ interface ExternalAppData {
   url: string;
 }
 
+export const WINDOW = new InjectionToken<typeof window>('window', {
+  providedIn: 'root',
+  factory: () => window,
+});
+
 @Component({
   selector: 'hra-web-components',
   standalone: true,
@@ -75,6 +81,7 @@ export class WebComponentsComponent {
   protected readonly sidenavData = signal<SidenavData | undefined>(undefined);
   protected readonly appIframeData = signal<AppIframeData | undefined>(undefined);
 
+  private readonly window = inject(WINDOW);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly overlay = inject(Overlay);
   private readonly viewContainerRef = inject(ViewContainerRef);
@@ -154,7 +161,7 @@ export class WebComponentsComponent {
 
   openExternal(organ: Organ, def: ComponentDef): void {
     const { url } = organ.appData[def.id] as ExternalAppData;
-    window.open(url, '_blank');
+    this.window.open(url, '_blank');
   }
 
   closeOverlay(): void {

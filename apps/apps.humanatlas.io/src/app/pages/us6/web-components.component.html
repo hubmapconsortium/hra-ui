@@ -54,6 +54,7 @@
       [tabIndex]="data.tabIndex"
       (closeSidenav)="sidenavData.set(undefined)"
       [documentLink]="data.docLink"
+      data-testid="sidenav-overlay"
     >
     </hra-embed-sidenav-content>
   }
@@ -62,6 +63,6 @@
 <ng-template #appIframeTemplate>
   @if (appIframeData(); as data) {
     <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)"></hra-back-button-bar>
-    <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code"></iframe>
+    <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code" data-testid="iframe-overlay"></iframe>
   }
 </ng-template>

@@ -46,5 +46,6 @@ export class FlatCardComponent {
   /** Optional footer content */
   readonly showButtonsFooter = input<boolean>(false);
 
+  /** Emits when the close button is clicked */
   readonly closeClick = output<void>();
 }
