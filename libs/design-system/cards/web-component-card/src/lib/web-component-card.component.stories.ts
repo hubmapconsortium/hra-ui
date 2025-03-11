@@ -3,7 +3,7 @@ import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular'
 import { WebComponentCardComponent } from './web-component-card.component';
 
 const meta: Meta = {
-  title: 'WebComponentCardComponent',
+  title: 'Design System/Cards/WebComponentCardComponent',
   component: WebComponentCardComponent,
   parameters: {
     design: {

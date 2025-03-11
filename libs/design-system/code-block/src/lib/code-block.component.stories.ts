@@ -2,6 +2,9 @@ import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 import { CodeBlockComponent } from './code-block.component';
 
+/**
+ * Metadata of the CodeBlockComponent.
+ */
 const meta: Meta = {
   title: 'CodeBlockComponent',
   component: CodeBlockComponent,
@@ -20,6 +23,9 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<CodeBlockComponent>;
 
+/**
+ * Default story of the CodeBlockComponent.
+ */
 export const Default: Story = {
   args: {
     code: `import { provideHighlightOptions } from 'ngx-highlightjs';

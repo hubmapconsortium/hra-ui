@@ -2,6 +2,9 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { FlatCardActionsComponent, FlatCardComponent } from './flat-card.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+/**
+ * Metadata of FlatCardComponent.
+ */
 const meta: Meta<FlatCardComponent> = {
   title: 'Design System/Cards/Flat Card',
   component: FlatCardComponent,
@@ -27,6 +30,9 @@ const meta: Meta<FlatCardComponent> = {
 export default meta;
 type Story = StoryObj<FlatCardComponent>;
 
+/**
+ * Default story of the FlatCardComponent.
+ */
 export const Default: Story = {
   render: (args) => ({
     props: args,

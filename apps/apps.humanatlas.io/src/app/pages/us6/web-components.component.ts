@@ -23,12 +23,13 @@ import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-butto
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
-import { WebComponentCardComponent } from '@hra-ui/design-system/web-component-card';
+import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
 
+/** Sidenav Data */
 interface SidenavData {
   tagline: string;
   code: string;
@@ -37,20 +38,26 @@ interface SidenavData {
   docLink: string;
 }
 
+/** App Iframe Data */
 interface AppIframeData {
   tagline: string;
   code: SafeHtml;
 }
 
+/** External App Data */
 interface ExternalAppData {
   url: string;
 }
 
+/** Injection token for the window object */
 export const WINDOW = new InjectionToken<typeof window>('window', {
   providedIn: 'root',
   factory: () => window,
 });
 
+/**
+ * Web Components Component
+ */
 @Component({
   selector: 'hra-web-components',
   standalone: true,
@@ -74,24 +81,40 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebComponentsComponent {
+  /** List of all organs */
   protected readonly organs = ORGANS;
+  /** List of all component defs */
   protected readonly components = COMPONENT_DEFS;
 
+  /** Currently active organ */
   protected readonly activeOrgan = signal<Organ | undefined>(undefined);
+  /** Data to be displayed in the Sidenav */
   protected readonly sidenavData = signal<SidenavData | undefined>(undefined);
+  /** Data to be displayed in the AppIframe */
   protected readonly appIframeData = signal<AppIframeData | undefined>(undefined);
 
+  /** Window object */
   private readonly window = inject(WINDOW);
+  /** Sanitizer for bypassing HTML */
   private readonly sanitizer = inject(DomSanitizer);
+
+  /** Overlay */
   private readonly overlay = inject(Overlay);
+  /** View Container Reference */
   private readonly viewContainerRef = inject(ViewContainerRef);
+
+  /** Sidenav Template */
   private readonly sidenavTemplate = viewChild.required('sidenavTemplate', { read: TemplateRef });
+  /** Portal for the Sidenav */
   private readonly sidenavPortal = computed(() => new TemplatePortal(this.sidenavTemplate(), this.viewContainerRef));
+  /** AppIframe Template */
   private readonly appIframeTemplate = viewChild.required('appIframeTemplate', { read: TemplateRef });
+  /** Portal for the AppIframe */
   private readonly appIframePortal = computed(
     () => new TemplatePortal(this.appIframeTemplate(), this.viewContainerRef),
   );
 
+  /** Creates overlay for the Sidenav */
   private readonly sidenavOverlay = this.overlay.create({
     disposeOnNavigation: true,
     hasBackdrop: true,
@@ -101,6 +124,7 @@ export class WebComponentsComponent {
     scrollStrategy: this.overlay.scrollStrategies.block(),
   });
 
+  /** Creates overlay for the AppIframe */
   private readonly appIframeOverlay = this.overlay.create({
     disposeOnNavigation: true,
     height: '100vh',
@@ -110,6 +134,7 @@ export class WebComponentsComponent {
     scrollStrategy: this.overlay.scrollStrategies.block(),
   });
 
+  /** Constructor that initializes sidenavdata and appiframedata and attaches portal */
   constructor() {
     effect((cleanup) => {
       if (this.sidenavData() !== undefined) {
@@ -126,6 +151,9 @@ export class WebComponentsComponent {
     });
   }
 
+  /**
+   * Triggered when useApp button is clicked with the given organ and component def.
+   */
   onUseApp(organ: Organ, def: ComponentDef): void {
     switch (def.embedAs) {
       case 'inline':
@@ -142,6 +170,7 @@ export class WebComponentsComponent {
     }
   }
 
+  /** Opens sidenav with sidenavData */
   openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
     this.sidenavData.set({
       tagline: `${def.productTitle} ${def.webComponentName}`,
@@ -152,6 +181,7 @@ export class WebComponentsComponent {
     });
   }
 
+  /** Opens overlay with appIframeData */
   openOverlay(organ: Organ, def: ComponentDef): void {
     this.appIframeData.set({
       tagline: `${def.productTitle} ${def.webComponentName}`,
@@ -159,21 +189,25 @@ export class WebComponentsComponent {
     });
   }
 
+  /** Opens external app */
   openExternal(organ: Organ, def: ComponentDef): void {
     const { url } = organ.appData[def.id] as ExternalAppData;
     this.window.open(url, '_blank');
   }
 
+  /** Closes the sidenav */
   closeOverlay(): void {
     this.appIframeData.set(undefined);
   }
 
+  /** Returns the interpolated template */
   private getEmbedTemplate(organ: Organ, def: ComponentDef): string {
     const template = EMBED_TEMPLATES[def.id];
     const appData = organ.appData[def.id] ?? {};
     return this.interpolateTemplate(template, appData);
   }
 
+  /** Interpolates the template with the given replacements */
   private interpolateTemplate(template: string, replacements: Record<string, unknown>): string {
     return template.replace(/{{(\w+?)}}/g, (_match, key) => {
       const value = replacements[key];

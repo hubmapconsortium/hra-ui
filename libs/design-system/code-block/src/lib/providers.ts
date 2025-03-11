@@ -3,6 +3,7 @@ import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import { provideHighlightOptions } from 'ngx-highlightjs';
 import { CodeBlockGlobalStylesComponent } from './global-styles.component';
 
+/** Provide the code block component and its dependencies to highlight code. */
 export function provideCodeBlock(): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideHighlightOptions({

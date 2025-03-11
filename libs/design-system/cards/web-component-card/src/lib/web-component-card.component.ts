@@ -26,7 +26,9 @@ export class WebComponentCardComponent {
   /** Disable button */
   readonly disableButton = input<boolean>();
 
+  /** Emits true when the Embed button is clicked */
   readonly embedClick = output();
 
+  /** Emits true when the Use App button is clicked */
   readonly useAppClick = output();
 }

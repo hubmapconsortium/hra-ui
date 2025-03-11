@@ -6,6 +6,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
+/**
+ * Component representing the footer of a flat card.
+ */
 @Component({
   selector: 'hra-flat-card-actions',
   standalone: true,
