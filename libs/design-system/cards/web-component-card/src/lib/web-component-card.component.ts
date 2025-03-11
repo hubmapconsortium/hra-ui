@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -23,4 +23,12 @@ export class WebComponentCardComponent {
   readonly webComponentName = input<string | undefined>();
   /** Description */
   readonly description = input.required<string>();
+  /** Disable button */
+  readonly disableButton = input<boolean>();
+
+  /** Emits true when the Embed button is clicked */
+  readonly embedClick = output();
+
+  /** Emits true when the Use App button is clicked */
+  readonly useAppClick = output();
 }

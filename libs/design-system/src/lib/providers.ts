@@ -6,6 +6,7 @@ import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
+import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideInput } from '@hra-ui/design-system/input';
 import { provideMenu } from '@hra-ui/design-system/menu';
@@ -44,6 +45,7 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideInput(),
     provideButtonToggle(),
     provideCheckboxes(),
+    provideCodeBlock(),
   ];
 }
 
