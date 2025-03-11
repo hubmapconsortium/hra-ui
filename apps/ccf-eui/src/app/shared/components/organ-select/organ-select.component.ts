@@ -46,9 +46,21 @@ export class OrganSelectComponent {
     return options;
   });
 
-  protected readonly searchTextField = computed(
-    () => `${this.selectedOrgans().length} Organ${this.selectedOrgans().length > 1 ? 's' : ''} Visible`,
-  );
+  protected readonly searchTextField = computed(() => {
+    if (this.hidePlaceholder() || this.selectedOrgans().length === 0) {
+      return '';
+    } else {
+      return `${this.selectedOrgans().length} Organ${this.selectedOrgans().length > 1 ? 's' : ''} Visible`;
+    }
+  });
+
+  protected readonly floatToggle = computed(() => (this.selectedOrgans().length > 0 ? 'always' : 'auto'));
+
+  protected readonly hidePlaceholder = signal(false);
+
+  togglePlaceholder() {
+    this.hidePlaceholder.set(!this.hidePlaceholder());
+  }
 
   remove(organ: OrganInfo): void {
     const index = this.selectedOrgans().indexOf(organ);
@@ -78,7 +90,7 @@ export class OrganSelectComponent {
     this.searchInput.set('');
   }
 
-  isChecked(organ: OrganInfo) {
+  isChecked(organ: OrganInfo): boolean {
     return this.selectedOrgans()
       .map((organ) => organ.name)
       .includes(organ.name);
