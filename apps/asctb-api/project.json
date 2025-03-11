@@ -6,6 +6,7 @@
   "tags": ["type:app", "project:asctb"],
   "targets": {
     "build": {
+      "cache": true,
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
