@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/asctb-api/src",
   "projectType": "application",
+  "tags": ["type:app", "project:asctb"],
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
@@ -37,35 +38,8 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/asctb-api/jest.config.ts"
-      }
-    },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc",
-      "options": {
-        "tsConfig": "apps/asctb-api/tsconfig.json",
-        "outputPath": "dist/compodoc/asctb-api"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
-      }
+      "executor": "@twittwer/compodoc:compodoc"
     }
-  },
-  "tags": ["type:app", "project:asctb"]
+  }
 }

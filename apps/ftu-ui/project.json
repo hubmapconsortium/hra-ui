@@ -7,29 +7,21 @@
   "projectType": "application",
   "sourceRoot": "apps/ftu-ui/src",
   "prefix": "ftu",
+  "tags": ["type:app", "project:ftu"],
+  "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
-      "executor": "ngx-build-plus:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:application",
       "options": {
-        "singleBundle": true,
-        "outputPath": "dist/apps/ftu-ui",
-        "index": "apps/ftu-ui/src/index.html",
-        "main": "apps/ftu-ui/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/ftu-ui/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": ["apps/ftu-ui/src/favicon.png", "apps/ftu-ui/src/assets"],
         "styles": ["apps/ftu-ui/src/styles.scss", "apps/ftu-ui/src/assets/fonts/fonts.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
         },
-        "scripts": []
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/ftu-ui/",
-          "outputHashing": "none",
           "budgets": [
             {
               "type": "initial",
@@ -42,61 +34,11 @@
               "maximumError": "4.5kb"
             }
           ]
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        },
-        "staging": {
-          "baseHref": "/ui--staging/ftu-ui/",
-          "outputHashing": "none"
-        },
-        "preview": {
-          "baseHref": "/apps/ftu-ui/",
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "ftu-ui:build:production"
-        },
-        "development": {
-          "buildTarget": "ftu-ui:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "ftu-ui:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/ftu-ui/jest.config.ts"
-      }
+      "executor": "@nx/angular:dev-server"
     }
-  },
-  "tags": ["type:app", "project:ftu"],
-  "implicitDependencies": ["shared-theming"]
+  }
 }

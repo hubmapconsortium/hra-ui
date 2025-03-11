@@ -1,15 +1,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-dist
-tmp
+/dist
+/tmp
+/coverage
 /out-tsc
 
 # data-schema.js is compiled on the fly
 apps/humanatlas.io/src/app/utils/data-schema.js
 
 # dependencies
-node_modules
+/node_modules
 /dist
 /tmp
 /out-tsc
@@ -19,9 +20,6 @@ node_modules
 # Documentation
 /docs/*
 !/docs/index.html
-
-# dependencies
-/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -43,29 +41,27 @@ speed-measure-plugin*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
-.history/*
-
 # Virtual environments
 .env
 .venv
-
-# misc
-/.angular/cache
-.nx/cache
-.nx/workspace-data
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-svgo.config.js
 
 # System Files
 .DS_Store
 Thumbs.db
 
+# Caches
 .angular
+.nx
+.sass-cache
+
+# Logs
+npm-debug.log
+yarn-error.log
+testem.log
+libpeerconnection.log
+
+# Misc
+**/.storybook/compodoc
+.history/*
+/connect.lock
+svgo.config.js

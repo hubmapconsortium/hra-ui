@@ -1,8 +1,7 @@
-// @import "@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~bootstrap/dist/css/bootstrap.css';
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import 'assets/stylesheets/_colors.scss';
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'assets/stylesheets/_scss';
 @import './theme.scss';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 * {
   font-family: 'Inter', sans-serif;

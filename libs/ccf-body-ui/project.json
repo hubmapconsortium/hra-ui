@@ -7,47 +7,10 @@
   "tags": ["type:lib", "project:ccf"],
   "targets": {
     "build": {
-      "executor": "@nx/angular:package",
-      "options": {
-        "tsConfig": "libs/ccf-body-ui/tsconfig.lib.json",
-        "project": "libs/ccf-body-ui/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/ccf-body-ui/tsconfig.lib.prod.json"
-        }
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/ccf-body-ui/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
-      }
+      "executor": "@nx/angular:package"
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc",
-      "options": {
-        "tsConfig": "libs/ccf-body-ui/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/ccf-body-ui"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
-      }
+      "executor": "@twittwer/compodoc:compodoc"
     }
   }
 }
