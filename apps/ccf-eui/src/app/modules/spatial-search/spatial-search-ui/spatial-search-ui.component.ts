@@ -47,7 +47,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     MatDividerModule,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiComponent {

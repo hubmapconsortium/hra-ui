@@ -13,7 +13,6 @@ import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-s
   templateUrl: './spatial-search-config.component.html',
   styleUrls: ['./spatial-search-config.component.scss'],
   imports: [MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigComponent {

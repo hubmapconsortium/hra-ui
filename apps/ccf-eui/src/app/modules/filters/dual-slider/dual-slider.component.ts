@@ -47,7 +47,6 @@ let nextId = 0;
     ReactiveFormsModule,
     SliderModule,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
   host: {

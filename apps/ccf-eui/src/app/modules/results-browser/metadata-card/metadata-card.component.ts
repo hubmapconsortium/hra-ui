@@ -9,7 +9,6 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
   selector: 'ccf-metadata-card',
   templateUrl: './metadata-card.component.html',
   styleUrls: ['./metadata-card.component.scss'],
-  standalone: true,
   imports: [MatIconModule, MatButtonModule, MatMenuModule, ButtonsModule, MicroTooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

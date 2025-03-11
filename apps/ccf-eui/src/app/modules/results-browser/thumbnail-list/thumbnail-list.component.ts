@@ -22,7 +22,6 @@ const nextUid = (() => {
   templateUrl: './thumbnail-list.component.html',
   styleUrls: ['./thumbnail-list.component.scss'],
   imports: [CommonModule, MatButtonModule, MatIconModule],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThumbnailListComponent {

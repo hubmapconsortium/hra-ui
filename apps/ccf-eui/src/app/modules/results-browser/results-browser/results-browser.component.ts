@@ -37,9 +37,7 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
     MatDividerModule,
     MicroTooltipDirective,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ResultsBrowserComponent {
   /**

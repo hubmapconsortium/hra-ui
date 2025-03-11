@@ -9,9 +9,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
@@ -43,7 +43,7 @@ import { OrganSelectComponent } from './shared/components/organ-select/organ-sel
     ButtonsModule,
     MatMenuModule,
     BackButtonBarComponent,
-    ToggleButtonSizeDirective,
+    ButtonToggleSizeDirective,
     MatSidenavModule,
     FiltersContentComponent,
     OrganSelectComponent,

@@ -21,7 +21,6 @@ import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search
     ScrollOverflowFadeDirective,
     MicroTooltipDirective,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TermOccurrenceListComponent {

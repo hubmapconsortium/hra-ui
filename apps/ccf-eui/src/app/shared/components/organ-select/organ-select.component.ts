@@ -14,7 +14,6 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
 
 @Component({
   selector: 'ccf-organ-select',
-  standalone: true,
   imports: [
     CommonModule,
     MatFormFieldModule,

@@ -15,9 +15,7 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
   templateUrl: './ontology-selection.component.html',
   providers: [OntologySearchService],
   imports: [CommonModule, OntologyTreeComponent],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class OntologySelectionComponent {
   /**

@@ -24,7 +24,6 @@ import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-sys
     ScrollingModule,
     ScrollOverflowFadeDirective,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueBlockListComponent {

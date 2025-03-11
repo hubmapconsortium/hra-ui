@@ -17,7 +17,6 @@ import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-
   selector: 'ccf-spatial-search-config-behavior',
   templateUrl: './spatial-search-config-behavior.component.html',
   imports: [CommonModule, SpatialSearchConfigComponent, MatDialogModule],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigBehaviorComponent implements OnDestroy {

@@ -15,7 +15,6 @@ import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-
 
 @Component({
   selector: 'ccf-spatial-search-inputs',
-  standalone: true,
   imports: [
     CommonModule,
     AsyncPipe,

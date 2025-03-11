@@ -11,7 +11,6 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 @Component({
   selector: 'ccf-autocomplete-chips-form',
-  standalone: true,
   imports: [
     MatFormFieldModule,
     MatChipsModule,
