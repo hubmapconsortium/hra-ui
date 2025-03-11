@@ -3,7 +3,7 @@ import { NavigationCategoryToggleComponent } from './navigation-category-toggle.
 
 const meta: Meta<NavigationCategoryToggleComponent> = {
   component: NavigationCategoryToggleComponent,
-  title: 'Design System/Buttons/NavigationCategoryToggle',
+  title: 'Design System/Buttons/Navigation Category Toggle',
   parameters: {
     design: {
       type: 'figma',

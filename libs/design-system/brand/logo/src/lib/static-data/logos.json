@@ -1,0 +1,17 @@
+{
+  "$schema": "../types/logos.schema.json",
+  "logos": [
+    {
+      "size": "regular",
+      "src": "assets/brand/logo/regular.svg",
+      "width": 246,
+      "height": 102
+    },
+    {
+      "size": "small",
+      "src": "assets/brand/logo/small.svg",
+      "width": 116,
+      "height": 48
+    }
+  ]
+}
