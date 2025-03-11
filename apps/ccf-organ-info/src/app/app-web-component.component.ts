@@ -49,6 +49,7 @@ function parseStringArray(value: unknown): string[] {
     (sideChange)="sideChange.emit($event)"
   ></ccf-root>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   @Input() organIri?: string;

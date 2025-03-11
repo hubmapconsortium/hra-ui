@@ -1,20 +1,20 @@
 :host {
   mat-form-field {
-    --mdc-filled-text-field-active-indicator-color: var(--sys-primary);
-    --mdc-filled-text-field-focus-active-indicator-color: var(--sys-primary);
-    --mdc-filled-text-field-input-text-color: var(--sys-primary);
-    --mat-form-field-trailing-icon-color: var(--sys-primary);
-    --mat-form-field-leading-icon-color: var(--sys-primary);
+    --mdc-filled-text-field-active-indicator-color: var(--mat-sys-primary);
+    --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-primary);
+    --mdc-filled-text-field-input-text-color: var(--mat-sys-primary);
+    --mat-form-field-trailing-icon-color: var(--mat-sys-primary);
+    --mat-form-field-leading-icon-color: var(--mat-sys-primary);
     width: 100%;
   }
 
   mat-label {
-    color: var(--sys-inverse-surface);
-    font: var(--sys-label-medium);
+    color: var(--mat-sys-inverse-surface);
+    font: var(--mat-sys-label-medium);
   }
 
   mat-icon {
-    color: var(--sys-primary-fixed);
+    color: var(--mat-sys-primary-fixed);
   }
 
   .search-icon {
@@ -22,19 +22,19 @@
   }
 
   .results {
-    background: var(--sys-surface-container-low);
-    border-top: 2px solid var(--sys-primary);
+    background: var(--mat-sys-surface-container-low);
+    border-top: 2px solid var(--mat-sys-primary);
     box-shadow: 0px 5px 4px 0px #201e3d29;
     padding: 0.5rem 0;
   }
 
   mat-checkbox {
     --mdc-checkbox-state-layer-size: 3rem;
-    --mdc-checkbox-selected-icon-color: var(--sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-focus-icon-color: var(--sys-on-tertiary-fixed);
+    --mdc-checkbox-selected-icon-color: var(--mat-sys-on-tertiary-fixed);
+    --mdc-checkbox-selected-focus-icon-color: var(--mat-sys-on-tertiary-fixed);
 
     ::ng-deep label {
-      font: var(--sys-label-medium);
+      font: var(--mat-sys-label-medium);
       padding-right: 0.5rem;
     }
   }

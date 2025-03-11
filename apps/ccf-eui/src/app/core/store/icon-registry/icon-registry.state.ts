@@ -102,7 +102,7 @@ export class IconRegistryState extends NgxsDataRepository<void> {
     try {
       method.apply(registry, args);
       return true;
-    } catch (_error) {
+    } catch {
       return false;
     }
   }

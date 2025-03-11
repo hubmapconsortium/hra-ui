@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   templateUrl: './xyz-position.component.html',
   styleUrls: ['./xyz-position.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class XYZPositionComponent {
   /** Html class name */

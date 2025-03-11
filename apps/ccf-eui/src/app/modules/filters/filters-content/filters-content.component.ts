@@ -51,7 +51,6 @@ export type Sex = 'Male' | 'Female' | 'Both';
     DualSliderComponent,
     AutocompleteChipsFormComponent,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {

@@ -19,7 +19,7 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
-jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('vega-embed', () => jest.fn());
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
 jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({
   createEdgeGenerator: () => () => EMPTY,
@@ -50,7 +50,7 @@ describe('CdeVisualizationComponent', () => {
         ...options?.inputs,
       },
       providers: [
-        provideDesignSystemCommon({ scrolling: { disableSensor: true } }),
+        provideDesignSystemCommon(),
         provideHttpClient(),
         provideHttpClientTesting(),
         ...(options?.providers ?? []),

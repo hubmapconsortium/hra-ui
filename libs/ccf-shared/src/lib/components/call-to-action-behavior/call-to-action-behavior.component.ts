@@ -15,6 +15,7 @@ import { CallToActionState } from '../../states/call-to-action/call-to-action.st
   templateUrl: './call-to-action-behavior.component.html',
   styleUrls: ['./call-to-action-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CallToActionBehaviorComponent {
   @Select(CallToActionSelectors.title)

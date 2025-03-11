@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'ccf-bottom-toolbar',
   templateUrl: './bottom-toolbar.component.html',
   styleUrls: ['./bottom-toolbar.component.scss'],
+  standalone: false,
 })
 export class BottomToolbarComponent {}

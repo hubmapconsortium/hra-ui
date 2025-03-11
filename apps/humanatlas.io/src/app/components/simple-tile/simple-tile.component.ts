@@ -6,6 +6,7 @@ import { TileItems } from './tile-items';
   selector: 'ccf-simple-tile',
   templateUrl: './simple-tile.component.html',
   styleUrls: ['./simple-tile.component.scss'],
+  standalone: false,
 })
 export class SimpleTileComponent {
   /** Message to be shown in the card */

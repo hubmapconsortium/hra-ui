@@ -90,7 +90,6 @@ export class FullscreenPortalContentComponent {}
 /** Fullscreen Component */
 @Component({
   selector: 'hra-fullscreen-portal',
-  standalone: true,
   imports: [MatDialogModule, MatIconModule, ButtonsModule, ExpansionPanelModule, ViewOutletDirective],
   templateUrl: './fullscreen-portal.component.html',
   styleUrl: './fullscreen-portal.component.scss',

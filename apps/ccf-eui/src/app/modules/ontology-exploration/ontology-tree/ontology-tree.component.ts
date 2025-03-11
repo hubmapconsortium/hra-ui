@@ -38,7 +38,6 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
     ScrollOverflowFadeDirective,
     MicroTooltipDirective,
   ],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologyTreeComponent {

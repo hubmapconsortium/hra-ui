@@ -6,6 +6,7 @@ import { Shallow } from 'shallow-render';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'swiper',
   template: '<ng-content></ng-content>',
+  standalone: false,
 })
 export class SwiperComponent {
   /** Configuration for Swiper */

@@ -8,7 +8,6 @@ import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.com
 /** Iframe Container Component, renders html document inside the container  */
 @Component({
   selector: 'hra-iframe-container',
-  standalone: true,
   imports: [CommonModule, TitleCardComponent],
   templateUrl: './iframe-container.component.html',
   styleUrl: './iframe-container.component.scss',

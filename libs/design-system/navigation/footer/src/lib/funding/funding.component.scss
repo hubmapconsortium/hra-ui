@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--mat-sys-primary);
+
+  .title {
+    margin-bottom: 0.5rem;
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+  }
+
+  .funders {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .funder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 10.75rem;
+    color: var(--mat-sys-primary);
+    font: var(--mat-sys-label-small);
+    letter-spacing: var(--mat-sys-label-small-tracking);
+
+    img {
+      min-width: 3rem;
+      height: 3rem;
+      object-fit: none;
+    }
+
+    span {
+      margin: 0 1rem;
+    }
+  }
+}

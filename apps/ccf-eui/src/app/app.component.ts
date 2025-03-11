@@ -54,6 +54,7 @@ export interface DonorFormControls {
     class: 'hra-app',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;
@@ -144,6 +145,7 @@ export class AppComponent implements OnInit {
     combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
       scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
+
     this.selectedtoggleOptions = this.menuOptions;
   }
 

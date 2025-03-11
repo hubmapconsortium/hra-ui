@@ -15,6 +15,7 @@ export type KVList<T = unknown> = KVPair<T>[];
   templateUrl: './store-debug.component.html',
   styleUrls: ['./store-debug.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class StoreDebugComponent implements OnDestroy {
   /** HTML class name */

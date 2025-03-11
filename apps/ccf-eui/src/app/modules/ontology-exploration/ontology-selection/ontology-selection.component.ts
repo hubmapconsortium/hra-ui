@@ -17,6 +17,7 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
   imports: [CommonModule, OntologyTreeComponent],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OntologySelectionComponent {
   /**

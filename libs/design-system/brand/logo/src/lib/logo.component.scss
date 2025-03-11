@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  color: var(--hra-brand-logo-text-color, var(--mat-sys-on-surface));
+
+  .logo {
+    display: block;
+    color: inherit;
+  }
+}

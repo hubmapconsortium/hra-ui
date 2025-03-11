@@ -19,16 +19,20 @@
     height: 5.25rem;
 
     .logos {
+      display: flex;
+
       img {
         max-height: 3rem;
       }
       .hra-logo {
         margin-right: 1rem;
+        width: 7.25rem;
       }
 
       .hra-mini-logo {
         display: none;
         margin-right: 0.25rem;
+        width: 3rem;
       }
 
       .dashboards-home {
@@ -74,14 +78,6 @@
 
     .menu-toggle {
       display: none;
-      padding: 0;
-      height: 1.5rem;
-      width: 1.5rem;
-      min-width: auto;
-
-      .mat-icon {
-        margin: 0;
-      }
     }
   }
 
@@ -209,7 +205,7 @@
     }
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1281px) {
     .cdk-overlay-pane .mat-mdc-menu-panel {
       display: none;
     }

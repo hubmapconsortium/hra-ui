@@ -35,7 +35,6 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
  */
 @Component({
   selector: 'cde-cell-types',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
@@ -43,14 +42,12 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     IconButtonSizeDirective,
     MicroTooltipDirective,
     ScrollingModule,
-
     ColorPickerLabelComponent,
   ],
   templateUrl: './cell-types.component.html',
@@ -123,13 +120,10 @@ export class CellTypesComponent {
   protected readonly selectionModel = new SelectionModel<string>(true);
 
   /** Bind selection model to cell types selection */
-  protected readonly selectionModelBindRef = effect(
-    () => {
-      this.selectionModel.setSelection(...this.cellTypesSelection());
-      this.cdr.markForCheck();
-    },
-    { allowSignalWrites: true },
-  );
+  protected readonly selectionModelBindRef = effect(() => {
+    this.selectionModel.setSelection(...this.cellTypesSelection());
+    this.cdr.markForCheck();
+  });
 
   /** Observable stream of selection changes */
   protected readonly selection$ = this.selectionModel.changed.pipe(map(() => this.selectionModel.selected));

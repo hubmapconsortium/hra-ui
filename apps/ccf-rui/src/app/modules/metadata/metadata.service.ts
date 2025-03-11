@@ -35,8 +35,8 @@ export class MetadataService {
         disableClose: mode === 'create',
         data: {
           mode,
-          pageSnapshot: mode === 'edit' ? (this.pageState.snapshot as PageStateModel) : undefined,
-          modelSnapshot: mode === 'edit' ? (this.modelState.snapshot as ModelStateModel) : undefined,
+          pageSnapshot: this.pageState.snapshot as PageStateModel,
+          modelSnapshot: this.modelState.snapshot as ModelStateModel,
         },
       },
     );

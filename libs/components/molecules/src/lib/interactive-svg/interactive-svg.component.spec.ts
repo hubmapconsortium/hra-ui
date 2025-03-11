@@ -4,6 +4,7 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 
 import { InteractiveSvgComponent, NodeMapEntry } from './interactive-svg.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 jest.mock('@angular/core', () => {
   const originalModule = jest.requireActual('@angular/core');
@@ -29,7 +30,7 @@ describe('InteractiveSvgComponent', () => {
   let shallow: Shallow<InteractiveSvgComponent<NodeMapEntry>>;
 
   beforeEach(async () => {
-    shallow = new Shallow(InteractiveSvgComponent).dontMock(OverlayModule);
+    shallow = new Shallow(InteractiveSvgComponent).dontMock(OverlayModule, InlineSVGModule);
     renderer = mock<Renderer2>();
 
     mockedInject.mockReset().mockReturnValue(renderer as never);

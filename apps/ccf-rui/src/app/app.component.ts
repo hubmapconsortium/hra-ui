@@ -53,6 +53,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
     '[class.embedded]': 'embedded()',
     '(document:mousedown)': 'handleClick($event.target)',
   },
+  standalone: false,
 })
 export class AppComponent implements OnDestroy, OnInit {
   /** False until the initial registration modal is closed */
@@ -137,7 +138,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     const { editRegistration, user, organ } = this.globalConfig.snapshot;
     if (!editRegistration && (!user || !organ)) {
-      this.metadata.openModal('create');
+      setTimeout(() => this.metadata.openModal('create'), 20);
     }
   }
 

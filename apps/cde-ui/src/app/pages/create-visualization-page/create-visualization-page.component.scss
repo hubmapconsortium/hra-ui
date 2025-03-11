@@ -8,7 +8,7 @@
   top: 4.5rem;
 
   hra-nav-header {
-    border-bottom: 1px solid var(--sys-outline);
+    border-bottom: 1px solid var(--mat-sys-outline);
   }
 
   ::ng-deep .app-logo .app-description {
@@ -38,8 +38,8 @@
 
     .title {
       margin: 0;
-      font: var(--sys-display-small);
-      letter-spacing: var(--sys-display-small-tracking);
+      font: var(--mat-sys-display-small);
+      letter-spacing: var(--mat-sys-display-small-tracking);
     }
   }
 
@@ -56,7 +56,7 @@
 
     .card-title {
       margin-right: 0.75rem;
-      font: var(--sys-title-large);
+      font: var(--mat-sys-title-large);
     }
 
     .info {
@@ -74,8 +74,8 @@
 
     th,
     td {
-      font: var(--sys-label-large);
-      font-weight: var(--sys-label-large-weight);
+      font: var(--mat-sys-label-large);
+      font-weight: var(--mat-sys-label-large-weight);
       padding-left: 1rem;
       text-align: left;
       min-width: 13.5rem;
@@ -93,7 +93,7 @@
       display: grid;
       grid: 'subheader subheader';
       column-gap: 1.5rem;
-      font: var(--sys-label-large);
+      font: var(--mat-sys-label-large);
     }
 
     .subheader {

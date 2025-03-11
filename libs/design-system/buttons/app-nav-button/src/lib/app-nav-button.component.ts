@@ -4,8 +4,7 @@ import { MatRippleModule } from '@angular/material/core';
 
 /** Apps Card Component */
 @Component({
-  selector: 'hra-apps-card',
-  standalone: true,
+  selector: 'hra-app-nav-button',
   imports: [CommonModule, MatRippleModule],
   templateUrl: './app-nav-button.component.html',
   styleUrl: './app-nav-button.component.scss',

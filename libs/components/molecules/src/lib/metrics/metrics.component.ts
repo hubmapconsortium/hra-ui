@@ -17,7 +17,6 @@ export interface MetricItem {
  */
 @Component({
   selector: 'hra-metrics',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './metrics.component.html',
   styleUrls: ['./metrics.component.scss'],

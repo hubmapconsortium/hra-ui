@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { BrandmarkComponent } from '@hra-ui/design-system/brandmark';
+import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
@@ -15,11 +15,10 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
  */
 @Component({
   selector: 'hra-nav-header-buttons',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonToggleModule,
-    BrandmarkComponent,
+    BrandMarkComponent,
     ButtonsModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,

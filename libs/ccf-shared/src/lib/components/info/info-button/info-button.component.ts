@@ -14,6 +14,7 @@ import { InfoButtonService } from './info-button.service';
   templateUrl: './info-button.component.html',
   styleUrls: ['./info-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InfoButtonComponent implements OnDestroy {
   /**

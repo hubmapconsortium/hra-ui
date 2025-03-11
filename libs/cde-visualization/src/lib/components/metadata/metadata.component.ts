@@ -42,7 +42,6 @@ export class DefaultToPipe implements PipeTransform {
  */
 @Component({
   selector: 'cde-metadata',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,

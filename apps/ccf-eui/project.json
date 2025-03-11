@@ -7,7 +7,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-eui/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
+  "tags": ["type:app", "project:ccf"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
@@ -36,7 +36,6 @@
           "includePaths": ["node_modules/swiper", "libs/design-system/styles"]
         },
         "scripts": [],
-        "webWorkerTsConfig": "apps/ccf-eui/tsconfig.worker.json",
         "vendorChunk": true,
         "extractLicenses": false,
         "buildOptimizer": false,
@@ -134,20 +133,10 @@
       }
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "apps/ccf-eui/src/test.ts",
-        "polyfills": "apps/ccf-eui/src/polyfills.ts",
-        "tsConfig": "apps/ccf-eui/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-eui/karma.conf.js",
-        "assets": ["apps/ccf-eui/src/favicon.png", "apps/ccf-eui/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
-        "styles": ["apps/ccf-eui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["libs/design-system/styles"]
-        },
-        "scripts": []
+        "jestConfig": "apps/ccf-eui/jest.config.ts"
       }
     },
     "lint": {

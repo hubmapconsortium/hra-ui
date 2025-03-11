@@ -14,7 +14,6 @@ import { takeUntil } from 'rxjs';
 /** Main FTU page */
 @Component({
   selector: 'ftu-ftu-page',
-  standalone: true,
   imports: [
     CommonModule,
     BiomarkerDetailsComponent,

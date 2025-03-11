@@ -1,0 +1,29 @@
+<div class="left">
+  <div class="content">
+    <hra-brand-logo class="logo"></hra-brand-logo>
+    <span class="copyright">
+      <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
+      2024 CNS at Indiana University
+    </span>
+    <div class="socials">
+      @for (id of socials(); track id) {
+        <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="right">
+  <div class="content">
+    <hra-funding [funders]="funders()"></hra-funding>
+    <p class="disclaimer">
+      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
+      medical or professional advice.
+    </p>
+    <p class="data-notice">
+      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including
+      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in
+      scientific results published by HuBMAP consortium collaborations.
+    </p>
+  </div>
+</div>

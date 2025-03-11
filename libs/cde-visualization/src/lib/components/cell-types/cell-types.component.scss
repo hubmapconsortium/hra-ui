@@ -3,18 +3,18 @@
 
 :host {
   --mat-table-background-color: white;
-  --mdc-checkbox-unselected-icon-color: var(--sys-secondary);
-  --mdc-checkbox-selected-icon-color: var(--sys-secondary);
-  --mdc-checkbox-selected-checkmark-color: var(--sys-secondary);
+  --mdc-checkbox-unselected-icon-color: var(--mat-sys-secondary);
+  --mdc-checkbox-selected-icon-color: var(--mat-sys-secondary);
+  --mdc-checkbox-selected-checkmark-color: var(--mat-sys-secondary);
   --mdc-checkbox-state-layer-size: 28px;
-  --mat-sort-arrow-color: var(--sys-secondary);
+  --mat-sort-arrow-color: var(--mat-sys-secondary);
   --mat-table-row-item-container-height: 1.75rem;
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
   --mdc-filled-button-container-height: 2rem;
   --mat-table-header-container-height: 2rem;
-  --mat-menu-item-label-text-color: var(--sys-primary);
-  border-color: var(--sys-outline-variant);
+  --mat-menu-item-label-text-color: var(--mat-sys-primary);
+  border-color: var(--mat-sys-outline-variant);
   padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
   border-style: solid;
@@ -66,14 +66,14 @@
   .total-ct-label,
   .total-cells,
   .total-cell-links {
-    font: var(--sys-label-small);
-    letter-spacing: var(--sys-label-medium-tracking);
+    font: var(--mat-sys-label-small);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
     margin: 0.25rem 0;
 
     span {
       display: block;
-      color: var(--sys-primary);
-      font: var(--sys-label-medium);
+      color: var(--mat-sys-primary);
+      font: var(--mat-sys-label-medium);
     }
   }
 
@@ -91,7 +91,7 @@
   }
 
   .table-overflow-container {
-    --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+    --hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
     overflow: auto;
     grid-area: table;
     height: 100%;
@@ -99,12 +99,12 @@
     table {
       ::ng-deep {
         .mat-mdc-menu-content {
-          color: var(--sys-primary);
+          color: var(--mat-sys-primary);
         }
 
         thead {
           tr {
-            font: var(--sys-label-small);
+            font: var(--mat-sys-label-small);
             .mat-mdc-checkbox {
               .mdc-checkbox__background {
                 background-color: white;
@@ -114,8 +114,8 @@
           .mat-sort-header-container {
             max-width: 6rem;
             .mat-sort-header-content {
-              font: var(--sys-label-small);
-              color: var(--sys-secondary);
+              font: var(--mat-sys-label-small);
+              color: var(--mat-sys-secondary);
             }
           }
 
@@ -127,21 +127,21 @@
           tr th:last-child > div {
             justify-content: flex-end;
             margin-right: 0.25rem;
-            color: var(--sys-primary);
+            color: var(--mat-sys-primary);
           }
         }
 
         tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
           padding-right: 1.5rem;
-          color: var(--sys-primary);
-          font: var(--sys-label-small);
+          color: var(--mat-sys-primary);
+          font: var(--mat-sys-label-small);
         }
 
         tbody {
           tr,
           td {
-            font: var(--sys-label-small);
+            font: var(--mat-sys-label-small);
           }
         }
 
@@ -151,22 +151,22 @@
           td:first-child {
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
-            border-top: solid var(--sys-outline-variant) 0.0625rem;
-            border-left: solid var(--sys-outline-variant) 0.0625rem;
-            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
+            border-top: solid var(--mat-sys-outline-variant) 0.0625rem;
+            border-left: solid var(--mat-sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--mat-sys-outline-variant) 0.0625rem;
           }
 
           td:not(:first-child, :last-child) {
-            border-top: solid var(--sys-outline-variant) 0.0625rem;
-            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
+            border-top: solid var(--mat-sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--mat-sys-outline-variant) 0.0625rem;
           }
 
           td:last-child {
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            border-top: solid var(--sys-outline-variant) 0.0625rem;
-            border-right: solid var(--sys-outline-variant) 0.0625rem;
-            border-bottom: solid var(--sys-outline-variant) 0.0625rem;
+            border-top: solid var(--mat-sys-outline-variant) 0.0625rem;
+            border-right: solid var(--mat-sys-outline-variant) 0.0625rem;
+            border-bottom: solid var(--mat-sys-outline-variant) 0.0625rem;
           }
         }
 
@@ -224,7 +224,7 @@
     box-shadow: 0 0.3125rem 1rem 0 #201e3d3d;
     border-radius: 0.5rem;
     max-width: 21rem;
-    font: var(--sys-label-medium);
-    color: var(--sys-primary);
+    font: var(--mat-sys-label-medium);
+    color: var(--mat-sys-primary);
   }
 }

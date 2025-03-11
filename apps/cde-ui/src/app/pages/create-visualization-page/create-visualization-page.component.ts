@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -17,12 +16,11 @@ import {
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
-import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ToggleButtonSizeDirective } from '@hra-ui/design-system/button-toggle';
+import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
-import { FooterComponent } from '@hra-ui/design-system/footer';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
@@ -58,29 +56,24 @@ function optionalValue<T>(): T | null {
 /** Visualization customization page */
 @Component({
   selector: 'cde-create-visualization-page',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-
-    MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-
     BreadcrumbsComponent,
     ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,
-    FooterComponent,
     MarkEmptyFormControlDirective,
+    NavigationModule,
     NavHeaderComponent,
     OverlayModule,
     StepIndicatorComponent,
-    ToggleButtonSizeDirective,
     TooltipCardComponent,
     ErrorIndicatorComponent,
   ],

@@ -26,6 +26,7 @@ export interface SpatialSearchListItem {
   imports: [CommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
   /** HTML class */

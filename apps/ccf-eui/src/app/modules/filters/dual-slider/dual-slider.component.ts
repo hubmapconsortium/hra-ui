@@ -67,6 +67,8 @@ let nextId = 0;
   },
 })
 export class DualSliderComponent implements ControlValueAccessor, MatFormFieldControl<DualSliderRange>, OnDestroy {
+  /* eslint-disable @angular-eslint/no-input-rename */
+
   readonly min = input.required({ transform: numberAttribute });
   readonly max = input.required({ transform: numberAttribute });
   readonly _value = model<DualSliderRange | null>(null, { alias: 'value' });

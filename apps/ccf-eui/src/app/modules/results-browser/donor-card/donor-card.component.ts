@@ -26,6 +26,7 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
     ThumbnailListComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DonorCardComponent {
   /** HTML Class Name */

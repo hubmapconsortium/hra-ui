@@ -1,6 +1,6 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
-import { fakeAsync, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
@@ -10,7 +10,7 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 
-jest.mock('vega-embed', () => ({ default: jest.fn() }));
+jest.mock('vega-embed', () => jest.fn());
 
 describe('HistogramComponent', () => {
   const sampleData = [
@@ -78,7 +78,7 @@ describe('HistogramComponent', () => {
     expect(embedResult.view.data).toHaveBeenCalledWith('data', []);
   });
 
-  it('should download in the specified format', fakeAsync(async () => {
+  it('should download in the specified format', async () => {
     const { fixture } = await setup({
       inputs: {
         data: [],
@@ -98,7 +98,7 @@ describe('HistogramComponent', () => {
     await menu.clickItem({ text: /Downloads/i }, { text: /svg/i });
 
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
-  }));
+  });
 
   it('should reset all cell colors', async () => {
     const {

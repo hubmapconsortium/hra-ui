@@ -22,6 +22,7 @@ import { TreeState } from '../../store/tree.state';
   selector: 'app-functions',
   templateUrl: './functions.component.html',
   styleUrls: ['./functions.component.scss'],
+  standalone: false,
 })
 export class FunctionsComponent {
   bmSizeOptions = bimodalBSizeOptions;

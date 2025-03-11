@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   templateUrl: './slide-toggle.component.html',
   styleUrls: ['./slide-toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SlideToggleComponent {
   /**

@@ -12,7 +12,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
