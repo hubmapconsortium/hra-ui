@@ -9,6 +9,7 @@ import {
 } from '../functions/lookup.functions';
 import { LookupResponse, OntologyCode } from '../models/lookup.model';
 
+/** Adds ontology lookup routes */
 export function setupOntologyLookupRoutes(app: Express): void {
   /**
    * Given an ontology code (UBERON, FMA, CL, or HGNC), and a numerical ID of a term,

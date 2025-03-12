@@ -10,6 +10,7 @@ import { makeGraphData } from '../functions/graph.functions';
 import { makeValidationReport } from '../functions/validation-report.function';
 import { UploadedFile } from '../models/api.model';
 
+/** Adds csv routes */
 export function setupCSVRoutes(app: Express): void {
   /**
    * Fetch a CSV given a link and parse it into json or graph output

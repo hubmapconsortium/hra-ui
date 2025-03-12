@@ -1,6 +1,12 @@
 import { RequestHandler } from 'express';
 import mcache from 'memory-cache';
 
+/**
+ * Creates a handler that caches responses for a specific duration
+ *
+ * @param duration Duration to keep the cached response
+ * @returns A request handler
+ */
 export function routeCache(duration: number): RequestHandler {
   return (req, res, next) => {
     // query parameters

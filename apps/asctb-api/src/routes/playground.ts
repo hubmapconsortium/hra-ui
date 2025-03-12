@@ -4,6 +4,7 @@ import papa from 'papaparse';
 import { PLAYGROUND_CSV } from '../../const';
 import { makeASCTBData } from '../functions/api.functions';
 
+/** Adds playground routes */
 export function setupPlaygroundRoutes(app: Express): void {
   /**
    * Get the toy CSV data set for the default playground view

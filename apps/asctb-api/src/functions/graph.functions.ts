@@ -1,6 +1,13 @@
 import { Row, Structure } from '../models/api.model';
 import { GNode, GraphData, Node_type } from '../models/graph.model';
 
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @returns The root id
+ */
 export function buildgraphAS(data: Row[], graphData: GraphData) {
   let id = -1;
   let parent: GNode;
@@ -63,6 +70,15 @@ export function buildgraphAS(data: Row[], graphData: GraphData) {
   delete (graphData.nodes[0] as Partial<GNode>).parent;
   return id;
 }
+
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @param id Root id
+ * @returns The root id
+ */
 export function buildgraphCT(data: Row[], graphData: GraphData, id: number) {
   data.forEach((row: Row) => {
     const parentIndex = graphData.nodes.findIndex(
@@ -106,6 +122,14 @@ export function buildgraphCT(data: Row[], graphData: GraphData, id: number) {
   return id;
 }
 
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @param id Root id
+ * @returns The root id
+ */
 export function buildgraphBM(data: Row[], graphData: GraphData, id: number) {
   data.forEach((row: Row) => {
     row.cell_types.forEach((structure) => {
@@ -149,6 +173,12 @@ export function buildgraphBM(data: Row[], graphData: GraphData, id: number) {
   return id;
 }
 
+/**
+ * Turns rows into a graph
+ *
+ * @param data Data to turn into a graph
+ * @returns A graph
+ */
 export function makeGraphData(data: Row[]) {
   const graphData: GraphData = { nodes: [], edges: [] };
 

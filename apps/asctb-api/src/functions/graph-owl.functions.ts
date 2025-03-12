@@ -2,6 +2,12 @@ import { JsonLd } from 'jsonld/jsonld-spec';
 // @ts-expect-error No declarations
 import { Readable } from 'stream-browserify';
 
+/**
+ * Turn owl jsonld data into xml
+ *
+ * @param data Jsonld data
+ * @returns An xml string
+ */
 export async function makeOwlData(data: JsonLd): Promise<string> {
   const inputReadable = new Readable({
     read: () => {

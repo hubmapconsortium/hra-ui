@@ -1,15 +1,29 @@
 import { LEGACY_OMAP_HEADER_FIRST_COLUMN, OMAP_HEADER_FIRST_COLUMN, OMAP_ORGAN } from '../models/api.model';
 import { buildMetadata, findHeaderIndex } from './api.functions';
 
+/** Omap data transformer */
 export class OmapDataTransformer {
+  /** Data */
   private readonly data: string[][];
+  /** Header row index */
   private readonly headerRow: number;
+  /** All warnings */
   private readonly _warnings: Set<string>;
+  /** Additional metadata */
   private readonly metaData: Record<string, string | string[]>;
+  /** Transformed data */
   private readonly _transformedData: string[][];
+  /** Whether this contains legacy omap data */
   private readonly isLegacyOmap: boolean;
+  /** List of columns */
   private columns: string[] = [];
 
+  /**
+   * Initializes the transformer
+   *
+   * @param data Data to transform
+   * @param legacy Whether the data is in legacy format
+   */
   constructor(data: string[][], legacy = false) {
     this.isLegacyOmap = legacy;
     this.data = data;
@@ -21,6 +35,11 @@ export class OmapDataTransformer {
     this._transformedData = this.transformOmapData();
   }
 
+  /**
+   * Transforms the data
+   *
+   * @returns The transformed data
+   */
   private transformOmapData(): string[][] {
     // Initializing with the MetaData
     const asctbConverted: string[][] = [];
@@ -29,6 +48,11 @@ export class OmapDataTransformer {
     return asctbConverted;
   }
 
+  /**
+   * Derives a new header row for the transformed data
+   *
+   * @returns The new header row
+   */
   private createNewHeaderRow(): string[] {
     const maxProteins = this.data.slice(this.headerRow + 1).map((subArr) => subArr[0].split(',').length);
     const newHeaderRow = ['AS/1', 'AS/1/LABEL', 'AS/1/ID'];
@@ -41,6 +65,11 @@ export class OmapDataTransformer {
     return newHeaderRow;
   }
 
+  /**
+   * Transforms the data
+   *
+   * @returns The transformed data rows
+   */
   private createData(): string[][] {
     const dataObject: Record<string, string>[] = this.createMapOfOldColumnsAndValues();
     // Decides whether to take organs from table or constants
@@ -113,14 +142,14 @@ export class OmapDataTransformer {
     return transformedData;
   }
 
-  /** Helper functions for createData */
-
+  /** Get the metadata */
   private getMetaData(): Record<string, string | string[]> {
     const warnings = new Set<string>();
     const metadataRows = this.data.slice(0, this.headerRow);
     return buildMetadata(metadataRows, warnings);
   }
 
+  /** Create a map from non-transformed columns and values */
   private createMapOfOldColumnsAndValues(): Record<string, string>[] {
     let dataObject: Record<string, string>[] = [];
     this.columns = this.data[this.headerRow].map((col) => col);
@@ -138,6 +167,7 @@ export class OmapDataTransformer {
     return dataObject;
   }
 
+  /** Creates additional notes */
   private createNotes(dataObject: Record<string, string>[]): Record<string, string>[] {
     const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_symbol', 'rowNo'];
     dataObject.forEach((obj) => {
@@ -151,11 +181,12 @@ export class OmapDataTransformer {
     return dataObject;
   }
 
-  /** Getters */
+  /** Get the transformed data */
   get transformedData(): string[][] {
     return this._transformedData;
   }
 
+  /** Get all warnings */
   get warnings(): Set<string> {
     return this._warnings;
   }
