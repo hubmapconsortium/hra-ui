@@ -6,10 +6,20 @@ import { Matrix4 } from '@math.gl/core';
 import { SpatialSceneNode } from '../shared/spatial-scene-node';
 import { traverseScene } from './scene-traversal';
 
+/**
+ * This function registers the GLTF loaders, including the DracoWorkerLoader and GLTFLoader, to be used for loading GLTF files.
+ */
 export function registerGLTFLoaders(): void {
   registerLoaders([DracoWorkerLoader, GLTFLoader]);
 }
 
+/**
+ * This function derives a scenegraph from a GLTF file based on the provided scenegraph node name.
+ * It traverses the scenes in the GLTF file to find the specified node and updates its transformation matrix.
+ * @param scenegraphNodeName The name of the scenegraph node to be derived.
+ * @param gltf The GLTF file data.
+ * @returns The updated GLTF file data with the derived scenegraph.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function deriveScenegraph(scenegraphNodeName: string, gltf: any): any {
   const scenegraphNode = gltf.nodes?.find((n: { name: string }) => n.name === scenegraphNodeName);
@@ -43,6 +53,13 @@ export function deriveScenegraph(scenegraphNodeName: string, gltf: any): any {
   }
 }
 
+/**
+ * This function loads a GLTF file from a given URL and parses it using the GLTFLoader.
+ * It also supports caching of the GLTF files. After loading, it derives the scenegraph for the specified node.
+ * @param model The spatial scene node containing the scenegraph URL.
+ * @param [cache] An optional cache for storing GLTF file promises.
+ * @returns A promise that resolves to the parsed GLTF file data with the derived scenegraph.
+ */
 export async function loadGLTF(
   model: SpatialSceneNode,
   cache?: { [url: string]: Promise<Blob> },
@@ -67,6 +84,12 @@ export async function loadGLTF(
   return deriveScenegraph(model.scenegraphNode as string, gltf);
 }
 
+/**
+ * This function loads a GLTF file from a promise and derives the scenegraph for the specified node.
+ * @param scenegraphNodeName The name of the scenegraph node to be derived.
+ * @param gltfPromise A promise that resolves to the GLTF file data.
+ * @returns A promise that resolves to the parsed GLTF file data with the derived scenegraph.
+ */
 export async function loadGLTF2(
   scenegraphNodeName: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
