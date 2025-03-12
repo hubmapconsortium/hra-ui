@@ -3,6 +3,12 @@ import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
 
+/**
+ * Parses user supplied data sources
+ *
+ * @param value Raw data
+ * @returns Data sources
+ */
 function parseDataSources(value: unknown): string[] {
   const isString = (val: unknown): val is string => typeof val === 'string';
   const isStringArray = (val: unknown): val is string[] => Array.isArray(val) && val.every(isString);
@@ -19,6 +25,12 @@ function parseDataSources(value: unknown): string[] {
   throw new Error('Invalid data sources');
 }
 
+/**
+ * Parses user supplied data as an array of strings
+ *
+ * @param value Raw data
+ * @returns An array of strings
+ */
 function parseStringArray(value: unknown): string[] {
   const isString = (val: unknown): val is string => typeof val === 'string';
   const isStringArray = (val: unknown): val is string[] => Array.isArray(val) && val.every(isString);
@@ -39,6 +51,7 @@ function parseStringArray(value: unknown): string[] {
   throw new Error('Invalid data sources');
 }
 
+/** Web component */
 @Component({
   selector: 'ccf-root-wc',
   template: `<ccf-root
@@ -51,28 +64,46 @@ function parseStringArray(value: unknown): string[] {
   standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
+  /** Organ iri */
   @Input() organIri?: string;
+  /** Model sex */
   @Input() sex?: 'Both' | 'Male' | 'Female' = 'Female';
+  /** Organ side */
   @Input() side?: 'Left' | 'Right' = 'Left';
+  /** Data sources */
   @Input() dataSources!: string | string[];
+  /** Highlight */
   @Input() highlightProviders!: string | string[];
 
+  /** Api token */
   @Input() token!: string;
 
+  /** Api endpoint */
   @Input() remoteApiEndpoint!: string;
 
+  /** Donor label */
   @Input() donorLabel!: string;
+  /** Rui app url */
   @Input() ruiUrl!: string;
+  /** Eui app url */
   @Input() euiUrl!: string;
+  /** Asctb app url */
   @Input() asctbUrl!: string;
+  /** Hra portal url */
   @Input() hraPortalUrl!: string;
+  /** Course url */
   @Input() onlineCourseUrl!: string;
+  /** Paper url */
   @Input() paperUrl!: string;
 
+  /** Emits when the user switches the model sex */
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
+  /** Emits when the user switches organ side */
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
+  /** Emits when the user clicks a node */
   @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
 
+  /** Initializes the component */
   constructor() {
     super({
       initialDelay: 10,
