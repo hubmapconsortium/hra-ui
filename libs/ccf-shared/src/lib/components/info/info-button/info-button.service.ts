@@ -15,16 +15,22 @@ export interface DocumentationContent {
   content: string;
 }
 
+/** Panel data */
 export interface PanelData {
+  /** Content */
   content: DocumentationContent[];
+  /** Title */
   infoTitle: string;
+  /** Video */
   videoID: string;
 }
 
+/** Info button service */
 @Injectable({
   providedIn: 'root',
 })
 export class InfoButtonService {
+  /** Http client */
   private readonly http = inject(HttpClient);
 
   /** Subject to send the documentation data to the component when its done processing */

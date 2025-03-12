@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
-
 import { CloseDialog, LearnMore } from '../../states/call-to-action/call-to-action.actions';
 import { CallToActionSelectors } from '../../states/call-to-action/call-to-action.selectors';
 import { CallToActionState } from '../../states/call-to-action/call-to-action.state';
@@ -18,15 +17,19 @@ import { CallToActionState } from '../../states/call-to-action/call-to-action.st
   standalone: false,
 })
 export class CallToActionBehaviorComponent {
+  /** Title */
   @Select(CallToActionSelectors.title)
   readonly title$!: Observable<string>;
 
+  /** Message */
   @Select(CallToActionSelectors.message)
   readonly message$!: Observable<string>;
 
+  /** Call to action text */
   @Select(CallToActionSelectors.callToAction)
   readonly callToAction$!: Observable<string>;
 
+  /** Image url */
   @Select(CallToActionSelectors.imageUrl)
   readonly imageUrl$!: Observable<string>;
 

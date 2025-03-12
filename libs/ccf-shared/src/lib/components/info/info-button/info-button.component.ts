@@ -17,7 +17,9 @@ import { InfoButtonService } from './info-button.service';
   standalone: false,
 })
 export class InfoButtonComponent implements OnDestroy {
+  /** Dialog service */
   private readonly dialog = inject(MatDialog);
+  /** Info button service */
   private readonly infoButtonService = inject(InfoButtonService);
 
   /**
@@ -30,8 +32,10 @@ export class InfoButtonComponent implements OnDestroy {
    */
   @Input() videoID!: string;
 
+  /** Documentation url */
   @Input() documentationUrl!: string;
 
+  /** Subscriptions */
   private readonly subscriptions = new Subscription();
 
   /**

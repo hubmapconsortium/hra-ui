@@ -6,8 +6,11 @@ import { DocumentationContent } from '../info-button/info-button.service';
  * Data model for the dialog input
  */
 export interface InfoDialogData {
+  /** Content */
   content: DocumentationContent[];
+  /** Title */
   title: string;
+  /** Video */
   videoID: string;
 }
 
@@ -22,7 +25,9 @@ export interface InfoDialogData {
   standalone: false,
 })
 export class InfoDialogComponent implements OnInit {
+  /** Dialog reference */
   readonly dialogRef = inject<MatDialogRef<InfoDialogComponent>>(MatDialogRef);
+  /** Data from parent */
   readonly data = inject<InfoDialogData>(MAT_DIALOG_DATA);
 
   /**
