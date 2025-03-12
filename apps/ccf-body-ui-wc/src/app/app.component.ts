@@ -16,12 +16,17 @@ import { lastValueFrom } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { FilteredSceneService } from './core/services/filtered-scene/filtered-scene.service';
 
+/** Config */
 export interface GlobalConfig {
+  /** Highlight */
   highlightID?: string;
+  /** Zoom */
   zoomToID?: string;
+  /** Data */
   data?: JsonLdObj[];
 }
 
+/** Root component */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ccf-root',
@@ -30,20 +35,31 @@ export interface GlobalConfig {
   standalone: false,
 })
 export class AppComponent {
+  /** Reference to the body ui */
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
 
+  /** Emits when the user starts hovering a node */
   @Output() readonly onMouseEnter = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user stops hovering a node */
   @Output() readonly onMouseLeave = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user clicks a node */
   @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
+  /** Global config */
   private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
+  /** Scene service */
   private readonly sceneSource = inject(FilteredSceneService);
+  /** Change detector */
   private readonly cdr = inject(ChangeDetectorRef);
 
+  /** Data */
   readonly data$ = this.configState.getOption('data');
+  /** Organs */
   organs$ = this.sceneSource.filteredOrgans$;
+  /** Scene */
   scene$ = this.sceneSource.filteredScene$.pipe(tap((_) => this.reset()));
 
+  /** Resets the body ui */
   private async reset(): Promise<void> {
     const { bodyUI } = this;
 

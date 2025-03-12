@@ -6,11 +6,15 @@ import { BaseWebComponent } from 'ccf-shared/web-components';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { environment } from '../environments/environment';
 
+/** User data format */
 export interface InputDataFormat {
+  /** Id */
   id: string;
+  /** Rui location */
   rui_location: JsonLdObj;
 }
 
+/** Parser raw user data into jsonld */
 function toJsonLd(data: unknown): JsonLdObj[] {
   if (typeof data === 'string') {
     data = JSON.parse(data);
@@ -22,6 +26,7 @@ function toJsonLd(data: unknown): JsonLdObj[] {
   })) as unknown as JsonLdObj[];
 }
 
+/** Web component */
 @Component({
   selector: 'ccf-root-wc',
   template:
@@ -30,14 +35,21 @@ function toJsonLd(data: unknown): JsonLdObj[] {
   standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
+  /** Data */
   @Input() data!: InputDataFormat[];
+  /** Highlight */
   @Input() highlightID!: string;
+  /** Zoom */
   @Input() zoomToID!: string;
 
+  /** Emits when the user starts hovering a node */
   @Output() readonly onMouseEnter = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user stops hovering a node */
   @Output() readonly onMouseLeave = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user clicks a node */
   @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
+  /** Initialize the component */
   constructor() {
     super({
       initialDelay: 10,
