@@ -1,8 +1,9 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent } from 'ccf-shared/web-components';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
-
 import { environment } from '../environments/environment';
 
 export interface InputDataFormat {
@@ -33,9 +34,9 @@ export class AppWebComponent extends BaseWebComponent {
   @Input() highlightID!: string;
   @Input() zoomToID!: string;
 
-  @Output() readonly onMouseEnter = new EventEmitter<string>();
-  @Output() readonly onMouseLeave = new EventEmitter<string>();
-  @Output() readonly onClick = new EventEmitter<string>();
+  @Output() readonly onMouseEnter = new EventEmitter<SpatialSceneNode>();
+  @Output() readonly onMouseLeave = new EventEmitter<SpatialSceneNode>();
+  @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
   constructor() {
     super({

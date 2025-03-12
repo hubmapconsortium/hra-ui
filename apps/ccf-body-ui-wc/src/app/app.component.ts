@@ -8,6 +8,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { BodyUiComponent, GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { lastValueFrom } from 'rxjs';
@@ -30,9 +32,9 @@ export interface GlobalConfig {
 export class AppComponent {
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
 
-  @Output() readonly onMouseEnter = new EventEmitter<string>();
-  @Output() readonly onMouseLeave = new EventEmitter<string>();
-  @Output() readonly onClick = new EventEmitter<string>();
+  @Output() readonly onMouseEnter = new EventEmitter<SpatialSceneNode>();
+  @Output() readonly onMouseLeave = new EventEmitter<SpatialSceneNode>();
+  @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
   private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
   private readonly sceneSource = inject(FilteredSceneService);

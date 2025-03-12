@@ -99,8 +99,8 @@ describe('IllustratorState', () => {
   describe('highlightCellType', () => {
     it('should set hoveredCellTypeId', () => {
       ctx.getState.mockReturnValue({ mapping: [testItem] });
-      state.highlightCellType(ctx, new HighlightCellType(testItem.id));
-      expect(ctx.patchState).toHaveBeenCalledWith({ hoveredCellTypeId: testItem.id });
+      state.highlightCellType(ctx, new HighlightCellType(testItem.ontologyId));
+      expect(ctx.patchState).toHaveBeenCalledWith({ hoveredCellTypeId: testItem.ontologyId });
     });
   });
 });
