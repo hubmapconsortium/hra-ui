@@ -23,7 +23,6 @@ export interface GlobalConfig {
 
   skipUnsavedChangesConfirmation?: boolean;
 
-  theme?: string;
   homeUrl?: string;
   organOptions?: string[];
 

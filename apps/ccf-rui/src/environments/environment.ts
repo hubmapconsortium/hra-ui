@@ -7,7 +7,6 @@ export const environment = {
   disableDbWorker: true,
   dbOptions: {},
   customization: {
-    theme: 'default',
     collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
     referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },

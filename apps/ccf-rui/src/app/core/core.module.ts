@@ -5,7 +5,6 @@ import { AnalyticsModule } from 'ccf-shared/analytics';
 
 import { environment } from '../../environments/environment';
 import { ConfigModule } from './services/config/config.module';
-import { ThemingModule } from './services/theming/theming.module';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { StoreModule } from './store/store.module';
     MousePositionTrackerModule,
     ConfigModule,
     StoreModule,
-    ThemingModule,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })

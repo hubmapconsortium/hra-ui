@@ -1,47 +1,38 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  inject,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
+
 import { GlobalConfig } from './core/services/config/config';
-import { ThemingService } from './core/services/theming/theming.service';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
 import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
 
+/** Represents a user with a first and last name. */
 export interface User {
   firstName: string;
   lastName: string;
 }
 
+/** Configuration options for the application. */
 interface AppOptions extends GlobalConfig {
-  theme?: string;
   homeUrl?: string;
   logoTooltip?: string;
   view?: ViewType;
   viewSide?: ViewSide;
 }
 
-/** Valid values for side. */
+/** Valid values for side of the view. */
 export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
 
 /**
- * App component
+ * The main application component.
  */
 @Component({
   selector: 'ccf-root',
@@ -60,7 +51,6 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly page = inject(PageState);
   readonly consentService = inject(ConsentService);
   readonly snackbar = inject(MatSnackBar);
-  readonly theming = inject(ThemingService);
   private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
   private readonly ga = inject(GoogleAnalyticsService);
   readonly registration = inject(RegistrationState);
@@ -71,18 +61,16 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Disables changes in block position */
   disablePositionChange = false;
 
+  /** Indicates whether the registration is expanded. */
   registrationExpanded = false;
 
-  get isLightTheme(): boolean {
-    return this.theming.getTheme().endsWith('light');
-  }
-
-  readonly theme$ = this.globalConfig.getOption('theme');
-  readonly themeMode$ = new BehaviorSubject<'light' | 'dark'>('light');
-
+  /** Preset homeurl */
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
 
+  /** Preset view setting */
   readonly view$ = this.globalConfig.getOption('view');
+
+  /** Preset view side */
   readonly viewSide$ = this.globalConfig.getOption('viewSide');
 
   /** Input that allows changing the current side from outside the component */
@@ -91,29 +79,26 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Input that allows toggling of 3D view on / off from outside the component */
   @Input() view3D = false;
 
+  /** Metadata service */
   private readonly metadata = inject(MetadataService);
 
+  /** Whether to use the embedded app */
   protected readonly embedded = toSignal(this.page.useCancelRegistrationCallback$);
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
 
+  /**
+   * Creates an instance of app component.
+   */
   constructor() {
-    const el = inject<ElementRef<unknown>>(ElementRef);
-    const injector = inject(Injector);
     const cdr = inject(ChangeDetectorRef);
 
-    this.theming.initialize(el, injector);
     this.subscriptions.add(
       this.page.registrationStarted$.subscribe((registrationStarted) => {
         this.registrationStarted = registrationStarted;
       }),
     );
-
-    combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
-      this.theming.setTheme(`${theme}-theme-${mode}`);
-      cdr.markForCheck();
-    });
 
     combineLatest([this.view$, this.viewSide$]).subscribe(([view, viewSide]) => {
       this.model.setViewType(view ?? 'register');
@@ -124,6 +109,9 @@ export class AppComponent implements OnDestroy, OnInit {
     openScreenSizeNotice(inject(MatDialog));
   }
 
+  /**
+   * Initializes app: opens snackbar and sets premade options
+   */
   ngOnInit(): void {
     const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
       data: {
@@ -143,12 +131,9 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   /**
-   * Toggles scheme between light and dark mode
+   * Toggles the registration expansion state.
+   * @param event The new state of registration expansion.
    */
-  toggleScheme(): void {
-    this.themeMode$.next(this.isLightTheme ? 'dark' : 'light');
-  }
-
   registrationToggle(event: boolean): void {
     this.registrationExpanded = event;
     if (!this.registrationExpanded) {
@@ -158,7 +143,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /**
    * Disables block position change if an input element is clicked
-   *
    * @param target The element clicked
    */
   handleClick(target: HTMLElement): void {
@@ -179,6 +163,10 @@ export class AppComponent implements OnDestroy, OnInit {
     this.subscriptions.unsubscribe();
   }
 
+  /**
+   * Updates the side view.
+   * @param selection The selected side.
+   */
   updateSide(selection: Side): void {
     this.ga.event('side_update', 'stage_nav', selection);
 
@@ -203,16 +191,25 @@ export class AppComponent implements OnDestroy, OnInit {
     this.model.setViewType(selection ? '3d' : 'register');
   }
 
+  /**
+   * Resets the stage to its initial state.
+   */
   resetStage(): void {
     this.resetMetadata();
     this.resetCamera();
   }
 
+  /**
+   * Resets the camera to the default view.
+   */
   resetCamera(): void {
     this.model.setViewSide('anterior');
     this.model.setViewType('register');
   }
 
+  /**
+   * Resets the metadata to the default state.
+   */
   resetMetadata(): void {
     if (this.registration.snapshot.initialRegistration) {
       this.registration.setToInitialRegistration();
@@ -221,6 +218,9 @@ export class AppComponent implements OnDestroy, OnInit {
     }
   }
 
+  /**
+   * Resets the block position to the default state.
+   */
   resetBlock(): void {
     if (this.registration.snapshot.initialRegistration) {
       this.registration.resetPosition();
