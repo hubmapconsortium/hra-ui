@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
@@ -43,7 +42,6 @@ export interface CardData {
     MatSidenavModule,
     AppNavButtonComponent,
     ScrollingModule,
-    AssetUrlPipe,
   ],
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.scss',
