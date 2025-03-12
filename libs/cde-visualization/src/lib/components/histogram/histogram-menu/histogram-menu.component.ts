@@ -5,6 +5,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
+/**
+ * Menu for histogram expansion panel
+ */
 @Component({
   selector: 'cde-histogram-menu',
   imports: [CommonModule, MatMenuModule, MatIconModule, IconButtonSizeDirective, ButtonsModule],
