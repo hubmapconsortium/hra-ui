@@ -4,6 +4,7 @@ import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboar
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
 import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
 
+/** Metrics card data */
 export type MetricsCard = z.infer<typeof METRICS_CARD_DEF>;
 
 /** Metrics card definition */
