@@ -100,7 +100,7 @@ export class OmapDataTransformer {
         for (let i = 0; i < maxBPs; i++) {
           newrow.push(targetNames[i] ?? '', uniprots[i] ?? '', hgncIds[i] ?? '', notes ?? '');
         }
-        transformedData.push(newrow as string[]);
+        transformedData.push(newrow);
       } else {
         transformedData.push(
           (this.isLegacyOmap
