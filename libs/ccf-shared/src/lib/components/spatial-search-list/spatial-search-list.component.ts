@@ -42,6 +42,7 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
   /** Emits the item that has been removed from the list */
   readonly itemRemoved = output<T>();
 
+  /** If all items are selected */
   allSelected = true;
 
   /**
@@ -81,6 +82,11 @@ export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
     this.itemRemoved.emit(item);
   }
 
+  /**
+   * Updates all items to checked or unchecked
+   *
+   * @param checked Checked status
+   */
   updateAllItemsSelection(checked: boolean): void {
     this.allSelected = checked;
     const newItems = this.items().map((item) => ({ ...item, selected: checked }));
