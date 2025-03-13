@@ -1,6 +1,6 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { State } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
@@ -77,8 +77,11 @@ export interface ModelStateModel {
   anatomicalStructures: VisibilityItem[];
   /** Extraction sets */
   extractionSets: ExtractionSet[];
+  /** Consortium name */
   consortium?: string;
+  /** DOI */
   doi?: string;
+  /** Block placement date */
   placementDate: string;
 }
 
@@ -87,6 +90,7 @@ export interface ModelStateModel {
  */
 export const RUI_ORGANS = ALL_ORGANS;
 
+/** Default model state */
 export const MODEL_DEFAULTS: ModelStateModel = {
   id: '',
   label: '',
@@ -118,6 +122,13 @@ export const MODEL_DEFAULTS: ModelStateModel = {
 })
 @Injectable()
 export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
+  /** Google Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+  /** Injector service */
+  private readonly injector = inject(Injector);
+  /** Global config state */
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
   /** Identifier observable */
   readonly id$ = this.state$.pipe(
     map((x) => x?.id),
@@ -198,15 +209,20 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     map((x) => x?.extractionSets),
     distinctUntilChanged(),
   );
+  /** Consortium observable */
   readonly consortium$ = this.state$.pipe(
     map((x) => x?.consortium),
     distinctUntilChanged(),
   );
+  /** DOI observable */
   readonly doi$ = this.state$.pipe(
     map((x) => x?.doi),
     distinctUntilChanged(),
   );
 
+  /**
+   * Observable emitted when the model changes
+   */
   @Computed()
   get modelChanged$(): Observable<void> {
     const ignoredKeys = ['viewType', 'viewSide', 'showPrevious'];
@@ -230,20 +246,8 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** Reference to the reference data state */
   private referenceData!: ReferenceDataState;
 
+  /** Page state */
   private page!: PageState;
-
-  /**
-   * Creates an instance of model state.
-   *
-   * @param injector Injector service used to lazy load reference data state
-   */
-  constructor(
-    private readonly ga: GoogleAnalyticsService,
-    private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
 
   /**
    * Initializes this state service.
@@ -258,10 +262,22 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     this.globalConfig.getOption('consortium').subscribe((consortium) => this.setConsortium(consortium));
   }
 
+  /**
+   * Finds all organs that match the ontology id / organ side
+   * @param [ontologyId] Organ ontology id
+   * @param [organSide] Side of organ
+   * @returns Organ matches
+   */
   idMatches(ontologyId?: string, organSide?: string): OrganInfo | undefined {
     return ALL_ORGANS.find((o) => (ontologyId && o.id === ontologyId ? (o.side ? o.side === organSide : true) : false));
   }
 
+  /**
+   * Finds all organs that match the organ name / organ side
+   * @param organName Organ name
+   * @param [organSide] Side of organ
+   * @returns Organ matches
+   */
   nameMatches(organName: string, organSide?: string): OrganInfo | undefined {
     return ALL_ORGANS.find((o) =>
       o.side ? o.organ.toLowerCase() === organName && o.side === organSide : o.organ.toLowerCase() === organName,
@@ -333,6 +349,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     this.ctx.patchState({ viewSide });
   }
 
+  /**
+   * Gets default block position
+   */
   @Computed()
   get defaultPosition(): XYZTriplet {
     const dims = this.snapshot.organDimensions;
@@ -370,6 +389,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     });
   }
 
+  /**
+   * Sets block to default position
+   */
   @DataAction()
   setDefaultPosition(): void {
     this.ctx.patchState({
@@ -444,16 +466,28 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     this.ctx.patchState({ extractionSets });
   }
 
+  /**
+   * Sets consortium
+   * @param [consortium] Consortium name
+   */
   @DataAction()
   setConsortium(consortium?: string): void {
     this.ctx.patchState({ consortium });
   }
 
+  /**
+   * Sets doi
+   * @param [doi] DOI value
+   */
   @DataAction()
   setDoi(doi?: string): void {
     this.ctx.patchState({ doi });
   }
 
+  /**
+   * Sets placement date of block
+   * @param [placementDate] Placement date
+   */
   @DataAction()
   setPlacementDate(placementDate?: string): void {
     this.ctx.patchState({ placementDate });
@@ -480,6 +514,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     }
   }
 
+  /**
+   * Handles organ iri changes
+   */
   private onOrganIriChange(): void {
     const organIri = this.referenceData.getReferenceOrganIri(
       this.snapshot.organ?.organ || '',
@@ -542,6 +579,9 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     this.ctx.patchState({ organIri, organDimensions });
   }
 
+  /**
+   * Handles reference data changes
+   */
   private onReferenceDataChange(): void {
     this.globalConfig
       .getOption('organ')
@@ -557,6 +597,11 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
       .subscribe(() => this.page.setHasChanges());
   }
 
+  /**
+   * Handles organ changes
+   * @param organ Organ
+   * @returns Observable
+   */
   private onOrganChange(organ: string | OrganConfig): Observable<unknown> {
     let organInfo: OrganInfo | undefined;
     let organSex: 'male' | 'female';

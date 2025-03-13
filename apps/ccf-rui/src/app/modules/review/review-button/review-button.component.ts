@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnChanges, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  Output,
+  inject,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -16,6 +25,13 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
   standalone: false,
 })
 export class ReviewButtonComponent implements OnChanges {
+  /** Dialog service */
+  private readonly dialog = inject(MatDialog);
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+  /** Page state */
+  readonly page = inject(PageState);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-review-button';
 
@@ -57,23 +73,12 @@ export class ReviewButtonComponent implements OnChanges {
    */
   registrationIsValid = false;
 
+  /** Tooltip for the button */
   get tooltip(): string {
     return this.disabled
       ? 'Tissue block does not collide with any anatomical structures'
       : 'Review registration and submit/download.';
   }
-
-  /**
-   * Creates an instance of review button component.
-   *
-   * @param dialog Reference to the dialog creation service.
-   * @param ga Analytics service
-   */
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly ga: GoogleAnalyticsService,
-    readonly page: PageState,
-  ) {}
 
   /**
    * Updates the value of registrationIsValid based on the

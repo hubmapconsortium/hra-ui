@@ -68,6 +68,12 @@ runs:
       shell: bash
       run: ${{ github.action_path }}/collect_artifacts.sh ${{ inputs.deploy-directory }} dist/{apps,compodoc,storybook}
 
+    - name: Move browser files
+      shell: bash
+      run: |
+        find ${{ inputs.deploy-directory }}/apps -mindepth 2 -maxdepth 2 -type d -name "browser" -exec bash -c 'mv "$0"/* "${0}"/..' {} \;
+        find ${{ inputs.deploy-directory }}/apps -mindepth 2 -maxdepth 2 -type d -name "browser" -exec bash -c 'rmdir "$0"' {} \;
+
     - name: Generate index file
       uses: cuchi/jinja2-action@v1.3.0
       with:

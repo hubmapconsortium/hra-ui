@@ -1,6 +1,12 @@
 import { SpatialEntityJsonLd } from '../shared/ccf-spatial-jsonld';
 import { parseCSV } from './parse-csv';
 
+/**
+ * This function processes anatomical structures by parsing a CSV file and updating the corresponding spatial entities with additional information.
+ * @param sourceUrl The URL of the CSV file containing anatomical structure data.
+ * @param entities An array of SpatialEntityJsonLd objects representing the spatial entities to be updated.
+ * @returns A promise that resolves to an array of updated SpatialEntityJsonLd objects.
+ */
 export async function processAnatomicalStructures(
   sourceUrl: string,
   entities: SpatialEntityJsonLd[],

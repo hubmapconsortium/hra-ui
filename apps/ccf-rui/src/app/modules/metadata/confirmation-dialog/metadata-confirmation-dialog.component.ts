@@ -4,6 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 
+/**
+ * Dialog for user to confirm metadata updates
+ */
 @Component({
   selector: 'ccf-metadata-confirmation-dialog',
   imports: [MatDialogModule, MatIconModule, ButtonsModule, ErrorIndicatorComponent],

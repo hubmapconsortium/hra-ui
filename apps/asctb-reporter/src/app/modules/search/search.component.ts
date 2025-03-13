@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, ViewChild, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -22,6 +22,12 @@ import { UIState, UIStateModel } from '../../store/ui.state';
   standalone: false,
 })
 export class SearchComponent {
+  readonly bms = inject(BimodalService);
+  readonly store = inject(Store);
+  readonly ga = inject(GoogleAnalyticsService);
+  readonly router = inject(Router);
+  private readonly elementRef = inject(ElementRef);
+
   @Input() disabled = false;
 
   // Structures contains the full list of structures to render for the search
@@ -49,13 +55,7 @@ export class SearchComponent {
   searchOpen = false;
   selectionCompareFunction = (o1: SearchStructure, o2: SearchStructure) => o1.id === o2.id;
 
-  constructor(
-    public bms: BimodalService,
-    public store: Store,
-    public ga: GoogleAnalyticsService,
-    public router: Router,
-    private readonly elementRef: ElementRef,
-  ) {
+  constructor() {
     this.tree$.subscribe((tree) => {
       this.selectedOptions = tree.search;
       this.treeData = tree.treeData;

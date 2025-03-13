@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronRight, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -14,6 +14,12 @@ import { REGISTRY } from '../../static/docs';
   standalone: false,
 })
 export class DocsComponent implements OnInit {
+  readonly configService = inject(ConfigService);
+  readonly activatedRoute = inject(ActivatedRoute);
+  readonly docsService = inject(DocsService);
+  readonly ga = inject(GoogleAnalyticsService);
+  private readonly router = inject(Router);
+
   window = window;
   faPhone = faPhone;
   faEnvelope = faEnvelope;
@@ -25,13 +31,7 @@ export class DocsComponent implements OnInit {
   copyrightYear = new Date().getFullYear();
   masterSheetLink!: string;
 
-  constructor(
-    public configService: ConfigService,
-    private readonly router: Router,
-    public activatedRoute: ActivatedRoute,
-    public docsService: DocsService,
-    public ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
     this.configService.config$.subscribe((config) => {
       this.masterSheetLink = config['masterSheetLink'] as string;
     });

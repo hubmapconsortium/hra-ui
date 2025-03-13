@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -31,6 +31,8 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
   standalone: false,
 })
 export class BlockSizeInputComponent {
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-block-size-input';
 
@@ -43,13 +45,6 @@ export class BlockSizeInputComponent {
    * Emitter for values
    */
   @Output() readonly blockSizeChange = new EventEmitter<BlockSize>();
-
-  /**
-   * Creates an instance of block size input component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
 
   /**
    * Updates values when an input changes

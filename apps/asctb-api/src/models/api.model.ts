@@ -1,7 +1,9 @@
-/* tslint:disable:variable-name */
+/** Metadata delimiter */
 export const DELIMETER = ';';
+/** Metadata title row index */
 export const TITLE_ROW_INDEX = 0;
 
+/** Metadta fields */
 export const metadataArrayFields = [
   'author_names',
   'author_orcids',
@@ -9,6 +11,7 @@ export const metadataArrayFields = [
   'reviewer_orcids',
   'general_publications',
 ];
+/** Metadata name map */
 export const metadataNameMap: Record<string, string> = {
   'Author Name(s):': 'author_names',
   'Author ORCID(s):': 'author_orcids',
@@ -19,6 +22,7 @@ export const metadataNameMap: Record<string, string> = {
   'Date:': 'date',
   'Version Number:': 'version',
 };
+/** Biomarker types */
 export enum BM_TYPE {
   G = 'gene',
   P = 'protein',
@@ -27,7 +31,8 @@ export enum BM_TYPE {
   BF = 'proteoforms',
 }
 
-export const OMAP_ORGAN: Record<string, Structure> = {
+/** Omap organ mapping */
+export const OMAP_ORGAN = {
   'https://doi.org/10.48539/HBM467.LRKZ.884': {
     name: 'skin',
     rdfs_label: 'skin of body',
@@ -91,8 +96,9 @@ export const OMAP_ORGAN: Record<string, Structure> = {
     setBiomarkerProperties: undefined,
     isValid: undefined,
   },
-};
+} as unknown as Record<string, Structure>;
 
+/** Protein presence options */
 export enum PROTEIN_PRESENCE {
   POS = 'Positive',
   NEG = 'Negative',
@@ -100,10 +106,14 @@ export enum PROTEIN_PRESENCE {
   INTERMEDIATE = 'Intermediate',
 }
 
+/** Asct header first column */
 export const ASCT_HEADER_FIRST_COLUMN = 'AS/1';
+/** Legacy omap header first column */
 export const LEGACY_OMAP_HEADER_FIRST_COLUMN = 'uniprot_accession_number';
+/** Omap header first columnc */
 export const OMAP_HEADER_FIRST_COLUMN = 'omap_id';
 
+/** Array name mapping */
 export const arrayNameMap: Record<string, arrayNameType> = {
   AS: 'anatomical_structures',
   CT: 'cell_types',
@@ -121,6 +131,7 @@ export const arrayNameMap: Record<string, arrayNameType> = {
   BF: 'biomarkers_prot',
 };
 
+/** Array name types */
 export type arrayNameType =
   | 'anatomical_structures'
   | 'cell_types'
@@ -132,6 +143,7 @@ export type arrayNameType =
   | 'biomarkers_prot'
   | 'references';
 
+/** Object field mapping */
 export const objectFieldMap: Record<string, string> = {
   ID: 'id',
   LABEL: 'rdfs_label',
@@ -140,6 +152,13 @@ export const objectFieldMap: Record<string, string> = {
   NOTE: 'notes',
 };
 
+/**
+ * Creates a named object
+ *
+ * @param name Name
+ * @param structureType Structure type
+ * @returns A `Reference` or `Structure`
+ */
 export function createObject(name: string, structureType: string): Structure | Reference {
   switch (structureType) {
     case 'REF':
@@ -150,33 +169,57 @@ export function createObject(name: string, structureType: string): Structure | R
   }
 }
 
+/** Reference object */
 export class Reference {
+  /** Id */
   id?: string;
+  /** Doi */
   doi?: string;
+  /** Additional notes */
   notes?: string;
 
+  /** Initializes the class */
   constructor(id: string) {
     this.id = id;
   }
 
+  /**
+   * Checks whether the state of this object is valid
+   *
+   * @returns true if this is valid, false otherwise
+   */
   isValid(): boolean {
     return !!this.id || !!this.doi || !!this.notes;
   }
 }
 
+/** Structure */
 export class Structure {
-  name?: string;
-  id?: string = '';
-  rdfs_label?: string = '';
+  /** Name */
+  name: string;
+  /** Id */
+  id = '';
+  /** Rdfs label */
+  rdfs_label = '';
+  /** Biomarker type */
   b_type?: BM_TYPE;
+  /** Protein presence */
   proteinPresence?: PROTEIN_PRESENCE;
+  /** Additional notes */
   notes?: string;
 
+  /** Initializes the class */
   constructor(name: string, structureType: string) {
     this.name = name;
     this.setBiomarkerProperties(structureType, name);
   }
 
+  /**
+   * Updates this with a new name and biomarker type
+   *
+   * @param structureType Biomarker type
+   * @param name Name
+   */
   setBiomarkerProperties(structureType: string, name: string): void {
     if (structureType === 'BGENE' || structureType === 'BG') {
       this.b_type = BM_TYPE.G;
@@ -212,25 +255,47 @@ export class Structure {
     }
   }
 
+  /**
+   * Checks if this object is in a valid state
+   *
+   * @returns true if this is valid, false otherwise
+   */
   isValid(): boolean {
     return !!this.id || !!this.name || !!this.rdfs_label;
   }
 }
 
+/** Row */
 export class Row {
+  /** Anatomical structures */
   anatomical_structures: Array<Structure> = [];
+  /** Cell types */
   cell_types: Array<Structure> = [];
+  /** All biomarkers */
   biomarkers: Array<Structure> = [];
+  /** Protein biomarkers */
   biomarkers_protein: Array<Structure> = [];
+  /** Gene biomarkers */
   biomarkers_gene: Array<Structure> = [];
+  /** Lipid biomarkers */
   biomarkers_lipids: Array<Structure> = [];
+  /** Meta biomarkers */
   biomarkers_meta: Array<Structure> = [];
+  /** Prot biomarkers */
   biomarkers_prot: Array<Structure> = [];
+  /** Ftu types */
   ftu_types: Array<Structure> = [];
+  /** References */
   references: Reference[] = [];
 
+  /**
+   * Initializes the row
+   *
+   * @param rowNumber Row number
+   */
   constructor(public rowNumber: number) {}
 
+  /** Removes all invalid structures and combines all biomarkers */
   finalize(): void {
     this.anatomical_structures = this.anatomical_structures.filter((s) => s.isValid());
     this.cell_types = this.cell_types.filter((s) => s.isValid());
@@ -254,11 +319,13 @@ export class Row {
 }
 
 // Copied interface out of @types/express-fileupload to avoid type casting failure
+/** Uploaded file information */
 export interface UploadedFile {
   /** file name */
   name: string;
   /** A function to move the file elsewhere on your server */
   mv(path: string, callback: (err: unknown) => void): void;
+  /** A function to move the file elsewhere on your server */
   mv(path: string): Promise<void>;
   /** Encoding type of the file */
   encoding: string;

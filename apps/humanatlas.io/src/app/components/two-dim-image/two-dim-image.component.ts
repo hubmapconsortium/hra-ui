@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FileDownloadService } from '../../services/file-download/file-download.service';
 import { OrganData } from './two-dim-image';
@@ -11,6 +11,9 @@ import { OrganData } from './two-dim-image';
   standalone: false,
 })
 export class TwoDimImageComponent {
+  private readonly dialog = inject(MatDialog);
+  private readonly downloader = inject(FileDownloadService);
+
   /** Title of the card */
   @Input() cardTitle = '';
 
@@ -19,12 +22,6 @@ export class TwoDimImageComponent {
 
   /** Flag to view tissue details in multiple rows */
   @Input() isMultirow = false;
-
-  /** Initializes MatDialog and FileDownloadService */
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly downloader: FileDownloadService,
-  ) {}
 
   /** Opens a modal with image when large screen size */
   openImageViewer(content: TemplateRef<unknown>): void {

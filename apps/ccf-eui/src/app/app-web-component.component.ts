@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Filter } from '@hra-api/ng-client';
-import { GlobalConfigState } from 'ccf-shared';
-import { BUILTIN_PARSERS, BaseWebComponent, GenericGlobalConfig } from 'ccf-shared/web-components';
+import { BUILTIN_PARSERS, BaseWebComponent } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
 
 function isNumber(value: unknown): value is number {
@@ -100,8 +99,8 @@ export class AppWebComponent extends BaseWebComponent {
 
   override initialized!: boolean;
 
-  constructor(configStore: GlobalConfigState<GenericGlobalConfig>, cdr: ChangeDetectorRef) {
-    super(configStore, cdr, {
+  constructor() {
+    super({
       initialDelay: 10,
 
       initialConfig: {

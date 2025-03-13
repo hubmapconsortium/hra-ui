@@ -497,5 +497,6 @@ export interface OrganInfo {
    */
   id?: string;
 
+  /** Number of results */
   numResults?: number;
 }

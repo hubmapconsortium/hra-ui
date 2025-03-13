@@ -1,19 +1,25 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { SpatialEntity } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { State } from '@ngxs/store';
 import { SpatialPlacementJsonLd, SpatialSceneNode } from 'ccf-body-ui';
 import { ALL_ORGANS, GlobalConfigState, GlobalsService, OrganInfo } from 'ccf-shared';
-import { EMPTY, Observable, from } from 'rxjs';
+import { EMPTY, from, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
-import { SpatialEntity } from '@hra-api/ng-client';
 import { environment } from '../../../../environments/environment';
 import { GlobalConfig } from '../../services/config/config';
 import { XYZTriplet } from '../model/model.state';
 
+/**
+ * Applies spatial placement transformations to a matrix.
+ * @param tx The matrix to apply transformations to.
+ * @param placement The spatial placement data.
+ * @returns The transformed matrix.
+ */
 export function applySpatialPlacement(tx: Matrix4, placement: Immutable<SpatialPlacementJsonLd>): Matrix4 {
   const p = placement;
   let factor: number;
@@ -48,19 +54,31 @@ export interface ExtractionSet {
   extractionSites: SpatialEntity[];
 }
 
+/** State model for reference data. */
 export interface ReferenceDataStateModel {
+  /** Record for looking up organ iri by a string */
   organIRILookup: { [lookup: string]: string };
+  /** Look up spatial entities by iri */
   organSpatialEntities: { [iri: string]: SpatialEntity };
+  /** Look up spatial entities by iri */
   anatomicalStructures: { [iri: string]: SpatialEntity[] };
+  /** Lookup extraction set by iri */
   extractionSets: { [iri: string]: ExtractionSet[] };
+  /** Lookup spatial scene node by iri */
   sceneNodeLookup: { [iri: string]: SpatialSceneNode };
+  /** Lookup simple spatial scene node by iri */
   simpleSceneNodeLookup: { [iri: string]: SpatialSceneNode };
+  /** Lookup spatial placement JSON-LD object by iri */
   placementPatches: { [iri: string]: SpatialPlacementJsonLd };
 }
 
+/** Organ data including organ information, sex, and side. */
 export interface OrganData {
+  /** Organ info */
   organ: OrganInfo;
+  /** Sex of organ */
   sex?: 'male' | 'female';
+  /** Side of organ */
   side?: 'left' | 'right';
 }
 
@@ -82,12 +100,8 @@ export interface OrganData {
 })
 @Injectable()
 export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDataStateModel> {
-  constructor(
-    private readonly globals: GlobalsService,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
+  private readonly globals = inject(GlobalsService);
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
   /**
    * Initializes this state service.
@@ -105,6 +119,10 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     });
   }
 
+  /**
+   * Fetches the source database.
+   * @returns An observable of the reference data state model.
+   */
   private getSourceDB(): Observable<ReferenceDataStateModel> {
     return this.globalConfig.getOption<string>('referenceData').pipe(
       switchMap((url) =>
@@ -116,6 +134,11 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     );
   }
 
+  /**
+   * Normalizes the spatial placement data.
+   * @param place The spatial placement data.
+   * @returns The normalized spatial placement data.
+   */
   normalizePlacement(place: SpatialPlacementJsonLd): SpatialPlacementJsonLd {
     const db = this.snapshot;
     const patchPlacement = db.placementPatches[place?.target];
@@ -191,6 +214,11 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     };
   }
 
+  /**
+   * Gets the most recent IRI for an organ.
+   * @param organ The organ name.
+   * @returns IRI
+   */
   private getLatestIri(organ?: string): string {
     if (!organ) {
       return '';

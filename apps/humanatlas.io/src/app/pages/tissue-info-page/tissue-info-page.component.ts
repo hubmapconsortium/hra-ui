@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TissueTableInfo } from '../../components/tissue-info-table/tissue-info-table';
 import { descriptionData, tissueData } from './tissue-info-page.content';
@@ -21,7 +21,8 @@ export class TissueInfoPageComponent {
   readonly data: TissueTableInfo;
 
   /** Sets data from content.ts into TissueTableInfo data */
-  constructor(route: ActivatedRoute) {
+  constructor() {
+    const route = inject(ActivatedRoute);
     this.data = route.snapshot.data['content'];
   }
 }

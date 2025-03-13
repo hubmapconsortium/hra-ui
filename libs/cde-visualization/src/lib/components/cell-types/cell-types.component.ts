@@ -26,6 +26,7 @@ import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { map } from 'rxjs';
+
 import { CellTypeEntry } from '../../models/cell-type';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
@@ -64,6 +65,7 @@ export class CellTypesComponent {
   /** Currently selected cell type */
   readonly selectedCellType = input<string>('');
 
+  /** Record of adjustments for cell type counts */
   readonly countAdjustments = input<Record<string, { count: number; outgoingEdgeCount: number }>>({});
 
   /** Output event for download colormap action */
@@ -163,6 +165,7 @@ export class CellTypesComponent {
     return this.cellTypes().reduce((count, entry) => this.sumCounts(count, entry, 'count'), 0);
   });
 
+  /** The total cell links count */
   protected totalCellLinksCount = computed(() => {
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
@@ -185,6 +188,7 @@ export class CellTypesComponent {
     return `${action} ${where}`;
   }
 
+  /** Obtains count from a cell type entry after adjustments */
   getCount(obj: CellTypeEntry, key: 'count' | 'outgoingEdgeCount'): string {
     const adjustment = this.countAdjustments()[obj.name]?.[key] ?? 0;
     const count = obj[key] - adjustment;
@@ -229,6 +233,7 @@ export class CellTypesComponent {
     }
   }
 
+  /** Hides/shows cell link data */
   toggleLinksColumn(): void {
     this.hideCellLinkData.set(!this.hideCellLinkData());
   }

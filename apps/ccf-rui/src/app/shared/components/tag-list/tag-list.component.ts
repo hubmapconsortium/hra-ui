@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { Tag } from '../../../core/models/anatomical-structure-tag';
@@ -14,6 +14,9 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
   standalone: false,
 })
 export class TagListComponent {
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-list';
 
@@ -33,13 +36,6 @@ export class TagListComponent {
   @Output() readonly tagsChange = new EventEmitter<Tag[]>();
 
   /**
-   * Creates an instance of tag list component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
-
-  /**
    * Gets the unique identifier for a tag
    *
    * @param _index Unused
@@ -50,6 +46,12 @@ export class TagListComponent {
     return tag.id;
   }
 
+  /**
+   * Get the css classes that should be applied to a tag chip
+   *
+   * @param tag Tag data
+   * @returns Classes to apply
+   */
   tagClasses(tag: Tag): string[] {
     return tag.type === 'added' ? ['added'] : ['assigned'];
   }

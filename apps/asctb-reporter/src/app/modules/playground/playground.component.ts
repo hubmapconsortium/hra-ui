@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { UntypedFormControl, ValidatorFn, Validators } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Select, Store } from '@ngxs/store';
@@ -17,6 +17,9 @@ import { SheetState } from '../../store/sheet.state';
   standalone: false,
 })
 export class PlaygroundComponent implements AfterViewInit {
+  readonly store = inject(Store);
+  readonly ga = inject(GoogleAnalyticsService);
+
   @ViewChild('spreadsheet') spreadsheet!: ElementRef;
 
   @Select(SheetState.getParsedData) data$!: Observable<string[][]>;
@@ -53,10 +56,7 @@ export class PlaygroundComponent implements AfterViewInit {
     ]) as ValidatorFn,
   ]);
 
-  constructor(
-    public readonly store: Store,
-    public readonly ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
     this.sheet$.subscribe((sheet) => {
       this.currentSheet = sheet;
     });

@@ -3,7 +3,6 @@ import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
-import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator } from '@storybook/angular';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -35,7 +34,7 @@ export const decorators = [
         MarkdownModule.forRoot({
           loader: HttpClient,
         }),
-        ThemingModule
+        ThemingModule,
       ),
     ],
   }),
@@ -43,12 +42,7 @@ export const decorators = [
     (story) => `
       <div class="mat-typography">${story}</div>
       <div class="backdrop-filler" style="position: absolute; inset: 0; z-index: -1;"></div>
-    `
+    `,
   ),
   addState(),
 ];
-
-export function setDocs(library: string): void {
-  const docs = require(`../dist/compodoc/${library}/documentation.json`);
-  setCompodocJson(docs);
-}

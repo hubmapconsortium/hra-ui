@@ -1,6 +1,6 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { iif, patch } from '@ngxs/store/operators';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
@@ -15,10 +15,15 @@ import { RegistrationState } from '../registration/registration.state';
 
 /** A record with information about a single person */
 export interface Person {
+  /** First name */
   firstName: string;
+  /** Middle name */
   middleName?: string;
+  /** Last name */
   lastName: string;
+  /** Email */
   email?: string;
+  /** Orcid id */
   orcidId?: string;
 }
 
@@ -28,11 +33,17 @@ export interface PageStateModel {
   user: Person;
   /** Whether or not the initial registration modal has been closed */
   registrationStarted: boolean;
+  /** Whether to use the registration callback */
   useCancelRegistrationCallback: boolean;
+  /** Whether to the registration callback is set */
   registrationCallbackSet: boolean;
+  /** Whether to skip confirmation */
   skipConfirmation: boolean;
+  /** If there are any changes */
   hasChanges: boolean;
+  /** Organ options */
   organOptions?: OrganInfo[];
+  /** Whether the orcid is valid */
   orcidValid: boolean;
 }
 
@@ -58,20 +69,31 @@ export interface PageStateModel {
 })
 @Injectable()
 export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
+  /** Global config */
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+  /** Registration state */
+  private readonly reg = inject(RegistrationState);
+
   /** Active user observable */
   readonly user$ = this.state$.pipe(map((x) => x?.user));
   /** registrationStarted observable */
   readonly registrationStarted$ = this.state$.pipe(pluckUnique('registrationStarted'));
+  /** Whether to use the registration callback */
   readonly useCancelRegistrationCallback$ = this.state$.pipe(map((x) => x?.useCancelRegistrationCallback));
+  /** Whether to the registration callback is set */
   readonly registrationCallbackSet$ = this.state$.pipe(map((x) => x?.registrationCallbackSet));
+  /** Organ options */
   readonly organOptions$ = this.state$.pipe(map((x) => x?.organOptions));
+  /** Whether the orcid is valid */
   readonly orcidValid$ = this.state$.pipe(map((x) => x?.orcidValid));
 
+  /** Whether to skip confirmation */
   @Computed()
   get skipConfirmation$(): Observable<boolean> {
     return this.state$.pipe(pluckUnique('skipConfirmation'));
   }
 
+  /** Whether to skip confirmation */
   @Computed()
   get globalSkipConfirmation$(): Observable<boolean> {
     return this.globalConfig.getOption('skipUnsavedChangesConfirmation').pipe(
@@ -80,21 +102,10 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     );
   }
 
+  /** If there are any changes */
   @Computed()
   get hasChanges$(): Observable<boolean> {
     return this.state$.pipe(pluckUnique('hasChanges'));
-  }
-
-  /**
-   * Creates an instance of page state.
-   *
-   * @param globalConfig The global configuration
-   */
-  constructor(
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-    private readonly reg: RegistrationState,
-  ) {
-    super();
   }
 
   /**
@@ -121,6 +132,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     this.initSkipConfirmationListeners();
   }
 
+  /** Cancel registration */
   cancelRegistration(): void {
     const {
       globalConfig: {
@@ -137,6 +149,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     }
   }
 
+  /** Set whether to use cancel registration */
   @DataAction()
   setUseCancelRegistrationCallback(use: boolean): void {
     this.ctx.patchState({ useCancelRegistrationCallback: use });
@@ -177,6 +190,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     );
   }
 
+  /** Set the user email */
   @DataAction()
   setEmail(email?: string): void {
     this.ctx.setState(
@@ -200,6 +214,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     );
   }
 
+  /** Mark that there are unsaved changes */
   @DataAction()
   setHasChanges(): void {
     const {
@@ -212,6 +227,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     }
   }
 
+  /** Clears unsaved changes */
   @DataAction()
   clearHasChanges(): void {
     this.ctx.patchState({
@@ -219,6 +235,7 @@ export class PageState extends NgxsImmutableDataRepository<PageStateModel> {
     });
   }
 
+  /** Add confirmation listeners */
   private initSkipConfirmationListeners(): void {
     const updateSkipConfirmation = (skipConfirmation: boolean) => this.patchState({ skipConfirmation });
 

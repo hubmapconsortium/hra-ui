@@ -8,50 +8,26 @@
   "sourceRoot": "apps/asctb-reporter/src",
   "prefix": "app",
   "tags": ["type:app", "project:asctb"],
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    }
-  },
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:application",
       "options": {
-        "outputPath": "dist/apps/asctb-reporter",
-        "index": "apps/asctb-reporter/src/index.html",
-        "main": "apps/asctb-reporter/src/main.ts",
-        "polyfills": "apps/asctb-reporter/src/polyfills.ts",
-        "tsConfig": "apps/asctb-reporter/tsconfig.app.json",
         "assets": [
           "apps/asctb-reporter/src/favicon.png",
           "apps/asctb-reporter/src/assets",
           "apps/asctb-reporter/src/_redirects"
         ],
-        "styles": ["apps/asctb-reporter/src/styles.scss"],
-        "scripts": ["./node_modules/marked/marked.min.js"],
-        "vendorChunk": true,
-        "extractLicenses": false,
-        "buildOptimizer": false,
-        "sourceMap": true,
-        "optimization": false,
-        "namedChunks": true
+        "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
+        "scripts": ["./node_modules/marked/marked.min.js"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/asctb-reporter/",
           "fileReplacements": [
             {
               "replace": "apps/asctb-reporter/src/environments/environment.ts",
               "with": "apps/asctb-reporter/src/environments/environment.prod.ts"
             }
           ],
-          "optimization": true,
-          "outputHashing": "none",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
           "budgets": [
             {
               "type": "initial",
@@ -66,95 +42,17 @@
           ]
         },
         "staging": {
-          "baseHref": "/ui--staging/asctb-reporter/",
           "fileReplacements": [
             {
               "replace": "apps/asctb-reporter/src/environments/environment.ts",
               "with": "apps/asctb-reporter/src/environments/environment.stage.ts"
             }
-          ],
-          "optimization": true,
-          "outputHashing": "none",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
           ]
-        },
-        "preview": {
-          "baseHref": "/apps/asctb-reporter/",
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
-      },
-      "defaultConfiguration": ""
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "browserTarget": "asctb-reporter:build"
-      },
-      "configurations": {
-        "production": {
-          "browserTarget": "asctb-reporter:build:production"
-        },
-        "staging": {
-          "browserTarget": "asctb-reporter:build:staging"
-        }
-      }
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "asctb-reporter:build"
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/asctb-reporter/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
-      }
-    },
-    "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc",
-      "options": {
-        "tsConfig": "apps/asctb-reporter/tsconfig.json",
-        "outputPath": "dist/compodoc/asctb-reporter"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
-      }
+      "executor": "@nx/angular:dev-server"
     }
   }
 }
