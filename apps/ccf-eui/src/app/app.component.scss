@@ -1,18 +1,18 @@
 :host {
   .sidenav-content {
-    --mat-sidenav-container-background-color: var(--sys-surface-container-low);
+    --mat-sidenav-container-background-color: var(--mat-sys-surface-container-low);
     width: fit-content;
 
     .sidenav-header {
       display: flex;
       align-items: center;
-      font: var(--sys-title-medium);
+      font: var(--mat-sys-title-medium);
       height: 4.5rem;
       padding: 0 1rem 0 1.5rem;
 
       .sidenav-title {
         vertical-align: text-bottom;
-        color: var(--sys-secondary);
+        color: var(--mat-sys-secondary);
       }
     }
 
@@ -23,16 +23,16 @@
 
   .left-panel,
   hra-nav-header-buttons {
-    border-right: 1px solid var(--sys-outline-variant);
+    border-right: 1px solid var(--mat-sys-outline-variant);
   }
 
   hra-nav-header-buttons,
   .vis-panel {
-    border-bottom: 1px solid var(--sys-outline-variant);
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
   }
 
   .right-panel {
-    border-left: 1px solid var(--sys-outline-variant);
+    border-left: 1px solid var(--mat-sys-outline-variant);
   }
 
   .page-content {
@@ -45,7 +45,7 @@
       'header vis-panel right'
       'left content right';
 
-    background-color: var(--sys-surface-container-low);
+    background-color: var(--mat-sys-surface-container-low);
   }
 
   &.embedded .page-content {
@@ -61,7 +61,7 @@
   }
 
   mat-progress-bar {
-    --mdc-linear-progress-active-indicator-color: var(--sys-tertiary);
+    --mdc-linear-progress-active-indicator-color: var(--mat-sys-tertiary);
     --mdc-linear-progress-track-color: transparent;
     grid-area: progress;
   }
@@ -96,8 +96,8 @@
     }
 
     .logos-text .app-label {
-      font: var(--sys-title-medium) !important;
-      letter-spacing: var(--sys-title-medium-tracking) !important;
+      font: var(--mat-sys-title-medium) !important;
+      letter-spacing: var(--mat-sys-title-medium-tracking) !important;
     }
   }
 
@@ -127,12 +127,12 @@
       margin-top: 0.5rem;
 
       .filter-button-label {
-        font: var(--sys-label-large);
+        font: var(--mat-sys-label-large);
       }
 
       .filter-text {
-        font: var(--sys-label-small);
-        color: var(--sys-primary);
+        font: var(--mat-sys-label-small);
+        color: var(--mat-sys-primary);
       }
     }
 
@@ -155,8 +155,12 @@
     }
 
     mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+      --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
       width: 100%;
+
+      mat-button-toggle {
+        flex-grow: 1;
+      }
     }
 
     .ontologies {
@@ -171,8 +175,8 @@
     }
 
     .no-selection-notice {
-      font: var(--sys-label-medium);
-      color: var(--sys-secondary);
+      font: var(--mat-sys-label-medium);
+      color: var(--mat-sys-secondary);
       padding: 0 1rem;
     }
   }
@@ -193,6 +197,6 @@
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-  --mdc-snackbar-container-color: var(--sys-surface-dim);
-  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+  --mdc-snackbar-container-color: var(--mat-sys-surface-dim);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-secondary);
 }

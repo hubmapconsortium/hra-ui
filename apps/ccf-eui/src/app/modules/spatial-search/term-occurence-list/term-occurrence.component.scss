@@ -16,20 +16,20 @@
     }
 
     .header {
-      font: var(--sys-label-medium);
+      font: var(--mat-sys-label-medium);
     }
   }
 
   .total-count,
   .term-bloc {
-    font: var(--sys-label-small);
-    letter-spacing: var(--sys-label-small-tracking);
+    font: var(--mat-sys-label-small);
+    letter-spacing: var(--mat-sys-label-small-tracking);
     margin-right: 1rem;
   }
 
   .term-list {
     height: 100%;
-    --_hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+    --_hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
   }
 
   ::ng-deep ng-scrollbar {
@@ -44,11 +44,11 @@
     justify-content: space-between;
     margin-left: 0.5rem;
     height: 1.5rem;
-    color: var(--sys-secondary);
+    color: var(--mat-sys-secondary);
     align-items: center;
 
     .count {
-      color: var(--sys-primary);
+      color: var(--mat-sys-primary);
     }
   }
 }

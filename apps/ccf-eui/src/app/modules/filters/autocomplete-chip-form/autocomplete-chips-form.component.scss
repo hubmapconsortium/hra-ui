@@ -1,6 +1,6 @@
 :host {
-  --mdc-filled-text-field-container-color: var(--sys-surface-container);
-  --mdc-filled-text-field-label-text-color: var(--sys-on-primary-fixed);
+  --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-on-primary-fixed);
   --mat-form-field-container-height: 3rem;
   --mat-form-field-filled-with-label-container-padding-top: 1rem;
   --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
@@ -9,8 +9,8 @@
     transform: translateY(-100%);
 
     mat-label {
-      font: var(--sys-label-small) !important;
-      letter-spacing: var(--sys-label-small-tracking);
+      font: var(--mat-sys-label-small) !important;
+      letter-spacing: var(--mat-sys-label-small-tracking);
     }
   }
 
@@ -24,8 +24,8 @@
 
   mat-form-field,
   mat-label {
-    color: var(--sys-on-primary-fixed);
-    font: var(--sys-label-medium);
+    color: var(--mat-sys-on-primary-fixed);
+    font: var(--mat-sys-label-medium);
   }
 
   .visible {
@@ -56,7 +56,7 @@
   }
 
   mat-error {
-    font: var(--sys-label-small);
+    font: var(--mat-sys-label-small);
     margin-left: 1rem;
   }
 
@@ -66,16 +66,16 @@
   }
 
   .error {
-    --mdc-filled-text-field-focus-active-indicator-color: var(--sys-error);
+    --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-error);
 
     mat-label {
-      color: var(--sys-error);
+      color: var(--mat-sys-error);
     }
   }
 }
 
 ::ng-deep .mat-mdc-autocomplete-panel {
-  --mat-autocomplete-background-color: var(--sys-surface-container-low);
+  --mat-autocomplete-background-color: var(--mat-sys-surface-container-low);
   overflow: hidden !important;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@
 
   mat-option {
     flex-grow: 1;
-    font: var(--sys-label-medium);
+    font: var(--mat-sys-label-medium);
   }
 
   .autocomplete-option {

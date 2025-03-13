@@ -1,15 +1,15 @@
 :host {
-  --hra-scroll-overflow-fade-color: var(--sys-surface-container-low);
+  --hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
 
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-top: 1px solid var(--sys-outline-variant);
-  color: var(--sys-secondary);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  color: var(--mat-sys-secondary);
 
   .header {
     display: flex;
-    font: var(--sys-label-medium);
+    font: var(--mat-sys-label-medium);
     min-height: 2.5rem;
     align-items: center;
     padding: 0 1rem;
@@ -17,16 +17,16 @@
     .header-num-results {
       display: flex;
       gap: 0.25rem;
-      font: var(--sys-label-small);
+      font: var(--mat-sys-label-small);
     }
   }
 
   .num-results {
-    color: var(--sys-primary);
+    color: var(--mat-sys-primary);
   }
 
   mat-tree {
-    --mat-tree-container-background-color: var(--sys-surface-container-low);
+    --mat-tree-container-background-color: var(--mat-sys-surface-container-low);
     padding-left: 0.75rem;
   }
 
@@ -52,7 +52,7 @@
   }
 
   .biomarkers-toggle {
-    --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
+    --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
     display: flex;
     align-items: center;
     min-height: 2.25rem;

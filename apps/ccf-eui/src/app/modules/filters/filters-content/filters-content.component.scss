@@ -5,7 +5,7 @@
     'form'
     'buttons';
 
-  --mdc-filled-text-field-container-color: var(--sys-surface-container);
+  --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
 
   form {
     grid-area: form;
@@ -32,8 +32,8 @@
     }
 
     .section-title {
-      font: var(--sys-label-large);
-      color: var(--sys-secondary);
+      font: var(--mat-sys-label-large);
+      color: var(--mat-sys-secondary);
     }
   }
 
@@ -51,9 +51,9 @@
       transform: translateY(-100%);
 
       mat-label {
-        font: var(--sys-label-small);
-        letter-spacing: var(--sys-label-small-tracking);
-        color: var(--sys-primary-fixed);
+        font: var(--mat-sys-label-small);
+        letter-spacing: var(--mat-sys-label-small-tracking);
+        color: var(--mat-sys-primary-fixed);
       }
     }
   }
@@ -74,7 +74,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--sys-outline-variant);
+    border-top: 1px solid var(--mat-sys-outline-variant);
 
     button {
       line-height: normal;
@@ -83,12 +83,12 @@
 }
 
 .dropdown-option {
-  --mdc-list-list-item-label-text-color: var(--sys-primary) !important;
-  font: var(--sys-label-medium) !important;
+  --mdc-list-list-item-label-text-color: var(--mat-sys-primary) !important;
+  font: var(--mat-sys-label-medium) !important;
   min-height: 3rem !important;
   outline: none !important;
 
   &.mdc-list-item--selected {
-    background-color: rgb(from var(--sys-tertiary) r g b / 0.2) !important;
+    background-color: rgb(from var(--mat-sys-tertiary) r g b / 0.2) !important;
   }
 }

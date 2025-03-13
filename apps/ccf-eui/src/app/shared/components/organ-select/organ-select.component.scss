@@ -1,8 +1,8 @@
 :host {
   .organ-form-field {
     width: 100%;
-    --mdc-filled-text-field-container-color: var(--sys-surface-container);
-    --mdc-filled-text-field-label-text-color: var(--sys-on-primary-fixed);
+    --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
+    --mdc-filled-text-field-label-text-color: var(--mat-sys-on-primary-fixed);
     --mat-form-field-container-height: 3rem;
     --mat-form-field-filled-with-label-container-padding-top: 1rem;
     --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
@@ -10,17 +10,17 @@
 
   mat-form-field,
   mat-label {
-    color: var(--sys-on-primary-fixed);
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
+    color: var(--mat-sys-on-primary-fixed);
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
   }
 
   ::ng-deep .mdc-floating-label--float-above {
     transform: translateY(-100%) !important;
 
     mat-label {
-      font: var(--sys-label-small) !important;
-      letter-spacing: var(--sys-label-small-tracking);
+      font: var(--mat-sys-label-small) !important;
+      letter-spacing: var(--mat-sys-label-small-tracking);
     }
   }
 
@@ -37,5 +37,5 @@
 }
 
 .organ-list {
-  border-top: 1px solid var(--sys-outline-variant);
+  border-top: 1px solid var(--mat-sys-outline-variant);
 }
