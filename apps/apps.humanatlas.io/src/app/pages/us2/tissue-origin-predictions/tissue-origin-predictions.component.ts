@@ -26,6 +26,7 @@ import {
   TissueOriginService,
   UserSelectionService,
 } from '../services/tissue-origin.service';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /** Script URL for EUI */
 const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
@@ -133,6 +134,9 @@ export class TissueOriginPredictionsComponent {
     },
   ];
 
+  /** Snackbar service */
+  protected readonly snackbar = inject(SnackbarService);
+
   /**
    * Constructor that initializes the component and sets up effects for predictions and sorting
    */
@@ -166,6 +170,7 @@ export class TissueOriginPredictionsComponent {
     const csvString = this.convertToCSV(type);
     const fileToSave = new Blob([csvString], { type: 'text/csv' });
     saveAs(fileToSave, `${type}.csv`);
+    this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 
   /** Utility function to convert table data to CSV string */
