@@ -14,9 +14,6 @@ export * from './lib/components/store-debug/store-debug.component';
 export * from './lib/components/text-search/text-search.module';
 export * from './lib/components/text-search/text-search.component';
 
-export * from './lib/components/organ-selector/organ-selector.module';
-export * from './lib/components/organ-selector/organ-selector.component';
-
 export * from './lib/components/opacity-slider/opacity-slider.module';
 export * from './lib/components/opacity-slider/opacity-slider.component';
 
@@ -53,6 +50,8 @@ export * from './lib/states/call-to-action/call-to-action.state';
 export * as CallToActionAction from './lib/states/call-to-action/call-to-action.actions';
 
 export * from './lib/services/local-storage/local-storage.service';
+
+export * from './lib/services/organ-info/organ-info.service';
 
 export * from './lib/components/spatial-search-list/spatial-search-list.component';
 
