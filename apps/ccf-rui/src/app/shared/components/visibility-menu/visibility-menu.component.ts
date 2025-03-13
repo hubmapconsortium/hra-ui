@@ -138,6 +138,10 @@ export class VisibilityMenuComponent {
     return item.id;
   }
 
+  /**
+   * Closes slider container
+   * @param event
+   */
   closeSlider(event: Event): void {
     if (this.selection && event.target instanceof Node) {
       if (!this.el.nativeElement.contains(event.target)) {
