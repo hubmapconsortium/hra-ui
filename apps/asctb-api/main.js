@@ -1,532 +1,157 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
-/* 0 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.app = void 0;
-const tslib_1 = __webpack_require__(1);
-const cors_1 = tslib_1.__importDefault(__webpack_require__(2));
-const express_1 = tslib_1.__importDefault(__webpack_require__(3));
-const express_fileupload_1 = tslib_1.__importDefault(__webpack_require__(4));
-const path_1 = tslib_1.__importDefault(__webpack_require__(5));
-const csv_1 = __webpack_require__(6);
-const google_sheet_1 = __webpack_require__(23);
-const ontology_lookup_1 = __webpack_require__(25);
-const open_api_spec_1 = __webpack_require__(26);
-const playground_1 = __webpack_require__(27);
-const static_pages_1 = __webpack_require__(28);
-const route_caching_1 = __webpack_require__(29);
-exports.app = (0, express_1.default)();
-exports.app.use((0, cors_1.default)());
-exports.app.use(express_1.default.urlencoded({ extended: true }));
-exports.app.use(express_1.default.json());
-exports.app.use(express_1.default.static(path_1.default.join(__dirname, 'assets')));
-exports.app.use((0, express_fileupload_1.default)());
-exports.app.use((0, route_caching_1.routeCache)(12000));
-(0, csv_1.setupCSVRoutes)(exports.app);
-(0, playground_1.setupPlaygroundRoutes)(exports.app);
-(0, ontology_lookup_1.setupOntologyLookupRoutes)(exports.app);
-(0, google_sheet_1.setupGoogleSheetRoutes)(exports.app);
-(0, open_api_spec_1.setupOpenApiSpecRoutes)(exports.app);
-(0, static_pages_1.setupStaticPageRoutes)(exports.app);
-const port = process.env.PORT || 5000;
-const server = exports.app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
-});
-server.on('error', console.error);
-
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ ((module) => {
 
-module.exports = require("tslib");
+module.exports = require("@rdfjs-elements/formats-pretty");
 
-/***/ }),
-/* 2 */
-/***/ ((module) => {
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/create fake namespace object */
+/******/ 	(() => {
+/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
+/******/ 		var leafPrototypes;
+/******/ 		// create a fake namespace object
+/******/ 		// mode & 1: value is a module id, require it
+/******/ 		// mode & 2: merge all properties of value into the ns
+/******/ 		// mode & 4: return value when already ns object
+/******/ 		// mode & 16: return value when it's Promise-like
+/******/ 		// mode & 8|1: behave like require
+/******/ 		__webpack_require__.t = function(value, mode) {
+/******/ 			if(mode & 1) value = this(value);
+/******/ 			if(mode & 8) return value;
+/******/ 			if(typeof value === 'object' && value) {
+/******/ 				if((mode & 4) && value.__esModule) return value;
+/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
+/******/ 			}
+/******/ 			var ns = Object.create(null);
+/******/ 			__webpack_require__.r(ns);
+/******/ 			var def = {};
+/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
+/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
+/******/ 			}
+/******/ 			def['default'] = () => (value);
+/******/ 			__webpack_require__.d(ns, def);
+/******/ 			return ns;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
 
-module.exports = require("cors");
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  app: () => (/* binding */ app)
+});
 
-/***/ }),
-/* 3 */
-/***/ ((module) => {
-
-module.exports = require("express");
-
-/***/ }),
-/* 4 */
-/***/ ((module) => {
-
-module.exports = require("express-fileupload");
-
-/***/ }),
-/* 5 */
-/***/ ((module) => {
-
-module.exports = require("path");
-
-/***/ }),
-/* 6 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupCSVRoutes = setupCSVRoutes;
-const tslib_1 = __webpack_require__(1);
-const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
-const jsonld_1 = __webpack_require__(8);
-const papaparse_1 = tslib_1.__importDefault(__webpack_require__(9));
-const api_functions_1 = __webpack_require__(10);
-const graph_jsonld_functions_1 = __webpack_require__(16);
-const graph_owl_functions_1 = __webpack_require__(18);
-const graph_functions_1 = __webpack_require__(21);
-const validation_report_function_1 = __webpack_require__(22);
-function setupCSVRoutes(app) {
-    /**
-     * Fetch a CSV given a link and parse it into json or graph output
-     */
-    app.get('/v2/csv', async (req, res) => {
-        console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-        // query parameters
-        const csvUrls = req.query.csvUrl;
-        const expanded = req.query.expanded !== 'false';
-        const withSubclasses = req.query.subclasses !== 'false';
-        const output = req.query.output;
-        try {
-            const asctbDataResponses = await Promise.all(csvUrls.split('|').map(async (csvUrl) => {
-                const parsedUrl = (0, api_functions_1.normalizeCsvUrl)(csvUrl.trim());
-                const response = await axios_1.default.get(parsedUrl);
-                const { data } = papaparse_1.default.parse(response.data, {
-                    skipEmptyLines: 'greedy',
-                });
-                const asctbData = (0, api_functions_1.makeASCTBData)(data);
-                return {
-                    data: asctbData.data,
-                    metadata: asctbData.metadata,
-                    csv: response.data,
-                    parsed: data,
-                    warnings: asctbData.warnings,
-                    isOmap: asctbData.isOmap,
-                };
-            }));
-            const asctbData = asctbDataResponses
-                .map((response) => response.data)
-                .reduce((result, data) => {
-                result = result.concat(data);
-                return result;
-            }, []);
-            const asctbDataResponse = asctbDataResponses[0];
-            if (output === 'owl') {
-                const graphData = await (0, graph_owl_functions_1.makeOwlData)((0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses));
-                res.type('application/rdf+xml');
-                res.send(graphData);
-            }
-            else if (output === 'jsonld') {
-                let graphData = (0, graph_jsonld_functions_1.makeJsonLdData)((0, graph_functions_1.makeGraphData)(asctbData), withSubclasses);
-                if (expanded) {
-                    graphData = await (0, jsonld_1.expand)(graphData);
-                }
-                res.send(graphData);
-            }
-            else if (output === 'graph') {
-                const graphData = (0, graph_functions_1.makeGraphData)(asctbData);
-                res.send({
-                    data: graphData,
-                });
-            }
-            else if (output === 'validate') {
-                const reports = asctbDataResponses.map(validation_report_function_1.makeValidationReport);
-                res.type('text/plain');
-                res.send(reports[0]);
-            }
-            else {
-                // The default is returning the json
-                res.send({
-                    data: asctbData,
-                    metadata: asctbDataResponse.metadata,
-                    csv: asctbDataResponse.csv,
-                    parsed: asctbDataResponse.parsed,
-                    warnings: asctbDataResponse.warnings,
-                    isOmap: asctbDataResponse.isOmap ?? false,
-                });
-            }
-        }
-        catch (err) {
-            console.log(err);
-            res.status(500).send({
-                msg: 'Please provide a either a valid csv url or a valid public google sheet url. If you are uploading either of these methods, please check the CSV format',
-                code: 500,
-            });
-        }
-    });
-    /**
-     * Parse a CSV into JSON format given the raw file formData
-     */
-    app.post('/v2/csv', async (req, res) => {
-        console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-        if (!req.files || !req.files.csvFile) {
-            res.status(400).send({
-                msg: 'This route only accepts CSVs POSTed and called csvFile',
-                code: 400,
-            });
-            return;
-        }
-        const file = req.files.csvFile;
-        if (file.mimetype !== 'text/csv' || file.size > 10000000) {
-            res.status(400).send({
-                msg: 'File must be a CSV less than 10 MB.',
-                code: 400,
-            });
-            return;
-        }
-        const dataString = file.data.toString();
-        console.log('File uploaded: ', file.name);
-        try {
-            const { data } = papaparse_1.default.parse(dataString, {
-                skipEmptyLines: 'greedy',
-            });
-            const asctbData = (0, api_functions_1.makeASCTBData)(data);
-            res.send({
-                data: asctbData.data,
-                metadata: asctbData.metadata,
-                csv: dataString,
-                parsed: data,
-                warnings: asctbData.warnings,
-                isOmap: asctbData.isOmap,
-            });
-        }
-        catch (err) {
-            console.log(err);
-            res.status(500).send({
-                msg: 'Please check the CSV format',
-                code: 500,
-            });
-        }
-    });
-    app.get('/v2/csv/validate', async () => {
-        console.log();
-    });
-}
-
-
-/***/ }),
-/* 7 */
-/***/ ((module) => {
-
-module.exports = require("axios");
-
-/***/ }),
-/* 8 */
-/***/ ((module) => {
-
-module.exports = require("jsonld");
-
-/***/ }),
-/* 9 */
-/***/ ((module) => {
-
-module.exports = require("papaparse");
-
-/***/ }),
-/* 10 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.buildMetadata = void 0;
-exports.normalizeCsvUrl = normalizeCsvUrl;
-exports.findHeaderIndex = findHeaderIndex;
-exports.getHeaderRow = getHeaderRow;
-exports.makeASCTBData = makeASCTBData;
-exports.makeASCTBDataWork = makeASCTBDataWork;
-const api_model_1 = __webpack_require__(11);
-const warnings_1 = __webpack_require__(12);
-const lookup_functions_1 = __webpack_require__(13);
-const omap_functions_1 = __webpack_require__(15);
-function normalizeCsvUrl(url) {
-    if (url.startsWith('https://docs.google.com/spreadsheets/d/') && url.indexOf('export?format=csv') === -1) {
-        const splitUrl = url.split('/');
-        if (splitUrl.length === 7) {
-            const sheetId = splitUrl[5];
-            const gid = splitUrl[6].split('=')[1];
-            return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
-        }
-    }
-    return url;
-}
-function setData(column, _columnNumber, row, value, warnings) {
-    if (column.length > 1) {
-        const arrayName = api_model_1.arrayNameMap[column[0]];
-        const originalArrayName = column[0];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const objectArray = row[arrayName] || [];
-        if (!arrayName) {
-            warnings.add(`WARNING: unmapped array found ${originalArrayName} (Code ${warnings_1.WarningCode.UnmappedData})`);
-        }
-        if (column.length === 2) {
-            if (objectArray.length === 0 && arrayName) {
-                row[arrayName] = objectArray;
-            }
-            objectArray.push((0, api_model_1.createObject)(value, originalArrayName));
-        }
-        else if (column.length === 3 && arrayName) {
-            let arrayIndex = parseInt(column[1], 10) - 1;
-            const fieldName = api_model_1.objectFieldMap[column[2]]; // || (column[2]?.toLowerCase() ?? '').trim();
-            if (arrayIndex >= 0 && fieldName) {
-                if (arrayIndex >= objectArray.length) {
-                    warnings.add(`WARNING: blank cells likely found in column: ${column.join('/')}, row: ${row.rowNumber}`);
-                }
-                // FIXME: Temporarily deal with blank columns since so many tables are non-conformant
-                arrayIndex = objectArray.length - 1;
-                if (arrayIndex < objectArray.length) {
-                    if (fieldName === 'id') {
-                        value = (0, lookup_functions_1.fixOntologyId)(value);
-                    }
-                    if (objectArray[arrayIndex]) {
-                        objectArray[arrayIndex][fieldName] = value;
-                    }
-                    else {
-                        warnings.add(`WARNING: bad column: ${column.join('/')} (Code ${warnings_1.WarningCode.BadColumn})`);
-                    }
-                }
-            }
-        }
-    }
-}
-const invalidCharacterRegex = /_/gi;
-const isLinkRegex = /^http/gi;
-const codepointUppercaseA = 65;
-const alphabetLength = 26;
-function columnIndexToName(index) {
-    index = index + 1;
-    const name = [];
-    while (index) {
-        const mod = (index - 1) % alphabetLength;
-        index = Math.floor(Number((index - mod) / alphabetLength));
-        name.unshift(String.fromCharCode(codepointUppercaseA + Number(mod)));
-    }
-    return name.join('');
-}
-function validateDataCell(value, rowIndex, columnIndex, warnings) {
-    if (!isLinkRegex.test(value) && invalidCharacterRegex.test(value)) {
-        const colName = columnIndexToName(columnIndex);
-        warnings.add(`WARNING: Invalid characters in data cell at column: ${colName} row: ${rowIndex + 1} where data cell: ${value} (Code ${warnings_1.WarningCode.InvalidCharacter})`);
-    }
-}
-/*
- * buildMetadata - build metadata key value store
- * @param metadataRows = rows from metadata to be extracted
- * @param warnings = warnings generated during the process are pushed to this set
- * @returns = returns key value pairs of metadata
- */
-const buildMetadata = (metadataRows, warnings) => {
-    const [titleRow] = metadataRows.splice(api_model_1.TITLE_ROW_INDEX, 1);
-    const [title] = titleRow.slice(0, 1);
-    const result = {
-        title,
-    };
-    return metadataRows.reduce((metadata, rowData, rowNumber) => {
-        const [metadataIdentifier, metadataValue, ..._] = rowData;
-        /**
-         * Raise Warnings:
-         *    Case 1: IF the Metadata Key/Value is filled or empty
-         *    Case 2: IF the metadata key is not mapping with metadataNameMap
-         */
-        if (!metadataIdentifier) {
-            warnings.add(`WARNING: Metadata Key missing found at Row: ${rowNumber + 3} (Code ${warnings_1.WarningCode.UnmappedMetadata})`);
-            return metadata;
-        }
-        else if (!metadataValue) {
-            warnings.add(`WARNING: Metadata Value missing found at Row: ${rowNumber + 3} (Code ${warnings_1.WarningCode.UnmappedMetadata})`);
-        }
-        let metadataKey = api_model_1.metadataNameMap[metadataIdentifier];
-        if (!metadataKey) {
-            metadataKey = metadataIdentifier.toLowerCase();
-            warnings.add(`WARNING: unmapped metadata found ${metadataIdentifier} at Row: ${rowNumber + 3} (Code ${warnings_1.WarningCode.UnmappedMetadata})`);
-        }
-        if (api_model_1.metadataArrayFields.includes(metadataKey)) {
-            metadata[metadataKey] = metadataValue.split(api_model_1.DELIMETER).map((item) => item.trim());
-        }
-        else {
-            metadata[metadataKey] = metadataValue.trim();
-        }
-        return metadata;
-    }, result);
-};
-exports.buildMetadata = buildMetadata;
-function findHeaderIndex(headerRow, data, firstColumnName) {
-    for (let i = headerRow; i < data.length; i++) {
-        if (data[i][0] === firstColumnName) {
-            return i;
-        }
-    }
-    return headerRow;
-}
-function validateHeaderRow(headerData, rowIndex, warnings) {
-    let columnIndex = 0;
-    headerData.forEach((value) => {
-        /**
-         * Validate the Header of length 3: i.e after splitting header with ("/")
-         */
-        if (value.length === 3) {
-            const colName = columnIndexToName(columnIndex);
-            const invalidHeader = `WARNING: Invalid Header found at column: ${colName}, row: ${rowIndex} where Header Value: ${value.join('/')} (Code ${warnings_1.WarningCode.InvalidHeader})`;
-            const columnBlank = value.join('').trim().length === 0;
-            const col0Warnings = value[0].trim().length === 0 || !api_model_1.arrayNameMap[value[0].toUpperCase()];
-            const col1Warnings = value[1].trim().length === 0 || Number.isNaN(parseInt(value[1]));
-            const col2Warnings = value[2].trim().length === 0 || !api_model_1.objectFieldMap[value[2]];
-            const showWarnings = col0Warnings || col1Warnings || col2Warnings;
-            if (columnBlank) {
-                warnings.add(`WARNING: Blank Header found at column: ${colName}, row: ${rowIndex} (Code ${warnings_1.WarningCode.MissingHeader})`);
-            }
-            else if (showWarnings) {
-                warnings.add(invalidHeader);
-            }
-        }
-        /**
-         * Validate the Header of length 2: i.e after splitting header with ("/")
-         */
-        if (value.length === 2) {
-            const colName = columnIndexToName(columnIndex);
-            const invalidHeader = `WARNING: Invalid Header found at column: ${colName}, row: ${rowIndex} where Header Value: ${value.join('/')} (Code ${warnings_1.WarningCode.InvalidHeader})`;
-            const columnBlank = value.join('').trim().length === 0;
-            const col0Warnings = value[0].trim().length === 0 || !api_model_1.arrayNameMap[value[0].toUpperCase()];
-            const col1Warnings = value[1].trim().length === 0 || Number.isNaN(parseInt(value[1]));
-            const showWarnings = col0Warnings || col1Warnings;
-            if (columnBlank) {
-                warnings.add(`WARNING: Blank Header found at column: ${colName}, row: ${rowIndex} (Code ${warnings_1.WarningCode.MissingHeader})`);
-            }
-            else if (showWarnings) {
-                warnings.add(invalidHeader);
-            }
-        }
-        columnIndex = columnIndex + 1;
-    });
-}
-function checkMissingIds(column, index, row, value, rowData, warnings) {
-    /**
-     * check for missing Uberon/CL IDs:
-     */
-    const lastElement = column[column.length - 1];
-    const isId = lastElement.toLowerCase() === api_model_1.objectFieldMap.ID;
-    if (isId) {
-        const nameValue = rowData[index - 2]?.trim() ?? '';
-        const idValue = value.trim();
-        const labelValue = rowData[index - 1]?.trim() ?? '';
-        if (nameValue) {
-            if (!idValue) {
-                const colName = columnIndexToName(index);
-                warnings.add(`WARNING: Missing Uberon/CL ID at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${warnings_1.WarningCode.MissingCTorAnatomy})`);
-            }
-            else if (!labelValue) {
-                const colName = columnIndexToName(index - 1);
-                warnings.add(`WARNING: Missing RDFS Label for ID ${idValue} at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${warnings_1.WarningCode.MissingCTorAnatomy})`);
-            }
-            if (column.join('/') === 'CT/1/ID' && (!idValue || !idValue.startsWith('CL:'))) {
-                const colName = columnIndexToName(index);
-                warnings.add(`WARNING: CT/1/ID is not a CL ID (required) at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${warnings_1.WarningCode.NoIdInCT1})`);
-            }
-        }
-    }
-}
-function getHeaderRow(data, omapHeader, asctbHeader, legacyOmapHeader) {
-    for (const item of data) {
-        if (item[0] === omapHeader) {
-            return item;
-        }
-        if (item[0] === asctbHeader) {
-            return item;
-        }
-        if (item[0] === legacyOmapHeader) {
-            return item;
-        }
-    }
-    return undefined;
-}
-function makeASCTBData(data) {
-    const header = getHeaderRow(data, api_model_1.OMAP_HEADER_FIRST_COLUMN, api_model_1.ASCT_HEADER_FIRST_COLUMN, api_model_1.LEGACY_OMAP_HEADER_FIRST_COLUMN);
-    if (header[0] === api_model_1.LEGACY_OMAP_HEADER_FIRST_COLUMN) {
-        const omapTransformer = new omap_functions_1.OmapDataTransformer(data, true);
-        const omapWarnings = omapTransformer.warnings;
-        const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
-        return {
-            ...asctbData,
-            warnings: [...asctbData.warnings, ...omapWarnings],
-            isOmap: true,
-        };
-    }
-    else if (header[0] === api_model_1.OMAP_HEADER_FIRST_COLUMN) {
-        const omapTransformer = new omap_functions_1.OmapDataTransformer(data, false);
-        const omapWarnings = omapTransformer.warnings;
-        const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
-        return {
-            ...asctbData,
-            warnings: [...asctbData.warnings, ...omapWarnings],
-            isOmap: true,
-        };
-    }
-    else if (header[0] === api_model_1.ASCT_HEADER_FIRST_COLUMN) {
-        const asctbData = makeASCTBDataWork(data);
-        return { ...asctbData, isOmap: false };
-    }
-    else {
-        throw new Error(`Header row, first column should be : ${api_model_1.ASCT_HEADER_FIRST_COLUMN} or ${api_model_1.OMAP_HEADER_FIRST_COLUMN}`);
-    }
-}
-function makeASCTBDataWork(data) {
-    const headerRow = findHeaderIndex(0, data, api_model_1.ASCT_HEADER_FIRST_COLUMN);
-    const columns = data[headerRow].map((col) => col
-        .toUpperCase()
-        .split('/')
-        .map((s) => s.trim()));
-    const warnings = new Set();
-    validateHeaderRow(columns, headerRow + 2, warnings);
-    const results = data.slice(headerRow + 1).map((rowData, rowNumber) => {
-        const row = new api_model_1.Row(headerRow + rowNumber + 2);
-        rowData.forEach((value, index) => {
-            if (index < columns.length && columns[index].length > 1) {
-                validateDataCell(value, row.rowNumber, index, warnings);
-                setData(columns[index], index, row, value, warnings);
-                checkMissingIds(columns[index], index, row, value, rowData, warnings);
-            }
-        });
-        row.finalize();
-        return row;
-    });
-    // build metadata key value store.
-    const metadataRows = data.slice(0, headerRow);
-    const metadata = (0, exports.buildMetadata)(metadataRows, warnings);
-    return {
-        data: results,
-        metadata: metadata,
-        warnings: [...warnings],
-    };
-}
-
-
-/***/ }),
-/* 11 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Row = exports.Structure = exports.Reference = exports.objectFieldMap = exports.arrayNameMap = exports.OMAP_HEADER_FIRST_COLUMN = exports.LEGACY_OMAP_HEADER_FIRST_COLUMN = exports.ASCT_HEADER_FIRST_COLUMN = exports.PROTEIN_PRESENCE = exports.OMAP_ORGAN = exports.BM_TYPE = exports.metadataNameMap = exports.metadataArrayFields = exports.TITLE_ROW_INDEX = exports.DELIMETER = void 0;
-exports.createObject = createObject;
-/* tslint:disable:variable-name */
-exports.DELIMETER = ';';
-exports.TITLE_ROW_INDEX = 0;
-exports.metadataArrayFields = [
+;// external "cors"
+const external_cors_namespaceObject = require("cors");
+var external_cors_default = /*#__PURE__*/__webpack_require__.n(external_cors_namespaceObject);
+;// external "express"
+const external_express_namespaceObject = require("express");
+var external_express_default = /*#__PURE__*/__webpack_require__.n(external_express_namespaceObject);
+;// external "express-fileupload"
+const external_express_fileupload_namespaceObject = require("express-fileupload");
+var external_express_fileupload_default = /*#__PURE__*/__webpack_require__.n(external_express_fileupload_namespaceObject);
+;// external "path"
+const external_path_namespaceObject = require("path");
+var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_namespaceObject);
+;// external "axios"
+const external_axios_namespaceObject = require("axios");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_namespaceObject);
+;// external "jsonld"
+const external_jsonld_namespaceObject = require("jsonld");
+;// external "papaparse"
+const external_papaparse_namespaceObject = require("papaparse");
+var external_papaparse_default = /*#__PURE__*/__webpack_require__.n(external_papaparse_namespaceObject);
+;// ./src/models/api.model.ts
+/** Metadata delimiter */
+const DELIMETER = ';';
+/** Metadata title row index */
+const TITLE_ROW_INDEX = 0;
+/** Metadta fields */
+const metadataArrayFields = [
     'author_names',
     'author_orcids',
     'reviewer_names',
     'reviewer_orcids',
     'general_publications',
 ];
-exports.metadataNameMap = {
+/** Metadata name map */
+const metadataNameMap = {
     'Author Name(s):': 'author_names',
     'Author ORCID(s):': 'author_orcids',
     'Reviewer(s):': 'reviewer_names',
@@ -536,6 +161,7 @@ exports.metadataNameMap = {
     'Date:': 'date',
     'Version Number:': 'version',
 };
+/** Biomarker types */
 var BM_TYPE;
 (function (BM_TYPE) {
     BM_TYPE["G"] = "gene";
@@ -543,8 +169,9 @@ var BM_TYPE;
     BM_TYPE["BL"] = "lipids";
     BM_TYPE["BM"] = "metabolites";
     BM_TYPE["BF"] = "proteoforms";
-})(BM_TYPE || (exports.BM_TYPE = BM_TYPE = {}));
-exports.OMAP_ORGAN = {
+})(BM_TYPE || (BM_TYPE = {}));
+/** Omap organ mapping */
+const OMAP_ORGAN = {
     'https://doi.org/10.48539/HBM467.LRKZ.884': {
         name: 'skin',
         rdfs_label: 'skin of body',
@@ -609,17 +236,22 @@ exports.OMAP_ORGAN = {
         isValid: undefined,
     },
 };
+/** Protein presence options */
 var PROTEIN_PRESENCE;
 (function (PROTEIN_PRESENCE) {
     PROTEIN_PRESENCE["POS"] = "Positive";
     PROTEIN_PRESENCE["NEG"] = "Negative";
     PROTEIN_PRESENCE["UNKNOWN"] = "Unknown";
     PROTEIN_PRESENCE["INTERMEDIATE"] = "Intermediate";
-})(PROTEIN_PRESENCE || (exports.PROTEIN_PRESENCE = PROTEIN_PRESENCE = {}));
-exports.ASCT_HEADER_FIRST_COLUMN = 'AS/1';
-exports.LEGACY_OMAP_HEADER_FIRST_COLUMN = 'uniprot_accession_number';
-exports.OMAP_HEADER_FIRST_COLUMN = 'omap_id';
-exports.arrayNameMap = {
+})(PROTEIN_PRESENCE || (PROTEIN_PRESENCE = {}));
+/** Asct header first column */
+const ASCT_HEADER_FIRST_COLUMN = 'AS/1';
+/** Legacy omap header first column */
+const LEGACY_OMAP_HEADER_FIRST_COLUMN = 'uniprot_accession_number';
+/** Omap header first columnc */
+const OMAP_HEADER_FIRST_COLUMN = 'omap_id';
+/** Array name mapping */
+const arrayNameMap = {
     AS: 'anatomical_structures',
     CT: 'cell_types',
     FTU: 'ftu_types',
@@ -635,13 +267,21 @@ exports.arrayNameMap = {
     BM: 'biomarkers_meta',
     BF: 'biomarkers_prot',
 };
-exports.objectFieldMap = {
+/** Object field mapping */
+const objectFieldMap = {
     ID: 'id',
     LABEL: 'rdfs_label',
     DOI: 'doi',
     NOTES: 'notes',
     NOTE: 'notes',
 };
+/**
+ * Creates a named object
+ *
+ * @param name Name
+ * @param structureType Structure type
+ * @returns A `Reference` or `Structure`
+ */
 function createObject(name, structureType) {
     switch (structureType) {
         case 'REF':
@@ -651,29 +291,52 @@ function createObject(name, structureType) {
             return new Structure(name, structureType);
     }
 }
+/** Reference object */
 class Reference {
+    /** Id */
     id;
+    /** Doi */
     doi;
+    /** Additional notes */
     notes;
+    /** Initializes the class */
     constructor(id) {
         this.id = id;
     }
+    /**
+     * Checks whether the state of this object is valid
+     *
+     * @returns true if this is valid, false otherwise
+     */
     isValid() {
         return !!this.id || !!this.doi || !!this.notes;
     }
 }
-exports.Reference = Reference;
+/** Structure */
 class Structure {
+    /** Name */
     name;
+    /** Id */
     id = '';
+    /** Rdfs label */
     rdfs_label = '';
+    /** Biomarker type */
     b_type;
+    /** Protein presence */
     proteinPresence;
+    /** Additional notes */
     notes;
+    /** Initializes the class */
     constructor(name, structureType) {
         this.name = name;
         this.setBiomarkerProperties(structureType, name);
     }
+    /**
+     * Updates this with a new name and biomarker type
+     *
+     * @param structureType Biomarker type
+     * @param name Name
+     */
     setBiomarkerProperties(structureType, name) {
         if (structureType === 'BGENE' || structureType === 'BG') {
             this.b_type = BM_TYPE.G;
@@ -710,26 +373,47 @@ class Structure {
             this.b_type = BM_TYPE.BF;
         }
     }
+    /**
+     * Checks if this object is in a valid state
+     *
+     * @returns true if this is valid, false otherwise
+     */
     isValid() {
         return !!this.id || !!this.name || !!this.rdfs_label;
     }
 }
-exports.Structure = Structure;
+/** Row */
 class Row {
     rowNumber;
+    /** Anatomical structures */
     anatomical_structures = [];
+    /** Cell types */
     cell_types = [];
+    /** All biomarkers */
     biomarkers = [];
+    /** Protein biomarkers */
     biomarkers_protein = [];
+    /** Gene biomarkers */
     biomarkers_gene = [];
+    /** Lipid biomarkers */
     biomarkers_lipids = [];
+    /** Meta biomarkers */
     biomarkers_meta = [];
+    /** Prot biomarkers */
     biomarkers_prot = [];
+    /** Ftu types */
     ftu_types = [];
+    /** References */
     references = [];
+    /**
+     * Initializes the row
+     *
+     * @param rowNumber Row number
+     */
     constructor(rowNumber) {
         this.rowNumber = rowNumber;
     }
+    /** Removes all invalid structures and combines all biomarkers */
     finalize() {
         this.anatomical_structures = this.anatomical_structures.filter((s) => s.isValid());
         this.cell_types = this.cell_types.filter((s) => s.isValid());
@@ -749,16 +433,9 @@ class Row {
         ];
     }
 }
-exports.Row = Row;
 
-
-/***/ }),
-/* 12 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.WarningLabels = exports.WarningCode = void 0;
+;// ./src/utils/warnings.ts
+/** Warning codes */
 var WarningCode;
 (function (WarningCode) {
     WarningCode[WarningCode["InvalidCsvFile"] = 1] = "InvalidCsvFile";
@@ -770,8 +447,9 @@ var WarningCode;
     WarningCode[WarningCode["UnmappedData"] = 7] = "UnmappedData";
     WarningCode[WarningCode["BadColumn"] = 8] = "BadColumn";
     WarningCode[WarningCode["NoIdInCT1"] = 9] = "NoIdInCT1";
-})(WarningCode || (exports.WarningCode = WarningCode = {}));
-exports.WarningLabels = {
+})(WarningCode || (WarningCode = {}));
+/** Labels for each warning code */
+const WarningLabels = {
     [WarningCode.InvalidCsvFile]: 'Invalid CSV file?',
     [WarningCode.UnmappedMetadata]: 'Unmapped Metadata found?',
     [WarningCode.InvalidHeader]: 'Invalid Header found?',
@@ -783,36 +461,45 @@ exports.WarningLabels = {
     [WarningCode.NoIdInCT1]: 'CT/1 has CL ID?',
 };
 
+;// ./src/models/lookup.model.ts
+/** Ontology codes */
+var OntologyCode;
+(function (OntologyCode) {
+    OntologyCode["UBERON"] = "UBERON";
+    OntologyCode["CL"] = "CL";
+    OntologyCode["FMA"] = "FMA";
+    OntologyCode["HGNC"] = "HGNC";
+    OntologyCode["LMHA"] = "LMHA";
+})(OntologyCode || (OntologyCode = {}));
 
-/***/ }),
-/* 13 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+;// ./src/functions/lookup.functions.ts
 
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.buildASCTApiUrl = buildASCTApiUrl;
-exports.buildHGNCApiUrl = buildHGNCApiUrl;
-exports.buildUniprotLink = buildUniprotLink;
-exports.buildEntrezLink = buildEntrezLink;
-exports.buildHGNCLink = buildHGNCLink;
-exports.fixOntologyId = fixOntologyId;
-exports.guessIri = guessIri;
-const lookup_model_1 = __webpack_require__(14);
+/** Creates an asct api url */
 function buildASCTApiUrl(id) {
     return `http://www.ebi.ac.uk/ols/api/terms/findByIdAndIsDefiningOntology?obo_id=${id}`;
 }
+/** Creates an hgnc api url */
 function buildHGNCApiUrl(id) {
     return `https://rest.genenames.org/fetch/hgnc_id/${id}`;
 }
+/** Creates an uniprot link */
 function buildUniprotLink(id) {
     return `https://www.uniprot.org/uniprot/${id}`;
 }
+/** Creates an entrez link */
 function buildEntrezLink(id) {
     return `https://www.ncbi.nlm.nih.gov/gene/?term=${id}`;
 }
+/** Creates an hgnc link */
 function buildHGNCLink(id) {
     return `http://identifiers.org/hgnc/${id}`;
 }
+/**
+ * Fix a poorly constructed ontology id
+ *
+ * @param id Original id
+ * @returns A proper id
+ */
 function fixOntologyId(id) {
     if (id?.toLowerCase() === 'n/a' || id?.toLowerCase() === 'not found') {
         return '';
@@ -829,19 +516,25 @@ function fixOntologyId(id) {
     id = id.replace(/[^A-Z0-9_:]+/g, '');
     return id;
 }
+/**
+ * Attepmts to guess the iri corresponding to an id
+ *
+ * @param id Id to guess iri for
+ * @returns An iri if possible
+ */
 function guessIri(id) {
     const [code, idNumber] = id.split(':');
     if (idNumber) {
         switch (code) {
-            case lookup_model_1.OntologyCode.CL:
+            case OntologyCode.CL:
                 return `http://purl.obolibrary.org/obo/CL_${idNumber}`;
-            case lookup_model_1.OntologyCode.FMA:
+            case OntologyCode.FMA:
                 return `http://purl.org/sig/ont/fma/fma${idNumber}`;
-            case lookup_model_1.OntologyCode.HGNC:
+            case OntologyCode.HGNC:
                 return `http://identifiers.org/hgnc/${idNumber}`;
-            case lookup_model_1.OntologyCode.LMHA:
+            case OntologyCode.LMHA:
                 return `http://purl.obolibrary.org/obo/LMHA_${idNumber}`;
-            case lookup_model_1.OntologyCode.UBERON:
+            case OntologyCode.UBERON:
                 return `http://purl.obolibrary.org/obo/UBERON_${idNumber}`;
             default:
                 return undefined;
@@ -852,51 +545,46 @@ function guessIri(id) {
     }
 }
 
-
-/***/ }),
-/* 14 */
-/***/ ((__unused_webpack_module, exports) => {
+;// ./src/functions/omap.functions.ts
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.OntologyCode = void 0;
-var OntologyCode;
-(function (OntologyCode) {
-    OntologyCode["UBERON"] = "UBERON";
-    OntologyCode["CL"] = "CL";
-    OntologyCode["FMA"] = "FMA";
-    OntologyCode["HGNC"] = "HGNC";
-    OntologyCode["LMHA"] = "LMHA";
-})(OntologyCode || (exports.OntologyCode = OntologyCode = {}));
-
-
-/***/ }),
-/* 15 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.OmapDataTransformer = void 0;
-const api_model_1 = __webpack_require__(11);
-const api_functions_1 = __webpack_require__(10);
+/** Omap data transformer */
 class OmapDataTransformer {
+    /** Data */
     data;
+    /** Header row index */
     headerRow;
+    /** All warnings */
     _warnings;
+    /** Additional metadata */
     metaData;
+    /** Transformed data */
     _transformedData;
+    /** Whether this contains legacy omap data */
     isLegacyOmap;
-    columns;
+    /** List of columns */
+    columns = [];
+    /**
+     * Initializes the transformer
+     *
+     * @param data Data to transform
+     * @param legacy Whether the data is in legacy format
+     */
     constructor(data, legacy = false) {
         this.isLegacyOmap = legacy;
         this.data = data;
         this.headerRow = legacy
-            ? (0, api_functions_1.findHeaderIndex)(0, this.data, api_model_1.LEGACY_OMAP_HEADER_FIRST_COLUMN)
-            : (0, api_functions_1.findHeaderIndex)(0, this.data, api_model_1.OMAP_HEADER_FIRST_COLUMN);
+            ? findHeaderIndex(0, this.data, LEGACY_OMAP_HEADER_FIRST_COLUMN)
+            : findHeaderIndex(0, this.data, OMAP_HEADER_FIRST_COLUMN);
         this.metaData = this.getMetaData();
         this._warnings = new Set();
         this._transformedData = this.transformOmapData();
     }
+    /**
+     * Transforms the data
+     *
+     * @returns The transformed data
+     */
     transformOmapData() {
         // Initializing with the MetaData
         const asctbConverted = [];
@@ -904,6 +592,11 @@ class OmapDataTransformer {
         asctbConverted.push(...this.data.slice(0, this.headerRow), this.createNewHeaderRow(), ...this.createData());
         return asctbConverted;
     }
+    /**
+     * Derives a new header row for the transformed data
+     *
+     * @returns The new header row
+     */
     createNewHeaderRow() {
         const maxProteins = this.data.slice(this.headerRow + 1).map((subArr) => subArr[0].split(',').length);
         const newHeaderRow = ['AS/1', 'AS/1/LABEL', 'AS/1/ID'];
@@ -915,55 +608,60 @@ class OmapDataTransformer {
         }
         return newHeaderRow;
     }
+    /**
+     * Transforms the data
+     *
+     * @returns The transformed data rows
+     */
     createData() {
         const dataObject = this.createMapOfOldColumnsAndValues();
         // Decides whether to take organs from table or constants
         const organColumnsPresent = ['organ', 'organ_uberon'].every((column) => this.columns.includes(column));
-        const organ = api_model_1.OMAP_ORGAN[this.metaData.data_doi] ?? api_model_1.OMAP_ORGAN.default;
+        const organ = OMAP_ORGAN[this.metaData['data_doi']] ?? OMAP_ORGAN['default'];
         if (!(this.isLegacyOmap || organColumnsPresent)) {
             this._warnings.add('WARNING: Organ Columns Missing. Adding default Organ Columns');
         }
-        if (this.isLegacyOmap && !api_model_1.OMAP_ORGAN[this.metaData.data_doi]) {
+        if (this.isLegacyOmap && !OMAP_ORGAN[this.metaData['data_doi']]) {
             this._warnings.add('WARNING: DOI mapping not present; Adding default Organ Columns.');
         }
         const transformedData = [];
-        const title = this.metaData.title;
+        const title = this.metaData['title'];
         const alternateOrgan = 'missing organ label';
         const alternateOrganUberon = 'missing organ UBERON id';
         let organLabelMissingWarningAdded = false;
         let organUberonMissingWarningAdded = false;
         dataObject.forEach((data) => {
-            const uniprots = data.uniprot_accession_number.split(', ');
-            const hgncIds = data.HGNC_ID.split(', ');
-            const targetNames = data.target_symbol?.split(', ') ?? [];
+            const uniprots = data['uniprot_accession_number'].split(', ');
+            const hgncIds = data['HGNC_ID'].split(', ');
+            const targetNames = data['target_symbol']?.split(', ') ?? [];
             if (!(uniprots.length === hgncIds.length && hgncIds.length === targetNames.length)) {
                 this.warnings.add('WARNING: Number of entires in column uniprot_accession_number, HGNC_ID,' +
-                    `target_symbol are not equal in row ${data.rowNo}. uniprot_accession_number: ${uniprots.length};` +
+                    `target_symbol are not equal in row ${data['rowNo']}. uniprot_accession_number: ${uniprots.length};` +
                     `HGNC_ID: ${hgncIds.length}; target_symbol: ${targetNames.length}`);
             }
-            let notes = `Extra information in "${title}", Row ${data.rowNo} \n`;
-            notes += data.notes;
-            if (!this.isLegacyOmap && !data.organ) {
-                data.organ = alternateOrgan;
+            let notes = `Extra information in "${title}", Row ${data['rowNo']} \n`;
+            notes += data['notes'];
+            if (!this.isLegacyOmap && !data['organ']) {
+                data['organ'] = alternateOrgan;
                 if (!organLabelMissingWarningAdded) {
                     this._warnings.add('WARNING: Organ Label Missing.');
                     organLabelMissingWarningAdded = true;
                 }
             }
-            if (!this.isLegacyOmap && !data.organ_uberon) {
-                data.organ_uberon = alternateOrganUberon;
+            if (!this.isLegacyOmap && !data['organ_uberon']) {
+                data['organ_uberon'] = alternateOrganUberon;
                 if (!organUberonMissingWarningAdded) {
                     this._warnings.add('WARNING: Organ Uberon ID Missing.');
                     organUberonMissingWarningAdded = true;
                 }
             }
-            if (data.uniprot_accession_number !== '' &&
-                data.HGNC_ID !== '' &&
-                data.target_symbol !== '' &&
-                data.target_symbol !== undefined) {
+            if (data['uniprot_accession_number'] !== '' &&
+                data['HGNC_ID'] !== '' &&
+                data['target_symbol'] !== '' &&
+                data['target_symbol'] !== undefined) {
                 const newrow = this.isLegacyOmap
                     ? [organ.name, organ.rdfs_label, organ.id]
-                    : [data.organ, data.organ, data.organ_uberon];
+                    : [data['organ'], data['organ'], data['organ_uberon']];
                 const maxBPs = Math.max(uniprots.length, hgncIds.length, targetNames.length);
                 for (let i = 0; i < maxBPs; i++) {
                     newrow.push(targetNames[i] ?? '', uniprots[i] ?? '', hgncIds[i] ?? '', notes ?? '');
@@ -971,17 +669,20 @@ class OmapDataTransformer {
                 transformedData.push(newrow);
             }
             else {
-                transformedData.push(this.isLegacyOmap ? [organ.name, organ.rdfs_label, organ.id] : [data.organ, data.organ, data.organ_uberon]);
+                transformedData.push((this.isLegacyOmap
+                    ? [organ.name, organ.rdfs_label, organ.id]
+                    : [data['organ'], data['organ'], data['organ_uberon']]));
             }
         });
         return transformedData;
     }
-    /** Helper functions for createData */
+    /** Get the metadata */
     getMetaData() {
         const warnings = new Set();
         const metadataRows = this.data.slice(0, this.headerRow);
-        return (0, api_functions_1.buildMetadata)(metadataRows, warnings);
+        return buildMetadata(metadataRows, warnings);
     }
+    /** Create a map from non-transformed columns and values */
     createMapOfOldColumnsAndValues() {
         let dataObject = [];
         this.columns = this.data[this.headerRow].map((col) => col);
@@ -991,12 +692,13 @@ class OmapDataTransformer {
                 return acc;
             }, {});
             // 4 = Two blank rows + 1 for 0 indexing of headerrow + 1 for 0 indexing for subArr
-            keyValuePairs.rowNo = (index + this.headerRow + 4).toString();
+            keyValuePairs['rowNo'] = (index + this.headerRow + 4).toString();
             dataObject.push(keyValuePairs);
         });
         dataObject = this.createNotes(dataObject);
         return dataObject;
     }
+    /** Creates additional notes */
     createNotes(dataObject) {
         const excludedKeys = ['uniprot_accession_number', 'HGNC_ID', 'target_symbol', 'rowNo'];
         dataObject.forEach((obj) => {
@@ -1005,40 +707,467 @@ class OmapDataTransformer {
                 .filter(([key, value]) => value !== undefined && value !== null && value !== '' && !excludedKeys.includes(key))
                 .map(([key, value]) => `**${key}:** ${value}`);
             const result = `- ${formattedEntries.join('\n- ')}`;
-            obj.notes = result;
+            obj['notes'] = result;
         });
         return dataObject;
     }
-    /** Getters */
+    /** Get the transformed data */
     get transformedData() {
         return this._transformedData;
     }
+    /** Get all warnings */
     get warnings() {
         return this._warnings;
     }
 }
-exports.OmapDataTransformer = OmapDataTransformer;
+
+;// ./src/functions/api.functions.ts
 
 
-/***/ }),
-/* 16 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeJsonLdData = makeJsonLdData;
-const graph_model_1 = __webpack_require__(17);
-const lookup_functions_1 = __webpack_require__(13);
+/**
+ * Normalizes the url to a google sheet
+ *
+ * @param url Sheets url
+ * @returns A normalized url
+ */
+function normalizeCsvUrl(url) {
+    if (url.startsWith('https://docs.google.com/spreadsheets/d/') && url.indexOf('export?format=csv') === -1) {
+        const splitUrl = url.split('/');
+        if (splitUrl.length === 7) {
+            const sheetId = splitUrl[5];
+            const gid = splitUrl[6].split('=')[1];
+            return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+        }
+    }
+    return url;
+}
+/**
+ * Set a value in a data row
+ *
+ * @param column Column names
+ * @param _columnNumber Column index
+ * @param row Row data
+ * @param value Value
+ * @param warnings Set to add warnings to
+ */
+function setData(column, _columnNumber, row, value, warnings) {
+    if (column.length > 1) {
+        const arrayName = arrayNameMap[column[0]];
+        const originalArrayName = column[0];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const objectArray = row[arrayName] || [];
+        if (!arrayName) {
+            warnings.add(`WARNING: unmapped array found ${originalArrayName} (Code ${WarningCode.UnmappedData})`);
+        }
+        if (column.length === 2) {
+            if (objectArray.length === 0 && arrayName) {
+                row[arrayName] = objectArray;
+            }
+            objectArray.push(createObject(value, originalArrayName));
+        }
+        else if (column.length === 3 && arrayName) {
+            let arrayIndex = parseInt(column[1], 10) - 1;
+            const fieldName = objectFieldMap[column[2]]; // || (column[2]?.toLowerCase() ?? '').trim();
+            if (arrayIndex >= 0 && fieldName) {
+                if (arrayIndex >= objectArray.length) {
+                    warnings.add(`WARNING: blank cells likely found in column: ${column.join('/')}, row: ${row.rowNumber}`);
+                }
+                // FIXME: Temporarily deal with blank columns since so many tables are non-conformant
+                arrayIndex = objectArray.length - 1;
+                if (arrayIndex < objectArray.length) {
+                    if (fieldName === 'id') {
+                        value = fixOntologyId(value);
+                    }
+                    if (objectArray[arrayIndex]) {
+                        objectArray[arrayIndex][fieldName] = value;
+                    }
+                    else {
+                        warnings.add(`WARNING: bad column: ${column.join('/')} (Code ${WarningCode.BadColumn})`);
+                    }
+                }
+            }
+        }
+    }
+}
+/** Regex matching invalid characters */
+const invalidCharacterRegex = /_/gi;
+/** Regex matching urls */
+const isLinkRegex = /^http/gi;
+/** Code point for 'A' */
+const codepointUppercaseA = 65;
+/** Length of the alhpabet */
+const alphabetLength = 26;
+/**
+ * Get the column name for a column index.
+ * Column names: A B C ... Z AA AB AC ... AZ ... ZA ... ZZ
+ *
+ * @param index Column index
+ * @returns Column name
+ */
+function columnIndexToName(index) {
+    index = index + 1;
+    const name = [];
+    while (index) {
+        const mod = (index - 1) % alphabetLength;
+        index = Math.floor(Number((index - mod) / alphabetLength));
+        name.unshift(String.fromCharCode(codepointUppercaseA + Number(mod)));
+    }
+    return name.join('');
+}
+/**
+ * Checks that a cell's value is valid
+ *
+ * @param value Value to check
+ * @param rowIndex Row index of value
+ * @param columnIndex Column index of value
+ * @param warnings Set to add warning to
+ */
+function validateDataCell(value, rowIndex, columnIndex, warnings) {
+    if (!isLinkRegex.test(value) && invalidCharacterRegex.test(value)) {
+        const colName = columnIndexToName(columnIndex);
+        warnings.add(`WARNING: Invalid characters in data cell at column: ${colName} row: ${rowIndex + 1} where data cell: ${value} (Code ${WarningCode.InvalidCharacter})`);
+    }
+}
+/**
+ * buildMetadata - build metadata key value store
+ * @param metadataRows = rows from metadata to be extracted
+ * @param warnings = warnings generated during the process are pushed to this set
+ * @returns = returns key value pairs of metadata
+ */
+const buildMetadata = (metadataRows, warnings) => {
+    const [titleRow] = metadataRows.splice(TITLE_ROW_INDEX, 1);
+    const [title] = titleRow.slice(0, 1);
+    const result = {
+        title,
+    };
+    return metadataRows.reduce((metadata, rowData, rowNumber) => {
+        const [metadataIdentifier, metadataValue, ..._] = rowData;
+        /**
+         * Raise Warnings:
+         *    Case 1: IF the Metadata Key/Value is filled or empty
+         *    Case 2: IF the metadata key is not mapping with metadataNameMap
+         */
+        if (!metadataIdentifier) {
+            warnings.add(`WARNING: Metadata Key missing found at Row: ${rowNumber + 3} (Code ${WarningCode.UnmappedMetadata})`);
+            return metadata;
+        }
+        else if (!metadataValue) {
+            warnings.add(`WARNING: Metadata Value missing found at Row: ${rowNumber + 3} (Code ${WarningCode.UnmappedMetadata})`);
+        }
+        let metadataKey = metadataNameMap[metadataIdentifier];
+        if (!metadataKey) {
+            metadataKey = metadataIdentifier.toLowerCase();
+            warnings.add(`WARNING: unmapped metadata found ${metadataIdentifier} at Row: ${rowNumber + 3} (Code ${WarningCode.UnmappedMetadata})`);
+        }
+        if (metadataArrayFields.includes(metadataKey)) {
+            metadata[metadataKey] = metadataValue.split(DELIMETER).map((item) => item.trim());
+        }
+        else {
+            metadata[metadataKey] = metadataValue.trim();
+        }
+        return metadata;
+    }, result);
+};
+/**
+ * Finds the header row
+ *
+ * @param headerRow Start index
+ * @param data Data rows
+ * @param firstColumnName First column
+ * @returns Index of the header row
+ */
+function findHeaderIndex(headerRow, data, firstColumnName) {
+    for (let i = headerRow; i < data.length; i++) {
+        if (data[i][0] === firstColumnName) {
+            return i;
+        }
+    }
+    return headerRow;
+}
+/**
+ * Validates the header row
+ *
+ * @param headerData Data rows
+ * @param rowIndex Header index
+ * @param warnings Set to add warnings to
+ */
+function validateHeaderRow(headerData, rowIndex, warnings) {
+    let columnIndex = 0;
+    headerData.forEach((value) => {
+        /**
+         * Validate the Header of length 3: i.e after splitting header with ("/")
+         */
+        if (value.length === 3) {
+            const colName = columnIndexToName(columnIndex);
+            const invalidHeader = `WARNING: Invalid Header found at column: ${colName}, row: ${rowIndex} where Header Value: ${value.join('/')} (Code ${WarningCode.InvalidHeader})`;
+            const columnBlank = value.join('').trim().length === 0;
+            const col0Warnings = value[0].trim().length === 0 || !arrayNameMap[value[0].toUpperCase()];
+            const col1Warnings = value[1].trim().length === 0 || Number.isNaN(parseInt(value[1]));
+            const col2Warnings = value[2].trim().length === 0 || !objectFieldMap[value[2]];
+            const showWarnings = col0Warnings || col1Warnings || col2Warnings;
+            if (columnBlank) {
+                warnings.add(`WARNING: Blank Header found at column: ${colName}, row: ${rowIndex} (Code ${WarningCode.MissingHeader})`);
+            }
+            else if (showWarnings) {
+                warnings.add(invalidHeader);
+            }
+        }
+        /**
+         * Validate the Header of length 2: i.e after splitting header with ("/")
+         */
+        if (value.length === 2) {
+            const colName = columnIndexToName(columnIndex);
+            const invalidHeader = `WARNING: Invalid Header found at column: ${colName}, row: ${rowIndex} where Header Value: ${value.join('/')} (Code ${WarningCode.InvalidHeader})`;
+            const columnBlank = value.join('').trim().length === 0;
+            const col0Warnings = value[0].trim().length === 0 || !arrayNameMap[value[0].toUpperCase()];
+            const col1Warnings = value[1].trim().length === 0 || Number.isNaN(parseInt(value[1]));
+            const showWarnings = col0Warnings || col1Warnings;
+            if (columnBlank) {
+                warnings.add(`WARNING: Blank Header found at column: ${colName}, row: ${rowIndex} (Code ${WarningCode.MissingHeader})`);
+            }
+            else if (showWarnings) {
+                warnings.add(invalidHeader);
+            }
+        }
+        columnIndex = columnIndex + 1;
+    });
+}
+/**
+ * Checks the data for missing ids
+ *
+ * @param column Column names
+ * @param index Data index
+ * @param row Row data
+ * @param value Data value
+ * @param rowData Raw row
+ * @param warnings Set to add warnings to
+ */
+function checkMissingIds(column, index, row, value, rowData, warnings) {
+    /**
+     * check for missing Uberon/CL IDs:
+     */
+    const lastElement = column[column.length - 1];
+    const isId = lastElement.toLowerCase() === objectFieldMap['ID'];
+    if (isId) {
+        const nameValue = rowData[index - 2]?.trim() ?? '';
+        const idValue = value.trim();
+        const labelValue = rowData[index - 1]?.trim() ?? '';
+        if (nameValue) {
+            if (!idValue) {
+                const colName = columnIndexToName(index);
+                warnings.add(`WARNING: Missing Uberon/CL ID at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${WarningCode.MissingCTorAnatomy})`);
+            }
+            else if (!labelValue) {
+                const colName = columnIndexToName(index - 1);
+                warnings.add(`WARNING: Missing RDFS Label for ID ${idValue} at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${WarningCode.MissingCTorAnatomy})`);
+            }
+            if (column.join('/') === 'CT/1/ID' && (!idValue || !idValue.startsWith('CL:'))) {
+                const colName = columnIndexToName(index);
+                warnings.add(`WARNING: CT/1/ID is not a CL ID (required) at Column: ${colName}, Row: ${row.rowNumber + 1} (Code ${WarningCode.NoIdInCT1})`);
+            }
+        }
+    }
+}
+/** Get the header row */
+function getHeaderRow(data, omapHeader, asctbHeader, legacyOmapHeader) {
+    for (const item of data) {
+        if (item[0] === omapHeader) {
+            return item;
+        }
+        if (item[0] === asctbHeader) {
+            return item;
+        }
+        if (item[0] === legacyOmapHeader) {
+            return item;
+        }
+    }
+    return undefined;
+}
+/**
+ * Processes data into asctb format
+ *
+ * @param data Raw data
+ * @returns Processed data
+ */
+function makeASCTBData(data) {
+    const header = getHeaderRow(data, OMAP_HEADER_FIRST_COLUMN, ASCT_HEADER_FIRST_COLUMN, LEGACY_OMAP_HEADER_FIRST_COLUMN) ?? [];
+    if (header[0] === LEGACY_OMAP_HEADER_FIRST_COLUMN) {
+        const omapTransformer = new OmapDataTransformer(data, true);
+        const omapWarnings = omapTransformer.warnings;
+        const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
+        return {
+            ...asctbData,
+            warnings: [...asctbData.warnings, ...omapWarnings],
+            isOmap: true,
+        };
+    }
+    else if (header[0] === OMAP_HEADER_FIRST_COLUMN) {
+        const omapTransformer = new OmapDataTransformer(data, false);
+        const omapWarnings = omapTransformer.warnings;
+        const asctbData = makeASCTBDataWork(omapTransformer.transformedData);
+        return {
+            ...asctbData,
+            warnings: [...asctbData.warnings, ...omapWarnings],
+            isOmap: true,
+        };
+    }
+    else if (header[0] === ASCT_HEADER_FIRST_COLUMN) {
+        const asctbData = makeASCTBDataWork(data);
+        return { ...asctbData, isOmap: false };
+    }
+    else {
+        throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
+    }
+}
+/**
+ * Processes data into asctb format
+ *
+ * @param data Raw data
+ * @returns Processed data
+ */
+function makeASCTBDataWork(data) {
+    const headerRow = findHeaderIndex(0, data, ASCT_HEADER_FIRST_COLUMN);
+    const columns = data[headerRow].map((col) => col
+        .toUpperCase()
+        .split('/')
+        .map((s) => s.trim()));
+    const warnings = new Set();
+    validateHeaderRow(columns, headerRow + 2, warnings);
+    const results = data.slice(headerRow + 1).map((rowData, rowNumber) => {
+        const row = new Row(headerRow + rowNumber + 2);
+        rowData.forEach((value, index) => {
+            if (index < columns.length && columns[index].length > 1) {
+                validateDataCell(value, row.rowNumber, index, warnings);
+                setData(columns[index], index, row, value, warnings);
+                checkMissingIds(columns[index], index, row, value, rowData, warnings);
+            }
+        });
+        row.finalize();
+        return row;
+    });
+    // build metadata key value store.
+    const metadataRows = data.slice(0, headerRow);
+    const metadata = buildMetadata(metadataRows, warnings);
+    return {
+        data: results,
+        metadata: metadata,
+        warnings: [...warnings],
+    };
+}
+
+;// ./src/models/graph.model.ts
+/** Node types */
+var Node_type;
+(function (Node_type) {
+    Node_type["AS"] = "AS";
+    Node_type["CT"] = "CT";
+    Node_type["BM"] = "BM";
+    Node_type["R"] = "root";
+})(Node_type || (Node_type = {}));
+/** Edge types */
+var Edge_type;
+(function (Edge_type) {
+    Edge_type["AS_AS"] = "ASAS";
+    Edge_type["AS_CT"] = "ASCT";
+    Edge_type["CT_CT"] = "CTCT";
+    Edge_type["CT_G"] = "CTgene";
+    Edge_type["CT_P"] = "CTprotein";
+    Edge_type["CT_BL"] = "CTlipids";
+    Edge_type["CT_BM"] = "CTmetabolites";
+    Edge_type["CT_BF"] = "CTproteoforms";
+    Edge_type["AS_G"] = "ASgene";
+    Edge_type["AS_P"] = "ASprotein";
+})(Edge_type || (Edge_type = {}));
+/** Graph node */
+class GNode {
+    /** Node id */
+    id;
+    /** Parent id */
+    parent;
+    /** Node type */
+    type;
+    /** Node name */
+    name;
+    /** Node comparator */
+    comparator;
+    /** Comparator name */
+    comparatorName;
+    /** Comparator id */
+    comparatorId;
+    /** Node metadata */
+    metadata;
+    /** Initialize the node */
+    constructor(id, name, parent, ontologyId, label, type, references, bType) {
+        this.id = id;
+        this.parent = parent;
+        this.type = type;
+        this.comparator = '';
+        this.comparatorId = '';
+        this.comparatorName = '';
+        this.name = name;
+        this.metadata = new Metadata(name, ontologyId, label, references, bType);
+    }
+}
+/** Node metadata */
+class Metadata {
+    /** Ontology type id */
+    ontologyTypeId;
+    /** Ontology type name */
+    ontologyType;
+    /** Label */
+    label;
+    /** Name */
+    name;
+    /** Ontology id */
+    ontologyId;
+    /** Biomarker type */
+    bmType;
+    /** References */
+    references;
+    /** Initialize the metadata */
+    constructor(name, ontologyId, label, references, bmType) {
+        this.name = name;
+        this.ontologyId = ontologyId;
+        if (ontologyId.toLowerCase().startsWith('fma')) {
+            ontologyId = ontologyId.substring(3);
+            if (ontologyId.includes(':')) {
+                ontologyId = ontologyId.split(':')[1];
+            }
+            ontologyId = 'FMA:' + ontologyId;
+        }
+        else if (ontologyId.toLowerCase().startsWith('uberon')) {
+            ontologyId = ontologyId.substring('uberon'.length);
+            if (ontologyId.includes(':')) {
+                ontologyId = ontologyId.split(':')[1];
+            }
+            ontologyId = 'UBERON:' + ontologyId;
+        }
+        [this.ontologyType, this.ontologyTypeId] = ontologyId.split(':');
+        this.name = name;
+        this.label = label;
+        this.bmType = bmType;
+        this.references = references;
+    }
+}
+
+;// ./src/functions/graph-jsonld.functions.ts
+
+
+/** Owl type */
 var OwlType;
 (function (OwlType) {
     OwlType["CLASS"] = "owl:Class";
     OwlType["RESTRICTION"] = "owl:Restriction";
 })(OwlType || (OwlType = {}));
+/** Owl property */
 var OwlProperty;
 (function (OwlProperty) {
     OwlProperty["ANNOTATION"] = "owl:AnnotationProperty";
     OwlProperty["OBJECT"] = "owl:ObjectProperty";
 })(OwlProperty || (OwlProperty = {}));
+/** Ccf property */
 var CcfProperty;
 (function (CcfProperty) {
     CcfProperty["PART_OF"] = "ccf:ccf_part_of";
@@ -1047,6 +1176,13 @@ var CcfProperty;
     CcfProperty["CHARACTERIZES"] = "ccf:characterizes";
     CcfProperty["OCCURS_IN"] = "ccf:occurs_in";
 })(CcfProperty || (CcfProperty = {}));
+/**
+ * Turns a graph into owl jsonld
+ *
+ * @param data Graph
+ * @param withSubclasses
+ * @returns An owl jsonld
+ */
 function makeJsonLdData(data, withSubclasses = true) {
     const { nodes, edges } = data;
     const iriLookup = {};
@@ -1054,10 +1190,10 @@ function makeJsonLdData(data, withSubclasses = true) {
     const nodeMap = new Map();
     nodes.forEach((node, index) => {
         let ontologyId = node.metadata.ontologyId;
-        let iri;
+        let iri = '';
         if (ontologyId?.trim().length > 0) {
-            ontologyId = (0, lookup_functions_1.fixOntologyId)(ontologyId);
-            iri = (0, lookup_functions_1.guessIri)(ontologyId);
+            ontologyId = fixOntologyId(ontologyId);
+            iri = guessIri(ontologyId) ?? '';
         }
         if (!iri) {
             const suffix = node.name
@@ -1094,24 +1230,24 @@ function makeJsonLdData(data, withSubclasses = true) {
         };
         if (source.iri !== target.iri) {
             switch (source.type + target.type) {
-                case graph_model_1.Edge_type.AS_AS:
+                case Edge_type.AS_AS:
                     target.node.part_of = (target.node.part_of ?? new Set()).add(source.iri);
                     break;
-                case graph_model_1.Edge_type.AS_CT:
+                case Edge_type.AS_CT:
                     target.node.located_in = (target.node.located_in ?? new Set()).add(source.iri);
                     break;
-                case graph_model_1.Edge_type.CT_CT:
+                case Edge_type.CT_CT:
                     target.node.is_a = (target.node.is_a ?? new Set()).add(source.iri);
                     break;
-                case graph_model_1.Edge_type.CT_G:
-                case graph_model_1.Edge_type.CT_P:
-                case graph_model_1.Edge_type.CT_BL:
-                case graph_model_1.Edge_type.CT_BM:
-                case graph_model_1.Edge_type.CT_BF:
+                case Edge_type.CT_G:
+                case Edge_type.CT_P:
+                case Edge_type.CT_BL:
+                case Edge_type.CT_BM:
+                case Edge_type.CT_BF:
                     target.node.characterizes = (target.node.characterizes ?? new Set()).add(source.iri);
                     break;
-                case graph_model_1.Edge_type.AS_G:
-                case graph_model_1.Edge_type.AS_P:
+                case Edge_type.AS_G:
+                case Edge_type.AS_P:
                     target.node.occurs_in = (source.node.occurs_in ?? new Set()).add(source.iri);
                     break;
                 default:
@@ -1278,134 +1414,19 @@ function makeJsonLdData(data, withSubclasses = true) {
     };
 }
 
+;// external "stream-browserify"
+const external_stream_browserify_namespaceObject = require("stream-browserify");
+;// ./src/functions/graph-owl.functions.ts
+// @ts-expect-error No declarations
 
-/***/ }),
-/* 17 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Metadata = exports.GNode = exports.Edge_type = exports.Node_type = void 0;
-/* tslint:disable:variable-name */
-var Node_type;
-(function (Node_type) {
-    Node_type["AS"] = "AS";
-    Node_type["CT"] = "CT";
-    Node_type["BM"] = "BM";
-    Node_type["R"] = "root";
-})(Node_type || (exports.Node_type = Node_type = {}));
-var Edge_type;
-(function (Edge_type) {
-    Edge_type["AS_AS"] = "ASAS";
-    Edge_type["AS_CT"] = "ASCT";
-    Edge_type["CT_CT"] = "CTCT";
-    Edge_type["CT_G"] = "CTgene";
-    Edge_type["CT_P"] = "CTprotein";
-    Edge_type["CT_BL"] = "CTlipids";
-    Edge_type["CT_BM"] = "CTmetabolites";
-    Edge_type["CT_BF"] = "CTproteoforms";
-    Edge_type["AS_G"] = "ASgene";
-    Edge_type["AS_P"] = "ASprotein";
-})(Edge_type || (exports.Edge_type = Edge_type = {}));
-class GNode {
-    id;
-    parent;
-    type;
-    name;
-    comparator;
-    comparatorName;
-    comparatorId;
-    metadata;
-    constructor(id, name, parent, ontologyId, label, type, references, bType) {
-        this.id = id;
-        this.parent = parent;
-        this.type = type;
-        this.comparator = '';
-        this.comparatorId = '';
-        this.comparatorName = '';
-        this.name = name;
-        this.metadata = new Metadata(name, ontologyId, label, references, bType);
-    }
-}
-exports.GNode = GNode;
-class Metadata {
-    ontologyTypeId;
-    ontologyType;
-    label;
-    name;
-    ontologyId;
-    bmType;
-    references;
-    constructor(name, ontologyId, label, references, bmType) {
-        this.name = name;
-        this.ontologyId = ontologyId;
-        if (ontologyId.toLowerCase().startsWith('fma')) {
-            ontologyId = ontologyId.substring(3);
-            if (ontologyId.includes(':')) {
-                ontologyId = ontologyId.split(':')[1];
-            }
-            ontologyId = 'FMA:' + ontologyId;
-        }
-        else if (ontologyId.toLowerCase().startsWith('uberon')) {
-            ontologyId = ontologyId.substring('uberon'.length);
-            if (ontologyId.includes(':')) {
-                ontologyId = ontologyId.split(':')[1];
-            }
-            ontologyId = 'UBERON:' + ontologyId;
-        }
-        [this.ontologyType, this.ontologyTypeId] = ontologyId.split(':');
-        this.name = name;
-        this.label = label;
-        this.bmType = bmType;
-        this.references = references;
-    }
-}
-exports.Metadata = Metadata;
-
-
-/***/ }),
-/* 18 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeOwlData = makeOwlData;
-const stream_browserify_1 = __webpack_require__(19);
+/**
+ * Turn owl jsonld data into xml
+ *
+ * @param data Jsonld data
+ * @returns An xml string
+ */
 async function makeOwlData(data) {
-    const inputReadable = new stream_browserify_1.Readable({
+    const inputReadable = new external_stream_browserify_namespaceObject.Readable({
         read: () => {
             inputReadable.push(JSON.stringify(data));
             inputReadable.push(null);
@@ -1414,7 +1435,7 @@ async function makeOwlData(data) {
     // This package has some kind of incompatibility with how nx transpiles/executes modules
     // If imported top level the serve command fails with `require() of ES Module [...] not supported`
     // Dynamically importing the module works fine though!
-    const { default: formats } = await Promise.resolve().then(() => __importStar(__webpack_require__(20)));
+    const { default: formats } = await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 1, 23));
     const input = formats.parsers.import('application/ld+json', inputReadable);
     const output = formats.serializers.import('application/rdf+xml', input);
     return new Promise((resolve) => {
@@ -1428,34 +1449,19 @@ async function makeOwlData(data) {
     });
 }
 
+;// ./src/functions/graph.functions.ts
 
-/***/ }),
-/* 19 */
-/***/ ((module) => {
-
-module.exports = require("stream-browserify");
-
-/***/ }),
-/* 20 */
-/***/ ((module) => {
-
-module.exports = require("@rdfjs-elements/formats-pretty");
-
-/***/ }),
-/* 21 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.buildgraphAS = buildgraphAS;
-exports.buildgraphCT = buildgraphCT;
-exports.buildgraphBM = buildgraphBM;
-exports.makeGraphData = makeGraphData;
-const graph_model_1 = __webpack_require__(17);
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @returns The root id
+ */
 function buildgraphAS(data, graphData) {
     let id = -1;
     let parent;
-    const root = new graph_model_1.GNode(id, data[0].anatomical_structures[0].name, 0, data[0].anatomical_structures[0].id, data[0].anatomical_structures[0].rdfs_label, graph_model_1.Node_type.R, []);
+    const root = new GNode(id, data[0].anatomical_structures[0].name, 0, data[0].anatomical_structures[0].id, data[0].anatomical_structures[0].rdfs_label, Node_type.R, []);
     const idNameSet = {};
     root.comparator = root.metadata.name;
     root.comparatorName = root.metadata.name;
@@ -1474,7 +1480,7 @@ function buildgraphAS(data, graphData) {
             }
             if (s === -1) {
                 id += 1;
-                const newNode = new graph_model_1.GNode(id, structure.id && idNameSet[structure.id] ? idNameSet[structure.id] : structure.name, parent.id, structure.id, structure.rdfs_label, graph_model_1.Node_type.AS, row.references);
+                const newNode = new GNode(id, structure.id && idNameSet[structure.id] ? idNameSet[structure.id] : structure.name, parent.id, structure.id, structure.rdfs_label, Node_type.AS, row.references);
                 newNode.comparatorName = parent.comparatorName + newNode.metadata.name;
                 newNode.comparatorId = parent.comparatorId + newNode.metadata.ontologyId;
                 if (idNameSet[newNode.metadata.ontologyId] === undefined) {
@@ -1494,6 +1500,14 @@ function buildgraphAS(data, graphData) {
     delete graphData.nodes[0].parent;
     return id;
 }
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @param id Root id
+ * @returns The root id
+ */
 function buildgraphCT(data, graphData, id) {
     data.forEach((row) => {
         const parentIndex = graphData.nodes.findIndex((i) => i.metadata.name === row.anatomical_structures[row.anatomical_structures.length - 1].name);
@@ -1509,7 +1523,7 @@ function buildgraphCT(data, graphData, id) {
                 }
                 if (s === -1) {
                     id += 1;
-                    const newNode = new graph_model_1.GNode(id, structure.name, parent.id, structure.id, structure.rdfs_label, graph_model_1.Node_type.CT, row.references);
+                    const newNode = new GNode(id, structure.name, parent.id, structure.id, structure.rdfs_label, Node_type.CT, row.references);
                     newNode.comparatorName = newNode.metadata.name;
                     newNode.comparatorId = newNode.metadata.ontologyId;
                     graphData.nodes.push(newNode);
@@ -1526,6 +1540,14 @@ function buildgraphCT(data, graphData, id) {
     });
     return id;
 }
+/**
+ * Turns data into a proper tree
+ *
+ * @param data Rows
+ * @param graphData Graph
+ * @param id Root id
+ * @returns The root id
+ */
 function buildgraphBM(data, graphData, id) {
     data.forEach((row) => {
         row.cell_types.forEach((structure) => {
@@ -1542,7 +1564,7 @@ function buildgraphBM(data, graphData, id) {
                     }
                     if (s === -1) {
                         id += 1;
-                        const newNode = new graph_model_1.GNode(id, biomarker.name, parent.id, biomarker.id, biomarker.rdfs_label, graph_model_1.Node_type.BM, row.references, biomarker.b_type);
+                        const newNode = new GNode(id, biomarker.name, parent.id, biomarker.id, biomarker.rdfs_label, Node_type.BM, row.references, biomarker.b_type);
                         newNode.comparatorName = newNode.metadata.name;
                         newNode.comparatorId = newNode.metadata.ontologyId;
                         graphData.nodes.push(newNode);
@@ -1560,6 +1582,12 @@ function buildgraphBM(data, graphData, id) {
     });
     return id;
 }
+/**
+ * Turns rows into a graph
+ *
+ * @param data Data to turn into a graph
+ * @returns A graph
+ */
 function makeGraphData(data) {
     const graphData = { nodes: [], edges: [] };
     for (const row of data) {
@@ -1583,15 +1611,14 @@ function makeGraphData(data) {
     return graphData;
 }
 
+;// ./src/functions/validation-report.function.ts
 
-/***/ }),
-/* 22 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeValidationReport = makeValidationReport;
-const warnings_1 = __webpack_require__(12);
+/**
+ * Makes a validation report
+ *
+ * @param data Data to convert
+ * @returns A csv string
+ */
 function makeValidationReport(data) {
     // Output lines/data will be added here
     const lines = [];
@@ -1611,13 +1638,13 @@ function makeValidationReport(data) {
         }
     }
     // Loop for checking the group of errors, and if length of the group errors is more then 0 then it has failed the validation and vise versa
-    for (const [codeString, label] of Object.entries(warnings_1.WarningLabels)) {
+    for (const [codeString, label] of Object.entries(WarningLabels)) {
         const code = parseInt(codeString);
         lines.push(`Validation ${label} ${codeByWarnings[code] ? 'failed' : 'passed'}`);
     }
     // Adding extra lines for space
     lines.push('', '');
-    for (const [codeString, label] of Object.entries(warnings_1.WarningLabels)) {
+    for (const [codeString, label] of Object.entries(WarningLabels)) {
         const code = parseInt(codeString);
         const groupOfWarnings = codeByWarnings[code];
         if (groupOfWarnings) {
@@ -1630,97 +1657,146 @@ function makeValidationReport(data) {
     return lines.join('\n');
 }
 
-
-/***/ }),
-/* 23 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+;// ./src/routes/csv.ts
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupGoogleSheetRoutes = setupGoogleSheetRoutes;
-const tslib_1 = __webpack_require__(1);
-const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
-const papaparse_1 = tslib_1.__importDefault(__webpack_require__(9));
-const const_1 = __webpack_require__(24);
-const api_functions_1 = __webpack_require__(10);
-const graph_functions_1 = __webpack_require__(21);
-function setupGoogleSheetRoutes(app) {
+
+
+
+
+
+
+/** Adds csv routes */
+function setupCSVRoutes(app) {
     /**
-     * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.
+     * Fetch a CSV given a link and parse it into json or graph output
      */
-    app.get('/v2/:sheetid/:gid', async (req, res) => {
+    app.get('/v2/csv', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-        const f1 = req.params.sheetid;
-        const f2 = req.params.gid;
+        // query parameters
+        const csvUrls = req.query['csvUrl'];
+        const expanded = req.query['expanded'] !== 'false';
+        const withSubclasses = req.query['subclasses'] !== 'false';
+        const output = req.query['output'];
         try {
-            let response;
-            if (f1 === '0' && f2 === '0') {
-                response = { data: const_1.PLAYGROUND_CSV };
+            const asctbDataResponses = await Promise.all(csvUrls.split('|').map(async (csvUrl) => {
+                const parsedUrl = normalizeCsvUrl(csvUrl.trim());
+                const response = await external_axios_default().get(parsedUrl);
+                const { data } = external_papaparse_default().parse(response.data, {
+                    skipEmptyLines: 'greedy',
+                });
+                const asctbData = makeASCTBData(data);
+                return {
+                    data: asctbData?.data ?? [],
+                    metadata: asctbData?.metadata ?? {},
+                    csv: response.data,
+                    parsed: data,
+                    warnings: asctbData?.warnings ?? [],
+                    isOmap: asctbData?.isOmap ?? false,
+                };
+            }));
+            const asctbData = asctbDataResponses
+                .map((response) => response.data)
+                .reduce((result, data) => {
+                result = result.concat(data);
+                return result;
+            }, []);
+            const asctbDataResponse = asctbDataResponses[0];
+            if (output === 'owl') {
+                const graphData = await makeOwlData(makeJsonLdData(makeGraphData(asctbData), withSubclasses));
+                res.type('application/rdf+xml');
+                res.send(graphData);
+            }
+            else if (output === 'jsonld') {
+                let graphData = makeJsonLdData(makeGraphData(asctbData), withSubclasses);
+                if (expanded) {
+                    graphData = await (0,external_jsonld_namespaceObject.expand)(graphData);
+                }
+                res.send(graphData);
+            }
+            else if (output === 'graph') {
+                const graphData = makeGraphData(asctbData);
+                res.send({
+                    data: graphData,
+                });
+            }
+            else if (output === 'validate') {
+                const reports = asctbDataResponses.map(makeValidationReport);
+                res.type('text/plain');
+                res.send(reports[0]);
             }
             else {
-                response = await axios_1.default.get(`https://docs.google.com/spreadsheets/d/${f1}/export?format=csv&gid=${f2}`);
+                // The default is returning the json
+                res.send({
+                    data: asctbData,
+                    metadata: asctbDataResponse.metadata,
+                    csv: asctbDataResponse.csv,
+                    parsed: asctbDataResponse.parsed,
+                    warnings: asctbDataResponse.warnings,
+                    isOmap: asctbDataResponse.isOmap ?? false,
+                });
             }
-            const { data } = papaparse_1.default.parse(response.data);
-            const asctbData = (0, api_functions_1.makeASCTBData)(data);
-            res.send({
-                data: asctbData.data,
-                metadata: asctbData.metadata,
-                warnings: asctbData.warnings,
-                csv: response.data,
-                parsed: data,
-                isOmap: asctbData.isOmap,
-            });
         }
         catch (err) {
             console.log(err);
             res.status(500).send({
-                msg: 'Please check the table format or the sheet access',
+                msg: 'Please provide a either a valid csv url or a valid public google sheet url. If you are uploading either of these methods, please check the CSV format',
                 code: 500,
             });
         }
     });
     /**
-     * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns Graph format.
+     * Parse a CSV into JSON format given the raw file formData
      */
-    app.get('/v2/:sheetid/:gid/graph', async (req, res) => {
+    app.post('/v2/csv', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-        const sheetID = req.params.sheetid;
-        const gID = req.params.gid;
+        if (!req.files || !req.files['csvFile']) {
+            res.status(400).send({
+                msg: 'This route only accepts CSVs POSTed and called csvFile',
+                code: 400,
+            });
+            return;
+        }
+        const file = req.files['csvFile'];
+        if (file.mimetype !== 'text/csv' || file.size > 10000000) {
+            res.status(400).send({
+                msg: 'File must be a CSV less than 10 MB.',
+                code: 400,
+            });
+            return;
+        }
+        const dataString = file.data.toString();
+        console.log('File uploaded: ', file.name);
         try {
-            let resp;
-            if (sheetID === '0' && gID === '0') {
-                resp = { data: const_1.PLAYGROUND_CSV };
-            }
-            else {
-                resp = await axios_1.default.get(`https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`);
-            }
-            const { data } = papaparse_1.default.parse(resp.data);
-            const asctbData = (0, api_functions_1.makeASCTBData)(data);
-            const graphData = (0, graph_functions_1.makeGraphData)(asctbData.data);
+            const { data } = external_papaparse_default().parse(dataString, {
+                skipEmptyLines: 'greedy',
+            });
+            const asctbData = makeASCTBData(data);
             res.send({
-                data: graphData,
+                data: asctbData?.data ?? [],
+                metadata: asctbData?.metadata ?? {},
+                csv: dataString,
+                parsed: data,
+                warnings: asctbData?.warnings ?? [],
+                isOmap: asctbData?.isOmap ?? false,
             });
         }
         catch (err) {
             console.log(err);
             res.status(500).send({
-                msg: 'Please check the table format or the sheet access',
+                msg: 'Please check the CSV format',
                 code: 500,
             });
         }
+    });
+    app.get('/v2/csv/validate', async () => {
+        console.log();
     });
 }
 
-
-/***/ }),
-/* 24 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PLAYGROUND_CSV = void 0;
+;// ./const.ts
 /* tslint:disable:max-line-length */
-exports.PLAYGROUND_CSV = `"Anatomical Strucures, Cell Types and Biomarkers Table  for *Organ Name*",,,,,,,,,,,,,,,,,,,,,,,,,,,
+const PLAYGROUND_CSV = `"Anatomical Strucures, Cell Types and Biomarkers Table  for *Organ Name*",,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Author: Joe Doe (add up to 3 authors with ORCID IDs),,,,,,,,,,,,,,,,,,,,,,,,,,,
 "Reviewer: Jane Doe (no limit, will be listed in Acknowledgements)",,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -1738,18 +1814,85 @@ AS/1,AS/1/LABEL,AS/1/ID,AS/2.1,AS/2/.1LABEL,AS/2/ID,AS/3.1,AS/3.1/LABEL,AS/3.1/I
 AS/1,AS/1/LABEL,AS/1/ID,AS/2.1,AS/2.1/LABEL,AS/2/ID,AS/3.2,AS/3.2/LABEL,AS/3.2/ID,CT/2,CT/2/LABEL,CT/2/ID,BG/4,BG/4/LABEL,BG/4/ID,,,,,,,,,,,,,
 AS/1,AS/1/LABEL,AS/1/ID,AS/2.1,AS/2.1/LABEL,AS/2/ID,AS/3.2,AS/3.2/LABEL,AS/3.2/ID,CT/3,CT/3/LABEL,CT/3/ID,BG/5,BG/5/LABEL,BG/5/ID,,,,,,,,,,,,,`;
 
-
-/***/ }),
-/* 25 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+;// ./src/routes/google-sheet.ts
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupOntologyLookupRoutes = setupOntologyLookupRoutes;
-const tslib_1 = __webpack_require__(1);
-const axios_1 = tslib_1.__importDefault(__webpack_require__(7));
-const lookup_functions_1 = __webpack_require__(13);
-const lookup_model_1 = __webpack_require__(14);
+
+
+
+/** Adds google sheet routes */
+function setupGoogleSheetRoutes(app) {
+    /**
+     * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.
+     */
+    app.get('/v2/:sheetid/:gid', async (req, res) => {
+        console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
+        const f1 = req.params['sheetid'];
+        const f2 = req.params['gid'];
+        try {
+            let response;
+            if (f1 === '0' && f2 === '0') {
+                response = { data: PLAYGROUND_CSV };
+            }
+            else {
+                response = await external_axios_default().get(`https://docs.google.com/spreadsheets/d/${f1}/export?format=csv&gid=${f2}`);
+            }
+            const { data } = external_papaparse_default().parse(response.data);
+            const asctbData = makeASCTBData(data);
+            res.send({
+                data: asctbData?.data ?? [],
+                metadata: asctbData?.metadata ?? {},
+                warnings: asctbData?.warnings ?? [],
+                csv: response.data,
+                parsed: data,
+                isOmap: asctbData?.isOmap ?? false,
+            });
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).send({
+                msg: 'Please check the table format or the sheet access',
+                code: 500,
+            });
+        }
+    });
+    /**
+     * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns Graph format.
+     */
+    app.get('/v2/:sheetid/:gid/graph', async (req, res) => {
+        console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
+        const sheetID = req.params['sheetid'];
+        const gID = req.params['gid'];
+        try {
+            let resp;
+            if (sheetID === '0' && gID === '0') {
+                resp = { data: PLAYGROUND_CSV };
+            }
+            else {
+                resp = await external_axios_default().get(`https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`);
+            }
+            const { data } = external_papaparse_default().parse(resp.data);
+            const asctbData = makeASCTBData(data);
+            const graphData = makeGraphData(asctbData?.data ?? []);
+            res.send({
+                data: graphData,
+            });
+        }
+        catch (err) {
+            console.log(err);
+            res.status(500).send({
+                msg: 'Please check the table format or the sheet access',
+                code: 500,
+            });
+        }
+    });
+}
+
+;// ./src/routes/ontology-lookup.ts
+
+
+
+/** Adds ontology lookup routes */
 function setupOntologyLookupRoutes(app) {
     /**
      * Given an ontology code (UBERON, FMA, CL, or HGNC), and a numerical ID of a term,
@@ -1757,23 +1900,23 @@ function setupOntologyLookupRoutes(app) {
      * label and description.
      */
     app.get('/lookup/:ontology/:id', async (req, res) => {
-        const ontologyCode = req.params.ontology.toUpperCase();
-        const termId = req.params.id;
-        const output = req.query.output;
+        const ontologyCode = req.params['ontology'].toUpperCase();
+        const termId = req.params['id'];
+        const output = req.query['output'];
         switch (ontologyCode) {
-            case lookup_model_1.OntologyCode.HGNC: {
-                const response = await axios_1.default.get((0, lookup_functions_1.buildHGNCApiUrl)(termId), {
+            case OntologyCode.HGNC: {
+                const response = await external_axios_default().get(buildHGNCApiUrl(termId), {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 if (response.status === 200 && response.data) {
                     const firstResult = response.data.response.docs[0];
                     const details = {
                         extraLinks: {
-                            'Uniprot Link': (0, lookup_functions_1.buildUniprotLink)(firstResult.uniprot_ids[0]),
-                            'Entrez Link': (0, lookup_functions_1.buildEntrezLink)(firstResult.entrez_id),
+                            'Uniprot Link': buildUniprotLink(firstResult.uniprot_ids[0]),
+                            'Entrez Link': buildEntrezLink(firstResult.entrez_id),
                         },
                         label: firstResult.symbol,
-                        link: (0, lookup_functions_1.buildHGNCLink)(firstResult.hgnc_id),
+                        link: buildHGNCLink(firstResult.hgnc_id),
                         description: firstResult.name ? firstResult.name : '',
                     };
                     res.send({
@@ -1786,11 +1929,11 @@ function setupOntologyLookupRoutes(app) {
                 }
                 break;
             }
-            case lookup_model_1.OntologyCode.UBERON:
-            case lookup_model_1.OntologyCode.CL:
-            case lookup_model_1.OntologyCode.LMHA:
-            case lookup_model_1.OntologyCode.FMA: {
-                const response = await axios_1.default.get((0, lookup_functions_1.buildASCTApiUrl)(`${ontologyCode}:${termId}`));
+            case OntologyCode.UBERON:
+            case OntologyCode.CL:
+            case OntologyCode.LMHA:
+            case OntologyCode.FMA: {
+                const response = await external_axios_default().get(buildASCTApiUrl(`${ontologyCode}:${termId}`));
                 if (response.status === 200 && response.data?._embedded?.terms?.length > 0) {
                     const firstResult = response.data._embedded.terms[0];
                     const details = {
@@ -1811,15 +1954,7 @@ function setupOntologyLookupRoutes(app) {
     });
 }
 
-
-/***/ }),
-/* 26 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.openApiRoute = exports.browserRoute = void 0;
-exports.setupOpenApiSpecRoutes = setupOpenApiSpecRoutes;
+;// ./src/routes/open-api-spec.ts
 const browserRoute = (_req, res, _next) => {
     res.send(`<!doctype html>
     <html lang="en">
@@ -1835,31 +1970,22 @@ const browserRoute = (_req, res, _next) => {
     </body>
     </html>`);
 };
-exports.browserRoute = browserRoute;
 const openApiRoute = (_req, res, _next) => {
     res.sendFile('assets/asctb-api-spec.yaml', {
         root: __dirname,
     });
 };
-exports.openApiRoute = openApiRoute;
 function setupOpenApiSpecRoutes(app) {
-    app.get('/', exports.browserRoute);
-    app.get('/index.html', exports.browserRoute);
-    app.get('/asctb-api-spec.yaml', exports.openApiRoute);
+    app.get('/', browserRoute);
+    app.get('/index.html', browserRoute);
+    app.get('/asctb-api-spec.yaml', openApiRoute);
 }
 
-
-/***/ }),
-/* 27 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+;// ./src/routes/playground.ts
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupPlaygroundRoutes = setupPlaygroundRoutes;
-const tslib_1 = __webpack_require__(1);
-const papaparse_1 = tslib_1.__importDefault(__webpack_require__(9));
-const const_1 = __webpack_require__(24);
-const api_functions_1 = __webpack_require__(10);
+
+/** Adds playground routes */
 function setupPlaygroundRoutes(app) {
     /**
      * Get the toy CSV data set for the default playground view
@@ -1867,14 +1993,14 @@ function setupPlaygroundRoutes(app) {
     app.get('/v2/playground', async (req, res) => {
         console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
         try {
-            const parsed = papaparse_1.default.parse(const_1.PLAYGROUND_CSV).data;
-            const asctbData = (0, api_functions_1.makeASCTBData)(parsed);
+            const parsed = external_papaparse_default().parse(PLAYGROUND_CSV).data;
+            const asctbData = makeASCTBData(parsed);
             res.send({
-                data: asctbData.data,
-                metadata: asctbData.metadata,
-                csv: const_1.PLAYGROUND_CSV,
+                data: asctbData?.data ?? [],
+                metadata: asctbData?.metadata ?? {},
+                csv: PLAYGROUND_CSV,
                 parsed: parsed,
-                warnings: asctbData.warnings,
+                warnings: asctbData?.warnings ?? [],
             });
         }
         catch (err) {
@@ -1889,15 +2015,15 @@ function setupPlaygroundRoutes(app) {
      * Send updated data to render on the playground after editing the table
      */
     app.post('/v2/playground', async (req, res) => {
-        const csv = papaparse_1.default.unparse(req.body);
+        const csv = external_papaparse_default().unparse(req.body);
         try {
-            const asctbData = (0, api_functions_1.makeASCTBData)(req.body.data);
+            const asctbData = makeASCTBData(req.body.data);
             res.send({
-                data: asctbData.data,
-                metadata: asctbData.metadata,
+                data: asctbData?.data ?? [],
+                metadata: asctbData?.metadata ?? {},
                 parsed: req.body,
                 csv: csv,
-                warnings: asctbData.warnings,
+                warnings: asctbData?.warnings ?? [],
             });
         }
         catch (err) {
@@ -1910,14 +2036,8 @@ function setupPlaygroundRoutes(app) {
     });
 }
 
-
-/***/ }),
-/* 28 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.setupStaticPageRoutes = setupStaticPageRoutes;
+;// ./src/routes/static-pages.ts
+/** Adds static page routes */
 function setupStaticPageRoutes(app) {
     app.get('/graph', (_req, res) => {
         res.sendFile('assets/graph-vis/index.html', {
@@ -1931,20 +2051,21 @@ function setupStaticPageRoutes(app) {
     });
 }
 
+;// external "memory-cache"
+const external_memory_cache_namespaceObject = require("memory-cache");
+var external_memory_cache_default = /*#__PURE__*/__webpack_require__.n(external_memory_cache_namespaceObject);
+;// ./src/utils/route-caching.ts
 
-/***/ }),
-/* 29 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.routeCache = routeCache;
-const tslib_1 = __webpack_require__(1);
-const memory_cache_1 = tslib_1.__importDefault(__webpack_require__(30));
+/**
+ * Creates a handler that caches responses for a specific duration
+ *
+ * @param duration Duration to keep the cached response
+ * @returns A request handler
+ */
 function routeCache(duration) {
     return (req, res, next) => {
         // query parameters
-        const cache = req.query.cache;
+        const cache = req.query['cache'];
         if (cache !== 'true') {
             next();
         }
@@ -1952,14 +2073,14 @@ function routeCache(duration) {
             res.set('Content-Type', 'application/json');
             res.set('Cache-control', `public, max-age=${duration}`);
             const key = '__express__' + req.originalUrl || 0;
-            const cachedBody = memory_cache_1.default.get(key);
+            const cachedBody = external_memory_cache_default().get(key);
             if (cachedBody) {
                 res.send(cachedBody);
             }
             else {
                 const sendResponse = res.send;
                 res.send = (body) => {
-                    memory_cache_1.default.put(key, body, duration * 1000);
+                    external_memory_cache_default().put(key, body, duration * 1000);
                     sendResponse.call(res, body);
                     return body;
                 };
@@ -1969,49 +2090,44 @@ function routeCache(duration) {
     };
 }
 
+;// ./src/main.ts
 
-/***/ }),
-/* 30 */
-/***/ ((module) => {
 
-module.exports = require("memory-cache");
 
-/***/ })
-/******/ 	]);
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(0);
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	for(var __webpack_i__ in __webpack_exports__) __webpack_export_target__[__webpack_i__] = __webpack_exports__[__webpack_i__];
-/******/ 	if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
-/******/ 	
+
+
+
+
+
+
+
+
+/** Main express application */
+const app = external_express_default()();
+app.use(external_cors_default()());
+app.use(external_express_default().urlencoded({ extended: true }));
+app.use(external_express_default().json());
+app.use(external_express_default()["static"](external_path_default().join(__dirname, 'assets')));
+app.use(external_express_fileupload_default()());
+app.use(routeCache(12000));
+setupCSVRoutes(app);
+setupPlaygroundRoutes(app);
+setupOntologyLookupRoutes(app);
+setupGoogleSheetRoutes(app);
+setupOpenApiSpecRoutes(app);
+setupStaticPageRoutes(app);
+/** Port to listen on (default: 5000) */
+const port = process.env['PORT'] || 5000;
+/** Application server */
+const server = app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}`);
+});
+server.on('error', console.error);
+
+})();
+
+var __webpack_export_target__ = exports;
+for(var __webpack_i__ in __webpack_exports__) __webpack_export_target__[__webpack_i__] = __webpack_exports__[__webpack_i__];
+if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
 /******/ })()
 ;
