@@ -31,6 +31,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   TagId,
   AnatomicalStructureTagStateModel
 > {
+  /** Injector */
   private readonly injector = inject(Injector);
 
   /** Observable of tags */
@@ -65,8 +66,10 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     );
   }
 
+  /** Latest tags */
   private _latestTags: Tag[] = [];
 
+  /** Latest tags */
   get latestTags(): Tag[] {
     return this._latestTags;
   }
@@ -75,7 +78,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   private model!: ModelState;
   /** Reference to the scene state */
   private scene!: SceneState;
-
+  /** Page state */
   private page!: PageState;
 
   /**
@@ -97,6 +100,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     this.entities$.subscribe(() => this.page.setHasChanges());
   }
 
+  /** Add multiple tags */
   @DataAction()
   addTags(tags: Tag[]): void {
     for (const tag of tags) {
@@ -104,11 +108,13 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     }
   }
 
+  /** Add a single tag */
   @DataAction()
   addTag(tag: Tag): void {
     this.addTagRaw(tag);
   }
 
+  /** Remove a single tag */
   @DataAction()
   removeTag(tag: Tag): void {
     if (this.snapshot.entities[tag.id]) {

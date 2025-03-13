@@ -26,7 +26,9 @@ interface ReviewModalData {
   standalone: false,
 })
 export class ReviewModalComponent {
+  /** Dialog reference */
   readonly dialogRef = inject<MatDialogRef<ReviewModalComponent>>(MatDialogRef);
+  /** Data */
   readonly data = inject<ReviewModalData>(MAT_DIALOG_DATA);
 
   /** HTML class name */
@@ -37,6 +39,7 @@ export class ReviewModalComponent {
    */
   metaData: Record<string, MetaData> = {};
 
+  /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
 
   /**
@@ -60,6 +63,7 @@ export class ReviewModalComponent {
     }, 250);
   }
 
+  /** Handle download click */
   downloadClicked(): void {
     this.dialogRef.close(true);
     this.snackbar.open('File downloaded', '', false, 'end', { duration: 5000 });

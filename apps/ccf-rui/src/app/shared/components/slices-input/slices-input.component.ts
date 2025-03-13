@@ -28,6 +28,7 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   standalone: false,
 })
 export class SlicesInputComponent {
+  /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
   /** HTML class name */
@@ -43,6 +44,12 @@ export class SlicesInputComponent {
    */
   @Output() readonly slicesConfigChange = new EventEmitter<SlicesConfig>();
 
+  /**
+   * Get the original value if not NaN otherwise the empty string
+   *
+   * @param value Value to check
+   * @returns The original value if it is not NaN, '' otherwise
+   */
   emptyStringIfNaN(value: number): number | string {
     return Number.isNaN(value) ? '' : value;
   }

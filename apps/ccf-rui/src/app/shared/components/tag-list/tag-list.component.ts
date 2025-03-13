@@ -14,6 +14,7 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
   standalone: false,
 })
 export class TagListComponent {
+  /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
   /** HTML class name */
@@ -45,6 +46,12 @@ export class TagListComponent {
     return tag.id;
   }
 
+  /**
+   * Get the css classes that should be applied to a tag chip
+   *
+   * @param tag Tag data
+   * @returns Classes to apply
+   */
   tagClasses(tag: Tag): string[] {
     return tag.type === 'added' ? ['added'] : ['assigned'];
   }

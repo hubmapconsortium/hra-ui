@@ -1,3 +1,4 @@
+/** Production environment */
 export const environment = {
   production: true,
   disableDbWorker: true,

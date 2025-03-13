@@ -16,15 +16,21 @@ import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-n
 
 /** Represents a user with a first and last name. */
 export interface User {
+  /** First name */
   firstName: string;
+  /** Last name */
   lastName: string;
 }
 
 /** Configuration options for the application. */
 interface AppOptions extends GlobalConfig {
+  /** Home url */
   homeUrl?: string;
+  /** Logo tooltip */
   logoTooltip?: string;
+  /** View type */
   view?: ViewType;
+  /** View side */
   viewSide?: ViewSide;
 }
 
@@ -47,13 +53,20 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior' | '3D';
   standalone: false,
 })
 export class AppComponent implements OnDestroy, OnInit {
+  /** Model state */
   readonly model = inject(ModelState);
+  /** Page state */
   readonly page = inject(PageState);
-  readonly consentService = inject(ConsentService);
-  readonly snackbar = inject(MatSnackBar);
-  private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
-  private readonly ga = inject(GoogleAnalyticsService);
+  /** Registration state */
   readonly registration = inject(RegistrationState);
+  /** Consent service */
+  readonly consentService = inject(ConsentService);
+  /** Snackbar service */
+  readonly snackbar = inject(MatSnackBar);
+  /** Global config */
+  private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
 
   /** False until the initial registration modal is closed */
   registrationStarted = false;

@@ -25,8 +25,11 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
   standalone: false,
 })
 export class ReviewButtonComponent implements OnChanges {
+  /** Dialog service */
   private readonly dialog = inject(MatDialog);
+  /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
+  /** Page state */
   readonly page = inject(PageState);
 
   /** HTML class name */
@@ -70,6 +73,7 @@ export class ReviewButtonComponent implements OnChanges {
    */
   registrationIsValid = false;
 
+  /** Tooltip for the button */
   get tooltip(): string {
     return this.disabled
       ? 'Tissue block does not collide with any anatomical structures'

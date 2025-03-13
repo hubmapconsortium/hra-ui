@@ -41,10 +41,14 @@ export interface IconDefinition {
 @State<void>({ name: 'iconRegistry' })
 @Injectable()
 export class IconRegistryState extends NgxsDataRepository<void> {
+  /** Material icon registry */
   private readonly registry = inject(MatIconRegistry, { optional: true });
+  /** Sanitizer */
   private readonly sanitizer = inject(DomSanitizer);
+  /** Global config */
   private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
+  /** Register default icons and add a svg resolver */
   override ngxsOnInit(): void {
     // Register html icons as they don't depend on baseHref
     DEFAULT_ICONS.filter((def) => def.html !== undefined)

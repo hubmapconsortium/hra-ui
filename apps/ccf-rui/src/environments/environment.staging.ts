@@ -1,3 +1,4 @@
+/** Staging environment */
 export const environment = {
   production: true,
   disableDbWorker: true,
