@@ -60,6 +60,10 @@
 
     .mat-button-toggle-group {
       width: 100%;
+
+      mat-button-toggle {
+        flex-grow: 1;
+      }
     }
   }
 
