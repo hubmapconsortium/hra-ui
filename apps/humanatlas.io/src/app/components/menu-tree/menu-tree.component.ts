@@ -15,8 +15,11 @@ import { NavItems } from '../toolbar/nav-items';
   standalone: false,
 })
 export class MenuTreeComponent {
+  /** Router */
   private readonly router = inject(Router);
+  /** Scrolling service */
   private readonly scroller = inject(ViewportScroller);
+  /** Overlay service */
   private readonly overlay = inject(Overlay);
 
   /** Sets the menu items to the datasource */
@@ -81,6 +84,7 @@ export class MenuTreeComponent {
     return node.componentName === 'hubmap-nav';
   }
 
+  /** Collapses all inactive nodes */
   collapseNonActiveNodes(node: NavItems) {
     const isExpanded = this.treeControl.isExpanded(node);
     this.treeControl.collapseAll();

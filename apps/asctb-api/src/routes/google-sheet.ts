@@ -6,6 +6,7 @@ import { PLAYGROUND_CSV } from '../../const';
 import { makeASCTBData } from '../functions/api.functions';
 import { makeGraphData } from '../functions/graph.functions';
 
+/** Adds google sheet routes */
 export function setupGoogleSheetRoutes(app: Express): void {
   /**
    * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.

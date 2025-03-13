@@ -4,7 +4,9 @@ import { SpatialEntityJsonLd } from '../shared/ccf-spatial-jsonld';
 import { processSceneNodes } from './process-scene-nodes';
 
 /**
- * This function processes spatial entities by loading and processing scene nodes from a GLTF file, and then generating new spatial entities based on the parent entity and the processed nodes.
+ * This function processes spatial entities by loading and processing scene nodes from a GLTF file,
+ * and then generating new spatial entities based on the parent entity and the processed nodes.
+ *
  * @param parent The parent SpatialEntityJsonLd object representing the parent spatial entity.
  * @param [gltfOverride] An optional GLTF file URL to override the parent's GLTF file.
  * @returns A promise that resolves to an array of SpatialEntityJsonLd objects representing the processed spatial entities.
