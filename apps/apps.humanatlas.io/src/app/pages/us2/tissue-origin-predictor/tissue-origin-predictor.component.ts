@@ -62,10 +62,10 @@ export class TissueOriginPredictorComponent {
   });
 
   /** Supported organ value */
-  protected supportedOrgan = '';
+  protected supportedOrgan = undefined;
 
   /** Supported tool value */
-  protected supportedTool = '';
+  protected supportedTool = undefined;
 
   /** Use sample CSV File */
   async onUseSampleClicked(): Promise<void> {

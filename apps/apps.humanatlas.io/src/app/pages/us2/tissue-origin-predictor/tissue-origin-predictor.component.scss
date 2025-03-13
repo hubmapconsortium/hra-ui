@@ -85,3 +85,9 @@
     }
   }
 }
+
+::ng-deep {
+  .cdk-overlay-container:has(.eui-panel) {
+    z-index: 1000;
+  }
+}
