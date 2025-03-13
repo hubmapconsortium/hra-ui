@@ -35,7 +35,8 @@ button {
     display: flex;
   }
 
-  .predictions-table {
+  .predictions-table,
+  .dataset-table {
     background-color: var(--sys-secondary-container);
     border-collapse: collapse;
 
@@ -58,13 +59,23 @@ button {
         color: var(--sys-on-tertiary-container);
       }
     }
+
+    .similarity-column {
+      text-align: center;
+    }
+
+    .table-overflow-container {
+      max-height: 22.625rem;
+      overflow-x: hidden;
+    }
   }
 
   .dataset-table {
     td {
-      max-width: 262.3296px;
+      max-width: 16.38rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      box-sizing: border-box;
     }
   }
 
@@ -82,4 +93,77 @@ button {
 
 ::ng-deep .hra-app table[matSort] .mat-sort-header-container {
   max-width: 13rem;
+}
+
+.bottom-cards {
+  margin-top: 3rem;
+  margin-bottom: 10.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+
+  .card {
+    width: 36.25rem;
+    --hra-workflow-card-header-padding: 0 0 0.5rem 0;
+  }
+
+  .card-1 {
+    p {
+      font: var(--sys-label-large);
+      letter-spacing: var(--sys-label-large-tracking);
+      color: var(--sys-primary);
+    }
+  }
+
+  .card-2 {
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+  }
+
+  .metadata-container {
+    display: flex;
+
+    .titles,
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .values {
+      color: var(--sys-primary);
+      margin-left: 0.5rem;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: var(--sys-label-medium);
+    letter-spacing: var(--sys-label-medium-tracking);
+    color: var(--sys-primary);
+  }
+
+  .cdk-overlay-connected-position-bounding-box {
+    margin-left: 0.5rem;
+  }
+
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    max-width: 22rem;
+    margin-left: 0.05rem;
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
 }

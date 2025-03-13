@@ -26,9 +26,9 @@ export interface SupportedTools {
  */
 export interface UserSelection {
   /** Organ */
-  selectedOrganIri: string;
+  selectedOrganIri?: string;
   /** Tool */
-  selectedToolIri: string;
+  selectedToolIri?: string;
 }
 
 /**
@@ -40,7 +40,9 @@ export interface Sources {
   /** Cell source type */
   cell_source_type: string;
   /** Cell source label */
-  cell_source_label: string;
+  cell_source_label: string | null;
+  /** Cell source link */
+  cell_source_link: string | null;
   /** Tool */
   tool: string;
   /** Modality */
@@ -53,24 +55,40 @@ export interface Sources {
 export interface TissueOriginPredictions {
   /** Sources array */
   sources: Sources[];
+  /** RUI locations object */
+  rui_locations: object;
 }
 
 /** User Selection Service */
 @Injectable({ providedIn: 'root' })
 export class UserSelectionService {
-  private selections: UserSelection = { selectedOrganIri: '', selectedToolIri: '' };
+  /** holds user selection for organ and tool */
+  private selections: UserSelection = {};
 
-  updateSelection(selectedOrganIri: string, selectedToolIri: string): void {
+  /**
+   * Updates user selection for organ and tool
+   * @param selectedOrganIri user selected organ
+   * @param selectedToolIri user selected tool
+   */
+  updateSelection(selectedOrganIri?: string, selectedToolIri?: string): void {
     this.selections = { selectedOrganIri, selectedToolIri };
   }
 
+  /**
+   * Returns user selection for organ and tool
+   * @returns UserSelection Object
+   */
   getSelections(): UserSelection {
     return this.selections;
   }
 }
 
-/** Resolver for Tisseu Origin Predictions page */
+/**
+ * Resolver for Tissue Origin Predictions page
+ * @returns Tissue origin predictions result observable
+ */
 export function resolveTissueOriginPredictions(): Observable<TissueOriginPredictions> {
+  /** User selection service */
   const userSelectionService = inject(UserSelectionService).getSelections();
 
   return inject(TissueOriginService).loadTissuePredictions(
@@ -119,9 +137,9 @@ export class TissueOriginService {
    * Gets Predictions for the current csv file
    * @returns Predictions array observable
    */
-  loadTissuePredictions(selectedOrganIri: string, selectedToolIri: string): Observable<TissueOriginPredictions> {
+  loadTissuePredictions(selectedOrganIri?: string, selectedToolIri?: string): Observable<TissueOriginPredictions> {
     if (this.file === null) {
-      return of({ sources: [] });
+      return of({ sources: [], rui_locations: {} });
     }
 
     const body = {
