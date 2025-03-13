@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { DocumentationContent, InfoButtonService } from '../../components/info/info-button/info-button.service';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 import { CallToActionModel, CallToActionState } from './call-to-action.state';
+import { TestBed } from '@angular/core/testing';
 
 describe('CallToActionState', () => {
   const defaultState: CallToActionModel = {
@@ -34,7 +35,18 @@ describe('CallToActionState', () => {
     http = mock();
     infoService = mock();
 
-    state = new CallToActionState(dialog, ga, storage, infoService, http);
+    TestBed.configureTestingModule({
+      providers: [
+        CallToActionState,
+        { provide: MatDialog, useValue: dialog },
+        { provide: GoogleAnalyticsService, useValue: ga },
+        { provide: LocalStorageService, useValue: storage },
+        { provide: InfoButtonService, useValue: infoService },
+        { provide: HttpClient, useValue: http },
+      ],
+    });
+
+    state = TestBed.inject(CallToActionState);
   });
 
   beforeEach(() => {

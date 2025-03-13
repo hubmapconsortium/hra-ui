@@ -13,14 +13,25 @@ import {
   MetadataModalResult,
 } from './modal/metadata-modal.component';
 
+/** Service for managing the metadata modal */
 @Injectable({ providedIn: 'root' })
 export class MetadataService {
+  /** Dialog service */
   private readonly dialog = inject(MatDialog);
+  /** Model state */
   private readonly modelState = inject(ModelState);
+  /** Page state */
   private readonly pageState = inject(PageState);
+  /** Registration state */
   private readonly registrationState = inject(RegistrationState);
+  /** Scene state */
   private readonly sceneState = inject(SceneState);
 
+  /**
+   * Opens the metadata modal and updates the state when it is closed
+   *
+   * @param mode Mode to open modal in
+   */
   openModal(mode: MetadataModalMode): void {
     const ref = this.dialog.open<MetadataModalComponent, MetadataModalConfig, MetadataModalResult>(
       MetadataModalComponent,
@@ -48,6 +59,12 @@ export class MetadataService {
     });
   }
 
+  /**
+   * Updates the state with the values entered in the metadata modal
+   *
+   * @param _mode Mode modal was opened with
+   * @param data Data returned by the modal
+   */
   private updateState(_mode: MetadataModalMode, data: MetadataModalResult): void {
     const { modelState, pageState, registrationState, sceneState } = this;
     const {

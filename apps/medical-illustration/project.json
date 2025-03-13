@@ -7,27 +7,20 @@
   "projectType": "application",
   "sourceRoot": "apps/medical-illustration/src",
   "prefix": "hra",
+  "tags": ["type:app", "project:ftu", "webcomponent"],
+  "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:application",
       "options": {
-        "outputPath": "dist/apps/medical-illustration",
-        "index": "apps/medical-illustration/src/index.html",
-        "main": "apps/medical-illustration/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/medical-illustration/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
-        "styles": ["apps/medical-illustration/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
         },
-        "scripts": []
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/medical-illustration/",
           "budgets": [
             {
               "type": "initial",
@@ -39,66 +32,15 @@
               "maximumWarning": "2kb",
               "maximumError": "4kb"
             }
-          ],
-          "outputHashing": "none"
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        },
-        "staging": {
-          "baseHref": "/ui--staging/medical-illustration/",
-          "outputHashing": "none"
-        },
-        "preview": {
-          "baseHref": "/apps/medical-illustration/",
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
+          ]
         }
-      },
-      "defaultConfiguration": ""
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "medical-illustration:build:production"
-        },
-        "development": {
-          "buildTarget": "medical-illustration:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "medical-illustration:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/medical-illustration/jest.config.ts"
-      }
+      "executor": "@nx/angular:dev-server"
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs medical-illustration"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/medical-illustration/browser/"
     }
-  },
-  "tags": ["type:app", "project:ftu", "webcomponent"],
-  "implicitDependencies": ["shared-theming"]
+  }
 }

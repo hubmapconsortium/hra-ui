@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+/** Metadata for help overlay content */
 @Component({
   selector: 'ccf-metadata-help',
   imports: [MatDividerModule, MatIconModule, MatMenuModule, ButtonsModule],

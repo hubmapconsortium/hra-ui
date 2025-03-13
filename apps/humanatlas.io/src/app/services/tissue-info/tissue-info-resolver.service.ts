@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { EMPTY, Observable, of } from 'rxjs';
 import { TissueTableInfo } from '../../components/tissue-info-table/tissue-info-table';
@@ -9,8 +9,7 @@ import { tissueData } from '../../pages/tissue-info-page/tissue-info-page.conten
   providedIn: 'root',
 })
 export class TissueInfoResolverService {
-  /** Initializes the Router */
-  constructor(private readonly router: Router) {}
+  private readonly router = inject(Router);
 
   /** Redirects to the tissue info page if valid organ */
   resolve(route: ActivatedRouteSnapshot): Observable<TissueTableInfo> {

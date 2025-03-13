@@ -10,6 +10,7 @@ import { makeGraphData } from '../functions/graph.functions';
 import { makeValidationReport } from '../functions/validation-report.function';
 import { UploadedFile } from '../models/api.model';
 
+/** Adds csv routes */
 export function setupCSVRoutes(app: Express): void {
   /**
    * Fetch a CSV given a link and parse it into json or graph output
@@ -18,10 +19,10 @@ export function setupCSVRoutes(app: Express): void {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
 
     // query parameters
-    const csvUrls = req.query.csvUrl as string;
-    const expanded = req.query.expanded !== 'false';
-    const withSubclasses = req.query.subclasses !== 'false';
-    const output = req.query.output as string;
+    const csvUrls = req.query['csvUrl'] as string;
+    const expanded = req.query['expanded'] !== 'false';
+    const withSubclasses = req.query['subclasses'] !== 'false';
+    const output = req.query['output'] as string;
 
     try {
       const asctbDataResponses = await Promise.all(
@@ -33,12 +34,12 @@ export function setupCSVRoutes(app: Express): void {
           });
           const asctbData = makeASCTBData(data);
           return {
-            data: asctbData.data,
-            metadata: asctbData.metadata,
+            data: asctbData?.data ?? [],
+            metadata: asctbData?.metadata ?? {},
             csv: response.data,
             parsed: data,
-            warnings: asctbData.warnings,
-            isOmap: asctbData.isOmap,
+            warnings: asctbData?.warnings ?? [],
+            isOmap: asctbData?.isOmap ?? false,
           };
         }),
       );
@@ -95,7 +96,7 @@ export function setupCSVRoutes(app: Express): void {
    */
   app.post('/v2/csv', async (req: Request, res: Response) => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-    if (!req.files || !req.files.csvFile) {
+    if (!req.files || !req.files['csvFile']) {
       res.status(400).send({
         msg: 'This route only accepts CSVs POSTed and called csvFile',
         code: 400,
@@ -103,7 +104,7 @@ export function setupCSVRoutes(app: Express): void {
       return;
     }
 
-    const file = req.files.csvFile as UploadedFile;
+    const file = req.files['csvFile'] as UploadedFile;
 
     if (file.mimetype !== 'text/csv' || file.size > 10000000) {
       res.status(400).send({
@@ -123,12 +124,12 @@ export function setupCSVRoutes(app: Express): void {
       const asctbData = makeASCTBData(data);
 
       res.send({
-        data: asctbData.data,
-        metadata: asctbData.metadata,
+        data: asctbData?.data ?? [],
+        metadata: asctbData?.metadata ?? {},
         csv: dataString,
         parsed: data,
-        warnings: asctbData.warnings,
-        isOmap: asctbData.isOmap,
+        warnings: asctbData?.warnings ?? [],
+        isOmap: asctbData?.isOmap ?? false,
       });
     } catch (err) {
       console.log(err);

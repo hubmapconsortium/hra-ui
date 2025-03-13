@@ -1,15 +1,24 @@
 import { CompositeLayer, COORDINATE_SYSTEM, LayersList } from '@deck.gl/core/typed';
 import { TextLayer } from '@deck.gl/layers/typed';
 import { ScenegraphLayer, SimpleMeshLayer } from '@deck.gl/mesh-layers/typed';
+import { Matrix4 } from '@math.gl/core';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore Ignore missing typings
 import { ConeGeometry, CubeGeometry, CylinderGeometry, Geometry, SphereGeometry } from '@luma.gl/core';
-import { Matrix4 } from '@math.gl/core';
 
 import { SpatialSceneNode } from './shared/spatial-scene-node';
 import { loadGLTF, loadGLTF2, registerGLTFLoaders } from './util/load-gltf';
 import { doCollisions } from './util/spatial-scene-collider';
 
+/**
+ * This function creates a SimpleMeshLayer based on the provided geometry type and options.
+ * It supports different geometries like sphere, cone, cylinder, and cube.
+ * @param id
+ * @param data
+ * @param options
+ * @returns layer
+ */
 function meshLayer(
   id: string,
   data: SpatialSceneNode[],
@@ -53,6 +62,13 @@ function meshLayer(
   }
 }
 
+/**
+ * This function creates a TextLayer for rendering text based on the provided data and options.
+ * @param id
+ * @param data
+ * @param options
+ * @returns layer
+ */
 function textLayer(
   id: string,
   data: SpatialSceneNode[],
@@ -78,16 +94,33 @@ function textLayer(
   }
 }
 
+/**
+ * This class extends CompositeLayer to create a custom layer that manages multiple sub-layers, including mesh and text layers.
+ * It handles the initialization, rendering, and picking information for the layers.
+ */
 export class BodyUILayer extends CompositeLayer<SpatialSceneNode> {
+  /** The layer name */
   static override readonly layerName = 'BodyUILayer';
+  /** The GLTF Cache */
   static readonly gltfCache: { [url: string]: Promise<Blob> } = {};
 
+  /**
+   * This function initializes the state of the BodyUILayer class.
+   * It sets the initial state with the provided data, a default zoom opacity of 0.8, and a flag to control collision detection.
+   * It also registers GLTF loaders.
+   */
   override initializeState(): void {
     const { data } = this.props;
     this.setState({ data: data ?? [], zoomOpacity: 0.8, doCollisions: false });
     registerGLTFLoaders();
   }
 
+  /**
+   * This function renders the layers based on the current state.
+   * It categorizes the data into different geometries and creates corresponding layers for each geometry type.
+   * It also handles loading GLTF models and manages collision detection if enabled.
+   * @returns LayersList - A list of layers to be rendered.
+   */
   renderLayers(): LayersList {
     const state = this.state as {
       data: SpatialSceneNode[];
@@ -128,7 +161,7 @@ export class BodyUILayer extends CompositeLayer<SpatialSceneNode> {
           layers.push(
             new ScenegraphLayer({
               id: 'models-' + model['@id'],
-              opacity: model.zoomBasedOpacity ? state.zoomOpacity : model.opacity ?? 1.0,
+              opacity: model.zoomBasedOpacity ? state.zoomOpacity : (model.opacity ?? 1.0),
               pickable: !model.unpickable,
               coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
               data: [model],
@@ -192,6 +225,9 @@ export class BodyUILayer extends CompositeLayer<SpatialSceneNode> {
     return layers.filter((l) => !!l) as LayersList;
   }
 
+  /**
+   * This function provides information about the picked object when the user interacts with the layer. It returns the picking information from the event.
+   */
   override getPickingInfo(
     e: Parameters<CompositeLayer<SpatialSceneNode>['getPickingInfo']>[0],
   ): ReturnType<CompositeLayer<SpatialSceneNode>['getPickingInfo']> {

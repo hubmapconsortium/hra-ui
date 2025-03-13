@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Row, Sheet, SheetInfo, Structure } from '../models/sheet.model';
@@ -9,7 +9,7 @@ import { URL, getAssetsURL } from './../static/url';
   providedIn: 'root',
 })
 export class SheetService {
-  constructor(private readonly http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   /**
    * Service to fetch the data for a sheet from CSV file or Google sheet using the api

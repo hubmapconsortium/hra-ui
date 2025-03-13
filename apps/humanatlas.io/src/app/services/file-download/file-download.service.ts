@@ -1,16 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { ErrorHandler, Inject, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, inject } from '@angular/core';
 
 /** Service for downloading the files using fetch */
 @Injectable({
   providedIn: 'root',
 })
 export class FileDownloadService {
-  /** Initializes the Document and ErrorHandler */
-  constructor(
-    @Inject(DOCUMENT) private readonly document: Document,
-    private readonly errorHandler: ErrorHandler,
-  ) {}
+  private readonly document = inject<Document>(DOCUMENT);
+  private readonly errorHandler = inject(ErrorHandler);
 
   /** Creates a file like object and downloads it */
   async download(url: string, filename = this.getFilename(url)): Promise<void> {

@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { load } from 'js-yaml';
@@ -11,8 +11,7 @@ import { PageSpec } from '../../utils/data-schema';
   providedIn: 'root',
 })
 export class ContentService {
-  /** Initializes the HttpClient */
-  constructor(private readonly http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   /** Gets data from YAML file and returns an observable */
   getContent(fileName: string): Observable<PageDef[]> {

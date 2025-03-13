@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AggregateCount } from '@hra-api/ng-client';
 
+/** Display organ stats */
 @Component({
   selector: 'ccf-stats-list',
   templateUrl: './stats-list.component.html',
@@ -9,6 +10,8 @@ import { AggregateCount } from '@hra-api/ng-client';
   standalone: false,
 })
 export class StatsListComponent {
+  /** Label */
   @Input() statsLabel!: string;
+  /** Counts */
   @Input() stats!: AggregateCount[];
 }

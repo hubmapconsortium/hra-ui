@@ -513,6 +513,7 @@ export interface OrganInfo {
    */
   id?: string;
 
+  /** Number of results */
   numResults?: number;
 }
 
@@ -530,9 +531,12 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
   /** HTML class */
   @HostBinding('class') readonly clsName = 'ccf-organ-selector';
 
+  /** Carousel container */
   @ViewChild('carouselContainer', { static: true })
   carouselContainer!: ElementRef<HTMLElement>;
+  /** Item list */
   @ViewChild('itemlist', { static: true }) itemList!: ElementRef<HTMLElement>;
+  /** Item container */
   @ViewChild('itemcontainer', { static: true })
   itemContainer!: ElementRef<HTMLElement>;
 
@@ -541,6 +545,7 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
    */
   @Input() multiselect = false;
 
+  /** Whether to display errors */
   @Input() displayErrors = false;
 
   /**
@@ -588,18 +593,18 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
    */
   private sensor!: ResizeSensor;
 
-  // eslint-disable-next-line
+  /** Set occurence data */
   @Input()
   set occurenceData(value: Record<string, number>) {
-    // eslint-disable-next-line
     this._occurenceData = value;
   }
 
+  /** Get occurence data */
   get occurenceData(): Record<string, number> {
-    // eslint-disable-next-line
     return this._occurenceData;
   }
 
+  /** Occurence data */
   private _occurenceData!: Record<string, number>;
 
   /**
@@ -612,6 +617,7 @@ export class OrganSelectorComponent implements AfterViewInit, OnChanges, OnDestr
     });
   }
 
+  /** React to input changes */
   ngOnChanges(changes: SimpleChanges): void {
     if ('organList' in changes) {
       this.set();

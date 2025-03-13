@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EMPTY, Observable, map } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
@@ -15,6 +15,10 @@ import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
   standalone: false,
 })
 export class OrganVersionComponent implements OnInit {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly dataService = inject(TableDataService);
+
   /** Deatils of the release and version */
   @Input() versionData: ChooseVersion[] = [];
 
@@ -56,13 +60,6 @@ export class OrganVersionComponent implements OnInit {
 
   /** Column definitons of the columns to be displayed */
   displayedColumnsData: string[] = [];
-
-  /** Creates instance of Router, ActivatedRoute, TableDataService */
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private readonly dataService: TableDataService,
-  ) {}
 
   /** Checks if both the strings are equal */
   iCaseEquals(str1: string, str2: string): boolean {

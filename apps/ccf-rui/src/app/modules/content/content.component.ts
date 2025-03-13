@@ -7,11 +7,11 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
 import { ResizeSensor } from 'css-element-queries';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
-
 import { environment } from '../../../environments/environment';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
@@ -29,11 +29,26 @@ import { SceneState } from '../../core/store/scene/scene.state';
   standalone: false,
 })
 export class ContentComponent implements OnInit, OnDestroy {
+  /** Model state */
+  readonly model = inject(ModelState);
+  /** Page state */
+  readonly page = inject(PageState);
+  /** Registration state */
+  readonly registration = inject(RegistrationState);
+  /** Scene state */
+  readonly scene = inject(SceneState);
+  /** Element reference */
+  private readonly rootRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  /** Change detector */
+  private readonly cdr = inject(ChangeDetectorRef);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
 
+  /** Disable keyboard position interactions */
   @Input() disablePositionChange = false;
 
+  /** Current position of block */
   readonly position$ = this.model.position$.pipe(
     map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
   );
@@ -41,6 +56,7 @@ export class ContentComponent implements OnInit, OnDestroy {
   /** Whether the view type is 3d or register */
   readonly is3DView$ = this.model.viewType$.pipe(map((type) => type === '3d'));
 
+  /** Bounds of model */
   readonly bounds$ = this.model.organDimensions$.pipe(
     map((dims) => ({
       x: Math.max(dims.x, this.model.defaultPosition.x + 40) / 1000,
@@ -66,24 +82,6 @@ export class ContentComponent implements OnInit, OnDestroy {
 
   /** Resize detection */
   private sensor!: ResizeSensor;
-
-  /**
-   * Creates an instance of content component.
-   *
-   * @param model The model state
-   * @param page The page state
-   * @param registration The registration state
-   * @param rootRef Component's root element
-   * @param cdr Change detector
-   */
-  constructor(
-    readonly model: ModelState,
-    readonly page: PageState,
-    readonly registration: RegistrationState,
-    readonly scene: SceneState,
-    private readonly rootRef: ElementRef<HTMLElement>,
-    private readonly cdr: ChangeDetectorRef,
-  ) {}
 
   /**
    * Sets up the resize sensor
@@ -114,6 +112,7 @@ export class ContentComponent implements OnInit, OnDestroy {
     this.model.setViewType(is3DView ? '3d' : 'register');
   }
 
+  /** Handle node drag */
   handleNodeDrag(event: NodeDragEvent): void {
     if (event.node['@id'] === '#DraftPlacement') {
       if (event.info.coordinate) {

@@ -13,15 +13,31 @@ import { derivedAsync } from 'ngxtension/derived-async';
 import { distinctUntilChanged, map, Observable, startWith, Subject } from 'rxjs';
 import { removeDoiBase } from '../../../shared/utils/doi';
 
+/** Donor form controls */
 export interface DonorFormControls {
+  /** Organ control */
   organ: FormControl<OrganInfo | string | null>;
+  /** Sex control */
   sex: FormControl<string>;
+  /** Consortium control */
   consortium: FormControl<string>;
+  /** DOI id control */
   doi: FormControl<string>;
 }
 
+/** Default consortium options */
 const DEFAULT_CONSORTIUMS = ['HuBMAP', 'SenNet'];
 
+/**
+ * Filters a set of options based on the user input.
+ * The filtering is case insensitive and ptions are returned in alphabetical order using the default locale.
+ * Empty inputs (`null`, `undefined`, or `''`) return all options.
+ *
+ * @param options Autocomplete options
+ * @param input User input
+ * @param getValue Accessor to get the search text for an item
+ * @returns The options that matches the current user input
+ */
 function filterAutocompleteOptions<T>(
   options: Signal<T[]>,
   input: Signal<FormControl<T | string | null>> | Observable<T | string | null>,
@@ -59,6 +75,7 @@ function filterAutocompleteOptions<T>(
   );
 }
 
+/** Metadata donor subform */
 @Component({
   selector: 'ccf-metadata-donor-form',
   imports: [
@@ -77,22 +94,32 @@ function filterAutocompleteOptions<T>(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataDonorFormComponent {
+  /** Parent form controller */
   readonly form = input.required<FormGroup<DonorFormControls>>();
 
+  /** Available organs the user can select from */
   readonly organs = input<OrganInfo[]>(ALL_ORGANS);
+  /** Default consortiums shown during autocomplete */
   readonly consortiums = input<string[]>(DEFAULT_CONSORTIUMS);
 
+  /** Accessor for an organ's name */
   protected readonly getOrganName = (organ: OrganInfo | null) => organ?.name ?? '';
+  /** Current user input in the organ field */
   protected readonly organInput = new Subject<string>();
+  /** Autocomplete organ options based on the current user input */
   protected readonly filteredOrgans = filterAutocompleteOptions(this.organs, this.organInput, this.getOrganName);
 
+  /** Consortium field controller */
   private readonly consortiumControl = computed(() => this.form().controls.consortium);
+  /** Autocomplete consortium options based on the current user input */
   protected readonly filteredConsortiums = filterAutocompleteOptions(
     this.consortiums,
     this.consortiumControl,
     (value) => value,
   );
 
+  /** Transformer applied to input in the doi field */
   protected readonly doiInputFn = (value: unknown) => removeDoiBase(String(value));
+  /** Valid doi id characters */
   protected readonly doiPatterns = { A: { pattern: /[\w.\-_~#[\]'()*%]/ } };
 }
