@@ -13,7 +13,7 @@
   [cdkConnectedOverlayOrigin]="panelOrigin() ?? fallbackOrigin"
   [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
   (overlayOutsideClick)="panelOpen.set(false)"
-  (detach)="afteClose()"
+  (detach)="afterClose()"
 >
   <div
     cdkTrapFocus
