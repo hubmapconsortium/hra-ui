@@ -6,7 +6,7 @@ import { Filter, OntologyTree } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
-import { ConsentService } from 'ccf-shared/analytics';
+import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -124,6 +124,7 @@ export class AppComponent implements OnInit {
     readonly scene: SceneState,
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
+    readonly localStorageSyncService: LocalStorageSyncService,
     readonly snackbar: MatSnackBar,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
   ) {
@@ -157,7 +158,7 @@ export class AppComponent implements OnInit {
         },
       },
       panelClass: 'usage-snackbar',
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
+      duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
     });
   }
 
