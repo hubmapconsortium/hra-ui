@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Filter } from '@hra-api/ng-client';
-import { BUILTIN_PARSERS, BaseWebComponent } from 'ccf-shared/web-components';
+import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
+
 import { environment } from '../environments/environment';
 
 function isNumber(value: unknown): value is number {
@@ -84,18 +85,17 @@ function parseFilter(value: unknown): string | Partial<Filter> {
   standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
-  @Input() baseHref!: string;
-  @Input() dataSources!: string | string[];
-  @Input() selectedOrgans!: string[];
+  baseHref = input.required<string>();
+  dataSources = input.required<string | string[]>();
+  selectedOrgans = input.required<string[]>();
 
-  @Input() token!: string;
-  @Input() remoteApiEndpoint!: string;
-  @Input() theme!: string;
-  @Input() header!: string | boolean;
-  @Input() homeUrl!: string;
-  @Input() logoTooltip!: string;
-  @Input() loginDisabled!: boolean;
-  @Input() filter!: string | Partial<Filter>;
+  token = input.required<string>();
+  remoteApiEndpoint = input.required<string>();
+  header = input.required<string | boolean>();
+  homeUrl = input.required<string>();
+  logoTooltip = input.required<string>();
+  loginDisabled = input.required<boolean>();
+  filter = input.required<string | Partial<Filter>>();
 
   override initialized!: boolean;
 
