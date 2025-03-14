@@ -61,12 +61,6 @@
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
         "tsConfig": "apps/ccf-eui/tsconfig.app.json"
-      },
-      "configurations": {
-        "test-coverage": {
-          "coverageMinimumPerFile": 0,
-          "coverageTest": 0
-        }
       }
     },
     "build-webcomponent": {
