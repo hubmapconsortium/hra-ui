@@ -3,15 +3,18 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
 
 import { SceneState } from '../../../core/store/scene/scene.state';
-import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 
+/**
+ * Organ select form with autocomplete and chips
+ */
 @Component({
   selector: 'ccf-organ-select',
   imports: [
@@ -29,10 +32,14 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrganSelectComponent {
+  /** Scene state */
   private readonly scene = inject(SceneState);
+  /** Currently selected organs */
   protected readonly selectedOrgans = toSignal(this.scene.selectedReferenceOrgans$, { requireSync: true });
+  /** Current search input */
   protected readonly searchInput = signal('');
 
+  /** Organs to display in autocomplete dropdown */
   protected readonly filteredOrgans = computed(() => {
     const search = this.searchInput().toLowerCase();
     const options: OrganInfo[] = [];
@@ -45,7 +52,11 @@ export class OrganSelectComponent {
     return options;
   });
 
-  protected readonly searchTextField = computed(() => {
+  /**
+   * Hides placeholder text when input is focused or when there are no selected organs
+   * If only one organ is selected use singular form
+   */
+  protected readonly searchTextPlaceholder = computed(() => {
     if (this.hidePlaceholder() || this.selectedOrgans().length === 0) {
       return '';
     } else {
@@ -53,14 +64,23 @@ export class OrganSelectComponent {
     }
   });
 
+  /** Floats the input label when organs are selected */
   protected readonly floatToggle = computed(() => (this.selectedOrgans().length > 0 ? 'always' : 'auto'));
 
+  /** Shows placeholder text when organs are selected, hides when input is focused  */
   protected readonly hidePlaceholder = signal(false);
 
+  /**
+   * Toggles placeholder text visibility
+   */
   togglePlaceholder() {
     this.hidePlaceholder.set(!this.hidePlaceholder());
   }
 
+  /**
+   * Removes organ from selection and updates scene
+   * @param organ Organ to remove
+   */
   remove(organ: OrganInfo): void {
     const index = this.selectedOrgans().indexOf(organ);
     const newSelection = [...this.selectedOrgans()];
@@ -68,6 +88,10 @@ export class OrganSelectComponent {
     this.scene.setSelectedReferenceOrgans(newSelection);
   }
 
+  /**
+   * Handles option selection from autocomplete dropdown and updates scene
+   * @param event Autocomplete selected event
+   */
   optionSelected(event: MatAutocompleteSelectedEvent): void {
     this.searchInput.set('');
     if (
@@ -80,6 +104,11 @@ export class OrganSelectComponent {
     this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), event.option.value]);
   }
 
+  /**
+   * Toggles checkbox selection when clicked and updates organ selection
+   * @param event Checkbox change event
+   * @param option Organ option
+   */
   checkboxSelected(event: MatCheckboxChange, option: OrganInfo): void {
     if (!event.checked) {
       this.remove(option);
@@ -89,6 +118,11 @@ export class OrganSelectComponent {
     this.searchInput.set('');
   }
 
+  /**
+   * Determines whether organ option is checked
+   * @param organ Organ option
+   * @returns True if checked
+   */
   isChecked(organ: OrganInfo): boolean {
     return this.selectedOrgans()
       .map((organ) => organ.name)

@@ -11,17 +11,17 @@ import { TreeSizeDirective } from '@hra-ui/design-system/tree';
 import { produce } from 'immer';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+/** Map of node labels to converted label */
 export const labelMap = new Map([
-  ['colon', 'large intestine'],
   ['body', 'Anatomical Structures'],
   ['cell', 'Cell Types'],
 ]);
 
-/** Type of function for getting child nodes from a parent node. */
+/** Type of function for getting child nodes from a parent node */
 type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
 
 /**
- * Represents a expandable tree of an ontology.
+ * Represents an expandable ontology tree
  */
 @Component({
   selector: 'ccf-ontology-tree',
@@ -41,87 +41,90 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologyTreeComponent {
-  /**
-   * The root node IRI of the tree
-   */
+  /** The root node IRI of the tree */
   readonly rootNode = input.required<OntologyTreeNode>();
 
+  /** Function for getting children from a parent node */
   readonly getChildren = input.required<GetChildrenFunc>();
 
-  /**
-   * Occurence Data is a record of terms that are in the current filter.
-   */
+  /** Occurence Data is a record of terms that are in the current filter. */
   readonly occurenceData = input.required<Record<string, number>>();
 
-  /**
-   * Term Data is a record of terms that the app currently has data for.
-   */
+  /** Term Data is a record of terms that the app currently has data for. */
   readonly termData = input.required<Record<string, number>>();
 
+  /** Options for the biomarker toggle component */
   readonly biomarkerMenuOptions = input.required<string[]>();
 
+  /** Tooltip that appears on header hover */
   readonly tooltip = input<string>();
 
-  /**
-   * Emits an event whenever a node has been selected.
-   */
+  /** Emits an event whenever a node has been selected. */
   readonly nodeSelected = output<OntologyTreeNode[]>();
 
-  /**
-   * Emits an event whenever the node's visibility changed
-   */
+  /** Emits an event whenever the node's visibility changed */
   readonly nodeChanged = output<OntologyTreeNode>();
 
-  /**
-   * Any time a button is clicked, event is emitted.
-   */
+  /** Any time a button is clicked, event is emitted. */
   readonly selectionChange = output<string[]>();
 
+  /** Emits selected biomarker options */
   readonly biomarkerOptionsChange = output<string[]>();
 
+  /** All nodes to display in tree */
   protected readonly nodes = computed(() => this.getChildren()(this.rootNode()));
 
-  /**
-   * Currently selected nodes, defaulted to the body node for when the page initially loads.
-   */
+  /** Currently selected nodes, defaulted to the body node for when the page initially loads. */
   protected selection = signal<Set<OntologyTreeNode>>(new Set());
 
-  /**
-   * Analytics service
-   */
+  /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Currently selected biomarker options */
   protected selectedBiomarkerOptions: string[] = [];
 
+  /**
+   * Creates an instance of ontology tree component
+   * Updates selected biomarker options when biomarker menu options change
+   */
   constructor() {
     effect(() => {
       this.selectedBiomarkerOptions = this.biomarkerMenuOptions();
     });
   }
 
+  /**
+   * Determines whether a node has children
+   * @param node Ontology T=tree node
+   * @returns true if children
+   */
   hasChildren(_: number, node: OntologyTreeNode): boolean {
     return node.children !== undefined && node.children.length > 0;
   }
 
+  /**
+   * Gets count for a node from occurrence data
+   * @param node Ontology tree node
+   * @returns Count as string
+   */
   getCount(node: OntologyTreeNode): string {
     const id = node.id ?? '';
     return (this.occurenceData()[id] ?? 0).toLocaleString();
   }
 
   /**
-   * Gets Node label
-   * @param label node label
-   * @returns label for node
+   * Converts node label to the appropriate label for the tree
+   * @param label Label from node
+   * @returns Label for tree
    */
   getNodeLabel(label: string): string {
     return labelMap.get(label) ?? label;
   }
+
   /**
-   * Determines whether a node is currently selected.
-   * Only a single node can be selected at any time.
-   *
-   * @param node  The node to test.
-   * @returns True if the node is the currently selected node.
+   * Determines whether a node is currently selected
+   * @param node  The node to test
+   * @returns True if the node is currently selected
    */
   isSelected(node: OntologyTreeNode): boolean {
     return this.selection().has(node);
@@ -129,9 +132,10 @@ export class OntologyTreeComponent {
 
   /**
    * Handles selecting / deselecting nodes via updating the selectedNodes variable
-   *
-   * @param node The node to select.
-   * @param ctrlKey Whether or not the selection was made with a ctrl + click event.
+   * @param ctrlKey Whether or not the selection was made with a ctrl + click event
+   * @param node The node to select
+   * @param emit Whether or not to emit the nodeSelected event
+   * @param select Whether or not to add the node to selection
    */
   select(ctrlKey: boolean, node: OntologyTreeNode, emit: boolean, select: boolean): void {
     this.selection.update(
@@ -160,11 +164,20 @@ export class OntologyTreeComponent {
     }
   }
 
-  isOptionSelected(item: string): boolean {
+  /**
+   * Determines whether biomarker option is selected
+   * @param item Biomarker option name
+   * @returns True if option selected
+   */
+  isBiomarkerOptionSelected(item: string): boolean {
     return this.selectedBiomarkerOptions ? this.selectedBiomarkerOptions.includes(item) : false;
   }
 
-  toggleSelection(value: string[]) {
+  /**
+   * When biomarker options change, update selected biomarker options and emit the new selected options
+   * @param value Selected biomarker options
+   */
+  biomarkerOptionSelectionChange(value: string[]) {
     this.selectedBiomarkerOptions = value;
     this.biomarkerOptionsChange.emit(value);
   }

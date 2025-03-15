@@ -88,16 +88,6 @@ export class AppComponent implements OnInit {
     b: 'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type.',
   };
 
-  /**
-   * Used to keep track of the ontology label to be passed down to the
-   * results-browser component.
-   */
-  ontologySelectionLabel = 'body';
-
-  cellTypeSelectionLabel = 'cell';
-
-  biomarkerSelectionLabel = 'biomarker';
-
   selectedtoggleOptions: string[] = [];
 
   /** Emits true whenever the progress bar should activate. */
@@ -182,45 +172,15 @@ export class AppComponent implements OnInit {
     if (ontologySelection) {
       if (type === 'anatomical-structures') {
         this.data.updateFilter({ ontologyTerms: ontologySelection.map((selection) => selection.id) });
-        this.ontologySelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'cell-type') {
         this.data.updateFilter({ cellTypeTerms: ontologySelection.map((selection) => selection.id) });
-        this.cellTypeSelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'biomarkers') {
         this.data.updateFilter({ biomarkerTerms: ontologySelection.map((selection) => selection.id) });
-        this.biomarkerSelectionLabel = this.createSelectionLabel(ontologySelection);
       }
       return;
     }
 
     this.data.updateFilter({ ontologyTerms: [], cellTypeTerms: [], biomarkerTerms: [] });
-    this.ontologySelectionLabel = '';
-    this.cellTypeSelectionLabel = '';
-  }
-
-  /**
-   * Creates selection label for the results-browser to display based on an
-   * array of selected ontology nodes.
-   */
-  createSelectionLabel(ontologySelection: OntologySelection[]): string {
-    if (ontologySelection.length === 0) {
-      return '';
-    }
-
-    if (ontologySelection.length === 1) {
-      return ontologySelection[0].label;
-    }
-
-    let selectionString = '';
-    ontologySelection.forEach((selection, index) => {
-      selectionString += selection.label;
-
-      // Don't add a comma if it's the last item in the array.
-      if (index < ontologySelection.length - 1) {
-        selectionString += ', ';
-      }
-    });
-    return selectionString;
   }
 
   isItemSelected(item: string) {

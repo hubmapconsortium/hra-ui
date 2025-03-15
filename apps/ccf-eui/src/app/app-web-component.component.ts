@@ -4,22 +4,49 @@ import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 
 import { environment } from '../environments/environment';
 
+/**
+ * Determines whether value is a number
+ * @param value A value to check
+ * @returns If value is number
+ */
 function isNumber(value: unknown): value is number {
   return typeof value === 'number';
 }
 
+/**
+ * Determines whether value is an array of numbers
+ * @param value A value to check
+ * @returns If value is an array of numbers
+ */
 function isNumberArray(value: unknown): value is number[] {
   return Array.isArray(value) && value.every(isNumber);
 }
 
+/**
+ * Determines whether value is a string
+ * @param value A value to check
+ * @returns If value is a string
+ */
 function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
+/**
+ * Determines whether value is an array of strings
+ * @param value A value to check
+ * @returns If value is an array of strings
+ */
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every(isString);
 }
 
+/**
+ * Checks if property is present in the object and applies the validator function
+ * @param name Name
+ * @param obj The object to check
+ * @param prop Property to check for
+ * @param validator Validator function
+ */
 function checkOptionalProperty(
   name: string,
   obj: object,
@@ -37,6 +64,11 @@ function checkOptionalProperty(
   }
 }
 
+/**
+ * Parses data to an array of strings using the appropriate parser
+ * @param value Value to parse
+ * @returns Parsed values
+ */
 function parseDataSources(value: unknown): string[] {
   if (typeof value === 'string') {
     const json = BUILTIN_PARSERS.json(value);
@@ -50,6 +82,11 @@ function parseDataSources(value: unknown): string[] {
   throw new Error('Invalid type for string array');
 }
 
+/**
+ * Parses filter value
+ * @param value Value to parse
+ * @returns String or a Filter object
+ */
 function parseFilter(value: unknown): string | Partial<Filter> {
   if (typeof value === 'string') {
     value = BUILTIN_PARSERS.json(value);
@@ -78,6 +115,9 @@ function parseFilter(value: unknown): string | Partial<Filter> {
   throw new Error('Invalid filter');
 }
 
+/**
+ * Root web component for the EUI
+ */
 @Component({
   selector: 'ccf-root-wc',
   template: '<ccf-root *ngIf="initialized"></ccf-root>',
@@ -85,20 +125,42 @@ function parseFilter(value: unknown): string | Partial<Filter> {
   standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
+  /** Base url to fetch relative links */
   baseHref = input.required<string>();
+
+  /** Data sources from which data is queried */
   dataSources = input.required<string | string[]>();
+
+  /** The initially enabled organs */
   selectedOrgans = input.required<string[]>();
 
+  /** Api token passed during data queries */
   token = input.required<string>();
+
+  /** The api endpoint from which data is queried */
   remoteApiEndpoint = input.required<string>();
+
+  /** Whether to show the header bar */
   header = input.required<string | boolean>();
+
+  /** Url visited when the user clicks the EUI logo */
   homeUrl = input.required<string>();
+
+  /** Tooltip displayed when the user hover over the logo */
   logoTooltip = input.required<string>();
+
+  /** Whether login is disabled */
   loginDisabled = input.required<boolean>();
+
+  /** Initial data filter */
   filter = input.required<string | Partial<Filter>>();
 
+  /** Whether the component is fully initialized */
   override initialized!: boolean;
 
+  /**
+   * Creates an instance of app web component and parses the initial configuration
+   */
   constructor() {
     super({
       initialDelay: 10,

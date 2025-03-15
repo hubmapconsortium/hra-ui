@@ -1,7 +1,7 @@
-<mat-form-field [class.visible]="options().length > 0" [class.error]="errorState()" subscriptSizing="dynamic">
+<mat-form-field [class.visible]="chips().length > 0" [class.error]="errorState()" subscriptSizing="dynamic">
   <div class="chips-area">
     <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
-      @for (option of options(); track option) {
+      @for (option of chips(); track option) {
         <mat-chip-row (removed)="remove(option)">
           {{ option }}
           <button matChipRemove [attr.aria-label]="'remove ' + option">
@@ -10,8 +10,8 @@
         </mat-chip-row>
       }
     </mat-chip-grid>
-    @if (options().length > 0) {
-      <button mat-icon-button (click)="options.set([])"><mat-icon>delete</mat-icon></button>
+    @if (chips().length > 0) {
+      <button mat-icon-button (click)="chips.set([])"><mat-icon>delete</mat-icon></button>
     }
   </div>
   <mat-icon matPrefix class="search-icon">search</mat-icon>
@@ -38,7 +38,7 @@
           <mat-checkbox
             class="autocomplete-checkbox"
             (change)="checkboxSelected($event, option); auto.showPanel = false"
-            [checked]="options().includes(option)"
+            [checked]="chips().includes(option)"
           ></mat-checkbox>
           <mat-option [value]="option">{{ option }}</mat-option>
         </div>

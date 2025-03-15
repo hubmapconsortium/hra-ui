@@ -34,7 +34,89 @@
       [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
     ></hra-nav-header-buttons>
 
-    <hra-expansion-panel [tagline]="'Body Visualization'" disabled class="vis-panel">
+    <div class="left-panel">
+      <div class="filter-data">
+        <div class="filter-button-container" hraMicroTooltip="Select filters">
+          <div class="filter-button-label">Filters</div>
+          <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </div>
+        <div class="filter-text" hraMicroTooltip="Current filters">
+          <div class="sex filter-tag">Sex: {{ (data.filter$ | async)?.sex }}</div>
+          <div class="bmi filter-tag">
+            BMI: {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
+          </div>
+          <div class="age filter-tag">
+            Age: {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }}
+          </div>
+        </div>
+      </div>
+
+      <div class="toggle-settings">
+        <mat-button-toggle-group
+          multiple
+          name="multiSelect"
+          aria-label="Multi Select"
+          hraButtonToggleSize="small"
+          hideMultipleSelectionIndicator
+          (change)="toggleSelection($event.value)"
+        >
+          @for (option of menuOptions; track option) {
+            <mat-button-toggle
+              [value]="option"
+              checked
+              [hraMicroTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+              >{{ option }}</mat-button-toggle
+            >
+          }
+        </mat-button-toggle-group>
+      </div>
+      <div class="ontologies">
+        @if (isItemSelected('Anatomical Structures')) {
+          <ccf-ontology-selection
+            class="ontology-selection"
+            [treeModel]="(ontologyTreeModel$ | async)!"
+            [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
+            [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
+            (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
+            [tooltip]="ontologyTooltips['as']"
+          >
+          </ccf-ontology-selection>
+        }
+        @if (isItemSelected('Cell Types')) {
+          <ccf-ontology-selection
+            class="cell-type-selection"
+            [treeModel]="(cellTypeTreeModel$ | async)!"
+            [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
+            [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
+            (ontologySelection)="ontologySelected($any($event), 'cell-type')"
+            [tooltip]="ontologyTooltips['ct']"
+          >
+          </ccf-ontology-selection>
+        }
+        @if (isItemSelected('Biomarkers')) {
+          <ccf-ontology-selection
+            class="biomarker-selection"
+            [treeModel]="(biomarkersTreeModel$ | async)!"
+            [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
+            [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
+            (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
+            [tooltip]="ontologyTooltips['b']"
+          >
+          </ccf-ontology-selection>
+        }
+
+        @if (selectedtoggleOptions.length === 0) {
+          <div class="no-selection-notice">
+            No anatomical structures, cell types, or biomarkers selected. Use the above buttons to view the registered
+            listings.
+          </div>
+        }
+      </div>
+    </div>
+
+    <hra-expansion-panel class="vis-panel" tagline="Body Visualization" disabled>
       <hra-expansion-panel-actions>
         <button
           mat-icon-button
@@ -88,91 +170,6 @@
         <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
       </hra-expansion-panel-header-content>
     </hra-expansion-panel>
-
-    <div class="left-panel">
-      <div class="filter-data">
-        <div class="filter-button-container" hraMicroTooltip="Select filters">
-          <div class="filter-button-label">Filters</div>
-          <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
-            <mat-icon>filter_list</mat-icon>
-          </button>
-        </div>
-        <div class="filter-text" hraMicroTooltip="Current filters">
-          <div class="sex filter-tag">Sex: {{ (data.filter$ | async)?.sex }}</div>
-          <div class="bmi filter-tag">
-            BMI: {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
-          </div>
-          <div class="age filter-tag">
-            Age: {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }}
-          </div>
-        </div>
-      </div>
-
-      <div class="toggle-settings">
-        <mat-button-toggle-group
-          multiple
-          name="multiSelect"
-          aria-label="Multi Select"
-          hraButtonToggleSize="small"
-          hideMultipleSelectionIndicator
-          (change)="toggleSelection($event.value)"
-        >
-          @for (option of menuOptions; track option) {
-            <mat-button-toggle
-              [value]="option"
-              checked
-              [hraMicroTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
-              >{{ option }}</mat-button-toggle
-            >
-          }
-        </mat-button-toggle-group>
-      </div>
-      <div class="ontologies">
-        @if (isItemSelected('Anatomical Structures')) {
-          <ccf-ontology-selection
-            class="ontology-selection"
-            [treeModel]="(ontologyTreeModel$ | async)!"
-            [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
-            [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search anatomical structures..."
-            (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
-            [tooltip]="ontologyTooltips['as']"
-          >
-          </ccf-ontology-selection>
-        }
-        @if (isItemSelected('Cell Types')) {
-          <ccf-ontology-selection
-            class="cell-type-selection"
-            [treeModel]="(cellTypeTreeModel$ | async)!"
-            [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
-            [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search cell types..."
-            (ontologySelection)="ontologySelected($any($event), 'cell-type')"
-            [tooltip]="ontologyTooltips['ct']"
-          >
-          </ccf-ontology-selection>
-        }
-        @if (isItemSelected('Biomarkers')) {
-          <ccf-ontology-selection
-            class="biomarker-selection"
-            [treeModel]="(biomarkersTreeModel$ | async)!"
-            [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
-            [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search Biomarkers..."
-            (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
-            [tooltip]="ontologyTooltips['b']"
-          >
-          </ccf-ontology-selection>
-        }
-
-        @if (selectedtoggleOptions.length === 0) {
-          <div class="no-selection-notice">
-            No anatomical structures, cell types, or biomarkers selected. Use the above buttons to view the registered
-            listings.
-          </div>
-        }
-      </div>
-    </div>
 
     <div class="content">
       <button

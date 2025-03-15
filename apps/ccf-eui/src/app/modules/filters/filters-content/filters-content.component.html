@@ -105,7 +105,7 @@
   <button
     mat-button
     [disabled]="!enableReset"
-    (click)="refreshFilters(); assays.options.set([]); consortia.options.set([]); providers.options.set([])"
+    (click)="refreshFilters(); assays.chips.set([]); consortia.chips.set([]); providers.chips.set([])"
   >
     Reset Filters<mat-icon class="reset icon">reset_settings</mat-icon>
   </button>
