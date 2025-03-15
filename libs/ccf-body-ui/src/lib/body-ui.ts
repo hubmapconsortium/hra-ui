@@ -217,21 +217,19 @@ export class BodyUI {
    * @param data An array of SpatialSceneNode objects representing the scene data.
    */
   setScene(data: SpatialSceneNode[]): void {
-    if (data?.length > 0) {
-      let zoomOpacity = (this.bodyUILayer.state as { zoomOpacity: number }).zoomOpacity;
-      let didZoom = false;
-      for (const node of data) {
-        if (node.zoomToOnLoad) {
-          this.zoomTo(node);
-          didZoom = true;
-        }
+    let zoomOpacity = (this.bodyUILayer.state as { zoomOpacity: number }).zoomOpacity;
+    let didZoom = false;
+    for (const node of data) {
+      if (node.zoomToOnLoad) {
+        this.zoomTo(node);
+        didZoom = true;
       }
-      zoomOpacity = didZoom ? 0.05 : zoomOpacity;
-      if (!this.deckProps.debugSceneNodeProcessing) {
-        this.bodyUILayer.setState({ data, zoomOpacity });
-      } else {
-        this.debugSceneNodeProcessing(data, zoomOpacity);
-      }
+    }
+    zoomOpacity = didZoom ? 0.05 : zoomOpacity;
+    if (!this.deckProps.debugSceneNodeProcessing) {
+      this.bodyUILayer.setState({ data, zoomOpacity });
+    } else {
+      this.debugSceneNodeProcessing(data, zoomOpacity);
     }
   }
 

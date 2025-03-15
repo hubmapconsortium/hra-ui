@@ -91,7 +91,6 @@ export interface DataStateModel {
   /** Current filter. */
   filter: Filter;
   status: 'Loading' | 'Ready' | 'Error';
-  statusMessage: string;
   anatomicalStructuresTreeModel?: OntologyTree;
   cellTypesTreeModel?: OntologyTree;
   biomarkersTreeModel?: OntologyTree;
@@ -106,7 +105,6 @@ export interface DataStateModel {
   defaults: {
     filter: DEFAULT_FILTER,
     status: 'Loading',
-    statusMessage: 'Loading database',
   },
 })
 @Injectable()
@@ -361,7 +359,6 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
         tap(() => {
           this.updateStatus({
             status: 'Ready',
-            message: 'Loading HRA Exploration User Interface (EUI)',
           });
         }),
       )
@@ -393,7 +390,6 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   updateStatus(@Payload('status') status: DatabaseStatus): void {
     this.ctx.patchState({
       status: status.status,
-      statusMessage: status.message,
     });
   }
 

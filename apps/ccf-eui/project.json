@@ -12,7 +12,15 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ccf-eui/src/favicon.png", "apps/ccf-eui/src/assets"],
+        "assets": [
+          "apps/ccf-eui/src/favicon.png",
+          "apps/ccf-eui/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "polyfills": ["apps/ccf-eui/src/polyfills.ts"]
       },
       "configurations": {
@@ -53,12 +61,6 @@
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
         "tsConfig": "apps/ccf-eui/tsconfig.app.json"
-      },
-      "configurations": {
-        "test-coverage": {
-          "coverageMinimumPerFile": 0,
-          "coverageTest": 0
-        }
       }
     },
     "build-webcomponent": {

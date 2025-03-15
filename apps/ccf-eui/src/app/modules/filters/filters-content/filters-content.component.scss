@@ -1,100 +1,94 @@
-.filter {
-  margin-top: 1.5rem;
+:host {
+  display: grid;
+  grid-template-rows: auto 5.5rem;
+  grid-template-areas:
+    'form'
+    'buttons';
 
-  &.assays {
-    .option {
-      margin-right: 0 rem;
-      width: 25%;
-    }
+  --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
+
+  form {
+    grid-area: form;
+    overflow-y: auto;
+    width: 40.5rem;
   }
 
-  ::ng-deep ccf-checkbox {
-    min-width: fit-content;
-    display: block;
-
-    .options-container {
-      position: relative;
-      left: -0.5rem;
-
-      .mdc-checkbox {
-        padding: 0.5rem;
-        width: 1rem;
-        height: 1rem;
-        flex: 0 0 1rem;
-
-        .mdc-checkbox__native-control {
-          height: 2rem;
-          width: 2rem;
-        }
-
-        .mdc-checkbox__background {
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      .mdc-label {
-        font-weight: 400;
-        padding-left: 0;
-        text-wrap: nowrap;
-      }
-    }
-  }
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-
-  .right-group {
+  .input-container {
     display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    grid-area: inputs;
+  }
 
-    .outline-button {
-      border-width: 1px;
-      border-style: solid;
-      width: 11rem;
-      height: 100%;
-      box-shadow: 0.1rem 0.1rem 0.2rem 0rem #0000001d;
+  .section {
+    padding: 0 1.5rem;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      height: 2.5rem;
     }
 
-    .refresh-icon {
-      padding: 0.25rem;
-      border-radius: 0.25rem;
-      margin-right: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: 0.6s;
+    .section-title {
+      font: var(--mat-sys-label-large);
+      color: var(--mat-sys-secondary);
+    }
+  }
 
-      .refresh {
-        cursor: pointer;
-        transition: 0.6s;
-        transition-property: background;
+  .patient-filters {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .dropdown-form-field {
+    --mat-form-field-container-height: 3rem;
+    --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+
+    ::ng-deep .mdc-floating-label {
+      transform: translateY(-100%);
+
+      mat-label {
+        font: var(--mat-sys-label-small);
+        letter-spacing: var(--mat-sys-label-small-tracking);
+        color: var(--mat-sys-primary-fixed);
       }
     }
   }
-}
 
-.patient-filters {
-  display: flex;
-  padding-top: 0.5rem;
-  gap: 2rem;
+  .providers-form {
+    margin-bottom: 0;
+  }
 
-  ccf-dual-slider {
-    margin-left: 0.5rem;
+  .spatial-search {
+    .section-header {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .button-container {
+    grid-area: buttons;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--mat-sys-outline-variant);
+
+    button {
+      line-height: normal;
+    }
   }
 }
 
-.hidden {
-  opacity: 0;
-  transition-duration: 0.2s;
-}
+.dropdown-option {
+  --mdc-list-list-item-label-text-color: var(--mat-sys-primary) !important;
+  font: var(--mat-sys-label-medium) !important;
+  min-height: 3rem !important;
+  outline: none !important;
 
-ccf-dropdown,
-ccf-dual-slider {
-  width: 10rem;
+  &.mdc-list-item--selected {
+    background-color: rgb(from var(--mat-sys-tertiary) r g b / 0.2) !important;
+  }
 }

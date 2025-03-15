@@ -87,4 +87,9 @@ describe('CallToActionState', () => {
     state.launchLearnMore(markdownContent);
     expect(dialog.open).toHaveBeenCalled();
   });
+
+  it('shows popup on init', () => {
+    state.ngxsOnInit(ctx);
+    expect(ctx.dispatch).toHaveBeenCalled();
+  });
 });

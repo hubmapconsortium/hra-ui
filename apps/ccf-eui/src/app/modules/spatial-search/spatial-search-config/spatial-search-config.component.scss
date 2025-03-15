@@ -1,0 +1,40 @@
+:host {
+  display: grid;
+  grid-template-areas: 'header header' 'sex-organ sex-organ' '. button';
+  grid-template-rows: auto 3rem auto;
+  row-gap: 1rem;
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+
+  .header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: var(--mat-sys-label-large);
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  ccf-spatial-search-inputs {
+    grid-area: sex-organ;
+
+    ::ng-deep .field {
+      width: 12.625rem;
+    }
+  }
+
+  .continue-button {
+    grid-area: button;
+    width: fit-content;
+    justify-self: end;
+    margin-top: 0.25rem;
+  }
+}
+
+::ng-deep .spatial-search-config {
+  --mdc-dialog-container-shape: 0.75rem;
+  --mdc-dialog-container-color: var(--mat-sys-surface-container-low);
+}

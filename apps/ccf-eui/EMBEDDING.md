@@ -51,7 +51,6 @@ eui.token = '...';
 | _remote-api-endpoint_ | The api endpoint from which data is queried                           | An url              | `https://apps.humanatlas.io/api`       |
 | _token_               | Api token passed during data queries                                  | A string            | None                                   |
 | _filter_              | Initial data filter                                                   | A `Filter` object   | None                                   |
-| _theme_               | Application theme                                                     | A string            | None                                   |
 | _header_              | Whether to show the header bar                                        | A boolean           | `true`                                 |
 | _login-disabled_      | Whether login is disabled                                             | A boolean           | `false`                                |
 | _home-url_            | Url visited when the user clicks the EUI logo                         | An url              | `https://portal.hubmapconsortium.org/` |

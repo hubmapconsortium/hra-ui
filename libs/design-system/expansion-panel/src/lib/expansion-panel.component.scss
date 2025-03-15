@@ -4,11 +4,18 @@
   .header {
     display: flex;
     align-items: center;
-    font: var(--mat-sys-label-medium);
+    font: var(--mat-sys-label-large);
     color: var(--mat-sys-secondary);
+    height: 100%;
   }
 
   .filler {
+    flex-grow: 1;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: flex-end;
     flex-grow: 1;
   }
 
