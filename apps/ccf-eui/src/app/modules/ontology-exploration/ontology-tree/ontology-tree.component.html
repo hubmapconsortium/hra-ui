@@ -13,13 +13,13 @@
       name="multiSelect"
       aria-label="Multi Select"
       hraButtonToggleSize="small"
-      (change)="toggleSelection($event.value)"
+      (change)="biomarkerOptionSelectionChange($event.value)"
     >
       @for (option of biomarkerMenuOptions(); track option) {
         <mat-button-toggle
           [value]="option"
-          [checked]="isOptionSelected(option)"
-          [hraMicroTooltip]="(isOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+          [checked]="isBiomarkerOptionSelected(option)"
+          [hraMicroTooltip]="(isBiomarkerOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
           >{{ option }}</mat-button-toggle
         >
       }

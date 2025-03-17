@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, input, output, ViewChild } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
@@ -18,7 +19,6 @@ import { Position, RadiusSettings, TermResult } from '../../../core/store/spatia
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
 import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
-import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * Main Spatial Search UI component
@@ -48,7 +48,10 @@ export class SpatialSearchUiComponent {
   /** HTML Class */
   @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
 
+  /** Primary body UI component */
   @ViewChild('primary', { static: false }) primaryUI!: BodyUiComponent;
+
+  /** Minimap component */
   @ViewChild('minimap', { static: false }) minimapUI!: BodyUiComponent;
 
   /** Nodes in the scene */
@@ -120,6 +123,9 @@ export class SpatialSearchUiComponent {
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
 
+  /**
+   * Resets view to default position, rotation, and bounds
+   */
   resetView(): void {
     for (const ui of [this.primaryUI, this.minimapUI]) {
       ui.target = this.sceneTarget();

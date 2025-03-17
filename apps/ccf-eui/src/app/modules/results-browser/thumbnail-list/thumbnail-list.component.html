@@ -1,4 +1,4 @@
-@for (item of data(); track itemId) {
+@for (item of data(); track item.thumbnail) {
   <div class="slide">
     <div class="thumbnail" [style.background-image]="thumbnailUrl(item)" (click)="linkClicked.emit(item)"></div>
     <div>

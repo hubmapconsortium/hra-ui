@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 
-// Returns a unique identifier
+/** Returns a unique identifier */
 const nextUid = (() => {
   let counter = -1;
   return () => {
@@ -25,49 +25,37 @@ const nextUid = (() => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThumbnailListComponent {
-  /**
-   * Primary css class selector
-   */
+  /** Primary css class selector */
   @HostBinding('class') readonly className = 'ccf-thumbnail-list';
 
-  /**
-   * Items to show in the list
-   */
+  /** Items to show in the list */
   readonly data = input.required<TissueDataset[]>();
 
-  /**
-   * Outputs the result whose link was clicked
-   */
+  /** Outputs the result whose link was clicked */
   readonly linkClicked = output<TissueDataset>();
 
-  /**
-   * Per instance unique identifier
-   */
+  /** Per instance unique identifier */
   readonly uid = nextUid();
 
+  /** Base href observable from global config */
   readonly baseHref$ = this.globalConfig.getOption('baseHref');
 
+  /** Base href */
   baseHref = '';
 
+  /**
+   * Creates an instance of thumbnail list component.
+   * @param globalConfig Global config state
+   */
   constructor(private readonly globalConfig: GlobalConfigState<{ baseHref: string }>) {
-    this.baseHref$.subscribe((ref) => this.setUrl(ref));
+    this.baseHref$.subscribe((ref) => (this.baseHref = ref));
   }
 
   /**
-   * Extract a unique identifier for an item
-   *
-   * @param _index Unused
-   * @param item The item
-   * @returns An unique identifier
+   * Returns thumbnail url from item
+   * @param item TissueDataset item
+   * @returns url
    */
-  itemId(_index: number, item: TissueDataset): string | undefined {
-    return item.thumbnail;
-  }
-
-  setUrl(url: string) {
-    this.baseHref = url;
-  }
-
   thumbnailUrl(item: TissueDataset): string {
     return `url(${this.baseHref + item.thumbnail})`;
   }

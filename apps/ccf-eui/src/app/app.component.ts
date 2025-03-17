@@ -6,7 +6,7 @@ import { Filter } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
-import { ConsentService } from 'ccf-shared/analytics';
+import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest } from 'rxjs';
 
@@ -75,16 +75,6 @@ export class AppComponent implements OnInit {
     b: 'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type.',
   };
 
-  /**
-   * Used to keep track of the ontology label to be passed down to the
-   * results-browser component.
-   */
-  ontologySelectionLabel = 'body';
-
-  cellTypeSelectionLabel = 'cell';
-
-  biomarkerSelectionLabel = 'biomarker';
-
   selectedtoggleOptions: string[] = [];
 
   private readonly store = inject(Store);
@@ -123,6 +113,7 @@ export class AppComponent implements OnInit {
     readonly scene: SceneState,
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
+    readonly localStorageSyncService: LocalStorageSyncService,
     readonly snackbar: MatSnackBar,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
   ) {
@@ -150,7 +141,7 @@ export class AppComponent implements OnInit {
         },
       },
       panelClass: 'usage-snackbar',
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
+      duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
     });
   }
 
@@ -178,45 +169,15 @@ export class AppComponent implements OnInit {
     if (ontologySelection) {
       if (type === 'anatomical-structures') {
         this.data.updateFilter({ ontologyTerms: ontologySelection.map((selection) => selection.id) });
-        this.ontologySelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'cell-type') {
         this.data.updateFilter({ cellTypeTerms: ontologySelection.map((selection) => selection.id) });
-        this.cellTypeSelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'biomarkers') {
         this.data.updateFilter({ biomarkerTerms: ontologySelection.map((selection) => selection.id) });
-        this.biomarkerSelectionLabel = this.createSelectionLabel(ontologySelection);
       }
       return;
     }
 
     this.data.updateFilter({ ontologyTerms: [], cellTypeTerms: [], biomarkerTerms: [] });
-    this.ontologySelectionLabel = '';
-    this.cellTypeSelectionLabel = '';
-  }
-
-  /**
-   * Creates selection label for the results-browser to display based on an
-   * array of selected ontology nodes.
-   */
-  createSelectionLabel(ontologySelection: OntologySelection[]): string {
-    if (ontologySelection.length === 0) {
-      return '';
-    }
-
-    if (ontologySelection.length === 1) {
-      return ontologySelection[0].label;
-    }
-
-    let selectionString = '';
-    ontologySelection.forEach((selection, index) => {
-      selectionString += selection.label;
-
-      // Don't add a comma if it's the last item in the array.
-      if (index < ontologySelection.length - 1) {
-        selectionString += ', ';
-      }
-    });
-    return selectionString;
   }
 
   isItemSelected(item: string) {

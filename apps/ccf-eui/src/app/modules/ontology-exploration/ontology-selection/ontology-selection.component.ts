@@ -18,35 +18,31 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologySelectionComponent {
-  /**
-   * A record of terms within the current filter.  To be passed on to ontology-tree
-   */
+  /** A record of terms within the current filter.  To be passed on to ontology-tree */
   readonly occurenceData = input.required<Record<string, number>>();
 
-  /**
-   * A record of terms the app currently has data for.  To be passed on to ontology-tree
-   */
+  /** A record of terms the app currently has data for.  To be passed on to ontology-tree */
   readonly termData = input.required<Record<string, number>>();
 
-  /**
-   * The ontology tree model to display
-   */
+  /** The ontology tree model to display */
   readonly treeModel = input.required<OntologyTree | null>();
 
-  readonly placeholderText = input.required<string>();
-
+  /** Tooltip to display for ontology header on hover */
   readonly tooltip = input.required<string>();
 
-  /**
-   * Captures and passes along the change in ontologySelections.
-   */
+  /** Captures and passes along the change in ontologySelections */
   readonly ontologySelection = output<OntologyTreeNode[]>();
 
-  currentNodes!: string[];
-
+  /** Biomarker menu options */
   biomarkerMenuOptions!: string[];
+
+  /** The root node for the ontology tree */
   rootNode!: OntologyTreeNode;
+
+  /** The root node observable */
   rootNode$: Observable<OntologyTreeNode>;
+
+  /** Map for converting node labels to biomarker menu option labels */
   biomarkerLabelMap = new Map([
     ['gene', 'Genes'],
     ['protein', 'Proteins'],
@@ -54,10 +50,12 @@ export class OntologySelectionComponent {
     ['proteoforms', 'Proteoforms'],
     ['lipids', 'Lipids'],
   ]);
+
   /**
-   * Creates an instance of ontology selection component.
-   *
-   * @param ontologySearchService Service for searching the ontology.
+   * Creates an instance of ontology selection component
+   * Gets and sets biomarker menu options if applicable
+   * Updates the ontology tree model in the state if it changes
+   * @param ontologySearchService Service for searching the ontology
    */
   constructor(public ontologySearchService: OntologySearchService) {
     this.rootNode$ = ontologySearchService.rootNode$.pipe(
@@ -80,6 +78,10 @@ export class OntologySelectionComponent {
     });
   }
 
+  /**
+   * Filters nodes based on selected biomarker types
+   * @param selectedTypes Selected types
+   */
   filterNodes(selectedTypes: string[]): void {
     const nodes = Object.values(this.treeModel()?.nodes ?? {});
     const filteredNodes = nodes

@@ -2,7 +2,6 @@ import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorator
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
-import { DataSourceService } from 'ccf-shared';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 
@@ -45,10 +44,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
    *
    * @param injector Injector service used to lazy load data state
    */
-  constructor(
-    private readonly dataService: DataSourceService,
-    private readonly injector: Injector,
-  ) {
+  constructor(private readonly injector: Injector) {
     super();
   }
 
