@@ -199,6 +199,8 @@
         (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
         (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
         (listResultExpansionChange)="listResultsState.changeExpansion(asMutable($event))"
+        [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
+        (itemHovered)="listResultsState.highlightNode($event)"
         (itemUnhovered)="listResultsState.unHighlightNode()"
         [header]="(header$ | async) ?? false"
       >

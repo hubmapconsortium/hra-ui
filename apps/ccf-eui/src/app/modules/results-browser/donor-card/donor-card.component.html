@@ -1,5 +1,6 @@
 <ccf-metadata-card
   class="donor-card"
+  [class.highlighted]="highlighted()"
   [tagline]="'Donor: ' + tissueBlock().donor?.label"
   [label]="'Provenance: ' + tissueBlock().donor?.description"
   (toggleExpansion)="toggleExpansion()"

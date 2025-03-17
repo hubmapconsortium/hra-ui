@@ -52,6 +52,8 @@ export class ResultsBrowserComponent {
 
   readonly header = input.required<boolean>();
 
+  readonly highlighted = input.required<string>();
+
   /**
    * Output emitting the link result selected
    */
@@ -63,6 +65,10 @@ export class ResultsBrowserComponent {
   readonly listResultDeselected = output<Immutable<ListResult>>();
 
   readonly listResultExpansionChange = output<Immutable<ListResult>>();
+
+  readonly itemHovered = output<string>();
+
+  readonly itemUnhovered = output();
 
   readonly showSelected = signal(false);
 

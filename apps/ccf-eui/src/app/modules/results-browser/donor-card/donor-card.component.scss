@@ -2,6 +2,14 @@
   .donor-card {
     cursor: pointer;
     grid-template-columns: 16.75rem min-content;
+
+    &:hover,
+    &.highlighted {
+      box-shadow:
+        0px 6px 2px -2px rgba(0, 0, 0, 0.2),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+    }
   }
 
   .expanded-cards {

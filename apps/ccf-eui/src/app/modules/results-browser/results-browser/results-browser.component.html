@@ -66,7 +66,11 @@
     <div class="results-browser-list">
       @for (result of listResults(); track result) {
         @if (!(showSelected() && !result.selected)) {
-          <div class="browser-item-container">
+          <div
+            class="browser-item-container"
+            (mouseenter)="itemHovered.emit(result.tissueBlock.spatialEntityId ?? '')"
+            (mouseleave)="itemUnhovered.emit()"
+          >
             <mat-checkbox
               class="checkbox"
               (change)="handleSelection(result, $event.checked)"
@@ -84,6 +88,7 @@
               (selectOption)="handleSelection(result, true)"
               (expansionChange)="changeExpansion(result, $event)"
               [expanded]="result.expanded ?? false"
+              [highlighted]="result.tissueBlock.spatialEntityId === highlighted()"
             >
             </ccf-donor-card>
           </div>
