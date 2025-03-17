@@ -9,11 +9,19 @@ import { ListResult } from '../../models/list-result';
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
 import { DataState } from '../data/data.state';
 
+/**
+ * Interface representing the state model for list results.
+ */
 export interface ListResultsStateModel {
+  /** List of tissue block results to display in the results section */
   listResults: ListResult[];
+  /** ID of the current tissue block hovered in the body UI */
   highlightedNodeId?: string;
 }
 
+/**
+ * State handling the list of results displayed in the results section.
+ */
 @StateRepository()
 @State<ListResultsStateModel>({
   name: 'listResults',
@@ -23,24 +31,26 @@ export interface ListResultsStateModel {
 })
 @Injectable()
 export class ListResultsState extends NgxsImmutableDataRepository<ListResultsStateModel> implements NgxsOnInit {
-  /** Scene to display in the 3d Scene */
+  /** Observable stream of list results */
   readonly listResults$ = this.state$.pipe(
     map((x) => x?.listResults),
     distinctUntilChanged(),
   );
+
+  /** Observable stream of the highlighted node ID */
   readonly highlightedNodeId$ = this.state$.pipe(
     map((x) => x?.highlightedNodeId),
     distinctUntilChanged(),
   );
 
-  /** The data state */
+  /** Reference to the data state */
   private dataState!: DataState;
 
-  /** Color assignments state */
+  /** Reference to the color assignments state */
   private colorAssignments!: ColorAssignmentState;
 
   /**
-   * Creates an instance of scene state.
+   * Constructor to create an instance of ListResultsState.
    *
    * @param injector Injector service used to lazy load data state
    */
@@ -58,16 +68,31 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
     this.ctx.patchState({ listResults });
   }
 
+  /**
+   * Selects a list result and assigns a color to it
+   *
+   * @param result The list result to select
+   */
   selectListResult(result: ListResult): void {
     this.colorAssignments.assignColor(result.tissueBlock.spatialEntityId ?? '');
   }
 
+  /**
+   * Deselects a list result and unassigns its color
+   *
+   * @param result The list result to deselect
+   */
   deselectListResult(result: ListResult): void {
     const newResult = { ...result, expanded: false };
     this.changeExpansion(newResult);
     this.colorAssignments.unassignColor(newResult.tissueBlock.spatialEntityId ?? '');
   }
 
+  /**
+   * Replaces list result with updated list result with new expansion state
+   *
+   * @param result The updated list result
+   */
   changeExpansion(result: ListResult): void {
     const listResultsCopy = [...this.ctx.getState().listResults];
     const i = listResultsCopy.findIndex((r) => r.tissueBlock['@id'] === result.tissueBlock['@id']);
@@ -75,10 +100,18 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
     this.setListResults(listResultsCopy as ListResult[]);
   }
 
+  /**
+   * Highlights node
+   * @param id Node id
+   */
   highlightNode(id: string): void {
     this.ctx.patchState({ highlightedNodeId: id });
   }
 
+  /**
+   * Unhighlights node
+   * @param id Node id
+   */
   unHighlightNode(): void {
     this.ctx.patchState({ highlightedNodeId: undefined });
   }
