@@ -1,5 +1,5 @@
 <form>
-  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" [floatLabel]="floatToggle()">
+  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">
     <mat-icon matPrefix>search</mat-icon>
     <mat-label>Organs</mat-label>
     <input
@@ -10,10 +10,14 @@
       [matAutocomplete]="auto"
       #organInput
       [placeholder]="searchTextPlaceholder()"
-      (focus)="togglePlaceholder()"
-      (blur)="togglePlaceholder()"
     />
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)" hideSingleSelectionIndicator>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelected($event)"
+      hideSingleSelectionIndicator
+      (opened)="hidePlaceholder.set(true)"
+      (closed)="hidePlaceholder.set(false)"
+    >
       <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of selectedOrgans(); track organ) {
           <mat-chip-row (removed)="remove(organ)">

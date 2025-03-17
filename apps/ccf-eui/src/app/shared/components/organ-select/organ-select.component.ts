@@ -57,25 +57,13 @@ export class OrganSelectComponent {
    * If only one organ is selected use singular form
    */
   protected readonly searchTextPlaceholder = computed(() => {
-    if (this.hidePlaceholder() || this.selectedOrgans().length === 0) {
-      return '';
-    } else {
-      return `${this.selectedOrgans().length} Organ${this.selectedOrgans().length > 1 ? 's' : ''} Visible`;
-    }
+    return this.hidePlaceholder()
+      ? ''
+      : `${this.selectedOrgans().length} Organ${this.selectedOrgans().length !== 1 ? 's' : ''} Visible`;
   });
-
-  /** Floats the input label when organs are selected */
-  protected readonly floatToggle = computed(() => (this.selectedOrgans().length > 0 ? 'always' : 'auto'));
 
   /** Shows placeholder text when organs are selected, hides when input is focused  */
   protected readonly hidePlaceholder = signal(false);
-
-  /**
-   * Toggles placeholder text visibility
-   */
-  togglePlaceholder() {
-    this.hidePlaceholder.set(!this.hidePlaceholder());
-  }
 
   /**
    * Removes organ from selection and updates scene
