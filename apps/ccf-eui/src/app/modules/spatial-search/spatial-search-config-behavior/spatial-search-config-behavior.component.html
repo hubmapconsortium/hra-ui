@@ -1,5 +1,5 @@
 <ccf-spatial-search-config
-  [sex]="(sex$ | async) ?? 'female'"
+  [sex]="(sex$ | async) ?? defaultSex"
   [organs]="(organs$ | async) ?? []"
   [selectedOrgan]="(selectedOrgan$ | async) ?? undefined"
   (updateSex)="updateSex($event)"

@@ -1,14 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  OnChanges,
-  OnInit,
-  output,
-  SimpleChanges,
-} from '@angular/core';
-import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, output } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldDefaultOptions,
@@ -16,21 +8,25 @@ import {
 } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { SpatialSearch } from '@hra-api/ng-client';
+import { Filter, FilterSexEnum } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SpatialSearchListComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
-import { DEFAULT_FILTER } from '../../../core/store/data/data.state';
+import {
+  DEFAULT_FILTER,
+  DEFAULT_FILTER_AGE_HIGH,
+  DEFAULT_FILTER_AGE_LOW,
+  DEFAULT_FILTER_BMI_HIGH,
+  DEFAULT_FILTER_BMI_LOW,
+  DEFAULT_FILTER_SEX,
+  isFilterEmpty,
+  normalizeFilter,
+} from '../../../core/store/data/data.state';
 import { SpatialSearchFilterItem } from '../../../core/store/spatial-search-filter/spatial-search-filter.state';
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
 import { AutocompleteChipsFormComponent } from '../autocomplete-chip-form/autocomplete-chips-form.component';
 import { DualSliderComponent } from '../dual-slider/dual-slider.component';
-import { SpatialSearchFlowService } from '../../../shared/services/spatial-search-flow.service';
-
-/** Sex can be male, female or both */
-export type Sex = 'Male' | 'Female' | 'Both';
 
 /**
  * Contains components of the filters popup and handles changes in filter settings
@@ -59,193 +55,108 @@ export type Sex = 'Male' | 'Female' | 'Both';
     },
   ],
 })
-export class FiltersContentComponent implements OnChanges, OnInit {
-  /**
-   * Determines if the filters are visible
-   */
-  readonly hidden = input<boolean>();
+export class FiltersContentComponent {
+  /** Current filter */
+  readonly filter = model.required<Filter>();
 
-  /**
-   * Allows the filters to be set from outside the component
-   */
-  readonly filters = input<Record<string, unknown>>();
+  /** Technology options */
+  readonly technologyOptions = input.required<string[]>();
+  /** Provider options */
+  readonly providerOptions = input.required<string[]>();
+  /** Consortia options */
+  readonly consortiaOptions = input(['HuBMAP', 'SenNet']);
 
-  /**
-   * List of technologies in the data
-   */
-  readonly technologyFilters = input.required<string[]>();
+  /** Spatial search items */
+  readonly spatialSearchItems = input.required<SpatialSearchFilterItem[]>();
+  /** Spatial search selection change */
+  readonly spatialSearchSelectionChange = output<SpatialSearchFilterItem[]>();
+  /** Spatial search removed */
+  readonly spatialSearchRemoved = output<string>();
 
-  /**
-   * List of providers in the data
-   */
-  readonly providerFilters = input.required<string[]>();
+  /** Age minimum */
+  protected readonly ageMin = DEFAULT_FILTER_AGE_LOW;
+  /** Age maximum */
+  protected readonly ageMax = DEFAULT_FILTER_AGE_HIGH;
+  /** Bmi minimum */
+  protected readonly bmiMin = DEFAULT_FILTER_BMI_LOW;
+  /** Bmi maximum */
+  protected readonly bmiMax = DEFAULT_FILTER_BMI_HIGH;
+  /** Sex options */
+  protected readonly sexOptions = [FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male];
 
-  /**
-   * List of spatial searches
-   */
-  readonly spatialSearchFilters = input.required<SpatialSearchFilterItem[]>();
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+  /** Spatial search flow service */
+  protected readonly spatialFlowService = inject(SpatialSearchFlowService);
 
-  /**
-   * Emits when a spatial search is selected/deselected
-   */
-  spatialSearchSelected = output<SpatialSearchFilterItem[]>();
-
-  /**
-   * Emits when a spatial search is removed/deleted
-   */
-  spatialSearchRemoved = output<string>();
-
-  /**
-   * Emits the filters to be applied
-   */
-  applyFilters = output<Record<string, unknown>>();
-
+  /** Form builder */
   private readonly nnfb = inject(NonNullableFormBuilder);
+  /** Filter form */
   protected filterForm = this.nnfb.group({
-    sex: new FormControl<Sex>('Both', Validators.required),
-    ageRange: new FormControl<number[]>([], Validators.required),
-    bmiRange: new FormControl<number[]>([], Validators.required),
-    technologies: new FormControl<string[]>([]),
-    consortia: new FormControl<string[]>([]),
-    providers: new FormControl<string[]>([]),
-    spatialSearches: new FormControl<SpatialSearch[]>([]),
+    sex: [DEFAULT_FILTER_SEX],
+    ageRange: [[DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH]],
+    bmiRange: [[DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH]],
+    technologies: [[] as string[]],
+    consortiums: [[] as string[]],
+    tmc: [[] as string[]],
   });
 
-  readonly spatialFlowService = inject(SpatialSearchFlowService);
+  /** Latest form value */
+  private readonly formValue = toSignal(this.filterForm.valueChanges, { initialValue: DEFAULT_FILTER });
+  /** Selected spatial searches items */
+  private readonly selectedSpatialSearchItems = computed(() =>
+    this.spatialSearchItems().filter((item) => item.selected),
+  );
+  /** List of sexes for the selected spatial searches */
+  private readonly selectedSpatialSearchSexes = computed(() =>
+    this.selectedSpatialSearchItems().map((item) => item.sex),
+  );
+  /** Selected spatial searches */
+  private readonly selectedSpatialSearches = computed(() =>
+    this.selectedSpatialSearchItems().map((item) => item.search),
+  );
+  /** Whether the filter is empty */
+  protected readonly isEmpty = computed(
+    () => isFilterEmpty(this.formValue()) && this.spatialSearchItems().length === 0,
+  );
 
-  enableReset = false;
+  /** Initialize the filter */
+  constructor() {
+    effect(() => {
+      const filter = normalizeFilter(this.filter());
+      this.filterForm.patchValue(filter);
+      this.filterForm.markAsPristine();
+    });
 
-  enableApply = false;
-
-  justReset = false;
-
-  /**
-   * Creates an instance of filters content component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
-
-  ngOnInit(): void {
-    const f = this.filters();
-    if (f) {
-      this.filterForm.patchValue({
-        sex: f['sex'] as Sex,
-        ageRange: f['ageRange'] as number[],
-        bmiRange: f['bmiRange'] as number[],
-      });
-    }
-  }
-
-  /**
-   * Handle input changes
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (
-      'spatialSearchFilters' in changes &&
-      !changes['spatialSearchFilters'].isFirstChange() &&
-      changes['spatialSearchFilters'].currentValue.toString() !==
-        changes['spatialSearchFilters'].previousValue.toString()
-    ) {
-      this.updateSexFromSelection(this.spatialSearchFilters().filter((item) => item.selected));
-      if (this.spatialSearchFilters().length > 0) {
-        this.enableReset = true;
-        this.enableApply = true;
+    effect(() => {
+      const currentSex = this.filterForm.controls.sex.value;
+      if (this.isSexOptionDisabled(currentSex)) {
+        this.filterForm.patchValue({ sex: FilterSexEnum.Both });
       }
-    }
+    });
   }
 
-  /**
-   * Updates the filter object with a new key/value
-   *
-   * @param value The value to be saved for the filter
-   * @param key The key for the filter to be saved at
-   */
-  updateFilter(value: unknown, key: string): void {
-    const currentValue = this.filterForm.value[key as keyof typeof this.filterForm.value]?.toString();
-    if (currentValue !== value?.toString()) {
-      this.enableReset = true;
-      this.enableApply = true;
-      this.filterForm.patchValue({
-        [key]: value,
-      });
-      this.ga.event('filter_update', 'filter_content', `${key}:${value}`);
-    }
-  }
-
-  convertedFilter(): Record<string, unknown> {
-    const { sex, ageRange, bmiRange, technologies, consortia, providers, spatialSearches } = this.filterForm.controls;
-
-    return {
-      sex: sex.value,
-      ageRange: ageRange.value,
-      bmiRange: bmiRange.value,
-      technologies: technologies.value,
-      consortiums: consortia.value,
-      tmc: providers.value,
-      spatialSearches: spatialSearches.value,
-    } as Record<string, unknown>;
-  }
-
-  /**
-   * Emits the current filters when the apply button is clicked
-   */
-  applyButtonClick(): void {
-    this.updateSearchSelection(this.spatialSearchFilters().filter((item) => item.selected));
+  /** Applies the filter */
+  applyFilter(): void {
     this.ga.event('filters_applied', 'filter_content');
-    this.applyFilters.emit(this.convertedFilter());
-    this.enableApply = false;
-    this.enableReset = !this.justReset;
-    this.justReset = false;
+    this.filter.set({
+      ...this.filterForm.value,
+      spatialSearches: this.selectedSpatialSearches(),
+    });
   }
 
-  /**
-   * Refreshes all filter settings
-   */
-  refreshFilters(): void {
-    const defaults = {
-      ...DEFAULT_FILTER,
-      providers: DEFAULT_FILTER['tmc'],
-      consortia: DEFAULT_FILTER['consortiums'],
-    };
-
-    for (const search of this.spatialSearchFilters()) {
-      this.spatialSearchRemoved.emit(search.id);
-    }
-
-    this.updateSearchSelection([]);
-    this.filterForm.patchValue(defaults);
-
+  /** Reset the filter */
+  resetFilter(): void {
     this.ga.event('filters_reset', 'filter_content');
-    this.enableReset = false;
-    this.justReset = true;
+    this.filterForm.patchValue(DEFAULT_FILTER);
+    this.filterForm.markAsDirty();
+    this.spatialSearchItems().forEach((item) => this.spatialSearchRemoved.emit(item.id));
+    this.spatialSearchSelectionChange.emit([]);
   }
 
-  /**
-   * Emits events for updated searches
-   *
-   * @param items New set of selected items
-   */
-  updateSearchSelection(items: SpatialSearchFilterItem[]): void {
-    const searches = items.map((item) => item.search);
-
-    this.spatialSearchSelected.emit(items);
-    this.updateFilter(searches, 'spatialSearches');
-    this.updateSexFromSelection(items);
-  }
-
-  /**
-   * Updates sex to `Both` if there is a mismatch between the current selection and the sex
-   * If the spatial searches are all for one sex, update the sex to match it if there is a mismatch
-   */
-  updateSexFromSelection(items: SpatialSearchFilterItem[]): void {
-    const currentSex = this.filterForm.controls.sex.value?.toLowerCase() as SpatialSearchSex;
-    const selectedSexes = new Set(items.map((item) => item.sex));
-    if (selectedSexes.size > 1 && !selectedSexes.has(currentSex)) {
-      this.updateFilter('Both', 'sex');
-    }
-    if (selectedSexes.size === 1 && !selectedSexes.has(currentSex)) {
-      this.updateFilter(items[0].sex[0].toUpperCase() + items[0].sex.slice(1), 'sex');
-    }
+  /** Whether the specific option is disabled */
+  isSexOptionDisabled(option: FilterSexEnum): boolean {
+    const selectedSexes = this.selectedSpatialSearchSexes();
+    return option !== FilterSexEnum.Both && selectedSexes.length !== 0 && !selectedSexes.includes(option);
   }
 }

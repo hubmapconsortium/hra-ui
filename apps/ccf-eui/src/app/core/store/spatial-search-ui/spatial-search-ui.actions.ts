@@ -1,4 +1,4 @@
-import { SpatialSceneNode } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSceneNode } from '@hra-api/ng-client';
 
 /**
  * Start spatial search flow action
@@ -6,6 +6,12 @@ import { SpatialSceneNode } from '@hra-api/ng-client';
 export class StartSpatialSearchFlow {
   /** Type for StartSpatialSearchFlow action */
   static readonly type = '[SpatialSearchUi] Start the Spatial Search flow';
+
+  /**
+   * Create an instance of StartSpatialSearchFlow
+   * @param executeSearch Whether to execute a search once a new spatial search is added
+   */
+  constructor(readonly executeSearch: boolean) {}
 }
 
 /**
@@ -19,7 +25,7 @@ export class SetSex {
    * Creates an instance of set sex
    * @param sex Sex value
    */
-  constructor(readonly sex: 'male' | 'female') {}
+  constructor(readonly sex: FilterSexEnum) {}
 }
 
 /**

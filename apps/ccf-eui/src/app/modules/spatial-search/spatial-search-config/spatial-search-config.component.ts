@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 
 /**
@@ -16,8 +16,6 @@ import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigComponent {
-  @HostBinding('class') readonly className = 'ccf-spatial-search-config';
-
   /** Selectable organs */
   readonly organs = input.required<OrganInfo[]>();
 
@@ -25,10 +23,10 @@ export class SpatialSearchConfigComponent {
   readonly selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  readonly sex = input.required<SpatialSearchSex>();
+  readonly sex = input.required<FilterSexEnum>();
 
   /** Emits when sex is updated */
-  readonly updateSex = output<SpatialSearchSex>();
+  readonly updateSex = output<FilterSexEnum>();
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();

@@ -41,11 +41,11 @@
           <mat-icon>info</mat-icon>
           Info
         </button>
-        <button mat-menu-item matRipple (click)="toggleShowSelected()" [disabled]="!anyItemsSelected">
+        <button mat-menu-item matRipple (click)="toggleShowSelected()" [disabled]="!hasSelectedItems()">
           <mat-icon>visibility</mat-icon>
           {{ showSelected() ? 'Show all' : 'Show selected' }}
         </button>
-        <button mat-menu-item matRipple (click)="resetSelections()" [disabled]="!anyItemsSelected">
+        <button mat-menu-item matRipple (click)="resetSelections()" [disabled]="!hasSelectedItems()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset all selections
         </button>

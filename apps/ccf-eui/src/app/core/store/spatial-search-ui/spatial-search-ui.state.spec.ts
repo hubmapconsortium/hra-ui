@@ -1,19 +1,20 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { NgxsModule, StateContext } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { of } from 'rxjs';
-
-import { SpatialSearchSex, SpatialSearchUiModel, SpatialSearchUiState } from './spatial-search-ui.state';
 import { DataState } from '../data/data.state';
 import { SceneState } from '../scene/scene.state';
+import { StartSpatialSearchFlow } from './spatial-search-ui.actions';
+import { SpatialSearchUiModel, SpatialSearchUiState } from './spatial-search-ui.state';
 
 describe('SpatialSearchUiState', () => {
   const defaultState = {
-    sex: 'female' as SpatialSearchSex,
+    sex: FilterSexEnum.Female,
     executeSearchOnGeneration: true,
   };
   let ctx: MockProxy<StateContext<SpatialSearchUiModel>>;
@@ -46,12 +47,12 @@ describe('SpatialSearchUiState', () => {
   });
 
   it('should start spatial search flow', () => {
-    spatialSearchState.startSpatialSearchFlow(ctx);
+    spatialSearchState.startSpatialSearchFlow(ctx, new StartSpatialSearchFlow(false));
     expect(true).toBeTruthy();
   });
 
   it('should patch state on setSex', () => {
-    spatialSearchState.setSex(ctx, { sex: 'male' });
+    spatialSearchState.setSex(ctx, { sex: FilterSexEnum.Male });
     expect(true).toBeTruthy();
   });
 

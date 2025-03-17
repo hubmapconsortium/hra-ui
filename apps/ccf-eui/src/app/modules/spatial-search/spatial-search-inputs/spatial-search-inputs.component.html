@@ -8,7 +8,7 @@
       [value]="sex()"
       (selectionChange)="updateSex.emit($event.value)"
     >
-      @for (option of ['male', 'female']; track option) {
+      @for (option of sexOptions; track option) {
         <mat-option class="dropdown-option" [value]="option">
           <div>{{ option | titlecase }}</div>
         </mat-option>

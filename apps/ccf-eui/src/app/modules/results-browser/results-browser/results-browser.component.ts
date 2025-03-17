@@ -1,19 +1,18 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
-import { MatDividerModule } from '@angular/material/divider';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -50,6 +49,7 @@ export class ResultsBrowserComponent {
    */
   readonly aggregateData = input.required<Immutable<AggregateCount[]>>();
 
+  /** Whether to show the header */
   readonly header = input.required<boolean>();
 
   /**
@@ -62,23 +62,17 @@ export class ResultsBrowserComponent {
    */
   readonly listResultDeselected = output<Immutable<ListResult>>();
 
+  /** Emits when the expansion panel state changes */
   readonly listResultExpansionChange = output<Immutable<ListResult>>();
 
+  /** Whether to show the selected */
   readonly showSelected = signal(false);
 
-  anyItemsSelected = false;
+  /** Whether at least one item is selected */
+  readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
 
-  /**
-   * Creates an instance of results browser component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {
-    effect(() => {
-      const results = this.listResults() as ListResult[];
-      this.anyItemsSelected = results.some((result) => result.selected);
-    });
-  }
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Notifies listeners when a selection/deselection is made
@@ -95,10 +89,12 @@ export class ResultsBrowserComponent {
     }
   }
 
+  /** Cast an immutable value to it's mutable type */
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
   }
 
+  /** Reset selections */
   resetSelections(): void {
     const selectedResults = this.listResults().filter((result) => result.selected);
     for (const result of selectedResults) {
@@ -107,14 +103,17 @@ export class ResultsBrowserComponent {
     this.showSelected.set(false);
   }
 
+  /** Change expansion panel result */
   changeExpansion(result: Immutable<ListResult>, value: boolean) {
     this.listResultExpansionChange.emit({ ...result, expanded: value });
   }
 
+  /** Get the color of an item */
   getColor(result: Immutable<ListResult>): string {
     return result.selected ? result.color || '' : 'transparent';
   }
 
+  /** Toggle the selected items */
   toggleShowSelected(): void {
     this.showSelected.set(!this.showSelected());
   }

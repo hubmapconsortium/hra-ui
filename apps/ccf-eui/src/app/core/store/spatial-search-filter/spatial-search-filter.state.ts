@@ -1,35 +1,43 @@
 import { Injectable } from '@angular/core';
-import { SpatialSearch } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSearch } from '@hra-api/ng-client';
 import { Action, State, StateContext } from '@ngxs/store';
 import { append, removeItem } from '@ngxs/store/operators';
 import { SpatialSearchListItem } from 'ccf-shared';
 import { AddSearch, RemoveSearch, SetSelectedSearches } from './spatial-search-filter.actions';
-import { SpatialSearchSex } from '../spatial-search-ui/spatial-search-ui.state';
 
+/** Search item */
 export interface SpatialSearchFilterItem extends SpatialSearchListItem {
+  /** Id */
   id: string;
+  /** Spatial search */
   search: SpatialSearch;
-  sex: SpatialSearchSex;
+  /** Sex */
+  sex: FilterSexEnum;
 }
 
+/** State model */
 export type SpatialSearchFilterModel = SpatialSearchFilterItem[];
 
+/** Search state */
 @State<SpatialSearchFilterModel>({
   name: 'spatialSearchFilter',
   defaults: [],
 })
 @Injectable()
 export class SpatialSearchFilterState {
+  /** Add a search */
   @Action(AddSearch)
   addSearch(ctx: StateContext<SpatialSearchFilterModel>, { sex, organName, search }: AddSearch): void {
     ctx.setState(append([this.createItem(sex, organName, search)]));
   }
 
+  /** Remove a search */
   @Action(RemoveSearch)
   removeSearch(ctx: StateContext<SpatialSearchFilterModel>, { id }: RemoveSearch): void {
     ctx.setState(removeItem((item) => item?.id === id));
   }
 
+  /** Set selected searches */
   @Action(SetSelectedSearches)
   setSelectedSearches(ctx: StateContext<SpatialSearchFilterModel>, { items }: SetSelectedSearches): void {
     const selectedByIds = new Map(items.map((item) => [item.id, item]));
@@ -41,7 +49,8 @@ export class SpatialSearchFilterState {
     ctx.setState(newItems);
   }
 
-  private createItem(sex: SpatialSearchSex, name: string, search: SpatialSearch): SpatialSearchFilterItem {
+  /** Create an item */
+  private createItem(sex: FilterSexEnum, name: string, search: SpatialSearch): SpatialSearchFilterItem {
     return {
       id: this.createItemId(search),
       selected: true,
@@ -51,12 +60,14 @@ export class SpatialSearchFilterState {
     };
   }
 
+  /** Create the id for a search */
   private createItemId(search: SpatialSearch): string {
     const { x, y, z, radius, target } = search;
     return `${target}-${radius}-${x},${y},${z}`;
   }
 
-  private createItemDescription(sex: SpatialSearchSex, name: string, search: SpatialSearch): string {
+  /** Create the item description */
+  private createItemDescription(sex: FilterSexEnum, name: string, search: SpatialSearch): string {
     const capitalize = (value: string) => value.slice(0, 1).toUpperCase() + value.slice(1);
     const { x, y, z, radius } = search;
 
