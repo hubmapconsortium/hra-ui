@@ -1,6 +1,5 @@
-import { SpatialSearch } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSearch } from '@hra-api/ng-client';
 import type { SpatialSearchFilterItem } from './spatial-search-filter.state';
-import { SpatialSearchSex } from '../spatial-search-ui/spatial-search-ui.state';
 
 /**
  * Action to add a spatial search filter
@@ -16,7 +15,7 @@ export class AddSearch {
    * @param search - The spatial search data object
    */
   constructor(
-    readonly sex: SpatialSearchSex,
+    readonly sex: FilterSexEnum,
     readonly organName: string,
     readonly search: SpatialSearch,
   ) {}

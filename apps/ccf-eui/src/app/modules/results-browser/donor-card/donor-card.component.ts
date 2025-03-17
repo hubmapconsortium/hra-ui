@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, HostBinding, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
+import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
 
 /**
@@ -27,9 +27,6 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonorCardComponent {
-  /** HTML Class Name */
-  @HostBinding('class') readonly clsName = 'ccf-donor-card';
-
   /** Tissue Block to generate the donor card from */
   readonly tissueBlock = input.required<TissueBlock>();
 
@@ -41,12 +38,17 @@ export class DonorCardComponent {
   /** Allows the expanded state of the card to be set from outside the component */
   readonly expanded = model<boolean>(false);
 
+  /** Option selected */
   readonly selectOption = output();
+  /** Expansion state change */
   readonly expansionChange = output<boolean>();
 
+  /** Tissue block thickness */
   readonly thickness = computed(() => this.tissueBlock().description?.split(',')[1]);
+  /** Tissue block size */
   readonly size = computed(() => this.tissueBlock().description?.split(',')[0]);
 
+  /** Section links */
   readonly sectionLinks = computed(() => this.tissueBlock().sections?.map((section) => section.link) ?? []);
 
   /**

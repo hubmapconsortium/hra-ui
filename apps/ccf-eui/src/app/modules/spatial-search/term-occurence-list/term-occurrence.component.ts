@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
-
 import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 /**
@@ -24,8 +23,6 @@ import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TermOccurrenceListComponent {
-  @HostBinding('class') readonly className = 'ccf-term-occurrence-list';
-
   /**
    * Array that contains the terms and their counts
    */

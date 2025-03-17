@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { GlobalConfigState, OrganInfo } from 'ccf-shared';
+import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable, combineLatest, of } from 'rxjs';
 import { map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
@@ -139,7 +139,7 @@ export class AppComponent implements AfterViewInit {
       ),
       tap((organ) => {
         if (organ && this.latestOrganInfo) {
-          const newSex = this.latestOrganInfo?.hasSex ? organ.sex : undefined;
+          const newSex = this.latestOrganInfo?.hasSex && organ.sex !== undefined ? sexFromString(organ.sex) : undefined;
           if (newSex !== this.latestConfig.sex) {
             this.updateInput('sex', newSex);
           }
@@ -154,7 +154,7 @@ export class AppComponent implements AfterViewInit {
     this.scene$ = this.organ$.pipe(
       switchMap((organ) =>
         organ && this.latestOrganInfo
-          ? lookup.getOrganScene(this.latestOrganInfo, organ.sex as FilterSexEnum)
+          ? lookup.getOrganScene(this.latestOrganInfo, sexFromString(organ.sex ?? ''))
           : of(EMPTY_SCENE as SpatialSceneNode[]),
       ),
     );
@@ -163,7 +163,7 @@ export class AppComponent implements AfterViewInit {
       switchMap(([organ, donorLabel]) =>
         organ && this.latestOrganInfo
           ? lookup
-              .getOrganStats(this.latestOrganInfo, organ.sex as FilterSexEnum)
+              .getOrganStats(this.latestOrganInfo, sexFromString(organ.sex ?? ''))
               .pipe(
                 map((agg) =>
                   agg.map((result) =>
@@ -182,7 +182,7 @@ export class AppComponent implements AfterViewInit {
 
     this.blocks$ = this.organ$.pipe(
       switchMap((organ) =>
-        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, organ.sex as FilterSexEnum) : of([]),
+        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, sexFromString(organ.sex ?? '')) : of([]),
       ),
     );
   }

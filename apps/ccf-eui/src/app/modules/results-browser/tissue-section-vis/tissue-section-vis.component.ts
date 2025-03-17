@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TissueSection } from '@hra-api/ng-client';
 
+/** Tissue section visualization */
 @Component({
   selector: 'ccf-tissue-section-vis',
   templateUrl: './tissue-section-vis.component.html',
@@ -10,9 +11,6 @@ import { TissueSection } from '@hra-api/ng-client';
   imports: [CommonModule],
 })
 export class TissueSectionVisComponent {
-  /** HTML Class Name */
-  @HostBinding('class') readonly clsName = 'ccf-tissue-section-vis';
-
   /** The total numebr of tissue sections, used for end label */
   readonly totalTissueSections = input.required<number>();
 

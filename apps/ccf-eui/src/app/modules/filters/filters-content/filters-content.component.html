@@ -9,14 +9,13 @@
           <mat-form-field class="dropdown-form-field">
             <mat-label>Sex</mat-label>
             <mat-select
-              (selectionChange)="updateFilter($event.value, 'sex')"
               disableOptionCentering="true"
               panelClass="options-container"
               disableRipple
-              [value]="filterForm.controls.sex.value"
+              formControlName="sex"
             >
-              @for (option of ['Both', 'Male', 'Female']; track option) {
-                <mat-option class="dropdown-option" [value]="option">
+              @for (option of sexOptions; track option) {
+                <mat-option class="dropdown-option" [value]="option" [disabled]="isSexOptionDisabled(option)">
                   <div>{{ option }}</div>
                 </mat-option>
               }
@@ -25,24 +24,12 @@
 
           <mat-form-field class="dropdown-form-field">
             <mat-label>BMI</mat-label>
-            <ccf-dual-slider
-              formControlName="bmiRange"
-              min="13"
-              max="83"
-              (valueChange)="updateFilter($event, 'bmiRange')"
-            >
-            </ccf-dual-slider>
+            <ccf-dual-slider formControlName="bmiRange" [min]="bmiMin" [max]="bmiMax" />
           </mat-form-field>
 
           <mat-form-field class="dropdown-form-field">
             <mat-label>Age</mat-label>
-            <ccf-dual-slider
-              formControlName="ageRange"
-              min="1"
-              max="110"
-              (valueChange)="updateFilter($event, 'ageRange')"
-            >
-            </ccf-dual-slider>
+            <ccf-dual-slider formControlName="ageRange" [min]="ageMin" [max]="ageMax" />
           </mat-form-field>
         </div>
       </div>
@@ -52,62 +39,53 @@
           <div class="section-title">Provenance</div>
         </div>
         <ccf-autocomplete-chips-form
-          #assays
           class="assay-form"
           label="Assay Types"
-          [filterOptions]="technologyFilters()"
+          [filterOptions]="technologyOptions()"
           [form]="filterForm.controls.technologies"
-          (selectedOptions)="enableReset = true; enableApply = true"
-        >
-        </ccf-autocomplete-chips-form>
+        />
 
         <ccf-autocomplete-chips-form
-          #consortia
           class="consortia-form"
           label="Consortia"
-          [filterOptions]="['HuBMAP', 'SenNet']"
-          [form]="filterForm.controls.consortia"
-          (selectedOptions)="enableReset = true; enableApply = true"
-        >
-        </ccf-autocomplete-chips-form>
+          [filterOptions]="consortiaOptions()"
+          [form]="filterForm.controls.consortiums"
+        />
 
         <ccf-autocomplete-chips-form
-          #providers
           class="providers-form"
           label="Tissue Data Providers"
-          [filterOptions]="providerFilters()"
-          [form]="filterForm.controls.providers"
-          (selectedOptions)="enableReset = true; enableApply = true"
-        >
-        </ccf-autocomplete-chips-form>
+          [filterOptions]="providerOptions()"
+          [form]="filterForm.controls.tmc"
+        />
       </div>
 
       <div class="section spatial-search">
         <div class="section-header">
           <div class="section-title">Spatial Locations</div>
-          <button class="run-spatial-search-button" mat-button (click)="spatialFlowService.startSpatialSearchFlow()">
+          <button
+            class="run-spatial-search-button"
+            mat-button
+            (click)="spatialFlowService.startSpatialSearchFlow(false)"
+          >
             Spatial Search
             <mat-icon>add_circle</mat-icon>
           </button>
         </div>
         <ccf-spatial-search-list
-          [items]="spatialSearchFilters()"
-          (selectionChanged)="updateSearchSelection($event)"
+          [items]="spatialSearchItems()"
+          (selectionChanged)="spatialSearchSelectionChange.emit($event)"
           (itemRemoved)="spatialSearchRemoved.emit($event.id)"
-        >
-        </ccf-spatial-search-list>
+        />
       </div>
     </div>
   </form>
 </ng-scrollbar>
 
 <div class="button-container">
-  <button
-    mat-button
-    [disabled]="!enableReset"
-    (click)="refreshFilters(); assays.chips.set([]); consortia.chips.set([]); providers.chips.set([])"
-  >
-    Reset Filters<mat-icon class="reset icon">reset_settings</mat-icon>
+  <button mat-button [disabled]="filterForm.pristine && isEmpty()" (click)="resetFilter()">
+    Reset
+    <mat-icon class="reset icon">reset_settings</mat-icon>
   </button>
-  <button mat-flat-button (click)="applyButtonClick()" [disabled]="!enableApply || filterForm.invalid">Apply</button>
+  <button mat-flat-button (click)="applyFilter()" [disabled]="filterForm.pristine || filterForm.invalid">Apply</button>
 </div>

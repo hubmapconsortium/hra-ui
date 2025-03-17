@@ -6,13 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { OrganInfo } from 'ccf-shared';
 import { map, Observable, startWith } from 'rxjs';
 
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
-
+/** Spatial search inputs */
 @Component({
   selector: 'ccf-spatial-search-inputs',
   imports: [
@@ -40,16 +40,18 @@ export class SpatialSearchInputsComponent {
   readonly selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  readonly sex = input.required<SpatialSearchSex>();
+  readonly sex = input.required<FilterSexEnum>();
 
   /** Emits when sex is updated */
-  readonly updateSex = output<SpatialSearchSex>();
+  readonly updateSex = output<FilterSexEnum>();
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
 
+  /** Organ form control */
   readonly organControl = new FormControl<string | OrganInfo>('');
 
+  /** Organ options */
   readonly filteredOrgans: Observable<OrganInfo[]> = this.organControl.valueChanges.pipe(
     startWith(''),
     map((value) => {
@@ -58,16 +60,22 @@ export class SpatialSearchInputsComponent {
     }),
   );
 
+  /** Sex options */
+  protected readonly sexOptions = [FilterSexEnum.Female, FilterSexEnum.Male];
+
+  /** Initialize the component */
   constructor() {
     effect(() => {
       this.organControl.patchValue(this.selectedOrgan() as OrganInfo);
     });
   }
 
+  /** Get a label for the organ */
   displayFn(organ: OrganInfo): string {
     return organ && organ.name ? organ.name : '';
   }
 
+  /** Filter organs by a value */
   private _filter(name: string): OrganInfo[] {
     const filterValue = name.toLowerCase();
     return this.organs().filter((organ) => organ.name.toLowerCase().includes(filterValue));
