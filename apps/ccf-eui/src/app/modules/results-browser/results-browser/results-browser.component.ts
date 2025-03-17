@@ -84,6 +84,10 @@ export class ResultsBrowserComponent {
    */
   handleSelection(result: Immutable<ListResult>, selected: boolean): void {
     this.ga.event('list_result_selected', 'results_browser', result.tissueBlock.label, +selected);
+    if (!this.hasSelectedItems()) {
+      this.showSelected.set(false);
+    }
+
     if (selected) {
       this.listResultSelected.emit(result);
     } else {

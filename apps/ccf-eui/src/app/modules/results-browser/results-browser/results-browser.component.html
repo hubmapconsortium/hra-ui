@@ -65,7 +65,7 @@
   <ng-scrollbar hraScrollOverflowFade>
     <div class="results-browser-list">
       @for (result of listResults(); track result) {
-        @if (!(showSelected() && !result.selected)) {
+        @if (!hasSelectedItems() || !(showSelected() && !result.selected)) {
           <div
             class="browser-item-container"
             (mouseenter)="itemHovered.emit(result.tissueBlock.spatialEntityId ?? '')"
