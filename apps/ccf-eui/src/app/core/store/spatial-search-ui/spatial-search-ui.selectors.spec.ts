@@ -29,7 +29,7 @@ describe('SpatialSearchUiSelectors', () => {
 
   it('should return the sex', async () => {
     const message = SpatialSearchUiSelectors.sex(model);
-    expect(message).toEqual('female');
+    expect(message).toEqual(FilterSexEnum.Female);
   });
 
   it('should return reference organs', async () => {

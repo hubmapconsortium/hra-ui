@@ -1,7 +1,12 @@
 import { FilterSexEnum } from '@hra-api/ng-client';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
+import { BodyUI } from 'ccf-body-ui';
+import { mockDeep } from 'jest-mock-extended';
+import { of } from 'rxjs';
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
+
+jest.mock('ccf-body-ui', () => ({ BodyUI: jest.fn() }));
 
 describe('SpatialSearchUiComponent', () => {
   async function setup(options?: RenderComponentOptions<SpatialSearchUiComponent>) {
@@ -26,6 +31,18 @@ describe('SpatialSearchUiComponent', () => {
     anatomicalStructures: [],
     cellTypes: [],
   };
+
+  beforeEach(() => {
+    jest.mocked(BodyUI).mockReturnValue(
+      mockDeep<BodyUI>({
+        sceneRotation$: of(),
+        nodeDrag$: of(),
+        nodeClick$: of(),
+        nodeHoverStart$: of(),
+        nodeHoverStop$: of(),
+      }),
+    );
+  });
 
   it('should reset view correctly', async () => {
     const { fixture } = await setup({
