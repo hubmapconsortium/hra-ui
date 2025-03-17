@@ -30,6 +30,7 @@ export class DonorCardComponent {
   /** Tissue Block to generate the donor card from */
   readonly tissueBlock = input.required<TissueBlock>();
 
+  /** If card is highlighted */
   readonly highlighted = input<boolean>(false);
 
   /** Allows the selected state to be set from outside the component */
