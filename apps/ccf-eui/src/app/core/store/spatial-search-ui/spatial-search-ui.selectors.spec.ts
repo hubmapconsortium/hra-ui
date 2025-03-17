@@ -1,9 +1,10 @@
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { SpatialSearchUiSelectors } from './spatial-search-ui.selectors';
-import { RadiusSettings, SpatialSearchSex } from './spatial-search-ui.state';
+import { RadiusSettings } from './spatial-search-ui.state';
 
 describe('SpatialSearchUiSelectors', () => {
   const model = {
-    sex: 'female' as SpatialSearchSex,
+    sex: FilterSexEnum.Female,
     referenceOrgans: [{ organ: 'Heart', name: 'Heart', src: '' }],
     executeSearchOnGeneration: true,
     organId: 'testId',
@@ -47,7 +48,9 @@ describe('SpatialSearchUiSelectors', () => {
   });
 
   it('should return a list of organs filtered by sex', async () => {
-    const organs = SpatialSearchUiSelectors.organs('female', [{ organ: 'Heart', name: 'Heart', src: '', sex: 'male' }]);
+    const organs = SpatialSearchUiSelectors.organs(FilterSexEnum.Female, [
+      { organ: 'Heart', name: 'Heart', src: '', sex: FilterSexEnum.Male },
+    ]);
     expect(organs).toHaveLength(0);
   });
 

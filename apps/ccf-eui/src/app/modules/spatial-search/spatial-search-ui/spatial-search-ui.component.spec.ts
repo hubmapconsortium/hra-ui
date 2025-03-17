@@ -1,7 +1,6 @@
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
-
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
 
 describe('SpatialSearchUiComponent', () => {
@@ -17,7 +16,7 @@ describe('SpatialSearchUiComponent', () => {
     sceneBounds: { x: 0, y: 0, z: 0 },
     sceneTarget: [0, 0, 0] as [number, number, number],
     organs: [],
-    sex: 'male' as SpatialSearchSex,
+    sex: FilterSexEnum.Male,
     referenceOrgan: { id: 'UBERON:0000001', name: 'whole organism', src: '', organ: 'test' },
     radius: 10,
     radiusSettings: { min: 0, max: 100, defaultValue: 10 },

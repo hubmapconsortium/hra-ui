@@ -505,10 +505,23 @@ export interface OrganInfo {
   numResults?: number;
 }
 
+/**
+ * Helper for comparing differently typed sex values
+ *
+ * @param val1 First value
+ * @param val2 Second value
+ * @returns true if they are considered equal
+ */
 export function sexEquals(val1: FilterSexEnum | string | undefined, val2: FilterSexEnum | string | undefined): boolean {
   return val1?.toLowerCase() === val2?.toLowerCase();
 }
 
+/**
+ * Converts a string typed sex value into a `FilterSexEnum`
+ *
+ * @param value Value to convert
+ * @returns A `FilterSexEnum` value if a match is found
+ */
 export function sexFromString(value: string): FilterSexEnum | undefined {
   return [FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male].find((sex) => sexEquals(sex, value));
 }

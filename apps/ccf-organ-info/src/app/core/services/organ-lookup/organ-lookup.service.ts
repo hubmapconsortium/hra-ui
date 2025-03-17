@@ -7,7 +7,7 @@ import {
   SpatialSceneNode,
   TissueBlock,
 } from '@hra-api/ng-client';
-import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo } from 'ccf-shared';
+import { ALL_POSSIBLE_ORGANS, DataSourceService, OrganInfo, sexEquals } from 'ccf-shared';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -63,7 +63,10 @@ export class OrganLookupService {
       .getReferenceOrgans()
       .pipe(
         map((entities) =>
-          entities.find((entity) => entity.representation_of === info.id && (sex === 'Both' || entity.sex === sex)),
+          entities.find(
+            (entity) =>
+              entity.representation_of === info.id && (sex === FilterSexEnum.Both || sexEquals(entity.sex, sex)),
+          ),
         ),
       );
   }

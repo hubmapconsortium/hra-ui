@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { SpatialEntity, SpatialSceneNode, V1Service } from '@hra-api/ng-client';
-import { GlobalConfigState } from 'ccf-shared';
+import { GlobalConfigState, sexEquals } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
@@ -69,7 +69,7 @@ export class FilteredSceneService {
         return this.api.referenceOrganScene({
           organIri: organ.representation_of ?? '',
           ontologyTerms: [organ.reference_organ ?? ''],
-          sex: organ.sex as 'male' | 'female' | 'both' | undefined,
+          sex: organ.sex?.toLowerCase() as 'male' | 'female' | 'both' | undefined,
         });
       }
     }
@@ -106,9 +106,9 @@ export class FilteredSceneService {
 
     const skins = new Set<string>();
     organs.forEach((organ) => {
-      if (organ.sex === 'Female') {
+      if (sexEquals(organ.sex, 'female')) {
         skins.add(FEMALE_SKIN_URL);
-      } else if (organ.sex === 'Male') {
+      } else if (sexEquals(organ.sex, 'male')) {
         skins.add(MALE_SKIN_URL);
       }
     });

@@ -145,8 +145,7 @@ export class SpatialSearchUiState {
    */
   @Action(SetOrgan)
   setOrgan(ctx: StateContext<SpatialSearchUiModel>, { organId }: SetOrgan): Observable<unknown> | void {
-    const { sex } = ctx.getState();
-    ctx.patchState({ sex, organId });
+    ctx.patchState({ organId });
     const shortOrgan = organId?.split('/').slice(-1)[0];
     this.ga.event('set_organ', 'spatial_search_ui', shortOrgan);
 
