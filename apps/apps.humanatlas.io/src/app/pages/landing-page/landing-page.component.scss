@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  .splash-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splash-header-img {
+    opacity: 16%;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 34.375rem;
+    background:
+      linear-gradient(0deg, #e6eaf0, #e6eaf0), linear-gradient(172.57deg, rgba(230, 234, 240, 0) 29.28%, #e6eaf0 92.6%);
+  }
+
+  .splash-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    max-width: 53rem;
+    max-height: 34.1875rem;
+    padding-top: 9rem;
+    gap: 3rem;
+
+    p {
+      margin: 0;
+      font: var(--mat-sys-display-large);
+      letter-spacing: var(--mat-sys-display-large-tracking);
+      text-align: center;
+      color: var(--mat-sys-on-background);
+    }
+  }
+
+  mat-button-toggle-group {
+    width: 20.25rem;
+  }
+
+  @include mat.button-toggle-overrides(
+    (
+      selected-state-background-color: rgb(from var(--mat-sys-tertiary) r g b / 20%),
+      text-color: var(--mat-sys-on-background),
+      selected-state-text-color: var(--mat-sys-on-background),
+    )
+  );
+}
