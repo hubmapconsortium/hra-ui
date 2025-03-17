@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { SpatialSearch } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSearch } from '@hra-api/ng-client';
 import { Action, State, StateContext } from '@ngxs/store';
 import { append, removeItem } from '@ngxs/store/operators';
 import { SpatialSearchListItem } from 'ccf-shared';
 import { AddSearch, RemoveSearch, SetSelectedSearches } from './spatial-search-filter.actions';
-import { SpatialSearchSex } from '../spatial-search-ui/spatial-search-ui.state';
 
 export interface SpatialSearchFilterItem extends SpatialSearchListItem {
   id: string;
   search: SpatialSearch;
-  sex: SpatialSearchSex;
+  sex: FilterSexEnum;
 }
 
 export type SpatialSearchFilterModel = SpatialSearchFilterItem[];
@@ -41,7 +40,7 @@ export class SpatialSearchFilterState {
     ctx.setState(newItems);
   }
 
-  private createItem(sex: SpatialSearchSex, name: string, search: SpatialSearch): SpatialSearchFilterItem {
+  private createItem(sex: FilterSexEnum, name: string, search: SpatialSearch): SpatialSearchFilterItem {
     return {
       id: this.createItemId(search),
       selected: true,
@@ -56,7 +55,7 @@ export class SpatialSearchFilterState {
     return `${target}-${radius}-${x},${y},${z}`;
   }
 
-  private createItemDescription(sex: SpatialSearchSex, name: string, search: SpatialSearch): string {
+  private createItemDescription(sex: FilterSexEnum, name: string, search: SpatialSearch): string {
     const capitalize = (value: string) => value.slice(0, 1).toUpperCase() + value.slice(1);
     const { x, y, z, radius } = search;
 

@@ -22,4 +22,9 @@ export class DataStateSelectors {
   static biomarkersTreeModel(state: DataStateModel): OntologyTree {
     return state.biomarkersTreeModel ?? { root: '', nodes: {} };
   }
+
+  @Selector([DataState])
+  static isDatabaseReady(state: DataStateModel): boolean {
+    return state.status === 'Ready';
+  }
 }

@@ -28,11 +28,17 @@ import {
 } from 'rxjs/operators';
 import { UpdateFilter } from './data.actions';
 
+export const DEFAULT_FILTER_SEX = FilterSexEnum.Both;
+export const DEFAULT_FILTER_AGE_LOW = 1;
+export const DEFAULT_FILTER_AGE_HIGH = 110;
+export const DEFAULT_FILTER_BMI_LOW = 13;
+export const DEFAULT_FILTER_BMI_HIGH = 83;
+
 /** Default values for filters. */
-export const DEFAULT_FILTER: Filter = {
-  sex: FilterSexEnum.Both,
-  ageRange: [1, 110],
-  bmiRange: [13, 83],
+export const DEFAULT_FILTER: Required<Filter> = {
+  sex: DEFAULT_FILTER_SEX,
+  ageRange: [DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH],
+  bmiRange: [DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH],
   consortiums: [],
   tmc: [],
   technologies: [],
@@ -41,6 +47,39 @@ export const DEFAULT_FILTER: Filter = {
   biomarkerTerms: ['http://purl.org/ccf/biomarkers'],
   spatialSearches: [],
 };
+
+export function isFilterEmpty(filter: Filter): boolean {
+  const {
+    sex = DEFAULT_FILTER.sex,
+    ageRange: [ageLow, ageHigh] = [],
+    bmiRange: [bmiLow, bmiHigh] = [],
+    technologies = [],
+    consortiums = [],
+    tmc = [],
+  } = filter;
+
+  return (
+    sex === DEFAULT_FILTER_SEX &&
+    ageLow === DEFAULT_FILTER_AGE_LOW &&
+    ageHigh === DEFAULT_FILTER_AGE_HIGH &&
+    bmiLow === DEFAULT_FILTER_BMI_LOW &&
+    bmiHigh === DEFAULT_FILTER_BMI_HIGH &&
+    technologies.length === 0 &&
+    consortiums.length === 0 &&
+    tmc.length === 0
+  );
+}
+
+export function normalizeFilter(filter: Filter): Required<Filter> {
+  const result = { ...DEFAULT_FILTER };
+  for (const [key, value] of Object.entries(filter)) {
+    if (value !== undefined) {
+      result[key as keyof Filter] = value;
+    }
+  }
+
+  return result;
+}
 
 /** Current state of data queries. */
 // eslint-disable-next-line no-shadow
@@ -219,7 +258,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   };
 
   /** Current filter. */
-  readonly filter$ = this.state$.pipe(map((x) => x?.filter));
+  readonly filter$ = this.state$.pipe(map((x) => x.filter));
   /** Latest tissue block query data. */
   readonly tissueBlockData$ = this.filter$.pipe(
     queryData(this.tissueBlockData, sendCompletedTo(this._tissueBlockDataQueryStatus$)),

@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { OrganInfo, PanelData } from 'ccf-shared';
 import { Observable, Subscription } from 'rxjs';
-
 import { actionAsFn } from '../../../core/store/action-as-fn';
 import { SetOrgan, SetSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
 import { SpatialSearchConfigComponent } from '../spatial-search-config/spatial-search-config.component';
 import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/spatial-search-ui-behavior.component';
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 @Component({
   selector: 'ccf-spatial-search-config-behavior',
@@ -20,7 +19,7 @@ import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
-  readonly sex$: Observable<SpatialSearchSex> = inject(Store).select(SpatialSearchUiSelectors.sex);
+  readonly sex$: Observable<FilterSexEnum> = inject(Store).select(SpatialSearchUiSelectors.sex);
 
   readonly selectedOrgan$: Observable<OrganInfo | undefined> = inject(Store).select(SpatialSearchUiSelectors.organ);
 
@@ -33,6 +32,8 @@ export class SpatialSearchConfigBehaviorComponent implements OnDestroy {
   readonly updateOrgan = actionAsFn(SetOrgan);
 
   panelData!: PanelData;
+
+  protected readonly defaultSex = FilterSexEnum.Female;
 
   private readonly subscriptions = new Subscription();
 

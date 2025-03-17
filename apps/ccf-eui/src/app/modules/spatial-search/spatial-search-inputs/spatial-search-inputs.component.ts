@@ -6,12 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { FilterSexEnum } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { OrganInfo } from 'ccf-shared';
 import { map, Observable, startWith } from 'rxjs';
-
-import { SpatialSearchSex } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
 @Component({
   selector: 'ccf-spatial-search-inputs',
@@ -40,10 +39,10 @@ export class SpatialSearchInputsComponent {
   readonly selectedOrgan = input<OrganInfo>();
 
   /** Currently selected sex */
-  readonly sex = input.required<SpatialSearchSex>();
+  readonly sex = input.required<FilterSexEnum>();
 
   /** Emits when sex is updated */
-  readonly updateSex = output<SpatialSearchSex>();
+  readonly updateSex = output<FilterSexEnum>();
 
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
@@ -57,6 +56,8 @@ export class SpatialSearchInputsComponent {
       return name ? this._filter(name as string) : this.organs().slice();
     }),
   );
+
+  protected readonly sexOptions = [FilterSexEnum.Female, FilterSexEnum.Male];
 
   constructor() {
     effect(() => {

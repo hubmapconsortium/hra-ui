@@ -1,13 +1,15 @@
-import { SpatialSceneNode } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSceneNode } from '@hra-api/ng-client';
 
 export class StartSpatialSearchFlow {
   static readonly type = '[SpatialSearchUi] Start the Spatial Search flow';
+
+  constructor(readonly executeSearch: boolean) {}
 }
 
 export class SetSex {
   static readonly type = '[SpatialSearchUi] Set sex';
 
-  constructor(readonly sex: 'male' | 'female') {}
+  constructor(readonly sex: FilterSexEnum) {}
 }
 
 export class SetOrgan {

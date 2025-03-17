@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { FilterSexEnum, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { OrganInfo } from 'ccf-shared';
@@ -19,12 +19,7 @@ import {
   SetSex,
 } from '../../../core/store/spatial-search-ui/spatial-search-ui.actions';
 import { SpatialSearchUiSelectors } from '../../../core/store/spatial-search-ui/spatial-search-ui.selectors';
-import {
-  Position,
-  RadiusSettings,
-  SpatialSearchSex,
-  TermResult,
-} from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
+import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchConfigBehaviorComponent } from '../spatial-search-config-behavior/spatial-search-config-behavior.component';
 import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui.component';
 
@@ -48,7 +43,7 @@ export class SpatialSearchUiBehaviorComponent {
     SpatialSearchUiSelectors.sceneTarget,
   );
 
-  readonly sex$: Observable<SpatialSearchSex> = inject(Store).select(SpatialSearchUiSelectors.sex);
+  readonly sex$: Observable<FilterSexEnum> = inject(Store).select(SpatialSearchUiSelectors.sex);
 
   readonly organ$: Observable<OrganInfo | undefined> = inject(Store).select(SpatialSearchUiSelectors.organ);
 

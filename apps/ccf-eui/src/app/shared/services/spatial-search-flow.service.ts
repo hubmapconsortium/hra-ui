@@ -16,9 +16,9 @@ export class SpatialSearchFlowService {
   /**
    * Starts spatial search flow
    */
-  startSpatialSearchFlow(): void {
+  startSpatialSearchFlow(executeSearch: boolean): void {
     this.store
-      .dispatch(new StartSpatialSearchFlow())
+      .dispatch(new StartSpatialSearchFlow(executeSearch))
       .pipe(
         take(1),
         tap(() => this.dialog.open(SpatialSearchConfigBehaviorComponent, { panelClass: 'spatial-search-config' })),

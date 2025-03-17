@@ -1,25 +1,30 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Filter, OntologyTree } from '@hra-api/ng-client';
+import { Filter } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
 
+import { toSignal } from '@angular/core/rxjs-interop';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
-import { DataState } from './core/store/data/data.state';
+import {
+  DataState,
+  DEFAULT_FILTER_AGE_HIGH,
+  DEFAULT_FILTER_AGE_LOW,
+  DEFAULT_FILTER_BMI_HIGH,
+  DEFAULT_FILTER_BMI_LOW,
+} from './core/store/data/data.state';
 import { ListResultsState } from './core/store/list-results/list-results.state';
 import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
-import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
 import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
 
 interface AppOptions {
@@ -57,32 +62,14 @@ export interface DonorFormControls {
   standalone: false,
 })
 export class AppComponent implements OnInit {
-  @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;
-
-  readonly cellTypeTreeModel$: Observable<OntologyTree> = inject(Store).select(DataStateSelectors.cellTypesTreeModel);
-
-  readonly ontologyTreeModel$: Observable<OntologyTree> = inject(Store).select(
-    DataStateSelectors.anatomicalStructuresTreeModel,
-  );
-
-  readonly biomarkersTreeModel$: Observable<OntologyTree> = inject(Store).select(
-    DataStateSelectors.biomarkersTreeModel,
-  );
-
-  readonly selectableSearches$: Observable<SpatialSearchFilterItem[]> = inject(Store).select(
-    SpatialSearchFilterSelectors.items,
-  );
-
   @Dispatch()
   readonly setSelectedSearches = actionAsFn(SetSelectedSearches);
 
   @Dispatch()
   readonly removeSpatialSearch = actionAsFn(RemoveSearch);
 
-  readonly spatialFlowService = inject(SpatialSearchFlowService);
-
-  menuOptions: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
-  ontologyTooltips: Record<string, string> = {
+  readonly menuOptions: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
+  readonly ontologyTooltips: Record<string, string> = {
     as: 'Parts of the body in defined locations and regions, including the surface, internal organs and tissues. These structures may be described by gross or microscopic morphology and include functional tissue units and highly organized cellular ecosystems (such as alveoli in the lungs).',
     ct: 'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. For example, epithelial cells in the skin, lungs and kidneys may have shared and specialized functions according to tissue localization.',
     b: 'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type.',
@@ -100,12 +87,25 @@ export class AppComponent implements OnInit {
 
   selectedtoggleOptions: string[] = [];
 
-  /** Emits true whenever the progress bar should activate. */
-  readonly progressBarActive$ = this.data.state$.pipe(map((state) => state?.status !== 'Ready'));
+  private readonly store = inject(Store);
+  protected readonly data = inject(DataState);
+  protected readonly spatialFlowService = inject(SpatialSearchFlowService);
+  protected readonly filter = toSignal(this.data.filter$, { requireSync: true });
+  protected readonly technologyOptions = toSignal(this.data.technologyFilterData$, { initialValue: [] });
+  protected readonly providerOptions = toSignal(this.data.providerFilterData$, { initialValue: [] });
+  protected readonly spatialSearchItems = this.store.selectSignal(SpatialSearchFilterSelectors.items);
+  protected readonly databaseReady = this.store.selectSignal(DataStateSelectors.isDatabaseReady);
+  protected readonly cellTypeTree = this.store.selectSignal(DataStateSelectors.cellTypesTreeModel);
+  protected readonly ontologyTree = this.store.selectSignal(DataStateSelectors.anatomicalStructuresTreeModel);
+  protected readonly biomarkerTree = this.store.selectSignal(DataStateSelectors.biomarkersTreeModel);
 
-  readonly ontologyTerms$: Observable<readonly string[]>;
-  readonly cellTypeTerms$: Observable<readonly string[]>;
-  readonly biomarkerTerms$: Observable<readonly string[]>;
+  protected readonly ageRangeValue = computed(() =>
+    this.formatRange(this.filter().ageRange, DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH),
+  );
+  protected readonly bmiRangeValue = computed(() =>
+    this.formatRange(this.filter().bmiRange, DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH),
+  );
+
   readonly header$ = this.globalConfig.getOption('header');
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
   readonly logoTooltip$ = this.globalConfig.getOption('logoTooltip');
@@ -120,26 +120,19 @@ export class AppComponent implements OnInit {
    * @param data The data state.
    */
   constructor(
-    readonly data: DataState,
     readonly scene: SceneState,
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
     readonly snackbar: MatSnackBar,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
   ) {
-    data.tissueBlockData$.subscribe();
-    data.aggregateData$.subscribe();
-    data.ontologyTermOccurencesData$.subscribe();
-    data.cellTypeTermOccurencesData$.subscribe();
-    data.biomarkerTermOccurencesData$.subscribe();
-    data.sceneData$.subscribe();
-    data.filter$.subscribe();
-    data.technologyFilterData$.subscribe();
-    data.providerFilterData$.subscribe();
-    this.ontologyTerms$ = data.filter$.pipe(map((x) => x?.ontologyTerms ?? []));
-    this.cellTypeTerms$ = data.filter$.pipe(map((x) => x?.cellTypeTerms ?? []));
-    this.biomarkerTerms$ = data.filter$.pipe(map((x) => x?.biomarkerTerms ?? []));
-    this.filter$.subscribe((filter = {}) => data.updateFilter(filter));
+    this.data.tissueBlockData$.subscribe();
+    this.data.aggregateData$.subscribe();
+    this.data.ontologyTermOccurencesData$.subscribe();
+    this.data.cellTypeTermOccurencesData$.subscribe();
+    this.data.biomarkerTermOccurencesData$.subscribe();
+    this.data.sceneData$.subscribe();
+    this.filter$.subscribe((filter = {}) => this.data.updateFilter(filter));
     this.baseHref$.subscribe((ref) => this.globalConfig.patchState({ baseHref: ref ?? '' }));
 
     combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
@@ -161,11 +154,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  resetView(): void {
-    this.bodyUI.target = [0, 0, 0];
-    this.bodyUI.rotation = 0;
-    this.bodyUI.rotationX = 0;
-    this.bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
+  resetView(bodyUI: BodyUiComponent): void {
+    bodyUI.target = [0, 0, 0];
+    bodyUI.rotation = 0;
+    bodyUI.rotationX = 0;
+    bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
+  }
+
+  formatRange(range: number[] | undefined, min: number, max: number): string {
+    return `${range?.[0] ?? min}-${range?.[1] ?? max}`;
   }
 
   /**

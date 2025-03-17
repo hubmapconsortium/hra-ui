@@ -9,19 +9,19 @@
     </div>
 
     <ccf-filters-content
-      [technologyFilters]="(data.technologyFilterData$ | async) ?? []"
-      [providerFilters]="(data.providerFilterData$ | async) ?? []"
-      [spatialSearchFilters]="$any(selectableSearches$ | async)"
-      [filters]="$any(data.filter$ | async)"
-      (applyFilters)="data.updateFilter($event); sidenav.toggle()"
-      (spatialSearchSelected)="setSelectedSearches($event)"
+      [filter]="filter()"
+      [technologyOptions]="technologyOptions()"
+      [providerOptions]="providerOptions()"
+      [spatialSearchItems]="spatialSearchItems()"
+      (filterChange)="data.updateFilter($event); sidenav.toggle()"
+      (spatialSearchSelectionChange)="setSelectedSearches($event)"
       (spatialSearchRemoved)="removeSpatialSearch($event)"
     >
     </ccf-filters-content>
   </mat-sidenav>
 
   <div class="page-content">
-    @if (progressBarActive$ | async) {
+    @if (!databaseReady()) {
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
     <hra-back-button-bar></hra-back-button-bar>
@@ -57,7 +57,7 @@
             <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
           <mat-divider class="menu-divider"></mat-divider>
-          <button mat-menu-item (click)="resetView()">
+          <button mat-menu-item (click)="resetView(bodyUI)">
             <mat-icon class="reset icon">reset_settings</mat-icon>
             Reset visualization view
           </button>
@@ -98,13 +98,9 @@
           </button>
         </div>
         <div class="filter-text" hraMicroTooltip="Current filters">
-          <div class="sex filter-tag">Sex: {{ (data.filter$ | async)?.sex }}</div>
-          <div class="bmi filter-tag">
-            BMI: {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
-          </div>
-          <div class="age filter-tag">
-            Age: {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }}
-          </div>
+          <div class="sex filter-tag">Sex: {{ filter().sex }}</div>
+          <div class="bmi filter-tag">BMI: {{ bmiRangeValue() }}</div>
+          <div class="age filter-tag">Age: {{ ageRangeValue() }}</div>
         </div>
       </div>
 
@@ -131,7 +127,7 @@
         @if (isItemSelected('Anatomical Structures')) {
           <ccf-ontology-selection
             class="ontology-selection"
-            [treeModel]="(ontologyTreeModel$ | async)!"
+            [treeModel]="ontologyTree()"
             [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
             placeholderText="Search anatomical structures..."
@@ -143,7 +139,7 @@
         @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
             class="cell-type-selection"
-            [treeModel]="(cellTypeTreeModel$ | async)!"
+            [treeModel]="cellTypeTree()"
             [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
             placeholderText="Search cell types..."
@@ -155,7 +151,7 @@
         @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
             class="biomarker-selection"
-            [treeModel]="(biomarkersTreeModel$ | async)!"
+            [treeModel]="biomarkerTree()"
             [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
             placeholderText="Search Biomarkers..."
@@ -178,7 +174,7 @@
       <button
         class="spatial-search-button"
         mat-flat-button
-        (click)="spatialFlowService.startSpatialSearchFlow()"
+        (click)="spatialFlowService.startSpatialSearchFlow(true)"
         hraMicroTooltip="Filter experimental data spatially"
       >
         Spatial Search

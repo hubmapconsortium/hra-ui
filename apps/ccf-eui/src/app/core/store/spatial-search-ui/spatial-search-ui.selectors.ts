@@ -1,12 +1,11 @@
-import { OntologyTree, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { FilterSexEnum, OntologyTree, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { Selector } from '@ngxs/store';
 import { getProbingSphereScene } from 'ccf-scene-utils';
-import { OrganInfo } from 'ccf-shared';
+import { OrganInfo, sexEquals } from 'ccf-shared';
 import { DataStateSelectors } from '../data/data.selectors';
 import {
   Position,
   RadiusSettings,
-  SpatialSearchSex,
   SpatialSearchUiModel,
   SpatialSearchUiState,
   TermResult,
@@ -16,7 +15,7 @@ export class SpatialSearchUiSelectors {
   static readonly organEntity = SpatialSearchUiState.organEntity;
 
   @Selector([SpatialSearchUiState])
-  static sex(state: SpatialSearchUiModel): SpatialSearchSex {
+  static sex(state: SpatialSearchUiModel): FilterSexEnum {
     return state.sex;
   }
 
@@ -40,12 +39,12 @@ export class SpatialSearchUiSelectors {
   }
 
   @Selector([SpatialSearchUiSelectors.sex, SpatialSearchUiSelectors.referenceOrgans])
-  static organs(sex: SpatialSearchSex, organs: OrganInfo[]): OrganInfo[] {
+  static organs(sex: FilterSexEnum, organs: OrganInfo[]): OrganInfo[] {
     return organs.filter((organ) => this.organMatchesSex(organ, sex));
   }
 
-  static organMatchesSex(organ: OrganInfo, sex: SpatialSearchSex): boolean {
-    return organ.hasSex || organ.sex === sex;
+  static organMatchesSex(organ: OrganInfo, sex: FilterSexEnum): boolean {
+    return organ.hasSex || sexEquals(organ.sex, sex);
   }
 
   @Selector([SpatialSearchUiState])
