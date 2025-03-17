@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, SpatialSearch, TissueBlock } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
 import { Action, Actions, Selector, State, StateContext, Store, ofActionDispatched } from '@ngxs/store';
@@ -26,48 +26,77 @@ import {
   UpdateSpatialSearch,
 } from './spatial-search-ui.actions';
 
+/** Position */
 export interface Position {
+  /** X coordinate */
   x: number;
+  /** Y coordinate */
   y: number;
+  /** Z coordinate */
   z: number;
 }
 
+/** Radius settings */
 export interface RadiusSettings {
+  /** Minimum */
   min: number;
+  /** Maximum */
   max: number;
+  /** Default value */
   defaultValue: number;
 }
 
+/** Term result */
 export interface TermResult {
+  /** Id */
   '@id': string;
+  /** Label */
   label: string;
+  /** COunt */
   count: number;
 }
 
+/** Spatial search state model */
 export interface SpatialSearchUiModel {
+  /** Sex */
   sex: FilterSexEnum;
+  /** Organ id */
   organId?: string;
+  /** Block position */
   position?: Position;
+  /** Block radius */
   radius?: number;
 
+  /** Default position */
   defaultPosition?: Position;
+  /** Radius settings */
   radiusSettings?: RadiusSettings;
 
+  /** Reference organs */
   referenceOrgans?: OrganInfo[];
+  /** Scene nodes */
   organScene?: SpatialSceneNode[];
 
+  /** Scene nodes */
   spatialSearchScene?: SpatialSceneNode[];
+  /** Tissue blocks */
   tissueBlocks?: TissueBlock[];
+  /** Anatomical structures */
   anatomicalStructures?: Record<string, number>;
+  /** Cell types */
   cellTypes?: Record<string, number>;
 
+  /** Execute search on generation */
   executeSearchOnGeneration: boolean;
 }
 
+/** Update spatial search */
 class ReallyUpdateSpatialSearch {
+  /** Action type */
   static readonly type = '[SpatialSearchUi] Really update spatial search data';
 }
 
+/** Spatial search ui state */
 @State<SpatialSearchUiModel>({
   name: 'spatialSearchUi',
   defaults: {
@@ -77,27 +106,32 @@ class ReallyUpdateSpatialSearch {
 })
 @Injectable()
 export class SpatialSearchUiState {
+  /** Get the organ entity matching the state's organ id */
   @Selector([SpatialSearchUiState, SceneState.referenceOrganEntities])
   static organEntity(state: SpatialSearchUiModel, organs: SpatialEntity[]): SpatialEntity | undefined {
     const { organId, sex } = state;
     return organs.find((o) => o.representation_of === organId && sexEquals(o.sex, sex));
   }
 
-  constructor(
-    private readonly dataSource: DataSourceService,
-    private readonly store: Store,
-    actions$: Actions,
-    private readonly ga: GoogleAnalyticsService,
-  ) {
-    actions$
+  /** Data service */
+  private readonly dataSource = inject(DataSourceService);
+  /** State reference */
+  private readonly store = inject(Store);
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /** Initialize the state */
+  constructor() {
+    inject(Actions)
       .pipe(
         ofActionDispatched(UpdateSpatialSearch),
         debounceTime(500),
-        tap(() => store.dispatch(ReallyUpdateSpatialSearch)),
+        tap(() => this.store.dispatch(ReallyUpdateSpatialSearch)),
       )
       .subscribe();
   }
 
+  /** Start a new spatial search */
   @Action(StartSpatialSearchFlow)
   startSpatialSearchFlow(
     ctx: StateContext<SpatialSearchUiModel>,
@@ -194,6 +228,7 @@ export class SpatialSearchUiState {
     this.ga.event('set_position', 'spatial_search_ui', `${x}_${y}_${z}`);
   }
 
+  /** Reset the position */
   @Action(ResetPosition)
   resetPosition(ctx: StateContext<SpatialSearchUiModel>): void {
     const { defaultPosition } = ctx.getState();
@@ -204,6 +239,7 @@ export class SpatialSearchUiState {
     this.ga.event('reset_position', 'spatial_search_ui', `${x}_${y}_${z}`);
   }
 
+  /** Move to a node */
   @Action(MoveToNode)
   moveToNode(ctx: StateContext<SpatialSearchUiModel>, { node }: MoveToNode): Observable<unknown> | void {
     const matrix = new Matrix4(node.transformMatrix);
@@ -224,6 +260,7 @@ export class SpatialSearchUiState {
     this.ga.event('set_radius', 'spatial_search_ui', radius.toFixed(1));
   }
 
+  /** Reset radius */
   @Action(ResetRadius)
   resetRadius(ctx: StateContext<SpatialSearchUiModel>): void {
     const { radiusSettings } = ctx.getState();
@@ -305,6 +342,7 @@ export class SpatialSearchUiState {
     }
   }
 
+  /** Set whether to execute search on registration */
   @Action(SetExecuteSearchOnGenerate)
   setExecuteSearchOnGenerate(ctx: StateContext<SpatialSearchUiModel>, { execute }: SetExecuteSearchOnGenerate): void {
     ctx.patchState({

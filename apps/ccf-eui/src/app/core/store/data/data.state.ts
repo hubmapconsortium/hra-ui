@@ -1,6 +1,6 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   AggregateCount,
   DatabaseStatus,
@@ -28,10 +28,15 @@ import {
 } from 'rxjs/operators';
 import { UpdateFilter } from './data.actions';
 
+/** Default sex */
 export const DEFAULT_FILTER_SEX = FilterSexEnum.Both;
+/** Default age range minimum */
 export const DEFAULT_FILTER_AGE_LOW = 1;
+/** Default age range maximum */
 export const DEFAULT_FILTER_AGE_HIGH = 110;
+/** Default bmi range minimum */
 export const DEFAULT_FILTER_BMI_LOW = 13;
+/** Default bmi range maximum */
 export const DEFAULT_FILTER_BMI_HIGH = 83;
 
 /** Default values for filters. */
@@ -48,6 +53,12 @@ export const DEFAULT_FILTER: Required<Filter> = {
   spatialSearches: [],
 };
 
+/**
+ * Tests if a filter is empty. Does not check any of the terms arrays or spatial searches
+ *
+ * @param filter Filter to test
+ * @returns true if it is empty
+ */
 export function isFilterEmpty(filter: Filter): boolean {
   const {
     sex = DEFAULT_FILTER.sex,
@@ -70,6 +81,12 @@ export function isFilterEmpty(filter: Filter): boolean {
   );
 }
 
+/**
+ * Normalizes a filter applying default values where applicable
+ *
+ * @param filter Partial filter
+ * @returns A full filter object
+ */
 export function normalizeFilter(filter: Filter): Required<Filter> {
   const result = { ...DEFAULT_FILTER };
   for (const [key, value] of Object.entries(filter)) {
@@ -129,9 +146,13 @@ function queryData<T, O extends ObservableInput<unknown>>(
 export interface DataStateModel {
   /** Current filter. */
   filter: Filter;
+  /** Database status */
   status: 'Loading' | 'Ready' | 'Error';
+  /** AS tree */
   anatomicalStructuresTreeModel?: OntologyTree;
+  /** Cell types tree */
   cellTypesTreeModel?: OntologyTree;
+  /** Biomarkers tree */
   biomarkersTreeModel?: OntologyTree;
 }
 
@@ -163,6 +184,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   private readonly _ontologyTermOccurencesDataQueryStatus$ = new ReplaySubject<DataQueryState>(1);
   /** Implementation subject for cellTypeTermOccurencesDataQueryStatus$. */
   private readonly _cellTypeTermOccurencesDataQueryStatus$ = new ReplaySubject<DataQueryState>(1);
+  /** Implementation subject for biomarkerTermOccurencesDataQueryStatus$. */
   private readonly _biomarkerTermOccurencesDataQueryStatus$ = new ReplaySubject<DataQueryState>(1);
 
   /** Implementation subject for sceneDataQueryStatus$. */
@@ -175,6 +197,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   readonly ontologyTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
   /** Keeping track of all cell type terms there is data for. */
   readonly cellTypeTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
+  /** Keeping track of all biomarker terms there is data for. */
   readonly biomarkerTermsFullData$ = new ReplaySubject<Record<string, number>>(1);
 
   /**
@@ -221,6 +244,12 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     return this.databaseReady$.pipe(switchMap(() => this.source.getCellTypeTermOccurences(filter)));
   };
 
+  /**
+   * Queries for biomarker term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
   private readonly biomarkerTermOccurencesData = (filter: Filter): ObservableInput<Record<string, number>> => {
     this._biomarkerTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
     return this.databaseReady$.pipe(switchMap(() => this.source.getBiomarkerTermOccurences(filter)));
@@ -301,6 +330,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   readonly cellTypeTermOccurencesDataQueryStatus$ =
     this._cellTypeTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
 
+  /** Biomarker term occurences */
   readonly biomarkerTermOccurencesDataQueryStatus$ =
     this._biomarkerTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
   /** Current status of queries in the sceneData$ observable. */
@@ -324,12 +354,13 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     distinctUntilChanged(),
   );
 
+  /** Data source service */
+  private readonly source = inject(DataSourceService);
+
   /**
    * Creates an instance of data state.
-   *
-   * @param source Data query service.
    */
-  constructor(private readonly source: DataSourceService) {
+  constructor() {
     super();
     // Start everything in the completed state
     this._tissueBlockDataQueryStatus$.next(DataQueryState.Completed);
@@ -341,6 +372,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     this._providerFilterQueryStatus$.next(DataQueryState.Completed);
   }
 
+  /** Initialize the state */
   override ngxsOnInit(): void {
     const {
       ontologyTermsFullData$,
@@ -379,6 +411,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     this.warmUpDatabase();
   }
 
+  /** Initialize the database */
   private warmUpDatabase(): void {
     defer(() => this.source.getDatabaseStatus())
       .pipe(
@@ -404,6 +437,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
       .subscribe();
   }
 
+  /** Update AS tree */
   @DataAction()
   updateAnatomicalStructuresTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
@@ -411,6 +445,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     });
   }
 
+  /** Update cell types tree */
   @DataAction()
   updateCellTypesTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
@@ -418,6 +453,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     });
   }
 
+  /** Update biomarkers tree */
   @DataAction()
   updateBiomarkersTreeModel(@Payload('treeModel') model: OntologyTree): void {
     this.ctx.patchState({
@@ -425,6 +461,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     });
   }
 
+  /** Update database status */
   @DataAction()
   updateStatus(@Payload('status') status: DatabaseStatus): void {
     this.ctx.patchState({
@@ -445,6 +482,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     });
   }
 
+  /** Update filter */
   @Action(UpdateFilter)
   updateFilterHandler(_ctx: unknown, { filter }: UpdateFilter): void {
     this.updateFilter(filter);

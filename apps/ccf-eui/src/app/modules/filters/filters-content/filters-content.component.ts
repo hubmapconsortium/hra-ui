@@ -56,26 +56,42 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
   ],
 })
 export class FiltersContentComponent {
+  /** Current filter */
   readonly filter = model.required<Filter>();
 
+  /** Technology options */
   readonly technologyOptions = input.required<string[]>();
+  /** Provider options */
   readonly providerOptions = input.required<string[]>();
+  /** Consortia options */
   readonly consortiaOptions = input(['HuBMAP', 'SenNet']);
 
+  /** Spatial search items */
   readonly spatialSearchItems = input.required<SpatialSearchFilterItem[]>();
+  /** Spatial search selection change */
   readonly spatialSearchSelectionChange = output<SpatialSearchFilterItem[]>();
+  /** Spatial search removed */
   readonly spatialSearchRemoved = output<string>();
 
+  /** Age minimum */
   protected readonly ageMin = DEFAULT_FILTER_AGE_LOW;
+  /** Age maximum */
   protected readonly ageMax = DEFAULT_FILTER_AGE_HIGH;
+  /** Bmi minimum */
   protected readonly bmiMin = DEFAULT_FILTER_BMI_LOW;
+  /** Bmi maximum */
   protected readonly bmiMax = DEFAULT_FILTER_BMI_HIGH;
+  /** Sex options */
   protected readonly sexOptions = [FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male];
 
+  /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
+  /** Spatial search flow service */
   protected readonly spatialFlowService = inject(SpatialSearchFlowService);
 
+  /** Form builder */
   private readonly nnfb = inject(NonNullableFormBuilder);
+  /** Filter form */
   protected filterForm = this.nnfb.group({
     sex: [DEFAULT_FILTER_SEX],
     ageRange: [[DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH]],
@@ -85,20 +101,26 @@ export class FiltersContentComponent {
     tmc: [[] as string[]],
   });
 
+  /** Latest form value */
   private readonly formValue = toSignal(this.filterForm.valueChanges, { initialValue: DEFAULT_FILTER });
+  /** Selected spatial searches items */
   private readonly selectedSpatialSearchItems = computed(() =>
     this.spatialSearchItems().filter((item) => item.selected),
   );
+  /** List of sexes for the selected spatial searches */
   private readonly selectedSpatialSearchSexes = computed(() =>
     this.selectedSpatialSearchItems().map((item) => item.sex),
   );
+  /** Selected spatial searches */
   private readonly selectedSpatialSearches = computed(() =>
     this.selectedSpatialSearchItems().map((item) => item.search),
   );
+  /** Whether the filter is empty */
   protected readonly isEmpty = computed(
     () => isFilterEmpty(this.formValue()) && this.spatialSearchItems().length === 0,
   );
 
+  /** Initialize the filter */
   constructor() {
     effect(() => {
       const filter = normalizeFilter(this.filter());
@@ -114,6 +136,7 @@ export class FiltersContentComponent {
     });
   }
 
+  /** Applies the filter */
   applyFilter(): void {
     this.ga.event('filters_applied', 'filter_content');
     this.filter.set({
@@ -122,6 +145,7 @@ export class FiltersContentComponent {
     });
   }
 
+  /** Reset the filter */
   resetFilter(): void {
     this.ga.event('filters_reset', 'filter_content');
     this.filterForm.patchValue(DEFAULT_FILTER);
@@ -130,6 +154,7 @@ export class FiltersContentComponent {
     this.spatialSearchSelectionChange.emit([]);
   }
 
+  /** Whether the specific option is disabled */
   isSexOptionDisabled(option: FilterSexEnum): boolean {
     const selectedSexes = this.selectedSpatialSearchSexes();
     return option !== FilterSexEnum.Both && selectedSexes.length !== 0 && !selectedSexes.includes(option);

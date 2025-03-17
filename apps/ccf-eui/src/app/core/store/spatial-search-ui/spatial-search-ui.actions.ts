@@ -7,6 +7,10 @@ export class StartSpatialSearchFlow {
   /** Type for StartSpatialSearchFlow action */
   static readonly type = '[SpatialSearchUi] Start the Spatial Search flow';
 
+  /**
+   * Create an instance of StartSpatialSearchFlow
+   * @param executeSearch Whether to execute a search once a new spatial search is added
+   */
   constructor(readonly executeSearch: boolean) {}
 }
 
