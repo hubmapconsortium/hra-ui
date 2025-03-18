@@ -1,0 +1,54 @@
+:host {
+  padding: 0.5rem 0 0rem 1rem;
+  overflow: hidden;
+
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    cdk-accordion-item {
+      display: grid;
+      height: 100%;
+      grid-template-rows: 2.5rem calc(100% - 2.5rem);
+    }
+
+    .expansion-body {
+      height: 100%;
+    }
+
+    .header {
+      font: var(--mat-sys-label-medium);
+    }
+  }
+
+  .total-count,
+  .term-bloc {
+    font: var(--mat-sys-label-small);
+    letter-spacing: var(--mat-sys-label-small-tracking);
+    margin-right: 1rem;
+  }
+
+  .term-list {
+    height: 100%;
+    --_hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
+  }
+
+  ::ng-deep ng-scrollbar {
+    .ng-scroll-content {
+      --_viewport-padding-top: 0.25rem;
+      --_viewport-padding-bottom: 0.25rem;
+    }
+  }
+
+  .term-bloc {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    height: 1.5rem;
+    color: var(--mat-sys-secondary);
+    align-items: center;
+
+    .count {
+      color: var(--mat-sys-primary);
+    }
+  }
+}

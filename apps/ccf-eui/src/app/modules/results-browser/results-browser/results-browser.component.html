@@ -1,29 +1,99 @@
 <div class="results-browser-container">
-  <div class="stat-box">
-    <div id="title">{{ resultLabel }}</div>
-    <div class="stat-row" *ngFor="let stat of aggregateData">
-      <div class="stat-value">{{ stat.count }}</div>
-      <div class="stat-label">{{ stat.label }}</div>
+  <div class="results-header">
+    <div hraMicroTooltip="Donors, tissue blocks, and datasets that have been registered into a 3D organ.">
+      Experimental Data
+    </div>
+    <a
+      class="help"
+      mat-icon-button
+      hraMicroTooltip="App guide"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#exploration-user-interface"
+    >
+      <mat-icon>help</mat-icon>
+    </a>
+  </div>
+  <div class="stat-box" hraMicroTooltip="Summarizes the experimental data shown given the current filters.">
+    <div id="title">Summary Statistics</div>
+    <div class="stat-table">
+      @for (stat of aggregateData(); track stat.label) {
+        <div class="stat-row">
+          <div class="stat-value">{{ stat.count.toLocaleString() }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      }
     </div>
   </div>
 
-  <div class="results-browser-list" [class.header-hidden]="!header" (scroll)="onScroll($event)">
-    <div
-      class="browser-item-container"
-      (mouseenter)="handleHover(result.tissueBlock.spatialEntityId ?? '')"
-      (mouseleave)="handleUnhover()"
-      *ngFor="let result of listResults"
-    >
-      <ccf-donor-card
-        [tissueBlock]="asMutable(result.tissueBlock)"
-        [selected]="result.selected"
-        [color]="result.color ?? ''"
-        (checked)="handleSelection(result, $event)"
-        (linkClick)="handleLinkClick($event)"
-        [highlighted]="result.tissueBlock.spatialEntityId === highlighted"
+  <hra-expansion-panel tagline="Tissue Block Metadata & Data Links" disabled>
+    <hra-expansion-panel-actions>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        hraIconButtonSize="large"
+        aria-label="Icon to open nested menu"
       >
-      </ccf-donor-card>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">
+          <mat-icon>info</mat-icon>
+          Info
+        </button>
+        <button mat-menu-item matRipple (click)="toggleShowSelected()" [disabled]="!hasSelectedItems()">
+          <mat-icon>visibility</mat-icon>
+          {{ showSelected() ? 'Show all' : 'Show selected' }}
+        </button>
+        <button mat-menu-item matRipple (click)="resetSelections()" [disabled]="!hasSelectedItems()">
+          <mat-icon class="reset icon">reset_settings</mat-icon>
+          Reset all selections
+        </button>
+      </mat-menu>
+      <mat-menu #submenu="matMenu">
+        <button mat-menu-item>
+          Metadata on donors, tissue blocks/sections, and datasets given the current filters. Use the “More” menu to
+          access additional information. Selecting metadata in the Tissue Block Metadata list results in a selected
+          checkbox of a unique color. The selected metadata’s corresponding 3D tissue block in the 3D Body Visualization
+          scene (to the left) will appear in the same unique color.
+        </button>
+      </mat-menu>
+    </hra-expansion-panel-actions>
+    <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+  </hra-expansion-panel>
+
+  <ng-scrollbar hraScrollOverflowFade>
+    <div class="results-browser-list">
+      @for (result of listResults(); track result) {
+        @if (!hasSelectedItems() || !(showSelected() && !result.selected)) {
+          <div
+            class="browser-item-container"
+            (mouseenter)="itemHovered.emit(result.tissueBlock.spatialEntityId ?? '')"
+            (mouseleave)="itemUnhovered.emit()"
+          >
+            <mat-checkbox
+              class="checkbox"
+              (change)="handleSelection(result, $event.checked)"
+              [ngStyle]="{
+                '--mdc-checkbox-selected-icon-color': getColor(result),
+                '--mdc-checkbox-selected-hover-icon-color': getColor(result),
+                '--mdc-checkbox-selected-focus-icon-color': getColor(result),
+              }"
+              [checked]="result.selected"
+            ></mat-checkbox>
+            <ccf-donor-card
+              #donorCard
+              [tissueBlock]="asMutable(result.tissueBlock)"
+              [selected]="result.selected"
+              (selectOption)="handleSelection(result, true)"
+              (expansionChange)="changeExpansion(result, $event)"
+              [expanded]="result.expanded ?? false"
+              [highlighted]="result.tissueBlock.spatialEntityId === highlighted()"
+            >
+            </ccf-donor-card>
+          </div>
+        }
+      }
     </div>
-  </div>
-  <div class="scroll-gradient" [class.hidden]="!!atScrollBottom"></div>
+  </ng-scrollbar>
 </div>

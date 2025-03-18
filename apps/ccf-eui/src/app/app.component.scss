@@ -1,263 +1,192 @@
-::ng-deep .cdk-overlay-container {
-  position: absolute;
-  font-size: 1.2rem;
-}
-
 :host {
-  display: block;
-  position: relative;
-}
+  .sidenav-content {
+    --mat-sidenav-container-background-color: var(--mat-sys-surface-container-low);
+    width: fit-content;
 
-.ccf-app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  font-size: 1rem;
-  position: relative;
-  text-align: left;
+    .sidenav-header {
+      display: flex;
+      align-items: center;
+      font: var(--mat-sys-title-medium);
+      height: 4.5rem;
+      padding: 0 1rem 0 1.5rem;
 
-  ccf-header {
-    z-index: 99;
+      .sidenav-title {
+        vertical-align: text-bottom;
+        color: var(--mat-sys-secondary);
+      }
+    }
 
-    &.hide {
-      display: none;
+    ccf-filters-content {
+      height: calc(100% - 4.5rem);
     }
   }
 
-  ccf-drawer-container {
-    height: calc(100% - 5rem);
-    width: 100%;
-    opacity: 1;
-    overflow: hidden;
-    transform: scale(1);
+  .left-panel,
+  hra-nav-header-buttons {
+    border-right: 1px solid var(--mat-sys-outline-variant);
+  }
 
-    &.header-hidden {
-      height: 100%;
+  hra-nav-header-buttons,
+  .vis-panel {
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  .right-panel {
+    border-left: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  .page-content {
+    display: grid;
+    grid-template-columns: 24.5rem auto 24.625rem;
+    grid-template-rows: 0rem 0rem 5rem calc(100vh - 5rem);
+    grid-template-areas:
+      'progress progress progress'
+      'back back back'
+      'header vis-panel right'
+      'left content right';
+
+    background-color: var(--mat-sys-surface-container-low);
+  }
+
+  &.embedded .page-content {
+    grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
+
+    .ontologies {
+      max-height: calc(100vh - 14.375rem);
+    }
+  }
+
+  &:not(.embedded) .page-content hra-back-button-bar {
+    display: none;
+  }
+
+  mat-progress-bar {
+    --mdc-linear-progress-active-indicator-color: var(--mat-sys-tertiary);
+    --mdc-linear-progress-track-color: transparent;
+    grid-area: progress;
+  }
+
+  hra-back-button-bar {
+    grid-area: back;
+  }
+
+  ::ng-deep hra-nav-header-buttons {
+    grid-area: header;
+    height: 100%;
+    align-items: center;
+    padding-left: 1rem;
+
+    .app-logo {
+      margin-right: 0rem !important;
+      height: 2.5rem;
     }
 
-    ccf-drawer {
-      width: 28.5rem;
-
-      div {
-        .button-toggle-group {
-          height: 4rem;
-          display: flex;
-          align-items: center;
-        }
-      }
-
-      .drawer-icons {
-        display: flex;
-        padding-left: 1.5rem;
-        height: 5rem;
-        padding-right: 1.5rem;
-        align-items: center;
-        justify-content: space-between;
-
-        .drawer-icons-left {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-
-          .button {
-            padding: 0;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            border-radius: 0.25rem;
-            padding: 0.65rem;
-            transition: 0.6s;
-          }
-        }
-      }
+    .app-name {
+      margin-left: 0.75rem !important;
     }
 
-    ccf-drawer-content {
-      overflow: hidden;
-      border-radius: 0.5rem;
-      height: calc(100vh - 4rem);
-
-      .selector-drawer {
-        top: 0rem;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: all 0.5s ease-in-out;
-        height: 5rem;
-        justify-content: flex-start;
-
-        &.expanded {
-          height: 15rem;
-          overflow-y: auto;
-        }
-
-        &.closed {
-          height: 1.5rem;
-          top: -5rem;
-        }
-      }
-
-      ccf-run-spatial-search {
-        position: relative;
-        float: right;
-        height: 0px;
-        z-index: 1;
-        top: 1.5rem;
-        right: 0.5rem;
-      }
-
-      .stage-content {
-        transition: all 0.5s ease-in-out;
-        border-bottom-right-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
-      }
-
-      .expanded-stage {
-        height: calc(100% - 3rem);
-      }
-
-      .selector-expanded {
-        height: calc(100% - 16.5rem);
-      }
-
-      &.header-hidden {
-        height: calc(100vh - 1rem);
-      }
+    .logos-text .app-label {
+      font: var(--mat-sys-title-medium) !important;
+      letter-spacing: var(--mat-sys-title-medium-tracking) !important;
     }
+  }
 
-    .close-button-wrapper {
+  .vis-panel {
+    grid-area: vis-panel;
+    padding: 0 1rem;
+
+    hra-expansion-panel-header-content {
+      width: 100%;
+    }
+  }
+
+  .left-panel {
+    grid-area: left;
+    display: grid;
+    grid-template-rows: 3.375rem 3rem auto;
+    grid-template-areas:
+      'filter'
+      'toggle'
+      'ontologies';
+
+    .filter-data {
+      grid-area: filter;
       display: flex;
+      align-items: center;
       justify-content: center;
-      border-top-right-radius: 0.5rem;
-      border-top-left-radius: 0.5rem;
-      height: 0;
+      margin-top: 0.5rem;
 
-      .close-button {
-        display: flex;
-        justify-content: center;
-        height: 1.0625rem;
-        width: 3rem;
-        align-self: center;
-        border-radius: 0rem 0rem 0.25rem 0.25rem;
-        cursor: pointer;
-        transition: 0.6s;
-        position: relative;
-        top: 0.5rem;
-        z-index: 1;
+      .filter-button-label {
+        font: var(--mat-sys-label-large);
+      }
 
-        .mat-icon {
-          position: relative;
-          bottom: 0.2rem;
-        }
+      .filter-text {
+        font: var(--mat-sys-label-small);
+        color: var(--mat-sys-primary);
       }
     }
 
-    .left-drawer {
-      padding-left: 1.5rem;
-      padding-right: 1rem;
-      z-index: 20;
+    .filter-button-container {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
 
-      .left-drawer-container {
-        height: 100%;
+    .filter-text {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-left: 3rem;
+    }
 
-        .ontologies {
-          height: calc(100% - 9rem);
-          display: flex;
-          gap: 1.5rem;
-          flex-direction: column;
+    .toggle-settings {
+      grid-area: toggle;
+      padding: 0 1rem;
+    }
 
-          ccf-ontology-selection {
-            flex: 1 1;
-            overflow: auto;
-            scrollbar-width: thin;
-            &::-webkit-scrollbar {
-              width: 0.25rem;
-            }
+    mat-button-toggle-group {
+      --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
+      width: 100%;
 
-            &.firefox {
-              padding-right: 0.5rem;
-            }
-
-            &.biomarker-selection {
-              flex-basis: 30%;
-            }
-          }
-
-          .no-selection-notice {
-            font-weight: 400;
-            line-height: normal;
-          }
-        }
+      mat-button-toggle {
+        flex-grow: 1;
       }
+    }
 
-      ::ng-deep .cff-drawer-inner-container {
+    .ontologies {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 11.375rem);
+
+      ccf-ontology-selection {
+        flex: 1 1;
         overflow: hidden;
       }
+    }
 
-      .filter-data {
-        height: 5rem;
-        display: flex;
-        align-items: center;
-
-        .filter-text {
-          display: flex;
-          justify-content: space-between;
-          width: 75%;
-          margin-left: 1.5rem;
-
-          .filter-tag {
-            font-weight: 300;
-            strong {
-              font-weight: 600 !important;
-            }
-          }
-        }
-      }
+    .no-selection-notice {
+      font: var(--mat-sys-label-medium);
+      color: var(--mat-sys-secondary);
+      padding: 0 1rem;
     }
   }
 
-  .right-drawer {
-    .portal-view {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 425%;
-      height: calc(100% + -1.5rem);
-      transform: translateX(-425%);
-      width: calc(100% - 28.5rem);
+  .right-panel {
+    grid-area: right;
+  }
 
-      transition: transform 0.5s cubic-bezier(0.82, 0.085, 0.395, 0.895);
+  .content {
+    grid-area: content;
 
-      &.opened {
-        transform: translateX(0);
-        transition: width 0s 0.5s;
-      }
-    }
-
-    &:not(.ccf-drawer-opened) .portal-view {
-      width: 100vw;
-
-      &.opened {
-        transition: width 0s;
-      }
-    }
-
-    .shaded-toggle {
-      box-shadow: -1px 0 4px #212121;
-    }
-
-    ::ng-deep .cff-drawer-inner-container {
-      overflow: hidden;
+    .spatial-search-button {
+      position: absolute;
+      margin: 0.75rem;
+      z-index: 1;
     }
   }
 }
 
-::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-::ng-deep .mdc-snackbar__surface {
-  box-shadow: none !important;
+::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
+  --mdc-snackbar-container-color: var(--mat-sys-surface-dim);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-secondary);
 }

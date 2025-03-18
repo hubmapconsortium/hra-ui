@@ -1,0 +1,15 @@
+<hra-expansion-panel [tagline]="title()" [tooltip]="toolTipText()">
+  <hra-expansion-panel-header-content class="total-count" [hraMicroTooltip]="toolTipText()">
+    {{ tissueBlocks().length }}
+  </hra-expansion-panel-header-content>
+  <div class="tissue-list">
+    <ng-scrollbar hraScrollOverflowFade>
+      @for (tissueBlock of tissueBlocks(); track tissueBlock) {
+        <div class="donor-info">
+          <div class="label">Donor: {{ tissueBlock.donor?.label }}</div>
+          <div class="description">Provenance: {{ tissueBlock.donor?.description }}</div>
+        </div>
+      }
+    </ng-scrollbar>
+  </div>
+</hra-expansion-panel>

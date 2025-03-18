@@ -19,7 +19,6 @@ describe('SceneState', () => {
     referenceOrganEntities: [],
     selectedReferenceOrgans: [],
     selectedAnatomicalStructures: [],
-    anatomicalStructureSettings: {},
   };
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -24,7 +24,9 @@ export interface SearchResult {
  */
 @Injectable()
 export class OntologySearchService {
+  /** Tree model */
   private readonly treeModel$ = new ReplaySubject<OntologyTree>(1);
+  /** Tree model */
   private treeModel!: OntologyTree;
 
   /** All nodes in the ontology tree. */
@@ -33,6 +35,7 @@ export class OntologySearchService {
   /** Root node of the ontology tree. */
   public readonly rootNode$ = this.treeModel$.pipe(map((state) => state.nodes[state.root]));
 
+  /** Set the tree model */
   setTreeModel(treeModel: OntologyTree): void {
     this.treeModel$.next(treeModel);
     this.treeModel = treeModel;

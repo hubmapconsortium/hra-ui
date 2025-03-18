@@ -13,7 +13,7 @@ export const environment = {
     theme: 'hubmap',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project',
+    logoTooltip: 'Human Reference Atlas Portal',
   },
   googleAnalyticsToken: 'G-ERNVZ1Q4KE',
 };

@@ -1,185 +1,181 @@
-<div class="ccf-app mat-app-background">
-  <ccf-spinner-overlay [text]="(loadingMessage$ | async) ?? ''" [active]="(spinnerActive$ | async) ?? false">
-  </ccf-spinner-overlay>
-  <ccf-header
-    [class.hide]="(header$ | async) === false"
-    [logoTooltip]="(logoTooltip$ | async) ?? ''"
-    [homeUrl]="(homeUrl$ | async) ?? ''"
-    [loginDisabled]="(loginDisabled$ | async) ?? false"
-    [baseRef]="(baseHref$ | async) ?? ''"
-    *ngIf="(spinnerActive$ | async) === false"
-  >
-  </ccf-header>
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav class="sidenav-content" mode="over">
+    <div class="sidenav-header">
+      <span class="sidenav-title"> Data Filters </span>
+      <div style="flex-grow: 1"></div>
+      <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
-  <ccf-drawer-container class="main-drawers" [class.header-hidden]="(header$ | async) === false">
-    <ccf-drawer class="left-drawer" opened #left (stateChange)="filterbox.removeBox()">
-      <div class="left-drawer-container">
-        <div class="filter-data">
-          <ccf-filters-popover
-            [filters]="$any(data.filter$ | async)"
-            [drawerExpanded]="right.expanded"
-            (filtersChange)="data.updateFilter($event)"
-            [technologyFilters]="(data.technologyFilterData$ | async) ?? []"
-            [providerFilters]="(data.providerFilterData$ | async) ?? []"
-            [spatialSearchFilters]="$any(selectableSearches$ | async)"
-            (spatialSearchSelected)="setSelectedSearches($event)"
-            (spatialSearchRemoved)="removeSpatialSearch($event)"
-            #filterbox
-          >
-          </ccf-filters-popover>
+    <ccf-filters-content
+      [filter]="filter()"
+      [technologyOptions]="technologyOptions()"
+      [providerOptions]="providerOptions()"
+      [spatialSearchItems]="spatialSearchItems()"
+      (filterChange)="data.updateFilter($event); sidenav.toggle()"
+      (spatialSearchSelectionChange)="setSelectedSearches($event)"
+      (spatialSearchRemoved)="removeSpatialSearch($event)"
+    >
+    </ccf-filters-content>
+  </mat-sidenav>
 
-          <div class="filter-text">
-            <div class="sex filter-tag">
-              Sex: <strong>{{ (data.filter$ | async)?.sex }}</strong>
-            </div>
-            <div class="age filter-tag">
-              Age:
-              <strong>
-                {{ $any(data.filter$ | async)?.ageRange[0] }}-{{ $any(data.filter$ | async)?.ageRange[1] }}
-              </strong>
-            </div>
-            <div class="bmi filter-tag">
-              BMI:
-              <strong>
-                {{ $any(data.filter$ | async)?.bmiRange[0] }}-{{ $any(data.filter$ | async)?.bmiRange[1] }}
-              </strong>
-            </div>
-          </div>
+  <div class="page-content">
+    @if (!databaseReady()) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <hra-back-button-bar></hra-back-button-bar>
+
+    <hra-nav-header-buttons
+      app="eui"
+      [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
+      appTitle="Exploration User Interface"
+      [brandmark]="true"
+      [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
+    ></hra-nav-header-buttons>
+
+    <div class="left-panel">
+      <div class="filter-data">
+        <div class="filter-button-container" hraMicroTooltip="Select filters">
+          <div class="filter-button-label">Filters</div>
+          <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+            <mat-icon>filter_list</mat-icon>
+          </button>
         </div>
-        <ccf-button-toggle
-          class="button-toggle-group"
-          [menuOptions]="menuOptions"
-          [enableTooltip]="true"
-          [tooltips]="tooltips"
-          [selectedItems]="selectedtoggleOptions"
-          (selectionChange)="toggleSelection($event)"
-        ></ccf-button-toggle>
-        <div class="ontologies">
+        <div class="filter-text" hraMicroTooltip="Current filters">
+          <div class="sex filter-tag">Sex: {{ filter().sex }}</div>
+          <div class="bmi filter-tag">BMI: {{ bmiRangeValue() }}</div>
+          <div class="age filter-tag">Age: {{ ageRangeValue() }}</div>
+        </div>
+      </div>
+
+      <div class="toggle-settings">
+        <mat-button-toggle-group
+          multiple
+          name="multiSelect"
+          aria-label="Multi Select"
+          hraButtonToggleSize="small"
+          hideMultipleSelectionIndicator
+          (change)="toggleSelection($event.value)"
+        >
+          @for (option of menuOptions; track option) {
+            <mat-button-toggle
+              [value]="option"
+              checked
+              [hraMicroTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+              >{{ option }}</mat-button-toggle
+            >
+          }
+        </mat-button-toggle-group>
+      </div>
+      <div class="ontologies">
+        @if (isItemSelected('Anatomical Structures')) {
           <ccf-ontology-selection
             class="ontology-selection"
-            [class.firefox]="isFirefox"
-            *ngIf="isItemSelected('AS')"
-            [showtoggle]="false"
-            [treeModel]="(ontologyTreeModel$ | async)!"
+            [treeModel]="ontologyTree()"
             [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search anatomical structures..."
             (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
-            [header]="(header$ | async) ?? false"
+            [tooltip]="ontologyTooltips['as']"
           >
           </ccf-ontology-selection>
+        }
+        @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
             class="cell-type-selection"
-            [class.firefox]="isFirefox"
-            *ngIf="isItemSelected('CT')"
-            [showtoggle]="false"
-            [treeModel]="(cellTypeTreeModel$ | async)!"
+            [treeModel]="cellTypeTree()"
             [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search cell types..."
             (ontologySelection)="ontologySelected($any($event), 'cell-type')"
-            [header]="(header$ | async) ?? false"
+            [tooltip]="ontologyTooltips['ct']"
           >
           </ccf-ontology-selection>
+        }
+        @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
             class="biomarker-selection"
-            [class.firefox]="isFirefox"
-            *ngIf="isItemSelected('B')"
-            [showtoggle]="true"
-            [treeModel]="(biomarkersTreeModel$ | async)!"
+            [treeModel]="biomarkerTree()"
             [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
-            placeholderText="Search Biomarkers..."
             (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
-            [header]="(header$ | async) ?? false"
+            [tooltip]="ontologyTooltips['b']"
           >
           </ccf-ontology-selection>
+        }
 
-          <div class="no-selection-notice" *ngIf="selectedtoggleOptions.length === 0">
-            No anatomical structures, cell types, or biomarkers selected. Use the above AS, CT, and B buttons to view
-            the registered listings.
+        @if (selectedToggleOptions.length === 0) {
+          <div class="no-selection-notice">
+            No anatomical structures, cell types, or biomarkers selected. Use the above buttons to view the registered
+            listings.
           </div>
-        </div>
-        <ccf-drawer-toggle-button></ccf-drawer-toggle-button>
+        }
       </div>
-    </ccf-drawer>
-    <ccf-drawer class="right-drawer" position="end" opened #right (stateChange)="filterbox.removeBox()">
-      <ccf-viewer class="portal-view" [class.opened]="viewerOpen" [url]="url" (closed)="viewerOpen = false">
-      </ccf-viewer>
+    </div>
 
-      <div class="drawer-icons">
-        <div class="drawer-icons-left">
-          <button
-            class="button"
-            (click)="filterbox.removeBox(); right.toggleExpanded()"
-            [matTooltip]="right.expanded ? 'Exit Fullscreen' : 'Enter Fullscreen'"
-          >
-            <mat-icon class="icon">{{ right.expanded ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
-          </button>
-          <button
-            class="scheme-toggle button"
-            (click)="toggleScheme()"
-            [matTooltip]="isLightTheme ? 'Enter Dark Mode' : 'Enter Light Mode'"
-          >
-            <mat-icon class="icon">{{ isLightTheme ? 'brightness_2' : 'brightness_5' }} </mat-icon>
-          </button>
-          <button class="button">
-            <mat-icon class="refresh icon" (click)="reset(left, right, filterbox)" matTooltip="Reset View"
-              >refresh
-            </mat-icon>
-          </button>
-        </div>
-        <ccf-info-button
-          videoID="YAHJqvD3Q_8"
-          infoTitle="HRA Exploration User Interface"
-          [documentationUrl]="(baseHref$ | async) + 'assets/docs/README.md'"
-          matTooltip="Open Info"
+    <hra-expansion-panel class="vis-panel" tagline="Body Visualization" disabled>
+      <hra-expansion-panel-actions>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          hraIconButtonSize="large"
+          aria-label="Icon to open nested menu"
+          hraMicroTooltip="More"
         >
-        </ccf-info-button>
-      </div>
-      <ccf-results-browser
-        [listResults]="(listResultsState.listResults$ | async) ?? []"
-        [aggregateData]="(data.aggregateData$ | async) ?? []"
-        [resultLabel]="selectionLabel"
-        (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
-        (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
-        (linkClicked)="openiFrameViewer($event)"
-        [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
-        (itemHovered)="listResultsState.highlightNode($event)"
-        (itemUnhovered)="listResultsState.unHighlightNode()"
-        [header]="(header$ | async) ?? false"
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="submenu">
+            <mat-icon>info</mat-icon>
+            Info
+            <mat-icon class="expand-arrow">arrow_right</mat-icon>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="submenu2">
+            <mat-icon>visibility</mat-icon>
+            Organ visibility
+            <mat-icon class="expand-arrow">arrow_right</mat-icon>
+          </button>
+          <mat-divider class="menu-divider"></mat-divider>
+          <button mat-menu-item (click)="resetView(bodyUI)">
+            <mat-icon class="reset icon">reset_settings</mat-icon>
+            Reset visualization view
+          </button>
+        </mat-menu>
+        <mat-menu #submenu="matMenu">
+          <button mat-menu-item>
+            All Human Reference Atlas organs may be viewed in the Body Visualization section. Show/hide organs with the
+            organ search feature. Hiding and showing organs does not filter data results.
+          </button>
+        </mat-menu>
+        <mat-menu #submenu2="matMenu">
+          <button mat-menu-item (click)="selectAllOrgans()">
+            <mat-icon>visibility</mat-icon>
+            Show all organs
+          </button>
+          <button mat-menu-item (click)="clearAllOrgans()">
+            <mat-icon>visibility_off</mat-icon>
+            Hide all organs
+          </button>
+          <mat-divider class="menu-divider"></mat-divider>
+          <button mat-menu-item (click)="scene.setDefaultOrgans()">
+            <mat-icon class="reset icon">reset_settings</mat-icon>
+            Reset to default organ view
+          </button>
+        </mat-menu>
+      </hra-expansion-panel-actions>
+      <hra-expansion-panel-header-content>
+        <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
+      </hra-expansion-panel-header-content>
+    </hra-expansion-panel>
+
+    <div class="content">
+      <button
+        class="spatial-search-button"
+        mat-flat-button
+        (click)="spatialFlowService.startSpatialSearchFlow(true)"
+        hraMicroTooltip="Filter experimental data spatially"
       >
-      </ccf-results-browser>
-      <ccf-drawer-toggle-button></ccf-drawer-toggle-button>
-    </ccf-drawer>
-
-    <ccf-drawer-content [class.header-hidden]="(header$ | async) === false">
-      <div [class.closed]="!organListVisible" class="selector-drawer" [class.expanded]="selector.expanded">
-        <ccf-organ-selector
-          #selector
-          class="organ-selector"
-          [multiselect]="true"
-          [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
-          [organList]="$any(scene.referenceOrgans$ | async)"
-          (organsChanged)="scene.setSelectedReferenceOrgans($event)"
-          [selectedOrgans]="$any(scene.selectedReferenceOrgans$ | async)"
-          [expanded]="selector.expanded"
-        >
-        </ccf-organ-selector>
-      </div>
-      <div class="close-button-wrapper" [class.closed]="!organListVisible">
-        <div *ngIf="organListVisible" class="close-button" (click)="selector.expanded = !selector.expanded">
-          <mat-icon class="expand-collapse-icon" aria-hidden="false" aria-label="Expand carousel drawer">
-            {{ selector.expanded ? 'arrow_drop_up' : 'arrow_drop_down' }}
-          </mat-icon>
-        </div>
-        <div *ngIf="!selector.expanded" class="close-button" (click)="organListVisible = !organListVisible">
-          <mat-icon class="expand-collapse-icon" aria-hidden="false" aria-label="Close carousel drawer">
-            {{ organListVisible ? 'arrow_drop_up' : 'arrow_drop_down' }}
-          </mat-icon>
-        </div>
-      </div>
-      <ccf-run-spatial-search></ccf-run-spatial-search>
+        Spatial Search
+      </button>
       <ccf-body-ui
         #bodyUI
         class="stage-content"
@@ -188,10 +184,23 @@
         (nodeHoverStart)="scene.sceneNodeHovered($event)"
         (nodeHoverStop)="scene.sceneNodeUnhover()"
         [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
-        [class.expanded-stage]="!organListVisible"
-        [class.selector-expanded]="selector.expanded"
       >
       </ccf-body-ui>
-    </ccf-drawer-content>
-  </ccf-drawer-container>
-</div>
+    </div>
+
+    <div class="right-panel">
+      <ccf-results-browser
+        [listResults]="(listResultsState.listResults$ | async) ?? []"
+        [aggregateData]="(data.aggregateData$ | async) ?? []"
+        (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
+        (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
+        (listResultExpansionChange)="listResultsState.changeExpansion(asMutable($event))"
+        [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
+        (itemHovered)="listResultsState.highlightNode($event)"
+        (itemUnhovered)="listResultsState.unHighlightNode()"
+        [header]="(header$ | async) ?? false"
+      >
+      </ccf-results-browser>
+    </div>
+  </div>
+</mat-sidenav-container>
