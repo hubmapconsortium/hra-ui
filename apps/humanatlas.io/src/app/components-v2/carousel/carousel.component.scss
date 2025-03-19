@@ -1,68 +1,22 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  position: relative;
+  padding-bottom: 4rem;
+  overflow: visible;
 
-  swiper-container {
-    width: 100%;
-
-    .slide {
-      display: grid;
-      grid-template-columns: auto auto;
-      grid-template-areas: 'info image';
-      gap: 2rem;
-    }
-
-    .slide-image {
-      grid-area: image;
-      align-content: center;
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .slide-info {
-      grid-area: info;
-      min-height: 24rem;
-      max-width: 24rem;
-    }
-
-    .content-titles {
-      font: var(--mat-sys-title-large);
-      margin-bottom: 0.75rem;
-    }
-
-    .content-body {
-      font: var(--mat-sys-body-large);
-      margin-bottom: 2rem;
+  .carousel {
+    &::part(container) {
+      overflow: visible;
     }
   }
 
-  hra-carousel-controls {
-    height: 0;
-    bottom: 3rem;
-    position: relative;
-    align-items: center;
+  .controls {
+    position: absolute;
+    bottom: 0;
     z-index: 1;
   }
 
-  @media (max-width: 406px) {
-    swiper-container {
-      .slide {
-        grid-template-columns: auto;
-        grid-template-areas: 'image' 'info';
-        gap: 3rem;
-      }
-
-      .slide-info {
-        min-height: unset;
-        margin-bottom: 3.25rem;
-      }
-    }
-
-    hra-carousel-controls {
-      height: unset;
-      position: unset;
-    }
+  @media (min-width: 920px) {
+    padding-bottom: 0rem;
   }
 }

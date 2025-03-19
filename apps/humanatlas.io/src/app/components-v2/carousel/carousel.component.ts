@@ -11,13 +11,12 @@ import {
   input,
   viewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 
 import { SWIPER_INIT } from '../../utils/swiper';
 import { CarouselItem } from './carousel.schema';
+import { ContentComponent } from './content/content.component';
 import { ControlsComponent } from './controls/controls.component';
 
 const testItems: CarouselItem[] = [
@@ -53,14 +52,14 @@ const testItems: CarouselItem[] = [
 
 @Component({
   selector: 'hra-carousel',
-  imports: [CommonModule, MatIconModule, ButtonsModule, ControlsComponent],
+  imports: [CommonModule, ControlsComponent, ContentComponent],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CarouselComponent {
-  readonly carouselInfo = input<CarouselItem[]>(testItems);
+  readonly items = input<CarouselItem[]>(testItems);
 
   private readonly swiper = viewChild.required<ElementRef<SwiperContainer>>('swiper');
   private readonly controls = viewChild.required(ControlsComponent);
@@ -97,15 +96,5 @@ export class CarouselComponent {
       Object.assign(swiperEl, this.params());
       swiperEl.initialize();
     });
-  }
-
-  getLink(item: CarouselItem): string {
-    const link = item.link;
-    return 'url' in link ? link.url : link.route;
-  }
-
-  getLinkType(item: CarouselItem): string {
-    const link = item.link;
-    return 'url' in link ? 'url' : 'route';
   }
 }

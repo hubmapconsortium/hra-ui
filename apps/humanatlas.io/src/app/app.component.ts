@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+
 import { CarouselComponent } from './components-v2/carousel/carousel.component';
 
 @Component({
