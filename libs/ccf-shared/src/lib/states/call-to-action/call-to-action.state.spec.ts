@@ -63,7 +63,7 @@ describe('CallToActionState', () => {
   });
 
   it('opens info dialog box', () => {
-    state.learnMore(ctx).subscribe();
+    state.learnMore().subscribe();
     expect(ga.event).toHaveBeenCalledWith('open_learn_more', 'call_to_action');
   });
 
@@ -73,7 +73,7 @@ describe('CallToActionState', () => {
   });
 
   it('closes dialog box', () => {
-    state.close(ctx);
+    state.close();
     expect(ga.event).toHaveBeenCalledWith('close', 'call_to_action');
   });
 

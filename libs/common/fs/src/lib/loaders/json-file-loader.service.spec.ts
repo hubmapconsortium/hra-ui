@@ -22,7 +22,7 @@ describe('JsonFileLoaderService', () => {
       text: () => Promise.resolve(serializedData),
     });
     const service = TestBed.inject(JsonFileLoaderService);
-    const result$ = service.load(file, {});
+    const result$ = service.load(file);
     const events = await getEvents(result$);
 
     expect(events).toEqual([
@@ -49,7 +49,7 @@ describe('JsonFileLoaderService', () => {
     });
 
     const service = TestBed.inject(JsonFileLoaderService);
-    const result$ = service.load(url, {});
+    const result$ = service.load(url);
     const eventsPromise = getEvents(result$);
     const http = TestBed.inject(HttpTestingController);
     const request = http.expectOne(url);
@@ -83,7 +83,7 @@ describe('JsonFileLoaderService', () => {
 
   it('throws an error if HttpClient in not available', async () => {
     const service = TestBed.inject(JsonFileLoaderService);
-    const result$ = service.load(url, {});
+    const result$ = service.load(url);
     expect(getEvents(result$)).rejects.toThrow(/HttpClient/);
   });
 
@@ -93,7 +93,7 @@ describe('JsonFileLoaderService', () => {
     });
 
     const service = TestBed.inject(JsonFileLoaderService);
-    const result$ = service.load(url, {});
+    const result$ = service.load(url);
     const eventsPromise = getEvents(result$);
     const http = TestBed.inject(HttpTestingController);
     const request = http.expectOne(url);
