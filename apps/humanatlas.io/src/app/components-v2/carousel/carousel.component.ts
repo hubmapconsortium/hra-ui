@@ -19,6 +19,7 @@ import { CarouselItem } from './carousel.schema';
 import { ContentComponent } from './content/content.component';
 import { ControlsComponent } from './controls/controls.component';
 
+/** Test carousel items (will replace) */
 const testItems: CarouselItem[] = [
   {
     tagline: 'Map the human body at single cell resolution',
@@ -50,6 +51,9 @@ const testItems: CarouselItem[] = [
   },
 ];
 
+/**
+ * Carousel component for displaying slides
+ */
 @Component({
   selector: 'hra-carousel',
   imports: [CommonModule, ControlsComponent, ContentComponent],
@@ -59,11 +63,15 @@ const testItems: CarouselItem[] = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CarouselComponent {
+  /** Details of slides to be displayed inside the carousel */
   readonly items = input<CarouselItem[]>(testItems);
 
+  /** Reference to swiper element */
   private readonly swiper = viewChild.required<ElementRef<SwiperContainer>>('swiper');
+  /** Reference to swiper controls element */
   private readonly controls = viewChild.required(ControlsComponent);
 
+  /** Swiper config settings */
   private readonly params = computed(
     (): SwiperOptions => ({
       autoplay: {
@@ -88,6 +96,9 @@ export class CarouselComponent {
     }),
   );
 
+  /**
+   * Injects SWIPER_INIT injection token, initializes swiper with config
+   */
   constructor() {
     inject(SWIPER_INIT)();
 

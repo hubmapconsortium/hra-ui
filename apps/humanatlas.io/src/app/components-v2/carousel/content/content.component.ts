@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CarouselItem } from '../carousel.schema';
-import { RouterModule } from '@angular/router';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+import { CarouselItem } from '../carousel.schema';
+
+/**
+ * Contains the content for a slide in the carousel component
+ */
 @Component({
   selector: 'hra-carousel-content',
   imports: [CommonModule, RouterModule, MatIconModule, ButtonsModule, AssetUrlPipe],
@@ -14,13 +18,24 @@ import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent {
+  /** Item to display in the carousel */
   readonly item = input.required<CarouselItem>();
 
+  /**
+   * Returns the url or route from a carousel item
+   * @param item Carousel item
+   * @returns Url or route
+   */
   getLink(item: CarouselItem): string {
     const link = item.link;
     return 'url' in link ? link.url : link.route;
   }
 
+  /**
+   * Gets link type from a carousel item
+   * @param item Carousel item
+   * @returns Link type (url or route)
+   */
   getLinkType(item: CarouselItem): string {
     const link = item.link;
     return 'url' in link ? 'url' : 'route';
