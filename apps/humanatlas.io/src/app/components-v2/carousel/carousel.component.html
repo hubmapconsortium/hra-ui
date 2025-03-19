@@ -1,0 +1,29 @@
+<swiper-container init="false" class="carousel" #swiper>
+  @for (info of carouselInfo(); track info) {
+    <swiper-slide class="slide">
+      <div class="slide-info">
+        <div class="content-titles">{{ info.tagline }}</div>
+        <div class="content-body">{{ info.description }}</div>
+        @if (getLinkType(info) === 'url') {
+          <a class="link-button" mat-button hraCtaButton [href]="getLink(info)" target="_blank"
+            >{{ info.action }}
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        } @else {
+          <ng-template #route>
+            <!-- <a mat-stroked-button class="get-button" [routerLink]="['', info.route]">{{ info.buttonText }}</a> -->
+            <a class="link-button" mat-button hraCtaButton
+              >{{ info.action }}
+              <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+            </a>
+          </ng-template>
+        }
+      </div>
+      <div class="slide-image">
+        <img [src]="info.imageSrc" />
+      </div>
+    </swiper-slide>
+  }
+</swiper-container>
+
+<hra-carousel-controls class="controls" #controls />
