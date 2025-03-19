@@ -14,4 +14,14 @@
   </div>
 </div>
 
-<div class="apps"></div>
+<div class="apps-list">
+  @for (app of apps; track $index) {
+    <hra-ui-section
+      [imagePath]="app.imagePath"
+      [logo]="app.logoPath"
+      [tagline]="app.tagline"
+      [appStatus]="app.appStatus"
+      [description]="app.description"
+    ></hra-ui-section>
+  }
+</div>
