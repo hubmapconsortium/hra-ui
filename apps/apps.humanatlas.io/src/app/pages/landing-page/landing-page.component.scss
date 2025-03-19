@@ -51,4 +51,10 @@
       selected-state-text-color: var(--mat-sys-on-background),
     )
   );
+
+  .apps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
 }

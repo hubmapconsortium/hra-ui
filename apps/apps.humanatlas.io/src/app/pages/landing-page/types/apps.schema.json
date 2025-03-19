@@ -1,0 +1,50 @@
+{
+  "$ref": "#/definitions/Apps",
+  "definitions": {
+    "App": {
+      "type": "object",
+      "properties": {
+        "tagline": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "imagePath": {
+          "type": "string"
+        },
+        "logoPath": {
+          "type": "string"
+        },
+        "appStatus": {
+          "type": "string"
+        },
+        "appUrl": {
+          "type": "string"
+        },
+        "documentLink": {
+          "type": "string"
+        }
+      },
+      "required": ["tagline", "description", "imagePath", "logoPath", "appUrl", "documentLink"],
+      "additionalProperties": false
+    },
+    "Apps": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/App"
+          }
+        }
+      },
+      "required": ["$schema", "apps"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
