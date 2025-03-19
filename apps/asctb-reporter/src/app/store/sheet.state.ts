@@ -442,7 +442,7 @@ export class SheetState {
       rdfs_label: this.bodyLabel,
     };
 
-    for await (const [_unused, compareSheet] of compareData.entries()) {
+    for await (const compareSheet of compareData.values()) {
       this.sheetService
         .fetchSheetData(compareSheet.sheetId, compareSheet.gid, compareSheet.csvUrl, compareSheet.formData)
         .subscribe(

@@ -33,7 +33,6 @@ import { ReferenceDataState } from './../reference-data/reference-data.state';
 /**
  * Scene state model
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SceneStateModel {
   /** Show collisions */
   showCollisions: boolean;
@@ -254,7 +253,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       this.model.position$,
       this.model.organ$,
     ]).pipe(
-      map(([_viewType, _blockSize, _rotation, _position, organ]) => (organ.src === '' ? [] : [this.placementCube])),
+      map(([, , , , organ]) => (organ.src === '' ? [] : [this.placementCube])),
       distinctUntilChanged(isEqual),
     );
   }

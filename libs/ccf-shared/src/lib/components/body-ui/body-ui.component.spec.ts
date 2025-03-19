@@ -7,7 +7,7 @@ import { BodyUiModule } from './body-ui.module';
 describe('BodyUiComponent', () => {
   let shallow: Shallow<BodyUiComponent>;
   const mockBodyUI = {
-    setScene(..._args: unknown[]): BodyUI {
+    setScene(): BodyUI {
       return undefined as unknown as BodyUI;
     },
   };

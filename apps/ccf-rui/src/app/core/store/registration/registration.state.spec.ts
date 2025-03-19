@@ -202,14 +202,12 @@ describe('RegistrationState', () => {
     });
 
     it('should consider isDataValid false if the organ is not set', async () => {
-      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const invalidModel = { ...testModel, organ: {} as OrganInfo };
       const result = state.isDataValid(testPage, invalidModel);
       expect(result).toBeFalsy();
     });
 
     it('should consider isDataValid false if the user is not set', async () => {
-      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const invalidPage = { ...testPage, user: {} as Person };
       const result = state.isDataValid(invalidPage, testModel);
       expect(result).toBeFalsy();

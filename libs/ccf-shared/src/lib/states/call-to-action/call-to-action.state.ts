@@ -123,7 +123,7 @@ export class CallToActionState implements NgxsOnInit {
    * @param _ctx
    */
   @Action(LearnMore)
-  learnMore(_ctx: StateContext<CallToActionModel>): Observable<DocumentationContent[]> {
+  learnMore(): Observable<DocumentationContent[]> {
     this.dialog.closeAll();
     this.ga.event('open_learn_more', 'call_to_action');
 
@@ -153,7 +153,7 @@ export class CallToActionState implements NgxsOnInit {
    * @param _ctxs;
    */
   @Action(CloseDialog)
-  close(_ctx: StateContext<CallToActionModel>): void {
+  close(): void {
     this.dialog.closeAll();
     this.ga.event('close', 'call_to_action');
   }

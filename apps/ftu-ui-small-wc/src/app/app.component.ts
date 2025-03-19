@@ -15,7 +15,6 @@ import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryAct
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
-  HeaderBehaviorComponent,
   HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
@@ -85,7 +84,6 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 @Component({
   selector: 'hra-root',
   imports: [
-    HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
     HraLandingPageIntroWcBehaviourComponent,
     BiomarkerDetailsWcComponent,

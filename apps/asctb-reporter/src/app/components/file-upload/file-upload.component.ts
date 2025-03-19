@@ -45,7 +45,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   fileUploadError = false;
 
-  onChange = (_fileName: string) => {
+  onChange: (fileName: string) => void = () => {
     // Intentionally empty
   };
 
@@ -78,7 +78,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     this.onValidatorChange = onValidatorChange;
   }
 
-  validate(_control: AbstractControl): ValidationErrors | null {
+  validate(): ValidationErrors | null {
     return null;
   }
 }

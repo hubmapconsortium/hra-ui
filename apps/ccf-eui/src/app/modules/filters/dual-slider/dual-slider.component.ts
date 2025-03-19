@@ -301,10 +301,8 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
 
   /**
    * Handle mouse clicks on the field (excluding the panel)
-   *
-   * @param event Mouse event
    */
-  onContainerClick(_event: MouseEvent): void {
+  onContainerClick(): void {
     this.open();
   }
 

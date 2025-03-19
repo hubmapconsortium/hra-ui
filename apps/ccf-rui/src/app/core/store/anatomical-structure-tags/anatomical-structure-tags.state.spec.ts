@@ -59,7 +59,6 @@ describe('AnatomicalStructureTagsState', () => {
       tags: {
         ids: [1],
         entities: {
-          /* eslint-disable-next-line @typescript-eslint/naming-convention */
           1: {
             id: 1,
             label: 'foo',

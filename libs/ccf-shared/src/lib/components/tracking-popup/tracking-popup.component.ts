@@ -28,7 +28,6 @@ export class TrackingPopupComponent {
 
   /** Dismiss the popup */
   dismiss(): void {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     this.data.preClose();
   }
 

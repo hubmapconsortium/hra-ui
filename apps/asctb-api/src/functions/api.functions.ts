@@ -157,7 +157,7 @@ export const buildMetadata = (metadataRows: string[][], warnings: Set<string>): 
   };
 
   return metadataRows.reduce((metadata: Record<string, string | string[]>, rowData: string[], rowNumber: number) => {
-    const [metadataIdentifier, metadataValue, ..._] = rowData;
+    const [metadataIdentifier, metadataValue] = rowData;
     /**
      * Raise Warnings:
      *    Case 1: IF the Metadata Key/Value is filled or empty

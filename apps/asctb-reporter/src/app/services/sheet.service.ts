@@ -118,7 +118,7 @@ export class SheetService {
   /**
    * Fetching initial playground data
    */
-  fetchPlaygroundData(_data?: string) {
+  fetchPlaygroundData() {
     return this.http.get(`${URL}/v2/playground`);
   }
 

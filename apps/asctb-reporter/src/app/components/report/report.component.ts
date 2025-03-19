@@ -310,7 +310,7 @@ export class ReportComponent implements OnInit {
       this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Download Full Report');
 
       if (this.compareReport) {
-        for (const [sheet, _unused] of this.compareReport.entries()) {
+        for (const sheet of this.compareReport.keys()) {
           allReport.push(this.downloadCompareSheetReport(sheet));
         }
       }

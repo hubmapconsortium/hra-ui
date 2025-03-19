@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'asctb-api',
   preset: '../../jest.preset.js',

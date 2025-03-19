@@ -39,5 +39,6 @@ export class InfoModalComponent {
   title = input.required<string>();
 
   /** Emits when close icon clicked */
+  // eslint-disable-next-line @angular-eslint/no-output-native
   close = output<void>();
 }

@@ -365,7 +365,7 @@ export class RootComponent implements OnDestroy {
       }
     });
 
-    this.pane$.subscribe((_unused) => {
+    this.pane$.subscribe(() => {
       if (this.data) {
         this.ts.makeTreeData(this.sheet, this.data, []);
       }

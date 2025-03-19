@@ -15,12 +15,12 @@ export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileL
   private readonly http = inject(HttpClient, { optional: true });
 
   /** Loads a JSON file and returns an observable of file loader events */
-  load(file: string | File, options: JsonFileLoaderOptions): Observable<FileLoaderEvent<DataT>> {
-    return defer(() => this.loadImpl(file, options));
+  load(file: string | File): Observable<FileLoaderEvent<DataT>> {
+    return defer(() => this.loadImpl(file));
   }
 
   /** Implementation of the load method, handling local and remote files */
-  private loadImpl(file: string | File, _options: JsonFileLoaderOptions): Observable<FileLoaderEvent<DataT>> {
+  private loadImpl(file: string | File): Observable<FileLoaderEvent<DataT>> {
     if (typeof file === 'object') {
       return this.loadLocalFile(file);
     } else {
