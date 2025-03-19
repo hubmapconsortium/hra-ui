@@ -69,7 +69,7 @@ export async function batch<T>(
   let index = 0;
   let done = false;
   while (!done) {
-    for (let counter = 0; counter < batchSize; counter++, index++) {
+    for (let counter = 0; counter < batchSize; counter++) {
       const item = iter.next();
       if (item.done) {
         done = true;
@@ -77,6 +77,7 @@ export async function batch<T>(
       }
 
       itemCb(item.value, index);
+      index++;
     }
 
     batchCb?.();

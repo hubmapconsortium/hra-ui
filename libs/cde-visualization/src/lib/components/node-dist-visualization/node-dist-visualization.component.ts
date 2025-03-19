@@ -27,7 +27,6 @@ import {
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
-import '@hra-ui/node-dist-vis';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,

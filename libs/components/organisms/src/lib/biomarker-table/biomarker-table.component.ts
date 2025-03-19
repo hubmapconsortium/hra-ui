@@ -360,7 +360,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
         .map((min, index) => this.lerp(value, min, maxColor[index]))
         .map((component) => {
           const hex = Math.round(component).toString(16);
-          return hex.length == 1 ? '0' + hex : hex;
+          return hex.length === 1 ? '0' + hex : hex;
         })
         .join('')
     );

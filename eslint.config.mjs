@@ -34,7 +34,34 @@ export const configs = {
     },
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
-      rules: {},
+      rules: {
+        // Enforce camelcase?
+        curly: ['error', 'all'],
+        eqeqeq: ['error', 'always', { null: 'ignore' }],
+        'max-depth': ['error', 5],
+        'max-nested-callbacks': ['error', 4],
+        'no-alert': 'warn',
+        'no-console': 'warn',
+        'no-constructor-return': 'error',
+        'no-duplicate-imports': 'error',
+        'no-else-return': 'warn',
+        'no-empty-function': ['error', { allow: ['arrowFunctions', 'constructors'] }],
+        'no-eval': 'error',
+        'no-labels': 'error',
+        'no-lonely-if': 'warn',
+        'no-multi-str': 'error',
+        'no-proto': 'error',
+        'no-template-curly-in-string': 'warn',
+        'no-throw-literal': 'error',
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'SequenceExpression',
+            message: 'The comma operator is confusing and a common mistake. Don’t use it!',
+          },
+        ],
+        yoda: 'warn',
+      },
     },
   ],
   angular: [
