@@ -42,8 +42,7 @@ export class TrackingPopupComponent {
     const { allowTelemetry } = this;
     if (allowTelemetry === 'not-set') {
       return true;
-    } else {
-      return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
     }
+    return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
   }
 }

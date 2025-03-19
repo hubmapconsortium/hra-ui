@@ -141,25 +141,23 @@ export class TreeService {
             s = nodes.findIndex((i: TNode) => {
               if (!isReport) {
                 return i.type !== 'root' && i.comparatorId === parent.comparatorId + structure.id;
-              } else {
-                return (
-                  i.type !== 'root' &&
-                  i.comparatorId === parent.comparatorId + structure.id &&
-                  i.organName === row.organName
-                );
               }
+              return (
+                i.type !== 'root' &&
+                i.comparatorId === parent.comparatorId + structure.id &&
+                i.organName === row.organName
+              );
             });
           } else {
             s = nodes.findIndex((i: TNode) => {
               if (!isReport) {
                 return i.type !== 'root' && i.comparatorName === parent.comparatorName + structure.name;
-              } else {
-                return (
-                  i.type !== 'root' &&
-                  i.comparatorName === parent.comparatorName + structure.name &&
-                  i.organName === row.organName
-                );
               }
+              return (
+                i.type !== 'root' &&
+                i.comparatorName === parent.comparatorName + structure.name &&
+                i.organName === row.organName
+              );
             });
           }
           if (s === -1) {

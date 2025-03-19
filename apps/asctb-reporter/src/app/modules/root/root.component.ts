@@ -380,10 +380,8 @@ export class RootComponent implements OnDestroy {
           panelClass: 'bottom-sheet-style',
           data: this.bottomSheetInfo$,
         });
-      } else {
-        if (this.infoSheetRef) {
-          this.infoSheetRef.dismiss();
-        }
+      } else if (this.infoSheetRef) {
+        this.infoSheetRef.dismiss();
       }
     });
 
@@ -396,10 +394,8 @@ export class RootComponent implements OnDestroy {
           panelClass: 'bottom-sheet-style',
           data,
         });
-      } else {
-        if (this.infoSheetRef) {
-          this.infoSheetRef.dismiss();
-        }
+      } else if (this.infoSheetRef) {
+        this.infoSheetRef.dismiss();
       }
     });
 
@@ -496,13 +492,12 @@ export class RootComponent implements OnDestroy {
         gid: '0',
         csvUrl: url,
       };
-    } else {
-      return {
-        sheetID: '0',
-        gid: '0',
-        csvUrl: url,
-      };
     }
+    return {
+      sheetID: '0',
+      gid: '0',
+      csvUrl: url,
+    };
   }
 
   /**

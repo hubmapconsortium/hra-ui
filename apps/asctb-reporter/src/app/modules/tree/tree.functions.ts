@@ -98,7 +98,7 @@ export function makeCellTypes(data: Row[], isForReport = false, isReportNotOrgan
             structure: str.name ?? '',
             link: str.id ?? '',
             isNew: 'isNew' in str ? true : false,
-            color: 'isNew' in str ? str.color ?? '' : CT_BLUE,
+            color: 'isNew' in str ? (str.color ?? '') : CT_BLUE,
             outdegree: new Set(),
             indegree: new Set(),
             comparator: `${str.name}${str.id}`,
@@ -197,7 +197,7 @@ export function makeBioMarkers(data: Row[], type?: string, isForReport = false, 
             structure: str.name ?? '',
             link: str.id ?? '',
             isNew: 'isNew' in str ? true : false,
-            color: 'isNew' in str ? str.color ?? '' : B_GREEN,
+            color: 'isNew' in str ? (str.color ?? '') : B_GREEN,
             outdegree: new Set(),
             indegree: new Set(),
             comparator: `${str.name}${str.id}`,
@@ -264,25 +264,23 @@ function getFoundIndex(
     foundIndex = typeData.findIndex((i) => {
       if (!isForReport) {
         return i.comparatorId === str.id && (!isBiomarker || (i as B).bType === str.b_type);
-      } else {
-        return (
-          i.comparatorId === str.id &&
-          (i.organName === row.organName || isReportNotOrganWise) &&
-          (!isBiomarker || (i as B).bType === str.b_type)
-        );
       }
+      return (
+        i.comparatorId === str.id &&
+        (i.organName === row.organName || isReportNotOrganWise) &&
+        (!isBiomarker || (i as B).bType === str.b_type)
+      );
     });
   } else {
     foundIndex = typeData.findIndex((i) => {
       if (!isForReport) {
         return i.comparatorName === str.name && (!isBiomarker || (i as B).bType === str.b_type);
-      } else {
-        return (
-          i.comparatorName === str.name &&
-          (i.organName === row.organName || isReportNotOrganWise) &&
-          (!isBiomarker || (i as B).bType === str.b_type)
-        );
       }
+      return (
+        i.comparatorName === str.name &&
+        (i.organName === row.organName || isReportNotOrganWise) &&
+        (!isBiomarker || (i as B).bType === str.b_type)
+      );
     });
   }
   return foundIndex;

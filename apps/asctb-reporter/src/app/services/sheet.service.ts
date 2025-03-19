@@ -35,23 +35,22 @@ export class SheetService {
       });
     } else if (formData) {
       return this.http.post(`${URL}/v2/csv`, formData);
-    } else {
-      if (output === 'graph') {
-        return this.http.get(`${URL}/v2/${sheetId}/${gid}/graph`);
-      } else if (output === 'jsonld') {
-        return this.http.get(`${URL}/v2/csv`, {
-          params: {
-            csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
-            output: output ? output : 'jsonld',
-          },
-        });
-      }
-      return this.http.get(`${URL}/v2/${sheetId}/${gid}`, {
+    }
+    if (output === 'graph') {
+      return this.http.get(`${URL}/v2/${sheetId}/${gid}/graph`);
+    } else if (output === 'jsonld') {
+      return this.http.get(`${URL}/v2/csv`, {
         params: {
-          cache,
+          csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
+          output: output ? output : 'jsonld',
         },
       });
     }
+    return this.http.get(`${URL}/v2/${sheetId}/${gid}`, {
+      params: {
+        cache,
+      },
+    });
   }
 
   /**

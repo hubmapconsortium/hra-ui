@@ -488,12 +488,10 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       return RUI_ORGANS.filter((organ) => {
         if (!organ.id) {
           return false;
-        } else {
-          return organOptions.includes(organ.id);
         }
+        return organOptions.includes(organ.id);
       });
-    } else {
-      return RUI_ORGANS;
     }
+    return RUI_ORGANS;
   }
 }

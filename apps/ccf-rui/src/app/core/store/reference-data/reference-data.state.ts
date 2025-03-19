@@ -151,9 +151,8 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
       newPlacement.y_translation = y;
       newPlacement.z_translation = z;
       return newPlacement;
-    } else {
-      return place;
     }
+    return place;
   }
 
   /**
@@ -225,12 +224,11 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
     const organEntry = this.snapshot.placementPatches[organ];
     if (organEntry) {
       return this.getLatestIri(organEntry.target);
-    } else {
-      const organIris = Object.values(this.snapshot.organIRILookup);
-      const baseIri = this.getUnversionedOrganIri(organ);
-      const foundOrgan = organIris.find((o) => this.getUnversionedOrganIri(o) === baseIri);
-      return foundOrgan ?? organ;
     }
+    const organIris = Object.values(this.snapshot.organIRILookup);
+    const baseIri = this.getUnversionedOrganIri(organ);
+    const foundOrgan = organIris.find((o) => this.getUnversionedOrganIri(o) === baseIri);
+    return foundOrgan ?? organ;
   }
 
   /**
@@ -244,8 +242,7 @@ export class ReferenceDataState extends NgxsImmutableDataRepository<ReferenceDat
   private getUnversionedOrganIri(organ: string): string {
     if (organ.endsWith('#primary')) {
       return organ.slice(0, organ.lastIndexOf('/'));
-    } else {
-      return organ;
     }
+    return organ;
   }
 }

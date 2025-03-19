@@ -23,9 +23,8 @@ export class JsonFileLoaderService<DataT> implements FileLoader<DataT, JsonFileL
   private loadImpl(file: string | File): Observable<FileLoaderEvent<DataT>> {
     if (typeof file === 'object') {
       return this.loadLocalFile(file);
-    } else {
-      return this.loadRemoteFile(file);
     }
+    return this.loadRemoteFile(file);
   }
 
   /** Loads a local JSON file and emits progress and data events */

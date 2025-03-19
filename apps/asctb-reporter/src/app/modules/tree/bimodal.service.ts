@@ -297,9 +297,8 @@ export class BimodalService {
               .filter(({ val }) => {
                 if (str.id) {
                   return val.ontologyId === str.id;
-                } else {
-                  return val.name === str.name;
                 }
+                return val.name === str.name;
               })
               .map(({ idx }) => idx);
             const targets: number[] = [];
@@ -329,9 +328,8 @@ export class BimodalService {
               .filter(({ val }) => {
                 if (str.id && str.id.toLowerCase() !== 'not found') {
                   return val.ontologyId === str.id;
-                } else {
-                  return val.name === str.name;
                 }
+                return val.name === str.name;
               })
               .map(({ idx }) => idx);
             const sources: number[] = [];

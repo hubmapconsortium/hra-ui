@@ -303,9 +303,8 @@ export class NodeDistVisComponent {
       return 'grabbing';
     } else if (isHovering) {
       return 'pointer';
-    } else {
-      return 'grab';
     }
+    return 'grab';
   }
 
   /**

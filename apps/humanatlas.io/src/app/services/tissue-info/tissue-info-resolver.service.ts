@@ -18,9 +18,8 @@ export class TissueInfoResolverService {
 
     if (data) {
       return of(data);
-    } else {
-      this.router.navigateByUrl('/');
-      return EMPTY;
     }
+    this.router.navigateByUrl('/');
+    return EMPTY;
   }
 }

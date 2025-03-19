@@ -343,9 +343,8 @@ export class CreateVisualizationPageComponent {
       return this.dataHeaders.find((h) => this.acceptableCellTypeHeaders.includes(h.toLowerCase())) || null;
     } else if (field === 'ontologyId') {
       return this.dataHeaders.find((h) => this.acceptableOntologyHeaders.includes(h.toLowerCase())) || null;
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**

@@ -165,10 +165,9 @@ function compareConfig(x: ApiEndpointDataSourceOptions, y: ApiEndpointDataSource
     return false;
   } else if (x.token !== undefined) {
     return true;
-  } else {
-    // Deep compare?
-    return x.filter === y.filter && x.dataSources === y.dataSources;
   }
+  // Deep compare?
+  return x.filter === y.filter && x.dataSources === y.dataSources;
 }
 
 /** Api endpoint data source */

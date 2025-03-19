@@ -84,9 +84,8 @@ export class CellTypesComponent {
   protected readonly columns = computed(() => {
     if (this.hideCellLinkData()) {
       return ['select', 'cellType', 'count'];
-    } else {
-      return ['select', 'cellType', 'count', 'links'];
     }
+    return ['select', 'cellType', 'count', 'links'];
   });
 
   /** Tooltip position configuration */
@@ -141,9 +140,8 @@ export class CellTypesComponent {
       return 'none';
     } else if (selectionLength < cellTypesLength) {
       return 'partial';
-    } else {
-      return 'full';
     }
+    return 'full';
   });
 
   /** Helper function to calculate the number of nodes or edges */

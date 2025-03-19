@@ -120,9 +120,8 @@ export class NavbarComponent implements OnInit {
       return `${this.selectedOrgansValues?.split(',').length} ASCT+B Tables, ${
         this.omapSelectedOrgansValues?.split(',').length
       } OMAPs`;
-    } else {
-      return x;
     }
+    return x;
   }
   playgroundSheetOptions: PlaygroundSheetOptions[] = [];
   masterSheetLink!: string;
