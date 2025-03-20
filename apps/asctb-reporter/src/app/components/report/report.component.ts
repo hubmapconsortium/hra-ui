@@ -79,9 +79,9 @@ export class ReportComponent implements OnInit {
   @Input() compareData!: Observable<{ data: Row[]; sheets: CompareData[] }>;
   @Input() bmType = '';
   @Input() hideReportCompareTab = false;
-  @Output() closeReport = new EventEmitter<void>();
-  @Output() computedReport = new EventEmitter<Report>();
-  @Output() deleteSheet = new EventEmitter<number>();
+  @Output() readonly closeReport = new EventEmitter<void>();
+  @Output() readonly computedReport = new EventEmitter<Report>();
+  @Output() readonly deleteSheet = new EventEmitter<number>();
   total_AS_CT = 0;
   total_CT_B = 0;
 

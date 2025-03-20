@@ -290,7 +290,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @returns cell type id
    */
   getHoverId(data: DataRow<T>): string {
-    const entry = data.slice(2).find((entry) => entry) as T;
+    const entry = data.slice(2).find((item) => item) as T;
     return entry?.data.cell;
   }
 

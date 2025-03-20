@@ -113,7 +113,7 @@ export class OrganSelectComponent {
    */
   isChecked(organ: OrganInfo): boolean {
     return this.selectedOrgans()
-      .map((organ) => organ.name)
+      .map((o) => o.name)
       .includes(organ.name);
   }
 }

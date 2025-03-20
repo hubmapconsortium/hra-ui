@@ -11,6 +11,7 @@ export default [
     rules: {
       '@angular-eslint/directive-selector': 'off',
       '@angular-eslint/component-selector': 'off',
+      '@angular-eslint/prefer-signals': 'off',
       '@angular-eslint/prefer-standalone': 'off',
     },
   },

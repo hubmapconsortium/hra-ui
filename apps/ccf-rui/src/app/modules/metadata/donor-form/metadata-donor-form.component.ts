@@ -34,13 +34,13 @@ const DEFAULT_CONSORTIUMS = ['HuBMAP', 'SenNet'];
  * Empty inputs (`null`, `undefined`, or `''`) return all options.
  *
  * @param options Autocomplete options
- * @param input User input
+ * @param source User input
  * @param getValue Accessor to get the search text for an item
  * @returns The options that matches the current user input
  */
 function filterAutocompleteOptions<T>(
   options: Signal<T[]>,
-  input: Signal<FormControl<T | string | null>> | Observable<T | string | null>,
+  source: Signal<FormControl<T | string | null>> | Observable<T | string | null>,
   getValue: (option: T) => string,
 ): Signal<T[]> {
   const sorted = computed(() => {
@@ -64,9 +64,9 @@ function filterAutocompleteOptions<T>(
   return derivedAsync(
     () => {
       const opts = sorted();
-      const inputSource$ = isSignal(input) ? input().valueChanges : input;
+      const inputSource$ = isSignal(source) ? source().valueChanges : source;
       return inputSource$.pipe(
-        startWith(isSignal(input) ? input().value : ''),
+        startWith(isSignal(source) ? source().value : ''),
         distinctUntilChanged(),
         map((value) => filter(value, opts)),
       );

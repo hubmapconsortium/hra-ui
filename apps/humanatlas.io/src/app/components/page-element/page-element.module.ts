@@ -47,7 +47,6 @@ import { CopyClipboardModule } from '../copy-clipboard/copy-clipboard.module';
     SimpleImageModule,
     CarouselModule,
     TableModule,
-    CarouselModule,
     CountInfoCardModule,
     SectionCardModule,
     TableVersionModule,

@@ -18,7 +18,7 @@ export class VisControlsComponent {
   @Input() currentSheet!: Sheet;
   @Input() selectedOrgans!: string[];
 
-  @Output() updatedConfig = new EventEmitter<{
+  @Output() readonly updatedConfig = new EventEmitter<{
     property: string;
     config: SheetConfig;
   }>();

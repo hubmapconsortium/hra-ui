@@ -116,7 +116,7 @@ export interface GEdge {
 /** A graph */
 export interface GraphData {
   /** Nodes */
-  nodes: Array<GNode>;
+  nodes: GNode[];
   /** Edges */
-  edges: Array<GEdge>;
+  edges: GEdge[];
 }

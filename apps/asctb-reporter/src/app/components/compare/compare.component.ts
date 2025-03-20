@@ -15,8 +15,8 @@ export class CompareComponent implements OnInit {
   readonly fb = inject(UntypedFormBuilder);
   readonly ga = inject(GoogleAnalyticsService);
 
-  @Output() closeCompare = new EventEmitter<boolean>();
-  @Output() compareData = new EventEmitter<CompareData[]>();
+  @Output() readonly closeCompare = new EventEmitter<boolean>();
+  @Output() readonly compareData = new EventEmitter<CompareData[]>();
 
   @Input() compareSheets!: Observable<CompareData[]>;
 

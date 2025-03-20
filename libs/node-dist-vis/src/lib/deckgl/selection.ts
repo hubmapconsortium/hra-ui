@@ -6,7 +6,6 @@ import {
   DefaultProps,
   FilterContext,
   Layer,
-  LayerContext,
   LayerData,
   LayersList,
   PickingInfo,

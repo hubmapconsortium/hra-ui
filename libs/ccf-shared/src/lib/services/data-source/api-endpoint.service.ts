@@ -18,7 +18,7 @@ import {
   delay,
   distinctUntilChanged,
   endWith,
-  filter,
+  filter as rxjsFilter,
   ignoreElements,
   map,
   repeat,
@@ -436,7 +436,7 @@ export class ApiEndpointDataSourceService implements DataSource {
   private ensureDatabaseReady(token: string | undefined): Observable<string | undefined> {
     const check = () =>
       this.api.dbStatus({ token }).pipe(
-        filter((resp) => resp.status !== 'Ready'),
+        rxjsFilter((resp) => resp.status !== 'Ready'),
         switchMap((resp) => of(undefined).pipe(delay(resp.checkback ?? 0))),
       );
 

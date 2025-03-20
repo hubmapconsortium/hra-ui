@@ -351,10 +351,10 @@ export class NodeDistVisComponent {
     return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
   }
 
-  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
+  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, outputRef: OutputEmitterRef<AnyData>): void {
     effect(() => {
       if (view().length !== 0) {
-        output.emit(view().data);
+        outputRef.emit(view().data);
       }
     });
   }

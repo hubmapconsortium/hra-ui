@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit {
   @Select(SheetState.getOMAPSelectedOrgans) omapSelectedOrgans$!: Observable<string[]>;
 
   @Input() cache!: boolean;
-  @Output() export = new EventEmitter<string>();
+  @Output() readonly export = new EventEmitter<string>();
 
   get selectedOrgansLabel(): string {
     let x = this.selectedOrgansValues?.length > 0 ? 'ASCT+B: ' + this.selectedOrgansValues : '';

@@ -100,7 +100,7 @@ export class CellTypesComponent {
     cell types, cell links, and cell type color map formatting.`;
 
   /** Flag to toggle cell links row visibility */
-  protected hideCellLinkData = signal(false);
+  protected readonly hideCellLinkData = signal(false);
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -156,7 +156,7 @@ export class CellTypesComponent {
   };
 
   /** Computed total cell count based on selection */
-  protected totalCellCount = computed(() => {
+  protected readonly totalCellCount = computed(() => {
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 
@@ -164,7 +164,7 @@ export class CellTypesComponent {
   });
 
   /** The total cell links count */
-  protected totalCellLinksCount = computed(() => {
+  protected readonly totalCellLinksCount = computed(() => {
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 

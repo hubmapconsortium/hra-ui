@@ -105,7 +105,7 @@ export class TreeService {
    * @param data data from the miner of the sheet
    * @param compareData compare data (depricated)
    */
-  public makeTreeData(currentSheet: Sheet, data: Row[], _compareData?: unknown, isReport = false): void {
+  makeTreeData(currentSheet: Sheet, data: Row[], _compareData?: unknown, isReport = false): void {
     try {
       if (data.length === 0) {
         return;

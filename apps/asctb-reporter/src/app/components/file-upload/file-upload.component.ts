@@ -29,7 +29,7 @@ import {
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   fileName = '';
 
-  @Output() fileFormDataEvent = new EventEmitter<FormData>();
+  @Output() readonly fileFormDataEvent = new EventEmitter<FormData>();
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement | null)?.files?.[0];

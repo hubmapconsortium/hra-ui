@@ -133,7 +133,7 @@ export class RootComponent implements OnDestroy {
   // The container used for vertical scrolling of the viz is different than the one used for horizontal scrolling
   // Here we get references to both values.
   @ViewChild(TreeComponent) verticalScrollEntity!: TreeComponent;
-  @Output() export = new EventEmitter<unknown>();
+  @Output() readonly export = new EventEmitter<unknown>();
 
   // Sheet Observables
   @Select(SheetState.getData) data$!: Observable<Row[]>;

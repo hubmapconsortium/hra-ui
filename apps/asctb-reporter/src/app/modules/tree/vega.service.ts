@@ -66,7 +66,7 @@ export class VegaService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public makeNodeInfoString(node: any) {
+  makeNodeInfoString(node: any) {
     const nodeInfo: GaNodeInfo = {
       name: node.name,
       groupName: node.groupName,
