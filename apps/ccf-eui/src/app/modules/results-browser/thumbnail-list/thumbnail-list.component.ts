@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
@@ -25,9 +26,6 @@ const nextUid = (() => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThumbnailListComponent {
-  /** Primary css class selector */
-  @HostBinding('class') readonly className = 'ccf-thumbnail-list';
-
   /** Items to show in the list */
   readonly data = input.required<TissueDataset[]>();
 
@@ -37,19 +35,8 @@ export class ThumbnailListComponent {
   /** Per instance unique identifier */
   readonly uid = nextUid();
 
-  /** Base href observable from global config */
-  readonly baseHref$ = this.globalConfig.getOption('baseHref');
-
   /** Base href */
-  baseHref = '';
-
-  /**
-   * Creates an instance of thumbnail list component.
-   * @param globalConfig Global config state
-   */
-  constructor(private readonly globalConfig: GlobalConfigState<{ baseHref: string }>) {
-    this.baseHref$.subscribe((ref) => (this.baseHref = ref));
-  }
+  private readonly baseHref = toSignal(inject(GlobalConfigState).getOption('baseHref'), { initialValue: '' });
 
   /**
    * Returns thumbnail url from item
@@ -57,6 +44,6 @@ export class ThumbnailListComponent {
    * @returns url
    */
   thumbnailUrl(item: TissueDataset): string {
-    return `url(${this.baseHref + item.thumbnail})`;
+    return `url(${this.baseHref() + item.thumbnail})`;
   }
 }

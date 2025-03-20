@@ -33,9 +33,8 @@ export async function parseCSVText(csvText: string, firstFieldName?: string): Pr
         {} as Record<string, string>,
       ),
     );
-  } else {
-    return [];
   }
+  return [];
 }
 
 /**

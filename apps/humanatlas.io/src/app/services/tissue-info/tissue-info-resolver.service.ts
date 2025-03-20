@@ -14,13 +14,12 @@ export class TissueInfoResolverService {
   /** Redirects to the tissue info page if valid organ */
   resolve(route: ActivatedRouteSnapshot): Observable<TissueTableInfo> {
     const name = route.paramMap.get('organ')?.toLowerCase();
-    const data = tissueData.find((data) => data.tissueName?.toLowerCase() === name);
+    const data = tissueData.find((item) => item.tissueName?.toLowerCase() === name);
 
     if (data) {
       return of(data);
-    } else {
-      this.router.navigateByUrl('/');
-      return EMPTY;
     }
+    this.router.navigateByUrl('/');
+    return EMPTY;
   }
 }

@@ -31,12 +31,12 @@ export class SearchComponent {
   @Input() disabled = false;
 
   // Structures contains the full list of structures to render for the search
-  public structures: SearchStructure[] = [];
+  structures: SearchStructure[] = [];
   // Contains the subset matching the search term, to hide filtered out
   // elements without removing them from the DOM completely
-  public searchFilteredStructures: SearchStructure[] = [];
+  searchFilteredStructures: SearchStructure[] = [];
   // Contains the subset of structures matching the group name button toggle
-  public groupFilteredStructures: SearchStructure[] = [];
+  groupFilteredStructures: SearchStructure[] = [];
 
   @ViewChild('searchField', { static: false }) searchFieldContent!: ElementRef;
 
@@ -191,7 +191,7 @@ export class SearchComponent {
   }
 
   // This method filters the structures on every letter typed
-  public filterStructuresOnSearch() {
+  filterStructuresOnSearch() {
     if (!this.structures) {
       return;
     }

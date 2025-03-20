@@ -18,7 +18,7 @@ import {
   delay,
   distinctUntilChanged,
   endWith,
-  filter,
+  filter as rxjsFilter,
   ignoreElements,
   map,
   repeat,
@@ -165,10 +165,9 @@ function compareConfig(x: ApiEndpointDataSourceOptions, y: ApiEndpointDataSource
     return false;
   } else if (x.token !== undefined) {
     return true;
-  } else {
-    // Deep compare?
-    return x.filter === y.filter && x.dataSources === y.dataSources;
   }
+  // Deep compare?
+  return x.filter === y.filter && x.dataSources === y.dataSources;
 }
 
 /** Api endpoint data source */
@@ -437,7 +436,7 @@ export class ApiEndpointDataSourceService implements DataSource {
   private ensureDatabaseReady(token: string | undefined): Observable<string | undefined> {
     const check = () =>
       this.api.dbStatus({ token }).pipe(
-        filter((resp) => resp.status !== 'Ready'),
+        rxjsFilter((resp) => resp.status !== 'Ready'),
         switchMap((resp) => of(undefined).pipe(delay(resp.checkback ?? 0))),
       );
 

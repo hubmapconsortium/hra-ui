@@ -215,8 +215,8 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
         range.enable();
       }
     });
-    explicitEffect([_value, min, max], ([value, min, max]) => {
-      const [low, high] = this.normalizeValue(value, value, min, max);
+    explicitEffect([_value, min, max], ([value, minValue, maxValue]) => {
+      const [low, high] = this.normalizeValue(value, value, minValue, maxValue);
       range.setValue({ low, high });
     });
 
@@ -301,10 +301,8 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
 
   /**
    * Handle mouse clicks on the field (excluding the panel)
-   *
-   * @param event Mouse event
    */
-  onContainerClick(_event: MouseEvent): void {
+  onContainerClick(): void {
     this.open();
   }
 

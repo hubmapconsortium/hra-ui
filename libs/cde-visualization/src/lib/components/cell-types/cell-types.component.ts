@@ -84,9 +84,8 @@ export class CellTypesComponent {
   protected readonly columns = computed(() => {
     if (this.hideCellLinkData()) {
       return ['select', 'cellType', 'count'];
-    } else {
-      return ['select', 'cellType', 'count', 'links'];
     }
+    return ['select', 'cellType', 'count', 'links'];
   });
 
   /** Tooltip position configuration */
@@ -101,7 +100,7 @@ export class CellTypesComponent {
     cell types, cell links, and cell type color map formatting.`;
 
   /** Flag to toggle cell links row visibility */
-  protected hideCellLinkData = signal(false);
+  protected readonly hideCellLinkData = signal(false);
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -141,9 +140,8 @@ export class CellTypesComponent {
       return 'none';
     } else if (selectionLength < cellTypesLength) {
       return 'partial';
-    } else {
-      return 'full';
     }
+    return 'full';
   });
 
   /** Helper function to calculate the number of nodes or edges */
@@ -158,7 +156,7 @@ export class CellTypesComponent {
   };
 
   /** Computed total cell count based on selection */
-  protected totalCellCount = computed(() => {
+  protected readonly totalCellCount = computed(() => {
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 
@@ -166,7 +164,7 @@ export class CellTypesComponent {
   });
 
   /** The total cell links count */
-  protected totalCellLinksCount = computed(() => {
+  protected readonly totalCellLinksCount = computed(() => {
     // Grab dependency on current selection since selectionModel is used indirectly
     this.selection();
 

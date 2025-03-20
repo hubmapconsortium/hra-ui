@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ftu-ui',
   preset: '../../jest.preset.js',

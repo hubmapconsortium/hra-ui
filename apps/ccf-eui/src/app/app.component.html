@@ -112,60 +112,60 @@
       </div>
     </div>
 
-    <hra-expansion-panel class="vis-panel" tagline="Body Visualization" disabled>
-      <hra-expansion-panel-actions>
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          hraIconButtonSize="large"
-          aria-label="Icon to open nested menu"
-          hraMicroTooltip="More"
-        >
-          <mat-icon>more_vert</mat-icon>
+    <div class="vis-panel">
+      <span class="tagline">Body Visualization</span>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        hraIconButtonSize="large"
+        aria-label="Icon to open nested menu"
+        hraMicroTooltip="More"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="submenu">
+          <mat-icon>info</mat-icon>
+          Info
+          <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="submenu">
-            <mat-icon>info</mat-icon>
-            Info
-            <mat-icon class="expand-arrow">arrow_right</mat-icon>
-          </button>
-          <button mat-menu-item [matMenuTriggerFor]="submenu2">
-            <mat-icon>visibility</mat-icon>
-            Organ visibility
-            <mat-icon class="expand-arrow">arrow_right</mat-icon>
-          </button>
-          <mat-divider class="menu-divider"></mat-divider>
-          <button mat-menu-item (click)="resetView(bodyUI)">
-            <mat-icon class="reset icon">reset_settings</mat-icon>
-            Reset visualization view
-          </button>
-        </mat-menu>
-        <mat-menu #submenu="matMenu">
-          <button mat-menu-item>
-            All Human Reference Atlas organs may be viewed in the Body Visualization section. Show/hide organs with the
-            organ search feature. Hiding and showing organs does not filter data results.
-          </button>
-        </mat-menu>
-        <mat-menu #submenu2="matMenu">
-          <button mat-menu-item (click)="selectAllOrgans()">
-            <mat-icon>visibility</mat-icon>
-            Show all organs
-          </button>
-          <button mat-menu-item (click)="clearAllOrgans()">
-            <mat-icon>visibility_off</mat-icon>
-            Hide all organs
-          </button>
-          <mat-divider class="menu-divider"></mat-divider>
-          <button mat-menu-item (click)="scene.setDefaultOrgans()">
-            <mat-icon class="reset icon">reset_settings</mat-icon>
-            Reset to default organ view
-          </button>
-        </mat-menu>
-      </hra-expansion-panel-actions>
-      <hra-expansion-panel-header-content>
-        <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
-      </hra-expansion-panel-header-content>
-    </hra-expansion-panel>
+        <button mat-menu-item [matMenuTriggerFor]="submenu2">
+          <mat-icon>visibility</mat-icon>
+          Organ visibility
+          <mat-icon class="expand-arrow">arrow_right</mat-icon>
+        </button>
+        <mat-divider class="menu-divider"></mat-divider>
+        <button mat-menu-item (click)="resetView(bodyUI)">
+          <mat-icon class="reset icon">reset_settings</mat-icon>
+          Reset visualization view
+        </button>
+      </mat-menu>
+      <mat-menu #submenu="matMenu">
+        <button mat-menu-item>
+          All Human Reference Atlas organs may be viewed in the Body Visualization section. Show/hide organs with the
+          organ search feature. Hiding and showing organs does not filter data results.
+        </button>
+      </mat-menu>
+      <mat-menu #submenu2="matMenu">
+        <button mat-menu-item (click)="selectAllOrgans()">
+          <mat-icon>visibility</mat-icon>
+          Show all organs
+        </button>
+        <button mat-menu-item (click)="clearAllOrgans()">
+          <mat-icon>visibility_off</mat-icon>
+          Hide all organs
+        </button>
+        <mat-divider class="menu-divider"></mat-divider>
+        <button mat-menu-item (click)="scene.setDefaultOrgans()">
+          <mat-icon class="reset icon">reset_settings</mat-icon>
+          Reset to default organ view
+        </button>
+      </mat-menu>
+
+      <div class="filler"></div>
+
+      <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
+    </div>
 
     <div class="content">
       <button

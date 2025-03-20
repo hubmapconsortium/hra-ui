@@ -79,9 +79,9 @@ export class ReportComponent implements OnInit {
   @Input() compareData!: Observable<{ data: Row[]; sheets: CompareData[] }>;
   @Input() bmType = '';
   @Input() hideReportCompareTab = false;
-  @Output() closeReport = new EventEmitter<void>();
-  @Output() computedReport = new EventEmitter<Report>();
-  @Output() deleteSheet = new EventEmitter<number>();
+  @Output() readonly closeReport = new EventEmitter<void>();
+  @Output() readonly computedReport = new EventEmitter<Report>();
+  @Output() readonly deleteSheet = new EventEmitter<number>();
   total_AS_CT = 0;
   total_CT_B = 0;
 
@@ -310,7 +310,7 @@ export class ReportComponent implements OnInit {
       this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Download Full Report');
 
       if (this.compareReport) {
-        for (const [sheet, _unused] of this.compareReport.entries()) {
+        for (const sheet of this.compareReport.keys()) {
           allReport.push(this.downloadCompareSheetReport(sheet));
         }
       }

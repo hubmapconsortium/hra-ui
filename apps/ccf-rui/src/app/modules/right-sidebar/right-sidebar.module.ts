@@ -46,7 +46,6 @@ import { RightSidebarComponent } from './right-sidebar.component';
     MatMenuModule,
     ButtonsModule,
     IconButtonSizeDirective,
-    MatDividerModule,
     MicroTooltipDirective,
   ],
   declarations: [RightSidebarComponent],

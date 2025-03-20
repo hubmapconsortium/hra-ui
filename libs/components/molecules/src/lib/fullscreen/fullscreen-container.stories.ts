@@ -1,5 +1,4 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { FullscreenContentComponent } from './fullscreen-content.component';
 import { FullscreenContainerComponent } from './fullscreen-container.component';
 

@@ -57,7 +57,7 @@ export class AppComponent {
   /** Organs */
   organs$ = this.sceneSource.filteredOrgans$;
   /** Scene */
-  scene$ = this.sceneSource.filteredScene$.pipe(tap((_) => this.reset()));
+  scene$ = this.sceneSource.filteredScene$.pipe(tap(() => this.reset()));
 
   /** Resets the body ui */
   private async reset(): Promise<void> {

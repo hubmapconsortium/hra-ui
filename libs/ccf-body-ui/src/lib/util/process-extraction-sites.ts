@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 
 import { SpatialEntityJsonLd } from '../shared/ccf-spatial-jsonld';

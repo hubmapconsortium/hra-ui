@@ -26,40 +26,39 @@ function meshLayer(
 ): SimpleMeshLayer<unknown> | undefined {
   if (!data || data.length === 0) {
     return undefined;
-  } else {
-    let mesh: Geometry;
-    switch (options['geometry']) {
-      case 'sphere':
-        mesh = new SphereGeometry();
-        break;
-      case 'cone':
-        mesh = new ConeGeometry();
-        break;
-      case 'cylinder':
-        mesh = new CylinderGeometry();
-        break;
-      case 'cube':
-      default:
-        mesh = new CubeGeometry();
-        break;
-    }
-    return new SimpleMeshLayer({
-      ...{
-        id,
-        pickable: true,
-        autoHighlight: false,
-        highlightColor: [30, 136, 229, 255],
-        coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
-        data,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        mesh: mesh as any,
-        wireframe: false,
-        getColor: (d) => (d as { color: [number, number, number, number] }).color || [255, 255, 255, 0.9 * 255],
-        getTransformMatrix: (d) => (d as { transformMatrix: number[] }).transformMatrix,
-      },
-      ...options,
-    });
   }
+  let mesh: Geometry;
+  switch (options['geometry']) {
+    case 'sphere':
+      mesh = new SphereGeometry();
+      break;
+    case 'cone':
+      mesh = new ConeGeometry();
+      break;
+    case 'cylinder':
+      mesh = new CylinderGeometry();
+      break;
+    case 'cube':
+    default:
+      mesh = new CubeGeometry();
+      break;
+  }
+  return new SimpleMeshLayer({
+    ...{
+      id,
+      pickable: true,
+      autoHighlight: false,
+      highlightColor: [30, 136, 229, 255],
+      coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
+      data,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mesh: mesh as any,
+      wireframe: false,
+      getColor: (d) => (d as { color: [number, number, number, number] }).color || [255, 255, 255, 0.9 * 255],
+      getTransformMatrix: (d) => (d as { transformMatrix: number[] }).transformMatrix,
+    },
+    ...options,
+  });
 }
 
 /**
@@ -76,22 +75,21 @@ function textLayer(
 ): TextLayer<unknown> | undefined {
   if (!data || data.length === 0) {
     return undefined;
-  } else {
-    return new TextLayer({
-      ...{
-        id,
-        pickable: true,
-        data: data.map((d) => ({
-          ...d,
-          position: new Matrix4(d.transformMatrix).getTranslation(),
-        })),
-        getText: (d) => (d as { text: string }).text,
-        getPosition: (d) => (d as { position: [number, number] }).position,
-        getColor: (d) => (d as { color: [number, number, number, number] }).color,
-      },
-      ...options,
-    });
   }
+  return new TextLayer({
+    ...{
+      id,
+      pickable: true,
+      data: data.map((d) => ({
+        ...d,
+        position: new Matrix4(d.transformMatrix).getTranslation(),
+      })),
+      getText: (d) => (d as { text: string }).text,
+      getPosition: (d) => (d as { position: [number, number] }).position,
+      getColor: (d) => (d as { color: [number, number, number, number] }).color,
+    },
+    ...options,
+  });
 }
 
 /**

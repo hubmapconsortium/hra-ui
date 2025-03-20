@@ -99,7 +99,6 @@ export function normalizeFilter(filter: Filter): Required<Filter> {
 }
 
 /** Current state of data queries. */
-// eslint-disable-next-line no-shadow
 export enum DataQueryState {
   /** One or more queries are running. */
   Running = 'running',

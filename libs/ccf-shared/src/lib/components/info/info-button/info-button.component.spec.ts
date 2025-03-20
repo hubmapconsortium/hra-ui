@@ -9,7 +9,7 @@ describe('InfoButtonComponent', () => {
   let shallow: Shallow<InfoButtonComponent>;
 
   const mockMatDialog = {
-    open(..._args: unknown[]): MatDialogRef<unknown, unknown> {
+    open(): MatDialogRef<unknown, unknown> {
       return undefined as unknown as MatDialogRef<unknown, unknown>;
     },
     openDialogs: [],

@@ -268,23 +268,23 @@ export class Structure {
 /** Row */
 export class Row {
   /** Anatomical structures */
-  anatomical_structures: Array<Structure> = [];
+  anatomical_structures: Structure[] = [];
   /** Cell types */
-  cell_types: Array<Structure> = [];
+  cell_types: Structure[] = [];
   /** All biomarkers */
-  biomarkers: Array<Structure> = [];
+  biomarkers: Structure[] = [];
   /** Protein biomarkers */
-  biomarkers_protein: Array<Structure> = [];
+  biomarkers_protein: Structure[] = [];
   /** Gene biomarkers */
-  biomarkers_gene: Array<Structure> = [];
+  biomarkers_gene: Structure[] = [];
   /** Lipid biomarkers */
-  biomarkers_lipids: Array<Structure> = [];
+  biomarkers_lipids: Structure[] = [];
   /** Meta biomarkers */
-  biomarkers_meta: Array<Structure> = [];
+  biomarkers_meta: Structure[] = [];
   /** Prot biomarkers */
-  biomarkers_prot: Array<Structure> = [];
+  biomarkers_prot: Structure[] = [];
   /** Ftu types */
-  ftu_types: Array<Structure> = [];
+  ftu_types: Structure[] = [];
   /** References */
   references: Reference[] = [];
 
