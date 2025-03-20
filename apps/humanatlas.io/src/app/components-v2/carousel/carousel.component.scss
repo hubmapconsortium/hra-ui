@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  position: relative;
+  padding-bottom: 4rem;
+  overflow: visible;
+
+  .carousel {
+    &::part(container) {
+      overflow: visible;
+    }
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  @media (min-width: 920px) {
+    padding-bottom: 0rem;
+  }
+}

@@ -1,0 +1,19 @@
+<img class="image" [src]="item().imageSrc | assetUrl" />
+
+<div class="info">
+  <div class="tagline">{{ item().tagline }}</div>
+  <div class="description">{{ item().description }}</div>
+
+  @if (getLinkType(item()) === 'url') {
+    <a mat-button hraCtaButton class="action" [href]="getLink(item())" target="_blank">
+      {{ item().action }}
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </a>
+  } @else {
+    <!-- <a mat-stroked-button class="get-button" [routerLink]="['', item().route]">{{ item().buttonText }}</a> -->
+    <a mat-button hraCtaButton class="action" target="_blank">
+      {{ item().action }}
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </a>
+  }
+</div>
