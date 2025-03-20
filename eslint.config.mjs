@@ -35,7 +35,6 @@ export const configs = {
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
       rules: {
-        // Enforce camelcase?
         curly: ['error', 'all'],
         eqeqeq: ['error', 'always', { null: 'ignore' }],
         'max-depth': ['error', 5],
@@ -63,6 +62,20 @@ export const configs = {
         yoda: 'warn',
       },
     },
+    {
+      files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
+      rules: {
+        // Disable eslint rules that interfere with typescript rules
+        'no-empty-function': 'off',
+        'no-shadow': 'off',
+
+        '@typescript-eslint/array-type': 'error',
+        '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+        '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions', 'constructors'] }],
+        '@typescript-eslint/no-non-null-assertion': 'error',
+        '@typescript-eslint/no-shadow': 'error',
+      },
+    },
   ],
   angular: [
     ...nx.configs['flat/angular'],
@@ -70,6 +83,12 @@ export const configs = {
     {
       files: ['**/*.ts'],
       rules: {
+        '@angular-eslint/no-async-lifecycle-method': 'error',
+        '@angular-eslint/no-attribute-decorator': 'error',
+        '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
+        '@angular-eslint/prefer-output-readonly': 'error',
+        '@angular-eslint/prefer-signals': 'error',
+
         '@angular-eslint/directive-selector': [
           'error',
           {
