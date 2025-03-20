@@ -843,7 +843,7 @@ const buildMetadata = (metadataRows, warnings) => {
         title,
     };
     return metadataRows.reduce((metadata, rowData, rowNumber) => {
-        const [metadataIdentifier, metadataValue, ..._] = rowData;
+        const [metadataIdentifier, metadataValue] = rowData;
         /**
          * Raise Warnings:
          *    Case 1: IF the Metadata Key/Value is filled or empty
@@ -1017,9 +1017,7 @@ function makeASCTBData(data) {
         const asctbData = makeASCTBDataWork(data);
         return { ...asctbData, isOmap: false };
     }
-    else {
-        throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
-    }
+    throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
 }
 /**
  * Processes data into asctb format
@@ -1955,7 +1953,7 @@ function setupOntologyLookupRoutes(app) {
 }
 
 ;// ./src/routes/open-api-spec.ts
-const browserRoute = (_req, res, _next) => {
+const browserRoute = (_req, res) => {
     res.send(`<!doctype html>
     <html lang="en">
     <head>
@@ -1970,7 +1968,7 @@ const browserRoute = (_req, res, _next) => {
     </body>
     </html>`);
 };
-const openApiRoute = (_req, res, _next) => {
+const openApiRoute = (_req, res) => {
     res.sendFile('assets/asctb-api-spec.yaml', {
         root: __dirname,
     });
