@@ -9,55 +9,54 @@ const testCards: CardInfo[] = [
   {
     count: '17',
     label: 'consortia',
-    icon: 'diversity_3',
+    link: { icon: 'diversity_3' },
   },
   {
     count: '250+',
     label: 'experts',
-    icon: 'school',
+    link: { icon: 'school' },
   },
   {
     count: '1,000+',
     label: 'publications',
-    icon: 'docs',
+    link: { icon: 'docs' },
   },
   {
     count: '71',
     label: 'organs',
-    icon: 'neurology',
+    link: { icon: 'neurology' },
   },
   {
     count: '4,694',
     label: 'anatomical structures',
-    icon: 'favorite',
+    link: { icon: 'favorite' },
   },
   {
     count: '1,288',
     label: 'cell types',
-    iconSrc: 'assets/images/cell-types.svg',
+    link: { iconSrc: 'assets/images/cell-types.svg' },
   },
   {
     count: '2,018',
     label: 'biomarkers',
-    icon: 'add_location',
+    link: { icon: 'add_location' },
   },
   {
     count: '23',
     label: 'organ mapping antibody panels',
-    icon: 'map',
+    link: { icon: 'map' },
   },
   {
     count: '22',
     label: 'functional tissue units',
-    icon: 'layers',
+    link: { icon: 'layers' },
   },
 ];
 
 export interface CardInfo {
   label: string;
   count: string;
-  icon?: string;
-  iconSrc?: string;
+  link: { icon: string } | { iconSrc: string };
 }
 
 @Component({
@@ -69,4 +68,12 @@ export interface CardInfo {
 })
 export class CountInfoComponent {
   readonly countInfoList = input<CardInfo[]>(testCards);
+
+  linkType(card: CardInfo): string {
+    return 'icon' in card.link ? 'icon' : 'iconSrc';
+  }
+
+  getLink(card: CardInfo): string {
+    return 'icon' in card.link ? card.link.icon : card.link.iconSrc;
+  }
 }

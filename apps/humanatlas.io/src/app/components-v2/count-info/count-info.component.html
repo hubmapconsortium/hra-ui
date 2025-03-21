@@ -1,9 +1,11 @@
-<div class="count-card" *ngFor="let card of countInfoList()">
-  @if (card.icon) {
-    <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
-  } @else if (card.iconSrc) {
-    <div class="card-icon" [inlineSVG]="card.iconSrc | assetUrl"></div>
-  }
-  <span class="card-count">{{ card.count }}</span>
-  <span class="card-text">{{ card.label }}</span>
-</div>
+@for (card of countInfoList(); track card) {
+  <div class="count-card">
+    @if (linkType(card) === 'icon') {
+      <mat-icon class="card-icon">{{ getLink(card) }}</mat-icon>
+    } @else {
+      <div class="card-icon" [inlineSVG]="getLink(card) | assetUrl"></div>
+    }
+    <span class="card-count">{{ card.count }}</span>
+    <span class="card-text">{{ card.label }}</span>
+  </div>
+}
