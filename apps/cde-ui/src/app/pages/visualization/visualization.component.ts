@@ -9,7 +9,6 @@ import {
   input,
   viewChild,
 } from '@angular/core';
-import '@hra-ui/cde-visualization';
 import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 
 /**

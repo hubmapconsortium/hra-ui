@@ -35,18 +35,21 @@ function concatEntries(
   if (array1 !== undefined) {
     if (array2 !== undefined) {
       return [...array1, ...array2];
-    } else {
-      return array1;
     }
-  } else {
-    return array2;
+    return array1;
   }
+  return array2;
 }
 
 /** Node filter view */
 export class NodeFilterView {
+  /** Included entries */
+  readonly include: NodeFilterEntry[] | undefined;
+  /** Excluded entries */
+  readonly exclude: NodeFilterEntry[] | undefined;
+
   /** Predicate that tests whether a node is included in the filter */
-  readonly includes = this.selectFilterFn();
+  readonly includes: NodeFilterPredFn;
 
   /**
    * Get whether the filter is empty
@@ -74,10 +77,11 @@ export class NodeFilterView {
   };
 
   /** Initialize the filter */
-  constructor(
-    readonly include: NodeFilterEntry[] | undefined,
-    readonly exclude: NodeFilterEntry[] | undefined,
-  ) {}
+  constructor(include: NodeFilterEntry[] | undefined, exclude: NodeFilterEntry[] | undefined) {
+    this.include = include;
+    this.exclude = exclude;
+    this.includes = this.selectFilterFn();
+  }
 
   /**
    * Selects a node filter predicate function based on whether
@@ -96,9 +100,8 @@ export class NodeFilterView {
       return falsy;
     } else if (exclude.length === 0) {
       return includeFn;
-    } else {
-      return (type, index) => includeFn(type, index) && !excludeFn(type, index);
     }
+    return (type, index) => includeFn(type, index) && !excludeFn(type, index);
   }
 
   /**

@@ -37,7 +37,8 @@
     "@angular/platform-browser": "^19.2.0",
     "ngx-highlightjs": "^12.0.0",
     "highlight.js": "^11.11.1",
-    "ngxtension": "^4.1.0"
+    "ngxtension": "^4.1.0",
+    "@hra-ui/common": "1.0.0"
   },
   "dependencies": {},
   "sideEffects": false

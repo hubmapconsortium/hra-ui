@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, inject } from '@angular/core';
 import { CardHeader, ImageData } from './simple-image';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: false,
 })
 export class SimpleImageComponent {
+  private readonly dialog = inject(MatDialog);
+
   /** Details to be displayed inside the card */
   @Input() imageInfo: ImageData[] = [];
 
@@ -18,9 +20,6 @@ export class SimpleImageComponent {
 
   /** Custom class for the modal */
   @Input() customModalClass = '';
-
-  /** Creates instance of MatDialog */
-  constructor(private readonly dialog: MatDialog) {}
 
   /** Opens a modal when clicked on image */
   openImageViewer(content: TemplateRef<unknown>): void {

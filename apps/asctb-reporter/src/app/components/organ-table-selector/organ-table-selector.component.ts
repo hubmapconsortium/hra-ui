@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -14,6 +14,11 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
   standalone: false,
 })
 export class OrganTableSelectorComponent {
+  readonly configService = inject(ConfigService);
+  readonly dialogRef = inject<MatDialogRef<OrganTableSelectorComponent>>(MatDialogRef);
+  readonly data = inject<OrganTableSelect>(MAT_DIALOG_DATA);
+  readonly ga = inject(GoogleAnalyticsService);
+
   /**
    * Sheet configs
    */
@@ -66,12 +71,9 @@ export class OrganTableSelectorComponent {
   dataSource!: MatTableDataSource<SheetDetails>;
   omapdataSource!: MatTableDataSource<SheetDetails>;
 
-  constructor(
-    public configService: ConfigService,
-    public dialogRef: MatDialogRef<OrganTableSelectorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: OrganTableSelect,
-    public ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.configService.omapsheetConfiguration$.subscribe((sheetOptions) => {
       this.omapSheetOptions = sheetOptions.filter((o) => o.name !== 'some');
       this.omapdataSource = new MatTableDataSource(this.omapSheetOptions);

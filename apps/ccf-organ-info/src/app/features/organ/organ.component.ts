@@ -8,12 +8,14 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BodyUiComponent } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+/** Organ display */
 @Component({
   selector: 'ccf-organ',
   templateUrl: './organ.component.html',
@@ -22,29 +24,45 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   standalone: false,
 })
 export class OrganComponent implements AfterViewChecked, OnChanges {
+  /** Analytics service */
+  readonly ga = inject(GoogleAnalyticsService);
+
+  /** Organ */
   @Input() organ?: SpatialEntity;
+  /** Scene */
   @Input() scene!: SpatialSceneNode[];
+  /** Organ iri */
   @Input() organIri!: string;
+  /** Model sex */
   @Input() sex?: 'Male' | 'Female' | 'Both';
+  /** Organ side */
   @Input() side?: 'Left' | 'Right';
+  /** Tissue blocks */
   @Input() blocks?: TissueBlock[];
+  /** Data filter */
   @Input() filter?: Filter;
 
+  /** Emits when the user switches the model sex */
   @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
+  /** Emits when the user switches organ side */
   @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
+  /** Emits when the user clicks a node */
   @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
 
+  /** Reference to the body ui */
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
 
+  /** Highlighted node */
   highlightedNodeId!: string;
+  /** Filtered tissue blocks */
   filteredBlocks!: string[];
 
-  constructor(readonly ga: GoogleAnalyticsService) {}
-
+  /** Updates highlighting on dom changes */
   ngAfterViewChecked(): void {
     this.updateHighlighting();
   }
 
+  /** Updates the highlighted block */
   updateHighlighting(): void {
     const providerName = new Set<string>(this.filter?.tmc ?? []);
     this.filteredBlocks =
@@ -63,22 +81,26 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
     );
   }
 
+  /** Reacts to input changes */
   ngOnChanges(changes: SimpleChanges): void {
     if (this.bodyUI && 'organ' in changes) {
       this.zoomToFitOrgan();
     }
   }
 
+  /** Update the model sex */
   updateSex(selection?: 'Male' | 'Female'): void {
     this.sex = selection;
     this.sexChange.emit(this.sex);
   }
 
+  /** Update the organ side */
   updateSide(selection?: 'Left' | 'Right'): void {
     this.side = selection;
     this.sideChange.emit(this.side);
   }
 
+  /** Zoom to fit */
   zoomToFitOrgan(): void {
     const { bodyUI, organ } = this;
     if (organ) {
@@ -89,6 +111,7 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
     }
   }
 
+  /** Handles node click events */
   nodeClicked(event: NodeClickEvent): void {
     this.ga.event('node_click', 'organ', event.node['@id']);
     this.highlightedNodeId =

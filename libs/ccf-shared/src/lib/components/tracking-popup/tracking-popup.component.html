@@ -1,5 +1,10 @@
 <p>We log usage to improve this service.</p>
-<button *ngIf="showButton('opt-in')" mat-button (click)="submit(true)">
-  {{ allowTelemetry === 'not-set' ? 'I understand' : 'Opt in' }}
-</button>
-<button *ngIf="showButton('opt-out')" mat-button hraSecondaryButton (click)="submit(false)">Opt out</button>
+@if (showButton('opt-in')) {
+  <button mat-button (click)="submit(true)">
+    {{ allowTelemetry === 'not-set' ? 'I understand' : 'Opt in' }}
+  </button>
+}
+
+@if (showButton('opt-out')) {
+  <button mat-button hraSecondaryButton (click)="submit(false)">Opt out</button>
+}

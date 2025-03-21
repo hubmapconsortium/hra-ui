@@ -16,5 +16,5 @@ export class ChooseVersionComponent {
   @Input() selectedDate?: ChooseVersion;
 
   /** Emits the input select data when an option is selected */
-  @Output() selectedVersion = new EventEmitter<ChooseVersion>();
+  @Output() readonly selectedVersion = new EventEmitter<ChooseVersion>();
 }

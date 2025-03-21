@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { z } from 'zod';
 
+/** Long card data */
 export type LongCardSpec = z.infer<typeof LONG_CARD_DEF>;
 
 /** Zod Object definition for the long card */

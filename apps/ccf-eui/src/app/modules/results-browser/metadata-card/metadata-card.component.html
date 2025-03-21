@@ -1,0 +1,20 @@
+<div class="header" (click)="toggleExpansion.emit()">
+  <span class="title">{{ tagline() }}</span>
+  <span class="label" [title]="label()">{{ label() }}</span>
+  <span class="label" [title]="label2()">{{ label2() }}</span>
+</div>
+
+<a
+  class="menu-icon"
+  mat-icon-button
+  hraMicroTooltip="Source data"
+  target="_blank"
+  rel="noopener noreferrer"
+  [href]="menuLink() ?? ''"
+>
+  <mat-icon>database</mat-icon>
+</a>
+
+<div class="content">
+  <ng-content></ng-content>
+</div>

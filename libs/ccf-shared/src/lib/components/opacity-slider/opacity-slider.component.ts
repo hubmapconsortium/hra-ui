@@ -46,8 +46,10 @@ export class OpacitySliderComponent implements OnInit {
    */
   @Output() readonly sliderChanged = new EventEmitter<string>();
 
+  /** Previous opacity */
   prevOpacity!: number;
 
+  /** Initialize the component */
   ngOnInit(): void {
     if (this.visible) {
       this.prevOpacity = 0;
@@ -56,6 +58,7 @@ export class OpacitySliderComponent implements OnInit {
     }
   }
 
+  /** Reset previous opacity */
   reset(): void {
     this.prevOpacity = 20;
   }

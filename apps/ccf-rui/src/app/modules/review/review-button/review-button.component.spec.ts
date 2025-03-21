@@ -65,7 +65,6 @@ describe('ReviewButtonComponent', () => {
   });
 
   it('prevents default', async () => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
       preventDefault: () => undefined,
     } as MouseEvent;

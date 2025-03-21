@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
+/** Slide toggle */
 @Component({
   selector: 'ccf-slide-toggle',
   templateUrl: './slide-toggle.component.html',

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 
@@ -27,7 +27,7 @@ export class StoreDebugComponent implements OnDestroy {
   get data(): KVList<KVList> {
     const states: KVList<Record<string, unknown>> = Object.entries(this.root);
     const stateValues: KVList<KVList> = states.map(([key, values]) => [key, Object.entries(values)]);
-    return stateValues.filter(([_key, values]) => values.length > 0);
+    return stateValues.filter(([, values]) => values.length > 0);
   }
 
   /** Latest store data */
@@ -43,7 +43,10 @@ export class StoreDebugComponent implements OnDestroy {
    * @param store The data store.
    * @param cdr Change detection for this component.
    */
-  constructor(store: Store, cdr: ChangeDetectorRef) {
+  constructor() {
+    const store = inject(Store);
+    const cdr = inject(ChangeDetectorRef);
+
     const sub = store.subscribe((root) => {
       this.root = root as Record<string, Record<string, unknown>>;
       cdr.markForCheck();

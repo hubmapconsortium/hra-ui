@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -17,6 +17,10 @@ import { CONTIRBUTORS, IMAGES, VIDEO_ACTIONS } from '../../static/home';
   standalone: false,
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
+  readonly configService = inject(ConfigService);
+  readonly ga = inject(GoogleAnalyticsService);
+  private readonly router = inject(Router);
+
   window = window;
   dataVersion = 'latest';
   VIDEO_ACTIONS = VIDEO_ACTIONS;
@@ -39,11 +43,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   private videoContainerResizeObserver?: ResizeObserver;
 
-  constructor(
-    public configService: ConfigService,
-    private readonly router: Router,
-    public ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
     this.configService.config$.subscribe((config) => {
       this.masterSheetLink = config['masterSheetLink'] as string;
     });

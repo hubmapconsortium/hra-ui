@@ -82,7 +82,7 @@ export class CellPopulationPredictorComponent {
   protected readonly predictionsService = inject(PredictionsService);
 
   /** Supported organs */
-  protected supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
+  protected readonly supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
     initialValue: [],
   });
 

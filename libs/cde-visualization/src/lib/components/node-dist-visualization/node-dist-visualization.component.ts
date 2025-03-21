@@ -27,7 +27,6 @@ import {
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
-import '@hra-ui/node-dist-vis';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -41,6 +40,7 @@ import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
 
+/** Number format for distances */
 const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
   maximumFractionDigits: 2,
 });
@@ -68,13 +68,16 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
+  /** Input for node data */
   readonly nodes = input.required<NodesView>();
 
+  /** Input for edge data */
   readonly edges = input.required<EdgesView>();
 
   /** Input for the color map data */
   readonly colorMap = input.required<ColorMapView>();
 
+  /** Node filter */
   readonly nodeFilter = model.required<NodeFilterView>();
 
   /** Input for the maximum edge distance */
@@ -89,16 +92,22 @@ export class NodeDistVisualizationComponent {
   /** Flag to check cell links visibility */
   protected readonly edgesDisabled = signal(false);
 
+  /** Current view mode */
   protected readonly viewMode = signal<ViewMode>('explore');
 
+  /** Current node selection */
   protected readonly selection = signal<NodeEvent[]>([]);
 
+  /** If there is a current node selection */
   protected readonly hasSelection = computed(() => {
     return this.viewMode() === 'select' && this.selection().length > 0;
   });
 
+  /** Signal containing node event */
   protected readonly cellInfo = signal<NodeEvent | undefined>(undefined);
+  /** Opens cell info panel */
   protected readonly cellInfoOpen = computed(() => this.viewMode() === 'inspect' && !!this.cellInfo());
+  /** Position of cell info panel */
   protected readonly cellInfoPosition = computed((): ConnectedPosition[] => [
     {
       originX: 'start',
@@ -117,6 +126,8 @@ export class NodeDistVisualizationComponent {
       offsetY: this.cellInfo()?.clientY,
     },
   ]);
+
+  /** Data for cell info panel */
   protected readonly cellInfoContent = computed((): DataItem[] => {
     const info = this.cellInfo();
     if (!info) {
@@ -147,9 +158,13 @@ export class NodeDistVisualizationComponent {
   /** Service to handle file saving */
   private readonly fileSaver = inject(FileSaverService);
 
+  /** Full screen portal element */
   private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
+
+  /** Visualization element */
   private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
 
+  /** Cell info overlay element */
   private readonly cellInfoOverlay = viewChild.required<CdkConnectedOverlay>('cellInfoOverlay');
 
   /** Bind data and events to the visualization element */
@@ -202,15 +217,18 @@ export class NodeDistVisualizationComponent {
     this.visEl().instance?.resetView();
   }
 
+  /** Resets the orbit controls */
   resetOrbit(): void {
     this.visEl().instance?.resetOrbit();
   }
 
+  /** Resets the deleted nodes filter */
   resetDeletedNodes(): void {
     const newFilter = this.nodeFilter().clear(false, true);
     this.nodeFilter.set(newFilter);
   }
 
+  /** Deletes the selected nodes */
   deleteSelection(): void {
     const selection = this.selection();
     if (selection.length > 0) {

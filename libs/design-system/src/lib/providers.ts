@@ -3,8 +3,8 @@ import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common
 import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
-import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideButtons } from '@hra-ui/design-system/buttons';
+import { provideChips } from '@hra-ui/design-system/buttons/chips';
 import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
@@ -12,6 +12,7 @@ import { provideInput } from '@hra-ui/design-system/input';
 import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideSelect } from '@hra-ui/design-system/select';
+import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 
@@ -36,16 +37,17 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
       },
     }),
     provideButtons(),
-    provideIconButtons(),
-    provideTrees(),
-    provideScrolling(options?.scrolling),
-    provideMenu(),
-    provideTable(),
-    provideSelect(),
-    provideInput(),
-    provideButtonToggle(),
     provideCheckboxes(),
+    provideChips(),
     provideCodeBlock(),
+    provideIconButtons(),
+    provideInput(),
+    provideMenu(),
+    provideScrolling(options?.scrolling),
+    provideSelect(),
+    provideSlider(),
+    provideTable(),
+    provideTrees(),
   ];
 }
 

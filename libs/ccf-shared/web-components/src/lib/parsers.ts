@@ -1,3 +1,4 @@
+/** Builtin input parsing function */
 export const BUILTIN_PARSERS = {
   boolean: (value: unknown): boolean => `${value}` !== 'false',
   json: (value: unknown): unknown => (typeof value === 'string' ? JSON.parse(value) : value),

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Spec, ValuesData, View } from 'vega';
 import { ReportLog } from '../../actions/logs.actions';
@@ -17,7 +17,7 @@ import { makeAS, makeBioMarkers, makeCellTypes } from './tree.functions';
   providedIn: 'root',
 })
 export class BimodalService {
-  constructor(private readonly store: Store) {}
+  private readonly store = inject(Store);
 
   /**
    * Function to create the bimodal network
@@ -297,9 +297,8 @@ export class BimodalService {
               .filter(({ val }) => {
                 if (str.id) {
                   return val.ontologyId === str.id;
-                } else {
-                  return val.name === str.name;
                 }
+                return val.name === str.name;
               })
               .map(({ idx }) => idx);
             const targets: number[] = [];
@@ -329,9 +328,8 @@ export class BimodalService {
               .filter(({ val }) => {
                 if (str.id && str.id.toLowerCase() !== 'not found') {
                   return val.ontologyId === str.id;
-                } else {
-                  return val.name === str.name;
                 }
+                return val.name === str.name;
               })
               .map(({ idx }) => idx);
             const sources: number[] = [];

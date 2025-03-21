@@ -1,7 +1,8 @@
-import { TableDataService } from './tabledata.service';
-import { MockProxy, mock } from 'jest-mock-extended';
 import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { MockProxy, mock } from 'jest-mock-extended';
 import { of } from 'rxjs';
+import { TableDataService } from './tabledata.service';
 
 describe('TableDataService', () => {
   let service: TableDataService;
@@ -9,7 +10,11 @@ describe('TableDataService', () => {
 
   beforeEach(() => {
     http = mock();
-    service = new TableDataService(http);
+    TestBed.configureTestingModule({
+      providers: [{ provide: HttpClient, useValue: http }],
+    });
+
+    service = TestBed.inject(TableDataService);
   });
 
   describe('getData()', () => {

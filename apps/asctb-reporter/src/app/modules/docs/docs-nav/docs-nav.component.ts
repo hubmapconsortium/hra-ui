@@ -15,6 +15,6 @@ export class DocsNavComponent {
 
   @Input() next: number | null = null;
   @Input() prev: number | null = null;
-  @Output() nextClick = new EventEmitter();
-  @Output() prevClick = new EventEmitter();
+  @Output() readonly nextClick = new EventEmitter();
+  @Output() readonly prevClick = new EventEmitter();
 }

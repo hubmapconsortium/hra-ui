@@ -16,6 +16,7 @@ import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
+
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -191,6 +192,7 @@ export class ViolinComponent {
     this.view.set(view);
   });
 
+  /** Resizes view after full screen toggle */
   /* istanbul ignore next */
   resizeAndSyncView() {
     const container = this.view()?.container();
