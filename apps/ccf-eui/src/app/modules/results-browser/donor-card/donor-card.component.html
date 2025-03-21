@@ -26,15 +26,14 @@
 
       @if (tissueBlock().datasets.length > 0) {
         <div>Datasets</div>
-        <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="tissueBlock().datasets">
-        </ccf-thumbnail-list>
+        <ccf-thumbnail-list [data]="tissueBlock().datasets" (linkClicked)="linkHandler()"> </ccf-thumbnail-list>
       }
     </ccf-metadata-card>
 
     @for (section of tissueBlock().sections; track section; let i = $index) {
       <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets" [menuLink]="sectionLinks()[i]">
         @if (section.datasets.length > 0) {
-          <ccf-thumbnail-list (linkClicked)="linkHandler($event.link)" [data]="section.datasets"> </ccf-thumbnail-list>
+          <ccf-thumbnail-list [data]="section.datasets" (linkClicked)="linkHandler()"> </ccf-thumbnail-list>
         }
       </ccf-metadata-card>
     }

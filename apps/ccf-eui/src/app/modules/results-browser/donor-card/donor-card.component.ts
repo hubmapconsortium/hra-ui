@@ -80,12 +80,7 @@ export class DonorCardComponent {
    *
    * @param url the URL to emit up.
    */
-  linkHandler(url: string): void {
+  linkHandler(): void {
     this.ga.event('link_clicked', 'donor_card', this.tissueBlock().label);
-    if (this.selected()) {
-      window.open(url, '_blank');
-    } else {
-      this.selected.set(true);
-    }
   }
 }

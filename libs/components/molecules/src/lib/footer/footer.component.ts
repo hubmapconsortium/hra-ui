@@ -108,8 +108,8 @@ export class FooterComponent<T extends DownloadFormat = DownloadFormat> {
     const target = event.target as HTMLElement;
     if (['download', 'download\nDownload'].includes(target.innerText)) {
       return;
-    } else {
-      this.downloadListOpen = false;
     }
+
+    this.downloadListOpen = false;
   }
 }

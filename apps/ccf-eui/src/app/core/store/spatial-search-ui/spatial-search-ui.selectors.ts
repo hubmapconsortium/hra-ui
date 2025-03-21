@@ -151,7 +151,7 @@ export class SpatialSearchUiSelectors {
   /** Get term counts */
   private static getTermCounts(counts: Record<string, number> | undefined, tree: OntologyTree): TermResult[] {
     return Object.entries(counts ?? {})
-      .filter(([_, count]) => count > 0)
+      .filter(([, count]) => count > 0)
       .map(([term, count]) => ({
         '@id': term,
         label: tree.nodes[term]?.label ?? term.split('/').slice(-1)[0],

@@ -48,9 +48,8 @@ export function deriveScenegraph(scenegraphNodeName: string, gltf: any): any {
     gltf.scenes = [gltf.scene];
 
     return { scene: gltf.scene, scenes: gltf.scenes };
-  } else {
-    return gltf;
   }
+  return gltf;
 }
 
 /**

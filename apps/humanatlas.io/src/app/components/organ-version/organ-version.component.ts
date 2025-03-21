@@ -134,7 +134,7 @@ export class OrganVersionComponent implements OnInit {
     const data = this.dataService.getData('ftu-cell-count-7th-release.csv', this.displayedColumnsData);
     this.tableData = data.pipe(
       map((result) => result.data),
-      map((data) => data.filter((record) => this.iCaseEquals(record['Organ'] as string, organName))),
+      map((item) => item.filter((record) => this.iCaseEquals(record['Organ'] as string, organName))),
     );
     this.columns = data.pipe(map((result) => result.columns));
     this.tableTitle = organName + ' Functional Tissue Units: Anatomical Structures & Cell Types';

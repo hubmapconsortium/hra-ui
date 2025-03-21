@@ -442,7 +442,7 @@ export class SheetState {
       rdfs_label: this.bodyLabel,
     };
 
-    for await (const [_unused, compareSheet] of compareData.entries()) {
+    for await (const compareSheet of compareData.values()) {
       this.sheetService
         .fetchSheetData(compareSheet.sheetId, compareSheet.gid, compareSheet.csvUrl, compareSheet.formData)
         .subscribe(
@@ -738,19 +738,18 @@ export class SheetState {
         }
       }
       return newSelectedOrgans;
-    } else {
-      const omapUberonIds = this.omapSheetConfig.map((organ) => organ.uberon_id);
-      const newSelectedOrgans: string[] = [];
-      selectedOrgans.forEach((selectedOrgan) => {
-        const sheetOrgan = this.sheetConfig.find(
-          (organ) => organ.name.toLowerCase() === selectedOrgan.split('-')[0].toLowerCase(),
-        );
-        if (sheetOrgan?.representation_of?.some((rep) => omapUberonIds.includes(rep))) {
-          newSelectedOrgans.push(selectedOrgan);
-        }
-      });
-      return newSelectedOrgans;
     }
+    const omapUberonIds = this.omapSheetConfig.map((organ) => organ.uberon_id);
+    const newSelectedOrgans: string[] = [];
+    selectedOrgans.forEach((selectedOrgan) => {
+      const sheetOrgan = this.sheetConfig.find(
+        (organ) => organ.name.toLowerCase() === selectedOrgan.split('-')[0].toLowerCase(),
+      );
+      if (sheetOrgan?.representation_of?.some((rep) => omapUberonIds.includes(rep))) {
+        newSelectedOrgans.push(selectedOrgan);
+      }
+    });
+    return newSelectedOrgans;
   }
 
   private convertOrganToBeforeFilterFormat(organ: string, filteredOut: boolean): SelectedOrganBeforeFilter {

@@ -10,5 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SectionCardComponent {
   /** Details to be displayed inside the card */
-  @Input() public cards: SectionCardItems[] = [];
+  @Input() cards: SectionCardItems[] = [];
 }

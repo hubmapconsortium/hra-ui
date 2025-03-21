@@ -3,8 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { LinkDirective } from '@hra-ui/cdk';
-import { EMPTY_LINK } from '@hra-ui/cdk';
+import { LinkDirective, EMPTY_LINK } from '@hra-ui/cdk';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
