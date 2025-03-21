@@ -12,7 +12,7 @@ export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];
   @Input() title = '';
   window = window;
-  @ViewChild('childMenu', { static: true }) public childMenu!: MatMenu;
+  @ViewChild('childMenu', { static: true }) childMenu!: MatMenu;
   sheetURL = 'https://docs.google.com/spreadsheets/d/';
 
   openURL(version: VersionDetail) {

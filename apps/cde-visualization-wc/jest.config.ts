@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'cde-visualization-wc',
   preset: '../../jest.preset.js',

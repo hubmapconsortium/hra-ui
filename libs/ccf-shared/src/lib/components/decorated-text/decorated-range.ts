@@ -24,9 +24,8 @@ function resolveIndex(index: number, length: number): number {
     return length;
   } else if (index + length < 0) {
     return 0;
-  } else {
-    return index + length;
   }
+  return index + length;
 }
 
 /**

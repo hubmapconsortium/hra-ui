@@ -28,7 +28,6 @@ export class TrackingPopupComponent {
 
   /** Dismiss the popup */
   dismiss(): void {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     this.data.preClose();
   }
 
@@ -43,8 +42,7 @@ export class TrackingPopupComponent {
     const { allowTelemetry } = this;
     if (allowTelemetry === 'not-set') {
       return true;
-    } else {
-      return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
     }
+    return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
   }
 }

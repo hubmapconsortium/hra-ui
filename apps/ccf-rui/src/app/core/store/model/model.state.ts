@@ -15,8 +15,6 @@ import { GlobalConfig, OrganConfig } from '../../services/config/config';
 import { PageState } from '../page/page.state';
 import { ReferenceDataState } from '../reference-data/reference-data.state';
 
-/* eslint-disable @typescript-eslint/member-ordering */
-
 /** A object with x, y, and z channels of the same type. */
 export interface XYZTriplet<T = number> {
   /** X channel */
@@ -94,7 +92,6 @@ export const RUI_ORGANS = ALL_ORGANS;
 export const MODEL_DEFAULTS: ModelStateModel = {
   id: '',
   label: '',
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   organ: { src: '', name: '' } as OrganInfo,
   organIri: '',
   organDimensions: { x: 90, y: 90, z: 90 },

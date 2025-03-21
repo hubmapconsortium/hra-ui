@@ -78,7 +78,6 @@ describe('SceneState', () => {
   it('should call updateFilter when sceneNode is Clicked', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@id': '',
         '@type': '',
         representation_of: 'test',
@@ -95,7 +94,6 @@ describe('SceneState', () => {
   it('should call assignColor when sceneNode is clicked with no representation', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@id': '',
         '@type': '',
         representation_of: '',

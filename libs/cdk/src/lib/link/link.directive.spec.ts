@@ -35,7 +35,7 @@ describe('LinkDirective', () => {
       RouterModule,
       RouterTestingModule.withRoutes([{ path: '' }], {
         initialNavigation: 'enabledBlocking',
-      })
+      }),
     );
   });
 
@@ -47,7 +47,7 @@ describe('LinkDirective', () => {
         bind: {
           linkId: createLinkId(''),
         },
-      })
+      }),
     ).resolves.toBeDefined();
   });
 
@@ -79,14 +79,16 @@ describe('LinkDirective', () => {
 
     describe('isAnchorElement', () => {
       it('should return true if external link', async () => {
-        jest.mocked(selectQuerySnapshot).mockReturnValue(() => externalLinkEntry as never);
+        const fn = () => externalLinkEntry;
+        jest.mocked(selectQuerySnapshot).mockReturnValue(fn as never);
         const { element, instance } = await shallow.render(anchorTemplate);
         element.triggerEventHandler('click', { button: 0 });
         expect(instance.onClick(new MouseEvent('click'))).toBeTruthy();
       });
 
       it('should return true if it is ctrlKey, shiftKey, altKey, metaKey', async () => {
-        jest.mocked(selectQuerySnapshot).mockReturnValue(() => internalLinkEntry as never);
+        const fn = () => internalLinkEntry;
+        jest.mocked(selectQuerySnapshot).mockReturnValue(fn as never);
         const { element, instance } = await shallow.render(anchorTemplate);
 
         const getMouseEvent = (prop: string) =>

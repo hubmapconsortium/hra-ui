@@ -26,7 +26,6 @@ export async function simplifyScene(nodes: SpatialSceneNode[]): Promise<SpatialS
     const bbox = new AABB();
     let worldMatrix = new Matrix4(model.transformMatrix);
 
-    /* eslint-disable  */
     if (model.scenegraphNode) {
       const scenegraphNode = model.scenegraphNode
         ? gltf.nodes.find((n: { name: string | undefined }) => n.name === model.scenegraphNode)
@@ -67,7 +66,6 @@ export async function simplifyScene(nodes: SpatialSceneNode[]): Promise<SpatialS
       }
       return true;
     });
-    /* eslint-enable */
 
     const size = bbox.upperBound.clone().vsub(bbox.lowerBound);
     const halfSize = size.clone().vmul(new Vec3(0.5, 0.5, 0.5));

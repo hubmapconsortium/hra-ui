@@ -37,7 +37,6 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
   styleUrls: ['./filters-content.component.scss'],
   imports: [
     ReactiveFormsModule,
-    ButtonsModule,
     MatIconModule,
     SpatialSearchListComponent,
     MatFormFieldModule,

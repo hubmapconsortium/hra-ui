@@ -44,8 +44,8 @@ export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() dataVersion?: unknown;
   @Input() currentSheet!: Sheet;
   @Input() sheetData: Row[] = [];
-  @Output() closeIL = new EventEmitter<void>();
-  @Output() openBottomSheet = new EventEmitter<{
+  @Output() readonly closeIL = new EventEmitter<void>();
+  @Output() readonly openBottomSheet = new EventEmitter<{
     name: string;
     ontologyId: string;
   }>();
@@ -100,7 +100,7 @@ export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.visible = false;
   }
 
-  public initializeTree(data: ILNode) {
+  initializeTree(data: ILNode) {
     this.dataSource.data = [data];
   }
 }

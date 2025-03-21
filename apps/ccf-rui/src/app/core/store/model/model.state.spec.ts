@@ -204,7 +204,6 @@ describe('ModelState', () => {
   });
 
   it('updates the organ', async () => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const newOrgan = { src: 'app:heart', name: 'Heart' } as OrganInfo;
     state.setOrgan(newOrgan);
 

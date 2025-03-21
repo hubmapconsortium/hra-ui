@@ -258,13 +258,12 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       );
       if (cellMatch) {
         return cellMatch;
-      } else {
-        const groupMatch = this.mapping.find(
-          (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
-        );
-        if (groupMatch) {
-          return groupMatch;
-        }
+      }
+      const groupMatch = this.mapping.find(
+        (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
+      );
+      if (groupMatch) {
+        return groupMatch;
       }
     }
     return undefined;
