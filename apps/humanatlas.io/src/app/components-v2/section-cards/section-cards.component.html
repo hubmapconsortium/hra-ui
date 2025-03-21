@@ -2,7 +2,8 @@
 
 <div class="cards">
   @for (card of cardInfo(); track card) {
-    <a class="section-card">
+    <!-- <a class="section-card" [routerLink]="['', card.route]" target="_blank" rel="noopener"> -->
+    <a class="section-card" target="_blank" rel="noopener">
       <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="card.description" />
       <div class="card-content">
         <span class="tagline">{{ card.tagline }}</span>

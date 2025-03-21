@@ -29,7 +29,11 @@
       overflow: hidden;
 
       &:hover {
-        box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--mat-sys-shadow), 48%);
+        box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--mat-sys-shadow), 32%);
+      }
+
+      &:focus {
+        border: 1px solid var(--mat-sys-tertiary);
       }
     }
 
