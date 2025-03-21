@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'apps.humanatlas.io',
   preset: '../../jest.preset.js',

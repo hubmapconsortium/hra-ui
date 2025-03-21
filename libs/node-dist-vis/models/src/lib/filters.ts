@@ -35,12 +35,10 @@ function concatEntries(
   if (array1 !== undefined) {
     if (array2 !== undefined) {
       return [...array1, ...array2];
-    } else {
-      return array1;
     }
-  } else {
-    return array2;
+    return array1;
   }
+  return array2;
 }
 
 /** Node filter view */
@@ -102,9 +100,8 @@ export class NodeFilterView {
       return falsy;
     } else if (exclude.length === 0) {
       return includeFn;
-    } else {
-      return (type, index) => includeFn(type, index) && !excludeFn(type, index);
     }
+    return (type, index) => includeFn(type, index) && !excludeFn(type, index);
   }
 
   /**

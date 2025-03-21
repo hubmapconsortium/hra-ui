@@ -11,5 +11,5 @@ import { Logs } from '../../models/ui.model';
 export class DebugLogsComponent {
   @Input() currentSheet!: Sheet;
   @Input() logs!: Logs;
-  @Output() closeDebug = new EventEmitter<void>();
+  @Output() readonly closeDebug = new EventEmitter<void>();
 }

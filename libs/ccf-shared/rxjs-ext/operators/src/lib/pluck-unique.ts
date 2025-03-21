@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { OperatorFunction } from 'rxjs';
 import { distinctUntilChanged, pluck, shareReplay } from 'rxjs/operators';
 

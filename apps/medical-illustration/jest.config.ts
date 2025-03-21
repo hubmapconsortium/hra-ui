@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'medical-illustration',
   preset: '../../jest.preset.js',

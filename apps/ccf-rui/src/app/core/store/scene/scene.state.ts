@@ -33,7 +33,6 @@ import { ReferenceDataState } from './../reference-data/reference-data.state';
 /**
  * Scene state model
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SceneStateModel {
   /** Show collisions */
   showCollisions: boolean;
@@ -113,14 +112,13 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       map(([rotation, nodes]) => {
         if (rotation === 0) {
           return nodes;
-        } else {
-          return nodes.map((n) => ({
-            ...n,
-            transformMatrix: new Matrix4(Matrix4.IDENTITY)
-              .rotateY(toRadians(rotation))
-              .multiplyRight(n.transformMatrix ?? []),
-          }));
         }
+        return nodes.map((n) => ({
+          ...n,
+          transformMatrix: new Matrix4(Matrix4.IDENTITY)
+            .rotateY(toRadians(rotation))
+            .multiplyRight(n.transformMatrix ?? []),
+        }));
       }),
     );
   }
@@ -157,17 +155,16 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
                   color: [255, 255, 255, 255],
                 },
               ];
-            } else {
-              return (db.anatomicalStructures[organIri as string] || [])
-                .filter((node) => node.representation_of === item.id)
-                .map(
-                  (node): SpatialSceneNode => ({
-                    ...(db.simpleSceneNodeLookup[node['@id']] as SpatialSceneNode),
-                    opacity: (item.opacity ?? 100) / 100,
-                    color: [255, 255, 255, 255],
-                  }),
-                );
             }
+            return (db.anatomicalStructures[organIri as string] || [])
+              .filter((node) => node.representation_of === item.id)
+              .map(
+                (node): SpatialSceneNode => ({
+                  ...(db.simpleSceneNodeLookup[node['@id']] as SpatialSceneNode),
+                  opacity: (item.opacity ?? 100) / 100,
+                  color: [255, 255, 255, 255],
+                }),
+              );
           })
           .reduce<SpatialSceneNode[]>((acc, nodes) => acc.concat(nodes), []),
       ),
@@ -254,7 +251,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       this.model.position$,
       this.model.organ$,
     ]).pipe(
-      map(([_viewType, _blockSize, _rotation, _position, organ]) => (organ.src === '' ? [] : [this.placementCube])),
+      map(([, , , , organ]) => (organ.src === '' ? [] : [this.placementCube])),
       distinctUntilChanged(isEqual),
     );
   }
@@ -379,15 +376,14 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
               color: [255, 255, 255, 255],
             },
           ];
-        } else {
-          return (db.anatomicalStructures[organIri] || [])
-            .filter((node) => node.representation_of === item.id)
-            .map((node) => ({
-              ...(db.sceneNodeLookup[node['@id']] as SpatialSceneNode),
-              opacity: (item.opacity ?? 100) / 100,
-              color: [255, 255, 255, 255],
-            }));
         }
+        return (db.anatomicalStructures[organIri] || [])
+          .filter((node) => node.representation_of === item.id)
+          .map((node) => ({
+            ...(db.sceneNodeLookup[node['@id']] as SpatialSceneNode),
+            opacity: (item.opacity ?? 100) / 100,
+            color: [255, 255, 255, 255],
+          }));
       })
       .reduce((acc, nodes) => acc.concat(nodes), []);
   }
@@ -446,9 +442,8 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
           tooltip: entity.label,
           unpickable: true,
         };
-      } else {
-        return undefined;
       }
+      return undefined;
     };
 
     return previousRegistrations.map(toNode).filter((entity): entity is SpatialSceneNode => entity !== undefined);

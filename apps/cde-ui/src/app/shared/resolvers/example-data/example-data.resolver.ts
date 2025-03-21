@@ -36,9 +36,8 @@ function maybeAsyncToObservable<T>(source: MaybeAsync<T>): Observable<T> {
     return source;
   } else if (source instanceof Promise) {
     return from(source);
-  } else {
-    return of(source);
   }
+  return of(source);
 }
 
 /**

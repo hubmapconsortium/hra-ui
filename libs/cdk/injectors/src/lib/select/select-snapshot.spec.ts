@@ -53,23 +53,23 @@ describe(selectQuerySnapshot, () => {
   it('calls query with the provided arguments', () => {
     const result = [1, '2'];
     const args = [true, { id: 2 }];
-    const query = jest.fn().mockReturnValue(result);
+    const query2 = jest.fn().mockReturnValue(result);
     const fn = selectQuerySnapshot(selector);
-    selectSubject.next(query);
+    selectSubject.next(query2);
 
     expect(fn(...args)).toEqual(result);
-    expect(query).toHaveBeenLastCalledWith(...args);
+    expect(query2).toHaveBeenLastCalledWith(...args);
   });
 
   it('should pass bound arguments before additional ones', () => {
     const result = [1, '2'];
     const boundArgs = ['b', 33];
     const args = [true, { id: 2 }];
-    const query = jest.fn().mockReturnValue(result);
+    const query2 = jest.fn().mockReturnValue(result);
     const fn = selectQuerySnapshot(selector, ...boundArgs);
-    selectSubject.next(query);
+    selectSubject.next(query2);
 
     expect(fn(...args)).toEqual(result);
-    expect(query).toHaveBeenLastCalledWith(...boundArgs, ...args);
+    expect(query2).toHaveBeenLastCalledWith(...boundArgs, ...args);
   });
 });

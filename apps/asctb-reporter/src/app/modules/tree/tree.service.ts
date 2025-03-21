@@ -105,7 +105,7 @@ export class TreeService {
    * @param data data from the miner of the sheet
    * @param compareData compare data (depricated)
    */
-  public makeTreeData(currentSheet: Sheet, data: Row[], _compareData?: unknown, isReport = false): void {
+  makeTreeData(currentSheet: Sheet, data: Row[], _compareData?: unknown, isReport = false): void {
     try {
       if (data.length === 0) {
         return;
@@ -141,25 +141,23 @@ export class TreeService {
             s = nodes.findIndex((i: TNode) => {
               if (!isReport) {
                 return i.type !== 'root' && i.comparatorId === parent.comparatorId + structure.id;
-              } else {
-                return (
-                  i.type !== 'root' &&
-                  i.comparatorId === parent.comparatorId + structure.id &&
-                  i.organName === row.organName
-                );
               }
+              return (
+                i.type !== 'root' &&
+                i.comparatorId === parent.comparatorId + structure.id &&
+                i.organName === row.organName
+              );
             });
           } else {
             s = nodes.findIndex((i: TNode) => {
               if (!isReport) {
                 return i.type !== 'root' && i.comparatorName === parent.comparatorName + structure.name;
-              } else {
-                return (
-                  i.type !== 'root' &&
-                  i.comparatorName === parent.comparatorName + structure.name &&
-                  i.organName === row.organName
-                );
               }
+              return (
+                i.type !== 'root' &&
+                i.comparatorName === parent.comparatorName + structure.name &&
+                i.organName === row.organName
+              );
             });
           }
           if (s === -1) {

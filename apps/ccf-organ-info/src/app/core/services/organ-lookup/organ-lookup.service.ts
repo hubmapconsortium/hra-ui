@@ -82,9 +82,8 @@ export class OrganLookupService {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getReferenceOrganScene(info.id, filter as Filter);
-    } else {
-      return of([]);
     }
+    return of([]);
   }
 
   /**
@@ -98,9 +97,8 @@ export class OrganLookupService {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getAggregateResults(filter as Filter);
-    } else {
-      return of([]);
     }
+    return of([]);
   }
 
   /**
@@ -114,8 +112,7 @@ export class OrganLookupService {
     if (info.id) {
       const filter: Partial<Filter> = { ontologyTerms: [info.id], sex };
       return this.source.getTissueBlockResults(filter as Filter);
-    } else {
-      return of([]);
     }
+    return of([]);
   }
 }

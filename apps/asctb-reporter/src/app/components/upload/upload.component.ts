@@ -11,7 +11,7 @@ import { UploadForm } from '../../models/sheet.model';
 export class UploadComponent implements OnInit {
   readonly fb = inject(FormBuilder);
 
-  @Output() uploadForm = new EventEmitter<UploadForm>();
+  @Output() readonly uploadForm = new EventEmitter<UploadForm>();
 
   formGroup!: FormGroup;
   formValid = true;

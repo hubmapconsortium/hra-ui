@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ccf-shared',
   preset: '../../jest.preset.js',

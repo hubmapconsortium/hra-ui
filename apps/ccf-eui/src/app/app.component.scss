@@ -1,3 +1,5 @@
+@use 'utils';
+
 :host {
   .sidenav-content {
     --mat-sidenav-container-background-color: var(--mat-sys-surface-container-low);
@@ -93,10 +95,22 @@
 
   .vis-panel {
     grid-area: vis-panel;
+    display: flex;
+    align-items: center;
+    height: 100%;
     padding: 0 1rem;
+
+    .tagline {
+      @include utils.use-font(label, large);
+      margin-right: 0.125rem;
+    }
 
     hra-expansion-panel-header-content {
       width: 100%;
+    }
+
+    .filler {
+      flex-grow: 1;
     }
   }
 

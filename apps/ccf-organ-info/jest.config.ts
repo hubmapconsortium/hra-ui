@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ccf-organ-info',
   preset: '../../jest.preset.js',

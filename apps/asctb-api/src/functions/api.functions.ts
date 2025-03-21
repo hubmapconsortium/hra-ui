@@ -157,7 +157,7 @@ export const buildMetadata = (metadataRows: string[][], warnings: Set<string>): 
   };
 
   return metadataRows.reduce((metadata: Record<string, string | string[]>, rowData: string[], rowNumber: number) => {
-    const [metadataIdentifier, metadataValue, ..._] = rowData;
+    const [metadataIdentifier, metadataValue] = rowData;
     /**
      * Raise Warnings:
      *    Case 1: IF the Metadata Key/Value is filled or empty
@@ -374,9 +374,8 @@ export function makeASCTBData(data: string[][]): ASCTBData | undefined {
   } else if (header[0] === ASCT_HEADER_FIRST_COLUMN) {
     const asctbData = makeASCTBDataWork(data);
     return { ...asctbData, isOmap: false };
-  } else {
-    throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
   }
+  throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
 }
 
 /**
