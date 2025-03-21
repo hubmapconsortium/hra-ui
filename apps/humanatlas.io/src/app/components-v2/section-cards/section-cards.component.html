@@ -1,0 +1,13 @@
+<span class="section-title">Explore the Human Reference Atlas</span>
+
+<div class="cards">
+  @for (card of cardInfo(); track card) {
+    <a class="section-card">
+      <img class="card-image" [src]="card.imageSrc | assetUrl" />
+      <div class="card-content">
+        <span class="tagline">{{ card.tagline }}</span>
+        <span class="description">{{ card.description }}</span>
+      </div>
+    </a>
+  }
+</div>
