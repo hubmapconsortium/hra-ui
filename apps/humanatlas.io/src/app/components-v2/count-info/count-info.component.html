@@ -1,9 +1,9 @@
 @for (card of countInfoList(); track card) {
   <div class="count-card">
-    @if (linkType(card) === 'icon') {
-      <mat-icon class="card-icon">{{ getLink(card) }}</mat-icon>
+    @if (iconType(card) === 'matIcon') {
+      <mat-icon class="card-icon">{{ getIcon(card) }}</mat-icon>
     } @else {
-      <div class="card-icon" [inlineSVG]="getLink(card) | assetUrl"></div>
+      <div class="card-icon" [inlineSVG]="getIcon(card) | assetUrl"></div>
     }
     <span class="card-count">{{ card.count }}</span>
     <span class="card-text">{{ card.label }}</span>

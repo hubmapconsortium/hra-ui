@@ -5,60 +5,70 @@ import { MatIconModule } from '@angular/material/icon';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
+/** Test cards (will replace) */
 const testCards: CardInfo[] = [
   {
     count: '17',
     label: 'consortia',
-    link: { icon: 'diversity_3' },
+    icon: { matIcon: 'diversity_3' },
   },
   {
     count: '250+',
     label: 'experts',
-    link: { icon: 'school' },
+    icon: { matIcon: 'school' },
   },
   {
     count: '1,000+',
     label: 'publications',
-    link: { icon: 'docs' },
+    icon: { matIcon: 'docs' },
   },
   {
     count: '71',
     label: 'organs',
-    link: { icon: 'neurology' },
+    icon: { matIcon: 'neurology' },
   },
   {
     count: '4,694',
     label: 'anatomical structures',
-    link: { icon: 'favorite' },
+    icon: { matIcon: 'favorite' },
   },
   {
     count: '1,288',
     label: 'cell types',
-    link: { iconSrc: 'assets/images/cell-types.svg' },
+    icon: { url: 'assets/images/cell-types.svg' },
   },
   {
     count: '2,018',
     label: 'biomarkers',
-    link: { icon: 'add_location' },
+    icon: { matIcon: 'add_location' },
   },
   {
     count: '23',
     label: 'organ mapping antibody panels',
-    link: { icon: 'map' },
+    icon: { matIcon: 'map' },
   },
   {
     count: '22',
     label: 'functional tissue units',
-    link: { icon: 'layers' },
+    icon: { matIcon: 'layers' },
   },
 ];
 
+/**
+ * Card info data containing metric name, count, and icon info
+ */
 export interface CardInfo {
+  /** Metric name */
   label: string;
+  /** Count for metric */
   count: string;
-  link: { icon: string } | { iconSrc: string };
+  /** Returns mat icon name or icon asset url */
+  icon: { matIcon: string } | { url: string };
 }
 
+/**
+ * Displays metrics for the human reference atlas
+ */
 @Component({
   selector: 'hra-count-info',
   imports: [CommonModule, MatCardModule, InlineSVGModule, MatIconModule, AssetUrlPipe],
@@ -67,13 +77,24 @@ export interface CardInfo {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountInfoComponent {
+  /** List of card info to display */
   readonly countInfoList = input<CardInfo[]>(testCards);
 
-  linkType(card: CardInfo): string {
-    return 'icon' in card.link ? 'icon' : 'iconSrc';
+  /**
+   * Gives icon type in card
+   * @param card Card info
+   * @returns Icon type
+   */
+  iconType(card: CardInfo): string {
+    return 'matIcon' in card.icon ? 'matIcon' : 'url';
   }
 
-  getLink(card: CardInfo): string {
-    return 'icon' in card.link ? card.link.icon : card.link.iconSrc;
+  /**
+   * Gets icon from card
+   * @param card Card info
+   * @returns Icon as material icon name or icon url
+   */
+  getIcon(card: CardInfo): string {
+    return 'matIcon' in card.icon ? card.icon.matIcon : card.icon.url;
   }
 }
