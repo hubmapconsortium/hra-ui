@@ -1,0 +1,25 @@
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: -40px;
+
+  .header,
+  .link-button {
+    color: var(--mat-sys-secondary);
+  }
+
+  .link-button {
+    opacity: 0;
+
+    mat-icon {
+      margin: 0.5rem;
+    }
+  }
+
+  &:hover {
+    .link-button {
+      opacity: 1;
+    }
+  }
+}
