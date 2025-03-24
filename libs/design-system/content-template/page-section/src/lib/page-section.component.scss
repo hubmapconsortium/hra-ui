@@ -1,0 +1,27 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: block;
+
+  .header {
+    color: var(--mat-sys-secondary);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  mat-divider {
+    margin-top: 0.5rem;
+  }
+
+  .header-content {
+    margin-bottom: 1.5rem;
+  }
+
+  .content {
+    @include utils.use-font(body, splash);
+    color: var(--mat-sys-primary);
+    margin-top: 1rem;
+  }
+}
