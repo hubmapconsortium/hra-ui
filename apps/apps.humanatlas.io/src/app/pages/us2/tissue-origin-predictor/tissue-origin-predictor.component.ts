@@ -15,6 +15,9 @@ import { TissueOriginService, UserSelectionService } from '../services/tissue-or
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+/**
+ * Tissue Origin Predictions Page
+ */
 @Component({
   selector: 'hra-tissue-origin-predictor',
   standalone: true,
@@ -69,9 +72,7 @@ export class TissueOriginPredictorComponent {
 
   /** Use sample CSV File */
   async onUseSampleClicked(): Promise<void> {
-    if (this.tissueOriginService.getFile() === null) {
-      await this.tissueOriginService.setSampleFile();
-    }
+    await this.tissueOriginService.setSampleFile();
     this.file.set(this.tissueOriginService.getFile());
   }
 
