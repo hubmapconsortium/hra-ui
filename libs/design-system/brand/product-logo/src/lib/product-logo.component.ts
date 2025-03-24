@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-/** Button size type */
+/** Logo size type */
 export type ProductLogoSize = 'small' | 'large';
 
 /**
@@ -16,10 +16,10 @@ export type ProductLogoSize = 'small' | 'large';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductLogoComponent {
-  /** Button name */
+  /** Logo name */
   readonly name = input.required<string>();
 
-  /** Button size */
+  /** Logo size */
   readonly size = input.required<ProductLogoSize>();
 
   /** Icon to display */

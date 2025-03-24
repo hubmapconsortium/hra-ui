@@ -1,11 +1,26 @@
 :host {
-  mat-icon {
-    width: 5rem;
+  .background {
     height: 5rem;
+    width: 5rem;
+    border-radius: 100%;
+    display: flex;
+    background: var(--mat-sys-secondary);
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      width: 3rem;
+      height: 3rem;
+    }
 
     &.small {
-      width: 2.5rem;
       height: 2.5rem;
+      width: 2.5rem;
+
+      mat-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
   }
 }

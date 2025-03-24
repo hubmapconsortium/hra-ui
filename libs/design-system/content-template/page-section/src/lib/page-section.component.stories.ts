@@ -3,13 +3,14 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { PageSectionComponent } from './page-section.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 
 const meta: Meta<PageSectionComponent> = {
   component: PageSectionComponent,
   title: 'Design System/Content Template/PageSection',
   decorators: [
     moduleMetadata({
-      imports: [PageSectionComponent, ButtonsModule, MatIconModule],
+      imports: [PageSectionComponent, ButtonsModule, MatIconModule, ProductLogoComponent],
     }),
   ],
   parameters: {
@@ -33,7 +34,7 @@ export const MainHeader: Story = {
     <hra-page-section tagline="${args.tagline}" [size]="1">
       <header-content>
         <div class="header-icons">
-          <mat-icon class="header-icon ftu" svgIcon="products:ftu"></mat-icon>
+          <hra-product-logo name="ftu" size="large"></hra-product-logo>
           <div class="icon-background">
             <mat-icon class="header-icon blood" svgIcon="organ:blood"></mat-icon>
           </div>
@@ -68,14 +69,8 @@ export const MainHeader: Story = {
         display: flex;
         align-items: center;
         justify-content: center;
-        }`,
-      `.icon-background {
         background: var(--mat-sys-tertiary);
-      }`,
-      `.ftu {
-        height: 5rem;
-        width: 5rem;
-      }`,
+        }`,
       `.blood {
         height: 3rem;
         width: 3rem;
@@ -91,7 +86,7 @@ export const MainHeader: Story = {
 export const BodySection: Story = {
   args: {
     tagline: 'Section label in sentence case',
-    size: 1,
+    size: 2,
   },
   render: (args) => ({
     props: args,
