@@ -3,7 +3,7 @@ import { inject, Injectable, InjectionToken } from '@angular/core';
 import { firstValueFrom, from, Observable, of, switchMap } from 'rxjs';
 
 /** Sample CSV file URL */
-const SAMPLE_FILE_URL = 'assets/sample-data/tissue-origin-sample.csv';
+export const SAMPLE_FILE_URL = 'assets/sample-data/tissue-origin-sample.csv';
 
 /** Injection token for tissue origin predictions API endpoint  */
 export const TISSUE_ORIGIN_ENDPOINT = new InjectionToken<string>('Tissue Origin Endpoint', {
