@@ -3,6 +3,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { EventType, Router } from '@angular/router';
 import { scan, distinctUntilChanged } from 'rxjs';
 
+/**
+ * Navigation utility function to show progress bar
+ * @returns Boolean signal
+ */
 export function isNavigating(): Signal<boolean> {
   const router = inject(Router);
   const isNavigating$ = router.events.pipe(
