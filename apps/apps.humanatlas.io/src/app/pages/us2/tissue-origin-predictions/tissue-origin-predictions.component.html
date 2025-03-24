@@ -10,7 +10,12 @@
 
 <hra-workflow-card tagline="Similar Anatomical Structures" class="table-container">
   <hra-workflow-card-actions>
-    <button mat-icon-button aria-label="Open table action menu" [matMenuTriggerFor]="optionsForAnatomicalTable">
+    <button
+      mat-icon-button
+      aria-label="Open table action menu"
+      [matMenuTriggerFor]="optionsForAnatomicalTable"
+      data-testid="anatomical-menu"
+    >
       <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
 
@@ -21,7 +26,11 @@
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="onDowloadCSVButtonClicked('anatomical')">
+      <button
+        mat-menu-item
+        (click)="onDowloadCSVButtonClicked('anatomical')"
+        data-testid="download-anatomical-csv-button"
+      >
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -81,8 +90,13 @@
 
 <hra-workflow-card tagline="Similar Datasets" class="table-container">
   <hra-workflow-card-actions>
-    <button mat-icon-button aria-label="Open table action menu">
-      <mat-icon class="more-icon" fontIcon="more_vert" [matMenuTriggerFor]="optionsForDatasetTable"></mat-icon>
+    <button
+      mat-icon-button
+      aria-label="Open table action menu"
+      [matMenuTriggerFor]="optionsForDatasetTable"
+      data-testid="similar-datasets-menu"
+    >
+      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
 
     <!-- MENU -->
@@ -92,7 +106,11 @@
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="onDowloadCSVButtonClicked('dataset')">
+      <button
+        mat-menu-item
+        (click)="onDowloadCSVButtonClicked('dataset')"
+        data-testid="download-similar-dataset-csv-button"
+      >
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -160,35 +178,12 @@
         hraButtonVariant="primary"
         hraButtonSize="medium"
         disabled="false"
+        data-testid="download-json-button"
       >
         JSON-LD
         <mat-icon>download</mat-icon>
       </button>
-      <button mat-flat-button (click)="onExploreButtonClicked()">Explore</button>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayDisableClose]="true"
-        cdkConnectedOverlayDisposeOnNavigation="true"
-        cdkConnectedOverlayHeight="100vh"
-        [cdkConnectedOverlayOpen]="euiOpen"
-        [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
-        cdkConnectedOverlayPanelClass="eui-panel"
-        cdkConnectedOverlayWidth="100vw"
-        [cdkConnectedOverlayViewportMargin]="0"
-      >
-        <div>
-          <hra-back-button-bar (backClick)="euiOpen = false"></hra-back-button-bar>
-          <ccf-eui
-            base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
-            use-remote-api="false"
-            hubmap-data-url=""
-            login-disabled="true"
-            header="false"
-          >
-          </ccf-eui>
-        </div>
-      </ng-template>
+      <button mat-flat-button (click)="euiOpen.set(true)">Explore</button>
     </div>
   </hra-workflow-card>
   <hra-workflow-card tagline="Metadata" class="card card-2">
@@ -209,3 +204,18 @@
     </div>
   </hra-workflow-card>
 </div>
+
+<ng-template #euiTemplate>
+  <div>
+    <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
+    <ccf-eui
+      base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
+      use-remote-api="false"
+      hubmap-data-url=""
+      login-disabled="true"
+      header="false"
+      data-sources="{{ ruiLocationsJsonString }}"
+    >
+    </ccf-eui>
+  </div>
+</ng-template>

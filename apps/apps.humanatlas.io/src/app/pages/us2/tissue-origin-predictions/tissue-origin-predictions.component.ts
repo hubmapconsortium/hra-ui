@@ -1,14 +1,18 @@
-import { OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
   inject,
   input,
   Renderer2,
+  signal,
+  TemplateRef,
   viewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,6 +31,7 @@ import {
   UserSelectionService,
 } from '../services/tissue-origin.service';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 /** Script URL for EUI */
 const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
@@ -99,13 +104,16 @@ export class TissueOriginPredictionsComponent {
   /** Columns for anatomical structures table */
   protected readonly anatomicalColumns = ['tool', 'modality', 'similarity', 'cell_source_label', 'cell_source'];
 
+  /** Tissue origin predictions service */
   protected readonly tissueOriginPredictionService = inject(TissueOriginService);
 
+  /** User selection service */
   protected readonly userSelectionService = inject(UserSelectionService);
 
   /** Whether to show EUI */
-  protected euiOpen = false;
+  protected euiOpen = signal<boolean>(false);
 
+  /** RUI locations JSON string */
   protected readonly ruiLocationsJsonString = JSON.stringify([JSON.stringify(this.predictions().rui_locations)]);
 
   /** For accessing DOM  */
@@ -137,6 +145,25 @@ export class TissueOriginPredictionsComponent {
   /** Snackbar service */
   protected readonly snackbar = inject(SnackbarService);
 
+  /** Overlay */
+  private readonly overlay = inject(Overlay);
+  /** View Container Reference */
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  /** EUI Template */
+  private readonly euiTemplate = viewChild.required('euiTemplate', { read: TemplateRef });
+  /** Portal for the EUI */
+  private readonly euiPortal = computed(() => new TemplatePortal(this.euiTemplate(), this.viewContainerRef));
+  /** EUI Overlay */
+  private readonly euiOverlay = this.overlay.create({
+    disposeOnNavigation: true,
+    height: '100vh',
+    width: '100vw',
+    // Used to trick the global positioning strategy into applying top offsets
+    maxHeight: '10000000000000px',
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+    panelClass: 'eui-overlay-container',
+  });
+
   /**
    * Constructor that initializes the component and sets up effects for predictions and sorting
    */
@@ -156,6 +183,16 @@ export class TissueOriginPredictionsComponent {
       this.anatomicalDataSource.sort = this.sortOnAnatomicalData();
       this.datasetDataSource.sort = this.sortOnDatasetsData();
     });
+
+    effect((cleanup) => {
+      if (this.euiOpen()) {
+        const scrollTop = this.document.scrollingElement?.scrollTop ?? 0;
+        const positionStrategy = this.overlay.position().global().top(`${scrollTop}px`).right();
+        this.euiOverlay.updatePositionStrategy(positionStrategy);
+        this.euiOverlay.attach(this.euiPortal());
+        cleanup(() => this.euiOverlay.detach());
+      }
+    });
   }
 
   /** Triggered when clicked download JSON-LD button */
@@ -163,6 +200,7 @@ export class TissueOriginPredictionsComponent {
     const jsonString = JSON.stringify(this.predictions().rui_locations, null, 2);
     const fileToSave = new Blob([jsonString], { type: 'application/json' });
     saveAs(fileToSave, 'rui_locations.jsonld');
+    this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 
   /** Triggered when clicked on download CSV button  */
@@ -192,11 +230,6 @@ export class TissueOriginPredictionsComponent {
 
       return headers + rows;
     }
-  }
-
-  /** Triggered when clicked on Explore button. Opens EUI */
-  onExploreButtonClicked() {
-    this.euiOpen = true;
   }
 
   /** Method that sets script and link tags with appropriate URLs */
