@@ -13,6 +13,8 @@ import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductHeaderComponent {
+  /** Image URL */
   imageUrl = input.required<string>();
+  /** Title */
   title = input.required<string>();
 }
