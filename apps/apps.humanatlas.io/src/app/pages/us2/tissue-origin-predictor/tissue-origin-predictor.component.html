@@ -40,8 +40,17 @@
 
     <div class="buttons">
       @if (!file()) {
-        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
-        <input type="file" accept=".csv" style="display: none" (change)="onFileSelected($event)" #fileInput />
+        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()" data-testid="use-sample-button">
+          Use Sample
+        </button>
+        <input
+          type="file"
+          accept=".csv"
+          style="display: none"
+          (change)="onFileSelected($event)"
+          data-testid="file-input"
+          #fileInput
+        />
         <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
       } @else {
         <hra-delete-file-button [fileName]="file()!.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
@@ -56,7 +65,11 @@
     <div class="data-filters">
       <mat-form-field class="filters">
         <mat-label>Organ</mat-label>
-        <mat-select hraMicroTooltip="Organs that have cell type populations." [(ngModel)]="supportedOrgan">
+        <mat-select
+          data-testid="organ-dropdown"
+          hraMicroTooltip="Organs that have cell type populations."
+          [(ngModel)]="supportedOrgan"
+        >
           @for (organ of supportedOrgans(); track $index) {
             <mat-option [value]="organ.label">{{ organ.label | titlecase }}</mat-option>
           }
@@ -66,6 +79,7 @@
       <mat-form-field class="filters">
         <mat-label>Annotation Tool</mat-label>
         <mat-select
+          data-testid="tool-dropdown"
           hraMicroTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
           [(ngModel)]="supportedTool"
         >
@@ -81,6 +95,8 @@
   <hra-workflow-card tagline="Predict Tissue Origin" step="3" class="card card-3">
     <hra-error-indicator *ngIf="!file()" [errors]="['Please upload a dataset.']" class="error-message">
     </hra-error-indicator>
-    <button mat-flat-button [disabled]="!file()" (click)="onPredictClicked()">Predict</button>
+    <button mat-flat-button [disabled]="!file()" (click)="onPredictClicked()" data-testid="predict-button">
+      Predict
+    </button>
   </hra-workflow-card>
 </div>
