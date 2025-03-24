@@ -20,7 +20,7 @@
   }
 
   .content {
-    @include utils.use-font(body, splash);
+    @include utils.use-font(body, xl);
     color: var(--mat-sys-primary);
     margin-top: 1rem;
   }
