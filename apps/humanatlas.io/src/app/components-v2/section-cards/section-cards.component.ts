@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { HraCommonModule } from '@hra-ui/common';
 
 import { SectionCardItem } from './section-cards.schema';
 
@@ -38,7 +37,7 @@ const testItems: SectionCardItem[] = [
  */
 @Component({
   selector: 'hra-section-cards',
-  imports: [CommonModule, AssetUrlPipe, RouterModule],
+  imports: [HraCommonModule, RouterModule],
   templateUrl: './section-cards.component.html',
   styleUrl: './section-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
