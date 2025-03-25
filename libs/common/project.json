@@ -8,6 +8,12 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/common/tsconfig.lib.json"
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';
 
@@ -36,7 +35,7 @@ export class HubmapMenuItemDirective {
  */
 @Component({
   selector: 'hra-hubmap-menu-content',
-  imports: [CommonModule, AssetUrlPipe, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],
+  imports: [HraCommonModule, ButtonsModule, HubmapMenuGroupDirective, HubmapMenuItemDirective],
   templateUrl: './hubmap-menu-content.component.html',
   styleUrl: './hubmap-menu-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
