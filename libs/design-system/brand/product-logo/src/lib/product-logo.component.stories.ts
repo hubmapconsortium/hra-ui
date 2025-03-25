@@ -6,7 +6,7 @@ import { ProductLogoComponent } from './product-logo.component';
 
 const meta: Meta<ProductLogoComponent> = {
   component: ProductLogoComponent,
-  title: 'ProductLogoComponent',
+  title: 'Design System/Brand/Product Logo',
   parameters: {
     design: {
       type: 'figma',
@@ -31,7 +31,6 @@ export const Default: Story = {
     name: {
       control: 'select',
       options: [
-        '3d_organ_models',
         'api',
         'app_library',
         'asctb_reporter',
@@ -42,15 +41,23 @@ export const Default: Story = {
         'design_system',
         'dev_portal',
         'eui',
-        'ftu',
-        'human_atlas_stories',
-        'millitome',
-        'omaps',
         'organ_gallery',
+        'human_atlas_stories',
         'rui',
         'top',
-        'vccf',
         'web_components',
+        '3d_organ_models',
+        'cell_type_annotations',
+        'collections',
+        'dataset_graphs',
+        'ftu',
+        'graphs',
+        'landmark',
+        'millitome',
+        'omaps',
+        'schema',
+        'vccf',
+        'vocabulary',
       ],
     },
     size: {
