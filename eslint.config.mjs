@@ -1,6 +1,7 @@
 import nx from '@nx/eslint-plugin';
 import storybook from 'eslint-plugin-storybook';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export const configs = {
   base: [
@@ -122,7 +123,7 @@ export const configs = {
         'storybook/no-uninstalled-addons': [
           'error',
           {
-            packageJsonLocation: join(import.meta.dirname, 'package.json'),
+            packageJsonLocation: join(dirname(fileURLToPath(import.meta.url)), 'package.json'),
           },
         ],
       },
