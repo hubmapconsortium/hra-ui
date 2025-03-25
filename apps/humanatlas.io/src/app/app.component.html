@@ -1,4 +1,30 @@
 <hra-header />
+<hra-page-navigation></hra-page-navigation>
+<hra-page-section tagline="Page label" [size]="1">
+  <header-content>
+    <div class="header-icons">
+      <hra-product-logo name="cde" size="large"></hra-product-logo>
+      <div class="icon-background">
+        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+      </div>
+    </div>
+  </header-content>
+  <section-content>
+    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
+    HRA before. What would you want to learn here?
+    <ul>
+      <li>Components may be swapped out for this button set</li>
+      <li>Text always goes on top.</li>
+      <li>Other components may be swapped out for the button set.</li>
+    </ul>
+    <button mat-button hraCtaButton>
+      Action
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </button>
+  </section-content>
+</hra-page-section>
+
+<br />
 
 <hra-carousel />
 

@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  background: var(--mat-sys-on-primary);
+  width: 15.5rem;
+  padding: 2.5rem 0.75rem 0 0.75rem;
+  z-index: 2;
+  max-height: calc(100vh - 72px);
+  overflow: auto;
+
+  .navigation-top {
+    font: var(--mat-sys-label-large);
+    min-height: 2.5rem;
+    color: var(--mat-sys-secondary);
+  }
+
+  ::ng-deep .navigation-label {
+    min-height: 2rem;
+    font: var(--mat-sys-label-medium);
+    color: var(--mat-sys-primary);
+  }
+}

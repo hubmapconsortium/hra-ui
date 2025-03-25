@@ -26,7 +26,7 @@ type Story = StoryObj<PageSectionComponent>;
 
 export const MainHeader: Story = {
   args: {
-    tagline: 'Page Label',
+    tagline: 'Page label',
   },
   render: (args) => ({
     props: args,
@@ -36,11 +36,11 @@ export const MainHeader: Story = {
         <div class="header-icons">
           <hra-product-logo name="ftu" size="large"></hra-product-logo>
           <div class="icon-background">
-            <mat-icon class="header-icon blood" svgIcon="organ:blood"></mat-icon>
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
           </div>
         </div>
       </header-content>
-      <content>
+      <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
           <li>Components may be swapped out for this button set</li>
@@ -51,29 +51,27 @@ export const MainHeader: Story = {
           Action
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
-      </content>
+      </section-content>
     </hra-page-section>
     `,
     styles: [
       `.header-icons {
         display: flex;
-        gap: 1rem;
-      }`,
-      `.header-icon {
-        --mat-icon-color: var(--mat-sys-on-primary);
+        gap: .75rem;
       }`,
       `.icon-background {
-        height: 5rem;
-        width: 5rem;
+        height: 4rem;
+        width: 4rem;
         border-radius: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         background: var(--mat-sys-tertiary);
-        }`,
-      `.blood {
-        height: 3rem;
-        width: 3rem;
+      }`,
+      `.header-icon {
+        --mat-icon-color: var(--mat-sys-on-primary);
+        height: 60$;
+        width: 60%;
       }`,
       `ul {
         margin: 0;
@@ -92,7 +90,7 @@ export const BodySection: Story = {
     props: args,
     template: `
     <hra-page-section tagline="${args.tagline}" size="${args.size}">
-      <content>
+      <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
           <li>Components may be swapped out for this button set</li>
@@ -102,7 +100,7 @@ export const BodySection: Story = {
           Action
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
-      </content>
+      </section-content>
     </hra-page-section>
     `,
     styles: [
