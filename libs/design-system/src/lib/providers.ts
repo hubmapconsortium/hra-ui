@@ -30,15 +30,11 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
       const overlayContainer = inject(OverlayContainer);
       overlayContainer.getContainerElement().classList.add('hra-app');
     }),
-    provideIcons({
-      fontIcons: {
-        defaultClasses: ['material-symbols-rounded'],
-      },
-    }),
     provideButtons(),
     provideCheckboxes(),
     provideChips(),
     provideIconButtons(),
+    provideIcons(),
     provideInput(),
     provideMenu(),
     provideScrolling(options?.scrolling),
