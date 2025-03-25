@@ -1,13 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { HraCommonModule } from '@hra-ui/common';
 import { FUNDERS } from '../static-data/parsed';
 import { FunderId } from '../types/funders.schema';
 
 /** Displays a list of funders */
 @Component({
   selector: 'hra-funding',
-  imports: [CommonModule, AssetUrlPipe],
+  imports: [HraCommonModule],
   templateUrl: './funding.component.html',
   styleUrl: './funding.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
