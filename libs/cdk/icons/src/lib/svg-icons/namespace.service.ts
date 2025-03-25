@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 /** Default icon directory if not provided in the icons config */
 export const DEFAULT_SVG_DIRECTORY = 'assets/icons/';
 
+/** Service for registering individual directories for icon namespaces */
 @Injectable({
   providedIn: 'root',
 })
