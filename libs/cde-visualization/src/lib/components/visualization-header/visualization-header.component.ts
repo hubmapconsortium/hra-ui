@@ -1,17 +1,16 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Component for visualization page header
  */
 @Component({
   selector: 'cde-visualization-header',
-  imports: [CommonModule, MatDividerModule, MatIconModule, MatButtonModule, OverlayModule, AssetUrlPipe],
+  imports: [HraCommonModule, MatDividerModule, MatIconModule, MatButtonModule, OverlayModule],
   templateUrl: './visualization-header.component.html',
   styleUrl: './visualization-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
