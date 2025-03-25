@@ -10,17 +10,17 @@ describe('SectionCardsComponent', () => {
   it('should display cards', async () => {
     await render(SectionCardsComponent, {
       providers,
-      componentInputs: {
+      inputs: {
         cardInfo: [
           {
-            tagline: '',
+            tagline: 'Tagline',
             description: 'Test',
-            imageSrc: '',
-            route: '',
+            imageSrc: 'test-image-src',
+            route: 'test-route',
           },
         ],
       },
     });
-    expect(screen.getByText('Test')).toBeInTheDocument();
+    expect(screen.getByText('Tagline')).toBeInTheDocument();
   });
 });
