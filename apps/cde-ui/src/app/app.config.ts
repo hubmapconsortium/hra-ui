@@ -24,11 +24,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAnimations(),
     provideHttpClient(),
-    provideIcons({
-      fontIcons: {
-        defaultClasses: ['material-symbols-rounded'],
-      },
-    }),
+    provideIcons(),
     provideDesignSystem(),
   ],
 };
