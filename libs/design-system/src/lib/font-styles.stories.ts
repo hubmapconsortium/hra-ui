@@ -48,10 +48,10 @@ const fontContent: Record<string, FontStyles> = {
     type: 'body',
     description: 'Paragraph text',
     typography: {
-      xl: 'Nunito Sans, 18/27, +0.5px',
-      large: 'Nunito Sans, 16/24, +0.5px',
-      medium: 'Nunito Sans, 14/21, +0.5px',
-      small: 'Nunito Sans, 12/18, +0.5px',
+      xl: 'Nunito Sans, 18/27, 0x',
+      large: 'Nunito Sans, 16/24, 0x',
+      medium: 'Nunito Sans, 14/21, 0x',
+      small: 'Nunito Sans, 12/18, 0x',
     },
   },
   Wordmark: {

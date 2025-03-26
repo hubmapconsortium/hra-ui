@@ -87,6 +87,10 @@ $overrides: (
   label-small-size: 0.75rem,
   label-small-tracking: 0rem,
   label-small-weight: 500,
+
+  body-large-tracking: 0rem,
+  body-medium-tracking: 0rem,
+  body-small-tracking: 0rem,
 );
 
 @mixin custom-variants() {
@@ -95,7 +99,7 @@ $overrides: (
   --mat-sys-body-xl-font: #{$_plain};
   --mat-sys-body-xl-line-height: 1.6875rem;
   --mat-sys-body-xl-size: 1.125rem;
-  --mat-sys-body-xl-tracking: 0.0313rem;
+  --mat-sys-body-xl-tracking: 0rem;
   --mat-sys-body-xl-weight: 400;
 
   // Wordmark
