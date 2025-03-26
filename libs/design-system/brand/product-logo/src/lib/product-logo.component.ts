@@ -23,5 +23,5 @@ export class ProductLogoComponent {
   readonly size = input.required<ProductLogoSize>();
 
   /** Icon to display */
-  protected readonly icon = computed(() => `products:${this.name()}${this.size() === 'large' ? '_large' : ''}`);
+  protected readonly icon = computed(() => `products:${this.name()}`);
 }
