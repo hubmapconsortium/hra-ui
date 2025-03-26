@@ -1,6 +1,6 @@
 @for (card of countInfoList(); track card) {
   <div class="count-card">
-    @if (iconType(card) === 'matIcon') {
+    @if (iconType(card) === 'fontText') {
       <mat-icon class="card-icon">{{ getIcon(card) }}</mat-icon>
     } @else {
       <div class="card-icon" [inlineSVG]="getIcon(card) | assetUrl"></div>

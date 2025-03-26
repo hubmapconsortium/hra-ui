@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { HraCommonModule } from '@hra-ui/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
 /** Test cards (will replace) */
@@ -10,27 +9,27 @@ const testCards: CardInfo[] = [
   {
     count: '17',
     label: 'consortia',
-    icon: { matIcon: 'diversity_3' },
+    icon: { fontText: 'diversity_3' },
   },
   {
     count: '250+',
     label: 'experts',
-    icon: { matIcon: 'school' },
+    icon: { fontText: 'school' },
   },
   {
     count: '1,000+',
     label: 'publications',
-    icon: { matIcon: 'docs' },
+    icon: { fontText: 'docs' },
   },
   {
     count: '71',
     label: 'organs',
-    icon: { matIcon: 'neurology' },
+    icon: { fontText: 'neurology' },
   },
   {
     count: '4,694',
     label: 'anatomical structures',
-    icon: { matIcon: 'favorite' },
+    icon: { fontText: 'favorite' },
   },
   {
     count: '1,288',
@@ -40,17 +39,17 @@ const testCards: CardInfo[] = [
   {
     count: '2,018',
     label: 'biomarkers',
-    icon: { matIcon: 'add_location' },
+    icon: { fontText: 'add_location' },
   },
   {
     count: '23',
     label: 'organ mapping antibody panels',
-    icon: { matIcon: 'map' },
+    icon: { fontText: 'map' },
   },
   {
     count: '22',
     label: 'functional tissue units',
-    icon: { matIcon: 'layers' },
+    icon: { fontText: 'layers' },
   },
 ];
 
@@ -63,7 +62,7 @@ export interface CardInfo {
   /** Count for metric */
   count: string;
   /** Returns mat icon name or icon asset url */
-  icon: { matIcon: string } | { url: string };
+  icon: { fontText: string } | { url: string };
 }
 
 /**
@@ -71,7 +70,7 @@ export interface CardInfo {
  */
 @Component({
   selector: 'hra-count-info',
-  imports: [CommonModule, MatCardModule, InlineSVGModule, MatIconModule, AssetUrlPipe],
+  imports: [HraCommonModule, MatCardModule, InlineSVGModule, MatIconModule],
   templateUrl: './count-info.component.html',
   styleUrl: './count-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -86,7 +85,7 @@ export class CountInfoComponent {
    * @returns Icon type
    */
   iconType(card: CardInfo): string {
-    return 'matIcon' in card.icon ? 'matIcon' : 'url';
+    return 'fontText' in card.icon ? 'fontText' : 'url';
   }
 
   /**
@@ -95,6 +94,6 @@ export class CountInfoComponent {
    * @returns Icon as material icon name or icon url
    */
   getIcon(card: CardInfo): string {
-    return 'matIcon' in card.icon ? card.icon.matIcon : card.icon.url;
+    return 'fontText' in card.icon ? card.icon.fontText : card.icon.url;
   }
 }
