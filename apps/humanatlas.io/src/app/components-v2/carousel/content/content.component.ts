@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { CarouselItem } from '../carousel.schema';
@@ -12,7 +11,7 @@ import { CarouselItem } from '../carousel.schema';
  */
 @Component({
   selector: 'hra-carousel-content',
-  imports: [CommonModule, RouterModule, MatIconModule, ButtonsModule, AssetUrlPipe],
+  imports: [HraCommonModule, RouterModule, MatIconModule, ButtonsModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
