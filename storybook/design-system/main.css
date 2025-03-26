@@ -430,12 +430,12 @@ input[type=number] {
 }
 
 html {
-  --mat-sys-body-splash: 400 1.125rem / 1.6875rem Nunito Sans;
-  --mat-sys-body-splash-font: Nunito Sans;
-  --mat-sys-body-splash-line-height: 1.6875rem;
-  --mat-sys-body-splash-size: 1.125rem;
-  --mat-sys-body-splash-tracking: 0.0313rem;
-  --mat-sys-body-splash-weight: 400;
+  --mat-sys-body-xl: 400 1.125rem / 1.6875rem Nunito Sans;
+  --mat-sys-body-xl-font: Nunito Sans;
+  --mat-sys-body-xl-line-height: 1.6875rem;
+  --mat-sys-body-xl-size: 1.125rem;
+  --mat-sys-body-xl-tracking: 0rem;
+  --mat-sys-body-xl-weight: 400;
   --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem Metropolis;
   --mat-sys-wordmark-large-font: Metropolis;
   --mat-sys-wordmark-large-line-height: 2.25rem;
@@ -513,19 +513,19 @@ html {
   --mat-sys-body-large-font: Nunito Sans;
   --mat-sys-body-large-line-height: 1.5rem;
   --mat-sys-body-large-size: 1rem;
-  --mat-sys-body-large-tracking: 0.031rem;
+  --mat-sys-body-large-tracking: 0rem;
   --mat-sys-body-large-weight: 400;
   --mat-sys-body-medium: 400 0.875rem / 1.25rem Nunito Sans;
   --mat-sys-body-medium-font: Nunito Sans;
   --mat-sys-body-medium-line-height: 1.25rem;
   --mat-sys-body-medium-size: 0.875rem;
-  --mat-sys-body-medium-tracking: 0.016rem;
+  --mat-sys-body-medium-tracking: 0rem;
   --mat-sys-body-medium-weight: 400;
   --mat-sys-body-small: 400 0.75rem / 1rem Nunito Sans;
   --mat-sys-body-small-font: Nunito Sans;
   --mat-sys-body-small-line-height: 1rem;
   --mat-sys-body-small-size: 0.75rem;
-  --mat-sys-body-small-tracking: 0.025rem;
+  --mat-sys-body-small-tracking: 0rem;
   --mat-sys-body-small-weight: 400;
   --mat-sys-display-large: 500 2.625rem/3.9375rem Metropolis;
   --mat-sys-display-large-font: Metropolis;
@@ -583,10 +583,10 @@ html {
   --mat-sys-label-small-size: 0.75rem;
   --mat-sys-label-small-tracking: 0rem;
   --mat-sys-label-small-weight: 500;
-  --mat-sys-title-large: 500 1.5rem/2rem Metropolis;
+  --mat-sys-title-large: 500 1.375rem/2.0625rem Metropolis;
   --mat-sys-title-large-font: Metropolis;
-  --mat-sys-title-large-line-height: 2rem;
-  --mat-sys-title-large-size: 1.5rem;
+  --mat-sys-title-large-line-height: 2.0625rem;
+  --mat-sys-title-large-size: 1.375rem;
   --mat-sys-title-large-tracking: 0rem;
   --mat-sys-title-large-weight: 500;
   --mat-sys-title-medium: 500 1.25rem/1.875rem Metropolis;
