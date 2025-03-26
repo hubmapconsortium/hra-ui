@@ -36,5 +36,5 @@ export class SectionLinkComponent {
   protected readonly headerFont = computed(() => HEADER_FONTS[this.size()] ?? HEADER_FONTS[1]);
 
   /** Generates the id for the section link */
-  protected readonly linkId = computed(() => this.tagline().toLowerCase().replace(' ', '-'));
+  protected readonly linkId = computed(() => this.tagline().toLowerCase().replaceAll(' ', '-'));
 }

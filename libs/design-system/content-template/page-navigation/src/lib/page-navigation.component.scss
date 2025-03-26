@@ -20,5 +20,9 @@
     min-height: 2rem;
     font: var(--mat-sys-label-medium);
     color: var(--mat-sys-primary);
+
+    &:hover {
+      font-weight: 700;
+    }
   }
 }

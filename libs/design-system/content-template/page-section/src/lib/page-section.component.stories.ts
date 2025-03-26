@@ -70,7 +70,7 @@ export const MainHeader: Story = {
       }`,
       `.header-icon {
         --mat-icon-color: var(--mat-sys-on-primary);
-        height: 60$;
+        height: 60%;
         width: 60%;
       }`,
       `ul {
