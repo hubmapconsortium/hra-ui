@@ -8,6 +8,7 @@ import { PageNavigationComponent } from '@hra-ui/design-system/content-template/
 
 import { CarouselComponent } from './components-v2/carousel/carousel.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SectionCardsComponent } from './components-v2/section-cards/section-cards.component';
 
 /**
  * Root component
@@ -18,6 +19,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
     CommonModule,
     NavigationModule,
     CarouselComponent,
+    SectionCardsComponent,
     PageSectionComponent,
     ProductLogoComponent,
     MatIconModule,
