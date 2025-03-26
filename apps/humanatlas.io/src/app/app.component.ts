@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { PageSectionComponent } from '@hra-ui/design-system/content-template/page-section';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { PageNavigationComponent } from '@hra-ui/design-system/content-template/page-navigation';
 
 import { CarouselComponent } from './components-v2/carousel/carousel.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -24,7 +23,6 @@ import { SectionCardsComponent } from './components-v2/section-cards/section-car
     ProductLogoComponent,
     MatIconModule,
     ButtonsModule,
-    PageNavigationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

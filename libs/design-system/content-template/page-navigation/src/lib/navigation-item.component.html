@@ -1,6 +1,0 @@
-<div class="navigation-label" [style.margin-left]="level() * 0.75 + 'rem'">{{ section().name }}</div>
-@if (section().children) {
-  @for (child of section().children; track child) {
-    <hra-navigation-item [section]="child" [level]="level() + 1"></hra-navigation-item>
-  }
-}
