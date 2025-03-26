@@ -29,7 +29,7 @@ const fontContent: Record<string, FontStyles> = {
     type: 'title',
     description: 'Tertiary headings, titles in app components',
     typography: {
-      large: 'Metropolis, Medium, 24/36, 0px',
+      large: 'Metropolis, Medium, 22/33, 0px',
       medium: 'Metropolis, Medium, 20/30, 0px',
       small: 'Metropolis Medium, 16/24, 0px ',
     },
@@ -41,16 +41,17 @@ const fontContent: Record<string, FontStyles> = {
       large: 'Metropolis, Medium, 16/24, 0px',
       medium: 'Metropolis, Medium, 14/21, 0px ',
       small: 'Metropolis, Medium, 12/18, 0px',
+      micro: 'Metropolis, Medium, 10/16, 0px',
     },
   },
   Body: {
     type: 'body',
     description: 'Paragraph text',
     typography: {
-      splash: 'Nunito Sans, 18/27, +0.5px',
-      large: 'Nunito Sans, 16/24, +0.5px',
-      medium: 'Nunito Sans, 14/21, +0.5px',
-      small: 'Nunito Sans, 12/18, +0.5px',
+      xl: 'Nunito Sans, 18/27, 0x',
+      large: 'Nunito Sans, 16/24, 0x',
+      medium: 'Nunito Sans, 14/21, 0x',
+      small: 'Nunito Sans, 12/18, 0x',
     },
   },
   Wordmark: {
@@ -73,7 +74,7 @@ const fontContent: Record<string, FontStyles> = {
         <span class="header-description">Uses: {{ variant().description }}</span>
       </div>
       @for (entry of typographies(); track entry) {
-        <div [style]="getStyles(entry[0])">{{ entry[0] | titlecase }}: {{ entry[1] }}</div>
+        <div [style]="getStyles(entry[0])">{{ entry[0] === 'xl' ? 'XL' : (entry[0] | titlecase) }}: {{ entry[1] }}</div>
       }
     </div>
   `,
