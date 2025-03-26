@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { load } from 'js-yaml';
 import { PageDef } from '../../components/page-element/page-def';
-import { PageSpec } from '../../utils/data-schema';
+import { PageSpec } from '../../utils/old/data-schema';
 
 /** Service for loading the content from a YAML file */
 @Injectable({

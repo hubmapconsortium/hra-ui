@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "useDefineForClassFields": false,
-    "paths": {
-      "@components/": ["apps/humanatlas.io/src/app/components/"]
-    }
+    "useDefineForClassFields": false
   },
   "files": [],
   "include": [],

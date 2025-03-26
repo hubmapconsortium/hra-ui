@@ -1,0 +1,9 @@
+<swiper-container init="false" class="carousel" #swiper>
+  @for (item of items(); track item) {
+    <swiper-slide class="slide">
+      <hra-carousel-content [item]="item" />
+    </swiper-slide>
+  }
+</swiper-container>
+
+<hra-carousel-controls class="controls" #controls />
