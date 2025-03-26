@@ -1,7 +1,6 @@
 @use 'light-theme';
 @use 'theming';
 @use 'utils';
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
