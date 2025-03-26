@@ -76,9 +76,8 @@ export class MetadataService {
       donor: { organ, sex, consortium, doi },
       previousRegistration,
     } = data;
-    const previousOrgan = modelState.snapshot.organ;
 
-    if (mode === 'edit' && (previousRegistration || organ !== previousOrgan)) {
+    if (mode === 'edit' && (previousRegistration || organ !== modelState.snapshot.organ)) {
       asState.removeAll();
     }
 
@@ -91,6 +90,8 @@ export class MetadataService {
     pageState.setOrcidId(author.orcidId);
     pageState.registrationStarted();
 
+    // Note: This read must happen after `registrationState.editRegistration`!
+    const previousOrgan = modelState.snapshot.organ;
     modelState.setOrgan(organ);
     modelState.setSex(sex);
     modelState.setConsortium(consortium);
