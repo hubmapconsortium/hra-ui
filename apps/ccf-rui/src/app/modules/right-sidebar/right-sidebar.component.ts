@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, output } from '@angular/core';
 
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { AnatomicalStructureTagState } from '../../core/store/anatomical-structure-tags/anatomical-structure-tags.state';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
-import { map } from 'rxjs';
 import { MetadataService } from '../metadata/metadata.service';
 
 /**
@@ -17,34 +18,21 @@ import { MetadataService } from '../metadata/metadata.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RightSidebarComponent {
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-right-sidebar';
+  readonly registrationExpanded = output<boolean>();
 
-  /** Whether or not the initial registration modal has been closed */
-  @Input() modalClosed = false;
+  protected readonly model = inject(ModelState);
+  protected readonly registration = inject(RegistrationState);
+  protected readonly page = inject(PageState);
+  protected readonly astags = inject(AnatomicalStructureTagState);
+  protected readonly metadata = inject(MetadataService);
 
-  @Output() readonly registrationExpanded = new EventEmitter<boolean>();
-
-  readonly position$ = this.model.position$.pipe(
+  protected readonly position$ = this.model.position$.pipe(
     map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
   );
 
-  protected readonly metadata = inject(MetadataService);
-
-  /**
-   * Creates an instance of right sidebar component.
-   *
-   * @param model Model state service
-   * @param registration Registration state service
-   * @param page The page state
-   * @param astags The anatomical structure tags state
-   */
-  constructor(
-    readonly model: ModelState,
-    readonly registration: RegistrationState,
-    readonly page: PageState,
-    readonly astags: AnatomicalStructureTagState,
-  ) {}
+  protected readonly tags = toSignal(this.astags.tags$, { initialValue: [] });
+  protected readonly addedTags = computed(() => this.tags().filter((tag) => tag.type === 'added'));
+  protected readonly assignedTags = computed(() => this.tags().filter((tag) => tag.type === 'assigned'));
 
   setDefaultPosition() {
     if (this.registration.snapshot.initialRegistration) {

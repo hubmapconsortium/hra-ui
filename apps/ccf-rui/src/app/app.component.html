@@ -48,7 +48,4 @@
   </hra-expansion-panel-header-content>
 </hra-expansion-panel>
 <ccf-content class="stage-content" [disablePositionChange]="disablePositionChange"></ccf-content>
-<ccf-right-sidebar
-  [modalClosed]="registrationStarted"
-  (registrationExpanded)="registrationToggle($event)"
-></ccf-right-sidebar>
+<ccf-right-sidebar (registrationExpanded)="registrationToggle($event)"></ccf-right-sidebar>
