@@ -91,6 +91,7 @@
     "ngxtension": "^4.1.0",
     "normalize.css": "^8.0.1",
     "papaparse": "^5.4.1",
+    "rapidoc": "^9.3.8",
     "rxjs": "^7.8.2",
     "stream-browserify": "^3.0.0",
     "swiper": "^8.4.7",
