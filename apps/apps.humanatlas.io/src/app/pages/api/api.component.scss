@@ -1,3 +1,57 @@
 :host {
   display: block;
 }
+
+.container {
+  .splash-bg {
+    position: relative;
+    .video {
+      position: relative;
+      width: 100%;
+      min-height: 513px;
+      height: 710px;
+      video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+      &::after {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: radial-gradient(32.22% 23.42% at 50.6% 60.43%, #e6eaf0 0%, rgba(230, 234, 240, 0) 100%);
+        content: '';
+      }
+    }
+
+    .splash-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.15);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 96px 40px;
+
+      .splash-title {
+        font: var(--mat-sys-display-large);
+        margin-bottom: 0.5rem;
+      }
+
+      .splash-description {
+        font: var(--mat-sys-body-large);
+        font-size: 18px;
+        color: #4c4c58;
+        width: 376px;
+        max-width: 900px;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
