@@ -31,8 +31,10 @@ export class RightSidebarComponent {
   );
 
   protected readonly tags = toSignal(this.astags.tags$, { initialValue: [] });
+  protected readonly allTags = toSignal(this.astags.entitiesArray$, { initialValue: [] });
   protected readonly addedTags = computed(() => this.tags().filter((tag) => tag.type === 'added'));
   protected readonly assignedTags = computed(() => this.tags().filter((tag) => tag.type === 'assigned'));
+  protected readonly removedTags = computed(() => this.allTags().filter((tag) => tag.type === 'removed'));
 
   setDefaultPosition() {
     if (this.registration.snapshot.initialRegistration) {

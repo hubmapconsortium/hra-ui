@@ -26,11 +26,6 @@ export class TagListComponent {
    */
   readonly tagRemoved = output<Tag>();
 
-  /**
-   * Emits the new array of tags when a tag has been removed
-   */
-  readonly tagsChange = output<Tag[]>();
-
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
