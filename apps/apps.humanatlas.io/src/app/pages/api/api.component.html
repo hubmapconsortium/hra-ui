@@ -1,19 +1,35 @@
-<div class="container">
-  <section class="splash-bg">
-    <div class="video">
-      <video src="videos/api-anim-v2.mp4" autoplay muted loop></video>
+<section class="splash">
+  <div class="video">
+    <video src="videos/api-anim-v2.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <div class="splash-content">
+    <div class="splash-title m">HRA API</div>
+    <div class="splash-description">
+      This API provides programmatic access to data registered to the Human Reference Atlas.
     </div>
-    <div class="splash-content">
-      <div class="splash-title m">HRA API</div>
-      <div class="splash-description">
-        This API provides programmatic access to data registered to the Human Reference Atlas.
-      </div>
-      <div class="splash-action">
-        <button mat-button hraCtaButton hraButtonVariant="primary" disabled="false">
-          Use APIs
-          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-        </button>
-      </div>
+    <div class="splash-action">
+      <button mat-button hraCtaButton hraButtonVariant="primary" disabled="false">
+        Use APIs
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
     </div>
-  </section>
-</div>
+  </div>
+</section>
+<section class="rapidoc-embed">
+  <rapi-doc
+    spec-url="api/hra-api-spec.yaml"
+    fill-request-fields-with-example="false"
+    show-header="false"
+    render-style="view"
+    layout="column"
+    allow-authentication="false"
+    theme="light"
+    bg-color="#E6EAF0"
+    text-color="#201E3D"
+    header-color="#201E3D"
+    primary-color="#FF0043"
+    css-file="rapidoc-theme.css"
+    css-classes="rapidoc-hra-api-theme"
+  >
+  </rapi-doc>
+</section>

@@ -1,0 +1,91 @@
+/* HRA-API Rapidoc Theme */
+
+.rapidoc-hra-api-theme {
+  div#api-info {
+    margin-left: 0;
+  }
+
+  /* Section Gap */
+  .section-gap {
+    padding-left: 0px;
+  }
+
+  /* Section Tag */
+  .section-tag {
+    /* Default Styles */
+    background: var(--schemes-surface-n-98-blue-5, rgba(239, 242, 245, 1));
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: -1px 2px 8px 0px #201e3d29;
+
+    /* Collapsed behavior */
+    &.collapsed {
+      .section-tag-header {
+        &::after {
+          font-family: 'Material Symbols Rounded';
+          content: 'add';
+          -webkit-font-feature-settings: 'liga';
+          font-feature-settings: 'liga';
+        }
+      }
+    }
+
+    /* Expanded behavior */
+    &.expanded {
+      .section-tag-header {
+        &::after {
+          font-family: 'Material Symbols Rounded';
+          content: 'remove';
+          -webkit-font-feature-settings: 'liga';
+          font-feature-settings: 'liga';
+        }
+      }
+    }
+
+    /* Section Tag Header */
+    .section-tag-header {
+      padding-left: 40px;
+
+      &:hover {
+        background: var(--schemes-surface-n-98-blue-5, #eff2f5);
+        overflow: hidden;
+      }
+
+      .sub-title {
+        font: var(--mat-sys-title-large);
+        color: #201e3d !important;
+      }
+
+      &::after {
+        position: absolute;
+        margin-left: -24px;
+        font-size: 20px;
+        top: calc(50% - 14px);
+        color: var(--border-color);
+      }
+    }
+
+    /* Section Tag Body */
+    .section-tag-body {
+      background: var(--schemes-on-primary-p-100-white, rgba(255, 255, 255, 1));
+
+      .endpoint-head .method {
+        border: 0;
+        padding: 6px 17px;
+        font-family: Roboto Mono;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        vertical-align: middle;
+        height: unset;
+        width: unset;
+      }
+
+      .endpoint-head .method.post {
+        background: #c8dfbe;
+      }
+    }
+  }
+}

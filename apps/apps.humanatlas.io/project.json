@@ -25,7 +25,11 @@
         ],
         "loader": {
           ".html": "text"
-        }
+        },
+        "styles": [
+          "apps/apps.humanatlas.io/src/styles.scss",
+          { "input": "apps/apps.humanatlas.io/src/styles/rapidoc-theme.scss", "bundleName": "rapidoc-theme" }
+        ]
       },
       "configurations": {
         "production": {
