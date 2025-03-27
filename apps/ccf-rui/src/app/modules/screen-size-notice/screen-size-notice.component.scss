@@ -4,8 +4,8 @@
 
   .header {
     --mat-dialog-headline-padding: 0 0 0 2rem;
-    font: var(--sys-headline-small);
-    letter-spacing: var(--sys-headline-small-tracking);
+    font: var(--mat-sys-headline-small);
+    letter-spacing: var(--mat-sys-headline-small-tracking);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -21,9 +21,9 @@
 
   mat-dialog-content {
     --mat-dialog-with-actions-content-padding: 0 2rem;
-    font: var(--sys-body-large);
-    letter-spacing: var(--sys-body-large-tracking);
-    --mdc-dialog-supporting-text-color: var(--sys-primary);
+    font: var(--mat-sys-body-large);
+    letter-spacing: var(--mat-sys-body-large-tracking);
+    --mdc-dialog-supporting-text-color: var(--mat-sys-primary);
   }
 
   mat-dialog-actions {

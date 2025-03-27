@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EMPTY, Observable, map } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
@@ -12,8 +12,13 @@ import { OrganData, VersionOrgans } from '../two-dim-image/two-dim-image';
   selector: 'ccf-organ-version',
   templateUrl: './organ-version.component.html',
   styleUrls: ['./organ-version.component.scss'],
+  standalone: false,
 })
 export class OrganVersionComponent implements OnInit {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly dataService = inject(TableDataService);
+
   /** Deatils of the release and version */
   @Input() versionData: ChooseVersion[] = [];
 
@@ -55,13 +60,6 @@ export class OrganVersionComponent implements OnInit {
 
   /** Column definitons of the columns to be displayed */
   displayedColumnsData: string[] = [];
-
-  /** Creates instance of Router, ActivatedRoute, TableDataService */
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private readonly dataService: TableDataService,
-  ) {}
 
   /** Checks if both the strings are equal */
   iCaseEquals(str1: string, str2: string): boolean {
@@ -136,7 +134,7 @@ export class OrganVersionComponent implements OnInit {
     const data = this.dataService.getData('ftu-cell-count-7th-release.csv', this.displayedColumnsData);
     this.tableData = data.pipe(
       map((result) => result.data),
-      map((data) => data.filter((record) => this.iCaseEquals(record['Organ'] as string, organName))),
+      map((item) => item.filter((record) => this.iCaseEquals(record['Organ'] as string, organName))),
     );
     this.columns = data.pipe(map((result) => result.columns));
     this.tableTitle = organName + ' Functional Tissue Units: Anatomical Structures & Cell Types';

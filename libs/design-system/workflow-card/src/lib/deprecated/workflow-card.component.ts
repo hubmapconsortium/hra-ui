@@ -8,7 +8,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
  */
 @Component({
   selector: 'hra-workflow-card',
-  standalone: true,
   imports: [CommonModule, MatProgressBarModule],
   templateUrl: './workflow-card.component.html',
   styleUrl: './workflow-card.component.scss',
@@ -16,8 +15,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class DeprecatedWorkflowCardComponent {
   /** Current data load progress */
-  loadProgress = input<number>(0);
+  readonly loadProgress = input<number>(0);
 
   /** Whether the card allows uploading of files */
-  allowUpload = input<boolean>(false);
+  readonly allowUpload = input<boolean>(false);
 }

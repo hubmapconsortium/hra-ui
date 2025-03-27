@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DocumentationContent } from '../info-button/info-button.service';
 
@@ -6,8 +6,11 @@ import { DocumentationContent } from '../info-button/info-button.service';
  * Data model for the dialog input
  */
 export interface InfoDialogData {
+  /** Content */
   content: DocumentationContent[];
+  /** Title */
   title: string;
+  /** Video */
   videoID: string;
 }
 
@@ -19,34 +22,26 @@ export interface InfoDialogData {
   templateUrl: './info-dialog.component.html',
   styleUrls: ['./info-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class InfoDialogComponent implements OnInit {
+  /** Dialog reference */
+  readonly dialogRef = inject<MatDialogRef<InfoDialogComponent>>(MatDialogRef);
+  /** Data from parent */
+  readonly data = inject<InfoDialogData>(MAT_DIALOG_DATA);
+
   /**
    * Documentation contents
    */
-  documentationContents: DocumentationContent[];
+  documentationContents = this.data.content || [];
   /**
    * Title of the dialog
    */
-  infoTitle: string;
+  infoTitle = this.data.title || '';
   /**
    * URL for video
    */
-  videoID: string;
-  /**
-   * Creates an instance of info dialog component.
-   *
-   * @param dialogRef A reference to the dialog that this component creates, used to call the dialog's methods
-   * @param data Data being injected into the dialog
-   */
-  constructor(
-    public dialogRef: MatDialogRef<InfoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: InfoDialogData,
-  ) {
-    this.documentationContents = data.content || [];
-    this.infoTitle = data.title || '';
-    this.videoID = data.videoID;
-  }
+  videoID = this.data.videoID;
 
   /**
    * load the youtube player api in on init

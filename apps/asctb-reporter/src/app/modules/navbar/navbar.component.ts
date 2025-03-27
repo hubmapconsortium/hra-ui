@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -32,8 +32,16 @@ import { UIState, UIStateModel } from '../../store/ui.state';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  standalone: false,
 })
 export class NavbarComponent implements OnInit {
+  readonly sheetservice = inject(SheetService);
+  readonly configService = inject(ConfigService);
+  readonly store = inject(Store);
+  readonly router = inject(Router);
+  readonly ga = inject(GoogleAnalyticsService);
+  readonly dialog = inject(MatDialog);
+
   /**
    * Available Data versions (depricated)
    */
@@ -102,30 +110,23 @@ export class NavbarComponent implements OnInit {
   @Select(SheetState.getOMAPSelectedOrgans) omapSelectedOrgans$!: Observable<string[]>;
 
   @Input() cache!: boolean;
-  @Output() export = new EventEmitter<string>();
+  @Output() readonly export = new EventEmitter<string>();
 
   get selectedOrgansLabel(): string {
     let x = this.selectedOrgansValues?.length > 0 ? 'ASCT+B: ' + this.selectedOrgansValues : '';
     x = this.selectedOrgansValues?.length > 0 && this.omapSelectedOrgansValues?.length > 0 ? x + ' | ' : x;
     x = this.omapSelectedOrgansValues?.length > 0 ? `${x}OMAP: ${this.omapSelectedOrgansValues}` : x;
     if (x.length > 35) {
-      return `${this.selectedOrgansValues?.split(',').length} ASCT+B Tables, ${this.omapSelectedOrgansValues?.split(',')
-        .length} OMAPs`;
-    } else {
-      return x;
+      return `${this.selectedOrgansValues?.split(',').length} ASCT+B Tables, ${
+        this.omapSelectedOrgansValues?.split(',').length
+      } OMAPs`;
     }
+    return x;
   }
   playgroundSheetOptions: PlaygroundSheetOptions[] = [];
   masterSheetLink!: string;
 
-  constructor(
-    public sheetservice: SheetService,
-    public configService: ConfigService,
-    public store: Store,
-    public router: Router,
-    public ga: GoogleAnalyticsService,
-    public dialog: MatDialog,
-  ) {
+  constructor() {
     this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
       this.sheetConfig = sheetOptions;
       this.sheetOptions = sheetOptions as unknown as SheetOptions[];

@@ -14,6 +14,7 @@ export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
 /** Max height to show screen size notice */
 export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
 
+/** Opens the screen size notice if not already shown */
 export function openScreenSizeNotice(dialog: MatDialog): Subscription {
   const initialStorageValue = booleanAttribute(localStorage.getItem(DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY));
   if (initialStorageValue) {
@@ -48,7 +49,6 @@ export function openScreenSizeNotice(dialog: MatDialog): Subscription {
  */
 @Component({
   selector: 'ccf-screen-size-notice',
-  standalone: true,
   imports: [CommonModule, ButtonsModule, MatDialogModule, MatIconModule],
   templateUrl: './screen-size-notice.component.html',
   styleUrl: './screen-size-notice.component.scss',

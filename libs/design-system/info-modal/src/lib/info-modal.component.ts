@@ -20,7 +20,6 @@ export type InfoModalVariant = 'tabular' | 'center';
  */
 @Component({
   selector: 'hra-info-modal',
-  standalone: true,
   imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.scss',
@@ -31,14 +30,15 @@ export type InfoModalVariant = 'tabular' | 'center';
 })
 export class InfoModalComponent {
   /** List of data items to display */
-  data = input<DataItem[]>([]);
+  readonly data = input<DataItem[]>([]);
 
   /** Variant of info modal to use */
-  variant = input<InfoModalVariant>('tabular');
+  readonly variant = input<InfoModalVariant>('tabular');
 
   /** Title of modal */
-  title = input.required<string>();
+  readonly title = input.required<string>();
 
   /** Emits when close icon clicked */
-  close = output<void>();
+  // eslint-disable-next-line @angular-eslint/no-output-native
+  readonly close = output<void>();
 }

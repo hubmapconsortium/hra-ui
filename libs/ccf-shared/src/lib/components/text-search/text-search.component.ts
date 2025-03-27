@@ -3,10 +3,10 @@ import {
   Component,
   EventEmitter,
   HostBinding,
-  Inject,
   InjectionToken,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { Observable, ObservableInput, from, lastValueFrom } from 'rxjs';
@@ -43,8 +43,11 @@ export const DEFAULT_MAX_OPTIONS = new InjectionToken('Maximum number of autocom
   templateUrl: './text-search.component.html',
   styleUrls: ['./text-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TextSearchComponent {
+  private readonly defaultMaxOptions = inject(DEFAULT_MAX_OPTIONS);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-text-search';
 
@@ -126,7 +129,7 @@ export class TextSearchComponent {
    *
    * @param defaultMaxOptions The default value for `maxOptions`
    */
-  constructor(@Inject(DEFAULT_MAX_OPTIONS) private readonly defaultMaxOptions: number) {
+  constructor() {
     this.valueChange = this.controller.valueChanges;
   }
 

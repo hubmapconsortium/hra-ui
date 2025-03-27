@@ -1,23 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/cdk/app-href';
+import { findOrThrow } from '@hra-ui/common/array-util';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
-
-/** Brand mark variant */
-export type BrandMarkVariant = 'default' | 'contrast';
-
-/** Urls for different mark variants */
-const BRAND_MARK_URLS: Record<BrandMarkVariant, string> = {
-  default: 'assets/logo/hra_brandmark.svg',
-  contrast: 'assets/logo/hra_brandmark_contrast.svg',
-};
+import { MARKS } from './static-data/parsed';
+import { BrandMarkVariant } from './types/marks.schema';
 
 /**
  * HRA brandmark component
  */
 @Component({
   selector: 'hra-brand-mark',
-  standalone: true,
   imports: [CommonModule, InlineSVGModule, AssetUrlPipe],
   templateUrl: './mark.component.html',
   styleUrl: './mark.component.scss',
@@ -30,6 +23,6 @@ export class BrandMarkComponent {
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 
-  /** Url based on variant */
-  protected readonly markUrl = computed(() => BRAND_MARK_URLS[this.variant()]);
+  /** Mark data */
+  protected readonly data = computed(() => findOrThrow(MARKS, ({ variant }) => variant === this.variant()));
 }

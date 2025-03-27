@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+import { NodeObject } from 'jsonld';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { uniqBy } from 'lodash';
 
@@ -7,8 +7,8 @@ import { parseCSV } from './parse-csv';
 import { processAnatomicalStructures } from './process-anatomical-structures';
 import { processExtractionSites } from './process-extraction-sites';
 import { processSpatialEntities } from './process-spatial-entities';
-import { NodeObject } from 'jsonld';
 
+/** This constant defines the configuration URLs for various reference data sources, including extraction sites, anatomical structures, and reference organ configurations. */
 export const referenceDataConfig = {
   extractionSitesUrl: 'http://localhost:8080/source_data/asct-b-3d-models-landmarks.csv',
   extractionSitesConfigUrl: 'http://localhost:8080/source_data/extraction-site-config.csv',
@@ -16,6 +16,12 @@ export const referenceDataConfig = {
   referenceOrganConfigUrl: 'http://localhost:8080/source_data/reference-organ-config.csv',
 };
 
+/**
+ * This function processes reference data by parsing CSV files, processing spatial entities, and generating JSON-LD objects.
+ * @param refEntities An array of SpatialEntityJsonLd objects representing the reference entities.
+ * @param [config] The configuration object containing URLs for reference data sources. Defaults to referenceDataConfig.
+ * @returns A promise that resolves to an array of JsonLdObj objects.
+ */
 export async function processReferenceData(
   refEntities: SpatialEntityJsonLd[],
   config = referenceDataConfig,

@@ -1,31 +1,17 @@
 {
   "name": "ccf-rui",
   "metadata": {
-    "version": "4.1.0"
+    "version": "4.2.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/ccf-rui/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    }
-  },
+  "tags": ["type:app", "project:ccf"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
-      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": {
-          "base": "dist/apps/ccf-rui",
-          "browser": "."
-        },
-        "index": "apps/ccf-rui/src/index.html",
-        "browser": "apps/ccf-rui/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/ccf-rui/tsconfig.app.json",
         "assets": [
           "apps/ccf-rui/src/favicon.png",
           "apps/ccf-rui/src/assets",
@@ -35,21 +21,10 @@
             "output": "./assets"
           }
         ],
-        "styles": ["apps/ccf-rui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/design-system/styles"]
-        },
-        "scripts": [],
-        "define": {
-          "define": "undefined"
-        },
-        "outputHashing": "none",
-        "allowedCommonJsDependencies": ["*"],
-        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
@@ -69,98 +44,27 @@
             }
           ]
         },
-        "development": {
-          "baseHref": "/",
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        },
         "staging": {
-          "baseHref": "/ui--staging/ccf-rui/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-rui/src/environments/environment.ts",
               "with": "apps/ccf-rui/src/environments/environment.staging.ts"
             }
           ]
-        },
-        "preview": {
-          "baseHref": "/apps/ccf-rui/",
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "ccf-rui:build:production"
-        },
-        "development": {
-          "buildTarget": "ccf-rui:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "ccf-rui:build"
-      }
-    },
-    "test": {
-      "executor": "@angular-devkit/build-angular:karma",
-      "options": {
-        "main": "apps/ccf-rui/src/test.ts",
-        "polyfills": "apps/ccf-rui/src/polyfills.ts",
-        "tsConfig": "apps/ccf-rui/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-rui/karma.conf.js",
-        "assets": ["apps/ccf-rui/src/favicon.png", "apps/ccf-rui/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": [
-          "apps/ccf-rui/src/test.ts",
-          "apps/ccf-rui/src/polyfills.ts",
-          "apps/ccf-rui/src/environments/**/*.ts",
-          "apps/ccf-rui/src/app/**/*.module.ts"
-        ],
-        "styles": ["apps/ccf-rui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["libs/design-system/styles"]
-        },
-        "scripts": []
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
-      }
-    },
-    "build-webcomponent": {
-      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ccf-rui/"
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "apps/ccf-rui/tsconfig.json",
-        "outputPath": "dist/compodoc/ccf-rui"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
+        "tsConfig": "apps/ccf-rui/tsconfig.app.json"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ccf-rui/browser/"
     }
   }
 }

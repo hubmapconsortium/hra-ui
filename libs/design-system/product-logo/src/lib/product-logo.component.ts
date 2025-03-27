@@ -10,7 +10,6 @@ export type ProductLogoSize = 'small' | 'large';
  */
 @Component({
   selector: 'hra-product-logo',
-  standalone: true,
   imports: [CommonModule, MatIconModule],
   templateUrl: './product-logo.component.html',
   styleUrl: './product-logo.component.scss',

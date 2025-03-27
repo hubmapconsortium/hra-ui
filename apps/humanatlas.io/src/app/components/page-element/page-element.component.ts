@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, Subscription } from 'rxjs';
 import { LongCard } from '../card-button-long/long-card';
@@ -11,8 +11,14 @@ import { PageDef } from './page-def';
   templateUrl: './page-element.component.html',
   styleUrls: ['./page-element.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PageElementComponent {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly scroller = inject(ViewportScroller);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   /** Details of element to be displayed */
   @Input() def!: PageDef;
 
@@ -24,12 +30,7 @@ export class PageElementComponent {
 
   /** Creates instance of Router, ActivatedRoute, ViewportScroller
    * and navigates to page element if fragment is changed */
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private readonly scroller: ViewportScroller,
-    private readonly cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.subscriptions.add(
       this.route.fragment.pipe(delay(10)).subscribe((anchor) => {
         if (anchor) {

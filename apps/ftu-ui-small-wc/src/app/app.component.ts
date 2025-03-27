@@ -15,7 +15,6 @@ import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryAct
 import {
   BiomarkerDetailsWcComponent,
   FooterBehaviorComponent,
-  HeaderBehaviorComponent,
   HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/components/behavioral';
@@ -85,7 +84,6 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 @Component({
   selector: 'hra-root',
   imports: [
-    HeaderBehaviorComponent,
     TissueLibraryBehaviorComponent,
     HraLandingPageIntroWcBehaviourComponent,
     BiomarkerDetailsWcComponent,
@@ -95,7 +93,6 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   host: {
     class: 'hra-app',
   },
@@ -206,7 +203,7 @@ export class AppComponent implements OnInit, OnChanges {
     let endpointsUpdated = false;
     const updateEndpointsOnce = () => {
       if (!endpointsUpdated) {
-        const { illustrations, datasets, summaries, baseHref } = this;
+        const { illustrations, datasets, summaries } = this;
         this.endpoints.next({
           illustrations: illustrationsInput(illustrations) ?? '',
           datasets: rawDatasetsInput(datasets) ?? '',

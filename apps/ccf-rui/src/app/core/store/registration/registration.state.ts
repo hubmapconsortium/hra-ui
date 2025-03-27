@@ -1,18 +1,18 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { State } from '@ngxs/store';
 import { insertItem, patch } from '@ngxs/store/operators';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { saveAs } from 'file-saver';
-import { Observable, combineLatest } from 'rxjs';
+import { isEqual } from 'lodash';
+import { combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, take, tap, throttleTime } from 'rxjs/operators';
 import { v4 as uuidV4 } from 'uuid';
 
-import { isEqual } from 'lodash';
 import { Tag } from '../../models/anatomical-structure-tag';
 import { MetaData } from '../../models/meta-data';
 import { GlobalConfig } from '../../services/config/config';
@@ -35,8 +35,10 @@ export interface RegistrationStateModel {
   initialRegistration?: SpatialEntityJsonLd;
 }
 
+/** Throttle rate for throttledJsonld$ (in ms) */
 const JSONLD_THROTTLE_DURATION = 100;
 
+/** Returns undefined if number is not a number, otherwise returns the number */
 function undefIfNaN(value: number): number | undefined {
   return Number.isNaN(value) ? undefined : value;
 }
@@ -55,6 +57,13 @@ function undefIfNaN(value: number): number | undefined {
 })
 @Injectable()
 export class RegistrationState extends NgxsImmutableDataRepository<RegistrationStateModel> {
+  /** Injector service */
+  private readonly injector = inject(Injector);
+
+  /** Global config state */
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
+  /** Registration display errors */
   readonly displayErrors$ = this.state$.pipe(map((x) => x?.displayErrors));
 
   /** Observable of registration metadata */
@@ -73,6 +82,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     );
   }
 
+  /** Observable that emits JSON-LD from page, model and tags at a throttled rate */
   @Computed()
   get throttledJsonld$(): Observable<Record<string, unknown>> {
     return combineLatest([this.page.state$, this.model.state$, this.tags.tags$]).pipe(
@@ -82,6 +92,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     );
   }
 
+  /** Observable for registration validity */
   @Computed()
   get valid$(): Observable<boolean> {
     return combineLatest([this.page.state$, this.model.state$]).pipe(map(() => this.isValid));
@@ -127,19 +138,6 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
   private refData!: ReferenceDataState;
 
   /**
-   * Creates an instance of registration state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   * @param globalConfig The global configuration
-   */
-  constructor(
-    private readonly injector: Injector,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
-  }
-
-  /**
    * Initializes this state service.
    */
   override ngxsOnInit(): void {
@@ -179,6 +177,9 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     });
   }
 
+  /**
+   * Resets position of model
+   */
   resetPosition() {
     const reg = this.ctx.getState().initialRegistration;
     if (reg) {
@@ -187,6 +188,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     }
   }
 
+  /**
+   * Edits registration with new data
+   * @param reg Spatial placement object
+   * @returns Promise
+   */
   async editRegistration(reg: SpatialEntityJsonLd): Promise<void> {
     this.ctx.patchState({ initialRegistration: reg });
     const place = this.refData.normalizePlacement(Array.isArray(reg.placement) ? reg.placement[0] : reg.placement);
@@ -231,7 +237,6 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
 
   /**
    * Sets whether to use the registration callback function or download.
-   *
    * @param use True to use the callback, false to download
    */
   @DataAction()
@@ -240,8 +245,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
   }
 
   /**
-   * Set's whether or not we should display the user's registration errors
-   *
+   * Sets whether or not we should display the user's registration errors
    * @param displayErrors the value to set it to
    */
   @DataAction()
@@ -251,7 +255,6 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
 
   /**
    * Adds an entry to the previous registrations
-   *
    * @param registration The new entry
    */
   @DataAction()
@@ -273,6 +276,12 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     this.page.patchState({ organOptions: this.organListOptions(ids) });
   }
 
+  /**
+   * Determines whether the registration data is valid
+   * @param page Page state
+   * @param model Model state
+   * @returns true if all data is valid
+   */
   isDataValid(page: Immutable<PageStateModel>, model: Immutable<ModelStateModel>): boolean {
     const requiredValues = [
       page.user.firstName,
@@ -286,6 +295,9 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     return requiredValues.every((value) => !!value);
   }
 
+  /**
+   * Checks if registration data is valid
+   */
   @Computed()
   get isValid(): boolean {
     return this.isDataValid(this.page.snapshot, this.model.snapshot);
@@ -293,7 +305,6 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
 
   /**
    * Registers or downloads json data.
-   *
    * @param [useCallback] Explicit override selecting the register/download action
    */
   register(useCallback?: boolean | undefined): void {
@@ -351,6 +362,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    *
    * @param page The current page state data
    * @param model The current model state data
+   * @param tags Anatomical structure tags for the metadata
    * @returns metadata An array of label-value objects
    */
   private buildMetadata(page: Immutable<PageStateModel>, model: Immutable<ModelStateModel>, tags: Tag[]): MetaData {
@@ -384,6 +396,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     return data;
   }
 
+  /**
+   * Gets date from datestring (uses current date if not datestring valid)
+   * @param datestring
+   * @returns date
+   */
   private getDate(datestring: string) {
     const match = datestring.match('d{4}-d{2}-d{2}');
     return match ? match[0] : this.currentDate;
@@ -394,6 +411,7 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
    *
    * @param page The current page state data
    * @param model The current model state data
+   * @param tags Anatomical structure tags
    * @returns A jsonld object
    */
   private buildJsonLd(
@@ -470,12 +488,10 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       return RUI_ORGANS.filter((organ) => {
         if (!organ.id) {
           return false;
-        } else {
-          return organOptions.includes(organ.id);
         }
+        return organOptions.includes(organ.id);
       });
-    } else {
-      return RUI_ORGANS;
     }
+    return RUI_ORGANS;
   }
 }

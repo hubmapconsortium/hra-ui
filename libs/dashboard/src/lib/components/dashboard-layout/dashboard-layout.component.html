@@ -1,12 +1,6 @@
 <h2 class="title">{{ spec().title }}</h2>
 <div class="description mat-body-2">{{ spec().description }}</div>
-<a
-  [attr.href]="spec().link.url"
-  target="_blank"
-  rel="noopener"
-  mat-flat-button
-  class="cta-filled read-btn"
-  color="primary"
+<a [attr.href]="spec().link.url" target="_blank" rel="noopener" mat-button hraCtaButton class="read-btn" color="primary"
   >{{ spec().link.label }}
   <mat-icon class="material-symbols-rounded" iconPositionEnd> arrow_right_alt </mat-icon>
 </a>

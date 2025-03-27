@@ -19,12 +19,16 @@ import { SpatialSceneNode } from '@hra-api/ng-client';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { z } from 'zod';
+
 import { BodyUI, NodeClickEvent, NodeDragEvent } from '../body-ui';
 
 /** Interface for bounds */
 export interface XYZTriplet<T = number> {
+  /** The x-coordinate */
   x: T;
+  /** The y-coordinate */
   y: T;
+  /** The z-coordinate */
   z: T;
 }
 
@@ -90,8 +94,6 @@ const parseBoundsInput = BOUNDS_INPUT.parse.bind(BOUNDS_INPUT);
 
 /** HRA Body UI Component */
 @Component({
-  standalone: true,
-  imports: [],
   selector: 'hra-body-ui',
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',

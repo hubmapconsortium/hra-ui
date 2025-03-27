@@ -1,5 +1,5 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
-import { AfterViewInit, ChangeDetectionStrategy, Component, computed, input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, computed, input, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTree, MatTreeModule } from '@angular/material/tree';
@@ -27,13 +27,12 @@ const PADDING: Record<TreeSize, number> = {
 @Component({
   selector: 'hra-tree-demo',
   templateUrl: 'tree-demo.component.html',
-  standalone: true,
   imports: [MatTreeModule, MatButtonModule, MatIconModule, TreeSizeDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeDemoComponent implements AfterViewInit {
   /** ViewChild for tree component */
-  @ViewChild(MatTree) tree!: MatTree<NestedNode>;
+  readonly tree = viewChild(MatTree);
 
   /** Tree node data */
   readonly treeData = input<NestedNode[]>([]);
@@ -64,7 +63,7 @@ export class TreeDemoComponent implements AfterViewInit {
   /** Renders node if it is a root node or if all of its ancestors are expanded */
   shouldRender(node: NestedNode): boolean {
     const parent = this.getParentNode(node);
-    return !parent || (!!this.tree?.isExpanded(parent) && this.shouldRender(parent));
+    return !parent || (!!this.tree()?.isExpanded(parent) && this.shouldRender(parent));
   }
 
   /** Gets parent of a node */

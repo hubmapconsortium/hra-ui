@@ -10,7 +10,7 @@
   hra-expansion-panel {
     ::ng-deep {
       .header > .title {
-        font: var(--sys-label-large);
+        font: var(--mat-sys-label-large);
       }
       .content {
         margin: 0 1rem;
@@ -36,7 +36,7 @@
 
       .label {
         padding: 0.5rem 0;
-        font: var(--sys-label-medium);
+        font: var(--mat-sys-label-medium);
       }
 
       .box {
@@ -49,14 +49,14 @@
         padding: 0 12px;
 
         span {
-          color: var(--sys-on-primary-fixed-variant);
+          color: var(--mat-sys-on-primary-fixed-variant);
         }
 
         .position-label {
-          font: var(--sys-label-small);
+          font: var(--mat-sys-label-small);
         }
         .position-value {
-          font: var(--sys-label-medium);
+          font: var(--mat-sys-label-medium);
         }
       }
 

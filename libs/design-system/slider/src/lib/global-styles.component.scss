@@ -1,0 +1,22 @@
+@use '../../../styles/utils';
+
+@include utils.global-styles() {
+  mat-slider {
+    --mdc-slider-inactive-track-color: var(--mat-sys-outline);
+    --mdc-slider-active-track-color: var(--mat-sys-secondary);
+    --mdc-slider-handle-color: var(--mat-sys-secondary);
+    --mdc-slider-label-container-color: var(--mat-sys-secondary);
+    --mdc-slider-label-label-text-color: var(--mat-sys-on-primary);
+    --mdc-slider-label-label-text-font: var(--mat-sys-label-medium-font);
+    --mdc-slider-label-label-text-size: var(--mat-sys-label-medium-size);
+    --mdc-slider-label-label-text-line-height: var(--mat-sys-label-medium-line-height);
+    --mdc-slider-label-label-text-tracking: var(--mat-sys-label-medium-tracking);
+    --mdc-slider-label-label-text-weight: var(--mat-sys-label-medium-weight);
+    --mat-slider-value-indicator-width: 2.6406rem;
+    --mat-slider-value-indicator-height: 2.6406rem;
+
+    .mdc-slider__track--inactive {
+      opacity: 1;
+    }
+  }
+}

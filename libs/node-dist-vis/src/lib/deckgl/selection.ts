@@ -6,7 +6,6 @@ import {
   DefaultProps,
   FilterContext,
   Layer,
-  LayerContext,
   LayerData,
   LayersList,
   PickingInfo,
@@ -96,7 +95,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
   static override layerName = 'SelectionLayer';
   static override defaultProps = defaultProps;
 
-  override initializeState(_context: LayerContext): void {
+  override initializeState(): void {
     this.state = { ...EMPTY_STATE };
   }
 

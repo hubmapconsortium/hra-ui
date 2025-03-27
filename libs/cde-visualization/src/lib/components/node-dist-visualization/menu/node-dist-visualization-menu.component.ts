@@ -5,20 +5,29 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 
+/**
+ * Menu for node dist visualization expansion panel
+ */
 @Component({
   selector: 'cde-node-dist-visualization-menu',
-  standalone: true,
   imports: [MatMenuModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, MicroTooltipDirective],
   templateUrl: './node-dist-visualization-menu.component.html',
   styleUrl: './node-dist-visualization-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeDistVisualizationMenuComponent {
+  /** If visualization is in full screen */
   readonly fullscreenMode = input(false, { transform: booleanAttribute });
+
+  /** If edges are disabled */
   readonly edgesDisabled = model(false);
 
+  /** Emits when full screen option clicked */
   readonly fullscreenClick = output<void>();
+  /** Emits when download option clicked */
   readonly downloadClick = output<void>();
+  /** Emits when reset visualization view option clicked */
   readonly resetViewClick = output<void>();
+  /** Emits when reset deleted cells option option clicked */
   readonly resetDeletedClick = output<void>();
 }

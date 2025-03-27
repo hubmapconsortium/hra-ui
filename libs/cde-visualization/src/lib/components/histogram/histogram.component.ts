@@ -37,6 +37,7 @@ import { produce } from 'immer';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
+
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
@@ -45,8 +46,11 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
+/** Interface for updated color data */
 interface UpdateColorData {
+  /** Cell type entry to update */
   entry: CellTypeEntry;
+  /** New color */
   color: Rgb;
 }
 
@@ -122,7 +126,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
  */
 @Component({
   selector: 'cde-histogram',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
@@ -156,12 +159,13 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistogramComponent {
-  /** Data for the violin visualization */
+  /** Data for the visualization */
   readonly data = input.required<DistanceEntry[]>();
 
-  /** Colors for the violin visualization */
+  /** Colors for the visualization */
   readonly colors = input.required<string[]>();
 
+  /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
 
   /** Tooltip position configuration */
@@ -178,8 +182,10 @@ export class HistogramComponent {
   /** State indicating whether the info panel is open */
   infoOpen = false;
 
+  /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
 
+  /** Sets the color picker directive */
   protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
 
   /** State indicating whether overflow is visible */
@@ -206,8 +212,10 @@ export class HistogramComponent {
   /** Vega view instance for the histogram */
   protected readonly view = signal<View | undefined>(undefined);
 
+  /** Emits updated color data */
   readonly updateColor = output<UpdateColorData>();
 
+  /** Array of all colors to use in the histogram */
   protected readonly allColors = computed(() => {
     const totalCellType = { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
     return [totalCellType, ...this.filteredCellTypes()]
@@ -222,24 +230,22 @@ export class HistogramComponent {
   protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
   /** Effect for creating the Vega view */
-  protected readonly viewCreateRef = effect(
-    async (onCleanup) => {
-      const el = this.histogramEl().rootNodes()[0];
-      await this.ensureFontsLoaded();
+  protected readonly viewCreateRef = effect(async (onCleanup) => {
+    const el = this.histogramEl().rootNodes()[0];
+    await this.ensureFontsLoaded();
 
-      const spec = produce(HISTOGRAM_SPEC, (draft) => {
-        draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
-      });
-      const { finalize, view } = await embed(el, spec as VisualizationSpec, {
-        actions: false,
-      });
+    const spec = produce(HISTOGRAM_SPEC, (draft) => {
+      draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
+    });
+    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
 
-      onCleanup(finalize);
-      this.view.set(view);
-    },
-    { allowSignalWrites: true },
-  );
+    onCleanup(finalize);
+    this.view.set(view);
+  });
 
+  /** Resizes view when fullscreen is toggled */
   /* istanbul ignore next */
   resizeAndSyncView() {
     const container = this.view()?.container();

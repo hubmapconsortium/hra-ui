@@ -1,50 +1,49 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Injector,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Filter, OntologyTree } from '@hra-api/ng-client';
+import { Filter } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Select } from '@ngxs/store';
-import { BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
-import { ConsentService } from 'ccf-shared/analytics';
+import { Store } from '@ngxs/store';
+import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { Observable, ReplaySubject, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { combineLatest } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
-import { AppRootOverlayContainer } from './core/services/app-root-overlay/app-root-overlay.service';
-import { ThemingService } from './core/services/theming/theming.service';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
-import { DataState } from './core/store/data/data.state';
+import {
+  DataState,
+  DEFAULT_FILTER_AGE_HIGH,
+  DEFAULT_FILTER_AGE_LOW,
+  DEFAULT_FILTER_BMI_HIGH,
+  DEFAULT_FILTER_BMI_LOW,
+} from './core/store/data/data.state';
 import { ListResultsState } from './core/store/list-results/list-results.state';
 import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
-import { SpatialSearchFilterItem } from './core/store/spatial-search-filter/spatial-search-filter.state';
-import { FiltersPopoverComponent } from './modules/filters/filters-popover/filters-popover.component';
-import { DrawerComponent } from './shared/components/drawer/drawer/drawer.component';
+import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
 
+/** App options */
 interface AppOptions {
   /** A list of data sources (in n3, rdf, xml, owl, or jsonld format) */
   dataSources: (string | JsonLd)[];
   /** Service Token. */
   token?: string;
-  theme?: string;
+  /** Show header */
   header?: boolean;
+  /** Home url */
   homeUrl?: string;
+  /** Logo tooltip */
   logoTooltip?: string;
+  /** Selected organs */
   selectedOrgans?: string[];
-  loginEnabled?: boolean;
+  /** Base href */
   baseHref?: string;
+  /** Filter */
   filter?: Partial<Filter>;
+  /** Login disabled */
   loginDisabled?: boolean;
 }
 
@@ -60,138 +59,104 @@ interface AppOptions {
     class: 'hra-app',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
-  @ViewChild('bodyUI', { static: false }) bodyUI!: BodyUiComponent;
-
-  @Select(DataStateSelectors.cellTypesTreeModel)
-  readonly cellTypeTreeModel$!: Observable<OntologyTree>;
-
-  @Select(DataStateSelectors.anatomicalStructuresTreeModel)
-  readonly ontologyTreeModel$!: Observable<OntologyTree>;
-
-  @Select(DataStateSelectors.biomarkersTreeModel)
-  readonly biomarkersTreeModel$!: Observable<OntologyTree>;
-
-  @Select(SpatialSearchFilterSelectors.items)
-  readonly selectableSearches$!: Observable<SpatialSearchFilterItem>;
-
+  /** Set selected searches */
   @Dispatch()
   readonly setSelectedSearches = actionAsFn(SetSelectedSearches);
 
+  /** Remove spatial searches */
   @Dispatch()
   readonly removeSpatialSearch = actionAsFn(RemoveSearch);
 
-  menuOptions: string[] = ['AS', 'CT', 'B'];
-  tooltips: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
-  /**
-   * Used to keep track of the ontology label to be passed down to the
-   * results-browser component.
-   */
-  ontologySelectionLabel = 'body';
+  /** Menu options */
+  readonly menuOptions: string[] = ['Anatomical Structures', 'Cell Types', 'Biomarkers'];
+  /** Tooltips */
+  readonly ontologyTooltips: Record<string, string> = {
+    as: 'Parts of the body in defined locations and regions, including the surface, internal organs and tissues. These structures may be described by gross or microscopic morphology and include functional tissue units and highly organized cellular ecosystems (such as alveoli in the lungs).',
+    ct: 'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. For example, epithelial cells in the skin, lungs and kidneys may have shared and specialized functions according to tissue localization.',
+    b: 'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type.',
+  };
 
-  cellTypeSelectionLabel = 'cell';
+  /** Selected options */
+  selectedToggleOptions: string[] = [];
 
-  biomarkerSelectionLabel = 'biomarker';
+  /** State reference */
+  private readonly store = inject(Store);
+  /** Data state */
+  protected readonly data = inject(DataState);
+  /** Spatial flow service */
+  protected readonly spatialFlowService = inject(SpatialSearchFlowService);
+  /** Filter */
+  protected readonly filter = toSignal(this.data.filter$, { requireSync: true });
+  /** Technology options */
+  protected readonly technologyOptions = toSignal(this.data.technologyFilterData$, { initialValue: [] });
+  /** Provider options */
+  protected readonly providerOptions = toSignal(this.data.providerFilterData$, { initialValue: [] });
+  /** Spatial searches */
+  protected readonly spatialSearchItems = this.store.selectSignal(SpatialSearchFilterSelectors.items);
+  /** Database state */
+  protected readonly databaseReady = this.store.selectSignal(DataStateSelectors.isDatabaseReady);
+  /** Cell type tree */
+  protected readonly cellTypeTree = this.store.selectSignal(DataStateSelectors.cellTypesTreeModel);
+  /** Ontology tree */
+  protected readonly ontologyTree = this.store.selectSignal(DataStateSelectors.anatomicalStructuresTreeModel);
+  /** Biomarker tree */
+  protected readonly biomarkerTree = this.store.selectSignal(DataStateSelectors.biomarkersTreeModel);
 
-  selectionLabel = 'body | cell | biomarker';
+  /** Formatted age range */
+  protected readonly ageRangeValue = computed(() =>
+    this.formatRange(this.filter().ageRange, DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH),
+  );
+  /** Formatted bmi range */
+  protected readonly bmiRangeValue = computed(() =>
+    this.formatRange(this.filter().bmiRange, DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH),
+  );
 
-  selectedtoggleOptions: string[] = [];
-
-  /**
-   * Whether or not organ carousel is open
-   */
-  organListVisible = true;
-
-  /**
-   * Emitted url object from the results browser item
-   */
-  url = '';
-
-  /**
-   * Acceptable viewer domains (others will open in new window)
-   */
-  acceptableViewerDomains: string[] = environment.acceptableViewerDomains || [];
-
-  /**
-   * Variable to keep track of whether the viewer is open
-   * or not
-   */
-  viewerOpen = false;
-
-  get isLightTheme(): boolean {
-    return this.theming.getTheme().endsWith('light');
-  }
-
-  get isFirefox(): boolean {
-    return navigator.userAgent.indexOf('Firefox') !== -1;
-  }
-
-  /** Emits true whenever the overlay spinner should activate. */
-  readonly spinnerActive$ = this.data.state$.pipe(map((state) => state?.status !== 'Ready'));
-
-  readonly loadingMessage$ = this.data.state$.pipe(map((x) => x?.statusMessage));
-
-  readonly ontologyTerms$: Observable<readonly string[]>;
-  readonly cellTypeTerms$: Observable<readonly string[]>;
-  readonly biomarkerTerms$: Observable<readonly string[]>;
-
-  readonly theme$ = this.globalConfig.getOption('theme');
-  readonly themeMode$ = new ReplaySubject<'light' | 'dark'>(1);
-
+  /** Header option */
   readonly header$ = this.globalConfig.getOption('header');
+  /** Home url option */
   readonly homeUrl$ = this.globalConfig.getOption('homeUrl');
+  /** Logo tooltip option */
   readonly logoTooltip$ = this.globalConfig.getOption('logoTooltip');
+  /** Login disabled option */
   readonly loginDisabled$ = this.globalConfig.getOption('loginDisabled');
+  /** Filter option */
   readonly filter$ = this.globalConfig.getOption('filter');
+  /** Selected organs options */
   readonly selectedOrgans$ = this.globalConfig.getOption('selectedOrgans');
+  /** Base href option */
   readonly baseHref$ = this.globalConfig.getOption('baseHref');
 
   /**
    * Creates an instance of app component.
-   *
-   * @param data The data state.
    */
   constructor(
-    el: ElementRef<HTMLElement>,
-    injector: Injector,
-    readonly data: DataState,
-    readonly theming: ThemingService,
     readonly scene: SceneState,
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
+    readonly localStorageSyncService: LocalStorageSyncService,
     readonly snackbar: MatSnackBar,
-    overlay: AppRootOverlayContainer,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
-    cdr: ChangeDetectorRef,
   ) {
-    theming.initialize(el, injector);
-    overlay.setRootElement(el);
-    data.tissueBlockData$.subscribe();
-    data.aggregateData$.subscribe();
-    data.ontologyTermOccurencesData$.subscribe();
-    data.cellTypeTermOccurencesData$.subscribe();
-    data.biomarkerTermOccurencesData$.subscribe();
-    data.sceneData$.subscribe();
-    data.filter$.subscribe();
-    data.technologyFilterData$.subscribe();
-    data.providerFilterData$.subscribe();
-    this.ontologyTerms$ = data.filter$.pipe(map((x) => x?.ontologyTerms ?? []));
-    this.cellTypeTerms$ = data.filter$.pipe(map((x) => x?.cellTypeTerms ?? []));
-    this.biomarkerTerms$ = data.filter$.pipe(map((x) => x?.biomarkerTerms ?? []));
-    this.filter$.subscribe((filter = {}) => data.updateFilter(filter));
+    this.data.tissueBlockData$.subscribe();
+    this.data.aggregateData$.subscribe();
+    this.data.ontologyTermOccurencesData$.subscribe();
+    this.data.cellTypeTermOccurencesData$.subscribe();
+    this.data.biomarkerTermOccurencesData$.subscribe();
+    this.data.sceneData$.subscribe();
+    this.filter$.subscribe((filter = {}) => this.data.updateFilter(filter));
     this.baseHref$.subscribe((ref) => this.globalConfig.patchState({ baseHref: ref ?? '' }));
 
     combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
       scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
-    combineLatest([this.theme$, this.themeMode$]).subscribe(([theme, mode]) => {
-      this.theming.setTheme(`${theme}-theme-${mode}`);
-      cdr.markForCheck();
-    });
-    this.selectedtoggleOptions = this.menuOptions;
+
+    this.selectedToggleOptions = this.menuOptions;
   }
 
+  /** Initialize the component */
   ngOnInit(): void {
     const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
       data: {
@@ -200,54 +165,21 @@ export class AppComponent implements OnInit {
         },
       },
       panelClass: 'usage-snackbar',
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
+      duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
     });
-
-    if (window.matchMedia) {
-      // Sets initial theme according to user theme preference
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.themeMode$.next('dark');
-      } else {
-        this.themeMode$.next('light');
-      }
-
-      // Listens for changes in user theme preference
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        this.themeMode$.next(e.matches ? 'dark' : 'light');
-      });
-    } else {
-      this.themeMode$.next('light');
-    }
   }
 
-  /**
-   * Resets the drawers and filter components to their default state.
-   *
-   * @param left The left drawer component gets passed in so we can call it's methods to control it's state
-   * @param right The right drawer component gets passed in so we can call it's methods to control it's state
-   * @param filterbox The filter's popover component gets passed in so we can control it's popover's state
-   */
-  reset(left: DrawerComponent, right: DrawerComponent, filterbox: FiltersPopoverComponent): void {
-    left.open();
-    left.closeExpanded();
-    right.open();
-    right.closeExpanded();
-    filterbox.removeBox();
-    this.resetView();
+  /** Reset the view */
+  resetView(bodyUI: BodyUiComponent): void {
+    bodyUI.target = [0, 0, 0];
+    bodyUI.rotation = 0;
+    bodyUI.rotationX = 0;
+    bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
   }
 
-  resetView(): void {
-    this.bodyUI.target = [0, 0, 0];
-    this.bodyUI.rotation = 0;
-    this.bodyUI.rotationX = 0;
-    this.bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
-  }
-
-  /**
-   * Toggles scheme between light and dark mode
-   */
-  toggleScheme(): void {
-    this.themeMode$.next(this.isLightTheme ? 'dark' : 'light');
+  /** Format a range of values */
+  formatRange(range: number[] | undefined, min: number, max: number): string {
+    return `${range?.[0] ?? min}-${range?.[1] ?? max}`;
   }
 
   /**
@@ -263,90 +195,39 @@ export class AppComponent implements OnInit {
     if (ontologySelection) {
       if (type === 'anatomical-structures') {
         this.data.updateFilter({ ontologyTerms: ontologySelection.map((selection) => selection.id) });
-        this.ontologySelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'cell-type') {
         this.data.updateFilter({ cellTypeTerms: ontologySelection.map((selection) => selection.id) });
-        this.cellTypeSelectionLabel = this.createSelectionLabel(ontologySelection);
       } else if (type === 'biomarkers') {
         this.data.updateFilter({ biomarkerTerms: ontologySelection.map((selection) => selection.id) });
-        this.biomarkerSelectionLabel = this.createSelectionLabel(ontologySelection);
-      }
-
-      this.selectionLabel = [
-        this.ontologySelectionLabel || 'body',
-        this.cellTypeSelectionLabel || 'cell',
-        this.biomarkerSelectionLabel || 'biomarker',
-      ].join(' | ');
-
-      if (ontologySelection[0] && ontologySelection[0].label === 'body') {
-        this.resetView();
       }
       return;
     }
 
     this.data.updateFilter({ ontologyTerms: [], cellTypeTerms: [], biomarkerTerms: [] });
-    this.ontologySelectionLabel = '';
-    this.cellTypeSelectionLabel = '';
   }
 
-  /**
-   * Creates selection label for the results-browser to display based on an
-   * array of selected ontology nodes.
-   */
-  createSelectionLabel(ontologySelection: OntologySelection[]): string {
-    if (ontologySelection.length === 0) {
-      return '';
-    }
-
-    if (ontologySelection.length === 1) {
-      return ontologySelection[0].label;
-    }
-
-    let selectionString = '';
-    ontologySelection.forEach((selection, index) => {
-      selectionString += selection.label;
-
-      // Don't add a comma if it's the last item in the array.
-      if (index < ontologySelection.length - 1) {
-        selectionString += ', ';
-      }
-    });
-    return selectionString;
-  }
-
-  /**
-   * Opens the iframe viewer with an url
-   *
-   * @param url The url
-   */
-  openiFrameViewer(url: string): void {
-    const isWhitelisted = this.acceptableViewerDomains.some((domain) => url?.startsWith(domain));
-    if (isWhitelisted) {
-      this.url = url;
-      this.viewerOpen = !!url;
-    } else {
-      // Open link in new tab
-      window.open(url, '_blank');
-      this.closeiFrameViewer();
-    }
-  }
-
-  /**
-   * Function to easily close the iFrame viewer.
-   */
-  closeiFrameViewer(): void {
-    this.viewerOpen = false;
-  }
-
+  /** Whether an item is selected */
   isItemSelected(item: string) {
-    return this.selectedtoggleOptions.includes(item);
+    return this.selectedToggleOptions.includes(item);
   }
 
+  /** Toggle selection */
   toggleSelection(value: string[]) {
-    this.selectedtoggleOptions = value;
+    this.selectedToggleOptions = value;
   }
 
+  /** Helper to cast immutable types to mutable */
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
+  }
+
+  /** Select all organs */
+  selectAllOrgans() {
+    this.scene.setSelectedReferenceOrgans(ALL_ORGANS);
+  }
+
+  /** Clear all organs */
+  clearAllOrgans() {
+    this.scene.setSelectedReferenceOrgans([]);
   }
 }

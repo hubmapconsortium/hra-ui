@@ -32,7 +32,7 @@ function fetchFromCsv(endpoint) {
  * @param {string} cellSummariesApi endpoint for getting ftu cell summaries
  * @returns
  */
-async function getFtuDatasets(datasetsApi = FTU_DATASET_METADATA_API, cellSummariesApi = FTU_CELL_SUMMARIES_API) {
+async function getFtuDatasets(datasetsApi = FTU_DATASET_METADATA_API) {
   const datasets = await fetchFromCsv(datasetsApi);
 
   const results = {};
@@ -61,7 +61,7 @@ async function getFtuDatasets(datasetsApi = FTU_DATASET_METADATA_API, cellSummar
  * @param {string} cellSummariesApi endpoint for getting ftu cell summaries
  * @returns
  */
-async function getFtuCellSummaries(datasetsApi = FTU_DATASET_METADATA_API, cellSummariesApi = FTU_CELL_SUMMARIES_API) {
+async function getFtuCellSummaries(_datasetsApi = FTU_DATASET_METADATA_API, cellSummariesApi = FTU_CELL_SUMMARIES_API) {
   const summaries = await fetchFromCsv(cellSummariesApi);
 
   const results = {};

@@ -1,25 +1,38 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
+/** A single card */
 interface LinkCard {
+  /** Body text */
   body: string;
+  /** Button text */
   buttonTitle: string;
+  /** Button url */
   buttonUrl: string;
 }
 
+/** Cards component */
 @Component({
   selector: 'ccf-link-cards',
   templateUrl: './link-cards.component.html',
   styleUrls: ['./link-cards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class LinkCardsComponent implements OnInit {
+  /** Rui app url */
   @Input() ruiUrl!: string;
+  /** Eui app url */
   @Input() euiUrl!: string;
+  /** Asctb app url */
   @Input() asctbUrl!: string;
+  /** Hra portal url */
   @Input() hraPortalUrl!: string;
+  /** Course url */
   @Input() onlineCourseUrl!: string;
+  /** Paper url */
   @Input() paperUrl!: string;
 
+  /** Link cards */
   linkCards: LinkCard[] = [
     {
       body: 'Add tissue blocks using the HRA Registration User Interface (RUI).',
@@ -38,6 +51,7 @@ export class LinkCardsComponent implements OnInit {
     },
   ];
 
+  /** Deep dive cards */
   deepDives: LinkCard[] = [
     {
       body: '',
@@ -56,6 +70,7 @@ export class LinkCardsComponent implements OnInit {
     },
   ];
 
+  /** Initialize the component */
   ngOnInit() {
     const linkUrls = [this.ruiUrl, this.euiUrl, this.asctbUrl];
     const deepDivesUrls = [this.hraPortalUrl, this.onlineCourseUrl, this.paperUrl];
@@ -66,6 +81,7 @@ export class LinkCardsComponent implements OnInit {
     }));
   }
 
+  /** Opens a url in a new tab/window */
   goToURL(url: string): void {
     window.open(url, '_blank');
   }

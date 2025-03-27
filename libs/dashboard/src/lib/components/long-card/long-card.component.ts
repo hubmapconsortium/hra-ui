@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { z } from 'zod';
 
+/** Long card data */
 export type LongCardSpec = z.infer<typeof LONG_CARD_DEF>;
 
 /** Zod Object definition for the long card */
@@ -18,7 +19,6 @@ export const LONG_CARD_DEF = z.object({
  */
 @Component({
   selector: 'hra-long-card',
-  standalone: true,
   imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './long-card.component.html',
   styleUrl: './long-card.component.scss',

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, isDevMode } from '@angular/core';
+import { Component, ErrorHandler, isDevMode, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
 import { ContentService } from '../../services/content/content.service';
@@ -10,8 +10,14 @@ import { PageDef } from '../page-element/page-def';
   selector: 'page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss'],
+  standalone: false,
 })
 export class PageComponent {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly errorHandler = inject(ErrorHandler);
+  private readonly contentService = inject(ContentService);
+
   /** Observable of file content */
   readonly data$ = this.resolveData();
 
@@ -20,12 +26,7 @@ export class PageComponent {
 
   /** Creates instance of Router, ActivatedRoute, ErrorHandler,
    * ContentService and invokes addScrollToTopListener */
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private readonly errorHandler: ErrorHandler,
-    private readonly contentService: ContentService,
-  ) {
+  constructor() {
     this.addScrollToTopListener();
   }
 

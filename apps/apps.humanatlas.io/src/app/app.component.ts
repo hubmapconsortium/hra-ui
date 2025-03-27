@@ -7,7 +7,6 @@ import { isNavigating } from './utils/navigation';
 /** Main application component */
 @Component({
   selector: 'hra-root',
-  standalone: true,
   imports: [CommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

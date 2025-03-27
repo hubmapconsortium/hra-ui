@@ -4,16 +4,22 @@
   .header {
     display: flex;
     align-items: center;
-    font: var(--sys-label-medium);
-    color: var(--sys-secondary);
+    font: var(--mat-sys-label-large);
+    color: var(--mat-sys-secondary);
   }
 
   .filler {
     flex-grow: 1;
   }
 
+  .header-content {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+
   .content {
-    font: var(--sys-label-large);
+    font: var(--mat-sys-label-large);
     display: flex;
     flex-direction: column;
     ::ng-deep &[style*='visibility: hidden'] * {

@@ -1,7 +1,8 @@
-import { ContentService } from './content.service';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 import { MockProxy, mock } from 'jest-mock-extended';
+import { of } from 'rxjs';
+import { ContentService } from './content.service';
 
 describe('ContentService', () => {
   let http: MockProxy<HttpClient>;
@@ -9,7 +10,11 @@ describe('ContentService', () => {
 
   beforeEach(() => {
     http = mock();
-    service = new ContentService(http);
+    TestBed.configureTestingModule({
+      providers: [{ provide: HttpClient, useValue: http }],
+    });
+
+    service = TestBed.inject(ContentService);
   });
 
   describe('getContent(file)', () => {

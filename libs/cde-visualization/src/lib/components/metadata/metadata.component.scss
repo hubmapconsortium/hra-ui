@@ -3,15 +3,15 @@
   --mat-text-button-hover-state-layer-opacity: 0;
   --mat-text-button-pressed-state-layer-opacity: 0;
   --mat-expansion-container-shape: 0;
-  --mat-expansion-container-background-color: var(--sys-surface-container-low);
+  --mat-expansion-container-background-color: var(--mat-sys-surface-container-low);
 
   hra-expansion-panel {
     --mat-expansion-container-shape: 0;
     --mat-expansion-header-expanded-state-height: auto;
     --mat-expansion-header-collapsed-state-height: auto;
     --mat-expansion-header-hover-state-layer-color: transparent;
-    border-color: var(--sys-outline-variant);
-    background-color: var(--sys-secondary-container);
+    border-color: var(--mat-sys-outline-variant);
+    background-color: var(--mat-sys-secondary-container);
     border-width: 0 2px 2px 0px;
     border-style: solid;
     box-shadow: none;
@@ -45,13 +45,13 @@
           }
 
           &:first-child {
-            font: var(--sys-label-small);
-            color: var(--sys-secondary);
+            font: var(--mat-sys-label-small);
+            color: var(--mat-sys-secondary);
           }
 
           &:last-child {
-            font: var(--sys-label-small);
-            color: var(--sys-primary);
+            font: var(--mat-sys-label-small);
+            color: var(--mat-sys-primary);
           }
         }
       }
@@ -66,7 +66,7 @@
       line-height: 21px;
 
       .mdc-button {
-        --mdc-text-button-label-text-color: var(--sys-on-tertiary-fixed);
+        --mdc-text-button-label-text-color: var(--mat-sys-on-tertiary-fixed);
         height: 100%;
         padding: 0;
       }

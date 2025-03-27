@@ -1,0 +1,68 @@
+<div class="content-container">
+  <div class="heading-container">
+    <div class="title-logo-div">
+      <hra-product-logo name="web_components" size="large"></hra-product-logo>
+      <div>
+        <h1>Web Components</h1>
+        <hra-software-status-indicator [status]="'Alpha'" [size]="'large'"></hra-software-status-indicator>
+      </div>
+    </div>
+    <p class="description">
+      Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
+    </p>
+  </div>
+
+  <div class="card-container">
+    <p>Select organ:</p>
+    <mat-form-field appearance="fill" class="organ-select">
+      <mat-label>Organ</mat-label>
+      <mat-select [(value)]="activeOrgan">
+        @for (organ of organs; track organ.id) {
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (activeOrgan(); as organ) {
+    <div class="card-collection">
+      <div class="cards">
+        @for (component of components; track component.id) {
+          <hra-web-component-card
+            class="component-card"
+            [imageUrl]="component.previewImage"
+            [productTitle]="component.productTitle"
+            [description]="component.description"
+            [webComponentName]="component.webComponentName"
+            [disableButton]="component.embedAs === 'external'"
+            (embedClick)="openSidenav(organ, component, 0)"
+            (useAppClick)="onUseApp(organ, component)"
+          >
+          </hra-web-component-card>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #sidenavTemplate>
+  @if (sidenavData(); as data) {
+    <hra-embed-sidenav-content
+      [tagline]="data.tagline"
+      [code]="data.code"
+      [showApp]="data.showApp"
+      [tabIndex]="data.tabIndex"
+      (closeSidenav)="sidenavData.set(undefined)"
+      [documentLink]="data.docLink"
+      data-testid="sidenav-overlay"
+    >
+    </hra-embed-sidenav-content>
+  }
+</ng-template>
+
+<ng-template #appIframeTemplate>
+  @if (appIframeData(); as data) {
+    <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)"></hra-back-button-bar>
+    <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code" data-testid="iframe-overlay"></iframe>
+  }
+</ng-template>

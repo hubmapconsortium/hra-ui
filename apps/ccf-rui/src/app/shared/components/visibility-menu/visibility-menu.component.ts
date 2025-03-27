@@ -6,6 +6,7 @@ import {
   HostBinding,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -22,8 +23,12 @@ import { VisibilityItem } from '../../../core/models/visibility-item';
   host: {
     '(window:mouseup)': 'closeSlider($event)',
   },
+  standalone: false,
 })
 export class VisibilityMenuComponent {
+  private readonly el = inject<ElementRef<Node>>(ElementRef);
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /**
    * HTML class name
    */
@@ -48,16 +53,6 @@ export class VisibilityMenuComponent {
    * Emits whenever there is a change to one or more items.
    */
   @Output() readonly itemsChange = new EventEmitter<VisibilityItem[]>();
-
-  /**
-   * Creates an instance of visibility menu component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(
-    private readonly el: ElementRef<Node>,
-    private readonly ga: GoogleAnalyticsService,
-  ) {}
 
   /**
    * Toggles visibility of an item; opacity is reverted to the previous value if visibility toggled back on
@@ -143,6 +138,10 @@ export class VisibilityMenuComponent {
     return item.id;
   }
 
+  /**
+   * Closes slider container
+   * @param event
+   */
   closeSlider(event: Event): void {
     if (this.selection && event.target instanceof Node) {
       if (!this.el.nativeElement.contains(event.target)) {

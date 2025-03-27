@@ -1,18 +1,14 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 
 /**
  * Directive for restricting an input element to integer only values.
  */
 @Directive({
   selector: 'input[ccfNumbersOnly]',
+  standalone: false,
 })
 export class NumberDirective {
-  /**
-   * Creates an instance of number directive.
-   *
-   * @param el Reference to input element
-   */
-  constructor(private readonly el: ElementRef<HTMLInputElement>) {}
+  private readonly el = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
   /**
    * Listens to input changes and updates the text to only include numbers.

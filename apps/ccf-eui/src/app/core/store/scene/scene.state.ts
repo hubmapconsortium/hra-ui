@@ -11,6 +11,7 @@ import { ColorAssignmentState } from '../color-assignment/color-assignment.state
 import { DataState } from '../data/data.state';
 import { ListResultsState } from '../list-results/list-results.state';
 
+/** Default organs selected by the EUI */
 export const DEFAULT_SELECTED_ORGANS = new Set([
   'http://purl.obolibrary.org/obo/UBERON_0002097',
   'http://purl.obolibrary.org/obo/UBERON_0004538',
@@ -20,20 +21,21 @@ export const DEFAULT_SELECTED_ORGANS = new Set([
   'http://purl.obolibrary.org/obo/UBERON_0002106',
 ]);
 
+/**
+ * Scene state model
+ */
 export interface SceneStateModel {
+  /** List of spatial scene nodes in the scene */
   scene: SpatialSceneNode[];
+  /** List of reference organs */
   referenceOrgans: OrganInfo[];
+  /** List of reference organ spatial entities */
   referenceOrganEntities: SpatialEntity[];
+  /** List of selected reference organs */
   selectedReferenceOrgans: OrganInfo[];
-
+  /** List of selected anatomical structures */
   selectedAnatomicalStructures: unknown[];
-  anatomicalStructureSettings: {
-    [iri: string]: {
-      enabled: boolean;
-      visible: boolean;
-      opacity: boolean;
-    };
-  };
+  /** Current highlighted node id */
   highlightedId?: string;
 }
 
@@ -49,16 +51,17 @@ export interface SceneStateModel {
     referenceOrganEntities: [],
     selectedReferenceOrgans: [],
     selectedAnatomicalStructures: [],
-    anatomicalStructureSettings: {},
   },
 })
 @Injectable()
 export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> implements NgxsOnInit {
+  /** Returns reference organs in the state */
   @Selector()
   static referenceOrgans(state: SceneStateModel): OrganInfo[] {
     return state.referenceOrgans;
   }
 
+  /** Returns reference organ entities in the state */
   @Selector()
   static referenceOrganEntities(state: SceneStateModel): SpatialEntity[] {
     return state.referenceOrganEntities;
@@ -69,17 +72,22 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     map((x) => x?.referenceOrgans),
     distinctUntilChanged(),
   );
+
   /** Selected Reference Organs */
   readonly selectedReferenceOrgans$ = this.state$.pipe(
     map((x) => x?.selectedReferenceOrgans),
     distinctUntilChanged(),
   );
+
   /** Scene to display in the 3d Scene */
   readonly scene$ = this.state$.pipe(
     map((x) => x?.scene),
     distinctUntilChanged(),
   );
 
+  /**
+   * Observable stream of the highlighted node id
+   */
   readonly highlightedId$ = this.state$.pipe(
     map((x) => x?.highlightedId),
     distinctUntilChanged(),
@@ -91,11 +99,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   /** Color assignments state */
   private colorAssignments!: ColorAssignmentState;
 
+  /** The list results state */
   private listResults!: ListResultsState;
 
   /**
    * Creates an instance of scene state.
-   *
+   * @param dataService Data source service used to fetch reference organs
    * @param injector Injector service used to lazy load data state
    */
   constructor(
@@ -162,12 +171,40 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     }
   }
 
+  /**
+   * Highlights list result on scene node hover
+   * @param node
+   */
   sceneNodeHovered(node: SpatialSceneNode): void {
     this.listResults.highlightNode(node['@id']);
   }
 
+  /**
+   * Unhighlights list result on scene node unhover
+   */
   sceneNodeUnhover(): void {
     this.listResults.unHighlightNode();
+  }
+
+  /**
+   * Sets selected reference organs with defaults
+   * @param organs
+   * @param selected
+   */
+  setSelectedReferenceOrgansWithDefaults(organs: OrganInfo[], selected: string[]) {
+    const selectedSet = new Set(selected?.length ? selected : DEFAULT_SELECTED_ORGANS);
+    const filteredOrgans = organs.filter(({ id }) => selectedSet.has(id as string));
+    this.setSelectedReferenceOrgans(filteredOrgans);
+  }
+
+  /**
+   * Sets default organs
+   */
+  setDefaultOrgans() {
+    const defaults = ALL_POSSIBLE_ORGANS.filter(
+      ({ id, disabled }) => !disabled && new Set(DEFAULT_SELECTED_ORGANS).has(id as string),
+    );
+    this.setSelectedReferenceOrgans(defaults);
   }
 
   /**
@@ -236,11 +273,5 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
         tap((scene) => this.setScene(scene)),
       )
       .subscribe();
-  }
-
-  setSelectedReferenceOrgansWithDefaults(organs: OrganInfo[], selected: string[]) {
-    const selectedSet = new Set(selected?.length ? selected : DEFAULT_SELECTED_ORGANS);
-    const filteredOrgans = organs.filter(({ id }) => selectedSet.has(id as string));
-    this.setSelectedReferenceOrgans(filteredOrgans);
   }
 }

@@ -66,15 +66,8 @@ describe('TableComponent', () => {
     });
 
     it('should return default if no alignment data is provided', async () => {
-      const testColumn: HeaderData = {
-        header: 'test',
-        columnDef: 'test',
-        cell: function () {
-          // Intentionally empty
-        },
-      };
       const { instance } = await shallow.render();
-      const alignment = instance.getAlignmentClass(testColumn);
+      const alignment = instance.getAlignmentClass({ ...testColumn, alignment: undefined });
       expect(alignment).toEqual('alignment-default');
     });
   });

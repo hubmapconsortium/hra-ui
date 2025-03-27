@@ -5,9 +5,15 @@ import { TissueOriginPredictorComponent } from './pages/us2/tissue-origin-predic
 import { resolvePredictions } from './pages/us1/services/predictions.service';
 import { TissueOriginPredictionsComponent } from './pages/us2/tissue-origin-predictions/tissue-origin-predictions.component';
 import { resolveTissueOriginPredictions } from './pages/us2/services/tissue-origin.service';
+import { WebComponentsComponent } from './pages/us6/web-components.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
+  {
+    path: 'us6',
+    component: WebComponentsComponent,
+  },
+
   {
     path: 'us1/result',
     component: CellPopulationPredictionsComponent,

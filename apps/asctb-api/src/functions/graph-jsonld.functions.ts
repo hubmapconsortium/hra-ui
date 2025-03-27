@@ -2,16 +2,19 @@ import { JsonLd } from 'jsonld/jsonld-spec';
 import { Edge_type, GraphData } from '../models/graph.model';
 import { fixOntologyId, guessIri } from './lookup.functions';
 
+/** Owl type */
 enum OwlType {
   CLASS = 'owl:Class',
   RESTRICTION = 'owl:Restriction',
 }
 
+/** Owl property */
 enum OwlProperty {
   ANNOTATION = 'owl:AnnotationProperty',
   OBJECT = 'owl:ObjectProperty',
 }
 
+/** Ccf property */
 enum CcfProperty {
   PART_OF = 'ccf:ccf_part_of',
   LOCATED_IN = 'ccf:located_in',
@@ -20,6 +23,13 @@ enum CcfProperty {
   OCCURS_IN = 'ccf:occurs_in',
 }
 
+/**
+ * Turns a graph into owl jsonld
+ *
+ * @param data Graph
+ * @param withSubclasses
+ * @returns An owl jsonld
+ */
 export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
   const { nodes, edges } = data;
   const iriLookup: Record<number, string> = {};
@@ -28,10 +38,10 @@ export function makeJsonLdData(data: GraphData, withSubclasses = true): JsonLd {
 
   nodes.forEach((node, index) => {
     let ontologyId = node.metadata.ontologyId;
-    let iri: string;
-    if (ontologyId?.trim().length > 0 ?? false) {
+    let iri = '';
+    if (ontologyId?.trim().length > 0) {
       ontologyId = fixOntologyId(ontologyId);
-      iri = guessIri(ontologyId);
+      iri = guessIri(ontologyId) ?? '';
     }
     if (!iri) {
       const suffix = node.name

@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { OrganVersionModule } from '../organ-version/organ-version.module';
 import { DownloadFtuModule } from '../download-ftu/download-ftu.module';
 import { CopyClipboardModule } from '../copy-clipboard/copy-clipboard.module';
+
 @NgModule({
   declarations: [PageElementComponent],
   imports: [
@@ -46,7 +47,6 @@ import { CopyClipboardModule } from '../copy-clipboard/copy-clipboard.module';
     SimpleImageModule,
     CarouselModule,
     TableModule,
-    CarouselModule,
     CountInfoCardModule,
     SectionCardModule,
     TableVersionModule,

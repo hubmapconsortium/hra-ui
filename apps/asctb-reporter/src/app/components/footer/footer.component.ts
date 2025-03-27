@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { faFacebookSquare, faGithub, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
@@ -11,8 +11,13 @@ import { GaAction, GaCategory } from '../../models/ga.model';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  standalone: false,
 })
 export class FooterComponent {
+  readonly configService = inject(ConfigService);
+  readonly ga = inject(GoogleAnalyticsService);
+  private readonly router = inject(Router);
+
   faGlobe = faGlobe;
   faGithub = faGithub;
   faPhone = faPhone;
@@ -23,11 +28,7 @@ export class FooterComponent {
   copyrightYear = new Date().getFullYear();
   masterSheetLink = '';
 
-  constructor(
-    public configService: ConfigService,
-    private readonly router: Router,
-    public ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
     this.configService.config$.subscribe((config) => {
       this.masterSheetLink = config['masterSheetLink'] as string;
     });

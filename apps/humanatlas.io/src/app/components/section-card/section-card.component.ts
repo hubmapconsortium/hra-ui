@@ -6,8 +6,9 @@ import { Component, Input } from '@angular/core';
   selector: 'ccf-section-card',
   templateUrl: './section-card.component.html',
   styleUrls: ['./section-card.component.scss'],
+  standalone: false,
 })
 export class SectionCardComponent {
   /** Details to be displayed inside the card */
-  @Input() public cards: SectionCardItems[] = [];
+  @Input() cards: SectionCardItems[] = [];
 }

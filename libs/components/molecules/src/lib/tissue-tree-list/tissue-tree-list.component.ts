@@ -49,7 +49,6 @@ interface InternalNode<K extends string, T extends DataNode<K>> {
  */
 @Component({
   selector: 'hra-tissue-tree-list',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,
@@ -82,7 +81,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   /**
    * Navigates to an illustration page
    */
-  @Output() navigate = new EventEmitter();
+  @Output() readonly navigate = new EventEmitter();
 
   /**
    * Whether keyboard navigation is enabled

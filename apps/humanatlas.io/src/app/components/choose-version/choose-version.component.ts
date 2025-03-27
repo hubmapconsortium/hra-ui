@@ -6,6 +6,7 @@ import { ChooseVersion } from './choose-version';
   selector: 'ccf-choose-version',
   templateUrl: './choose-version.component.html',
   styleUrls: ['./choose-version.component.scss'],
+  standalone: false,
 })
 export class ChooseVersionComponent {
   /** Details of options in the select */
@@ -15,5 +16,5 @@ export class ChooseVersionComponent {
   @Input() selectedDate?: ChooseVersion;
 
   /** Emits the input select data when an option is selected */
-  @Output() selectedVersion = new EventEmitter<ChooseVersion>();
+  @Output() readonly selectedVersion = new EventEmitter<ChooseVersion>();
 }

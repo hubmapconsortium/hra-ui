@@ -3,10 +3,12 @@ import { JsonFileLoaderService } from '@hra-ui/common/fs';
 import { DataInput, loadData } from '@hra-ui/node-dist-vis/models';
 import { NextObserver } from 'rxjs';
 
+/** Metadata input */
 export type MetadataInput = DataInput<Metadata>;
+/** Signals for metadata properties */
 export type MetadataMixins = { [P in keyof Metadata]: Signal<Metadata[P] | undefined> };
 
-/** Metadata*/
+/** Metadata */
 export interface Metadata {
   /** Title of the visualization */
   title?: string;
@@ -44,6 +46,13 @@ export interface SampleMetadataExtra {
   sourceDataUrl: string;
 }
 
+/**
+ * Function to load metadata.
+ * @param input - Signal representing the metadata input.
+ * @param mixins - Object containing signals for each metadata property.
+ * @param loading - Optional observer to track loading state.
+ * @returns Signal representing the loaded metadata.
+ */
 export function loadMetadata(
   input: Signal<MetadataInput>,
   mixins: MetadataMixins,

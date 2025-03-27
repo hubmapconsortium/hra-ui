@@ -1,7 +1,8 @@
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { mock } from 'jest-mock-extended';
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
-
 import { PageState } from '../../../core/store/page/page.state';
 import { ReviewButtonComponent } from './review-button.component';
 import { ReviewButtonModule } from './review-button.module';
@@ -11,32 +12,32 @@ describe('ReviewButtonComponent', () => {
   let afterClosedObservable: Subject<boolean>;
   const emptyMetaData = [{ value: '' }, { value: '' }, { value: '' }];
   const metaData = [{ value: 'First Name' }, { value: 'Last Name' }, { value: 'Organ' }];
-  const mockPageState = jasmine.createSpyObj<PageState>('PageState', ['patchState', 'registrationStarted']);
 
   beforeEach(() => {
-    const mockDialog = jasmine.createSpyObj<MatDialogRef<unknown, boolean>>('DialogRef', ['afterClosed']);
+    const mockDialog = mock<MatDialogRef<unknown, boolean>>();
     afterClosedObservable = new Subject();
-    mockDialog.afterClosed.and.returnValue(afterClosedObservable);
+    mockDialog.afterClosed.mockReturnValue(afterClosedObservable);
 
     shallow = new Shallow(ReviewButtonComponent, ReviewButtonModule)
+      .dontMock(MicroTooltipDirective)
       .mock(MatDialog, {
         open(): MatDialogRef<unknown, boolean> {
           return mockDialog;
         },
       })
-      .mock(PageState, mockPageState);
+      .mock(PageState, { patchState: jest.fn(), registrationStarted: jest.fn() });
   });
 
   it('should launch the review dialog if the registration is valid', async () => {
     const { find, instance } = await shallow.render({ bind: { userValid: true, metaData } });
-    const spy = spyOn(instance, 'launchReviewModal');
+    const spy = jest.spyOn(instance, 'launchReviewModal');
     find('.review-button').triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalled();
   });
 
   it('should not launch the review dialog if the registration is not valid', async () => {
     const { find, instance } = await shallow.render({ bind: { userValid: false, metaData: emptyMetaData } });
-    const spy = spyOn(instance, 'launchReviewModal');
+    const spy = jest.spyOn(instance, 'launchReviewModal');
     find('.review-button').triggerEventHandler('click', '');
     expect(spy).not.toHaveBeenCalled();
   });
@@ -64,12 +65,11 @@ describe('ReviewButtonComponent', () => {
   });
 
   it('prevents default', async () => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const mockEvent = {
       preventDefault: () => undefined,
     } as MouseEvent;
     const { instance } = await shallow.render();
-    const spy = spyOn(mockEvent, 'preventDefault');
+    const spy = jest.spyOn(mockEvent, 'preventDefault');
     instance.registerButtonClick(mockEvent);
     expect(spy).toHaveBeenCalled();
   });

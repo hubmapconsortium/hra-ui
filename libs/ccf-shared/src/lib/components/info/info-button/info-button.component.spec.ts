@@ -9,7 +9,7 @@ describe('InfoButtonComponent', () => {
   let shallow: Shallow<InfoButtonComponent>;
 
   const mockMatDialog = {
-    open(..._args: unknown[]): MatDialogRef<unknown, unknown> {
+    open(): MatDialogRef<unknown, unknown> {
       return undefined as unknown as MatDialogRef<unknown, unknown>;
     },
     openDialogs: [],
@@ -27,7 +27,7 @@ describe('InfoButtonComponent', () => {
 
   it('should launch the info dialog', async () => {
     const { find, instance } = await shallow.mock(MatDialog, mockMatDialog).render();
-    const spy = spyOn(instance, 'onDialogButtonClick');
+    const spy = jest.spyOn(instance, 'onDialogButtonClick').mockImplementation(() => undefined);
     find('mat-icon').triggerEventHandler('click', '');
     expect(spy).toHaveBeenCalled();
   });
@@ -42,21 +42,21 @@ describe('InfoButtonComponent', () => {
   it('launches the dialog when data is emitted from the service', async () => {
     const { instance, inject } = await shallow.render();
     const empty: DocumentationContent[] = [{ title: '', content: '' }];
-    const spy = spyOn(instance, 'launchInfoDialog');
+    const spy = jest.spyOn(instance, 'launchInfoDialog');
     inject(InfoButtonService).panelContent.next({ content: empty, infoTitle: '', videoID: '' });
     expect(spy).toHaveBeenCalled();
   });
 
   it('does not launch the dialog when data is empty', async () => {
     const { instance, inject } = await shallow.render();
-    const spy = spyOn(instance, 'launchInfoDialog');
+    const spy = jest.spyOn(instance, 'launchInfoDialog');
     inject(InfoButtonService).panelContent.next({ content: [] as DocumentationContent[] } as PanelData);
     expect(spy).not.toHaveBeenCalled();
   });
 
   it('should call onDialogButtonClick', async () => {
     const { instance, inject } = await shallow.render();
-    const spy = spyOn(inject(InfoButtonService), 'updateData');
+    const spy = jest.spyOn(inject(InfoButtonService), 'updateData').mockImplementation(() => undefined);
     instance.onDialogButtonClick();
     expect(spy).toHaveBeenCalled();
   });

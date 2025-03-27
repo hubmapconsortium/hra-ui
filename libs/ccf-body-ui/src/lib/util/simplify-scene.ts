@@ -5,12 +5,16 @@ import { SpatialSceneNode } from '../shared/spatial-scene-node';
 import { loadGLTF } from './load-gltf';
 import { traverseScene } from './scene-traversal';
 
+/**
+ * This function simplifies a scene by processing spatial scene nodes, loading GLTF files, and generating new nodes with simplified geometry.
+ * @param nodes An array of SpatialSceneNode objects representing the nodes in the scene.
+ * @returns A promise that resolves to an array of simplified SpatialSceneNode objects.
+ */
 export async function simplifyScene(nodes: SpatialSceneNode[]): Promise<SpatialSceneNode[]> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gltfCache: { [url: string]: any } = {};
   const gltfUrls = new Set(nodes.map((n) => n.scenegraph).filter((n) => !!n));
   for (const gltfUrl of gltfUrls) {
-    // eslint-disable-next-line no-await-in-loop
     gltfCache[gltfUrl as string] = await loadGLTF({
       scenegraph: gltfUrl,
     } as SpatialSceneNode);
@@ -22,7 +26,6 @@ export async function simplifyScene(nodes: SpatialSceneNode[]): Promise<SpatialS
     const bbox = new AABB();
     let worldMatrix = new Matrix4(model.transformMatrix);
 
-    /* eslint-disable  */
     if (model.scenegraphNode) {
       const scenegraphNode = model.scenegraphNode
         ? gltf.nodes.find((n: { name: string | undefined }) => n.name === model.scenegraphNode)
@@ -63,7 +66,6 @@ export async function simplifyScene(nodes: SpatialSceneNode[]): Promise<SpatialS
       }
       return true;
     });
-    /* eslint-enable */
 
     const size = bbox.upperBound.clone().vsub(bbox.lowerBound);
     const halfSize = size.clone().vmul(new Vec3(0.5, 0.5, 0.5));

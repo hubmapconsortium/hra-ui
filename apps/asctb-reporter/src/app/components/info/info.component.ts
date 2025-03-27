@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -10,21 +10,18 @@ import { SheetInfo } from '../../models/sheet.model';
   selector: 'app-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
+  standalone: false,
 })
 export class InfoComponent implements OnInit {
+  readonly data = inject<Observable<SheetInfo>>(MAT_BOTTOM_SHEET_DATA);
+  readonly sheetRef = inject(MatBottomSheetRef);
+  readonly ga = inject(GoogleAnalyticsService);
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
   loading = true;
   noId = false;
   error: Error = { hasError: false };
   info!: SheetInfo;
-
-  // @Output() close: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public readonly data: Observable<SheetInfo>,
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    public readonly sheetRef: MatBottomSheetRef,
-    public readonly ga: GoogleAnalyticsService,
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;

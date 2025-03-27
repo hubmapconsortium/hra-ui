@@ -13,7 +13,7 @@
 <!-- CARDS -->
 <div class="cards">
   <!-- CARD 1 -->
-  <hra-workflow-card tagline="Upload" class="card card-1" [ngClass]="{ 'card-with-file': file() }">
+  <hra-workflow-card tagline="Upload" class="card card-1" [class.card-with-file]="file()">
     <hra-workflow-card-actions>
       <mat-icon
         aria-hidden="false"
@@ -24,6 +24,8 @@
         #uploadDataTooltipTrigger="cdkOverlayOrigin"
         (mouseover)="uploadInfoOpen = true"
         (mouseout)="uploadInfoOpen = false"
+        (focus)="uploadInfoOpen = true"
+        (blur)="uploadInfoOpen = false"
       ></mat-icon>
       <ng-template
         cdkConnectedOverlay

@@ -1,7 +1,7 @@
 import { createEntityCollections, EntityCollections } from '@angular-ru/cdk/entity';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { State } from '@ngxs/store';
 import { combineLatest, Observable, ObservableInput } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { PageState } from '../page/page.state';
 import { SceneState } from '../scene/scene.state';
 
 /** Tag state model */
-/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type */
 export interface AnatomicalStructureTagStateModel {}
 
 /**
@@ -31,6 +31,9 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   TagId,
   AnatomicalStructureTagStateModel
 > {
+  /** Injector */
+  private readonly injector = inject(Injector);
+
   /** Observable of tags */
   @Computed()
   get tags$(): Observable<Tag[]> {
@@ -63,8 +66,10 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     );
   }
 
+  /** Latest tags */
   private _latestTags: Tag[] = [];
 
+  /** Latest tags */
   get latestTags(): Tag[] {
     return this._latestTags;
   }
@@ -73,17 +78,8 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
   private model!: ModelState;
   /** Reference to the scene state */
   private scene!: SceneState;
-
+  /** Page state */
   private page!: PageState;
-
-  /**
-   * Creates an instance of scene state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   */
-  constructor(private readonly injector: Injector) {
-    super();
-  }
 
   /**
    * Initializes this state service.
@@ -104,6 +100,7 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     this.entities$.subscribe(() => this.page.setHasChanges());
   }
 
+  /** Add multiple tags */
   @DataAction()
   addTags(tags: Tag[]): void {
     for (const tag of tags) {
@@ -111,11 +108,13 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
     }
   }
 
+  /** Add a single tag */
   @DataAction()
   addTag(tag: Tag): void {
     this.addTagRaw(tag);
   }
 
+  /** Remove a single tag */
   @DataAction()
   removeTag(tag: Tag): void {
     if (this.snapshot.entities[tag.id]) {

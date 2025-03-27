@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,15 +13,16 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
   selector: 'app-reporter',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
 export class AppComponent implements OnInit {
-  constructor(
-    readonly consentService: ConsentService,
-    readonly snackbar: MatSnackBar,
-    private readonly matIconRegistry: MatIconRegistry,
-    private readonly domSanitizer: DomSanitizer,
-    public readonly router: Router,
-  ) {
+  readonly consentService = inject(ConsentService);
+  readonly snackbar = inject(MatSnackBar);
+  private readonly matIconRegistry = inject(MatIconRegistry);
+  private readonly domSanitizer = inject(DomSanitizer);
+  readonly router = inject(Router);
+
+  constructor() {
     switch (environment.tag) {
       case 'Staging':
         document.title = 'ASCT+B Reporter | Staging';

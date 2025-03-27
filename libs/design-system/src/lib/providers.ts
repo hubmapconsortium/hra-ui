@@ -1,16 +1,18 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';
-import { APP_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders } from '@angular/core';
+import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
-import { provideButtonToggle } from '@hra-ui/design-system/button-toggle';
 import { provideButtons } from '@hra-ui/design-system/buttons';
+import { provideChips } from '@hra-ui/design-system/buttons/chips';
 import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
+import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideInput } from '@hra-ui/design-system/input';
 import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideSelect } from '@hra-ui/design-system/select';
+import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 
@@ -25,31 +27,27 @@ export interface DesignSystemOptions {
 /** Get the providers shared between prod and testing */
 export function provideDesignSystemCommon(options?: DesignSystemOptions) {
   return [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () => {
-        const overlayContainer = inject(OverlayContainer);
-        return () => {
-          overlayContainer.getContainerElement().classList.add('hra-app');
-        };
-      },
-    },
+    provideAppInitializer(() => {
+      const overlayContainer = inject(OverlayContainer);
+      overlayContainer.getContainerElement().classList.add('hra-app');
+    }),
     provideIcons({
       fontIcons: {
         defaultClasses: ['material-symbols-rounded'],
       },
     }),
     provideButtons(),
-    provideIconButtons(),
-    provideTrees(),
-    provideScrolling(options?.scrolling),
-    provideMenu(),
-    provideTable(),
-    provideSelect(),
-    provideInput(),
-    provideButtonToggle(),
     provideCheckboxes(),
+    provideChips(),
+    provideCodeBlock(),
+    provideIconButtons(),
+    provideInput(),
+    provideMenu(),
+    provideScrolling(options?.scrolling),
+    provideSelect(),
+    provideSlider(),
+    provideTable(),
+    provideTrees(),
   ];
 }
 

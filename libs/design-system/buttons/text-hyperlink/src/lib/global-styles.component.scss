@@ -10,12 +10,12 @@
 
     &:link,
     &:link mat-icon {
-      color: var(--sys-on-tertiary-fixed);
+      color: var(--mat-sys-on-tertiary-fixed);
     }
 
     &:visited,
     &:visited mat-icon {
-      color: var(--sys-tertiary-fixed);
+      color: var(--mat-sys-tertiary-fixed);
     }
 
     &:focus-visible,
@@ -26,23 +26,23 @@
     }
 
     &:focus-visible {
-      color: var(--sys-secondary);
-      outline: 0.125rem solid var(--sys-tertiary);
+      color: var(--mat-sys-secondary);
+      outline: 0.125rem solid var(--mat-sys-tertiary);
       border-radius: 0.25rem;
 
       & mat-icon {
-        color: var(--sys-secondary);
+        color: var(--mat-sys-secondary);
       }
     }
 
     &:hover,
     &:hover mat-icon {
-      color: var(--sys-on-tertiary-fixed);
+      color: var(--mat-sys-on-tertiary-fixed);
     }
 
     &:active,
     &:active mat-icon {
-      color: var(--sys-on-tertiary-fixed-variant);
+      color: var(--mat-sys-on-tertiary-fixed-variant);
     }
   }
 }

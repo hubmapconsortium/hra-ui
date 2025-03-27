@@ -49,6 +49,7 @@ rui.user = {
 | ----------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ |
 | _user_                              | Prepopulated user                                                                  | An `User` object                            |                                                        |
 | _organ_                             | Prepopulated organ                                                                 | An `Organ` object                           |                                                        |
+| _consortium_                        | Prepopulated consortium                                                            | A string                                    | None                                                   |
 | _view_                              | Initial view mode                                                                  | `register` or `3d`                          | `register`                                             |
 | _view-side_                         | Initial view side in `register` mode                                               | `left`, `right`, `anterior`, or `posterior` | `anterior`                                             |
 | _use-download_                      | Whether to download the registration on review                                     | A boolean                                   | `false`                                                |
@@ -60,7 +61,6 @@ rui.user = {
 | _reference-data_                    | Reference data api endpoint                                                        | An url                                      | `https://apps.humanatlas.io/api/v1/rui-reference-data` |
 | _collision-endpoint_                | Collision query api endpoint                                                       | An url                                      | `https://apps.humanatlas.io/api/v1/collisions`         |
 | _organ-options_                     | A list of enabled organs                                                           | An array of strings                         | None                                                   |
-| _theme_                             | Application theme                                                                  | A string                                    | None                                                   |
 | _home-url_                          | Url visited when the user clicks the RUI logo                                      | An url                                      | `https://apps.humanatlas.io/rui/`                      |
 | _base-href_                         | Base url to fetch relative links. Must be set if `<base>` is not used              | An url                                      | None                                                   |
 
