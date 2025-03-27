@@ -1,0 +1,25 @@
+<div class="component-tagline">
+  <span class="component-title">{{ tagline() }}</span>
+  @if (showHelpButton()) {
+    <button mat-icon-button class="helpButton" hraIconButtonVariant="dark">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+  }
+  <div class="filler"></div>
+  <button mat-icon-button class="closeButton" aria-label="Close card" (click)="closeClick.emit()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+@if (showDivider()) {
+  <mat-divider class="top-divider"></mat-divider>
+}
+
+<ng-scrollbar>
+  <div class="card-content">
+    <ng-content></ng-content>
+  </div>
+</ng-scrollbar>
+
+@if (showButtonsFooter()) {
+  <ng-content select="hra-flat-card-actions"></ng-content>
+}

@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  max-width: 72.5rem;
+  margin: 0 auto;
+  padding-top: 7.5rem;
+}
+
+h1 {
+  font: var(--mat-sys-display-large);
+  letter-spacing: var(--mat-sys-display-large-tracking);
+  margin: 0;
+}
+
+button {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.info-text {
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+.table-container {
+  margin-top: 3rem;
+  margin-bottom: 0.3125rem;
+
+  caption {
+    display: none;
+  }
+
+  .more-icon {
+    display: flex;
+  }
+
+  .predictions-table {
+    background-color: var(--mat-sys-secondary-container);
+    border-collapse: collapse;
+
+    th,
+    td {
+      font: var(--mat-sys-label-medium);
+      letter-spacing: var(--mat-sys-label-medium-tracking);
+      border: 0.0625rem solid var(--mat-sys-outline);
+    }
+
+    th {
+      color: var(--mat-sys-on-primary-container);
+      background-color: var(--mat-sys-surface-container);
+    }
+    td {
+      color: var(--mat-sys-inverse-surface);
+
+      &:last-child a {
+        color: var(--mat-sys-on-tertiary-container);
+      }
+    }
+  }
+
+  // Remove default Material padding
+  ::ng-deep .mat-cell:first-of-type,
+  ::ng-deep .mat-header-cell:first-of-type {
+    padding-left: 1rem;
+  }
+
+  ::ng-deep .mat-cell:last-of-type,
+  ::ng-deep .mat-header-cell:last-of-type {
+    padding-right: 1rem;
+  }
+}
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: var(--mat-sys-primary);
+  }
+
+  .cdk-overlay-connected-position-bounding-box {
+    margin-left: 0.5rem;
+  }
+
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    max-width: 22rem;
+    margin-left: 0.05rem;
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+}

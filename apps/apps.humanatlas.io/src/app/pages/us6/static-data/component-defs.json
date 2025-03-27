@@ -1,0 +1,86 @@
+{
+  "$schema": "../types/component-defs.schema.json",
+  "defs": [
+    {
+      "id": "rui",
+      "productTitle": "Registration User Interface (RUI)",
+      "webComponentName": "",
+      "description": "Spatially register human tissue blocks to a 3D organ model using the RUI.",
+      "previewImage": "assets/ui-images/rui.png",
+      "embedAs": "overlay",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-rui/EMBEDDING.md"
+    },
+    {
+      "id": "eui",
+      "productTitle": "Exploration User Interface (EUI)",
+      "webComponentName": "",
+      "description": "View 3D organ models, spatially registered tissue blocks, and cell-type populations.",
+      "previewImage": "assets/ui-images/eui.png",
+      "embedAs": "overlay",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-eui/EMBEDDING.md"
+    },
+    {
+      "id": "eui-organ-information",
+      "productTitle": "EUI",
+      "webComponentName": "Organ Information",
+      "description": "View data registered to the HRA for a specific organ.",
+      "previewImage": "assets/ui-images/eui-organ-information.png",
+      "embedAs": "overlay",
+      "docLink": ""
+    },
+    {
+      "id": "eui-3d-organ-viewer",
+      "productTitle": "EUI",
+      "webComponentName": "3D Organ Viewer",
+      "description": "Interact with a 3D scene constructed from extraction sites registered to the HRA.",
+      "previewImage": "assets/ui-images/eui-3d-organ-viewer.png",
+      "embedAs": "inline",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-body-ui-wc/README.md"
+    },
+    {
+      "id": "asctb-reporter",
+      "productTitle": "ASCT+B Reporter",
+      "webComponentName": "",
+      "description": "Explore and compare ASCT+B Tables and construct OMAPs with this visualization tool.",
+      "previewImage": "assets/ui-images/asctb-reporter.png",
+      "embedAs": "external",
+      "docLink": ""
+    },
+    {
+      "id": "ftu-ui",
+      "productTitle": "Functional Tissue Unit (FTU) Explorer",
+      "webComponentName": "",
+      "description": "Explore FTUs by cell types and biomarkers with the full application.",
+      "previewImage": "assets/ui-images/ftu.png",
+      "embedAs": "overlay",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui/EMBEDDING.md"
+    },
+    {
+      "id": "ftu-ui-small",
+      "productTitle": "FTU Explorer",
+      "webComponentName": "Small Web Component",
+      "description": "Analyze FTUs by cell types and biomarkers with a small web component.",
+      "previewImage": "assets/ui-images/ftu-small-web-component.png",
+      "embedAs": "overlay",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui-small-wc/EMBEDDING.md"
+    },
+    {
+      "id": "ftu-medical-illustration",
+      "productTitle": "FTU Explorer",
+      "webComponentName": "Illustration Viewer",
+      "description": "Interact with FTU medical illustrations with a small web component.",
+      "previewImage": "assets/ui-images/ftu-medical-illustration-viewer.png",
+      "embedAs": "inline",
+      "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/medical-illustration/EMBEDDING.md"
+    },
+    {
+      "id": "hra-api",
+      "productTitle": "HRA API",
+      "webComponentName": "",
+      "description": "Query and interact with the Human Reference Atlas using APIs.",
+      "previewImage": "assets/ui-images/hra-api.png",
+      "embedAs": "external",
+      "docLink": ""
+    }
+  ]
+}
