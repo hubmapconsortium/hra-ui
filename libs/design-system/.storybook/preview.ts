@@ -1,5 +1,7 @@
-import { provideDesignSystem } from '../src/index';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
+import { provideDesignSystem } from '../src/index';
+import compodocJson from './compodoc/documentation.json';
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -24,5 +26,7 @@ const preview: Preview = {
     componentWrapperDecorator((story) => `<div class="hra-app">${story}</div>`),
   ],
 };
+
+setCompodocJson(compodocJson);
 
 export default preview;
