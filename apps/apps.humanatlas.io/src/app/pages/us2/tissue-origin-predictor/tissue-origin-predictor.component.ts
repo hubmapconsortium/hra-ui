@@ -40,7 +40,7 @@ import { Router } from '@angular/router';
 })
 export class TissueOriginPredictorComponent {
   /** CSV File */
-  protected file = signal<File | null>(null);
+  protected readonly file = signal<File | null>(null);
 
   /** Predictions Service */
   protected readonly predictionsService = inject(PredictionsService);
@@ -55,12 +55,12 @@ export class TissueOriginPredictorComponent {
   private readonly router = inject(Router);
 
   /** Supported organs */
-  protected supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
+  protected readonly supportedOrgans = toSignal(this.predictionsService.loadSupportedReferenceOrgans(), {
     initialValue: [],
   });
 
   /** Supported tools */
-  protected supportedTools = toSignal(this.tissueOriginService.loadSupportedTools(), {
+  protected readonly supportedTools = toSignal(this.tissueOriginService.loadSupportedTools(), {
     initialValue: [],
   });
 

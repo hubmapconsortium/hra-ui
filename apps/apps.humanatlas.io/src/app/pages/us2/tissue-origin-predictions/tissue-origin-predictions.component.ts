@@ -111,7 +111,7 @@ export class TissueOriginPredictionsComponent {
   protected readonly userSelectionService = inject(UserSelectionService);
 
   /** Whether to show EUI */
-  protected euiOpen = signal<boolean>(false);
+  protected readonly euiOpen = signal<boolean>(false);
 
   /** RUI locations JSON string */
   protected readonly ruiLocationsJsonString = JSON.stringify([JSON.stringify(this.predictions().rui_locations)]);
@@ -221,15 +221,14 @@ export class TissueOriginPredictionsComponent {
       const rows = data.map((row) => fields.map((field) => row[field]).join(',')).join('\n');
 
       return headers + rows;
-    } else {
-      fields.push('cell_source_link');
-
-      const headers = DATASET_COLUMN_NAMES.join(',') + '\n';
-      const data = this.datasetDataSource.data;
-      const rows = data.map((row) => fields.map((field) => row[field]).join(',')).join('\n');
-
-      return headers + rows;
     }
+    fields.push('cell_source_link');
+
+    const headers = DATASET_COLUMN_NAMES.join(',') + '\n';
+    const data = this.datasetDataSource.data;
+    const rows = data.map((row) => fields.map((field) => row[field]).join(',')).join('\n');
+
+    return headers + rows;
   }
 
   /** Method that sets script and link tags with appropriate URLs */

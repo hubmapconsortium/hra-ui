@@ -49,7 +49,7 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
 })
 export class CellPopulationPredictorComponent {
   /** File */
-  protected file = signal<File | null>(null);
+  protected readonly file = signal<File | null>(null);
 
   /** Whether to show upload info tooltip */
   protected uploadInfoOpen = false;
@@ -83,7 +83,7 @@ export class CellPopulationPredictorComponent {
   protected readonly predictionsService = inject(PredictionsService);
 
   /** Supported organs */
-  protected supportedOrgans = toSignal(
+  protected readonly supportedOrgans = toSignal(
     this.predictionsService.loadSupportedReferenceOrgans().pipe(map((organs) => organs.map((organ) => organ.id))),
     {
       initialValue: [],

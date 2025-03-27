@@ -14,7 +14,7 @@ import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software
 })
 export class ProductHeaderComponent {
   /** Image URL */
-  imageUrl = input.required<string>();
+  readonly imageUrl = input.required<string>();
   /** Title */
-  title = input.required<string>();
+  readonly title = input.required<string>();
 }
