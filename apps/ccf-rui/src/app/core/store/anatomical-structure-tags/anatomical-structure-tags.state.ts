@@ -118,10 +118,11 @@ export class AnatomicalStructureTagState extends NgxsDataEntityCollectionsReposi
 
   @DataAction()
   removeTag(tag: Tag): void {
-    if (this.snapshot.entities[tag.id]) {
-      this.updateEntitiesMany([{ id: tag.id, changes: { type: 'removed' } }]);
+    const type = this.selectOne(tag.id)?.type;
+    if (type === 'added' || type === 'removed') {
+      this.removeOne(tag.id);
     } else {
-      this.addEntityOne({ ...tag, type: 'removed' });
+      this.upsertOne({ ...tag, type: 'removed' });
     }
   }
 
