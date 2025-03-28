@@ -14,9 +14,12 @@ import { SectionLinkComponent } from '@hra-ui/design-system/content-template/sec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageSectionComponent {
-  /** Size of header font (1 -> 6, 1 = largest) */
+  /** Size of tagline font (1 -> 6, 1 = largest) */
   readonly size = input<number>(1);
 
-  /** Header text */
+  /** Whether to display the divider under the tagline */
+  readonly showDivider = input<boolean>(false);
+
+  /** Tagline text */
   readonly tagline = input.required<string>();
 }
