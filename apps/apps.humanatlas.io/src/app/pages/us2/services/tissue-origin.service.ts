@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { firstValueFrom, from, Observable, of, switchMap } from 'rxjs';
+import { CellSummaryReport, HraPopService, IdLabelPair } from '@hra-api/ng-client';
 
 /** Sample CSV file URL */
 export const SAMPLE_FILE_URL = 'assets/sample-data/tissue-origin-sample.csv';
@@ -12,16 +13,6 @@ export const TISSUE_ORIGIN_ENDPOINT = new InjectionToken<string>('Tissue Origin 
 });
 
 /**
- * Supported Tools Data
- */
-export interface SupportedTools {
-  /** ID with URL */
-  id: string;
-  /** Label */
-  label: string;
-}
-
-/**
  * User Selection Data
  */
 export interface UserSelection {
@@ -29,34 +20,6 @@ export interface UserSelection {
   selectedOrganIri?: string;
   /** Tool */
   selectedToolIri?: string;
-}
-
-/**
- * Sources Data
- */
-export interface Sources {
-  /** Cell source */
-  cell_source: string;
-  /** Cell source type */
-  cell_source_type: string;
-  /** Cell source label */
-  cell_source_label: string | null;
-  /** Cell source link */
-  cell_source_link: string | null;
-  /** Tool */
-  tool: string;
-  /** Modality */
-  modality: string;
-  /** Similarity */
-  similarity: number;
-}
-
-/** Tissue Origin Predictions */
-export interface TissueOriginPredictions {
-  /** Sources array */
-  sources: Sources[];
-  /** RUI locations object */
-  rui_locations: object;
 }
 
 /** User Selection Service */
@@ -87,7 +50,7 @@ export class UserSelectionService {
  * Resolver for Tissue Origin Predictions page
  * @returns Tissue origin predictions result observable
  */
-export function resolveTissueOriginPredictions(): Observable<TissueOriginPredictions> {
+export function resolveTissueOriginPredictions(): Observable<CellSummaryReport> {
   /** User selection service */
   const userSelectionService = inject(UserSelectionService).getSelections();
 
@@ -102,6 +65,8 @@ export function resolveTissueOriginPredictions(): Observable<TissueOriginPredict
  */
 @Injectable({ providedIn: 'root' })
 export class TissueOriginService {
+  /** HRA POP Service */
+  private readonly hraPopService = inject(HraPopService);
   /** CSV file */
   private file: File | null = null;
 
@@ -137,31 +102,19 @@ export class TissueOriginService {
    * Gets Predictions for the current csv file
    * @returns Predictions array observable
    */
-  loadTissuePredictions(selectedOrganIri?: string, selectedToolIri?: string): Observable<TissueOriginPredictions> {
+  loadTissuePredictions(selectedOrganIri = '', selectedToolIri = ''): Observable<CellSummaryReport> {
     if (this.file === null) {
       return of({ sources: [], rui_locations: {} });
     }
 
     const body = {
-      ...(selectedOrganIri && { organ: selectedOrganIri }),
-      ...(selectedToolIri && { tool: selectedToolIri }),
+      organ: selectedOrganIri,
+      tool: selectedToolIri,
     };
 
     return from(this.file.text()).pipe(
       switchMap((data) =>
-        this.http.post<TissueOriginPredictions>(
-          `${this.endpoint}/cell-summary-report`,
-          {
-            ...body,
-            csvString: data,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            responseType: 'json',
-          },
-        ),
+        this.hraPopService.cellSummaryReport({ cellSummaryReportRequest: { ...body, csvString: data } }),
       ),
     );
   }
@@ -182,7 +135,7 @@ export class TissueOriginService {
    * Gets supported tools
    * @returns String array observable
    */
-  loadSupportedTools(): Observable<SupportedTools[]> {
-    return this.http.get<SupportedTools[]>(`${this.endpoint}/supported-tools`);
+  loadSupportedTools(): Observable<IdLabelPair[]> {
+    return this.hraPopService.supportedTools();
   }
 }

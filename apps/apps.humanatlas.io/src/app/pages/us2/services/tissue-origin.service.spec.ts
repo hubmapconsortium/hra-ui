@@ -3,16 +3,15 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import {
   SAMPLE_FILE_URL,
-  SupportedTools,
   TISSUE_ORIGIN_ENDPOINT,
-  TissueOriginPredictions,
   TissueOriginService,
   UserSelectionService,
 } from './tissue-origin.service';
 import { firstValueFrom } from 'rxjs';
+import { IdLabelPair } from '@hra-api/ng-client';
 
 describe('TissueOriginService', () => {
-  const mockPredictions: TissueOriginPredictions = {
+  const mockPredictions = {
     sources: [
       {
         cell_source: 'http://purl.org/ccf/1.5/f1790d4b-bbc0-434c-b8ed-f21e8b8be903',
@@ -64,6 +63,8 @@ describe('TissueOriginService', () => {
 
     const expectedRequestBody = {
       csvString: csvFileContent,
+      organ: '',
+      tool: '',
     };
 
     const result = firstValueFrom(tissueOriginService.loadTissuePredictions());
@@ -101,7 +102,7 @@ describe('TissueOriginService', () => {
   });
 
   it('should load supported tools', async () => {
-    const mockSupportedTools: SupportedTools[] = [
+    const mockSupportedTools: IdLabelPair[] = [
       { id: 'organ1', label: 'Organ 1' },
       { id: 'organ2', label: 'Organ 2' },
     ];
