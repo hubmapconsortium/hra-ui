@@ -7,6 +7,7 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-template/pag
 
 import { PageNavigationComponent, Section } from './page-navigation.component';
 
+/** Test section data */
 const TEST_SECTIONS: Section[] = [
   {
     name: 'Page label',
@@ -27,6 +28,9 @@ const TEST_SECTIONS: Section[] = [
   },
 ];
 
+/**
+ * Demo for page navigation feature
+ */
 @Component({
   selector: 'hra-page-navigation-demo',
   imports: [
@@ -43,5 +47,6 @@ const TEST_SECTIONS: Section[] = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PageNavigationDemoComponent {
+  /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
 }

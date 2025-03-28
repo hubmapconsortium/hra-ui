@@ -27,5 +27,5 @@ export class NavigationItemComponent {
   readonly selected = computed(() => this.currentItem() === this.section().name);
 
   /** Href for the navigation link to this section*/
-  readonly navigationLink = computed(() => `/#${this.section().name.toLowerCase().replaceAll(' ', '-')}`);
+  readonly navigationLink = computed(() => `#${this.section().name.toLowerCase().replaceAll(' ', '-')}`);
 }
