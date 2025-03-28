@@ -10,19 +10,36 @@ import { PageNavigationComponent, Section } from './page-navigation.component';
 /** Test section data */
 const TEST_SECTIONS: Section[] = [
   {
-    name: 'Page label',
-    children: [{ name: 'Page label 2' }, { name: 'Page label 3' }, { name: 'Page label 4' }],
-  },
-  {
-    name: 'Page label 5',
+    name: 'Section label in sentence case 1',
     children: [
       {
-        name: 'Page label 6',
-        children: [{ name: 'Page label 7' }, { name: 'Page label 8' }],
+        name: 'Section label in sentence case 2',
+        children: [
+          {
+            name: 'Section label in sentence case 3',
+            children: [
+              {
+                name: 'Section label in sentence case 4',
+                children: [
+                  {
+                    name: 'Section label in sentence case 5',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Section label in sentence case 6',
+    children: [
+      {
+        name: 'Section label in sentence case 7',
       },
       {
-        name: 'Page label 9',
-        children: [{ name: 'Page label 10' }],
+        name: 'Section label in sentence case 8',
       },
     ],
   },

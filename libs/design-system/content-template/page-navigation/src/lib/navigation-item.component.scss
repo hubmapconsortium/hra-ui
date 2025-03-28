@@ -2,9 +2,14 @@
 
 :host {
   a {
-    height: 2rem;
     display: block;
     align-content: center;
+  }
+
+  .navigation-label {
+    font: var(--mat-sys-label-medium);
+    color: var(--mat-sys-primary);
+    padding: 5.5px 1rem;
     border-radius: 0.5rem;
 
     &:hover {
@@ -15,11 +20,5 @@
     &.selected {
       background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
     }
-  }
-
-  .navigation-label {
-    font: var(--mat-sys-label-medium);
-    color: var(--mat-sys-primary);
-    padding-left: 1rem;
   }
 }
