@@ -8,9 +8,9 @@
 
 .info-text {
   margin-top: 3.5rem;
-  font: var(--sys-body-large);
-  letter-spacing: var(--sys-body-large-tracking);
-  color: var(--sys-on-secondary-container);
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
 }
 
 .cards {
@@ -24,9 +24,9 @@
     width: 42rem;
 
     .card-info-text {
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
-      color: var(--sys-primary);
+      font: var(--mat-sys-label-large);
+      letter-spacing: var(--mat-sys-label-large-tracking);
+      color: var(--mat-sys-primary);
     }
   }
 
@@ -37,16 +37,16 @@
 
       span,
       li {
-        font: var(--sys-label-large);
-        letter-spacing: var(--sys-label-large-tracking);
+        font: var(--mat-sys-label-large);
+        letter-spacing: var(--mat-sys-label-large-tracking);
       }
 
       span {
-        color: var(--sys-secondary);
+        color: var(--mat-sys-secondary);
       }
 
       li {
-        color: var(--sys-primary);
+        color: var(--mat-sys-primary);
       }
 
       & > div {
