@@ -12,9 +12,9 @@
   <hra-workflow-card-actions>
     <button
       mat-icon-button
+      class="similar-anatomical-structures-menu-trigger"
       aria-label="Open table action menu"
       [matMenuTriggerFor]="optionsForAnatomicalTable"
-      data-testid="anatomical-menu"
     >
       <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
@@ -26,11 +26,7 @@
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button
-        mat-menu-item
-        (click)="onDowloadCSVButtonClicked('anatomical')"
-        data-testid="download-anatomical-csv-button"
-      >
+      <button mat-menu-item (click)="onDownloadCSVButtonClicked('anatomical')">
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -93,8 +89,8 @@
     <button
       mat-icon-button
       aria-label="Open table action menu"
+      class="similar-datasets-menu-trigger"
       [matMenuTriggerFor]="optionsForDatasetTable"
-      data-testid="similar-datasets-menu"
     >
       <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
@@ -106,11 +102,7 @@
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button
-        mat-menu-item
-        (click)="onDowloadCSVButtonClicked('dataset')"
-        data-testid="download-similar-dataset-csv-button"
-      >
+      <button mat-menu-item (click)="onDownloadCSVButtonClicked('dataset')">
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -173,12 +165,11 @@
     <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>
     <div class="buttons">
       <button
-        (click)="onDowloadJSONButtonClicked()"
+        (click)="onDownloadJSONButtonClicked()"
         mat-button
         hraButtonVariant="primary"
         hraButtonSize="medium"
         disabled="false"
-        data-testid="download-json-button"
       >
         JSON-LD
         <mat-icon>download</mat-icon>

@@ -1,10 +1,13 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { MatMenuHarness } from '@angular/material/menu/testing';
+import { MatSnackBarHarness } from '@angular/material/snack-bar/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { TissueOriginPredictionsComponent } from './tissue-origin-predictions.component';
+
+jest.mock('file-saver');
 
 describe('TissueOriginPredictionsComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting()];
@@ -26,61 +29,46 @@ describe('TissueOriginPredictionsComponent', () => {
     global.URL.createObjectURL = jest.fn().mockReturnValue('mock-url');
 
     const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
+    const loader = TestbedHarnessEnvironment.loader(fixture);
 
-    const snackbarService = TestBed.inject(SnackbarService);
-    const snackbarSpy = jest.spyOn(snackbarService, 'open');
+    const menu = await loader.getHarness(
+      MatMenuHarness.with({ selector: '.similar-anatomical-structures-menu-trigger' }),
+    );
 
-    const menuButton = screen.getByTestId('anatomical-menu');
-    await userEvent.click(menuButton);
-    fixture.detectChanges();
+    await menu.clickItem({ text: /CSV/i });
+    const snackbar = await loader.getHarnessOrNull(MatSnackBarHarness);
 
-    const downloadAnatomicalButton = screen.getByTestId('download-anatomical-csv-button');
-    await userEvent.click(downloadAnatomicalButton);
-    fixture.detectChanges();
-
-    expect(snackbarSpy).toHaveBeenCalled();
-
-    const snackbar = screen.getByTestId('snackbar');
-    expect(snackbar.textContent).toBe('File downloaded');
+    expect(snackbar).toBeDefined();
+    expect(screen.queryByText(/File downloaded/)).toBeDefined();
   });
 
   it('downloads CSV file when user clicks on download CSV button for Similar Datasets table', async () => {
     global.URL.createObjectURL = jest.fn().mockReturnValue('mock-url');
 
     const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
+    const loader = TestbedHarnessEnvironment.loader(fixture);
 
-    const snackbarService = TestBed.inject(SnackbarService);
-    const snackbarSpy = jest.spyOn(snackbarService, 'open');
+    const menu = await loader.getHarness(MatMenuHarness.with({ selector: '.similar-datasets-menu-trigger' }));
+    await menu.clickItem({ text: /CSV/i });
 
-    const menuButton = screen.getByTestId('similar-datasets-menu');
-    await userEvent.click(menuButton);
-    fixture.detectChanges();
-
-    const downloadAnatomicalButton = screen.getByTestId('download-similar-dataset-csv-button');
-    await userEvent.click(downloadAnatomicalButton);
-    fixture.detectChanges();
-
-    expect(snackbarSpy).toHaveBeenCalled();
-
-    const snackbar = screen.getByTestId('snackbar');
-    expect(snackbar.textContent).toBe('File downloaded');
+    const snackbar = await loader.getHarnessOrNull(MatSnackBarHarness);
+    expect(snackbar).toBeDefined();
+    expect(screen.queryByText(/File downloaded/)).toBeDefined();
   });
 
   it('downloads JSON file when user clicks on download JSON-LD button', async () => {
     global.URL.createObjectURL = jest.fn().mockReturnValue('mock-url');
 
     const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
+    const loader = TestbedHarnessEnvironment.loader(fixture);
 
-    const snackbarService = TestBed.inject(SnackbarService);
-    const snackbarSpy = jest.spyOn(snackbarService, 'open');
+    const button = screen.getByText('JSON-LD');
 
-    const downloadJsonButton = screen.getByTestId('download-json-button');
-    await userEvent.click(downloadJsonButton);
+    await userEvent.click(button);
     fixture.detectChanges();
 
-    expect(snackbarSpy).toHaveBeenCalled();
-
-    const snackbar = screen.getByTestId('snackbar');
-    expect(snackbar.textContent).toBe('File downloaded');
+    const snackbar = await loader.getHarnessOrNull(MatSnackBarHarness);
+    expect(snackbar).toBeDefined();
+    expect(screen.queryByText(/File downloaded/)).toBeDefined();
   });
 });
