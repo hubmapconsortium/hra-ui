@@ -1,26 +1,51 @@
 :host {
-  display: block;
-
-  .header-icons {
+  .page {
     display: flex;
-    gap: 0.75rem;
-  }
-  .header-icon {
-    --mat-icon-color: var(--mat-sys-on-primary);
-    height: 60%;
-    width: 60%;
-  }
-  .icon-background {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ff0043;
-  }
+    flex-direction: column;
 
-  hra-page-section {
-    margin-bottom: 4rem;
+    @media (min-width: 1000px) {
+      display: grid;
+      grid-template-columns: calc(100% - 17rem) 17rem;
+      grid-template-areas: 'content navigation';
+    }
+
+    .page-content {
+      grid-area: content;
+      max-width: 81.25rem;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 1rem;
+
+      @media (min-width: 1000px) {
+        padding: 2.5rem;
+      }
+    }
+
+    hra-page-navigation {
+      grid-area: navigation;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .header-icon {
+      --mat-icon-color: var(--mat-sys-on-primary);
+      height: 60%;
+      width: 60%;
+    }
+    .icon-background {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ff0043;
+    }
+
+    hra-page-section {
+      margin-bottom: 4rem;
+    }
   }
 }

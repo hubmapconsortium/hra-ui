@@ -1,255 +1,265 @@
 <hra-header />
-<hra-page-navigation [sections]="data"></hra-page-navigation>
-<hra-page-section tagline="Page header" [size]="1">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-    <button mat-button hraCtaButton>
-      Action
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-    </button>
-  </section-content>
-</hra-page-section>
+<div class="page">
+  @if (windowWidth() >= 1000) {
+    <hra-page-navigation [sections]="data"></hra-page-navigation>
+  }
+  <div class="page-content">
+    <hra-page-section tagline="Page header" [size]="1">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+        <button mat-button hraCtaButton>
+          Action
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label" [size]="2">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    @if (windowWidth() < 1000) {
+      <hra-page-navigation [sections]="data"></hra-page-navigation>
+    }
 
-<hra-page-section tagline="Page label 2" [size]="3">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label" [size]="2">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 3" [size]="3">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 2" [size]="3">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 4" [size]="3">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 3" [size]="3">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 5" [size]="2">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 4" [size]="3">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 6" [size]="3">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 5" [size]="2">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 7" [size]="4">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 6" [size]="3">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 8" [size]="4">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 7" [size]="4">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 4" [size]="3">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 8" [size]="4">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 9" [size]="4">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 4" [size]="3">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-page-section tagline="Page label 10" [size]="4">
-  <header-content>
-    <div class="header-icons">
-      <hra-product-logo name="cde" size="large"></hra-product-logo>
-      <div class="icon-background">
-        <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-      </div>
-    </div>
-  </header-content>
-  <section-content>
-    This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the
-    HRA before. What would you want to learn here?
-    <ul>
-      <li>Components may be swapped out for this button set</li>
-      <li>Text always goes on top.</li>
-      <li>Other components may be swapped out for the button set.</li>
-    </ul>
-  </section-content>
-</hra-page-section>
+    <hra-page-section tagline="Page label 9" [size]="4">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<br />
+    <hra-page-section tagline="Page label 10" [size]="4">
+      <header-content>
+        <div class="header-icons">
+          <hra-product-logo name="cde" size="large"></hra-product-logo>
+          <div class="icon-background">
+            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
+          </div>
+        </div>
+      </header-content>
+      <section-content>
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to
+        the HRA before. What would you want to learn here?
+        <ul>
+          <li>Components may be swapped out for this button set</li>
+          <li>Text always goes on top.</li>
+          <li>Other components may be swapped out for the button set.</li>
+        </ul>
+      </section-content>
+    </hra-page-section>
 
-<hra-carousel />
+    <br />
 
-<br />
+    <hra-carousel />
 
-<hra-section-cards />
+    <br />
+
+    <hra-section-cards />
+  </div>
+</div>
 
 <hra-footer />

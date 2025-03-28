@@ -1,12 +1,14 @@
-<div class="navigation-top">{{ tagline() }}</div>
-<div class="link-container">
-  @for (section of sections(); track section) {
-    <hra-navigation-item
-      class="navigation-link"
-      [section]="section"
-      [level]="0"
-      (itemClicked)="currentItem.set($event)"
-      [currentItem]="currentItem()"
-    ></hra-navigation-item>
-  }
+<div class="navigation-container">
+  <div class="navigation-top">{{ tagline() }}</div>
+  <div class="link-container">
+    @for (section of sections(); track section) {
+      <hra-navigation-item
+        class="navigation-link"
+        [section]="section"
+        [level]="0"
+        (itemClicked)="currentItem.set($event)"
+        [currentItem]="currentItem()"
+      ></hra-navigation-item>
+    }
+  </div>
 </div>

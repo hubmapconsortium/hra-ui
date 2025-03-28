@@ -1,48 +1,51 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  background: var(--mat-sys-on-primary);
-  z-index: 2;
-  overflow: auto;
-  width: 14.75rem;
-  justify-self: anchor-center;
-  position: relative;
-  border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 0.5rem;
-
-  .navigation-top {
-    font: var(--mat-sys-label-large);
-    color: var(--mat-sys-secondary);
-    min-height: 3rem;
-    align-content: center;
-    padding-left: 1.5rem;
-    background-color: var(--mat-sys-surface-container-low);
-    border-bottom: 1px solid var(--mat-sys-outline-variant);
-  }
-
-  .link-container {
+  .navigation-container {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
-  }
-
-  @media (min-width: 1000px) {
-    position: fixed;
-    right: 0;
-    width: 15.5rem;
-    padding: 2.5rem 0.75rem 0 0.75rem;
-    justify-self: unset;
-    height: calc(100vh - 4.5rem);
-    border: none;
+    background: var(--mat-sys-on-primary);
+    z-index: 2;
+    overflow: auto;
+    width: 100%;
+    justify-self: anchor-center;
+    position: relative;
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 0.5rem;
+    margin-bottom: 4rem;
 
     .navigation-top {
-      min-height: 2.5rem;
-      background-color: unset;
-      border-bottom: unset;
+      font: var(--mat-sys-label-large);
+      color: var(--mat-sys-secondary);
+      min-height: 3rem;
+      align-content: center;
+      padding-left: 1.5rem;
+      background-color: var(--mat-sys-surface-container-low);
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
     }
 
     .link-container {
-      padding: 0 0.75rem;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+    }
+
+    @media (min-width: 1000px) {
+      padding: 2.5rem 0.75rem 0 0.75rem;
+      justify-self: unset;
+      border: none;
+      margin-bottom: 0;
+      position: fixed;
+      width: 17rem;
+      max-height: -webkit-fill-available;
+
+      .navigation-top {
+        min-height: 2.5rem;
+        background-color: unset;
+        border-bottom: unset;
+      }
+
+      .link-container {
+        padding: 0 0.75rem;
+      }
     }
   }
 }

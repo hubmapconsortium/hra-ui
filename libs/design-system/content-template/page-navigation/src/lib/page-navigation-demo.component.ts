@@ -22,7 +22,7 @@ const TEST_SECTIONS: Section[] = [
       },
       {
         name: 'Page label 9',
-        children: [{ name: 'Page label 10' }, { name: 'Page label 11' }],
+        children: [{ name: 'Page label 10' }],
       },
     ],
   },
@@ -49,4 +49,11 @@ const TEST_SECTIONS: Section[] = [
 export class PageNavigationDemoComponent {
   /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
+
+  /**
+   * Returns window width in px
+   */
+  windowWidth() {
+    return window.innerWidth;
+  }
 }

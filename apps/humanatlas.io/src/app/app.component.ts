@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PageNavigationComponent, Section } from '@hra-ui/design-system/content-template/page-navigation';
 import { PageSectionComponent } from '@hra-ui/design-system/content-template/page-section';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { PageNavigationComponent, Section } from '@hra-ui/design-system/content-template/page-navigation';
 
 import { CarouselComponent } from './components-v2/carousel/carousel.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SectionCardsComponent } from './components-v2/section-cards/section-cards.component';
 
+/** Test section data */
 const TEST_SECTIONS: Section[] = [
   {
     name: 'Page label',
@@ -24,7 +25,7 @@ const TEST_SECTIONS: Section[] = [
       },
       {
         name: 'Page label 9',
-        children: [{ name: 'Page label 10' }, { name: 'Page label 11' }],
+        children: [{ name: 'Page label 10' }],
       },
     ],
   },
@@ -54,5 +55,13 @@ const TEST_SECTIONS: Section[] = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
+  /** Data for sections */
   readonly data: Section[] = TEST_SECTIONS;
+
+  /**
+   * Returns window width in px
+   */
+  windowWidth() {
+    return window.innerWidth;
+  }
 }
