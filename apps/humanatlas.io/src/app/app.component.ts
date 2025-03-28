@@ -23,8 +23,8 @@ const TEST_SECTIONS: Section[] = [
         children: [{ name: 'Page label 7' }, { name: 'Page label 8' }],
       },
       {
-        name: 'Page label 4',
-        children: [{ name: 'Page label 9' }, { name: 'Page label 10' }],
+        name: 'Page label 9',
+        children: [{ name: 'Page label 10' }, { name: 'Page label 11' }],
       },
     ],
   },

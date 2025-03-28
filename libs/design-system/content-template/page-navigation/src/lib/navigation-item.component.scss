@@ -1,0 +1,25 @@
+@use 'utils';
+
+:host {
+  a {
+    height: 2rem;
+    display: block;
+    align-content: center;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: utils.with-alpha(var(--mat-sys-secondary), 8%);
+    }
+
+    &:active,
+    &.selected {
+      background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
+    }
+  }
+
+  .navigation-label {
+    font: var(--mat-sys-label-medium);
+    color: var(--mat-sys-primary);
+    padding-left: 1rem;
+  }
+}
