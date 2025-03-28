@@ -1,0 +1,21 @@
+:host {
+  .background {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    display: flex;
+    background: var(--mat-sys-secondary);
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      width: 60%;
+      height: 60%;
+    }
+
+    &.small {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+}
