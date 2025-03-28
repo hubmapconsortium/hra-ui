@@ -31,7 +31,7 @@ export const MainHeader: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-page-section tagline="${args.tagline}" [size]="1">
+    <hra-page-section tagline="${args.tagline}" size=1 [showDivider]="true">
       <header-content>
         <div class="header-icons">
           <hra-product-logo name="ftu" size="large"></hra-product-logo>
@@ -85,11 +85,12 @@ export const BodySection: Story = {
   args: {
     tagline: 'Section label in sentence case',
     size: 2,
+    showDivider: false,
   },
   render: (args) => ({
     props: args,
     template: `
-    <hra-page-section tagline="${args.tagline}" size="${args.size}">
+    <hra-page-section tagline="${args.tagline}" size="${args.size}" [showDivider]="${args.showDivider}">
       <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>

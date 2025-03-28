@@ -45,7 +45,6 @@ const TEST_SECTIONS: Section[] = [
     ProductLogoComponent,
     MatIconModule,
     ButtonsModule,
-    PageNavigationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

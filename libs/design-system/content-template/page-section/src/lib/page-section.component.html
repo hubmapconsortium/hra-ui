@@ -2,7 +2,7 @@
   <ng-content select="header-content"></ng-content>
 </div>
 <hra-section-link class="header" [size]="size()" [tagline]="tagline()"></hra-section-link>
-@if (size() === 1) {
+@if (showDivider()) {
   <mat-divider />
 }
 <div class="content">
