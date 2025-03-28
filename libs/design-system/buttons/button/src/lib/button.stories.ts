@@ -32,7 +32,7 @@ const SIZE_ARG_TYPES: ArgTypes<WithSize> = {
 };
 
 const meta: Meta<CommonButtonArgs> = {
-  title: 'Design System/Buttons/Button',
+  title: 'Design System/Buttons/Standard Buttons',
   parameters: {
     design: {
       type: 'figma',

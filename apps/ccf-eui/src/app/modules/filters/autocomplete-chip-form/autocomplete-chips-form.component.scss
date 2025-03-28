@@ -1,0 +1,101 @@
+:host {
+  --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-on-primary-fixed);
+  --mat-form-field-container-height: 3rem;
+  --mat-form-field-filled-with-label-container-padding-top: 1rem;
+  --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+
+  ::ng-deep .mdc-floating-label--float-above {
+    transform: translateY(-100%);
+
+    mat-label {
+      font: var(--mat-sys-label-small) !important;
+      letter-spacing: var(--mat-sys-label-small-tracking);
+    }
+  }
+
+  display: block;
+  margin-bottom: 2rem;
+
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  mat-form-field,
+  mat-label {
+    color: var(--mat-sys-on-primary-fixed);
+    font: var(--mat-sys-label-medium);
+  }
+
+  .visible {
+    mat-label {
+      margin-bottom: 0.25rem;
+    }
+
+    .chips-area {
+      margin-top: 0.5rem;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .chips-area {
+    --mdc-icon-button-state-layer-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .search-input {
+    margin-left: 0;
+    height: 2rem;
+    line-height: 2rem;
+  }
+
+  mat-error {
+    font: var(--mat-sys-label-small);
+    margin-left: 1rem;
+  }
+
+  .error-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .error {
+    --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-error);
+
+    mat-label {
+      color: var(--mat-sys-error);
+    }
+  }
+}
+
+::ng-deep .mat-mdc-autocomplete-panel {
+  --mat-autocomplete-background-color: var(--mat-sys-surface-container-low);
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  max-height: none !important;
+
+  ng-scrollbar {
+    max-height: 18rem;
+  }
+
+  mat-option {
+    flex-grow: 1;
+    font: var(--mat-sys-label-medium);
+  }
+
+  .autocomplete-option {
+    display: flex;
+    align-items: center;
+  }
+
+  .autocomplete-checkbox {
+    padding: 0.25rem;
+  }
+}

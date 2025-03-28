@@ -1,5 +1,6 @@
 import { Express, Request, Response } from 'express';
 
+/** Adds static page routes */
 export function setupStaticPageRoutes(app: Express): void {
   app.get('/graph', (_req: Request, res: Response) => {
     res.sendFile('assets/graph-vis/index.html', {

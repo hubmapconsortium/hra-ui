@@ -1,8 +1,8 @@
-@use '@fontsource/material-symbols-outlined';
-@use '@fontsource/material-symbols-rounded';
+@use '@fontsource-variable/material-symbols-outlined';
+@use '@fontsource-variable/material-symbols-rounded';
 @use '@fontsource/metropolis/400.css' as Metropolis400;
 @use '@fontsource/metropolis/500.css' as Metropolis500;
-@use '@fontsource/nunito-sans';
+@use '@fontsource-variable/nunito-sans';
 
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
 .material-symbols-outlined,
@@ -20,9 +20,9 @@
 }
 
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Symbols Outlined Variable';
 }
 
 .material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
+  font-family: 'Material Symbols Rounded Variable';
 }

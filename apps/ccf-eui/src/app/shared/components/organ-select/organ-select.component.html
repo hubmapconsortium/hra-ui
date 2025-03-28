@@ -1,0 +1,45 @@
+<form>
+  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Organs</mat-label>
+    <input
+      name="currentOrganInput"
+      class="organ-input"
+      [(ngModel)]="searchInput"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      #organInput
+      [placeholder]="searchTextPlaceholder()"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelected($event)"
+      hideSingleSelectionIndicator
+      (opened)="hidePlaceholder.set(true)"
+      (closed)="hidePlaceholder.set(false)"
+    >
+      <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
+        @for (organ of selectedOrgans(); track organ) {
+          <mat-chip-row (removed)="remove(organ)">
+            {{ organ.name }}
+            <button matChipRemove [attr.aria-label]="'remove ' + organ.name">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <ng-scrollbar class="organ-list">
+        @for (organ of filteredOrgans(); track organ) {
+          <div class="autocomplete-option">
+            <mat-checkbox
+              class="autocomplete-checkbox"
+              (change)="checkboxSelected($event, organ)"
+              [checked]="isChecked(organ)"
+            ></mat-checkbox>
+            <mat-option [value]="organ">{{ organ.name }}</mat-option>
+          </div>
+        }
+      </ng-scrollbar>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

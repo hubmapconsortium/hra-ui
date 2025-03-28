@@ -6,26 +6,7 @@
   margin: 0 auto;
   width: min-content;
 
-  @media (min-width: 768px) {
-    margin: 0;
-    width: auto;
-  }
-
-  @media (min-width: 1280px) {
-    justify-content: space-between;
-  }
-
   .visual-card {
-    @media (min-width: 1012px) {
-      width: 24.5rem;
-      height: 24.5rem;
-    }
-
-    @media (min-width: 1920px) {
-      width: 30.5rem;
-      height: 30.5rem;
-    }
-
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0px 5px 1rem 0px rgb(from var(--mat-sys-shadow) r g b / 0.24);
@@ -53,5 +34,24 @@
     mat-icon {
       margin-left: 0.25rem;
     }
+
+    @media (min-width: 1012px) {
+      width: 24.5rem;
+      height: 24.5rem;
+    }
+
+    @media (min-width: 1920px) {
+      width: 30.5rem;
+      height: 30.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin: 0;
+    width: auto;
+  }
+
+  @media (min-width: 1280px) {
+    justify-content: space-between;
   }
 }

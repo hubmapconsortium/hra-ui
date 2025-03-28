@@ -25,8 +25,8 @@ describe('StateAnalyticsPluginService', () => {
 
   it('should call logaction on handle trigger', () => {
     const contactMsg = { email: 'test@test.com', subject: 'test', message: 'test' };
-    const action = new SendMessage(contactMsg);
-    service.handle({}, action, nextSpy);
+    const sendAction = new SendMessage(contactMsg);
+    service.handle({}, sendAction, nextSpy);
     expect(gaSpy.event).toHaveBeenCalledWith(SendMessage.type, 'action_log', '{}');
   });
 

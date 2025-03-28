@@ -18,7 +18,7 @@ export class InlineSVGDirective {}
   exports: [InlineSVGDirective],
 })
 export class InlineSVGModule {
-  static forRoot(..._args: unknown[]) {
+  static forRoot() {
     return InlineSVGModule;
   }
 }

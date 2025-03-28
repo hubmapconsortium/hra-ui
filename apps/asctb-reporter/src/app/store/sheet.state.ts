@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { StateReset } from 'ngxs-reset-plugin';
@@ -205,6 +205,12 @@ const FETCHING_TEXT = 'Fetching data...';
 })
 @Injectable()
 export class SheetState {
+  readonly configService = inject(ConfigService);
+  readonly ga = inject(GoogleAnalyticsService);
+  readonly reportService = inject(ReportService);
+  readonly store = inject(Store);
+  private readonly sheetService = inject(SheetService);
+
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
   exampleSheet?: SheetDetails;
@@ -213,13 +219,7 @@ export class SheetState {
   bodyId = 'UBERON:0013702';
   bodyLabel = 'body proper';
 
-  constructor(
-    public configService: ConfigService,
-    private readonly sheetService: SheetService,
-    public readonly ga: GoogleAnalyticsService,
-    public reportService: ReportService,
-    public store: Store,
-  ) {
+  constructor() {
     this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
       this.sheetConfig = sheetOptions;
     });
@@ -442,7 +442,7 @@ export class SheetState {
       rdfs_label: this.bodyLabel,
     };
 
-    for await (const [_unused, compareSheet] of compareData.entries()) {
+    for await (const compareSheet of compareData.values()) {
       this.sheetService
         .fetchSheetData(compareSheet.sheetId, compareSheet.gid, compareSheet.csvUrl, compareSheet.formData)
         .subscribe(
@@ -738,19 +738,18 @@ export class SheetState {
         }
       }
       return newSelectedOrgans;
-    } else {
-      const omapUberonIds = this.omapSheetConfig.map((organ) => organ.uberon_id);
-      const newSelectedOrgans: string[] = [];
-      selectedOrgans.forEach((selectedOrgan) => {
-        const sheetOrgan = this.sheetConfig.find(
-          (organ) => organ.name.toLowerCase() === selectedOrgan.split('-')[0].toLowerCase(),
-        );
-        if (sheetOrgan?.representation_of?.some((rep) => omapUberonIds.includes(rep))) {
-          newSelectedOrgans.push(selectedOrgan);
-        }
-      });
-      return newSelectedOrgans;
     }
+    const omapUberonIds = this.omapSheetConfig.map((organ) => organ.uberon_id);
+    const newSelectedOrgans: string[] = [];
+    selectedOrgans.forEach((selectedOrgan) => {
+      const sheetOrgan = this.sheetConfig.find(
+        (organ) => organ.name.toLowerCase() === selectedOrgan.split('-')[0].toLowerCase(),
+      );
+      if (sheetOrgan?.representation_of?.some((rep) => omapUberonIds.includes(rep))) {
+        newSelectedOrgans.push(selectedOrgan);
+      }
+    });
+    return newSelectedOrgans;
   }
 
   private convertOrganToBeforeFilterFormat(organ: string, filteredOut: boolean): SelectedOrganBeforeFilter {

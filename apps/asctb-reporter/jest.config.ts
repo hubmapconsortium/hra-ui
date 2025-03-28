@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'asctb-reporter',
   preset: '../../jest.preset.js',

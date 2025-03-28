@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'cdk',
   preset: '../../jest.preset.js',

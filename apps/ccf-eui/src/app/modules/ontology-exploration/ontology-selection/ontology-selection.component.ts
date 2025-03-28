@@ -1,16 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
+
 import { OntologySearchService } from '../../../core/services/ontology-search/ontology-search.service';
 import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component';
 
@@ -20,73 +13,55 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
 @Component({
   selector: 'ccf-ontology-selection',
   templateUrl: './ontology-selection.component.html',
-  styleUrls: ['./ontology-selection.component.scss'],
   providers: [OntologySearchService],
+  imports: [CommonModule, OntologyTreeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
-export class OntologySelectionComponent implements OnChanges {
-  /**
-   * View child of search component
-   */
-  @ViewChild(OntologyTreeComponent, { static: false }) tree!: OntologyTreeComponent;
+export class OntologySelectionComponent {
+  /** A record of terms within the current filter.  To be passed on to ontology-tree */
+  readonly occurenceData = input.required<Record<string, number>>();
 
-  /**
-   * A record of terms within the current filter.  To be passed on to ontology-tree
-   */
-  @Input() occurenceData!: Record<string, number>;
+  /** A record of terms the app currently has data for.  To be passed on to ontology-tree */
+  readonly termData = input.required<Record<string, number>>();
 
-  /**
-   * A record of terms the app currently has data for.  To be passed on to ontology-tree
-   */
-  @Input() termData!: Record<string, number>;
+  /** The ontology tree model to display */
+  readonly treeModel = input.required<OntologyTree | null>();
 
-  /**
-   * The ontology tree model to display
-   */
-  @Input() treeModel!: OntologyTree;
+  /** Tooltip to display for ontology header on hover */
+  readonly tooltip = input.required<string>();
 
-  /**
-   * Input list of selected ontology terms passed down to ontology-tree.
-   * Used to change display of ontology tree when selection is made from
-   * outside the component.
-   */
-  @Input() ontologyFilter!: string[];
+  /** Captures and passes along the change in ontologySelections */
+  readonly ontologySelection = output<OntologyTreeNode[]>();
 
-  @Input() header!: boolean;
-  @Input() placeholderText!: string;
-
-  @Input() showtoggle!: boolean;
-
-  /**
-   * Captures and passes along the change in ontologySelections.
-   */
-  @Output() readonly ontologySelection = new EventEmitter<OntologyTreeNode[]>();
-
-  currentNodes!: string[];
-
+  /** Biomarker menu options */
   biomarkerMenuOptions!: string[];
+
+  /** The root node for the ontology tree */
   rootNode!: OntologyTreeNode;
-  tooltips!: string[];
+
+  /** The root node observable */
   rootNode$: Observable<OntologyTreeNode>;
+
+  /** Map for converting node labels to biomarker menu option labels */
   biomarkerLabelMap = new Map([
-    ['gene', 'BG'],
-    ['protein', 'BP'],
-    ['lipids', 'BL'],
-    ['metabolites', 'BM'],
-    ['proteoforms', 'BF'],
+    ['gene', 'Genes'],
+    ['protein', 'Proteins'],
+    ['metabolites', 'Metabolites'],
+    ['proteoforms', 'Proteoforms'],
+    ['lipids', 'Lipids'],
   ]);
+
   /**
-   * Creates an instance of ontology selection component.
-   *
-   * @param ontologySearchService Service for searching the ontology.
+   * Creates an instance of ontology selection component
+   * Gets and sets biomarker menu options if applicable
+   * Updates the ontology tree model in the state if it changes
+   * @param ontologySearchService Service for searching the ontology
    */
   constructor(public ontologySearchService: OntologySearchService) {
     this.rootNode$ = ontologySearchService.rootNode$.pipe(
       tap((rootNode) => {
         this.rootNode = { ...rootNode };
         if (this.rootNode.id === 'biomarkers') {
-          this.tooltips = [...(rootNode.children ?? [])];
           this.biomarkerMenuOptions = [...(rootNode.children ?? [])]
             .map((option) => this.biomarkerLabelMap.get(option))
             .filter((x): x is string => x !== undefined);
@@ -94,26 +69,21 @@ export class OntologySelectionComponent implements OnChanges {
         }
       }),
     );
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('treeModel' in changes && this.treeModel) {
-      this.ontologySearchService.setTreeModel(this.treeModel);
-    }
+    effect(() => {
+      const model = this.treeModel();
+      if (model) {
+        this.ontologySearchService.setTreeModel(model);
+      }
+    });
   }
 
   /**
-   * Ontology selection event when node is selected from the search results.
-   *
-   * @param ontologyNode selected ontology node.
+   * Filters nodes based on selected biomarker types
+   * @param selectedTypes Selected types
    */
-  selected(ontologyNode: OntologyTreeNode): void {
-    const nodes = this.treeModel?.nodes ?? {};
-    this.tree.expandAndSelect(ontologyNode, (node) => nodes[node.parent ?? '']);
-  }
-
   filterNodes(selectedTypes: string[]): void {
-    const nodes = Object.values(this.treeModel.nodes);
+    const nodes = Object.values(this.treeModel()?.nodes ?? {});
     const filteredNodes = nodes
       .filter((node) => selectedTypes.includes(this.biomarkerLabelMap.get(node.parent ?? '') ?? ''))
       .sort((node1, node2) =>

@@ -33,8 +33,8 @@ describe('WebComponentsComponent', () => {
     organ = ORGANS[0];
     def = COMPONENT_DEFS[0];
     inlineDef = COMPONENT_DEFS.find((d) => d.embedAs === 'inline') as ComponentDef;
-    overlayDef = COMPONENT_DEFS.find((def) => def.embedAs === 'overlay') as ComponentDef;
-    externalDef = COMPONENT_DEFS.find((def) => def.embedAs === 'external') as ComponentDef;
+    overlayDef = COMPONENT_DEFS.find((d) => d.embedAs === 'overlay') as ComponentDef;
+    externalDef = COMPONENT_DEFS.find((d) => d.embedAs === 'external') as ComponentDef;
   });
 
   it('should set sidenavData on useApp click with embedAs inline', async () => {
@@ -95,8 +95,6 @@ describe('WebComponentsComponent', () => {
   });
 
   it('should return the interpolated template', async () => {
-    const organ: Organ = ORGANS[0];
-    const def: ComponentDef = COMPONENT_DEFS[0];
     const template = EMBED_TEMPLATES[def.id];
     const { component } = await setup();
     const result = component['getEmbedTemplate'](organ, def);

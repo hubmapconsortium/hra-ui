@@ -19,11 +19,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
 import { CardsModule } from '@hra-ui/design-system/cards';
+import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
-import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
@@ -78,8 +78,8 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
     MatSelectModule,
     MatSidenavModule,
 
-    BackButtonBarComponent,
     EmbedSidenavContentComponent,
+    NavigationModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     WebComponentCardComponent,

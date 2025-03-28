@@ -1,10 +1,13 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
+/**
+ * Menu for violin plot expansion panel
+ */
 @Component({
   selector: 'cde-violin-menu',
   imports: [CommonModule, MatIconModule, MatMenuModule, IconButtonSizeDirective, ButtonsModule],

@@ -6,6 +6,7 @@ export type GlobalKey = string | symbol;
 /** Type of the global object */
 export type GlobalThis = typeof globalThis;
 
+/** Redeclare the global scope */
 declare let global: GlobalThis;
 
 /**
@@ -50,15 +51,44 @@ export class GlobalsService {
    * Gets a value from the global object.
    *
    * @param key The key for the value
-   * @param def An optional default value
    *
    * @returns The value if it exists otherwise the default value
    */
   get<K extends keyof GlobalThis>(key: K): GlobalThis[K];
+  /**
+   * Gets a value from the global object.
+   *
+   * @param key The key for the value
+   * @param def An optional default value
+   *
+   * @returns The value if it exists otherwise the default value
+   */
   get<K extends keyof GlobalThis, D>(key: K, def: D): NonNullable<GlobalThis[K]> | D;
+  /**
+   * Gets a value from the global object.
+   *
+   * @param key The key for the value
+   *
+   * @returns The value if it exists otherwise the default value
+   */
   get<T = unknown>(key: GlobalKey): T | null | undefined;
+  /**
+   * Gets a value from the global object.
+   *
+   * @param key The key for the value
+   * @param def An optional default value
+   *
+   * @returns The value if it exists otherwise the default value
+   */
   get<T = unknown, D = T>(key: GlobalKey, def: D): T | D;
-
+  /**
+   * Gets a value from the global object.
+   *
+   * @param key The key for the value
+   * @param def An optional default value
+   *
+   * @returns The value if it exists otherwise the default value
+   */
   get(key: GlobalKey, def?: unknown): unknown {
     const { obj } = this;
     return (obj && (obj[key as never] as unknown)) ?? def;
@@ -73,8 +103,23 @@ export class GlobalsService {
    * @throws TypeError if the value is readonly
    */
   set<K extends keyof GlobalThis>(key: K, value: GlobalThis[K]): void;
+  /**
+   * Sets a value on the global object.
+   *
+   * @param key The key to set the value on
+   * @param value The new value
+   *
+   * @throws TypeError if the value is readonly
+   */
   set<T>(key: GlobalKey, value: T): void;
-
+  /**
+   * Sets a value on the global object.
+   *
+   * @param key The key to set the value on
+   * @param value The new value
+   *
+   * @throws TypeError if the value is readonly
+   */
   set(key: GlobalKey, value: unknown): void {
     const { obj } = this;
     if (obj) {
@@ -126,7 +171,6 @@ export class GlobalsService {
 
     try {
       // One last try - may fail depending on content security policy (CSP) settings
-      // eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
       return new Function('return this;')() as GlobalThis | undefined;
     } catch {
       /* Ignore errors */

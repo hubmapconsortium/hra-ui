@@ -1,8 +1,19 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { ListResult } from '../../../core/models/list-result';
+import { DonorCardComponent } from '../donor-card/donor-card.component';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -13,61 +24,57 @@ import { ListResult } from '../../../core/models/list-result';
   selector: 'ccf-results-browser',
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
+  imports: [
+    CommonModule,
+    DonorCardComponent,
+    ExpansionPanelModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCheckboxModule,
+    ButtonsModule,
+    ScrollingModule,
+    ScrollOverflowFadeDirective,
+    MatDividerModule,
+    MicroTooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ResultsBrowserComponent {
-  /**
-   * Input array of List Results to display
-   */
-  @Input() listResults!: Immutable<ListResult[]>;
+  /** Input array of List Results to display */
+  readonly listResults = input.required<Immutable<ListResult[]>>();
 
-  /**
-   * Input used to add a list of stats at the top the results browser
-   */
-  @Input() aggregateData!: Immutable<AggregateCount[]>;
+  /** Input used to add a list of stats at the top the results browser */
+  readonly aggregateData = input.required<Immutable<AggregateCount[]>>();
 
-  /**
-   * Input allowing the title of the result browser to be set outside of the component
-   */
-  @Input() resultLabel!: string;
+  /** Whether to show the header */
+  readonly header = input.required<boolean>();
 
-  @Input() highlighted!: string;
+  /** Highlighted tissue block id */
+  readonly highlighted = input<string>();
 
-  @Input() header!: boolean;
+  /** Output emitting the link result selected */
+  readonly listResultSelected = output<Immutable<ListResult>>();
 
-  /**
-   * Output emitting the result that was clicked on and its relevant information.
-   * Used for opening and rendering the result viewer.
-   */
-  @Output() readonly linkClicked = new EventEmitter<string>();
+  /** Output emitting the link result deselected */
+  readonly listResultDeselected = output<Immutable<ListResult>>();
 
-  /**
-   * Output emitting the link result selected
-   */
-  @Output() readonly listResultSelected = new EventEmitter<Immutable<ListResult>>();
+  /** Emits when the expansion panel state changes */
+  readonly listResultExpansionChange = output<Immutable<ListResult>>();
 
-  /**
-   * Output emitting the link result deselected
-   */
-  @Output() readonly listResultDeselected = new EventEmitter<Immutable<ListResult>>();
+  /** Emits currently hovered result id */
+  readonly itemHovered = output<string>();
 
-  @Output() readonly itemHovered = new EventEmitter<string>();
+  /** Emits when result is unhovered */
+  readonly itemUnhovered = output();
 
-  @Output() readonly itemUnhovered = new EventEmitter();
+  /** Whether to show the selected */
+  readonly showSelected = signal(false);
 
-  /**
-   * Keeps track of whether or not the virtual scroll viewport is scrolled all the way to the bottom.
-   * Used to determine whether or not to render the gradient at the bottom.
-   */
-  atScrollBottom = false;
+  /** Whether at least one item is selected */
+  readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
 
-  /**
-   * Creates an instance of results browser component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Notifies listeners when a selection/deselection is made
@@ -76,46 +83,44 @@ export class ResultsBrowserComponent {
    * @param selected whether to select or deselect the result
    */
   handleSelection(result: Immutable<ListResult>, selected: boolean): void {
-    this.ga.event('list_result_selected', 'results_browser', this.resultLabel, +selected);
+    this.ga.event('list_result_selected', 'results_browser', result.tissueBlock.label, +selected);
+    if (!this.hasSelectedItems()) {
+      this.showSelected.set(false);
+    }
+
     if (selected) {
-      this.listResultSelected.next(result);
+      this.listResultSelected.emit(result);
     } else {
-      this.listResultDeselected.next(result);
+      this.listResultDeselected.emit(result);
     }
   }
 
-  /**
-   * Notifies on link click
-   *
-   * @param link the link clicked
-   */
-  handleLinkClick(link: string): void {
-    this.linkClicked.emit(link);
-  }
-
-  /**
-   * Handles the scroll event to detect when scroll is at the bottom.
-   *
-   * @param event The scroll event.
-   */
-  onScroll(event: Event): void {
-    if (!event.target) {
-      return;
-    }
-    const { clientHeight, scrollHeight, scrollTop } = event.target as Element;
-    const diff = scrollHeight - scrollTop - clientHeight;
-    this.atScrollBottom = diff < 64;
-  }
-
-  handleHover(id: string): void {
-    this.itemHovered.emit(id);
-  }
-
-  handleUnhover(): void {
-    this.itemUnhovered.emit();
-  }
-
+  /** Cast an immutable value to it's mutable type */
   asMutable<T>(value: Immutable<T>): T {
     return value as T;
+  }
+
+  /** Reset selections */
+  resetSelections(): void {
+    const selectedResults = this.listResults().filter((result) => result.selected);
+    for (const result of selectedResults) {
+      this.listResultDeselected.emit({ ...result, selected: false });
+    }
+    this.showSelected.set(false);
+  }
+
+  /** Change expansion panel result */
+  changeExpansion(result: Immutable<ListResult>, value: boolean) {
+    this.listResultExpansionChange.emit({ ...result, expanded: value });
+  }
+
+  /** Get the color of an item */
+  getColor(result: Immutable<ListResult>): string {
+    return result.selected ? result.color || '' : 'transparent';
+  }
+
+  /** Toggle the selected items */
+  toggleShowSelected(): void {
+    this.showSelected.set(!this.showSelected());
   }
 }

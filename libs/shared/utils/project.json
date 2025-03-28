@@ -4,63 +4,16 @@
   "projectType": "library",
   "sourceRoot": "libs/shared/utils/src",
   "prefix": "ftu",
+  "tags": ["type:lib", "project:utils"],
   "targets": {
     "build": {
-      "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "libs/shared/utils/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/shared/utils/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/shared/utils/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/shared/utils/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "executor": "@nx/angular:package"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "libs/shared/utils/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/shared-utils"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
+        "tsConfig": "libs/shared/utils/tsconfig.lib.json"
       }
-    },
-    "compodoc-json": {
-      "executor": "@twittwer/compodoc:compodoc",
-      "options": {
-        "tsConfig": "libs/shared/utils/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/shared-utils",
-        "exportFormat": "json"
-      }
-    },
-    "test-doc-coverage": {
-      "command": "compodoc -p libs/shared/utils/tsconfig.lib.json -d tmp/doc-coverage -e json --coverageTest --coverageMinimumPerFile 100 --coverageTestShowOnlyFailed -t"
     }
-  },
-  "tags": ["type:lib", "project:utils"]
+  }
 }

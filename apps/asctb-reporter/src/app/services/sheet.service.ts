@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Row, Sheet, SheetInfo, Structure } from '../models/sheet.model';
@@ -9,7 +9,7 @@ import { URL, getAssetsURL } from './../static/url';
   providedIn: 'root',
 })
 export class SheetService {
-  constructor(private readonly http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   /**
    * Service to fetch the data for a sheet from CSV file or Google sheet using the api
@@ -35,23 +35,22 @@ export class SheetService {
       });
     } else if (formData) {
       return this.http.post(`${URL}/v2/csv`, formData);
-    } else {
-      if (output === 'graph') {
-        return this.http.get(`${URL}/v2/${sheetId}/${gid}/graph`);
-      } else if (output === 'jsonld') {
-        return this.http.get(`${URL}/v2/csv`, {
-          params: {
-            csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
-            output: output ? output : 'jsonld',
-          },
-        });
-      }
-      return this.http.get(`${URL}/v2/${sheetId}/${gid}`, {
+    }
+    if (output === 'graph') {
+      return this.http.get(`${URL}/v2/${sheetId}/${gid}/graph`);
+    } else if (output === 'jsonld') {
+      return this.http.get(`${URL}/v2/csv`, {
         params: {
-          cache,
+          csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
+          output: output ? output : 'jsonld',
         },
       });
     }
+    return this.http.get(`${URL}/v2/${sheetId}/${gid}`, {
+      params: {
+        cache,
+      },
+    });
   }
 
   /**
@@ -118,7 +117,7 @@ export class SheetService {
   /**
    * Fetching initial playground data
    */
-  fetchPlaygroundData(_data?: string) {
+  fetchPlaygroundData() {
     return this.http.get(`${URL}/v2/playground`);
   }
 

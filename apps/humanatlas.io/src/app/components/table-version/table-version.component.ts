@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { Component, HostBinding, Input, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, NgZone, OnInit, ViewChild, inject } from '@angular/core';
 import { delay, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, startWith } from 'rxjs';
 import { TableDataService } from '../../services/table-data/tabledata.service';
 import { runInZone } from '../../shared/run-in-zone';
@@ -18,6 +18,9 @@ const TABLE_SCROLL_END_MARGIN = 10;
   standalone: false,
 })
 export class TableVersionComponent implements OnInit {
+  private readonly dataService = inject(TableDataService);
+  private readonly zone = inject(NgZone);
+
   /** Maintains horizontal scrolling of the table */
   @ViewChild('table', { static: true, read: CdkScrollable })
   set tableScroller(scrollable: CdkScrollable) {
@@ -105,12 +108,6 @@ export class TableVersionComponent implements OnInit {
 
   /** Stores cell headers */
   private _cellHeaders: ExtraHeader[] = [];
-
-  /** Initializes TableDataServuce and NgZone */
-  constructor(
-    private readonly dataService: TableDataService,
-    private readonly zone: NgZone,
-  ) {}
 
   /** Sets the table data with default data */
   ngOnInit(): void {

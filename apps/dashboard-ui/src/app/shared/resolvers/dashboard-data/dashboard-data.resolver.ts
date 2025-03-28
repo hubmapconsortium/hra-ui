@@ -5,6 +5,7 @@ import { map, switchAll } from 'rxjs';
 import { maybeAsyncToObservable } from '../../utils/maybe-async-to-observable';
 import { yamlFileResolver } from '../yaml-file/yaml-file.resolver';
 
+/** Spec for the index component */
 type IndexSpec = DashboardComponentSpecFor<typeof DashboardIndexComponent>;
 
 /** Dashboard URL resolver */

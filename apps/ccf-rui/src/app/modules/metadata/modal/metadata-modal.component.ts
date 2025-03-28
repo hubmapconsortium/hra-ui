@@ -19,20 +19,30 @@ import { MetadataConfirmationDialogComponent } from '../confirmation-dialog/meta
 import { MetadataDonorFormComponent } from '../donor-form/metadata-donor-form.component';
 import { MetadataHelpComponent } from '../help/metadata-help.component';
 
+/** Modal mode */
 export type MetadataModalMode = 'create' | 'edit';
 
+/** Modal initial configuration */
 export interface MetadataModalConfig {
+  /** Mode */
   mode: MetadataModalMode;
+  /** Initial page state */
   pageSnapshot: PageStateModel;
+  /** Initial model state */
   modelSnapshot: ModelStateModel;
 }
 
+/** Result returned by the modal */
 export interface MetadataModalResult {
+  /** Author data */
   author: Person;
+  /** Donor data */
   donor: Pick<ModelStateModel, 'organ' | 'sex' | 'consortium' | 'doi'>;
+  /** Previous registration */
   previousRegistration?: Partial<SpatialEntityJsonLd>;
 }
 
+/** Metadata modal form */
 @Component({
   selector: 'ccf-metadata-modal',
   imports: [
@@ -61,12 +71,18 @@ export interface MetadataModalResult {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataModalComponent {
+  /** Initial configuration */
   protected readonly config = inject<MetadataModalConfig>(MAT_DIALOG_DATA);
+  /** Dialog service */
   private readonly dialog = inject(MatDialog);
+  /** Reference to container dialog */
   private readonly ref = inject<MatDialogRef<MetadataModalComponent, MetadataModalResult>>(MatDialogRef);
+  /** Reference data state */
   private readonly referenceState = inject(ReferenceDataState);
 
+  /** Non-nullable form builder */
   private readonly nnfb = inject(NonNullableFormBuilder);
+  /** Main metadata form */
   protected readonly metadataForm = this.nnfb.group({
     author: this.nnfb.group({
       firstName: ['', [Validators.required]],
@@ -84,10 +100,14 @@ export class MetadataModalComponent {
     }),
   });
 
+  /** Service used to load previous registration files */
   protected readonly fileLoader = JsonFileLoaderService;
+  /** Errors during file loading */
   protected fileErrors?: string[] = undefined;
+  /** Previous registration data */
   protected previousRegistration?: Partial<SpatialEntityJsonLd> = undefined;
 
+  /** Initialize the form field from the configuration */
   constructor() {
     const { mode, pageSnapshot, modelSnapshot } = this.config;
     const author = pageSnapshot.user;
@@ -100,6 +120,11 @@ export class MetadataModalComponent {
     this.metadataForm.patchValue({ author, donor });
   }
 
+  /**
+   * Populate the form from a registration file's content
+   *
+   * @param obj Registration file content
+   */
   setPreviousRegistration(obj: unknown): void {
     if (typeof obj === 'object' && obj) {
       const {
@@ -123,6 +148,11 @@ export class MetadataModalComponent {
     }
   }
 
+  /**
+   * Set error descriptions based on the file loading error
+   *
+   * @param cause File error data
+   */
   setFileErrors(cause: FileLoadError): void {
     if (cause.type === 'type-error') {
       this.fileErrors = ['File format not supported: Please upload a JSON file.'];
@@ -134,12 +164,14 @@ export class MetadataModalComponent {
     }
   }
 
+  /** Clears the form when the previous registration file is removed */
   clearPreviousRegistration(): void {
     this.fileErrors = undefined;
     this.previousRegistration = undefined;
     this.metadataForm.reset();
   }
 
+  /** Submit the form data to the opener and closes the metadata form */
   submit(): void {
     if (this.config.mode === 'edit' && this.hasOrganChange()) {
       const ref = this.dialog.open<MetadataConfirmationDialogComponent, void, boolean>(
@@ -160,12 +192,18 @@ export class MetadataModalComponent {
     }
   }
 
+  /**
+   * Checks whether the user has changed the organ field
+   *
+   * @returns Whether the user has selected a different organ
+   */
   private hasOrganChange(): boolean {
     const previousOrgan = this.config.modelSnapshot?.organ;
     const organControl = this.metadataForm.get(['donor', 'organ'] as const);
     return previousOrgan !== undefined && organControl?.value !== previousOrgan;
   }
 
+  /** Closes the metadata form and passes the selected form data to the opener */
   private submitResult(): void {
     this.ref.close({
       ...this.metadataForm.value,

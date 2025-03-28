@@ -13,5 +13,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class StepIndicatorComponent {
   /** Step value */
-  value = input.required<number>();
+  readonly value = input.required<number>();
 }
