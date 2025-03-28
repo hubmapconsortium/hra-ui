@@ -6,15 +6,15 @@
 }
 
 h1 {
-  font: var(--sys-display-large);
-  letter-spacing: var(--sys-display-large-tracking);
+  font: var(--mat-sys-display-large);
+  letter-spacing: var(--mat-sys-display-large-tracking);
   margin: 0;
 }
 
 .info-text {
-  font: var(--sys-body-large);
-  letter-spacing: var(--sys-body-large-tracking);
-  color: var(--sys-on-secondary-container);
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
 }
 
 button {
@@ -37,26 +37,26 @@ button {
 
   .predictions-table,
   .dataset-table {
-    background-color: var(--sys-secondary-container);
+    background-color: var(--mat-sys-secondary-container);
     border-collapse: collapse;
 
     th,
     td {
-      font: var(--sys-label-medium);
-      letter-spacing: var(--sys-label-medium-tracking);
-      border: 0.0625rem solid var(--sys-outline);
+      font: var(--mat-sys-label-medium);
+      letter-spacing: var(--mat-sys-label-medium-tracking);
+      border: 0.0625rem solid var(--mat-sys-outline);
     }
 
     th {
-      color: var(--sys-on-primary-container);
-      background-color: var(--sys-surface-container);
+      color: var(--mat-sys-on-primary-container);
+      background-color: var(--mat-sys-surface-container);
     }
     td {
-      color: var(--sys-inverse-surface);
+      color: var(--mat-sys-inverse-surface);
       white-space: nowrap;
 
       .link {
-        color: var(--sys-on-tertiary-container);
+        color: var(--mat-sys-on-tertiary-container);
       }
     }
 
@@ -110,15 +110,15 @@ button {
 
   .card-1 {
     p {
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
-      color: var(--sys-primary);
+      font: var(--mat-sys-label-large);
+      letter-spacing: var(--mat-sys-label-large-tracking);
+      color: var(--mat-sys-primary);
     }
   }
 
   .card-2 {
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
   }
 
   .metadata-container {
@@ -132,7 +132,7 @@ button {
     }
 
     .values {
-      color: var(--sys-primary);
+      color: var(--mat-sys-primary);
       margin-left: 0.5rem;
     }
   }
@@ -147,12 +147,12 @@ button {
 ::ng-deep {
   .tooltip-panel {
     background-color: white;
-    box-shadow: rgb(from var(--sys-secondary) r g b / 24%);
+    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
     border-radius: 0.5rem;
     max-width: 22rem;
-    font: var(--sys-label-medium);
-    letter-spacing: var(--sys-label-medium-tracking);
-    color: var(--sys-primary);
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: var(--mat-sys-primary);
   }
 
   .cdk-overlay-connected-position-bounding-box {
