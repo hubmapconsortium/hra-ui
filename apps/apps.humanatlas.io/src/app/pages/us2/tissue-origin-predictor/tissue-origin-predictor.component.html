@@ -1,0 +1,93 @@
+<!-- HEADING -->
+<hra-product-header imageUrl="tissue-origin-predictor-icon.svg" title="Tissue Origin Predictor"> </hra-product-header>
+
+<!-- INFO -->
+<p class="info-text">
+  Upload a cell type population file and use the Human Reference Atlas API to predict 3D tissue origin.
+</p>
+
+<!-- CARDS -->
+<div class="cards">
+  <!-- CARD 1 -->
+  <hra-workflow-card tagline="Upload Cell Population" step="1" class="card card-1">
+    <hra-workflow-card-extra>
+      <a
+        href="https://github.com/x-atlas-consortia/hra-apps/blob/main/applications/us2-cell-to-spatial/heart-cell-summary.csv"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button mat-button hraButtonSize="medium">View Sample</button>
+      </a>
+    </hra-workflow-card-extra>
+
+    <p class="card-info-text">Upload a cell population CSV file or use the sample file.</p>
+
+    <div class="file-format-info">
+      <div>
+        <span>Required Columns</span>
+        <ul>
+          <li>Cell ID</li>
+          <li>Percentage</li>
+        </ul>
+      </div>
+      <div>
+        <span>Supported Format</span>
+        <ul>
+          <li>CSV</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="buttons">
+      @if (!file()) {
+        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
+        <input
+          type="file"
+          accept=".csv"
+          style="display: none"
+          (change)="onFileSelected($event)"
+          data-testid="file-input"
+          #fileInput
+        />
+        <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+      } @else {
+        <hra-delete-file-button [fileName]="file()!.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
+      }
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 2 -->
+  <hra-workflow-card tagline="Optional: Filter Data" step="2" class="card card-2">
+    <p class="card-info-text">Pick one tool to avoid double counting of predicted cell types.</p>
+
+    <div class="data-filters">
+      <mat-form-field class="filters">
+        <mat-label>Organ</mat-label>
+        <mat-select hraMicroTooltip="Organs that have cell type populations." [(ngModel)]="supportedOrgan">
+          @for (organ of supportedOrgans(); track $index) {
+            <mat-option [value]="organ.label">{{ organ.label | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filters">
+        <mat-label>Annotation Tool</mat-label>
+        <mat-select
+          hraMicroTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
+          [(ngModel)]="supportedTool"
+        >
+          @for (tool of supportedTools(); track $index) {
+            <mat-option [value]="tool.label">{{ tool.label | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </hra-workflow-card>
+
+  <!-- CARD 3 -->
+  <hra-workflow-card tagline="Predict Tissue Origin" step="3" class="card card-3">
+    <hra-error-indicator *ngIf="!file()" [errors]="['Please upload a dataset.']" class="error-message">
+    </hra-error-indicator>
+    <button mat-flat-button [disabled]="!file()" (click)="onPredictClicked()">Predict</button>
+  </hra-workflow-card>
+</div>
