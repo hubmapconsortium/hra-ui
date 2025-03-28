@@ -1,0 +1,25 @@
+<img [src]="imagePath()" class="app-image" />
+<div class="ui-content-main">
+  <div class="ui-content">
+    <hra-product-logo [name]="logo()" size="large"> </hra-product-logo>
+    <div class="ui-content-header">
+      <h1>
+        {{ tagline() }}
+      </h1>
+      <hra-software-status-indicator [status]="appStatus()!" size="large"></hra-software-status-indicator>
+    </div>
+  </div>
+  <p class="ui-content-description">
+    {{ description() }}
+  </p>
+  <div class="ui-section-buttons">
+    <button hraCtaButton mat-button>
+      Use App
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </button>
+    <button hraCtaButton hraButtonVariant="secondary" disableRipple mat-button>
+      Learn More
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </button>
+  </div>
+</div>

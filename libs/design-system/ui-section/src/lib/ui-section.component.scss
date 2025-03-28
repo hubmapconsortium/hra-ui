@@ -1,0 +1,55 @@
+@use '../../../styles/utils';
+
+:host {
+  display: flex;
+  max-width: 106.25rem;
+
+  .app-image {
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgba(32, 30, 61, 0.24);
+    max-width: 56.25rem;
+    max-height: 34.7106rem;
+  }
+
+  .ui-content-main {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin-left: 80px;
+  }
+
+  .ui-content-header {
+    display: flex;
+    flex-direction: column;
+    min-width: 308px;
+    gap: 0.25rem;
+
+    h1 {
+      margin: 0;
+      @include utils.use-font(headline, large);
+      color: var(--mat-sys-on-background);
+    }
+  }
+
+  .ui-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .ui-content-description {
+    color: var(--mat-sys-primary);
+    @include utils.use-font(body, splash);
+    letter-spacing: 0rem;
+    vertical-align: middle;
+    margin: 1.5rem 0 2rem 0rem;
+  }
+
+  .ui-section-buttons {
+    display: flex;
+    gap: 2rem;
+  }
+}
