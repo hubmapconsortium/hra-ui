@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { firstValueFrom, from, Observable, of, switchMap } from 'rxjs';
+import { CellSummaryRow, HraPopService, IdLabelPair } from '@hra-api/ng-client';
 
 /** Sample JSON file URL  */
-const SAMPLE_FILE_URL = 'assets/sample-data/cell-population-sample.json';
+export const SAMPLE_FILE_URL = 'assets/sample-data/cell-population-sample.json';
 
 /** Injection token for cell population predictions API endpoint  */
 export const PREDICTIONS_ENDPOINT = new InjectionToken<string>('Cell Predictions Endpoint', {
@@ -12,38 +13,10 @@ export const PREDICTIONS_ENDPOINT = new InjectionToken<string>('Cell Predictions
 });
 
 /**
- * Prediction Result
- */
-export interface Prediction {
-  /** Tool */
-  tool: string;
-  /** Modality */
-  modality: string;
-  /** Cell Type ID in Cell Ontology */
-  cell_id: string;
-  /** Cell Name in Cell Ontology */
-  cell_label: string;
-  /** Count */
-  count: number;
-  /** Percentage */
-  percentage: number;
-}
-
-/**
- * Supported Organs Data
- */
-export interface SupportedOrgans {
-  /** ID with URL */
-  id: string;
-  /** Label */
-  label: string;
-}
-
-/**
  * Predictions resolver
  * @returns Predictions array observable
  */
-export function resolvePredictions(): Observable<Prediction[]> {
+export function resolvePredictions(): Observable<CellSummaryRow[]> {
   return inject(PredictionsService).loadPredictions();
 }
 
@@ -52,6 +25,9 @@ export function resolvePredictions(): Observable<Prediction[]> {
  */
 @Injectable({ providedIn: 'root' })
 export class PredictionsService {
+  /** HRA POP Service */
+  private readonly hraPopService = inject(HraPopService);
+
   /** JSON file */
   private file: File | null = null;
 
@@ -87,20 +63,13 @@ export class PredictionsService {
    * Gets predictions for the current file
    * @returns Predictions array observable
    */
-  loadPredictions(): Observable<Prediction[]> {
+  loadPredictions(): Observable<CellSummaryRow[]> {
     if (this.file === null) {
       return of([]);
     }
 
     return from(this.file.text()).pipe(
-      switchMap((data) =>
-        this.http.post<Prediction[]>(`${this.endpoint}/rui-location-cell-summary`, JSON.parse(data), {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          responseType: 'json',
-        }),
-      ),
+      switchMap((data) => this.hraPopService.ruiLocationCellSummary({ spatialEntity: JSON.parse(data) })),
     );
   }
 
@@ -118,7 +87,7 @@ export class PredictionsService {
    * Gets supported organs
    * @returns String array observable
    */
-  loadSupportedReferenceOrgans(): Observable<SupportedOrgans[]> {
-    return this.http.get<SupportedOrgans[]>(`${this.endpoint}/supported-reference-organs`);
+  loadSupportedReferenceOrgans(): Observable<IdLabelPair[]> {
+    return this.hraPopService.supportedReferenceOrgans();
   }
 }
