@@ -1,4 +1,5 @@
 import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -19,19 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { CellSummaryReport, SourceSimilarityRow } from '@hra-api/ng-client';
+import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { saveAs } from 'file-saver';
-import {
-  Sources,
-  TissueOriginPredictions,
-  TissueOriginService,
-  UserSelectionService,
-} from '../services/tissue-origin.service';
-import { SnackbarService } from '@hra-ui/design-system/snackbar';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { TissueOriginService, UserSelectionService } from '../services/tissue-origin.service';
 
 /** Script URL for EUI */
 const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
@@ -87,13 +83,13 @@ const DATASET_COLUMN_NAMES = ['Tool', 'Modality', 'Similarity', 'Datset Label', 
 })
 export class TissueOriginPredictionsComponent {
   /** Predictions */
-  readonly predictions = input<TissueOriginPredictions>({ sources: [], rui_locations: [] });
+  readonly predictions = input<CellSummaryReport>({ sources: [], rui_locations: [] });
 
   /** Data for Anatomical Structures table */
-  protected readonly anatomicalDataSource = new MatTableDataSource<Sources>([]);
+  protected readonly anatomicalDataSource = new MatTableDataSource<SourceSimilarityRow>([]);
 
   /** Data for Datasets table */
-  protected readonly datasetDataSource = new MatTableDataSource<Sources>([]);
+  protected readonly datasetDataSource = new MatTableDataSource<SourceSimilarityRow>([]);
 
   /** Sorting on Anatomical Structures table */
   protected readonly sortOnAnatomicalData = viewChild.required<MatSort>('sort1');
@@ -196,7 +192,7 @@ export class TissueOriginPredictionsComponent {
   }
 
   /** Triggered when clicked download JSON-LD button */
-  onDowloadJSONButtonClicked() {
+  onDownloadJSONButtonClicked() {
     const jsonString = JSON.stringify(this.predictions().rui_locations, null, 2);
     const fileToSave = new Blob([jsonString], { type: 'application/json' });
     saveAs(fileToSave, 'rui_locations.jsonld');
@@ -204,7 +200,7 @@ export class TissueOriginPredictionsComponent {
   }
 
   /** Triggered when clicked on download CSV button  */
-  onDowloadCSVButtonClicked(type: string) {
+  onDownloadCSVButtonClicked(type: string) {
     const csvString = this.convertToCSV(type);
     const fileToSave = new Blob([csvString], { type: 'text/csv' });
     saveAs(fileToSave, `${type}.csv`);
@@ -213,7 +209,13 @@ export class TissueOriginPredictionsComponent {
 
   /** Utility function to convert table data to CSV string */
   convertToCSV(type: string): string {
-    const fields = ['tool', 'modality', 'similarity', 'cell_source_label', 'cell_source'] as (keyof Sources)[];
+    const fields = [
+      'tool',
+      'modality',
+      'similarity',
+      'cell_source_label',
+      'cell_source',
+    ] as (keyof SourceSimilarityRow)[];
 
     if (type === 'anatomical') {
       const headers = ANATOMICAL_STRUCTURES_COLUMN_NAMES.join(',') + '\n';

@@ -3,10 +3,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { SupportedOrgans } from '../../us1/services/predictions.service';
-import { SupportedTools, TissueOriginService, UserSelectionService } from '../services/tissue-origin.service';
+import { TissueOriginService, UserSelectionService } from '../services/tissue-origin.service';
 import { TissueOriginPredictorComponent } from './tissue-origin-predictor.component';
 import { Router } from '@angular/router';
+import { IdLabelPair } from '@hra-api/ng-client';
 
 describe('TissueOriginPredictorComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting()];
@@ -37,7 +37,7 @@ describe('TissueOriginPredictorComponent', () => {
     const setSampleFile = jest.spyOn(tissueOriginService, 'setSampleFile').mockResolvedValue();
     const getFile = jest.spyOn(tissueOriginService, 'getFile').mockReturnValue(mockFile);
 
-    const useSampleButton = screen.getByTestId('use-sample-button');
+    const useSampleButton = screen.getByText('Use Sample');
     await userEvent.click(useSampleButton);
 
     expect(setSampleFile).toHaveBeenCalled();
@@ -48,8 +48,8 @@ describe('TissueOriginPredictorComponent', () => {
     const { fixture } = await render(TissueOriginPredictorComponent, { providers });
     const component = fixture.componentInstance;
 
-    const mockOrgans: SupportedOrgans[] = [{ id: '1', label: 'Heart' }];
-    const mockTools: SupportedTools[] = [{ id: '1', label: 'Azimuth' }];
+    const mockOrgans: IdLabelPair[] = [{ id: '1', label: 'Heart' }];
+    const mockTools: IdLabelPair[] = [{ id: '1', label: 'Azimuth' }];
 
     const router = TestBed.inject(Router);
     const routerSpy = jest.spyOn(router, 'navigate').mockResolvedValue(true);
@@ -73,7 +73,7 @@ describe('TissueOriginPredictorComponent', () => {
     fixture.detectChanges();
 
     // Organ Dropdown
-    const organDropdown = screen.getByTestId('organ-dropdown');
+    const organDropdown = screen.getByLabelText('Organ');
     await userEvent.click(organDropdown);
 
     const organOption = await screen.findByRole('option', { name: /Heart/i });
@@ -83,7 +83,7 @@ describe('TissueOriginPredictorComponent', () => {
     expect(selectedOrganOption).toBeTruthy();
 
     // Tool Dropdown
-    const toolDropdown = screen.getByTestId('tool-dropdown');
+    const toolDropdown = screen.getByLabelText('Annotation Tool');
     await userEvent.click(toolDropdown);
 
     const toolOption = await screen.findByRole('option', { name: /Azimuth/i });
@@ -93,7 +93,7 @@ describe('TissueOriginPredictorComponent', () => {
     expect(selectedToolOption).toBeTruthy();
 
     // clicking predict button
-    const predictButton = screen.getByTestId('predict-button');
+    const predictButton = screen.getByText('Predict');
     await userEvent.click(predictButton);
 
     expect(updateSelectionSpy).toHaveBeenCalled();
