@@ -49,11 +49,4 @@ const TEST_SECTIONS: Section[] = [
 export class PageNavigationDemoComponent {
   /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
-
-  /**
-   * Returns window width in px
-   */
-  windowWidth() {
-    return window.innerWidth;
-  }
 }

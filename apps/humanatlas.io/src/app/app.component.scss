@@ -1,12 +1,36 @@
 :host {
+  .nav-large {
+    display: none;
+
+    @media (min-width: 1000px) {
+      display: unset;
+    }
+  }
+
   .page {
     display: flex;
     flex-direction: column;
+
+    hra-page-navigation {
+      grid-area: navigation;
+    }
+
+    .nav-small {
+      display: unset;
+    }
 
     @media (min-width: 1000px) {
       display: grid;
       grid-template-columns: calc(100% - 17rem) 17rem;
       grid-template-areas: 'content navigation';
+
+      .nav-small {
+        display: none;
+      }
+
+      .nav-large {
+        display: unset;
+      }
     }
 
     .page-content {
@@ -14,15 +38,11 @@
       max-width: 81.25rem;
       margin: 0 auto;
       width: 100%;
-      padding: 0 1rem;
+      padding: 2.5rem 1rem;
 
       @media (min-width: 1000px) {
         padding: 2.5rem;
       }
-    }
-
-    hra-page-navigation {
-      grid-area: navigation;
     }
 
     .header-icons {

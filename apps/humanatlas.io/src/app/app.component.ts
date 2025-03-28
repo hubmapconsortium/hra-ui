@@ -57,11 +57,4 @@ const TEST_SECTIONS: Section[] = [
 export class AppComponent {
   /** Data for sections */
   readonly data: Section[] = TEST_SECTIONS;
-
-  /**
-   * Returns window width in px
-   */
-  windowWidth() {
-    return window.innerWidth;
-  }
 }
