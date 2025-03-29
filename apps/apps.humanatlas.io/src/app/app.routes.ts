@@ -3,6 +3,7 @@ import { CellPopulationPredictorComponent } from './pages/us1/cell-population-pr
 import { CellPopulationPredictionsComponent } from './pages/us1/cell-population-predictions/cell-population-predictions.component';
 import { resolvePredictions } from './pages/us1/services/predictions.service';
 import { WebComponentsComponent } from './pages/us6/web-components.component';
+import { ApiComponent } from './pages/api/api.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -21,5 +22,9 @@ export const appRoutes: Route[] = [
   {
     path: 'us1',
     component: CellPopulationPredictorComponent,
+  },
+  {
+    path: 'api',
+    component: ApiComponent,
   },
 ];
