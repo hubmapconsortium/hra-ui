@@ -2,10 +2,12 @@
 
 /* Styling with Shadow DOM Parts Attribute Selector */
 
+/* Tab Panel */
 rapi-doc::part(tab-panel) {
   background: var(--schemes-surface-n-98-blue-5, #eff2f5);
 }
 
+/* Tab Panel Button */
 rapi-doc::part(tab-btn) {
   font-size: 0.875rem;
   &::first-letter {
@@ -15,6 +17,7 @@ rapi-doc::part(tab-btn) {
   padding: 14px 16px;
 }
 
+/* Textarea */
 rapi-doc::part(textarea) {
   border: 0;
   border-bottom: 1px solid #4c4c58;
@@ -23,15 +26,18 @@ rapi-doc::part(textarea) {
   }
 }
 
+/* Input Type Text */
 rapi-doc::part(textbox) {
   border: 0;
   border-bottom: 2px solid #4b4b5e;
 }
 
+/* Tab Button Wrapper */
 rapi-doc::part(tab-btn-row) {
   height: 48px;
 }
 
+/* Generic Button */
 rapi-doc::part(btn) {
   font-size: 14px;
   padding: 4px 16px;
@@ -45,14 +51,17 @@ rapi-doc::part(btn) {
   }
 }
 
+/* Try Button */
 rapi-doc::part(btn-try) {
   width: 72px;
 }
 
+/* Copy Button */
 rapi-doc::part(btn-copy) {
   width: 72px;
 }
 
+/* Outlined style button */
 rapi-doc::part(btn-outline) {
   color: var(--schemes-on-tertiary-fixed-t-10-red-3, #b20a2f);
   &:hover {
@@ -66,13 +75,13 @@ rapi-doc::part(btn-outline) {
   }
 }
 
-/* Overriding CSS for Fine Tuning */
-
+/* Overriding extra CSS for Fine Tuning */
 .rapidoc-hra-api-theme {
   --font-regular: 'Metropolis';
   --font-mono: 'Roboto Mono';
   --font-size-small: 16px;
 
+  /* API Description */
   div#api-info {
     margin-left: 0;
   }
@@ -165,6 +174,7 @@ rapi-doc::part(btn-outline) {
         flex-wrap: wrap;
         border-top: 0;
 
+        /* Left-side border colors based on request type */
         &.expanded {
           border-right: 0;
           &.post {
@@ -194,6 +204,7 @@ rapi-doc::part(btn-outline) {
           }
         }
 
+        /* API request method container */
         .method {
           border: 0;
           border-radius: 4px;
@@ -217,11 +228,13 @@ rapi-doc::part(btn-outline) {
           background: #d6e8f8;
         }
 
+        /* API path container */
         .path {
           font-family: 'Roboto Mono';
           flex: 1 0 50%;
         }
 
+        /* API endpoint description */
         .descr {
           font: var(--mat-sys-label-medium);
           flex: 1 0 50%;
@@ -230,6 +243,7 @@ rapi-doc::part(btn-outline) {
         }
       }
 
+      /* Endpoint testing container */
       .endpoint-body {
         padding: 32px 48px;
         &.post {
