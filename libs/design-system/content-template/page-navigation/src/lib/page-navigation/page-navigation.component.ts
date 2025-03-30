@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 
-import { NavigationItemComponent } from './navigation-item.component';
+import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
 
 /** Nested section item */
 export interface Section {

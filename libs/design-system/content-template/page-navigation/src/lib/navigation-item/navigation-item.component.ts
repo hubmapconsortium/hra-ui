@@ -1,6 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 
-import { Section } from './page-navigation.component';
+import { Section } from '../page-navigation/page-navigation.component';
 
 /**
  * Navigation item to display in the page navigation component, may contain other navigation items

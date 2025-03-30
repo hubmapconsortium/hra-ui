@@ -5,7 +5,7 @@ import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-template/page-section';
 
-import { PageNavigationComponent, Section } from './page-navigation.component';
+import { PageNavigationComponent, Section } from '../page-navigation/page-navigation.component';
 
 /** Test section data */
 const TEST_SECTIONS: Section[] = [
