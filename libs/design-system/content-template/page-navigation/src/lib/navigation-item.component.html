@@ -1,4 +1,4 @@
-<a [href]="navigationLink()" (click)="itemClicked.emit(section().name)">
+<a [href]="navigationLink()" (click)="itemClicked.emit(section())">
   <div class="navigation-label" [class.selected]="selected()" [style.margin-left]="level() * 0.75 + 'rem'">
     {{ section().name }}
   </div>

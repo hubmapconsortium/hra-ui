@@ -18,13 +18,13 @@ export class NavigationItemComponent {
   readonly level = input<number>(0);
 
   /** Currently selected item in the page navigation component */
-  readonly currentItem = input<string>();
+  readonly currentItem = input<Section>();
 
   /** Emits name of section when clicked */
-  readonly itemClicked = output<string>();
+  readonly itemClicked = output<Section>();
 
   /** If this item is the same as the currently selected item */
-  readonly selected = computed(() => this.currentItem() === this.section().name);
+  readonly selected = computed(() => this.currentItem()?.name === this.section().name);
 
   /** Href for the navigation link to this section*/
   readonly navigationLink = computed(() => `#${this.section().name.toLowerCase().replaceAll(' ', '-')}`);
