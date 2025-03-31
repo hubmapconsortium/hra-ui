@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIcon } from '@angular/material/icon';
+import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+
+/** Injection token for the window object */
+export const WINDOW = new InjectionToken<typeof window>('window', {
+  providedIn: 'root',
+  factory: () => window,
+});
 
 @Component({
   selector: 'hra-ui-section',
@@ -13,6 +20,8 @@ import { MatIcon } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiSectionComponent {
+  /** Window object */
+  private readonly window = inject(WINDOW);
   /** Product title */
   readonly tagline = input.required<string>();
   /** Product description */
@@ -20,11 +29,24 @@ export class UiSectionComponent {
   /** Product image path */
   readonly imagePath = input.required<string>();
   /** Product logo */
-  readonly logo = input.required<string>();
+  readonly logoPath = input.required<string>();
   /** App software status */
   readonly appStatus = input<SoftwareStatus>();
   /** App url */
   readonly appUrl = input<string>();
   /** Documentation Link */
   readonly documentLink = input<string>();
+
+  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
+  protected readonly isDesktop = watchBreakpoint(Breakpoints.Desktop);
+
+  /** Open the app url */
+  openAppUrl(): void {
+    this.window.open(this.appUrl(), '_blank');
+  }
+
+  /** Open the documentation link */
+  openDocumentationLink(): void {
+    this.window.open(this.documentLink(), '_blank');
+  }
 }

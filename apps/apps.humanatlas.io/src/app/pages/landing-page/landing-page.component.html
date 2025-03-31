@@ -1,12 +1,14 @@
+@let isResearcherApps = toggleText() === 'Researcher Apps';
 <div class="splash-header">
   <img src="assets/ui-images/splash-image.png" alt="Splash-header" class="splash-header-img" />
-  <div class="splash-header-content">
+  <div class="splash-header-content" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
     <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
     <mat-button-toggle-group
       name="singleSelect"
       aria-label="Single Select"
       hideSingleSelectionIndicator
       hraButtonToggleSize="large"
+      (change)="toggleApps()"
     >
       <mat-button-toggle checked>Research Apps</mat-button-toggle>
       <mat-button-toggle>Developer Apps</mat-button-toggle>
@@ -14,14 +16,43 @@
   </div>
 </div>
 
-<div class="apps-list">
-  @for (app of apps; track $index) {
-    <hra-ui-section
-      [imagePath]="app.imagePath"
-      [logo]="app.logoPath"
-      [tagline]="app.tagline"
-      [appStatus]="app.appStatus"
-      [description]="app.description"
-    ></hra-ui-section>
+<div class="apps-container" [class.mobile-view]="isMobile()">
+  @if (isResearcherApps) {
+    <h1 class="apps-header-text">Researcher applications for using the Human Reference Atlas</h1>
+  } @else {
+    <h1 class="apps-header-text">Developer applications</h1>
   }
+
+  <div class="apps-list" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
+    @for (app of apps(); track $index) {
+      <hra-ui-section
+        [tagline]="app.tagline"
+        [description]="app.description"
+        [imagePath]="app.imagePath"
+        [logoPath]="app.logoPath"
+        [appStatus]="app.appStatus"
+        [appUrl]="app.appUrl"
+        [documentLink]="app.documentLink"
+      ></hra-ui-section>
+    }
+  </div>
 </div>
+
+@if (isResearcherApps) {
+  <div class="apps-container" [class.mobile-view]="isMobile()">
+    <h1 class="apps-header-text">Researcher applications to construct the Human Reference Atlas</h1>
+    <div class="apps-list" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
+      @for (app of researcherConstructApps; track $index) {
+        <hra-ui-section
+          [tagline]="app.tagline"
+          [description]="app.description"
+          [imagePath]="app.imagePath"
+          [logoPath]="app.logoPath"
+          [appStatus]="app.appStatus"
+          [appUrl]="app.appUrl"
+          [documentLink]="app.documentLink"
+        ></hra-ui-section>
+      }
+    </div>
+  </div>
+}
