@@ -4,6 +4,8 @@
   mat-button-toggle-group {
     --mat-standard-button-toggle-shape: 0.25rem;
     --mat-standard-button-toggle-divider-color: var(--sys-primary);
+    --mat-standard-button-toggle-selected-state-background-color: #{utils.with-alpha(var(--sys-tertiary), 20%)};
+    --mat-standard-button-toggle-selected-state-text-color: var(--sys-secondary);
 
     &.mat-button-toggle-group-appearance-standard {
       border: unset;
