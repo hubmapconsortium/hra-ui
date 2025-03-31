@@ -1,6 +1,12 @@
 @let isResearcherApps = toggleText() === 'Researcher Apps';
 <div class="splash-header">
-  <img src="assets/ui-images/splash-image.png" alt="Splash-header" class="splash-header-img" />
+  <img
+    src="assets/ui-images/splash-image.png"
+    alt="Splash-header"
+    class="splash-header-img"
+    [class.mobile-view]="isMobile()"
+    [class.desktop-view]="isDesktop()"
+  />
   <div class="splash-header-content" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
     <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
     <mat-button-toggle-group
