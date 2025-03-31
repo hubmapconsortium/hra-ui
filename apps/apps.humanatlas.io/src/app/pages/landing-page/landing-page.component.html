@@ -1,4 +1,3 @@
-@let isResearcherApps = toggleText() === 'Researcher Apps';
 <div class="splash-header">
   <img
     src="assets/ui-images/splash-image.png"
@@ -14,19 +13,19 @@
       aria-label="Single Select"
       hideSingleSelectionIndicator
       hraButtonToggleSize="large"
-      (change)="toggleApps()"
+      (change)="this.toggleText.set(isResearcherApps() ? this.developerAppsTitle : this.researcherAppsTitle)"
     >
-      <mat-button-toggle checked>Research Apps</mat-button-toggle>
-      <mat-button-toggle>Developer Apps</mat-button-toggle>
+      <mat-button-toggle checked>{{ researcherAppsTitle }}</mat-button-toggle>
+      <mat-button-toggle>{{ developerAppsTitle }}</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
 </div>
 
 <div class="apps-container" [class.mobile-view]="isMobile()">
-  @if (isResearcherApps) {
+  @if (isResearcherApps()) {
     <h1 class="apps-header-text">Researcher applications for using the Human Reference Atlas</h1>
   } @else {
-    <h1 class="apps-header-text">Developer applications</h1>
+    <h1 class="apps-header-text">{{ developerAppsTitle }}</h1>
   }
 
   <div class="apps-list" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
@@ -44,7 +43,7 @@
   </div>
 </div>
 
-@if (isResearcherApps) {
+@if (isResearcherApps()) {
   <div class="apps-container" [class.mobile-view]="isMobile()">
     <h1 class="apps-header-text">Researcher applications to construct the Human Reference Atlas</h1>
     <div class="apps-list" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">

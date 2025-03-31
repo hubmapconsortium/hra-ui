@@ -19,7 +19,7 @@
     width: 100%;
     height: 34.375rem;
     background:
-      linear-gradient(0deg, #e6eaf0, #e6eaf0), linear-gradient(172.57deg, rgba(230, 234, 240, 0) 29.28%, #e6eaf0 92.6%);
+      linear-gradient(0deg, var(--mat-sys-surface-dim), var(--mat-sys-surface-dim)), linear-gradient(172.57deg, var(--mat-sys-surface-dim) 29.28%, var(--mat-sys-surface-dim) 92.6%);
 
     &.mobile-view {
       height: 46.1875rem;
@@ -39,7 +39,6 @@
     p {
       margin: 0;
       font: var(--mat-sys-display-large);
-      letter-spacing: var(--mat-sys-display-large-tracking);
       text-align: center;
       color: var(--mat-sys-on-background);
     }
@@ -58,7 +57,7 @@
   );
 
   .apps-container {
-    background: linear-gradient(12.03deg, #EFF1F4 -1.72%, #FCFCFC 84.47%);
+    background: linear-gradient(12.03deg, #EFF1F4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
     display: flex;
     flex-direction: column;
     align-items: center;
