@@ -1,0 +1,38 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: block;
+  width: fit-content;
+
+  .object {
+    display: flex;
+    border-radius: 0.5rem;
+    box-shadow: 1px 3px 6px 0px utils.with-alpha(var(--mat-sys-shadow), 24%);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+
+  .object-menu {
+    display: flex;
+    align-items: center;
+
+    .tagline {
+      @include utils.use-font(label, large);
+      flex-grow: 1;
+      margin: 0.5rem 0.75rem;
+    }
+  }
+}
+
+.csv-button {
+  padding: 0.5rem 1rem;
+
+  .csv-label {
+    display: flex;
+  }
+
+  .csv-desc {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}

@@ -1,0 +1,59 @@
+@use '../../../styles/utils';
+
+:host {
+  display: block;
+  color: var(--mat-sys-secondary);
+  background-color: var(--mat-sys-on-primary);
+  border-radius: 0.5rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  overflow: hidden;
+
+  .header,
+  .content {
+    padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, medium);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: var(--mat-sys-surface-container-low);
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+    .header-label {
+      flex-grow: 1;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .text-fields {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .viewer-cards {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 1.5rem;
+      row-gap: 1rem;
+    }
+  }
+}
+
+.csv-button {
+  padding: 0.5rem 1rem;
+
+  .csv-label {
+    display: flex;
+  }
+
+  .csv-desc {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}

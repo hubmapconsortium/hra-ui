@@ -1,0 +1,85 @@
+<div class="header">
+  <span class="header-label">Functional Tissue Units</span>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    hraIconButtonSize="large"
+    aria-label="Icon to open nested menu"
+    hraMicroTooltip="More"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="submenu">
+      <mat-icon>download</mat-icon>
+      Downloads
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </button>
+    <mat-divider class="menu-divider"></mat-divider>
+    <button mat-menu-item>
+      <mat-icon class="reset icon">database</mat-icon>
+      View source data
+    </button>
+  </mat-menu>
+  <mat-menu #submenu="matMenu">
+    @if (variant() === 'ftu') {
+      <button mat-menu-item>
+        <mat-icon>download</mat-icon>
+        SVG
+      </button>
+      <button mat-menu-item>
+        <mat-icon>download</mat-icon>
+        PNG
+      </button>
+      <button mat-menu-item>
+        <mat-icon>download</mat-icon>
+        Adobe Illustrator
+      </button>
+      <mat-divider class="menu-divider"></mat-divider>
+      <button class="csv-button" mat-menu-item>
+        <mat-icon>download</mat-icon>
+        <span class="csv-label">CSV-Crosswalk</span>
+        <span class="csv-desc">
+          A CSV file connecting HRA datasets (e.g., 3D Organs, FTU Illustrations, OMAPs) to ontology terms in the ASCT+B
+          tables.
+        </span>
+      </button>
+    } @else {
+      <button mat-menu-item>
+        <mat-icon>download</mat-icon>
+        GLB
+      </button>
+    }
+  </mat-menu>
+</div>
+<div class="content">
+  <div class="text-fields">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-label>Organ</mat-label>
+      <mat-select disableRipple panelClass="options-container">
+        <mat-option value="option1">Option 1</mat-option>
+        <mat-option value="option2">Option 2</mat-option>
+        <mat-option value="option3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-label>Release Version</mat-label>
+      <mat-select disableRipple panelClass="options-container">
+        <mat-option value="option1">Option 1</mat-option>
+        <mat-option value="option2">Option 2</mat-option>
+        <mat-option value="option3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="viewer-cards">
+    <hra-viewer-card [variant]="variant()"></hra-viewer-card>
+    <hra-viewer-card [variant]="variant()"></hra-viewer-card>
+    <hra-viewer-card [variant]="variant()"></hra-viewer-card>
+    <hra-viewer-card [variant]="variant()"></hra-viewer-card>
+    <hra-viewer-card [variant]="variant()"></hra-viewer-card>
+  </div>
+</div>
