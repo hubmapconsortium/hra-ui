@@ -35,14 +35,33 @@
         "$schema": {
           "type": "string"
         },
-        "apps": {
+        "researcherApps": {
+          "type": "object",
+          "properties": {
+            "use": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/App"
+              }
+            },
+            "construct": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/App"
+              }
+            }
+          },
+          "required": ["use", "construct"],
+          "additionalProperties": false
+        },
+        "developerApps": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/App"
           }
         }
       },
-      "required": ["$schema", "apps"],
+      "required": ["$schema", "researcherApps", "developerApps"],
       "additionalProperties": false
     }
   },

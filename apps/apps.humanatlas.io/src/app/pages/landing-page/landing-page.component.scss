@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use 'utils';
 
 :host {
   display: block;
@@ -27,7 +28,6 @@
     justify-content: center;
     position: absolute;
     max-width: 53rem;
-    max-height: 34.1875rem;
     padding-top: 9rem;
     gap: 3rem;
 
@@ -37,6 +37,10 @@
       letter-spacing: var(--mat-sys-display-large-tracking);
       text-align: center;
       color: var(--mat-sys-on-background);
+    }
+
+    &.mobile-view {
+      padding: 9rem 1rem 6rem 1rem;
     }
   }
 
@@ -52,9 +56,40 @@
     )
   );
 
+  .apps-container {
+    background: linear-gradient(12.03deg, #EFF1F4 -1.72%, #FCFCFC 84.47%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem 2.5rem 6rem 2.5rem;
+
+    &.mobile-view {
+      padding: 0rem 1rem 6rem 1rem;
+    }
+  }
+  .apps-header-text {
+    @include utils.use-font(headline, large);
+    max-width: 36rem;
+    color: var(--mat-sys-on-background);
+    text-align: center;
+    padding: 6rem 0rem 5rem 0rem;
+    margin: 0;
+  }
+
   .apps-list {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 6rem;
+    max-width: 126.25rem;
+    width: 100%;
+
+    &.mobile-view {
+      max-width: 24.875rem;
+    }
+
+    &.desktop-view {
+      max-width: 75rem;
+    }
   }
 }

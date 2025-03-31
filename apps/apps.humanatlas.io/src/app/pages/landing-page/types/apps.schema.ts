@@ -12,11 +12,18 @@ export const AppSchema = z.object({
   documentLink: z.string(),
 });
 
+export type ResearcherApp = App;
+export type DeveloperApp = App;
+
 export type Apps = z.infer<typeof AppsSchema>;
 
 export const AppsSchema = z.object({
   $schema: z.string(),
-  apps: AppSchema.array(),
+  researcherApps: z.object({
+    use: AppSchema.array(),
+    construct: AppSchema.array(),
+  }),
+  developerApps: AppSchema.array(),
 });
 
 export default AppsSchema;
