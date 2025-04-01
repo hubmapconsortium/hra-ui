@@ -2,9 +2,28 @@
 
 /* Styling with Shadow DOM Parts Attribute Selector */
 
-/* Tab Panel */
-rapi-doc::part(tab-panel) {
-  background: var(--schemes-surface-n-98-blue-5, #eff2f5);
+/* Main Content Section */
+@media screen and (min-width: 640px) and (max-width: 1920px) {
+  rapi-doc::part(section-main-content) {
+    padding-top: 12px;
+    padding-right: 40px;
+    padding-bottom: 96px;
+    padding-left: 40px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 639px) {
+  rapi-doc::part(section-main-content) {
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 48px;
+    padding-left: 12px;
+  }
+}
+
+/* Tab Content */
+rapi-doc::part(tab-content) {
+  background: #fff;
 }
 
 /* Tab Panel Button */
@@ -26,6 +45,10 @@ rapi-doc::part(textarea) {
   }
 }
 
+rapi-doc::part(textarea-param) {
+  background: var(--schemes-surface-n-98-blue-5, #eff2f5);
+}
+
 /* Input Type Text */
 rapi-doc::part(textbox) {
   border: 0;
@@ -35,6 +58,7 @@ rapi-doc::part(textbox) {
 /* Tab Button Wrapper */
 rapi-doc::part(tab-btn-row) {
   height: 48px;
+  background: var(--schemes-surface-n-98-blue-5, #eff2f5);
 }
 
 /* Generic Button */
@@ -78,7 +102,8 @@ rapi-doc::part(btn-outline) {
 /* Overriding extra CSS for Fine Tuning */
 .rapidoc-hra-api-theme {
   --font-regular: 'Metropolis';
-  --font-mono: 'Roboto Mono';
+  --font-mono: Roboto Mono, monospace;
+  --font-material-symbols: 'Material Symbols Rounded Variable';
   --font-size-small: 16px;
 
   /* API Description */
@@ -109,7 +134,7 @@ rapi-doc::part(btn-outline) {
     &.collapsed {
       .section-tag-header {
         &::after {
-          font-family: 'Material Symbols Rounded';
+          font-family: var(--font-material-symbols);
           content: 'add';
           color: var(--schemes-secondary-s-40-hra-blue, #201e3d);
           &:hover {
@@ -123,7 +148,7 @@ rapi-doc::part(btn-outline) {
     &.expanded {
       .section-tag-header {
         &::after {
-          font-family: 'Material Symbols Rounded';
+          font-family: var(--font-material-symbols);
           content: 'remove';
           color: var(--schemes-secondary-s-40-hra-blue, #201e3d);
         }
@@ -132,6 +157,7 @@ rapi-doc::part(btn-outline) {
 
     /* Section Tag Header */
     .section-tag-header {
+      cursor: pointer !important;
       padding-left: 50px;
       padding-top: 16px;
       padding-bottom: 16px;
@@ -160,7 +186,15 @@ rapi-doc::part(btn-outline) {
       background: var(--schemes-on-primary-p-100-white, rgba(255, 255, 255, 1));
 
       & > div.m-markdown {
-        padding: 12px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+        letter-spacing: 0px;
+        vertical-align: middle;
+        padding-top: 16px;
+        padding-right: 28px;
+        padding-bottom: 16px;
+        padding-left: 28px;
         p {
           margin: 0;
         }
@@ -210,7 +244,9 @@ rapi-doc::part(btn-outline) {
           border-radius: 4px;
           padding: 6px 17px;
           margin-right: 8px;
-          font-family: Roboto Mono;
+          font-family:
+            Roboto Mono,
+            monospace;
           font-weight: 500;
           font-size: 16px;
           line-height: 24px;
@@ -230,7 +266,9 @@ rapi-doc::part(btn-outline) {
 
         /* API path container */
         .path {
-          font-family: 'Roboto Mono';
+          font-family:
+            Roboto Mono,
+            monospace;
           flex: 1 0 50%;
         }
 

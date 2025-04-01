@@ -3,6 +3,7 @@
     <video src="videos/api-anim-v2.mp4" autoplay muted loop playsinline></video>
   </div>
   <div class="splash-content">
+    <hra-product-logo name="api" size="large"></hra-product-logo>
     <div class="splash-title m">HRA API</div>
     <div class="splash-description">
       This API provides programmatic access to data registered to the Human Reference Atlas.
@@ -15,21 +16,34 @@
     </div>
   </div>
 </section>
-<section class="rapidoc-embed">
-  <rapi-doc
-    spec-url="api/hra-api-spec.yaml"
-    fill-request-fields-with-example="false"
-    show-header="false"
-    render-style="view"
-    layout="column"
-    allow-authentication="false"
-    theme="light"
-    bg-color="#E6EAF0"
-    text-color="#201E3D"
-    header-color="#201E3D"
-    primary-color="#FF0043"
-    css-file="rapidoc-theme.css"
-    css-classes="rapidoc-hra-api-theme"
-  >
-  </rapi-doc>
+<section class="rapidoc-container">
+  <div class="rapidoc-custom-header">
+    <div class="title">HRA API Directory</div>
+    <hra-server-selector
+      class="server-select"
+      [servers]="servers"
+      [selectedServer]="selectedServer"
+      (selectedServerChange)="updateRapidocServerUrl($event)"
+    ></hra-server-selector>
+  </div>
+  <div class="rapidoc-embed">
+    <rapi-doc
+      #rapidoc
+      spec-url="https://apps.humanatlas.io/api/hra-api-spec.yaml"
+      fill-request-fields-with-example="false"
+      show-header="false"
+      render-style="view"
+      layout="column"
+      allow-authentication="false"
+      theme="light"
+      text-color="#201E3D"
+      header-color="#201E3D"
+      primary-color="#FF0043"
+      css-file="rapidoc-theme.css"
+      css-classes="rapidoc-hra-api-theme"
+      show-info="false"
+      allow-server-selection="false"
+    >
+    </rapi-doc>
+  </div>
 </section>

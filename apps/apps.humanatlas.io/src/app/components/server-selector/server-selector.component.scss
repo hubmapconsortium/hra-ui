@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  width: 100%;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .selected-server-description {
+    font: var(--mat-sys-label-small);
+    color: var(--schemes-primary-p-40-gray-2, #4c4c58);
+  }
+}
+
+::ng-deep {
+  .server-select-field {
+    .mdc-text-field--filled .mdc-floating-label--float-above {
+      transform: translateY(-106%) scale(1);
+    }
+
+    mat-hint {
+      color: var(--schemes-primary-p-40-gray-2, #4c4c58);
+    }
+
+    mat-label {
+      font: var(--mat-sys-label-small);
+      color: var(--schemes-on-secondary-fixed-s-10-blue-2, #4b4b5e);
+    }
+  }
+
+  .server-selector-panel {
+    .server-url {
+      font: var(--mat-sys-label-medium);
+    }
+
+    .server-description {
+      font: var(--mat-sys-label-small);
+      color: var(--Schemes-On-Secondary-Container, #4a4459);
+    }
+  }
+}

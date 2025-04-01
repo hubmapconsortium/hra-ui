@@ -35,7 +35,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      // background: rgba(0, 0, 0, 0.05);
 
       display: flex;
       flex-direction: column;
@@ -55,51 +54,34 @@
         max-width: 900px;
         margin-bottom: 2rem;
       }
-    }
-  }
 
-  @media screen and (min-width: 640px) and (max-width: 1920px) {
-    rapi-doc::part(section-main-content) {
-      padding-top: 96px;
-      padding-right: 40px;
-      padding-bottom: 96px;
-      padding-left: 40px;
-    }
-  }
-
-  @media screen and (min-width: 320px) and (max-width: 639px) {
-    rapi-doc::part(section-main-content) {
-      padding-top: 48px;
-      padding-right: 12px;
-      padding-bottom: 48px;
-      padding-left: 12px;
+      hra-product-logo {
+        margin-bottom: 1rem;
+      }
     }
   }
 
   /* RapiDoc styling */
-  .rapidoc-embed {
-    height: 100% !important;
+  .rapidoc-container {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f5f8 100%);
+
+    .rapidoc-custom-header {
+      padding: 96px 40px;
+      padding-bottom: 0;
+      .title {
+        font: var(--mat-sys-display-small);
+        margin-bottom: 1.5rem;
+      }
+
+      .server-select {
+        width: 524px;
+      }
+    }
+    .rapidoc-embed {
+      height: 100% !important;
+      rapi-doc {
+        --bg: transparent;
+      }
+    }
   }
-
-  // rapi-doc::part(section-main-content) {
-  //   background: linear-gradient(180deg, #ffffff 0%, #f3f5f8 100%);
-  // }
-
-  // rapi-doc::part(section-overview) {
-  //   div {
-  //     margin-left: 0 !important;
-  //   }
-  // }
-
-  // rapi-doc::part(section-overview) {
-  //   padding: 0;
-  // }
-
-  // rapi-doc::part(section-overview) {
-  //   padding: 0;
-  // }
-
-  // rapi-doc::part(section-endpoint) {
-  //   background-color: red;
-  // }
 }
