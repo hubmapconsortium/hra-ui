@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
 import { DataViewerComponent } from './data-viewer.component';
+import { FormControl } from '@angular/forms';
 
 const meta: Meta = {
   component: DataViewerComponent,
@@ -11,17 +12,13 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2579-13698',
     },
   },
-  args: { options: [], variant: 'ftu' },
+  args: { options: [], variant: 'ftu', organControl: new FormControl<string | null>('brain') },
   argTypes: {
-    variant: { control: 'select', options: ['ftu', 'organs'] },
+    variant: { control: 'select', options: ['ftu', '3d_organ_models'] },
   },
   render: (args) => ({ props: args }),
 };
 export default meta;
 type Story = StoryObj<DataViewerComponent>;
 
-export const Primary: Story = {
-  args: {
-    variant: 'ftu',
-  },
-};
+export const Primary: Story = {};
