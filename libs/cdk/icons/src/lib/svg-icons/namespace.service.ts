@@ -1,7 +1,8 @@
+import { Location } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ICONS_CONFIG } from '../tokens';
-import { Location } from '@angular/common';
+import { type SvgIconNamespaceConfig } from './namespace.schema';
 
 /** Default icon directory if not provided in the icons config */
 export const DEFAULT_SVG_DIRECTORY = 'assets/icons/';
@@ -27,6 +28,19 @@ export class SvgIconNamespaceService {
    */
   setNamespaceDirectory(namespace: string, directory: string): this {
     this.namespaceDirectories.set(namespace, directory);
+    return this;
+  }
+
+  /**
+   * Set multiple icon namespace directories from configuration
+   *
+   * @param configs Configuration objects
+   * @returns `this` for chaining
+   */
+  setNamespaceConfigs(configs: SvgIconNamespaceConfig[]): this {
+    for (const { namespace, directory } of configs) {
+      this.namespaceDirectories.set(namespace, directory);
+    }
     return this;
   }
 
