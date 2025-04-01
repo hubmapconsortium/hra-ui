@@ -6,7 +6,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { Server } from '../../interfaces';
 import { servers } from '../../constants';
-import { HraCommonModule } from '@hra-ui/common';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 
 /**
@@ -25,6 +24,10 @@ export class ApiComponent {
   readonly servers = servers;
   selectedServer = this.servers[0];
 
+  /**
+   * Updates the selected server in rapidoc with the selected server.
+   * @param server Selected server
+   */
   updateRapidocServerUrl(server: Server) {
     if (this.rapidocElement()) {
       this.rapidocElement()?.nativeElement.setApiServer(server.url);

@@ -13,6 +13,10 @@ export class ServerSelectorComponent {
   readonly servers = input<Server[]>([]);
   readonly selectedServer = model<Server>(this.servers()[0]);
 
+  /**
+   * Updates the server in the model, based on the selected option.
+   * @param server Selected server
+   */
   updateServerUrl(server: Server): void {
     this.selectedServer.update(() => server);
   }
