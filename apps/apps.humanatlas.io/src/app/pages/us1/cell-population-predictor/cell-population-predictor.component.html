@@ -46,7 +46,12 @@
     </p>
 
     <div class="buttons-container">
-      @if (!file()) {
+      @if (file(); as f) {
+        <div class="file-buttons">
+          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
+          <button mat-flat-button hraPrimaryButton hraButtonSize="large" [routerLink]="['result']">Predict</button>
+        </div>
+      } @else {
         <div class="buttons">
           <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()" data-testid="use-sample-button">
             Use Sample
@@ -60,11 +65,6 @@
             #fileInput
           />
           <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
-        </div>
-      } @else {
-        <div class="file-buttons">
-          <hra-delete-file-button [fileName]="file()!.name" (cancelLoad)="file.set(null)"></hra-delete-file-button>
-          <button mat-flat-button hraPrimaryButton hraButtonSize="large" [routerLink]="['result']">Predict</button>
         </div>
       }
     </div>
