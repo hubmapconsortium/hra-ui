@@ -20,8 +20,17 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ApiComponent {
+  /* rapidoc element captured using viewChild() query */
   readonly rapidocElement = viewChild<ElementRef>('rapidoc');
+
+  /* list of available servers */
   readonly servers = servers;
+
+  /**
+   * stores the selected server
+   * - used as a model for the selector and
+   * - for the rapidoc configuration
+   */
   selectedServer = this.servers[0];
 
   /**

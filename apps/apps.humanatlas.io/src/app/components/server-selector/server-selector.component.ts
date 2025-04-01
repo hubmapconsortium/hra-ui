@@ -10,7 +10,14 @@ import { Server } from '../../interfaces';
   styleUrl: './server-selector.component.scss',
 })
 export class ServerSelectorComponent {
+  /**
+   * input binding to get the list of servers
+   */
   readonly servers = input<Server[]>([]);
+
+  /**
+   * two way binding for the selected server
+   */
   readonly selectedServer = model<Server>(this.servers()[0]);
 
   /**
