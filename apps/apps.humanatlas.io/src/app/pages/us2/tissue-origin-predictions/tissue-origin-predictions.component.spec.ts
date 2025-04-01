@@ -71,4 +71,18 @@ describe('TissueOriginPredictionsComponent', () => {
     expect(snackbar).toBeDefined();
     expect(screen.queryByText(/File downloaded/)).toBeDefined();
   });
+
+  it('shows the eui when user clicks on the Explore button', async () => {
+    const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
+
+    const button = screen.getByText('Explore');
+
+    await userEvent.click(button);
+    fixture.detectChanges();
+
+    await fixture.whenStable();
+
+    const backButton = screen.getByText('Back');
+    expect(backButton).toBeInTheDocument();
+  });
 });
