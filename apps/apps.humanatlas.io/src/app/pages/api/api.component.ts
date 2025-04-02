@@ -3,13 +3,11 @@ import {
   Component,
   computed,
   CUSTOM_ELEMENTS_SCHEMA,
-  effect,
   ElementRef,
-  input,
   model,
   viewChild,
 } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import 'rapidoc';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -17,7 +15,6 @@ import { ServerSelectorComponent } from '../../components/server-selector/server
 import { Server } from '../../interfaces';
 import { servers } from '../../constants';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
-import { serverIdResolver } from '../../resolvers/server-id/server-id-resolver.resolver';
 
 /**
  * Component for HRA API
@@ -48,8 +45,6 @@ export class ApiComponent {
     return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
   });
 
-  constructor(private scroller: ViewportScroller) {}
-
   /**
    * Updates the selected server in rapidoc with the selected server.
    * @param server Selected server
@@ -63,6 +58,7 @@ export class ApiComponent {
 
   /**
    * Scrolls the view to the API section.
+   * @param element HTML Element to scroll to.
    */
   scrollTo(element: HTMLElement) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
