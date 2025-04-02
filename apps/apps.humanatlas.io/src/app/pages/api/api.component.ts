@@ -9,7 +9,7 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import 'rapidoc';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -48,6 +48,8 @@ export class ApiComponent {
     return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
   });
 
+  constructor(private scroller: ViewportScroller) {}
+
   /**
    * Updates the selected server in rapidoc with the selected server.
    * @param server Selected server
@@ -57,5 +59,12 @@ export class ApiComponent {
     if (this.rapidocElement()) {
       this.rapidocElement()?.nativeElement.setApiServer(server.url);
     }
+  }
+
+  /**
+   * Scrolls the view to the API section.
+   */
+  scrollTo(element: HTMLElement) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   }
 }

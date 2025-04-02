@@ -3,21 +3,21 @@
 /* Styling with Shadow DOM Parts Attribute Selector */
 
 /* Main Content Section */
-@media screen and (min-width: 640px) and (max-width: 1920px) {
+@media screen and (min-width: 40rem) and (max-width: 120rem) {
   rapi-doc::part(section-main-content) {
-    padding-top: 12px;
-    padding-right: 40px;
-    padding-bottom: 96px;
-    padding-left: 40px;
+    padding-top: 0.75rem;
+    padding-right: 2.5rem;
+    padding-bottom: 6rem;
+    padding-left: 2.5rem;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 639px) {
+@media screen and (min-width: 20rem) and (max-width: 39.9375rem) {
   rapi-doc::part(section-main-content) {
-    padding-top: 12px;
-    padding-right: 12px;
-    padding-bottom: 48px;
-    padding-left: 12px;
+    padding-top: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 3rem;
+    padding-left: 0.75rem;
   }
 }
 
@@ -33,41 +33,41 @@ rapi-doc::part(tab-btn) {
     text-transform: capitalize;
   }
   text-transform: lowercase;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
 }
 
 /* Textarea */
 rapi-doc::part(textarea) {
   border: 0;
-  border-bottom: 1px solid #4c4c58;
+  border-bottom: 0.0625rem solid #4c4c58;
   &:focus {
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 0.0625rem solid var(--primary-color);
   }
 }
 
 rapi-doc::part(textarea-param) {
-  background: var(--schemes-surface-n-98-blue-5, #eff2f5);
+  background: #eff2f5;
 }
 
 /* Input Type Text */
 rapi-doc::part(textbox) {
   border: 0;
-  border-bottom: 2px solid #4b4b5e;
+  border-bottom: 0.125rem solid #4b4b5e;
 }
 
 /* Tab Button Wrapper */
 rapi-doc::part(tab-btn-row) {
-  height: 48px;
-  background: var(--schemes-surface-n-98-blue-5, #eff2f5);
+  height: 3rem;
+  background: #eff2f5;
 }
 
 /* Generic Button */
 rapi-doc::part(btn) {
-  font-size: 14px;
-  padding: 4px 16px;
-  height: 40px;
+  font-size: 0.875rem;
+  padding: 0.25rem 1rem;
+  height: 2.5rem;
   border: 0;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   box-shadow: none;
   text-transform: lowercase;
   &::first-letter {
@@ -77,12 +77,12 @@ rapi-doc::part(btn) {
 
 /* Try Button */
 rapi-doc::part(btn-try) {
-  width: 72px;
+  width: 4.5rem;
 }
 
 /* Copy Button */
 rapi-doc::part(btn-copy) {
-  width: 72px;
+  width: 4.5rem;
 }
 
 /* Outlined style button */
@@ -104,7 +104,7 @@ rapi-doc::part(btn-outline) {
   --font-regular: 'Metropolis';
   --font-mono: Roboto Mono, monospace;
   --font-material-symbols: 'Material Symbols Rounded Variable';
-  --font-size-small: 16px;
+  --font-size-small: 1rem;
 
   /* API Description */
   div#api-info {
@@ -113,22 +113,22 @@ rapi-doc::part(btn-outline) {
 
   /* Section Gap */
   .section-gap {
-    padding-left: 0px;
+    padding-left: 0rem;
   }
 
   /* Expand/Collapse Buttons */
   div#operations-top + div {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
 
   /* Section Tag */
   .section-tag {
     /* Default Styles */
-    background: var(--schemes-surface-n-98-blue-5, rgba(239, 242, 245, 1));
-    border-radius: 12px;
+    background: #eff2f5;
+    border-radius: 0.75rem;
     margin-bottom: 2rem;
     overflow: hidden;
-    box-shadow: -1px 2px 8px 0px #201e3d29;
+    box-shadow: -0.0625rem 0.125rem 0.5rem 0rem #201e3d29;
 
     /* Collapsed behavior */
     &.collapsed {
@@ -158,13 +158,16 @@ rapi-doc::part(btn-outline) {
     /* Section Tag Header */
     .section-tag-header {
       cursor: pointer !important;
-      padding-left: 50px;
-      padding-top: 16px;
-      padding-bottom: 16px;
+      padding-left: 3.125rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
 
       &:hover {
-        background: var(--schemes-surface-n-98-blue-5, #eff2f5);
-        overflow: hidden;
+        background: #dee1e6;
+      }
+
+      &:active {
+        background: #d6d9df;
       }
 
       .sub-title {
@@ -174,9 +177,9 @@ rapi-doc::part(btn-outline) {
 
       &::after {
         position: absolute;
-        margin-left: -34px;
-        font-size: 20px;
-        top: calc(50% - 14px);
+        margin-left: -2.125rem;
+        font-size: 1.25rem;
+        top: calc(50% - 0.875rem);
         color: var(--border-color);
       }
     }
@@ -187,14 +190,14 @@ rapi-doc::part(btn-outline) {
 
       & > div.m-markdown {
         font-weight: 400;
-        font-size: 18px;
-        line-height: 27px;
-        letter-spacing: 0px;
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+        letter-spacing: 0rem;
         vertical-align: middle;
-        padding-top: 16px;
-        padding-right: 28px;
-        padding-bottom: 16px;
-        padding-left: 28px;
+        padding-top: 1rem;
+        padding-right: 1.75rem;
+        padding-bottom: 1rem;
+        padding-left: 1.75rem;
         p {
           margin: 0;
         }
@@ -212,28 +215,28 @@ rapi-doc::part(btn-outline) {
         &.expanded {
           border-right: 0;
           &.post {
-            border-left: 8px solid #c8dfbe !important;
-            border-bottom: 1px solid #c8dfbe !important;
+            border-left: 0.5rem solid #c8dfbe !important;
+            border-bottom: 0.0625rem solid #c8dfbe !important;
           }
           &.get {
-            border-left: 8px solid #d6e8f8 !important;
-            border-bottom: 1px solid #d6e8f8 !important;
+            border-left: 0.5rem solid #d6e8f8 !important;
+            border-bottom: 0.0625rem solid #d6e8f8 !important;
           }
         }
 
         &.collapsed {
-          border-left: 8px solid transparent;
-          border-bottom: 1px solid var(--schemes-outline-variant-nv-80-blue-4, #d5dbe3);
+          border-left: 0.5rem solid transparent;
+          border-bottom: 0.0625rem solid var(--schemes-outline-variant-nv-80-blue-4, #d5dbe3);
           &:hover {
             &.post {
-              border-left: 8px solid #c8dfbe;
-              border-right: 1px solid #c8dfbe;
-              border-bottom: 1px solid #c8dfbe;
+              border-left: 0.5rem solid #c8dfbe;
+              border-right: 0.0625rem solid #c8dfbe;
+              border-bottom: 0.0625rem solid #c8dfbe;
             }
             &.get {
-              border-left: 8px solid #d6e8f8;
-              border-right: 1px solid #d6e8f8;
-              border-bottom: 1px solid #d6e8f8;
+              border-left: 0.5rem solid #d6e8f8;
+              border-right: 0.0625rem solid #d6e8f8;
+              border-bottom: 0.0625rem solid #d6e8f8;
             }
           }
         }
@@ -241,19 +244,19 @@ rapi-doc::part(btn-outline) {
         /* API request method container */
         .method {
           border: 0;
-          border-radius: 4px;
-          padding: 6px 17px;
-          margin-right: 8px;
+          border-radius: 0.25rem;
+          padding: 0.375rem 1.0625rem;
+          margin-right: 0.5rem;
           font-family:
             Roboto Mono,
             monospace;
           font-weight: 500;
-          font-size: 16px;
-          line-height: 24px;
-          letter-spacing: 0px;
+          font-size: 1rem;
+          line-height: 1.5rem;
+          letter-spacing: 0rem;
           vertical-align: middle;
-          height: 36px;
-          width: 72px;
+          height: 2.25rem;
+          width: 4.5rem;
         }
 
         .method.post {
@@ -283,15 +286,15 @@ rapi-doc::part(btn-outline) {
 
       /* Endpoint testing container */
       .endpoint-body {
-        padding: 32px 48px;
+        padding: 2rem 3rem;
         &.post {
-          border-left: 8px solid #c8dfbe;
+          border-left: 0.5rem solid #c8dfbe;
         }
         &.get {
-          border-left: 8px solid #d6e8f8;
+          border-left: 0.5rem solid #d6e8f8;
         }
         border-right: 0;
-        border-bottom: 1px solid var(--schemes-outline-variant-nv-80-blue-4, #d5dbe3);
+        border-bottom: 0.0625rem solid var(--schemes-outline-variant-nv-80-blue-4, #d5dbe3);
         box-shadow: none;
 
         .summary {

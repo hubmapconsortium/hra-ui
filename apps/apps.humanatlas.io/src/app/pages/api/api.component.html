@@ -1,6 +1,14 @@
 <section class="splash">
   <div class="video">
-    <video src="videos/api-anim-v2.mp4" autoplay muted loop playsinline></video>
+    <video
+      #video
+      src="videos/api-anim-v2.mp4"
+      autoplay="true"
+      oncanplay="video.play()"
+      muted="true"
+      loop="true"
+      playsinline="true"
+    ></video>
   </div>
   <div class="splash-content">
     <hra-product-logo name="api" size="large"></hra-product-logo>
@@ -9,14 +17,14 @@
       This API provides programmatic access to data registered to the Human Reference Atlas.
     </div>
     <div class="splash-action">
-      <button mat-button hraCtaButton hraButtonVariant="primary" disabled="false">
+      <button mat-button hraCtaButton hraButtonVariant="primary" (click)="scrollTo(apiContainer)">
         Use APIs
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </button>
     </div>
   </div>
 </section>
-<section class="rapidoc-container">
+<section class="rapidoc-container" #apiContainer>
   <div class="rapidoc-custom-header">
     <div class="title">HRA API Directory</div>
     <hra-server-selector
