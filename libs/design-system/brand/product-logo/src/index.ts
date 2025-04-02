@@ -1,1 +1,1 @@
-export * from './lib/product-logo.component';
+export { getProductLogoIds, ProductLogoComponent, toProductLogoId } from './lib/product-logo.component';
