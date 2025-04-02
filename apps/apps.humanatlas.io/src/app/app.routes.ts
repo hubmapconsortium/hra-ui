@@ -4,6 +4,7 @@ import { CellPopulationPredictionsComponent } from './pages/us1/cell-population-
 import { resolvePredictions } from './pages/us1/services/predictions.service';
 import { WebComponentsComponent } from './pages/us6/web-components.component';
 import { ApiComponent } from './pages/api/api.component';
+import { serverIdResolver } from './resolvers/server-id/server-id-resolver.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -25,6 +26,22 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'api',
-    component: ApiComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ApiComponent,
+        data: {
+          serverId: 'prod',
+        },
+      },
+      {
+        path: ':serverId',
+        component: ApiComponent,
+        resolve: {
+          serverId: serverIdResolver,
+        },
+      },
+    ],
   },
 ];

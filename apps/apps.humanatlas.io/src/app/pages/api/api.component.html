@@ -22,14 +22,14 @@
     <hra-server-selector
       class="server-select"
       [servers]="servers"
-      [selectedServer]="selectedServer"
-      (selectedServerChange)="updateRapidocServerUrl($event)"
+      [selectedServer]="selectedServer()"
+      (selectedServerChange)="updateRapidoc($event)"
     ></hra-server-selector>
   </div>
   <div class="rapidoc-embed">
     <rapi-doc
       #rapidoc
-      spec-url="https://apps.humanatlas.io/api/hra-api-spec.yaml"
+      [attr.spec-url]="selectedServer().spec"
       fill-request-fields-with-example="false"
       show-header="false"
       render-style="view"

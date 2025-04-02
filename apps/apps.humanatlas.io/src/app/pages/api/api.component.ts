@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  effect,
+  ElementRef,
+  input,
+  model,
+  viewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import 'rapidoc';
@@ -7,6 +17,7 @@ import { ServerSelectorComponent } from '../../components/server-selector/server
 import { Server } from '../../interfaces';
 import { servers } from '../../constants';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
+import { serverIdResolver } from '../../resolvers/server-id/server-id-resolver.resolver';
 
 /**
  * Component for HRA API
@@ -20,6 +31,8 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ApiComponent {
+  readonly serverId = model('');
+
   /* rapidoc element captured using viewChild() query */
   readonly rapidocElement = viewChild<ElementRef>('rapidoc');
 
@@ -31,13 +44,16 @@ export class ApiComponent {
    * - used as a model for the selector and
    * - for the rapidoc configuration
    */
-  selectedServer = this.servers[0];
+  readonly selectedServer = computed(() => {
+    return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
+  });
 
   /**
    * Updates the selected server in rapidoc with the selected server.
    * @param server Selected server
    */
-  updateRapidocServerUrl(server: Server) {
+  updateRapidoc(server: Server) {
+    this.serverId.set(server.id);
     if (this.rapidocElement()) {
       this.rapidocElement()?.nativeElement.setApiServer(server.url);
     }
