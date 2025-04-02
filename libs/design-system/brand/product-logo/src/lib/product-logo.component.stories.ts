@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { getProductLogoIds, ProductLogoComponent } from './product-logo.component';
 
-const sortedIds = [...getProductLogoIds()].sort();
+const sortedIds = [...getProductLogoIds()].sort((a, b) => a.localeCompare(b));
 
 const meta: Meta<ProductLogoComponent> = {
   component: ProductLogoComponent,

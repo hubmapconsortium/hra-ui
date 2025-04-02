@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
-import { ProductLogoComponent, ProductLogoId, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
