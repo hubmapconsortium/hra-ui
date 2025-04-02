@@ -9,13 +9,13 @@
     (selectionChange)="updateServerUrl($event.value)"
   >
     <mat-select-trigger>
-      {{ serverSelect.value.url }}
+      {{ serverSelect?.value?.url }}
     </mat-select-trigger>
     @if (servers().length > 0) {
       @for (server of servers(); track $index) {
         <mat-option [value]="server">
-          <div class="server-url">{{ server.url }}</div>
-          <div class="server-description">{{ server.description }}</div>
+          <div class="server-url">{{ server?.url }}</div>
+          <div class="server-description">{{ server?.description }}</div>
         </mat-option>
       }
     } @else {
