@@ -17,7 +17,10 @@ import { servers } from '../../constants';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 
 /**
- * Component for HRA API
+ * Component for HRA-API
+ *
+ * This component wraps the RapiDoc component and provides a server selector.
+ * The server selector allows the user to select a server from a list of available servers.
  */
 @Component({
   selector: 'hra-api',
@@ -28,12 +31,18 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ApiComponent {
+  /** model to handle serverId from resolver
+   * and change within the component */
   readonly serverId = model('');
 
-  /* rapidoc element captured using viewChild() query */
+  /**
+   * rapidoc element captured using viewChild() query
+   */
   readonly rapidocElement = viewChild<ElementRef>('rapidoc');
 
-  /* list of available servers */
+  /**
+   * list of available servers
+   */
   readonly servers = servers;
 
   /**

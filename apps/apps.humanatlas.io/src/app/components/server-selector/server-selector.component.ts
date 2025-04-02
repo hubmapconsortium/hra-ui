@@ -3,6 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Server } from '../../interfaces';
 
+/**
+ * Server Selector Component
+ *
+ * This component is used in the HRA-API Rapidoc integration page
+ * to select a API server from a list of available servers.
+ *
+ * This component will take in a list of server options and lets
+ * the user select one. The selected server is available from the
+ * corresponding output binding.
+ */
 @Component({
   selector: 'hra-server-selector',
   imports: [FormsModule, MatSelectModule],

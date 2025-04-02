@@ -1,6 +1,16 @@
 import { Server } from '../interfaces';
 
-/* HRA-API server options for dropdown */
+/**
+    HRA-API server options for dropdown
+    This object contains the API endpoint URL and
+    the corresponding OpenAPI spec URLs for use in the
+    API page.
+
+    id: server identifier
+    description: server description
+    url: API endpoint URL
+    spec: OpenAPI spec URL
+ */
 export const servers: Server[] = [
   /* production server */
   {
