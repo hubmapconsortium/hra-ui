@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
+import { ProductLogoComponent, ProductLogoId, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
 /** Variant of nav header button */
@@ -43,4 +43,7 @@ export class NavHeaderButtonsComponent {
   readonly appTitle = input.required<string>();
   /** Tooltip displayed when user hovers over the HRA logo */
   readonly hraTooltip = input<string>();
+
+  /** App as a product logo id */
+  protected readonly appId = computed(() => toProductLogoId(this.app()));
 }
