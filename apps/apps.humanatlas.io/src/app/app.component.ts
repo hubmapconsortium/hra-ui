@@ -16,6 +16,13 @@ import { routeData } from './utils/route-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  /**
+   * Data for breadcrumbs in navigation header.
+   */
   private readonly data = routeData();
+
+  /**
+   * Breadcrumbs data (computed from above signal).
+   */
   protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
 }
