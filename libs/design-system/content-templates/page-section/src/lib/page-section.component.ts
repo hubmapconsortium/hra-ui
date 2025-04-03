@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { SectionLinkComponent } from '@hra-ui/design-system/content-template/section-link';
+import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 
 /**
  * Section of page containing content and a section header withlink for navigation
