@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ServerSelectorComponent } from './server-selector.component';
 
 describe('ServerSelectorComponent', () => {
@@ -14,6 +13,7 @@ describe('ServerSelectorComponent', () => {
     fixture = TestBed.createComponent(ServerSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

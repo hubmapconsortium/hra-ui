@@ -16,8 +16,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
-import { servers } from '../../constants';
-import { Server } from '../../interfaces';
+import { servers } from '../../constants/server.constants';
+import { Server } from '../../interfaces/server.interface';
 
 /**
  * Custom injection token to lazy load the theme for Rapidoc.
@@ -62,7 +62,7 @@ export class ApiComponent {
   /**
    * rapidoc element captured using viewChild() query
    */
-  readonly rapidocElement = viewChild<ElementRef>('rapidoc');
+  private readonly rapidocElement = viewChild<ElementRef>('rapidoc');
 
   /**
    * list of available servers

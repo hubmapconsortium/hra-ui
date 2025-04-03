@@ -1,7 +1,7 @@
 import { Component, input, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { Server } from '../../interfaces';
+import { Server } from '../../interfaces/server.interface';
 
 /**
  * Server Selector Component
@@ -29,12 +29,4 @@ export class ServerSelectorComponent {
    * two way binding for the selected server
    */
   readonly selectedServer = model<Server>(this.servers()[0]);
-
-  /**
-   * Updates the server in the model, based on the selected option.
-   * @param server Selected server
-   */
-  updateServerUrl(server: Server): void {
-    this.selectedServer.update(() => server);
-  }
 }

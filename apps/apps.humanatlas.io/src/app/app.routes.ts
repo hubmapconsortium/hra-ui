@@ -5,6 +5,7 @@ import { resolvePredictions } from './pages/us1/services/predictions.service';
 import { WebComponentsComponent } from './pages/us6/web-components.component';
 import { ApiComponent } from './pages/api/api.component';
 import { serverIdResolver } from './resolvers/server-id/server-id-resolver.resolver';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -43,5 +44,8 @@ export const appRoutes: Route[] = [
         },
       },
     ],
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'API' }] satisfies BreadcrumbItem[],
+    },
   },
 ];

@@ -1,4 +1,4 @@
-import { Server } from '../interfaces';
+import { Server } from '../interfaces/server.interface';
 
 /**
     HRA-API server options for dropdown
