@@ -1,9 +1,13 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, TemplateRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+
+import { TissueData } from '../data-viewer.component';
+import { FileDownloadService } from './file-download.service';
 
 /**
  * This is a responsive component is used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
@@ -17,9 +21,31 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   standalone: true,
 })
 export class ViewerCardComponent {
+  private readonly dialog = inject(MatDialog);
+  private readonly downloader = inject(FileDownloadService);
+
   /** All available dropdown options */
   readonly variant = input.required<string>();
 
-  /** Card tagline */
-  readonly tagline = input<string>('Responsive Name of Digital Object');
+  readonly tissue = input.required<TissueData>();
+
+  openImageViewer(content: TemplateRef<unknown>): void {
+    this.dialog.open(content, {
+      panelClass: 'viewer-card-modal',
+      height: '880px',
+      width: '880px',
+      maxHeight: '880px',
+      maxWidth: '880px',
+    });
+  }
+
+  /** Downloads PNG and SVG files */
+  downloadClick(event: Event, url: string): void {
+    event.preventDefault();
+    this.downloader.download(url);
+  }
+
+  close(): void {
+    this.dialog.closeAll();
+  }
 }

@@ -1,8 +1,30 @@
 <div class="object">
-  <img src="assets/ui-images/placeholder.png" alt="" />
+  <!-- <img src="assets/ui-images/placeholder.png" alt="" /> -->
+  <img
+    aria-hidden="true"
+    alt=""
+    [src]="tissue().png"
+    (click)="openImageViewer(imageContent)"
+    (keyup.enter)="openImageViewer(imageContent)"
+  />
+
+  <ng-template #imageContent>
+    <div class="dialog-container">
+      <div class="dialog-header">
+        <div mat-dialog-title>{{ tissue().name }}</div>
+        <div class="filler"></div>
+        <button mat-icon-button>
+          <mat-icon (click)="close()">clear</mat-icon>
+        </button>
+      </div>
+      <div class="img-container">
+        <img [src]="tissue().svg" class="dialog-image" alt="" />
+      </div>
+    </div>
+  </ng-template>
 </div>
 <div class="object-menu">
-  <span class="tagline">{{ tagline() }}</span>
+  <span class="tagline">{{ tissue().name }}</span>
   <button
     mat-icon-button
     [matMenuTriggerFor]="menu"
@@ -19,35 +41,37 @@
       Downloads
       <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
-    <button mat-menu-item>
+    <mat-divider class="menu-divider"></mat-divider>
+    <a mat-menu-item [href]="tissue().metadataUrl" target="_blank" rel="noopener noreferrer">
       <mat-icon class="reset icon">database</mat-icon>
       View source data
-    </button>
-    <mat-divider class="menu-divider"></mat-divider>
-    <button mat-menu-item>
-      <mat-icon [svgIcon]="'social:github'"></mat-icon>
-      Get organ icons on GitHub
-    </button>
+    </a>
   </mat-menu>
   <mat-menu #submenu="matMenu">
-    @if (variant() === '3d_organ_models') {
-      <button mat-menu-item>
+    @if (variant() === 'ftu') {
+      <button mat-menu-item (click)="downloadClick($event, tissue().svg)">
         <mat-icon>download</mat-icon>
-        GLB - Extraction sites
+        SVG
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="downloadClick($event, tissue().png)">
         <mat-icon>download</mat-icon>
-        GLB - Reference organs
+        PNG
       </button>
+      <a mat-menu-item [href]="tissue().ai">
+        <mat-icon>download</mat-icon>
+        Adobe Illustrator
+      </a>
       <mat-divider class="menu-divider"></mat-divider>
+      <a mat-menu-item class="csv-button" [href]="tissue().csv">
+        <mat-icon>download</mat-icon>
+        <span class="csv-label">CSV-Crosswalk</span>
+        <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+      </a>
+    } @else {
+      <button mat-menu-item>
+        <mat-icon>download</mat-icon>
+        GLB
+      </button>
     }
-    <button class="csv-button" mat-menu-item>
-      <mat-icon>download</mat-icon>
-      <span class="csv-label">CSV-Crosswalk</span>
-      <span class="csv-desc">
-        A CSV file connecting HRA datasets (e.g., 3D Organs, FTU Illustrations, OMAPs) to ontology terms in the ASCT+B
-        tables.
-      </span>
-    </button>
   </mat-menu>
 </div>

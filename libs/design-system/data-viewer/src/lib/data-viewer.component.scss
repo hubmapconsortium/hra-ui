@@ -41,11 +41,9 @@
     justify-content: center;
     border-radius: 100%;
 
-    ::ng-deep {
-      mat-icon {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
+    ::ng-deep mat-icon {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 
@@ -75,6 +73,38 @@
       row-gap: 1rem;
     }
   }
+
+  ::ng-deep .mdc-text-field--filled .mdc-floating-label--float-above {
+    transform: translateY(-106%);
+  }
+
+  mat-select-trigger {
+    @include utils.use-font(label, medium);
+  }
+}
+
+.release-label {
+  display: flex;
+  flex-direction: column;
+
+  .release-name {
+    @include utils.use-font(label, medium);
+    --mat-option-label-text-color: var(--mat-sys-secondary);
+  }
+
+  .release-date {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}
+
+.mat-mdc-option-active {
+  background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
+  outline: none !important;
+
+  ::ng-deep .mat-pseudo-checkbox {
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--mat-sys-tertiary);
+  }
 }
 
 .csv-button {
@@ -88,4 +118,8 @@
     @include utils.use-font(label, small);
     color: var(--mat-sys-primary);
   }
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  width: 15.5rem;
 }

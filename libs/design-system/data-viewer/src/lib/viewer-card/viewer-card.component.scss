@@ -1,15 +1,27 @@
 @use '../../../../styles/utils';
 
 :host {
-  display: block;
-  width: fit-content;
+  width: 48%;
 
   .object {
     display: flex;
     border-radius: 0.5rem;
-    box-shadow: 1px 3px 6px 0px utils.with-alpha(var(--mat-sys-shadow), 24%);
+    box-shadow: 1px 3px 6px 0px rgb(from var(--mat-sys-shadow) r g b / 24%);
     margin-bottom: 0.5rem;
     overflow: hidden;
+    width: auto;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    height: 28rem;
+    position: relative;
+
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      inset: 0px;
+    }
   }
 
   .object-menu {
@@ -34,5 +46,28 @@
   .csv-desc {
     @include utils.use-font(label, small);
     color: var(--mat-sys-primary);
+  }
+}
+
+::ng-deep .viewer-card-modal {
+  @include utils.use-font(title, large);
+
+  .dialog-container {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dialog-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .img-container {
+    flex-grow: 1;
+    align-content: center;
   }
 }
