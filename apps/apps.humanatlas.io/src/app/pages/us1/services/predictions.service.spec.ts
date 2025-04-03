@@ -1,8 +1,9 @@
-import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
-import { PredictionsService, PREDICTIONS_ENDPOINT, SupportedOrgans } from './predictions.service';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { IdLabelPair } from '@hra-api/ng-client';
 import { firstValueFrom } from 'rxjs';
+import { PREDICTIONS_ENDPOINT, PredictionsService, SAMPLE_FILE_URL } from './predictions.service';
 
 describe('PredictionsService', () => {
   const mockPredictions = [
@@ -63,7 +64,7 @@ describe('PredictionsService', () => {
   });
 
   it('should load supported reference organs', async () => {
-    const mockOrgans: SupportedOrgans[] = [
+    const mockOrgans: IdLabelPair[] = [
       { id: 'organ1', label: 'Organ 1' },
       { id: 'organ2', label: 'Organ 2' },
     ];
@@ -75,6 +76,22 @@ describe('PredictionsService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockOrgans);
 
-    expect(await result).toEqual(mockOrgans.map((organ) => organ.id));
+    expect(await result).toEqual(mockOrgans);
+  });
+
+  it('should load sample file', async () => {
+    const mockFileContent = JSON.stringify({ data: JSON.stringify(mockPredictions) });
+    const mockFile = new File([mockFileContent], 'sample.json');
+    if (!mockFile.text) {
+      mockFile.text = jest.fn().mockResolvedValue(mockFileContent);
+    }
+    const result = service.loadSampleFile();
+    await wait(0);
+
+    const req = httpTesting.expectOne(SAMPLE_FILE_URL);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockFileContent);
+
+    expect(await result).toEqual(new File([mockFileContent], 'sample.json', { type: 'application/json' }));
   });
 });

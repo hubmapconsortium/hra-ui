@@ -8,8 +8,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { Prediction, PredictionsService } from '../services/predictions.service';
+import { PredictionsService } from '../services/predictions.service';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { CellSummaryRow } from '@hra-api/ng-client';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -44,7 +45,7 @@ export class CellPopulationPredictionsComponent {
   /**
    * Predictions
    */
-  readonly predictions = input<Prediction[]>([]);
+  readonly predictions = input<CellSummaryRow[]>([]);
 
   /** Router service */
   private readonly router = inject(Router);
@@ -60,7 +61,7 @@ export class CellPopulationPredictionsComponent {
   /**
    * Data for predictions table
    */
-  protected readonly dataSource = new MatTableDataSource<Prediction>([]);
+  protected readonly dataSource = new MatTableDataSource<CellSummaryRow>([]);
 
   /**
    * Columns for prediction table
