@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/cdk/icons';
 import { findOrThrow } from '@hra-ui/common/array-util';
 import { logos, namespaceConfigs } from './static-data/product-logos.json';
-import { ProductLogo, ProductLogoId } from './types/product-logos.schema';
+import { ProductLogo, ProductLogoId, ProductLogoSize } from './types/product-logos.schema';
 
 /** Typed logo items */
 const LOGOS = logos as ProductLogo[];
@@ -57,10 +57,16 @@ export function toProductLogoId(id: string): ProductLogoId {
   templateUrl: './product-logo.component.html',
   styleUrl: './product-logo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': '"hra-product-logo-size-" + size()',
+  },
 })
 export class ProductLogoComponent {
   /** Logo id */
   readonly id = input.required<ProductLogoId>();
+
+  /** Logo size */
+  readonly size = input<ProductLogoSize>('small');
 
   /** Logo data */
   protected readonly data = computed(() => findOrThrow(LOGOS, (item) => item.id === this.id()));

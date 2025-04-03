@@ -6,6 +6,8 @@ export { SvgIconNamespaceConfigSchema };
 
 /** Product logo id */
 export type ProductLogoId = ProductLogo['id'];
+/** Predefined sizes of logo */
+export type ProductLogoSize = 'small' | 'large';
 
 /** Product logo data */
 export type ProductLogo = z.infer<typeof ProductLogoSchema>;

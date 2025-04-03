@@ -11,4 +11,14 @@
     width: 1.5rem;
     height: 1.5rem;
   }
+
+  &.hra-product-logo-size-large {
+    width: 5rem;
+    height: 5rem;
+
+    .logo {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
 }

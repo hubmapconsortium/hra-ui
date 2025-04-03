@@ -17,9 +17,14 @@ const meta: Meta<ProductLogoComponent> = {
       control: 'select',
       options: sortedIds,
     },
+    size: {
+      control: 'select',
+      options: ['small', 'large'],
+    },
   },
   args: {
     id: sortedIds[0],
+    size: 'small',
   },
 };
 export default meta;
