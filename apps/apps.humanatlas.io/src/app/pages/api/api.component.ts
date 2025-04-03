@@ -1,3 +1,4 @@
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,21 +10,26 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import { CommonModule, DOCUMENT, Location } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import 'rapidoc';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
-import { Server } from '../../interfaces';
-import { servers } from '../../constants';
-import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
+import 'rapidoc';
+import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
+import { servers } from '../../constants';
+import { Server } from '../../interfaces';
 
+/**
+ * Custom injection token to lazy load the theme for Rapidoc.
+ */
 const RAPIDOC_STYLES = new InjectionToken<void>('Rapidoc styles', {
   providedIn: 'root',
   factory: loadRapidocStyles,
 });
 
+/**
+ * Factory function that loads the Rapidoc theme when component is initialized.
+ */
 function loadRapidocStyles(): void {
   const document = inject(DOCUMENT);
   const assetsHref = inject(APP_ASSETS_HREF);
@@ -72,6 +78,9 @@ export class ApiComponent {
     return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
   });
 
+  /**
+   * Component constructor
+   */
   constructor() {
     inject(RAPIDOC_STYLES);
   }
