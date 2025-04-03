@@ -13,7 +13,6 @@ describe('ServerSelectorComponent', () => {
     fixture = TestBed.createComponent(ServerSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    await fixture.whenStable();
   });
 
   it('should create', () => {

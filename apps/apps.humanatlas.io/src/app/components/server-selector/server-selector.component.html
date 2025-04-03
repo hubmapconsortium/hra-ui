@@ -9,7 +9,7 @@
     #serverSelect
   >
     <mat-select-trigger>
-      {{ serverSelect.value.url }}
+      {{ serverSelect.value?.url }}
     </mat-select-trigger>
     @if (servers().length > 0) {
       @for (server of servers(); track $index) {
