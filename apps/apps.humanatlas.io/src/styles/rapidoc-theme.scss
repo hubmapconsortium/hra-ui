@@ -52,7 +52,10 @@ rapi-doc::part(textarea-param) {
 /* Input Type Text */
 rapi-doc::part(textbox) {
   border: 0;
-  border-bottom: 0.125rem solid #4b4b5e;
+  border-bottom: 0.0625rem solid #4c4c58;
+  &:focus {
+    border-bottom: 0.125rem solid #4b4b5e;
+  }
 }
 
 /* Tab Button Wrapper */
