@@ -1,0 +1,115 @@
+{
+  "$schema": "../types/product-logos.schema.json",
+  "logos": [
+    {
+      "id": "3d-organ",
+      "icon": "product:3d_organ_models"
+    },
+    {
+      "id": "cell-type-annotations",
+      "icon": "product:cell_type_annotations"
+    },
+    {
+      "id": "collections",
+      "icon": "product:collections"
+    },
+    {
+      "id": "ftu",
+      "icon": "product:ftu"
+    },
+    {
+      "id": "dataset-graphs",
+      "icon": "product:dataset_graphs"
+    },
+    {
+      "id": "graphs",
+      "icon": "product:graphs"
+    },
+    {
+      "id": "landmark",
+      "icon": "product:landmark"
+    },
+    {
+      "id": "millitome",
+      "icon": "product:millitome"
+    },
+    {
+      "id": "omap",
+      "icon": "product:omaps"
+    },
+    {
+      "id": "schema",
+      "icon": "product:schema"
+    },
+    {
+      "id": "vascular-geometry",
+      "icon": "product:vccf"
+    },
+    {
+      "id": "vocabulary",
+      "icon": "product:vocabulary"
+    },
+    {
+      "id": "api",
+      "icon": "product:api"
+    },
+    {
+      "id": "apps",
+      "icon": "product:app_library"
+    },
+    {
+      "id": "asctb-reporter",
+      "icon": "product:asctb_reporter"
+    },
+    {
+      "id": "cde",
+      "icon": "product:cde"
+    },
+    {
+      "id": "cell-population-graphs",
+      "icon": "product:cell_population_graphs"
+    },
+    {
+      "id": "cell-population-predictor",
+      "icon": "product:cpp"
+    },
+    {
+      "id": "dashboard",
+      "icon": "product:dashboards"
+    },
+    {
+      "id": "design-system",
+      "icon": "product:design_system"
+    },
+    {
+      "id": "developer-portal",
+      "icon": "product:dev_portal"
+    },
+    {
+      "id": "eui",
+      "icon": "product:eui"
+    },
+    {
+      "id": "organ-gallery",
+      "icon": "product:organ_gallery"
+    },
+    {
+      "id": "human-atlas-stories",
+      "icon": "product:human_atlas_stories"
+    },
+    {
+      "id": "tissue-origin-predictor",
+      "icon": "product:top"
+    },
+    {
+      "id": "web-components",
+      "icon": "product:web_components"
+    }
+  ],
+  "namespaceConfigs": [
+    {
+      "namespace": "product",
+      "directory": "assets/brand/product-logos/"
+    }
+  ]
+}
