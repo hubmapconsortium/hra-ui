@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrandLogoComponent } from '@hra-ui/design-system/brand/logo';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
-
-/** All sub library components, module, etc. */
-const REEXPORTS = [BrandLogoComponent, BrandMarkComponent];
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 
 /** Exports all brand components, modules, etc. */
 @NgModule({
-  imports: REEXPORTS,
-  exports: REEXPORTS,
+  imports: [BrandLogoComponent, BrandMarkComponent, ProductLogoComponent],
+  exports: [BrandLogoComponent, BrandMarkComponent, ProductLogoComponent],
 })
 export class BrandModule {}

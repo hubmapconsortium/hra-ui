@@ -1,8 +1,7 @@
-import { NavHeaderButtonsComponent } from './nav-header-buttons.component';
-
-import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { NavHeaderButtonsComponent } from './nav-header-buttons.component';
 
 const meta: Meta<NavHeaderButtonsComponent> = {
   component: NavHeaderButtonsComponent,
