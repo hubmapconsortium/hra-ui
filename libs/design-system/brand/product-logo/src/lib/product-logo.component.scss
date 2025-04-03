@@ -1,11 +1,14 @@
 :host {
-  mat-icon {
-    width: 5rem;
-    height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--mat-sys-corner-full);
+  background-color: var(--hra-product-logo-background-color, var(--mat-sys-secondary));
 
-    &.small {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
+  .logo {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }

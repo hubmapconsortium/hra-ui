@@ -10,6 +10,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
+import { BRAND } from 'zod';
 
 /** Viewer variant types */
 export type ViewerVariant = 'ftu' | '3d_organ_model';
@@ -83,7 +84,9 @@ export class DataViewerComponent implements OnInit {
     tissueData: [],
   });
 
-  readonly icon = computed(() => this.organ().image);
+  readonly organIcon = computed(() => this.organ().image);
+
+  readonly iconId = computed(() => this.variant() as string & BRAND<'ProductLogoId'>);
 
   readonly organOptions = computed(() => {
     const currentVersionData = this.organVersionData().find((data) => data.version === this.currentVersion().version);

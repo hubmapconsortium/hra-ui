@@ -1,3 +1,4 @@
 export { provideIcons } from './lib/providers';
+export { SvgIconNamespaceConfig, SvgIconNamespaceConfigSchema } from './lib/svg-icons/namespace.schema';
 export { SvgIconNamespaceService } from './lib/svg-icons/namespace.service';
-export { ICONS_CONFIG, IconsConfig } from './lib/tokens';
+export { IconsConfig } from './lib/tokens';
