@@ -726,7 +726,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
-Package: @angular/platform-browser
+Package: @angular/animations
 License: "MIT"
 
 The MIT License
@@ -752,7 +752,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
-Package: @angular/animations
+Package: @angular/platform-browser
 License: "MIT"
 
 The MIT License
