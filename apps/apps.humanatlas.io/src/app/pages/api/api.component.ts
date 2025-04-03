@@ -4,10 +4,12 @@ import {
   computed,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  inject,
+  InjectionToken,
   model,
   viewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import 'rapidoc';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -15,6 +17,21 @@ import { ServerSelectorComponent } from '../../components/server-selector/server
 import { Server } from '../../interfaces';
 import { servers } from '../../constants';
 import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
+import { APP_ASSETS_HREF } from '@hra-ui/common';
+
+const RAPIDOC_STYLES = new InjectionToken<void>('Rapidoc styles', {
+  providedIn: 'root',
+  factory: loadRapidocStyles,
+});
+
+function loadRapidocStyles(): void {
+  const document = inject(DOCUMENT);
+  const assetsHref = inject(APP_ASSETS_HREF);
+  const el = document.createElement('link');
+  el.rel = 'stylesheet';
+  el.href = Location.joinWithSlash(assetsHref(), 'rapidoc-theme.css');
+  document.head.appendChild(el);
+}
 
 /**
  * Component for HRA-API
@@ -32,7 +49,8 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 })
 export class ApiComponent {
   /** model to handle serverId from resolver
-   * and change within the component */
+   * and change within the component
+   */
   readonly serverId = model('');
 
   /**
@@ -54,15 +72,17 @@ export class ApiComponent {
     return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
   });
 
+  constructor() {
+    inject(RAPIDOC_STYLES);
+  }
+
   /**
    * Updates the selected server in rapidoc with the selected server.
    * @param server Selected server
    */
   updateRapidoc(server: Server) {
     this.serverId.set(server.id);
-    if (this.rapidocElement()) {
-      this.rapidocElement()?.nativeElement.setApiServer(server.url);
-    }
+    this.rapidocElement()?.nativeElement.setApiServer(server.url);
   }
 
   /**
