@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'utils';
 
 :host {
   display: block;
@@ -41,14 +42,14 @@
       padding: 6rem 2.5rem;
 
       .splash-title {
-        font: var(--mat-sys-display-large);
+        @include utils.use-font(display, large);
         margin-bottom: 0.5rem;
       }
 
       .splash-description {
-        font: var(--mat-sys-body-large);
+        @include utils.use-font(body, large);
         font-size: 1.125rem;
-        color: #4c4c58;
+        color: var(--mat-sys-primary);
         width: 23.5rem;
         max-width: 56.25rem;
         margin-bottom: 2rem;
@@ -68,7 +69,7 @@
       padding: 6rem 2.5rem;
       padding-bottom: 0;
       .title {
-        font: var(--mat-sys-display-small);
+        @include utils.use-font(display, small);
         margin-bottom: 1.5rem;
       }
 
@@ -87,13 +88,7 @@
   @media only screen and (min-width: 640px) and (max-width: 1920px) {
     .rapidoc-container {
       .rapidoc-custom-header {
-        padding: 6rem 2.5rem; // TODO
-      }
-      .rapidoc-embed {
-        height: 100% !important;
-        rapi-doc {
-          --bg: transparent;
-        }
+        padding: 6rem 2.5rem;
       }
     }
   }
@@ -112,13 +107,7 @@
         padding: 4rem 0.75rem 0 0.75rem;
 
         .server-select {
-          width: 100%; // TODO
-        }
-      }
-      .rapidoc-embed {
-        height: 100% !important;
-        rapi-doc {
-          --bg: transparent;
+          width: 100%;
         }
       }
     }

@@ -1,14 +1,11 @@
+@use 'utils';
+
 :host {
   display: block;
   width: 100%;
 
   mat-form-field {
     width: 100%;
-  }
-
-  .selected-server-description {
-    font: var(--mat-sys-label-small);
-    color: var(--schemes-primary-p-40-gray-2, #4c4c58);
   }
 }
 
@@ -19,23 +16,23 @@
     }
 
     mat-hint {
-      color: var(--schemes-primary-p-40-gray-2, #4c4c58);
+      color: var(--mat-sys-primary);
     }
 
     mat-label {
-      font: var(--mat-sys-label-small);
-      color: var(--schemes-on-secondary-fixed-s-10-blue-2, #4b4b5e);
+      @include utils.use-font(label, small);
+      color: var(--mat-sys-inverse-surface) !important;
     }
   }
 
   .server-selector-panel {
     .server-url {
-      font: var(--mat-sys-label-medium);
+      @include utils.use-font(label, medium);
     }
 
     .server-description {
-      font: var(--mat-sys-label-small);
-      color: var(--Schemes-On-Secondary-Container, #4a4459);
+      @include utils.use-font(label, small);
+      color: var(--mat-sys-on-secondary-fixed);
     }
   }
 }

@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
@@ -100,5 +100,13 @@ export class ApiComponent {
    */
   scrollTo(element: HTMLElement) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  }
+
+  /**
+   * Converts a product logo id from string to it's corresponding type.
+   * @returns Logo Id for the product logo component.
+   */
+  logo() {
+    return toProductLogoId('api');
   }
 }

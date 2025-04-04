@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerSelectorComponent } from './server-selector.component';
+import { servers } from '../../constants/server.constants';
 
 describe('ServerSelectorComponent', () => {
   let component: ServerSelectorComponent;
@@ -11,11 +12,13 @@ describe('ServerSelectorComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ServerSelectorComponent);
+    fixture.componentRef.setInput('servers', servers);
+    fixture.componentRef.setInput('selectedServer', servers[0]);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should render', () => {
     expect(component).toBeTruthy();
   });
 });

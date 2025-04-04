@@ -23,10 +23,10 @@ export class ServerSelectorComponent {
   /**
    * input binding to get the list of servers
    */
-  readonly servers = input<Server[]>([]);
+  readonly servers = input.required<Server[]>();
 
   /**
    * two way binding for the selected server
    */
-  readonly selectedServer = model<Server>(this.servers()[0]);
+  readonly selectedServer = model.required<Server>();
 }

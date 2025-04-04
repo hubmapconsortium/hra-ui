@@ -1,15 +1,14 @@
-<mat-form-field class="server-select-field" hintLabel="{{ serverSelect?.value?.description }}">
+<mat-form-field class="server-select-field" hintLabel="{{ selectedServer().description }}">
   <mat-label>Server</mat-label>
   <mat-select
     disableRipple
     panelWidth="auto"
     panelClass="options-container server-selector-panel"
-    [value]="selectedServer()"
-    (selectionChange)="selectedServer.set($event.value)"
+    [(ngModel)]="selectedServer"
     #serverSelect
   >
     <mat-select-trigger>
-      {{ serverSelect.value?.url }}
+      {{ selectedServer().url }}
     </mat-select-trigger>
     @if (servers().length > 0) {
       @for (server of servers(); track $index) {
