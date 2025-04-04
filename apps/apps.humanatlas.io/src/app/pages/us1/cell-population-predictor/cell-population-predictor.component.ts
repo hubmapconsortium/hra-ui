@@ -1,17 +1,17 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Renderer2, signal } from '@angular/core';
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
+import { httpResource, HttpResourceRef } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { ProductHeaderComponent } from '../../../components/product-header/product-header.component';
-import { PredictionsService } from '../services/predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { HraPopPredictionsService } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -24,6 +24,31 @@ const SCRIPT_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/wc.js';
 
 /** RUI style URL */
 const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
+
+/** Sample JSON file URL */
+export const SAMPLE_JSON_FILE_URL = new InjectionToken<string>('', {
+  providedIn: 'root',
+  factory: () => 'assets/sample-data/cell-population-sample.json',
+});
+
+/** Sample JSON file */
+export const SAMPLE_JSON_FILE = new InjectionToken('Sample file', {
+  providedIn: 'root',
+  factory: loadSampleFileFactory,
+});
+
+/**
+ * Loads a sample JSON file from the configured assets URL and wraps it in a File object.
+ * @returns A HttpResourceRef that resolves to a File or undefined
+ */
+function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
+  const assetsHref = inject(APP_ASSETS_HREF);
+  const fileUrl = inject(SAMPLE_JSON_FILE_URL);
+  const url = Location.joinWithSlash(assetsHref(), fileUrl);
+  return httpResource.text(url, {
+    parse: (content) => new File([content], 'sample.json', { type: 'application/json' }),
+  });
+}
 
 /**
  * Cell Population Predictor Page Component
@@ -49,7 +74,13 @@ const STYLE_URL = 'https://cdn.humanatlas.io/ui/ccf-rui/styles.css';
 })
 export class CellPopulationPredictorComponent {
   /** File */
-  protected readonly file = signal<File | null>(null);
+  protected file?: File = undefined;
+
+  /** Sample file */
+  private readonly sampleFile = inject(SAMPLE_JSON_FILE).value.asReadonly();
+
+  /** HRA pop Predictions Service */
+  private readonly predictionsService = inject(HraPopPredictionsService);
 
   /** Whether to show upload info tooltip */
   protected uploadInfoOpen = false;
@@ -79,22 +110,17 @@ export class CellPopulationPredictorComponent {
     },
   ];
 
-  /** Predictions Service */
-  protected readonly predictionsService = inject(PredictionsService);
-
   /** Supported organs */
-  protected readonly supportedOrgans = toSignal(
-    this.predictionsService.loadSupportedReferenceOrgans().pipe(map((organs) => organs.map((organ) => organ.id))),
-    {
-      initialValue: [],
-    },
-  );
+  protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
 
   /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);
 
   /** For manuplating DOM elements */
   private readonly renderer = inject(Renderer2);
+
+  /** Router */
+  private readonly router = inject(Router);
 
   /**
    * Constructor that initializes the component and sets up effects for supported organs and sets script and link tags
@@ -107,23 +133,18 @@ export class CellPopulationPredictorComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.file.set(input.files[0]);
-      this.predictionsService.setFile(input.files[0]);
+      this.file = input.files[0];
     }
   }
 
   /** Output file from RUI */
   onFileCreated(file: File): void {
-    this.file.set(file);
-    this.predictionsService.setFile(file);
+    this.file = file;
   }
 
   /** Use sample JSON file */
   async onUseSampleClicked(): Promise<void> {
-    if (this.predictionsService.getFile() === null) {
-      await this.predictionsService.setSampleFile();
-    }
-    this.file.set(this.predictionsService.getFile());
+    this.file = this.sampleFile();
   }
 
   /** Method that sets script and link tags with appropriate URLs */
@@ -145,5 +166,12 @@ export class CellPopulationPredictorComponent {
       renderer.setAttribute(el, 'rel', 'stylesheet');
       document.head.appendChild(el);
     }
+  }
+
+  /** Triggered when user click the predict button */
+  onPredictClicked() {
+    this.router.navigate(['us1/result'], {
+      info: { file: this.file },
+    });
   }
 }
