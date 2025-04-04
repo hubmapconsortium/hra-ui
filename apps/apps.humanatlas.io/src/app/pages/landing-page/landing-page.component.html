@@ -28,10 +28,10 @@
         [tagline]="app.tagline"
         [description]="app.description"
         [imagePath]="app.imagePath"
-        [logoPath]="app.logoPath"
+        [logo]="app.logoPath"
         [appStatus]="app.appStatus"
-        [appUrl]="app.appUrl"
-        [documentLink]="app.documentLink"
+        (openAppUrl)="onOpenAppUrl(app.appUrl)"
+        (openDocumentationLink)="onOpenDocumentationLink(app.documentLink)"
       ></hra-ui-section>
     }
   </div>
@@ -46,10 +46,10 @@
           [tagline]="app.tagline"
           [description]="app.description"
           [imagePath]="app.imagePath"
-          [logoPath]="app.logoPath"
+          [logo]="app.logoPath"
           [appStatus]="app.appStatus"
-          [appUrl]="app.appUrl"
-          [documentLink]="app.documentLink"
+          (openAppUrl)="onOpenAppUrl(app.appUrl)"
+          (openDocumentationLink)="onOpenDocumentationLink(app.documentLink)"
         ></hra-ui-section>
       }
     </div>

@@ -2,13 +2,13 @@
   <img alt="app-image" [src]="imagePath()" class="app-image" />
   <div class="ui-content-main">
     <div class="ui-content">
-      <hra-product-logo [name]="logoPath()" size="large"> </hra-product-logo>
+      <hra-product-logo [id]="logo()" class="product-logo" />
       <div class="ui-content-header">
         <h1>
           {{ tagline() }}
         </h1>
         @if (appStatus()) {
-          <hra-software-status-indicator [status]="appStatus()!" size="large"></hra-software-status-indicator>
+          <hra-software-status-indicator [status]="appStatus()!" size="large" />
         }
       </div>
     </div>
@@ -16,11 +16,11 @@
       {{ description() }}
     </p>
     <div class="ui-section-buttons">
-      <button (click)="openAppUrl()" hraCtaButton mat-button>
+      <button (click)="openAppUrl.emit()" hraCtaButton mat-button>
         Use App
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </button>
-      <button (click)="openDocumentationLink()" hraCtaButton hraButtonVariant="secondary" disableRipple mat-button>
+      <button (click)="openDocumentationLink.emit()" hraCtaButton hraButtonVariant="secondary" disableRipple mat-button>
         Learn More
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </button>

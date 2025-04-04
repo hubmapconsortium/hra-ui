@@ -24,11 +24,9 @@ export const Default: Story = {
   args: {
     tagline: 'Product Name',
     description: 'Placeholder short description for text less than 125 characters.',
-    logoPath: 'app_library',
+    logo: 'app_library',
     appStatus: 'Preview',
     imagePath: 'assets/ui-images/placeholder.png',
-    appUrl: '',
-    documentLink: '',
   },
   argTypes: {
     imagePath: {
