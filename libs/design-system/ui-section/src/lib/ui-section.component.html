@@ -1,19 +1,15 @@
-<div class="ui-section-card" [class.mobile-view]="isMobile()" [class.desktop-view]="isDesktop()">
-  <img
-    alt="app-image"
-    [src]="imagePath()"
-    class="app-image"
-    [class.mobile-view]="isMobile()"
-    [class.desktop-view]="isDesktop()"
-  />
+<div class="ui-section-card">
+  <img alt="app-image" [src]="imagePath()" class="app-image" />
   <div class="ui-content-main">
-    <div class="ui-content" [class.mobile-view]="isMobile()">
+    <div class="ui-content">
       <hra-product-logo [name]="logoPath()" size="large"> </hra-product-logo>
       <div class="ui-content-header">
         <h1>
           {{ tagline() }}
         </h1>
-        <hra-software-status-indicator [status]="appStatus()!" size="large"></hra-software-status-indicator>
+        @if (appStatus()) {
+          <hra-software-status-indicator [status]="appStatus()!" size="large"></hra-software-status-indicator>
+        }
       </div>
     </div>
     <p class="ui-content-description">

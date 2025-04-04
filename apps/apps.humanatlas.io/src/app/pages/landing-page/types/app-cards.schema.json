@@ -1,7 +1,7 @@
 {
   "$ref": "#/definitions/Apps",
   "definitions": {
-    "App": {
+    "AppCard": {
       "type": "object",
       "properties": {
         "tagline": {
@@ -17,7 +17,8 @@
           "type": "string"
         },
         "appStatus": {
-          "type": "string"
+          "type": "string",
+          "enum": ["Preview", "Alpha", "Beta"]
         },
         "appUrl": {
           "type": "string"
@@ -29,39 +30,52 @@
       "required": ["tagline", "description", "imagePath", "logoPath", "appUrl", "documentLink"],
       "additionalProperties": false
     },
+    "AppCardsSection": {
+      "type": "object",
+      "properties": {
+        "tagline": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppCard"
+          }
+        }
+      },
+      "required": ["tagline", "cards"],
+      "additionalProperties": false
+    },
+    "AppCardsTab": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppCardsSection"
+          }
+        }
+      },
+      "required": ["name", "sections"],
+      "additionalProperties": false
+    },
     "Apps": {
       "type": "object",
       "properties": {
         "$schema": {
           "type": "string"
         },
-        "researcherApps": {
-          "type": "object",
-          "properties": {
-            "use": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/App"
-              }
-            },
-            "construct": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/App"
-              }
-            }
-          },
-          "required": ["use", "construct"],
-          "additionalProperties": false
-        },
-        "developerApps": {
+        "tabs": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/App"
+            "$ref": "#/definitions/AppCardsTab"
           }
         }
       },
-      "required": ["$schema", "researcherApps", "developerApps"],
+      "required": ["$schema", "tabs"],
       "additionalProperties": false
     }
   },

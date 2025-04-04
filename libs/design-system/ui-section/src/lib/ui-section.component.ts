@@ -4,7 +4,6 @@ import { ProductLogoComponent } from '@hra-ui/design-system/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIcon } from '@angular/material/icon';
-import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 
 /** Injection token for the window object */
 export const WINDOW = new InjectionToken<typeof window>('window', {
@@ -36,9 +35,6 @@ export class UiSectionComponent {
   readonly appUrl = input<string>();
   /** Documentation Link */
   readonly documentLink = input<string>();
-
-  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
-  protected readonly isDesktop = watchBreakpoint(Breakpoints.Desktop);
 
   /** Open the app url */
   openAppUrl(): void {
