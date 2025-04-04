@@ -9,16 +9,13 @@
     aspect-ratio: 100 / 58;
     align-content: center;
 
-    img {
+    .viewer-image,
+    .model-viewer {
+      height: 100%;
       width: 100%;
-      max-height: 100%;
       object-fit: contain;
+      padding: 0.5rem;
     }
-  }
-
-  .model-viewer {
-    height: 100%;
-    width: 100%;
   }
 
   .object-menu {
@@ -48,6 +45,7 @@
 
 ::ng-deep .viewer-card-modal {
   @include utils.use-font(title, large);
+  --mdc-dialog-container-shape: 0.5rem;
 
   .dialog-container {
     padding: 1.5rem;

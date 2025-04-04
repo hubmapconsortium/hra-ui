@@ -60,18 +60,27 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
 
-    .text-fields {
-      display: flex;
-      gap: 1rem;
-    }
+  .text-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    .viewer-cards {
-      display: grid;
+  .viewer-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+
+    @media (min-width: 640px) {
       grid-template-columns: 1fr 1fr;
-      column-gap: 1.5rem;
-      row-gap: 1rem;
     }
+  }
+
+  .select {
+    min-width: 15.5rem;
   }
 
   ::ng-deep .mdc-text-field--filled .mdc-floating-label--float-above {

@@ -102,10 +102,7 @@ export class DataViewerComponent implements OnInit {
   });
 
   readonly viewerTitle = computed(() => {
-    if (this.variant() === 'ftu') {
-      return 'Functional Tissue Units';
-    }
-    return '3D Organs';
+    return this.variant() === 'ftu' ? 'Functional Tissue Units' : '3D Organs';
   });
 
   constructor() {
