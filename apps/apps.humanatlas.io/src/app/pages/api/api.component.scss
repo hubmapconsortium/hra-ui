@@ -9,23 +9,16 @@
   /* 1921px and beyond */
   .splash {
     position: relative;
-    .video {
+
+    .splash-image {
       position: relative;
       width: 100%;
       height: 42.5rem;
+
       video {
         object-fit: cover;
         width: 100%;
         height: 100%;
-      }
-      &::after {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: linear-gradient(270deg, rgba(255, 255, 255, 0) 51.91%, rgba(255, 255, 255, 0.32) 74.22%);
-        content: '';
       }
     }
 
@@ -78,6 +71,7 @@
         width: 32.75rem;
       }
     }
+
     .rapidoc-embed {
       height: 100% !important;
       rapi-doc {
@@ -98,11 +92,13 @@
     .splash {
       .splash-content {
         padding: 6rem 1rem;
+
         .splash-description {
           width: 100%;
         }
       }
     }
+
     .rapidoc-container {
       .rapidoc-custom-header {
         padding: 4rem 0.75rem 0 0.75rem;

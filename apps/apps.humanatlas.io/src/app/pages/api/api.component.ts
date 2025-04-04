@@ -1,9 +1,10 @@
-import { CommonModule, DOCUMENT, Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   CUSTOM_ELEMENTS_SCHEMA,
+  effect,
   ElementRef,
   inject,
   InjectionToken,
@@ -11,7 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
 import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import 'rapidoc';
@@ -47,7 +48,7 @@ function loadRapidocStyles(): void {
  */
 @Component({
   selector: 'hra-api',
-  imports: [CommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, ProductLogoComponent],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, ProductLogoComponent],
   templateUrl: './api.component.html',
   styleUrl: './api.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,29 +61,41 @@ export class ApiComponent {
   readonly serverId = model('');
 
   /**
-   * rapidoc element captured using viewChild() query
-   */
-  private readonly rapidocElement = viewChild<ElementRef>('rapidoc');
-
-  /**
    * list of available servers
    */
-  readonly servers = servers;
+  protected readonly servers = servers;
+
+  /**
+   * Product logo id
+   */
+  protected readonly logo = toProductLogoId('api');
 
   /**
    * stores the selected server
    * - used as a model for the selector and
    * - for the rapidoc configuration
    */
-  readonly selectedServer = computed(() => {
+  protected readonly selectedServer = computed(() => {
     return this.servers.find((item) => item.id === this.serverId()) ?? this.servers[0];
   });
+
+  /**
+   * Splash video element
+   */
+  private readonly videoElement = viewChild.required<ElementRef<HTMLVideoElement>>('video');
+
+  /**
+   * rapidoc element captured using viewChild() query
+   */
+  private readonly rapidocElement = viewChild.required<ElementRef>('rapidoc');
 
   /**
    * Component constructor
    */
   constructor() {
     inject(RAPIDOC_STYLES);
+
+    effect(() => this.videoElement().nativeElement.play());
   }
 
   /**
@@ -100,13 +113,5 @@ export class ApiComponent {
    */
   scrollTo(element: HTMLElement) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-  }
-
-  /**
-   * Converts a product logo id from string to it's corresponding type.
-   * @returns Logo Id for the product logo component.
-   */
-  logo() {
-    return toProductLogoId('api');
   }
 }

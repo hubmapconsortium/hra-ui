@@ -1,17 +1,9 @@
 <section class="splash">
-  <div class="video">
-    <video
-      #video
-      src="videos/api-anim-v2.mp4"
-      autoplay="true"
-      (oncanplay)="video.play()"
-      muted="true"
-      loop="true"
-      playsinline="true"
-    ></video>
+  <div class="splash-image">
+    <video autoplay muted loop playsinline [src]="'videos/api-anim-v2.mp4' | assetUrl" #video></video>
   </div>
   <div class="splash-content">
-    <hra-product-logo size="large" [id]="logo()"></hra-product-logo>
+    <hra-product-logo size="large" [id]="logo" />
     <div class="splash-title m">HRA API</div>
     <div class="splash-description">
       This API provides programmatic access to data registered to the Human Reference Atlas.
