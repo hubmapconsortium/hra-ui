@@ -5,7 +5,7 @@
       <mat-icon [svgIcon]="organIcon()"></mat-icon>
     </div>
   </div>
-  <span class="header-label">Functional Tissue Units</span>
+  <span class="header-label">{{ viewerTitle() }}</span>
   <button
     mat-icon-button
     [matMenuTriggerFor]="menu"
@@ -22,7 +22,7 @@
       Downloads
       <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </button>
-    <a mat-menu-item [href]="allFtuCsvUrl()">
+    <a mat-menu-item [href]="allFtuCsvUrl() || allOrgansCsvUrl()">
       <mat-icon class="reset icon">database</mat-icon>
       View source data
     </a>
@@ -33,15 +33,15 @@
     </a>
   </mat-menu>
   <mat-menu #submenu="matMenu">
-    @if (variant() === '3d_organ_model') {
-      <button mat-menu-item>
+    @if (variant() === '3d-organ') {
+      <a mat-menu-item [href]="currentVersion().extractionCsvUrl" target="_blank" rel="noopener noreferrer">
         <mat-icon>download</mat-icon>
         GLB - Extraction sites
-      </button>
-      <button mat-menu-item>
+      </a>
+      <a mat-menu-item [href]="currentVersion().referenceCsvUrl" target="_blank" rel="noopener noreferrer">
         <mat-icon>download</mat-icon>
         GLB - Reference organs
-      </button>
+      </a>
       <mat-divider class="menu-divider"></mat-divider>
     }
     <a class="csv-button" mat-menu-item [href]="currentVersion().crosswalk">

@@ -13,15 +13,16 @@ import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { BRAND } from 'zod';
 
 /** Viewer variant types */
-export type ViewerVariant = 'ftu' | '3d_organ_model';
+export type ViewerVariant = 'ftu' | '3d-organ';
 
 export interface TissueData {
   name: string;
   metadataUrl: string;
-  ai: string;
-  png: string;
-  svg: string;
-  csv: string;
+  ai?: string;
+  png?: string;
+  svg?: string;
+  csv?: string;
+  threeDimImage?: string;
 }
 
 export interface OrganData {
@@ -36,6 +37,8 @@ export interface OrganVersionData {
   version: string;
   crosswalk: string;
   organData: OrganData[];
+  extractionCsvUrl?: string;
+  referenceCsvUrl?: string;
 }
 
 /**
@@ -66,7 +69,9 @@ export class DataViewerComponent implements OnInit {
   /** Data viewer variant */
   readonly variant = input.required<ViewerVariant>();
 
-  readonly allFtuCsvUrl = input.required<string>();
+  readonly allFtuCsvUrl = input<string | undefined>();
+
+  readonly allOrgansCsvUrl = input<string | undefined>();
 
   readonly githubIconsUrl = input.required<string>();
 
@@ -94,6 +99,13 @@ export class DataViewerComponent implements OnInit {
       return currentVersionData.organData.map((organ) => organ);
     }
     return [];
+  });
+
+  readonly viewerTitle = computed(() => {
+    if (this.variant() === 'ftu') {
+      return 'Functional Tissue Units';
+    }
+    return '3D Organs';
   });
 
   constructor() {

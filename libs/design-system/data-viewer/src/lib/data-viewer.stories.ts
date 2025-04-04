@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 
 import { DataViewerComponent, OrganData, OrganVersionData } from './data-viewer.component';
 
-const testOrganData1: OrganData[] = [
+const testFtuData1: OrganData[] = [
   {
     name: 'Kidneys',
     image: 'organ:kidneys',
@@ -125,7 +125,7 @@ const testOrganData1: OrganData[] = [
   },
 ];
 
-const testOrganData2: OrganData[] = [
+const testFtuData2: OrganData[] = [
   {
     name: 'Kidneys',
     image: 'organ:kidneys',
@@ -212,14 +212,14 @@ const testOrganData2: OrganData[] = [
   },
 ];
 
-const testOrganVersionData: OrganVersionData[] = [
+const testFtuVersionData: OrganVersionData[] = [
   {
     releaseName: '8th Release (v2.2)',
     releaseDate: 'December 2024',
     version: '2.2',
     crosswalk:
       'https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv',
-    organData: testOrganData1,
+    organData: testFtuData1,
   },
   {
     releaseName: '7th Release (v2.1)',
@@ -227,6 +227,123 @@ const testOrganVersionData: OrganVersionData[] = [
     version: '2.1',
     crosswalk:
       'https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv',
+    organData: testFtuData2,
+  },
+];
+
+const testOrganData1: OrganData[] = [
+  {
+    name: 'All Organs',
+    image: 'product:vccf',
+    tissueData: [
+      {
+        name: 'Female',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/united-female/v1.7',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb',
+      },
+      {
+        name: 'Male',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/united-male/v1.7',
+        threeDimImage: 'https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb',
+      },
+    ],
+  },
+  {
+    name: 'Brain',
+    image: 'organ:brain',
+    tissueData: [
+      {
+        name: 'Female',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/brain-female/v1.4',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb',
+      },
+      {
+        name: 'Male',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/brain-male/v1.4',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb',
+      },
+    ],
+  },
+  {
+    name: 'Fallopian Tube',
+    image: 'organ:fallopian_tube_left',
+    tissueData: [
+      {
+        name: 'Female, L',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-left/v1.2/assets/3d-vh-f-fallopian-tube-l.glb',
+      },
+      {
+        name: 'Female, R',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/fallopian-tube-female-right/v1.2',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-right/v1.2/assets/3d-vh-f-fallopian-tube-r.glb',
+      },
+    ],
+  },
+];
+
+const testOrganData2: OrganData[] = [
+  {
+    name: 'All Organs',
+    image: 'product:vccf',
+    tissueData: [
+      {
+        name: 'Female',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/united-female/v1.7',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb',
+      },
+      {
+        name: 'Male',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/united-male/v1.7',
+        threeDimImage: 'https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb',
+      },
+    ],
+  },
+  {
+    name: 'Brain',
+    image: 'organ:brain',
+    tissueData: [
+      {
+        name: 'Female',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/brain-female/v1.4',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb',
+      },
+      {
+        name: 'Male',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/brain-male/v1.4',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb',
+      },
+    ],
+  },
+];
+
+const testOrganVersionData: OrganVersionData[] = [
+  {
+    releaseName: '8th Release (v2.2)',
+    releaseDate: 'December 2024',
+    version: '2.2',
+    crosswalk:
+      'https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.7/assets/asct-b-3d-models-crosswalk.csv',
+    extractionCsvUrl: 'https://lod.humanatlas.io/landmark/',
+    referenceCsvUrl: 'https://lod.humanatlas.io/ref-organ/',
+    organData: testOrganData1,
+  },
+  {
+    releaseName: '7th Release (v2.1)',
+    releaseDate: 'June 2024',
+    version: '2.1',
+    crosswalk:
+      'https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.6/assets/asct-b-3d-models-crosswalk.csv',
+    extractionCsvUrl: 'https://lod.humanatlas.io/landmark/',
+    referenceCsvUrl: 'https://lod.humanatlas.io/ref-organ/',
     organData: testOrganData2,
   },
 ];
@@ -241,7 +358,6 @@ const meta: Meta<DataViewerComponent> = {
     },
   },
   args: {
-    allFtuCsvUrl: 'https://humanatlas.io/assets/table-data/ftu-cell-count-7th-release.csv',
     githubIconsUrl: 'https://github.com/cns-iu/md-icons/tree/main/other-icons/organs',
   },
 };
@@ -250,7 +366,16 @@ type Story = StoryObj<DataViewerComponent>;
 
 export const FtuDataViewer: Story = {
   args: {
-    organVersionData: testOrganVersionData,
+    organVersionData: testFtuVersionData,
     variant: 'ftu',
+    allFtuCsvUrl: 'https://humanatlas.io/assets/table-data/ftu-cell-count-7th-release.csv',
+  },
+};
+
+export const OrganModelViewer: Story = {
+  args: {
+    organVersionData: testOrganVersionData,
+    variant: '3d-organ',
+    allOrgansCsvUrl: 'https://humanatlas.io/assets/table-data/as-per-organ.csv',
   },
 };

@@ -1,28 +1,40 @@
 <div class="object">
   <!-- <img src="assets/ui-images/placeholder.png" alt="" /> -->
-  <img
-    aria-hidden="true"
-    alt=""
-    [src]="tissue().png"
-    (click)="openImageViewer(imageContent)"
-    (keyup.enter)="openImageViewer(imageContent)"
-  />
-
-  <ng-template #imageContent>
-    <div class="dialog-container">
-      <div class="dialog-header">
-        <div mat-dialog-title>{{ tissue().name }}</div>
-        <div class="filler"></div>
-        <button mat-icon-button>
-          <mat-icon (click)="close()">clear</mat-icon>
-        </button>
+  @if (variant() === 'ftu') {
+    <img
+      aria-hidden="true"
+      alt=""
+      [src]="tissue().png"
+      (click)="openImageViewer(imageContent)"
+      (keyup.enter)="openImageViewer(imageContent)"
+    />
+    <ng-template #imageContent>
+      <div class="dialog-container">
+        <div class="dialog-header">
+          <div mat-dialog-title>{{ tissue().name }}</div>
+          <div class="filler"></div>
+          <button mat-icon-button>
+            <mat-icon (click)="close()">clear</mat-icon>
+          </button>
+        </div>
+        <div class="img-container">
+          <img [src]="tissue().svg" class="dialog-image" alt="" />
+        </div>
       </div>
-      <div class="img-container">
-        <img [src]="tissue().svg" class="dialog-image" alt="" />
-      </div>
-    </div>
-  </ng-template>
+    </ng-template>
+  } @else {
+    <model-viewer
+      class="model-viewer"
+      alt=""
+      [src]="tissue().threeDimImage"
+      shadow-intensity="1"
+      camera-controls
+      auto-rotate
+    >
+    </model-viewer>
+  }
 </div>
+
 <div class="object-menu">
   <span class="tagline">{{ tissue().name }}</span>
   <button
@@ -49,11 +61,11 @@
   </mat-menu>
   <mat-menu #submenu="matMenu">
     @if (variant() === 'ftu') {
-      <button mat-menu-item (click)="downloadClick($event, tissue().svg)">
+      <button mat-menu-item (click)="downloadClick($event, tissue().svg ?? '')">
         <mat-icon>download</mat-icon>
         SVG
       </button>
-      <button mat-menu-item (click)="downloadClick($event, tissue().png)">
+      <button mat-menu-item (click)="downloadClick($event, tissue().png ?? '')">
         <mat-icon>download</mat-icon>
         PNG
       </button>
@@ -61,17 +73,17 @@
         <mat-icon>download</mat-icon>
         Adobe Illustrator
       </a>
-      <mat-divider class="menu-divider"></mat-divider>
-      <a mat-menu-item class="csv-button" [href]="tissue().csv">
-        <mat-icon>download</mat-icon>
-        <span class="csv-label">CSV-Crosswalk</span>
-        <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
-      </a>
     } @else {
-      <button mat-menu-item>
+      <a mat-menu-item [href]="tissue().threeDimImage">
         <mat-icon>download</mat-icon>
         GLB
-      </button>
+      </a>
     }
+    <mat-divider class="menu-divider"></mat-divider>
+    <a mat-menu-item class="csv-button" [href]="tissue().csv">
+      <mat-icon>download</mat-icon>
+      <span class="csv-label">CSV-Crosswalk</span>
+      <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+    </a>
   </mat-menu>
 </div>

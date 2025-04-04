@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, input, TemplateRef } from '@angular/core';
+import '@google/model-viewer';
+
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +21,7 @@ import { FileDownloadService } from './file-download.service';
   styleUrl: './viewer-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ViewerCardComponent {
   private readonly dialog = inject(MatDialog);
