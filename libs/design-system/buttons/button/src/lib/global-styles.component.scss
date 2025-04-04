@@ -96,6 +96,10 @@
     background-color: var(--mat-sys-tertiary);
     clip-path: $background-clip-path;
 
+    .mat-ripple {
+      clip-path: $background-clip-path;
+    }
+
     &:disabled {
       background-color: utils.with-alpha(var(--mat-sys-outline-variant), 38%);
     }

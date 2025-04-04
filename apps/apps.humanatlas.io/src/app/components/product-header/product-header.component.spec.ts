@@ -1,21 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
 import { ProductHeaderComponent } from './product-header.component';
 
 describe('ProductHeaderComponent', () => {
-  let component: ProductHeaderComponent;
-  let fixture: ComponentFixture<ProductHeaderComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductHeaderComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ProductHeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    const promise = render(ProductHeaderComponent, {
+      inputs: {
+        logo: 'web-components',
+        tagline: 'Web Components',
+      },
+    });
+    await expect(promise).resolves.toBeTruthy();
   });
 });
