@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { PageSectionComponent } from '@hra-ui/design-system/content-template/page-section';
+import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 
 import { PageNavigationComponent, Section } from '../page-navigation/page-navigation.component';
 
@@ -66,4 +66,7 @@ const TEST_SECTIONS: Section[] = [
 export class PageNavigationDemoComponent {
   /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
+
+  /** App id converted to proper format */
+  protected readonly appId = computed(() => toProductLogoId('cde'));
 }
