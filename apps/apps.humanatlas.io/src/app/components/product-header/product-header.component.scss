@@ -3,6 +3,11 @@
   flex-wrap: wrap;
   align-items: center;
 
+  .logo {
+    width: 5rem;
+    height: 5rem;
+  }
+
   .title {
     min-width: 18.75rem;
     display: flex;

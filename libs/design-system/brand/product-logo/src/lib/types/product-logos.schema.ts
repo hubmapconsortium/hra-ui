@@ -1,13 +1,11 @@
 import { SvgIconNamespaceConfigSchema } from '@hra-ui/cdk/icons';
 import { z } from 'zod';
 
-/* Reexport so the schema generator detects this as a recurring schema */
+// Reexport so the schema generator detects this as a recurring schema
 export { SvgIconNamespaceConfigSchema };
 
 /** Product logo id */
 export type ProductLogoId = ProductLogo['id'];
-/** Predefined sizes of logo */
-export type ProductLogoSize = 'small' | 'large';
 
 /** Product logo data */
 export type ProductLogo = z.infer<typeof ProductLogoSchema>;
