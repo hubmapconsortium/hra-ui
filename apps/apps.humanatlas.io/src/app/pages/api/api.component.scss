@@ -64,6 +64,7 @@
   /* RapiDoc styling */
   .rapidoc-container {
     background: linear-gradient(180deg, #ffffff 0%, #f3f5f8 100%);
+    scroll-margin-block-start: 4rem;
 
     .rapidoc-custom-header {
       padding: 6rem 2.5rem;
