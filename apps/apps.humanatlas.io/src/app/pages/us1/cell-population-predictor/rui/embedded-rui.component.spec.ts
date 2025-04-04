@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { EmbeddedRuiComponent } from './embedded-rui.component';
+import { IdLabelPair } from '@hra-api/ng-client';
 
 class MockRui extends HTMLElement {
   organOptions?: string[];
@@ -18,13 +19,15 @@ describe('EmbeddedRuiComponent', () => {
   });
 
   it('should set organOptions on ccf-rui element', async () => {
-    const organOptions = ['Heart', 'Lung'];
+    const organOptions: IdLabelPair[] = [{ id: 'id-uri', label: 'heart' }];
+    const organsArrayResult = ['id-uri'];
+
     await render(EmbeddedRuiComponent, {
       inputs: { supportedOrgans: organOptions },
     });
 
     const ruiElement = screen.getByTestId('rui') as MockRui;
-    expect(ruiElement.organOptions).toEqual(organOptions);
+    expect(ruiElement.organOptions).toEqual(organsArrayResult);
   });
 
   it('should set register and cancelRegistration on ccf-rui element', async () => {
