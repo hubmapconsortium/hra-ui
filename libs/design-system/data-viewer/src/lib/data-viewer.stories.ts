@@ -398,7 +398,6 @@ export const FtuDataViewer: Story = {
   args: {
     organVersionData: testFtuVersionData,
     variant: 'ftu',
-    allFtuCsvUrl: 'https://humanatlas.io/assets/table-data/ftu-cell-count-7th-release.csv',
   },
 };
 
@@ -406,6 +405,5 @@ export const OrganModelViewer: Story = {
   args: {
     organVersionData: testOrganVersionData,
     variant: '3d-organ',
-    allOrgansCsvUrl: 'https://humanatlas.io/assets/table-data/as-per-organ.csv',
   },
 };

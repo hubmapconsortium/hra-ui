@@ -69,10 +69,6 @@ export class DataViewerComponent implements OnInit {
   /** Data viewer variant */
   readonly variant = input.required<ViewerVariant>();
 
-  readonly allFtuCsvUrl = input<string | undefined>();
-
-  readonly allOrgansCsvUrl = input<string | undefined>();
-
   readonly githubIconsUrl = input.required<string>();
 
   readonly currentVersion = signal<OrganVersionData>({
