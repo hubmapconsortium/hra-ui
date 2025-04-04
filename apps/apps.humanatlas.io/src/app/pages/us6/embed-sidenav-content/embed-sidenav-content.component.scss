@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  height: 100%;
+
+  .card-actions {
+    display: flex;
+    height: 4.5rem;
+    border-top: 0.0625rem solid var(--mat-sys-outline-variant);
+    background-color: var(--mat-sys-surface-container-low);
+    padding: 1rem;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+
+  .iframe-container .app-iframe {
+    border: none;
+    width: 37.875rem;
+    height: calc(100vh - 9.5rem);
+  }
+}

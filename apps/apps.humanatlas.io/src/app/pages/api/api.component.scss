@@ -1,0 +1,112 @@
+@use 'sass:map';
+@use 'utils';
+
+:host {
+  display: block;
+
+  /* Responsive Styling */
+
+  /* 1921px and beyond */
+  .splash {
+    position: relative;
+
+    .splash-image {
+      position: relative;
+      width: 100%;
+      height: 42.5rem;
+
+      video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .splash-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2.5rem;
+
+      .splash-title {
+        @include utils.use-font(display, large);
+        margin-bottom: 0.5rem;
+      }
+
+      .splash-description {
+        @include utils.use-font(body, large);
+        font-size: 1.125rem;
+        color: var(--mat-sys-primary);
+        width: 23.5rem;
+        max-width: 56.25rem;
+        margin-bottom: 2rem;
+      }
+
+      hra-product-logo {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  /* RapiDoc styling */
+  .rapidoc-container {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f5f8 100%);
+    scroll-margin-block-start: 4rem;
+
+    .rapidoc-custom-header {
+      padding: 6rem 2.5rem;
+      padding-bottom: 0;
+      .title {
+        @include utils.use-font(display, small);
+        margin-bottom: 1.5rem;
+      }
+
+      .server-select {
+        width: 32.75rem;
+      }
+    }
+
+    .rapidoc-embed {
+      height: 100% !important;
+      rapi-doc {
+        --bg: transparent;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 640px) and (max-width: 1920px) {
+    .rapidoc-container {
+      .rapidoc-custom-header {
+        padding: 6rem 2.5rem;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 320px) and (max-width: 639px) {
+    .splash {
+      .splash-content {
+        padding: 6rem 1rem;
+
+        .splash-description {
+          width: 100%;
+        }
+      }
+    }
+
+    .rapidoc-container {
+      .rapidoc-custom-header {
+        padding: 4rem 0.75rem 0 0.75rem;
+
+        .server-select {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
