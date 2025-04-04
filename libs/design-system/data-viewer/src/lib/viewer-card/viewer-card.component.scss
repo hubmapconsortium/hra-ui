@@ -52,7 +52,7 @@
 
   .img-container {
     display: flex;
-    height: calc(100% - 40px);
+    height: calc(100% - 2.5rem);
     flex-grow: 1;
     align-items: center;
     justify-content: center;
@@ -60,6 +60,7 @@
 
   .dialog-image {
     height: 100%;
+    width: 100%;
   }
 }
 
