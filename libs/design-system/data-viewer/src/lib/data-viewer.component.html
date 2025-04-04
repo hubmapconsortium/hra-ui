@@ -1,8 +1,8 @@
 <div class="header">
   <div class="logos">
-    <hra-product-logo [id]="iconId()" size="large"></hra-product-logo>
+    <hra-product-logo [id]="variantIconId()" size="large"></hra-product-logo>
     <div class="organ-icon">
-      <mat-icon [svgIcon]="organIcon()"></mat-icon>
+      <mat-icon [svgIcon]="organ().icon"></mat-icon>
     </div>
   </div>
   <span class="header-label">{{ viewerTitle() }}</span>
@@ -87,8 +87,8 @@
   </div>
 
   <div class="viewer-cards">
-    @for (tissue of organ().tissueData; track tissue) {
-      <hra-viewer-card [variant]="variant()" [tissue]="tissue"></hra-viewer-card>
+    @for (viewerCard of organ().viewerCardData; track viewerCard) {
+      <hra-viewer-card [variant]="variant()" [viewerCardData]="viewerCard"></hra-viewer-card>
     }
   </div>
 </div>

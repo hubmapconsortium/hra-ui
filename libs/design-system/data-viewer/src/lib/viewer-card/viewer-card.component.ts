@@ -8,7 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
-import { TissueData } from '../data-viewer.component';
+import { ViewerCardData } from '../data-viewer.component';
 import { FileDownloadService } from './file-download.service';
 
 /**
@@ -24,14 +24,19 @@ import { FileDownloadService } from './file-download.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ViewerCardComponent {
+  /** Mat dialog service */
   private readonly dialog = inject(MatDialog);
+
+  /** File download service */
   private readonly downloader = inject(FileDownloadService);
 
   /** All available dropdown options */
   readonly variant = input.required<string>();
 
-  readonly tissue = input.required<TissueData>();
+  /** Viewer card data */
+  readonly viewerCardData = input.required<ViewerCardData>();
 
+  /** Opens a full screen modal for a FTU illustration */
   openImageViewer(content: TemplateRef<unknown>): void {
     this.dialog.open(content, {
       panelClass: 'viewer-card-modal',
@@ -48,6 +53,7 @@ export class ViewerCardComponent {
     this.downloader.download(url);
   }
 
+  /** Closes the full screen modal */
   close(): void {
     this.dialog.closeAll();
   }

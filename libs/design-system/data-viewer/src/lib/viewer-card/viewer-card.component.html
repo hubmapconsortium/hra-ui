@@ -1,11 +1,10 @@
 <div class="object">
-  <!-- <img src="assets/ui-images/placeholder.png" alt="" /> -->
   @if (variant() === 'ftu') {
     <img
       class="viewer-image"
       aria-hidden="true"
-      alt=""
-      [src]="tissue().png"
+      [alt]="viewerCardData().alt"
+      [src]="viewerCardData().png"
       (click)="openImageViewer(imageContent)"
       (keyup.enter)="openImageViewer(imageContent)"
     />
@@ -19,15 +18,15 @@
           </button>
         </div>
         <div class="img-container">
-          <img class="dialog-image" [src]="tissue().svg" alt="" />
+          <img class="dialog-image" [src]="viewerCardData().svg" [alt]="viewerCardData().alt" />
         </div>
       </div>
     </ng-template>
   } @else {
     <model-viewer
       class="model-viewer"
-      alt=""
-      [src]="tissue().threeDimImage"
+      [alt]="viewerCardData().alt"
+      [src]="viewerCardData().threeDimImage"
       shadow-intensity="1"
       camera-controls
       auto-rotate
@@ -40,7 +39,7 @@
 
 <ng-template #objectMenu>
   <div class="object-menu">
-    <span class="tagline">{{ tissue().name }}</span>
+    <span class="tagline">{{ viewerCardData().name }}</span>
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
@@ -58,33 +57,33 @@
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
       <mat-divider class="menu-divider"></mat-divider>
-      <a mat-menu-item [href]="tissue().metadataUrl" target="_blank" rel="noopener noreferrer">
+      <a mat-menu-item [href]="viewerCardData().metadata" target="_blank" rel="noopener noreferrer">
         <mat-icon class="reset icon">database</mat-icon>
         View source data
       </a>
     </mat-menu>
     <mat-menu #submenu="matMenu">
       @if (variant() === 'ftu') {
-        <button mat-menu-item (click)="downloadClick($event, tissue().svg ?? '')">
+        <button mat-menu-item (click)="downloadClick($event, viewerCardData().svg ?? '')">
           <mat-icon>download</mat-icon>
           SVG
         </button>
-        <button mat-menu-item (click)="downloadClick($event, tissue().png ?? '')">
+        <button mat-menu-item (click)="downloadClick($event, viewerCardData().png ?? '')">
           <mat-icon>download</mat-icon>
           PNG
         </button>
-        <a mat-menu-item [href]="tissue().ai">
+        <a mat-menu-item [href]="viewerCardData().ai">
           <mat-icon>download</mat-icon>
           Adobe Illustrator
         </a>
       } @else {
-        <a mat-menu-item [href]="tissue().threeDimImage">
+        <a mat-menu-item [href]="viewerCardData().threeDimImage">
           <mat-icon>download</mat-icon>
           GLB
         </a>
       }
       <mat-divider class="menu-divider"></mat-divider>
-      <a mat-menu-item class="csv-button" [href]="tissue().csv">
+      <a mat-menu-item class="csv-button" [href]="viewerCardData().crosswalk">
         <mat-icon>download</mat-icon>
         <span class="csv-label">CSV-Crosswalk</span>
         <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
