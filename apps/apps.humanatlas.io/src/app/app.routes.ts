@@ -1,11 +1,17 @@
+import { inject } from '@angular/core';
 import { Route } from '@angular/router';
-import { CellPopulationPredictorComponent } from './pages/us1/cell-population-predictor/cell-population-predictor.component';
 import { CellPopulationPredictionsComponent } from './pages/us1/cell-population-predictions/cell-population-predictions.component';
-import { TissueOriginPredictorComponent } from './pages/us2/tissue-origin-predictor/tissue-origin-predictor.component';
-import { resolvePredictions } from './pages/us1/services/predictions.service';
+import { CellPopulationPredictorComponent } from './pages/us1/cell-population-predictor/cell-population-predictor.component';
 import { TissueOriginPredictionsComponent } from './pages/us2/tissue-origin-predictions/tissue-origin-predictions.component';
-import { resolveTissueOriginPredictions } from './pages/us2/services/tissue-origin.service';
+import { TissueOriginPredictorComponent } from './pages/us2/tissue-origin-predictor/tissue-origin-predictor.component';
 import { WebComponentsComponent } from './pages/us6/web-components.component';
+import { resolveInfo } from './resolvers/info.resolver';
+import { createPredictionsResolver } from './resolvers/predictions.resolver';
+import {
+  CellPopulationPredictionData,
+  HraPopPredictionsService,
+  TissuePredictionData,
+} from './services/hra-pop-predictions/hra-pop-predictions.service';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -13,27 +19,44 @@ export const appRoutes: Route[] = [
     path: 'us6',
     component: WebComponentsComponent,
   },
-
-  {
-    path: 'us1/result',
-    component: CellPopulationPredictionsComponent,
-    resolve: {
-      predictions: resolvePredictions,
-    },
-  },
   {
     path: 'us1',
-    component: CellPopulationPredictorComponent,
-  },
-  {
-    path: 'us2/result',
-    component: TissueOriginPredictionsComponent,
-    resolve: {
-      predictions: resolveTissueOriginPredictions,
-    },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: CellPopulationPredictorComponent,
+      },
+      {
+        path: 'result',
+        component: CellPopulationPredictionsComponent,
+        resolve: {
+          data: resolveInfo<CellPopulationPredictionData>,
+          predictions: createPredictionsResolver('/us1', (data: CellPopulationPredictionData) =>
+            inject(HraPopPredictionsService).getCellPopulationPredictions(data),
+          ),
+        },
+      },
+    ],
   },
   {
     path: 'us2',
-    component: TissueOriginPredictorComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: TissueOriginPredictorComponent,
+      },
+      {
+        path: 'result',
+        component: TissueOriginPredictionsComponent,
+        resolve: {
+          data: resolveInfo<TissuePredictionData>,
+          predictions: createPredictionsResolver('/us2', (data: TissuePredictionData) =>
+            inject(HraPopPredictionsService).getTissuePredictions(data),
+          ),
+        },
+      },
+    ],
   },
 ];
