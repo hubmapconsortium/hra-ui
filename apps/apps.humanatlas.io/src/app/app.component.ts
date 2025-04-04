@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
@@ -13,4 +15,14 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  /**
+   * Data for breadcrumbs in navigation header.
+   */
+  private readonly data = routeData();
+
+  /**
+   * Breadcrumbs data (computed from above signal).
+   */
+  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
+}
