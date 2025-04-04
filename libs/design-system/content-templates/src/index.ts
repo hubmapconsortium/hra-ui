@@ -1,1 +1,2 @@
+/** Placeholder */
 export const placeholder = '';
