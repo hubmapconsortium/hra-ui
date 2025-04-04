@@ -1,0 +1,83 @@
+.table-container {
+  margin-top: 3rem;
+  margin-bottom: 0.3125rem;
+
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
+
+  caption {
+    display: none;
+  }
+
+  .more-icon {
+    display: flex;
+  }
+
+  .predictions-table {
+    background-color: var(--mat-sys-secondary-container);
+    border-collapse: collapse;
+
+    th,
+    td {
+      font: var(--mat-sys-label-medium);
+      letter-spacing: var(--mat-sys-label-medium-tracking);
+      border: 0.0625rem solid var(--mat-sys-outline);
+    }
+
+    th {
+      color: var(--mat-sys-on-primary-container);
+      background-color: var(--mat-sys-surface-container);
+    }
+    td {
+      max-width: 16.38rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      color: var(--mat-sys-inverse-surface);
+      white-space: nowrap;
+
+      .link {
+        color: var(--mat-sys-on-tertiary-container);
+      }
+    }
+
+    .similarity-column {
+      text-align: center;
+    }
+  }
+
+  .table-overflow-container {
+    max-height: 22.625rem;
+    overflow-x: hidden;
+  }
+
+  // Remove default Material padding
+  ::ng-deep .mat-cell:first-of-type,
+  ::ng-deep .mat-header-cell:first-of-type {
+    padding-left: 1rem;
+  }
+
+  ::ng-deep .mat-cell:last-of-type,
+  ::ng-deep .mat-header-cell:last-of-type {
+    padding-right: 1rem;
+  }
+}
+
+::ng-deep .hra-app table[matSort] .mat-sort-header-container {
+  max-width: 13rem;
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: var(--mat-sys-primary);
+  }
+}
