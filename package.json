@@ -90,7 +90,7 @@
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",
     "stream-browserify": "^3.0.0",
-    "swiper": "^8.4.7",
+    "swiper": "^11.2.5",
     "three": "^0.169.0",
     "ts-cacheable": "^1.0.10",
     "tslib": "^2.3.0",
