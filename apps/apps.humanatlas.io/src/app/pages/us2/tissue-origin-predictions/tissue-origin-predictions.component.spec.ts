@@ -1,7 +1,6 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 import { MatSnackBarHarness } from '@angular/material/snack-bar/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -23,37 +22,6 @@ describe('TissueOriginPredictionsComponent', () => {
   it('should create', async () => {
     const result = render(TissueOriginPredictionsComponent, { providers });
     await expect(result).resolves.toBeTruthy();
-  });
-
-  it('downloads CSV file when user clicks on download CSV button for Anatomical Structures table', async () => {
-    global.URL.createObjectURL = jest.fn().mockReturnValue('mock-url');
-
-    const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-
-    const menu = await loader.getHarness(
-      MatMenuHarness.with({ selector: '.similar-anatomical-structures-menu-trigger' }),
-    );
-
-    await menu.clickItem({ text: /CSV/i });
-    const snackbar = await loader.getHarnessOrNull(MatSnackBarHarness);
-
-    expect(snackbar).toBeDefined();
-    expect(screen.queryByText(/File downloaded/)).toBeDefined();
-  });
-
-  it('downloads CSV file when user clicks on download CSV button for Similar Datasets table', async () => {
-    global.URL.createObjectURL = jest.fn().mockReturnValue('mock-url');
-
-    const { fixture } = await render(TissueOriginPredictionsComponent, { providers });
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-
-    const menu = await loader.getHarness(MatMenuHarness.with({ selector: '.similar-datasets-menu-trigger' }));
-    await menu.clickItem({ text: /CSV/i });
-
-    const snackbar = await loader.getHarnessOrNull(MatSnackBarHarness);
-    expect(snackbar).toBeDefined();
-    expect(screen.queryByText(/File downloaded/)).toBeDefined();
   });
 
   it('downloads JSON file when user clicks on download JSON-LD button', async () => {

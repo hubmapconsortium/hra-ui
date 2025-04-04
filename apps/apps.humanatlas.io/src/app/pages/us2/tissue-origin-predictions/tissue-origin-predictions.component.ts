@@ -18,16 +18,18 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { CellSummaryReport, SourceSimilarityRow } from '@hra-api/ng-client';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { CellSummaryReport } from '@hra-api/ng-client';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { saveAs } from 'file-saver';
-import { TissueOriginService, UserSelectionService } from '../services/tissue-origin.service';
+import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
+import { SimilarAnatomicalStructuresTableComponent } from './components/similar-anatomical-structures-table/similar-anatomical-structures-table.component';
+import { SimilarDatasetsTableComponent } from './components/similar-datasets-table/similar-datasets-table.component';
+import moment from 'moment';
 
 /** Script URL for EUI */
 const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
@@ -39,22 +41,16 @@ const STYLE_URLS = [
   'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined',
 ];
 
-/** Tooltip content */
-const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure,
-or extraction site. Cell summaries are computed from cell type counts in experimental datasets, obtained either via
-cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations (sc-proteomics datasets).`;
+/** Empty Inputs for Predictions page */
+const EMPTY_DATA: TissuePredictionData = {
+  file: new File([], ''),
+};
 
-/** Column names for Anatomical Structures table */
-const ANATOMICAL_STRUCTURES_COLUMN_NAMES = [
-  'Tool',
-  'Modality',
-  'Similarity',
-  'Anatomical Structure Label',
-  'Anatomical Structure ID',
-];
-
-/** Column names for Similar Datasets table */
-const DATASET_COLUMN_NAMES = ['Tool', 'Modality', 'Similarity', 'Datset Label', 'Dataset ID', 'Dataset Link'];
+/** Empty predictions */
+export const EMPTY_PREDICTIONS: CellSummaryReport = {
+  rui_locations: [],
+  sources: [],
+};
 
 /**
  * Tissue Origin Predictions result page
@@ -69,12 +65,12 @@ const DATASET_COLUMN_NAMES = ['Tool', 'Modality', 'Similarity', 'Datset Label', 
     MatSortModule,
     MatButton,
     MatMenuModule,
-
     WorkflowCardModule,
     OverlayModule,
     BackButtonBarComponent,
-    TooltipCardComponent,
     ScrollingModule,
+    SimilarAnatomicalStructuresTableComponent,
+    SimilarDatasetsTableComponent,
   ],
   templateUrl: './tissue-origin-predictions.component.html',
   styleUrl: './tissue-origin-predictions.component.scss',
@@ -82,29 +78,14 @@ const DATASET_COLUMN_NAMES = ['Tool', 'Modality', 'Similarity', 'Datset Label', 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TissueOriginPredictionsComponent {
+  /** Input data for predictions page */
+  readonly data = input<TissuePredictionData>(EMPTY_DATA);
+
+  /** Prediction date */
+  readonly predictionDate = moment(this.data().date).format('MMMM D, YYYY h:mm:ss A');
+
   /** Predictions */
-  readonly predictions = input<CellSummaryReport>({ sources: [], rui_locations: [] });
-
-  /** Data for Anatomical Structures table */
-  protected readonly anatomicalDataSource = new MatTableDataSource<SourceSimilarityRow>([]);
-
-  /** Data for Datasets table */
-  protected readonly datasetDataSource = new MatTableDataSource<SourceSimilarityRow>([]);
-
-  /** Sorting on Anatomical Structures table */
-  protected readonly sortOnAnatomicalData = viewChild.required<MatSort>('sort1');
-
-  /** Sorting on Datasets table */
-  protected readonly sortOnDatasetsData = viewChild.required<MatSort>('sort2');
-
-  /** Columns for anatomical structures table */
-  protected readonly anatomicalColumns = ['tool', 'modality', 'similarity', 'cell_source_label', 'cell_source'];
-
-  /** Tissue origin predictions service */
-  protected readonly tissueOriginPredictionService = inject(TissueOriginService);
-
-  /** User selection service */
-  protected readonly userSelectionService = inject(UserSelectionService);
+  readonly predictions = input<CellSummaryReport>(EMPTY_PREDICTIONS);
 
   /** Whether to show EUI */
   protected readonly euiOpen = signal<boolean>(false);
@@ -118,25 +99,8 @@ export class TissueOriginPredictionsComponent {
   /** For manuplating DOM elements */
   private readonly renderer = inject(Renderer2);
 
-  /** Columns for datasets table */
-  protected readonly datasetsColumns = [
-    'tool',
-    'modality',
-    'similarity',
-    'cell_source_label',
-    'cell_source',
-    'cell_source_link',
-  ];
-
   /** Scroll strategy */
   protected readonly scrollStrategy = inject(ScrollStrategyOptions).block();
-
-  /** Tooltip content */
-  protected readonly tooltip: TooltipContent[] = [
-    {
-      description: TOOLTIP_CONTENT,
-    },
-  ];
 
   /** Snackbar service */
   protected readonly snackbar = inject(SnackbarService);
@@ -166,20 +130,6 @@ export class TissueOriginPredictionsComponent {
   constructor() {
     this.setupScriptAndStyleTags();
 
-    effect(() => {
-      this.anatomicalDataSource.data = this.predictions().sources.filter(
-        (source) => source.cell_source_type === 'http://purl.org/ccf/AnatomicalStructure',
-      );
-      this.datasetDataSource.data = this.predictions().sources.filter(
-        (source) => source.cell_source_type === 'http://purl.org/ccf/Dataset',
-      );
-    });
-
-    effect(() => {
-      this.anatomicalDataSource.sort = this.sortOnAnatomicalData();
-      this.datasetDataSource.sort = this.sortOnDatasetsData();
-    });
-
     effect((cleanup) => {
       if (this.euiOpen()) {
         const scrollTop = this.document.scrollingElement?.scrollTop ?? 0;
@@ -197,40 +147,6 @@ export class TissueOriginPredictionsComponent {
     const fileToSave = new Blob([jsonString], { type: 'application/json' });
     saveAs(fileToSave, 'rui_locations.jsonld');
     this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
-  }
-
-  /** Triggered when clicked on download CSV button  */
-  onDownloadCSVButtonClicked(type: string) {
-    const csvString = this.convertToCSV(type);
-    const fileToSave = new Blob([csvString], { type: 'text/csv' });
-    saveAs(fileToSave, `${type}.csv`);
-    this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
-  }
-
-  /** Utility function to convert table data to CSV string */
-  convertToCSV(type: string): string {
-    const fields = [
-      'tool',
-      'modality',
-      'similarity',
-      'cell_source_label',
-      'cell_source',
-    ] as (keyof SourceSimilarityRow)[];
-
-    if (type === 'anatomical') {
-      const headers = ANATOMICAL_STRUCTURES_COLUMN_NAMES.join(',') + '\n';
-      const data = this.anatomicalDataSource.data;
-      const rows = data.map((row) => fields.map((field) => row[field]).join(',')).join('\n');
-
-      return headers + rows;
-    }
-    fields.push('cell_source_link');
-
-    const headers = DATASET_COLUMN_NAMES.join(',') + '\n';
-    const data = this.datasetDataSource.data;
-    const rows = data.map((row) => fields.map((field) => row[field]).join(',')).join('\n');
-
-    return headers + rows;
   }
 
   /** Method that sets script and link tags with appropriate URLs */
