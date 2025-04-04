@@ -1,30 +1,18 @@
-import { render, screen } from '@testing-library/angular';
-import { ProductLogoComponent } from './product-logo.component';
-import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideIcons } from '@hra-ui/cdk/icons';
+import { render } from '@testing-library/angular';
+import { getProductLogoIds, ProductLogoComponent } from './product-logo.component';
 
 describe('ProductLogoComponent', () => {
-  it('it should render the large logo', async () => {
-    await render(ProductLogoComponent, {
-      inputs: {
-        name: 'code',
-        size: 'large',
-      },
-      providers: [provideIcons(), provideHttpClient()],
-    });
-    const icon = screen.getByTestId('product-logo');
-    expect(icon.classList.contains('small')).toBeFalsy();
-  });
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
 
-  it('it should render the small logo', async () => {
-    await render(ProductLogoComponent, {
-      inputs: {
-        name: 'code',
-        size: 'small',
-      },
-      providers: [provideIcons(), provideHttpClient()],
+  it('should render', async () => {
+    const promise = render(ProductLogoComponent, {
+      inputs: { id: getProductLogoIds()[0] },
+      providers,
     });
-    const icon = screen.getByTestId('product-logo');
-    expect(icon.classList.contains('small')).toBeTruthy();
+
+    await expect(promise).resolves.toBeDefined();
   });
 });
