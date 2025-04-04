@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, InjectionToken, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIcon } from '@angular/material/icon';
@@ -28,7 +28,7 @@ export class UiSectionComponent {
   /** Product image path */
   readonly imagePath = input.required<string>();
   /** Product logo */
-  readonly logo = input.required({ transform: toProductLogoId });
+  readonly logoPath = input.required<string>();
   /** App software status */
   readonly appStatus = input<SoftwareStatus>();
   /** App url */
