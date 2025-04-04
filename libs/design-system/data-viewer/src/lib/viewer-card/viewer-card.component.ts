@@ -35,10 +35,10 @@ export class ViewerCardComponent {
   openImageViewer(content: TemplateRef<unknown>): void {
     this.dialog.open(content, {
       panelClass: 'viewer-card-modal',
-      height: '880px',
-      width: '880px',
-      maxHeight: '880px',
-      maxWidth: '880px',
+      height: '100%',
+      width: '100%',
+      maxHeight: '100%',
+      maxWidth: '100%',
     });
   }
 

@@ -12,14 +12,14 @@
     <ng-template #imageContent>
       <div class="dialog-container">
         <div class="dialog-header">
-          <div mat-dialog-title>{{ tissue().name }}</div>
+          <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
           <div class="filler"></div>
           <button mat-icon-button>
             <mat-icon (click)="close()">clear</mat-icon>
           </button>
         </div>
         <div class="img-container">
-          <img [src]="tissue().svg" class="dialog-image" alt="" />
+          <img class="dialog-image" [src]="tissue().svg" alt="" />
         </div>
       </div>
     </ng-template>
@@ -36,55 +36,59 @@
   }
 </div>
 
-<div class="object-menu">
-  <span class="tagline">{{ tissue().name }}</span>
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    hraIconButtonSize="large"
-    aria-label="Icon to open nested menu"
-    hraMicroTooltip="More"
-  >
-    <mat-icon>more_vert</mat-icon>
-  </button>
+<ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="submenu">
-      <mat-icon>download</mat-icon>
-      Downloads
-      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+<ng-template #objectMenu>
+  <div class="object-menu">
+    <span class="tagline">{{ tissue().name }}</span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      hraIconButtonSize="large"
+      aria-label="Icon to open nested menu"
+      hraMicroTooltip="More"
+    >
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-divider class="menu-divider"></mat-divider>
-    <a mat-menu-item [href]="tissue().metadataUrl" target="_blank" rel="noopener noreferrer">
-      <mat-icon class="reset icon">database</mat-icon>
-      View source data
-    </a>
-  </mat-menu>
-  <mat-menu #submenu="matMenu">
-    @if (variant() === 'ftu') {
-      <button mat-menu-item (click)="downloadClick($event, tissue().svg ?? '')">
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="submenu">
         <mat-icon>download</mat-icon>
-        SVG
+        Downloads
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="downloadClick($event, tissue().png ?? '')">
-        <mat-icon>download</mat-icon>
-        PNG
-      </button>
-      <a mat-menu-item [href]="tissue().ai">
-        <mat-icon>download</mat-icon>
-        Adobe Illustrator
+      <mat-divider class="menu-divider"></mat-divider>
+      <a mat-menu-item [href]="tissue().metadataUrl" target="_blank" rel="noopener noreferrer">
+        <mat-icon class="reset icon">database</mat-icon>
+        View source data
       </a>
-    } @else {
-      <a mat-menu-item [href]="tissue().threeDimImage">
+    </mat-menu>
+    <mat-menu #submenu="matMenu">
+      @if (variant() === 'ftu') {
+        <button mat-menu-item (click)="downloadClick($event, tissue().svg ?? '')">
+          <mat-icon>download</mat-icon>
+          SVG
+        </button>
+        <button mat-menu-item (click)="downloadClick($event, tissue().png ?? '')">
+          <mat-icon>download</mat-icon>
+          PNG
+        </button>
+        <a mat-menu-item [href]="tissue().ai">
+          <mat-icon>download</mat-icon>
+          Adobe Illustrator
+        </a>
+      } @else {
+        <a mat-menu-item [href]="tissue().threeDimImage">
+          <mat-icon>download</mat-icon>
+          GLB
+        </a>
+      }
+      <mat-divider class="menu-divider"></mat-divider>
+      <a mat-menu-item class="csv-button" [href]="tissue().csv">
         <mat-icon>download</mat-icon>
-        GLB
+        <span class="csv-label">CSV-Crosswalk</span>
+        <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
       </a>
-    }
-    <mat-divider class="menu-divider"></mat-divider>
-    <a mat-menu-item class="csv-button" [href]="tissue().csv">
-      <mat-icon>download</mat-icon>
-      <span class="csv-label">CSV-Crosswalk</span>
-      <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
-    </a>
-  </mat-menu>
-</div>
+    </mat-menu>
+  </div>
+</ng-template>
