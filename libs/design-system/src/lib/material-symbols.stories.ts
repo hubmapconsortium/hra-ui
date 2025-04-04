@@ -60,7 +60,7 @@ export const CustomSymbols: Story = {
 
 export const OrganIcons: Story = {
   args: {
-    name: 'organ:blood',
+    name: 'organ:all_organs',
     color: 'black',
     size: 4,
   },
@@ -68,6 +68,7 @@ export const OrganIcons: Story = {
     name: {
       control: 'select',
       options: [
+        'organ:all_organs',
         'organ:bladder',
         'organ:blood',
         'organ:bone_marrow',
