@@ -234,7 +234,7 @@ const testFtuVersionData: OrganVersionData[] = [
 const testOrganData1: OrganData[] = [
   {
     name: 'All Organs',
-    image: 'product:vccf',
+    image: 'organ:all_organs',
     tissueData: [
       {
         name: 'Female',
@@ -268,6 +268,36 @@ const testOrganData1: OrganData[] = [
     ],
   },
   {
+    name: 'Eye',
+    image: 'organ:eye',
+    tissueData: [
+      {
+        name: 'Female, L',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-left/v1.3/assets/3d-vh-f-eye-l.glb',
+      },
+      {
+        name: 'Female, R',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/eye-female-right/v1.3',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-right/v1.3/assets/3d-vh-f-eye-r.glb',
+      },
+      {
+        name: 'Male, L',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-left/v1.3/assets/3d-vh-m-eye-l.glb',
+      },
+      {
+        name: 'Male, R',
+        metadataUrl: 'https://purl.humanatlas.io/ref-organ/eye-male-right/v1.3',
+        threeDimImage:
+          'https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/3d-vh-m-eye-r.glb',
+      },
+    ],
+  },
+  {
     name: 'Fallopian Tube',
     image: 'organ:fallopian_tube_left',
     tissueData: [
@@ -290,7 +320,7 @@ const testOrganData1: OrganData[] = [
 const testOrganData2: OrganData[] = [
   {
     name: 'All Organs',
-    image: 'product:vccf',
+    image: 'organ:all_organs',
     tissueData: [
       {
         name: 'Female',
