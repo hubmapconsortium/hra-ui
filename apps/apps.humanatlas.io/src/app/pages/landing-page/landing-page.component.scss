@@ -20,10 +20,6 @@
     height: 34.375rem;
     background:
       linear-gradient(0deg, var(--mat-sys-surface-dim), var(--mat-sys-surface-dim)), linear-gradient(172.57deg, var(--mat-sys-surface-dim) 29.28%, var(--mat-sys-surface-dim) 92.6%);
-
-    &.mobile-view {
-      height: 46.1875rem;
-    }
   }
 
   .splash-header-content {
@@ -42,10 +38,6 @@
       text-align: center;
       color: var(--mat-sys-on-background);
     }
-
-    &.mobile-view {
-      padding: 9rem 1rem 6rem 1rem;
-    }
   }
 
   @include mat.button-toggle-overrides(
@@ -62,10 +54,6 @@
     flex-direction: column;
     align-items: center;
     padding: 0rem 2.5rem 6rem 2.5rem;
-
-    &.mobile-view {
-      padding: 0rem 1rem 6rem 1rem;
-    }
   }
   .apps-header-text {
     @include utils.use-font(headline, large);
@@ -83,12 +71,34 @@
     gap: 6rem;
     max-width: 106.25rem;
     width: 100%;
+  }
 
-    &.mobile-view {
-      max-width: 24.875rem;
+  @media (min-width: 320px) and (max-width: 639px) {
+    .splash-header-img {
+      height: 46.1875rem;
     }
 
-    &.desktop-view {
+    .splash-header-content{
+      padding: 9rem 1rem 6rem 1rem;
+    }
+
+    .apps-container {
+      padding: 0rem 1rem 6rem 1rem;
+    }
+
+    .apps-list {
+      max-width: 24.875rem;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 999px) {
+    .apps-list {
+      max-width: 56.25rem;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1920px) {
+    .apps-list {
       max-width: 75rem;
     }
   }

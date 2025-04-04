@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { UiSectionComponent } from '@hra-ui/design-system/ui-section';
-import { RESEARCHER_CONSTRUCT_APPS, RESEARCHER_USE_APPS, DEVELOPER_APPS } from './static-data/parsed';
+import { RESEARCHER_APPS, DEVELOPER_APPS } from './static-data/parsed';
 
 @Component({
   selector: 'hra-landing-page',
@@ -15,18 +14,14 @@ import { RESEARCHER_CONSTRUCT_APPS, RESEARCHER_USE_APPS, DEVELOPER_APPS } from '
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  protected readonly researcherUseApps = RESEARCHER_USE_APPS;
-  protected readonly researcherConstructApps = RESEARCHER_CONSTRUCT_APPS;
+  protected readonly researcherApps = RESEARCHER_APPS;
   protected readonly developerApps = DEVELOPER_APPS;
 
   protected readonly researcherAppsTitle = 'Researcher Apps';
   protected readonly developerAppsTitle = 'Developer Apps';
 
-  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
-  protected readonly isDesktop = watchBreakpoint(Breakpoints.Desktop);
-
   protected readonly toggleText = signal(this.researcherAppsTitle);
   protected readonly isResearcherApps = computed(() => this.toggleText() === this.researcherAppsTitle);
 
-  protected readonly apps = computed(() => (this.isResearcherApps() ? this.researcherUseApps : this.developerApps));
+  protected readonly apps = computed(() => (this.isResearcherApps() ? this.researcherApps : this.developerApps));
 }
