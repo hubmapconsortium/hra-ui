@@ -1,10 +1,7 @@
-<div class="header-content" [class.hidden]="size() !== 1">
+<div class="header-content">
   <ng-content select="header-content"></ng-content>
 </div>
-<hra-section-link class="header" [size]="size()" [tagline]="tagline()"></hra-section-link>
-@if (showDivider()) {
-  <mat-divider />
-}
+
 <div class="content">
   <ng-content select="section-content"></ng-content>
 </div>

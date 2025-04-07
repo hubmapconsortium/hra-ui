@@ -1,40 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  numberAttribute,
+} from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-
-/** Returns font and letter spacing css variables according to header size */
-const HEADER_FONTS: Record<number, string[]> = {
-  1: ['var(--mat-sys-display-medium)', 'var(--mat-sys-display-medium-tracking)'],
-  2: ['var(--mat-sys-headline-large)', 'var(--mat-sys-headline-large-tracking)'],
-  3: ['var(--mat-sys-headline-medium)', 'var(--mat-sys-headline-medium-tracking)'],
-  4: ['var(--mat-sys-headline-small)', 'var(--mat-sys-headline-small-tracking)'],
-  5: ['var(--mat-sys-title-large)', 'var(--mat-sys-title-large-tracking)'],
-  6: ['var(--mat-sys-title-medium)', 'var(--mat-sys-title-medium-tracking)'],
-};
+import { Router } from '@angular/router';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Section header with link for navigation
  */
 @Component({
   selector: 'hra-section-link',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatDividerModule, MatIconModule, ButtonsModule],
   templateUrl: './section-link.component.html',
   styleUrl: './section-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.id]': 'linkId()',
+    '[attr.id]': 'anchor() || null',
+    '[class]': '"hra-section-link-level-" + level()',
   },
 })
 export class SectionLinkComponent {
-  /** Size of header font */
-  readonly size = input.required<number>();
+  readonly level = input.required({ transform: numberAttribute });
+  readonly anchor = input<string>();
+  readonly underlined = input(false, { transform: booleanAttribute });
 
-  /** Header text */
-  readonly tagline = input.required<string>();
-
-  /** Gets the appropriate header font and letter spacing */
-  protected readonly headerFont = computed(() => HEADER_FONTS[this.size()] ?? HEADER_FONTS[1]);
-
-  /** Generates the id for the section link */
-  protected readonly linkId = computed(() => this.tagline().toLowerCase().replace(' ', '-'));
+  private readonly baseUrl = inject(Router).url.split('#')[0];
+  protected readonly href = computed(() => `${this.baseUrl}#${this.anchor()}`);
 }
