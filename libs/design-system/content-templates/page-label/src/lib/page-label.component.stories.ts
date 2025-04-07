@@ -1,8 +1,8 @@
+import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { PageLabelComponent } from './page-label.component';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
-import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
 
 const meta: Meta<PageLabelComponent> = {
   component: PageLabelComponent,
@@ -19,7 +19,6 @@ const meta: Meta<PageLabelComponent> = {
     }),
   ],
   args: {
-    app: 'ftu',
     tagline: 'Page label',
   },
   argTypes: {
@@ -33,16 +32,40 @@ const meta: Meta<PageLabelComponent> = {
 export default meta;
 type Story = StoryObj<PageLabelComponent>;
 
-export const AppOnly: Story = {
+export const App: Story = {
+  args: {
+    app: 'ftu',
+  },
   render: (args) => ({
     props: args,
     styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
   }),
 };
 
-export const WithOrgan: Story = {
+export const Organ: Story = {
   args: {
-    organ: 'blood',
+    organ: 'bladder',
+  },
+  render: (args) => ({
+    props: args,
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
+  }),
+};
+
+export const WebsiteCategory: Story = {
+  args: {
+    category: 'data',
+  },
+  render: (args) => ({
+    props: args,
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
+  }),
+};
+
+export const Multiple: Story = {
+  args: {
+    app: 'ftu',
+    organ: 'bladder',
   },
   render: (args) => ({
     props: args,

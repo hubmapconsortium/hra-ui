@@ -1,12 +1,12 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PageLabelComponent } from '@hra-ui/design-system/content-templates//page-label';
+import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { PageSectionComponent } from './page-section.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MatIconModule } from '@angular/material/icon';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
-import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PageLabelComponent } from '@hra-ui/design-system/content-templates//page-label';
 
 const meta: Meta<PageSectionComponent> = {
   component: PageSectionComponent,
