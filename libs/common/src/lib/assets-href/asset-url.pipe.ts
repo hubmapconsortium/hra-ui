@@ -1,6 +1,6 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
+import { buildAssetUrl } from './asset-url';
 import { APP_ASSETS_HREF } from './tokens';
-import { Location } from '@angular/common';
 
 /** Pipe for resolving asset urls */
 @Pipe({
@@ -18,7 +18,6 @@ export class AssetUrlPipe implements PipeTransform {
    * @returns An resolved url
    */
   transform(path: string, type?: 'css'): string {
-    const url = Location.joinWithSlash(this.assetsHref(), path);
-    return type === 'css' ? `url("${url}")` : url;
+    return buildAssetUrl(this.assetsHref(), path, type);
   }
 }
