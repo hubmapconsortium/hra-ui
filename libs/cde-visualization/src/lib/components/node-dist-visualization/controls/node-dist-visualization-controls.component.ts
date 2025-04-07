@@ -1,6 +1,7 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
 /**
@@ -8,7 +9,8 @@ import { ViewMode } from '@hra-ui/node-dist-vis/models';
  */
 @Component({
   selector: 'cde-node-dist-visualization-controls',
-  imports: [MatIconModule, ButtonsModule],
+  standalone: true,
+  imports: [MatIconModule, ButtonsModule, MicroTooltipDirective],
   templateUrl: './node-dist-visualization-controls.component.html',
   styleUrl: './node-dist-visualization-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
