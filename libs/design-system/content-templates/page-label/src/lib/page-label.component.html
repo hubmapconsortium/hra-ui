@@ -1,0 +1,7 @@
+<div class="header-icons">
+  <hra-product-logo [id]="appId()" class="product-logo"></hra-product-logo>
+  @if (organId()) {
+    <hra-organ-logo [id]="organId()!" class="organ-logo"></hra-organ-logo>
+  }
+</div>
+<hra-section-link level="1" [anchor]="anchor()" underlined="true">{{ tagline() }}</hra-section-link>

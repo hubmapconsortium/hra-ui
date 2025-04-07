@@ -1,0 +1,51 @@
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
+import { PageLabelComponent } from './page-label.component';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
+
+const meta: Meta<PageLabelComponent> = {
+  component: PageLabelComponent,
+  title: 'Design System/Content Templates/PageLabel',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2769-16877',
+    },
+  },
+  decorators: [
+    moduleMetadata({
+      imports: [ProductLogoComponent, OrganLogoComponent],
+    }),
+  ],
+  args: {
+    app: 'ftu',
+    tagline: 'Page label',
+  },
+  argTypes: {
+    anchor: {
+      control: 'select',
+      options: [undefined, 'anchor'],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<PageLabelComponent>;
+
+export const AppOnly: Story = {
+  render: (args) => ({
+    props: args,
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
+  }),
+};
+
+export const WithOrgan: Story = {
+  args: {
+    organ: 'blood',
+  },
+  render: (args) => ({
+    props: args,
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
+  }),
+};

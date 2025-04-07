@@ -1,0 +1,13 @@
+:host {
+  .header-icons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-logo,
+  .organ-logo {
+    height: 4rem;
+    width: 4rem;
+  }
+}
