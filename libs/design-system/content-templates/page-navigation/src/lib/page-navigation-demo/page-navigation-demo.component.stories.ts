@@ -4,7 +4,7 @@ import { PageNavigationDemoComponent } from './page-navigation-demo.component';
 
 const meta: Meta<PageNavigationDemoComponent> = {
   component: PageNavigationDemoComponent,
-  title: 'Design System/Content Template/PageNavigation',
+  title: 'Design System/Content Templates/PageNavigation',
   parameters: {
     design: {
       type: 'figma',

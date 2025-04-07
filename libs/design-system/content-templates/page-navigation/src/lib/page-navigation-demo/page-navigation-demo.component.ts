@@ -1,11 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 
 import { PageNavigationComponent, Section } from '../page-navigation/page-navigation.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
 
 /** Test section data */
 const TEST_SECTIONS: Section[] = [
@@ -51,12 +52,13 @@ const TEST_SECTIONS: Section[] = [
 @Component({
   selector: 'hra-page-navigation-demo',
   imports: [
-    CommonModule,
+    HraCommonModule,
     PageSectionComponent,
-    ProductLogoComponent,
     MatIconModule,
     ButtonsModule,
     PageNavigationComponent,
+    SectionLinkComponent,
+    PageLabelComponent,
   ],
   templateUrl: './page-navigation-demo.component.html',
   styleUrl: './page-navigation-demo.component.scss',
@@ -66,7 +68,4 @@ const TEST_SECTIONS: Section[] = [
 export class PageNavigationDemoComponent {
   /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
-
-  /** App id converted to proper format */
-  protected readonly appId = computed(() => toProductLogoId('cde'));
 }

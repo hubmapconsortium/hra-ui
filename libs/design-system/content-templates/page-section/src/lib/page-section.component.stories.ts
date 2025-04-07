@@ -1,16 +1,31 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PageLabelComponent } from '@hra-ui/design-system/content-templates//page-label';
+import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { PageSectionComponent } from './page-section.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MatIconModule } from '@angular/material/icon';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
+
+interface ExtraArgs {
+  text: string;
+}
 
 const meta: Meta<PageSectionComponent> = {
   component: PageSectionComponent,
-  title: 'Design System/Content Template/PageSection',
+  title: 'Design System/Content Templates/PageSection',
   decorators: [
     moduleMetadata({
-      imports: [PageSectionComponent, ButtonsModule, MatIconModule, ProductLogoComponent],
+      imports: [
+        PageSectionComponent,
+        ButtonsModule,
+        MatIconModule,
+        ProductLogoComponent,
+        SectionLinkComponent,
+        PageLabelComponent,
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }),
   ],
   parameters: {
@@ -22,23 +37,15 @@ const meta: Meta<PageSectionComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<PageSectionComponent>;
+type Story = StoryObj<PageSectionComponent & ExtraArgs>;
 
-export const MainHeader: Story = {
-  args: {
-    tagline: 'Page label',
-  },
+export const PageLabelSection: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-page-section tagline="${args.tagline}" size=1 [showDivider]="true">
+    <hra-page-section>
       <header-content>
-        <div class="header-icons">
-          <hra-product-logo name="ftu" size="large"></hra-product-logo>
-          <div class="icon-background">
-            <mat-icon class="header-icon" svgIcon="organ:blood"></mat-icon>
-          </div>
-        </div>
+        <hra-page-label app="ftu" organ="blood" tagline="Page label"></hra-page-label>
       </header-content>
       <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
@@ -54,43 +61,23 @@ export const MainHeader: Story = {
       </section-content>
     </hra-page-section>
     `,
-    styles: [
-      `.header-icons {
-        display: flex;
-        gap: .75rem;
-      }`,
-      `.icon-background {
-        height: 4rem;
-        width: 4rem;
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--mat-sys-tertiary);
-      }`,
-      `.header-icon {
-        --mat-icon-color: var(--mat-sys-on-primary);
-        height: 60%;
-        width: 60%;
-      }`,
-      `ul {
-        margin: 0;
-        margin-bottom: 1.5rem;
-      }`,
-    ],
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
   }),
 };
 
 export const BodySection: Story = {
   args: {
-    tagline: 'Section label in sentence case',
-    size: 2,
-    showDivider: false,
+    text: 'Section label in sentence case',
   },
   render: (args) => ({
     props: args,
     template: `
-    <hra-page-section tagline="${args.tagline}" size="${args.size}" [showDivider]="${args.showDivider}">
+    <hra-page-section>
+      <header-content>
+        <hra-section-link level="2" anchor="section-label-in-sentence-case" underlined>
+          ${args.text}
+        </hra-section-link>
+      </header-content>
       <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
@@ -104,11 +91,6 @@ export const BodySection: Story = {
       </section-content>
     </hra-page-section>
     `,
-    styles: [
-      `ul {
-        margin: 0;
-        margin-bottom: 1.5rem;
-      }`,
-    ],
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
   }),
 };

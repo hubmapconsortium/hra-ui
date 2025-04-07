@@ -4,9 +4,13 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { SectionLinkComponent } from './section-link.component';
 
-const meta: Meta<SectionLinkComponent> = {
+interface ExtraArgs {
+  text: string;
+}
+
+const meta: Meta<SectionLinkComponent & ExtraArgs> = {
   component: SectionLinkComponent,
-  title: 'Design System/Content Template/SectionLink',
+  title: 'Design System/Content Templates/SectionLink',
   decorators: [
     moduleMetadata({
       imports: [SectionLinkComponent, ButtonsModule, MatIconModule],
@@ -19,15 +23,33 @@ const meta: Meta<SectionLinkComponent> = {
     },
   },
   args: {
-    tagline: 'Heading',
-    size: 1,
+    level: 1,
+    anchor: 'anchor',
+    underlined: false,
+    text: 'Section Link',
   },
   render: (args) => ({
     props: args,
+    styles: ['.hra-app { margin: 0 2rem; }'],
+    template: `<hra-section-link level="${args.level}" anchor="${args.anchor}" underlined="${args.underlined}">
+        ${args.text}
+      </hra-section-link>`,
   }),
 };
 
 export default meta;
-type Story = StoryObj<SectionLinkComponent>;
+type Story = StoryObj<SectionLinkComponent & ExtraArgs>;
 
-export const Primary: Story = {};
+export const Default: Story = {};
+
+export const LongText: Story = {
+  args: {
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.',
+  },
+};
+
+export const Underlined: Story = {
+  args: {
+    underlined: true,
+  },
+};

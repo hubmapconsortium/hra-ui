@@ -4,7 +4,7 @@
       mat-icon-button
       [matMenuTriggerFor]="menu"
       hraIconButtonSize="large"
-      aria-label="Icon to open nested menu"
+      aria-label="Open the tissue block settings' action menu"
       hraMicroTooltip="More"
     >
       <mat-icon>more_vert</mat-icon>
@@ -30,12 +30,13 @@
       </button>
     </mat-menu>
   </hra-expansion-panel-actions>
+
   <hra-expansion-panel-header-content>
     <button
       mat-icon-button
       [matMenuTriggerFor]="help"
       hraIconButtonSize="large"
-      aria-label="Icon to open nested menu"
+      aria-label="Open the tissue block settings' help menu"
       hraMicroTooltip="App guides and training resources"
     >
       <mat-icon>help</mat-icon>
@@ -61,6 +62,7 @@
       </a>
     </mat-menu>
   </hra-expansion-panel-header-content>
+
   <div class="position">
     <span class="label">Position</span>
     <div class="x-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
@@ -76,20 +78,19 @@
       <span class="position-value">{{ (position$ | async)?.z }}</span>
     </div>
   </div>
+
   <ccf-block-size-input
     #blocksize
     [blockSize]="(model.blockSize$ | async)!"
     (blockSizeChange)="model.setBlockSize($event)"
   >
   </ccf-block-size-input>
-
   <ccf-rotation-slider
     #rotation
     [rotation]="$any(model.rotation$ | async)"
     (rotationChange)="model.setRotation($event)"
   >
   </ccf-rotation-slider>
-
   <ccf-slices-input
     #slices
     [slicesConfig]="$any(model.slicesConfig$ | async)"
@@ -97,18 +98,42 @@
   >
   </ccf-slices-input>
 </hra-expansion-panel>
+
 <hra-expansion-panel tagline="Anatomical Structure Tags" class="as-tags">
+  <hra-expansion-panel-actions>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="asTagsActionMenu"
+      hraIconButtonSize="large"
+      aria-label="Open the anatomical structure tags' action menu"
+      hraMicroTooltip="More"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #asTagsActionMenu="matMenu" class="settings-overlay">
+      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="astags.reset()">
+        Reset all anatomical structure tags
+      </button>
+    </mat-menu>
+  </hra-expansion-panel-actions>
+
   <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
-  <ccf-tag-list
-    *ngIf="(model.organ$ | async)?.name; else tagListPlaceholder"
-    class="tag-list"
-    [tags]="(astags.tags$ | async) ?? []"
-    (tagRemoved)="astags.removeTag($event)"
-  >
-  </ccf-tag-list>
-  <ng-template #tagListPlaceholder> </ng-template>
+  @if (addedTags().length > 0) {
+    <ccf-tag-list class="tag-list" label="Added" [tags]="addedTags()" (tagRemoved)="astags.removeTag($event)">
+    </ccf-tag-list>
+  }
+  @if (assignedTags().length > 0) {
+    <ccf-tag-list class="tag-list" label="Detected" [tags]="assignedTags()" (tagRemoved)="astags.removeTag($event)">
+    </ccf-tag-list>
+  }
+  @if (removedTags().length > 0) {
+    <ccf-tag-list class="tag-list" label="Removed" [tags]="removedTags()" (tagRemoved)="astags.removeTag($event)">
+    </ccf-tag-list>
+  }
 </hra-expansion-panel>
+
 <div style="flex-grow: 1"></div>
+
 <div class="buttons">
   <button mat-button hraButtonSize="medium" (click)="metadata.openModal('edit')">Edit Metadata</button>
 
