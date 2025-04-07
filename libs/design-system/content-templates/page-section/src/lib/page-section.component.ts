@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
 /**
- * Section of page containing content and a section header withlink for navigation
+ * Section of page containing content and a section header
  */
 @Component({
   selector: 'hra-page-section',

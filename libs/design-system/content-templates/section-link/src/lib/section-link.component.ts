@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
- * Section header with link for navigation
+ * Section link for navigation
  */
 @Component({
   selector: 'hra-section-link',
@@ -28,10 +28,18 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   },
 })
 export class SectionLinkComponent {
+  /** Level of header text */
   readonly level = input.required({ transform: numberAttribute });
+
+  /** Anchor for href */
   readonly anchor = input<string>();
+
+  /** Whether to display the underline */
   readonly underlined = input(false, { transform: booleanAttribute });
 
+  /** Base url */
   private readonly baseUrl = inject(Router).url.split('#')[0];
+
+  /** Href derived from base url and anchor */
   protected readonly href = computed(() => `${this.baseUrl}#${this.anchor()}`);
 }

@@ -8,6 +8,10 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { PageSectionComponent } from './page-section.component';
 
+interface ExtraArgs {
+  text: string;
+}
+
 const meta: Meta<PageSectionComponent> = {
   component: PageSectionComponent,
   title: 'Design System/Content Templates/PageSection',
@@ -33,7 +37,7 @@ const meta: Meta<PageSectionComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<PageSectionComponent>;
+type Story = StoryObj<PageSectionComponent & ExtraArgs>;
 
 export const PageLabelSection: Story = {
   render: (args) => ({
@@ -63,14 +67,17 @@ export const PageLabelSection: Story = {
 
 export const BodySection: Story = {
   args: {
-    tagline: 'Section label in sentence case',
-    size: 2,
-    showDivider: false,
+    text: 'Section label in sentence case',
   },
   render: (args) => ({
     props: args,
     template: `
     <hra-page-section>
+      <header-content>
+        <hra-section-link level="2" anchor="section-label-in-sentence-case" underlined>
+          ${args.text}
+        </hra-section-link>
+      </header-content>
       <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>

@@ -22,9 +22,8 @@ const meta: Meta<PageLabelComponent> = {
     tagline: 'Page label',
   },
   argTypes: {
-    anchor: {
-      control: 'select',
-      options: [undefined, 'anchor'],
+    includeLink: {
+      control: 'boolean',
     },
   },
 };
