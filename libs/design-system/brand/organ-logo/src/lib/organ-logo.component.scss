@@ -1,0 +1,15 @@
+:host {
+  --mat-icon-color: var(--mat-sys-on-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--mat-sys-corner-full);
+  background-color: var(--hra-organ-logo-background-color, #FF0043);
+
+  .logo {
+    height: 60%;
+    width: 60%;
+  }
+}
