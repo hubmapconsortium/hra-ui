@@ -1,0 +1,14 @@
+<div class="profile-card" [class.centered]="alignment() === 'center'">
+  <div class="picture">
+    <img [src]="pictureUrl()" alt="Profile Picture" />
+  </div>
+  <div class="content">
+    <div class="name">{{ name() }}</div>
+    <div class="description">{{ description() }}</div>
+  </div>
+  <div class="actions">
+    <a hraHyperlink [href]="actionUrl()" target="_blank" rel="noopener noreferrer" class="action-link">
+      Action <mat-icon>arrow_right_alt</mat-icon>
+    </a>
+  </div>
+</div>
