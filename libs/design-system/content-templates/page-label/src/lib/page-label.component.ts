@@ -28,13 +28,13 @@ export class PageLabelComponent {
   readonly tagline = input.required<string>();
 
   /** App icon */
-  readonly app = input<string>();
+  readonly app = input(undefined, { transform: toProductLogoId });
 
   /** Organ icon */
-  readonly organ = input<string>();
+  readonly organ = input(undefined, { transform: toOrganLogoId });
 
   /** Website category icon */
-  readonly category = input<string>();
+  readonly category = input(undefined, { transform: toCategoryLogoId });
 
   /** Whether to include a link for the page header */
   readonly includeLink = input<boolean>(false);
@@ -43,33 +43,6 @@ export class PageLabelComponent {
   protected readonly anchor = computed(() => {
     if (this.includeLink()) {
       return this.tagline().toLowerCase().replace(/\s+/g, '-');
-    }
-    return undefined;
-  });
-
-  /** Returns a valid app logo id */
-  protected readonly appId = computed(() => {
-    const app = this.app();
-    if (typeof app === 'string') {
-      return toProductLogoId(app);
-    }
-    return undefined;
-  });
-
-  /** Returns a valid organ logo id */
-  protected readonly organId = computed(() => {
-    const organ = this.organ();
-    if (typeof organ === 'string') {
-      return toOrganLogoId(organ);
-    }
-    return undefined;
-  });
-
-  /** Returns a valid category logo id */
-  protected readonly categoryId = computed(() => {
-    const category = this.category();
-    if (typeof category === 'string') {
-      return toCategoryLogoId(category);
     }
     return undefined;
   });

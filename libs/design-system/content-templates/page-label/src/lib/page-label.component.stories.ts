@@ -26,6 +26,10 @@ const meta: Meta<PageLabelComponent> = {
       control: 'boolean',
     },
   },
+  render: (args) => ({
+    props: args,
+    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
+  }),
 };
 
 export default meta;
@@ -35,30 +39,18 @@ export const App: Story = {
   args: {
     app: 'ftu',
   },
-  render: (args) => ({
-    props: args,
-    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
-  }),
 };
 
 export const Organ: Story = {
   args: {
     organ: 'bladder',
   },
-  render: (args) => ({
-    props: args,
-    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
-  }),
 };
 
 export const WebsiteCategory: Story = {
   args: {
     category: 'data',
   },
-  render: (args) => ({
-    props: args,
-    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
-  }),
 };
 
 export const Multiple: Story = {
@@ -66,8 +58,4 @@ export const Multiple: Story = {
     app: 'ftu',
     organ: 'bladder',
   },
-  render: (args) => ({
-    props: args,
-    styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
-  }),
 };
