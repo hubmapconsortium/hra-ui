@@ -61,8 +61,8 @@ export const CustomSymbols: Story = {
 export const OrganIcons: Story = {
   args: {
     name: 'organ:blood',
-    color: 'black',
-    size: 4,
+    color: 'red',
+    size: 6,
   },
   argTypes: {
     name: {

@@ -1,0 +1,179 @@
+{
+  "$schema": "../types/organ-logos.schema.json",
+  "logos": [
+    {
+      "id": "bladder",
+      "icon": "organ:bladder"
+    },
+    {
+      "id": "blood",
+      "icon": "organ:blood"
+    },
+    {
+      "id": "bone-marrow",
+      "icon": "organ:bone_marrow"
+    },
+    {
+      "id": "brain",
+      "icon": "organ:brain"
+    },
+    {
+      "id": "breast",
+      "icon": "organ:breast"
+    },
+    {
+      "id": "extrapulmonary-bronchus",
+      "icon": "organ:extrapulmonary_bronchus"
+    },
+    {
+      "id": "eye",
+      "icon": "organ:eye"
+    },
+    {
+      "id": "fallopian-tube-left",
+      "icon": "organ:fallopian_tube_left"
+    },
+    {
+      "id": "fallopian-tube-right",
+      "icon": "organ:fallopian_tube_right"
+    },
+    {
+      "id": "heart",
+      "icon": "organ:heart"
+    },
+    {
+      "id": "kidney-left",
+      "icon": "organ:kidney_left"
+    },
+    {
+      "id": "kidney-right",
+      "icon": "organ:kidney_right"
+    },
+    {
+      "id": "knee",
+      "icon": "organ:knee"
+    },
+    {
+      "id": "large-intestine",
+      "icon": "organ:large_intestine"
+    },
+    {
+      "id": "larynx",
+      "icon": "organ:larynx"
+    },
+    {
+      "id": "liver",
+      "icon": "organ:liver"
+    },
+    {
+      "id": "lung-left",
+      "icon": "organ:lung_left"
+    },
+    {
+      "id": "lung-right",
+      "icon": "organ:lung_right"
+    },
+    {
+      "id": "lungs",
+      "icon": "organ:lungs"
+    },
+    {
+      "id": "lymph-nodes",
+      "icon": "organ:lymph_nodes"
+    },
+    {
+      "id": "neurons",
+      "icon": "organ:neurons"
+    },
+    {
+      "id": "ovaries",
+      "icon": "organ:ovaries"
+    },
+    {
+      "id": "ovary-left",
+      "icon": "organ:ovary_left"
+    },
+    {
+      "id": "ovary-right",
+      "icon": "organ:ovary_right"
+    },
+    {
+      "id": "palatine-tonsil",
+      "icon": "organ:palatine_tonsil"
+    },
+    {
+      "id": "pancreas",
+      "icon": "organ:pancreas"
+    },
+    {
+      "id": "pelvis",
+      "icon": "organ:pelvis"
+    },
+    {
+      "id": "peripheral-nervous-system",
+      "icon": "organ:peripheral_nervous_system"
+    },
+    {
+      "id": "placenta",
+      "icon": "organ:placenta"
+    },
+    {
+      "id": "prostate",
+      "icon": "organ:prostate"
+    },
+    {
+      "id": "skin",
+      "icon": "organ:skin"
+    },
+    {
+      "id": "small-intestine",
+      "icon": "organ:small_intestine"
+    },
+    {
+      "id": "spinal-cord",
+      "icon": "organ:spinal_cord"
+    },
+    {
+      "id": "spleen",
+      "icon": "organ:spleen"
+    },
+    {
+      "id": "stomach",
+      "icon": "organ:stomach"
+    },
+    {
+      "id": "thymus",
+      "icon": "organ:thymus"
+    },
+    {
+      "id": "trachea",
+      "icon": "organ:trachea"
+    },
+    {
+      "id": "ureter-left",
+      "icon": "organ:ureter_left"
+    },
+    {
+      "id": "ureter-right",
+      "icon": "organ:ureter_right"
+    },
+    {
+      "id": "uterus",
+      "icon": "organ:uterus"
+    },
+    {
+      "id": "vasculature-thick",
+      "icon": "organ:vasculature_thick"
+    },
+    {
+      "id": "vasculature-thin",
+      "icon": "organ:vasculature_thin"
+    }
+  ],
+  "namespaceConfigs": [
+    {
+      "namespace": "organ",
+      "directory": "assets/brand/organ-logos/"
+    }
+  ]
+}
