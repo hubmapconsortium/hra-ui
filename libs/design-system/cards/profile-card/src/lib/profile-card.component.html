@@ -1,0 +1,12 @@
+<div class="profile-card" [class.centered]="alignment() === 'center'">
+  <div class="picture">
+    <img [src]="pictureUrl()" alt="Profile Picture" />
+  </div>
+  <div class="content">
+    <div class="name">{{ name() }}</div>
+    <div class="description">{{ description() }}</div>
+  </div>
+  <div class="actions">
+    <ng-content></ng-content>
+  </div>
+</div>
