@@ -1,0 +1,52 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: block;
+  width: fit-content;
+
+  .profile-card {
+    max-width: 272px;
+
+    .picture {
+      width: 11.25rem;
+      height: 13.375rem;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%);
+      border-left: 0.75rem solid #ff0043;
+      margin-bottom: 2rem;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .content {
+      margin-bottom: 1rem;
+
+      .name {
+        @include utils.use-font(title, medium);
+        color: var(--mat-sys-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .description {
+        @include utils.use-font(body, large);
+        color: var(--mat-sys-on-secondary-fixed);
+      }
+    }
+
+    .actions {
+      @include utils.use-font(label, large);
+    }
+
+    /* Style for centered alignment */
+    &.centered {
+      text-align: center;
+
+      .picture {
+        margin: 0 auto 2rem auto;
+      }
+    }
+  }
+}
