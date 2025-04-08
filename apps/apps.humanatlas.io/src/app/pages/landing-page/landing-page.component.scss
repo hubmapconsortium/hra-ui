@@ -19,7 +19,8 @@
     width: 100%;
     height: 34.375rem;
     background:
-      linear-gradient(0deg, var(--mat-sys-surface-dim), var(--mat-sys-surface-dim)), linear-gradient(172.57deg, var(--mat-sys-surface-dim) 29.28%, var(--mat-sys-surface-dim) 92.6%);
+      linear-gradient(0deg, var(--mat-sys-surface-dim), var(--mat-sys-surface-dim)),
+      linear-gradient(172.57deg, var(--mat-sys-surface-dim) 29.28%, var(--mat-sys-surface-dim) 92.6%);
   }
 
   .splash-header-content {
@@ -49,7 +50,7 @@
   );
 
   .apps-container {
-    background: linear-gradient(12.03deg, #EFF1F4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
+    background: linear-gradient(12.03deg, #eff1f4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,7 +79,7 @@
       height: 46.1875rem;
     }
 
-    .splash-header-content{
+    .splash-header-content {
       padding: 9rem 1rem 6rem 1rem;
     }
 
