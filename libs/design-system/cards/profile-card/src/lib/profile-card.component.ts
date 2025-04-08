@@ -1,7 +1,6 @@
 import { Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Alignment options */
 export type Alignment = 'left' | 'center';
@@ -11,7 +10,7 @@ export type Alignment = 'left' | 'center';
  */
 @Component({
   selector: 'hra-profile-card',
-  imports: [HraCommonModule, MatIconModule, TextHyperlinkDirective],
+  imports: [HraCommonModule, MatIconModule],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
 })
@@ -35,9 +34,4 @@ export class ProfileCardComponent {
    * Field for description
    */
   readonly description = input.required<string>();
-
-  /**
-   * Field for action URL
-   */
-  readonly actionUrl = input.required<string>();
 }

@@ -1,4 +1,4 @@
-@use '../../../styles/utils';
+@use '../../../../styles/utils';
 
 :host {
   display: block;
@@ -37,13 +37,7 @@
     }
 
     .actions {
-      .action-link {
-        display: inline-flex;
-        gap: 0.5rem;
-
-        @include utils.use-font(label, large);
-        color: var(--mat-sys-on-tertiary-fixed);
-      }
+      @include utils.use-font(label, large);
     }
 
     /* Style for centered alignment */

@@ -7,8 +7,6 @@
     <div class="description">{{ description() }}</div>
   </div>
   <div class="actions">
-    <a hraHyperlink [href]="actionUrl()" target="_blank" rel="noopener noreferrer" class="action-link">
-      Action <mat-icon>arrow_right_alt</mat-icon>
-    </a>
+    <ng-content></ng-content>
   </div>
 </div>
