@@ -1,12 +1,12 @@
 <div class="header-icons">
-  @if (appId()) {
-    <hra-product-logo [id]="appId()!" class="product-logo"></hra-product-logo>
+  @if (app(); as id) {
+    <hra-product-logo [id]="id" class="product-logo"></hra-product-logo>
   }
-  @if (organId()) {
-    <hra-organ-logo [id]="organId()!" class="organ-logo"></hra-organ-logo>
+  @if (organ(); as id) {
+    <hra-organ-logo [id]="id" class="organ-logo"></hra-organ-logo>
   }
-  @if (categoryId()) {
-    <hra-category-logo [id]="categoryId()!" class="category-logo"></hra-category-logo>
+  @if (category(); as id) {
+    <hra-category-logo [id]="id" class="category-logo"></hra-category-logo>
   }
 </div>
 <hra-section-link level="1" [anchor]="anchor()" underlined="true">{{ tagline() }}</hra-section-link>
