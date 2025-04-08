@@ -50,7 +50,6 @@ export const PageLabelSection: Story = {
       <section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
-          <li>Components may be swapped out for this button set</li>
           <li>Text always goes on top.</li>
           <li>Other components may be swapped out for the button set.</li>
         </ul>
