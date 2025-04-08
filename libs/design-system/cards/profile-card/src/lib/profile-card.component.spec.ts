@@ -9,7 +9,6 @@ describe('ProfileCardComponent', () => {
         pictureUrl: 'assets/ui-images/placeholder.png',
         name: 'Firstname Lastname',
         description: 'Occupation, Company',
-        actionUrl: 'https://google.com/',
       },
     });
 
