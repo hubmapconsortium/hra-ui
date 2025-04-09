@@ -27,7 +27,7 @@ export const AppCardsTabSchema = z.object({
 });
 
 /** Apps type. */
-export type Apps = z.infer<typeof AppCardsSchema>;
+export type AppCards = z.infer<typeof AppCardsSchema>;
 
 /** Schema for default structure of the app cards. */
 export const AppCardsSchema = z.object({

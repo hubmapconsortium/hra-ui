@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HraCommonModule } from '@hra-ui/common';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { httpResource } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, linkedSignal } from '@angular/core';
+import { assetsUrl, HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
-import { Apps } from './types/app-cards.schema';
-import { httpResource } from '@angular/common/http';
+import AppCardsSchema from './types/app-cards.schema';
+import { FormsModule } from '@angular/forms';
 
 /** Injection token for the window object */
 export const WINDOW = new InjectionToken<typeof window>('window', {
@@ -16,7 +15,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
 /** This component is used for rendering the landing page of the application. */
 @Component({
   selector: 'hra-landing-page',
-  imports: [CommonModule, HraCommonModule, MatButtonToggleModule, ButtonsModule, ContentTemplatesModule],
+  imports: [FormsModule, HraCommonModule, ButtonsModule, ContentTemplatesModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,25 +24,20 @@ export class LandingPageComponent {
   /** Global window object */
   private readonly window = inject(WINDOW);
 
-  /** Resource for loading app data */
-  protected readonly appsResource = httpResource<Apps>('/assets/apps.json');
-
-  /** Currently selected tab name */
-  protected readonly selectedTab = signal('Researcher Apps');
+  /** Tabs data resource */
+  private readonly tabsResource = httpResource(assetsUrl('assets/apps.json'), {
+    parse: (data) => AppCardsSchema.parse(data).tabs,
+    defaultValue: [],
+  });
 
   /** Available tabs */
-  protected readonly tabs = computed(() => this.appsResource.value()?.tabs ?? []);
+  protected readonly tabs = this.tabsResource.value;
 
-  /** Tab names for toggle-button-group */
-  protected readonly appsTitleOptions = computed(() => this.tabs().map((tab) => tab.name));
+  /** Active tab (undefined when tabs are empty) */
+  protected readonly activeTab = linkedSignal(() => this.tabs().at(0));
 
-  /** Currently selected tab object */
-  protected readonly currentTab = computed(() => this.tabs().find((tab) => tab.name === this.selectedTab()));
-
-  /** Toggles tab selection */
-  toggleSelection(tab: string): void {
-    this.selectedTab.set(tab);
-  }
+  /** Active section items */
+  protected readonly activeSections = computed(() => this.activeTab()?.sections ?? []);
 
   /** Open the app url */
   onOpenAppUrl(appUrl: string): void {
