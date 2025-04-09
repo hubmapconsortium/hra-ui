@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, InjectionToken } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -43,6 +43,10 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   });
 }
 
+/** View sample link URL */
+const SAMPLE_URL_LINK =
+  'https://github.com/x-atlas-consortia/hra-apps/blob/main/applications/us2-cell-to-spatial/heart-cell-summary.csv';
+
 /**
  * Tissue Origin Predictions Page
  */
@@ -67,11 +71,14 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueOriginPredictorComponent {
+  /** View sample data link */
+  readonly sampleLink = input<string>();
+
+  /** View sample data link with default value */
+  protected readonly sampleLinkWithDefault = computed(() => this.sampleLink() ?? SAMPLE_URL_LINK);
+
   /** HRA POP predictions service */
   private readonly predictionsService = inject(HraPopPredictionsService);
-
-  /** Router */
-  private readonly router = inject(Router);
 
   /** Supported organs */
   protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
@@ -91,6 +98,9 @@ export class TissueOriginPredictorComponent {
   /** Supported tool value */
   protected tool?: string = undefined;
 
+  /** Router */
+  private readonly router = inject(Router);
+
   /** Use sample CSV File */
   onUseSampleClicked(): void {
     this.file = this.sampleFile();
@@ -98,9 +108,9 @@ export class TissueOriginPredictorComponent {
 
   /** Triggered when user uploads a file */
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.file = input.files[0];
+    const ip = event.target as HTMLInputElement;
+    if (ip.files && ip.files.length > 0) {
+      this.file = ip.files[0];
     }
   }
 
