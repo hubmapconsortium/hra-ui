@@ -2,6 +2,10 @@
   "$schema": "../types/organ-logos.schema.json",
   "logos": [
     {
+      "id": "all-organs",
+      "icon": "organ:all_organs"
+    },
+    {
       "id": "bladder",
       "icon": "organ:bladder"
     },

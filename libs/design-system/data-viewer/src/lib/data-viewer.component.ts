@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
+import { OrganLogoComponent, OrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
 import { ProductLogoComponent, ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
@@ -77,6 +78,7 @@ export interface OrganVersionData {
     ExpansionPanelModule,
     ViewerCardComponent,
     ProductLogoComponent,
+    OrganLogoComponent,
     FormsModule,
   ],
   templateUrl: './data-viewer.component.html',
@@ -112,6 +114,9 @@ export class DataViewerComponent implements OnInit {
 
   /** Icon for the data viewer variant */
   readonly variantIconId = computed(() => this.variant() as ProductLogoId);
+
+  /** Icon for the currently selected organ */
+  readonly organIconId = computed(() => this.organ().icon as OrganLogoId);
 
   /** Returns available organ options based on current version */
   readonly organOptions = computed(() => {

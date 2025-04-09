@@ -5,7 +5,7 @@
   color: var(--mat-sys-secondary);
   background-color: var(--mat-sys-on-primary);
   border-radius: 0.5rem;
-  border: 1px solid var(--mat-sys-outline-variant);
+  border: .0625rem solid var(--mat-sys-outline-variant);
   overflow: hidden;
 
   .header,
@@ -19,7 +19,7 @@
     align-items: center;
     height: 4.5rem;
     background-color: var(--mat-sys-surface-container-low);
-    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    border-bottom: .0625rem solid var(--mat-sys-outline-variant);
     gap: 1rem;
 
     .header-label {
@@ -30,30 +30,6 @@
   .logos {
     display: flex;
     gap: 0.25rem;
-  }
-
-  hra-product-logo,
-  .organ-icon {
-    height: 2.5rem;
-    width: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-
-    ::ng-deep mat-icon {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-  }
-
-  hra-product-logo {
-    background-color: var(--mat-sys-secondary);
-  }
-
-  .organ-icon {
-    color: var(--mat-sys-on-primary);
-    background-color: #ff0043;
   }
 
   .content {
@@ -74,7 +50,7 @@
     column-gap: 1.5rem;
     row-gap: 1rem;
 
-    @media (min-width: 640px) {
+    @media (min-width: 40rem) {
       grid-template-columns: 1fr 1fr;
     }
   }
