@@ -5,7 +5,7 @@
   color: var(--mat-sys-secondary);
   background-color: var(--mat-sys-on-primary);
   border-radius: 0.5rem;
-  border: .0625rem solid var(--mat-sys-outline-variant);
+  border: 0.0625rem solid var(--mat-sys-outline-variant);
   overflow: hidden;
 
   .header,
@@ -19,7 +19,7 @@
     align-items: center;
     height: 4.5rem;
     background-color: var(--mat-sys-surface-container-low);
-    border-bottom: .0625rem solid var(--mat-sys-outline-variant);
+    border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
     gap: 1rem;
 
     .header-label {

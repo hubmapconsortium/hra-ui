@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -86,7 +86,7 @@ export interface OrganVersionData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class DataViewerComponent implements OnInit {
+export class DataViewerComponent {
   /** Release versions to include in the data viewer*/
   readonly organVersionData = input.required<OrganVersionData[]>();
 
@@ -97,20 +97,10 @@ export class DataViewerComponent implements OnInit {
   readonly githubIconsUrl = input.required<string>();
 
   /** Current selected release version */
-  readonly currentVersion = signal<OrganVersionData>({
-    releaseName: '',
-    releaseDate: '',
-    version: '',
-    crosswalk: '',
-    organData: [],
-  });
+  readonly currentVersion = linkedSignal(() => this.organVersionData()[0]);
 
   /** Current organ selected */
-  readonly organ = signal<OrganData>({
-    name: '',
-    icon: '',
-    viewerCardData: [],
-  });
+  readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
 
   /** Icon for the data viewer variant */
   readonly variantIconId = computed(() => this.variant() as ProductLogoId);
@@ -131,20 +121,4 @@ export class DataViewerComponent implements OnInit {
   readonly viewerTitle = computed(() => {
     return this.variant() === 'ftu' ? 'Functional Tissue Units' : '3D Organs';
   });
-
-  /**
-   * Sets current organ to first item on the list when the current version is selected
-   */
-  constructor() {
-    effect(() => {
-      this.organ.set(this.currentVersion().organData[0]);
-    });
-  }
-
-  /**
-   * Sets the current version to the first item in the list on init
-   */
-  ngOnInit(): void {
-    this.currentVersion.set(this.organVersionData()[0]);
-  }
 }

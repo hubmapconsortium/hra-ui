@@ -23,8 +23,7 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=7648-8835&t=GQLse2MKnovHjLt3-4',
     },
   },
-  args: { variant: 'ftu', tissue: testTissue },
-  render: (args) => ({ props: args }),
+  args: { variant: 'ftu', viewerCardData: testTissue },
 };
 export default meta;
 type Story = StoryObj<ViewerCardComponent>;

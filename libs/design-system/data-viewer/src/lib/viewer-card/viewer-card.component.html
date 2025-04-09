@@ -64,11 +64,11 @@
     </mat-menu>
     <mat-menu #submenu="matMenu">
       @if (variant() === 'ftu') {
-        <button mat-menu-item (click)="downloadClick($event, viewerCardData().svg ?? '')">
+        <button mat-menu-item (click)="downloadClick(viewerCardData().svg ?? '')">
           <mat-icon>download</mat-icon>
           SVG
         </button>
-        <button mat-menu-item (click)="downloadClick($event, viewerCardData().png ?? '')">
+        <button mat-menu-item (click)="downloadClick(viewerCardData().png ?? '')">
           <mat-icon>download</mat-icon>
           PNG
         </button>

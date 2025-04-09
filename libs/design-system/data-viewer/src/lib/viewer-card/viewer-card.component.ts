@@ -48,8 +48,7 @@ export class ViewerCardComponent {
   }
 
   /** Downloads PNG and SVG files */
-  downloadClick(event: Event, url: string): void {
-    event.preventDefault();
+  downloadClick(url: string): void {
     this.downloader.download(url);
   }
 
