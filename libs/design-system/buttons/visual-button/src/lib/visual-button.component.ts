@@ -2,8 +2,10 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } f
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
+/** Type for the visual button */
 export type VisualButtonVariant = 'bottom' | 'top';
 
+/** Visual Button Component */
 @Component({
   selector: 'hra-visual-button',
   imports: [CommonModule, MatIconModule],
@@ -15,10 +17,15 @@ export type VisualButtonVariant = 'bottom' | 'top';
   },
 })
 export class VisualButtonComponent {
+  /** Label for the button */
   readonly label = input.required<string>();
+  /** Imgae URL for the button */
   readonly imageUrl = input.required<string>();
+  /** Variant (top/bottom) for the button */
   readonly variant = input<VisualButtonVariant>('bottom');
+  /** disabled property of the button */
   readonly disabled = input(false, { transform: booleanAttribute });
 
+  /** Output for cardClick */
   readonly cardClick = output<void>();
 }
