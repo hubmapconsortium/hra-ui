@@ -3,7 +3,7 @@ import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { UiSectionComponent } from './ui-section.component';
 
 const meta: Meta = {
-  title: 'UI Section',
+  title: 'Design System/Content Templates/UI Section',
   component: UiSectionComponent,
   parameters: {
     design: {
@@ -24,7 +24,7 @@ export const Default: Story = {
   args: {
     tagline: 'Product Name',
     description: 'Placeholder short description for text less than 125 characters.',
-    logo: 'app_library',
+    logo: 'apps',
     appStatus: 'Preview',
     imagePath: 'assets/ui-images/placeholder.png',
   },

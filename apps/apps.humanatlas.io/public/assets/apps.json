@@ -1,5 +1,5 @@
 {
-  "$schema": "../types/app-cards.schema.json",
+  "$schema": "../../src/app/pages/landing-page/types/app-cards.schema.json",
   "tabs": [
     {
       "name": "Researcher Apps",

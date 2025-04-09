@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { UiSectionComponent } from '@hra-ui/design-system/ui-section';
-import { RESEARCHER_APPS, DEVELOPER_APPS } from './static-data/parsed';
+import { UiSectionComponent } from '@hra-ui/design-system/content-templates/ui-section';
+import { Apps } from './types/app-cards.schema';
+import { httpResource } from '@angular/common/http';
 
 /** Injection token for the window object */
 export const WINDOW = new InjectionToken<typeof window>('window', {
@@ -12,27 +13,37 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
   factory: () => window,
 });
 
+/** This component is used for rendering the landing page of the application. */
 @Component({
   selector: 'hra-landing-page',
-  imports: [CommonModule, MatButtonToggleModule, ButtonToggleSizeDirective, ButtonsModule, UiSectionComponent],
+  imports: [CommonModule, HraCommonModule, MatButtonToggleModule, ButtonsModule, UiSectionComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Window object */
+  /** Global window object */
   private readonly window = inject(WINDOW);
 
-  protected readonly researcherApps = RESEARCHER_APPS;
-  protected readonly developerApps = DEVELOPER_APPS;
+  /** Resource for loading app data */
+  protected readonly appsResource = httpResource<Apps>('/assets/apps.json');
 
-  protected readonly researcherAppsTitle = 'Researcher Apps';
-  protected readonly developerAppsTitle = 'Developer Apps';
+  /** Currently selected tab name */
+  protected readonly selectedTab = signal('Researcher Apps');
 
-  protected readonly toggleText = signal(this.researcherAppsTitle);
-  protected readonly isResearcherApps = computed(() => this.toggleText() === this.researcherAppsTitle);
+  /** Available tabs */
+  protected readonly tabs = computed(() => this.appsResource.value()?.tabs ?? []);
 
-  protected readonly apps = computed(() => (this.isResearcherApps() ? this.researcherApps : this.developerApps));
+  /** Tab names for toggle-button-group */
+  protected readonly appsTitleOptions = computed(() => this.tabs().map((tab) => tab.name));
+
+  /** Currently selected tab object */
+  protected readonly currentTab = computed(() => this.tabs().find((tab) => tab.name === this.selectedTab()));
+
+  /** Toggles tab selection */
+  toggleSelection(tab: string): void {
+    this.selectedTab.set(tab);
+  }
 
   /** Open the app url */
   onOpenAppUrl(appUrl: string): void {

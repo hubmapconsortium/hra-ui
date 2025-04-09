@@ -1,5 +1,5 @@
 <div class="splash-header">
-  <img src="assets/ui-images/splash-image.png" alt="Splash-header" class="splash-header-img" />
+  <img [attr.src]="'assets/ui-images/splash-image.png' | assetUrl" alt="" class="splash-header-img" />
   <div class="splash-header-content">
     <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
     <mat-button-toggle-group
@@ -7,51 +7,31 @@
       aria-label="Single Select"
       hideSingleSelectionIndicator
       hraButtonToggleSize="large"
-      (change)="this.toggleText.set(isResearcherApps() ? this.developerAppsTitle : this.researcherAppsTitle)"
+      (change)="toggleSelection($event.value)"
+      [value]="selectedTab()"
     >
-      <mat-button-toggle checked>{{ researcherAppsTitle }}</mat-button-toggle>
-      <mat-button-toggle>{{ developerAppsTitle }}</mat-button-toggle>
+      @for (tabName of appsTitleOptions(); track tabName) {
+        <mat-button-toggle [value]="tabName">{{ tabName }}</mat-button-toggle>
+      }
     </mat-button-toggle-group>
   </div>
 </div>
 
 <div class="apps-container">
-  @if (isResearcherApps()) {
-    <h1 class="apps-header-text">{{ this.apps()?.[0]?.tagline }}</h1>
-  } @else {
-    <h1 class="apps-header-text">Developer applications</h1>
-  }
-
-  <div class="apps-list">
-    @for (app of apps()?.[0]?.cards; track $index) {
-      <hra-ui-section
-        [tagline]="app.tagline"
-        [description]="app.description"
-        [imagePath]="app.imagePath"
-        [logo]="app.logoPath"
-        [appStatus]="app.appStatus"
-        (openAppUrl)="onOpenAppUrl(app.appUrl)"
-        (openDocumentationLink)="onOpenDocumentationLink(app.documentLink)"
-      ></hra-ui-section>
-    }
-  </div>
-</div>
-
-@if (isResearcherApps()) {
-  <div class="apps-container">
-    <h1 class="apps-header-text">Researcher applications to construct the Human Reference Atlas</h1>
+  @for (section of currentTab()?.sections; track section.tagline) {
+    <h2 class="apps-header-text">{{ section.tagline }}</h2>
     <div class="apps-list">
-      @for (app of this.apps()?.[1]?.cards; track $index) {
+      @for (card of section.cards; track card.tagline) {
         <hra-ui-section
-          [tagline]="app.tagline"
-          [description]="app.description"
-          [imagePath]="app.imagePath"
-          [logo]="app.logoPath"
-          [appStatus]="app.appStatus"
-          (openAppUrl)="onOpenAppUrl(app.appUrl)"
-          (openDocumentationLink)="onOpenDocumentationLink(app.documentLink)"
-        ></hra-ui-section>
+          [tagline]="card.tagline"
+          [description]="card.description"
+          [imagePath]="card.imagePath"
+          [logo]="card.logoPath"
+          [appStatus]="card.appStatus"
+          (openAppUrl)="onOpenAppUrl(card.appUrl)"
+          (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"
+        />
       }
     </div>
-  </div>
-}
+  }
+</div>

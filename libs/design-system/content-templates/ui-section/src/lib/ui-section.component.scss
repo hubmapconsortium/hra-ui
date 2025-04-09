@@ -1,12 +1,10 @@
-@use '../../../styles/utils';
+@use '../../../../styles/utils';
 
 :host {
-  .ui-section-card {
-    display: flex;
-    max-width: 106.25rem;
-    width: 100%;
-    gap: 5rem;
-  }
+  display: flex;
+  max-width: 106.25rem;
+  width: 100%;
+  gap: 5rem;
 
   .app-image {
     max-width: 56.25rem;
@@ -62,13 +60,11 @@
   }
 
   @media (min-width: 320px) and (max-width: 639px) {
-    .ui-section-card {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-      max-width: 24.875rem;
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 24.875rem;
+    width: 100%;
 
     .app-image {
       max-width: 24.875rem;
@@ -83,13 +79,11 @@
   }
 
   @media (min-width: 640px) and (max-width: 999px) {
-    .ui-section-card {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-      max-width: 56.25rem;
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 56.25rem;
+    width: 100%;
 
     .app-image {
       max-width: 56.25rem;
@@ -98,10 +92,8 @@
   }
 
   @media (min-width: 1000px) and (max-width: 1920px) {
-    .ui-section-card {
-      max-width: 75rem;
-      width: 100%;
-    }
+    max-width: 75rem;
+    width: 100%;
 
     .app-image {
       max-width: 35rem;
