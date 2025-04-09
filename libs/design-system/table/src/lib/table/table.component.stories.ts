@@ -37,6 +37,20 @@ const meta: Meta<TableComponent> = {
   },
   args: {
     data: exampleData,
+    enableSort: true,
+    verticalDividers: false,
+  },
+  argTypes: {
+    style: {
+      control: 'select',
+      options: ['alternating', 'divider', 'basic'],
+    },
+    enableSort: {
+      control: 'boolean',
+    },
+    verticalDividers: {
+      control: 'boolean',
+    },
   },
 };
 
@@ -66,14 +80,8 @@ export const WithScrolling: Story = {
     props: args,
     styles: [
       `hra-table {
-        height: 500px;
+        height: 35rem;
       }`,
     ],
   }),
-};
-
-export const WithSorting: Story = {
-  args: {
-    enableSort: true,
-  },
 };

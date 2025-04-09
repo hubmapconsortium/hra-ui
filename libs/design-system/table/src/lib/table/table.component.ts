@@ -1,4 +1,4 @@
-import { Component, effect, input, viewChild } from '@angular/core';
+import { Component, computed, effect, input, viewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
@@ -23,7 +23,7 @@ export interface TableLinkData {
 export type TableStyle = 'alternating' | 'divider' | 'basic';
 
 /**
- * Angular Material table with with sort feature
+ * Angular Material table with sort feature
  */
 @Component({
   selector: 'hra-table',
@@ -39,6 +39,7 @@ export type TableStyle = 'alternating' | 'divider' | 'basic';
   host: {
     '[attr.style]': 'style()',
     '[attr.enableSort]': 'enableSort()',
+    '[attr.verticalDividers]': 'verticalDividers()',
   },
 })
 export class TableComponent {
@@ -50,6 +51,17 @@ export class TableComponent {
 
   /** Enables sorting */
   readonly enableSort = input<boolean>(false);
+
+  /** Enables dividers between columns */
+  readonly verticalDividers = input<boolean>(false);
+
+  /** Gets the columns in the data that contain only numbers */
+  readonly getAllNumericColumns = computed(() => {
+    const keyList = this.data().map((row) => this.getNumericKeys(row));
+    return keyList.reduce((commonStrings, currentArray) =>
+      commonStrings.filter((string) => currentArray.includes(string)),
+    );
+  });
 
   /** Columns in table */
   columns: string[] = [];
@@ -69,5 +81,14 @@ export class TableComponent {
       }
       this.columns = Object.keys(this.data()[0]);
     });
+  }
+
+  /**
+   * Returns the columns in a row which contain numbers
+   * @param data Row data
+   * @returns Array of column names
+   */
+  getNumericKeys(data: TableRowData) {
+    return Object.keys(data).filter((key) => typeof data[key] === 'number');
   }
 }

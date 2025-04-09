@@ -8,10 +8,6 @@
     border-radius: 0.5rem;
   }
 
-  a {
-    color: var(--mat-sys-on-tertiary-fixed);
-  }
-
   hra-table[style='alternating'] {
     .mat-mdc-row .mat-mdc-cell {
       border: none;
@@ -48,6 +44,31 @@
 
     .mat-sort-header-content {
       cursor: text;
+    }
+  }
+
+  hra-table[verticalDividers='true'] {
+    th:not(:first-of-type),
+    td:not(:first-of-type) {
+      border-left: 1px solid var(--mat-sys-outline) !important;
+    }
+  }
+
+  th.numeric {
+    justify-items: end;
+  }
+
+  tr > td.numeric {
+    padding-right: 2.5rem;
+    text-align: right;
+  }
+
+  th:first-of-type,
+  td:first-of-type {
+    &.numeric {
+      justify-items: unset;
+      padding-right: unset;
+      text-align: unset;
     }
   }
 
