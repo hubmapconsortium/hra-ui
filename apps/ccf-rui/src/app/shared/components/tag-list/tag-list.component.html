@@ -1,15 +1,9 @@
-@if (tags) {
-  <span class="added-label">Added</span>
-}
+<span class="label">{{ label() }}</span>
 <mat-chip-listbox selectable="false">
-  <mat-chip
-    *ngFor="let tag of tags; trackBy: tagId"
-    removable
-    disableRipple
-    [class]="tagClasses(tag)"
-    (removed)="removeTag(tag)"
-  >
-    {{ tag.label }}
-    <mat-icon matChipRemove class="icon remove">close</mat-icon>
-  </mat-chip>
+  @for (tag of tags(); track tag.id) {
+    <mat-chip removable disableRipple (removed)="removeTag(tag)">
+      {{ tag.label }}
+      <mat-icon matChipRemove class="icon remove">close</mat-icon>
+    </mat-chip>
+  }
 </mat-chip-listbox>

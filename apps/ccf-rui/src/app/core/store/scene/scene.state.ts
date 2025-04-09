@@ -145,7 +145,6 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     return combineLatest([this.model.anatomicalStructures$, this.model.organIri$, this.referenceData.state$]).pipe(
       map(([anatomicalStructures, organIri, db]) =>
         anatomicalStructures
-          // .filter(item => item.visible && item.opacity && item.opacity > 0)
           .map((item): SpatialSceneNode[] => {
             if (db.sceneNodeLookup[item.id]) {
               return [
@@ -335,7 +334,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   private get collisions$(): Observable<Collision[] | undefined> {
     const jsonld$ = defer(() => this.registration.throttledJsonld$);
     return combineLatest([this.deferCollisions$, jsonld$]).pipe(
-      distinctUntilChanged(isEqual),
+      distinctUntilChanged<[boolean, unknown]>(isEqual),
       concatMap(([deferCollisions, jsonld]) => (deferCollisions ? of([]) : this.getCollisions(jsonld))),
       startWith([]),
     );

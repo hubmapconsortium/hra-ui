@@ -98,6 +98,10 @@
       "icon": "product:human_atlas_stories"
     },
     {
+      "id": "rui",
+      "icon": "product:rui"
+    },
+    {
       "id": "tissue-origin-predictor",
       "icon": "product:top"
     },
