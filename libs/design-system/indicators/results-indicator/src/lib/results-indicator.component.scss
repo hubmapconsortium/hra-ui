@@ -1,0 +1,10 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: inline;
+  color: var(--mat-sys-primary);
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid var(--mat-sys-outline-variant);
+  border-radius: 0.25rem;
+  @include utils.use-font(label, small);
+}
