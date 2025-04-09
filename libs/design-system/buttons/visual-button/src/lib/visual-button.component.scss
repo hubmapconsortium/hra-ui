@@ -1,0 +1,89 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: block;
+  @include utils.use-font(label, small);
+
+  &.hra-visual-button-bottom {
+    width: 19rem;
+    height: 19rem;
+
+    button {
+      flex-direction: column-reverse;
+      width: 100%;
+      height: 100%;
+    }
+
+    .label-container {
+      height: 5.5rem;
+    }
+  }
+
+  &.hra-visual-button-top {
+    width: 16.5rem;
+    height: 27rem;
+
+    .label-container {
+      height: 4.9rem;
+    }
+
+    button {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  button {
+    background: none;
+    border: 0.063rem solid var(--mat-sys-outline-variant);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+
+    &:hover {
+      box-shadow: 0rem 0.31rem 1.25rem utils.with-alpha(var(--mat-sys-secondary), 32%);
+    }
+
+    &:active,
+    &:focus-visible {
+      border: 0.125rem solid var(--mat-sys-tertiary);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  .label-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .label {
+    color: var(--mat-sys-tertiary);
+    text-align: center;
+  }
+
+  mat-icon {
+    color: var(--mat-sys-tertiary);
+    position: absolute;
+    right: 1rem;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
