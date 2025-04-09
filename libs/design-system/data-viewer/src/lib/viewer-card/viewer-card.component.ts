@@ -9,7 +9,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { ViewerCardData } from '../data-viewer.component';
-import { FileDownloadService } from './file-download.service';
+import { FileDownloadService } from '@hra-ui/common/fs';
 
 /**
  * This is a responsive component is used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
