@@ -1,6 +1,8 @@
-<a [routerLink]="['/', spec().route]" class="long-card cta-flat" rel="noopener noreferrer">
+<hra-visual-button [label]="spec().title" [imageUrl]="spec().background" (cardClick)="onClick()"> </hra-visual-button>
+
+<!-- <a [routerLink]="['/', spec().route]" class="long-card cta-flat" rel="noopener noreferrer">
   <img [attr.src]="spec().background" alt="" />
   <div class="label">
     {{ spec().title }}
   </div>
-</a>
+</a> -->
