@@ -1,1 +1,1 @@
-export * from '../src/lib/results-indicator.component';
+export * from './lib/results-indicator.component';
