@@ -54,6 +54,10 @@
       "icon": "organ:kidney_right"
     },
     {
+      "id": "kidneys",
+      "icon": "organ:kidneys"
+    },
+    {
       "id": "knee",
       "icon": "organ:knee"
     },

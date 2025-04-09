@@ -10,58 +10,12 @@ import { ProductLogoComponent, ProductLogoId } from '@hra-ui/design-system/brand
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
+import { OrganVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
+import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 
 /** Viewer variant types */
 export type ViewerVariant = 'ftu' | '3d-organ';
-
-/** Interface that contains info for a item displayed in the data viewer */
-export interface ViewerCardData {
-  /** Name of the tissue */
-  name: string;
-  /** URL of the metadata of the tissue */
-  metadata: string;
-  /** URL of the AI file of the tissue */
-  ai?: string;
-  /** URL of the PNG file of the tissue */
-  png?: string;
-  /** URL of the SVG file of the tissue */
-  svg?: string;
-  /** URL of the Crosswalk CSV file of the tissue */
-  crosswalk?: string;
-  /** URL of the 3D object (for 3D organ viewer) */
-  threeDimImage?: string;
-  /** Alternate text for the tissue image */
-  alt?: string;
-}
-
-/** Interface containing info for an organ with tissue data */
-export interface OrganData {
-  /** Name of organ */
-  name: string;
-  /** Path to the organ icon */
-  icon: string;
-  /** Viewer item data for the organ */
-  viewerCardData: ViewerCardData[];
-}
-
-/** Interface representing version and organ data for an organ */
-export interface OrganVersionData {
-  /** Name of release to display */
-  releaseName: string;
-  /** Release date */
-  releaseDate: string;
-  /** Version of release */
-  version: string;
-  /** Link to download all Crosswalk data for the release */
-  crosswalk: string;
-  /** Organ data for the release */
-  organData: OrganData[];
-  /** URL for extraction site file downloads */
-  extractionCsvUrl?: string;
-  /** URL for reference organ file downloads */
-  referenceCsvUrl?: string;
-}
 
 /**
  * Data viewer component
@@ -80,6 +34,7 @@ export interface OrganVersionData {
     ProductLogoComponent,
     OrganLogoComponent,
     FormsModule,
+    ViewerMenuComponent,
   ],
   templateUrl: './data-viewer.component.html',
   styleUrl: './data-viewer.component.scss',

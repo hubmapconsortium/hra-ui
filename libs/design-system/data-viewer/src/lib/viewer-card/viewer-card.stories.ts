@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { ViewerCardData } from '../data-viewer.component';
 import { ViewerCardComponent } from './viewer-card.component';
+import { ViewerCardData } from '../types/data-viewer.schema';
 
 const testTissue: ViewerCardData = {
   name: 'Crypt of Lieberkuhn',

@@ -8,15 +8,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
-import { ViewerCardData } from '../data-viewer.component';
-import { FileDownloadService } from '@hra-ui/common/fs';
+import { CardMenuComponent } from '../card-menu/card-menu.component';
+import { ViewerVariant } from '../data-viewer.component';
+import { ViewerCardData } from '../types/data-viewer.schema';
 
 /**
- * This is a responsive component is used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
+ * This is a responsive component used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
  */
 @Component({
   selector: 'hra-viewer-card',
-  imports: [HraCommonModule, MatMenuModule, MatIconModule, MatDividerModule, ButtonsModule],
+  imports: [HraCommonModule, MatMenuModule, MatIconModule, MatDividerModule, ButtonsModule, CardMenuComponent],
   templateUrl: './viewer-card.component.html',
   styleUrl: './viewer-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,11 +28,8 @@ export class ViewerCardComponent {
   /** Mat dialog service */
   private readonly dialog = inject(MatDialog);
 
-  /** File download service */
-  private readonly downloader = inject(FileDownloadService);
-
-  /** All available dropdown options */
-  readonly variant = input.required<string>();
+  /** Data viewer variant the card belongs to */
+  readonly variant = input.required<ViewerVariant>();
 
   /** Viewer card data */
   readonly viewerCardData = input.required<ViewerCardData>();
@@ -45,11 +43,6 @@ export class ViewerCardComponent {
       maxHeight: '100%',
       maxWidth: '100%',
     });
-  }
-
-  /** Downloads PNG and SVG files */
-  downloadClick(url: string): void {
-    this.downloader.download(url);
   }
 
   /** Closes the full screen modal */
