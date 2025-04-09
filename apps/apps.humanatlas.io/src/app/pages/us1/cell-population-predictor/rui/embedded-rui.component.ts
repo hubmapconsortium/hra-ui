@@ -9,6 +9,7 @@ import {
   output,
   viewChild,
 } from '@angular/core';
+import { IdLabelPair } from '@hra-api/ng-client';
 
 /**
  * RUI Interface
@@ -36,7 +37,7 @@ interface RuiElement {
 })
 export class EmbeddedRuiComponent {
   /** Supported Organs */
-  readonly supportedOrgans = input<string[]>([]);
+  readonly supportedOrgans = input.required<IdLabelPair[]>();
   /** File Created after Registration */
   readonly locationCreated = output<File>();
   /** Close RUI */
@@ -50,7 +51,7 @@ export class EmbeddedRuiComponent {
   constructor() {
     effect(() => {
       const el = this.ref().nativeElement;
-      el.organOptions = this.supportedOrgans();
+      el.organOptions = this.supportedOrgans().map((item) => item.id);
       el.register = (location) => this.locationCreated.emit(this.createFileFromLocation(location));
       el.cancelRegistration = () => this.closed.emit();
     });

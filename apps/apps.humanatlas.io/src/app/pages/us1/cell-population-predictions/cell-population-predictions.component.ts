@@ -8,13 +8,19 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { Prediction, PredictionsService } from '../services/predictions.service';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { CellSummaryRow } from '@hra-api/ng-client';
+import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
 summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
 the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)`;
+
+/** Empty Inputs for Predictions page */
+const EMPTY_DATA: TissuePredictionData = {
+  file: new File([], ''),
+};
 
 /**
  * Cell Population Predictions Result Page Component
@@ -41,30 +47,22 @@ the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author
   },
 })
 export class CellPopulationPredictionsComponent {
-  /**
-   * Predictions
-   */
-  readonly predictions = input<Prediction[]>([]);
+  /** Predictions data */
+  readonly predictions = input<CellSummaryRow[]>([]);
+
+  /** Input data for predictions page */
+  readonly data = input<TissuePredictionData>(EMPTY_DATA);
 
   /** Router service */
   private readonly router = inject(Router);
 
-  /** State for accessing the file */
-  protected readonly predictionService = inject(PredictionsService);
-
-  /**
-   * For sorting Tools column
-   */
+  /** For sorting Tools column */
   private readonly sort = viewChild.required(MatSort);
 
-  /**
-   * Data for predictions table
-   */
-  protected readonly dataSource = new MatTableDataSource<Prediction>([]);
+  /** Data for predictions table */
+  protected readonly dataSource = new MatTableDataSource<CellSummaryRow>([]);
 
-  /**
-   * Columns for prediction table
-   */
+  /** Columns for prediction table */
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
 
   /** Tooltip content */
