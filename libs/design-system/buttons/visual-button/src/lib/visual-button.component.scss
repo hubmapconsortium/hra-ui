@@ -32,7 +32,6 @@
       width: 100%;
       height: 100%;
     }
-
   }
 
   button {
@@ -48,7 +47,9 @@
       box-shadow: 0rem 0.31rem 1.25rem utils.with-alpha(var(--mat-sys-secondary), 32%);
     }
 
-    &:active, &:focus-visible, &:focus {
+    &:active,
+    &:focus-visible,
+    &:focus {
       border: 0.125rem solid var(--mat-sys-tertiary);
     }
 
