@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { UiSectionComponent } from '@hra-ui/design-system/content-templates/ui-section';
+import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
 import { Apps } from './types/app-cards.schema';
 import { httpResource } from '@angular/common/http';
 
@@ -16,7 +16,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
 /** This component is used for rendering the landing page of the application. */
 @Component({
   selector: 'hra-landing-page',
-  imports: [CommonModule, HraCommonModule, MatButtonToggleModule, ButtonsModule, UiSectionComponent],
+  imports: [CommonModule, HraCommonModule, MatButtonToggleModule, ButtonsModule, ContentTemplatesModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
