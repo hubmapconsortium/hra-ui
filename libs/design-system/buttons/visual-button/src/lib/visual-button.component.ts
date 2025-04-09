@@ -22,7 +22,7 @@ export class VisualButtonComponent {
   /** Imgae URL for the button */
   readonly imageUrl = input.required<string>();
   /** Variant (top/bottom) for the button */
-  readonly variant = input<VisualButtonVariant>('bottom');
+  readonly variant = input<VisualButtonVariant>('top');
   /** disabled property of the button */
   readonly disabled = input(false, { transform: booleanAttribute });
 
