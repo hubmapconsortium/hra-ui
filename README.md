@@ -23,7 +23,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/hubmapconsortium/hra-ui">
-    <img src="./apps/cde-ui/src/assets/logo/hra_small.svg" alt="Logo" width="80" height="80">
+    <img src="./libs/design-system/assets/brand/mark/small.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Human Reference Atlas (HRA) User Interfaces</h3>
