@@ -44,11 +44,13 @@
         "browser": "{projectRoot}/src/main.ts",
         "tsConfig": "{projectRoot}/tsconfig.app.json",
         "outputPath": "dist/{projectRoot}",
+
         "inlineStyleLanguage": "scss",
         "styles": ["{projectRoot}/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/", "libs/design-system/styles"]
         },
+
         "outputHashing": "none",
         "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"],
         "define": {
@@ -142,6 +144,7 @@
         }
       }
     },
+
     "test": {
       "options": {
         "passWithNoTests": true
@@ -153,6 +156,7 @@
         }
       }
     },
+
     "storybook": {
       "options": {
         "port": 4400,
@@ -183,14 +187,15 @@
         "args": ["--url", "http://localhost:4400"]
       }
     },
+
     "build-webcomponent": {
       "cache": true,
       "inputs": [
-        {
-          "dependentTasksOutputFiles": "**/*.js"
-        }
+        { "dependentTasksOutputFiles": "**/*.js" }
       ],
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}/browser/wc.js"],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}/browser/wc.js"
+      ],
       "dependsOn": [
         {
           "target": "build",
