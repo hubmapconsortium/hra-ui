@@ -48,8 +48,7 @@
     }
 
     &:active,
-    &:focus-visible,
-    &:focus {
+    &:focus-visible {
       border: 0.125rem solid var(--mat-sys-tertiary);
     }
 
@@ -83,7 +82,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background-image: url('../../../../assets/ui-images/placeholder.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

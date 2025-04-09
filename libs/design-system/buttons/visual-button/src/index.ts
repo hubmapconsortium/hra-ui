@@ -1,1 +1,1 @@
-export * from '../src/lib/visual-button.component';
+export * from './lib/visual-button.component';
