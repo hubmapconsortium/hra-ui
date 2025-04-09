@@ -1,3 +1,1 @@
-export const greeting = 'Hello World!';
-
-export * from './lib/results-indicator.component';
+export * from '../../results-indicator/src/lib/results-indicator.component';
