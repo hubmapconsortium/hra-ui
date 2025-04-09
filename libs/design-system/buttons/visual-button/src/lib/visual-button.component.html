@@ -1,4 +1,4 @@
-<button (click)="cardClick.emit()" [attr.disabled]="disabled()">
+<button (click)="cardClick.emit()" [attr.disabled]="disabled() ? '' : null">
   <div class="label-container">
     <span class="label">{{ label() }}</span>
     @if (variant() === 'bottom') {
