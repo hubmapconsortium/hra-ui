@@ -1,7 +1,7 @@
 @use '../../../../styles/utils';
 
 :host {
-  display: block;
+  display: inline;
   color: var(--mat-sys-primary);
   padding: 0.5rem 0.75rem;
   border: 0.0625rem solid var(--mat-sys-outline-variant);
