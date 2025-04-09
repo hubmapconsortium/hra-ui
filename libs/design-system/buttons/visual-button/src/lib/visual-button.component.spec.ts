@@ -16,7 +16,6 @@ describe('VisualButtonComponent', () => {
   });
 
   it('should create and render the button with correct label', async () => {
-    // First render the component for this test
     await render(VisualButtonComponent, {
       componentInputs: {
         label: 'Visual Button',
@@ -26,7 +25,6 @@ describe('VisualButtonComponent', () => {
       },
     });
 
-    // Now try to find the button
     const visualButton = screen.getByRole('button');
     expect(visualButton).toBeInTheDocument();
     expect(screen.getByText('Visual Button')).toBeInTheDocument();
