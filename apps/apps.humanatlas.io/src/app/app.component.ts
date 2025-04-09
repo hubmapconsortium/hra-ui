@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { routeData } from './utils/route-data';
+import { isNavigating } from './utils/navigation';
 
 /** Main application component */
 @Component({
@@ -26,4 +27,7 @@ export class AppComponent {
    * Breadcrumbs data (computed from above signal).
    */
   protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
+
+  /** is user navigating to a different page */
+  protected readonly isNavigating = isNavigating();
 }
