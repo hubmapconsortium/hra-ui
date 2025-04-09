@@ -1,14 +1,14 @@
-import { ProductHeaderComponent } from './product-header.component';
 import { render } from '@testing-library/angular';
+import { ProductHeaderComponent } from './product-header.component';
 
 describe('ProductHeaderComponent', () => {
   it('should create', async () => {
-    const result = render(ProductHeaderComponent, {
-      componentInputs: {
-        imageUrl: '',
-        title: 'Test Product Header',
+    const promise = render(ProductHeaderComponent, {
+      inputs: {
+        logo: 'web-components',
+        tagline: 'Web Components',
       },
     });
-    await expect(result).resolves.toBeTruthy();
+    await expect(promise).resolves.toBeTruthy();
   });
 });

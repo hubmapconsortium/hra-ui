@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { isNavigating } from './utils/navigation';
+import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
@@ -16,6 +17,13 @@ import { isNavigating } from './utils/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  /** is user navigating to a different page */
-  protected readonly isNavigating = isNavigating();
+  /**
+   * Data for breadcrumbs in navigation header.
+   */
+  private readonly data = routeData();
+
+  /**
+   * Breadcrumbs data (computed from above signal).
+   */
+  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
 }

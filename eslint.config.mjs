@@ -1,4 +1,6 @@
 import nx from '@nx/eslint-plugin';
+import jsonSchema from 'eslint-plugin-json-schema-validator';
+import json from 'eslint-plugin-jsonc';
 import storybook from 'eslint-plugin-storybook';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -111,6 +113,15 @@ export const configs = {
     {
       files: ['**/*.html'],
       rules: {},
+    },
+  ],
+  json: [
+    ...json.configs['flat/recommended-with-json'],
+    ...jsonSchema.configs['flat/recommended'],
+    {
+      rules: {
+        'json-schema-validator/no-invalid': 'error',
+      },
     },
   ],
   storybook: [

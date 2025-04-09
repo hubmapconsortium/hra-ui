@@ -3,6 +3,7 @@ import { build } from 'esbuild';
 import { writeFile } from 'node:fs/promises';
 import { format, parse, resolve } from 'node:path';
 import { zodToJsonSchema } from 'zod-to-json-schema';
+import { resolveConfig, format as prettierFormat } from 'prettier';
 
 /**
  * @typedef BuildOptions
@@ -64,6 +65,13 @@ function inferOutput(file) {
   return format({ ...parse(file), base: '', ext: 'json' });
 }
 
+/** @type {(obj: unknown, path: string) => Promise<string>} */
+async function formatOutput(obj, path) {
+  const options = await resolveConfig(path, { editorconfig: true });
+  const json = JSON.stringify(obj, undefined, 2);
+  return await prettierFormat(json, { ...options, filepath: path });
+}
+
 /** @type {(file: string, options: BuildOptions) => Promise<void>} */
 async function buildJsonSchemaAction(file, options) {
   const { schema, name = inferName(schema), useDefinitions, output = inferOutput(file), verbose } = options;
@@ -83,8 +91,9 @@ async function buildJsonSchemaAction(file, options) {
   const rootSchema = getRootSchema(file, module, schema);
   const definitions = useDefinitions ? getDefinitions(module, rootSchema) : undefined;
   const result = zodToJsonSchema(rootSchema, { name, definitions });
+  const content = await formatOutput(result, resolve(output));
 
-  await writeFile(resolve(output), JSON.stringify(result, undefined, 2), 'utf8');
+  await writeFile(resolve(output), content, 'utf8');
 }
 
 const program = new Command()

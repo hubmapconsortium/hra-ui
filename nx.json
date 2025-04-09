@@ -75,7 +75,7 @@
           ]
         },
         "staging": {
-          "baseHref": "/ui-staging/{projectName}/"
+          "baseHref": "/ui--staging/{projectName}/"
         },
         "development": {
           "baseHref": "/",

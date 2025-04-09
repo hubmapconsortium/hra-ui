@@ -1,5 +1,7 @@
-<img [src]="'images/' + imageUrl() | assetUrl" alt="" />
+<hra-product-logo class="logo" [id]="logo()" />
 <div class="title">
-  <h1>{{ title() }}</h1>
-  <hra-software-status-indicator status="Preview" size="medium"></hra-software-status-indicator>
+  <h1>{{ tagline() }}</h1>
+  @if (status(); as value) {
+    <hra-software-status-indicator [status]="value" size="medium" />
+  }
 </div>

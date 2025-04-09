@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { signal } from '@angular/core';
 import { render, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
@@ -8,7 +9,7 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 describe('CellPopulationPredictorComponent', () => {
-  const providers = [provideHttpClient(), provideHttpClientTesting()];
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
 
   it('should create', async () => {
     const result = render(CellPopulationPredictorComponent, { providers });

@@ -8,7 +8,7 @@ describe('NavHeaderComponent', () => {
   const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];
 
   const link = 'example.com';
-  const app = 'hra';
+  const app = 'ftu';
   const title = 'test title';
 
   beforeEach(async () => {

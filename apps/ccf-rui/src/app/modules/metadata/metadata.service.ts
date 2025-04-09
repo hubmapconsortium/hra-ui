@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
+import { AnatomicalStructureTagState } from '../../core/store/anatomical-structure-tags/anatomical-structure-tags.state';
 import { ModelState, ModelStateModel } from '../../core/store/model/model.state';
 import { PageState, PageStateModel } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
@@ -18,6 +19,8 @@ import {
 export class MetadataService {
   /** Dialog service */
   private readonly dialog = inject(MatDialog);
+  /** Anatomical structure tag state */
+  private readonly asState = inject(AnatomicalStructureTagState);
   /** Model state */
   private readonly modelState = inject(ModelState);
   /** Page state */
@@ -62,16 +65,20 @@ export class MetadataService {
   /**
    * Updates the state with the values entered in the metadata modal
    *
-   * @param _mode Mode modal was opened with
+   * @param mode Mode modal was opened with
    * @param data Data returned by the modal
    */
-  private updateState(_mode: MetadataModalMode, data: MetadataModalResult): void {
-    const { modelState, pageState, registrationState, sceneState } = this;
+  private updateState(mode: MetadataModalMode, data: MetadataModalResult): void {
+    const { asState, modelState, pageState, registrationState, sceneState } = this;
     const {
       author,
       donor: { organ, sex, consortium, doi },
       previousRegistration,
     } = data;
+
+    if (mode === 'edit' && (previousRegistration || organ !== modelState.snapshot.organ)) {
+      asState.removeAll();
+    }
 
     if (previousRegistration) {
       registrationState.editRegistration(previousRegistration as SpatialEntityJsonLd);
@@ -82,6 +89,7 @@ export class MetadataService {
     pageState.setOrcidId(author.orcidId);
     pageState.registrationStarted();
 
+    // Note: This read must happen after `registrationState.editRegistration`!
     const previousOrgan = modelState.snapshot.organ;
     modelState.setOrgan(organ);
     modelState.setSex(sex);
