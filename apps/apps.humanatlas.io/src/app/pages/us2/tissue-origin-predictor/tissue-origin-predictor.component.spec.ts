@@ -6,9 +6,10 @@ import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { SAMPLE_FILE, TissueOriginPredictorComponent } from './tissue-origin-predictor.component';
 import { Router } from '@angular/router';
+import { provideDesignSystemCommon } from '@hra-ui/design-system';
 
 describe('TissueOriginPredictorComponent', () => {
-  const providers = [provideHttpClient(), provideHttpClientTesting()];
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
 
   it('should create', async () => {
     const result = render(TissueOriginPredictorComponent, { providers });
