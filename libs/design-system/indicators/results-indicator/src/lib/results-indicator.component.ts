@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, numberAttribute, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/** Results Indicator Component */
 @Component({
   selector: 'hra-results-indicator',
   imports: [CommonModule],
@@ -9,6 +10,10 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsIndicatorComponent {
+  /** Input for value */
   readonly value = input.required({ transform: numberAttribute });
+  /** Input for total */
   readonly total = input.required({ transform: numberAttribute });
+  /** Input for description */
+  readonly description = input.required<string>();
 }

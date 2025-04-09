@@ -10,6 +10,12 @@ const meta: Meta<ResultsIndicatorComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2100-10720&t=DmEBvTGkDSWCMOf1-4',
     },
   },
+
+  args: {
+    value: 100000,
+    total: 100000,
+    description: 'Viewing',
+  },
 };
 export default meta;
 type Story = StoryObj<ResultsIndicatorComponent>;
