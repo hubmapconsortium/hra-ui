@@ -1,21 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { UiSectionComponent } from './ui-section.component';
 
 describe('UiSectionComponent', () => {
-  let component: UiSectionComponent;
-  let fixture: ComponentFixture<UiSectionComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UiSectionComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(UiSectionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(UiSectionComponent, {
+      componentInputs: {
+        tagline: 'Product Name',
+        description: 'Placeholder short description for text less than 125 characters.',
+        logo: 'apps',
+        appStatus: 'Preview',
+        imagePath: 'assets/ui-images/placeholder.png',
+      },
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render tagline, description, image, and should show appStatus', () => {
+    expect(screen.getByText('Product Name')).toBeInTheDocument();
+    expect(screen.getByText('Placeholder short description for text less than 125 characters.')).toBeInTheDocument();
+    const image = screen.getByAltText('app-image') as HTMLImageElement;
+    expect(image).toBeInTheDocument();
+    expect(image.src).toContain('assets/ui-images/placeholder.png');
+    expect(screen.getByText('Preview')).toBeInTheDocument();
   });
 });
