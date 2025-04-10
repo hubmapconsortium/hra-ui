@@ -36,13 +36,13 @@
 
     <div class="left-panel">
       <div class="filter-data">
-        <div class="filter-button-container" hraMicroTooltip="Select filters">
+        <div class="filter-button-container" hraPlainTooltip="Select filters">
           <div class="filter-button-label">Filters</div>
           <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
             <mat-icon>filter_list</mat-icon>
           </button>
         </div>
-        <div class="filter-text" hraMicroTooltip="Current filters">
+        <div class="filter-text" hraPlainTooltip="Current filters">
           <div class="sex filter-tag">Sex: {{ filter().sex }}</div>
           <div class="bmi filter-tag">BMI: {{ bmiRangeValue() }}</div>
           <div class="age filter-tag">Age: {{ ageRangeValue() }}</div>
@@ -62,7 +62,7 @@
             <mat-button-toggle
               [value]="option"
               checked
-              [hraMicroTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+              [hraPlainTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
               >{{ option }}</mat-button-toggle
             >
           }
@@ -119,7 +119,7 @@
         [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
         aria-label="Icon to open nested menu"
-        hraMicroTooltip="More"
+        hraPlainTooltip="More"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -164,7 +164,7 @@
 
       <div class="filler"></div>
 
-      <ccf-organ-select hraMicroTooltip="Select organs to show/hide"></ccf-organ-select>
+      <ccf-organ-select hraPlainTooltip="Select organs to show/hide"></ccf-organ-select>
     </div>
 
     <div class="content">
@@ -172,7 +172,7 @@
         class="spatial-search-button"
         mat-flat-button
         (click)="spatialFlowService.startSpatialSearchFlow(true)"
-        hraMicroTooltip="Filter experimental data spatially"
+        hraPlainTooltip="Filter experimental data spatially"
       >
         Spatial Search
       </button>
