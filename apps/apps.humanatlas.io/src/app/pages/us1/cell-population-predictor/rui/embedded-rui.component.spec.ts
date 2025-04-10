@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/angular';
 import { EmbeddedRuiComponent } from './embedded-rui.component';
+import { IdLabelPair } from '@hra-api/ng-client';
+
+const ORGAN_OPTIONS: IdLabelPair[] = [{ id: 'id-uri', label: 'heart' }];
 
 class MockRui extends HTMLElement {
   organOptions?: string[];
@@ -13,18 +16,19 @@ describe('EmbeddedRuiComponent', () => {
   });
 
   it('should create', async () => {
-    const result = render(EmbeddedRuiComponent);
+    const result = render(EmbeddedRuiComponent, { inputs: { supportedOrgans: ORGAN_OPTIONS } });
     await expect(result).resolves.toBeTruthy();
   });
 
   it('should set organOptions on ccf-rui element', async () => {
-    const organOptions = ['Heart', 'Lung'];
+    const organsArrayResult = ['id-uri'];
+
     await render(EmbeddedRuiComponent, {
-      inputs: { supportedOrgans: organOptions },
+      inputs: { supportedOrgans: ORGAN_OPTIONS },
     });
 
     const ruiElement = screen.getByTestId('rui') as MockRui;
-    expect(ruiElement.organOptions).toEqual(organOptions);
+    expect(ruiElement.organOptions).toEqual(organsArrayResult);
   });
 
   it('should set register and cancelRegistration on ccf-rui element', async () => {
@@ -32,6 +36,7 @@ describe('EmbeddedRuiComponent', () => {
     const closed = jest.fn();
 
     await render(EmbeddedRuiComponent, {
+      inputs: { supportedOrgans: ORGAN_OPTIONS },
       on: {
         locationCreated: created,
         closed: closed,
