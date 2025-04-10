@@ -5,7 +5,7 @@
       [matMenuTriggerFor]="menu"
       hraIconButtonSize="large"
       aria-label="Open the tissue block settings' action menu"
-      hraMicroTooltip="More"
+      hraPlainTooltip="More"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -37,7 +37,7 @@
       [matMenuTriggerFor]="help"
       hraIconButtonSize="large"
       aria-label="Open the tissue block settings' help menu"
-      hraMicroTooltip="App guides and training resources"
+      hraPlainTooltip="App guides and training resources"
     >
       <mat-icon>help</mat-icon>
     </button>
@@ -65,15 +65,15 @@
 
   <div class="position">
     <span class="label">Position</span>
-    <div class="x-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
+    <div class="x-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">X</span>
       <span class="position-value">{{ (position$ | async)?.x }}</span>
     </div>
-    <div class="y-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
+    <div class="y-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">Y</span>
       <span class="position-value">{{ (position$ | async)?.y }}</span>
     </div>
-    <div class="z-position box" hraMicroTooltip="Current position of the tissue block measured in millimeters">
+    <div class="z-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">Z</span>
       <span class="position-value">{{ (position$ | async)?.z }}</span>
     </div>
@@ -106,7 +106,7 @@
       [matMenuTriggerFor]="asTagsActionMenu"
       hraIconButtonSize="large"
       aria-label="Open the anatomical structure tags' action menu"
-      hraMicroTooltip="More"
+      hraPlainTooltip="More"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
