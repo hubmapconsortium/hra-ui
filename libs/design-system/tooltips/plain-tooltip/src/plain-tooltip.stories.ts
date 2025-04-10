@@ -1,9 +1,9 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { MicroTooltipDirective } from './micro-tooltip.directive';
+import { PlainTooltipDirective } from './plain-tooltip.directive';
 import { MatButtonModule } from '@angular/material/button';
 
 const meta: Meta = {
-  title: 'MicroTooltip',
+  title: 'PlainTooltip',
   args: {
     size: 'medium',
   },
@@ -15,7 +15,7 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [MicroTooltipDirective, MatButtonModule],
+      imports: [PlainTooltipDirective, MatButtonModule],
     }),
   ],
 };
@@ -26,8 +26,8 @@ export const Medium: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button mat-flat-button hraMicroTooltip="This is a Micro Tooltip of ${args['size']} variant"
-      hraMicroTooltipSize="${args['size']}">
+      <button mat-flat-button hraPlainTooltip="This is a Plain Tooltip of ${args['size']} variant"
+      hraPlainTooltipSize="${args['size']}">
         Try Me!
       </button>
     `,

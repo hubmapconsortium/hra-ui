@@ -1,3 +1,5 @@
+@use '../../../../../design-system/styles/utils';
+
 :host {
   display: block;
 
@@ -5,9 +7,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 91rem;
+    max-width: 108rem;
     margin: auto;
-    padding: 0 1rem 7rem;
+    padding: 6rem 2.5rem 7.5rem;
 
     .title {
       margin-bottom: 0.5rem;
@@ -15,6 +17,7 @@
     }
 
     .description {
+      @include utils.use-font(body, xl);
       max-width: 83.75rem;
       margin-bottom: 5rem;
     }

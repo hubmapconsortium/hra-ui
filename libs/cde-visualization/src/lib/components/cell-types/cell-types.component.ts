@@ -23,7 +23,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { map } from 'rxjs';
 
@@ -47,7 +47,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     IconButtonSizeDirective,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     ScrollingModule,
     ColorPickerLabelComponent,
   ],

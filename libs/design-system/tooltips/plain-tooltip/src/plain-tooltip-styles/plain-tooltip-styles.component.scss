@@ -1,7 +1,7 @@
-@use '../../../styles/utils';
+@use '../../../../../design-system/styles/utils';
 
 @include utils.global-styles() {
-  .hra-micro-tooltip {
+  .hra-plain-tooltip {
     --mdc-plain-tooltip-supporting-text-color: var(--mat-sys-on-primary);
     --mdc-plain-tooltip-container-color: color-mix(in srgb, var(--mat-sys-secondary) 96%, transparent);
 
@@ -12,13 +12,13 @@
     }
   }
 
-  .hra-micro-tooltip-medium {
+  .hra-plain-tooltip-medium {
     .mat-mdc-tooltip-surface {
       font: var(--mat-sys-label-medium);
     }
   }
 
-  .hra-micro-tooltip-small {
+  .hra-plain-tooltip-small {
     .mat-mdc-tooltip-surface {
       font: var(--mat-sys-label-small);
     }

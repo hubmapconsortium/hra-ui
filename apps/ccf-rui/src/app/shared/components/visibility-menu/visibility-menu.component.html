@@ -4,13 +4,13 @@
   *ngFor="let item of items; trackBy: getId"
 >
   <mat-icon
-    hraMicroTooltip="Edit opacity"
+    hraPlainTooltip="Edit opacity"
     (click)="menuOpen(item)"
     class="opacity-icon"
     [class.fade]="!item.visible"
     svgIcon="app:opacity"
   ></mat-icon>
-  <div class="item-name" [hraMicroTooltip]="item.name.charAt(0).toUpperCase() + item.name.slice(1)">
+  <div class="item-name" [hraPlainTooltip]="item.name.charAt(0).toUpperCase() + item.name.slice(1)">
     {{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}
   </div>
 
