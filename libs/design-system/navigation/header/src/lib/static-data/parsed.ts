@@ -1,9 +1,9 @@
-import HubmapMenuSchema from '../types/hubmap-menu.schema';
-import MenusSchema from '../types/menus.schema';
-import RAW_HUBMAP_MENU from './hubmap-menu.json';
-import RAW_MENUS from './menus.json';
+import { HubmapMenuGroup } from '../types/hubmap-menu.schema';
+import { Menu } from '../types/menus.schema';
+import { groups } from './hubmap-menu.json';
+import { menus } from './menus.json';
 
-/** Parsed hubmap menu object */
-export const HUBMAP_MENU = HubmapMenuSchema.parse(RAW_HUBMAP_MENU).groups;
-/** Parsed menus object */
-export const MENUS = MenusSchema.parse(RAW_MENUS).menus;
+/** Hubmap menu objects */
+export const HUBMAP_MENU = groups as HubmapMenuGroup[];
+/** Menus objects */
+export const MENUS = menus as Menu[];
