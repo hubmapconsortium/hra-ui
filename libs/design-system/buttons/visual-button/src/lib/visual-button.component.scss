@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  @include utils.use-font(label, small);
+  @include utils.use-font(label, large);
 
   &.hra-visual-button-bottom {
     width: 19rem;
@@ -73,9 +73,8 @@
   }
 
   mat-icon {
+    margin-left: 4px;
     color: var(--mat-sys-tertiary);
-    position: absolute;
-    right: 1rem;
   }
 
   .image {

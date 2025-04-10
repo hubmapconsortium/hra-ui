@@ -3,7 +3,7 @@
   class="delete"
   aria-label="Delete selected nodes"
   hraIconButtonSize="large"
-  hraMicroTooltip="Select at least one cell to delete it from this dataset"
+  hraPlainTooltip="Select at least one cell to delete it from this dataset"
   [disabled]="deleteDisabled()"
   (click)="deleteClick.emit()"
 >
@@ -17,13 +17,13 @@
   [value]="viewMode()"
   (change)="viewMode.set($event.value)"
 >
-  <mat-button-toggle value="select" hraMicroTooltip="Select cells to delete from this dataset">
+  <mat-button-toggle value="select" hraPlainTooltip="Select cells to delete from this dataset">
     Select
   </mat-button-toggle>
-  <mat-button-toggle value="inspect" hraMicroTooltip="Get information about individual cell types">
+  <mat-button-toggle value="inspect" hraPlainTooltip="Get information about individual cell types">
     Inspect
   </mat-button-toggle>
-  <mat-button-toggle value="explore" hraMicroTooltip="Zoom, pan, and rotate the view of this visualization">
+  <mat-button-toggle value="explore" hraPlainTooltip="Zoom, pan, and rotate the view of this visualization">
     Explore
   </mat-button-toggle>
 </mat-button-toggle-group>

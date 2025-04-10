@@ -3,14 +3,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Menu for node dist visualization expansion panel
  */
 @Component({
   selector: 'cde-node-dist-visualization-menu',
-  imports: [MatMenuModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, MicroTooltipDirective],
+  imports: [MatMenuModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, PlainTooltipDirective],
   templateUrl: './node-dist-visualization-menu.component.html',
   styleUrl: './node-dist-visualization-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

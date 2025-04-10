@@ -6,7 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { FilterSexEnum, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import {
   BodyUiComponent,
   BodyUiModule,
@@ -38,7 +38,7 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
     TermOccurrenceListComponent,
     ButtonsModule,
     SpatialSearchInputsComponent,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     MatMenuModule,
     MatDividerModule,
   ],

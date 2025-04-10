@@ -8,7 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -35,7 +35,7 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     ScrollingModule,
     ScrollOverflowFadeDirective,
     MatDividerModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

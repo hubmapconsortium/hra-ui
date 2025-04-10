@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { mock } from 'jest-mock-extended';
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
@@ -19,7 +19,7 @@ describe('ReviewButtonComponent', () => {
     mockDialog.afterClosed.mockReturnValue(afterClosedObservable);
 
     shallow = new Shallow(ReviewButtonComponent, ReviewButtonModule)
-      .dontMock(MicroTooltipDirective)
+      .dontMock(PlainTooltipDirective)
       .mock(MatDialog, {
         open(): MatDialogRef<unknown, boolean> {
           return mockDialog;

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { SoftwareStatusSizeDirective } from './software-status-indicator-size.directive';
 
 /** Software status options */
@@ -14,7 +14,7 @@ export type SoftwareStatusSize = 'small' | 'medium' | 'large';
  */
 @Component({
   selector: 'hra-software-status-indicator',
-  imports: [CommonModule, MicroTooltipDirective, SoftwareStatusSizeDirective],
+  imports: [CommonModule, PlainTooltipDirective, SoftwareStatusSizeDirective],
   templateUrl: './software-status-indicator.component.html',
   styleUrl: './software-status-indicator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

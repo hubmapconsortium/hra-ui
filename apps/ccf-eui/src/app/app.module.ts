@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { BodyUiModule, InfoButtonModule, TrackingPopupModule } from 'ccf-shared';
@@ -47,7 +47,7 @@ import { OrganSelectComponent } from './shared/components/organ-select/organ-sel
     OrganSelectComponent,
     MatDividerModule,
     MatProgressBarModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],

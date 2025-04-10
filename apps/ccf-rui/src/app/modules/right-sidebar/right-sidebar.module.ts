@@ -12,7 +12,7 @@ import {
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { InfoButtonModule } from 'ccf-shared';
 
 import { BlockSizeInputModule } from '../../shared/components/block-size-input/block-size-input.module';
@@ -46,7 +46,7 @@ import { RightSidebarComponent } from './right-sidebar.component';
     MatMenuModule,
     ButtonsModule,
     IconButtonSizeDirective,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   declarations: [RightSidebarComponent],
   exports: [RightSidebarComponent],
