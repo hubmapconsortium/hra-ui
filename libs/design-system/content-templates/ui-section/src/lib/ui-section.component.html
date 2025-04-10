@@ -1,4 +1,4 @@
-<img alt="app-image" [attr.src]="imagePath() | assetUrl" class="app-image" />
+<img class="app-image" [attr.src]="imagePath() | assetUrl" alt="" />
 <div class="ui-content-main">
   <div class="ui-content">
     <hra-product-logo [id]="logo()" class="product-logo" />
@@ -15,13 +15,13 @@
     {{ description() }}
   </p>
   <div class="ui-section-buttons">
-    <button (click)="openAppUrl.emit()" hraCtaButton mat-button>
+    <button mat-button hraCtaButton (click)="openAppUrl.emit()">
       Use App
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
-    <button (click)="openDocumentationLink.emit()" hraCtaButton hraButtonVariant="secondary" disableRipple mat-button>
+    <button mat-button hraCtaButton hraButtonVariant="secondary" disableRipple (click)="openDocumentationLink.emit()">
       Learn More
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
   </div>
 </div>
