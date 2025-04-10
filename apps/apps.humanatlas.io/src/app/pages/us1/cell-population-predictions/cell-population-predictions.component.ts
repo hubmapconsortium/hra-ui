@@ -67,9 +67,6 @@ export class CellPopulationPredictionsComponent {
   /** Data for predictions table */
   protected readonly dataSource = new MatTableDataSource<CellSummaryRow>([]);
 
-  /** Columns for prediction table */
-  protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
-
   /** Column headers for prediction table */
   private readonly columnHeaders: { [key: string]: string } = {
     tool: 'Tool',
@@ -79,6 +76,9 @@ export class CellPopulationPredictionsComponent {
     cell_label: 'Cell Name in Cell Ontology (CL)',
     cell_id: 'Cell Type ID in Cell Ontology (CL)',
   };
+
+  /** Columns for prediction table */
+  protected readonly displayedColumns: string[] = Object.keys(this.columnHeaders);
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
