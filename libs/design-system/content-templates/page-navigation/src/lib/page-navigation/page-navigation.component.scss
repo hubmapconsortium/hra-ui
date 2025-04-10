@@ -1,3 +1,5 @@
+@use '../../../../../styles/utils';
+
 :host {
   .navigation-container {
     display: flex;
@@ -13,7 +15,7 @@
     margin-bottom: 4rem;
 
     .navigation-top {
-      font: var(--mat-sys-label-large);
+      @include utils.use-font(label, large);
       color: var(--mat-sys-secondary);
       min-height: 3rem;
       align-content: center;
@@ -34,10 +36,12 @@
     }
 
     .node-content {
-      font: var(--mat-sys-label-large);
+      @include utils.use-font(label, medium);
+      color: var(--mat-sys-primary);
       padding: 0 0.5rem;
       height: auto;
       border-radius: 0.5rem;
+      min-height: 2rem;
     }
 
     @media (min-width: 1000px) {
@@ -55,12 +59,11 @@
 
       .link-container {
         padding: 0;
-        height: 100%;
-      }
-
-      mat-tree {
-        height: 100%;
       }
     }
+  }
+
+  a {
+    color: inherit;
   }
 }

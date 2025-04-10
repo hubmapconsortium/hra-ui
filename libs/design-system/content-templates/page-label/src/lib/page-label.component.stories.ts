@@ -6,7 +6,7 @@ import { PageLabelComponent } from './page-label.component';
 
 const meta: Meta<PageLabelComponent> = {
   component: PageLabelComponent,
-  title: 'Design System/Content Templates/PageLabel',
+  title: 'Design System/Content Templates/Page Label',
   parameters: {
     design: {
       type: 'figma',

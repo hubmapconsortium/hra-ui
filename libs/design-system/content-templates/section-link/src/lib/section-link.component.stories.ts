@@ -10,7 +10,7 @@ interface ExtraArgs {
 
 const meta: Meta<SectionLinkComponent & ExtraArgs> = {
   component: SectionLinkComponent,
-  title: 'Design System/Content Templates/SectionLink',
+  title: 'Design System/Content Templates/Section Link',
   decorators: [
     moduleMetadata({
       imports: [SectionLinkComponent, ButtonsModule, MatIconModule],

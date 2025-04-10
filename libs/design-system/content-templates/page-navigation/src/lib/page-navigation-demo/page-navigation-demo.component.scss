@@ -1,56 +1,55 @@
 :host {
   .nav-large {
     display: none;
+  }
 
-    @media (min-width: 1000px) {
-      display: unset;
+  .nav-small {
+    display: unset;
+  }
+
+  @media (min-width: 1000px) {
+    .nav-small {
+      display: none;
     }
+
+    .nav-large {
+      display: unset;
+      position: sticky;
+      right: 0;
+      top: 0;
+      width: 17rem;
+      height: 100vh;
+    }
+  }
+
+  hra-page-navigation {
+    grid-area: navigation;
   }
 
   .page {
     display: flex;
     flex-direction: column;
 
-    hra-page-navigation {
-      grid-area: navigation;
-    }
-
-    .nav-small {
-      display: unset;
-    }
-
     @media (min-width: 1000px) {
       display: grid;
       grid-template-columns: calc(100% - 17rem) 17rem;
       grid-template-areas: 'content navigation';
-
-      .nav-small {
-        display: none;
-      }
-
-      .nav-large {
-        display: unset;
-        position: fixed;
-        right: 0;
-        top: 0;
-        width: 17rem;
-      }
     }
+  }
 
-    .page-content {
-      grid-area: content;
-      max-width: 81.25rem;
-      margin: 0 auto;
-      width: 100%;
-      padding: 2.5rem 1rem;
+  hra-page-section {
+    margin-bottom: 4rem;
+  }
 
-      @media (min-width: 1000px) {
-        padding: 2.5rem;
-      }
-    }
+  .page-content {
+    grid-area: content;
+    max-width: 81.25rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2.5rem 1rem;
 
-    hra-page-section {
-      margin-bottom: 4rem;
+    @media (min-width: 1000px) {
+      padding: 2.5rem;
     }
   }
 

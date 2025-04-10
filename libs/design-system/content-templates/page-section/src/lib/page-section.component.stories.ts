@@ -14,7 +14,7 @@ interface ExtraArgs {
 
 const meta: Meta<PageSectionComponent> = {
   component: PageSectionComponent,
-  title: 'Design System/Content Templates/PageSection',
+  title: 'Design System/Content Templates/Page Section',
   decorators: [
     moduleMetadata({
       imports: [
