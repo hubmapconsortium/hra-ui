@@ -295,7 +295,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
   - `footer`
   - `fullscreen`
   - `info-modal`
-  - `plain-tooltip`
+  - `micro-tooltip`
   - `nav-header` and `nav-header-butons`
   - `product-logo`
   - `scrolling`
