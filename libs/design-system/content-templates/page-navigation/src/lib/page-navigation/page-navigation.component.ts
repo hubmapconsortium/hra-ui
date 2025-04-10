@@ -1,7 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
-
-import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
+import { ArrayDataSource } from '@angular/cdk/collections';
+import { AfterViewInit, ChangeDetectionStrategy, Component, input, OnInit, viewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTree, MatTreeModule } from '@angular/material/tree';
+import { HraCommonModule } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Nested section item */
 export interface Section {
@@ -18,43 +20,40 @@ export interface Section {
  */
 @Component({
   selector: 'hra-page-navigation',
-  imports: [CommonModule, NavigationItemComponent],
   templateUrl: './page-navigation.component.html',
   styleUrl: './page-navigation.component.scss',
+  imports: [HraCommonModule, MatTreeModule, ButtonsModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageNavigationComponent {
+export class PageNavigationComponent implements OnInit, AfterViewInit {
   /** Text for the header portion */
   readonly tagline = input<string>('On this page');
-  /** Section list */
-  readonly sections = input<Section[]>([]);
-  /** Current selected section */
-  readonly currentItem = signal<Section | undefined>(undefined);
 
-  /**
-   * Set the initial item
-   */
-  constructor() {
-    effect(() => {
-      const sectionName = window.location.hash;
-      const initialSection = this.flattenTree(this.sections()).find((section) => `#${section.anchor}` === sectionName);
-      this.currentItem.set(initialSection);
-    });
+  /** ViewChild for tree component */
+  readonly tree = viewChild.required('tree', { read: MatTree });
+
+  /** Tree node data */
+  readonly treeData = input<Section[]>([]);
+
+  /** Data source */
+  dataSource = new ArrayDataSource<Section>([]);
+
+  /** Current selected node */
+  selectedNode?: Section;
+
+  /** Gets the children of a node */
+  childrenAccessor = (dataNode: Section) => dataNode.subSections ?? [];
+
+  /** If the node has a child */
+  hasChild = (_: number, node: Section) => !!node.subSections?.length;
+
+  /** Sets dataSource data after view init */
+  ngOnInit() {
+    this.dataSource = new ArrayDataSource<Section>(this.treeData());
   }
 
-  /**
-   * Flattens tree of sections
-   * @param tree Nested section tree
-   * @returns Flattened section tree
-   */
-  private flattenTree(tree: Section[]): Section[] {
-    let result: Section[] = [];
-    tree.forEach((node) => {
-      result.push(node);
-      if (node.subSections) {
-        result = result.concat(this.flattenTree(node.subSections));
-      }
-    });
-    return result;
+  /** expands the tree after view init */
+  ngAfterViewInit() {
+    this.tree().expandAll();
   }
 }

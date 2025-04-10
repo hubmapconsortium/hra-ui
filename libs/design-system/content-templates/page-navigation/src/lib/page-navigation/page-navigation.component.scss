@@ -25,27 +25,41 @@
     .link-container {
       display: flex;
       flex-direction: column;
-      padding: 0.5rem;
+      padding: 0.5rem 0.875rem;
+    }
+
+    mat-tree-node {
+      --mat-tree-node-min-height: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .node-content {
+      font: var(--mat-sys-label-large);
+      padding: 0 0.5rem;
+      height: auto;
+      border-radius: 0.5rem;
     }
 
     @media (min-width: 1000px) {
+      height: 100%;
       padding: 2.5rem 0.75rem 0 0.75rem;
-      justify-self: unset;
       border: none;
       margin-bottom: 0;
-      position: fixed;
-      width: 17rem;
-      max-height: -webkit-fill-available;
 
       .navigation-top {
         min-height: 2.5rem;
         background-color: unset;
         border-bottom: unset;
-        padding-left: 1rem;
+        padding-left: 0.5rem;
       }
 
       .link-container {
         padding: 0;
+        height: 100%;
+      }
+
+      mat-tree {
+        height: 100%;
       }
     }
   }

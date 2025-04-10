@@ -9,7 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
 
 /** Test section data */
-const TEST_SECTIONS: Section[] = [
+export const TEST_SECTIONS: Section[] = [
   {
     label: 'Section label in sentence case 1',
     anchor: 'section-label-in-sentence-case-1',
