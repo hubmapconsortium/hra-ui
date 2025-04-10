@@ -11,6 +11,8 @@ import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { CellSummaryRow } from '@hra-api/ng-client';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
+import { saveAs } from 'file-saver';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -56,6 +58,9 @@ export class CellPopulationPredictionsComponent {
   /** Router service */
   private readonly router = inject(Router);
 
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
+
   /** For sorting Tools column */
   private readonly sort = viewChild.required(MatSort);
 
@@ -64,6 +69,16 @@ export class CellPopulationPredictionsComponent {
 
   /** Columns for prediction table */
   protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
+
+  /** Column headers for prediction table */
+  private readonly columnHeaders: { [key: string]: string } = {
+    tool: 'Tool',
+    modality: 'Modality',
+    percentage: '% Of Total',
+    count: '# Count',
+    cell_label: 'Cell Name in Cell Ontology (CL)',
+    cell_id: 'Cell Type ID in Cell Ontology (CL)',
+  };
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
@@ -97,5 +112,29 @@ export class CellPopulationPredictionsComponent {
     if (confirmation) {
       this.router.navigate(['/us1']);
     }
+  }
+
+  /** Triggered when clicked on download CSV button  */
+  onDownloadCSVButtonClicked() {
+    const fields = this.displayedColumns as (keyof CellSummaryRow)[];
+    const headers = Object.values(this.columnHeaders).join(',') + '\n';
+    const data = this.dataSource.data;
+    const rows = data
+      .map((row) =>
+        fields
+          .map((field) => {
+            if (field === 'percentage') {
+              return row.percentage < 0.0001 ? '< 0.01%' : (row.percentage * 100).toFixed(2) + '%';
+            }
+            return row[field];
+          })
+          .join(','),
+      )
+      .join('\n');
+
+    const csvString = headers + rows;
+    const fileToSave = new Blob([csvString], { type: 'text/csv' });
+    saveAs(fileToSave, 'predictions.csv');
+    this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 }
