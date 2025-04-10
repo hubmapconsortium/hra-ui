@@ -5,7 +5,7 @@
   </mat-form-field>
 } @else {
   <div class="slider-container">
-    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraMicroTooltip="Reset">
+    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraPlainTooltip="Reset">
       <mat-icon>reset_settings</mat-icon>
     </button>
     <mat-slider
@@ -14,7 +14,7 @@
       [min]="-180"
       [step]="step"
       disableRipple
-      hraMicroTooltip="Hold shift while using the slider to rotate in smaller increments by 1 degree"
+      hraPlainTooltip="Hold shift while using the slider to rotate in smaller increments by 1 degree"
     >
       <input
         class="slider-input"

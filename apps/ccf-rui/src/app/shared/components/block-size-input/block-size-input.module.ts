@@ -4,12 +4,12 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { BlockSizeInputComponent } from './block-size-input.component';
 
 @NgModule({
-  imports: [CommonModule, MatInputModule, MatIconModule, MatRippleModule, MatFormFieldModule, MicroTooltipDirective],
+  imports: [CommonModule, MatInputModule, MatIconModule, MatRippleModule, MatFormFieldModule, PlainTooltipDirective],
   declarations: [BlockSizeInputComponent],
   exports: [BlockSizeInputComponent],
 })

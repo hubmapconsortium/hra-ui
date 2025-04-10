@@ -1,35 +1,35 @@
 import { Directive, effect, inject, input } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
 import { registerStyleComponents } from '@hra-ui/cdk/styling';
-import { MicroTooltipStylesComponent } from './micro-tooltip-styles/micro-tooltip-styles.component';
+import { PlainTooltipStylesComponent } from './plain-tooltip-styles/plain-tooltip-styles.component';
 
 /** Type of Tooltip size */
-export type MicroTooltipSize = 'small' | 'medium';
+export type PlainTooltipSize = 'small' | 'medium';
 
 /** Directive for Tooltip */
 @Directive({
-  selector: '[hraMicroTooltip]',
+  selector: '[hraPlainTooltip]',
   standalone: true,
   hostDirectives: [
     {
       directive: MatTooltip,
-      inputs: ['matTooltip: hraMicroTooltip', 'matTooltipPosition: hraMicroTooltipPosition'],
+      inputs: ['matTooltip: hraPlainTooltip', 'matTooltipPosition: hraPlainTooltipPosition'],
     },
   ],
 })
-export class MicroTooltipDirective {
+export class PlainTooltipDirective {
   /** Size of the tooltip */
-  readonly size = input<MicroTooltipSize>('medium', { alias: 'hraMicroTooltipSize' });
+  readonly size = input<PlainTooltipSize>('medium', { alias: 'hraPlainTooltipSize' });
 
   /** Instance of MatTooltip */
   protected readonly tooltip = inject(MatTooltip);
 
   /** Registers the styles and sets class names for the tooltip container */
   constructor() {
-    registerStyleComponents([MicroTooltipStylesComponent]);
+    registerStyleComponents([PlainTooltipStylesComponent]);
 
     effect(() => {
-      this.tooltip.tooltipClass = ['hra-micro-tooltip', `hra-micro-tooltip-${this.size()}`];
+      this.tooltip.tooltipClass = ['hra-plain-tooltip', `hra-plain-tooltip-${this.size()}`];
     });
   }
 }
