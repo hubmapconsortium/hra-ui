@@ -4,7 +4,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
 import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
 /** Variant of nav header button */
@@ -22,7 +22,7 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
     ButtonsModule,
     ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   templateUrl: './nav-header-buttons.component.html',
   styleUrl: './nav-header-buttons.component.scss',
