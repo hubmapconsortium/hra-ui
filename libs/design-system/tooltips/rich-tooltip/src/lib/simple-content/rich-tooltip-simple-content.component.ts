@@ -1,8 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RichTooltipDirective } from '../rich-tooltip.directive';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { RichTooltipDirective } from '../rich-tooltip.directive';
 
+/**
+ * HRA Rich Tooltip
+ * Simple Content Variant
+ */
 @Component({
   selector: 'hra-rich-tooltip-simple-content',
   imports: [CommonModule, ButtonsModule],
@@ -11,5 +15,29 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RichTooltipSimpleContentComponent {
-  readonly owner = input<RichTooltipDirective>(); // TODO Try to make required
+  /**
+   * Owner directive input variable
+   * TODO: Try to make it required input
+   */
+  readonly owner = input<RichTooltipDirective>();
+
+  /**
+   * Title text for the tooltip (required)
+   */
+  readonly title = input.required<string>();
+
+  /**
+   * Description text for the tooltip (required)
+   */
+  readonly description = input.required<string>();
+
+  /**
+   * Action button text for the tooltip (optional)
+   */
+  readonly actionText = input<string>();
+
+  /**
+   * Output variable for the action button click event
+   */
+  readonly actionClick = output<void>();
 }

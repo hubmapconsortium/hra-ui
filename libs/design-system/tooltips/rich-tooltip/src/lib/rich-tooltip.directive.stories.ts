@@ -18,16 +18,22 @@ type Story = StoryObj<RichTooltipDirective>;
 
 export const Default: Story = {
   args: {
-    tagline: '',
+    title: 'Title',
+    description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+    actionText: 'Action',
   },
   render: (args) => ({
     props: args,
     styles: [],
     template: `
-      <button mat-icon-button hraRichTooltip hraRichTooltipTagline="${args.tagline}">
-        <mat-icon>info</mat-icon>
-      </button>
-    `,
+        <button mat-icon-button
+        hraRichTooltip
+        [hraRichTooltipTitle]="title"
+        [hraRichTooltipDescription]="description"
+        [hraRichTooltipActionText]="actionText">
+          <mat-icon>info</mat-icon>
+        </button>
+      `,
   }),
   decorators: [
     moduleMetadata({

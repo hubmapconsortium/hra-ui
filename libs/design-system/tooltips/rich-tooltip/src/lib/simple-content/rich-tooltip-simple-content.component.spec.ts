@@ -1,21 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RichTooltipSimpleContentComponent } from './rich-tooltip-simple-content.component';
+import { render } from '@testing-library/angular';
 
 describe('RichTooltipSimpleContentComponent', () => {
-  let component: RichTooltipSimpleContentComponent;
-  let fixture: ComponentFixture<RichTooltipSimpleContentComponent>;
+  it('should render', async () => {
+    const promise = render(RichTooltipSimpleContentComponent, {
+      inputs: { title: 'Title', description: 'Description', actionText: 'Action' },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RichTooltipSimpleContentComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(RichTooltipSimpleContentComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    await expect(promise).resolves.toBeDefined();
   });
 });

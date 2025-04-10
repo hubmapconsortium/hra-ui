@@ -1,7 +1,7 @@
 <div class="tooltip-content">
-  <div class="tagline">Title</div>
-  <div class="description">Supporting line text lorem ipsum dolor sit amet, consectetur</div>
+  <div class="tagline">{{ title() }}</div>
+  <div class="description">{{ description() }}</div>
 </div>
 <div class="tooltip-actions">
-  <button mat-button color="accent">Hello</button>
+  <button mat-button color="accent" (click)="actionClick.emit()">{{ actionText() }}</button>
 </div>
