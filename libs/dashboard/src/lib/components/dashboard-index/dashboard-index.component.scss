@@ -1,3 +1,5 @@
+@use '../../../../../design-system/styles/utils';
+
 :host {
   display: block;
 
@@ -15,6 +17,7 @@
     }
 
     .description {
+      @include utils.use-font(body, xl);
       max-width: 83.75rem;
       margin-bottom: 5rem;
     }
