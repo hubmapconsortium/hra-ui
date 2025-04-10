@@ -11,19 +11,24 @@ import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page
 /** Test section data */
 const TEST_SECTIONS: Section[] = [
   {
-    name: 'Section label in sentence case 1',
-    children: [
+    label: 'Section label in sentence case 1',
+    anchor: 'section-label-in-sentence-case-1',
+    subSections: [
       {
-        name: 'Section label in sentence case 2',
-        children: [
+        label: 'Section label in sentence case 2',
+        anchor: 'section-label-in-sentence-case-2',
+        subSections: [
           {
-            name: 'Section label in sentence case 3',
-            children: [
+            label: 'Section label in sentence case 3',
+            anchor: 'section-label-in-sentence-case-3',
+            subSections: [
               {
-                name: 'Section label in sentence case 4',
-                children: [
+                label: 'Section label in sentence case 4',
+                anchor: 'section-label-in-sentence-case-4',
+                subSections: [
                   {
-                    name: 'Section label in sentence case 5',
+                    label: 'Section label in sentence case 5',
+                    anchor: 'section-label-in-sentence-case-5',
                   },
                 ],
               },
@@ -34,13 +39,16 @@ const TEST_SECTIONS: Section[] = [
     ],
   },
   {
-    name: 'Section label in sentence case 6',
-    children: [
+    label: 'Section label in sentence case 6',
+    anchor: 'section-label-in-sentence-case-6',
+    subSections: [
       {
-        name: 'Section label in sentence case 7',
+        label: 'Section label in sentence case 7',
+        anchor: 'section-label-in-sentence-case-7',
       },
       {
-        name: 'Section label in sentence case 8',
+        label: 'Section label in sentence case 8',
+        anchor: 'section-label-in-sentence-case-8',
       },
     ],
   },

@@ -1,7 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, numberAttribute } from '@angular/core';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  numberAttribute,
+} from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -28,6 +37,9 @@ export class SectionLinkComponent {
   /** Whether to display the underline */
   readonly underlined = input(false, { transform: booleanAttribute });
 
+  /** Base url */
+  private readonly baseUrl = inject(Router).url.split('#')[0];
+
   /** Href derived from base url and anchor */
-  protected readonly href = computed(() => `#${this.anchor()}`);
+  protected readonly href = computed(() => `${this.baseUrl}#${this.anchor()}`);
 }

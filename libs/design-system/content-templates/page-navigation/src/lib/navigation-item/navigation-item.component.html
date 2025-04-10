@@ -1,10 +1,10 @@
 <a [attr.href]="navigationLink()" (click)="itemClicked.emit(section())">
   <div class="navigation-label" [class.selected]="selected()" [style.margin-left]="level() * 0.75 + 'rem'">
-    {{ section().name }}
+    {{ section().label }}
   </div>
 </a>
-@if (section().children) {
-  @for (child of section().children; track child) {
+@if (section().subSections) {
+  @for (child of section().subSections; track child) {
     <hra-navigation-item
       [section]="child"
       [level]="level() + 1"

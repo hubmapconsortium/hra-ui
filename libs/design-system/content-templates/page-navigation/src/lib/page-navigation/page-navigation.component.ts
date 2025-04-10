@@ -6,9 +6,11 @@ import { NavigationItemComponent } from '../navigation-item/navigation-item.comp
 /** Nested section item */
 export interface Section {
   /** Name of section */
-  name: string;
+  label: string;
+  /** Anchor for href */
+  anchor: string;
   /** List of child sections */
-  children?: Section[];
+  subSections?: Section[];
 }
 
 /**
@@ -34,10 +36,8 @@ export class PageNavigationComponent {
    */
   constructor() {
     effect(() => {
-      const sectionName = window.location.hash.replaceAll('-', ' ').replace('#', '');
-      const initialSection = this.flattenTree(this.sections()).find(
-        (section) => section.name.toLowerCase() === sectionName.toLowerCase(),
-      );
+      const sectionName = window.location.hash;
+      const initialSection = this.flattenTree(this.sections()).find((section) => `#${section.anchor}` === sectionName);
       this.currentItem.set(initialSection);
     });
   }
@@ -50,9 +50,9 @@ export class PageNavigationComponent {
   private flattenTree(tree: Section[]): Section[] {
     let result: Section[] = [];
     tree.forEach((node) => {
-      result.push({ name: node.name, children: node.children });
-      if (node.children) {
-        result = result.concat(this.flattenTree(node.children));
+      result.push(node);
+      if (node.subSections) {
+        result = result.concat(this.flattenTree(node.subSections));
       }
     });
     return result;

@@ -7,9 +7,9 @@
   }
 
   .navigation-label {
-    font: var(--mat-sys-label-medium);
+    @include utils.use-font(label, medium);
     color: var(--mat-sys-primary);
-    padding: 5.5px 1rem;
+    padding: 0.3438rem 1rem;
     border-radius: 0.5rem;
 
     &:hover {

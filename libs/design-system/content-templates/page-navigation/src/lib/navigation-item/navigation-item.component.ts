@@ -1,6 +1,7 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 
 import { Section } from '../page-navigation/page-navigation.component';
+import { Router } from '@angular/router';
 
 /**
  * Navigation item to display in the page navigation component, may contain other navigation items
@@ -24,8 +25,11 @@ export class NavigationItemComponent {
   readonly itemClicked = output<Section>();
 
   /** If this item is the same as the currently selected item */
-  readonly selected = computed(() => this.currentItem()?.name === this.section().name);
+  readonly selected = computed(() => this.currentItem()?.anchor === this.section().anchor);
+
+  /** Base url */
+  private readonly baseUrl = inject(Router).url.split('#')[0];
 
   /** Href for the navigation link to this section*/
-  readonly navigationLink = computed(() => `#${this.section().name.toLowerCase().replaceAll(' ', '-')}`);
+  readonly navigationLink = computed(() => `${this.baseUrl}#${this.section().anchor}`);
 }
