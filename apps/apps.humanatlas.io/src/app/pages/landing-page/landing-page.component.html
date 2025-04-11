@@ -1,0 +1,30 @@
+<div class="splash-header">
+  <img [attr.src]="'assets/ui-images/splash-image.png' | assetUrl" alt="" class="splash-header-img" />
+  <div class="splash-header-content">
+    <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
+    <mat-button-toggle-group hideSingleSelectionIndicator hraButtonToggleSize="large" [(ngModel)]="activeTab">
+      @for (tab of tabs(); track tab.name) {
+        <mat-button-toggle [value]="tab">{{ tab.name }}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>
+</div>
+
+<div class="apps-container">
+  @for (section of activeSections(); track section.tagline) {
+    <h2 class="apps-header-text">{{ section.tagline }}</h2>
+    <div class="apps-list">
+      @for (card of section.cards; track card.tagline) {
+        <hra-ui-section
+          [tagline]="card.tagline"
+          [description]="card.description"
+          [imagePath]="card.imagePath"
+          [logo]="card.logoPath"
+          [appStatus]="card.appStatus"
+          (openAppUrl)="onOpenAppUrl(card.appUrl)"
+          (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"
+        />
+      }
+    </div>
+  }
+</div>
