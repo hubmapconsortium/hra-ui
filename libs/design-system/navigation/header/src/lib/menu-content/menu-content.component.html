@@ -8,7 +8,13 @@
 }
 
 <ng-template hraMenuGroup let-group #groupTemplate>
-  <a mat-button class="group-label" [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
+  <a
+    mat-button
+    class="group-label"
+    [attr.href]="group.url"
+    [attr.target]="group.target ?? '_blank'"
+    rel="noopener noreferrer"
+  >
     {{ group.label }}
     <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
   </a>
@@ -44,7 +50,14 @@
 </ng-template>
 
 <ng-template hraMenuItem let-item #itemTemplate>
-  <a mat-button hraSecondaryButton class="item-label" [attr.href]="item.url" target="_blank" rel="noopener noreferrer">
+  <a
+    mat-button
+    hraSecondaryButton
+    class="item-label"
+    [attr.href]="item.url"
+    [attr.target]="item.target ?? '_blank'"
+    rel="noopener noreferrer"
+  >
     {{ item.label }}
   </a>
 </ng-template>
