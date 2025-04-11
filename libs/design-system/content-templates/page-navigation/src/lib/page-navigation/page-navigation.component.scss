@@ -1,0 +1,69 @@
+@use '../../../../../styles/utils';
+
+:host {
+  .navigation-container {
+    display: flex;
+    flex-direction: column;
+    background: var(--mat-sys-on-primary);
+    z-index: 2;
+    overflow: auto;
+    width: 100%;
+    justify-self: anchor-center;
+    position: relative;
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 0.5rem;
+    margin-bottom: 4rem;
+
+    .navigation-top {
+      @include utils.use-font(label, large);
+      color: var(--mat-sys-secondary);
+      min-height: 3rem;
+      align-content: center;
+      padding-left: 1.5rem;
+      background-color: var(--mat-sys-surface-container-low);
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+    }
+
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0.875rem;
+    }
+
+    mat-tree-node {
+      --mat-tree-node-min-height: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .node-content {
+      @include utils.use-font(label, medium);
+      color: var(--mat-sys-primary);
+      padding: 0 0.5rem;
+      height: auto;
+      border-radius: 0.5rem;
+      min-height: 2rem;
+    }
+
+    @media (min-width: 1000px) {
+      height: 100%;
+      padding: 2.5rem 0.75rem 0 0.75rem;
+      border: none;
+      margin-bottom: 0;
+
+      .navigation-top {
+        min-height: 2.5rem;
+        background-color: unset;
+        border-bottom: unset;
+        padding-left: 0.5rem;
+      }
+
+      .link-container {
+        padding: 0;
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+}
