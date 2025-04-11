@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { ReviewModalModule } from '../review-modal/review-modal.module';
 import { ReviewButtonComponent } from './review-button.component';
 
 @NgModule({
   declarations: [ReviewButtonComponent],
-  imports: [CommonModule, ReviewModalModule, ButtonsModule, MicroTooltipDirective],
+  imports: [CommonModule, ReviewModalModule, ButtonsModule, PlainTooltipDirective],
   exports: [ReviewButtonComponent],
 })
 export class ReviewButtonModule {}
