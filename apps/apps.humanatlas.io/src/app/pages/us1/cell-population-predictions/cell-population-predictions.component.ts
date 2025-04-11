@@ -117,7 +117,9 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when clicked on download CSV button  */
   onDownloadCSVButtonClicked() {
-    const csvString = papa.unparse(this.predictions(), { columns: this.displayedColumns });
+    const csvData = papa.unparse(this.predictions(), { header: false, columns: this.displayedColumns });
+    const csvHeaders = papa.unparse({ fields: Object.values(this.columnHeaders), data: [] });
+    const csvString = csvHeaders + csvData;
     const fileToSave = new Blob([csvString], { type: 'text/csv' });
     saveAs(fileToSave, 'predictions.csv');
     this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
