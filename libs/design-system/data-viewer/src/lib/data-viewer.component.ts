@@ -6,16 +6,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 import { OrganLogoComponent, OrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { ProductLogoComponent, ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
 import { OrganVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
-
-/** Viewer variant types */
-export type ViewerVariant = 'ftu' | '3d-organ';
 
 /**
  * Data viewer component
@@ -46,7 +43,7 @@ export class DataViewerComponent {
   readonly organVersionData = input.required<OrganVersionData[]>();
 
   /** Data viewer variant */
-  readonly variant = input.required<ViewerVariant>();
+  readonly variant = input.required({ transform: toProductLogoId });
 
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
@@ -56,9 +53,6 @@ export class DataViewerComponent {
 
   /** Current organ selected */
   readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
-
-  /** Icon for the data viewer variant */
-  readonly variantIconId = computed(() => this.variant() as ProductLogoId);
 
   /** Icon for the currently selected organ */
   readonly organIconId = computed(() => this.organ().icon as OrganLogoId);

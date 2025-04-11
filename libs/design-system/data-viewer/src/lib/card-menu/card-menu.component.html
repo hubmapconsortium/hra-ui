@@ -11,27 +11,32 @@
   </a>
 </mat-menu>
 <mat-menu #submenu="matMenu">
-  @if (variant() === 'ftu') {
-    <button mat-menu-item (click)="downloadClick(viewerCardData().svg ?? '')">
+  @if (viewerCardData().svg) {
+    <a mat-menu-item [attr.href]="viewerCardData().svg" download>
       <mat-icon>download</mat-icon>
       SVG
-    </button>
-    <button mat-menu-item (click)="downloadClick(viewerCardData().png ?? '')">
+    </a>
+  }
+  @if (viewerCardData().png) {
+    <a mat-menu-item [attr.href]="viewerCardData().png" download>
       <mat-icon>download</mat-icon>
       PNG
-    </button>
-    <a mat-menu-item [href]="viewerCardData().ai">
+    </a>
+  }
+  @if (viewerCardData().ai) {
+    <a mat-menu-item [attr.href]="viewerCardData().ai" download>
       <mat-icon>download</mat-icon>
       Adobe Illustrator
     </a>
-  } @else {
-    <a mat-menu-item [href]="viewerCardData().threeDimImage">
+  }
+  @if (viewerCardData().threeDimImage) {
+    <a mat-menu-item [attr.href]="viewerCardData().threeDimImage" download>
       <mat-icon>download</mat-icon>
       GLB
     </a>
   }
   <mat-divider class="menu-divider"></mat-divider>
-  <a mat-menu-item class="csv-button" [href]="viewerCardData().crosswalk">
+  <a mat-menu-item class="csv-button" [attr.href]="viewerCardData().crosswalk" download>
     <mat-icon>download</mat-icon>
     <span class="csv-label">CSV-Crosswalk</span>
     <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>

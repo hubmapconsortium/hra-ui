@@ -6,10 +6,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
+import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { CardMenuComponent } from '../card-menu/card-menu.component';
-import { ViewerVariant } from '../data-viewer.component';
 import { ViewerCardData } from '../types/data-viewer.schema';
 
 /**
@@ -29,7 +29,7 @@ export class ViewerCardComponent {
   private readonly dialog = inject(MatDialog);
 
   /** Data viewer variant the card belongs to */
-  readonly variant = input.required<ViewerVariant>();
+  readonly variant = input.required<ProductLogoId>();
 
   /** Viewer card data */
   readonly viewerCardData = input.required<ViewerCardData>();

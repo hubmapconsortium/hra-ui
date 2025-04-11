@@ -1,6 +1,6 @@
 <div class="header">
   <div class="logos">
-    <hra-product-logo [id]="variantIconId()"></hra-product-logo>
+    <hra-product-logo [id]="variant()"></hra-product-logo>
     <hra-organ-logo [id]="organIconId()"></hra-organ-logo>
   </div>
   <span class="header-label">{{ viewerTitle() }}</span>
@@ -8,7 +8,7 @@
     mat-icon-button
     [matMenuTriggerFor]="viewermenu.menu()"
     hraIconButtonSize="large"
-    aria-label="Icon to open nested menu"
+    aria-label="Open the data viewer's menu"
     hraMicroTooltip="More"
   >
     <mat-icon>more_vert</mat-icon>
@@ -26,12 +26,7 @@
     <mat-form-field class="select" subscriptSizing="dynamic">
       <mat-icon matPrefix class="search-icon">search</mat-icon>
       <mat-label>Organ</mat-label>
-      <mat-select
-        disableRipple
-        panelClass="options-container"
-        (valueChange)="organ.set($event.value)"
-        [(value)]="organ"
-      >
+      <mat-select disableRipple panelClass="options-container" [(ngModel)]="organ">
         @for (organ of organOptions(); track organ) {
           <mat-option [value]="organ">{{ organ.name }}</mat-option>
         }
@@ -41,12 +36,7 @@
     <mat-form-field class="select" subscriptSizing="dynamic">
       <mat-icon matPrefix class="search-icon">search</mat-icon>
       <mat-label>Release Version</mat-label>
-      <mat-select
-        disableRipple
-        panelClass="options-container"
-        (valueChange)="currentVersion.set($event.value)"
-        [(ngModel)]="currentVersion"
-      >
+      <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
         <mat-select-trigger>{{ currentVersion().releaseName }}</mat-select-trigger>
         @for (dataset of organVersionData(); track dataset) {
           <mat-option [value]="dataset">

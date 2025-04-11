@@ -30,7 +30,7 @@ export const OrganVersionDataSchema = z.object({
   releaseName: z.string(),
   releaseDate: z.string(),
   version: z.string(),
-  crosswalk: z.string(),
+  crosswalk: z.string().url(),
   organData: OrganDataSchema.array(),
   extractionCsvUrl: z.string().url().optional(),
   referenceCsvUrl: z.string().url().optional(),

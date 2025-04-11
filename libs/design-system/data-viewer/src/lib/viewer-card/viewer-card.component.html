@@ -8,21 +8,10 @@
       (click)="openImageViewer(imageContent)"
       (keyup.enter)="openImageViewer(imageContent)"
     />
-    <ng-template #imageContent>
-      <div class="dialog-container">
-        <div class="dialog-header">
-          <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
-          <div class="filler"></div>
-          <button mat-icon-button>
-            <mat-icon (click)="close()">clear</mat-icon>
-          </button>
-        </div>
-        <div class="img-container">
-          <img class="dialog-image" [src]="viewerCardData().svg" [alt]="viewerCardData().alt" />
-        </div>
-      </div>
-    </ng-template>
-  } @else {
+    <ng-container [ngTemplateOutlet]="imageContent"> </ng-container>
+  }
+
+  @if (variant() === '3d-organ') {
     <model-viewer
       class="model-viewer"
       [alt]="viewerCardData().alt"
@@ -37,6 +26,21 @@
 
 <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
 
+<ng-template #imageContent>
+  <div class="dialog-container">
+    <div class="dialog-header">
+      <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
+      <div class="filler"></div>
+      <button mat-icon-button>
+        <mat-icon (click)="close()">clear</mat-icon>
+      </button>
+    </div>
+    <div class="img-container">
+      <img class="dialog-image" [src]="viewerCardData().svg" [alt]="viewerCardData().alt" />
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #objectMenu>
   <div class="object-menu">
     <span class="tagline">{{ viewerCardData().name }}</span>
@@ -44,12 +48,11 @@
       mat-icon-button
       [matMenuTriggerFor]="cardMenu.menu()"
       hraIconButtonSize="large"
-      aria-label="Icon to open nested menu"
+      aria-label="Open the card's menu"
       hraMicroTooltip="More"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-
     <hra-card-menu #cardMenu [variant]="variant()" [viewerCardData]="viewerCardData()"></hra-card-menu>
   </div>
 </ng-template>
