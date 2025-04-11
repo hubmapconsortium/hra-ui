@@ -13,6 +13,7 @@ import { CellSummaryRow } from '@hra-api/ng-client';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { saveAs } from 'file-saver';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import papa from 'papaparse';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -116,25 +117,19 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when clicked on download CSV button  */
   onDownloadCSVButtonClicked() {
-    const fields = this.displayedColumns as (keyof CellSummaryRow)[];
-    const headers = Object.values(this.columnHeaders).join(',') + '\n';
-    const data = this.dataSource.data;
-    const rows = data
-      .map((row) =>
-        fields
-          .map((field) => {
-            if (field === 'percentage') {
-              return row.percentage < 0.0001 ? '< 0.01%' : (row.percentage * 100).toFixed(2) + '%';
-            }
-            return row[field];
-          })
-          .join(','),
-      )
-      .join('\n');
+    const headers: string[] = Object.values(this.columnHeaders);
+    const csvData: string[][] = [headers];
 
-    const csvString = headers + rows;
+    const data = this.dataSource.data;
+    data.forEach((row) => {
+      const csvRow: string[] = this.displayedColumns.map((field) => String(row[field as keyof CellSummaryRow]));
+      csvData.push(csvRow);
+    });
+
+    const csvString = papa.unparse(csvData);
     const fileToSave = new Blob([csvString], { type: 'text/csv' });
     saveAs(fileToSave, 'predictions.csv');
+
     this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 }
