@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { VisualButtonComponent } from '@hra-ui/design-system/buttons/visual-button';
 import { z } from 'zod';
 
 /** Long card data */
@@ -19,7 +20,7 @@ export const LONG_CARD_DEF = z.object({
  */
 @Component({
   selector: 'hra-long-card',
-  imports: [CommonModule, MatIconModule, RouterModule],
+  imports: [CommonModule, MatIconModule, RouterModule, VisualButtonComponent],
   templateUrl: './long-card.component.html',
   styleUrl: './long-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,4 +28,12 @@ export const LONG_CARD_DEF = z.object({
 export class LongCardComponent {
   /** Long card component input */
   readonly spec = input.required<LongCardSpec>();
+
+  /** Router */
+  private readonly router = inject(Router);
+
+  /** Long card component click event */
+  onClick(): void {
+    this.router.navigate(['/', this.spec().route]);
+  }
 }
