@@ -1,0 +1,54 @@
+{
+  "$ref": "#/definitions/CategoryLogos",
+  "definitions": {
+    "CategoryLogo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "icon"],
+      "additionalProperties": false
+    },
+    "SvgIconNamespaceConfig": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        }
+      },
+      "required": ["namespace", "directory"],
+      "additionalProperties": false
+    },
+    "CategoryLogos": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "logos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CategoryLogo"
+          }
+        },
+        "namespaceConfigs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SvgIconNamespaceConfig"
+          }
+        }
+      },
+      "required": ["$schema", "logos", "namespaceConfigs"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
