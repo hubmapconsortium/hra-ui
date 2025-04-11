@@ -1,5 +1,5 @@
-import { CommonModule, Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -32,9 +32,6 @@ export class AppComponent {
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
-  /** Location service */
-  private readonly location = inject(Location);
-
   /** Beta menu */
   protected readonly menus: Menu[] = [
     ...DEFAULT_MENUS,
@@ -47,31 +44,31 @@ export class AppComponent {
           type: 'group',
           label: 'Beta links',
           description: '',
-          url: this.location.prepareExternalUrl('/'),
+          url: '/',
           target: '_self',
           items: [
             {
               type: 'item',
               label: 'User Story 1',
-              url: this.location.prepareExternalUrl('/us1'),
+              url: '/us1',
               target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 2',
-              url: this.location.prepareExternalUrl('/us2'),
+              url: '/us2',
               target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 6',
-              url: this.location.prepareExternalUrl('/us6'),
+              url: '/us6',
               target: '_self',
             },
             {
               type: 'item',
               label: 'API',
-              url: this.location.prepareExternalUrl('/api'),
+              url: '/api',
               target: '_self',
             },
             {

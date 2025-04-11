@@ -8,16 +8,17 @@
 }
 
 <ng-template hraMenuGroup let-group #groupTemplate>
-  <a
-    mat-button
-    class="group-label"
-    [attr.href]="group.url"
-    [attr.target]="group.target ?? '_blank'"
-    rel="noopener noreferrer"
-  >
-    {{ group.label }}
-    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-  </a>
+  @if (group.url.startsWith('http')) {
+    <a mat-button class="group-label" [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
+      {{ group.label }}
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+    </a>
+  } @else {
+    <a mat-button class="group-label" [routerLink]="group.url">
+      {{ group.label }}
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+    </a>
+  }
 
   @if (group.description) {
     <div class="group-description">
@@ -50,14 +51,20 @@
 </ng-template>
 
 <ng-template hraMenuItem let-item #itemTemplate>
-  <a
-    mat-button
-    hraSecondaryButton
-    class="item-label"
-    [attr.href]="item.url"
-    [attr.target]="item.target ?? '_blank'"
-    rel="noopener noreferrer"
-  >
-    {{ item.label }}
-  </a>
+  @if (item.url.startsWith('http')) {
+    <a
+      mat-button
+      hraSecondaryButton
+      class="item-label"
+      [attr.href]="item.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ item.label }}
+    </a>
+  } @else {
+    <a mat-button hraSecondaryButton class="item-label" [routerLink]="item.url">
+      {{ item.label }}
+    </a>
+  }
 </ng-template>
