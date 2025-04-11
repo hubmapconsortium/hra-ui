@@ -1,8 +1,9 @@
 import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { Directive, ElementRef, inject, input, output, ViewContainerRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { RichTooltipSimpleContentComponent } from './simple-content/rich-tooltip-simple-content.component';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { Directive, effect, ElementRef, inject, input, output, ViewContainerRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RichTooltipContainerComponent } from './content/rich-tooltip-content.component';
+import { RichTooltipController } from './rich-tooltip.types';
 
 /**
  * Viewport margin for the rich tooltip
@@ -57,21 +58,21 @@ const POSITIONS: ConnectedPosition[] = [
 @Directive({
   selector: '[hraRichTooltip]',
   host: {
-    '(click)': 'toggleTooltip()',
+    '(click)': 'toggle()',
   },
 })
-export class RichTooltipDirective {
+export class RichTooltipDirective implements RichTooltipController {
   /**
    * Custom content for the rich tooltip
    * - Not required if need to use simple content variant
    */
-  readonly customContent = input<unknown>(undefined, { alias: 'hraRichTooltip' });
+  readonly customContainer = input<RichTooltipContainerComponent>(undefined, { alias: 'hraRichTooltip' });
 
   /**
    * Title for the rich tooltip
    * - Not required if using custom content variant
    */
-  readonly title = input<string>(undefined, { alias: 'hraRichTooltipTitle' });
+  readonly tagline = input<string>(undefined, { alias: 'hraRichTooltipTagline' });
 
   /**
    * Description for the rich tooltip
@@ -91,6 +92,8 @@ export class RichTooltipDirective {
    */
   readonly actionClick = output<void>({ alias: 'hraRichTooltipActionClick' });
 
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   /**
    * Container view reference variable DI
    */
@@ -106,11 +109,12 @@ export class RichTooltipDirective {
    */
   private readonly positionStrategy = this.overlay
     .position()
-    .flexibleConnectedTo(inject(ElementRef))
+    .flexibleConnectedTo(this.elementRef)
     .withFlexibleDimensions(true)
     .withGrowAfterOpen(true)
     .withPositions(POSITIONS)
     .withViewportMargin(VIEWPORT_MARGIN);
+
   private readonly overlayRef = this.overlay.create({
     disposeOnNavigation: true,
     hasBackdrop: false,
@@ -122,50 +126,62 @@ export class RichTooltipDirective {
    * Boolean flag indicating whether the
    * rich tooltip is currently visible
    */
-  private open = false;
+  private isOpen = false;
 
-  /**
-   * Subscription to handle click events on the
-   * outside of the rich tooltip
-   */
-  private outsideEventsSubscription: Subscription | undefined;
+  private container!: RichTooltipContainerComponent;
 
-  /**
-   * Function to toggle the visibility of the
-   * rich tooltip
-   */
-  protected toggleTooltip(): void {
-    this.open = !this.open;
-
-    if (this.open) {
-      if (this.customContent()) {
-        //
+  constructor() {
+    effect((onCleanup) => {
+      const customContainer = this.customContainer();
+      if (customContainer) {
+        this.container = customContainer;
       } else {
-        this.attachSimpleContent();
+        const ref = this.viewContainerRef.createComponent(RichTooltipContainerComponent);
+        this.container = ref.instance;
+        onCleanup(() => ref.destroy());
       }
+    });
 
-      this.outsideEventsSubscription = this.overlayRef.outsidePointerEvents().subscribe((event) => {
-        if (!this.viewContainerRef.element.nativeElement.contains(event?.target as Node)) {
-          this.toggleTooltip();
+    this.overlayRef
+      .outsidePointerEvents()
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) => {
+        if (!this.elementRef.nativeElement.contains(event.target as Node | null)) {
+          this.close();
         }
       });
-    } else {
-      this.outsideEventsSubscription?.unsubscribe();
-      this.overlayRef.detach();
+  }
+
+  open(): void {
+    if (!this.isOpen) {
+      this.attach();
+      this.isOpen = true;
     }
   }
 
-  /**
-   * Function to initialize and attach the
-   * simple content variant of the rich tooltip
-   */
-  private attachSimpleContent(): void {
-    const portal = new ComponentPortal(RichTooltipSimpleContentComponent, this.viewContainerRef);
-    const componentRef = this.overlayRef.attach(portal);
-    componentRef.setInput('owner', this);
-    componentRef.setInput('title', this.title);
-    componentRef.setInput('description', this.description);
-    componentRef.setInput('actionText', this.actionText);
-    componentRef.instance.actionClick.subscribe(() => this.actionClick.emit());
+  close(): void {
+    if (this.isOpen) {
+      this.detach();
+      this.isOpen = false;
+    }
+  }
+
+  toggle(): void {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  private attach(): void {
+    const template = this.container.template();
+    const portal = new TemplatePortal(template, this.viewContainerRef, { $implicit: this });
+    this.container.closeDirectives().forEach((dir) => (dir.controller = this));
+    this.overlayRef.attach(portal);
+  }
+
+  private detach(): void {
+    this.overlayRef.detach();
   }
 }
