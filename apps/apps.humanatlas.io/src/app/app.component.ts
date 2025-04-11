@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { routeData } from './utils/route-data';
-import { isNavigating } from './utils/navigation';
 import { DEFAULT_MENUS, Menu } from '@hra-ui/design-system/navigation/header';
+import { isNavigating } from './utils/navigation';
+import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
@@ -32,6 +32,9 @@ export class AppComponent {
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
+  /** Location service */
+  private readonly location = inject(Location);
+
   /** Beta menu */
   protected readonly menus: Menu[] = [
     ...DEFAULT_MENUS,
@@ -44,27 +47,37 @@ export class AppComponent {
           type: 'group',
           label: 'Beta links',
           description: '',
-          url: '/',
+          url: this.location.prepareExternalUrl('/'),
+          target: '_self',
           items: [
             {
               type: 'item',
               label: 'User Story 1',
-              url: '/us1',
+              url: this.location.prepareExternalUrl('/us1'),
+              target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 2',
-              url: '/us2',
+              url: this.location.prepareExternalUrl('/us2'),
+              target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 6',
-              url: '/us6',
+              url: this.location.prepareExternalUrl('/us6'),
+              target: '_self',
             },
             {
               type: 'item',
               label: 'API',
-              url: '/api',
+              url: this.location.prepareExternalUrl('/api'),
+              target: '_self',
+            },
+            {
+              type: 'item',
+              label: 'EUI',
+              url: 'https://cdn.humanatlas.io/ui--staging/ccf-eui/',
             },
           ],
         },
