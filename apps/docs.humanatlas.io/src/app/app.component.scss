@@ -1,0 +1,8 @@
+:host {
+  display: block;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
