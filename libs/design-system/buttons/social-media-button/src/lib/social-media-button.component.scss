@@ -1,0 +1,9 @@
+@use '../../../../styles/utils';
+
+:host {
+  a[mat-icon-button]:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
