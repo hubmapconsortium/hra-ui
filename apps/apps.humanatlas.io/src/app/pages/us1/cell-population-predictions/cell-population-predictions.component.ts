@@ -117,19 +117,9 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when clicked on download CSV button  */
   onDownloadCSVButtonClicked() {
-    const headers: string[] = Object.values(this.columnHeaders);
-    const csvData: string[][] = [headers];
-
-    const data = this.dataSource.data;
-    data.forEach((row) => {
-      const csvRow: string[] = this.displayedColumns.map((field) => String(row[field as keyof CellSummaryRow]));
-      csvData.push(csvRow);
-    });
-
-    const csvString = papa.unparse(csvData);
+    const csvString = papa.unparse(this.predictions(), { columns: this.displayedColumns });
     const fileToSave = new Blob([csvString], { type: 'text/csv' });
     saveAs(fileToSave, 'predictions.csv');
-
     this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 }
