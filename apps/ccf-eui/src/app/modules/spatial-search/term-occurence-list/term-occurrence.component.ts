@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 
@@ -18,7 +18,7 @@ import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search
     ExpansionPanelHeaderContentComponent,
     ScrollingModule,
     ScrollOverflowFadeDirective,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

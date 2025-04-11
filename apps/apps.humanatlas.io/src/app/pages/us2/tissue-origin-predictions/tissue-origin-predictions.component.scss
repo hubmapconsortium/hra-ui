@@ -1,0 +1,85 @@
+:host {
+  display: block;
+  max-width: 72.5rem;
+  margin: 0 auto;
+  margin-top: 7.1875rem;
+}
+
+h1 {
+  font: var(--mat-sys-display-large);
+  letter-spacing: var(--mat-sys-display-large-tracking);
+  margin: 0;
+}
+
+.info-text {
+  font: var(--mat-sys-body-large);
+  letter-spacing: var(--mat-sys-body-large-tracking);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+.bottom-cards {
+  margin-top: 3rem;
+  margin-bottom: 10.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+
+  .card {
+    width: 36.25rem;
+    --hra-workflow-card-header-padding: 0 0 0.5rem 0;
+  }
+
+  .card-1 {
+    p {
+      font: var(--mat-sys-label-large);
+      letter-spacing: var(--mat-sys-label-large-tracking);
+      color: var(--mat-sys-primary);
+    }
+  }
+
+  .card-2 {
+    font: var(--mat-sys-label-medium);
+    letter-spacing: var(--mat-sys-label-medium-tracking);
+  }
+
+  .metadata-container {
+    display: flex;
+
+    .titles,
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .values {
+      color: var(--mat-sys-primary);
+      margin-left: 0.5rem;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-connected-position-bounding-box {
+    margin-left: 0.5rem;
+  }
+
+  .eui-overlay-container > .ng-star-inserted {
+    margin-bottom: 3rem;
+  }
+
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    max-width: 22rem;
+    margin-left: 0.05rem;
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+}
