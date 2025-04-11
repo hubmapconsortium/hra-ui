@@ -2,6 +2,10 @@
   "$schema": "../types/organ-logos.schema.json",
   "logos": [
     {
+      "id": "all-organs",
+      "icon": "organ:all_organs"
+    },
+    {
       "id": "bladder",
       "icon": "organ:bladder"
     },
@@ -48,6 +52,10 @@
     {
       "id": "kidney-right",
       "icon": "organ:kidney_right"
+    },
+    {
+      "id": "kidneys",
+      "icon": "organ:kidneys"
     },
     {
       "id": "knee",

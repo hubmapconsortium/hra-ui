@@ -6,7 +6,7 @@ import { Shallow } from 'shallow-render';
 import { TemplateRef } from '@angular/core';
 import { mock } from 'jest-mock-extended';
 import { NgFor, NgIf } from '@angular/common';
-import { FileDownloadService } from '../../services/file-download/file-download.service';
+import { FileDownloadService } from '@hra-ui/common/fs';
 
 describe('TwoDimImageComponent', () => {
   let shallow: Shallow<TwoDimImageComponent>;
