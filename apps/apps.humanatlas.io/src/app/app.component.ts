@@ -45,31 +45,26 @@ export class AppComponent {
           label: 'Beta links',
           description: '',
           url: '/',
-          target: '_self',
           items: [
             {
               type: 'item',
               label: 'User Story 1',
               url: '/us1',
-              target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 2',
               url: '/us2',
-              target: '_self',
             },
             {
               type: 'item',
               label: 'User Story 6',
               url: '/us6',
-              target: '_self',
             },
             {
               type: 'item',
               label: 'API',
               url: '/api',
-              target: '_self',
             },
             {
               type: 'item',

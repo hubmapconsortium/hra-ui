@@ -29,9 +29,6 @@
           "type": "string",
           "format": "uri"
         },
-        "target": {
-          "type": "string"
-        },
         "items": {
           "type": "array",
           "items": {
@@ -62,9 +59,6 @@
         "url": {
           "type": "string",
           "format": "uri"
-        },
-        "target": {
-          "type": "string"
         }
       },
       "required": ["type", "label", "url"],
