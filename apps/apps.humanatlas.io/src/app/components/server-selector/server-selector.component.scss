@@ -1,0 +1,38 @@
+@use 'utils';
+
+:host {
+  display: block;
+  width: 100%;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+::ng-deep {
+  .server-select-field {
+    .mdc-text-field--filled .mdc-floating-label--float-above {
+      transform: translateY(-106%) scale(1);
+    }
+
+    mat-hint {
+      color: var(--mat-sys-primary);
+    }
+
+    mat-label {
+      @include utils.use-font(label, small);
+      color: var(--mat-sys-inverse-surface) !important;
+    }
+  }
+
+  .server-selector-panel {
+    .server-url {
+      @include utils.use-font(label, medium);
+    }
+
+    .server-description {
+      @include utils.use-font(label, small);
+      color: var(--mat-sys-on-secondary-fixed);
+    }
+  }
+}

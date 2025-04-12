@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  background-color: var(--mat-sys-surface-container);
+  border: solid 0.0625rem var(--mat-sys-outline-variant);
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  height: fit-content;
+
+  .code-block-pre {
+    margin: 0;
+    font: 400 0.875rem / 1.3125rem Roboto Mono;
+    letter-spacing: 0rem;
+    text-align: left;
+    display: flex;
+    max-width: 35.5rem;
+    white-space: pre-wrap;
+
+    code {
+      background-color: var(--mat-sys-surface-container);
+    }
+  }
+}
