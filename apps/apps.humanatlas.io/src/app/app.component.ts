@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { routeData } from './utils/route-data';
-import { isNavigating } from './utils/navigation';
 import { DEFAULT_MENUS, Menu } from '@hra-ui/design-system/navigation/header';
+import { isNavigating } from './utils/navigation';
+import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
@@ -65,6 +65,11 @@ export class AppComponent {
               type: 'item',
               label: 'API',
               url: '/api',
+            },
+            {
+              type: 'item',
+              label: 'EUI',
+              url: 'https://cdn.humanatlas.io/ui--staging/ccf-eui/',
             },
           ],
         },
