@@ -18,16 +18,16 @@ export interface Section {
 }
 
 /**
- * Page navigation component for navigating between different sections on a page
+ * Table of contents component for navigating between different sections on a page
  */
 @Component({
-  selector: 'hra-page-navigation',
-  templateUrl: './page-navigation.component.html',
-  styleUrl: './page-navigation.component.scss',
+  selector: 'hra-table-of-contents',
+  templateUrl: './table-of-contents.component.html',
+  styleUrl: './table-of-contents.component.scss',
   imports: [HraCommonModule, MatTreeModule, ButtonsModule, MatIconModule, ScrollingModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageNavigationComponent implements OnInit, AfterViewInit {
+export class TableOfContentsComponent implements OnInit, AfterViewInit {
   /** Text for the header portion */
   readonly tagline = input<string>('On this page');
 

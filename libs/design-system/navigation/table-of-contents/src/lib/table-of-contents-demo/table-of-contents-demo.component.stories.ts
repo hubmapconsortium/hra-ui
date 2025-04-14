@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { PageNavigationDemoComponent } from './page-navigation-demo.component';
+import { TableOfContentsDemoComponent } from './table-of-contents-demo.component';
 
-const meta: Meta<PageNavigationDemoComponent> = {
-  component: PageNavigationDemoComponent,
-  title: 'Design System/Content Templates/Page Navigation Demo',
+const meta: Meta<TableOfContentsDemoComponent> = {
+  component: TableOfContentsDemoComponent,
+  title: 'Design System/Navigation/Table of Contents/Table of Contents Demo',
   parameters: {
     design: {
       type: 'figma',
@@ -14,6 +14,6 @@ const meta: Meta<PageNavigationDemoComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<PageNavigationDemoComponent>;
+type Story = StoryObj<TableOfContentsDemoComponent>;
 
 export const Primary: Story = {};

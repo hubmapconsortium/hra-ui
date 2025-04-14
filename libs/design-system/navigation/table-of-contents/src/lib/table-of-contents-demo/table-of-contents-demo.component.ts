@@ -3,7 +3,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 
-import { PageNavigationComponent, Section } from '../page-navigation/page-navigation.component';
+import { TableOfContentsComponent, Section } from '../table-of-contents/table-of-contents.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
@@ -55,25 +55,25 @@ export const TEST_SECTIONS: Section[] = [
 ];
 
 /**
- * Demo for page navigation feature
+ * Demo for table of contents feature
  */
 @Component({
-  selector: 'hra-page-navigation-demo',
+  selector: 'hra-table-of-contents-demo',
   imports: [
     HraCommonModule,
     PageSectionComponent,
     MatIconModule,
     ButtonsModule,
-    PageNavigationComponent,
+    TableOfContentsComponent,
     SectionLinkComponent,
     PageLabelComponent,
   ],
-  templateUrl: './page-navigation-demo.component.html',
-  styleUrl: './page-navigation-demo.component.scss',
+  templateUrl: './table-of-contents-demo.component.html',
+  styleUrl: './table-of-contents-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PageNavigationDemoComponent {
+export class TableOfContentsDemoComponent {
   /** Section data */
   readonly data: Section[] = TEST_SECTIONS;
 }
