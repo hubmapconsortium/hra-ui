@@ -23,7 +23,34 @@ const meta: Meta<RichTooltipDirective> = {
 export default meta;
 type Story = StoryObj<RichTooltipDirective>;
 
-export const Default: Story = {
+export const Simple: Story = {
+  name: 'Simple Tooltip',
+  args: {
+    tagline: 'Title',
+    description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+    actionText: 'Action',
+    actionClick: () => {},
+  },
+  argTypes: {
+    actionClick: { type: 'function', control: false },
+  },
+  render: (args) => ({
+    props: args,
+    styles: [],
+    template: `
+        <button mat-icon-button
+        hraRichTooltip
+        hraRichTooltipTagline="${args.tagline}"
+        hraRichTooltipDescription="${args.description}"
+        (hraRichTooltipActionClick)="actionClick()">
+          <mat-icon>info</mat-icon>
+        </button>
+      `,
+  }),
+};
+
+export const SimpleWithAction: Story = {
+  storyName: 'Simple Tooltip with Action',
   args: {
     tagline: 'Title',
     description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
@@ -49,7 +76,8 @@ export const Default: Story = {
   }),
 };
 
-export const CustomContent: Story = {
+export const AdvancedTooltip: Story = {
+  storyName: 'Advanced Tooltip with Custom Content',
   render: (args) => ({
     props: args,
     styles: [
