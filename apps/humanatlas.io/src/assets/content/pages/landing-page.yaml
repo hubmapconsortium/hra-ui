@@ -58,25 +58,25 @@
   carouselInfo:
     - title: New publication
       body: Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
-      image: assets/images/carousel_nature_methods.svg
+      image: assets/images/carousel_nature_methods.png
       url: https://doi.org/10.1038/s41592-024-02563-5
       buttonText: Read
       alt: A map of relationships between different data structures in the Human Reference Atlas.
     - title: New preprint
       body: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data
-      image: assets/images/carousel_biorxiv.svg
+      image: assets/images/carousel_biorxiv.png
       url: https://doi.org/10.1101/2024.12.22.630006
       buttonText: Read
       alt: A map of relationships between unique data structures that flow in and out of the Human Reference Atlas Knowledge Graph.
     - title: New publication
       body: Functional tissue units in the Human Reference Atlas
-      image: assets/images/carousel_nature_communications.svg
+      image: assets/images/carousel_nature_communications.png
       route: https://doi.org/10.1038/s41467-024-54591-6
       buttonText: Read
       alt: Medical illustrations of unique functional tissue units.
     - title: Read the flagship publication of the Human Reference Atlas
       body: Anatomical structures, cell types and biomarkers of the Human Reference Atlas
-      image: assets/images/carousel_nature_cell_biology.svg
+      image: assets/images/carousel_nature_cell_biology.png
       url: https://doi.org/10.1038/s41556-021-00788-6
       buttonText: Read
       alt: The left side of the image shows relationship connections between consortium members and specific organs. The right side of the image displays a human body: Organ illustrations and the respective organ labels surround the human body.
