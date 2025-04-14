@@ -56,48 +56,30 @@
   carouselContainerStyles:
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
-    - title: 3D Human Reference Atlas construction and usage
-      body: This paper describes HRA user stories, terminology, data formats, ontology validation, unified analysis workflows, user interfaces, instructional materials, application programming interfaces, flexible hybrid cloud infrastructure and previews atlas usage applications.
-      image: assets/images/carousel1.svg
+    - title: New publication
+      body: Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
+      image: assets/images/carousel_nature_methods.svg
       url: https://doi.org/10.1038/s41592-024-02563-5
-      buttonText: View paper
-      alt: Map the human body at single cell resolution
-    - title: Map the human body at single cell resolution
-      body: Read our flagship paper about the thousands of experts building a Human Reference Atlas.
-      image: assets/images/carousel1.svg
+      buttonText: Read
+      alt: A map of relationships between different data structures in the Human Reference Atlas.
+    - title: New preprint
+      body: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data
+      image: assets/images/carousel_biorxiv.svg
+      url: https://doi.org/10.1101/2024.12.22.630006
+      buttonText: Read
+      alt: A map of relationships between unique data structures that flow in and out of the Human Reference Atlas Knowledge Graph.
+    - title: New publication
+      body: Functional tissue units in the Human Reference Atlas
+      image: assets/images/carousel_nature_communications.svg
+      route: https://doi.org/10.1038/s41467-024-54591-6
+      buttonText: Read
+      alt: Medical illustrations of unique functional tissue units.
+    - title: Read the flagship publication of the Human Reference Atlas
+      body: Anatomical structures, cell types and biomarkers of the Human Reference Atlas
+      image: assets/images/carousel_nature_cell_biology.svg
       url: https://doi.org/10.1038/s41556-021-00788-6
-      buttonText: View paper
-      alt: Map the human body at single cell resolution
-    # - title: Contribute data to the Human Reference Atlas
-    #   body: Register your data spatially using the Registration User Interface tool.
-    #   image: assets/images/carousel2.svg
-    #   route: registration-user-interface
-    - title: Compare data to the Human Reference Atlas
-      body: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
-      image: assets/images/carousel3.svg
-      route: asctb-reporter
-      buttonText: Learn more
-      alt: Compare data to the Human Reference Atlas
-    # - title: Search for a cell type, gene, or protein
-    #   body: Explore cell type populations with via Cell Type Population graph tool.
-    #   image: assets/images/carousel4.svg
-    #   route: cell-population-graphs
-    # - title: Search for data across levels-from the whole body down to single cells
-    #   body: Explore Human Reference Atlas data with the Exploration User Interface tool.
-    #   image: assets/images/carousel5.svg
-    #   route: exploration-user-interface
-    - title: Learn more about the Human BioMolecular Atlas Program
-      body: Explore HuBMAP data, code, and documentation using the HuBMAP Data Portal.
-      image: assets/images/carousel6.svg
-      url: https://portal.hubmapconsortium.org/
-      buttonText: HuBMAP Data Portal
-      alt: Learn more about the Human BioMolecular Atlas Program
-    - title: Learn more about the Cellular Senescence Network (SenNet) Program
-      body: Explore SenNet data, code, and documentation using the SenNet Data Portal.
-      image: assets/images/carousel_sennet.svg
-      url: https://data.sennetconsortium.org/
-      buttonText: SenNet Data Portal
-      alt: Learn more about the Cellular Senescence Network (SenNet) Program
+      buttonText: Read
+      alt: The left side of the image shows relationship connections between consortium members and specific organs. The right side of the image displays a human body: Organ illustrations and the respective organ labels surround the human body.
 
 - type: margin
   bottom: 5rem
