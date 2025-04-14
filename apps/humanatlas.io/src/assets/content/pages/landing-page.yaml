@@ -57,7 +57,7 @@
     width: min(77rem,calc(100vw - 32px))
   carouselInfo:
     - title: New publication
-      body: Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
+      body: 'Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage'
       image: assets/images/carousel_nature_methods.png
       url: https://doi.org/10.1038/s41592-024-02563-5
       buttonText: Read
@@ -79,7 +79,7 @@
       image: assets/images/carousel_nature_cell_biology.png
       url: https://doi.org/10.1038/s41556-021-00788-6
       buttonText: Read
-      alt: The left side of the image shows relationship connections between consortium members and specific organs. The right side of the image displays a human body: Organ illustrations and the respective organ labels surround the human body.
+      alt: 'The left side of the image shows relationship connections between consortium members and specific organs. The right side of the image displays a human body: Organ illustrations and the respective organ labels surround the human body.'
 
 - type: margin
   bottom: 5rem
