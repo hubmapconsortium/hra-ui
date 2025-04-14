@@ -1,0 +1,68 @@
+<h1>Tissue Origin Predictions</h1>
+
+<p class="info-text">
+  The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical
+  structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed
+  using weighted cosine similarity between the user-provided cell type population for the experimental data and
+  reference cell type populations for these three HRA entities. Note that different annotation tools predict different
+  cell types and different percentages for the very same cell type. Hover over column headers for details.
+</p>
+
+<!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->
+<hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>
+
+<!-- SIMILAR DATASETS TABLE -->
+<hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>
+
+<!-- BOTTOM CARDS -->
+<div class="bottom-cards">
+  <hra-workflow-card tagline="Similar Extraction Sites" class="card card-1">
+    <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>
+    <div class="buttons">
+      <button
+        (click)="onDownloadJSONButtonClicked()"
+        mat-button
+        hraButtonVariant="primary"
+        hraButtonSize="medium"
+        disabled="false"
+      >
+        JSON-LD
+        <mat-icon>download</mat-icon>
+      </button>
+      <button mat-flat-button (click)="euiOpen.set(true)">Explore</button>
+    </div>
+  </hra-workflow-card>
+  <hra-workflow-card tagline="Metadata" class="card card-2">
+    <div class="metadata-container">
+      <div class="titles">
+        <div>Source Data</div>
+        <div>Organ</div>
+        <div>Annotation Tool</div>
+        <div>Creation Date/Time</div>
+      </div>
+
+      <div class="values">
+        <div>{{ data().file.name }}</div>
+        <div>{{ data().organ ?? 'no organ selected' }}</div>
+        <div>{{ data().tool ?? 'no tool selected' }}</div>
+        <div>{{ predictionDate }}</div>
+      </div>
+    </div>
+  </hra-workflow-card>
+</div>
+
+<!-- EUI OVERLAY -->
+<ng-template #euiTemplate>
+  <div>
+    <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
+    <ccf-eui
+      base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
+      use-remote-api="false"
+      hubmap-data-url=""
+      login-disabled="true"
+      header="false"
+      data-sources="{{ ruiLocationsJsonString }}"
+    >
+    </ccf-eui>
+  </div>
+</ng-template>

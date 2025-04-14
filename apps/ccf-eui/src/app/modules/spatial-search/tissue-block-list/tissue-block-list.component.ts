@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 
 /**
@@ -16,7 +16,7 @@ import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-sys
   styleUrls: ['./tissue-block-list.component.scss'],
   imports: [
     MatIconModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,

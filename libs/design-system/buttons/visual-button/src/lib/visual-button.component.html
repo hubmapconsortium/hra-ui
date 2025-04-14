@@ -1,0 +1,10 @@
+<button (click)="cardClick.emit()" [attr.disabled]="disabled() ? '' : null">
+  <div class="label-container">
+    <span class="label">{{ label() }}</span>
+    @if (variant() === 'bottom') {
+      <mat-icon>arrow_right_alt</mat-icon>
+    }
+  </div>
+
+  <img class="image" [attr.src]="imageUrl()" alt="" />
+</button>
