@@ -14,7 +14,7 @@
           <hra-section-link level="2" [anchor]="year" underlined> {{ year }} </hra-section-link>
         </header-content>
         <section-content>
-          @for (pub of data()[year]; track pub) {
+          @for (pub of publications[year]; track pub) {
             <markdown class="pub-info" [data]="pub"></markdown>
           }
         </section-content>
