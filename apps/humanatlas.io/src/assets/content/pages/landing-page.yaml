@@ -71,7 +71,7 @@
     - title: New publication
       body: Functional tissue units in the Human Reference Atlas
       image: assets/images/carousel-nature-communications.png
-      route: https://doi.org/10.1038/s41467-024-54591-6
+      url: https://doi.org/10.1038/s41467-024-54591-6
       buttonText: Read
       alt: Medical illustrations of unique functional tissue units.
     - title: Read the flagship publication of the Human Reference Atlas
