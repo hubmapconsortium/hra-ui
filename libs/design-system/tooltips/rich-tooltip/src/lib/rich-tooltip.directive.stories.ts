@@ -66,7 +66,7 @@ export const CustomContent: Story = {
             This is some brand new component.
           </hra-rich-tooltip-content>
           <hra-rich-tooltip-actions>
-            <button mat-button hraRichTooltipClose color="accent" hraRichTooltipClose>Close</button>
+            <button mat-button color="accent" hraRichTooltipClose>Close</button>
             <button mat-button color="accent">Do Nothing</button>
           </hra-rich-tooltip-actions>
         </hra-rich-tooltip-container>

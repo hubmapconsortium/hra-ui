@@ -12,7 +12,7 @@
     </div>
     <div class="actions">
       <ng-content select="hra-rich-tooltip-actions">
-        <button mat-button color="accent" (click)="owner?.actionClick?.emit()">{{ owner?.actionText() }}</button>
+        <button mat-button color="accent" (click)="owner.actionClick.emit()">{{ owner.actionText() }}</button>
       </ng-content>
     </div>
   </div>

@@ -2,6 +2,10 @@ import { ChangeDetectionStrategy, Component, contentChildren, Directive, Templat
 import { RichTooltipController } from '../rich-tooltip.types';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+/**
+ * Directive to provide tooltip context
+ * to the RichTooltip component.
+ */
 @Directive({
   selector: 'ng-template[hraRichTooltipContext]',
 })
@@ -16,6 +20,9 @@ export class RichTooltipContextDirective {
   }
 }
 
+/**
+ * Component for the Rich Tooltip Tagline
+ */
 @Component({
   selector: 'hra-rich-tooltip-tagline',
   template: '<ng-content />',
@@ -23,6 +30,9 @@ export class RichTooltipContextDirective {
 })
 export class RichTooltipTaglineComponent {}
 
+/**
+ * Component for the Rich Tooltip Content
+ */
 @Component({
   selector: 'hra-rich-tooltip-content',
   template: '<ng-content />',
@@ -30,6 +40,9 @@ export class RichTooltipTaglineComponent {}
 })
 export class RichTooltipContentComponent {}
 
+/**
+ * Component for the Rich Tooltip actions row
+ */
 @Component({
   selector: 'hra-rich-tooltip-actions',
   template: '<ng-content />',
@@ -37,6 +50,10 @@ export class RichTooltipContentComponent {}
 })
 export class RichTooltipActionsComponent {}
 
+/**
+ * Directive that can be used on a button
+ * for closing the rich tooltip.
+ */
 @Directive({
   selector: '[hraRichTooltipClose]',
   host: {
@@ -44,9 +61,17 @@ export class RichTooltipActionsComponent {}
   },
 })
 export class RichTooltipCloseDirective {
+  /**
+   * The controller for the rich tooltip.
+   * (context is set by component once initialized)
+   */
   controller?: RichTooltipController = undefined;
 }
 
+/**
+ * The main component of the Rich Tooltip - the container,
+ * encapsulates all the other components (tagline, content & actions).
+ */
 @Component({
   selector: 'hra-rich-tooltip-container',
   imports: [RichTooltipContextDirective, ButtonsModule],
