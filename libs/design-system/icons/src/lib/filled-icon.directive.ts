@@ -12,5 +12,6 @@ import { Directive, input } from '@angular/core';
   },
 })
 export class FilledIconDirective {
+  /** input for background color */
   readonly color = input.required<string>({ alias: 'hraFilledIcon' });
 }
