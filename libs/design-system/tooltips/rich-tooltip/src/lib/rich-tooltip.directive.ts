@@ -92,6 +92,9 @@ export class RichTooltipDirective implements RichTooltipController {
    */
   readonly actionClick = output<void>({ alias: 'hraRichTooltipActionClick' });
 
+  /**
+   * Element Ref for the rich tooltip
+   */
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   /**
@@ -115,6 +118,9 @@ export class RichTooltipDirective implements RichTooltipController {
     .withPositions(POSITIONS)
     .withViewportMargin(VIEWPORT_MARGIN);
 
+  /**
+   * Reference variable for the overlay
+   */
   private readonly overlayRef = this.overlay.create({
     disposeOnNavigation: true,
     hasBackdrop: false,
@@ -128,8 +134,14 @@ export class RichTooltipDirective implements RichTooltipController {
    */
   private isOpen = false;
 
+  /**
+   * Container element variable for the rich tooltip
+   */
   private container!: RichTooltipContainerComponent;
 
+  /**
+   * Constructor for the directive
+   */
   constructor() {
     effect((onCleanup) => {
       const customContainer = this.customContainer();
@@ -152,6 +164,9 @@ export class RichTooltipDirective implements RichTooltipController {
       });
   }
 
+  /**
+   * Function to open the rich tooltip.
+   */
   open(): void {
     if (!this.isOpen) {
       this.attach();
@@ -159,6 +174,9 @@ export class RichTooltipDirective implements RichTooltipController {
     }
   }
 
+  /**
+   * Function to close the rich tooltip.
+   */
   close(): void {
     if (this.isOpen) {
       this.detach();
@@ -166,6 +184,9 @@ export class RichTooltipDirective implements RichTooltipController {
     }
   }
 
+  /**
+   * Function to toggles the rich tooltip.
+   */
   toggle(): void {
     if (this.isOpen) {
       this.close();
@@ -174,6 +195,9 @@ export class RichTooltipDirective implements RichTooltipController {
     }
   }
 
+  /**
+   * Attaches the rich tooltip component to the overlay.
+   */
   private attach(): void {
     const template = this.container.template();
     const portal = new TemplatePortal(template, this.viewContainerRef, { $implicit: this });
@@ -181,6 +205,9 @@ export class RichTooltipDirective implements RichTooltipController {
     this.overlayRef.attach(portal);
   }
 
+  /**
+   * Detaches the rich tooltip component from the overlay.
+   */
   private detach(): void {
     this.overlayRef.detach();
   }

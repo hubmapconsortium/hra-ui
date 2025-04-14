@@ -28,6 +28,10 @@ export const Default: Story = {
     tagline: 'Title',
     description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
     actionText: 'Action',
+    actionClick: () => {},
+  },
+  argTypes: {
+    actionClick: { type: 'function', control: false },
   },
   render: (args) => ({
     props: args,
@@ -37,7 +41,8 @@ export const Default: Story = {
         hraRichTooltip
         hraRichTooltipTagline="${args.tagline}"
         hraRichTooltipDescription="${args.description}"
-        hraRichTooltipActionText="${args.actionText}">
+        hraRichTooltipActionText="${args.actionText}"
+        (hraRichTooltipActionClick)="actionClick()">
           <mat-icon>info</mat-icon>
         </button>
       `,
@@ -47,19 +52,22 @@ export const Default: Story = {
 export const CustomContent: Story = {
   render: (args) => ({
     props: args,
-    styles: [],
+    styles: [
+      `tag {
+        background: black;
+      }`,
+    ],
     template: `
-        <hra-rich-tooltip-container #content>
+        <hra-rich-tooltip-container #content class="container">
           <hra-rich-tooltip-tagline>
-            Hello
+            Hello Developer!
           </hra-rich-tooltip-tagline>
-          <div class="tooltip-content">
-            <div class="tagline">Custom Content Title</div>
-            <div class="description">Custom Content Description</div>
-          </div>
+          <hra-rich-tooltip-content>
+            This is some brand new component.
+          </hra-rich-tooltip-content>
           <hra-rich-tooltip-actions>
-            <button mat-button hraRichTooltipClose color="accent" hraRichTooltipClose>Action 1</button>
-            <button mat-button color="accent">Action 2</button>
+            <button mat-button hraRichTooltipClose color="accent" hraRichTooltipClose>Close</button>
+            <button mat-button color="accent">Do Nothing</button>
           </hra-rich-tooltip-actions>
         </hra-rich-tooltip-container>
         <button mat-icon-button [hraRichTooltip]="content">

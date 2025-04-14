@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, contentChildren, Directive, TemplateRef, viewChild } from '@angular/core';
 import { RichTooltipController } from '../rich-tooltip.types';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 @Directive({
   selector: 'ng-template[hraRichTooltipContext]',
@@ -48,13 +49,20 @@ export class RichTooltipCloseDirective {
 
 @Component({
   selector: 'hra-rich-tooltip-container',
-  imports: [RichTooltipContextDirective],
+  imports: [RichTooltipContextDirective, ButtonsModule],
   templateUrl: './rich-tooltip-content.component.html',
   styleUrl: './rich-tooltip-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'hraRichTooltipContainer',
 })
 export class RichTooltipContainerComponent {
+  /**
+   * ViewChild for the container template.
+   */
   readonly template = viewChild.required('container', { read: TemplateRef<{ $implicit: RichTooltipController }> });
+
+  /**
+   * List of close directives used in the custom template.
+   */
   readonly closeDirectives = contentChildren(RichTooltipCloseDirective, { descendants: true });
 }
