@@ -5,3 +5,7 @@
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 }
+
+a {
+  color: var(--mat-sys-on-tertiary-fixed);
+}

@@ -1,0 +1,110 @@
+@use 'utils';
+
+:host {
+  display: block;
+
+  .banner {
+    @include utils.use-font(display, large);
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--mat-sys-secondary);
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--mat-sys-on-primary);
+  }
+
+  .banner-text {
+    min-width: 18.25rem;
+    text-align: center;
+  }
+
+  .page-content {
+    margin: 2.5rem 1rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin: 4rem 0;
+  }
+
+  .navigation-panel.large {
+    display: none;
+  }
+
+  .navigation-panel {
+    .navigation {
+      height: 100px;
+      background: red;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 792px) {
+    .banner-text {
+      min-width: 18rem;
+      margin-left: 0.75rem;
+    }
+
+    .page-content {
+      margin: 2.5rem 2.5rem 0 2.5rem;
+    }
+  }
+
+  .pub-info {
+    overflow-wrap: break-word;
+
+    &:last-child {
+      ::ng-deep p {
+        margin-block-end: 0;
+      }
+    }
+  }
+
+  @media (min-width: 1400px) {
+    display: grid;
+    grid-template-areas:
+      'header header'
+      'content navigation';
+    grid-template-columns: 1fr 200px;
+
+    .page-content {
+      display: flex;
+      grid-area: content;
+    }
+
+    .page-sections {
+      margin-top: 0;
+    }
+
+    .banner {
+      grid-area: header;
+    }
+
+    .navigation-panel {
+      width: 200px;
+      height: 100%;
+      right: 10px;
+      grid-area: navigation;
+
+      .navigation {
+        position: sticky;
+        top: 4.5rem;
+        height: 100px;
+        background: red;
+        width: 100%;
+      }
+    }
+
+    .navigation-panel.small {
+      display: none;
+    }
+    .navigation-panel.large {
+      display: flex;
+    }
+  }
+}
