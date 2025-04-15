@@ -26,6 +26,8 @@ button {
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
+  max-height: 26rem;
+  overflow-y: auto;
 
   caption {
     display: none;
