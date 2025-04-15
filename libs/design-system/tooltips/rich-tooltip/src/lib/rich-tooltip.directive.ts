@@ -72,19 +72,19 @@ export class RichTooltipDirective implements RichTooltipController {
    * Title for the rich tooltip
    * - Not required if using custom content variant
    */
-  readonly tagline = input<string>(undefined, { alias: 'hraRichTooltipTagline' });
+  readonly tagline = input<string>('', { alias: 'hraRichTooltipTagline' });
 
   /**
    * Description for the rich tooltip
    * - Not required if using the custom content variant
    */
-  readonly description = input<string>(undefined, { alias: 'hraRichTooltipDescription' });
+  readonly description = input<string>('', { alias: 'hraRichTooltipDescription' });
 
   /**
    * Action Text for the rich tooltip
    * - Not required if using the custom content variant
    */
-  readonly actionText = input<string>(undefined, { alias: 'hraRichTooltipActionText' });
+  readonly actionText = input<string>('', { alias: 'hraRichTooltipActionText' });
 
   /**
    * Action Click Output Emitter for the rich tooltip
