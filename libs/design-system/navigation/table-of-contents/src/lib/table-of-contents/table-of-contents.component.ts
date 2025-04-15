@@ -24,6 +24,7 @@ export interface Section {
   templateUrl: './table-of-contents-item.component.html',
 })
 export class TableOfContentsItemComponent {
+  /** Router service */
   readonly router = inject(Router);
   /** Section of item */
   readonly section = input.required<Section>();
@@ -34,7 +35,6 @@ export class TableOfContentsItemComponent {
 
   /** If the item is selected */
   readonly isActive = computed<boolean>(() => {
-    console.log(this.router.url);
     return this.router.url.split('#')[1] === this.section().anchor;
   });
 
