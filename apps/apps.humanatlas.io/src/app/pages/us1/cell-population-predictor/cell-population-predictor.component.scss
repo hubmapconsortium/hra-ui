@@ -1,5 +1,6 @@
 :host {
   display: block;
+  width: 100%;
   max-width: 58.75rem;
   margin: 0 auto;
   padding: 10rem 1rem;
@@ -35,7 +36,7 @@
   }
 
   .card-with-file {
-    height: 20.3125rem !important;
+    height: auto !important;
     width: 27rem !important;
     display: flex;
     flex-direction: column;
@@ -51,6 +52,7 @@
 
   .card {
     height: 15.8125rem;
+    height: auto !important;
     width: 27rem;
     font: var(--mat-sys-label-large);
     letter-spacing: var(--mat-sys-label-large-tracking);
