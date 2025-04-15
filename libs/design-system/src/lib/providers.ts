@@ -15,6 +15,7 @@ import { provideSelect } from '@hra-ui/design-system/select';
 import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
+import { provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -35,6 +36,7 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideCheckboxes(),
     provideChips(),
     provideCodeBlock(),
+    provideDesignSystemIcons(),
     provideIconButtons(),
     provideIcons(),
     provideInput(),
