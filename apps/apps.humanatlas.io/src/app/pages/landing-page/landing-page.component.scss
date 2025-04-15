@@ -43,19 +43,23 @@
 
   @include mat.button-toggle-overrides(
     (
-      selected-state-background-color: rgb(from var(--mat-sys-tertiary) r g b / 20%),
       text-color: var(--mat-sys-on-background),
       selected-state-text-color: var(--mat-sys-on-background),
+      background-color: var(--mat-sys-on-primary),
     )
   );
 
-  .apps-container {
-    background: linear-gradient(12.03deg, #eff1f4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
+  .section-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0rem 2.5rem 6rem 2.5rem;
+    background: linear-gradient(12.03deg, #eff1f4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
+    &.construct-section {
+      background: var(--mat-sys-on-primary);
+    }
   }
+
   .apps-header-text {
     @include utils.use-font(headline, large);
     max-width: 36rem;
@@ -101,6 +105,12 @@
   @media (min-width: 1000px) and (max-width: 1920px) {
     .apps-list {
       max-width: 75rem;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1150px) {
+    .apps-list {
+      max-width: 63.75rem;
     }
   }
 }

@@ -10,8 +10,8 @@
   </div>
 </div>
 
-<div class="apps-container">
-  @for (section of activeSections(); track section.tagline) {
+@for (section of activeSections(); track section.tagline) {
+  <div class="section-container" [class.construct-section]="section.tagline.includes('construct')">
     <h2 class="apps-header-text">{{ section.tagline }}</h2>
     <div class="apps-list">
       @for (card of section.cards; track card.tagline) {
@@ -26,5 +26,5 @@
         />
       }
     </div>
-  }
-</div>
+  </div>
+}
