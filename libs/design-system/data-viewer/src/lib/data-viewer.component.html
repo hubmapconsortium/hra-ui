@@ -18,7 +18,6 @@
     #viewermenu
     [currentVersion]="currentVersion()"
     [githubIconsUrl]="githubIconsUrl()"
-    [variant]="variant()"
   ></hra-viewer-menu>
 </div>
 <div class="content">
@@ -28,7 +27,7 @@
       <mat-label>Organ</mat-label>
       <mat-select disableRipple panelClass="options-container" [(ngModel)]="organ">
         @for (organ of organOptions(); track organ) {
-          <mat-option [value]="organ">{{ organ.name }}</mat-option>
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -37,12 +36,12 @@
       <mat-icon matPrefix class="search-icon">search</mat-icon>
       <mat-label>Release Version</mat-label>
       <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
-        <mat-select-trigger>{{ currentVersion().releaseName }}</mat-select-trigger>
+        <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
         @for (dataset of organVersionData(); track dataset) {
           <mat-option [value]="dataset">
             <div class="release-label">
-              <span class="release-name">{{ dataset.releaseName }}</span>
-              <span class="release-date">{{ dataset.releaseDate }}</span>
+              <!-- <span class="release-name">{{ dataset.releaseName }}</span>
+              <span class="release-date">{{ dataset.releaseDate }}</span> -->
             </div>
           </mat-option>
         }
@@ -51,7 +50,7 @@
   </div>
 
   <div class="viewer-cards">
-    @for (viewerCard of organ().viewerCardData; track viewerCard) {
+    @for (viewerCard of organ().cards; track viewerCard) {
       <hra-viewer-card [variant]="variant()" [viewerCardData]="viewerCard"></hra-viewer-card>
     }
   </div>

@@ -3,7 +3,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
-import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { OrganVersionData } from '../types/data-viewer.schema';
@@ -21,9 +20,6 @@ import { OrganVersionData } from '../types/data-viewer.schema';
 export class ViewerMenuComponent {
   /** Reference to menu component */
   readonly menu = viewChild.required('menu', { read: MatMenu });
-
-  /** Data viewer variant */
-  readonly variant = input.required<ProductLogoId>();
 
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
