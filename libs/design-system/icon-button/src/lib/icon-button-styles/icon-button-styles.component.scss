@@ -3,36 +3,38 @@
 @include utils.global-styles() {
   button[mat-icon-button],
   a[mat-icon-button] {
+    --mdc-icon-button-state-layer-size: 2.5rem;
+    --mdc-icon-button-icon-size: 1.5rem;
     --mat-icon-button-hover-state-layer-opacity: 0.08;
     --mat-icon-button-pressed-state-layer-opacity: 0.12;
-    --mat-icon-button-focus-state-layer-opacity: 0;
+    --mat-icon-button-focus-state-layer-opacity: 0.12;
     --mdc-icon-button-icon-color: var(--mat-sys-secondary);
     --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
 
     mat-icon {
-      height: var(--mdc-icon-button-icon-size);
       width: var(--mdc-icon-button-icon-size);
+      height: var(--mdc-icon-button-icon-size);
       font-size: var(--mdc-icon-button-icon-size);
     }
 
-    &.icon-button-variant-light {
+    &.hra-icon-button-size-small {
+      --mdc-icon-button-state-layer-size: 1.5rem;
+      --mdc-icon-button-icon-size: 1.25rem;
+    }
+
+    &.hra-icon-button-variant-light {
       --mdc-icon-button-icon-color: var(--mat-sys-on-primary);
       --mat-icon-button-state-layer-color: var(--mat-sys-on-primary);
     }
 
-    &.icon-button-variant-dark {
+    &.hra-icon-button-variant-dark {
       --mdc-icon-button-icon-color: var(--mat-sys-secondary);
       --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
     }
 
-    &.icon-button-variant-color {
+    &.hra-icon-button-variant-color {
       --mdc-icon-button-icon-color: var(--mat-sys-on-tertiary-fixed);
       --mat-icon-button-state-layer-color: var(--mat-sys-on-tertiary-fixed);
-    }
-
-    &:focus-visible {
-      --mdc-icon-button-icon-color: var(--mat-sys-secondary);
-      outline: 2px solid var(--mat-sys-tertiary);
     }
   }
 }

@@ -4,6 +4,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from '../types/menus.schema';
+import { RouterModule } from '@angular/router';
 
 /** Display modes of the menu content component */
 export type MenuContentVariant = 'desktop' | 'mobile';
@@ -55,6 +56,7 @@ export class MenuSubGroupDirective {
   selector: 'hra-menu-content',
   imports: [
     CommonModule,
+    RouterModule,
     MatDivider,
     MatIconModule,
     ButtonsModule,
