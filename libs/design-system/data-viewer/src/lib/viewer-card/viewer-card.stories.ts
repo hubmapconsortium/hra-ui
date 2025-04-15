@@ -1,23 +1,45 @@
+import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { ViewerCardComponent } from './viewer-card.component';
 import { ViewerCardData } from '../types/data-viewer.schema';
-import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { ViewerCardComponent } from './viewer-card.component';
 
-const testTissue: ViewerCardData = {
-  name: 'Crypt of Lieberkuhn',
-  metadata: 'https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2',
-  ai: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai',
-  png: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png',
-  svg: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
-  crosswalk:
+const testCard: ViewerCardData = {
+  label: 'Crypt of Lieberkuhn',
+  alt: 'Image of Crypt of Lieberkuhn',
+  fileUrl:
+    'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png',
+  fullscreenUrl:
+    'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
+  sourceDataUrl: 'https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2',
+  crosswalkUrl:
     'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv',
+  files: [
+    {
+      label: 'ai',
+      url: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai',
+    },
+    {
+      label: 'png',
+      url: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png',
+    },
+    {
+      label: 'svg',
+      url: 'https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg',
+    },
+  ],
 };
 
 const testOrgan: ViewerCardData = {
-  name: 'Female',
-  metadata: 'https://purl.humanatlas.io/ref-organ/united-female/v1.7',
-  threeDimImage: 'https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb',
+  label: 'Female',
+  fileUrl: 'https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb',
+  sourceDataUrl: 'https://purl.humanatlas.io/ref-organ/united-female/v1.7',
+  files: [
+    {
+      label: 'glb',
+      url: 'https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb',
+    },
+  ],
 };
 
 const meta: Meta = {
@@ -30,7 +52,7 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=7648-8835&t=GQLse2MKnovHjLt3-4',
     },
   },
-  args: { variant: 'ftu', viewerCardData: testTissue },
+  args: { variant: 'ftu', viewerCardData: testCard },
 };
 export default meta;
 type Story = StoryObj<ViewerCardComponent>;
@@ -38,7 +60,7 @@ type Story = StoryObj<ViewerCardComponent>;
 export const FTUCard: Story = {
   args: {
     variant: toProductLogoId('ftu'),
-    viewerCardData: testTissue,
+    viewerCardData: testCard,
   },
 };
 

@@ -6,20 +6,21 @@ const ViewerFileSchema = z.object({
   url: z.string().url(),
 });
 
-/** Type for viewer card data */
+/** Type for viewer card data, includes file data for the card */
 export type ViewerCardData = z.infer<typeof ViewerCardSchema>;
+/** Schema for viewer card data */
 const ViewerCardSchema = z.object({
   label: z.string(),
+  alt: z.string().optional(),
   fileUrl: z.string().url(),
   fullscreenUrl: z.string().url().optional(),
   sourceDataUrl: z.string().url(),
   crosswalkUrl: z.string().url().optional(),
   files: ViewerFileSchema.array(),
-  alt: z.string().optional(),
 });
 
-/** All viewer card data for an organ */
-export type OrganData = z.infer<typeof ViewerOrganDataSchema>;
+/** Type for individual organ data, includes data for the viewer cards of that organ */
+export type ViewerOrganData = z.infer<typeof ViewerOrganDataSchema>;
 /** Schema for organ data */
 const ViewerOrganDataSchema = z.object({
   label: z.string(),
@@ -27,10 +28,10 @@ const ViewerOrganDataSchema = z.object({
   cards: ViewerCardSchema.array(),
 });
 
-/** Organ version data including organ data */
-export type OrganVersionData = z.infer<typeof ViewerVersionDataSchema>;
-/** Schema for viewer version data */
-const ViewerVersionDataSchema = z.object({
+/** Type for release version data, includes organ data for all organs */
+export type ReleaseVersionData = z.infer<typeof ReleaseVersionDataSchema>;
+/** Schema for release version data */
+const ReleaseVersionDataSchema = z.object({
   version: z.string(),
   label: z.string(),
   crosswalkUrl: z.string().url().optional(),

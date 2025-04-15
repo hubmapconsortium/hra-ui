@@ -1,241 +1,512 @@
 {
   "testFtuVersionData": [
     {
-      "releaseName": "8th Release (v2.2)",
-      "releaseDate": "December 2024",
-      "version": "2.2",
-      "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv",
+      "version": "8",
+      "label": "8th Release (v2.2), December 2024",
+      "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv",
       "organData": [
         {
-          "name": "Kidneys",
+          "label": "Kidneys",
           "icon": "kidneys",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Ascending Thin Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Ascending Thin Limb of Loop of Henle"
+              "label": "Ascending Thin Limb of Loop of Henle",
+              "alt": "Image of Ascending Thin Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg"
+                }
+              ]
             },
             {
-              "name": "Cortical Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Cortical Collecting Duct"
+              "label": "Cortical Collecting Duct",
+              "alt": "Image of Cortical Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Descending Thin Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Descending Thin Limb of Loop of Henle"
+              "label": "Descending Thin Limb of Loop of Henle",
+              "alt": "Image of Descending Thin Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg"
+                }
+              ]
             },
             {
-              "name": "Inner Medullary Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Inner Medullary Collecting Duct"
+              "label": "Inner Medullary Collecting Duct",
+              "alt": "Image of Inner Medullary Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Nephron",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Nephron"
+              "label": "Nephron",
+              "alt": "Image of Nephron",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg"
+                }
+              ]
             },
             {
-              "name": "Outer Medullary Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Outer Medullary Collecting Duct"
+              "label": "Outer Medullary Collecting Duct",
+              "alt": "Image of Outer Medullary Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Renal Corpuscle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Renal Corpuscle"
+              "label": "Renal Corpuscle",
+              "alt": "Image of Renal Corpuscle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg"
+                }
+              ]
             },
             {
-              "name": "Thick Ascending Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Thick Ascending Limb of Loop of Henle"
+              "label": "Thick Ascending Limb of Loop of Henle",
+              "alt": "Image of Thick Ascending Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Large Intestine",
+          "label": "Large Intestine",
           "icon": "large-intestine",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Crypt of Lieberkuhn",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Crypt of Lieberkuhn"
+              "label": "Crypt of Lieberkuhn",
+              "alt": "Image of Crypt of Lieberkuhn",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Liver",
+          "label": "Liver",
           "icon": "liver",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Liver Lobule",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule/v1.3",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/crosswalk.csv",
-              "alt": "Image of Liver Lobule"
+              "label": "Liver Lobule",
+              "alt": "Image of Liver Lobule",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule/v1.3",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Lung",
+          "label": "Lung",
           "icon": "lungs",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Bronchial Submucosal Gland",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland/v1.1",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/crosswalk.csv",
-              "alt": "Image of Bronchial Submucosal Gland"
+              "label": "Bronchial Submucosal Gland",
+              "alt": "Image of Bronchial Submucosal Gland",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.svg"
+                }
+              ]
             },
             {
-              "name": "Pulmonary Alveolus",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus/v1.1",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/crosswalk.csv",
-              "alt": "Image of Pulmonary Alveolus"
+              "label": "Pulmonary Alveolus",
+              "alt": "Image of Pulmonary Alveolus",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.1/assets/2d-ftu-lung-pulmonary-alveolus.svg"
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "releaseName": "7th Release (v2.1)",
-      "releaseDate": "June 2024",
-      "version": "2.1",
-      "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv",
+      "version": "7",
+      "label": "7th Release (v2.1), June 2024",
+      "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv",
       "organData": [
         {
-          "name": "Kidneys",
+          "label": "Kidneys",
           "icon": "kidneys",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Ascending Thin Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Ascending Thin Limb of Loop of Henle"
+              "label": "Ascending Thin Limb of Loop of Henle",
+              "alt": "Image of Ascending Thin Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg"
+                }
+              ]
             },
             {
-              "name": "Cortical Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Cortical Collecting Duct"
+              "label": "Cortical Collecting Duct",
+              "alt": "Image of Cortical Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/2d-ftu-kidney-cortical-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/2d-ftu-kidney-cortical-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/2d-ftu-kidney-cortical-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/2d-ftu-kidney-cortical-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.1/assets/2d-ftu-kidney-cortical-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Descending Thin Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Descending Thin Limb of Loop of Henle"
+              "label": "Descending Thin Limb of Loop of Henle",
+              "alt": "Image of Descending Thin Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg"
+                }
+              ]
             },
             {
-              "name": "Inner Medullary Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Inner Medullary Collecting Duct"
+              "label": "Inner Medullary Collecting Duct",
+              "alt": "Image of Inner Medullary Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Nephron",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Nephron"
+              "label": "Nephron",
+              "alt": "Image of Nephron",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg"
+                }
+              ]
             },
             {
-              "name": "Outer Medullary Collecting Duct",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Outer Medullary Collecting Duct"
+              "label": "Outer Medullary Collecting Duct",
+              "alt": "Image of Outer Medullary Collecting Duct",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.1/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg"
+                }
+              ]
             },
             {
-              "name": "Renal Corpuscle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Renal Corpuscle"
+              "label": "Renal Corpuscle",
+              "alt": "Image of Renal Corpuscle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg"
+                }
+              ]
             },
             {
-              "name": "Thick Ascending Limb of Loop of Henle",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Thick Ascending Limb of Loop of Henle"
+              "label": "Thick Ascending Limb of Loop of Henle",
+              "alt": "Image of Thick Ascending Limb of Loop of Henle",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.1/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Large Intestine",
+          "label": "Large Intestine",
           "icon": "large-intestine",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Crypt of Lieberkuhn",
-              "metadata": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2",
-              "ai": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai",
-              "png": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png",
-              "svg": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
-              "crosswalk": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv",
-              "alt": "Image of Crypt of Lieberkuhn"
+              "label": "Crypt of Lieberkuhn",
+              "alt": "Image of Crypt of Lieberkuhn",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png",
+              "fullscreenUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg",
+              "sourceDataUrl": "https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2",
+              "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv",
+              "files": [
+                {
+                  "label": "ai",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai"
+                },
+                {
+                  "label": "png",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png"
+                },
+                {
+                  "label": "svg",
+                  "url": "https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg"
+                }
+              ]
             }
           ]
         }
@@ -244,126 +515,208 @@
   ],
   "testOrganVersionData": [
     {
-      "releaseName": "8th Release (v2.2)",
-      "releaseDate": "December 2024",
-      "version": "2.2",
-      "crosswalk": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.7/assets/asct-b-3d-models-crosswalk.csv",
-      "extractionCsvUrl": "https://lod.humanatlas.io/landmark/",
-      "referenceCsvUrl": "https://lod.humanatlas.io/ref-organ/",
+      "version": "8",
+      "label": "8th Release (v2.2), December 2024",
+      "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.7/assets/asct-b-3d-models-crosswalk.csv",
+      "extractionsSitesUrl": "https://lod.humanatlas.io/landmark/",
+      "referenceOrgansUrl": "https://lod.humanatlas.io/ref-organ/",
       "organData": [
         {
-          "name": "All Organs",
+          "label": "All Organs",
           "icon": "all-organs",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female",
-              "metadata": "https://purl.humanatlas.io/ref-organ/united-female/v1.7",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb"
+              "label": "Female",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/united-female/v1.7",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb"
+                }
+              ]
             },
             {
-              "name": "Male",
-              "metadata": "https://purl.humanatlas.io/ref-organ/united-male/v1.7",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb"
+              "label": "Male",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/united-male/v1.7",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Brain",
+          "label": "Brain",
           "icon": "brain",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female",
-              "metadata": "https://purl.humanatlas.io/ref-organ/brain-female/v1.4",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb"
+              "label": "Female",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/brain-female/v1.4",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb"
+                }
+              ]
             },
             {
-              "name": "Male",
-              "metadata": "https://purl.humanatlas.io/ref-organ/brain-male/v1.4",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb"
+              "label": "Male",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/brain-male/v1.4",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Eye",
+          "label": "Eye",
           "icon": "eye",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female, L",
-              "metadata": "https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-left/v1.3/assets/3d-vh-f-eye-l.glb"
+              "label": "Female, L",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-left/v1.3/assets/3d-vh-f-eye-l.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-left/v1.3/assets/3d-vh-f-eye-l.glb"
+                }
+              ]
             },
             {
-              "name": "Female, R",
-              "metadata": "https://purl.humanatlas.io/ref-organ/eye-female-right/v1.3",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-right/v1.3/assets/3d-vh-f-eye-r.glb"
+              "label": "Female, R",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-right/v1.3/assets/3d-vh-f-eye-r.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/eye-female-right/v1.3",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-right/v1.3/assets/3d-vh-f-eye-r.glb"
+                }
+              ]
             },
             {
-              "name": "Male, L",
-              "metadata": "https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-left/v1.3/assets/3d-vh-m-eye-l.glb"
+              "label": "Male, L",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-left/v1.3/assets/3d-vh-m-eye-l.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-left/v1.3/assets/3d-vh-m-eye-l.glb"
+                }
+              ]
             },
             {
-              "name": "Male, R",
-              "metadata": "https://purl.humanatlas.io/ref-organ/eye-male-right/v1.3",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/3d-vh-m-eye-r.glb"
+              "label": "Male, R",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/3d-vh-m-eye-r.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/eye-male-right/v1.3",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/3d-vh-m-eye-r.glb"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Fallopian Tube",
+          "label": "Fallopian Tube",
           "icon": "fallopian-tube-left",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female, L",
-              "metadata": "https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-left/v1.2/assets/3d-vh-f-fallopian-tube-l.glb"
+              "label": "Female, L",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-left/v1.2/assets/3d-vh-f-fallopian-tube-l.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-left/v1.2/assets/3d-vh-f-fallopian-tube-l.glb"
+                }
+              ]
             },
             {
-              "name": "Female, R",
-              "metadata": "https://purl.humanatlas.io/ref-organ/fallopian-tube-female-right/v1.2",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-right/v1.2/assets/3d-vh-f-fallopian-tube-r.glb"
+              "label": "Female, R",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-right/v1.2/assets/3d-vh-f-fallopian-tube-r.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/fallopian-tube-female-right/v1.2",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-right/v1.2/assets/3d-vh-f-fallopian-tube-r.glb"
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "releaseName": "7th Release (v2.1)",
-      "releaseDate": "June 2024",
-      "version": "2.1",
-      "crosswalk": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.6/assets/asct-b-3d-models-crosswalk.csv",
-      "extractionCsvUrl": "https://lod.humanatlas.io/landmark/",
-      "referenceCsvUrl": "https://lod.humanatlas.io/ref-organ/",
+      "version": "7",
+      "label": "7th Release (v2.1), June 2024",
+      "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.6/assets/asct-b-3d-models-crosswalk.csv",
+      "extractionsSitesUrl": "https://lod.humanatlas.io/landmark/",
+      "referenceOrgansUrl": "https://lod.humanatlas.io/ref-organ/",
       "organData": [
         {
-          "name": "All Organs",
+          "label": "All Organs",
           "icon": "all-organs",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female",
-              "metadata": "https://purl.humanatlas.io/ref-organ/united-female/v1.7",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb"
+              "label": "Female",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/united-female/v1.7",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.7/assets/3d-vh-f-united.glb"
+                }
+              ]
             },
             {
-              "name": "Male",
-              "metadata": "https://purl.humanatlas.io/ref-organ/united-male/v1.7",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb"
+              "label": "Male",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/united-male/v1.7",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.7/assets/3d-vh-m-united.glb"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "Brain",
+          "label": "Brain",
           "icon": "brain",
-          "viewerCardData": [
+          "cards": [
             {
-              "name": "Female",
-              "metadata": "https://purl.humanatlas.io/ref-organ/brain-female/v1.4",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb"
+              "label": "Female",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/brain-female/v1.4",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb"
+                }
+              ]
             },
             {
-              "name": "Male",
-              "metadata": "https://purl.humanatlas.io/ref-organ/brain-male/v1.4",
-              "threeDimImage": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb"
+              "label": "Male",
+              "fileUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb",
+              "sourceDataUrl": "https://purl.humanatlas.io/ref-organ/brain-male/v1.4",
+              "files": [
+                {
+                  "label": "glb",
+                  "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb"
+                }
+              ]
             }
           ]
         }

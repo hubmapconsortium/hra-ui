@@ -4,18 +4,18 @@
       class="viewer-image"
       aria-hidden="true"
       [alt]="viewerCardData().alt"
-      [src]="viewerCardData().png"
-      (click)="openImageViewer(imageContent)"
-      (keyup.enter)="openImageViewer(imageContent)"
+      [src]="viewerCardData().fileUrl"
+      (click)="openImageViewer(fullscreen)"
+      (keyup.enter)="openImageViewer(fullscreen)"
     />
-    <ng-container [ngTemplateOutlet]="imageContent"> </ng-container>
+    <ng-container [ngTemplateOutlet]="fullscreen"> </ng-container>
   }
 
   @if (variant() === '3d-organ') {
     <model-viewer
       class="model-viewer"
       [alt]="viewerCardData().alt"
-      [src]="viewerCardData().threeDimImage"
+      [src]="viewerCardData().fileUrl"
       shadow-intensity="1"
       camera-controls
       auto-rotate
@@ -26,7 +26,7 @@
 
 <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
 
-<ng-template #imageContent>
+<ng-template #fullscreen>
   <div class="dialog-container">
     <div class="dialog-header">
       <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
@@ -36,14 +36,14 @@
       </button>
     </div>
     <div class="img-container">
-      <img class="dialog-image" [src]="viewerCardData().svg" [alt]="viewerCardData().alt" />
+      <img class="dialog-image" [src]="viewerCardData().fullscreenUrl" [alt]="viewerCardData().alt" />
     </div>
   </div>
 </ng-template>
 
 <ng-template #objectMenu>
   <div class="object-menu">
-    <span class="tagline">{{ viewerCardData().name }}</span>
+    <span class="tagline">{{ viewerCardData().label }}</span>
     <button
       mat-icon-button
       [matMenuTriggerFor]="cardMenu.menu()"

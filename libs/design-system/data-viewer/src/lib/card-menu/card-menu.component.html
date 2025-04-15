@@ -11,30 +11,30 @@
   </a>
 </mat-menu>
 <mat-menu #submenu="matMenu">
-  <!-- @if (viewerCardData().svg) {
-    <a mat-menu-item [attr.href]="viewerCardData().svg" download>
+  @if (hasFile('svg')) {
+    <a mat-menu-item [attr.href]="getFileUrl('svg')" download>
       <mat-icon>download</mat-icon>
       SVG
     </a>
   }
-  @if (viewerCardData().png) {
-    <a mat-menu-item [attr.href]="viewerCardData().png" download>
+  @if (hasFile('png')) {
+    <a mat-menu-item [attr.href]="getFileUrl('png')" download>
       <mat-icon>download</mat-icon>
       PNG
     </a>
   }
-  @if (viewerCardData().ai) {
-    <a mat-menu-item [attr.href]="viewerCardData().ai" download>
+  @if (hasFile('ai')) {
+    <a mat-menu-item [attr.href]="getFileUrl('ai')" download>
       <mat-icon>download</mat-icon>
       Adobe Illustrator
     </a>
   }
-  @if (viewerCardData().threeDimImage) {
-    <a mat-menu-item [attr.href]="viewerCardData().threeDimImage" download>
+  @if (hasFile('glb')) {
+    <a mat-menu-item [attr.href]="getFileUrl('glb')" download>
       <mat-icon>download</mat-icon>
       GLB
     </a>
-  } -->
+  }
   <mat-divider class="menu-divider"></mat-divider>
   <a mat-menu-item class="csv-button" [attr.href]="viewerCardData().crosswalkUrl" download>
     <mat-icon>download</mat-icon>

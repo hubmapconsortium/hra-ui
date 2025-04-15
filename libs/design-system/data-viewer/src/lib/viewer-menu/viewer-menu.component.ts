@@ -5,7 +5,7 @@ import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
-import { OrganVersionData } from '../types/data-viewer.schema';
+import { ReleaseVersionData } from '../types/data-viewer.schema';
 
 /**
  * Menu to be used to access/download data in the data viewer header
@@ -25,5 +25,5 @@ export class ViewerMenuComponent {
   readonly githubIconsUrl = input.required<string>();
 
   /** Current selected release version */
-  readonly currentVersion = input.required<OrganVersionData>();
+  readonly currentVersion = input.required<ReleaseVersionData>();
 }

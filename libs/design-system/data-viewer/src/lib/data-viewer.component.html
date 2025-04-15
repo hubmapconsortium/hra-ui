@@ -40,8 +40,8 @@
         @for (dataset of organVersionData(); track dataset) {
           <mat-option [value]="dataset">
             <div class="release-label">
-              <!-- <span class="release-name">{{ dataset.releaseName }}</span>
-              <span class="release-date">{{ dataset.releaseDate }}</span> -->
+              <span class="release-name">{{ dataset.label.split(', ')[0] }}</span>
+              <span class="release-date">{{ dataset.label.split(', ')[1] }}</span>
             </div>
           </mat-option>
         }

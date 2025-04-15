@@ -10,7 +10,7 @@ import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/bra
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 
-import { OrganVersionData } from './types/data-viewer.schema';
+import { ReleaseVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 
@@ -40,7 +40,7 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 })
 export class DataViewerComponent {
   /** Release versions to include in the data viewer*/
-  readonly organVersionData = input.required<OrganVersionData[]>();
+  readonly organVersionData = input.required<ReleaseVersionData[]>();
 
   /** Data viewer variant */
   readonly variant = input.required({ transform: toProductLogoId });
