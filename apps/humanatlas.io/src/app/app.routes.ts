@@ -5,6 +5,7 @@ import { ResolveFn, Route } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 
+/** Resolver for publications */
 export const publicationsResolver: ResolveFn<Record<string, string[]>> = () => {
   return inject(HttpClient).get<Record<string, string[]>>('https://cns.iu.edu/publications.json?sort=hra', {
     responseType: 'json',

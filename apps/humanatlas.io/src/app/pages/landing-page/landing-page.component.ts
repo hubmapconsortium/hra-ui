@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
 import { CountInfoComponent } from '../../components-v2/count-info/count-info.component';
 import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
-import { RouterModule } from '@angular/router';
 
 /**
  * HRA landing page component

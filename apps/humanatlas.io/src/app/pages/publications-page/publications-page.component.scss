@@ -1,7 +1,8 @@
 @use 'utils';
 
 :host {
-  display: block;
+  max-width: 87.5rem;
+  margin: 0 auto;
 
   .banner {
     @include utils.use-font(display, large);
@@ -38,8 +39,8 @@
 
   .navigation-panel {
     .navigation {
-      height: 100px;
-      background: red;
+      height: 18.75rem;
+      background: gray;
       width: 100%;
     }
   }
@@ -70,7 +71,7 @@
     grid-template-areas:
       'header header'
       'content navigation';
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 12.5rem;
 
     .page-content {
       display: flex;
@@ -86,17 +87,14 @@
     }
 
     .navigation-panel {
-      width: 200px;
+      width: 12.5rem;
       height: 100%;
-      right: 10px;
+      right: 0.625rem;
       grid-area: navigation;
 
       .navigation {
         position: sticky;
         top: 4.5rem;
-        height: 100px;
-        background: red;
-        width: 100%;
       }
     }
 
@@ -105,6 +103,49 @@
     }
     .navigation-panel.large {
       display: flex;
+    }
+  }
+
+  hra-page-section {
+    ::ng-deep a {
+      text-decoration: none;
+
+      &:link,
+      &:link mat-icon {
+        color: var(--mat-sys-on-tertiary-fixed);
+      }
+
+      &:visited,
+      &:visited mat-icon {
+        color: var(--mat-sys-tertiary-fixed);
+      }
+
+      &:focus-visible,
+      &:hover,
+      &:active {
+        text-decoration: underline solid currentColor 0.0625rem;
+        text-underline-offset: 0.125rem;
+      }
+
+      &:focus-visible {
+        color: var(--mat-sys-secondary);
+        outline: 0.125rem solid var(--mat-sys-tertiary);
+        border-radius: 0.25rem;
+
+        & mat-icon {
+          color: var(--mat-sys-secondary);
+        }
+      }
+
+      &:hover,
+      &:hover mat-icon {
+        color: var(--mat-sys-on-tertiary-fixed);
+      }
+
+      &:active,
+      &:active mat-icon {
+        color: var(--mat-sys-on-tertiary-fixed-variant);
+      }
     }
   }
 }
