@@ -24,24 +24,35 @@
       border-bottom: 1px solid var(--mat-sys-outline-variant);
     }
 
-    .link-container {
-      display: flex;
-      flex-direction: column;
-      padding: 0.5rem 0.875rem;
+    .navigation-links {
+      padding: 0.5rem;
     }
 
-    mat-tree-node {
-      --mat-tree-node-min-height: 2rem;
-      margin-bottom: 0.75rem;
-    }
+    hra-table-of-contents-item {
+      ::ng-deep {
+        .link-container {
+          display: flex;
+          flex-direction: column;
+        }
 
-    .node-content {
-      @include utils.use-font(label, medium);
-      color: var(--mat-sys-primary);
-      padding: 0 0.5rem;
-      height: auto;
-      border-radius: 0.5rem;
-      min-height: 2rem;
+        .navigation-label {
+          @include utils.use-font(label, medium);
+          color: var(--mat-sys-primary);
+          padding: 0 1rem;
+          border-radius: 0.5rem;
+          min-height: 2rem;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            background-color: utils.with-alpha(var(--mat-sys-secondary), 8%);
+          }
+
+          &.selected {
+            background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
+          }
+        }
+      }
     }
 
     @media (min-width: 1000px) {
@@ -54,7 +65,11 @@
         min-height: 2.5rem;
         background-color: unset;
         border-bottom: unset;
-        padding-left: 0.5rem;
+        padding-left: 1rem;
+      }
+
+      .navigation-links {
+        padding: 0;
       }
 
       .link-container {

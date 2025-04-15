@@ -1,37 +1,14 @@
 <ng-scrollbar>
   <div class="navigation-container">
     <div class="navigation-top">{{ tagline() }}</div>
-    <div class="link-container">
-      <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor">
-        <mat-tree-node
-          *matTreeNodeDef="let node"
-          matTreeNodePadding
-          [matTreeNodePaddingIndent]="12"
-          (activation)="selectedNode = node"
-          (click)="selectedNode = node"
-        >
-          <div class="node-content leaf" [class.selected]="selectedNode === node">
-            <a [attr.href]="href(node.anchor)">
-              {{ node.label }}
-            </a>
-          </div>
-        </mat-tree-node>
-
-        <mat-tree-node
-          *matTreeNodeDef="let node; when: hasChild"
-          matTreeNodePadding
-          [matTreeNodePaddingIndent]="12"
-          [cdkTreeNodeTypeaheadLabel]="node.label"
-          (activation)="selectedNode = node"
-          (click)="selectedNode = node"
-        >
-          <div class="node-content" [class.selected]="selectedNode === node">
-            <a [attr.href]="href(node.anchor)">
-              {{ node.label }}
-            </a>
-          </div>
-        </mat-tree-node>
-      </mat-tree>
+    <div class="navigation-links">
+      @for (section of treeData(); track section) {
+        <hra-table-of-contents-item
+          class="navigation-link"
+          [section]="section"
+          [level]="0"
+        ></hra-table-of-contents-item>
+      }
     </div>
   </div>
 </ng-scrollbar>
