@@ -10,7 +10,7 @@ export type IconButtonVariant = 'light' | 'dark' | 'color';
   selector: '[hraIconButtonVariant]',
   standalone: true,
   host: {
-    '[class]': '"icon-button-variant-" + variant()',
+    '[class]': '"hra-icon-button-variant-" + variant()',
   },
 })
 export class IconButtonVariantDirective {

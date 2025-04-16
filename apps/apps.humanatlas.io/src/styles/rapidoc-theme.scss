@@ -1,0 +1,318 @@
+@use 'utils.scss';
+/* HRA-API Rapidoc Theme */
+
+/* Styling with Shadow DOM Parts Attribute Selector */
+
+/* Main Content Section */
+@media screen and (min-width: 40rem) and (max-width: 120rem) {
+  rapi-doc::part(section-main-content) {
+    padding-top: 0.75rem;
+    padding-right: 2.5rem;
+    padding-bottom: 6rem;
+    padding-left: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 20rem) and (max-width: 39.9375rem) {
+  rapi-doc::part(section-main-content) {
+    padding-top: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 3rem;
+    padding-left: 0.75rem;
+  }
+}
+
+/* Tab Content */
+rapi-doc::part(tab-content) {
+  background: var(--mat-sys-on-primary);
+}
+
+/* Tab Panel Button */
+rapi-doc::part(tab-btn) {
+  font-size: 0.875rem;
+  &::first-letter {
+    text-transform: capitalize;
+  }
+  text-transform: lowercase;
+  padding: 0.875rem 1rem;
+}
+
+/* Textarea */
+rapi-doc::part(textarea) {
+  border: 0;
+  border-bottom: 0.0625rem solid var(--mat-sys-on-secondary-fixed);
+  &:focus {
+    border-bottom: 0.0625rem solid var(--primary-color);
+  }
+}
+
+rapi-doc::part(textarea-param) {
+  background: var(--mat-sys-surface-container);
+}
+
+/* Input Type Text */
+rapi-doc::part(textbox) {
+  border: 0;
+  border-bottom: 0.0625rem solid var(--mat-sys-primary);
+  &:focus {
+    border-bottom: 0.125rem solid var(--mat-sys-primary);
+  }
+}
+
+/* Tab Button Wrapper */
+rapi-doc::part(tab-btn-row) {
+  height: 3rem;
+  background: var(--mat-sys-surface-container);
+}
+
+/* Generic Button */
+rapi-doc::part(btn) {
+  font-size: 0.875rem;
+  padding: 0.25rem 1rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  text-transform: lowercase;
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+/* Try Button */
+rapi-doc::part(btn-try) {
+  width: 4.5rem;
+}
+
+/* Copy Button */
+rapi-doc::part(btn-copy) {
+  width: 4.5rem;
+}
+
+/* Outlined style button */
+rapi-doc::part(btn-outline) {
+  color: var(--mat-sys-on-tertiary-fixed);
+  &:hover {
+    background: utils.with-alpha(var(--mat-sys-on-tertiary-fixed), 8%);
+  }
+  &:active {
+    background: utils.with-alpha(var(--mat-sys-on-tertiary-fixed), 12%);
+  }
+  &:disabled {
+    background: var(--mat-form-field-select-option-text-color);
+  }
+}
+
+/* Overriding extra CSS for Fine Tuning */
+.rapidoc-hra-api-theme {
+  --font-regular: 'Metropolis';
+  --font-mono: Roboto Mono, monospace;
+  --font-material-symbols: 'Material Symbols Rounded Variable';
+  --font-size-small: 1rem;
+
+  /* API Description */
+  div#api-info {
+    margin-left: 0;
+  }
+
+  /* Section Gap */
+  .section-gap {
+    padding-left: 0rem;
+  }
+
+  /* Expand/Collapse Buttons */
+  div#operations-top + div {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Section Tag */
+  .section-tag {
+    /* Default Styles */
+    background: var(--mat-sys-surface-container);
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: -0.0625rem 0.125rem 0.5rem 0rem utils.with-alpha(var(--mat-sys-on-background), 16%);
+    /* Collapsed behavior */
+    &.collapsed {
+      .section-tag-header {
+        &::after {
+          font-family: var(--font-material-symbols);
+          content: 'add';
+          color: var(--mat-form-field-select-option-text-color);
+          &:hover {
+            color: --var(--primary-color);
+          }
+        }
+      }
+    }
+
+    /* Expanded behavior */
+    &.expanded {
+      .section-tag-header {
+        &::after {
+          font-family: var(--font-material-symbols);
+          content: 'remove';
+          color: var(--mat-form-field-select-option-text-color);
+        }
+      }
+    }
+
+    /* Section Tag Header */
+    .section-tag-header {
+      cursor: pointer !important;
+      padding-left: 3.125rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+
+      &:hover {
+        background: utils.with-alpha(var(--mat-sys-on-background), 8%);
+      }
+
+      &:active {
+        background: utils.with-alpha(var(--mat-sys-on-background), 12%);
+      }
+
+      .sub-title {
+        @include utils.use-font(title, large);
+        color: var(--mat-form-field-select-option-text-color) !important;
+      }
+
+      &::after {
+        position: absolute;
+        margin-left: -2.125rem;
+        font-size: 1.25rem;
+        top: calc(50% - 0.875rem);
+        color: var(--border-color);
+      }
+    }
+
+    /* Section Tag Body */
+    .section-tag-body {
+      /* colors based on request type */
+      --bg-post: #c8dfbe;
+      --bg-get: #d6e8f8;
+
+      background: var(--mat-sys-on-primary);
+
+      & > div.m-markdown {
+        font-weight: 400;
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+        letter-spacing: 0rem;
+        vertical-align: middle;
+        padding-top: 1rem;
+        padding-right: 1.75rem;
+        padding-bottom: 1rem;
+        padding-left: 1.75rem;
+        p {
+          margin: 0;
+        }
+      }
+
+      .m-endpoint {
+        margin-bottom: 0 !important;
+      }
+
+      .endpoint-head {
+        flex-wrap: wrap;
+        border-top: 0;
+
+        /* Left-side border colors based on request type */
+        &.expanded {
+          border-right: 0;
+          &.post {
+            border-left: 0.5rem solid var(--bg-post) !important;
+            border-bottom: 0.0625rem solid var(--bg-post) !important;
+          }
+          &.get {
+            border-left: 0.5rem solid var(--bg-get) !important;
+            border-bottom: 0.0625rem solid var(--bg-get) !important;
+          }
+        }
+
+        &.collapsed {
+          border-left: 0.5rem solid transparent;
+          border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+          &:hover {
+            &.post {
+              border-left: 0.5rem solid var(--bg-post);
+              border-right: 0.0625rem solid var(--bg-post);
+              border-bottom: 0.0625rem solid var(--bg-post);
+            }
+            &.get {
+              border-left: 0.5rem solid var(--bg-get);
+              border-right: 0.0625rem solid var(--bg-get);
+              border-bottom: 0.0625rem solid var(--bg-get);
+            }
+          }
+        }
+
+        /* API request method container */
+        .method {
+          border: 0;
+          border-radius: 0.25rem;
+          padding: 0.375rem 1.0625rem;
+          margin-right: 0.5rem;
+          font-family:
+            Roboto Mono,
+            monospace;
+          font-weight: 500;
+          font-size: 1rem;
+          line-height: 1.5rem;
+          letter-spacing: 0rem;
+          vertical-align: middle;
+          height: 2.25rem;
+          width: 4.5rem;
+        }
+
+        .method.post {
+          background: var(--bg-post);
+        }
+
+        .method.get {
+          background: var(--bg-get);
+        }
+
+        /* API path container */
+        .path {
+          font-family:
+            Roboto Mono,
+            monospace;
+          flex: 1 0 50%;
+        }
+
+        /* API endpoint description */
+        .descr {
+          @include utils.use-font(label, medium);
+          flex: 1 0 50%;
+          padding: 0.5rem 5rem;
+          display: block !important;
+        }
+      }
+
+      /* Endpoint testing container */
+      .endpoint-body {
+        padding: 2rem 3rem;
+        &.post {
+          border-left: 0.5rem solid var(--bg-post);
+        }
+        &.get {
+          border-left: 0.5rem solid var(--bg-get);
+        }
+        border-right: 0;
+        border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+        box-shadow: none;
+
+        .summary {
+          display: none;
+        }
+
+        .req-resp-container {
+          margin-top: 0;
+          border-top: 0;
+        }
+      }
+    }
+  }
+}
