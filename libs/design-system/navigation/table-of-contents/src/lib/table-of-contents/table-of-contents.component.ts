@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { Router } from '@angular/router';
@@ -28,6 +28,8 @@ export class TableOfContentsItemComponent {
   readonly router = inject(Router);
   /** Section of item */
   readonly section = input.required<Section>();
+  /** If the item is selected */
+  readonly selected = input<boolean>(false);
   /** Base url */
   private readonly baseUrl = this.router.url.split('#')[0];
 
@@ -59,7 +61,10 @@ export class TableOfContentsItemComponent {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableOfContentsComponent {
+export class TableOfContentsComponent implements AfterViewInit {
+  /** Router service */
+  readonly router = inject(Router);
+
   /** Text for the header portion */
   readonly tagline = input<string>('On this page');
 
@@ -67,5 +72,41 @@ export class TableOfContentsComponent {
   readonly sections = input.required<Section[]>();
 
   /** Current selected node */
-  selectedNode?: Section;
+  readonly selectedNode = signal<Section | undefined>(undefined);
+
+  /** Anchor id: position from top (px) */
+  linkPositions: Record<string, number> = {};
+
+  /**
+   * Sets the selected node according to url and scrolls to initial anchor
+   * If no anchor in url, starts at the top of the page
+   * Listens to scroll events and sets the selected node based on the scroll position
+   */
+  ngAfterViewInit(): void {
+    const linkList = Array.from(document.getElementsByTagName('hra-section-link')).filter((link) => link.id !== ''); // Get all section links on the page but exclude the header
+    linkList.forEach((link) => {
+      this.linkPositions[link.id] = link.getBoundingClientRect().top;
+    });
+
+    const urlAnchor = this.router.url.split('#')[1];
+    const initialAnchor = urlAnchor ?? linkList[0].id;
+    const initialNav = linkList.find((link) => link.id === initialAnchor);
+    const initialSelectedSection = this.sections().find((section) => section.anchor === initialAnchor);
+
+    this.selectedNode.set(initialSelectedSection);
+    if (urlAnchor && initialNav) {
+      initialNav.scrollIntoView();
+    } else {
+      window.scroll(0, 0);
+    }
+
+    document.addEventListener('scroll', () => {
+      for (const [id, top] of Object.entries(this.linkPositions)) {
+        if (window.scrollY >= top) {
+          const newSelectedSection = this.sections().find((section) => section.anchor === id) || this.sections()[0];
+          this.selectedNode.set(newSelectedSection);
+        }
+      }
+    });
+  }
 }

@@ -1,7 +1,7 @@
 <a
   class="navigation-label"
   [href]="href(section().anchor)"
-  [class.selected]="isActive()"
+  [class.selected]="selected() || isActive()"
   [style.margin-left]="(section().level - 1) * 0.75 + 'rem'"
 >
   {{ section().label }}

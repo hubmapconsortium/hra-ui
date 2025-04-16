@@ -3,7 +3,11 @@
     <div class="navigation-top">{{ tagline() }}</div>
     <nav class="link-container" [attr.aria-label]="'Table of Contents'">
       @for (section of sections(); track section) {
-        <hra-table-of-contents-item class="navigation-link" [section]="section"></hra-table-of-contents-item>
+        <hra-table-of-contents-item
+          class="navigation-link"
+          [section]="section"
+          [selected]="selectedNode() === section"
+        ></hra-table-of-contents-item>
       }
     </nav>
   </div>
