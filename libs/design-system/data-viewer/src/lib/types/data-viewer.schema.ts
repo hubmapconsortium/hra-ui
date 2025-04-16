@@ -3,7 +3,7 @@ import { z } from 'zod';
 /** Type for viewer file data, includes label and URL */
 export type ViewerFile = z.infer<typeof ViewerFileSchema>;
 /** Schema for viewer file data */
-const ViewerFileSchema = z.object({
+export const ViewerFileSchema = z.object({
   label: z.string(),
   url: z.string().url(),
 });
@@ -11,7 +11,7 @@ const ViewerFileSchema = z.object({
 /** Type for viewer card data, includes file data for the card */
 export type ViewerCard = z.infer<typeof ViewerCardSchema>;
 /** Schema for viewer card data */
-const ViewerCardSchema = z.object({
+export const ViewerCardSchema = z.object({
   label: z.string(),
   alt: z.string().optional(),
   fileUrl: z.string().url(),
@@ -24,7 +24,7 @@ const ViewerCardSchema = z.object({
 /** Type for individual organ data, includes data for the viewer cards of that organ */
 export type ViewerOrganData = z.infer<typeof ViewerOrganDataSchema>;
 /** Schema for organ data */
-const ViewerOrganDataSchema = z.object({
+export const ViewerOrganDataSchema = z.object({
   label: z.string(),
   icon: z.string(), // This is a mat-icon svg icon
   cards: ViewerCardSchema.array(),
@@ -33,7 +33,7 @@ const ViewerOrganDataSchema = z.object({
 /** Type for release version data, includes organ data for all organs */
 export type ReleaseVersionData = z.infer<typeof ReleaseVersionDataSchema>;
 /** Schema for release version data */
-const ReleaseVersionDataSchema = z.object({
+export const ReleaseVersionDataSchema = z.object({
   version: z.string(),
   label: z.string(),
   date: z.string(),
