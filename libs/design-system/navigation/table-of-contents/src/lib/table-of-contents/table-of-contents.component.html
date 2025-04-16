@@ -1,14 +1,10 @@
 <ng-scrollbar>
   <div class="navigation-container">
     <div class="navigation-top">{{ tagline() }}</div>
-    <div class="navigation-links">
-      @for (section of treeData(); track section) {
-        <hra-table-of-contents-item
-          class="navigation-link"
-          [section]="section"
-          [level]="0"
-        ></hra-table-of-contents-item>
+    <nav class="link-container" [attr.aria-label]="'Table of Contents'">
+      @for (section of sections(); track section) {
+        <hra-table-of-contents-item class="navigation-link" [section]="section"></hra-table-of-contents-item>
       }
-    </div>
+    </nav>
   </div>
 </ng-scrollbar>

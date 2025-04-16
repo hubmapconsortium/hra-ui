@@ -1,15 +1,8 @@
-<nav class="link-container" [attr.aria-label]="section().label + ' Table of Contents'">
-  <a
-    class="navigation-label"
-    [href]="href(section().anchor)"
-    [class.selected]="isActive()"
-    [style.margin-left]="level() * 0.75 + 'rem'"
-  >
-    {{ section().label }}
-  </a>
-</nav>
-@if (section().subSections) {
-  @for (child of section().subSections; track child) {
-    <hra-table-of-contents-item [section]="child" [level]="level() + 1"></hra-table-of-contents-item>
-  }
-}
+<a
+  class="navigation-label"
+  [href]="href(section().anchor)"
+  [class.selected]="isActive()"
+  [style.margin-left]="(section().level - 1) * 0.75 + 'rem'"
+>
+  {{ section().label }}
+</a>

@@ -24,17 +24,14 @@
       border-bottom: 1px solid var(--mat-sys-outline-variant);
     }
 
-    .navigation-links {
+    .link-container {
       padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
     }
 
     hra-table-of-contents-item {
       ::ng-deep {
-        .link-container {
-          display: flex;
-          flex-direction: column;
-        }
-
         .navigation-label {
           @include utils.use-font(label, medium);
           color: var(--mat-sys-primary);

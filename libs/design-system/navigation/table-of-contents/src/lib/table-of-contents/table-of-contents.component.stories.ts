@@ -13,7 +13,7 @@ const meta: Meta<TableOfContentsComponent> = {
     },
   },
   args: {
-    treeData: TEST_SECTIONS,
+    sections: TEST_SECTIONS,
   },
 };
 export default meta;

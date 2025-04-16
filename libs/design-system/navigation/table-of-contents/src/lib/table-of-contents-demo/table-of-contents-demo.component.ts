@@ -13,44 +13,42 @@ export const TEST_SECTIONS: Section[] = [
   {
     label: 'Section label in sentence case 1',
     anchor: 'section-label-in-sentence-case-1',
-    subSections: [
-      {
-        label: 'Section label in sentence case 2',
-        anchor: 'section-label-in-sentence-case-2',
-        subSections: [
-          {
-            label: 'Section label in sentence case 3',
-            anchor: 'section-label-in-sentence-case-3',
-            subSections: [
-              {
-                label: 'Section label in sentence case 4',
-                anchor: 'section-label-in-sentence-case-4',
-                subSections: [
-                  {
-                    label: 'Section label in sentence case 5',
-                    anchor: 'section-label-in-sentence-case-5',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    level: 1,
+  },
+  {
+    label: 'Section label in sentence case 2',
+    anchor: 'section-label-in-sentence-case-2',
+    level: 2,
+  },
+  {
+    label: 'Section label in sentence case 3',
+    anchor: 'section-label-in-sentence-case-3',
+    level: 3,
+  },
+  {
+    label: 'Section label in sentence case 4',
+    anchor: 'section-label-in-sentence-case-4',
+    level: 4,
+  },
+  {
+    label: 'Section label in sentence case 5',
+    anchor: 'section-label-in-sentence-case-5',
+    level: 5,
   },
   {
     label: 'Section label in sentence case 6',
     anchor: 'section-label-in-sentence-case-6',
-    subSections: [
-      {
-        label: 'Section label in sentence case 7',
-        anchor: 'section-label-in-sentence-case-7',
-      },
-      {
-        label: 'Section label in sentence case 8',
-        anchor: 'section-label-in-sentence-case-8',
-      },
-    ],
+    level: 1,
+  },
+  {
+    label: 'Section label in sentence case 7',
+    anchor: 'section-label-in-sentence-case-7',
+    level: 2,
+  },
+  {
+    label: 'Section label in sentence case 8',
+    anchor: 'section-label-in-sentence-case-8',
+    level: 2,
   },
 ];
 

@@ -12,8 +12,8 @@ export interface Section {
   label: string;
   /** Anchor for href */
   anchor: string;
-  /** List of child sections */
-  subSections?: Section[];
+  /** Level of section item */
+  level: number;
 }
 
 /**
@@ -28,8 +28,6 @@ export class TableOfContentsItemComponent {
   readonly router = inject(Router);
   /** Section of item */
   readonly section = input.required<Section>();
-  /** Nested level of item */
-  readonly level = input<number>(0);
   /** Base url */
   private readonly baseUrl = this.router.url.split('#')[0];
 
@@ -65,8 +63,8 @@ export class TableOfContentsComponent {
   /** Text for the header portion */
   readonly tagline = input<string>('On this page');
 
-  /** Tree node data */
-  readonly treeData = input<Section[]>([]);
+  /** Sections data */
+  readonly sections = input.required<Section[]>();
 
   /** Current selected node */
   selectedNode?: Section;
