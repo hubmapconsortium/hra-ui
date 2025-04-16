@@ -9,6 +9,7 @@
   }
 
   .title {
+    padding-left: 1.25rem;
     min-width: 18.75rem;
     display: flex;
     flex-direction: column;
@@ -30,10 +31,12 @@
     font: var(--mat-sys-label-large);
     letter-spacing: var(--mat-sys-label-large-tracking);
   }
+}
 
-  @media only screen and (min-width: 640px) {
+@media only screen and (max-width: 560px) {
+  :host {
     .title {
-      padding-left: 1.25rem;
+      padding-left: 0;
     }
   }
 }
