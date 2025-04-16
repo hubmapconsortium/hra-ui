@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Component
@@ -11,7 +11,7 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
   selector: 'ccf-metadata-card',
   templateUrl: './metadata-card.component.html',
   styleUrls: ['./metadata-card.component.scss'],
-  imports: [MatIconModule, MatButtonModule, ButtonsModule, MicroTooltipDirective],
+  imports: [MatIconModule, MatButtonModule, ButtonsModule, PlainTooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataCardComponent {

@@ -8,12 +8,7 @@
 
 <hra-workflow-card tagline="Cell Population Predictions" class="table-container">
   <hra-workflow-card-actions>
-    <button
-      mat-icon-button
-      aria-label="Open table action menu"
-      class="predictions-table-menu-trigger"
-      [matMenuTriggerFor]="options"
-    >
+    <button mat-icon-button aria-label="Open table action menu" [matMenuTriggerFor]="options">
       <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
 
@@ -24,7 +19,7 @@
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="onDownloadCSVButtonClicked()">
+      <button mat-menu-item>
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -52,11 +47,11 @@
       <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
     </ng-container>
     <ng-container matColumnDef="modality">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Modality">Modality</th>
+      <th mat-header-cell *matHeaderCellDef>Modality</th>
       <td mat-cell *matCellDef="let element">{{ element.modality }}</td>
     </ng-container>
     <ng-container matColumnDef="percentage">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Total">% Of Total</th>
+      <th mat-header-cell *matHeaderCellDef>% Of Total</th>
       <td mat-cell *matCellDef="let element">
         {{ element.percentage < 0.0001 ? '< 0.01%' : (element.percentage | percent: '1.2-2') }}
       </td>

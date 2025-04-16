@@ -6,14 +6,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
-import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { CellSummaryRow } from '@hra-api/ng-client';
-import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
-import { saveAs } from 'file-saver';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
-import papa from 'papaparse';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { saveAs } from 'file-saver';
+import { unparse } from 'papaparse';
+import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -117,10 +117,8 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when clicked on download CSV button  */
   onDownloadCSVButtonClicked() {
-    const csvData = papa.unparse(this.predictions(), { header: false, columns: this.displayedColumns });
-    const csvHeaders = papa.unparse({ fields: Object.values(this.columnHeaders), data: [] });
-    const csvString = csvHeaders + csvData;
-    const fileToSave = new Blob([csvString], { type: 'text/csv' });
+    const csvData = unparse(this.predictions(), { columns: this.displayedColumns });
+    const fileToSave = new Blob([csvData], { type: 'text/csv' });
     saveAs(fileToSave, 'predictions.csv');
     this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }

@@ -11,6 +11,10 @@ jest.mock('rapidoc', () => ({}));
 describe('ApiComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
 
+  beforeEach(() => {
+    jest.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(async () => {});
+  });
+
   it('should create', async () => {
     const promise = render(ApiComponent, { providers });
     await expect(promise).resolves.toBeTruthy();

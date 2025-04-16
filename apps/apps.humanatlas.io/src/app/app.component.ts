@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { routeData } from './utils/route-data';
+import { DEFAULT_MENUS, Menu } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
+import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
@@ -30,4 +31,49 @@ export class AppComponent {
 
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();
+
+  /** Beta menu */
+  protected readonly menus: Menu[] = [
+    ...DEFAULT_MENUS,
+    {
+      type: 'menu',
+      id: 'beta',
+      label: 'Beta',
+      items: [
+        {
+          type: 'group',
+          label: 'Beta links',
+          description: '',
+          url: '/',
+          items: [
+            {
+              type: 'item',
+              label: 'User Story 1',
+              url: '/us1',
+            },
+            {
+              type: 'item',
+              label: 'User Story 2',
+              url: '/us2',
+            },
+            {
+              type: 'item',
+              label: 'User Story 6',
+              url: '/us6',
+            },
+            {
+              type: 'item',
+              label: 'API',
+              url: '/api',
+            },
+            {
+              type: 'item',
+              label: 'EUI',
+              url: 'https://cdn.humanatlas.io/ui--staging/ccf-eui/',
+            },
+          ],
+        },
+      ],
+    },
+  ];
 }

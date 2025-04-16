@@ -10,7 +10,7 @@ import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { ProductHeaderComponent } from '../../../components/product-header/product-header.component';
 import {
@@ -61,7 +61,7 @@ const SAMPLE_URL_LINK =
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     ErrorIndicatorComponent,
     DeleteFileButtonComponent,
     FormsModule,

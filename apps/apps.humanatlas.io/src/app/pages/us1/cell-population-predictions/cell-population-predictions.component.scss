@@ -26,7 +26,6 @@ button {
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
-  margin-bottom: 10rem;
 
   caption {
     display: none;
@@ -52,11 +51,6 @@ button {
       background-color: var(--mat-sys-surface-container);
     }
     td {
-      max-width: 21.2188rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-sizing: border-box;
-      white-space: nowrap;
       color: var(--mat-sys-inverse-surface);
 
       &:last-child a {
@@ -76,11 +70,6 @@ button {
     padding-right: 1rem;
   }
 }
-
-::ng-deep .hra-app table[matSort] .mat-sort-header-container {
-  max-width: 21.2188rem;
-}
-
 ::ng-deep {
   .tooltip-panel {
     background-color: white;
