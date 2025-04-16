@@ -1,0 +1,76 @@
+@use '../../../../styles/utils';
+
+:host {
+  .object {
+    border-radius: 0.5rem;
+    box-shadow: 1px 3px 6px 0px rgb(from var(--mat-sys-shadow) r g b / 24%);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    aspect-ratio: 100 / 58;
+    align-content: center;
+
+    .viewer-image,
+    .model-viewer {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      padding: 0.5rem;
+    }
+  }
+}
+
+.csv-button {
+  padding: 0.5rem 1rem;
+
+  .csv-label {
+    display: flex;
+  }
+
+  .csv-desc {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}
+
+::ng-deep .viewer-card-modal {
+  @include utils.use-font(title, large);
+  --mdc-dialog-container-shape: 0;
+
+  .dialog-container {
+    display: flex;
+    height: 100%;
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+
+  .dialog-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .img-container {
+    display: flex;
+    height: calc(100% - 2.5rem);
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-image {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.object-menu {
+  display: flex;
+  align-items: center;
+
+  .tagline {
+    @include utils.use-font(label, large);
+    flex-grow: 1;
+    margin: 0.5rem 0.75rem;
+  }
+}

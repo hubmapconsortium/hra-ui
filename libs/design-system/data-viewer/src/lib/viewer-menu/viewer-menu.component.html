@@ -1,0 +1,37 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="submenu">
+    <mat-icon>download</mat-icon>
+    Downloads
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  <mat-divider class="menu-divider"></mat-divider>
+  <a mat-menu-item [attr.href]="githubIconsUrl()" target="_blank" rel="noopener noreferrer">
+    <mat-icon svgIcon="social:github"></mat-icon>
+    Get organ icons on GitHub
+  </a>
+</mat-menu>
+
+<mat-menu #submenu="matMenu">
+  @if (currentVersion().extractionsSitesUrl) {
+    <a mat-menu-item [attr.href]="currentVersion().extractionsSitesUrl" target="_blank" rel="noopener noreferrer">
+      <mat-icon>download</mat-icon>
+      GLB - Extraction sites
+    </a>
+  }
+  @if (currentVersion().referenceOrgansUrl) {
+    <a mat-menu-item [attr.href]="currentVersion().referenceOrgansUrl" target="_blank" rel="noopener noreferrer">
+      <mat-icon>download</mat-icon>
+      GLB - Reference organs
+    </a>
+  }
+  @if (currentVersion().extractionsSitesUrl || currentVersion().referenceOrgansUrl) {
+    <mat-divider class="menu-divider"></mat-divider>
+  }
+  @if (currentVersion().crosswalkUrl) {
+    <a class="csv-button" mat-menu-item [attr.href]="currentVersion().crosswalkUrl" download>
+      <mat-icon>download</mat-icon>
+      <span class="csv-label">CSV-Crosswalk</span>
+      <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+    </a>
+  }
+</mat-menu>
