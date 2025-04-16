@@ -1,0 +1,26 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="submenu">
+    <mat-icon>download</mat-icon>
+    Downloads
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </button>
+  <mat-divider class="menu-divider"></mat-divider>
+  <a mat-menu-item [href]="card().sourceDataUrl" target="_blank" rel="noopener noreferrer">
+    <mat-icon class="reset icon">database</mat-icon>
+    View source data
+  </a>
+</mat-menu>
+<mat-menu #submenu="matMenu">
+  @for (file of card().files; track file) {
+    <a mat-menu-item [attr.href]="file.url" download>
+      <mat-icon>download</mat-icon>
+      {{ file.label }}
+    </a>
+  }
+  <mat-divider class="menu-divider"></mat-divider>
+  <a mat-menu-item class="csv-button" [attr.href]="card().crosswalkUrl" download>
+    <mat-icon>download</mat-icon>
+    <span class="csv-label">CSV-Crosswalk</span>
+    <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+  </a>
+</mat-menu>
