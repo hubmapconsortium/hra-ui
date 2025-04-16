@@ -9,7 +9,7 @@
     [matMenuTriggerFor]="viewermenu.menu()"
     hraIconButtonSize="large"
     aria-label="Open the data viewer's menu"
-    hraMicroTooltip="More"
+    hraPlainTooltip="More"
   >
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -26,7 +26,7 @@
       <mat-icon matPrefix class="search-icon">search</mat-icon>
       <mat-label>Organ</mat-label>
       <mat-select disableRipple panelClass="options-container" [(ngModel)]="organ">
-        @for (organ of organOptions(); track organ) {
+        @for (organ of currentVersion().organData; track organ) {
           <mat-option [value]="organ">{{ organ.label }}</mat-option>
         }
       </mat-select>
@@ -37,11 +37,11 @@
       <mat-label>Release Version</mat-label>
       <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
         <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
-        @for (dataset of organVersionData(); track dataset) {
+        @for (dataset of releaseVersionData(); track dataset) {
           <mat-option [value]="dataset">
             <div class="release-label">
-              <span class="release-name">{{ dataset.label.split(', ')[0] }}</span>
-              <span class="release-date">{{ dataset.label.split(', ')[1] }}</span>
+              <span class="release-name">{{ dataset.label }}</span>
+              <span class="release-date">{{ dataset.date }}</span>
             </div>
           </mat-option>
         }

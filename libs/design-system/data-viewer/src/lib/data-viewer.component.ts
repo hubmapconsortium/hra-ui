@@ -40,7 +40,7 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 })
 export class DataViewerComponent {
   /** Release versions to include in the data viewer*/
-  readonly organVersionData = input.required<ReleaseVersionData[]>();
+  readonly releaseVersionData = input.required<ReleaseVersionData[]>();
 
   /** Data viewer variant */
   readonly variant = input.required({ transform: toProductLogoId });
@@ -49,22 +49,13 @@ export class DataViewerComponent {
   readonly githubIconsUrl = input.required<string>();
 
   /** Current selected release version */
-  readonly currentVersion = linkedSignal(() => this.organVersionData()[0]);
+  readonly currentVersion = linkedSignal(() => this.releaseVersionData()[0]);
 
   /** Current organ selected */
   readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
 
   /** Icon for the currently selected organ */
   readonly organIconId = computed(() => this.organ().icon as OrganLogoId);
-
-  /** Returns available organ options based on current version */
-  readonly organOptions = computed(() => {
-    const currentVersionData = this.organVersionData().find((data) => data.version === this.currentVersion().version);
-    if (currentVersionData) {
-      return currentVersionData.organData.map((organ) => organ);
-    }
-    return [];
-  });
 
   /** Title to display on the data viewer */
   readonly viewerTitle = computed(() => {

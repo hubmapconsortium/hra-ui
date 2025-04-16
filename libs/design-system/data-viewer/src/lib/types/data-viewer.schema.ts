@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+/** Type for viewer file data, includes label and URL */
+export type ViewerFile = z.infer<typeof ViewerFileSchema>;
 /** Schema for viewer file data */
 const ViewerFileSchema = z.object({
   label: z.string(),
@@ -7,7 +9,7 @@ const ViewerFileSchema = z.object({
 });
 
 /** Type for viewer card data, includes file data for the card */
-export type ViewerCardData = z.infer<typeof ViewerCardSchema>;
+export type ViewerCard = z.infer<typeof ViewerCardSchema>;
 /** Schema for viewer card data */
 const ViewerCardSchema = z.object({
   label: z.string(),
@@ -34,6 +36,7 @@ export type ReleaseVersionData = z.infer<typeof ReleaseVersionDataSchema>;
 const ReleaseVersionDataSchema = z.object({
   version: z.string(),
   label: z.string(),
+  date: z.string(),
   crosswalkUrl: z.string().url().optional(),
   extractionsSitesUrl: z.string().url().optional(),
   referenceOrgansUrl: z.string().url().optional(),

@@ -10,7 +10,7 @@ import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { CardMenuComponent } from '../card-menu/card-menu.component';
-import { ViewerCardData } from '../types/data-viewer.schema';
+import { ViewerCard } from '../types/data-viewer.schema';
 
 /**
  * This is a responsive component used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
@@ -32,7 +32,7 @@ export class ViewerCardComponent {
   readonly variant = input.required<ProductLogoId>();
 
   /** Viewer card data */
-  readonly viewerCardData = input.required<ViewerCardData>();
+  readonly viewerCardData = input.required<ViewerCard>();
 
   /** Opens a full screen modal for a FTU illustration */
   openImageViewer(content: TemplateRef<unknown>): void {

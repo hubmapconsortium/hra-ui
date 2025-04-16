@@ -21,14 +21,14 @@ type Story = StoryObj<DataViewerComponent>;
 
 export const FtuDataViewer: Story = {
   args: {
-    organVersionData: sampleData.testFtuVersionData,
+    releaseVersionData: sampleData.testFtuVersionData,
     variant: 'ftu',
   },
 };
 
 export const OrganModelViewer: Story = {
   args: {
-    organVersionData: sampleData.testOrganVersionData,
+    releaseVersionData: sampleData.testOrganVersionData,
     variant: '3d-organ',
   },
 };

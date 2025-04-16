@@ -49,10 +49,10 @@
       [matMenuTriggerFor]="cardMenu.menu()"
       hraIconButtonSize="large"
       aria-label="Open the card's menu"
-      hraMicroTooltip="More"
+      hraPlainTooltip="More"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <hra-card-menu #cardMenu [variant]="variant()" [viewerCardData]="viewerCardData()"></hra-card-menu>
+    <hra-card-menu #cardMenu [variant]="variant()" [card]="viewerCardData()"></hra-card-menu>
   </div>
 </ng-template>
