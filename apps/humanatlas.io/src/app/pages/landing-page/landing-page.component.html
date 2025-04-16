@@ -15,9 +15,9 @@
 </hra-page-section>
 
 <div class="carousel-container">
-  <hra-carousel />
+  <hra-carousel [items]="carouselItems()" />
 </div>
 
-<hra-count-info />
+<hra-count-info [countInfoList]="countInfo()" />
 
-<hra-section-cards />
+<hra-section-cards [cardInfo]="sectionCardInfo()" />

@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 
 /**
@@ -14,11 +14,4 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
     class: 'hra-app',
   },
 })
-export class AppComponent {
-  /**
-   * Initializes router and performs initial navigation
-   */
-  constructor() {
-    inject(Router).initialNavigation();
-  }
-}
+export class AppComponent {}
