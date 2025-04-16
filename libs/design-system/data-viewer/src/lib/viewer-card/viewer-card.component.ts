@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { CardMenuComponent } from '../card-menu/card-menu.component';
 import { ViewerCard } from '../types/data-viewer.schema';
@@ -17,7 +18,15 @@ import { ViewerCard } from '../types/data-viewer.schema';
  */
 @Component({
   selector: 'hra-viewer-card',
-  imports: [HraCommonModule, MatMenuModule, MatIconModule, MatDividerModule, ButtonsModule, CardMenuComponent],
+  imports: [
+    HraCommonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    ButtonsModule,
+    CardMenuComponent,
+    PlainTooltipDirective,
+  ],
   templateUrl: './viewer-card.component.html',
   styleUrl: './viewer-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -13,6 +13,7 @@ import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ReleaseVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Data viewer component
@@ -32,6 +33,7 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
     OrganLogoComponent,
     FormsModule,
     ViewerMenuComponent,
+    PlainTooltipDirective,
   ],
   templateUrl: './data-viewer.component.html',
   styleUrl: './data-viewer.component.scss',
