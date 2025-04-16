@@ -1,6 +1,6 @@
 @let root = rootNode();
 
-<div class="header" [hraMicroTooltip]="tooltip()">
+<div class="header" [hraPlainTooltip]="tooltip()">
   {{ getNodeLabel(root.label ?? '') }}
   <div class="header-num-results">Tissue Blocks: {{ getCount(root) }}</div>
 </div>
@@ -19,7 +19,7 @@
         <mat-button-toggle
           [value]="option"
           [checked]="isBiomarkerOptionSelected(option)"
-          [hraMicroTooltip]="(isBiomarkerOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
+          [hraPlainTooltip]="(isBiomarkerOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
           >{{ option }}</mat-button-toggle
         >
       }

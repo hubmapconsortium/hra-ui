@@ -1,0 +1,27 @@
+<img class="app-image" [attr.src]="imagePath() | assetUrl" alt="" />
+<div class="ui-content-main">
+  <div class="ui-content">
+    <hra-product-logo [id]="logo()" class="product-logo" />
+    <div class="ui-content-header">
+      <h1>
+        {{ tagline() }}
+      </h1>
+      @if (appStatus(); as status) {
+        <hra-software-status-indicator [status]="status" size="large" />
+      }
+    </div>
+  </div>
+  <p class="ui-content-description">
+    {{ description() }}
+  </p>
+  <div class="ui-section-buttons">
+    <button mat-button hraCtaButton (click)="openAppUrl.emit()">
+      Use App
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
+    <button mat-button hraCtaButton hraButtonVariant="secondary" disableRipple (click)="openDocumentationLink.emit()">
+      Learn More
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+    </button>
+  </div>
+</div>

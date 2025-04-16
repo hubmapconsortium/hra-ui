@@ -59,7 +59,7 @@
     <div class="data-filters">
       <mat-form-field class="filters">
         <mat-label>Organ</mat-label>
-        <mat-select hraMicroTooltip="Organs that have cell type populations." [(ngModel)]="organ">
+        <mat-select hraPlainTooltip="Organs that have cell type populations." [(ngModel)]="organ">
           @for (organ of supportedOrgans(); track $index) {
             <mat-option [value]="organ.id">{{ organ.label | titlecase }}</mat-option>
           }
@@ -69,7 +69,7 @@
       <mat-form-field class="filters">
         <mat-label>Annotation Tool</mat-label>
         <mat-select
-          hraMicroTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
+          hraPlainTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
           [(ngModel)]="tool"
         >
           @for (tool of supportedTools(); track $index) {
