@@ -36,7 +36,7 @@
       mat-flat-button
       hraPrimaryButton
       hraButtonSize="medium"
-      (click)="openSnackbar()"
+      (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
       [cdkCopyToClipboard]="code()"
     >
       Copy

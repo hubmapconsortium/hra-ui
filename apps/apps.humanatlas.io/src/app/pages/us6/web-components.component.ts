@@ -27,6 +27,7 @@ import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-side
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /** Sidenav Data */
 interface SidenavData {
@@ -142,9 +143,12 @@ export class WebComponentsComponent {
 
   /** Constructor that initializes sidenavdata and appiframedata and attaches portal */
   constructor() {
-    this.sidenavOverlay.backdropClick().subscribe(() => {
-      this.sidenavData.set(undefined);
-    });
+    this.sidenavOverlay
+      .backdropClick()
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.sidenavData.set(undefined);
+      });
 
     effect((cleanup) => {
       if (this.sidenavData() !== undefined) {

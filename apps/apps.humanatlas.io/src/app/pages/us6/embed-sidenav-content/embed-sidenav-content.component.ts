@@ -47,7 +47,7 @@ export class EmbedSidenavContentComponent {
   }
 
   /** Trigerred when user clicks on the Copy button */
-  openSnackbar() {
+  openCopiedSnackbar() {
     this.snackbar.open('Copied to clipboard', '', false, 'start', { duration: 5000 });
   }
 }
