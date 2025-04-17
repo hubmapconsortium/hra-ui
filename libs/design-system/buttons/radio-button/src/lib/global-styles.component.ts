@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
+/**
+ * Global styles for radio button
+ */
 @Component({
   selector: 'hra-radion-button-global-styles',
   standalone: true,
