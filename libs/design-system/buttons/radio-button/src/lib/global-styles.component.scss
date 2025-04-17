@@ -1,0 +1,15 @@
+@use '../../../../styles/utils';
+
+@include utils.global-styles() {
+  mat-radio-button {
+    &.mat-mdc-radio-checked {
+      --mdc-radio-selected-icon-color: var(--mat-sys-on-tertiary-fixed);
+      --mat-radio-ripple-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-radio-selected-focus-icon-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-radio-selected-icon-color: var(--mat-sys-on-tertiary-fixed);
+      --mat-radio-checked-ripple-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-radio-selected-pressed-icon-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-radio-selected-hover-icon-color: var(--mat-sys-on-tertiary-fixed);
+    }
+  }
+}
