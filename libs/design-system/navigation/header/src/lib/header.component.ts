@@ -24,7 +24,7 @@ import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { HUBMAP_MENU, MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
-import { NavigationEnd, NavigationSkipped, Router } from '@angular/router';
+import { EventType, NavigationEnd, NavigationSkipped, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 
@@ -117,8 +117,6 @@ export class HeaderComponent {
   private readonly mobileMenuOverlay = viewChild('mobileMenuOverlay', { read: CdkConnectedOverlay });
   /** Currently open menu or undefined */
   private readonly activeMenu = signal<Menu | 'main' | undefined>(undefined);
-  /** Reference to the application router */
-  private readonly router = inject(Router);
 
   /** Initialize the header */
   constructor() {
@@ -131,11 +129,11 @@ export class HeaderComponent {
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
 
-    this.router.events
-      .pipe(
+    inject(Router)
+      ?.events.pipe(
         takeUntilDestroyed(),
-        filter(
-          (navigationEvent) => navigationEvent instanceof NavigationEnd || navigationEvent instanceof NavigationSkipped,
+        filter((navigationEvent) =>
+          [EventType.NavigationEnd, EventType.NavigationSkipped].includes(navigationEvent.type),
         ),
       )
       .subscribe(() => this.closeMenu());
