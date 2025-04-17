@@ -16,6 +16,7 @@ import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
+import { provideFromFields } from '@hra-ui/design-system/form-fields';
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -46,6 +47,7 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideSlider(),
     provideTable(),
     provideTrees(),
+    provideFromFields(),
   ];
 }
 
