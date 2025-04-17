@@ -24,6 +24,9 @@ import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { HUBMAP_MENU, MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
+import { EventType, NavigationEnd, NavigationSkipped, Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 /** Call to action configuration */
 export interface CtaConfig {
@@ -125,6 +128,15 @@ export class HeaderComponent {
     });
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
+
+    inject(Router)
+      ?.events.pipe(
+        takeUntilDestroyed(),
+        filter((navigationEvent) =>
+          [EventType.NavigationEnd, EventType.NavigationSkipped].includes(navigationEvent.type),
+        ),
+      )
+      .subscribe(() => this.closeMenu());
   }
 
   /**
