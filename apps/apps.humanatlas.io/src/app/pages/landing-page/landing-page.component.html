@@ -10,21 +10,23 @@
   </div>
 </div>
 
-@for (section of activeSections(); track section.tagline) {
-  <div class="section-container" [class.construct-section]="section.tagline.includes('construct')">
-    <h2 class="apps-header-text">{{ section.tagline }}</h2>
-    <div class="apps-list">
-      @for (card of section.cards; track card.tagline) {
-        <hra-ui-section
-          [tagline]="card.tagline"
-          [description]="card.description"
-          [imagePath]="card.imagePath"
-          [logo]="card.logoPath"
-          [appStatus]="card.appStatus"
-          (openAppUrl)="onOpenAppUrl(card.appUrl)"
-          (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"
-        />
-      }
+<div class="apps-container">
+  @for (section of activeSections(); track section.tagline) {
+    <div class="section-container">
+      <h2 class="apps-header-text">{{ section.tagline }}</h2>
+      <div class="apps-list">
+        @for (card of section.cards; track card.tagline) {
+          <hra-ui-section
+            [tagline]="card.tagline"
+            [description]="card.description"
+            [imagePath]="card.imagePath"
+            [logo]="card.logoPath"
+            [appStatus]="card.appStatus"
+            (openAppUrl)="onOpenAppUrl(card.appUrl)"
+            (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"
+          />
+        }
+      </div>
     </div>
-  </div>
-}
+  }
+</div>
