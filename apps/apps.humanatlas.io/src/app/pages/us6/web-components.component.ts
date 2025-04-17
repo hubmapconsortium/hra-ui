@@ -142,6 +142,10 @@ export class WebComponentsComponent {
 
   /** Constructor that initializes sidenavdata and appiframedata and attaches portal */
   constructor() {
+    this.sidenavOverlay.backdropClick().subscribe(() => {
+      this.sidenavData.set(undefined);
+    });
+
     effect((cleanup) => {
       if (this.sidenavData() !== undefined) {
         this.sidenavOverlay.attach(this.sidenavPortal());

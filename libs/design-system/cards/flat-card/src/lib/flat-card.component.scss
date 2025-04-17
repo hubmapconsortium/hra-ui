@@ -2,6 +2,7 @@
 
 :host {
   display: flex;
+  max-width: calc(100vw - 4rem);
   flex-direction: column;
   height: 100%;
   min-width: 19.5rem;

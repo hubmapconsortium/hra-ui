@@ -32,6 +32,14 @@
       Documentation
     </button>
     <div class="filler"></div>
-    <button mat-flat-button hraPrimaryButton hraButtonSize="medium" [cdkCopyToClipboard]="code()">Copy</button>
+    <button
+      mat-flat-button
+      hraPrimaryButton
+      hraButtonSize="medium"
+      (click)="openSnackbar()"
+      [cdkCopyToClipboard]="code()"
+    >
+      Copy
+    </button>
   </hra-flat-card-actions>
 </hra-flat-card>
