@@ -116,8 +116,6 @@ export class TissueOriginPredictionsComponent {
   /** EUI Overlay */
   private readonly euiOverlay = this.overlay.create({
     disposeOnNavigation: true,
-    height: '100vh',
-    width: '100vw',
     // Used to trick the global positioning strategy into applying top offsets
     maxHeight: '10000000000000px',
     scrollStrategy: this.overlay.scrollStrategies.block(),

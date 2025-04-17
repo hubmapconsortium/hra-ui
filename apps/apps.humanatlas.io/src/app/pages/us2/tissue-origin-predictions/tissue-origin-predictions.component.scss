@@ -71,19 +71,24 @@ h1 {
 }
 
 ::ng-deep {
-  .cdk-overlay-connected-position-bounding-box {
-    margin-left: 0.5rem;
-  }
+  .eui-overlay-container {
+    width: 100vw;
+    height: calc(100vh - 3rem);
 
-  .eui-overlay-container > .ng-star-inserted {
-    margin-bottom: 3rem;
-  }
+    & > div {
+      width: 100vw;
+    }
 
-  .cdk-overlay-pane .mat-mdc-menu-panel {
-    max-width: 22rem;
-    margin-left: 0.05rem;
-    .mat-mdc-menu-content {
-      padding: 0;
+    & > .ng-star-inserted {
+      margin-bottom: 3rem;
+    }
+
+    &.cdk-overlay-pane .mat-mdc-menu-panel {
+      max-width: 22rem;
+      margin-left: 0.05rem;
+      .mat-mdc-menu-content {
+        padding: 0;
+      }
     }
   }
 }

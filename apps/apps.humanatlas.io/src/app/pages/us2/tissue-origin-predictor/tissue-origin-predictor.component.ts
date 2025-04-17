@@ -17,7 +17,6 @@ import {
   HraPopPredictionsService,
   TissuePredictionData,
 } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
-import { SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
 
 /** Sample CSV file URL */
 export const SAMPLE_FILE_URL = new InjectionToken<string>('Sample file url', {
@@ -66,7 +65,6 @@ const SAMPLE_URL_LINK =
     ErrorIndicatorComponent,
     DeleteFileButtonComponent,
     FormsModule,
-    SoftwareStatusIndicatorComponent,
   ],
   templateUrl: './tissue-origin-predictor.component.html',
   styleUrl: './tissue-origin-predictor.component.scss',
