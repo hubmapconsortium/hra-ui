@@ -126,34 +126,34 @@ function parseFilter(value: unknown): string | Partial<Filter> {
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  baseHref = input.required<string>();
+  baseHref = input<string>();
 
   /** Data sources from which data is queried */
-  dataSources = input.required<string | string[]>();
+  dataSources = input<string | string[]>();
 
   /** The initially enabled organs */
-  selectedOrgans = input.required<string[]>();
+  selectedOrgans = input<string[]>();
 
   /** Api token passed during data queries */
-  token = input.required<string>();
+  token = input<string>();
 
   /** The api endpoint from which data is queried */
-  remoteApiEndpoint = input.required<string>();
+  remoteApiEndpoint = input<string>();
 
   /** Whether to show the header bar */
-  header = input.required<string | boolean>();
+  header = input<string | boolean>();
 
   /** Url visited when the user clicks the EUI logo */
-  homeUrl = input.required<string>();
+  homeUrl = input<string>();
 
   /** Tooltip displayed when the user hover over the logo */
-  logoTooltip = input.required<string>();
+  logoTooltip = input<string>();
 
   /** Whether login is disabled */
-  loginDisabled = input.required<boolean>();
+  loginDisabled = input<boolean>();
 
   /** Initial data filter */
-  filter = input.required<string | Partial<Filter>>();
+  filter = input<string | Partial<Filter>>();
 
   /** Whether the component is fully initialized */
   override initialized!: boolean;
