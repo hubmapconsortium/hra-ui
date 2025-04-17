@@ -16,6 +16,10 @@
     letter-spacing: var(--mat-sys-title-large-tracking);
   }
 
+  .tagline {
+    color: var(--mat-sys-on-background);
+  }
+
   .progress {
     position: absolute;
     inset: auto 0 0 0;
