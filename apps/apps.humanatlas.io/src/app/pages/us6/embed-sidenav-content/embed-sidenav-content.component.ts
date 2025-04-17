@@ -32,6 +32,7 @@ export class EmbedSidenavContentComponent {
   /** Sanitizer service */
   private readonly sanitizer = inject(DomSanitizer);
 
+  /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
 
   /** Emits true when close button is clicked */
