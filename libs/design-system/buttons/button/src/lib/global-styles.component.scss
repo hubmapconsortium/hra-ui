@@ -134,4 +134,9 @@
       }
     }
   }
+
+  :is(button, a).mdc-fab {
+    --mat-fab-foreground-color: var(--mat-sys-secondary);
+    --mdc-fab-container-color: var(--mat-sys-surface-container);
+  }
 }
