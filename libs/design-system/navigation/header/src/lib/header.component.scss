@@ -35,5 +35,6 @@
 
   .progress-bar {
     position: absolute;
+    --mdc-linear-progress-active-indicator-color: var(--mat-sys-tertiary);
   }
 }
