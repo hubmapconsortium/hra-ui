@@ -1,10 +1,10 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { MarkdownModule } from 'ngx-markdown';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
+import { provideMarkdown } from 'ngx-markdown';
 
-import { TableComponent, TableRowData } from './table.component';
+import { TableComponent, TableRow } from './table.component';
 
 /** Example data */
-const exampleData: TableRowData[] = [
+const exampleData: TableRow[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
@@ -37,8 +37,8 @@ const meta: Meta<TableComponent> = {
     },
   },
   decorators: [
-    moduleMetadata({
-      imports: [MarkdownModule.forRoot()],
+    applicationConfig({
+      providers: [provideMarkdown()],
     }),
   ],
   args: {
@@ -96,8 +96,8 @@ export const WithScrolling: Story = {
 export const ColumnInputAsRecord: Story = {
   args: {
     columns: {
-      position: 'Position',
-      name: 'Name',
+      position: 'Index',
+      name: 'Element',
       weight: 'Weight',
       symbol: 'Symbol',
     },

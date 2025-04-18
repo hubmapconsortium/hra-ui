@@ -6,14 +6,13 @@ import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyper
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 
-/** Type for table row data */
-export interface TableRowData {
-  /** Column: value */
-  [value: string]: string | number | TableLinkData | TableMarkdownData;
-}
+/** Single table row */
+export type TableRow = Record<string, string | number | TableLink | TableMarkdown>;
+/** Table columns */
+export type TableColumns<T extends TableRow> = (keyof T & string)[] | Partial<Record<keyof T & string, string>>;
 
 /** Value to use if cell contains a link */
-export interface TableLinkData {
+export interface TableLink {
   /** Link label */
   label: unknown;
   /** Link url */
@@ -21,7 +20,7 @@ export interface TableLinkData {
 }
 
 /** Type for markdown table entry */
-export interface TableMarkdownData {
+export interface TableMarkdown {
   /** Markdown as string */
   markdown: string;
 }
@@ -45,17 +44,17 @@ export type TableVariant = 'alternating' | 'divider' | 'basic';
     MarkdownModule,
   ],
   host: {
-    '[attr.style]': 'style()',
-    '[attr.enableSort]': 'enableSort()',
-    '[attr.verticalDividers]': 'verticalDividers()',
+    '[class]': '"hra-table-style-" + style()',
+    '[class.sortable]': 'enableSort()',
+    '[class.vertical-dividers]': 'verticalDividers()',
   },
 })
-export class TableComponent {
+export class TableComponent<T extends TableRow = TableRow> {
   /** Unsorted data */
-  readonly data = input.required<TableRowData[]>();
+  readonly data = input.required<T[]>();
 
   /** Columns in table */
-  readonly columns = input.required<string[] | Record<string, string>>();
+  readonly columns = input.required<TableColumns<T>>();
 
   /** Table style */
   readonly style = input<TableVariant>('alternating');
@@ -66,47 +65,53 @@ export class TableComponent {
   /** Enables dividers between columns */
   readonly verticalDividers = input<boolean>(false);
 
-  /** Gets the columns in the data that contain only numbers */
-  readonly getNumericColumns = computed(() => this.getNumericKeys(this.data()[0]));
+  /** Column ids */
+  protected readonly columnIds = computed(() => {
+    const columns = this.columns();
+    if (Array.isArray(columns)) {
+      return columns;
+    }
 
-  /** Mat sort element */
-  readonly sort = viewChild.required(MatSort);
+    return Object.keys(columns);
+  });
+
+  /** Column labels by column id */
+  protected readonly columnLabels = computed(() => {
+    const columns = this.columns();
+    if (Array.isArray(columns)) {
+      return columns.reduce<Partial<Record<keyof T, string>>>((acc, key) => {
+        acc[key] = key[0].toUpperCase() + key.slice(1).toLowerCase();
+        return acc;
+      }, {});
+    }
+
+    return columns;
+  });
+
+  /** Gets the columns in the data that contain only numbers */
+  protected readonly numericColumns = computed(() => {
+    if (this.data().length === 0) {
+      return new Set();
+    }
+
+    const item = this.data()[0];
+    return new Set(Object.keys(item).filter((key) => typeof item[key] === 'number'));
+  });
 
   /** Table data source */
-  readonly dataSource = new MatTableDataSource<TableRowData>([]);
+  protected readonly dataSource = new MatTableDataSource<TableRow>([]);
+
+  /** Mat sort element */
+  private readonly sort = viewChild.required(MatSort);
 
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
       this.dataSource.data = this.data();
     });
+
     effect(() => {
       this.dataSource.sort = this.sort();
     });
-  }
-
-  /**
-   * Returns the columns in a row which contain numbers
-   * @param data Row data
-   * @returns Array of column names
-   */
-  getNumericKeys(data: TableRowData) {
-    return Object.keys(data).filter((key) => typeof data[key] === 'number');
-  }
-
-  /**
-   * Gets column names from the columns input
-   * @returns Column names
-   */
-  getColumnNames(): string[] {
-    return this.columns().length ? (this.columns() as string[]) : Object.keys(this.columns());
-  }
-
-  /**
-   * Returns column input as record
-   * @returns Column as record
-   */
-  getColumnRecord(): Record<string, string> {
-    return this.columns() as Record<string, string>;
   }
 }

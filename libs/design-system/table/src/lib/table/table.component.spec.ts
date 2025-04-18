@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/angular';
-import { TableComponent, TableRowData } from './table.component';
+import { TableComponent, TableRow } from './table.component';
 
 describe('Table  Component', () => {
-  const TABLE_DATA: TableRowData[] = [
+  const TABLE_DATA: TableRow[] = [
     {
       name: 'Test Name',
       value: 100,

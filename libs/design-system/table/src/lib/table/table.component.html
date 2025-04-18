@@ -6,24 +6,23 @@
     [matSortDisabled]="!enableSort()"
     aria-label="Table with sort function"
   >
-    @for (column of getColumnNames(); track column) {
+    @for (column of columnIds(); track column) {
       <ng-container [matColumnDef]="column">
+        @let label = columnLabels()[column];
+        @let isNumeric = numericColumns().has(column);
+
         <th
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-          [class.numeric]="getNumericColumns().includes(column)"
-          [sortActionDescription]="`Sort by ${column}`"
+          [class.numeric]="isNumeric"
+          [sortActionDescription]="`Sort by ${label}`"
         >
-          @if (columns().length) {
-            {{ column | titlecase }}
-          } @else {
-            {{ getColumnRecord()[column] }}
-          }
+          {{ label }}
         </th>
-        <td mat-cell *matCellDef="let element" [class.numeric]="getNumericColumns().includes(column)">
-          @if (element[column]['markdown']) {
-            <markdown>{{ element[column]['markdown'] }}</markdown>
+        <td mat-cell *matCellDef="let element" [class.numeric]="isNumeric">
+          @if (element[column]['markdown']; as markdown) {
+            <markdown>{{ markdown }}</markdown>
           } @else if (element[column]['url']) {
             <a hraHyperlink [href]="element[column]['url']" target="_blank" rel="noopener noreferrer">
               {{ element[column]['label'] }}
@@ -35,7 +34,7 @@
       </ng-container>
     }
 
-    <tr mat-header-row *matHeaderRowDef="getColumnNames()"></tr>
-    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: getColumnNames()"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnIds()"></tr>
+    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
   </table>
 </ng-scrollbar>
