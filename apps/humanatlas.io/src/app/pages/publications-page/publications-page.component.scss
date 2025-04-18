@@ -1,9 +1,6 @@
 @use 'utils';
 
 :host {
-  max-width: 87.5rem;
-  margin: 0 auto;
-
   .banner {
     @include utils.use-font(display, large);
     display: flex;
@@ -18,6 +15,11 @@
   .banner-text {
     min-width: 18.25rem;
     text-align: center;
+  }
+
+  .page-content-container {
+    max-width: 87.5rem;
+    margin: 0 auto;
   }
 
   .page-content {
@@ -67,11 +69,13 @@
   }
 
   @media (min-width: 1400px) {
-    display: grid;
-    grid-template-areas:
-      'header header'
-      'content navigation';
-    grid-template-columns: 1fr 12.5rem;
+    .page-content-container {
+      display: grid;
+      grid-template-areas:
+        'header header'
+        'content navigation';
+      grid-template-columns: 1fr 12.5rem;
+    }
 
     .page-content {
       display: flex;
