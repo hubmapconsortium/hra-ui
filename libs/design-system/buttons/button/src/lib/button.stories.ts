@@ -90,3 +90,12 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
     </button>`,
   }),
 };
+
+export const ExtendedFAB: StoryObj<CommonButtonArgs> = {
+  render: (args) => ({
+    template: `<button mat-fab extended disabled="${args.disabled}">
+      <mat-icon>download</mat-icon>
+      Click Me!
+    </button>`,
+  }),
+};
