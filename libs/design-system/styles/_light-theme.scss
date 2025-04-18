@@ -126,14 +126,11 @@ $_rest: (
 $_primary: map.merge(map.get($_palettes, primary), $_rest);
 $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-$theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: $_primary,
-      tertiary: $_tertiary,
-      use-system-variables: true,
-    ),
-    typography: typo.$typography,
-  )
+$theme: (
+  color: (
+    theme-type: light,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  typography: typo.$typography,
 );
