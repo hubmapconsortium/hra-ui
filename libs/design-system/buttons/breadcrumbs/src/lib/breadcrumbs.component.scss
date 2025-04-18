@@ -11,6 +11,8 @@
     padding: 0;
     color: var(--mat-sys-on-primary-fixed);
     @include utils.use-font('label', 'small');
+    display: flex;
+    align-items: center;
 
     .crumb {
       display: inline-block;

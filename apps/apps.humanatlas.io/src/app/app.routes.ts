@@ -43,6 +43,9 @@ export const appRoutes: Route[] = [
         },
       },
     ],
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 1' }] satisfies BreadcrumbItem[],
+    },
   },
   {
     path: 'us2',
@@ -63,10 +66,16 @@ export const appRoutes: Route[] = [
         },
       },
     ],
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 2' }] satisfies BreadcrumbItem[],
+    },
   },
   {
     path: 'us6',
     component: WebComponentsComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 6' }] satisfies BreadcrumbItem[],
+    },
   },
   {
     path: 'api',
