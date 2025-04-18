@@ -1,18 +1,30 @@
 <ng-scrollbar hraScrollOverflowFade>
-  <table mat-table [dataSource]="dataSource" matSort aria-label="Table with sort function">
-    @for (column of columns; track column) {
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    [matSortDisabled]="!enableSort()"
+    aria-label="Table with sort function"
+  >
+    @for (column of getColumnNames(); track column) {
       <ng-container [matColumnDef]="column">
         <th
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-          [class.numeric]="getAllNumericColumns().includes(column)"
+          [class.numeric]="getNumericColumns().includes(column)"
           [sortActionDescription]="`Sort by ${column}`"
         >
-          {{ column | titlecase }}
+          @if (columns().length) {
+            {{ column | titlecase }}
+          } @else {
+            {{ getColumnRecord()[column] }}
+          }
         </th>
-        <td mat-cell *matCellDef="let element" [class.numeric]="getAllNumericColumns().includes(column)">
-          @if (element[column]['url']) {
+        <td mat-cell *matCellDef="let element" [class.numeric]="getNumericColumns().includes(column)">
+          @if (element[column]['markdown']) {
+            <markdown>{{ element[column]['markdown'] }}</markdown>
+          } @else if (element[column]['url']) {
             <a hraHyperlink [href]="element[column]['url']" target="_blank" rel="noopener noreferrer">
               {{ element[column]['label'] }}
             </a>
@@ -23,7 +35,7 @@
       </ng-container>
     }
 
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
-    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columns"></tr>
+    <tr mat-header-row *matHeaderRowDef="getColumnNames()"></tr>
+    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: getColumnNames()"></tr>
   </table>
 </ng-scrollbar>

@@ -4,11 +4,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { MarkdownModule } from 'ngx-markdown';
 
 /** Type for table row data */
 export interface TableRowData {
   /** Column: value */
-  [value: string]: string | number | TableLinkData;
+  [value: string]: string | number | TableLinkData | TableMarkdownData;
 }
 
 /** Value to use if cell contains a link */
@@ -16,11 +17,17 @@ export interface TableLinkData {
   /** Link label */
   label: unknown;
   /** Link url */
-  url?: string;
+  url: string;
+}
+
+/** Type for markdown table entry */
+export interface TableMarkdownData {
+  /** Markdown as string */
+  markdown: string;
 }
 
 /** Table style */
-export type TableStyle = 'alternating' | 'divider' | 'basic';
+export type TableVariant = 'alternating' | 'divider' | 'basic';
 
 /**
  * Angular Material table with sort feature
@@ -35,6 +42,7 @@ export type TableStyle = 'alternating' | 'divider' | 'basic';
     ScrollingModule,
     ScrollOverflowFadeDirective,
     TextHyperlinkDirective,
+    MarkdownModule,
   ],
   host: {
     '[attr.style]': 'style()',
@@ -44,10 +52,13 @@ export type TableStyle = 'alternating' | 'divider' | 'basic';
 })
 export class TableComponent {
   /** Unsorted data */
-  readonly data = input<TableRowData[]>([]);
+  readonly data = input.required<TableRowData[]>();
+
+  /** Columns in table */
+  readonly columns = input.required<string[] | Record<string, string>>();
 
   /** Table style */
-  readonly style = input<TableStyle>('alternating');
+  readonly style = input<TableVariant>('alternating');
 
   /** Enables sorting */
   readonly enableSort = input<boolean>(false);
@@ -56,15 +67,7 @@ export class TableComponent {
   readonly verticalDividers = input<boolean>(false);
 
   /** Gets the columns in the data that contain only numbers */
-  readonly getAllNumericColumns = computed(() => {
-    const keyList = this.data().map((row) => this.getNumericKeys(row));
-    return keyList.reduce((commonStrings, currentArray) =>
-      commonStrings.filter((string) => currentArray.includes(string)),
-    );
-  });
-
-  /** Columns in table */
-  columns: string[] = [];
+  readonly getNumericColumns = computed(() => this.getNumericKeys(this.data()[0]));
 
   /** Mat sort element */
   readonly sort = viewChild.required(MatSort);
@@ -76,10 +79,9 @@ export class TableComponent {
   constructor() {
     effect(() => {
       this.dataSource.data = this.data();
-      if (this.enableSort()) {
-        this.dataSource.sort = this.sort();
-      }
-      this.columns = Object.keys(this.data()[0]);
+    });
+    effect(() => {
+      this.dataSource.sort = this.sort();
     });
   }
 
@@ -90,5 +92,21 @@ export class TableComponent {
    */
   getNumericKeys(data: TableRowData) {
     return Object.keys(data).filter((key) => typeof data[key] === 'number');
+  }
+
+  /**
+   * Gets column names from the columns input
+   * @returns Column names
+   */
+  getColumnNames(): string[] {
+    return this.columns().length ? (this.columns() as string[]) : Object.keys(this.columns());
+  }
+
+  /**
+   * Returns column input as record
+   * @returns Column as record
+   */
+  getColumnRecord(): Record<string, string> {
+    return this.columns() as Record<string, string>;
   }
 }

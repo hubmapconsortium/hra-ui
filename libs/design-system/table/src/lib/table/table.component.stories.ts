@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { TableComponent, TableRowData } from './table.component';
 
@@ -35,8 +36,14 @@ const meta: Meta<TableComponent> = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=7791-64814&t=doMF8YMctx09RwV7-4',
     },
   },
+  decorators: [
+    moduleMetadata({
+      imports: [MarkdownModule.forRoot()],
+    }),
+  ],
   args: {
     data: exampleData,
+    columns: ['position', 'name', 'weight', 'symbol'],
     enableSort: true,
     verticalDividers: false,
   },
@@ -84,4 +91,56 @@ export const WithScrolling: Story = {
       }`,
     ],
   }),
+};
+
+export const ColumnInputAsRecord: Story = {
+  args: {
+    columns: {
+      position: 'Position',
+      name: 'Name',
+      weight: 'Weight',
+      symbol: 'Symbol',
+    },
+  },
+};
+
+export const WithMarkdown: Story = {
+  args: {
+    columns: {
+      position: 'Position',
+      name: 'Name',
+      weight: 'Weight',
+      symbol: 'Symbol',
+      notes: 'Notes',
+    },
+    data: [
+      {
+        position: 1,
+        name: 'Hydrogen',
+        weight: 1.0079,
+        symbol: 'H',
+        notes: {
+          markdown: '<span>This is markdown</span>',
+        },
+      },
+      {
+        position: 2,
+        name: 'Helium',
+        weight: 4.0026,
+        symbol: 'He',
+        notes: {
+          markdown: '<a href="https://www.google.com">This is a link</a>',
+        },
+      },
+      {
+        position: 3,
+        name: 'Beryllium',
+        weight: 9.0122,
+        symbol: 'Be',
+        notes: {
+          markdown: '<img src="assets/brand/mark/default.svg"></img>',
+        },
+      },
+    ],
+  },
 };

@@ -12,6 +12,7 @@ describe('Table  Component', () => {
     const { detectChanges } = await render(TableComponent, {
       inputs: {
         data: TABLE_DATA,
+        columns: ['name', 'value'],
       },
     });
     detectChanges();
