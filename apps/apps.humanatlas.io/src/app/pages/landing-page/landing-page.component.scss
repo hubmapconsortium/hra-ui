@@ -51,11 +51,11 @@
 
 
   .apps-container {
-    .section-container:nth-child(2n+1){
+    .section-container:nth-child(2n + 1){
       background: linear-gradient(12.03deg, #eff1f4 -1.72%, var(--mat-sys-secondary-container) 84.47%);
     }
 
-    .section-container:nth-child(2n+2){
+    .section-container:nth-child(2n + 2){
       background: var(--mat-sys-on-primary);
     }
   }
@@ -95,7 +95,7 @@
       padding: 9rem 1rem 6rem 1rem;
     }
 
-    .section-container{
+    .section-container {
       padding: 0rem 1rem 6rem 1rem;
     }
 
