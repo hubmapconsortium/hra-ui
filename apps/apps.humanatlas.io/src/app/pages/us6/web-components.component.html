@@ -30,7 +30,7 @@
             [productTitle]="component.productTitle"
             [description]="component.description"
             [webComponentName]="component.webComponentName"
-            [disableButton]="component.embedAs === 'external'"
+            [hideEmbedButton]="component.embedAs === 'external'"
             (embedClick)="openSidenav(organ, component, 0)"
             (useAppClick)="onUseApp(organ, component)"
           >
