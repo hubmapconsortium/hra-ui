@@ -6,11 +6,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
-import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { CellSummaryRow } from '@hra-api/ng-client';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
+import { saveAs } from 'file-saver';
+import { unparse } from 'papaparse';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -38,6 +42,7 @@ const EMPTY_DATA: TissuePredictionData = {
     MatMenuModule,
     OverlayModule,
     TooltipCardComponent,
+    ScrollingModule,
   ],
   templateUrl: './cell-population-predictions.component.html',
   styleUrl: './cell-population-predictions.component.scss',
@@ -56,14 +61,27 @@ export class CellPopulationPredictionsComponent {
   /** Router service */
   private readonly router = inject(Router);
 
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
+
   /** For sorting Tools column */
   private readonly sort = viewChild.required(MatSort);
 
   /** Data for predictions table */
   protected readonly dataSource = new MatTableDataSource<CellSummaryRow>([]);
 
+  /** Column headers for prediction table */
+  private readonly columnHeaders: { [key: string]: string } = {
+    tool: 'Tool',
+    modality: 'Modality',
+    percentage: '% Of Total',
+    count: '# Count',
+    cell_label: 'Cell Name in Cell Ontology (CL)',
+    cell_id: 'Cell Type ID in Cell Ontology (CL)',
+  };
+
   /** Columns for prediction table */
-  protected readonly displayedColumns: string[] = ['tool', 'modality', 'percentage', 'count', 'cell_label', 'cell_id'];
+  protected readonly displayedColumns: string[] = Object.keys(this.columnHeaders);
 
   /** Tooltip content */
   protected readonly tooltip: TooltipContent[] = [
@@ -97,5 +115,13 @@ export class CellPopulationPredictionsComponent {
     if (confirmation) {
       this.router.navigate(['/us1']);
     }
+  }
+
+  /** Triggered when clicked on download CSV button  */
+  onDownloadCSVButtonClicked() {
+    const csvData = unparse(this.predictions(), { columns: this.displayedColumns });
+    const fileToSave = new Blob([csvData], { type: 'text/csv' });
+    saveAs(fileToSave, 'predictions.csv');
+    this.snackbar.open('File downloaded', '', false, 'start', { duration: 6000 });
   }
 }
