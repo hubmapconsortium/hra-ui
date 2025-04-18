@@ -1,10 +1,4 @@
-import {
-  FlexibleConnectedPositionStrategy,
-  GlobalPositionStrategy,
-  Overlay,
-  OverlayModule,
-  ScrollStrategyOptions,
-} from '@angular/cdk/overlay';
+import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
@@ -37,11 +31,16 @@ import { SimilarAnatomicalStructuresTableComponent } from './components/similar-
 import { SimilarDatasetsTableComponent } from './components/similar-datasets-table/similar-datasets-table.component';
 import moment from 'moment';
 
-/** Script URL for EUI */
+/**
+ * Script URL for EUI
+ * TODO: Currently using Staging URL, need to change to production URL.
+ * */
 const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
-// const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
 
-/** Style URLs for EUI */
+/**
+ * Style URLs for EUI
+ * TODO: Currently using Staging URL, need to change to production URL.
+ */
 const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
 
 /** Empty Inputs for Predictions page */
