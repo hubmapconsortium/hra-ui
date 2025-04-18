@@ -4,17 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-/**
- * Card info data containing metric name, count, and icon info
- */
-export interface CardInfo {
-  /** Metric name */
-  label: string;
-  /** Count for metric */
-  count: string;
-  /** Returns mat icon name or icon asset url */
-  icon: { fontText: string } | { url: string };
-}
+import { CountInfoItem } from './count-info.schema';
 
 /**
  * Displays metrics for the human reference atlas
@@ -28,14 +18,14 @@ export interface CardInfo {
 })
 export class CountInfoComponent {
   /** List of card info to display */
-  readonly countInfoList = input.required<CardInfo[]>();
+  readonly countInfoList = input.required<CountInfoItem[]>();
 
   /**
    * Gives icon type in card
    * @param card Card info
    * @returns Icon type
    */
-  iconType(card: CardInfo): string {
+  iconType(card: CountInfoItem): string {
     return 'fontText' in card.icon ? 'fontText' : 'url';
   }
 
@@ -44,7 +34,7 @@ export class CountInfoComponent {
    * @param card Card info
    * @returns Icon as material icon name or icon url
    */
-  getIcon(card: CardInfo): string {
+  getIcon(card: CountInfoItem): string {
     return 'fontText' in card.icon ? card.icon.fontText : card.icon.url;
   }
 }

@@ -6,6 +6,7 @@
     </span>
   </header-content>
   <section-content>
+    <div></div>
     <span class="description">
       The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures
       and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing
@@ -15,9 +16,9 @@
 </hra-page-section>
 
 <div class="carousel-container">
-  <hra-carousel [items]="carouselItems()" />
+  <hra-carousel [items]="computedData()['carouselItems']" />
 </div>
 
-<hra-count-info [countInfoList]="countInfo()" />
+<hra-count-info [countInfoList]="computedData()['countInfo']" />
 
-<hra-section-cards [cardInfo]="sectionCardInfo()" />
+<hra-section-cards [cardInfo]="computedData()['sectionCardInfo']" />

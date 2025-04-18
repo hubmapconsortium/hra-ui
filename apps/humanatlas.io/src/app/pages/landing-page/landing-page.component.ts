@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 
+import { PageDef } from '../../app.routes';
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
-import { CarouselItem } from '../../components-v2/carousel/carousel.schema';
-import { CardInfo, CountInfoComponent } from '../../components-v2/count-info/count-info.component';
+import { CountInfoComponent } from '../../components-v2/count-info/count-info.component';
 import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
-import { SectionCardItem } from '../../components-v2/section-cards/section-cards.schema';
 
 /**
  * HRA landing page component
@@ -20,12 +19,15 @@ import { SectionCardItem } from '../../components-v2/section-cards/section-cards
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LandingPageComponent {
-  /** Carousel items data */
-  readonly carouselItems = input.required<CarouselItem[]>();
+  /** Data to display on the landing page */
+  readonly data = input.required<PageDef[]>();
 
-  /** Count info data */
-  readonly countInfo = input.required<CardInfo[]>();
-
-  /** Section cards data */
-  readonly sectionCardInfo = input.required<SectionCardItem[]>();
+  /** Landing page data converted to the correct format */
+  readonly computedData = computed(() => {
+    return {
+      carouselItems: this.data()[0]['carouselItems'],
+      countInfo: this.data()[1]['countInfo'],
+      sectionCardInfo: this.data()[2]['sectionCardInfo'],
+    };
+  });
 }
