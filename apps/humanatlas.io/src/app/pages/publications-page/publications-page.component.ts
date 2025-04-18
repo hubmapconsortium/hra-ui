@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { MarkdownModule } from 'ngx-markdown';
+
+import { PublicationsPageData } from '../../resolvers/publications-page/publications-page.schema';
 
 /**
  * Page for displaying hra publication data
@@ -16,27 +17,22 @@ import { MarkdownModule } from 'ngx-markdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PublicationsPageComponent implements OnInit {
-  /** Activated route service */
-  private activatedRoute = inject(ActivatedRoute);
-
+export class PublicationsPageComponent {
   /** Publication data */
-  publications: Record<string, string[]> = {};
+  publications = input.required<PublicationsPageData>();
 
-  /**
-   * Returns publication years sorted in descending order
-   */
+  /** Returns publication years sorted in descending order */
   readonly years = computed(() => {
-    const values = Object.keys(this.publications).sort((a, b) => (a < b ? 1 : -1));
+    const values = Object.keys(this.publications()).sort((a, b) => (a < b ? 1 : -1));
     return values;
   });
 
   /**
-   * Populates publication data on init
+   * Formats id for anchor links. If value does not start with a letter, it will be prefixed with "id-".
+   * @param value Id to format
+   * @returns Formatted anchor id
    */
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ publications }) => {
-      this.publications = publications;
-    });
+  toAnchor(value: string): string {
+    return value.replace(/[^\w:._-]/g, '-').replace(/^[^a-z]/i, 'id-$&');
   }
 }

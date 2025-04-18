@@ -12,10 +12,10 @@
       @for (year of years(); track year) {
         <hra-page-section>
           <header-content>
-            <hra-section-link level="2" [anchor]="year" underlined> {{ year }} </hra-section-link>
+            <hra-section-link level="2" [anchor]="toAnchor(year)" underlined> {{ year }} </hra-section-link>
           </header-content>
           <section-content>
-            @for (pub of publications[year]; track pub) {
+            @for (pub of publications()[year]; track pub) {
               <markdown class="pub-info" [data]="pub"></markdown>
             }
           </section-content>
