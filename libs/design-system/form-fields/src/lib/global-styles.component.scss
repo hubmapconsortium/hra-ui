@@ -1,0 +1,6 @@
+@use '../../../../design-system/styles/utils';
+
+@include utils.global-styles() {
+  mat-form-field.mat-mdc-form-field-type-mat-select.mat-focused mat-label {
+  }
+}

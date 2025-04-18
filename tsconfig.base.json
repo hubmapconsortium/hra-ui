@@ -61,6 +61,9 @@
       "@hra-ui/design-system/*": [
         "libs/design-system/*/src/index.ts"
       ],
+      "@hra-ui/design-system/form-fields": [
+        "libs/design-system/form-fields/src/index.ts"
+      ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
       ],
