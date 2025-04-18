@@ -32,6 +32,6 @@ export const Default: Story = {
     imageUrl: 'assets/ui-images/placeholder.png',
     description: 'This is a placeholder description (>125 characters.)',
     webComponentName: 'Web Component Name',
-    disableButton: false,
+    hideEmbedButton: false,
   },
 };
