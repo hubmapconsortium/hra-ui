@@ -73,7 +73,7 @@
 }
 
 ::ng-deep .hra-app table[matSort] .mat-sort-header-container {
-  max-width: 13rem;
+  max-width: 13rem !important;
 }
 
 ::ng-deep {

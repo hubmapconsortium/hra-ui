@@ -1,4 +1,10 @@
-import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import {
+  FlexibleConnectedPositionStrategy,
+  GlobalPositionStrategy,
+  Overlay,
+  OverlayModule,
+  ScrollStrategyOptions,
+} from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import {
@@ -32,14 +38,11 @@ import { SimilarDatasetsTableComponent } from './components/similar-datasets-tab
 import moment from 'moment';
 
 /** Script URL for EUI */
-const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
+const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
+// const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
 
 /** Style URLs for EUI */
-const STYLE_URLS = [
-  'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/styles.css',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap',
-  'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined',
-];
+const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
@@ -116,8 +119,8 @@ export class TissueOriginPredictionsComponent {
   /** EUI Overlay */
   private readonly euiOverlay = this.overlay.create({
     disposeOnNavigation: true,
-    // Used to trick the global positioning strategy into applying top offsets
-    maxHeight: '10000000000000px',
+    height: '100vh',
+    maxHeight: '100vh',
     scrollStrategy: this.overlay.scrollStrategies.block(),
     panelClass: 'eui-overlay-container',
   });
