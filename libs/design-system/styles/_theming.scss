@@ -5,15 +5,6 @@
 @use './typography';
 
 @mixin theme($theme, $overrides: typography.$overrides) {
-  @at-root {
-    @include mat.core();
-  }
-
-  @include mat.system-level-colors($theme);
-  @include mat.system-level-typography($theme, $overrides);
+  @include mat.theme($theme, $overrides: $overrides);
   @include typography.custom-variants();
-  @include mat.system-level-elevation($theme);
-  @include mat.system-level-shape($theme);
-  @include mat.system-level-state($theme);
-  @include mat.all-component-themes($theme);
 }
