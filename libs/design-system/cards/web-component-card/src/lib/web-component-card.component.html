@@ -11,13 +11,7 @@
 
 <div class="card-footer">
   <button (click)="useAppClick.emit()" mat-button hraPrimaryButton hraButtonSize="medium">Use App</button>
-  <button
-    (click)="embedClick.emit()"
-    [disabled]="disableButton()"
-    mat-flat-button
-    hraPrimaryButton
-    hraButtonSize="medium"
-  >
-    Embed
-  </button>
+  @if (!hideEmbedButton()) {
+    <button (click)="embedClick.emit()" mat-flat-button hraPrimaryButton hraButtonSize="medium">Embed</button>
+  }
 </div>

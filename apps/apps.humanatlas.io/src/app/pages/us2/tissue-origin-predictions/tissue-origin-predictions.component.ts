@@ -31,15 +31,17 @@ import { SimilarAnatomicalStructuresTableComponent } from './components/similar-
 import { SimilarDatasetsTableComponent } from './components/similar-datasets-table/similar-datasets-table.component';
 import moment from 'moment';
 
-/** Script URL for EUI */
-const SCRIPT_URL = 'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/wc.js';
+/**
+ * Script URL for EUI
+ * TODO: Currently using Staging URL, need to change to production URL.
+ * */
+const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
 
-/** Style URLs for EUI */
-const STYLE_URLS = [
-  'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/styles.css',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap',
-  'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined',
-];
+/**
+ * Style URLs for EUI
+ * TODO: Currently using Staging URL, need to change to production URL.
+ */
+const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
@@ -117,9 +119,7 @@ export class TissueOriginPredictionsComponent {
   private readonly euiOverlay = this.overlay.create({
     disposeOnNavigation: true,
     height: '100vh',
-    width: '100vw',
-    // Used to trick the global positioning strategy into applying top offsets
-    maxHeight: '10000000000000px',
+    maxHeight: '100vh',
     scrollStrategy: this.overlay.scrollStrategies.block(),
     panelClass: 'eui-overlay-container',
   });

@@ -1,17 +1,18 @@
 import { render, screen } from '@testing-library/angular';
-import { TableDemoComponent, TableDemoData } from './table-demo.component';
+import { TableComponent, TableRow } from './table.component';
 
-describe('Table Demo Component', () => {
-  const TABLE_DATA: TableDemoData[] = [
+describe('Table  Component', () => {
+  const TABLE_DATA: TableRow[] = [
     {
       name: 'Test Name',
       value: 100,
     },
   ];
   it('It should render the table data', async () => {
-    const { detectChanges } = await render(TableDemoComponent, {
+    const { detectChanges } = await render(TableComponent, {
       inputs: {
         data: TABLE_DATA,
+        columns: ['name', 'value'],
       },
     });
     detectChanges();

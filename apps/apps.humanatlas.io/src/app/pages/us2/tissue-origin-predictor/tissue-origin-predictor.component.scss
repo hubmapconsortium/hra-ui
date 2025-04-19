@@ -1,16 +1,27 @@
 :host {
   display: block;
   max-width: 65rem;
-  margin: 0 auto;
-  padding-top: 6rem;
-  padding: 10rem 1rem;
+  margin: 10rem auto;
+  padding-right: 7.5rem;
+  padding-left: 7.5rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  :host {
+    padding: 0 1rem;
+
+    .cards .card {
+      width: 100%;
+    }
+  }
 }
 
 .info-text {
   margin-top: 3.5rem;
   font: var(--mat-sys-body-large);
   letter-spacing: var(--mat-sys-body-large-tracking);
-  color: var(--mat-sys-on-secondary-container);
+  color: var(--mat-sys-on-secondary-fixed);
 }
 
 .cards {
