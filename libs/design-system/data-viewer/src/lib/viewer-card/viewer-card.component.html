@@ -1,0 +1,58 @@
+<div class="object">
+  @if (variant() === 'ftu') {
+    <img
+      class="viewer-image"
+      aria-hidden="true"
+      [alt]="viewerCardData().alt"
+      [src]="viewerCardData().fileUrl"
+      (click)="openImageViewer(fullscreen)"
+      (keyup.enter)="openImageViewer(fullscreen)"
+    />
+    <ng-container [ngTemplateOutlet]="fullscreen"> </ng-container>
+  }
+
+  @if (variant() === '3d-organ') {
+    <model-viewer
+      class="model-viewer"
+      [alt]="viewerCardData().alt"
+      [src]="viewerCardData().fileUrl"
+      shadow-intensity="1"
+      camera-controls
+      auto-rotate
+    >
+    </model-viewer>
+  }
+</div>
+
+<ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
+
+<ng-template #fullscreen>
+  <div class="dialog-container">
+    <div class="dialog-header">
+      <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
+      <div class="filler"></div>
+      <button mat-icon-button>
+        <mat-icon (click)="close()">clear</mat-icon>
+      </button>
+    </div>
+    <div class="img-container">
+      <img class="dialog-image" [src]="viewerCardData().fullscreenUrl" [alt]="viewerCardData().alt" />
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #objectMenu>
+  <div class="object-menu">
+    <span class="tagline">{{ viewerCardData().label }}</span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="cardMenu.menu()"
+      hraIconButtonSize="large"
+      aria-label="Open the card's menu"
+      hraPlainTooltip="More"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <hra-card-menu #cardMenu [variant]="variant()" [card]="viewerCardData()"></hra-card-menu>
+  </div>
+</ng-template>
