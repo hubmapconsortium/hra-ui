@@ -15,6 +15,7 @@ import { saveAs } from 'file-saver';
 import { unparse } from 'papaparse';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
@@ -43,6 +44,7 @@ const EMPTY_DATA: TissuePredictionData = {
     OverlayModule,
     TooltipCardComponent,
     ScrollingModule,
+    TextHyperlinkDirective,
   ],
   templateUrl: './cell-population-predictions.component.html',
   styleUrl: './cell-population-predictions.component.scss',
