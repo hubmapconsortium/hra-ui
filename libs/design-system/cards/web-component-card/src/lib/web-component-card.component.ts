@@ -23,8 +23,8 @@ export class WebComponentCardComponent {
   readonly webComponentName = input<string | undefined>();
   /** Description */
   readonly description = input.required<string>();
-  /** Disable button */
-  readonly disableButton = input<boolean>();
+  /** Hide Embed button */
+  readonly hideEmbedButton = input<boolean>();
 
   /** Emits true when the Embed button is clicked */
   readonly embedClick = output();
