@@ -1,6 +1,7 @@
 :host {
   display: block;
   position: relative;
+  height: auto;
   padding: 2rem;
   border-radius: 1rem;
   overflow: hidden;
@@ -14,6 +15,10 @@
     margin: var(--hra-workflow-card-header-padding, 0 0 2rem 0);
     font: var(--mat-sys-title-large);
     letter-spacing: var(--mat-sys-title-large-tracking);
+  }
+
+  .tagline {
+    color: var(--mat-sys-on-background);
   }
 
   .progress {

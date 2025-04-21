@@ -1,14 +1,14 @@
 :host {
   display: block;
   max-width: 72.5rem;
-  margin: 0 auto;
-  padding-top: 7.5rem;
+  margin: 10rem auto;
 }
 
 h1 {
   font: var(--mat-sys-display-large);
   letter-spacing: var(--mat-sys-display-large-tracking);
   margin: 0;
+  word-wrap: break-word;
 }
 
 button {
@@ -21,11 +21,14 @@ button {
   font: var(--mat-sys-body-large);
   letter-spacing: var(--mat-sys-body-large-tracking);
   color: var(--mat-sys-on-secondary-container);
+  word-wrap: break-word;
 }
 
 .table-container {
+  width: 100%;
   margin-top: 3rem;
-  margin-bottom: 0.3125rem;
+  margin-bottom: 3rem; // TODO
+  overflow: hidden;
 
   caption {
     display: none;
@@ -35,26 +38,38 @@ button {
     display: flex;
   }
 
-  .predictions-table {
-    background-color: var(--mat-sys-secondary-container);
-    border-collapse: collapse;
+  .table-overflow-container {
+    max-width: calc(100vw - 4rem);
+    max-height: 26rem;
+    overflow: auto;
+    border: 1px solid var(--mat-sys-outline);
+    border-radius: 0.25rem;
 
-    th,
-    td {
-      font: var(--mat-sys-label-medium);
-      letter-spacing: var(--mat-sys-label-medium-tracking);
-      border: 0.0625rem solid var(--mat-sys-outline);
-    }
+    .predictions-table {
+      background-color: var(--mat-sys-secondary-container);
+      width: 100%;
+      min-width: 54.0625rem;
 
-    th {
-      color: var(--mat-sys-on-primary-container);
-      background-color: var(--mat-sys-surface-container);
-    }
-    td {
-      color: var(--mat-sys-inverse-surface);
+      tr:not(:last-child) {
+        border-bottom: 0.0625rem solid var(--mat-sys-outline);
+      }
 
-      &:last-child a {
-        color: var(--mat-sys-on-tertiary-container);
+      th,
+      td {
+        font: var(--mat-sys-label-medium);
+        letter-spacing: var(--mat-sys-label-medium-tracking);
+
+        &:not(:last-child) {
+          border-right: 0.0625rem solid var(--mat-sys-outline);
+        }
+      }
+
+      th {
+        color: var(--mat-sys-on-primary-container);
+        background-color: var(--mat-sys-surface-container);
+      }
+      td {
+        color: var(--mat-sys-inverse-surface);
       }
     }
   }
