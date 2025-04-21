@@ -1,5 +1,10 @@
 @if (displayedSlider !== sliderAxis) {
-  <mat-form-field class="rotation-value" subscriptSizing="dynamic" (click)="displaySlider.emit()">
+  <mat-form-field
+    class="rotation-value"
+    subscriptSizing="dynamic"
+    (click)="displaySlider.emit()"
+    hraPlainTooltip="Rotation is measured in degrees"
+  >
     <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
     <input matInput [value]="rotation[sliderAxis]" />
   </mat-form-field>
@@ -14,7 +19,8 @@
       [min]="-180"
       [step]="step"
       disableRipple
-      hraPlainTooltip="Hold shift while using the slider to rotate in smaller increments by 30 degrees"
+      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"
+      tooltipName="rotation-slider-tooltip"
     >
       <input
         class="slider-input"
@@ -33,6 +39,7 @@
         [value]="rotation[sliderAxis]"
         [min]="-180"
         [max]="180"
+        hraPlainTooltip="Rotation is measured in degrees"
         (change)="changeRotation.emit($any($event.target).value)"
       />
     </mat-form-field>
