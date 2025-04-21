@@ -1,34 +1,59 @@
 import { z } from 'zod';
 
+/** Class declaration */
+export type Classes = z.infer<typeof ClassesSchema>;
+/** Extra css classes for a content template component  */
 export const ClassesSchema = z.union([z.string(), z.string().array(), z.record(z.any())]);
 
+/** Css style declaration */
+export type Styles = z.infer<typeof StylesSchema>;
+/** Extra css styles for a content template component */
 export const StylesSchema = z.union([z.string(), z.record(z.any())]);
 
-export const BaseContentTemplateSchema = z.object({
+/** Base schema for content template components */
+export const ContentTemplateSchema = z.object({
   component: z.string(),
   classes: ClassesSchema.optional(),
   styles: StylesSchema.optional(),
 });
 
-type BaseContentTemplateShape = (typeof BaseContentTemplateSchema)['shape'];
-const AnyContentTemplateImplSchema = BaseContentTemplateSchema.passthrough();
-const contentTemplateDefs: AnyContentTemplateDef[] = [];
+/** Content template with additional properties */
+const ContentTemplateWithPropsSchema = ContentTemplateSchema.passthrough();
 
-export type AnyContentTemplate = z.infer<typeof AnyContentTemplateImplSchema>;
+/** Data type for a content template */
+export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
+/** Type of any content template zod specs */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyContentTemplateDef = z.ZodObject<BaseContentTemplateShape, any, any>;
+export type AnyContentTemplateSpec = z.ZodObject<(typeof ContentTemplateSchema)['shape'], any, any>;
+/** Schema for any content template */
 export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z.lazy(() => {
-  if (contentTemplateDefs.length === 0) {
-    return AnyContentTemplateImplSchema;
+  const specs = getRegisteredContentTemplateSpecs();
+  if (specs.length === 0) {
+    return ContentTemplateWithPropsSchema;
   }
 
-  return z.discriminatedUnion('component', contentTemplateDefs as [AnyContentTemplateDef, ...AnyContentTemplateDef[]]);
+  return z.discriminatedUnion('component', specs as [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]]);
 });
 
-export function addContentTemplates<Args extends AnyContentTemplateDef[]>(...templates: Args): void {
-  contentTemplateDefs.push(...templates);
+/** All registered content template specs */
+const registeredSpecs = new Set<AnyContentTemplateSpec>(); //: AnyContentTemplateSpec[] = [];
+
+/**
+ * Register additional content template specs
+ *
+ * @param specs Specs to add
+ */
+export function registerContentTemplateSpecs<Args extends AnyContentTemplateSpec[]>(...specs: Args): void {
+  for (const spec of specs) {
+    registeredSpecs.add(spec);
+  }
 }
 
-export function getContentTemplates(): AnyContentTemplateDef[] {
-  return contentTemplateDefs;
+/**
+ * Gets all currently registered content template specs
+ *
+ * @returns An array of specs
+ */
+export function getRegisteredContentTemplateSpecs(): AnyContentTemplateSpec[] {
+  return Array.from(registeredSpecs);
 }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ContentTemplateOutletDirective } from './content-template.directive';
 
+/** Content template module */
 @NgModule({
-  imports: [CommonModule],
+  imports: [ContentTemplateOutletDirective],
+  exports: [ContentTemplateOutletDirective],
 })
 export class ContentTemplateModule {}
