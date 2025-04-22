@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  &.hra-spinner-color-dark {
+    @include mat.progress-spinner-overrides(
+      (
+        active-indicator-color: var(--mat-sys-secondary),
+      )
+    );
+  }
+
+  &.hra-spinner-color-light {
+    @include mat.progress-spinner-overrides(
+      (
+        active-indicator-color: var(--mat-sys-on-secondary),
+      )
+    );
+  }
+
+  &.hra-spinner-color-color {
+    @include mat.progress-spinner-overrides(
+      (
+        active-indicator-color: var(--mat-sys-on-tertiary-fixed),
+      )
+    );
+  }
+}
