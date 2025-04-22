@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ContentTemplateOutletDirective } from './content-template.directive';
+import { ContentTemplateOutletDirective } from './directives/content-template.directive';
 
 /** Content template module */
 @NgModule({

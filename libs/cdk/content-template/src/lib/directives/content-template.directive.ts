@@ -1,6 +1,6 @@
 import { ComponentRef, Directive, effect, inject, input, reflectComponentType, ViewContainerRef } from '@angular/core';
-import { AnyContentTemplate } from './content-template.schema';
-import { ContentTemplateService } from './content-template.service';
+import { AnyContentTemplate } from '../types/content-template.schema';
+import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
 
 /** A structural directive that renders a content template component */
 @Directive({
@@ -13,7 +13,7 @@ export class ContentTemplateOutletDirective {
   /** View container */
   private readonly viewContainerRef = inject(ViewContainerRef);
   /** Content template definitions service */
-  private readonly contentTemplateService = inject(ContentTemplateService);
+  private readonly contentTemplateService = inject(ContentTemplateDefRegistryService);
 
   /** Initializes the outlet */
   constructor() {
@@ -30,6 +30,7 @@ export class ContentTemplateOutletDirective {
    * @returns A reference to the rendered component or undefined on failure
    */
   private render(data: AnyContentTemplate): ComponentRef<unknown> | undefined {
+    // TODO initial parse
     const def = this.contentTemplateService.getDef(data.component);
     if (!def) {
       // TODO

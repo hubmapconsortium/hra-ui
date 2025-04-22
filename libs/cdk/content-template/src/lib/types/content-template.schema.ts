@@ -12,13 +12,16 @@ export const StylesSchema = z.union([z.string(), z.record(z.any())]);
 
 /** Base schema for content template components */
 export const ContentTemplateSchema = z.object({
-  component: z.string(),
+  component: z.string() as unknown as z.ZodLiteral<string>,
   classes: ClassesSchema.optional(),
   styles: StylesSchema.optional(),
 });
 
 /** Content template with additional properties */
-const ContentTemplateWithPropsSchema = ContentTemplateSchema.passthrough();
+export const ContentTemplateWithPropsSchema = ContentTemplateSchema.passthrough();
+
+/** All registered content template specs */
+export const registeredSpecs = new Set<AnyContentTemplateSpec>();
 
 /** Data type for a content template */
 export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
@@ -27,33 +30,10 @@ export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
 export type AnyContentTemplateSpec = z.ZodObject<(typeof ContentTemplateSchema)['shape'], any, any>;
 /** Schema for any content template */
 export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z.lazy(() => {
-  const specs = getRegisteredContentTemplateSpecs();
-  if (specs.length === 0) {
+  if (registeredSpecs.size === 0) {
     return ContentTemplateWithPropsSchema;
   }
 
-  return z.discriminatedUnion('component', specs as [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]]);
+  const specs = Array.from(registeredSpecs) as [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]];
+  return z.discriminatedUnion('component', specs);
 });
-
-/** All registered content template specs */
-const registeredSpecs = new Set<AnyContentTemplateSpec>(); //: AnyContentTemplateSpec[] = [];
-
-/**
- * Register additional content template specs
- *
- * @param specs Specs to add
- */
-export function registerContentTemplateSpecs<Args extends AnyContentTemplateSpec[]>(...specs: Args): void {
-  for (const spec of specs) {
-    registeredSpecs.add(spec);
-  }
-}
-
-/**
- * Gets all currently registered content template specs
- *
- * @returns An array of specs
- */
-export function getRegisteredContentTemplateSpecs(): AnyContentTemplateSpec[] {
-  return Array.from(registeredSpecs);
-}
