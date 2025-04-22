@@ -1,10 +1,12 @@
 @use '@angular/material' as mat;
 @use './fonts';
 @use './icons';
+@use './overrides/index' as overrides;
 @use './resets';
 @use './typography';
 
 @mixin theme($theme, $overrides: typography.$overrides) {
   @include mat.theme($theme, $overrides: $overrides);
   @include typography.custom-variants();
+  @include overrides.button-overrides();
 }

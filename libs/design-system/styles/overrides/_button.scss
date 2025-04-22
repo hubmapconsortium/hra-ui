@@ -1,0 +1,199 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include utils.use-font(label, medium);
+  @include mat.button-overrides(
+    (
+      // Basic buttons styles
+      text-label-text-color: vars.$on-tertiary-fixed,
+      text-state-layer-color: vars.$on-tertiary-fixed,
+      text-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
+      text-ripple-color: #{utils.with-alpha(vars.$secondary, 8%)},
+      text-container-height: 2.5rem,
+      text-container-shape: vars.$corner-extra-small,
+      text-horizontal-padding: 1rem,
+      text-icon-offset: 0,
+
+      // Filled buttons styles
+      filled-label-text-color: vars.$on-primary,
+      filled-state-layer-color: vars.$on-primary,
+      filled-container-color: vars.$tertiary,
+      filled-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
+      filled-disabled-container-color: #{utils.with-alpha(vars.$outline-variant, 38%)},
+      filled-ripple-color: #{utils.with-alpha(vars.$secondary, 12%)},
+      filled-container-height: 2.5rem,
+      filled-container-shape: vars.$corner-extra-small,
+      filled-horizontal-padding: 1rem,
+      filled-hover-state-layer-opacity: 0,
+      filled-icon-offset: 0
+    )
+  );
+
+  [mat-button] {
+    &.hra-button-variant-secondary.hra-cta-button {
+      @include mat.button-overrides(
+        (
+          text-container-shape: vars.$corner-none,
+        )
+      );
+    }
+
+    &.hra-button-size-small {
+      @include utils.use-font(label, small);
+
+      @include mat.button-overrides(
+        (
+          text-container-height: 1.75rem,
+          text-horizontal-padding: 0.5rem,
+        )
+      );
+    }
+
+    &.hra-button-variant-secondary:not(.hra-cta-button) {
+      @include mat.button-overrides(
+        (
+          text-label-text-color: vars.$secondary,
+          text-state-layer-color: vars.$secondary,
+        )
+      );
+    }
+
+    &.hra-cta-button:not(.hra-button-variant-secondary) {
+      $corner-width: 0.9375rem;
+      $corner-height: 0.8125rem;
+      $border-width: 0.15rem;
+      $x-multiplier: 0.373;
+      $y-multiplier: 0.4566;
+      /* Order of path: bottom left -> top left -> top right -> bottom right y-axis -> bottom right x-axis */
+      $background-clip-path: polygon(
+        0 100%,
+        0 0,
+        100% 0%,
+        100% calc(100% - #{$corner-height}),
+        calc(100% - #{$corner-width}) 100%
+      );
+      $overlay-clip-path: polygon(
+        $border-width calc(100% - $border-width),
+        $border-width $border-width,
+        calc(100% - $border-width) $border-width,
+        calc(100% - $border-width) calc(100% - $corner-height - $border-width * $y-multiplier),
+        calc(100% - $corner-width - $border-width * $x-multiplier) calc(100% - $border-width)
+      );
+
+      @include mat.button-overrides(
+        (
+          text-label-text-color: vars.$on-primary,
+          text-state-layer-color: vars.$on-primary,
+          text-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
+          text-ripple-color: #{utils.with-alpha(vars.$secondary, 12%)},
+
+          text-container-shape: vars.$corner-none,
+          text-hover-state-layer-opacity: 0,
+        )
+      );
+
+      background-color: vars.$tertiary;
+      clip-path: $background-clip-path;
+
+      .mat-ripple {
+        clip-path: $background-clip-path;
+      }
+
+      &:disabled {
+        background-color: utils.with-alpha(vars.$outline-variant, 38%);
+      }
+
+      &:hover:not(:active) {
+        background-color: transparent;
+        clip-path: unset;
+        box-shadow: unset;
+        filter: drop-shadow(0.0625rem 0.125rem 1rem utils.with-alpha(vars.$tertiary, 56%));
+
+        &:before {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          inset: 0;
+          background: vars.$tertiary;
+          clip-path: $background-clip-path;
+        }
+      }
+
+      &:focus-visible {
+        @include mat.button-overrides(
+          (
+            text-label-text-color: vars.$secondary,
+          )
+        );
+        outline: unset;
+
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: vars.$on-primary;
+          inset: 0;
+          z-index: -1;
+          clip-path: $overlay-clip-path;
+        }
+      }
+    }
+
+    &:focus-visible {
+      @include mat.button-overrides(
+        (
+          text-focus-state-layer-opacity: 0,
+          text-label-text-color: vars.$secondary,
+        )
+      );
+
+      @include utils.inset-outline(vars.$tertiary);
+    }
+  }
+
+  [mat-flat-button] {
+    &:hover:not(:active) {
+      box-shadow: 0.0625rem 0.125rem 1rem 0rem utils.with-alpha(vars.$tertiary, 56%);
+    }
+
+    &:focus-visible {
+      @include mat.button-overrides(
+        (
+          filled-label-text-color: vars.$secondary,
+          filled-container-color: transparent,
+          filled-focus-state-layer-opacity: 0,
+        )
+      );
+
+      @include utils.inset-outline(vars.$tertiary);
+    }
+  }
+
+  [mat-fab][extended] {
+    @include mat.fab-overrides(
+      (
+        foreground-color: vars.$on-background,
+        container-color: vars.$surface-container,
+        state-layer-color: vars.$on-background,
+        hover-state-layer-opacity: 8%,
+        focus-state-layer-opacity: 12%,
+        pressed-state-layer-opacity: 8%,
+      )
+    );
+
+    filter:
+      drop-shadow(0 0.0625rem 0.5rem utils.with-alpha(vars.$on-background, 30%)),
+      drop-shadow(0 0.25rem 0.5rem 0.1875rem utils.with-alpha(vars.$on-background, 15%));
+
+    &:hover:not(:active) {
+      filter:
+        drop-shadow(0 0.125rem 0.1875rem utils.with-alpha(vars.$on-background, 30%)),
+        drop-shadow(0 0.375rem 0.625rem 0.25rem utils.with-alpha(vars.$on-background, 15%));
+    }
+
+    &:focus-visible {
+      outline: unset;
+    }
+  }
+}
