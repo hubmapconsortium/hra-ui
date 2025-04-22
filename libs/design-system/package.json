@@ -19,6 +19,12 @@
     },
     "./styles/themes/light": {
       "sass": "./styles/_light-theme.scss"
+    },
+    "./styles/vars": {
+      "sass": "./styles/_vars.scss"
+    },
+    "./styles/overrides/button": {
+      "sass": "./styles/overrides/_button.scss"
     }
   },
   "peerDependencies": {
