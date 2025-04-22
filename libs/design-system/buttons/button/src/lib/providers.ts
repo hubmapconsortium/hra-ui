@@ -1,6 +1,5 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
-import { ButtonGlobalStylesComponent } from './global-styles.component';
 
 /**
  * Applies global styles to buttons
@@ -8,5 +7,5 @@ import { ButtonGlobalStylesComponent } from './global-styles.component';
  * @returns Button providers
  */
 export function provideButton(): EnvironmentProviders {
-  return makeEnvironmentProviders([provideStyleComponents(ButtonGlobalStylesComponent)]);
+  return makeEnvironmentProviders([provideStyleComponents()]);
 }
