@@ -10,16 +10,18 @@
     </div>
     <div class="page-sections">
       @for (year of years(); track year) {
-        <hra-page-section>
-          <hra-page-section-header>
-            <hra-section-link level="2" [anchor]="toAnchor(year)" underlined> {{ year }} </hra-section-link>
-          </hra-page-section-header>
-          <hra-page-section-content>
-            @for (pub of publications()[year]; track pub) {
-              <markdown class="pub-info" [data]="pub"></markdown>
-            }
-          </hra-page-section-content>
-        </hra-page-section>
+        @if (publications()[year].length > 0) {
+          <hra-page-section>
+            <hra-page-section-header>
+              <hra-section-link level="2" [anchor]="toAnchor(year)" underlined> {{ year }} </hra-section-link>
+            </hra-page-section-header>
+            <hra-page-section-content>
+              @for (pub of publications()[year]; track pub) {
+                <markdown class="pub-info" [data]="removeAuthorLinks(pub)"></markdown>
+              }
+            </hra-page-section-content>
+          </hra-page-section>
+        }
       }
     </div>
   </div>

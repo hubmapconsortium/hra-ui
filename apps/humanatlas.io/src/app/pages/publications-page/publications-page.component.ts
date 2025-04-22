@@ -28,6 +28,19 @@ export class PublicationsPageComponent {
   });
 
   /**
+   * Removes author links
+   * @param value HTML string
+   * @returns HTML string without author links
+   */
+  removeAuthorLinks(value: string): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(value, 'text/html');
+    const authorLinks = doc.body.querySelectorAll('a[href]:not([itemprop="url"])');
+    authorLinks.forEach((link) => link.replaceWith(link.textContent as string));
+    return doc.body.innerHTML;
+  }
+
+  /**
    * Formats id for anchor links. If value does not start with a letter, it will be prefixed with "id-".
    * @param value Id to format
    * @returns Formatted anchor id
