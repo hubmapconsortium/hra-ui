@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 /** Alignment options */
-export type Size = 'small' | 'large';
+export type SpinnerSize = 'small' | 'large';
 
 /** Color options */
-export type Color = 'dark' | 'light' | 'color';
+export type SpinnerColor = 'dark' | 'light' | 'color';
 
 /**
  * HRA Progress Spinner Component
@@ -17,17 +17,20 @@ export type Color = 'dark' | 'light' | 'color';
   templateUrl: './progress-spinner.component.html',
   styleUrl: './progress-spinner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': '"hra-spinner-color-" + color()',
+  },
 })
 export class ProgressSpinnerComponent {
   /**
    * Field for variant option
    */
-  readonly size = input.required<Size>();
+  readonly size = input<SpinnerSize>('large');
 
   /**
    * Field for color option
    */
-  readonly color = input.required<Color>();
+  readonly color = input.required<SpinnerColor>();
 
   /**
    * Computed field for the diameter of the spinner.

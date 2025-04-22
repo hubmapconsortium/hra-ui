@@ -3,7 +3,7 @@
 :host {
   display: block;
 
-  .hra-spinner-dark {
+  &.hra-spinner-color-dark {
     @include mat.progress-spinner-overrides(
       (
         active-indicator-color: var(--mat-sys-secondary),
@@ -11,7 +11,7 @@
     );
   }
 
-  .hra-spinner-light {
+  &.hra-spinner-color-light {
     @include mat.progress-spinner-overrides(
       (
         active-indicator-color: var(--mat-sys-on-secondary),
@@ -19,7 +19,7 @@
     );
   }
 
-  .hra-spinner-color {
+  &.hra-spinner-color-color {
     @include mat.progress-spinner-overrides(
       (
         active-indicator-color: var(--mat-sys-on-tertiary-fixed),
