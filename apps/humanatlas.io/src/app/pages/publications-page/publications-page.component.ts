@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { PageSectionModule } from '@hra-ui/design-system/content-templates/page-section';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -11,7 +11,7 @@ import { PublicationsPageData } from '../../resolvers/publications-page/publicat
  */
 @Component({
   selector: 'hra-publications-page',
-  imports: [HraCommonModule, PageSectionComponent, SectionLinkComponent, MarkdownModule],
+  imports: [HraCommonModule, PageSectionModule, SectionLinkComponent, MarkdownModule],
   templateUrl: './publications-page.component.html',
   styleUrl: './publications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
