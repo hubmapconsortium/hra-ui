@@ -87,7 +87,7 @@
 - type: count-card
   countCardInfo:
     - image: assets/images/consortia.svg
-      count: 17
+      count: 26
       text: consortia
       alt: Consortia
     - image: assets/images/experts.svg
