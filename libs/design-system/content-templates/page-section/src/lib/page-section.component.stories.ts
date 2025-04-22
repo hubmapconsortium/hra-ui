@@ -1,4 +1,3 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -25,7 +24,6 @@ const meta: Meta<PageSectionComponent> = {
         SectionLinkComponent,
         PageLabelComponent,
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }),
   ],
   parameters: {
@@ -44,10 +42,10 @@ export const PageLabelSection: Story = {
     props: args,
     template: `
     <hra-page-section>
-      <header-content>
+      <hra-page-section-header>
         <hra-page-label app="ftu" organ="blood" tagline="Page label"></hra-page-label>
-      </header-content>
-      <section-content>
+      </hra-page-section-header>
+      <hra-page-section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
           <li>Text always goes on top.</li>
@@ -57,7 +55,7 @@ export const PageLabelSection: Story = {
           Action
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
-      </section-content>
+      </hra-page-section-content>
     </hra-page-section>
     `,
     styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
@@ -72,12 +70,12 @@ export const BodySection: Story = {
     props: args,
     template: `
     <hra-page-section>
-      <header-content>
+      <hra-page-section-header>
         <hra-section-link level="2" anchor="section-label-in-sentence-case" underlined>
           ${args.text}
         </hra-section-link>
-      </header-content>
-      <section-content>
+      </hra-page-section-header>
+      <hra-page-section-content>
         This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
         <ul>
           <li>Components may be swapped out for this button set</li>
@@ -87,7 +85,7 @@ export const BodySection: Story = {
           Action
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
-      </section-content>
+      </hra-page-section-content>
     </hra-page-section>
     `,
     styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],
