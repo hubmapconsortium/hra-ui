@@ -21,9 +21,6 @@ export class PlainTooltipDirective {
   /** Size of the tooltip */
   readonly size = input<PlainTooltipSize>('medium', { alias: 'hraPlainTooltipSize' });
 
-  /** Optional tooltip name to set tooltip class for styling */
-  readonly tooltipName = input<string>('');
-
   /** Instance of MatTooltip */
   protected readonly tooltip = inject(MatTooltip);
 
@@ -32,7 +29,7 @@ export class PlainTooltipDirective {
     registerStyleComponents([PlainTooltipStylesComponent]);
 
     effect(() => {
-      this.tooltip.tooltipClass = ['hra-plain-tooltip', `hra-plain-tooltip-${this.size()}`, this.tooltipName()];
+      this.tooltip.tooltipClass = ['hra-plain-tooltip', `hra-plain-tooltip-${this.size()}`];
     });
   }
 }
