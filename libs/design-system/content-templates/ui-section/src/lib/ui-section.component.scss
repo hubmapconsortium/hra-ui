@@ -17,33 +17,9 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
-  }
 
-  .product-logo {
-    height: 5rem;
-    width: 5rem;
-  }
-
-  .ui-content-header {
-    display: flex;
-    flex-direction: column;
-    min-width: 19.25rem;
-    gap: 0.25rem;
-
-    h1 {
-      margin: 0;
+    .label {
       @include utils.use-font(headline, large);
-      color: var(--mat-sys-on-background);
-    }
-  }
-
-  .ui-content {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-
-    p {
-      margin: 0;
     }
   }
 
@@ -70,11 +46,6 @@
       max-width: 24.875rem;
       min-width: 0rem;
       width: 100%;
-    }
-
-    .ui-content {
-      flex-direction: column;
-      align-items: flex-start;
     }
   }
 

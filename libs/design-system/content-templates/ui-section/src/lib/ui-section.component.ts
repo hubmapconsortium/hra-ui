@@ -1,22 +1,16 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HraCommonModule } from '@hra-ui/common';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
-import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { AppLabelComponent } from '@hra-ui/design-system/app-label';
+import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
 
 /** UI Section component for displaying app information and status */
 @Component({
   selector: 'hra-ui-section',
-  imports: [
-    CommonModule,
-    HraCommonModule,
-    ProductLogoComponent,
-    SoftwareStatusIndicatorComponent,
-    ButtonsModule,
-    MatIcon,
-  ],
+  imports: [CommonModule, HraCommonModule, ButtonsModule, MatIcon, AppLabelComponent],
   templateUrl: './ui-section.component.html',
   styleUrl: './ui-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

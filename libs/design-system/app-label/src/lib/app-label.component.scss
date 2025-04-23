@@ -5,6 +5,7 @@
   max-width: 106.25rem;
   width: 100%;
   gap: 5rem;
+  @include utils.use-font(display, large);
 
   .product-logo {
     height: 5rem;
@@ -19,7 +20,8 @@
 
     h1 {
       margin: 0;
-      @include utils.use-font(headline, large);
+      font: inherit;
+      letter-spacing: inherit;
       color: var(--mat-sys-on-background);
     }
   }
