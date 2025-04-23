@@ -38,11 +38,11 @@ export class SliderBoxComponent {
   @ViewChild('sliderContent') sliderContent!: TemplateRef<unknown>;
 
   /** Overlay  of slider box component */
-  private overlay = inject(Overlay);
+  private readonly overlay = inject(Overlay);
   /** Element reference of slider box component */
-  private elementRef = inject(ElementRef);
+  private readonly elementRef = inject(ElementRef);
   /** View container reference of slider box component */
-  private viewContainerRef = inject(ViewContainerRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
   /** Overlay reference of slider box component */
   private overlayRef: OverlayRef | null = null;
 
