@@ -1,3 +1,5 @@
+@use './../../../styles/vars' as vars;
+
 :host {
   display: block;
   color: vars.$secondary;

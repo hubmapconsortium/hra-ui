@@ -1,3 +1,5 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   --mdc-dialog-container-color: white;
   display: block;

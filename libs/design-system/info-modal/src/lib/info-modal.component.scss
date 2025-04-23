@@ -1,3 +1,5 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   box-shadow: 0px 5px 1rem 0px rgb(from vars.$shadow r g b / 0.24);
