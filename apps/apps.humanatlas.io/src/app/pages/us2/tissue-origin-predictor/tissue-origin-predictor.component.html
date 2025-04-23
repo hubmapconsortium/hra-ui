@@ -86,6 +86,8 @@
     @if (file === undefined) {
       <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message"> </hra-error-indicator>
     }
-    <button mat-flat-button [disabled]="file === undefined" (click)="onPredictClicked()">Predict</button>
+    <button mat-flat-button [disabled]="file === undefined || isNavigating()" (click)="onPredictClicked()">
+      Predict
+    </button>
   </hra-workflow-card>
 </div>

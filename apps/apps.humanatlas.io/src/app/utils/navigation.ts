@@ -14,7 +14,7 @@ function isNavigationFinishEvent(event: Event): boolean {
 }
 
 /**
- * Navigation utility function to show progress bar
+ * Navigation utility function to show progress bar and loading states
  * @returns Boolean signal
  */
 export function isNavigating(): Signal<boolean> {
