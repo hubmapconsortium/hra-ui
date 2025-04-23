@@ -17,7 +17,7 @@
   .more-icon {
     display: flex;
   }
-
+  
   .predictions-table {
     background-color: vars.$secondary-container;
     border-collapse: collapse;
@@ -44,16 +44,15 @@
       .link {
         color: vars.$on-tertiary-container;
       }
-    }
 
-    .similarity-column {
-      text-align: center;
+      th {
+        color: var(--mat-sys-on-primary-container);
+        background-color: var(--mat-sys-surface-container);
+      }
+      td {
+        color: var(--mat-sys-inverse-surface);
+      }
     }
-  }
-
-  .table-overflow-container {
-    max-height: 22.625rem;
-    overflow-x: hidden;
   }
 
   // Remove default Material padding
@@ -69,7 +68,7 @@
 }
 
 ::ng-deep .hra-app table[matSort] .mat-sort-header-container {
-  max-width: 13rem;
+  max-width: 13rem !important;
 }
 
 ::ng-deep {

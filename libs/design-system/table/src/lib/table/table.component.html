@@ -1,0 +1,40 @@
+<ng-scrollbar hraScrollOverflowFade>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    [matSortDisabled]="!enableSort()"
+    aria-label="Table with sort function"
+  >
+    @for (column of columnIds(); track column) {
+      <ng-container [matColumnDef]="column">
+        @let label = columnLabels()[column];
+        @let isNumeric = numericColumns().has(column);
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          [class.numeric]="isNumeric"
+          [sortActionDescription]="`Sort by ${label}`"
+        >
+          {{ label }}
+        </th>
+        <td mat-cell *matCellDef="let element" [class.numeric]="isNumeric">
+          @if (element[column]['markdown']; as markdown) {
+            <markdown>{{ markdown }}</markdown>
+          } @else if (element[column]['url']) {
+            <a hraHyperlink [href]="element[column]['url']" target="_blank" rel="noopener noreferrer">
+              {{ element[column]['label'] }}
+            </a>
+          } @else {
+            {{ element[column] }}
+          }
+        </td>
+      </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="columnIds()"></tr>
+    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
+  </table>
+</ng-scrollbar>
