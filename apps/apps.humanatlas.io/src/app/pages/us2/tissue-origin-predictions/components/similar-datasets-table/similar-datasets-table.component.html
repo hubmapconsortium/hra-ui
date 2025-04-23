@@ -28,7 +28,7 @@
   </hra-workflow-card-actions>
 
   <!-- SIMILAR DATASETS TABLE -->
-  <ng-scrollbar class="table-overflow-container" hraScrollOverflowFade>
+  <ng-scrollbar class="table-overflow-container">
     <table mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">
       <caption>
         Table displaying similar anatomical structures
@@ -56,7 +56,7 @@
       <ng-container matColumnDef="cell_source">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset ID">Dataset ID</th>
         <td mat-cell *matCellDef="let element">
-          <a class="link" [href]="element.cell_source">{{ element.cell_source }}</a>
+          <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>
         </td>
       </ng-container>
       <ng-container matColumnDef="cell_source_link">
@@ -64,11 +64,11 @@
           Dataset Link
         </th>
         <td mat-cell *matCellDef="let element">
-          <a class="link" [href]="element.cell_source_link">{{ element.cell_source_link }}</a>
+          <a hraHyperlink [href]="element.cell_source_link">{{ element.cell_source_link }}</a>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </ng-scrollbar>

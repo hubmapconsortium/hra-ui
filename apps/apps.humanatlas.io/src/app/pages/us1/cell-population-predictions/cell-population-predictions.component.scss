@@ -70,10 +70,6 @@ button {
       }
       td {
         color: var(--mat-sys-inverse-surface);
-
-        &:last-child a {
-          color: var(--mat-sys-on-tertiary-container);
-        }
       }
     }
   }

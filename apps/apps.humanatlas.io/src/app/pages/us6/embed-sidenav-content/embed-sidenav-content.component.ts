@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
 import { FlatCardModule } from '@hra-ui/design-system/cards/flat-card';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /** Embed Sidenav Content Component */
 @Component({
@@ -31,6 +32,9 @@ export class EmbedSidenavContentComponent {
   /** Sanitizer service */
   private readonly sanitizer = inject(DomSanitizer);
 
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
+
   /** Emits true when close button is clicked */
   readonly closeSidenav = output();
 
@@ -40,5 +44,10 @@ export class EmbedSidenavContentComponent {
   /** Trigerred when user clicks on the Documentation button */
   openDocumentLink() {
     window.open(this.documentLink(), '_blank');
+  }
+
+  /** Trigerred when user clicks on the Copy button */
+  openCopiedSnackbar() {
+    this.snackbar.open('Copied to clipboard', '', false, 'start', { duration: 5000 });
   }
 }
