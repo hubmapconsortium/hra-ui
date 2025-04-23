@@ -103,7 +103,7 @@ export class TissueOriginPredictorComponent {
   private readonly router = inject(Router);
 
   /** Signal that determines the navigation status of the router */
-  protected readonly isNavigating = isNavigating();
+  protected readonly isNavigating = isNavigating(0);
 
   /** Use sample CSV File */
   onUseSampleClicked(): void {
