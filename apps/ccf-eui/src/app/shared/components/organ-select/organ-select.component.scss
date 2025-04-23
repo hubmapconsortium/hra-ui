@@ -1,8 +1,8 @@
 :host {
   .organ-form-field {
     width: 100%;
-    --mdc-filled-text-field-container-color: vars.$surface-container;
-    --mdc-filled-text-field-label-text-color: vars.$on-primary-fixed;
+    --mdc-filled-text-field-container-color: #{vars.$surface-container};
+    --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed};
     --mat-form-field-container-height: 3rem;
     --mat-form-field-filled-with-label-container-padding-top: 1rem;
     --mat-form-field-filled-with-label-container-padding-bottom: 0rem;

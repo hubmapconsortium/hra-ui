@@ -1,6 +1,6 @@
 :host {
-  --mdc-filled-text-field-container-color: vars.$surface-container;
-  --mdc-filled-text-field-label-text-color: vars.$on-primary-fixed;
+  --mdc-filled-text-field-container-color: #{vars.$surface-container};
+  --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed};
   --mat-form-field-container-height: 3rem;
   --mat-form-field-filled-with-label-container-padding-top: 1rem;
   --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
@@ -66,7 +66,7 @@
   }
 
   .error {
-    --mdc-filled-text-field-focus-active-indicator-color: vars.$error;
+    --mdc-filled-text-field-focus-active-indicator-color: #{vars.$error};
 
     mat-label {
       color: vars.$error;
@@ -75,7 +75,7 @@
 }
 
 ::ng-deep .mat-mdc-autocomplete-panel {
-  --mat-autocomplete-background-color: vars.$surface-container-low;
+  --mat-autocomplete-background-color: #{vars.$surface-container-low};
   overflow: hidden !important;
   display: flex;
   flex-direction: column;

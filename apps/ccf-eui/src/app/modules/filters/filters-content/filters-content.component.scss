@@ -5,7 +5,7 @@
     'form'
     'buttons';
 
-  --mdc-filled-text-field-container-color: vars.$surface-container;
+  --mdc-filled-text-field-container-color: #{vars.$surface-container};
 
   form {
     grid-area: form;
@@ -83,7 +83,7 @@
 }
 
 .dropdown-option {
-  --mdc-list-list-item-label-text-color: vars.$primary !important;
+  --mdc-list-list-item-label-text-color: #{vars.$primary} !important;
   font: vars.$label-medium !important;
   min-height: 3rem !important;
   outline: none !important;

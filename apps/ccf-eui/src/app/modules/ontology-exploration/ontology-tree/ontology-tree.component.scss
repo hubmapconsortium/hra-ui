@@ -1,5 +1,5 @@
 :host {
-  --hra-scroll-overflow-fade-color: vars.$surface-container-low;
+  --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
 
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@
   }
 
   mat-tree {
-    --mat-tree-container-background-color: vars.$surface-container-low;
+    --mat-tree-container-background-color: #{vars.$surface-container-low};
     padding-left: 0.75rem;
   }
 
@@ -53,7 +53,7 @@
   }
 
   .biomarkers-toggle {
-    --mat-standard-button-toggle-selected-state-text-color: vars.$secondary;
+    --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
     display: flex;
     align-items: center;
     min-height: 2.25rem;

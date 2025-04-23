@@ -82,8 +82,8 @@
 
       .slider {
         width: 100%;
-        --mdc-slider-handle-color: vars.$secondary;
-        --mdc-slider-active-track-color: vars.$secondary;
+        --mdc-slider-handle-color: #{vars.$secondary};
+        --mdc-slider-active-track-color: #{vars.$secondary};
         --mdc-slider-inactive-track-color: #acb5c3;
 
         margin: 0 1rem;
@@ -143,5 +143,5 @@
 
 ::ng-deep .spatial-search-ui {
   --mdc-dialog-container-shape: 0.75rem;
-  --mdc-dialog-container-color: vars.$surface-container-low;
+  --mdc-dialog-container-color: #{vars.$surface-container-low};
 }
