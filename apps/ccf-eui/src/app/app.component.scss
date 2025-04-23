@@ -2,7 +2,7 @@
 
 :host {
   .sidenav-content {
-    --mat-sidenav-container-background-color: vars.$surface-container-low;
+    --mat-sidenav-container-background-color: #{vars.$surface-container-low};
     width: fit-content;
 
     .sidenav-header {
@@ -63,7 +63,7 @@
   }
 
   mat-progress-bar {
-    --mdc-linear-progress-active-indicator-color: vars.$tertiary;
+    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
     --mdc-linear-progress-track-color: transparent;
     grid-area: progress;
   }
@@ -159,7 +159,7 @@
     }
 
     mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-text-color: vars.$secondary;
+      --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
       width: 100%;
 
       mat-button-toggle {
@@ -201,6 +201,6 @@
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-  --mdc-snackbar-container-color: vars.$surface-dim;
-  --mdc-snackbar-supporting-text-color: vars.$secondary;
+  --mdc-snackbar-container-color: #{vars.$surface-dim};
+  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
 }
