@@ -63,9 +63,9 @@
     .cards {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
       max-width: 82rem;
-      gap: 3rem;
+      gap: 2.5rem;
     }
   }
 }

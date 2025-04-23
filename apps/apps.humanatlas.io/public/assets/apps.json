@@ -48,8 +48,8 @@
               "imagePath": "assets/ui-images/cell_population_predictor.png",
               "logoPath": "cell-population-predictor",
               "appStatus": "Preview",
-              "appUrl": "https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/",
-              "documentLink": "https://humanatlas.io/hra-organ-gallery"
+              "appUrl": "https://apps.humanatlas.io/us1/",
+              "documentLink": "https://humanatlas.io/user-story/1"
             },
             {
               "tagline": "Tissue Origin Predictor",
@@ -80,7 +80,7 @@
               "imagePath": "assets/ui-images/rui.png",
               "logoPath": "3d-organ",
               "appUrl": "https://apps.humanatlas.io/rui/",
-              "documentLink": "https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
+              "documentLink": "https://humanatlas.io/registration-user-interface"
             },
             {
               "tagline": "ASCT+B Reporter",
@@ -88,7 +88,7 @@
               "imagePath": "assets/ui-images/asctb-reporter.png",
               "logoPath": "asctb-reporter",
               "appUrl": "https://apps.humanatlas.io/asctb-reporter/",
-              "documentLink": "https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#asctb-reporter"
+              "documentLink": "https://humanatlas.io/asctb-reporter"
             }
           ]
         }

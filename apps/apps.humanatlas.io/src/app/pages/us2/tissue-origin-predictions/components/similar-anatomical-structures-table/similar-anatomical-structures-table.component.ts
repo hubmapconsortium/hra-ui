@@ -10,6 +10,7 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { CellSummaryReport, SourceSimilarityRow } from '@hra-api/ng-client';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import saveAs from 'file-saver';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Tooltip content */
 const TOOLTIP_CONTENT = `Cell Population: Number of cells per cell type in a tissue block, anatomical structure,
@@ -30,6 +31,7 @@ cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datase
     MatSortModule,
     ScrollingModule,
     TooltipCardComponent,
+    TextHyperlinkDirective,
   ],
   templateUrl: './similar-anatomical-structures-table.component.html',
   styleUrl: './similar-anatomical-structures-table.component.scss',

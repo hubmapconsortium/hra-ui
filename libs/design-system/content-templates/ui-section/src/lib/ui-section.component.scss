@@ -104,4 +104,17 @@
       max-width: 43.75rem;
     }
   }
+
+  @media (min-width: 1000px) and (max-width: 1150px) {
+    max-width: 63.75rem;
+    width: 100%;
+    gap: 4rem;
+    .app-image {
+      max-width: 28.75rem;
+      width: 100%;
+    }
+    .ui-content-main {
+      max-width: 29.375rem;
+    }
+  }
 }
