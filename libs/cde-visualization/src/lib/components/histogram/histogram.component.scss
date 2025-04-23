@@ -3,11 +3,11 @@
   height: fit-content;
   position: sticky;
   --mdc-filled-button-container-height: 2rem;
-  --mat-expansion-container-background-color: vars.$on-primary;
+  --mat-expansion-container-background-color: #{vars.$on-primary};
   --mat-expansion-header-hover-state-layer-color: transparent;
   max-height: 22.5rem;
   --mat-expansion-container-shape: 0;
-  --mat-expansion-container-background-color: vars.$surface-container-low;
+  --mat-expansion-container-background-color: #{vars.$surface-container-low};
 
   ::ng-deep {
     .header {
@@ -31,7 +31,7 @@
       }
 
       .legend {
-        --hra-scroll-overflow-fade-color: vars.$surface-container-low;
+        --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
         overflow-y: auto;
         flex-grow: 1;
         margin-left: 0.125rem;

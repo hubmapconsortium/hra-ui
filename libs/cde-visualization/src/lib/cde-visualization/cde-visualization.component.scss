@@ -13,7 +13,7 @@
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    --mdc-linear-progress-active-indicator-color: vars.$tertiary;
+    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
   }
 
   .header {
@@ -103,8 +103,8 @@
 }
 
 ::ng-deep .download-snackbar-panel {
-  --mdc-snackbar-container-color: vars.$surface-container;
-  --mdc-snackbar-supporting-text-color: vars.$secondary;
+  --mdc-snackbar-container-color: #{vars.$surface-container};
+  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
   translate: 0 -2rem;
   text-align: center;
 

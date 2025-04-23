@@ -1,10 +1,10 @@
 :host {
   mat-form-field {
-    --mdc-filled-text-field-active-indicator-color: vars.$primary;
-    --mdc-filled-text-field-focus-active-indicator-color: vars.$primary;
-    --mdc-filled-text-field-input-text-color: vars.$primary;
-    --mat-form-field-trailing-icon-color: vars.$primary;
-    --mat-form-field-leading-icon-color: vars.$primary;
+    --mdc-filled-text-field-active-indicator-color: #{vars.$primary};
+    --mdc-filled-text-field-focus-active-indicator-color: #{vars.$primary};
+    --mdc-filled-text-field-input-text-color: #{vars.$primary};
+    --mat-form-field-trailing-icon-color: #{vars.$primary};
+    --mat-form-field-leading-icon-color: #{vars.$primary};
     width: 100%;
   }
 
@@ -30,8 +30,8 @@
 
   mat-checkbox {
     --mdc-checkbox-state-layer-size: 3rem;
-    --mdc-checkbox-selected-icon-color: vars.$on-tertiary-fixed;
-    --mdc-checkbox-selected-focus-icon-color: vars.$on-tertiary-fixed;
+    --mdc-checkbox-selected-icon-color: #{vars.$on-tertiary-fixed};
+    --mdc-checkbox-selected-focus-icon-color: #{vars.$on-tertiary-fixed};
 
     ::ng-deep label {
       font: vars.$label-medium;

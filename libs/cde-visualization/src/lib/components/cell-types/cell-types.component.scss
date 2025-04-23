@@ -3,17 +3,17 @@
 
 :host {
   --mat-table-background-color: white;
-  --mdc-checkbox-unselected-icon-color: vars.$secondary;
-  --mdc-checkbox-selected-icon-color: vars.$secondary;
-  --mdc-checkbox-selected-checkmark-color: vars.$secondary;
+  --mdc-checkbox-unselected-icon-color: #{vars.$secondary};
+  --mdc-checkbox-selected-icon-color: #{vars.$secondary};
+  --mdc-checkbox-selected-checkmark-color: #{vars.$secondary};
   --mdc-checkbox-state-layer-size: 28px;
-  --mat-sort-arrow-color: vars.$secondary;
+  --mat-sort-arrow-color: #{vars.$secondary};
   --mat-table-row-item-container-height: 1.75rem;
   --mat-table-row-item-outline-width: 0;
   --mat-table-header-headline-color: var(--mat-sort-arrow-color);
   --mdc-filled-button-container-height: 2rem;
   --mat-table-header-container-height: 2rem;
-  --mat-menu-item-label-text-color: vars.$primary;
+  --mat-menu-item-label-text-color: #{vars.$primary};
   border-color: vars.$outline-variant;
   padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
@@ -91,7 +91,7 @@
   }
 
   .table-overflow-container {
-    --hra-scroll-overflow-fade-color: vars.$surface-container-low;
+    --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
     overflow: auto;
     grid-area: table;
     height: 100%;
