@@ -13,6 +13,10 @@ h1 {
   margin: 0;
 }
 
+.title {
+  color: var(--mat-sys-on-secondary-container);
+}
+
 .info-text {
   font: vars.$body-large;
   letter-spacing: vars.$body-large-tracking;
@@ -69,19 +73,23 @@ h1 {
 }
 
 ::ng-deep {
-  .cdk-overlay-connected-position-bounding-box {
-    margin-left: 0.5rem;
-  }
+  .eui-overlay-container {
+    width: 100vw;
 
-  .eui-overlay-container > .ng-star-inserted {
-    margin-bottom: 3rem;
-  }
+    & > div {
+      width: 100vw;
+    }
 
-  .cdk-overlay-pane .mat-mdc-menu-panel {
-    max-width: 22rem;
-    margin-left: 0.05rem;
-    .mat-mdc-menu-content {
-      padding: 0;
+    & > .ng-star-inserted {
+      margin-bottom: 3rem;
+    }
+
+    &.cdk-overlay-pane .mat-mdc-menu-panel {
+      max-width: 22rem;
+      margin-left: 0.05rem;
+      .mat-mdc-menu-content {
+        padding: 0;
+      }
     }
   }
 }
