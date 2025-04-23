@@ -22,9 +22,6 @@
     },
     "./styles/vars": {
       "sass": "./styles/_vars.scss"
-    },
-    "./styles/overrides/button": {
-      "sass": "./styles/overrides/_button.scss"
     }
   },
   "peerDependencies": {
