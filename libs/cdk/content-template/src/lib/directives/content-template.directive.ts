@@ -5,11 +5,13 @@ import {
   inject,
   input,
   reflectComponentType,
+  Renderer2,
   Type,
   ViewContainerRef,
 } from '@angular/core';
 import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
 import { AnyContentTemplate, Classes, Styles } from '../types/content-template.schema';
+import { classIter, styleIter } from '../utils/iters';
 
 /** A structural directive that renders a content template component */
 @Directive({
@@ -28,7 +30,7 @@ export class ContentTemplateOutletDirective {
   constructor() {
     effect((onCleanup) => {
       const ref = this.render(this.data());
-      onCleanup(() => ref?.destroy());
+      onCleanup(() => ref.destroy());
     });
   }
 
@@ -36,9 +38,9 @@ export class ContentTemplateOutletDirective {
    * Renders the content template for the data
    *
    * @param data Data to render into a content template component
-   * @returns A reference to the rendered component or undefined on failure
+   * @returns A reference to the rendered component
    */
-  private render(data: AnyContentTemplate): ComponentRef<unknown> | undefined {
+  private render(data: AnyContentTemplate): ComponentRef<unknown> {
     const [component, parsedData] = this.selectComponentWithData(data);
     const ref = this.viewContainerRef.createComponent(component);
 
@@ -72,7 +74,10 @@ export class ContentTemplateOutletDirective {
    * @param data Component data
    */
   private setClasses(ref: ComponentRef<unknown>, classes: Classes | undefined): void {
-    // TODO set classes
+    const renderer = ref.injector.get(Renderer2);
+    for (const cls of classIter(classes)) {
+      renderer.addClass(ref.location, cls);
+    }
   }
 
   /**
@@ -82,7 +87,10 @@ export class ContentTemplateOutletDirective {
    * @param data Component data
    */
   private setStyles(ref: ComponentRef<unknown>, styles: Styles | undefined): void {
-    // TODO set styles
+    const renderer = ref.injector.get(Renderer2);
+    for (const [style, value] of styleIter(styles)) {
+      renderer.setStyle(ref.location, style, value);
+    }
   }
 
   /**
