@@ -33,10 +33,10 @@ export const Default: Story = {
       `.placeholder {
         height: 3rem;
         text-align: center;
-        font: var(--mat-sys-display-small);
-        letter-spacing: var(--mat-sys-display-small-tracking);
-        color: var(--mat-sys-tertiary);
-        background: var(--mat-sys-outline-variant);
+        font: vars.$display-small;
+        letter-spacing: vars.$display-small-tracking;
+        color: vars.$tertiary;
+        background: vars.$outline-variant;
       }`,
     ],
   }),

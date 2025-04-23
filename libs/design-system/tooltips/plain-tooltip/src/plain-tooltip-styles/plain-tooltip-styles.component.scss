@@ -1,9 +1,10 @@
 @use '../../../../../design-system/styles/utils';
+@use '../../../../../design-system/styles/vars' as vars;
 
 @include utils.global-styles() {
   .hra-plain-tooltip {
-    --mdc-plain-tooltip-supporting-text-color: var(--mat-sys-on-primary);
-    --mdc-plain-tooltip-container-color: color-mix(in srgb, var(--mat-sys-secondary) 96%, transparent);
+    --mdc-plain-tooltip-supporting-text-color: vars.$on-primary;
+    --mdc-plain-tooltip-container-color: color-mix(in srgb, vars.$secondary 96%, transparent);
 
     .mat-mdc-tooltip-surface {
       padding: 0.25rem 0.5rem;
@@ -14,13 +15,13 @@
 
   .hra-plain-tooltip-medium {
     .mat-mdc-tooltip-surface {
-      font: var(--mat-sys-label-medium);
+      font: vars.$label-medium;
     }
   }
 
   .hra-plain-tooltip-small {
     .mat-mdc-tooltip-surface {
-      font: var(--mat-sys-label-small);
+      font: vars.$label-small;
     }
   }
 }

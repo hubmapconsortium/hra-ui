@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   height: 100%;
@@ -5,8 +7,8 @@
   .card-actions {
     display: flex;
     height: 4.5rem;
-    border-top: 0.0625rem solid var(--mat-sys-outline-variant);
-    background-color: var(--mat-sys-surface-container-low);
+    border-top: 0.0625rem solid vars.$outline-variant;
+    background-color: vars.$surface-container-low;
     padding: 1rem;
 
     .filler {

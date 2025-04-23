@@ -11,7 +11,7 @@
 
     &.selected {
       z-index: 1;
-      background: color-mix(in srgb, var(--mat-sys-tertiary) 20%, transparent);
+      background: color-mix(in srgb, vars.$tertiary 20%, transparent);
     }
 
     .opacity-icon {
@@ -25,8 +25,8 @@
     }
 
     .item-name {
-      font: var(--mat-sys-label-small);
-      color: var(--mat-sys-primary);
+      font: vars.$label-small;
+      color: vars.$primary;
       user-select: none;
       white-space: nowrap;
       overflow: hidden;

@@ -8,8 +8,8 @@
     --mat-icon-button-hover-state-layer-opacity: 0.08;
     --mat-icon-button-pressed-state-layer-opacity: 0.12;
     --mat-icon-button-focus-state-layer-opacity: 0.12;
-    --mdc-icon-button-icon-color: var(--mat-sys-secondary);
-    --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
+    --mdc-icon-button-icon-color: vars.$secondary;
+    --mat-icon-button-state-layer-color: vars.$secondary;
 
     mat-icon {
       width: var(--mdc-icon-button-icon-size);
@@ -23,18 +23,18 @@
     }
 
     &.hra-icon-button-variant-light {
-      --mdc-icon-button-icon-color: var(--mat-sys-on-primary);
-      --mat-icon-button-state-layer-color: var(--mat-sys-on-primary);
+      --mdc-icon-button-icon-color: vars.$on-primary;
+      --mat-icon-button-state-layer-color: vars.$on-primary;
     }
 
     &.hra-icon-button-variant-dark {
-      --mdc-icon-button-icon-color: var(--mat-sys-secondary);
-      --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
+      --mdc-icon-button-icon-color: vars.$secondary;
+      --mat-icon-button-state-layer-color: vars.$secondary;
     }
 
     &.hra-icon-button-variant-color {
-      --mdc-icon-button-icon-color: var(--mat-sys-on-tertiary-fixed);
-      --mat-icon-button-state-layer-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-icon-button-icon-color: vars.$on-tertiary-fixed;
+      --mat-icon-button-state-layer-color: vars.$on-tertiary-fixed;
     }
   }
 }

@@ -14,8 +14,8 @@
 
   mat-form-field {
     width: 5rem;
-    --mdc-filled-text-field-input-text-color: var(--mat-sys-on-primary-fixed-variant);
-    --mdc-filled-text-field-label-text-color: var(--mat-sys-on-primary-fixed-variant);
+    --mdc-filled-text-field-input-text-color: vars.$on-primary-fixed-variant;
+    --mdc-filled-text-field-label-text-color: vars.$on-primary-fixed-variant;
 
     ::ng-deep .mdc-floating-label {
       transform: translateY(-100%);
@@ -25,7 +25,7 @@
   .slider-container {
     display: flex;
     align-items: center;
-    background: var(--mat-sys-on-primary);
+    background: vars.$on-primary;
     border-radius: 0.5rem;
     box-shadow: 0px 5px 4px 0px #201e3d29;
     z-index: 1;
@@ -33,9 +33,9 @@
     translate: 1rem;
 
     mat-slider {
-      --mdc-slider-active-track-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-slider-active-track-color: vars.$on-tertiary-fixed;
       --mdc-slider-inactive-track-color: #acb5c3;
-      --mdc-slider-handle-color: var(--mat-sys-on-tertiary-fixed);
+      --mdc-slider-handle-color: vars.$on-tertiary-fixed;
       --mdc-slider-active-track-height: 2px;
       --mdc-slider-inactive-track-height: 2px;
       width: 11.5rem;

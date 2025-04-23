@@ -1,21 +1,22 @@
 @use '../../../../styles/utils';
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 @include utils.global-styles() {
   table[matSort] {
-    --mat-sort-arrow-color: var(--mat-sys-secondary);
-    --mat-table-background-color: var(--mat-sys-surface-container-low);
+    --mat-sort-arrow-color: vars.$secondary;
+    --mat-table-background-color: vars.$surface-container-low;
     --mat-table-header-container-height: 2rem;
     --mat-table-row-item-container-height: 2rem;
 
     th,
     tr > td {
       padding: 0 0.5rem;
-      font: var(--mat-sys-label-medium);
-      letter-spacing: var(--mat-sys-label-medium-tracking);
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
     }
 
     th {
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
       line-height: normal;
     }
 
@@ -29,7 +30,7 @@
       max-width: 4.375rem;
 
       &:focus-visible {
-        border-color: var(--mat-sys-secondary);
+        border-color: vars.$secondary;
       }
 
       .mat-sort-header-arrow {

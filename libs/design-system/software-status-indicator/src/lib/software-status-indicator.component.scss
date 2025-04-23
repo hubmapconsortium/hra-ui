@@ -1,12 +1,14 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   .app-description {
-    font: var(--mat-sys-label-micro);
-    letter-spacing: var(--mat-sys-label-micro-tracking);
+    font: vars.$label-micro;
+    letter-spacing: vars.$label-micro-tracking;
     border-radius: 0.125rem;
     width: fit-content;
     padding: 0.125rem 0.25rem;
-    color: var(--mat-sys-on-tertiary-fixed);
-    background: rgb(from var(--mat-sys-on-tertiary-container) r g b / 0.08);
+    color: vars.$on-tertiary-fixed;
+    background: rgb(from vars.$on-tertiary-container r g b / 0.08);
     cursor: default;
   }
 }

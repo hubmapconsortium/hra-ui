@@ -1,23 +1,24 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   .mat-mdc-menu-panel {
     --mat-menu-container-shape: 0.5rem;
-    --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.16);
+    --mat-app-elevation-shadow-level-2: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.16);
     --mat-menu-item-with-icon-leading-spacing: 1rem;
     --mat-menu-item-with-icon-trailing-spacing: 1rem;
 
-    --mat-menu-item-label-text-color: var(--mat-sys-secondary);
-    --mat-menu-item-icon-color: var(--mat-sys-secondary);
+    --mat-menu-item-label-text-color: vars.$secondary;
+    --mat-menu-item-icon-color: vars.$secondary;
 
-    --mat-menu-container-color: var(--mat-sys-surface-container-low);
-    --mat-menu-item-hover-state-layer-color: rgb(from var(--mat-sys-secondary) r g b / 0.08); // hovered state
-    --mat-menu-item-focus-state-layer-color: rgb(from var(--mat-sys-tertiary) r g b / 0.2); // selected state
+    --mat-menu-container-color: vars.$surface-container-low;
+    --mat-menu-item-hover-state-layer-color: rgb(from vars.$secondary r g b / 0.08); // hovered state
+    --mat-menu-item-focus-state-layer-color: rgb(from vars.$tertiary r g b / 0.2); // selected state
 
-    --mat-menu-item-label-text-tracking: var(--mat-sys-label-medium-tracking);
-    --mat-menu-item-label-text-weight: var(--mat-sys-label-medium-weight);
-    --mat-menu-item-label-text-size: var(--mat-sys-label-medium-size);
-    --mat-menu-item-label-text-line-height: var(--mat-sys-label-medium-line-height);
+    --mat-menu-item-label-text-tracking: vars.$label-medium-tracking;
+    --mat-menu-item-label-text-weight: vars.$label-medium-weight;
+    --mat-menu-item-label-text-size: vars.$label-medium-size;
+    --mat-menu-item-label-text-line-height: vars.$label-medium-line-height;
 
     button {
       min-width: 12rem;
@@ -36,13 +37,13 @@
 
     // focused state
     .cdk-keyboard-focused {
-      background-color: var(--mat-sys-on-primary) !important;
-      border: 0.125rem solid var(--mat-sys-tertiary);
+      background-color: vars.$on-primary !important;
+      border: 0.125rem solid vars.$tertiary;
     }
 
     // selected state
     .mat-mdc-menu-item-highlighted {
-      background-color: rgb(from var(--mat-sys-tertiary) r g b / 0.2);
+      background-color: rgb(from vars.$tertiary r g b / 0.2);
     }
   }
 }

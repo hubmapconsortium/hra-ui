@@ -1,9 +1,11 @@
+@use '../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   background: linear-gradient(
     to bottom,
-    var(--mat-sys-surface-container-high),
-    var(--mat-sys-surface-container-lowest)
+    vars.$surface-container-high,
+    vars.$surface-container-lowest
   );
 
   .content {

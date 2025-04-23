@@ -1,4 +1,5 @@
 @use '../../../../../styles/utils';
+@use '../../../../../styles/vars' as vars;
 
 $item-height: 2.5rem;
 $item-horizontal-padding: 1.5rem;
@@ -37,7 +38,7 @@ $item-vertical-padding: 0.375rem;
   .group-description,
   .subgroup-label {
     align-content: center;
-    color: var(--mat-sys-on-primary-fixed);
+    color: vars.$on-primary-fixed;
   }
 
   .subgroup-label {

@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   width: 100%;
@@ -8,9 +10,9 @@
 
 .info-text {
   margin-top: 3.5rem;
-  font: var(--mat-sys-body-large);
-  letter-spacing: var(--mat-sys-body-large-tracking);
-  color: var(--mat-sys-on-secondary-container);
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-container;
 }
 
 .cards {
@@ -27,7 +29,7 @@
   }
 
   .card-text {
-    color: var(--mat-sys-inverse-surface);
+    color: vars.$inverse-surface;
     margin: 0;
   }
 
@@ -51,8 +53,8 @@
 
   .card {
     width: 27rem;
-    font: var(--mat-sys-label-large);
-    letter-spacing: var(--mat-sys-label-large-tracking);
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
 
     &-1 {
       .buttons {
@@ -74,12 +76,12 @@
   .tooltip-panel {
     background-color: white;
     margin-left: 0.5rem;
-    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
     border-radius: 0.5rem;
     max-width: 21rem;
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
-    color: var(--mat-sys-primary);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
   }
 }
 

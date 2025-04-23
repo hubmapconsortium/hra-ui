@@ -2,8 +2,8 @@
   display: block;
 
   .subheader {
-    font: var(--mat-sys-title-small);
-    color: var(--mat-sys-primary);
+    font: vars.$title-small;
+    color: vars.$primary;
     margin-bottom: 1rem;
   }
 

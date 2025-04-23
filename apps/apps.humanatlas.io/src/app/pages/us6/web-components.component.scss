@@ -1,9 +1,10 @@
 @use '@angular/material' as mat;
 @use 'utils';
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
-  background: linear-gradient(180deg, var(--mat-sys-surface-dim) 0%, #ffffff 100%);
+  background: linear-gradient(180deg, vars.$surface-dim 0%, #ffffff 100%);
 
   .content-container {
     transition: 0.3s ease-out;
@@ -20,19 +21,19 @@
     gap: 1.25rem;
 
     h1 {
-      color: var(--mat-sys-on-background);
+      color: vars.$on-background;
       margin: 0;
       @include utils.use-font(title, large);
-      letter-spacing: var(--mat-sys-display-large-tracking);
+      letter-spacing: vars.$display-large-tracking;
     }
   }
 
   .description {
     @include utils.use-font(body, large);
-    color: var(--mat-sys-on-secondary-container);
+    color: vars.$on-secondary-container;
     padding-top: 3.5rem;
     margin: 0;
-    letter-spacing: var(--mat-sys-body-large-tracking);
+    letter-spacing: vars.$body-large-tracking;
   }
 
   .card-container {
@@ -40,14 +41,14 @@
     max-width: 24.5rem;
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.24);
-    background-color: var(--mat-sys-secondary-container);
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
+    background-color: vars.$secondary-container;
 
     p {
       margin: 0 0 1rem 0;
-      color: var(--mat-sys-on-background);
+      color: vars.$on-background;
       @include utils.use-font(title, medium);
-      letter-spacing: var(--mat-sys-title-medium-tracking);
+      letter-spacing: vars.$title-medium-tracking;
     }
 
     .organ-select {
@@ -87,10 +88,10 @@
 
   @include mat.tabs-overrides(
     (
-      active-indicator-color: var(--mat-sys-on-tertiary-fixed),
-      active-ripple-color: var(--mat-sys-on-tertiary-fixed),
-      active-focus-indicator-color: var(--mat-sys-on-tertiary-fixed),
-      active-hover-indicator-color: var(--mat-sys-on-tertiary-fixed),
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-ripple-color: vars.$on-tertiary-fixed,
+      active-focus-indicator-color: vars.$on-tertiary-fixed,
+      active-hover-indicator-color: vars.$on-tertiary-fixed,
       active-indicator-height: 0.125rem,
     )
   );

@@ -26,13 +26,13 @@
 
       .name {
         @include utils.use-font(title, medium);
-        color: var(--mat-sys-secondary);
+        color: vars.$secondary;
         margin-bottom: 0.5rem;
       }
 
       .description {
         @include utils.use-font(body, large);
-        color: var(--mat-sys-on-secondary-fixed);
+        color: vars.$on-secondary-fixed;
       }
     }
 

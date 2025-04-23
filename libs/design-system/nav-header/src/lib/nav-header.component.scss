@@ -1,6 +1,6 @@
 :host {
   display: block;
-  color: var(--mat-sys-secondary);
+  color: vars.$secondary;
   width: 100%;
   z-index: 2;
   --mat-sidenav-content-background-color: transparent;
@@ -11,21 +11,21 @@
 
   .container {
     height: 100%;
-    font: var(--mat-sys-headline-small);
-    letter-spacing: var(--mat-sys-headline-small-tracking);
+    font: vars.$headline-small;
+    letter-spacing: vars.$headline-small-tracking;
   }
 
   .header {
     display: flex;
     align-items: center;
-    font: var(--mat-sys-title-small);
+    font: vars.$title-small;
     height: 4.5rem;
     padding-right: 0.5rem;
     padding-left: 1rem;
 
     .sidenav-title {
       vertical-align: text-bottom;
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
     }
   }
 
@@ -40,7 +40,7 @@
     .main {
       display: flex;
       align-items: center;
-      background-color: var(--mat-sys-surface-container-high);
+      background-color: vars.$surface-container-high;
       height: 4.5rem;
       padding: 0 0.5rem 0 0.75rem;
       pointer-events: all;
@@ -55,7 +55,7 @@
   mat-sidenav {
     --mat-sidenav-container-width: 36.25rem;
     border-radius: 0;
-    background-color: var(--mat-sys-surface-container-high);
+    background-color: vars.$surface-container-high;
     pointer-events: all;
 
     @media (max-width: 36.25rem) {
@@ -68,13 +68,13 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      border-top: 1px solid var(--mat-sys-outline);
+      border-top: 1px solid vars.$outline;
     }
 
     .card-category {
-      font: var(--mat-sys-title-small);
-      letter-spacing: var(--mat-sys-title-small-tracking);
-      color: var(--mat-sys-primary-fixed);
+      font: vars.$title-small;
+      letter-spacing: vars.$title-small-tracking;
+      color: vars.$primary-fixed;
     }
 
     .card-category,

@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'utils';
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
@@ -42,7 +43,7 @@
       .splash-description {
         @include utils.use-font(body, large);
         font-size: 1.125rem;
-        color: var(--mat-sys-primary);
+        color: vars.$primary;
         width: 23.5rem;
         max-width: 56.25rem;
         margin-bottom: 2rem;

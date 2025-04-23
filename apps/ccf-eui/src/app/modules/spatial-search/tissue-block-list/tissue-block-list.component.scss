@@ -16,7 +16,7 @@
     }
 
     .header {
-      font: var(--mat-sys-label-medium);
+      font: vars.$label-medium;
       padding-left: 1rem;
     }
   }
@@ -33,14 +33,14 @@
 
   .total-count,
   .donor-info {
-    font: var(--mat-sys-label-small);
-    letter-spacing: var(--mat-sys-label-small-tracking);
+    font: vars.$label-small;
+    letter-spacing: vars.$label-small-tracking;
     margin-right: 1rem;
   }
 
   .tissue-list {
     height: 100%;
-    --_hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
+    --_hra-scroll-overflow-fade-color: vars.$surface-container-low;
   }
 
   .donor-info {
@@ -49,15 +49,15 @@
       'label'
       'description';
 
-    background: var(--mat-sys-on-primary);
-    box-shadow: 0px 5px 16px 0px rgb(from var(--mat-sys-shadow) r g b / 24%);
+    background: vars.$on-primary;
+    box-shadow: 0px 5px 16px 0px rgb(from vars.$shadow r g b / 24%);
     padding: 0.25rem 0.5rem 0.25rem 1rem;
     border-radius: 0.125rem;
     margin-left: 1rem;
 
     .label {
       grid-area: label;
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
     }
 
     .description {
@@ -65,7 +65,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
     }
   }
 }

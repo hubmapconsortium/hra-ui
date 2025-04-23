@@ -1,19 +1,21 @@
+@use '../../../styles/vars' as vars;
+
 :host {
   display: flex;
   width: fit-content;
   padding: 0.5rem 0.75rem;
   border-radius: 0.25rem;
-  color: var(--mat-sys-on-error-container);
-  background-color: color-mix(in srgb, var(--mat-sys-error-container) 80%, transparent);
+  color: vars.$on-error-container;
+  background-color: color-mix(in srgb, vars.$error-container 80%, transparent);
 
   mat-icon {
     margin-right: 0.5rem;
-    color: var(--mat-sys-error);
+    color: vars.$error;
     min-width: 1.5rem;
   }
 
   .error {
-    font: var(--mat-sys-label-large);
-    letter-spacing: var(--mat-sys-label-large-text-tracking);
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
   }
 }

@@ -5,9 +5,9 @@ export type SoftwareStatusSize = 'small' | 'medium' | 'large';
 
 /** Record of button fonts */
 const STATUS_FONTS: Record<SoftwareStatusSize, string> = {
-  small: 'var(--mat-sys-label-micro)',
-  medium: 'var(--mat-sys-label-medium)',
-  large: 'var(--mat-sys-label-large)',
+  small: 'vars.$label-micro',
+  medium: 'vars.$label-medium',
+  large: 'vars.$label-large',
 };
 
 /**

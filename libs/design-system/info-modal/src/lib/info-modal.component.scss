@@ -1,9 +1,9 @@
 :host {
   display: block;
-  box-shadow: 0px 5px 1rem 0px rgb(from var(--mat-sys-shadow) r g b / 0.24);
+  box-shadow: 0px 5px 1rem 0px rgb(from vars.$shadow r g b / 0.24);
   border-radius: 0.5rem;
   width: min-content;
-  background-color: var(--mat-sys-surface-container-low);
+  background-color: vars.$surface-container-low;
 
   .header {
     display: flex;
@@ -19,7 +19,7 @@
 
     .card-title {
       margin-right: 0.75rem;
-      font: var(--mat-sys-label-large);
+      font: vars.$label-large;
     }
 
     .filler {
@@ -33,20 +33,20 @@
   }
 
   table {
-    --mat-table-row-item-label-text-font: var(--mat-sys-label-large-font);
-    --mat-table-row-item-label-text-line-height: var(--mat-sys-label-large-line-height);
-    --mat-table-row-item-label-text-size: var(--mat-sys-label-large-size);
-    --mat-table-row-item-label-text-weight: var(--mat-sys-label-large-weight);
-    --mat-table-row-item-label-text-tracking: var(--mat-sys-label-large-tracking);
+    --mat-table-row-item-label-text-font: vars.$label-large-font;
+    --mat-table-row-item-label-text-line-height: vars.$label-large-line-height;
+    --mat-table-row-item-label-text-size: vars.$label-large-size;
+    --mat-table-row-item-label-text-weight: vars.$label-large-weight;
+    --mat-table-row-item-label-text-tracking: vars.$label-large-tracking;
 
-    --mat-table-background-color: var(--mat-sys-surface-container-low);
-    --mat-table-row-item-outline-color: var(--mat-sys-outline-variant);
+    --mat-table-background-color: vars.$surface-container-low;
+    --mat-table-row-item-outline-color: vars.$outline-variant;
 
     --mat-table-row-item-container-height: 3rem;
 
     border-radius: 0.5rem;
     overflow: hidden;
-    border: 1px solid var(--mat-sys-outline-variant);
+    border: 1px solid vars.$outline-variant;
     max-width: min-content;
 
     .label,
@@ -61,7 +61,7 @@
     }
 
     .value {
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
     }
   }
 
@@ -69,7 +69,7 @@
     width: 33.75rem;
 
     .header {
-      border-bottom: 1px solid var(--mat-sys-outline-variant);
+      border-bottom: 1px solid vars.$outline-variant;
     }
 
     .table-container {

@@ -1,3 +1,5 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   position: relative;
@@ -5,16 +7,16 @@
   padding: 2rem;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: var(--mat-sys-surface-container-low);
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.24);
+  background-color: vars.$surface-container-low;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
 
   .header {
     display: flex;
     gap: 0.75rem;
     align-items: center;
     margin: var(--hra-workflow-card-header-padding, 0 0 2rem 0);
-    font: var(--mat-sys-title-large);
-    letter-spacing: var(--mat-sys-title-large-tracking);
+    font: vars.$title-large;
+    letter-spacing: vars.$title-large-tracking;
   }
 
   .progress {
@@ -23,8 +25,8 @@
 
     --mdc-linear-progress-track-height: 0.25rem;
     --mdc-linear-progress-active-indicator-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-color: var(--mat-sys-inverse-surface);
-    --mdc-linear-progress-track-color: var(--mat-sys-surface-container-high);
+    --mdc-linear-progress-active-indicator-color: vars.$inverse-surface;
+    --mdc-linear-progress-track-color: vars.$surface-container-high;
   }
 
   .filler {

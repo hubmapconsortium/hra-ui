@@ -1,6 +1,8 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
-  color: var(--hra-brand-logo-text-color, var(--mat-sys-on-surface));
+  color: var(--hra-brand-logo-text-color, vars.$on-surface);
 
   .logo {
     display: block;

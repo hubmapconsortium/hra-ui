@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  color: var(--mat-sys-secondary);
+  color: vars.$secondary;
   overflow: hidden;
 
   .results-header {
-    font: var(--mat-sys-label-large);
+    font: vars.$label-large;
     display: flex;
     justify-content: space-between;
     margin: 1.25rem 1rem 0.5rem 1rem;
@@ -21,7 +21,7 @@
     margin: 0.5rem 1rem;
 
     #title {
-      font: var(--mat-sys-label-medium);
+      font: vars.$label-medium;
       margin-bottom: 0.5rem;
     }
 
@@ -35,8 +35,8 @@
     .stat-row {
       display: flex;
       flex-direction: row;
-      font: var(--mat-sys-label-small);
-      color: var(--mat-sys-primary-fixed);
+      font: vars.$label-small;
+      color: vars.$primary-fixed;
       width: 50%;
 
       .stat-value {
@@ -57,7 +57,7 @@
   }
 
   .results-browser-list {
-    --_hra-scroll-overflow-fade-color: var(--mat-sys-surface-container-low);
+    --_hra-scroll-overflow-fade-color: vars.$surface-container-low;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

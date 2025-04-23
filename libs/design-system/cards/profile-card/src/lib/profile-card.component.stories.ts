@@ -75,7 +75,7 @@ export const SocialIcons: Story = {
         align-items: center;
 
         @include utils.use-font(label, large);
-        color: var(--mat-sys-on-tertiary-fixed);
+        color: vars.$on-tertiary-fixed;
       }
 
       .social-media-actions.centered {

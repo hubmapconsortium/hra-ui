@@ -1,3 +1,5 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: flex;
   flex-wrap: wrap;
@@ -17,8 +19,8 @@
   }
 
   h1 {
-    font: var(--mat-sys-display-large);
-    letter-spacing: var(--mat-sys-display-large-tracking);
+    font: vars.$display-large;
+    letter-spacing: vars.$display-large-tracking;
     margin: 0;
   }
 
@@ -28,8 +30,8 @@
   }
 
   .preview-label {
-    font: var(--mat-sys-label-large);
-    letter-spacing: var(--mat-sys-label-large-tracking);
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
   }
 }
 

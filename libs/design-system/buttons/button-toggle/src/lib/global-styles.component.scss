@@ -1,20 +1,21 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   mat-button-toggle-group {
     --mat-standard-button-toggle-height: var(--mat-standard-button-toggle-label-text-line-height);
-    --mat-standard-button-toggle-shape: var(--mat-sys-corner-extra-small);
-    --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
+    --mat-standard-button-toggle-shape: #{vars.$corner-extra-small};
+    --mat-standard-button-toggle-divider-color: #{vars.$primary};
 
-    --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
-    --mat-standard-button-toggle-selected-state-background-color: #{utils.with-alpha(var(--mat-sys-tertiary), 20%)};
+    --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
+    --mat-standard-button-toggle-selected-state-background-color: #{utils.with-alpha(vars.$tertiary, 20%)};
 
     &.hra-button-toggle-size-small {
-      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-small-font);
-      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-small-size);
-      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-small-line-height);
-      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-small-weight);
-      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-small-tracking);
+      --mat-standard-button-toggle-label-text-font: #{vars.$label-small-font};
+      --mat-standard-button-toggle-label-text-size: #{vars.$label-small-size};
+      --mat-standard-button-toggle-label-text-line-height: #{vars.$label-small-line-height};
+      --mat-standard-button-toggle-label-text-weight: #{vars.$label-small-weight};
+      --mat-standard-button-toggle-label-text-tracking: #{vars.$label-small-tracking};
 
       .mat-button-toggle-label-content {
         padding: 0.3125rem 0.5rem;
@@ -22,11 +23,11 @@
     }
 
     &.hra-button-toggle-size-medium {
-      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-medium-font);
-      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-medium-size);
-      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-medium-line-height);
-      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-medium-weight);
-      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-medium-tracking);
+      --mat-standard-button-toggle-label-text-font: #{vars.$label-medium-font};
+      --mat-standard-button-toggle-label-text-size: #{vars.$label-medium-size};
+      --mat-standard-button-toggle-label-text-line-height: #{vars.$label-medium-line-height};
+      --mat-standard-button-toggle-label-text-weight: #{vars.$label-medium-weight};
+      --mat-standard-button-toggle-label-text-tracking: #{vars.$label-medium-tracking};
 
       .mat-button-toggle-label-content {
         padding: 0.3438rem 0.5rem;
@@ -35,11 +36,11 @@
 
     &,
     &.hra-button-toggle-size-large {
-      --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-large-font);
-      --mat-standard-button-toggle-label-text-size: var(--mat-sys-label-large-size);
-      --mat-standard-button-toggle-label-text-line-height: var(--mat-sys-label-large-line-height);
-      --mat-standard-button-toggle-label-text-weight: var(--mat-sys-label-large-weight);
-      --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-large-tracking);
+      --mat-standard-button-toggle-label-text-font: #{vars.$label-large-font};
+      --mat-standard-button-toggle-label-text-size: #{vars.$label-large-size};
+      --mat-standard-button-toggle-label-text-line-height: #{vars.$label-large-line-height};
+      --mat-standard-button-toggle-label-text-weight: #{vars.$label-large-weight};
+      --mat-standard-button-toggle-label-text-tracking: #{vars.$label-large-tracking};
 
       .mat-button-toggle-label-content {
         padding: 0.5rem 1rem;

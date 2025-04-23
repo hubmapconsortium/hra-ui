@@ -1,22 +1,23 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   mat-tree {
-    --mat-tree-container-background-color: var(--mat-sys-on-primary);
+    --mat-tree-container-background-color: vars.$on-primary;
   }
 
   mat-tree-node {
-    --mat-tree-node-text-font: var(--mat-sys-label-medium-font);
-    --mat-tree-node-text-weight: var(--mat-sys-label-medium-weight);
-    --mat-tree-node-text-color: var(--mat-sys-secondary);
+    --mat-tree-node-text-font: vars.$label-medium-font;
+    --mat-tree-node-text-weight: vars.$label-medium-weight;
+    --mat-tree-node-text-color: vars.$secondary;
 
-    letter-spacing: var(--mat-sys-label-medium-tracking);
+    letter-spacing: vars.$label-medium-tracking;
     cursor: pointer;
     user-select: none;
     outline: none;
 
     &:focus-visible .node-content {
-      border-color: var(--mat-sys-tertiary);
+      border-color: vars.$tertiary;
     }
   }
 
@@ -41,16 +42,16 @@
     }
 
     &:hover {
-      background: rgb(from var(--mat-sys-secondary) r g b / 0.08);
+      background: rgb(from vars.$secondary r g b / 0.08);
     }
 
     &:active {
-      background: rgb(from var(--mat-sys-secondary) r g b / 0.16);
+      background: rgb(from vars.$secondary r g b / 0.16);
       border-color: transparent;
     }
 
     &.selected {
-      background: rgb(from var(--mat-sys-tertiary) r g b / 0.2);
+      background: rgb(from vars.$tertiary r g b / 0.2);
     }
   }
 }

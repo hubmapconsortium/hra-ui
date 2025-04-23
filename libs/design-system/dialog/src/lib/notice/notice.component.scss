@@ -30,10 +30,10 @@
   }
 
   .mat-mdc-dialog-content {
-    --mdc-dialog-supporting-text-tracking: var(--mat-sys-body-large-tracking);
+    --mdc-dialog-supporting-text-tracking: vars.$body-large-tracking;
     padding: 0 2rem;
-    font: var(--mat-sys-body-large);
-    color: var(--mat-sys-primary);
+    font: vars.$body-large;
+    color: vars.$primary;
   }
 
   .mat-mdc-dialog-actions {
@@ -45,7 +45,7 @@
 ::ng-deep {
   .hra-dialog-panel {
     .mat-mdc-dialog-surface {
-      --mdc-dialog-container-color: var(--mat-sys-on-primary);
+      --mdc-dialog-container-color: vars.$on-primary;
       --mdc-dialog-container-shape: 0;
       border-radius: 0.5rem;
     }

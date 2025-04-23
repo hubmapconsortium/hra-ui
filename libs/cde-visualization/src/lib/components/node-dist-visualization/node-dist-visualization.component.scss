@@ -21,7 +21,7 @@
             background-color: white;
             height: calc(4rem - 2px);
             padding: 0.75rem 1rem;
-            border-left: 2px solid var(--mat-sys-outline-variant);
+            border-left: 2px solid vars.$outline-variant;
 
             hra-expansion-panel-header-content {
               mat-icon {
@@ -32,7 +32,7 @@
 
           .content {
             height: calc(100% - 4rem + 2px);
-            border-top: 2px solid var(--mat-sys-outline-variant);
+            border-top: 2px solid vars.$outline-variant;
 
             .expansion-body {
               height: 100%;

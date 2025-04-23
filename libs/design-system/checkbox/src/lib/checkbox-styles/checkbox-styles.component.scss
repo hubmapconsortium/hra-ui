@@ -2,38 +2,38 @@
 
 @include utils.global-styles() {
   mat-checkbox {
-    --mdc-checkbox-unselected-icon-color: var(--mat-sys-primary);
-    --mdc-checkbox-unselected-hover-icon-color: var(--mat-sys-secondary);
-    --mdc-checkbox-unselected-focus-icon-color: var(--mat-sys-secondary);
+    --mdc-checkbox-unselected-icon-color: vars.$primary;
+    --mdc-checkbox-unselected-hover-icon-color: vars.$secondary;
+    --mdc-checkbox-unselected-focus-icon-color: vars.$secondary;
 
-    --mdc-checkbox-selected-icon-color: var(--mat-sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-hover-icon-color: var(--mat-sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-focus-icon-color: var(--mat-sys-on-tertiary-fixed);
+    --mdc-checkbox-selected-icon-color: vars.$on-tertiary-fixed;
+    --mdc-checkbox-selected-hover-icon-color: vars.$on-tertiary-fixed;
+    --mdc-checkbox-selected-focus-icon-color: vars.$on-tertiary-fixed;
 
-    --mdc-checkbox-unselected-hover-state-layer-color: var(--mat-sys-secondary);
-    --mdc-checkbox-unselected-focus-state-layer-color: var(--mat-sys-secondary);
-    --mdc-checkbox-unselected-pressed-state-layer-color: var(--mat-sys-secondary);
+    --mdc-checkbox-unselected-hover-state-layer-color: vars.$secondary;
+    --mdc-checkbox-unselected-focus-state-layer-color: vars.$secondary;
+    --mdc-checkbox-unselected-pressed-state-layer-color: vars.$secondary;
 
-    --mdc-checkbox-selected-hover-state-layer-color: var(--mat-sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-focus-state-layer-color: var(--mat-sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-pressed-state-layer-color: var(--mat-sys-on-tertiary-fixed);
+    --mdc-checkbox-selected-hover-state-layer-color: vars.$on-tertiary-fixed;
+    --mdc-checkbox-selected-focus-state-layer-color: vars.$on-tertiary-fixed;
+    --mdc-checkbox-selected-pressed-state-layer-color: vars.$on-tertiary-fixed;
 
     &.hra-checkbox-error-variant {
-      --mdc-checkbox-unselected-icon-color: var(--mat-sys-error);
-      --mdc-checkbox-unselected-hover-icon-color: var(--mat-sys-error);
-      --mdc-checkbox-unselected-focus-icon-color: var(--mat-sys-error);
+      --mdc-checkbox-unselected-icon-color: vars.$error;
+      --mdc-checkbox-unselected-hover-icon-color: vars.$error;
+      --mdc-checkbox-unselected-focus-icon-color: vars.$error;
 
-      --mdc-checkbox-selected-icon-color: var(--mat-sys-error);
-      --mdc-checkbox-selected-hover-icon-color: var(--mat-sys-error);
-      --mdc-checkbox-selected-focus-icon-color: var(--mat-sys-error);
+      --mdc-checkbox-selected-icon-color: vars.$error;
+      --mdc-checkbox-selected-hover-icon-color: vars.$error;
+      --mdc-checkbox-selected-focus-icon-color: vars.$error;
 
-      --mdc-checkbox-unselected-hover-state-layer-color: var(--mat-sys-error);
-      --mdc-checkbox-unselected-focus-state-layer-color: var(--mat-sys-error);
-      --mdc-checkbox-unselected-pressed-state-layer-color: var(--mat-sys-error);
+      --mdc-checkbox-unselected-hover-state-layer-color: vars.$error;
+      --mdc-checkbox-unselected-focus-state-layer-color: vars.$error;
+      --mdc-checkbox-unselected-pressed-state-layer-color: vars.$error;
 
-      --mdc-checkbox-selected-hover-state-layer-color: var(--mat-sys-error);
-      --mdc-checkbox-selected-focus-state-layer-color: var(--mat-sys-error);
-      --mdc-checkbox-selected-pressed-state-layer-color: var(--mat-sys-error);
+      --mdc-checkbox-selected-hover-state-layer-color: vars.$error;
+      --mdc-checkbox-selected-focus-state-layer-color: vars.$error;
+      --mdc-checkbox-selected-pressed-state-layer-color: vars.$error;
     }
   }
 }

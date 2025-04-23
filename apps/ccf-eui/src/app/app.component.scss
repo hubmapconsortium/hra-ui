@@ -2,19 +2,19 @@
 
 :host {
   .sidenav-content {
-    --mat-sidenav-container-background-color: var(--mat-sys-surface-container-low);
+    --mat-sidenav-container-background-color: vars.$surface-container-low;
     width: fit-content;
 
     .sidenav-header {
       display: flex;
       align-items: center;
-      font: var(--mat-sys-title-medium);
+      font: vars.$title-medium;
       height: 4.5rem;
       padding: 0 1rem 0 1.5rem;
 
       .sidenav-title {
         vertical-align: text-bottom;
-        color: var(--mat-sys-secondary);
+        color: vars.$secondary;
       }
     }
 
@@ -25,16 +25,16 @@
 
   .left-panel,
   hra-nav-header-buttons {
-    border-right: 1px solid var(--mat-sys-outline-variant);
+    border-right: 1px solid vars.$outline-variant;
   }
 
   hra-nav-header-buttons,
   .vis-panel {
-    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    border-bottom: 1px solid vars.$outline-variant;
   }
 
   .right-panel {
-    border-left: 1px solid var(--mat-sys-outline-variant);
+    border-left: 1px solid vars.$outline-variant;
   }
 
   .page-content {
@@ -47,7 +47,7 @@
       'header vis-panel right'
       'left content right';
 
-    background-color: var(--mat-sys-surface-container-low);
+    background-color: vars.$surface-container-low;
   }
 
   &.embedded .page-content {
@@ -63,7 +63,7 @@
   }
 
   mat-progress-bar {
-    --mdc-linear-progress-active-indicator-color: var(--mat-sys-tertiary);
+    --mdc-linear-progress-active-indicator-color: vars.$tertiary;
     --mdc-linear-progress-track-color: transparent;
     grid-area: progress;
   }
@@ -88,8 +88,8 @@
     }
 
     .logos-text .app-label {
-      font: var(--mat-sys-title-medium) !important;
-      letter-spacing: var(--mat-sys-title-medium-tracking) !important;
+      font: vars.$title-medium !important;
+      letter-spacing: vars.$title-medium-tracking !important;
     }
   }
 
@@ -131,12 +131,12 @@
       margin-top: 0.5rem;
 
       .filter-button-label {
-        font: var(--mat-sys-label-large);
+        font: vars.$label-large;
       }
 
       .filter-text {
-        font: var(--mat-sys-label-small);
-        color: var(--mat-sys-primary);
+        font: vars.$label-small;
+        color: vars.$primary;
       }
     }
 
@@ -159,7 +159,7 @@
     }
 
     mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
+      --mat-standard-button-toggle-selected-state-text-color: vars.$secondary;
       width: 100%;
 
       mat-button-toggle {
@@ -179,8 +179,8 @@
     }
 
     .no-selection-notice {
-      font: var(--mat-sys-label-medium);
-      color: var(--mat-sys-secondary);
+      font: vars.$label-medium;
+      color: vars.$secondary;
       padding: 0 1rem;
     }
   }
@@ -201,6 +201,6 @@
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-  --mdc-snackbar-container-color: var(--mat-sys-surface-dim);
-  --mdc-snackbar-supporting-text-color: var(--mat-sys-secondary);
+  --mdc-snackbar-container-color: vars.$surface-dim;
+  --mdc-snackbar-supporting-text-color: vars.$secondary;
 }

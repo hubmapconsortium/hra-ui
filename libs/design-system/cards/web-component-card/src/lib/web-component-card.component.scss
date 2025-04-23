@@ -1,8 +1,10 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   border-radius: 0.5rem;
   overflow: hidden;
-  background-color: var(--mat-sys-surface-container-low);
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.24);
+  background-color: vars.$surface-container-low;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
   max-height: 30.125rem;
   width: 24.5rem;
   display: flex;
@@ -21,16 +23,16 @@
 
   .product-title,
   .web-component-name {
-    font: var(--mat-sys-title-large);
-    letter-spacing: var(--mat-sys-title-large-tracking);
-    color: var(--mat-sys-on-background);
+    font: vars.$title-large;
+    letter-spacing: vars.$title-large-tracking;
+    color: vars.$on-background;
     margin: 0;
   }
 
   .product-title:has(+ .web-component-name) {
-    font: var(--mat-sys-title-medium);
-    letter-spacing: var(--mat-sys-title-medium-tracking);
-    color: var(--mat-sys-inverse-surface);
+    font: vars.$title-medium;
+    letter-spacing: vars.$title-medium-tracking;
+    color: vars.$inverse-surface;
     margin-bottom: 0.5rem;
   }
 
@@ -38,9 +40,9 @@
     margin-top: 0.5rem;
     display: block;
     width: 100%;
-    font: var(--mat-sys-body-large);
-    letter-spacing: var(--mat-sys-body-large-tracking);
-    color: var(--mat-sys-on-surface-variant);
+    font: vars.$body-large;
+    letter-spacing: vars.$body-large-tracking;
+    color: vars.$on-surface-variant;
   }
 
   .card-footer {

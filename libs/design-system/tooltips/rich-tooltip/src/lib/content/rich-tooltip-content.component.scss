@@ -7,20 +7,20 @@
 .container {
   max-width: 19.5rem;
   width: fit-content;
-  background-color: var(--mat-sys-secondary-container);
+  background-color: vars.$secondary-container;
   border-radius: 0.5rem;
-  box-shadow: 0rem 0.125rem 0.25rem 0.125rem utils.with-alpha(var(--mat-sys-shadow), 24%);
+  box-shadow: 0rem 0.125rem 0.25rem 0.125rem utils.with-alpha(vars.$shadow, 24%);
 
   .tagline {
     padding: 0.75rem 1rem 0.25rem 1rem;
     @include utils.use-font(label, medium);
-    color: var(--mat-sys-on-surface);
+    color: vars.$on-surface;
   }
 
   .content {
     padding: 0 1rem 0.25rem 1rem;
     @include utils.use-font(label, medium);
-    color: var(--mat-sys-primary);
+    color: vars.$primary;
   }
 
   .actions {

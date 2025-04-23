@@ -1,4 +1,5 @@
 @use 'utils.scss';
+@use '../../../../libs/design-system/styles/vars' as vars;
 /* HRA-API Rapidoc Theme */
 
 /* Styling with Shadow DOM Parts Attribute Selector */
@@ -24,7 +25,7 @@
 
 /* Tab Content */
 rapi-doc::part(tab-content) {
-  background: var(--mat-sys-on-primary);
+  background: vars.$on-primary;
 }
 
 /* Tab Panel Button */
@@ -40,29 +41,29 @@ rapi-doc::part(tab-btn) {
 /* Textarea */
 rapi-doc::part(textarea) {
   border: 0;
-  border-bottom: 0.0625rem solid var(--mat-sys-on-secondary-fixed);
+  border-bottom: 0.0625rem solid vars.$on-secondary-fixed;
   &:focus {
     border-bottom: 0.0625rem solid var(--primary-color);
   }
 }
 
 rapi-doc::part(textarea-param) {
-  background: var(--mat-sys-surface-container);
+  background: vars.$surface-container;
 }
 
 /* Input Type Text */
 rapi-doc::part(textbox) {
   border: 0;
-  border-bottom: 0.0625rem solid var(--mat-sys-primary);
+  border-bottom: 0.0625rem solid vars.$primary;
   &:focus {
-    border-bottom: 0.125rem solid var(--mat-sys-primary);
+    border-bottom: 0.125rem solid vars.$primary;
   }
 }
 
 /* Tab Button Wrapper */
 rapi-doc::part(tab-btn-row) {
   height: 3rem;
-  background: var(--mat-sys-surface-container);
+  background: vars.$surface-container;
 }
 
 /* Generic Button */
@@ -91,12 +92,12 @@ rapi-doc::part(btn-copy) {
 
 /* Outlined style button */
 rapi-doc::part(btn-outline) {
-  color: var(--mat-sys-on-tertiary-fixed);
+  color: vars.$on-tertiary-fixed;
   &:hover {
-    background: utils.with-alpha(var(--mat-sys-on-tertiary-fixed), 8%);
+    background: utils.with-alpha(vars.$on-tertiary-fixed, 8%);
   }
   &:active {
-    background: utils.with-alpha(var(--mat-sys-on-tertiary-fixed), 12%);
+    background: utils.with-alpha(vars.$on-tertiary-fixed, 12%);
   }
   &:disabled {
     background: var(--mat-form-field-select-option-text-color);
@@ -128,11 +129,11 @@ rapi-doc::part(btn-outline) {
   /* Section Tag */
   .section-tag {
     /* Default Styles */
-    background: var(--mat-sys-surface-container);
+    background: vars.$surface-container;
     border-radius: 0.75rem;
     margin-bottom: 2rem;
     overflow: hidden;
-    box-shadow: -0.0625rem 0.125rem 0.5rem 0rem utils.with-alpha(var(--mat-sys-on-background), 16%);
+    box-shadow: -0.0625rem 0.125rem 0.5rem 0rem utils.with-alpha(vars.$on-background, 16%);
     /* Collapsed behavior */
     &.collapsed {
       .section-tag-header {
@@ -166,11 +167,11 @@ rapi-doc::part(btn-outline) {
       padding-bottom: 1rem;
 
       &:hover {
-        background: utils.with-alpha(var(--mat-sys-on-background), 8%);
+        background: utils.with-alpha(vars.$on-background, 8%);
       }
 
       &:active {
-        background: utils.with-alpha(var(--mat-sys-on-background), 12%);
+        background: utils.with-alpha(vars.$on-background, 12%);
       }
 
       .sub-title {
@@ -193,7 +194,7 @@ rapi-doc::part(btn-outline) {
       --bg-post: #c8dfbe;
       --bg-get: #d6e8f8;
 
-      background: var(--mat-sys-on-primary);
+      background: vars.$on-primary;
 
       & > div.m-markdown {
         font-weight: 400;
@@ -233,7 +234,7 @@ rapi-doc::part(btn-outline) {
 
         &.collapsed {
           border-left: 0.5rem solid transparent;
-          border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+          border-bottom: 0.0625rem solid vars.$outline-variant;
           &:hover {
             &.post {
               border-left: 0.5rem solid var(--bg-post);
@@ -301,7 +302,7 @@ rapi-doc::part(btn-outline) {
           border-left: 0.5rem solid var(--bg-get);
         }
         border-right: 0;
-        border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+        border-bottom: 0.0625rem solid vars.$outline-variant;
         box-shadow: none;
 
         .summary {

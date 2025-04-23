@@ -55,7 +55,7 @@
     padding: 1rem;
 
     ::ng-deep .title {
-      font: var(--mat-sys-label-large);
+      font: vars.$label-large;
     }
 
     hra-expansion-panel-header-content {
@@ -70,6 +70,6 @@
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
   z-index: 2000 !important;
-  --mdc-snackbar-container-color: var(--mat-sys-surface-dim);
-  --mdc-snackbar-supporting-text-color: var(--mat-sys-secondary);
+  --mdc-snackbar-container-color: vars.$surface-dim;
+  --mdc-snackbar-supporting-text-color: vars.$secondary;
 }

@@ -1,3 +1,5 @@
+@use '../../../../../../../../../libs/design-system/styles/vars' as vars;
+
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
@@ -17,30 +19,30 @@
   }
 
   .predictions-table {
-    background-color: var(--mat-sys-secondary-container);
+    background-color: vars.$secondary-container;
     border-collapse: collapse;
 
     th,
     td {
-      font: var(--mat-sys-label-medium);
-      letter-spacing: var(--mat-sys-label-medium-tracking);
-      border: 0.0625rem solid var(--mat-sys-outline);
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
+      border: 0.0625rem solid vars.$outline;
     }
 
     th {
-      color: var(--mat-sys-on-primary-container);
-      background-color: var(--mat-sys-surface-container);
+      color: vars.$on-primary-container;
+      background-color: vars.$surface-container;
     }
     td {
       max-width: 16.38rem;
       overflow: hidden;
       text-overflow: ellipsis;
       box-sizing: border-box;
-      color: var(--mat-sys-inverse-surface);
+      color: vars.$inverse-surface;
       white-space: nowrap;
 
       .link {
-        color: var(--mat-sys-on-tertiary-container);
+        color: vars.$on-tertiary-container;
       }
     }
 
@@ -73,11 +75,11 @@
 ::ng-deep {
   .tooltip-panel {
     background-color: white;
-    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
     border-radius: 0.5rem;
     max-width: 22rem;
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
-    color: var(--mat-sys-primary);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
   }
 }

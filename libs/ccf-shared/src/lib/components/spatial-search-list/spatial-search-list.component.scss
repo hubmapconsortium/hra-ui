@@ -1,7 +1,7 @@
 :host {
   .list {
     --mdc-list-list-item-one-line-container-height: 2.5rem;
-    --mdc-list-list-item-label-text-color: var(--mat-sys-primary);
+    --mdc-list-list-item-label-text-color: vars.$primary;
     padding: 0.25rem 0;
   }
 
@@ -11,7 +11,7 @@
   }
 
   .checkbox-label {
-    font: var(--mat-sys-label-large);
+    font: vars.$label-large;
     padding: 0 0.5rem;
   }
 }

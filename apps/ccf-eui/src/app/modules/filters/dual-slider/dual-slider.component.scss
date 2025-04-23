@@ -3,9 +3,9 @@
   outline: none;
 
   .label {
-    color: var(--mat-sys-secondary);
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
+    color: vars.$secondary;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
   }
 }
 
@@ -17,8 +17,8 @@
   .dual-slider-panel {
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: var(--mat-sys-on-primary);
-    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from var(--mat-sys-secondary) r g b / 16%);
+    background-color: vars.$on-primary;
+    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from vars.$secondary r g b / 16%);
 
     .dual-slider-form {
       display: flex;

@@ -1,9 +1,10 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 :host {
   display: flex;
   padding: 0.25rem 0.75rem 0.25rem 0;
-  background-color: utils.with-alpha(var(--mat-sys-on-tertiary-fixed), 8%);
+  background-color: utils.with-alpha(vars.$on-tertiary-fixed, 8%);
 
   .content {
     display: flex;
@@ -12,7 +13,7 @@
     @include utils.use-font(label, medium);
 
     .description {
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
       padding: 0.5rem 0 0 1rem;
     }
 

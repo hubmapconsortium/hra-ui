@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   max-width: 72.5rem;
@@ -6,15 +8,15 @@
 }
 
 h1 {
-  font: var(--mat-sys-display-large);
-  letter-spacing: var(--mat-sys-display-large-tracking);
+  font: vars.$display-large;
+  letter-spacing: vars.$display-large-tracking;
   margin: 0;
 }
 
 .info-text {
-  font: var(--mat-sys-body-large);
-  letter-spacing: var(--mat-sys-body-large-tracking);
-  color: var(--mat-sys-on-secondary-container);
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-container;
 }
 
 .bottom-cards {
@@ -32,15 +34,15 @@ h1 {
 
   .card-1 {
     p {
-      font: var(--mat-sys-label-large);
-      letter-spacing: var(--mat-sys-label-large-tracking);
-      color: var(--mat-sys-primary);
+      font: vars.$label-large;
+      letter-spacing: vars.$label-large-tracking;
+      color: vars.$primary;
     }
   }
 
   .card-2 {
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
   }
 
   .metadata-container {
@@ -54,7 +56,7 @@ h1 {
     }
 
     .values {
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
       margin-left: 0.5rem;
     }
   }

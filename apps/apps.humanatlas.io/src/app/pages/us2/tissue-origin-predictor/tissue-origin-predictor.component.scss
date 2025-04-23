@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   max-width: 65rem;
@@ -8,9 +10,9 @@
 
 .info-text {
   margin-top: 3.5rem;
-  font: var(--mat-sys-body-large);
-  letter-spacing: var(--mat-sys-body-large-tracking);
-  color: var(--mat-sys-on-secondary-container);
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-container;
 }
 
 .cards {
@@ -24,9 +26,9 @@
     width: 42rem;
 
     .card-info-text {
-      font: var(--mat-sys-label-large);
-      letter-spacing: var(--mat-sys-label-large-tracking);
-      color: var(--mat-sys-primary);
+      font: vars.$label-large;
+      letter-spacing: vars.$label-large-tracking;
+      color: vars.$primary;
     }
   }
 
@@ -37,16 +39,16 @@
 
       span,
       li {
-        font: var(--mat-sys-label-large);
-        letter-spacing: var(--mat-sys-label-large-tracking);
+        font: vars.$label-large;
+        letter-spacing: vars.$label-large-tracking;
       }
 
       span {
-        color: var(--mat-sys-secondary);
+        color: vars.$secondary;
       }
 
       li {
-        color: var(--mat-sys-primary);
+        color: vars.$primary;
       }
 
       & > div {

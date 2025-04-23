@@ -6,7 +6,7 @@
   button {
     @include utils.use-font(label, large);
     background: none;
-    border: 0.063rem solid var(--mat-sys-outline-variant);
+    border: 0.063rem solid vars.$outline-variant;
     border-radius: 0.75rem;
     overflow: hidden;
     padding: 0;
@@ -14,12 +14,12 @@
     display: flex;
 
     &:hover {
-      box-shadow: 0rem 0.31rem 1.25rem utils.with-alpha(var(--mat-sys-secondary), 32%);
+      box-shadow: 0rem 0.31rem 1.25rem utils.with-alpha(vars.$secondary, 32%);
     }
 
     &:active,
     &:focus-visible {
-      border: 0.125rem solid var(--mat-sys-tertiary);
+      border: 0.125rem solid vars.$tertiary;
     }
 
     &:disabled {
@@ -37,13 +37,13 @@
     }
 
     .label {
-      color: var(--mat-sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
       text-align: center;
     }
 
     mat-icon {
       margin-left: 0.25rem;
-      color: var(--mat-sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     .image {

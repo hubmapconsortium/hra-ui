@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--mat-sys-on-primary);
+  background-color: vars.$on-primary;
   box-shadow: 0px 5px 4px 0px #201e3d29;
 
   mat-form-field {
@@ -12,9 +12,9 @@
   }
 
   mat-slider {
-    --mdc-slider-active-track-color: var(--mat-sys-on-tertiary-fixed);
+    --mdc-slider-active-track-color: vars.$on-tertiary-fixed;
     --mdc-slider-inactive-track-color: #acb5c3;
-    --mdc-slider-handle-color: var(--mat-sys-on-tertiary-fixed);
+    --mdc-slider-handle-color: vars.$on-tertiary-fixed;
     --mdc-slider-active-track-height: 2px;
     --mdc-slider-inactive-track-height: 2px;
     width: 10rem;

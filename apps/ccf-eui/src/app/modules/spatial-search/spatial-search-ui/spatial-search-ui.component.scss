@@ -3,7 +3,7 @@
   grid-template-areas: 'scene info-panel';
   grid-template-rows: calc(100vh - 2rem);
   grid-template-columns: auto 27.75rem;
-  background-color: var(--mat-sys-surface-container-low);
+  background-color: vars.$surface-container-low;
 
   .spatial-search-scene {
     grid-area: scene;
@@ -28,8 +28,8 @@
       }
 
       ccf-xyz-position {
-        color: var(--mat-sys-surface-container);
-        font: var(--mat-sys-label-large);
+        color: vars.$surface-container;
+        font: vars.$label-large;
         margin: 0 auto;
         width: fit-content;
       }
@@ -53,8 +53,8 @@
     display: flex;
     padding: 1rem 0.75rem 1rem 1rem;
     align-items: center;
-    font: var(--mat-sys-label-large);
-    color: var(--mat-sys-secondary);
+    font: vars.$label-large;
+    color: vars.$secondary;
   }
 
   .organ-sex-selection {
@@ -66,8 +66,8 @@
   .radius-slider {
     grid-area: radius-slider;
     display: flex;
-    font: var(--mat-sys-label-medium);
-    color: var(--mat-sys-secondary);
+    font: vars.$label-medium;
+    color: vars.$secondary;
     margin: 0 1rem;
 
     .slider-title {
@@ -82,8 +82,8 @@
 
       .slider {
         width: 100%;
-        --mdc-slider-handle-color: var(--mat-sys-secondary);
-        --mdc-slider-active-track-color: var(--mat-sys-secondary);
+        --mdc-slider-handle-color: vars.$secondary;
+        --mdc-slider-active-track-color: vars.$secondary;
         --mdc-slider-inactive-track-color: #acb5c3;
 
         margin: 0 1rem;
@@ -127,7 +127,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--mat-sys-outline-variant);
+    border-top: 1px solid vars.$outline-variant;
 
     button {
       line-height: normal;
@@ -143,5 +143,5 @@
 
 ::ng-deep .spatial-search-ui {
   --mdc-dialog-container-shape: 0.75rem;
-  --mdc-dialog-container-color: var(--mat-sys-surface-container-low);
+  --mdc-dialog-container-color: vars.$surface-container-low;
 }

@@ -2,10 +2,10 @@
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
-  --mdc-chip-label-text-color: var(--mat-sys-on-primary-fixed-variant);
+  --mdc-chip-label-text-color: vars.$on-primary-fixed-variant;
 
   .label {
-    font: var(--mat-sys-label-medium);
+    font: vars.$label-medium;
     margin-bottom: 0.25rem;
   }
 
@@ -14,7 +14,7 @@
     gap: 0.25rem;
 
     .mdc-evolution-chip__text-label {
-      font: var(--mat-sys-label-medium);
+      font: vars.$label-medium;
       max-width: 13.75rem;
       overflow: hidden;
     }
@@ -25,6 +25,6 @@
   }
 
   .icon.remove {
-    color: var(--mat-sys-on-primary-fixed-variant);
+    color: vars.$on-primary-fixed-variant;
   }
 }

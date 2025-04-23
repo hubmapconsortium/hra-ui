@@ -53,12 +53,12 @@ export const Default: Story = {
       `.placeholder {
           padding: 3rem;
           gap: .5rem;
-          background: var(--mat-sys-outline-variant);
+          background: vars.$outline-variant;
           height: 908px;
           text-align: center;
-          font: var(--mat-sys-display-small);
-          letter-spacing: var(--mat-sys-display-small-tracking);
-          color: var(--mat-sys-tertiary);
+          font: vars.$display-small;
+          letter-spacing: vars.$display-small-tracking;
+          color: vars.$tertiary;
       }`,
     ],
   }),

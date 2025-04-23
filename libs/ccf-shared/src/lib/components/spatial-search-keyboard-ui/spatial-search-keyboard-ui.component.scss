@@ -1,5 +1,5 @@
 :host {
-  font: var(--mat-sys-label-large);
+  font: vars.$label-large;
 
   .keys {
     display: flex;

@@ -1,4 +1,6 @@
+@use '../../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
-  background-color: var(--mat-sys-on-secondary);
+  background-color: vars.$on-secondary;
 }

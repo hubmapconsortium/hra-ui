@@ -1,4 +1,5 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 :host {
   display: block;
@@ -16,15 +17,15 @@
     border-radius: 0.5rem;
 
     &:hover {
-      background: utils.with-alpha(var(--mat-sys-secondary), 8%);
+      background: utils.with-alpha(vars.$secondary, 8%);
     }
 
     &:active {
-      background: utils.with-alpha(var(--mat-sys-secondary), 16%);
+      background: utils.with-alpha(vars.$secondary, 16%);
     }
 
     &:focus-visible {
-      @include utils.inset-outline(var(--mat-sys-tertiary));
+      @include utils.inset-outline(vars.$tertiary);
     }
 
     .icon {
@@ -35,13 +36,13 @@
 
     .tagline {
       grid-area: tagline;
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
       @include utils.use-font('label', 'large');
     }
 
     .description {
       grid-area: description;
-      color: var(--mat-sys-inverse-surface);
+      color: vars.$inverse-surface;
       @include utils.use-font('label', 'medium');
     }
   }

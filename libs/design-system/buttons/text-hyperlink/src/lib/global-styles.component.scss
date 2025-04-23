@@ -1,4 +1,5 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   a:not(.hra-text-hyperlink) {
@@ -10,12 +11,12 @@
 
     &:link,
     &:link mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     &:visited,
     &:visited mat-icon {
-      color: var(--mat-sys-tertiary-fixed);
+      color: vars.$tertiary-fixed;
     }
 
     &:focus-visible,
@@ -26,23 +27,23 @@
     }
 
     &:focus-visible {
-      color: var(--mat-sys-secondary);
-      outline: 0.125rem solid var(--mat-sys-tertiary);
+      color: vars.$secondary;
+      outline: 0.125rem solid vars.$tertiary;
       border-radius: 0.25rem;
 
       & mat-icon {
-        color: var(--mat-sys-secondary);
+        color: vars.$secondary;
       }
     }
 
     &:hover,
     &:hover mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     &:active,
     &:active mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed-variant);
+      color: vars.$on-tertiary-fixed-variant;
     }
   }
 }

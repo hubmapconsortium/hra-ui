@@ -1,25 +1,26 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   mat-form-field.mat-mdc-form-field-type-mat-input {
-    --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
-    --mdc-outlined-text-field-outline-color: var(--mat-sys-outline-variant);
-    --mdc-outlined-text-field-focus-outline-color: var(--mat-sys-tertiary);
-    --mdc-outlined-text-field-input-text-color: var(--mat-sys-primary-fixed);
+    --mdc-filled-text-field-container-color: vars.$surface-container;
+    --mdc-outlined-text-field-outline-color: vars.$outline-variant;
+    --mdc-outlined-text-field-focus-outline-color: vars.$tertiary;
+    --mdc-outlined-text-field-input-text-color: vars.$primary-fixed;
 
     --mat-form-field-container-height: 3rem;
     --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
     --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
 
     mat-label {
-      font: var(--mat-sys-label-small);
-      letter-spacing: var(--mat-sys-label-small-tracking);
-      color: var(--mat-sys-primary-fixed);
+      font: vars.$label-small;
+      letter-spacing: vars.$label-small-tracking;
+      color: vars.$primary-fixed;
     }
 
     .mat-mdc-form-field-infix {
-      font: var(--mat-sys-label-medium);
-      letter-spacing: var(--mat-sys-label-medium-tracking);
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
 
       input {
         height: 1.5rem;
@@ -27,13 +28,13 @@
     }
 
     &.mat-focused {
-      --mdc-filled-text-field-focus-label-text-color: var(--mat-sys-tertiary);
-      --mdc-filled-text-field-active-indicator-color: var(--mat-sys-tertiary);
-      --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-tertiary);
+      --mdc-filled-text-field-focus-label-text-color: vars.$tertiary;
+      --mdc-filled-text-field-active-indicator-color: vars.$tertiary;
+      --mdc-filled-text-field-focus-active-indicator-color: vars.$tertiary;
       --mdc-filled-text-field-focus-active-indicator-height: 1px;
 
       mat-label {
-        color: var(--mat-sys-tertiary);
+        color: vars.$tertiary;
       }
     }
 
@@ -48,7 +49,7 @@
     --mdc-outlined-text-field-outline-width: 1px;
     .mdc-text-field:hover {
       --mdc-outlined-text-field-outline-width: 2px;
-      --mdc-outlined-text-field-hover-outline-color: var(--mat-sys-outline-variant);
+      --mdc-outlined-text-field-hover-outline-color: vars.$outline-variant;
     }
   }
 }

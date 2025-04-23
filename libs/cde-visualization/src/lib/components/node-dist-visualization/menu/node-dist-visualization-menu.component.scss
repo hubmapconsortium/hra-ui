@@ -8,7 +8,7 @@
   .info-sub-menu div {
     ul {
       padding: 0;
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
       margin: 0;
 
       &:not(:last-child) {
@@ -22,12 +22,12 @@
   }
 
   .reset-sub-menu .mat-mdc-menu-content {
-    color: var(--mat-sys-primary);
-    background-color: var(--mat-sys-on-primary);
-    font: var(--mat-sys-label-medium);
+    color: vars.$primary;
+    background-color: vars.$on-primary;
+    font: vars.$label-medium;
 
     .mat-mdc-menu-item-text {
-      font: var(--mat-sys-label-medium);
+      font: vars.$label-medium;
     }
   }
 }
