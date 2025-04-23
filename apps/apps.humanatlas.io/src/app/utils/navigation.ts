@@ -15,6 +15,7 @@ function isNavigationFinishEvent(event: Event): boolean {
 
 /**
  * Navigation utility function to show progress bar and loading states
+ * @param [delayThreshold] Delay threshold in milliseconds (default is 500)
  * @returns Boolean signal
  */
 export function isNavigating(delayThreshold?: number): Signal<boolean> {
