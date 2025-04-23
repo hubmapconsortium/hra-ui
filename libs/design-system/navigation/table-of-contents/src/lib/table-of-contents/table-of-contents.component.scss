@@ -1,7 +1,7 @@
 @use '../../../../../styles/utils';
 
 :host {
-  .navigation-container {
+  ng-scrollbar {
     display: flex;
     flex-direction: column;
     background: var(--mat-sys-on-primary);
@@ -13,69 +13,41 @@
     border: 1px solid var(--mat-sys-outline-variant);
     border-radius: 0.5rem;
     margin-bottom: 4rem;
+  }
 
-    .navigation-top {
-      @include utils.use-font(label, large);
-      color: var(--mat-sys-secondary);
-      min-height: 3rem;
-      align-content: center;
-      padding-left: 1.5rem;
-      background-color: var(--mat-sys-surface-container-low);
-      border-bottom: 1px solid var(--mat-sys-outline-variant);
-    }
+  .link-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .link-container {
-      padding: 0.5rem;
-      display: flex;
-      flex-direction: column;
-    }
+  .navigation-top {
+    @include utils.use-font(label, large);
+    color: var(--mat-sys-secondary);
+    min-height: 3rem;
+    align-content: center;
+    padding-left: 1.5rem;
+    background-color: var(--mat-sys-surface-container-low);
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
 
-    hra-table-of-contents-item {
-      ::ng-deep {
-        .navigation-label {
-          @include utils.use-font(label, medium);
-          color: var(--mat-sys-primary);
-          padding: 0 1rem;
-          border-radius: 0.5rem;
-          min-height: 2rem;
-          display: flex;
-          align-items: center;
-
-          &:hover {
-            background-color: utils.with-alpha(var(--mat-sys-secondary), 8%);
-          }
-
-          &.selected {
-            background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
-          }
-        }
-      }
-    }
-
-    @media (min-width: 1000px) {
+  @media (min-width: 1000px) {
+    ng-scrollbar {
       height: 100%;
       padding: 2.5rem 0.75rem 0 0.75rem;
       border: none;
       margin-bottom: 0;
-
-      .navigation-top {
-        min-height: 2.5rem;
-        background-color: unset;
-        border-bottom: unset;
-        padding-left: 1rem;
-      }
-
-      .navigation-links {
-        padding: 0;
-      }
-
-      .link-container {
-        padding: 0;
-      }
     }
-  }
 
-  a {
-    color: inherit;
+    .link-container {
+      padding: 0;
+    }
+
+    .navigation-top {
+      min-height: 2.5rem;
+      background-color: unset;
+      border-bottom: unset;
+      padding-left: 1rem;
+    }
   }
 }

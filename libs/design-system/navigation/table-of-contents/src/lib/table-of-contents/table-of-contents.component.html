@@ -1,14 +1,13 @@
 <ng-scrollbar>
-  <div class="navigation-container">
-    <div class="navigation-top">{{ tagline() }}</div>
-    <nav class="link-container" [attr.aria-label]="'Table of Contents'">
-      @for (section of sections(); track section) {
-        <hra-table-of-contents-item
-          class="navigation-link"
-          [section]="section"
-          [selected]="selectedNode() === section"
-        ></hra-table-of-contents-item>
-      }
-    </nav>
-  </div>
+  <nav class="link-container" aria-labelledby="table-of-contents-navigation">
+    <div id="table-of-contents-navigation" class="navigation-top">{{ tagline() }}</div>
+    @for (section of sections(); track section) {
+      <hra-table-of-contents-item
+        class="navigation-link"
+        [section]="section"
+        [selected]="activeSection() === section"
+        [baseUrl]="baseUrl"
+      ></hra-table-of-contents-item>
+    }
+  </nav>
 </ng-scrollbar>
