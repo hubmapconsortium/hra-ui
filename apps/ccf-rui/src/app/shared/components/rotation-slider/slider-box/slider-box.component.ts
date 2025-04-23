@@ -34,13 +34,19 @@ export class SliderBoxComponent {
   @Output() readonly resetRotation = new EventEmitter<string>();
   /** Update rotation */
   @Output() readonly changeRotation = new EventEmitter<string>();
+  /** View child of slider box content */
   @ViewChild('sliderContent') sliderContent!: TemplateRef<unknown>;
 
+  /** Overlay  of slider box component */
   private overlay = inject(Overlay);
+  /** Element reference of slider box component */
   private elementRef = inject(ElementRef);
+  /** View container reference of slider box component */
   private viewContainerRef = inject(ViewContainerRef);
+  /** Overlay reference of slider box component */
   private overlayRef: OverlayRef | null = null;
 
+  /** Displays a slider*/
   showSlider(): void {
     if (this.overlayRef) {
       return;
@@ -73,6 +79,7 @@ export class SliderBoxComponent {
     this.overlayRef.backdropClick().subscribe(() => this.closeSlider());
   }
 
+  /** Closes the slider */
   private closeSlider(): void {
     if (this.overlayRef) {
       this.overlayRef.dispose();
