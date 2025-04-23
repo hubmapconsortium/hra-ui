@@ -2,11 +2,7 @@
 
 :host {
   display: block;
-  background: linear-gradient(
-    to bottom,
-    vars.$surface-container-high,
-    vars.$surface-container-lowest
-  );
+  background: linear-gradient(to bottom, vars.$surface-container-high, vars.$surface-container-lowest);
 
   .content {
     display: flex;
