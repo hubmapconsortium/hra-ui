@@ -1,6 +1,15 @@
-import { ComponentRef, Directive, effect, inject, input, reflectComponentType, ViewContainerRef } from '@angular/core';
-import { AnyContentTemplate } from '../types/content-template.schema';
+import {
+  ComponentRef,
+  Directive,
+  effect,
+  inject,
+  input,
+  reflectComponentType,
+  Type,
+  ViewContainerRef,
+} from '@angular/core';
 import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
+import { AnyContentTemplate, Classes, Styles } from '../types/content-template.schema';
 
 /** A structural directive that renders a content template component */
 @Directive({
@@ -30,26 +39,30 @@ export class ContentTemplateOutletDirective {
    * @returns A reference to the rendered component or undefined on failure
    */
   private render(data: AnyContentTemplate): ComponentRef<unknown> | undefined {
-    // TODO initial parse
+    const [component, parsedData] = this.selectComponentWithData(data);
+    const ref = this.viewContainerRef.createComponent(component);
+
+    this.setClasses(ref, parsedData.classes);
+    this.setStyles(ref, parsedData.styles);
+    this.setInputs(ref, parsedData);
+
+    return ref;
+  }
+
+  private selectComponentWithData(data: AnyContentTemplate): [Type<unknown>, AnyContentTemplate] {
     const def = this.contentTemplateService.getDef(data.component);
     if (!def) {
-      // TODO
-      return undefined;
+      throw new Error(`No definition for ${data.component}`);
+      // TODO return an error component instead!
     }
 
     const parseResult = def.spec.safeParse(data);
     if (!parseResult.success) {
-      // TODO
-      return undefined;
+      throw new Error(`Failed to parse data for ${data.component}: ${parseResult.error.format()}`);
+      // TODO return an error component instead!
     }
 
-    const ref = this.viewContainerRef.createComponent(def.component);
-    // TODO use parsed data
-    this.setClasses(ref, data);
-    this.setStyles(ref, data);
-    this.setInputs(ref, data);
-
-    return ref;
+    return [def.component, parseResult.data];
   }
 
   /**
@@ -58,8 +71,8 @@ export class ContentTemplateOutletDirective {
    * @param ref Reference to the component
    * @param data Component data
    */
-  private setClasses(ref: ComponentRef<unknown>, data: AnyContentTemplate): void {
-    // TODO
+  private setClasses(ref: ComponentRef<unknown>, classes: Classes | undefined): void {
+    // TODO set classes
   }
 
   /**
@@ -68,8 +81,8 @@ export class ContentTemplateOutletDirective {
    * @param ref Reference to the component
    * @param data Component data
    */
-  private setStyles(ref: ComponentRef<unknown>, data: AnyContentTemplate): void {
-    // TODO
+  private setStyles(ref: ComponentRef<unknown>, styles: Styles | undefined): void {
+    // TODO set styles
   }
 
   /**

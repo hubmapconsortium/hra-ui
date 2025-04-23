@@ -20,8 +20,8 @@ export const ContentTemplateSchema = z.object({
 /** Content template with additional properties */
 export const ContentTemplateWithPropsSchema = ContentTemplateSchema.passthrough();
 
-/** All registered content template specs */
-export const registeredSpecs = new Set<AnyContentTemplateSpec>();
+/** All content template specs */
+let contentTemplateSpecs: [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]] | undefined = undefined;
 
 /** Data type for a content template */
 export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
@@ -30,10 +30,18 @@ export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
 export type AnyContentTemplateSpec = z.ZodObject<(typeof ContentTemplateSchema)['shape'], any, any>;
 /** Schema for any content template */
 export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z.lazy(() => {
-  if (registeredSpecs.size === 0) {
+  if (contentTemplateSpecs === undefined) {
     return ContentTemplateWithPropsSchema;
   }
 
-  const specs = Array.from(registeredSpecs) as [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]];
-  return z.discriminatedUnion('component', specs);
+  return z.discriminatedUnion('component', contentTemplateSpecs);
 });
+
+/**
+ * Sets the content template specs used when validating with `AnyContentTemplateSchema`
+ *
+ * @param specs New content template specs
+ */
+export function setContentTemplateSpecs(specs: [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]]): void {
+  contentTemplateSpecs = specs;
+}

@@ -1,6 +1,5 @@
 import { EnvironmentProviders, inject, Injectable, InjectionToken, makeEnvironmentProviders } from '@angular/core';
 import { AnyContentTemplateDef } from '../types/content-template-def';
-import { ContentTemplateSpecRegistryService } from './spec-registry.service';
 
 /** Provider token for content template definitions */
 export const CONTENT_TEMPLATE_DEFS = new InjectionToken<AnyContentTemplateDef[][]>('Content Template Defs');
@@ -28,9 +27,6 @@ export class ContentTemplateDefRegistryService {
   /** Registered definitions */
   private readonly defs = new Map<string, AnyContentTemplateDef>();
 
-  /** Spec registry */
-  private readonly specsRegistry = inject(ContentTemplateSpecRegistryService);
-
   /** Initialize the service with globally provided definitions */
   constructor() {
     const defs = inject(CONTENT_TEMPLATE_DEFS, { optional: true }) ?? [];
@@ -47,7 +43,6 @@ export class ContentTemplateDefRegistryService {
   registerDef(def: AnyContentTemplateDef): void {
     const tag = def.spec.shape.component.value;
     this.defs.set(tag, def);
-    this.specsRegistry.registerSpec(def.spec);
   }
 
   /**
