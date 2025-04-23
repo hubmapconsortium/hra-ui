@@ -1,7 +1,7 @@
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ArgTypes, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { ProgressSpinnerComponent } from '../../../../indicators/progress-spinner/src/lib/progress-spinner.component';
+import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
 import { CtaButtonDirective } from './directives/cta.directive';
 import { ButtonSize, ButtonSizeDirective } from './directives/size.directive';
 import { ButtonVariant, ButtonVariantDirective } from './directives/variant.directive';
@@ -60,6 +60,10 @@ const meta: Meta<CommonButtonArgs> = {
 };
 export default meta;
 
+function content(loading: boolean, color: string) {
+  return loading ? `<hra-progress-spinner size="small" color="${color}" />` : 'Click Me!';
+}
+
 export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   argTypes: {
     ...VARIANT_ARG_TYPES,
@@ -72,13 +76,8 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   render: (args) => ({
     template: `
     <button mat-button hraButtonVariant="${args.variant}" hraButtonSize="${args.size}" disabled="${args.disabled}">
-    ${
-      args.loading
-        ? `<hra-progress-spinner size="small" [color]="'${args.variant === 'secondary' ? 'dark' : 'color'}'"></hra-progress-spinner>`
-        : `Click Me!
-      ${args.size !== 'small' ? '<mat-icon>download</mat-icon>' : ''}`
-    }
-
+      ${content(args.loading, 'color')}
+      ${args.size !== 'small' && !args.loading ? '<mat-icon>download</mat-icon>' : ''}
     </button>`,
   }),
 };
@@ -87,13 +86,8 @@ export const FlatRound: StoryObj<CommonButtonArgs> = {
   render: (args) => ({
     template: `
     <button mat-flat-button disabled="${args.disabled}">
-    ${
-      args.loading
-        ? `<hra-progress-spinner size="small" color="light"></hra-progress-spinner>`
-        : `Click Me!
-      <mat-icon>download</mat-icon>`
-    }
-
+      ${content(args.loading, 'light')}
+      ${!args.loading ? '<mat-icon>download</mat-icon>' : ''}
     </button>`,
   }),
 };
@@ -108,12 +102,8 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
   render: (args) => ({
     template: `
     <button mat-button hraCtaButton hraButtonVariant="${args.variant}" disabled="${args.disabled}">
-    ${
-      args.loading
-        ? `<hra-progress-spinner size="small" [color]="'${args.variant === 'secondary' ? 'color' : 'light'}'"></hra-progress-spinner>`
-        : `Click Me!
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>`
-    }
+      ${content(args.loading, 'light')}
+      ${!args.loading ? '<mat-icon iconPositionEnd>arrow_forward</mat-icon>' : ''}
     </button>`,
   }),
 };
