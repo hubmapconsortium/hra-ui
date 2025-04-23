@@ -42,9 +42,9 @@
       cursor: default;
     }
 
-      &:focus-visible {
-        border-color: vars.$secondary;
-      }
+    &:focus-visible {
+      border-color: vars.$secondary;
+    }
     .mat-sort-header-content {
       cursor: text;
     }
