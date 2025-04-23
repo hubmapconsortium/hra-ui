@@ -1,14 +1,14 @@
-@if (displayedSlider !== sliderAxis) {
-  <mat-form-field
-    class="rotation-value"
-    subscriptSizing="dynamic"
-    (click)="displaySlider.emit()"
-    hraPlainTooltip="Rotation is measured in degrees"
-  >
-    <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
-    <input matInput [value]="rotation[sliderAxis]" />
-  </mat-form-field>
-} @else {
+<mat-form-field
+  class="rotation-value"
+  subscriptSizing="dynamic"
+  (click)="showSlider()"
+  hraPlainTooltip="Rotation is measured in degrees"
+>
+  <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
+  <input matInput [value]="rotation[sliderAxis]" />
+</mat-form-field>
+
+<ng-template #sliderContent>
   <div class="slider-container">
     <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraPlainTooltip="Reset">
       <mat-icon>reset_settings</mat-icon>
@@ -43,4 +43,4 @@
       />
     </mat-form-field>
   </div>
-}
+</ng-template>

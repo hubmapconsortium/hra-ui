@@ -1,6 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 
 import { Axis, Rotation } from '../rotation-slider.component';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 
 /** Slider box */
 @Component({
@@ -13,17 +26,57 @@ import { Axis, Rotation } from '../rotation-slider.component';
 export class SliderBoxComponent {
   /** Slider axis */
   @Input() sliderAxis!: Axis;
-  /** Displayed slider */
-  @Input() displayedSlider?: string;
   /** Rotation value */
   @Input() rotation!: Rotation;
   /** Step size to increase or decrease value by */
   @Input() step!: number;
-
-  /** Displayed slider change */
-  @Output() readonly displaySlider = new EventEmitter<string>();
   /** Reset rotation */
   @Output() readonly resetRotation = new EventEmitter<string>();
   /** Update rotation */
   @Output() readonly changeRotation = new EventEmitter<string>();
+  @ViewChild('sliderContent') sliderContent!: TemplateRef<unknown>;
+
+  private overlay = inject(Overlay);
+  private elementRef = inject(ElementRef);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlayRef: OverlayRef | null = null;
+
+  showSlider(): void {
+    if (this.overlayRef) {
+      return;
+    }
+
+    const positionStrategy = this.overlay
+      .position()
+      .flexibleConnectedTo(this.elementRef)
+      .withPositions([
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+          offsetX: 80,
+        },
+      ]);
+
+    this.overlayRef = this.overlay.create({
+      positionStrategy,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      panelClass: 'rotation-slider-overlay',
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+    });
+
+    const portal = new TemplatePortal(this.sliderContent, this.viewContainerRef);
+    this.overlayRef.attach(portal);
+
+    this.overlayRef.backdropClick().subscribe(() => this.closeSlider());
+  }
+
+  private closeSlider(): void {
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
+      this.overlayRef = null;
+    }
+  }
 }
