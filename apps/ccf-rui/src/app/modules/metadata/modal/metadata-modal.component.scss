@@ -67,7 +67,7 @@
 ::ng-deep {
   .metadata-modal {
     --mdc-dialog-container-shape: 0;
-    --mdc-dialog-container-color: vars.$surface-container-low;
+    --mdc-dialog-container-color: #{vars.$surface-container-low};
 
     .mat-mdc-dialog-surface {
       overflow-y: hidden !important;
@@ -75,6 +75,6 @@
   }
 
   .metadata-confirmation-modal {
-    --mdc-dialog-container-color: vars.$surface-container-low;
+    --mdc-dialog-container-color: #{vars.$surface-container-low};
   }
 }

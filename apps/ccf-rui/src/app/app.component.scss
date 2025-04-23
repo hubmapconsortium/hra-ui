@@ -70,6 +70,6 @@
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
   z-index: 2000 !important;
-  --mdc-snackbar-container-color: vars.$surface-dim;
-  --mdc-snackbar-supporting-text-color: vars.$secondary;
+  --mdc-snackbar-container-color: #{vars.$surface-dim};
+  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
 }

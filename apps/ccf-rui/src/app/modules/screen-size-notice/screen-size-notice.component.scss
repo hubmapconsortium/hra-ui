@@ -23,7 +23,7 @@
     --mat-dialog-with-actions-content-padding: 0 2rem;
     font: vars.$body-large;
     letter-spacing: vars.$body-large-tracking;
-    --mdc-dialog-supporting-text-color: vars.$primary;
+    --mdc-dialog-supporting-text-color: #{vars.$primary};
   }
 
   mat-dialog-actions {
