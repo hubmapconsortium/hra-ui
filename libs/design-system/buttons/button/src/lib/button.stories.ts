@@ -60,10 +60,6 @@ const meta: Meta<CommonButtonArgs> = {
 };
 export default meta;
 
-function content(loading: boolean, color: string) {
-  return loading ? `<hra-progress-spinner size="small" color="${color}" />` : 'Click Me!';
-}
-
 export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   argTypes: {
     ...VARIANT_ARG_TYPES,
@@ -74,21 +70,31 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
     size: 'medium',
   },
   render: (args) => ({
+    props: { loading: args.loading },
     template: `
-    <button mat-button hraButtonVariant="${args.variant}" hraButtonSize="${args.size}" disabled="${args.disabled}">
-      ${content(args.loading, args.variant === 'secondary' ? 'dark' : 'color')}
-      ${args.size !== 'small' && !args.loading ? '<mat-icon>download</mat-icon>' : ''}
-    </button>`,
+     <button mat-button hraButtonVariant="${args.variant}" hraButtonSize="${args.size}" disabled="${args.disabled}">
+     ${args.size !== 'small' ? `<mat-icon [style.opacity]="loading ? 0 : 1">download</mat-icon>` : ''}
+        <span [style.opacity]="loading ? 0 : 1">
+          Click me!
+        </span>
+        <hra-progress-spinner class="button-spinner" size="small" color="color" *ngIf="loading" />
+      </button>
+      `,
   }),
 };
 
 export const FlatRound: StoryObj<CommonButtonArgs> = {
   render: (args) => ({
+    props: { loading: args.loading },
     template: `
-    <button mat-flat-button disabled="${args.disabled}">
-      ${content(args.loading, 'light')}
-      ${!args.loading ? '<mat-icon>download</mat-icon>' : ''}
-    </button>`,
+     <button mat-flat-button disabled="${args.disabled}">
+        <mat-icon [style.opacity]="loading ? 0 : 1">download</mat-icon>
+        <span [style.opacity]="loading ? 0 : 1">
+          Click me!
+        </span>
+        <hra-progress-spinner class="button-spinner" size="small" color="light" *ngIf="loading" />
+      </button>
+      `,
   }),
 };
 
@@ -100,11 +106,16 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
     variant: 'primary',
   },
   render: (args) => ({
+    props: { loading: args.loading },
     template: `
     <button mat-button hraCtaButton hraButtonVariant="${args.variant}" disabled="${args.disabled}">
-      ${content(args.loading, args.variant === 'secondary' ? 'color' : 'light')}
-      ${!args.loading ? '<mat-icon iconPositionEnd>arrow_forward</mat-icon>' : ''}
-    </button>`,
+      <span [style.opacity]="loading ? 0 : 1">
+        Click me!
+      </span>
+      <mat-icon [style.opacity]="loading ? 0 : 1" iconPositionEnd>arrow_forward</mat-icon>
+      <hra-progress-spinner class="button-spinner" size="small" color="${args.variant === 'secondary' ? 'color' : 'light'}" *ngIf="loading" />
+    </button>
+      `,
   }),
 };
 

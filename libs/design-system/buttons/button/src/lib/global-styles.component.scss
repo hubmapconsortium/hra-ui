@@ -35,6 +35,14 @@
       --mdc-text-button-container-height: 1.75rem;
       --mat-text-button-horizontal-padding: 0.5rem;
     }
+
+    .button-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
   }
 
   :is(button, a).mdc-button[mat-flat-button] {
