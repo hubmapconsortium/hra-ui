@@ -4,7 +4,7 @@ import { provideStyleComponents } from '@hra-ui/cdk/styling';
 /**
  * Applies global styles to radio button
  *
- * @returns Radio button providers
+ * @returns Radio Button providers
  */
 export function provideRadioButton(): EnvironmentProviders {
   return makeEnvironmentProviders([provideStyleComponents()]);
