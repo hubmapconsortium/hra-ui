@@ -41,8 +41,8 @@
     - heading: Publications
       id: publications
       descriptions: |
-        Börner, Katy, Andreas D. Bueckle, and Michael Ginda. 2019. <a href="https://cns.iu.edu/docs/publications/2019-borner-pnas.pdf">
-        Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments</a>. <i>PNAS</i> 116 (6): 1857-1864. doi:10.1073/pnas.1807180116.
+        Börner, Katy, Andreas D. Bueckle, and Michael Ginda. 2019."<a href="https://cns.iu.edu/docs/publications/2019-borner-pnas.pdf">
+        Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments.</a>" <i>PNAS</i> 116 (6): 1857-1864. doi:10.1073/pnas.1807180116.
 
         Börner, Katy, Andreas Bueckle, Bruce W. Herr II, Leonard E. Cross, Ellen M. Quardokus, Elizabeth G. Record, Yingnan Ju, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Griffin M. Weber. 2021.
         <a href="https://www.biorxiv.org/content/10.1101/2021.12.30.474265v1">Tissue Registration and Exploration User Interfaces in support of a Human Reference Atlas.</a>” <i>biorXiv</i> December 30, 2021. doi: 10.1101/2021.12.30.474265.
@@ -50,17 +50,11 @@
         Börner Katy, Ellen M. Quardokus, Bruce W. Herr II, Leonard E. Cross, Elizabeth G. Record, Yingnan Ju, Andreas D. Bueckle, James P. Sluka, Jonathan C. Silverstein, Kristen M. Browne, Sanjay Jain, Clive H. Wasserfall, Marda L. Jorgensen, Jeffrey M. Spraggins, Nathan H. Patterson, Mark A. Musen, and Griffin M. Weber. 2020.
         <a href="https://arxiv.org/abs/2007.14474">Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies.</a> <i>arXiv</i>, July 28, 2020. doi: 10.48550/arxiv.2007.14474.
 
-        Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra, Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla, Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain, Danial Qaurooni, Yongxin Kong, HRA Team, Andreas Bueckle, and Bruce W. Herr II. 2025. <a href="https://doi.org/10.1038/s41592-024-02563-5">Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage</a>. <i>Nature Methods</i>. doi: 10.1038/s41592-024-02563-5.
-
         Börner, Katy, William Rouse, Paul Trunfio, and H. Eugene Stanley. 2018. <a href="https://cns.iu.edu/docs/publications/2018-borner-forecasting-innovations.pdf">Forecasting Innovations in Science, Technology, and Education.</a>
         <i>PNAS</i> 115 (50): 12573-12581. doi: 10.1073/pnas.1818750115.
 
         Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
         <a href="https://doi.org/10.1038/s41556-021-00788-6" target="_blank">Anatomical structures, cell types and biomarkers of the Human Reference Atlas.</a> <i>Nature Cell Biology</i> 23 (11): 1117-28.
-
-        Bidanta, Supriya, Katy Börner, Bruce W. Herr II, Ellen M. Quardokus, Marcell Nagy, Katherine Gustilo, Rachel Bajema, Elizabeth Maier, and Griffin Weber. 2025. <a href="https://doi.org/10.1038/s41467-024-54591-6">Functional tissue units in the Human Reference Atlas</a>. <i>Nature Communications</i>. doi: 10.1038/s41467-024-54591-6.
-
-        Bueckle, Andreas, Bruce W. Herr II, Josef Hardi, Ellen M Quardokus, Mark A. Musen, and Katy Börner. 2024. <a href="https://doi.org/10.1101/2024.12.22.630006">Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data</a>. doi: 10.1101/2024.12.22.630006.
 
         Bueckle, Andreas, Kristen M. Browne, Bruce W. Herr II, Katy Börner. 2022. <a href="https://osf.io/z9gm3/">The Common Coordinate Framework (CCF) Organ VR Gallery.</a> OSF preprint. doi: 10.31219/osf.io/z9gm3.
 
