@@ -12,7 +12,7 @@
       type="number"
       [value]="emptyStringIfNaN(slicesConfig.thickness)"
       (keyup)="updateSlicesData($event, 'thickness')"
-      hraPlainTooltip="Tissue thickness is measured in micrometers"
+      hraMicroTooltip="Tissue thickness is measured in micrometers"
     />
   </mat-form-field>
 
@@ -25,7 +25,7 @@
       type="number"
       [value]="emptyStringIfNaN(slicesConfig.numSlices)"
       (keyup)="updateSlicesData($event, 'numSlices')"
-      hraPlainTooltip="Total number of tissue sections"
+      hraMicroTooltip="Total number of tissue sections"
     />
   </mat-form-field>
 </div>

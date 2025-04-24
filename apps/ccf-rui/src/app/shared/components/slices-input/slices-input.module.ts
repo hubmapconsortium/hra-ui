@@ -5,10 +5,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { NumbersOnlyModule } from 'ccf-shared';
 import { SlicesInputComponent } from './slices-input.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 @NgModule({
   imports: [
@@ -17,9 +17,9 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     MatIconModule,
     MatRippleModule,
     MatTooltipModule,
-    NumbersOnlyModule,
     MatFormFieldModule,
-    PlainTooltipDirective,
+    MicroTooltipDirective,
+    NumbersOnlyModule,
   ],
   providers: [importProvidersFrom(BrowserAnimationsModule)],
   declarations: [SlicesInputComponent],
