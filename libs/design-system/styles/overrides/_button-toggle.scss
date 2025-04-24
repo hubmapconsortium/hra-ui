@@ -6,7 +6,7 @@
   @include mat.button-toggle-overrides(
     (
       // Basic toggle styles
-      height: vars.$toggle-label-text-line-height,
+      height: 1.5rem,
       shape: vars.$corner-extra-small,
       divider-color: vars.$primary,
       selected-state-text-color: vars.$secondary,
