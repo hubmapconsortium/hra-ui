@@ -1,3 +1,5 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   --mat-text-button-hover-state-layer-opacity: 0;
