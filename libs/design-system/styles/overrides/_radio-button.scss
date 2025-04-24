@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include utils.use-font(label, medium);
+
+  mat-radio-button.mat-mdc-radio-checked {
+    @include mat.radio-overrides(
+      (
+        selected-icon-color: vars.$on-tertiary-fixed,
+        ripple-color: vars.$on-tertiary-fixed,
+        selected-focus-icon-color: vars.$on-tertiary-fixed,
+        selected-icon-color: vars.$on-tertiary-fixed,
+        checked-ripple-color: vars.$on-tertiary-fixed,
+        selected-pressed-icon-color: vars.$on-tertiary-fixed,
+      )
+    );
+  }
+}

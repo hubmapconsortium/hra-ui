@@ -1,6 +1,5 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
-import { RadioButtonGlobalStylesComponent } from './global-styles.component';
 
 /**
  * Applies global styles to radio button
@@ -8,5 +7,5 @@ import { RadioButtonGlobalStylesComponent } from './global-styles.component';
  * @returns Radio button providers
  */
 export function provideRadioButton(): EnvironmentProviders {
-  return makeEnvironmentProviders([provideStyleComponents(RadioButtonGlobalStylesComponent)]);
+  return makeEnvironmentProviders([provideStyleComponents()]);
 }
