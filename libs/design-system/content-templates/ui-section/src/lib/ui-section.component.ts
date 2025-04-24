@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { AppLabelComponent } from '@hra-ui/design-system/app-label';
+import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
