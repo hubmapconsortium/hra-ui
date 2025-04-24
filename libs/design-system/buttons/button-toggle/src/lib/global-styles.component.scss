@@ -2,6 +2,7 @@
 
 @include utils.global-styles() {
   mat-button-toggle-group {
+    background-color: var(--mat-sys-on-primary);
     --mat-standard-button-toggle-height: var(--mat-standard-button-toggle-label-text-line-height);
     --mat-standard-button-toggle-shape: var(--mat-sys-corner-extra-small);
     --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
