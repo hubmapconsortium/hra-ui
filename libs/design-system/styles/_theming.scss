@@ -8,5 +8,6 @@
 @mixin theme($theme, $overrides: typography.$overrides) {
   @include mat.theme($theme, $overrides: $overrides);
   @include typography.custom-variants();
+  @include overrides.button-toggle-overrides();
   @include overrides.button-overrides();
 }

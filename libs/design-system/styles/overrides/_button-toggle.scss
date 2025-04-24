@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.button-toggle-overrides(
+    (
+      // Basic toggle styles
+      height: vars.$toggle-label-text-line-height,
+      shape: vars.$corner-extra-small,
+      divider-color: vars.$primary,
+      selected-state-text-color: vars.$secondary,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%)
+    )
+  );
+
+  mat-button-toggle-group.hra-button-toggle-size-small {
+    @include mat.button-toggle-overrides(
+      (
+        label-text-font: vars.$label-small-font,
+        label-text-size: vars.$label-small-size,
+        label-text-line-height: vars.$label-small-line-height,
+        label-text-weight: vars.$label-small-weight,
+        label-text-tracking: vars.$label-small-tracking,
+      )
+    );
+    .mat-button-toggle-label-content {
+      padding: 0.3125rem 0.5rem;
+    }
+  }
+
+  mat-button-toggle-group.hra-button-toggle-size-medium {
+    @include mat.button-toggle-overrides(
+      (
+        label-text-font: vars.$label-medium-font,
+        label-text-size: vars.$label-medium-size,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-weight: vars.$label-medium-weight,
+        label-text-tracking: vars.$label-medium-tracking,
+      )
+    );
+    .mat-button-toggle-label-content {
+      padding: 0.3438rem 0.5rem;
+    }
+  }
+
+  mat-button-toggle-group.hra-button-toggle-size-large {
+    @include mat.button-toggle-overrides(
+      (
+        label-text-font: vars.$label-large-font,
+        label-text-size: vars.$label-large-size,
+        label-text-line-height: vars.$label-large-line-height,
+        label-text-weight: vars.$label-large-weight,
+        label-text-tracking: vars.$label-large-tracking,
+      )
+    );
+    .mat-button-toggle-label-content {
+      padding: 0.5rem 1rem;
+    }
+  }
+}
