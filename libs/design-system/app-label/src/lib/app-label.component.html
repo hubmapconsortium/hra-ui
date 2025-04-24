@@ -1,11 +1,9 @@
-<div class="ui-content">
-  <hra-product-logo [id]="logo()" class="product-logo" />
-  <div class="ui-content-header">
-    <h1>
-      {{ tagline() }}
-    </h1>
-    @if (appStatus(); as status) {
-      <hra-software-status-indicator [status]="status" size="large" />
-    }
-  </div>
+<hra-product-logo [id]="logo()" class="product-logo" />
+<div class="ui-content-header">
+  <h1>
+    {{ tagline() }}
+  </h1>
+  @if (appStatus(); as status) {
+    <hra-software-status-indicator [status]="status" size="large" />
+  }
 </div>

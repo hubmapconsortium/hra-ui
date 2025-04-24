@@ -2,10 +2,13 @@
 
 :host {
   display: flex;
-  max-width: 106.25rem;
-  width: 100%;
-  gap: 5rem;
+  align-items: center;
+  gap: 1.5rem;
   @include utils.use-font(display, large);
+
+  p {
+    margin: 0;
+  }
 
   .product-logo {
     height: 5rem;
@@ -26,20 +29,8 @@
     }
   }
 
-  .ui-content {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-
-    p {
-      margin: 0;
-    }
-  }
-
   @media (max-width: 639px) {
-    .ui-content {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
