@@ -63,12 +63,13 @@ export const EMPTY_PREDICTIONS: CellSummaryReport = {
   imports: [
     CommonModule,
     MatIconModule,
-    MatTableModule,
     MatSortModule,
-    MatButton,
+    MatTableModule,
     MatMenuModule,
-    WorkflowCardModule,
     OverlayModule,
+    WorkflowCardModule,
+
+    MatButton,
     BackButtonBarComponent,
     ScrollingModule,
     SimilarAnatomicalStructuresTableComponent,
