@@ -1,3 +1,5 @@
+@use '../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: grid;
   grid-template-columns: 21rem minmax(586px, calc(100vw - 43.25rem - 4px)) 22.25rem;
