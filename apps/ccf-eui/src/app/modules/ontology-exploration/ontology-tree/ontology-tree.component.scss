@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
 

@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/vars' as vars;
+
 :host {
   display: grid;
   grid-template-areas: 'header header' 'sex-organ sex-organ' '. button';

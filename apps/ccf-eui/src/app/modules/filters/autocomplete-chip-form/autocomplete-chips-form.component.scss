@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   --mdc-filled-text-field-container-color: #{vars.$surface-container};
   --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed};
