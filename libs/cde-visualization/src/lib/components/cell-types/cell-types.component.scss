@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   --mat-table-background-color: white;
