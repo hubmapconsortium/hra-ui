@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
 import { ReleaseNotesPageComponent } from './pages/release-notes-page/release-notes-page.component';
+import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -15,11 +15,8 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'publications',
+    path: 'release-notes',
     component: ReleaseNotesPageComponent,
-    // resolve: {
-    //   publications: publicationsResolver,
-    // },
   },
   {
     path: '**',

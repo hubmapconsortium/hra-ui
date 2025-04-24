@@ -1,1 +1,26 @@
-<p>release-notes-page works!</p>
+<hra-page-section>
+  <hra-page-section-header>
+    <hra-section-link level="1" underlined> Release Notes </hra-section-link>
+  </hra-page-section-header>
+  <hra-page-section-content> What's new in the Human Reference Atlas. </hra-page-section-content>
+</hra-page-section>
+
+<hra-page-section>
+  <hra-page-section-header>
+    <hra-section-link level="2" underlined> {{ data() ? data()!.releaseTitle : '' }} </hra-section-link>
+  </hra-page-section-header>
+  <hra-page-section-content>
+    {{ data() ? data()!.releaseDescription : '' }}
+  </hra-page-section-content>
+</hra-page-section>
+
+@for (data of data() ? data()!.content : []; track data) {
+  <hra-page-section>
+    <hra-page-section-header>
+      <hra-section-link level="2" underlined> {{ data.header }} </hra-section-link>
+    </hra-page-section-header>
+    <hra-page-section-content>
+      <markdown [data]="data.content"></markdown>
+    </hra-page-section-content>
+  </hra-page-section>
+}

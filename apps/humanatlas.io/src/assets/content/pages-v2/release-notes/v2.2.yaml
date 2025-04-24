@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+releaseTitle: 9th Release (v2.3), June 2025
+releaseVersion: 2.2
+releaseDescription: HuBMAP's Indiana University Mapping Component (MC-IU) has published a new release of the Human Reference Atlas in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
+content:
+  - header: Data
+    content: <span>The Human Reference Atlas now includes:</span> <ul><li>[# of] ASCT+B Tables<ul><li>[# of] anatomical structures</li><li>[# of] cell types</li><li>[# of] biomarkers</li></ul></li><li>[# of] 2D Functional Tissue Units (FTUs)</li><li>[# of] 3D Organ Models</li><li>[# of] Organ Mapping Antibody Panel (OMAP) Tables</li><li>[# of] Crosswalk Tables</li><li>[# of] Vasculature Common Coordinate Framework (VCCF) Tables</li></ul>
