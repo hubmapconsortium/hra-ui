@@ -1,3 +1,5 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   & > section {
     margin: 0 auto;
