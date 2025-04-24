@@ -61,7 +61,7 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   },
   render: (args) => ({
     template: `<button mat-button hraButtonVariant="${args.variant}" hraButtonSize="${args.size}" disabled="${args.disabled}">
-      Click Me!
+      Click me!
       ${args.size !== 'small' ? '<mat-icon>download</mat-icon>' : ''}
     </button>`,
   }),
@@ -70,7 +70,7 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
 export const FlatRound: StoryObj<CommonButtonArgs> = {
   render: (args) => ({
     template: `<button mat-flat-button disabled="${args.disabled}">
-      Click Me!
+      Click me!
       <mat-icon>download</mat-icon>
     </button>`,
   }),
@@ -85,7 +85,7 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
   },
   render: (args) => ({
     template: `<button mat-button hraCtaButton hraButtonVariant="${args.variant}" disabled="${args.disabled}">
-      Click Me!
+      Click me!
       <mat-icon iconPositionEnd>arrow_forward</mat-icon>
     </button>`,
   }),
@@ -95,7 +95,7 @@ export const ExtendedFAB: StoryObj<CommonButtonArgs> = {
   render: (args) => ({
     template: `<button mat-fab extended disabled="${args.disabled}">
       <mat-icon>download</mat-icon>
-      Click Me!
+      Click me!
     </button>`,
   }),
 };

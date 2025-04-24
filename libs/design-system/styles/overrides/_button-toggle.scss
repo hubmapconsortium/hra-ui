@@ -8,6 +8,7 @@
       // Basic toggle styles
       height: 1.5rem,
       shape: vars.$corner-extra-small,
+      background-color: vars.$on-primary,
       divider-color: vars.$primary,
       selected-state-text-color: vars.$secondary,
       selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%)
