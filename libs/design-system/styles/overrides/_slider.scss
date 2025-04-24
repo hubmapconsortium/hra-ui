@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include utils.use-font(label, medium);
+  @include mat.slider-overrides(
+    (
+      inactive-track-color: vars.$outline,
+      active-track-color: vars.$secondary,
+      handle-color: vars.$secondary,
+      label-container-color: vars.$secondary,
+      label-label-text-color: vars.$on-primary,
+      label-label-text-font: vars.$label-medium-font,
+      label-label-text-size: vars.$label-medium-size,
+      label-label-text-line-height: vars.$label-medium-line-height,
+      label-label-text-tracking: vars.$label-medium-tracking,
+      label-label-text-weight: vars.$label-medium-weight,
+      value-indicator-width: 2.6406rem,
+      value-indicator-height: 2.6406rem,
+    )
+  );
+
+  .mat-slider__track--inactive {
+    opacity: 1;
+  }
+}
