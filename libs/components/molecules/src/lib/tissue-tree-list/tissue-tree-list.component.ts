@@ -109,10 +109,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
     }),
     (node) => node.level,
     (node) => node.expandable,
-    (node) =>
-      (node.children ?? [])
-        .map((id) => this.nodes[id])
-        .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })),
+    (node) => (node.children ?? []).map((id) => this.nodes[id]).sort((a, b) => a.label.localeCompare(b.label)),
   );
 
   /**
