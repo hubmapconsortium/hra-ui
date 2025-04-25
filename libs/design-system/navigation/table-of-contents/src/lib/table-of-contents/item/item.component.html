@@ -1,3 +1,3 @@
-<a class="navigation-label" [href]="`${this.baseUrl()}#${section().anchor}`" [class.selected]="selected()">
-  {{ section().label }}
+<a class="navigation-label" [class.selected]="selected()" [routerLink]="[]" [fragment]="section().anchor()">
+  {{ section().tagline() }}
 </a>

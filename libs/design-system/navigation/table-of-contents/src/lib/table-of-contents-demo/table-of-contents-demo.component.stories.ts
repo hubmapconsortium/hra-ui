@@ -1,6 +1,13 @@
-import { Meta, StoryObj } from '@storybook/angular';
-
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { provideRouter, Route, RouterModule } from '@angular/router';
 import { TableOfContentsDemoComponent } from './table-of-contents-demo.component';
+
+const ROUTES: Route[] = [
+  {
+    path: '',
+    component: TableOfContentsDemoComponent,
+  },
+];
 
 const meta: Meta<TableOfContentsDemoComponent> = {
   component: TableOfContentsDemoComponent,
@@ -11,6 +18,18 @@ const meta: Meta<TableOfContentsDemoComponent> = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=7632-22566&t=hb4zN0Dq78X9iuuM-4',
     },
   },
+  decorators: [
+    applicationConfig({
+      providers: [provideRouter(ROUTES)],
+    }),
+    moduleMetadata({
+      imports: [RouterModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: '<router-outlet />',
+  }),
 };
 
 export default meta;

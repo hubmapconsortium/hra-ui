@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { TEST_SECTIONS } from '../table-of-contents-demo/table-of-contents-demo.component';
 import { TableOfContentsComponent } from './table-of-contents.component';
 
 const meta: Meta<TableOfContentsComponent> = {
@@ -13,7 +12,7 @@ const meta: Meta<TableOfContentsComponent> = {
     },
   },
   args: {
-    sections: TEST_SECTIONS,
+    // sections: TEST_SECTIONS,
   },
 };
 export default meta;

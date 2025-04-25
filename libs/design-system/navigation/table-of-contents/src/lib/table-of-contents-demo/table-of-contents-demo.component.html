@@ -1,92 +1,45 @@
 <div class="page">
-  <hra-table-of-contents class="nav-large" [sections]="data"></hra-table-of-contents>
+  <hra-table-of-contents class="nav-large" />
 
   <div class="page-content">
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-page-label tagline="Page label" app="ftu" organ="blood"> </hra-page-label>
-      </hra-page-section-header>
-      <hra-page-section-content>
-        <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
-        <button mat-button hraCtaButton>
-          Action
-          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-        </button>
-      </hra-page-section-content>
+    <hra-page-section tagline="Page label">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
+      <button mat-button hraCtaButton>
+        Action
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
     </hra-page-section>
 
-    <hra-table-of-contents class="nav-small" [sections]="data"></hra-table-of-contents>
-
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="2" anchor="section-label-in-sentence-case-1" underlined="true">
-          Section label in sentence case 1
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 1" level="2" anchor="section-label-in-sentence-case-1">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="3" anchor="section-label-in-sentence-case-2" underlined="false">
-          Section label in sentence case 2
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 2" level="3" anchor="section-label-in-sentence-case-2">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="4" anchor="section-label-in-sentence-case-3" underlined="false">
-          Section label in sentence case 3
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 3" level="4" anchor="section-label-in-sentence-case-3">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="5" anchor="section-label-in-sentence-case-4" underlined="false">
-          Section label in sentence case 4
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 4" level="5" anchor="section-label-in-sentence-case-4">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="6" anchor="section-label-in-sentence-case-5" underlined="false">
-          Section label in sentence case 5
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 5" level="6" anchor="section-label-in-sentence-case-5">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="2" anchor="section-label-in-sentence-case-6" underlined="true">
-          Section label in sentence case 6
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 6" level="2" anchor="section-label-in-sentence-case-6">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="3" anchor="section-label-in-sentence-case-7" underlined="false">
-          Section label in sentence case 7
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 7" level="3" anchor="section-label-in-sentence-case-7">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
 
-    <hra-page-section>
-      <hra-page-section-header>
-        <hra-section-link level="3" anchor="section-label-in-sentence-case-8" underlined="false">
-          Section label in sentence case 8
-        </hra-section-link>
-      </hra-page-section-header>
-      <hra-page-section-content *ngTemplateOutlet="sectionContentPlaceholder"> </hra-page-section-content>
+    <hra-page-section tagline="Section label in sentence case 8" level="3" anchor="section-label-in-sentence-case-8">
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
     </hra-page-section>
   </div>
 </div>
