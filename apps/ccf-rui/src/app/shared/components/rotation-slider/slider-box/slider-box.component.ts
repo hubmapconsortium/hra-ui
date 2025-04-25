@@ -1,19 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, signal } from '@angular/core';
 
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { Axis, Rotation } from '../rotation-slider.component';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'ccf-slider-box',
@@ -29,49 +17,24 @@ export class SliderBoxComponent {
   /** Reset rotation */
   @Output() readonly resetRotation = new EventEmitter<string>();
   @Output() readonly changeRotation = new EventEmitter<string>();
-  @ViewChild('sliderContent') sliderContent!: TemplateRef<unknown>;
 
-  private overlay = inject(Overlay);
-  private elementRef = inject(ElementRef);
-  private viewContainerRef = inject(ViewContainerRef);
-  private overlayRef: OverlayRef | null = null;
+  protected readonly positions: ConnectedPosition[] = [
+    {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: 80,
+    },
+  ];
+
+  protected readonly isSliderOpen = signal(false);
 
   showSlider(): void {
-    if (this.overlayRef) {
-      return;
-    }
-
-    const positionStrategy = this.overlay
-      .position()
-      .flexibleConnectedTo(this.elementRef)
-      .withPositions([
-        {
-          originX: 'start',
-          originY: 'center',
-          overlayX: 'end',
-          overlayY: 'center',
-          offsetX: 80,
-        },
-      ]);
-
-    this.overlayRef = this.overlay.create({
-      positionStrategy,
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-      panelClass: 'rotation-slider-overlay',
-      scrollStrategy: this.overlay.scrollStrategies.reposition(),
-    });
-
-    const portal = new TemplatePortal(this.sliderContent, this.viewContainerRef);
-    this.overlayRef.attach(portal);
-
-    this.overlayRef.backdropClick().subscribe(() => this.closeSlider());
+    this.isSliderOpen.set(true);
   }
 
-  private closeSlider(): void {
-    if (this.overlayRef) {
-      this.overlayRef.dispose();
-      this.overlayRef = null;
-    }
+  closeSlider(): void {
+    this.isSliderOpen.set(false);
   }
 }

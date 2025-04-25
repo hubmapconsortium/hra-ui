@@ -3,12 +3,23 @@
   subscriptSizing="dynamic"
   (click)="showSlider()"
   hraMicroTooltip="Rotation is measured in degrees"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
 >
   <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
   <input matInput [value]="rotation[sliderAxis]" />
 </mat-form-field>
 
-<ng-template #sliderContent>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isSliderOpen()"
+  cdkConnectedOverlayHasBackdrop="true"
+  cdkConnectedOverlayPanelClass="rotation-slider-overlay"
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayPositions]="positions"
+  (backdropClick)="closeSlider()"
+>
   <div class="slider-container">
     <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraMicroTooltip="Reset">
       <mat-icon>reset_settings</mat-icon>
