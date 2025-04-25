@@ -19,7 +19,6 @@
   flex-wrap: wrap;
   gap: 3rem;
   margin-top: 3.5rem;
-  height: 15.8125rem;
   --hra-workflow-card-header-padding: 0 0 0.5rem 0;
 
   .info-icon {
@@ -64,6 +63,7 @@
     }
 
     &-2 {
+      height: 15.8125rem;
       .buttons {
         display: flex;
         justify-content: flex-end;
