@@ -102,14 +102,17 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(
     (node, level) => ({
-      label: node.label,
-      expandable: (node.children?.length ?? 0) > 0,
+      label: level === 0 ? node.label : node.label.toLowerCase(),
+      expandable: !!node.children?.length,
       level,
       data: node,
     }),
     (node) => node.level,
     (node) => node.expandable,
-    (node) => node.children?.map((id) => this.nodes[id]),
+    (node) =>
+      (node.children ?? [])
+        .map((id) => this.nodes[id])
+        .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })),
   );
 
   /**
