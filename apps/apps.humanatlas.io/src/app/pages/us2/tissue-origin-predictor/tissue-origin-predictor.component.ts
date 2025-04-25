@@ -17,6 +17,7 @@ import {
   HraPopPredictionsService,
   TissuePredictionData,
 } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
+import { isNavigating } from '../../../utils/navigation';
 
 /** Sample CSV file URL */
 export const SAMPLE_FILE_URL = new InjectionToken<string>('Sample file url', {
@@ -100,6 +101,9 @@ export class TissueOriginPredictorComponent {
 
   /** Router */
   private readonly router = inject(Router);
+
+  /** Signal that determines the navigation status of the router */
+  protected readonly isNavigating = isNavigating(0);
 
   /** Use sample CSV File */
   onUseSampleClicked(): void {

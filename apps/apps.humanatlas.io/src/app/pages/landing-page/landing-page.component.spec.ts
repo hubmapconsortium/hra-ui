@@ -41,7 +41,7 @@ describe('LandingPageComponent', () => {
     const toggles = await toggleGroup.getToggles();
     const labels = await Promise.all(toggles.map((tab) => tab.getText()));
 
-    expect(labels).toEqual(['Researcher Apps', 'Developer Apps']);
+    expect(labels).toEqual(['Researcher apps', 'Developer apps']);
   });
 
   it('should switch to Developer Apps tab and show its content', async () => {
