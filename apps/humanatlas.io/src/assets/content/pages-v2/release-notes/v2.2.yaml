@@ -1,8 +1,135 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
-releaseTitle: 9th Release (v2.3), June 2025
-releaseVersion: 2.2
-releaseDescription: HuBMAP's Indiana University Mapping Component (MC-IU) has published a new release of the Human Reference Atlas in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
-content:
-  - header: Data
-    content: <span>The Human Reference Atlas now includes:</span> <ul><li>[# of] ASCT+B Tables<ul><li>[# of] anatomical structures</li><li>[# of] cell types</li><li>[# of] biomarkers</li></ul></li><li>[# of] 2D Functional Tissue Units (FTUs)</li><li>[# of] 3D Organ Models</li><li>[# of] Organ Mapping Antibody Panel (OMAP) Tables</li><li>[# of] Crosswalk Tables</li><li>[# of] Vasculature Common Coordinate Framework (VCCF) Tables</li></ul>
+- header: Data
+  level: 2
+  content: <span>The Human Reference Atlas now includes:</span>
+    <ul>
+    <li>36 ASCT+B Tables
+    <ul>
+    <li>4,694 anatomical structures</li>
+    <li>1,288 cell types</li>
+    <li>2,018 biomarkers</li>
+    </ul>
+    </li>
+    <li>22 2D Functional Tissue Units (FTUs)</li>
+    <li>71 3D Organ Models with 1,224 interior 3D anatomical structures</li>
+    <li>23 Organ Mapping Antibody Panel (OMAP) Tables</li>
+    <li>10 Crosswalk Tables</li>
+    <li>7 Vasculature Common Coordinate Framework (VCCF) Tables</li>
+    </ul>
+- header: New Data
+  level: 3
+  content: <ul>
+    <li>6 3D Organs
+    <ul>
+    <li>Renal pelvis, male, left</li>
+    <li>Renal pelvis, male, right</li>
+    <li>Renal pelvis, female, left</li>
+    <li>Renal pelvis female, right</li>
+    <li>Manubrium, female</li>
+    <li>Sternum, female</li>
+    </ul>
+    </li>
+    <li>2 Organ Mapping Antibody Panel Tables
+    <ul>
+    <li>OMAP-22&#58 Skin, FFPE, Cell DIVE</li>
+    <li>OMAP-23&#58 Vermiform appendix, FFPE, MICS</li>
+    </ul>
+    </li>
+    </ul>
+- header: Revised Data
+  level: 3
+  content: <ul>
+    <li>11 Anatomical Structure, Cell Types, and Biomarker Tables
+    <ul>
+    <li>Anatomical systems
+    <ul>
+    <li>Added all current organs plus support for oral cavity organs&#58 tongue, gingiva, buccal mucosa, major and
+    minor salivary glands</li>
+    </ul>
+    </li>
+    <li>Brain</li>
+    <li>Blood vasculature</li>
+    <li>Eye
+    <ul>
+    <li>Updated reference formats, resolved many asctb-temp terms</li>
+    </ul>
+    </li>
+    <li>Fallopian tube</li>
+    <li>Heart</li>
+    <li>Kidney</li>
+    <li>Skin</li>
+    <li>Spleen
+    <ul>
+    <li>Added parent terms when new terms are needed in ontology</li>
+    <li>Updated reference formats</li>
+    </ul>
+    </li>
+    <li>Spinal cord
+    <ul>
+    <li>Updated reference formats</li>
+    </ul>
+    </li>
+    <li>Thymus</li>
+    </ul>
+    </li>
+
+    <li>6 3D Organs
+    <ul>
+    <li>Ovary female, left</li>
+    <li>Ovary female, right
+    <ul>
+    <li>Updated FMA to Uberon IDs</li>
+    </ul>
+    </li>
+    <li>Knee, female, left</li>
+    <li>Knee, female, right
+    <ul>
+    <li>Updated FMA IDs to include colons</li>
+    </ul>
+    </li>
+    <li>Lymph node, female</li>
+    <li>Lymph node, male
+    <ul>
+    <li>Added Li Yao as 1st author</li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+
+    <li>11 Functional Tissue Unit Illustrations&#58 Revised to match .ai, .png, .svg
+    <ul>
+    <li>Spleen white pulp</li>
+    <li>Spleen red pulp</li>
+    <li>Kidney ascending thin loop of Henle</li>
+    <li>Kidney cortical collecting duct</li>
+    <li>Kidney inner medullary collecting duct</li>
+    <li>Kidney outer medullary collecting duct</li>
+    <li>Kidney thick ascending loop of Henle</li>
+    <li>Liver liver lobule</li>
+    <li>Lung pulmonary alveolus</li>
+    <li>Pancreas intercalated duct</li>
+    <li>Pancreas pancreatic acinus</li>
+    </ul>
+    </li>
+
+    <li>3 Organ Mapping Antibody Panel Tables&#58 Revised to distinguish between CD45 splice variants
+    <ul>
+    <li>OMAP-2&#58 Intestine, Fresh frozen, CODEX</li>
+    <li>OMAP-9&#58 Kidney, Fresh frozen, CODEX</li>
+    <li>OMAP-21&#58 Palatine tonsil, FFPE, MICS</li>
+    </ul>
+    </li>
+
+    <li>7 Crosswalk Tables
+    <ul>
+    <li>2D Functional Tissue Unit</li>
+    <li>3D Reference Organ</li>
+    <li>Pathway</li>
+    <li>Peripheral nervous system to organ</li>
+    <li>Blood vasculature to organ</li>
+    <li>CTAnn Azimuth</li>
+    <li>CTAnn popv</li>
+    </ul>
+    </li>
+    </ul>

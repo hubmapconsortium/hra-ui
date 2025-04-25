@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, linkedSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, linkedSignal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionModule } from '@hra-ui/design-system/content-templates/page-section';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
@@ -8,13 +11,26 @@ import { MarkdownModule } from 'ngx-markdown';
 import { map, Observable } from 'rxjs';
 
 import {
-  ReleaseNotesPageData,
-  ReleaseNotesPageDataSchema,
+  ReleaseNotesSectionData,
+  ReleaseNotesSectionDataSchema,
+  ReleaseVersionData,
 } from '../../resolvers/release-notes-page/release-notes-page.schema';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'hra-release-notes-page',
-  imports: [HraCommonModule, PageSectionModule, SectionLinkComponent, MarkdownModule],
+  imports: [
+    HraCommonModule,
+    PageSectionModule,
+    SectionLinkComponent,
+    MarkdownModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    ButtonsModule,
+    MatIconModule,
+  ],
   templateUrl: './release-notes-page.component.html',
   styleUrl: './release-notes-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,21 +39,17 @@ export class ReleaseNotesPageComponent {
   /** Http injector */
   readonly http = inject(HttpClient);
 
-  /** Data to display on the page */
-  readonly data = signal<ReleaseNotesPageData | undefined>(undefined);
+  readonly versions = input.required<ReleaseVersionData[]>();
 
   /** Current selected release version */
-  readonly currentVersion = linkedSignal<number>(() => {
-    const n = this.data();
-    if (n) {
-      return n.releaseVersion;
-    }
-    return 2.2;
-  });
+  readonly currentVersion = linkedSignal<ReleaseVersionData>(() => this.versions()[0]);
+
+  /** Data to display on the page */
+  readonly currentVersionData = linkedSignal<ReleaseNotesSectionData[]>(() => []);
 
   /** Resolver based on current version */
-  readonly resolver = linkedSignal<Observable<ReleaseNotesPageData>>(() =>
-    this.releaseNotesResolver(this.currentVersion()),
+  readonly resolver = linkedSignal<Observable<ReleaseNotesSectionData[]>>(() =>
+    this.releaseNotesResolver(this.currentVersion().version),
   );
 
   /**
@@ -45,7 +57,7 @@ export class ReleaseNotesPageComponent {
    */
   constructor() {
     effect(() => {
-      this.resolver().subscribe((data) => this.data.set(data));
+      this.resolver().subscribe((data) => this.currentVersionData.set(data));
     });
   }
 
@@ -54,10 +66,10 @@ export class ReleaseNotesPageComponent {
    * @param version Current release version
    * @returns Observable with page data
    */
-  releaseNotesResolver(version: number): Observable<ReleaseNotesPageData> {
+  releaseNotesResolver(version: number): Observable<ReleaseNotesSectionData[]> {
     return this.http.get(`assets/content/pages-v2/release-notes/v${version}.yaml`, { responseType: 'text' }).pipe(
       map((yamlString) => load(yamlString)),
-      map((raw) => ReleaseNotesPageDataSchema.parse(raw)),
+      map((raw) => ReleaseNotesSectionDataSchema.array().parse(raw)),
     );
   }
 }

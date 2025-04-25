@@ -2,25 +2,50 @@
   <hra-page-section-header>
     <hra-section-link level="1" underlined> Release Notes </hra-section-link>
   </hra-page-section-header>
-  <hra-page-section-content> What's new in the Human Reference Atlas. </hra-page-section-content>
+  <hra-page-section-content class="header-content">
+    What's new in the Human Reference Atlas.
+
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-label>Release Version</mat-label>
+      <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
+        <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
+        @for (dataset of versions(); track dataset) {
+          <mat-option [value]="dataset">
+            <div class="release-label">
+              <span class="release-name">{{ dataset.label }}</span>
+              <span class="release-date">{{ dataset.date }}</span>
+            </div>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </hra-page-section-content>
 </hra-page-section>
 
 <hra-page-section>
   <hra-page-section-header>
-    <hra-section-link level="2" underlined> {{ data() ? data()!.releaseTitle : '' }} </hra-section-link>
+    <hra-section-link level="2" underlined>
+      {{ currentVersion().label }}, {{ currentVersion().date }}
+    </hra-section-link>
   </hra-page-section-header>
   <hra-page-section-content>
-    {{ data() ? data()!.releaseDescription : '' }}
+    {{ currentVersion().description }}
   </hra-page-section-content>
 </hra-page-section>
 
-@for (data of data() ? data()!.content : []; track data) {
+@for (data of currentVersionData(); track data) {
   <hra-page-section>
     <hra-page-section-header>
-      <hra-section-link level="2" underlined> {{ data.header }} </hra-section-link>
+      <hra-section-link [level]="data.level" [underlined]="data.level === 2"> {{ data.header }} </hra-section-link>
     </hra-page-section-header>
     <hra-page-section-content>
       <markdown [data]="data.content"></markdown>
+      @if (data.header === 'Data') {
+        <a mat-button hraCtaButton class="action" [href]="currentVersion().dataUrl" target="_blank">
+          Get data
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </a>
+      }
     </hra-page-section-content>
   </hra-page-section>
 }

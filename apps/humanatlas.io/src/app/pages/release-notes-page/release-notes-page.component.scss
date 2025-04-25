@@ -1,5 +1,55 @@
+@use 'utils';
+
 :host {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  padding: 40px 1rem;
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .select {
+    width: 248px;
+  }
+
+  // Keep the mat select label from shrinking
+  ::ng-deep .mdc-floating-label {
+    transform: translateY(-106%);
+  }
+
+  mat-select-trigger {
+    @include utils.use-font(label, medium);
+  }
+
+  markdown {
+    ::ng-deep ul {
+      margin: 0;
+    }
+  }
+}
+
+.release-label {
+  display: flex;
+  flex-direction: column;
+
+  .release-name {
+    @include utils.use-font(label, medium);
+    color: var(--mat-sys-secondary);
+  }
+
+  .release-date {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}
+
+// Styling for selected dropdown items
+.mat-mdc-option-active {
+  --mat-option-selected-state-label-text-color: var(--mat-sys-on-tertiary-fixed);
+  background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
+  outline: none !important;
 }
