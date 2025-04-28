@@ -3,6 +3,9 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 
 const REEXPORTS = [NotFoundPageComponent];
 
+/**
+ * Error Pages Module - Contains components for displaying error pages
+ */
 @NgModule({
   imports: REEXPORTS,
   exports: REEXPORTS,
