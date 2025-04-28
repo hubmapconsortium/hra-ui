@@ -1,0 +1,30 @@
+@use '../../../../styles/utils';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 4rem;
+
+  .page {
+    &-title {
+      @include utils.use-font(display, medium);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    &-description {
+      @include utils.use-font(title, medium);
+      color: var(--mat-sys-primary);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+  }
+
+  /* Responsive Styling */
+
+  /* 320px to 639px */
+  @media (max-width: 639px) {
+    padding: 1rem 1rem;
+  }
+}
