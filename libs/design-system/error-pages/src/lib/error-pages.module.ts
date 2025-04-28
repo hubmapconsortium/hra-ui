@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 
+/**
+ * All re-exported modules, components, directives, etc.
+ */
 const REEXPORTS = [NotFoundPageComponent];
 
 /**
