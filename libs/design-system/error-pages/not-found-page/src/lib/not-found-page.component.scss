@@ -3,8 +3,11 @@
 :host {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 1rem 4rem;
+  height: calc(100vh - 4.5rem);
+  background-color: var(--mat-sys-secondary-container);
 
   .page {
     &-title {
@@ -24,7 +27,7 @@
   /* Responsive Styling */
 
   /* 320px to 639px */
-  @media (max-width: 639px) {
+  @media only screen and (max-width: 639px) {
     padding: 1rem 1rem;
   }
 }
