@@ -1,5 +1,5 @@
 @use 'utils';
-@use 'vars';
+@use 'variables' as vars;
 
 :host {
   display: flex;
