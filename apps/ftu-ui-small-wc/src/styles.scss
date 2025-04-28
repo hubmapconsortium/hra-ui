@@ -2,7 +2,7 @@
 @use 'reset';
 @use 'theming';
 @use 'overrides';
-@use 'vars';
+@use 'variables' as vars;
 
 html,
 body {
