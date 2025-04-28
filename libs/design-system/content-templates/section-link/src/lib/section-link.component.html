@@ -1,0 +1,15 @@
+@if (anchor(); as fragment) {
+  <span class="link-container">
+    <a mat-icon-button class="link" [routerLink]="[]" [fragment]="fragment" aria-label="Link to this heading">
+      <mat-icon class="icon">link</mat-icon>
+    </a>
+  </span>
+}
+
+<div class="content">
+  <ng-content />
+</div>
+
+@if (underlined()) {
+  <mat-divider />
+}

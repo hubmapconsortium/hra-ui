@@ -1,0 +1,67 @@
+@use 'utils';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 5rem 2.5rem;
+    max-width: 80rem;
+
+    .header {
+      @include utils.use-font(display, large);
+      color: var(--mat-sys-secondary);
+    }
+
+    .subheader {
+      @include utils.use-font(title, large);
+      color: var(--mat-sys-primary);
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      @include utils.use-font(body, xl);
+      color: var(--mat-sys-primary);
+    }
+  }
+
+  .carousel-container {
+    margin: 0 1rem 5rem 1rem;
+
+    hra-carousel {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+  }
+
+  hra-count-info {
+    padding: 2rem 1rem;
+    background: var(--mat-sys-surface-dim);
+  }
+
+  hra-section-cards {
+    margin: 6rem 1rem;
+    max-width: 87.5rem;
+  }
+
+  @media (min-width: 640px) {
+    hra-page-section {
+      margin: 5rem 2.5rem;
+    }
+
+    .carousel-container {
+      margin: 0 2.5rem 5rem 2.5rem;
+    }
+
+    hra-count-info {
+      padding: 2rem 2.5rem;
+    }
+
+    hra-section-cards {
+      margin: 6rem 2.5rem;
+    }
+  }
+}
