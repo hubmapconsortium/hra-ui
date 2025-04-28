@@ -1,0 +1,53 @@
+@use '../../../../../styles/utils';
+
+:host {
+  ng-scrollbar {
+    display: flex;
+    flex-direction: column;
+    background: var(--mat-sys-on-primary);
+    z-index: 2;
+    overflow: auto;
+    width: 100%;
+    justify-self: anchor-center;
+    position: relative;
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 0.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .link-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navigation-top {
+    @include utils.use-font(label, large);
+    color: var(--mat-sys-secondary);
+    min-height: 3rem;
+    align-content: center;
+    padding-left: 1.5rem;
+    background-color: var(--mat-sys-surface-container-low);
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  @media (min-width: 1000px) {
+    ng-scrollbar {
+      height: 100%;
+      padding: 2.5rem 0.75rem 0 0.75rem;
+      border: none;
+      margin-bottom: 0;
+    }
+
+    .link-container {
+      padding: 0;
+    }
+
+    .navigation-top {
+      min-height: 2.5rem;
+      background-color: unset;
+      border-bottom: unset;
+      padding-left: 1rem;
+    }
+  }
+}

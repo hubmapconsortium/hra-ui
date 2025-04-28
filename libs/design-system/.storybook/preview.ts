@@ -1,7 +1,15 @@
+import { Component } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
 import { provideDesignSystem } from '../src/index';
 import compodocJson from './compodoc/documentation.json';
+
+@Component({
+  selector: 'hra-dummy-component',
+  template: '',
+})
+class DummyComponent {}
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -21,7 +29,7 @@ const preview: Preview = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem()],
+      providers: [provideDesignSystem(), provideRouter([{ path: '**', component: DummyComponent }])],
     }),
     componentWrapperDecorator((story) => `<div class="hra-app">${story}</div>`),
   ],
