@@ -1,5 +1,5 @@
 @use '../../../../../design-system/styles/utils';
-@use '../../../../../design-system/styles/vars' as vars;
+@use '../../../../../design-system/styles/vars';
 
 @include utils.global-styles() {
   .hra-plain-tooltip {
