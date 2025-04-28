@@ -22,7 +22,7 @@
 
     mat-label {
       @include utils.use-font(label, small);
-      color: vars.$inverse-on-surface !important;
+      color: vars.$inverse-surface !important;
     }
   }
 
