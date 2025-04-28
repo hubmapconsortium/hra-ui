@@ -18,9 +18,11 @@ import { ItemComponent } from './item/item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsComponent {
-  /** Text for the header portion */
+  /** Title for the table of content */
   readonly tagline = input('On this page');
 
+  /** All page sections sorted by dom order */
   protected readonly sections = inject(PageSectionService).sortedSections;
+  /** Currently active section */
   protected readonly activeSection = inject(PageSectionActivationService).activeSection;
 }

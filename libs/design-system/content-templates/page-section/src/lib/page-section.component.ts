@@ -11,10 +11,10 @@ import {
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
-import { PageSectionService } from './services/page-section.service';
+import { PageSection, PageSectionService } from './services/page-section.service';
 
 /**
- * Section of page containing content and a section header
+ * A labeled section of the page
  */
 @Component({
   selector: 'hra-page-section',
@@ -23,10 +23,11 @@ import { PageSectionService } from './services/page-section.service';
   styleUrl: './page-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageSectionComponent {
-  /** Text on header */
+export class PageSectionComponent implements PageSection {
+  /** Title for the section */
   readonly tagline = input.required<string>();
 
+  /** Level of <hx> element to use for the header */
   readonly level = input(1, { transform: numberAttribute });
 
   // TODO icons
@@ -39,10 +40,13 @@ export class PageSectionComponent {
   // /** Website category icon */
   // readonly category = input('');
 
+  /** Anchor id for the section */
   readonly anchor = input<string>();
 
+  /** Reference to the section element */
   readonly elementRef = viewChild.required('section', { read: ElementRef });
 
+  /** Registers this section with the PageSectionService if available */
   constructor() {
     const destroyRef = inject(DestroyRef);
     const pageSectionService = inject(PageSectionService, { optional: true });

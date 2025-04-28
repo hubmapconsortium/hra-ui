@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PageSection } from '@hra-ui/design-system/content-templates/page-section';
 
+/** A single item in the table of content */
 @Component({
   selector: 'hra-table-of-contents-item',
   imports: [CommonModule, RouterModule],
@@ -14,8 +15,8 @@ import { PageSection } from '@hra-ui/design-system/content-templates/page-sectio
   },
 })
 export class ItemComponent {
-  /** Section of item */
+  /** Associated section */
   readonly section = input.required<PageSection>();
-  /** If the item is selected */
+  /** Whether the section is currently the active section */
   readonly selected = input.required<boolean>();
 }

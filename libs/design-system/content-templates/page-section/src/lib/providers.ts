@@ -6,6 +6,13 @@ import {
 } from './services/page-section-activation.service';
 import { PageSectionService } from './services/page-section.service';
 
+/**
+ * Provides the services required for page section tracking.
+ * Should be provided inside a component - not in root!
+ *
+ * @param options Page section activation options
+ * @returns Component providers
+ */
 export function providePageSectionNavigation(options: PageSectionActivationOptions = {}): Provider[] {
   return [
     {

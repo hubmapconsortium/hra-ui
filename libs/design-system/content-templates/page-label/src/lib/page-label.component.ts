@@ -6,9 +6,7 @@ import { OrganLogoComponent, toOrganLogoId } from '@hra-ui/design-system/brand/o
 import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 
-/**
- * Page label to display on top of a page template
- */
+/** Label for a page section. Can also be used standalone */
 @Component({
   selector: 'hra-page-label',
   imports: [
@@ -24,9 +22,10 @@ import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/se
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageLabelComponent {
-  /** Text on header */
+  /** Label */
   readonly tagline = input.required<string>();
 
+  /** Which level of <hx> to use */
   readonly level = input(1, { transform: numberAttribute });
 
   // TODO needs icon update
@@ -39,7 +38,9 @@ export class PageLabelComponent {
   /** Website category icon */
   readonly category = input(undefined, { transform: toCategoryLogoId });
 
+  /** Anchor id of this label */
   readonly anchor = input<string>();
 
+  /** Whether any of the icon inputs are set */
   protected readonly hasIcons = computed(() => this.app() || this.organ() || this.category());
 }
