@@ -8,7 +8,7 @@ import { LandingPageData, LandingPageDataSchema } from './landing-page.schema';
 /** Resolver for landing page data */
 export const landingPageResolver: ResolveFn<Observable<LandingPageData>> = () => {
   return inject(HttpClient)
-    .get(`assets/content/pages-v2/landing-page.yaml`, { responseType: 'text' })
+    .get(`assets/content/landing-page/data.yaml`, { responseType: 'text' })
     .pipe(
       map((yamlString) => load(yamlString)),
       map((raw) => LandingPageDataSchema.parse(raw)),
