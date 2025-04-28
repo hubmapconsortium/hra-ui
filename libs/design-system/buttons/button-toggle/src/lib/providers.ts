@@ -1,5 +1,4 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
-import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS, MatButtonToggleDefaultOptions } from '@angular/material/button-toggle';
 
 /**
@@ -9,7 +8,6 @@ import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS, MatButtonToggleDefaultOptions } from
  */
 export function provideButtonToggle(): EnvironmentProviders {
   return makeEnvironmentProviders([
-    provideStyleComponents(),
     {
       provide: MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS,
       useValue: {
