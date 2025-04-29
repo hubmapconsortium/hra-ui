@@ -1,0 +1,40 @@
+@use 'utils';
+
+:host {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .count-card {
+    width: 10rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .card-icon {
+      color: var(--mat-sys-tertiary);
+      margin: 1rem 0;
+      height: 3rem;
+      width: 3rem;
+      font-size: 3rem;
+
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 48;
+    }
+
+    .card-count {
+      @include utils.use-font(headline, large);
+      color: var(--mat-sys-secondary);
+    }
+
+    .card-text {
+      @include utils.use-font(label, medium);
+      color: var(--mat-sys-primary);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+}
