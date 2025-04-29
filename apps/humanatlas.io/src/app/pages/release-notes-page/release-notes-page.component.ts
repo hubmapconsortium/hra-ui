@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, effect, inject, input, linkedSignal
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
@@ -37,6 +38,8 @@ export class ReleaseNotesPageComponent {
   /** Http injector */
   readonly http = inject(HttpClient);
 
+  readonly router = inject(Router);
+
   readonly versions = input.required<ReleaseVersionData[]>();
 
   /** Current selected release version */
@@ -55,8 +58,22 @@ export class ReleaseNotesPageComponent {
    */
   constructor() {
     effect(() => {
-      this.resolver().subscribe((data) => this.currentVersionData.set(data));
+      this.resolver().subscribe((data) => {
+        this.setCurrentVersionFromUrl(this.router.url);
+        this.currentVersionData.set(data);
+      });
     });
+  }
+
+  navigate(event: MatSelectChange) {
+    this.router.navigate([`/release-notes/v${event.value.version}`]);
+  }
+
+  setCurrentVersionFromUrl(url: string) {
+    const currentVersionNum = url.split('/')[2].slice(1);
+    this.currentVersion.set(
+      this.versions().find((v) => v.version.toString() === currentVersionNum) || this.versions()[0],
+    );
   }
 
   /**

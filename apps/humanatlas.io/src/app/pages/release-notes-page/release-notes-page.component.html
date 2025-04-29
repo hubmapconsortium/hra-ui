@@ -2,7 +2,12 @@
   What's new in the Human Reference Atlas.
   <mat-form-field class="select" subscriptSizing="dynamic">
     <mat-label>Release Version</mat-label>
-    <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
+    <mat-select
+      disableRipple
+      panelClass="options-container"
+      [(ngModel)]="currentVersion"
+      (selectionChange)="navigate($event)"
+    >
       <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
       @for (dataset of versions(); track dataset) {
         <mat-option [value]="dataset">

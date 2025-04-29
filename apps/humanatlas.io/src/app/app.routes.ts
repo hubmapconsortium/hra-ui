@@ -16,7 +16,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'release-notes',
+    path: 'release-notes/:version',
     component: ReleaseNotesPageComponent,
     resolve: {
       versions: ReleaseVersionResolver,
