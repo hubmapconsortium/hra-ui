@@ -1,0 +1,70 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+// Override mixin for mat-icon-button styles
+@mixin overrides() {
+  button[mat-icon-button],
+  a[mat-icon-button] {
+    // Base icon-button overrides
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 2.5rem,
+        icon-size: 1.5rem,
+        hover-state-layer-opacity: 0.08,
+        pressed-state-layer-opacity: 0.12,
+        focus-state-layer-opacity: 0.12,
+        icon-color: vars.$secondary,
+        state-layer-color: vars.$secondary,
+      )
+    );
+
+    // Small size variant
+    &.hra-icon-button-size-small {
+      @include mat.icon-button-overrides(
+        (
+          state-layer-size: 1.5rem,
+          icon-size: 1.25rem,
+        )
+      );
+    }
+
+    // Light variant
+    &.hra-icon-button-variant-light {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$on-primary,
+          state-layer-color: vars.$on-primary,
+        )
+      );
+    }
+
+    // Dark variant
+    &.hra-icon-button-variant-dark {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$secondary,
+          state-layer-color: vars.$secondary,
+        )
+      );
+    }
+
+    // Color (tertiary) variant
+    &.hra-icon-button-variant-color {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$on-tertiary-fixed,
+          state-layer-color: vars.$on-tertiary-fixed,
+        )
+      );
+    }
+
+    // Workaround
+    // Material doesn't set the icon size correctly when inside a button
+    mat-icon {
+      width: var(--mdc-icon-button-icon-size);
+      height: var(--mdc-icon-button-icon-size);
+      font-size: var(--mdc-icon-button-icon-size);
+    }
+  }
+}
