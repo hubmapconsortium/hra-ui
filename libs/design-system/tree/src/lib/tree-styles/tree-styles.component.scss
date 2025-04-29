@@ -3,13 +3,13 @@
 
 @include utils.global-styles() {
   mat-tree {
-    --mat-tree-container-background-color: vars.$on-primary;
+    --mat-tree-container-background-color: #{vars.$on-primary};
   }
 
   mat-tree-node {
-    --mat-tree-node-text-font: vars.$label-medium-font;
-    --mat-tree-node-text-weight: vars.$label-medium-weight;
-    --mat-tree-node-text-color: vars.$secondary;
+    --mat-tree-node-text-font: #{vars.$label-medium-font};
+    --mat-tree-node-text-weight: #{vars.$label-medium-weight};
+    --mat-tree-node-text-color: #{vars.$secondary};
 
     letter-spacing: vars.$label-medium-tracking;
     cursor: pointer;

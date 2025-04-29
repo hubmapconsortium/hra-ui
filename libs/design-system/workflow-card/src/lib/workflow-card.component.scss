@@ -29,8 +29,8 @@
 
     --mdc-linear-progress-track-height: 0.25rem;
     --mdc-linear-progress-active-indicator-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-color: vars.$inverse-surface;
-    --mdc-linear-progress-track-color: vars.$surface-container-high;
+    --mdc-linear-progress-active-indicator-color: #{vars.$inverse-surface};
+    --mdc-linear-progress-track-color: #{vars.$surface-container-high};
   }
 
   .filler {

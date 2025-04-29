@@ -22,8 +22,8 @@
   mat-progress-bar {
     --mdc-linear-progress-track-height: 0.5rem;
     --mdc-linear-progress-active-indicator-height: 0.5rem;
-    --mdc-linear-progress-active-indicator-color: vars.$inverse-surface;
-    --mdc-linear-progress-track-color: vars.$surface-container-high;
+    --mdc-linear-progress-active-indicator-color: #{vars.$inverse-surface};
+    --mdc-linear-progress-track-color: #{vars.$surface-container-high};
 
     &.ready {
       --mdc-linear-progress-track-color: transparent;
