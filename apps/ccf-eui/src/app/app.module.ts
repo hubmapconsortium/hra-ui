@@ -23,6 +23,7 @@ import { FiltersContentComponent } from './modules/filters/filters-content/filte
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
+import { BodyUiComponent } from 'ccf-body-ui';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { OrganSelectComponent } from './shared/components/organ-select/organ-sel
     MatDividerModule,
     MatProgressBarModule,
     PlainTooltipDirective,
+    BodyUiComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],
