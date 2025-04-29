@@ -1,54 +1,46 @@
-<hra-page-section>
-  <hra-page-section-header>
-    <hra-section-link level="1" underlined> Release Notes </hra-section-link>
-  </hra-page-section-header>
-  <hra-page-section-content class="header-content">
-    What's new in the Human Reference Atlas.
-
-    <mat-form-field class="select" subscriptSizing="dynamic">
-      <mat-label>Release Version</mat-label>
-      <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
-        <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
-        @for (dataset of versions(); track dataset) {
-          <mat-option [value]="dataset">
-            <div class="release-label">
-              <span class="release-name">{{ dataset.label }}</span>
-              <span class="release-date">{{ dataset.date }}</span>
-            </div>
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </hra-page-section-content>
+<hra-page-section tagline="Release Notes" level="1" underlined>
+  What's new in the Human Reference Atlas.
+  <mat-form-field class="select" subscriptSizing="dynamic">
+    <mat-label>Release Version</mat-label>
+    <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
+      <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
+      @for (dataset of versions(); track dataset) {
+        <mat-option [value]="dataset">
+          <div class="release-label">
+            <span class="release-name">{{ dataset.label }}</span>
+            <span class="release-date">{{ dataset.date }}</span>
+          </div>
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 </hra-page-section>
 
-<hra-page-section>
-  <hra-page-section-header>
-    <hra-section-link level="2" underlined>
-      {{ currentVersion().label }}, {{ currentVersion().date }}
-    </hra-section-link>
-  </hra-page-section-header>
-  <hra-page-section-content>
-    {{ currentVersion().description }}
-  </hra-page-section-content>
+<hra-page-section [tagline]="`${currentVersion().label}, ${currentVersion().date}`" level="2" underlined>
+  <markdown [data]="currentVersion().description"></markdown>
 </hra-page-section>
 
 @for (data of currentVersionData(); track data) {
-  <hra-page-section>
-    <hra-page-section-header>
-      <hra-section-link [level]="data.level" [underlined]="data.level === 2"> {{ data.header }} </hra-section-link>
-    </hra-page-section-header>
-    <hra-page-section-content>
-      @if (data.pageData) {
-        <markdown [data]="data.pageData.itemList"></markdown>
-        <markdown [data]="data.pageData.content"></markdown>
-        @if (data.pageData.buttonUrl) {
-          <a mat-button hraCtaButton class="action" [href]="data.pageData.buttonUrl" target="_blank">
-            {{ data.pageData.buttonText }}
+  <hra-page-section [tagline]="data.header" [level]="data.level">
+    <markdown [data]="data.pageData?.itemList"></markdown>
+    <markdown [data]="data.pageData?.content"></markdown>
+    @if (data.pageData?.buttonUrl) {
+      <a mat-button hraCtaButton class="action" [href]="data.pageData?.buttonUrl" target="_blank">
+        {{ data.pageData?.buttonText }}
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </a>
+    }
+    @for (section of data.sections; track section) {
+      <hra-page-section [tagline]="section.header" [level]="section.level">
+        <markdown [data]="section.pageData?.itemList"></markdown>
+        <markdown [data]="section.pageData?.content"></markdown>
+        @if (section.pageData?.buttonUrl) {
+          <a mat-button hraCtaButton class="action" [href]="section.pageData?.buttonUrl" target="_blank">
+            {{ section.pageData?.buttonText }}
             <mat-icon iconPositionEnd>arrow_forward</mat-icon>
           </a>
         }
-      }
-    </hra-page-section-content>
+      </hra-page-section>
+    }
   </hra-page-section>
 }

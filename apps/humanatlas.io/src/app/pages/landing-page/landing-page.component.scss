@@ -4,33 +4,29 @@
   display: flex;
   flex-direction: column;
 
-  hra-page-section,
+  .intro,
   hra-section-cards {
     align-self: center;
   }
 
-  hra-page-section {
+  .intro {
     margin: 5rem 1rem;
     max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+  }
 
-    hra-page-section-header {
-      display: flex;
-      flex-direction: column;
+  .header {
+    @include utils.use-font(display, large);
+    color: var(--mat-sys-secondary);
+  }
 
-      .header {
-        @include utils.use-font(display, large);
-        color: var(--mat-sys-secondary);
-      }
-
-      .subheader {
-        @include utils.use-font(title, large);
-        color: var(--mat-sys-primary);
-      }
-    }
-
-    .description {
-      @include utils.use-font(body, xl);
-    }
+  .subheader {
+    @include utils.use-font(title, large);
+    color: var(--mat-sys-primary);
+  }
+  .description {
+    @include utils.use-font(body, xl);
   }
 
   .carousel-container {

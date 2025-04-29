@@ -6,8 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { PageSectionModule } from '@hra-ui/design-system/content-templates/page-section';
-import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
+import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
 import { load } from 'js-yaml';
 import { MarkdownModule } from 'ngx-markdown';
 import { map, Observable } from 'rxjs';
@@ -22,8 +21,7 @@ import {
   selector: 'hra-release-notes-page',
   imports: [
     HraCommonModule,
-    PageSectionModule,
-    SectionLinkComponent,
+    ContentTemplatesModule,
     MarkdownModule,
     MatFormFieldModule,
     MatSelectModule,

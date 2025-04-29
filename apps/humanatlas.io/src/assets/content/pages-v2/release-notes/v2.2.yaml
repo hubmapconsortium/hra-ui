@@ -16,192 +16,196 @@
       - 7 Vasculature Common Coordinate Framework (VCCF) Tables
     buttonUrl: https://lod.humanatlas.io/collection/hra/v2.2/
     buttonText: Get data
-- header: New Data
-  level: 3
-  pageData:
-    itemList: |
-      - 6 3D Organs
-        - Renal pelvis, male, left
-        - Renal pelvis, male, right
-        - Renal pelvis, female, left
-        - Renal pelvis female, right
-        - Manubrium, female
-        - Sternum, female
-      - 2 Organ Mapping Antibody Panel Tables
-        - OMAP-22: Skin, FFPE, Cell DIVE
-        - OMAP-23: Vermiform appendix, FFPE, MICS
-- header: Revised Data
-  level: 3
-  pageData:
-    itemList: |
-      - 11 Anatomical Structure, Cell Types, and Biomarker Tables
-        - Anatomical systems
-          - Added all current organs plus support for oral cavity organs: tongue, gingiva, buccal mucosa, major and minor salivary glands
-        - Brain
-        - Blood vasculature
-        - Eye
-          - Updated reference formats, resolved many asctb-temp terms
-        - Fallopian tube
-        - Heart
-        - Kidney
-        - Skin
-        - Spleen
-          - Added parent terms when new terms are needed in ontology
-          - Updated reference formats
-        - Spinal cord
-          - Updated reference formats
-        - Thymus
-      - 6 3D Organs
-        - Ovary female, left
-        - Ovary female, right
-          - Updated FMA to Uberon IDs
-        - Knee, female, left
-        - Knee, female, right
-          - Updated FMA IDs to include colons
-        - Lymph node, female
-        - Lymph node, male
-          - Added Li Yao as 1st author
-      - 11 Functional Tissue Unit Illustrations: Revised to match .ai, .png, .svg
-        - Spleen white pulp
-        - Spleen red pulp
-        - Kidney ascending thin loop of Henle
-        - Kidney cortical collecting duct
-        - Kidney inner medullary collecting duct
-        - Kidney outer medullary collecting duct
-        - Kidney thick ascending loop of Henle
-        - Liver liver lobule
-        - Lung pulmonary alveolus
-        - Pancreas intercalated duct
-        - Pancreas pancreatic acinus
-      - 3 Organ Mapping Antibody Panel Tables: Revised to distinguish between CD45 splice variants
-        - OMAP-2: Intestine, Fresh frozen, CODEX
-        - OMAP-9: Kidney, Fresh frozen, CODEX
-        - OMAP-21: Palatine tonsil, FFPE, MICS
-      - 7 Crosswalk Tables
-        - 2D Functional Tissue Unit
-        - 3D Reference Organ
-        - Pathway
-        - Peripheral nervous system to organ
-        - Blood vasculature to organ
-        - CTAnn Azimuth
-        - CTAnn popv
-- header: Ontology Updates
-  level: 3
-  pageData:
-    content: Existing ontologies do not (yet) properly represent healthy anatomical structures and cell types.
-      HuBMAP and other teams are actively adding anatomical structure terms to Uberon and novel cell
-      types to Cell Ontology (CL) and the Provisional Cell Ontology (PCL) and to improve the quality
-      and coverage of these ontologies.
-- header: Uberon
-  level: 4
-  pageData:
-    content: From 2018 until January 2023, 5 terms were added to Uberon; since January 2023, 121 new terms have
-      been added to Uberon by editors working for HuBMAP for a total of 126 new anatomical structure terms added.
-    buttonUrl: https://github.com/obophenotype/cell-ontology/releases/tag/v2024-09-26
-    buttonText: Uberon v2024-11-25
-- header: CL
-  level: 4
-  pageData:
-    content: From 2018 until January 2023, 50 terms were added to CL; since January 2023, an additional 91 new terms
-      have been added to CL by editors working for HuBMAP for a total of 141 new cell types added.
-    buttonUrl: https://github.com/obophenotype/uberon/releases/tag/v2024-11-25
-    buttonText: CL v2024-09-26
-- header: PCL
-  level: 4
-  pageData:
-    content: 461 new cell type terms were added to PCL by editors and developers working for HuBMAP and BICAN.
-    buttonUrl: https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2024-07-12
-    buttonText: PCL v2024-07-12
+  sections:
+    - header: New Data
+      level: 3
+      pageData:
+        itemList: |
+          - 6 3D Organs
+            - Renal pelvis, male, left
+            - Renal pelvis, male, right
+            - Renal pelvis, female, left
+            - Renal pelvis female, right
+            - Manubrium, female
+            - Sternum, female
+          - 2 Organ Mapping Antibody Panel Tables
+            - OMAP-22: Skin, FFPE, Cell DIVE
+            - OMAP-23: Vermiform appendix, FFPE, MICS
+    - header: Revised Data
+      level: 3
+      pageData:
+        itemList: |
+          - 11 Anatomical Structure, Cell Types, and Biomarker Tables
+            - Anatomical systems
+              - Added all current organs plus support for oral cavity organs: tongue, gingiva, buccal mucosa, major and minor salivary glands
+            - Brain
+            - Blood vasculature
+            - Eye
+              - Updated reference formats, resolved many asctb-temp terms
+            - Fallopian tube
+            - Heart
+            - Kidney
+            - Skin
+            - Spleen
+              - Added parent terms when new terms are needed in ontology
+              - Updated reference formats
+            - Spinal cord
+              - Updated reference formats
+            - Thymus
+          - 6 3D Organs
+            - Ovary female, left
+            - Ovary female, right
+              - Updated FMA to Uberon IDs
+            - Knee, female, left
+            - Knee, female, right
+              - Updated FMA IDs to include colons
+            - Lymph node, female
+            - Lymph node, male
+              - Added Li Yao as 1st author
+          - 11 Functional Tissue Unit Illustrations: Revised to match .ai, .png, .svg
+            - Spleen white pulp
+            - Spleen red pulp
+            - Kidney ascending thin loop of Henle
+            - Kidney cortical collecting duct
+            - Kidney inner medullary collecting duct
+            - Kidney outer medullary collecting duct
+            - Kidney thick ascending loop of Henle
+            - Liver liver lobule
+            - Lung pulmonary alveolus
+            - Pancreas intercalated duct
+            - Pancreas pancreatic acinus
+          - 3 Organ Mapping Antibody Panel Tables: Revised to distinguish between CD45 splice variants
+            - OMAP-2: Intestine, Fresh frozen, CODEX
+            - OMAP-9: Kidney, Fresh frozen, CODEX
+            - OMAP-21: Palatine tonsil, FFPE, MICS
+          - 7 Crosswalk Tables
+            - 2D Functional Tissue Unit
+            - 3D Reference Organ
+            - Pathway
+            - Peripheral nervous system to organ
+            - Blood vasculature to organ
+            - CTAnn Azimuth
+            - CTAnn popv
+    - header: Ontology Updates
+      level: 3
+      pageData:
+        content: Existing ontologies do not (yet) properly represent healthy anatomical structures and cell types.
+          HuBMAP and other teams are actively adding anatomical structure terms to Uberon and novel cell
+          types to Cell Ontology (CL) and the Provisional Cell Ontology (PCL) and to improve the quality
+          and coverage of these ontologies.
+    - header: Uberon
+      level: 4
+      pageData:
+        content: From 2018 until January 2023, 5 terms were added to Uberon; since January 2023, 121 new terms have
+          been added to Uberon by editors working for HuBMAP for a total of 126 new anatomical structure terms added.
+        buttonUrl: https://github.com/obophenotype/cell-ontology/releases/tag/v2024-09-26
+        buttonText: Uberon v2024-11-25
+    - header: CL
+      level: 4
+      pageData:
+        content: From 2018 until January 2023, 50 terms were added to CL; since January 2023, an additional 91 new terms
+          have been added to CL by editors working for HuBMAP for a total of 141 new cell types added.
+        buttonUrl: https://github.com/obophenotype/uberon/releases/tag/v2024-11-25
+        buttonText: CL v2024-09-26
+    - header: PCL
+      level: 4
+      pageData:
+        content: 461 new cell type terms were added to PCL by editors and developers working for HuBMAP and BICAN.
+        buttonUrl: https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2024-07-12
+        buttonText: PCL v2024-07-12
 - header: Applications
   level: 2
-- header: Updated Apps
-  level: 3
-  pageData:
-    itemList: |
-      Researcher Apps
-      - Cell Distance Explorer
-        - A refreshed application look and feel, plus new features, such as a violin graph panel and visualization
-          panel modes to explore, inspect, and select cells.
-      - FTU Explorer
-      - Exploration User Interface
-      - HRA Organ Gallery
-      - Cell Population Predictor
-      - Dashboard
-      - Registration User Interface
-        - A refreshed application look and feel using the HRA Design System v1.0
-      - ASCT+B Reporter
-        - New URL: https://apps.humanatlas.io/asctb-reporter/
+  sections:
+    - header: Updated Apps
+      level: 3
+      pageData:
+        itemList: |
+          Researcher Apps
+          - Cell Distance Explorer
+            - A refreshed application look and feel, plus new features, such as a violin graph panel and visualization
+              panel modes to explore, inspect, and select cells.
+          - FTU Explorer
+          - Exploration User Interface
+          - HRA Organ Gallery
+          - Cell Population Predictor
+          - Dashboard
+          - Registration User Interface
+            - A refreshed application look and feel using the HRA Design System v1.0
+          - ASCT+B Reporter
+            - New URL: https://apps.humanatlas.io/asctb-reporter/
 
-      Developer Apps
-      - API
-        - A refreshed user interface, updated data, updated clients, and improved stability.
-      - Web Components
-        - All HRA web components have been updated with more testing and usability improvements.
-- header: New Developer Apps
-  level: 3
-  pageData:
-    itemList: |
-      - Jupyter Widgets for Python Notebook
-        - A new Python Package, hra-jupyter-widgets, has been published which makes all HRA Web Components available as widgets for Python Notebooks.
-      - HRA Notebooks
-        - A new repository is available that has Python Notebooks demonstrating the use of the HRA from Python.
-      - HRA Training Content on HuBMAP Workspaces
-        - Human Reference Atlas (HRA) API Tutorial
-        - Human Reference Atlas (HRA) UI Jupyter Widgets Tutorial
-      - JSON Support in the HRA KG
-        - All HRA Digital Objects are now available in JSON format, providing a developer friendly format for independent analysis.
-        - New demonstration notebook: Getting HRA ASCT+B Table Data
+          Developer Apps
+          - API
+            - A refreshed user interface, updated data, updated clients, and improved stability.
+          - Web Components
+            - All HRA web components have been updated with more testing and usability improvements.
+    - header: New Developer Apps
+      level: 3
+      pageData:
+        itemList: |
+          - Jupyter Widgets for Python Notebook
+            - A new Python Package, hra-jupyter-widgets, has been published which makes all HRA Web Components available as widgets for Python Notebooks.
+          - HRA Notebooks
+            - A new repository is available that has Python Notebooks demonstrating the use of the HRA from Python.
+          - HRA Training Content on HuBMAP Workspaces
+            - Human Reference Atlas (HRA) API Tutorial
+            - Human Reference Atlas (HRA) UI Jupyter Widgets Tutorial
+          - JSON Support in the HRA KG
+            - All HRA Digital Objects are now available in JSON format, providing a developer friendly format for independent analysis.
+            - New demonstration notebook: Getting HRA ASCT+B Table Data
 - header: Publications
   level: 2
-- header: Scholarly Publications
-  level: 3
-  pageData:
-    itemList: |
-      - Wang, Xuefei (Julie), Rohit Dilip, Yuval Bussi, Caitlin Brown, Elora Pradhan, Yashvardhan Jain, Kevin Yu,
-        Shenyi Li, Martin Abt, Katy Börner, Leeat Keren, Yisong Yue, Ross Barnowski, and David Van Valen. 2024.
-        "Generalized cell phenotyping for spatial proteomics with language-informed vision models".
-        doi: <a href='https://doi.org/10.1101/2024.11.02.621624' target="_blank">https://doi.org/10.1101/2024.11.02.621624</a>.
-      - Bajcsy, Peter, Screenivas Bhattiprolu, Katy Börner, Beth A. Cimini, Lucy Collinson, Jan Ellenberg, Reto Fiolka,
-        Maryellen Giger, Wojtek Goscinski, Matthew Hartley, Nathan Hotaling, Rick Horwitz, Florian Jug, Anna Kreshuk,
-        Emma Lundberg, Aastha Mathur, Kedar Narayan, Shuichi Onami, Anne L. Plant, Fred Prior, Jason Swedlow, and Adam Taylor. 2024.
-        "<a href='https://arxiv.org/abs/2401.13023' target="_blank">Enabling Global Image Data Sharing in the Life Sciences</a>".
-        <a href='https://doi.org/10.48550/arXiv.2401.13023' target="_blank">https://doi.org/10.48550/arXiv.2401.13023</a>.
-        Accepted for <i>Nature Methods</i>.
-      - Radtke, Andrea J. , Ifeanyichukwu Anidi, Leanne Arakkal, Armando Arroyo-Mejias, Rebecca T. Beuschel, Katy Börner,
-        Colin J. Chu, Beatrice Clark, Menna R. Clatworthy, Jake Colautti, Joshua Croteau, Saven Denha, Rose Dever,
-        Walderez O. Dutra, Sonja Fritzsche, Spencer Fullam, Michael Y. Gerner, Anita Gola, Kenneth J. Gollob,
-        Jonathan M. Hernandez, Jyh Liang Hor, Hiroshi Ichise, Zhixin Jing, Danny Jonigk, Evelyn Kandov, Wolfgang Kastenmueller,
-        Joshua F.E. Koenig, Aanandita Kothurkar, Alexandra Y. Kreins, Ian Lamborn, Yuri Lin,
-        and et al. 2024.
-        "<a href='https://arxiv.org/abs/2407.19059' target="_blank">The IBEX Knowledge-Base: Achieving more together with open science</a>".
-        doi: <a href='https://doi.org/10.48550/arXiv.2407.19059' target="_blank">doi.org/10.48550/arXiv.2407.19059</a>.
-      - Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra,
-        Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla, Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain,
-        Danial Qaurooni, Yongxin Kong, HRA Team, Andreas Bueckle, and Bruce W. Herr II. 2024.
-        "Human BioMolecular Atlas Program (HuBMAP):
-        <a href='https://www.biorxiv.org/content/10.1101/2024.03.27.587041v1' target="_blank">3D Human Reference Atlas Construction and Usage</a>".
-        bioRxiv doi: <a href='https://doi.org/10.1101/2024.03.27.587041' target="_blank">https://doi.org/10.1101/2024.03.27.587041</a>.
-        Accepted as ‘Resource’ paper in <i>Nature Methods</i>.
-- header: Standard Operating Procedures (SOPs)
-  level: 3
-  pageData:
-    itemList: |
-      - New SOPs
-        - Human Reference Atlas Style Guide
-        - Human Reference Atlas Prose and Editorial Style Guide
-        - Using the Standalone Registration User Interface
-        - Using the Embedded Registration User Interface
-      - Revised SOPs
-        - Mapping FTU Illustrations to ASCT+B Tables
+  sections:
+    - header: Scholarly Publications
+      level: 3
+      pageData:
+        itemList: |
+          - Wang, Xuefei (Julie), Rohit Dilip, Yuval Bussi, Caitlin Brown, Elora Pradhan, Yashvardhan Jain, Kevin Yu,
+            Shenyi Li, Martin Abt, Katy Börner, Leeat Keren, Yisong Yue, Ross Barnowski, and David Van Valen. 2024.
+            "Generalized cell phenotyping for spatial proteomics with language-informed vision models".
+            doi: <a href='https://doi.org/10.1101/2024.11.02.621624' target="_blank">https://doi.org/10.1101/2024.11.02.621624</a>.
+          - Bajcsy, Peter, Screenivas Bhattiprolu, Katy Börner, Beth A. Cimini, Lucy Collinson, Jan Ellenberg, Reto Fiolka,
+            Maryellen Giger, Wojtek Goscinski, Matthew Hartley, Nathan Hotaling, Rick Horwitz, Florian Jug, Anna Kreshuk,
+            Emma Lundberg, Aastha Mathur, Kedar Narayan, Shuichi Onami, Anne L. Plant, Fred Prior, Jason Swedlow, and Adam Taylor. 2024.
+            "<a href='https://arxiv.org/abs/2401.13023' target="_blank">Enabling Global Image Data Sharing in the Life Sciences</a>".
+            <a href='https://doi.org/10.48550/arXiv.2401.13023' target="_blank">https://doi.org/10.48550/arXiv.2401.13023</a>.
+            Accepted for <i>Nature Methods</i>.
+          - Radtke, Andrea J. , Ifeanyichukwu Anidi, Leanne Arakkal, Armando Arroyo-Mejias, Rebecca T. Beuschel, Katy Börner,
+            Colin J. Chu, Beatrice Clark, Menna R. Clatworthy, Jake Colautti, Joshua Croteau, Saven Denha, Rose Dever,
+            Walderez O. Dutra, Sonja Fritzsche, Spencer Fullam, Michael Y. Gerner, Anita Gola, Kenneth J. Gollob,
+            Jonathan M. Hernandez, Jyh Liang Hor, Hiroshi Ichise, Zhixin Jing, Danny Jonigk, Evelyn Kandov, Wolfgang Kastenmueller,
+            Joshua F.E. Koenig, Aanandita Kothurkar, Alexandra Y. Kreins, Ian Lamborn, Yuri Lin,
+            and et al. 2024.
+            "<a href='https://arxiv.org/abs/2407.19059' target="_blank">The IBEX Knowledge-Base: Achieving more together with open science</a>".
+            doi: <a href='https://doi.org/10.48550/arXiv.2407.19059' target="_blank">doi.org/10.48550/arXiv.2407.19059</a>.
+          - Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra,
+            Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla, Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain,
+            Danial Qaurooni, Yongxin Kong, HRA Team, Andreas Bueckle, and Bruce W. Herr II. 2024.
+            "Human BioMolecular Atlas Program (HuBMAP):
+            <a href='https://www.biorxiv.org/content/10.1101/2024.03.27.587041v1' target="_blank">3D Human Reference Atlas Construction and Usage</a>".
+            bioRxiv doi: <a href='https://doi.org/10.1101/2024.03.27.587041' target="_blank">https://doi.org/10.1101/2024.03.27.587041</a>.
+            Accepted as ‘Resource’ paper in <i>Nature Methods</i>.
+    - header: Standard Operating Procedures (SOPs)
+      level: 3
+      pageData:
+        itemList: |
+          - New SOPs
+            - Human Reference Atlas Style Guide
+            - Human Reference Atlas Prose and Editorial Style Guide
+            - Using the Standalone Registration User Interface
+            - Using the Embedded Registration User Interface
+          - Revised SOPs
+            - Mapping FTU Illustrations to ASCT+B Tables
 - header: Other Updates
   level: 2
-- header: 24 Hour “Multiscale Human” Event
-  level: 3
-  pageData:
-    content:
-      From 12:00 PM on December 14 until 12:00 PM on December 15, 2024, scholars and practitioners from around the globe will present
-      new maps and models of the human body, demonstrate groundbreaking tools and methodologies, and explore the human body "landscape"
-      across multiple scales. We hope this fun and accessible event will help kickoff the holiday season, share the pleasures of scientific
-      discovery, and create ever more excitement for the power and value of science.
-    buttonUrl: https://humanatlas.io/events/2024-24h/
-    buttonText: View Event
+  sections:
+    - header: 24 Hour “Multiscale Human” Event
+      level: 3
+      pageData:
+        content:
+          From 12:00 PM on December 14 until 12:00 PM on December 15, 2024, scholars and practitioners from around the globe will present
+          new maps and models of the human body, demonstrate groundbreaking tools and methodologies, and explore the human body "landscape"
+          across multiple scales. We hope this fun and accessible event will help kickoff the holiday season, share the pleasures of scientific
+          discovery, and create ever more excitement for the power and value of science.
+        buttonUrl: https://humanatlas.io/events/2024-24h/
+        buttonText: View Event
