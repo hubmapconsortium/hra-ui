@@ -3,14 +3,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { provideInput } from './providers';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 const meta: Meta = {
   title: 'Input',
   decorators: [
     applicationConfig({
-      providers: [provideInput(), importProvidersFrom(BrowserAnimationsModule)],
+      providers: [importProvidersFrom(BrowserAnimationsModule)],
     }),
     moduleMetadata({
       imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
