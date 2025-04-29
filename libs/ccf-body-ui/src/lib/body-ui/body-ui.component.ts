@@ -21,7 +21,6 @@ import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { z } from 'zod';
 
 import { BodyUI, BodyUIProps, NodeClickEvent, NodeDragEvent } from '../body-ui';
-import { set } from 'lodash';
 
 /** Interface for bounds */
 export interface XYZTriplet<T = number> {
