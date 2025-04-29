@@ -9,8 +9,8 @@
       // Basic buttons styles
       text-label-text-color: vars.$on-tertiary-fixed,
       text-state-layer-color: vars.$on-tertiary-fixed,
-      text-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
-      text-ripple-color: #{utils.with-alpha(vars.$secondary, 8%)},
+      text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
+      text-ripple-color: utils.with-alpha(vars.$secondary, 8%),
       text-container-height: 2.5rem,
       text-container-shape: vars.$corner-extra-small,
       text-horizontal-padding: 1rem,
@@ -20,9 +20,9 @@
       filled-label-text-color: vars.$on-primary,
       filled-state-layer-color: vars.$on-primary,
       filled-container-color: vars.$tertiary,
-      filled-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
-      filled-disabled-container-color: #{utils.with-alpha(vars.$outline-variant, 38%)},
-      filled-ripple-color: #{utils.with-alpha(vars.$secondary, 12%)},
+      filled-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
+      filled-disabled-container-color: utils.with-alpha(vars.$outline-variant, 38%),
+      filled-ripple-color: utils.with-alpha(vars.$secondary, 12%),
       filled-container-height: 2.5rem,
       filled-container-shape: vars.$corner-extra-small,
       filled-horizontal-padding: 1rem,
@@ -71,8 +71,8 @@
         0 100%,
         0 0,
         100% 0%,
-        100% calc(100% - #{$corner-height}),
-        calc(100% - #{$corner-width}) 100%
+        100% calc(100% - $corner-height),
+        calc(100% - $corner-width) 100%
       );
       $overlay-clip-path: polygon(
         $border-width calc(100% - $border-width),
@@ -86,9 +86,8 @@
         (
           text-label-text-color: vars.$on-primary,
           text-state-layer-color: vars.$on-primary,
-          text-disabled-label-text-color: #{utils.with-alpha(vars.$secondary, 38%)},
-          text-ripple-color: #{utils.with-alpha(vars.$secondary, 12%)},
-
+          text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
+          text-ripple-color: utils.with-alpha(vars.$secondary, 12%),
           text-container-shape: vars.$corner-none,
           text-hover-state-layer-opacity: 0,
         )

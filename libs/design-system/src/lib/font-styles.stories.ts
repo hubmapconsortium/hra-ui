@@ -83,28 +83,28 @@ const fontContent: Record<string, FontStyles> = {
       display: flex;
       flex-direction: column;
       width: fit-content;
-      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.322);
+      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.322);
       border-radius: 1rem;
       padding: 1.5rem;
       gap: 1.5rem;
-      color: vars.$secondary;
+      color: var(--mat-sys-secondary);
     }
 
     .header {
       display: flex;
       flex-direction: column;
-      border-bottom: 1px solid vars.$outline-variant;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
       padding: 0 1.5rem 1rem 0;
       gap: 0.5rem;
-      color: vars.$on-secondary-fixed;
+      color: var(--mat-sys-on-secondary-fixed);
 
       .header-title {
-        font: vars.$headline-large;
-        letter-spacing: vars.$headline-large-tracking;
+        font: var(--mat-sys-headline-large);
+        letter-spacing: var(--mat-sys-headline-large-tracking);
       }
       .header-description {
-        font: vars.$title-medium;
-        letter-spacing: vars.$title-medium-tracking;
+        font: var(--mat-sys-title-medium);
+        letter-spacing: var(--mat-sys-title-medium-tracking);
       }
     }
   `,
