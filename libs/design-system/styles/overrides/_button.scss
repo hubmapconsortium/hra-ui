@@ -3,7 +3,6 @@
 @use '../vars';
 
 @mixin overrides() {
-  @include utils.use-font(label, medium);
   @include mat.button-overrides(
     (
       // Basic buttons styles
