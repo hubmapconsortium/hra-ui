@@ -1,0 +1,27 @@
+{
+  "$schema": "../types/category-logos.schema.json",
+  "logos": [
+    {
+      "id": "contribute",
+      "icon": "category:contribute"
+    },
+    {
+      "id": "data",
+      "icon": "category:data"
+    },
+    {
+      "id": "explore",
+      "icon": "category:explore"
+    },
+    {
+      "id": "training",
+      "icon": "category:training"
+    }
+  ],
+  "namespaceConfigs": [
+    {
+      "namespace": "category",
+      "directory": "assets/brand/category-logos/"
+    }
+  ]
+}

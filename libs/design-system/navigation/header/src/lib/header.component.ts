@@ -11,22 +11,22 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';
+import { EventType, Router } from '@angular/router';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';
 import { explicitEffect } from 'ngxtension/explicit-effect';
+import { filter } from 'rxjs';
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { HUBMAP_MENU, MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
-import { EventType, NavigationEnd, NavigationSkipped, Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter } from 'rxjs';
 
 /** Call to action configuration */
 export interface CtaConfig {
