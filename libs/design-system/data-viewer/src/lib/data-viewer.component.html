@@ -1,0 +1,57 @@
+<div class="header">
+  <div class="logos">
+    <hra-product-logo [id]="variant()"></hra-product-logo>
+    <hra-organ-logo [id]="organIconId()"></hra-organ-logo>
+  </div>
+  <span class="header-label">{{ viewerTitle() }}</span>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="viewermenu.menu()"
+    hraIconButtonSize="large"
+    aria-label="Open the data viewer's menu"
+    hraPlainTooltip="More"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <hra-viewer-menu
+    #viewermenu
+    [currentVersion]="currentVersion()"
+    [githubIconsUrl]="githubIconsUrl()"
+  ></hra-viewer-menu>
+</div>
+<div class="content">
+  <div class="text-fields">
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-label>Organ</mat-label>
+      <mat-select disableRipple panelClass="options-container" [(ngModel)]="organ">
+        @for (organ of currentVersion().organData; track organ) {
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <mat-label>Release Version</mat-label>
+      <mat-select disableRipple panelClass="options-container" [(ngModel)]="currentVersion">
+        <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
+        @for (dataset of releaseVersionData(); track dataset) {
+          <mat-option [value]="dataset">
+            <div class="release-label">
+              <span class="release-name">{{ dataset.label }}</span>
+              <span class="release-date">{{ dataset.date }}</span>
+            </div>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="viewer-cards">
+    @for (viewerCard of organ().cards; track viewerCard) {
+      <hra-viewer-card [variant]="variant()" [viewerCardData]="viewerCard"></hra-viewer-card>
+    }
+  </div>
+</div>

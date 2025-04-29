@@ -1,6 +1,6 @@
 import { Component, Input, TemplateRef, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FileDownloadService } from '../../services/file-download/file-download.service';
+import { FileDownloadService } from '@hra-ui/common/fs';
 import { OrganData } from './two-dim-image';
 
 /** Displays an image and a modal inside a card */
