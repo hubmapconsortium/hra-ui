@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../styles/utils';
 @use '../../../../../styles/vars';
 
@@ -8,17 +9,20 @@
 
   $header-height: 4rem;
 
-  --mat-expansion-container-shape: vars.$corner-none;
-  --mat-expansion-container-background-color: vars.$surface-dim;
-  --mat-expansion-header-collapsed-state-height: #{$header-height};
-  --mat-expansion-header-expanded-state-height: #{$header-height};
-  --mat-expansion-header-text-font: vars.$label-large-font;
-  --mat-expansion-header-text-size: vars.$label-large-size;
-  --mat-expansion-header-text-weight: vars.$label-large-weight;
-  --mat-expansion-header-text-line-height: vars.$label-large-line-height;
-  --mat-expansion-header-text-tracking: vars.$label-large-tracking;
-
-  --mat-divider-color: vars.$outline;
+  @include mat.expansion-overrides(
+    (
+      container-shape: vars.$corner-none,
+      container-background-color: vars.$surface-dim,
+      header-collapsed-state-height: $header-height,
+      header-expanded-state-height: $header-height,
+      header-text-font: vars.$label-large-font,
+      header-text-size: vars.$label-large-size,
+      header-text-weight: vars.$label-large-weight,
+      header-text-line-height: vars.$label-large-line-height,
+      header-text-tracking: vars.$label-large-tracking,
+    )
+  );
+  --mat-divider-color: #{vars.$outline};
 
   .panel {
     box-shadow: none;
