@@ -1,12 +1,37 @@
-<div class="header-icons">
-  @if (app(); as id) {
-    <hra-product-logo [id]="id" class="product-logo"></hra-product-logo>
+@if (hasIcons()) {
+  <div class="header-icons">
+    @if (app(); as id) {
+      <hra-product-logo [id]="id" class="product-logo" />
+    }
+    @if (organ(); as id) {
+      <hra-organ-logo [id]="id" class="organ-logo" />
+    }
+    @if (category(); as id) {
+      <hra-category-logo [id]="id" class="category-logo" />
+    }
+  </div>
+}
+
+@switch (level()) {
+  @case (1) {
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
   }
-  @if (organ(); as id) {
-    <hra-organ-logo [id]="id" class="organ-logo"></hra-organ-logo>
+  @case (2) {
+    <h2 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h2>
   }
-  @if (category(); as id) {
-    <hra-category-logo [id]="id" class="category-logo"></hra-category-logo>
+  @case (3) {
+    <h3 hra-section-link [anchor]="anchor()">{{ tagline() }}</h3>
   }
-</div>
-<hra-section-link level="1" [anchor]="anchor()" underlined="true">{{ tagline() }}</hra-section-link>
+  @case (4) {
+    <h4 hra-section-link [anchor]="anchor()">{{ tagline() }}</h4>
+  }
+  @case (5) {
+    <h5 hra-section-link [anchor]="anchor()">{{ tagline() }}</h5>
+  }
+  @case (6) {
+    <h6 hra-section-link [anchor]="anchor()">{{ tagline() }}</h6>
+  }
+  @default {
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
+  }
+}

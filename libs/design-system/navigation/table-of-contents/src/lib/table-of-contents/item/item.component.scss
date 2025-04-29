@@ -1,0 +1,22 @@
+@use '../../../../../../styles/utils';
+
+:host {
+  .navigation-label {
+    @include utils.use-font(label, medium);
+    color: var(--mat-sys-primary);
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    margin-left: calc((var(--indentation-level) - 1) * 0.75rem);
+
+    &:hover {
+      background-color: utils.with-alpha(var(--mat-sys-secondary), 8%);
+    }
+
+    &.selected {
+      background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
+    }
+  }
+}

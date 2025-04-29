@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { PageSectionModule } from '@hra-ui/design-system/content-templates/page-section';
+import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
 import { CountInfoComponent } from '../../components-v2/count-info/count-info.component';
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
   selector: 'hra-landing-page',
   imports: [
     HraCommonModule,
-    PageSectionModule,
+    ContentTemplatesModule,
     CarouselComponent,
     CountInfoComponent,
     SectionCardsComponent,
