@@ -5,7 +5,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideChips } from '@hra-ui/design-system/buttons/chips';
-import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideIconButtons } from '@hra-ui/design-system/icon-button';
 import { provideInput } from '@hra-ui/design-system/input';
@@ -32,7 +31,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
       overlayContainer.getContainerElement().classList.add('hra-app');
     }),
     provideButtons(),
-    provideCheckboxes(),
     provideChips(),
     provideCodeBlock(),
     provideDesignSystemIcons(),
