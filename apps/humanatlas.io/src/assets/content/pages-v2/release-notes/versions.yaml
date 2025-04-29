@@ -1,17 +1,29 @@
 - version: 2.3
   label: 9th Release (v2.3)
   date: June 2025
-  description: HuBMAP's Indiana University Mapping Component (MC-IU) has published a new release of the Human Reference Atlas in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
-  dataUrl: https://lod.humanatlas.io/collection/hra/v2.3/
+  description:
+    HuBMAP's Indiana University Mapping Component (MC-IU) has published a new release of the Human Reference Atlas
+    in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving
+    HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level.
+    Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make
+    it possible to visually explore the atlas or programmatically access the data.
 
 - version: 2.2
   label: 8th Release (v2.2)
   date: December 2024
-  description: HuBMAP's Indiana University Mapping Component (MC-IU) has published the 8th Release of the Human Reference Atlas (v2.2) in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
-  dataUrl: https://lod.humanatlas.io/collection/hra/v2.2/
+  description:
+    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 8th Release of the Human Reference Atlas
+    (v2.2) in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving
+    HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level.
+    Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it
+    possible to visually explore the atlas or programmatically access the data.
 
 - version: 2.1
   label: 7th Release (v2.1)
   date: June 2024
-  description: HuBMAP's Indiana University Mapping Component (MC-IU) has published the 7th Release of the Human Reference Atlas (v2.1) in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data.
-  dataUrl: https://lod.humanatlas.io/collection/hra/v2.1/
+  description:
+    HuBMAP's Indiana University Mapping Component (MC-IU) has published the 7th Release of the Human Reference Atlas (v2.1)
+    in close collaboration with the HuBMAP team and experts from more than 20 other consortia and teams. The evolving HRA
+    lets users query and explore anatomical structures, cell types, and biomarkers down to the cellular level. Every six
+    months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to
+    visually explore the atlas or programmatically access the data.

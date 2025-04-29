@@ -2,86 +2,66 @@
 
 - header: Data
   level: 2
-  content: <span>The HRA now includes:</span>
-    <ul>
-    <li>36 ASCT+B Tables
-    <ul>
-    <li>4,659 anatomical structures</li>
-    <li>2,024 cell types</li>
-    <li>1,311 biomarkers</li>
-    </ul>
-    </li>
-    <li>22 2D Functional Tissue Units (FTUs)</li>
-    <li>65 3D Organ Models</li>
-    <li>21 Organ Mapping Antibody Panel (OMAP) Tables</li>
-    <li>10 Crosswalk Tables</li>
-    <li>7 Vasculature Common Coordinate Framework (VCCF) Tables</li>
-    </ul>
+  pageData:
+    itemList: |
+      The HRA now includes:
+      - 36 ASCT+B Tables
+        - 4,659 anatomical structures
+        - 2,024 cell types
+        - 1,311 biomarkers
+      - 22 2D Functional Tissue Units (FTUs)
+      - 65 3D Organ Models
+      - 21 Organ Mapping Antibody Panel (OMAP) Tables
+      - 10 Crosswalk Tables
+      - 7 Vasculature Common Coordinate Framework (VCCF) Tables
+    buttonUrl: https://lod.humanatlas.io/collection/hra/v2.1/
+    buttonText: Get data
 - header: New Digital Objects
   level: 3
-  content: <ul>
-    <li>8 Organ Mapping Antibody Panel (OMAP) Tables
-    <ul>
-    <li>OMAP-14&#58 Kidney, FFPE, CyCIF</li>
-    <li>OMAP-15&#58 Intestines, FFPE, CODEX</li>
-    <li>OMAP-16&#58 Lung, FFPE, CODEX</li>
-    <li>OMAP-17&#58 Thymus, Fixed Frozen, IBEX</li>
-    <li>OMAP-18&#58 Lymph Node, Fixed Frozen, IBEX</li>
-    <li>OMAP-19&#58 Palatine tonsil, Fixed Frozen, IBEX</li>
-    <li>OMAP-20&#58 Kidney, Fresh Frozen, IMS/CyCIF</li>
-    <li>OMAP-21&#58 Palatine tonsil, FFPE, MICS</li>
-    </ul>
-    </li>
-    <li>6 Crosswalk Tables
-    <ul>
-    <li>Pathway</li>
-    <li>Lymph vasculature to organ</li>
-    <li>Peripheral nervous system to organ</li>
-    <li>Azimuth</li>
-    <li>CellTypist</li>
-    <li>popv</li>
-    </ul>
-    </li>
-    </ul>
+  pageData:
+    itemList: |
+      8 Organ Mapping Antibody Panel (OMAP) Tables
+        - OMAP-14&#58 Kidney, FFPE, CyCIF
+        - OMAP-15&#58 Intestines, FFPE, CODEX
+        - OMAP-16&#58 Lung, FFPE, CODEX
+        - OMAP-17&#58 Thymus, Fixed Frozen, IBEX
+        - OMAP-18&#58 Lymph Node, Fixed Frozen, IBEX
+        - OMAP-19&#58 Palatine tonsil, Fixed Frozen, IBEX
+        - OMAP-20&#58 Kidney, Fresh Frozen, IMS/CyCIF
+        - OMAP-21&#58 Palatine tonsil, FFPE, MICS
+      6 Crosswalk Tables
+        - Pathway
+        - Lymph vasculature to organ
+        - Peripheral nervous system to organ
+        - Azimuth
+        - CellTypist
+        - popv
 - header: Revised Digital Objects
   level: 3
-  content: <ul>
-    <li>19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
-    <ul>
-    <li>Blood</li>
-    <li>Blood vasculature</li>
-    <li>Bone marrow</li>
-    <li>Brain</li>
-    <li>Heart</li>
-    <li>Fallopian tube</li>
-    <li>Kidney</li>
-    <li>Knee</li>
-    <li>Liver</li>
-    <li>Lung</li>
-    <li>Lymph node</li>
-    <li>Lymph vasculature</li>
-    <li>Main bronchus</li>
-    <li>Muscular system</li>
-    <li>Ovary</li>
-    <li>Palatine tonsil</li>
-    <li>Peripheral nervous system</li>
-    <li>Placenta</li>
-    <li>Skeleton</li>
-    </ul>
-    </li>
-    <li>13 Organ Mapping Antibody Panel (OMAP) Tables
-    <ul>
-    <li>
-    OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation
-    report fields&#58 target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
-    </li>
-    </ul>
-    </li>
-    <li>67 3D Organ Models (formerly 3D Reference Objects)
-    <ul>
-    <li>
-    All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
-    </li>
-    </ul>
-    </li>
-    </ul>
+  pageData:
+    itemList: |
+      - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+        - Blood
+        - Blood vasculature
+        - Bone marrow
+        - Brain
+        - Heart
+        - Fallopian tube
+        - Kidney
+        - Knee
+        - Liver
+        - Lung
+        - Lymph node
+        - Lymph vasculature
+        - Main bronchus
+        - Muscular system
+        - Ovary
+        - Palatine tonsil
+        - Peripheral nervous system
+        - Placenta
+        - Skeleton
+      - 13 Organ Mapping Antibody Panel (OMAP) Tables
+        - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields:
+          target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
+      - 67 3D Organ Models (formerly 3D Reference Objects)
+        - All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface

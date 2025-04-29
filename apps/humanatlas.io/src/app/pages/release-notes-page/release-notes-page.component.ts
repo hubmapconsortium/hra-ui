@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, effect, inject, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionModule } from '@hra-ui/design-system/content-templates/page-section';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { load } from 'js-yaml';
@@ -15,8 +17,6 @@ import {
   ReleaseNotesSectionDataSchema,
   ReleaseVersionData,
 } from '../../resolvers/release-notes-page/release-notes-page.schema';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'hra-release-notes-page',

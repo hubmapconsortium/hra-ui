@@ -2,137 +2,151 @@
 
 - header: Data
   level: 2
-  content: <span>The HRA now includes:</span>
-    <ul>
-    <li>[# of] ASCT+B Tables
-    <ul>
-    <li>[# of] anatomical structures</li>
-    <li>[# of] cell types</li>
-    <li>[# of] biomarkers</li>
-    </ul>
-    </li>
-    <li>[# of] 2D Functional Tissue Units (FTUs)</li>
-    <li>[# of] 3D Organ Models</li>
-    <li>[# of] Organ Mapping Antibody Panel (OMAP) Tables</li>
-    <li>[# of] Crosswalk Tables</li>
-    <li>[# of] Vasculature Common Coordinate Framework (VCCF) Tables</li>
-    </ul>
+  pageData:
+    itemList: |
+      The Human Reference Atlas now includes:
+        - [# of] ASCT+B Tables
+          - [# of] anatomical structures
+          - [# of] cell types
+          - [# of] biomarkers
+        - [# of] 2D Functional Tissue Units (FTUs)
+        - [# of] 3D Organ Models
+        - [# of] Organ Mapping Antibody Panel (OMAP) Tables
+        - [# of] Crosswalk Tables
+        - [# of] Vasculature Common Coordinate Framework (VCCF) Tables
+    buttonUrl: https://lod.humanatlas.io/collection/hra/v2.3/
+    buttonText: Get data
 - header: New Digital Objects
   level: 3
-  content: <ul>
-    <li>8 Organ Mapping Antibody Panel (OMAP) Tables
-    <ul>
-    <li>OMAP-14&#58 Kidney, FFPE, CyCIF</li>
-    <li>OMAP-15&#58 Intestines, FFPE, CODEX</li>
-    <li>OMAP-16&#58 Lung, FFPE, CODEX</li>
-    <li>OMAP-17&#58 Thymus, Fixed Frozen, IBEX</li>
-    <li>OMAP-18&#58 Lymph Node, Fixed Frozen, IBEX</li>
-    <li>OMAP-19&#58 Palatine tonsil, Fixed Frozen, IBEX</li>
-    <li>OMAP-20&#58 Kidney, Fresh Frozen, IMS/CyCIF</li>
-    <li>OMAP-21&#58 Palatine tonsil, FFPE, MICS</li>
-    </ul>
-    </li>
-    <li>6 Crosswalk Tables
-    <ul>
-    <li>Pathway</li>
-    <li>Lymph vasculature to organ</li>
-    <li>Peripheral nervous system to organ</li>
-    <li>Azimuth</li>
-    <li>CellTypist</li>
-    <li>popv</li>
-    </ul>
-    </li>
-    </ul>
+  pageData:
+    itemList: |
+      - 8 Organ Mapping Antibody Panel (OMAP) Tables
+        - OMAP-14: Kidney, FFPE, CyCIF
+        - OMAP-15: Intestines, FFPE, CODEX
+        - OMAP-16: Lung, FFPE, CODEX
+        - OMAP-17: Thymus, Fixed Frozen, IBEX
+        - OMAP-18: Lymph Node, Fixed Frozen, IBEX
+        - OMAP-19: Palatine tonsil, Fixed Frozen, IBEX
+        - OMAP-20: Kidney, Fresh Frozen, IMS/CyCIF
+        - OMAP-21: Palatine tonsil, FFPE, MICS
+      - 6 Crosswalk Tables
+        - Pathway
+        - Lymph vasculature to organ
+        - Peripheral nervous system to organ
+        - Azimuth
+        - CellTypist
+        - popv
 - header: Revised Digital Objects
   level: 3
-  content: <ul>
-    <li>19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
-    <ul>
-    <li>Blood</li>
-    <li>Blood vasculature</li>
-    <li>Bone marrow</li>
-    <li>Brain</li>
-    <li>Heart</li>
-    <li>Fallopian tube</li>
-    <li>Kidney</li>
-    <li>Knee</li>
-    <li>Liver</li>
-    <li>Lung</li>
-    <li>Lymph node</li>
-    <li>Lymph vasculature</li>
-    <li>Main bronchus</li>
-    <li>Muscular system</li>
-    <li>Ovary</li>
-    <li>Palatine tonsil</li>
-    <li>Peripheral nervous system</li>
-    <li>Placenta</li>
-    <li>Skeleton</li>
-    </ul>
-    </li>
-    <li>13 Organ Mapping Antibody Panel (OMAP) Tables
-    <ul>
-    <li>
-    OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields&#58
-    target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
-    </li>
-    </ul>
-    </li>
-    <li>67 3D Organ Models (formerly 3D Reference Objects)
-    <ul>
-    <li>
-    All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
-    </li>
-    </ul>
-    </li>
-    </ul>
+  pageData:
+    itemList: |
+      - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+        - Blood
+        - Blood vasculature
+        - Bone marrow
+        - Brain
+        - Heart
+        - Fallopian tube
+        - Kidney
+        - Knee
+        - Liver
+        - Lung
+        - Lymph node
+        - Lymph vasculature
+        - Main bronchus
+        - Muscular system
+        - Ovary
+        - Palatine tonsil
+        - Peripheral nervous system
+        - Placenta
+        - Skeleton
+      - 13 Organ Mapping Antibody Panel (OMAP) Tables
+        - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields:
+          target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
+      - 67 3D Organ Models (formerly 3D Reference Objects)
+        - All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
+- header: Ontology Updates
+  level: 3
+  pageData:
+    itemList: |
+      - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+        - Blood
 - header: Applications
   level: 2
-  content: ''
 - header: New Developer Apps
   level: 3
-  content: <ul>
-    <li>
-    Jupyter Widgets for Python Notebook
-    <ul>
-    <li>
-    A new Python Package, hra-jupyter-widgets, has been published which makes all HRA Web Components available as
-    widgets for Python Notebooks.
-    </li>
-    </ul>
-    </li>
-    <li>
-    HRA Notebooks
-    <ul>
-    <li>A new repository is available that has Python Notebooks demonstrating the use of the HRA from Python.</li>
-    </ul>
-    </li>
-    </ul>
+  pageData:
+    itemList: |
+      - Jupyter Widgets for Python Notebook
+        - A new Python Package, hra-jupyter-widgets, has been published which makes all HRA Web Components available as
+          widgets for Python Notebooks.
+      - HRA Notebooks
+        - A new repository is available that has Python Notebooks demonstrating the use of the HRA from Python.
 - header: Updated Apps
   level: 3
-  content: <p>
-    <div>Researcher Apps</div>
-    <ul>
-    <li>
-    Cell Distance Explorer
-    <ul>
-    <li>
-    A refreshed application look and feel, plus new features, such as a violin graph panel and visualization panel
-    modes to explore, inspect, and select cells.
-    </li>
-    </ul>
-    </li>
-    </ul>
-    </p>
-    <p>
-    <div>Developer Apps</div>
-    <ul>
-    <li>
-    Cell Distance Explorer
-    <ul>
-    <li>
-    A refreshed user interface, updated data, updated clients, and improved stability.
-    </li>
-    </ul>
-    </li>
-    </ul>
-    </p>
+  pageData:
+    itemList: |
+      Researcher Apps
+        - Cell Distance Explorer
+          - A refreshed application look and feel, plus new features, such as a violin graph panel and visualization panel
+            modes to explore, inspect, and select cells.
+      Developer Apps
+        - Cell Distance Explorer
+          - A refreshed user interface, updated data, updated clients, and improved stability.
+- header: Publications
+  level: 2
+- header: Scholarly Publications
+  level: 3
+  pageData:
+    itemList: |
+      - Wang, Xuefei (Julie), Rohit Dilip, Yuval Bussi, Caitlin Brown, Elora Pradhan, Yashvardhan Jain, Kevin Yu,
+        Shenyi Li, Martin Abt, Katy Börner, Leeat Keren, Yisong Yue, Ross Barnowski, and David Van Valen. 2024.
+        "Generalized cell phenotyping for spatial proteomics with language-informed vision models".
+        doi: <a href='https://doi.org/10.1101/2024.11.02.621624' target="_blank">https://doi.org/10.1101/2024.11.02.621624</a>.
+      - Bajcsy, Peter, Screenivas Bhattiprolu, Katy Börner, Beth A. Cimini, Lucy Collinson, Jan Ellenberg, Reto Fiolka,
+        Maryellen Giger, Wojtek Goscinski, Matthew Hartley, Nathan Hotaling, Rick Horwitz, Florian Jug, Anna Kreshuk,
+        Emma Lundberg, Aastha Mathur, Kedar Narayan, Shuichi Onami, Anne L. Plant, Fred Prior, Jason Swedlow, and Adam Taylor. 2024.
+        "<a href='https://arxiv.org/abs/2401.13023' target="_blank">Enabling Global Image Data Sharing in the Life Sciences</a>".
+        <a href='https://doi.org/10.48550/arXiv.2401.13023' target="_blank">https://doi.org/10.48550/arXiv.2401.13023</a>.
+        Accepted for <i>Nature Methods</i>.
+      - Radtke, Andrea J. , Ifeanyichukwu Anidi, Leanne Arakkal, Armando Arroyo-Mejias, Rebecca T. Beuschel, Katy Börner,
+        Colin J. Chu, Beatrice Clark, Menna R. Clatworthy, Jake Colautti, Joshua Croteau, Saven Denha, Rose Dever,
+        Walderez O. Dutra, Sonja Fritzsche, Spencer Fullam, Michael Y. Gerner, Anita Gola, Kenneth J. Gollob,
+        Jonathan M. Hernandez, Jyh Liang Hor, Hiroshi Ichise, Zhixin Jing, Danny Jonigk, Evelyn Kandov, Wolfgang Kastenmueller,
+        Joshua F.E. Koenig, Aanandita Kothurkar, Alexandra Y. Kreins, Ian Lamborn, Yuri Lin,
+        and et al. 2024.
+        "<a href='https://arxiv.org/abs/2407.19059' target="_blank">The IBEX Knowledge-Base: Achieving more together with open science</a>".
+        doi: <a href='https://doi.org/10.48550/arXiv.2407.19059' target="_blank">doi.org/10.48550/arXiv.2407.19059</a>.
+      - Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra,
+        Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla, Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain,
+        Danial Qaurooni, Yongxin Kong, HRA Team, Andreas Bueckle, and Bruce W. Herr II. 2024.
+        "Human BioMolecular Atlas Program (HuBMAP):
+        <a href='https://www.biorxiv.org/content/10.1101/2024.03.27.587041v1' target="_blank">3D Human Reference Atlas Construction and Usage</a>".
+        bioRxiv doi: <a href='https://doi.org/10.1101/2024.03.27.587041' target="_blank">https://doi.org/10.1101/2024.03.27.587041</a>.
+        Accepted as ‘Resource’ paper in <i>Nature Methods</i>.
+- header: Standard Operating Procedures (SOP)
+  level: 3
+  pageData:
+    itemList: |
+      - SOP: 3D Reference Object Approval
+      - SOP: Using 3D Reference Objects
+      - SOP: Using the CCF Registration User Interface
+      - SOP: Assigning RUI Data to Multiple Tissue Blocks
+- header: Other
+  level: 2
+  pageData:
+    content: |
+      Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
+      "Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas." Nature Cell Biology 23 (11)&#58 1117-28.
+
+      Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Lydia Ng, Benjamin A. C. Facer, Phil Lesnar, Angie Guillozet-Bongaarts, Bergen
+      McMurray, Aaron Szafer, Tim A. Dolbeare, Allison Stevens, Lee Tirrell, Thomas Benner, Shiella Caldejon, Rachel A. Dalley, Nick Dee,
+      Christopher Lau, Julie Nyhus, Melissa Reding, Zackery L. Riley, David Sandman, Elaine Shen, Andre van der Kouwe, Ani Varjabedian, Michelle
+      Wright, Lilla Zöllei, Chinh Dang, James A. Knowles, Christof Koch, John W. Phillips, Nenad Sestan, Paul Wohnoutka, H. Ronald Zielke, John
+      G. Hohrmann, Allan R. Jones, Amy Bernard, Michael J. Hawrylycz, Patrick R. Hof, Bruce Fischl, and Ed S. Lein. 2016. "Comprehensive Cellular-
+      Resolution Atlas of the Adult Human Brain." Journal of Comparative Neurology 524 (16)&#58 3127-348. doi&#5810.1002/cne.24080.
+
+      Ding, Song-Lin, Joshua J. Royall, Susan M. Sunkin, Benjamin A.C. Facer, Phil Lesnar, Amy Bernard, Lydia Ng, and Ed S. Lein. 2020. Allen
+      Human Reference Atlas 3D, 2020. RRID&#58SCR_017764, version 1.0.0.
+
+      U.S. National Library of Medicine. 2021. Visible Human Project Data. Accessed June 12, 2023.

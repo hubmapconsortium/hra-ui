@@ -39,12 +39,15 @@
       <hra-section-link [level]="data.level" [underlined]="data.level === 2"> {{ data.header }} </hra-section-link>
     </hra-page-section-header>
     <hra-page-section-content>
-      <markdown [data]="data.content"></markdown>
-      @if (data.header === 'Data') {
-        <a mat-button hraCtaButton class="action" [href]="currentVersion().dataUrl" target="_blank">
-          Get data
-          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-        </a>
+      @if (data.pageData) {
+        <markdown [data]="data.pageData.itemList"></markdown>
+        <markdown [data]="data.pageData.content"></markdown>
+        @if (data.pageData.buttonUrl) {
+          <a mat-button hraCtaButton class="action" [href]="data.pageData.buttonUrl" target="_blank">
+            {{ data.pageData.buttonText }}
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        }
       }
     </hra-page-section-content>
   </hra-page-section>
