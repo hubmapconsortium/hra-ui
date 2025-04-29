@@ -1,0 +1,110 @@
+@use '../../../styles/utils';
+
+:host {
+  display: block;
+  color: var(--mat-sys-secondary);
+  background-color: var(--mat-sys-on-primary);
+  border-radius: 0.5rem;
+  border: 0.0625rem solid var(--mat-sys-outline-variant);
+  overflow: hidden;
+
+  .header,
+  .content {
+    padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, medium);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: var(--mat-sys-surface-container-low);
+    border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+    gap: 1rem;
+
+    .header-label {
+      flex-grow: 1;
+    }
+  }
+
+  .logos {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .text-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .viewer-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+
+    @media (min-width: 40rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .select {
+    min-width: 15.5rem;
+  }
+
+  ::ng-deep .mdc-text-field--filled .mdc-floating-label--float-above {
+    transform: translateY(-106%);
+  }
+
+  mat-select-trigger {
+    @include utils.use-font(label, medium);
+  }
+}
+
+.release-label {
+  display: flex;
+  flex-direction: column;
+
+  .release-name {
+    @include utils.use-font(label, medium);
+    --mat-option-label-text-color: var(--mat-sys-secondary);
+  }
+
+  .release-date {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}
+
+.mat-mdc-option-active {
+  background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
+  outline: none !important;
+
+  ::ng-deep .mat-pseudo-checkbox {
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--mat-sys-tertiary);
+  }
+}
+
+.csv-button {
+  padding: 0.5rem 1rem;
+
+  .csv-label {
+    display: flex;
+  }
+
+  .csv-desc {
+    @include utils.use-font(label, small);
+    color: var(--mat-sys-primary);
+  }
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  width: 15.5rem;
+}
