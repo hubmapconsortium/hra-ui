@@ -9,19 +9,17 @@
   height: calc(100vh - 4.5rem);
   background-color: var(--mat-sys-secondary-container);
 
-  .page {
-    &-title {
-      @include utils.use-font(display, medium);
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
+  .title {
+    @include utils.use-font(display, medium);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
 
-    &-description {
-      @include utils.use-font(title, medium);
-      color: var(--mat-sys-primary);
-      margin-bottom: 4rem;
-      text-align: center;
-    }
+  .description {
+    @include utils.use-font(title, medium);
+    color: var(--mat-sys-primary);
+    margin-bottom: 4rem;
+    text-align: center;
   }
 
   /* Responsive Styling */
