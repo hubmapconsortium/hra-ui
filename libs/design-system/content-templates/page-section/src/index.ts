@@ -11,6 +11,7 @@ export {
 export { PageSection, PageSectionService } from './lib/services/page-section.service';
 export { PageSectionSchema } from './lib/types/page-section.schema';
 
+/** Config for PageSection component with its schema */
 export const PageSectionDef: AnyContentTemplateDef = {
   component: PageSectionComponent,
   spec: PageSectionSchema,
