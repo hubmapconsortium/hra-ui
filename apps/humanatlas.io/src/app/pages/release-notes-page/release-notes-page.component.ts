@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
@@ -32,6 +33,7 @@ import {
     FormsModule,
     ButtonsModule,
     MatIconModule,
+    YouTubePlayerModule,
   ],
   templateUrl: './release-notes-page.component.html',
   styleUrl: './release-notes-page.component.scss',
@@ -94,7 +96,7 @@ export class ReleaseNotesPageComponent {
    * @param version Current release version
    * @returns Observable with page data
    */
-  releaseNotesResolver(version: number): Observable<ReleaseNotesSectionData[]> {
+  releaseNotesResolver(version: string): Observable<ReleaseNotesSectionData[]> {
     return this.http.get(`assets/content/pages-v2/release-notes/v${version}.yaml`, { responseType: 'text' }).pipe(
       map((yamlString) => load(yamlString)),
       map((raw) => ReleaseNotesSectionDataSchema.array().parse(raw)),

@@ -16,6 +16,12 @@
     gap: 1.5rem;
   }
 
+  .subsection-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   .version-select {
     width: 15.5rem;
 
@@ -36,30 +42,26 @@
   }
 
   .section-button {
-    margin-top: 1.5rem;
+    width: fit-content;
   }
 
-  ::ng-deep .item-list {
+  ::ng-deep markdown {
     p {
       margin: 0;
-      margin-block-start: 0;
-      margin-block-end: 0;
     }
 
     ul {
       margin: 0;
       list-style-type: disc;
-    }
-  }
-
-  ::ng-deep .item-content {
-    p {
-      display: flex;
-      flex-direction: column;
+      padding-inline-start: 1.5rem;
     }
 
     img {
-      max-width: 800px;
+      max-width: 50rem;
+    }
+
+    a {
+      color: var(--mat-sys-on-tertiary-fixed);
     }
   }
 }

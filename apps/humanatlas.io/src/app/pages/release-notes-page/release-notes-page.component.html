@@ -24,46 +24,45 @@
 </hra-page-section>
 
 <hra-page-section [tagline]="`${currentVersion().label}, ${currentVersion().date}`" level="2" underlined>
-  <markdown [data]="currentVersion().description"></markdown>
+  <markdown [data]="currentVersion().description" />
 </hra-page-section>
 
 @for (data of currentVersionData(); track data.header) {
   <hra-page-section [tagline]="data.header" [level]="data.level">
     <div class="section-content">
-      @if (data.pageData) {
-        <div class="initial-section-content">
-          <markdown class="item-list" [data]="data.pageData.itemList"></markdown>
-          <markdown class="item-content" [data]="data.pageData.content"></markdown>
-          @if (data.pageData.buttonUrl) {
-            <a mat-button hraCtaButton class="action section-button" [href]="data.pageData.buttonUrl" target="_blank">
-              {{ data.pageData.buttonText }}
-              <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-            </a>
-          }
-        </div>
+      @if (data.components) {
+        <ng-container
+          [ngTemplateOutlet]="sectionData"
+          [ngTemplateOutletContext]="{ sectionContent: data.components }"
+        />
       }
       @for (section of data.sections; track section.header) {
         <hra-page-section [tagline]="section.header" [level]="section.level">
-          <div class="subsection-content">
-            @if (section.pageData) {
-              <markdown class="item-list" [data]="section.pageData.itemList"></markdown>
-              <markdown class="item-content" [data]="section.pageData.content"></markdown>
-              @if (section.pageData.buttonUrl) {
-                <a
-                  mat-button
-                  hraCtaButton
-                  class="action section-button"
-                  [href]="section.pageData.buttonUrl"
-                  target="_blank"
-                >
-                  {{ section.pageData.buttonText }}
-                  <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-                </a>
-              }
-            }
-          </div>
+          <ng-container
+            [ngTemplateOutlet]="sectionData"
+            [ngTemplateOutletContext]="{ sectionContent: section.components }"
+          />
         </hra-page-section>
       }
     </div>
   </hra-page-section>
 }
+
+<ng-template let-sectionContent="sectionContent" #sectionData>
+  <div class="subsection-content">
+    @for (component of sectionContent; track component) {
+      @if (component.content) {
+        <markdown [data]="component.content" />
+      }
+      @if (component.youtubeId) {
+        <youtube-player [videoId]="component.youtubeId"></youtube-player>
+      }
+      @if (component.buttonUrl) {
+        <a mat-button hraCtaButton class="action section-button" [href]="component.buttonUrl" target="_blank">
+          {{ component.buttonText }}
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </a>
+      }
+    }
+  </div>
+</ng-template>
