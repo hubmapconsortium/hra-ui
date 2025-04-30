@@ -37,7 +37,6 @@
 
   .card-with-file {
     width: 27rem !important;
-    height: 20.3125rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -63,7 +62,7 @@
     }
 
     &-2 {
-      height: 15.8125rem;
+      align-self: flex-start;
       .buttons {
         display: flex;
         justify-content: flex-end;
