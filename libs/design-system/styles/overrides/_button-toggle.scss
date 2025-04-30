@@ -5,13 +5,12 @@
 @mixin overrides() {
   @include mat.button-toggle-overrides(
     (
-      // Basic toggle styles
-      height: 1.5rem,
-      shape: vars.$corner-extra-small,
       background-color: vars.$on-primary,
       divider-color: vars.$primary,
+      height: 1.5rem,
+      shape: vars.$corner-extra-small,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
       selected-state-text-color: vars.$secondary,
-      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%)
     )
   );
 
@@ -25,6 +24,7 @@
         label-text-tracking: vars.$label-small-tracking,
       )
     );
+
     .mat-button-toggle-label-content {
       padding: 0.3125rem 0.5rem;
     }
@@ -40,6 +40,7 @@
         label-text-tracking: vars.$label-medium-tracking,
       )
     );
+
     .mat-button-toggle-label-content {
       padding: 0.3438rem 0.5rem;
     }
@@ -55,6 +56,7 @@
         label-text-tracking: vars.$label-large-tracking,
       )
     );
+
     .mat-button-toggle-label-content {
       padding: 0.5rem 1rem;
     }
