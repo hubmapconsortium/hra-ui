@@ -1,7 +1,7 @@
 import { coerceElement } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import { computed, effect, ElementRef, inject, Injectable, InjectionToken, ProviderToken, signal } from '@angular/core';
-import { getSectionElement, PageSectionService } from './page-section.service';
+import { getSectionElement, PageSection, PageSectionService } from './page-section.service';
 
 /** Options to customize the PageSectionActivationService */
 export interface PageSectionActivationOptions {
@@ -65,6 +65,15 @@ export class PageSectionActivationService {
       const diff = this.diffObservedElements(elements);
       this.applyObservedElementsDiff(diff);
     });
+  }
+
+  /**
+   * Activates a specific section
+   *
+   * @param section Section to set as the active section
+   */
+  activate(section: PageSection): void {
+    this.activeElement.set(getSectionElement(section));
   }
 
   /**
