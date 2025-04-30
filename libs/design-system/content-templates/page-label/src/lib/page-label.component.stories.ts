@@ -1,30 +1,19 @@
-import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
-import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 
 import { PageLabelComponent } from './page-label.component';
 
 const meta: Meta<PageLabelComponent> = {
   component: PageLabelComponent,
-  title: 'Design System/Content Templates/PageLabel',
+  title: 'Design System/Content Templates/Page Label',
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2769-16877',
     },
   },
-  decorators: [
-    moduleMetadata({
-      imports: [ProductLogoComponent, OrganLogoComponent],
-    }),
-  ],
   args: {
     tagline: 'Page label',
-  },
-  argTypes: {
-    includeLink: {
-      control: 'boolean',
-    },
+    anchor: 'page-label',
   },
   render: (args) => ({
     props: args,

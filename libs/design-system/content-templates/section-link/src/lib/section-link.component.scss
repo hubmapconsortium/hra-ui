@@ -42,36 +42,37 @@ $level-configs: (
 
 :host {
   display: block;
-  position: relative;
+  margin: 0;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0;
-  }
+  .link-container {
+    display: inline-block;
+    vertical-align: top;
+    height: 0;
+    line-height: 1;
 
-  .link {
-    position: absolute;
-    left: -2.5rem;
-    visibility: hidden;
-  }
-
-  &:hover {
     .link {
-      visibility: visible;
+      position: relative;
+      margin-left: -2.5rem;
+
+      .icon {
+        visibility: hidden;
+      }
     }
+  }
+
+  .content {
+    display: inline-block;
+  }
+
+  &:hover .link-container .link .icon {
+    visibility: visible;
   }
 
   @each $level, $config in $level-configs {
-    h#{$level} {
+    &h#{$level} {
       @include utils.use-font(map.get($config, font-variant), map.get($config, font-size));
-    }
 
-    &.hra-section-link-level-#{$level} {
-      .link {
+      .link-container .link {
         top: map.get($config, link-offset);
       }
 

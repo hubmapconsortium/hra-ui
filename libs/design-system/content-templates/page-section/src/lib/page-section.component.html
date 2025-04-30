@@ -1,7 +1,7 @@
-<div class="header-content">
-  <ng-content select="hra-page-section-header" />
-</div>
+<section [attr.id]="anchor() || null" #section>
+  <hra-page-label class="header" [tagline]="tagline()" [level]="level()" [anchor]="anchor()" />
 
-<div class="content">
-  <ng-content select="hra-page-section-content" />
-</div>
+  <div class="content">
+    <ng-content />
+  </div>
+</section>

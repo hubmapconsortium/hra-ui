@@ -1,21 +1,20 @@
-import { MatIconModule } from '@angular/material/icon';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
+import { Meta, StoryObj } from '@storybook/angular';
 import { SectionLinkComponent } from './section-link.component';
 
 interface ExtraArgs {
-  text: string;
+  level: number;
+  content: string;
+}
+
+function clampLevel(level: number): number {
+  level = Math.max(level, 1);
+  level = Math.min(level, 6);
+  return level;
 }
 
 const meta: Meta<SectionLinkComponent & ExtraArgs> = {
   component: SectionLinkComponent,
-  title: 'Design System/Content Templates/SectionLink',
-  decorators: [
-    moduleMetadata({
-      imports: [SectionLinkComponent, ButtonsModule, MatIconModule],
-    }),
-  ],
+  title: 'Design System/Content Templates/Section Link',
   parameters: {
     design: {
       type: 'figma',
@@ -26,14 +25,14 @@ const meta: Meta<SectionLinkComponent & ExtraArgs> = {
     level: 1,
     anchor: 'anchor',
     underlined: false,
-    text: 'Section Link',
+    content: 'Section Link',
   },
   render: (args) => ({
     props: args,
     styles: ['.hra-app { margin: 0 2rem; }'],
-    template: `<hra-section-link level="${args.level}" anchor="${args.anchor}" underlined="${args.underlined}">
-        ${args.text}
-      </hra-section-link>`,
+    template: `<h${clampLevel(args.level)} hra-section-link anchor="${args.anchor}" underlined="${args.underlined}">
+        ${args.content}
+      </h${clampLevel(args.level)}>`,
   }),
 };
 
@@ -44,7 +43,7 @@ export const Default: Story = {};
 
 export const LongText: Story = {
   args: {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.',
   },
 };
 

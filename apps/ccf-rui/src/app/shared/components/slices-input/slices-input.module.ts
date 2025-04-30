@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NumbersOnlyModule } from 'ccf-shared';
 import { SlicesInputComponent } from './slices-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTooltipModule,
     NumbersOnlyModule,
     MatFormFieldModule,
+    PlainTooltipDirective,
   ],
   providers: [importProvidersFrom(BrowserAnimationsModule)],
   declarations: [SlicesInputComponent],

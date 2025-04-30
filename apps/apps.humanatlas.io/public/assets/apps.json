@@ -2,7 +2,7 @@
   "$schema": "../../src/app/pages/landing-page/types/app-cards.schema.json",
   "tabs": [
     {
-      "name": "Researcher Apps",
+      "name": "Researcher apps",
       "sections": [
         {
           "tagline": "Researcher applications for using the Human Reference Atlas",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "name": "Developer Apps",
+      "name": "Developer apps",
       "sections": [
         {
           "tagline": "Developer applications",

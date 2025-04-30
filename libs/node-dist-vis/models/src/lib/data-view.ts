@@ -231,9 +231,7 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       const mapping = selectMaterializationKeyMapping(this, keyMapping, this.keyMapping);
       const result: Record<string, unknown> = {};
       for (const [key, prop] of mapping) {
-        const value = (obj as Record<PropertyKey, unknown>)[prop];
-        const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
-        result[key] = serialized;
+        result[key] = (obj as Record<PropertyKey, unknown>)[prop];
       }
 
       return result;
