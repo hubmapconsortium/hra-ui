@@ -6,7 +6,6 @@ import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideChips } from '@hra-ui/design-system/buttons/chips';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
-import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideSelect } from '@hra-ui/design-system/select';
 import { provideTable } from '@hra-ui/design-system/table';
@@ -33,7 +32,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideCodeBlock(),
     provideDesignSystemIcons(),
     provideIcons(),
-    provideMenu(),
     provideScrolling(options?.scrolling),
     provideSelect(),
     provideTable(),
