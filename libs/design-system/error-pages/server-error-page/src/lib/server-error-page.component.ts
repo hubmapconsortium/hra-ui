@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -15,4 +15,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   styleUrl: './server-error-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServerErrorPageComponent {}
+export class ServerErrorPageComponent {
+  /** Link for the report issue CTA */
+  protected readonly reportIssueLink = input<string>();
+}
