@@ -4,7 +4,11 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  padding: 40px 1rem;
+  padding: 2.5rem 1rem;
+
+  @media (min-width: 40rem) {
+    padding: 2.5rem 2.5rem;
+  }
 
   .header-content {
     display: flex;
@@ -12,22 +16,50 @@
     gap: 1.5rem;
   }
 
-  .select {
-    width: 248px;
+  .version-select {
+    width: 15.5rem;
+
+    // Keep the mat select label from shrinking
+    ::ng-deep .mdc-floating-label {
+      transform: translateY(-106%) !important;
+    }
+
+    mat-select-trigger {
+      @include utils.use-font(label, medium);
+    }
   }
 
-  // Keep the mat select label from shrinking
-  ::ng-deep .mdc-floating-label {
-    transform: translateY(-106%) !important;
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
-  mat-select-trigger {
-    @include utils.use-font(label, medium);
+  .section-button {
+    margin-top: 1.5rem;
   }
 
-  markdown {
-    ::ng-deep ul {
+  ::ng-deep .item-list {
+    p {
       margin: 0;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+
+    ul {
+      margin: 0;
+      list-style-type: disc;
+    }
+  }
+
+  ::ng-deep .item-content {
+    p {
+      display: flex;
+      flex-direction: column;
+    }
+
+    img {
+      max-width: 800px;
     }
   }
 }

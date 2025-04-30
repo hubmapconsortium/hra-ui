@@ -66,3 +66,46 @@
               target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
           - 67 3D Organ Models (formerly 3D Reference Objects)
             - All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
+- header: User Interfaces
+  level: 2
+  pageData:
+    content: Explore new and updated Human Reference Atlas APIs, applications, and websites.
+  sections:
+    - header: New Websites & Applications
+      level: 3
+      pageData:
+        itemList: |
+          - Preview: Functional Tissue Unit (FTU) Explorer
+          - Preview: Cell Distance Explorer
+          - Preview: Use Atlas Components
+          - Preview: HRA Dashboard
+          - Human Atlas Stories: Knowledge Graph
+    - header: Updated Websites & Applications
+      level: 3
+      pageData:
+        itemList: |
+          - Human Reference Atlas
+          - Overview: Use HRA Previews
+          - Atlas Demo Apps
+          - ASCT+B Reporter
+          - Exploration User Interface (EUI)
+          - Registration User Interface (RUI)
+          - HRA Organ Gallery
+    - header: Updated APIs
+      level: 3
+      pageData:
+        itemList: |
+          - HRA-API v0.6.0
+          - HRA-API Client Libraries v0.6.0:
+            - JavaScript
+            - TypeScript
+            - Angular
+            - Python
+          - HRA-KG
+          - grlc API
+    - header: Human Reference Atlas in 60+ Languages
+      level: 3
+      pageData:
+        content: Use Google Translate to access the HRA.
+          <br><br>
+          <img src="assets/content/landing-page/images/hra_translate.svg" />
