@@ -4,21 +4,20 @@
 
 // Override mixin for mat-icon-button styles
 @mixin overrides() {
+  @include mat.icon-button-overrides(
+    (
+      state-layer-size: 2.5rem,
+      icon-size: 1.5rem,
+      hover-state-layer-opacity: 0.08,
+      pressed-state-layer-opacity: 0.12,
+      focus-state-layer-opacity: 0.12,
+      icon-color: vars.$secondary,
+      state-layer-color: vars.$secondary,
+    )
+  );
+
   button[mat-icon-button],
   a[mat-icon-button] {
-    // Base icon-button overrides
-    @include mat.icon-button-overrides(
-      (
-        state-layer-size: 2.5rem,
-        icon-size: 1.5rem,
-        hover-state-layer-opacity: 0.08,
-        pressed-state-layer-opacity: 0.12,
-        focus-state-layer-opacity: 0.12,
-        icon-color: vars.$secondary,
-        state-layer-color: vars.$secondary,
-      )
-    );
-
     // Small size variant
     &.hra-icon-button-size-small {
       @include mat.icon-button-overrides(

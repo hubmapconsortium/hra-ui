@@ -1,0 +1,58 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+// Override mixin for mat-form-field styles
+@mixin overrides() {
+  @include mat.form-field-overrides(
+    (
+      // Common appearance overrides
+      container-height: 3rem,
+
+      // Filled appearance overrides
+      filled-container-color: vars.$surface-container,
+      filled-with-label-container-padding-top: 1.25rem,
+      filled-with-label-container-padding-bottom: 0.25rem,
+      filled-label-text-color: vars.$primary-fixed,
+      filled-active-indicator-color: vars.$tertiary,
+      filled-focus-active-indicator-color: vars.$tertiary,
+      filled-focus-active-indicator-height: 1px,
+      filled-label-text-font: vars.$label-small,
+      filled-disabled-label-text-color: vars.$on-surface,
+
+      // Outlined appearance overrides
+      outlined-outline-color: vars.$outline-variant,
+      outlined-focus-outline-color: vars.$tertiary,
+      outlined-focus-label-text-color: vars.$tertiary,
+      outlined-input-text-color: vars.$primary-fixed,
+      outlined-outline-width: 1px,
+      outlined-hover-outline-color: vars.$outline-variant,
+      outlined-label-text-font: vars.$label-small,
+      outlined-disabled-label-text-color: vars.$on-surface
+    )
+  );
+
+  // TODO revisit
+  mat-label {
+    letter-spacing: vars.$label-small-tracking;
+  }
+
+  .mat-mdc-form-field-infix {
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+
+    input {
+      height: 1.5rem;
+    }
+  }
+
+  mat-form-field[appearance='outline'] {
+    .mdc-text-field:hover {
+      @include mat.form-field-overrides(
+        (
+          outlined-outline-width: 2px,
+        )
+      );
+    }
+  }
+}
