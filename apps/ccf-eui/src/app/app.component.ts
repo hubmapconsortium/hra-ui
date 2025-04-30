@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter } from '@hra-api/ng-client';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
-import { ALL_ORGANS, BodyUiComponent, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ALL_ORGANS, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
 import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { combineLatest } from 'rxjs';
@@ -167,14 +167,6 @@ export class AppComponent implements OnInit {
       panelClass: 'usage-snackbar',
       duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
     });
-  }
-
-  /** Reset the view */
-  resetView(bodyUI: BodyUiComponent): void {
-    bodyUI.target = [0, 0, 0];
-    bodyUI.rotation = 0;
-    bodyUI.rotationX = 0;
-    bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
   }
 
   /** Format a range of values */

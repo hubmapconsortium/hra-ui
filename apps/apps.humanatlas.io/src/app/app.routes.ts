@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ApiComponent } from './pages/api/api.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { CellPopulationPredictionsComponent } from './pages/us1/cell-population-predictions/cell-population-predictions.component';
@@ -99,5 +100,14 @@ export const appRoutes: Route[] = [
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'API' }] satisfies BreadcrumbItem[],
     },
+  },
+  {
+    path: '404',
+    component: NotFoundPageComponent,
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '404',
   },
 ];

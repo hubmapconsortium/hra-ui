@@ -135,7 +135,7 @@
           <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
         <mat-divider class="menu-divider"></mat-divider>
-        <button mat-menu-item (click)="resetView(bodyUI)">
+        <button mat-menu-item (click)="bodyUI.resetView()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset visualization view
         </button>
@@ -176,16 +176,16 @@
       >
         Spatial Search
       </button>
-      <ccf-body-ui
+      <hra-body-ui
         #bodyUI
         class="stage-content"
         [scene]="$any(scene.scene$ | async)"
         (nodeClick)="scene.sceneNodeClicked($event)"
         (nodeHoverStart)="scene.sceneNodeHovered($event)"
         (nodeHoverStop)="scene.sceneNodeUnhover()"
-        [bounds]="{ x: 2.2, y: 2, z: 0.4 }"
+        [bounds]="{ x: 1, y: 0.5, z: 0.4 }"
       >
-      </ccf-body-ui>
+      </hra-body-ui>
     </div>
 
     <div class="right-panel">
