@@ -18,6 +18,9 @@ import {
   ReleaseVersionData,
 } from '../../resolvers/release-notes-page/release-notes-page.schema';
 
+/**
+ * Page for displaying current and past HRA release notes
+ */
 @Component({
   selector: 'hra-release-notes-page',
   imports: [
@@ -38,8 +41,10 @@ export class ReleaseNotesPageComponent {
   /** Http injector */
   readonly http = inject(HttpClient);
 
+  /** Router service */
   readonly router = inject(Router);
 
+  /** Versions data */
   readonly versions = input.required<ReleaseVersionData[]>();
 
   /** Current selected release version */
@@ -65,10 +70,18 @@ export class ReleaseNotesPageComponent {
     });
   }
 
+  /**
+   * Navigates to release version path on version select
+   * @param event Mat select event
+   */
   navigate(event: MatSelectChange) {
     this.router.navigate([`/release-notes/v${event.value.version}`]);
   }
 
+  /**
+   * Sets current version from the page url
+   * @param url Current url
+   */
   setCurrentVersionFromUrl(url: string) {
     const currentVersionNum = url.split('/')[2].slice(1);
     this.currentVersion.set(

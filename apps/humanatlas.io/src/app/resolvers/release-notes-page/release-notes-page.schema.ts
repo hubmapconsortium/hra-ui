@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+/** Schema for release notes subsection */
 export const ReleaseNotesSubSectionDataSchema = z.object({
   header: z.string(),
   level: z.number(),
@@ -13,8 +14,10 @@ export const ReleaseNotesSubSectionDataSchema = z.object({
     .optional(),
 });
 
+/** Type for release notes section data */
 export type ReleaseNotesSectionData = z.infer<typeof ReleaseNotesSectionDataSchema>;
 
+/** Schema for release notes section, may contain subsections */
 export const ReleaseNotesSectionDataSchema = z.object({
   header: z.string(),
   level: z.number(),
@@ -29,8 +32,10 @@ export const ReleaseNotesSectionDataSchema = z.object({
   sections: ReleaseNotesSubSectionDataSchema.array().optional(),
 });
 
+/** Type for release version data */
 export type ReleaseVersionData = z.infer<typeof ReleaseVersionSchema>;
 
+/** Schema for release version */
 export const ReleaseVersionSchema = z.object({
   version: z.number(),
   label: z.string(),
