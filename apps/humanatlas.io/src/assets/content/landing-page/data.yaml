@@ -1,0 +1,83 @@
+# TODO specify the schema
+
+carouselItems:
+  - tagline: Map the human body at single cell resolution
+    description: Read our flagship paper about the thousands of experts building a Human Reference Atlas.
+    imageSrc: assets/content/landing-page/images/carousel1.svg
+    action: View Paper
+    link:
+      url: https://doi.org/10.1038/s41556-021-00788-6
+  - tagline: Contribute data to the Human Reference Atlas
+    description: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
+    imageSrc: assets/content/landing-page/images/carousel3.svg
+    action: Learn More,
+    link:
+      route: asctb-reporter
+  - tagline: Learn more about the Human BioMolecular Atlas Program
+    description: Explore HuBMAP data code and documentation using the HuBMAP Data Portal.
+    imageSrc: assets/content/landing-page/images/carousel6.svg
+    action: HuBMAP Data Portal
+    link:
+      url: https://portal.hubmapconsortium.org/
+  - tagline: Learn more about the Cellular Senescence Network (SenNet) Program
+    description: Explore SenNet data, code, and documentation using the SenNet Data Portal.
+    imageSrc: assets/content/landing-page/images/carousel_sennet.svg
+    action: SenNet Data Portal
+    link:
+      url: https://data.sennetconsortium.org/
+
+countInfo:
+  - count: 17
+    label: consortia
+    icon:
+      fontText: diversity_3
+  - count: 250+
+    label: experts
+    icon:
+      fontText: school
+  - count: 1,000+
+    label: publications
+    icon:
+      fontText: docs
+  - count: 71
+    label: organs
+    icon:
+      fontText: neurology
+  - count: 4,694
+    label: anatomical structures
+    icon:
+      fontText: favorite
+  - count: 1,288
+    label: cell types
+    icon:
+      url: assets/content/landing-page/images/cell-types.svg
+  - count: 2,018
+    label: biomarkers
+    icon:
+      fontText: add_location
+  - count: 23
+    label: organ mapping antibody panels
+    icon:
+      fontText: map
+  - count: 22
+    label: functional tissue units
+    icon:
+      fontText: layers
+
+sectionCardInfo:
+  - tagline: Join
+    description: Register for the monthly Human Reference Atlas Working Group
+    imageSrc: assets/content/landing-page/images/join.svg
+    route: overview-data
+  - tagline: Data
+    description: Research the data constructing Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/data.svg
+    route: ccf-ontology
+  - tagline: Apps
+    description: Construct, visualize, and use Human Reference Atlas applications
+    imageSrc: assets/content/landing-page/images/apps.svg
+    route: overview-tools
+  - tagline: Training
+    description: Check out HuBMAP’s education and engagement efforts
+    imageSrc: assets/content/landing-page/images/training.svg
+    route: overview-training-outreach

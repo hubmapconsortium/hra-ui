@@ -17,10 +17,10 @@
         vertical-align: text-bottom;
         color: vars.$secondary;
       }
-    }
 
-    ccf-filters-content {
-      height: calc(100% - 4.5rem);
+      ccf-filters-content {
+        height: calc(100% - 4.5rem);
+      }
     }
   }
 
@@ -41,12 +41,13 @@
   .page-content {
     display: grid;
     grid-template-columns: 24.5rem auto 24.625rem;
-    grid-template-rows: 0rem 0rem 5rem calc(100vh - 5rem);
+    grid-template-rows: 0rem 0rem 5rem 1fr;
     grid-template-areas:
       'progress progress progress'
       'back back back'
       'header vis-panel right'
       'left content right';
+    height: 100%;
 
     background-color: vars.$surface-container-low;
   }
@@ -192,6 +193,7 @@
 
   .content {
     grid-area: content;
+    position: relative;
 
     .spatial-search-button {
       position: absolute;

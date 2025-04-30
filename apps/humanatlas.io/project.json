@@ -5,14 +5,9 @@
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    }
-  },
   "tags": ["type:app", "project:humanatlas.io"],
   "sourceRoot": "apps/humanatlas.io/src",
-  "prefix": "humanatlas.io",
+  "prefix": "hra",
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
@@ -24,6 +19,11 @@
             "glob": "**/*",
             "input": "apps/humanatlas.io/src/static",
             "output": "."
+          },
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
           }
         ],
         "polyfills": ["apps/humanatlas.io/src/polyfills.ts"]
