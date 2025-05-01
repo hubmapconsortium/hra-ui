@@ -1,6 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 import { ServerErrorPageComponent } from './server-error-page.component';
-import { report } from 'process';
 
 const meta: Meta = {
   title: 'Design System/Error Pages/Server Error Page',
