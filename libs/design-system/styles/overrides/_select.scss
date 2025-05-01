@@ -3,27 +3,14 @@
 @use '../vars';
 
 @mixin overrides() {
-  // mat-form-field.mat-mdc-form-field-type-mat-select {
-  //   mat-label {
-  //     letter-spacing: vars.$label-small-tracking;
-  //   }
-
-  //   mat-select {
-  //     .mat-mdc-select-value-text .mat-mdc-select-min-line {
-  //       font: vars.$label-medium;
-  //       letter-spacing: vars.$label-medium-tracking;
-  //     }
-
-  //     &.mat-focused .mat-mdc-select-value-text .mat-mdc-select-min-line {
-  //       color: vars.$primary-fixed;
-  //     }
-  //   }
-  // }
-
   @include mat.select-overrides(
     (
-      panel-background-color: vars.$on-primary,
       container-elevation-shadow: 0px 5px 4px 0px rgb(from vars.$shadow r g b / 0.16),
+      disabled-arrow-color: utils.with-alpha(vars.$on-primary, 40%),
+      enabled-arrow-color: vars.$on-primary,
+      focused-arrow-color: vars.$on-primary,
+      panel-background-color: vars.$on-primary,
+      placeholder-text-color: vars.$on-primary,
     )
   );
 
@@ -31,7 +18,6 @@
     (
       focus-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
       hover-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
-      // hover-state-layer-color: color-mix(in srgb, vars.$on-surface 8%, transparent), THIS IS ACTIVE
       label-text-color: vars.$primary-container,
       label-text-line-height: 3.5rem,
       label-text-font: vars.$label-large,
