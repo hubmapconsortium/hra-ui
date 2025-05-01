@@ -126,6 +126,7 @@ export class ResultsBrowserComponent {
     this.showSelected.set(!this.showSelected());
   }
 
+  /** Track by function for the list of results */
   trackByResult(index: number) {
     return index;
   }
