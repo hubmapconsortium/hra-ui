@@ -62,6 +62,7 @@
     }
 
     &-2 {
+      align-self: flex-start;
       .buttons {
         display: flex;
         justify-content: flex-end;
