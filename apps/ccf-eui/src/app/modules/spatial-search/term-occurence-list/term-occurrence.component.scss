@@ -31,7 +31,7 @@
 
   .term-list {
     height: 100%;
-    --_hra-scroll-overflow-fade-color: vars.$surface-container-low;
+    --_hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
   }
 
   ::ng-deep ng-scrollbar {
