@@ -24,11 +24,6 @@
     )
   );
 
-  // @include mat.select-overrides((
-  //   panel-background-color: vars.$on-primary,
-  //   placeholder-text-color: vars.$on-primary,
-  // ));
-
   mat-form-field.mat-mdc-form-field-type-mat-select {
     mat-label {
       letter-spacing: vars.$label-small-tracking;
