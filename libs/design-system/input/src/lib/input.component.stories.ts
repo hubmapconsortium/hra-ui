@@ -5,8 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
-const meta: Meta = {
-  title: 'Input',
+interface ExtraArgs {
+  disabled?: boolean;
+}
+
+const meta: Meta<ExtraArgs> = {
+  title: 'Design System/Form Field',
   decorators: [
     applicationConfig({
       providers: [importProvidersFrom(BrowserAnimationsModule)],
@@ -15,17 +19,21 @@ const meta: Meta = {
       imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
     }),
   ],
+  args: {
+    disabled: false,
+  },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<ExtraArgs>;
 
 export const FloatingFill: Story = {
   args: {},
-  render: () => ({
+  render: (args) => ({
+    props: args,
     template: `
       <mat-form-field>
         <mat-label>Input</mat-label>
-        <input matInput>
+        <input matInput [disabled]="disabled">
       </mat-form-field>
     `,
   }),
