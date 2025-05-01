@@ -42,7 +42,7 @@
 
   .tissue-list {
     height: 100%;
-    --_hra-scroll-overflow-fade-color: vars.$surface-container-low;
+    --_hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
   }
 
   .donor-info {
