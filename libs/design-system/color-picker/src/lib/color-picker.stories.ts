@@ -1,5 +1,5 @@
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective } from 'ngx-color-picker';
 import { ColorPickerComponent } from './color-picker.component';
 
 const meta: Meta = {
@@ -16,7 +16,7 @@ const meta: Meta = {
       providers: [],
     }),
     moduleMetadata({
-      imports: [ColorPickerModule],
+      imports: [ColorPickerDirective],
     }),
   ],
   args: {
