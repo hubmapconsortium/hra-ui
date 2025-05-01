@@ -29,6 +29,11 @@ export type Axis = 'x' | 'y' | 'z';
   templateUrl: './rotation-slider.component.html',
   styleUrls: ['./rotation-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keydown)': 'changeStep($event)',
+    '(document:keyup)': 'changeStep($event)',
+    '(window:mouseup)': 'closeResults($event)',
+  },
   standalone: false,
 })
 export class RotationSliderComponent {
@@ -43,6 +48,9 @@ export class RotationSliderComponent {
 
   /** List of all axis */
   axisOptions: Axis[] = ['x', 'y', 'z'];
+
+  /** Step size when increasing or decreasing the value */
+  step = 1;
 
   /**
    * Function that handles updating the rotation and emitting the new value
@@ -68,5 +76,9 @@ export class RotationSliderComponent {
 
   resetAllRotations(): void {
     this.axisOptions.forEach((axis) => this.resetRotation(axis));
+  }
+  /** Changes the step size based on whether the shift key is pressed */
+  changeStep(target: KeyboardEvent): void {
+    this.step = target.shiftKey ? 30 : 1;
   }
 }

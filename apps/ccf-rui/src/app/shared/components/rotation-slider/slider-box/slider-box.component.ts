@@ -13,6 +13,7 @@ export class SliderBoxComponent {
   @Input() sliderAxis!: Axis;
   /** Rotation value */
   @Input() rotation!: Rotation;
+  /** Step size to increase or decrease value by */
   @Input() step!: number;
   /** Reset rotation */
   @Output() readonly resetRotation = new EventEmitter<string>();
