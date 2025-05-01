@@ -75,6 +75,18 @@ export class ResultsBrowserComponent {
   /** Whether at least one item is selected */
   readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
 
+  /** Filtered items */
+  readonly items = computed(() => {
+    const items = this.listResults();
+    if (this.showSelected()) {
+      const result = items.filter((item) => item.selected);
+      if (result.length > 0) {
+        return result;
+      }
+    }
+    return items;
+  });
+
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
