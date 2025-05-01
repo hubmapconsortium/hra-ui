@@ -3,7 +3,7 @@ import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, Injector } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
-import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 import { ListResult } from '../../models/list-result';
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
@@ -41,6 +41,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
   readonly highlightedNodeId$ = this.state$.pipe(
     map((x) => x?.highlightedNodeId),
     distinctUntilChanged(),
+    debounceTime(100),
   );
 
   /** Reference to the data state */
@@ -73,6 +74,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
    *
    * @param result The list result to select
    */
+  @DataAction()
   selectListResult(result: ListResult): void {
     this.colorAssignments.assignColor(result.tissueBlock.spatialEntityId ?? '');
   }
@@ -82,6 +84,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
    *
    * @param result The list result to deselect
    */
+  @DataAction()
   deselectListResult(result: ListResult): void {
     const newResult = { ...result, expanded: false };
     this.changeExpansion(newResult);
@@ -104,6 +107,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
    * Highlights node
    * @param id Node id
    */
+  @DataAction()
   highlightNode(id: string): void {
     this.ctx.patchState({ highlightedNodeId: id });
   }
@@ -112,6 +116,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
    * Unhighlights node
    * @param id Node id
    */
+  @DataAction()
   unHighlightNode(): void {
     this.ctx.patchState({ highlightedNodeId: undefined });
   }
