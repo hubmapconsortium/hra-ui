@@ -1,5 +1,4 @@
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { ColorPickerDirective } from 'ngx-color-picker';
+import { Meta, StoryObj } from '@storybook/angular';
 import { ColorPickerComponent } from './color-picker.component';
 
 const meta: Meta = {
@@ -11,14 +10,6 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Explorer-Components?node-id=1117-10518',
     },
   },
-  decorators: [
-    applicationConfig({
-      providers: [],
-    }),
-    moduleMetadata({
-      imports: [ColorPickerDirective],
-    }),
-  ],
   args: {
     color: [170, 220, 223],
   },

@@ -1,9 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
-import { ColorPickerDirective } from 'ngx-color-picker';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
 
 export * from './lib/cde-visualization/cde-visualization.component';
@@ -22,10 +20,5 @@ export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>
 
 /** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
-  providers: [
-    provideHttpClient(),
-    provideAnimations(),
-    importProvidersFrom(ColorPickerDirective),
-    provideDesignSystem(),
-  ],
+  providers: [provideHttpClient(), provideAnimations(), provideDesignSystem()],
 });
