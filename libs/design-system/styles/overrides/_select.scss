@@ -3,43 +3,22 @@
 @use '../vars';
 
 @mixin overrides() {
-  @include mat.form-field-overrides(
-    (
-      container-height: 3rem,
+  // mat-form-field.mat-mdc-form-field-type-mat-select {
+  //   mat-label {
+  //     letter-spacing: vars.$label-small-tracking;
+  //   }
 
-      filled-container-color: vars.$surface-container,
-      filled-with-label-container-padding-top: 1.25rem,
-      filled-with-label-container-padding-bottom: 0.25rem,
-      filled-label-text-font: vars.$label-small,
-      filled-label-text-color: vars.$primary-fixed,
-      filled-focus-label-text-color: vars.$tertiary,
-      filled-focus-active-indicator-color: vars.$tertiary,
-      filled-disabled-label-text-color: rgb(from vars.$on-surface r g b / 38%),
-      focus-select-arrow-color: vars.$tertiary,
+  //   mat-select {
+  //     .mat-mdc-select-value-text .mat-mdc-select-min-line {
+  //       font: vars.$label-medium;
+  //       letter-spacing: vars.$label-medium-tracking;
+  //     }
 
-      outlined-label-text-font: vars.$label-small,
-      outlined-label-text-color: vars.$primary-fixed,
-      outlined-focus-label-text-color: vars.$tertiary,
-      outlined-disabled-label-text-color: rgb(from vars.$on-surface r g b / 38%),
-    )
-  );
-
-  mat-form-field.mat-mdc-form-field-type-mat-select {
-    mat-label {
-      letter-spacing: vars.$label-small-tracking;
-    }
-
-    mat-select {
-      .mat-mdc-select-value-text .mat-mdc-select-min-line {
-        font: vars.$label-medium;
-        letter-spacing: vars.$label-medium-tracking;
-      }
-
-      &.mat-focused .mat-mdc-select-value-text .mat-mdc-select-min-line {
-        color: vars.$primary-fixed;
-      }
-    }
-  }
+  //     &.mat-focused .mat-mdc-select-value-text .mat-mdc-select-min-line {
+  //       color: vars.$primary-fixed;
+  //     }
+  //   }
+  // }
 
   @include mat.select-overrides(
     (
