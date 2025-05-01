@@ -16,12 +16,21 @@ const meta: Meta = {
       imports: [DangerMessageIndicatorComponent],
     }),
   ],
+  args: {
+    message:
+      'Hey! This is a danger message indicator. It is used to indicate a dangerous or potentially harmful situation.',
+  },
+  argTypes: {
+    message: {
+      control: 'text',
+      description: 'The message to be displayed in the danger message indicator.',
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
       <hra-danger-message-indicator>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ex odio, imperdiet eu condimentum
-         ac, euismod sed metus. Phasellus tincidunt ipsum lorem, eu mattis erat facilisis eget.
+         {{ message }}
       </hra-danger-message-indicator>`,
   }),
 };

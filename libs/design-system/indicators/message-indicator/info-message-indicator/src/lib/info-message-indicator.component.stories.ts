@@ -16,12 +16,20 @@ const meta: Meta = {
       imports: [InfoMessageIndicatorComponent],
     }),
   ],
+  args: {
+    message: 'Hey! This is an info message indicator. It is used to provide information to the user.',
+  },
+  argTypes: {
+    message: {
+      control: 'text',
+      description: 'The message to be displayed in the info message indicator.',
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
       <hra-info-message-indicator>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ex odio, imperdiet eu condimentum
-         ac, euismod sed metus. Phasellus tincidunt ipsum lorem, eu mattis erat facilisis eget.
+         {{ message }}
       </hra-info-message-indicator>`,
   }),
 };
