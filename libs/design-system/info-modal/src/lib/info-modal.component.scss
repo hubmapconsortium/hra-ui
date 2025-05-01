@@ -35,14 +35,14 @@
   }
 
   table {
-    --mat-table-row-item-label-text-font: vars.$label-large-font;
-    --mat-table-row-item-label-text-line-height: vars.$label-large-line-height;
-    --mat-table-row-item-label-text-size: vars.$label-large-size;
-    --mat-table-row-item-label-text-weight: vars.$label-large-weight;
-    --mat-table-row-item-label-text-tracking: vars.$label-large-tracking;
+    --mat-table-row-item-label-text-font: #{vars.$label-large-font};
+    --mat-table-row-item-label-text-line-height: #{vars.$label-large-line-height};
+    --mat-table-row-item-label-text-size: #{vars.$label-large-size};
+    --mat-table-row-item-label-text-weight: #{vars.$label-large-weight};
+    --mat-table-row-item-label-text-tracking: #{vars.$label-large-tracking};
 
-    --mat-table-background-color: vars.$surface-container-low;
-    --mat-table-row-item-outline-color: vars.$outline-variant;
+    --mat-table-background-color: #{vars.$surface-container-low};
+    --mat-table-row-item-outline-color: #{vars.$outline-variant};
 
     --mat-table-row-item-container-height: 3rem;
 
