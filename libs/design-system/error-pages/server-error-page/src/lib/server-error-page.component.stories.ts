@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 import { ServerErrorPageComponent } from './server-error-page.component';
+import { report } from 'process';
 
 const meta: Meta = {
   title: 'Design System/Error Pages/Server Error Page',
@@ -8,6 +9,9 @@ const meta: Meta = {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=3292-4471',
     },
+  },
+  args: {
+    reportIssueLink: '/',
   },
   component: ServerErrorPageComponent,
 };

@@ -17,5 +17,5 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 })
 export class ServerErrorPageComponent {
   /** Link for the report issue CTA */
-  protected readonly reportIssueLink = input<string>();
+  protected readonly reportIssueLink = input.required<string>();
 }
