@@ -1,1 +1,1 @@
-export * from './lib/providers';
+export * from './lib/input.component.stories';

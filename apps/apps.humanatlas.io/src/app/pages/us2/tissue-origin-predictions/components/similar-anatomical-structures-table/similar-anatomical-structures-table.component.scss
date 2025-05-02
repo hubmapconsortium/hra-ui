@@ -1,3 +1,5 @@
+@use 'vars';
+
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
@@ -16,30 +18,31 @@
     display: flex;
   }
 
-  .table-overflow-container {
-    max-width: calc(100vw - 4rem);
-    max-height: 26rem;
-    overflow: auto;
-    border: 1px solid var(--mat-sys-outline);
-    border-radius: 0.25rem;
+  .predictions-table {
+    background-color: vars.$secondary-container;
+    border-collapse: collapse;
 
-    .predictions-table {
-      background-color: var(--mat-sys-secondary-container);
-      width: 100%;
-      min-width: 54.0625rem;
+    th,
+    td {
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
+      border: 0.0625rem solid vars.$outline;
+    }
 
-      tr:not(:last-child) {
-        border-bottom: 0.0625rem solid var(--mat-sys-outline);
-      }
+    th {
+      color: vars.$on-primary-container;
+      background-color: vars.$surface-container;
+    }
+    td {
+      max-width: 16.38rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      color: vars.$inverse-surface;
+      white-space: nowrap;
 
-      th,
-      td {
-        font: var(--mat-sys-label-medium);
-        letter-spacing: var(--mat-sys-label-medium-tracking);
-
-        &:not(:last-child) {
-          border-right: 0.0625rem solid var(--mat-sys-outline);
-        }
+      .link {
+        color: vars.$on-tertiary-container;
       }
 
       th {
@@ -71,11 +74,11 @@
 ::ng-deep {
   .tooltip-panel {
     background-color: white;
-    box-shadow: rgb(from var(--mat-sys-secondary) r g b / 24%);
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
     border-radius: 0.5rem;
     max-width: 22rem;
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
-    color: var(--mat-sys-primary);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
   }
 }
