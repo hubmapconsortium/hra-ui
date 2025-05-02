@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
+
+- heading: About
+  level: 1
+  descriptions: |
+    The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support
+    cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their
+    individual and collective function.
+
+    - A Common Coordinate Framework (CCF) for a human body provides a unique address for each cell in the human body. It is similar to the
+      latitude-longtitude system used to navigate a world map.
+    - The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human
+      body. The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to
+      existing ontologies.
+
+- heading: History
+  level: 2
+  descriptions:
+    During the initial four years of HuBMAP, the MC-IU team has built many elements of the CCF. We co-organized the construction of ASCT+B Tables and implemented a CCF Ontology.
+    We collaborated with NIAID at NIH on the design of a 3D Reference Object Library. Lastly, we developed three interactive user interfaces. The CCF ASCT+B Reporter supports the authoring and interactive review of ASCT+B Tables.
+    The CCF Registration User Interface (RUI) supports uniform tissue data registration across organs and labs. The CCF Exploration User Interface (EUI) supports exploration of semantically and spatially explicit data—from the whole body to the single cell level.
+    For an introduction to HuBMAP goals, data, and code visit the Visible Human MOOC (VHMOOC).
+
+- heading: Contact
+  level: 2
+  descriptions: |
+    Please reach out to us with questions:
+  teamCards:
+    - name: Katy Börner
+      description: |
+        Principal Investigator
+        Director, Cyberinfrastructure for Network Science Center at Indiana University
+      thumbnailUrl: assets/content/about-page/images/katy.png
+      actionUrl: ''
+      actionName: Email
+    - name: Bruce W. Herr II
+      description: |
+        Technical Director, Cyberinfrastructure for Network Science Center at Indiana University
+      thumbnailUrl: assets/content/about-page/images/bruce.png
+      actionUrl: ''
+      actionName: Email
+    - name: Andreas Bueckle
+      description: |
+        Research Lead, Cyberinfrastructure for Network Science Center at Indiana University
+      thumbnailUrl: assets/content/about-page/images/andreas.png
+      actionUrl: ''
+      actionName: Email
+  buttonUrl: mailto:infoccf@iu.edu
+  buttonText: Email the team
+
+- heading: Editorial Board
+  level: 2
+  descriptions: |
+    The HRA editorial board is composed of interdisciplinary experts from pathology, surgery, and single cell experimentalists.
+
+    The board will meet virtually every six months—in Nov and May of each year—to
+    - advise on setting HRA editorial policies,
+    - suggest future HRA extensions (e.g., crosswalks between ASCT+B tables and Azimuth references or OMAPs),
+    - select organ-specific editors that invite high-quality submissions/revisions of HRA digital objects and administer the peer review of submissions,
+    - optimize incentive structures (e.g., HRA papers in major journals, awards for highest-quality contributions by organ teams/editors/reviewers),
+    - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
+    - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
+  teamCards:
+    - name: Kristin Ardlie
+      description: |
+        Director, GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT
+        Institute Scientist, Harvard
+      thumbnailUrl: assets/content/about-page/images/KArdile.png
+      actionUrl: ''
+      actionName: Profile
+    - name: Fiona Ginty
+      description: |
+        Senior Principal Scientist in Precision Diagnostics, GE HealthCare Technology & Innovation Center
+      thumbnailUrl: assets/content/about-page/images/FGinty.png
+      actionUrl: ''
+      actionName: Profile
+    - name: Marc Halushka
+      description: |
+        Professor of Pathology and Oncology, Johns Hopkins University School of Medicine
+      thumbnailUrl: assets/content/about-page/images/MHalushka.png
+      actionUrl: ''
+      actionName: Profile
+    - name: Matthias Kretzler
+      description: |
+        Professor of Computational Medicine & Bioinformatics, Professor of Internal Medicine, University of Michigan
+      thumbnailUrl: assets/content/about-page/images/MKretzler.png
+      actionUrl: ''
+      actionName: Profile
+    - name: Louise C. Laurent
+      description: |
+        Vice Chair for Translational Research, Director of Perinatal Research, University of California San Diego
+      thumbnailUrl: assets/content/about-page/images/LCLaurent.png
+      actionUrl: ''
+      actionName: Profile
+    - name: Mike Snyder
+      description: |
+        Chair for Department of Genetics, Director of Center for Genomics and Personalized Medicine, Stanford University
+      thumbnailUrl: assets/content/about-page/images/MSnyder.png
+      actionUrl: ''
+      actionName: Profile
+
+- heading: Funding
+  level: 2
+  descriptions: |
+    The Human Reference Atlas (HRA) is under active development by the Indiana University Mapping Component as part of the HuBMAP HIVE, SenNet CODCC, KPMP, and GUDMAP
+    efforts with expert input by the HRA Editorial Board and in close collaboration with experts from more than 18 other consortia. Data was provided by HuBMAP and
+    other Tissue Mapping Centers. This research has been supported by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director
+    under awards OT2OD033756 and OT2OD026671, by the Cellular Senescence Network (SenNet) Consortium through the Consortium Organization and Data Coordinating Center
+    (CODCC) under award number U24CA268108, and by the NIDDK under awards U24DK135157 and U01DK133090. The work has also been supported by the Kidney Precision
+    Medicine Project grant U2CDK114886, and the NIH National Institute of Allergy and Infectious Diseases (NIAID), Department of Health and Human Services under BCBB
+    Support Services Contract HHSN316201300006W/ HHSN27200002, as well as the American Dental Association Science and Research Institute and the Canadian Institute for
+    Advanced Research’s MacMillan Multiscale Human program. The content is solely the responsibility of the authors and does not necessarily represent the official
+    views of the National Institutes of Health.

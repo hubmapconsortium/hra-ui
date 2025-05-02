@@ -1,0 +1,29 @@
+@for (section of data(); track section.heading) {
+  <hra-page-section [tagline]="section.heading" [level]="section.level" underlined>
+    <markdown class="section-description" [data]="section.descriptions" />
+    @if (section.buttonUrl) {
+      <a mat-button hraCtaButton class="section-button" [href]="section.buttonUrl" target="_blank">
+        {{ section.buttonText }}
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    }
+
+    @if (section.teamCards) {
+      <div class="cards">
+        @for (card of section.teamCards; track card) {
+          <hra-profile-card
+            alignment="left"
+            [pictureUrl]="card.thumbnailUrl"
+            [name]="card.name"
+            [description]="card.description"
+          >
+            <a hraHyperlink [href]="card.actionUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+              {{ card.actionName }}
+              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+            </a>
+          </hra-profile-card>
+        }
+      </div>
+    }
+  </hra-page-section>
+}

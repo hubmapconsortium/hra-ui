@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 2.5rem 1rem;
+  gap: 4rem;
+
+  @media (min-width: 40rem) {
+    margin: 2.5rem;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5rem;
+    row-gap: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .section-button {
+    margin-top: 1.5rem;
+
+    mat-icon {
+      height: 1.5rem;
+      width: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .action-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  ::ng-deep .section-description {
+    p {
+      margin-bottom: 0;
+    }
+    ul {
+      margin: 0;
+    }
+  }
+}
