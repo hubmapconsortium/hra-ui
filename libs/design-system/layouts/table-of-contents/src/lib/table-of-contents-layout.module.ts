@@ -4,6 +4,7 @@ import {
   TableOfContentsLayoutHeaderComponent,
 } from './table-of-contents-layout.component';
 
+/** Table of contents modules */
 @NgModule({
   imports: [TableOfContentsLayoutComponent, TableOfContentsLayoutHeaderComponent],
   exports: [TableOfContentsLayoutComponent, TableOfContentsLayoutHeaderComponent],

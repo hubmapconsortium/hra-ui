@@ -3,6 +3,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsComponent } from '@hra-ui/design-system/navigation/table-of-contents';
 
+/** Table of contents layout header */
 @Component({
   selector: 'hra-table-of-contents-layout-header',
   template: `<ng-content />`,
@@ -10,6 +11,7 @@ import { TableOfContentsComponent } from '@hra-ui/design-system/navigation/table
 })
 export class TableOfContentsLayoutHeaderComponent {}
 
+/** Table of contents layout */
 @Component({
   selector: 'hra-table-of-contents-layout',
   imports: [HraCommonModule, TableOfContentsComponent],

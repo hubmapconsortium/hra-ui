@@ -5,6 +5,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '../table-of-contents-layout.module';
 
+/** Table of contents layout demo */
 @Component({
   selector: 'hra-table-of-contents-layout-demo',
   imports: [CommonModule, MatIconModule, ButtonsModule, PageSectionComponent, TableOfContentsLayoutModule],

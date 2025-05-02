@@ -15,6 +15,7 @@ import {
 } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsComponent } from '../table-of-contents.component';
 
+/** Table of contents demo */
 @Component({
   selector: 'hra-table-of-contents-demo',
   imports: [CommonModule, PageSectionComponent, TableOfContentsComponent],
