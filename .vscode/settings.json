@@ -32,5 +32,5 @@
     "lib:webcomponents",
     "lib:state"
   ],
-  "eslint.validate": ["yaml", "json", "typescript"]
+  "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }

@@ -141,7 +141,16 @@ export const configs = {
       },
     },
   ],
-  yaml: [...eslintPluginYml.configs['flat/recommended'], ...jsonSchema.configs['flat/recommended']],
+  yaml: [
+    ...eslintPluginYml.configs['flat/recommended'],
+    ...jsonSchema.configs['flat/recommended'],
+    ...eslintPluginYml.configs['flat/prettier'],
+    {
+      rules: {
+        'json-schema-validator/no-invalid': 'error',
+      },
+    },
+  ],
 };
 
 export default configs.base;
