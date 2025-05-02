@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  },
+  "files": ["src/test-setup.ts"],
+  "include": ["jest.config.ts", "**/*.spec.ts", "**/*.d.ts"]
+}
