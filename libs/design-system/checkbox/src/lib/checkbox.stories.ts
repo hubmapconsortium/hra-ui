@@ -5,7 +5,7 @@ import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/an
 import { CheckboxErrorVariantDirective } from './checkbox-error-variant/checkbox-error-variant-directive';
 
 const meta: Meta = {
-  title: 'Checkbox',
+  title: 'Design System/Checkbox',
   parameters: {
     design: {
       type: 'figma',

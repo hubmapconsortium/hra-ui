@@ -3,14 +3,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { provideSelect } from './providers';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 const meta: Meta = {
   title: 'Select',
   decorators: [
     applicationConfig({
-      providers: [provideSelect(), importProvidersFrom(BrowserAnimationsModule)],
+      providers: [importProvidersFrom(BrowserAnimationsModule)],
     }),
     moduleMetadata({
       imports: [MatSelectModule, MatFormFieldModule, ReactiveFormsModule],
