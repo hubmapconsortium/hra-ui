@@ -642,13 +642,10 @@ html {
   --mat-sys-pressed-state-layer-opacity: 0.12;
 }
 html {
-  --mat-standard-button-toggle-background-color: var(--mat-sys-on-primary);
-}
-html {
   --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
 }
 html {
-  --mat-standard-button-toggle-height: 1.5rem;
+  --mat-standard-button-toggle-height: 2.5rem;
 }
 html {
   --mat-standard-button-toggle-shape: var(--mat-sys-corner-extra-small);
@@ -658,6 +655,9 @@ html {
 }
 html {
   --mat-standard-button-toggle-selected-state-text-color: var(--mat-sys-secondary);
+}
+html mat-button-toggle-group.hra-button-toggle-size-small {
+  --mat-standard-button-toggle-height: 1.5rem;
 }
 html mat-button-toggle-group.hra-button-toggle-size-small {
   --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-small-font);
@@ -678,6 +678,9 @@ html mat-button-toggle-group.hra-button-toggle-size-small .mat-button-toggle-lab
   padding: 0.3125rem 0.5rem;
 }
 html mat-button-toggle-group.hra-button-toggle-size-medium {
+  --mat-standard-button-toggle-height: 2rem;
+}
+html mat-button-toggle-group.hra-button-toggle-size-medium {
   --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-medium-font);
 }
 html mat-button-toggle-group.hra-button-toggle-size-medium {
@@ -694,6 +697,9 @@ html mat-button-toggle-group.hra-button-toggle-size-medium {
 }
 html mat-button-toggle-group.hra-button-toggle-size-medium .mat-button-toggle-label-content {
   padding: 0.3438rem 0.5rem;
+}
+html mat-button-toggle-group.hra-button-toggle-size-large {
+  --mat-standard-button-toggle-height: 2.5rem;
 }
 html mat-button-toggle-group.hra-button-toggle-size-large {
   --mat-standard-button-toggle-label-text-font: var(--mat-sys-label-large-font);
@@ -1067,7 +1073,16 @@ html {
   --mdc-filled-text-field-input-text-placeholder-color: var(--mat-sys-primary);
 }
 html {
-  --mdc-filled-text-field-label-text-color: var(--mat-sys-primary);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-secondary);
+}
+html {
+  --mdc-filled-text-field-label-text-font: var(--mat-sys-label-medium);
+}
+html {
+  --mdc-filled-text-field-label-text-weight: 500;
+}
+html {
+  --mdc-filled-text-field-label-text-size: 0.75rem;
 }
 html {
   --mdc-filled-text-field-error-label-text-color: var(--mat-sys-error);
@@ -1091,19 +1106,10 @@ html {
   --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
 }
 html {
-  --mdc-filled-text-field-label-text-font: var(--mat-sys-label-small);
-}
-html {
-  --mdc-filled-text-field-label-text-size: 0.75rem;
-}
-html {
-  --mdc-filled-text-field-label-text-weight: 500;
-}
-html {
   --mat-form-field-focus-select-arrow-color: var(--mat-sys-on-surface-variant);
 }
 html {
-  --mdc-outlined-text-field-label-text-font: var(--mat-sys-label-small);
+  --mdc-outlined-text-field-label-text-font: var(--mat-sys-label-medium);
 }
 html {
   --mdc-outlined-text-field-label-text-color: var(--mat-sys-primary-fixed);
@@ -1220,10 +1226,10 @@ html {
   --mat-select-disabled-arrow-color: rgb(from var(--mat-sys-on-primary) r g b/40%);
 }
 html {
-  --mat-select-enabled-arrow-color: var(--mat-sys-on-primary);
+  --mat-select-enabled-arrow-color: var(--mat-sys-primary);
 }
 html {
-  --mat-select-focused-arrow-color: var(--mat-sys-on-primary);
+  --mat-select-focused-arrow-color: var(--mat-sys-primary);
 }
 html {
   --mat-select-panel-background-color: var(--mat-sys-on-primary);
@@ -1238,13 +1244,13 @@ html {
   --mat-option-hover-state-layer-color: color-mix(in srgb, var(--mat-sys-on-surface) 4%, transparent);
 }
 html {
-  --mat-option-label-text-color: var(--mat-sys-primary-container);
+  --mat-option-label-text-color: var(--mat-sys-secondary);
 }
 html {
   --mat-option-label-text-line-height: 3.5rem;
 }
 html {
-  --mat-option-label-text-font: var(--mat-sys-label-large);
+  --mat-option-label-text-font: var(--mat-sys-label-medium);
 }
 html {
   --mat-option-selected-state-label-text-color: var(--mat-sys-secondary);
