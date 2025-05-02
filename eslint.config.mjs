@@ -2,6 +2,7 @@ import nx from '@nx/eslint-plugin';
 import jsonSchema from 'eslint-plugin-json-schema-validator';
 import json from 'eslint-plugin-jsonc';
 import storybook from 'eslint-plugin-storybook';
+import eslintPluginYml from 'eslint-plugin-yml';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -140,6 +141,7 @@ export const configs = {
       },
     },
   ],
+  yaml: [...eslintPluginYml.configs['flat/recommended'], ...jsonSchema.configs['flat/recommended']],
 };
 
 export default configs.base;
