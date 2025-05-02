@@ -7,11 +7,11 @@ import { Router, RouterModule } from '@angular/router';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
-import { ProductHeaderComponent } from '../../../components/product-header/product-header.component';
-import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
 import { HraPopPredictionsService } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
+import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -57,16 +57,17 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   selector: 'hra-cell-population-predictor',
   standalone: true,
   imports: [
-    CommonModule,
     ButtonsModule,
+    CommonModule,
     MatIconModule,
-    WorkflowCardModule,
-    TooltipCardComponent,
     OverlayModule,
-    DeleteFileButtonComponent,
     RouterModule,
+    WorkflowCardModule,
+
+    AppLabelComponent,
+    DeleteFileButtonComponent,
     EmbeddedRuiComponent,
-    ProductHeaderComponent,
+    TooltipCardComponent,
   ],
   templateUrl: './cell-population-predictor.component.html',
   styleUrl: './cell-population-predictor.component.scss',

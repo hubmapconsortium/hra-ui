@@ -5,14 +5,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideChips } from '@hra-ui/design-system/buttons/chips';
-import { provideCheckboxes } from '@hra-ui/design-system/checkbox';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
-import { provideIconButtons } from '@hra-ui/design-system/icon-button';
-import { provideInput } from '@hra-ui/design-system/input';
-import { provideMenu } from '@hra-ui/design-system/menu';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
-import { provideSelect } from '@hra-ui/design-system/select';
-import { provideSlider } from '@hra-ui/design-system/slider';
 import { provideTable } from '@hra-ui/design-system/table';
 import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
@@ -33,17 +27,11 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
       overlayContainer.getContainerElement().classList.add('hra-app');
     }),
     provideButtons(),
-    provideCheckboxes(),
     provideChips(),
     provideCodeBlock(),
     provideDesignSystemIcons(),
-    provideIconButtons(),
     provideIcons(),
-    provideInput(),
-    provideMenu(),
     provideScrolling(options?.scrolling),
-    provideSelect(),
-    provideSlider(),
     provideTable(),
     provideTrees(),
   ];
