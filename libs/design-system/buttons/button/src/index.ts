@@ -6,4 +6,3 @@ export {
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
 } from './lib/directives/variant.directive';
-export { provideButton } from './lib/providers';

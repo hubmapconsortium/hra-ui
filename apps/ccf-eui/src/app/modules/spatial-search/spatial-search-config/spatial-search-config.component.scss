@@ -1,3 +1,5 @@
+@use 'vars';
+
 :host {
   display: grid;
   grid-template-areas: 'header header' 'sex-organ sex-organ' '. button';
@@ -10,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font: var(--mat-sys-label-large);
+    font: vars.$label-large;
 
     .header-left {
       display: flex;
@@ -36,5 +38,5 @@
 
 ::ng-deep .spatial-search-config {
   --mdc-dialog-container-shape: 0.75rem;
-  --mdc-dialog-container-color: var(--mat-sys-surface-container-low);
+  --mdc-dialog-container-color: #{vars.$surface-container-low};
 }

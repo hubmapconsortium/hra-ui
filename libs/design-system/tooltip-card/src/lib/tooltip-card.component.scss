@@ -1,22 +1,24 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   max-width: 28rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.322);
-  font: var(--mat-sys-label-large);
-  letter-spacing: var(--mat-sys-label-large-tracking);
-  background: var(--mat-sys-on-primary);
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.322);
+  font: vars.$label-large;
+  letter-spacing: vars.$label-large-tracking;
+  background: vars.$on-primary;
 
   .title {
     margin: 0;
     font-weight: inherit;
-    color: var(--mat-sys-secondary);
+    color: vars.$secondary;
   }
 
   .description {
     margin: 0 0 1rem;
-    color: var(--mat-sys-primary);
+    color: vars.$primary;
     white-space: pre-line;
   }
 
@@ -26,7 +28,7 @@
 
   &.small {
     max-width: 21rem;
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
   }
 }
