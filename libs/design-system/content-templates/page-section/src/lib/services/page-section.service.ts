@@ -1,7 +1,7 @@
 import { computed, ElementRef, Injectable, Signal, signal } from '@angular/core';
 
 /** Page section instance */
-export interface PageSection {
+export interface PageSectionInstance {
   /** Section label */
   tagline: Signal<string>;
   /** Section <hx> level */
@@ -18,7 +18,7 @@ export interface PageSection {
  * @param section A page section
  * @returns The section element
  */
-export function getSectionElement(section: PageSection): Element {
+export function getSectionElement(section: PageSectionInstance): Element {
   return section.elementRef().nativeElement;
 }
 
@@ -26,7 +26,7 @@ export function getSectionElement(section: PageSection): Element {
 @Injectable()
 export class PageSectionService {
   /** All sections (mutable signal) */
-  private readonly _sections = signal<PageSection[]>([]);
+  private readonly _sections = signal<PageSectionInstance[]>([]);
   /** All sections */
   readonly sections = this._sections.asReadonly();
   /** All sections that have an anchor id */
@@ -39,7 +39,7 @@ export class PageSectionService {
    *
    * @param section New section
    */
-  addSection(section: PageSection): void {
+  addSection(section: PageSectionInstance): void {
     this._sections.update((sections) => [...sections, section]);
   }
 
@@ -48,7 +48,7 @@ export class PageSectionService {
    *
    * @param section Existing section
    */
-  removeSection(section: PageSection): void {
+  removeSection(section: PageSectionInstance): void {
     this._sections.update((sections) => sections.filter((s) => s !== section));
   }
 
@@ -58,7 +58,7 @@ export class PageSectionService {
    * @param sections All sections
    * @returns Sections with an anchor id
    */
-  private filterLinkableSections(sections: PageSection[]): PageSection[] {
+  private filterLinkableSections(sections: PageSectionInstance[]): PageSectionInstance[] {
     return sections.filter((section) => section.anchor());
   }
 
@@ -68,7 +68,7 @@ export class PageSectionService {
    * @param sections Unsorted sections
    * @returns Sorted sections
    */
-  private sortSectionsByDomPosition(sections: PageSection[]): PageSection[] {
+  private sortSectionsByDomPosition(sections: PageSectionInstance[]): PageSectionInstance[] {
     sections = [...sections];
     sections.sort((section1, section2) => {
       const el1 = getSectionElement(section1);

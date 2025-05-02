@@ -1,0 +1,22 @@
+<hra-table-of-contents />
+
+<div style="display: none">
+  @for (level of [1, 2, 3, 4, 5, 6, 1, 2, 3, 3]; track $index) {
+    <hra-page-section
+      [tagline]="`Section label in sentence case ${$index + 1}`"
+      [level]="level"
+      [anchor]="`section-label-in-sentence-case-${$index + 1}`"
+    >
+      <ng-container *ngTemplateOutlet="sectionContentPlaceholder" />
+    </hra-page-section>
+  }
+</div>
+
+<ng-template #sectionContentPlaceholder>
+  This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA
+  before. What would you want to learn here?
+  <ul>
+    <li>Text always goes on top.</li>
+    <li>Other components may be swapped out for the button set.</li>
+  </ul>
+</ng-template>
