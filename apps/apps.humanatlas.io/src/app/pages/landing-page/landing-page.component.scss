@@ -40,6 +40,16 @@
       text-align: center;
       color: vars.$on-background;
     }
+
+    .tab-toggles {
+      background-color: vars.$on-primary;
+
+      @include mat.button-toggle-overrides(
+        (
+          height: 2rem
+        )
+      );
+    }
   }
 
   @include mat.button-toggle-overrides(
