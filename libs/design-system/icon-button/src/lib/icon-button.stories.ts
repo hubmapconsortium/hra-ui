@@ -4,7 +4,7 @@ import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/an
 import { IconButtonModule } from './icon-button.module';
 
 const meta: Meta = {
-  title: 'IconButton',
+  title: 'Design System/IconButton',
   parameters: {
     design: {
       type: 'figma',
@@ -72,6 +72,11 @@ export const Dark: Story = {
 };
 
 export const Light: Story = {
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
   args: {
     variant: 'light',
   },

@@ -1,4 +1,5 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 :host {
   display: block;
@@ -9,7 +10,7 @@
     height: 2.5rem;
     margin: 0;
     padding: 0;
-    color: var(--mat-sys-on-primary-fixed);
+    color: vars.$on-primary-fixed;
     @include utils.use-font('label', 'small');
     display: flex;
     align-items: center;
