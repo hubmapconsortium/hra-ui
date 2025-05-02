@@ -72,6 +72,12 @@ $level-configs: (
     visibility: visible;
   }
 
+  @media (max-width: 639.9999px) {
+    .link-container {
+      display: none;
+    }
+  }
+
   @each $level, $config in $level-configs {
     &h#{$level} {
       @include utils.use-font(map.get($config, font-variant), map.get($config, font-size));

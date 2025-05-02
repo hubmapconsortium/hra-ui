@@ -4,4 +4,4 @@ export {
   PageSectionActivationOptions,
   PageSectionActivationService,
 } from './lib/services/page-section-activation.service';
-export { PageSection, PageSectionService } from './lib/services/page-section.service';
+export { PageSectionInstance, PageSectionService } from './lib/services/page-section.service';
