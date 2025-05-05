@@ -1,4 +1,5 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 :host {
   display: block;
@@ -6,7 +7,7 @@
   --mat-standard-button-toggle-selected-state-background-color: transparent;
 
   .toggle {
-    color: var(--mat-sys-secondary);
+    color: vars.$secondary;
     border: none;
     border-radius: 0;
 
@@ -17,7 +18,7 @@
     }
 
     :is(&.mat-button-toggle-checked, &:hover, &:active) .text {
-      text-decoration: underline 0.125rem var(--mat-sys-tertiary);
+      text-decoration: underline 0.125rem vars.$tertiary;
       text-underline-offset: 0.375rem;
     }
 
@@ -26,7 +27,7 @@
     }
 
     ::ng-deep button:focus-visible {
-      @include utils.inset-outline(var(--mat-sys-tertiary));
+      @include utils.inset-outline(vars.$tertiary);
     }
   }
 }

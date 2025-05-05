@@ -1,25 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { HraCommonModule } from '@hra-ui/common';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import {
-  PageSectionComponent,
-  providePageSectionNavigation,
-} from '@hra-ui/design-system/content-templates/page-section';
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { TableOfContentsDemoComponent } from './demo/table-of-contents-demo.component';
 import { TableOfContentsComponent } from './table-of-contents.component';
 
-@Component({
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, PageSectionComponent, TableOfContentsComponent],
-  templateUrl: './table-of-contents-demo.component.html',
-  styleUrl: './table-of-contents-demo.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [providePageSectionNavigation()],
-})
-export class TableOfContentsDemoComponent {}
-
-const meta: Meta<TableOfContentsComponent> = {
-  component: TableOfContentsDemoComponent,
+const meta: Meta<TableOfContentsDemoComponent> = {
+  component: TableOfContentsComponent,
   title: 'Design System/Navigation/Table of Contents',
   parameters: {
     design: {
@@ -27,9 +11,22 @@ const meta: Meta<TableOfContentsComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2571-207',
     },
   },
-  args: {},
+  argTypes: {
+    activeSection: {
+      type: 'number',
+    },
+  },
+  decorators: [
+    moduleMetadata({
+      imports: [TableOfContentsDemoComponent],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<hra-table-of-contents-demo activeSection="${args.activeSection}" />`,
+  }),
 };
 export default meta;
-type Story = StoryObj<TableOfContentsComponent>;
+type Story = StoryObj<TableOfContentsDemoComponent>;
 
 export const Default: Story = {};

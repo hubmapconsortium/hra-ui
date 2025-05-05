@@ -1,11 +1,13 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: var(--mat-sys-corner-full);
-  background-color: var(--hra-product-logo-background-color, var(--mat-sys-secondary));
+  border-radius: vars.$corner-full;
+  background-color: var(--hra-product-logo-background-color, vars.$secondary);
 
   .logo {
     width: 60%;

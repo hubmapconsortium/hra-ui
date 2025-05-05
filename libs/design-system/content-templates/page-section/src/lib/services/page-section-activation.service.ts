@@ -1,7 +1,8 @@
 import { coerceElement } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import { computed, effect, ElementRef, inject, Injectable, InjectionToken, ProviderToken, signal } from '@angular/core';
-import { getSectionElement, PageSectionService } from './page-section.service';
+import { INTERSECTION_OBSERVER } from '@hra-ui/common';
+import { getSectionElement, PageSectionInstance, PageSectionService } from './page-section.service';
 
 /** Options to customize the PageSectionActivationService */
 export interface PageSectionActivationOptions {
@@ -41,11 +42,7 @@ export class PageSectionActivationService {
   /** Currently active element */
   private readonly activeElement = signal<Element | undefined>(undefined);
   /** Section intersection observer */
-  private readonly observer = new IntersectionObserver(this.handleIntersection.bind(this), {
-    root: this.resolveRootElement(),
-    rootMargin: this.options.rootMargin ?? DEFAULT_ROOT_MARGIN,
-    threshold: this.options.threshold,
-  });
+  private readonly observer = this.createObserver();
 
   /** Currently active section */
   readonly activeSection = computed(() => {
@@ -64,6 +61,34 @@ export class PageSectionActivationService {
       const elements = this.sections().map(getSectionElement);
       const diff = this.diffObservedElements(elements);
       this.applyObservedElementsDiff(diff);
+    });
+  }
+
+  /**
+   * Activates a specific section
+   *
+   * @param section Section to set as the active section
+   */
+  activate(section: PageSectionInstance): void {
+    this.activeElement.set(getSectionElement(section));
+  }
+
+  /**
+   * Creates the intersection observer used to determine when a section is active
+   *
+   * @returns An intersection observer or undefined if not available
+   */
+  private createObserver(): IntersectionObserver | undefined {
+    const IntersectionObserver = inject(INTERSECTION_OBSERVER);
+    if (!IntersectionObserver) {
+      return undefined;
+    }
+
+    const { rootMargin = DEFAULT_ROOT_MARGIN, threshold } = this.options;
+    return new IntersectionObserver(this.handleIntersection.bind(this), {
+      root: this.resolveRootElement(),
+      rootMargin,
+      threshold,
     });
   }
 
@@ -140,12 +165,12 @@ export class PageSectionActivationService {
     const { added, removed } = diff;
 
     for (const el of removed) {
-      observer.unobserve(el);
+      observer?.unobserve(el);
       observedElements.delete(el);
     }
 
     for (const el of added) {
-      observer.observe(el);
+      observer?.observe(el);
       observedElements.add(el);
     }
   }

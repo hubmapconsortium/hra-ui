@@ -1,7 +1,7 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -71,7 +71,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
   standalone: true,
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     ClipboardModule,
     CardsModule,
     MatFormFieldModule,

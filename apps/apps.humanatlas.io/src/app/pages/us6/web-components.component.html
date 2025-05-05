@@ -26,7 +26,7 @@
         @for (component of components; track component.id) {
           <hra-web-component-card
             class="component-card"
-            [imageUrl]="component.previewImage"
+            [imageUrl]="component.previewImage | assetUrl"
             [productTitle]="component.productTitle"
             [description]="component.description"
             [webComponentName]="component.webComponentName"

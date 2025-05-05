@@ -19,6 +19,9 @@
     },
     "./styles/themes/light": {
       "sass": "./styles/_light-theme.scss"
+    },
+    "./styles/vars": {
+      "sass": "./styles/_vars.scss"
     }
   },
   "peerDependencies": {

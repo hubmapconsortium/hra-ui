@@ -1,3 +1,5 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: flex;
   height: 2rem;
@@ -30,8 +32,8 @@
   }
 
   .label {
-    font: var(--mat-sys-label-small);
-    color: var(--mat-sys-secondary);
+    font: vars.$label-small;
+    color: vars.$secondary;
     cursor: pointer;
     display: block;
     white-space: nowrap;
