@@ -1,32 +1,27 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
 @include utils.global-styles() {
-  mat-tree {
-    --mat-tree-container-background-color: #{vars.$on-primary};
+  letter-spacing: vars.$label-medium-tracking;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+
+  &:focus-visible .node-content {
+    border-color: vars.$tertiary;
   }
 
-  mat-tree-node {
-    --mat-tree-node-text-font: #{vars.$label-medium-font};
-    --mat-tree-node-text-weight: #{vars.$label-medium-weight};
-    --mat-tree-node-text-color: #{vars.$secondary};
-
-    letter-spacing: vars.$label-medium-tracking;
-    cursor: pointer;
-    user-select: none;
-    outline: none;
-
-    &:focus-visible .node-content {
-      border-color: vars.$tertiary;
-    }
-  }
+  @include mat.tree-overrides(
+    (
+      container-background-color: vars.$on-primary,
+      node-text-font: vars.$label-medium-font,
+      node-text-weight: vars.$label-medium-weight,
+      node-text-color: vars.$secondary,
+    )
+  );
 
   .node-content {
-    button {
-      --mat-icon-button-hover-state-layer-opacity: 0;
-      --mat-icon-button-pressed-state-layer-opacity: 0;
-    }
-
     display: flex;
     height: var(--mat-tree-node-min-height);
     line-height: var(--mat-tree-node-min-height);
@@ -36,6 +31,13 @@
     border-style: solid;
     border-color: transparent;
     align-items: center;
+
+    @include mat.button-overrides(
+      (
+        hover-state-layer-opacity: 0,
+        pressed-state-layer-opacity: 0,
+      )
+    );
 
     &.leaf {
       padding-left: 0.5rem;
