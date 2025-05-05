@@ -9,15 +9,21 @@ export const ProfileCardSchema = z.object({
   actionName: z.string(),
 });
 
-/** Type for about page data */
-export type AboutPageData = z.infer<typeof AboutPageDataSchema>;
-
-/** Schema for about page */
-export const AboutPageDataSchema = z.object({
+/** Schema for about page sections */
+export const AboutPageSectionsSchema = z.object({
   heading: z.string(),
   level: z.number(),
   descriptions: z.string(),
   teamCards: ProfileCardSchema.array().optional(),
   buttonUrl: z.string().optional(),
   buttonText: z.string().optional(),
+});
+
+/** Type for about page data */
+export type AboutPageData = z.infer<typeof AboutPageDataSchema>;
+
+/** Schema for about page */
+export const AboutPageDataSchema = z.object({
+  header: AboutPageSectionsSchema,
+  sections: AboutPageSectionsSchema.array(),
 });

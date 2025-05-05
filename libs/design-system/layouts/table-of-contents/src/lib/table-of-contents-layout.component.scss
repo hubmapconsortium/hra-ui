@@ -6,6 +6,7 @@
     'content' auto
     / auto;
   row-gap: 4rem;
+  margin: 2.5rem 0 5rem;
 
   .header {
     grid-area: header;
@@ -45,9 +46,9 @@
 
     .toc {
       position: sticky;
-      top: 2.5rem;
+      top: 7rem;
       height: min-content;
-      margin: 2.5rem 0.75rem 1rem;
+      margin: 0 0.75rem 1rem;
     }
   }
 }

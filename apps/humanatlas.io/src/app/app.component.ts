@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -14,4 +15,12 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
     class: 'hra-app',
   },
 })
-export class AppComponent {}
+export class AppComponent {
+  /**
+   * Sets offset when scrolling between anchor links
+   * @param viewport Viewport scroller manager
+   */
+  constructor(viewport: ViewportScroller) {
+    viewport.setOffset([0, 104]);
+  }
+}

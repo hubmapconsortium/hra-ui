@@ -1,11 +1,8 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  margin: 2.5rem 1rem;
-  gap: 4rem;
-
-  @media (min-width: 40rem) {
-    margin: 2.5rem;
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   .cards {

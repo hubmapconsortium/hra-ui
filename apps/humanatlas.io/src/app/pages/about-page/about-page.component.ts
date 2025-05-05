@@ -5,6 +5,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
+import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AboutPageData } from '../../resolvers/about-page/about-page.schema';
@@ -22,6 +24,8 @@ import { AboutPageData } from '../../resolvers/about-page/about-page.schema';
     MatIconModule,
     CardsModule,
     TextHyperlinkDirective,
+    PageSectionComponent,
+    TableOfContentsLayoutModule,
   ],
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
@@ -29,5 +33,5 @@ import { AboutPageData } from '../../resolvers/about-page/about-page.schema';
 })
 export class AboutPageComponent {
   /** Page data */
-  data = input.required<AboutPageData[]>();
+  data = input.required<AboutPageData>();
 }
