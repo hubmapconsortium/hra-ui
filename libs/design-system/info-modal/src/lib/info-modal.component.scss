@@ -48,7 +48,7 @@
         row-item-label-text-size: vars.$label-large-size,
         row-item-label-text-weight: vars.$label-large-weight,
         row-item-label-text-tracking: vars.$label-large-tracking,
-        background-color: vars.$surface-container-low,
+        background-color: #{vars.$surface-container-low},
         row-item-outline-color: vars.$outline-variant,
         row-item-container-height: 3rem,
       )
