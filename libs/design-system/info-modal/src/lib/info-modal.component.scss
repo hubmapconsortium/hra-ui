@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../libs/design-system/styles/vars';
 
 :host {
@@ -35,21 +36,23 @@
   }
 
   table {
-    --mat-table-row-item-label-text-font: #{vars.$label-large-font};
-    --mat-table-row-item-label-text-line-height: #{vars.$label-large-line-height};
-    --mat-table-row-item-label-text-size: #{vars.$label-large-size};
-    --mat-table-row-item-label-text-weight: #{vars.$label-large-weight};
-    --mat-table-row-item-label-text-tracking: #{vars.$label-large-tracking};
-
-    --mat-table-background-color: #{vars.$surface-container-low};
-    --mat-table-row-item-outline-color: #{vars.$outline-variant};
-
-    --mat-table-row-item-container-height: 3rem;
-
     border-radius: 0.5rem;
     overflow: hidden;
     border: 1px solid vars.$outline-variant;
     max-width: min-content;
+
+    @include mat.table-overrides(
+      (
+        row-item-label-text-font: vars.$label-large-font,
+        row-item-label-text-line-height: vars.$label-large-line-height,
+        row-item-label-text-size: vars.$label-large-size,
+        row-item-label-text-weight: vars.$label-large-weight,
+        row-item-label-text-tracking: vars.$label-large-tracking,
+        background-color: vars.$surface-container-low,
+        row-item-outline-color: vars.$outline-variant,
+        row-item-container-height: 3rem,
+      )
+    );
 
     .label,
     .value {
