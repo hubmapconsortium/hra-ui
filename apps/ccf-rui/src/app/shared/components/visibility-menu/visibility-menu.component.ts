@@ -1,58 +1,53 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  Input,
-  Output,
-  inject,
-} from '@angular/core';
+import { CdkScrollable, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, model } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { OpacitySliderModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { VisibilityItem } from '../../../core/models/visibility-item';
+
+/** Slider overlay position */
+const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
+  {
+    originX: 'end',
+    originY: 'center',
+    overlayX: 'start',
+    overlayY: 'center',
+    offsetX: 8,
+  },
+];
 
 /**
  * Menu for displaying visibility options
  */
 @Component({
   selector: 'ccf-visibility-menu',
+  imports: [CommonModule, MatIconModule, MatRippleModule, OverlayModule, OpacitySliderModule, PlainTooltipDirective],
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(window:mouseup)': 'closeSlider($event)',
-  },
-  standalone: false,
+  hostDirectives: [CdkScrollable],
 })
 export class VisibilityMenuComponent {
-  private readonly el = inject<ElementRef<Node>>(ElementRef);
-  private readonly ga = inject(GoogleAnalyticsService);
-
-  /**
-   * HTML class name
-   */
-  @HostBinding('class') readonly clsName = 'ccf-visibility-menu';
-
   /**
    * Items to be displayed in the visibility menu
    */
-  @Input() items!: VisibilityItem[];
+  readonly items = model.required<VisibilityItem[]>();
 
   /**
    * The currently selected item
    */
-  @Input() selection: VisibilityItem | undefined;
+  readonly selection = model<VisibilityItem | undefined>(undefined);
 
-  /**
-   * Emits the currently hovered item
-   */
-  @Output() readonly hover = new EventEmitter<VisibilityItem | undefined>();
+  /** Overlay service */
+  protected readonly overlay = inject(Overlay);
+  /** Overlay position */
+  protected readonly overlayPosition = SLIDER_OVERLAY_POSITION;
 
-  /**
-   * Emits whenever there is a change to one or more items.
-   */
-  @Output() readonly itemsChange = new EventEmitter<VisibilityItem[]>();
+  /** Analytics */
+  private readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Toggles visibility of an item; opacity is reverted to the previous value if visibility toggled back on
@@ -60,23 +55,14 @@ export class VisibilityMenuComponent {
    * @param item Menu item
    */
   toggleVisibility(item: VisibilityItem): void {
+    const selection = this.selection();
     item = { ...item, visible: !item.visible };
-    if (this.selection && item.id === this.selection.id) {
-      this.selection = { ...this.selection, visible: item.visible };
+    if (selection && item.id === selection.id) {
+      this.selection.set(item);
     }
 
     this.ga.event('visibility_toggled', 'visibility_menu', '' + item.id, +item.visible);
     this.updateOpacity(item.opacity);
-  }
-
-  /**
-   * Changes current selection to clicked item and emits the item
-   *
-   * @param item Menu item
-   */
-  menuOpen(item: VisibilityItem): void {
-    this.selection = item === this.selection ? undefined : item;
-    this.hover.emit(item);
   }
 
   /**
@@ -85,34 +71,34 @@ export class VisibilityMenuComponent {
    * @param value Updated opacity value
    */
   updateOpacity(value: number | undefined): void {
-    if (!this.selection) {
+    const selection = this.selection();
+    if (!selection) {
       return;
     }
-    const updatedSelection = { ...this.selection, opacity: value, visible: value ? value > 0 : false };
-    this.selection = updatedSelection;
+    const updatedSelection = { ...selection, opacity: value, visible: value ? value > 0 : false };
+    this.selection.set(updatedSelection);
     if (updatedSelection.id === 'all') {
       this.setAllOpacity(updatedSelection.opacity as number);
     } else {
-      this.items = this.items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item));
+      this.items.update((items) => items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item)));
       this.ga.event('opacity_update', 'visibility_menu', '' + updatedSelection.id, updatedSelection.opacity);
     }
-    this.itemsChange.emit(this.items);
   }
 
   /**
    * Resets item to opacity 20 and visible
    */
   resetItem(): void {
-    if (this.selection) {
-      const updatedSelection = { ...this.selection, opacity: 20, visible: true };
-      this.selection = updatedSelection;
-      if (this.selection.id === 'all') {
+    const selection = this.selection();
+    if (selection) {
+      const updatedSelection = { ...selection, opacity: 20, visible: true };
+      this.selection.set(updatedSelection);
+      if (selection.id === 'all') {
         this.setAllOpacity(updatedSelection.opacity);
       } else {
-        this.items = this.items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item));
+        this.items.update((items) => items.map((item) => (item.id === updatedSelection.id ? updatedSelection : item)));
         this.ga.event('item_reset', 'visibility_menu', '' + updatedSelection.id);
       }
-      this.itemsChange.emit(this.items);
     }
   }
 
@@ -122,32 +108,7 @@ export class VisibilityMenuComponent {
    * @param value Updated opacity value
    */
   setAllOpacity(value: number): void {
-    this.items = this.items.map((i) => ({ ...i, opacity: value, visible: true }));
+    this.items.update((items) => items.map((i) => ({ ...i, opacity: value, visible: true })));
     this.ga.event('all_items_opacity_update', 'visibility_menu', undefined, value);
-    this.itemsChange.emit(this.items);
-  }
-
-  /**
-   * Returns the id of an item
-   *
-   * @param index Index of item in items array
-   * @param item The item to get an id for
-   * @returns id Id of the item
-   */
-  getId(_index: number, item: VisibilityItem): string | number {
-    return item.id;
-  }
-
-  /**
-   * Closes slider container
-   * @param event
-   */
-  closeSlider(event: Event): void {
-    if (this.selection && event.target instanceof Node) {
-      if (!this.el.nativeElement.contains(event.target)) {
-        this.selection = undefined;
-        this.hover.emit(undefined);
-      }
-    }
   }
 }
