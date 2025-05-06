@@ -78,6 +78,7 @@ export class ReleaseNotesPageComponent {
     this.releaseNotesResolver(this.currentVersion().version),
   );
 
+  /** Width of content section (used to set YouTube player width) */
   readonly contentWidth = signal<number>(0);
 
   /**

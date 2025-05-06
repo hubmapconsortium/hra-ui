@@ -61,7 +61,7 @@
 
 <ng-template let-sectionContent="sectionContent" #sectionData>
   <div class="subsection-content">
-    @for (component of sectionContent; track component) {
+    @for (component of sectionContent; track $index) {
       @if (component.content) {
         <markdown [data]="component.content" />
       }

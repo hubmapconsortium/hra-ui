@@ -25,6 +25,7 @@
     // Keep the mat select label from shrinking
     ::ng-deep .mdc-floating-label {
       transform: translateY(-106%) !important;
+      @include utils.use-font(label, small);
     }
 
     mat-select-trigger {
@@ -51,10 +52,15 @@
       margin: 0;
       list-style-type: disc;
       padding-inline-start: 1.5rem;
+      overflow-wrap: break-word;
     }
 
     img {
-      max-width: 50rem;
+      max-width: 100%;
+
+      @media (min-width: 640px) {
+        max-width: 640px;
+      }
     }
 
     a {
