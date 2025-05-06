@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+// Override mixin for mat-form-field styles
+@mixin overrides() {
+  @include mat.form-field-overrides(
+    (
+      container-height: 3rem,
+
+      disabled-input-text-placeholder-color: utils.with-alpha(vars.$secondary, 40%),
+      filled-container-color: vars.$surface-container,
+      filled-disabled-container-color: utils.with-alpha(vars.$secondary, 4%),
+      filled-disabled-input-text-color: utils.with-alpha(vars.$secondary, 40%),
+      filled-disabled-label-text-color: utils.with-alpha(vars.$secondary, 40%),
+      filled-disabled-active-indicator-color: utils.with-alpha(vars.$secondary, 40%),
+      filled-focus-active-indicator-color: vars.$secondary,
+      filled-focus-label-text-color: vars.$secondary,
+      filled-hover-label-text-color: vars.$primary,
+      filled-input-text-color: vars.$secondary,
+      filled-input-text-placeholder-color: vars.$primary,
+      filled-label-text-color: vars.$secondary,
+      filled-label-text-font: vars.$label-medium,
+      filled-label-text-weight: 500,
+      filled-label-text-size: 0.75rem,
+      // filled-error-hover-label-text-color,
+      // filled-error-focus-label-text-color
+      filled-error-label-text-color: vars.$error,
+      filled-error-caret-color: vars.$error,
+      filled-error-active-indicator-color: vars.$error,
+      filled-active-indicator-color: vars.$on-secondary-fixed,
+      filled-hover-active-indicator-color: vars.$secondary,
+
+      filled-with-label-container-padding-top: 1.25rem,
+      filled-with-label-container-padding-bottom: 0.25rem,
+      focus-select-arrow-color: vars.$on-surface-variant,
+
+      outlined-label-text-font: vars.$label-medium,
+      outlined-label-text-color: vars.$primary-fixed,
+      outlined-focus-label-text-color: vars.$secondary,
+      outlined-disabled-label-text-color: rgb(from vars.$on-surface r g b / 38%),
+    )
+  );
+}

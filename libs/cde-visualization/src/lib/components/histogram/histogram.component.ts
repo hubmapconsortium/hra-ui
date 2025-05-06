@@ -34,7 +34,7 @@ import {
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
@@ -131,7 +131,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    ColorPickerModule,
     ColorPickerLabelComponent,
     OverlayModule,
     ScrollingModule,

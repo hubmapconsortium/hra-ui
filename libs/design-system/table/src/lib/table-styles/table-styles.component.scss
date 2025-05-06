@@ -1,20 +1,18 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars';
 
 @include utils.global-styles() {
-  hra-table {
-    display: block;
-    overflow: auto;
-    border: 1px solid var(--mat-sys-outline);
-    border-radius: 0.5rem;
-  }
+  table[matSort] {
+    --mat-sort-arrow-color: vars.$secondary;
+    --mat-table-background-color: vars.$surface-container-low;
+    --mat-table-header-container-height: 2rem;
+    --mat-table-row-item-container-height: 2rem;
 
-  hra-table.hra-table-style-alternating {
-    .mat-mdc-row .mat-mdc-cell {
-      border: none;
-    }
-
-    tr.odd {
-      background: var(--mat-sys-surface-container);
+    th,
+    tr > td {
+      padding: 0 0.5rem;
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
     }
   }
 
@@ -28,6 +26,8 @@
       background: inherit;
     }
     th {
+      color: vars.$secondary;
+      line-height: normal;
       border-bottom: none;
     }
   }
@@ -42,6 +42,9 @@
       cursor: default;
     }
 
+    &:focus-visible {
+      border-color: vars.$secondary;
+    }
     .mat-sort-header-content {
       cursor: text;
     }
@@ -97,7 +100,6 @@
 
     .mat-sort-header-container {
       max-width: 10rem;
-
       .mat-sort-header-arrow {
         margin-right: 0.375rem;
 

@@ -1,1 +1,1 @@
-export * from './lib/providers';
+export * from './lib/menu-demo/menu-demo.component';

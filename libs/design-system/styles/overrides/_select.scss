@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.select-overrides(
+    (
+      container-elevation-shadow: 0px 5px 4px 0px rgb(from vars.$shadow r g b / 0.16),
+      disabled-arrow-color: utils.with-alpha(vars.$on-primary, 40%),
+      enabled-arrow-color: vars.$primary,
+      focused-arrow-color: vars.$primary,
+      panel-background-color: vars.$on-primary,
+      placeholder-text-color: vars.$on-primary,
+    )
+  );
+
+  @include mat.option-overrides(
+    (
+      focus-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
+      hover-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
+      label-text-color: vars.$secondary,
+      label-text-line-height: 3.5rem,
+      label-text-font: vars.$label-medium,
+      selected-state-label-text-color: vars.$secondary,
+      selected-state-layer-color: color-mix(in srgb, vars.$on-tertiary-container 8%, transparent),
+    )
+  );
+
+  mat-option.mat-mdc-option {
+    margin-bottom: 0.5px;
+
+    &:focus-visible {
+      outline: 2px solid vars.$tertiary;
+    }
+
+    @include mat.core-overrides(
+      (
+        pseudo-checkbox-minimal-selected-checkmark-color: vars.$on-tertiary-container,
+      )
+    );
+
+    &.mat-mdc-option-active {
+      outline: 1px solid color-mix(in srgb, vars.$on-surface 32%, transparent);
+    }
+  }
+}

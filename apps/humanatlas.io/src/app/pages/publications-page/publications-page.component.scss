@@ -17,34 +17,10 @@
     text-align: center;
   }
 
-  .page-content-container {
-    max-width: 87.5rem;
-    margin: 0 auto;
-  }
-
-  .page-content {
-    margin: 2.5rem 1rem 0 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-
   .page-sections {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    margin: 4rem 0;
-  }
-
-  .navigation-panel.large {
-    display: none;
-  }
-
-  .navigation-panel {
-    .navigation {
-      height: 18.75rem;
-      background: gray;
-      width: 100%;
-    }
   }
 
   @media (min-width: 792px) {
@@ -52,103 +28,47 @@
       min-width: 18rem;
       margin-left: 0.75rem;
     }
-
-    .page-content {
-      margin: 2.5rem 2.5rem 0 2.5rem;
-    }
   }
 
-  .pub-info {
-    overflow-wrap: break-word;
+  // Set the link styling here since we can't use hyperlink directive in markdown
+  ::ng-deep a {
+    text-decoration: none;
 
-    &:last-child {
-      ::ng-deep p {
-        margin-block-end: 0;
-      }
+    &:link,
+    &:link mat-icon {
+      color: var(--mat-sys-on-tertiary-fixed);
     }
 
-    // Set the link styling here since we can't use hyperlink directive in markdown
-    ::ng-deep a {
-      text-decoration: none;
+    &:visited,
+    &:visited mat-icon {
+      color: var(--mat-sys-tertiary-fixed);
+    }
 
-      &:link,
-      &:link mat-icon {
-        color: var(--mat-sys-on-tertiary-fixed);
-      }
+    &:focus-visible,
+    &:hover,
+    &:active {
+      text-decoration: underline solid currentColor 0.0625rem;
+      text-underline-offset: 0.125rem;
+    }
 
-      &:visited,
-      &:visited mat-icon {
-        color: var(--mat-sys-tertiary-fixed);
-      }
+    &:focus-visible {
+      color: var(--mat-sys-secondary);
+      outline: 0.125rem solid var(--mat-sys-tertiary);
+      border-radius: 0.25rem;
 
-      &:focus-visible,
-      &:hover,
-      &:active {
-        text-decoration: underline solid currentColor 0.0625rem;
-        text-underline-offset: 0.125rem;
-      }
-
-      &:focus-visible {
+      & mat-icon {
         color: var(--mat-sys-secondary);
-        outline: 0.125rem solid var(--mat-sys-tertiary);
-        border-radius: 0.25rem;
-
-        & mat-icon {
-          color: var(--mat-sys-secondary);
-        }
-      }
-
-      &:hover,
-      &:hover mat-icon {
-        color: var(--mat-sys-on-tertiary-fixed);
-      }
-
-      &:active,
-      &:active mat-icon {
-        color: var(--mat-sys-on-tertiary-fixed-variant);
-      }
-    }
-  }
-
-  @media (min-width: 1400px) {
-    .page-content-container {
-      display: grid;
-      grid-template-areas:
-        'header header'
-        'content navigation';
-      grid-template-columns: 1fr 12.5rem;
-    }
-
-    .page-content {
-      display: flex;
-      grid-area: content;
-    }
-
-    .page-sections {
-      margin-top: 0;
-    }
-
-    .banner {
-      grid-area: header;
-    }
-
-    .navigation-panel {
-      width: 12.5rem;
-      height: 100%;
-      right: 0.625rem;
-      grid-area: navigation;
-
-      .navigation {
-        position: sticky;
-        top: 4.5rem;
       }
     }
 
-    .navigation-panel.small {
-      display: none;
+    &:hover,
+    &:hover mat-icon {
+      color: var(--mat-sys-on-tertiary-fixed);
     }
-    .navigation-panel.large {
-      display: flex;
+
+    &:active,
+    &:active mat-icon {
+      color: var(--mat-sys-on-tertiary-fixed-variant);
     }
   }
 }

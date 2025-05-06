@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
 import { provideDesignSystem } from '../src/index';
@@ -29,7 +29,13 @@ const preview: Preview = {
   },
   decorators: [
     applicationConfig({
-      providers: [provideDesignSystem(), provideRouter([{ path: '**', component: DummyComponent }])],
+      providers: [
+        provideDesignSystem(),
+        provideRouter(
+          [{ path: '**', component: DummyComponent }],
+          withInMemoryScrolling({ anchorScrolling: 'enabled' }),
+        ),
+      ],
     }),
     componentWrapperDecorator((story) => `<div class="hra-app">${story}</div>`),
   ],

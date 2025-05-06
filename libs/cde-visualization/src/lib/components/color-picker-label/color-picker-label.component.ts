@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, model, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective } from 'ngx-color-picker';
 import { Rgb, colorEquals, hexToRgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
@@ -14,7 +14,7 @@ const MAX_LABEL_WIDTH = 104;
  */
 @Component({
   selector: 'cde-color-picker-label',
-  imports: [CommonModule, ColorPickerModule, MatIconModule, OverlayModule],
+  imports: [CommonModule, ColorPickerDirective, MatIconModule, OverlayModule],
   templateUrl: './color-picker-label.component.html',
   styleUrl: './color-picker-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
