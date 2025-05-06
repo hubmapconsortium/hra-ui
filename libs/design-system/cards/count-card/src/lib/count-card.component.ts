@@ -25,5 +25,5 @@ export class CountCardComponent {
   readonly label = input.required<string>();
 
   /** Category icon */
-  readonly categoryIcon = input(undefined, { transform: toCategoryLogoId });
+  readonly categoryIcon = input.required({ transform: toCategoryLogoId });
 }
