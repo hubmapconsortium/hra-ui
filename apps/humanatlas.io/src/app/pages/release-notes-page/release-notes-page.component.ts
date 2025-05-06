@@ -115,7 +115,7 @@ export class ReleaseNotesPageComponent {
    * @param url Current url
    */
   setCurrentVersionFromUrl(url: string) {
-    const currentVersionNum = url.split('/')[2].slice(1);
+    const currentVersionNum = url.split('/')[2].split('#')[0].slice(1);
     this.currentVersion.set(
       this.versions().find((v) => v.version.toString() === currentVersionNum) || this.versions()[0],
     );
