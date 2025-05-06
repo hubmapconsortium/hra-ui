@@ -8,10 +8,11 @@
   max-width: 29.5rem;
 
   &:has(.action) {
-
-    @include mat.dialog-overrides((
-      actions-alignment: space-between,
-    ));
+    @include mat.dialog-overrides(
+      (
+        actions-alignment: space-between,
+      )
+    );
   }
 
   .mat-mdc-dialog-title {
@@ -40,9 +41,11 @@
     font: vars.$body-large;
     color: vars.$primary;
 
-    @include mat.dialog-overrides((
-      supporting-text-tracking: vars.$body-large-tracking,
-    ));
+    @include mat.dialog-overrides(
+      (
+        supporting-text-tracking: vars.$body-large-tracking,
+      )
+    );
   }
 
   .mat-mdc-dialog-actions {
