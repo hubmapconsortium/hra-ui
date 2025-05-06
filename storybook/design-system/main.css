@@ -431,32 +431,6 @@ input[type=number] {
 }
 
 html {
-  --mat-sys-body-xl: 400 1.125rem / 1.6875rem Nunito Sans Variable;
-  --mat-sys-body-xl-font: Nunito Sans Variable;
-  --mat-sys-body-xl-line-height: 1.6875rem;
-  --mat-sys-body-xl-size: 1.125rem;
-  --mat-sys-body-xl-tracking: 0rem;
-  --mat-sys-body-xl-weight: 400;
-  --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem Metropolis;
-  --mat-sys-wordmark-large-font: Metropolis;
-  --mat-sys-wordmark-large-line-height: 2.25rem;
-  --mat-sys-wordmark-large-size: 1.5625rem;
-  --mat-sys-wordmark-large-tracking: 0.00625rem;
-  --mat-sys-wordmark-large-weight: 400;
-  --mat-sys-wordmark-small: 400 0.75rem / 1.125rem Metropolis;
-  --mat-sys-wordmark-small-font: Metropolis;
-  --mat-sys-wordmark-small-line-height: 1.125rem;
-  --mat-sys-wordmark-small-size: 0.75rem;
-  --mat-sys-wordmark-small-tracking: 0rem;
-  --mat-sys-wordmark-small-weight: 400;
-  --mat-sys-label-micro: 500 0.625rem / 1rem Metropolis;
-  --mat-sys-label-micro-font: Metropolis;
-  --mat-sys-label-micro-line-height: 1rem;
-  --mat-sys-label-micro-size: 0.625rem;
-  --mat-sys-label-micro-tracking: 0rem;
-  --mat-sys-label-micro-weight: 500;
-}
-html {
   --mat-sys-background: #f5fafb;
   --mat-sys-error: #883700;
   --mat-sys-error-container: #ffdcc4;
@@ -640,6 +614,32 @@ html {
   --mat-sys-focus-state-layer-opacity: 0.12;
   --mat-sys-hover-state-layer-opacity: 0.08;
   --mat-sys-pressed-state-layer-opacity: 0.12;
+}
+html {
+  --mat-sys-body-xl: 400 1.125rem / 1.6875rem Nunito Sans Variable;
+  --mat-sys-body-xl-font: Nunito Sans Variable;
+  --mat-sys-body-xl-line-height: 1.6875rem;
+  --mat-sys-body-xl-size: 1.125rem;
+  --mat-sys-body-xl-tracking: 0rem;
+  --mat-sys-body-xl-weight: 400;
+  --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem Metropolis;
+  --mat-sys-wordmark-large-font: Metropolis;
+  --mat-sys-wordmark-large-line-height: 2.25rem;
+  --mat-sys-wordmark-large-size: 1.5625rem;
+  --mat-sys-wordmark-large-tracking: 0.00625rem;
+  --mat-sys-wordmark-large-weight: 400;
+  --mat-sys-wordmark-small: 400 0.75rem / 1.125rem Metropolis;
+  --mat-sys-wordmark-small-font: Metropolis;
+  --mat-sys-wordmark-small-line-height: 1.125rem;
+  --mat-sys-wordmark-small-size: 0.75rem;
+  --mat-sys-wordmark-small-tracking: 0rem;
+  --mat-sys-wordmark-small-weight: 400;
+  --mat-sys-label-micro: 500 0.625rem / 1rem Metropolis;
+  --mat-sys-label-micro-font: Metropolis;
+  --mat-sys-label-micro-line-height: 1rem;
+  --mat-sys-label-micro-size: 0.625rem;
+  --mat-sys-label-micro-tracking: 0rem;
+  --mat-sys-label-micro-weight: 500;
 }
 html {
   --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
@@ -1067,22 +1067,25 @@ html {
   --mdc-filled-text-field-hover-label-text-color: var(--mat-sys-primary);
 }
 html {
+  --mdc-filled-text-field-hover-active-indicator-color: var(--mat-sys-secondary);
+}
+html {
   --mdc-filled-text-field-input-text-color: var(--mat-sys-secondary);
 }
 html {
   --mdc-filled-text-field-input-text-placeholder-color: var(--mat-sys-primary);
 }
 html {
-  --mdc-filled-text-field-label-text-color: var(--mat-sys-secondary);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-primary);
 }
 html {
-  --mdc-filled-text-field-label-text-font: var(--mat-sys-label-medium);
+  --mdc-filled-text-field-label-text-font: var(--mat-sys-label-small-font);
 }
 html {
-  --mdc-filled-text-field-label-text-weight: 500;
+  --mdc-filled-text-field-label-text-weight: var(--mat-sys-label-small-weight);
 }
 html {
-  --mdc-filled-text-field-label-text-size: 0.75rem;
+  --mdc-filled-text-field-label-text-size: var(--mat-sys-label-small-size);
 }
 html {
   --mdc-filled-text-field-error-label-text-color: var(--mat-sys-error);
@@ -1095,9 +1098,6 @@ html {
 }
 html {
   --mdc-filled-text-field-active-indicator-color: var(--mat-sys-on-secondary-fixed);
-}
-html {
-  --mdc-filled-text-field-hover-active-indicator-color: var(--mat-sys-secondary);
 }
 html {
   --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
@@ -1247,10 +1247,19 @@ html {
   --mat-option-label-text-color: var(--mat-sys-secondary);
 }
 html {
-  --mat-option-label-text-line-height: 3.5rem;
+  --mat-option-label-text-font: var(--mat-sys-label-medium-font);
 }
 html {
-  --mat-option-label-text-font: var(--mat-sys-label-medium);
+  --mat-option-label-text-line-height: var(--mat-sys-label-medium-line-height);
+}
+html {
+  --mat-option-label-text-tracking: var(--mat-sys-label-medium-tracking);
+}
+html {
+  --mat-option-label-text-size: var(--mat-sys-label-medium-size);
+}
+html {
+  --mat-option-label-text-weight: var(--mat-sys-label-medium-weight);
 }
 html {
   --mat-option-selected-state-label-text-color: var(--mat-sys-secondary);
