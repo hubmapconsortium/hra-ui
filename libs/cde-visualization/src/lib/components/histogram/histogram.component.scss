@@ -15,7 +15,6 @@
 
   @include mat.expansion-overrides(
     (
-      container-background-color: vars.$on-primary,
       header-hover-state-layer-color: transparent,
       container-shape: 0,
       container-background-color: vars.$surface-container-low,
