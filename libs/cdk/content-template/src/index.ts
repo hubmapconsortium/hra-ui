@@ -9,6 +9,8 @@ export {
   Classes,
   ClassesSchema,
   ContentTemplateSchema,
+  ProjectedTemplateContent,
+  ProjectedTemplateContentSchema,
   setContentTemplateSpecs,
   Styles,
   StylesSchema,

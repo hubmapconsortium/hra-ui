@@ -15,4 +15,7 @@ export { PageSectionSchema } from './lib/types/page-section.schema';
 export const PageSectionDef: AnyContentTemplateDef = {
   component: PageSectionComponent,
   spec: PageSectionSchema,
+  projectedProperties: {
+    '*': 'content',
+  },
 };
