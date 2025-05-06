@@ -1,8 +1,5 @@
-import { AnyContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { PageSectionComponent } from './lib/page-section.component';
-import { PageSectionSchema } from './lib/types/page-section.schema';
-
 export { PageSectionComponent } from './lib/page-section.component';
+export { PageSectionDef } from './lib/page-section.definition';
 export { providePageSectionNavigation } from './lib/providers';
 export {
   PageSectionActivationOptions,
@@ -10,12 +7,3 @@ export {
 } from './lib/services/page-section-activation.service';
 export { PageSectionInstance, PageSectionService } from './lib/services/page-section.service';
 export { PageSectionSchema } from './lib/types/page-section.schema';
-
-/** Config for PageSection component with its schema */
-export const PageSectionDef: AnyContentTemplateDef = {
-  component: PageSectionComponent,
-  spec: PageSectionSchema,
-  projectedProperties: {
-    '*': 'content',
-  },
-};
