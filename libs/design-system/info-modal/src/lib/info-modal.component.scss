@@ -83,8 +83,13 @@
       table {
         border: none;
         border-radius: 0;
-        --mat-table-row-item-outline-color: transparent;
-        --mat-table-row-item-container-height: 2rem;
+
+        @include mat.table-overrides(
+          (
+            row-item-outline-color: transparent,
+            row-item-container-height: 2rem,
+          )
+        );
       }
 
       .label {
