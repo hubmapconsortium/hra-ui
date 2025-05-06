@@ -76,12 +76,12 @@ sections:
         thumbnailUrl: assets/content/about-page/images/FGinty.png
         actionUrl: https://www.gevernova.com/research
         actionName: Profile
-      - name: Marc Halushka
-        description: |
-          Professor of Pathology and Oncology, Johns Hopkins University School of Medicine
-        thumbnailUrl: assets/content/about-page/images/MHalushka.png
-        actionUrl: https://labs.pathology.jhu.edu/halushka/team/
-        actionName: Profile
+      # - name: Marc Halushka
+      #   description: |
+      #     Professor of Pathology and Oncology, Johns Hopkins University School of Medicine
+      #   thumbnailUrl: assets/content/about-page/images/MHalushka.png
+      #   actionUrl: https://labs.pathology.jhu.edu/halushka/team/
+      #   actionName: Profile
       - name: Matthias Kretzler
         description: |
           Professor of Computational Medicine & Bioinformatics, Professor of Internal Medicine, University of Michigan
