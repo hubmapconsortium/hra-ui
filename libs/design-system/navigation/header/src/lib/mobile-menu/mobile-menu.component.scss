@@ -22,7 +22,12 @@
       header-text-tracking: vars.$label-large-tracking,
     )
   );
-  --mat-divider-color: #{vars.$outline};
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline,
+    )
+  );
 
   .panel {
     box-shadow: none;

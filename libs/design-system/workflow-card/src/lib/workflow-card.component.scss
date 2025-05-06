@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
@@ -20,17 +21,21 @@
   }
 
   .tagline {
-    color: var(--mat-sys-on-background);
+    color: vars.$on-background;
   }
 
   .progress {
     position: absolute;
     inset: auto 0 0 0;
 
-    --mdc-linear-progress-track-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-color: #{vars.$inverse-surface};
-    --mdc-linear-progress-track-color: #{vars.$surface-container-high};
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$inverse-surface,
+        active-indicator-height: 0.25rem,
+        track-color: vars.$surface-container-high,
+        track-height: 0.25rem,
+      )
+    );
   }
 
   .filler {
