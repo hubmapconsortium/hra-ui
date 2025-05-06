@@ -10,7 +10,7 @@
   .header {
     grid-area: header;
     max-width: 81.25rem;
-    justify-self: center;
+    justify-self: stretch;
   }
 
   .toc {
@@ -20,7 +20,7 @@
   .content {
     grid-area: content;
     max-width: 81.25rem;
-    justify-self: center;
+    justify-self: stretch;
   }
 
   .header,
