@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
 import { ReleaseVersionData, ReleaseVersionSchema } from './release-notes-page.schema';
 
 /** Resolver for release notes page version data */
-export const ReleaseVersionResolver: ResolveFn<Observable<ReleaseVersionData[]>> = () => {
+export const releaseVersionResolver: ResolveFn<Observable<ReleaseVersionData[]>> = () => {
   return inject(HttpClient)
     .get(`assets/content/pages-v2/release-notes/versions.yaml`, { responseType: 'text' })
     .pipe(
