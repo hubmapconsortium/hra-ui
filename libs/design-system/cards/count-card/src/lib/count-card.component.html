@@ -1,7 +1,7 @@
 @if (categoryIcon(); as id) {
   <hra-category-logo [id]="id" class="category-logo" />
 }
-<div>
-  <p class="count">{{ count() }}</p>
+<div class="count-card-content">
+  <p class="count">{{ count() | number }}{{ showSuffix() }}</p>
   <p class="label-text">{{ label() }}</p>
 </div>

@@ -1,9 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { CountCardComponent } from './count-card.component';
 
-/**
- * Metadata of CountCardComponent.
- */
 const meta: Meta<CountCardComponent> = {
   component: CountCardComponent,
   title: 'Design System/Cards/Count Card',
@@ -14,7 +11,8 @@ const meta: Meta<CountCardComponent> = {
     },
   },
   args: {
-    count: 'num',
+    count: 250,
+    showSuffix: '+',
     label: 'label text',
     categoryIcon: 'data',
   },
@@ -28,7 +26,8 @@ type Story = StoryObj<CountCardComponent>;
 
 export const Default: Story = {
   args: {
-    count: '[num]',
+    count: 250,
+    showSuffix: '+',
     label: 'label text',
     categoryIcon: 'data',
   },

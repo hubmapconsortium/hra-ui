@@ -16,7 +16,10 @@ import { CategoryLogoComponent, toCategoryLogoId } from '@hra-ui/design-system/b
 })
 export class CountCardComponent {
   /** Count */
-  readonly count = input.required<string>();
+  readonly count = input.required<number>();
+
+  /** Optional suffix for the count */
+  readonly showSuffix = input<string>();
 
   /** Label text*/
   readonly label = input.required<string>();
