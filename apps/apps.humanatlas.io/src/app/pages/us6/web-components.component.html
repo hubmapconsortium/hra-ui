@@ -1,7 +1,7 @@
 <div class="content-container">
   <div class="heading-container">
     <div class="title-logo-div">
-      <hra-product-header logo="web-components" tagline="Web Components" status="Alpha" />
+      <hra-app-label logo="web-components" tagline="Web Components" appStatus="Alpha"></hra-app-label>
     </div>
     <p class="description">
       Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
@@ -26,7 +26,7 @@
         @for (component of components; track component.id) {
           <hra-web-component-card
             class="component-card"
-            [imageUrl]="component.previewImage"
+            [imageUrl]="component.previewImage | assetUrl"
             [productTitle]="component.productTitle"
             [description]="component.description"
             [webComponentName]="component.webComponentName"

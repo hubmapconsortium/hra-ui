@@ -8,10 +8,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
 
@@ -32,10 +33,11 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     MatIconModule,
     MatCheckboxModule,
     ButtonsModule,
-    ScrollingModule,
+    HraScrollingModule,
     ScrollOverflowFadeDirective,
     MatDividerModule,
     PlainTooltipDirective,
+    ScrollingModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -72,6 +74,18 @@ export class ResultsBrowserComponent {
 
   /** Whether at least one item is selected */
   readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
+
+  /** Filtered items */
+  readonly items = computed(() => {
+    const items = this.listResults();
+    if (this.showSelected()) {
+      const result = items.filter((item) => item.selected);
+      if (result.length > 0) {
+        return result;
+      }
+    }
+    return items;
+  });
 
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
@@ -122,5 +136,10 @@ export class ResultsBrowserComponent {
   /** Toggle the selected items */
   toggleShowSelected(): void {
     this.showSelected.set(!this.showSelected());
+  }
+
+  /** Track by function for the list of results */
+  trackByResult(index: number) {
+    return index;
   }
 }

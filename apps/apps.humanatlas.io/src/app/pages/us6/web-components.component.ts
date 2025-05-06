@@ -1,7 +1,7 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +14,7 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -21,13 +22,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
+import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { ProductHeaderComponent } from '../../components/product-header/product-header.component';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /** Sidenav Data */
 interface SidenavData {
@@ -71,16 +71,16 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
   standalone: true,
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     ClipboardModule,
     CardsModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
 
+    AppLabelComponent,
     EmbedSidenavContentComponent,
     NavigationModule,
-    ProductHeaderComponent,
     WebComponentCardComponent,
   ],
   templateUrl: './web-components.component.html',

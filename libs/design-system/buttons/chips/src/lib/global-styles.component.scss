@@ -2,15 +2,15 @@
 
 @include utils.global-styles() {
   mat-chip-row.mat-mdc-chip {
-    --mdc-chip-outline-color: var(--mat-sys-outline-variant);
-    --mdc-chip-focus-outline-color: var(--mat-sys-outline-variant);
+    --mdc-chip-outline-color: vars.$outline-variant;
+    --mdc-chip-focus-outline-color: vars.$outline-variant;
 
-    --mdc-chip-elevated-container-color: var(--mat-sys-surface-container-low);
-    --mdc-chip-hover-state-layer-color: var(--mat-sys-secondary);
-    --mdc-chip-focus-state-layer-color: var(--mat-sys-on-primary);
+    --mdc-chip-elevated-container-color: vars.$surface-container-low;
+    --mdc-chip-hover-state-layer-color: vars.$secondary;
+    --mdc-chip-focus-state-layer-color: vars.$on-primary;
 
-    --mdc-chip-with-trailing-icon-trailing-icon-color: var(--mat-sys-on-primary-fixed);
-    --mdc-chip-label-text-color: var(--mat-sys-on-primary-fixed);
+    --mdc-chip-with-trailing-icon-trailing-icon-color: vars.$on-primary-fixed;
+    --mdc-chip-label-text-color: vars.$on-primary-fixed;
 
     .mat-mdc-chip-action-label {
       @include utils.use-font(label, medium);
@@ -19,8 +19,8 @@
 
     &:focus-visible {
       outline: none;
-      --mdc-chip-outline-color: var(--mat-sys-tertiary);
-      --mdc-chip-elevated-container-color: var(--mat-sys-on-primary);
+      --mdc-chip-outline-color: vars.$tertiary;
+      --mdc-chip-elevated-container-color: vars.$on-primary;
     }
   }
 

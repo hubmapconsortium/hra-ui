@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, model, output, signal } from '@angular/core';
 import { colorEquals, hexToRgb, Rgb } from './color-utils';
-import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerDirective } from 'ngx-color-picker';
 
 /** Color Picker Component */
 @Component({
   selector: 'hra-color-picker',
-  imports: [CommonModule, ColorPickerModule],
+  imports: [CommonModule, ColorPickerDirective],
   templateUrl: './color-picker.component.html',
   styleUrl: './color-picker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
