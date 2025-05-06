@@ -14,7 +14,6 @@
 
   .toc {
     grid-area: toc;
-    margin: 0 1rem 4rem;
   }
 
   .content {
@@ -24,18 +23,16 @@
   }
 
   .header,
-  .content {
+  .content,
+  .toc {
     margin: 0 1rem;
   }
 
   @media (min-width: 640px) {
     .header,
-    .content{
-      margin: 0 2.5rem;
-    }
-
+    .content,
     .toc {
-      margin: 0 2.5rem 4rem;
+      margin: 0 2.5rem;
     }
   }
 
