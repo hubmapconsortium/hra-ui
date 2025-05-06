@@ -2,6 +2,11 @@
   <hra-category-logo [id]="id" class="category-logo" />
 }
 <div class="count-card-content">
-  <p class="count">{{ count() | number }}{{ showSuffix() }}</p>
+  <p class="count">
+    {{ count() | number }}
+    @if (showSuffix()) {
+      <span>+</span>
+    }
+  </p>
   <p class="label-text">{{ label() }}</p>
 </div>

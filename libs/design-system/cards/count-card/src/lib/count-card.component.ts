@@ -18,8 +18,8 @@ export class CountCardComponent {
   /** Count */
   readonly count = input.required<number>();
 
-  /** Optional suffix for the count */
-  readonly showSuffix = input<string>();
+  /** Show suffix for the count */
+  readonly showSuffix = input<boolean>();
 
   /** Label text*/
   readonly label = input.required<string>();

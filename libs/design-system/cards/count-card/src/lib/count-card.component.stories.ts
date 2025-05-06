@@ -12,7 +12,7 @@ const meta: Meta<CountCardComponent> = {
   },
   args: {
     count: 250,
-    showSuffix: '+',
+    showSuffix: true,
     label: 'label text',
     categoryIcon: 'data',
   },
@@ -27,7 +27,7 @@ type Story = StoryObj<CountCardComponent>;
 export const Default: Story = {
   args: {
     count: 250,
-    showSuffix: '+',
+    showSuffix: true,
     label: 'label text',
     categoryIcon: 'data',
   },
