@@ -9,7 +9,7 @@ import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
-import { VisibilityMenuModule } from '../../shared/components/visibility-menu/visibility-menu.module';
+import { VisibilityMenuComponent } from '../../shared/components/visibility-menu/visibility-menu.component';
 import { LeftSidebarComponent } from './left-sidebar.component';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { LeftSidebarComponent } from './left-sidebar.component';
 
     MatDividerModule,
     OpacitySliderModule,
-    VisibilityMenuModule,
+    VisibilityMenuComponent,
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
