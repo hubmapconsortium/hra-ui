@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CategoryLogoComponent, toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
+
+/**
+ * Component representing a count card.
+ * Displays a count, a label, and a category icon.
+ */
 
 @Component({
   selector: 'hra-count-card',
