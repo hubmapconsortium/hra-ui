@@ -2,7 +2,12 @@
   <img [attr.src]="'assets/ui-images/splash-image.png' | assetUrl" alt="" class="splash-header-img" />
   <div class="splash-header-content">
     <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
-    <mat-button-toggle-group hideSingleSelectionIndicator hraButtonToggleSize="large" [(ngModel)]="activeTab">
+    <mat-button-toggle-group
+      class="tab-toggles"
+      hideSingleSelectionIndicator
+      hraButtonToggleSize="large"
+      [(ngModel)]="activeTab"
+    >
       @for (tab of tabs(); track tab.name) {
         <mat-button-toggle [value]="tab">{{ tab.name }}</mat-button-toggle>
       }

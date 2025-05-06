@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
-import { PageSection, PageSectionService } from './services/page-section.service';
+import { PageSectionInstance, PageSectionService } from './services/page-section.service';
 
 /**
  * A labeled section of the page
@@ -23,7 +23,7 @@ import { PageSection, PageSectionService } from './services/page-section.service
   styleUrl: './page-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageSectionComponent implements PageSection {
+export class PageSectionComponent implements PageSectionInstance {
   /** Title for the section */
   readonly tagline = input.required<string>();
 

@@ -5,9 +5,8 @@
 @mixin overrides() {
   @include mat.button-toggle-overrides(
     (
-      background-color: vars.$on-primary,
       divider-color: vars.$primary,
-      height: 1.5rem,
+      height: 2.5rem,
       shape: vars.$corner-extra-small,
       selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
       selected-state-text-color: vars.$secondary,
@@ -17,6 +16,7 @@
   mat-button-toggle-group.hra-button-toggle-size-small {
     @include mat.button-toggle-overrides(
       (
+        height: 1.5rem,
         label-text-font: vars.$label-small-font,
         label-text-size: vars.$label-small-size,
         label-text-line-height: vars.$label-small-line-height,
@@ -33,6 +33,7 @@
   mat-button-toggle-group.hra-button-toggle-size-medium {
     @include mat.button-toggle-overrides(
       (
+        height: 2rem,
         label-text-font: vars.$label-medium-font,
         label-text-size: vars.$label-medium-size,
         label-text-line-height: vars.$label-medium-line-height,
@@ -49,6 +50,7 @@
   mat-button-toggle-group.hra-button-toggle-size-large {
     @include mat.button-toggle-overrides(
       (
+        height: 2.5rem,
         label-text-font: vars.$label-large-font,
         label-text-size: vars.$label-large-size,
         label-text-line-height: vars.$label-large-line-height,
