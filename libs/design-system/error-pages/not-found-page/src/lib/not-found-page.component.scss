@@ -1,4 +1,5 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 :host {
   display: flex;
@@ -7,7 +8,7 @@
   align-items: center;
   padding: 1rem 4rem;
   height: calc(100vh - 4.5rem);
-  background-color: var(--mat-sys-secondary-container);
+  background-color: vars.$secondary-container;
 
   .title {
     @include utils.use-font(display, medium);
@@ -17,7 +18,7 @@
 
   .description {
     @include utils.use-font(title, medium);
-    color: var(--mat-sys-primary);
+    color: vars.$primary;
     margin-bottom: 4rem;
     text-align: center;
   }
