@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
@@ -7,7 +8,10 @@
   max-width: 29.5rem;
 
   &:has(.action) {
-    --mat-dialog-actions-alignment: space-between;
+
+    @include mat.dialog-overrides((
+      actions-alignment: space-between,
+    ));
   }
 
   .mat-mdc-dialog-title {
@@ -32,10 +36,13 @@
   }
 
   .mat-mdc-dialog-content {
-    --mdc-dialog-supporting-text-tracking: vars.$body-large-tracking;
     padding: 0 2rem;
     font: vars.$body-large;
     color: vars.$primary;
+
+    @include mat.dialog-overrides((
+      supporting-text-tracking: vars.$body-large-tracking,
+    ));
   }
 
   .mat-mdc-dialog-actions {
