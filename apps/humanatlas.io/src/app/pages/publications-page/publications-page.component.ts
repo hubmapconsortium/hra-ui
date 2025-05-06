@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { PublicationsPageData } from '../../resolvers/publications-page/publications-page.schema';
-import { ViewportScroller } from '@angular/common';
 
 /**
  * Page for displaying hra publication data
@@ -18,9 +17,6 @@ import { ViewportScroller } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicationsPageComponent {
-  /** Viewport scroller manager */
-  readonly viewport = inject(ViewportScroller);
-
   /** Publication data */
   readonly publications = input.required<PublicationsPageData>();
 
@@ -29,13 +25,6 @@ export class PublicationsPageComponent {
     const values = Object.keys(this.publications()).sort((a, b) => (a < b ? 1 : -1));
     return values;
   });
-
-  /**
-   * Sets anchor scroll offset
-   */
-  constructor() {
-    this.viewport.setOffset([0, 104]);
-  }
 
   /**
    * Removes author links
