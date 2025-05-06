@@ -1,13 +1,15 @@
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--mat-sys-primary);
+  color: vars.$primary;
 
   .title {
     margin-bottom: 0.5rem;
-    font: var(--mat-sys-label-medium);
-    letter-spacing: var(--mat-sys-label-medium-tracking);
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
   }
 
   .funders {
@@ -24,9 +26,9 @@
     align-items: center;
     text-align: center;
     width: 10.75rem;
-    color: var(--mat-sys-primary);
-    font: var(--mat-sys-label-small);
-    letter-spacing: var(--mat-sys-label-small-tracking);
+    color: vars.$primary;
+    font: vars.$label-small;
+    letter-spacing: vars.$label-small-tracking;
 
     img {
       min-width: 3rem;
