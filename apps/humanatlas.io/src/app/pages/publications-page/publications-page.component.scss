@@ -1,8 +1,6 @@
 @use 'utils';
 
 :host {
-  margin-bottom: 5rem;
-
   .banner {
     @include utils.use-font(display, large);
     display: flex;
@@ -23,7 +21,10 @@
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    padding-bottom: 5rem;
+  }
+
+  hra-table-of-contents-layout {
+    row-gap: 0;
   }
 
   ::ng-deep markdown {

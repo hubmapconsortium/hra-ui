@@ -6,15 +6,15 @@
     'content' auto
     / auto;
   row-gap: 4rem;
+  margin: 2.5rem 0 5rem;
 
   .header {
     grid-area: header;
-    max-width: 81.25rem;
-    justify-self: center;
   }
 
   .toc {
     grid-area: toc;
+    margin: 0 1rem 4rem;
   }
 
   .content {
@@ -24,16 +24,18 @@
   }
 
   .header,
-  .content,
-  .toc {
+  .content {
     margin: 0 1rem;
   }
 
   @media (min-width: 640px) {
     .header,
-    .content,
-    .toc {
+    .content{
       margin: 0 2.5rem;
+    }
+
+    .toc {
+      margin: 0 2.5rem 4rem;
     }
   }
 
@@ -47,7 +49,7 @@
       position: sticky;
       top: 7rem;
       height: min-content;
-      margin: 2.5rem 0.75rem 1rem;
+      margin: 0rem 0.75rem 1rem;
     }
   }
 }
