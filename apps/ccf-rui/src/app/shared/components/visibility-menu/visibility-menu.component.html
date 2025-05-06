@@ -1,26 +1,38 @@
-<div
-  class="item-entry"
-  [class.selected]="selection ? getId(0, selection) === getId(0, item) : false"
-  *ngFor="let item of items; trackBy: getId"
->
-  <mat-icon
-    hraMicroTooltip="Edit opacity"
-    (click)="menuOpen(item)"
-    class="opacity-icon"
-    [class.fade]="!item.visible"
-    svgIcon="app:opacity"
-  ></mat-icon>
-  <div class="item-name" [hraMicroTooltip]="item.name.charAt(0).toUpperCase() + item.name.slice(1)">
-    {{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}
+@for (item of items(); track item.id) {
+  @let name = (item.name[0] | uppercase) + (item.name.slice(1) | lowercase);
+  @let selected = selection()?.id === item.id;
+  @let overlayScrollStrategy = overlay.scrollStrategies.close();
+
+  <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
+    <mat-icon
+      hraPlainTooltip="Edit opacity"
+      class="opacity-icon"
+      [class.fade]="!item.visible"
+      svgIcon="app:opacity"
+      (click)="selection.set(item)"
+    ></mat-icon>
+
+    <div class="item-name" [hraMicroTooltip]="name">
+      {{ name }}
+    </div>
   </div>
 
-  <div class="slider" [class.visible]="item.id === selection?.id" [class.hidden]="item.id !== selection?.id">
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayHasBackdrop]="false"
+    [cdkConnectedOverlayOpen]="selected"
+    [cdkConnectedOverlayOrigin]="origin"
+    [cdkConnectedOverlayPositions]="overlayPosition"
+    [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"
+    (overlayOutsideClick)="selection.set(undefined)"
+    (detach)="selection.set(undefined)"
+  >
     <ccf-opacity-slider
-      [opacity]="selection?.opacity ?? 20"
+      [opacity]="item.opacity ?? 20"
       (opacityChange)="updateOpacity($event)"
       (opacityReset)="resetItem()"
       (visibilityToggle)="toggleVisibility(item)"
     >
     </ccf-opacity-slider>
-  </div>
-</div>
+  </ng-template>
+}
