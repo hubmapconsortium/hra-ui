@@ -53,6 +53,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReleaseNotesPageComponent {
+  /** Release notes content ref */
   readonly content = viewChild.required<ElementRef<HTMLElement>>('content');
 
   /** Http injector */
