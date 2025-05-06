@@ -18,6 +18,7 @@ import { ViewportScroller } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicationsPageComponent {
+  /** Viewport scroller manager */
   readonly viewport = inject(ViewportScroller);
 
   /** Publication data */
@@ -29,6 +30,9 @@ export class PublicationsPageComponent {
     return values;
   });
 
+  /**
+   * Sets anchor scroll offset
+   */
   constructor() {
     this.viewport.setOffset([0, 104]);
   }
