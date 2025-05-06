@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
@@ -6,7 +7,7 @@
   &.hra-spinner-color-dark {
     @include mat.progress-spinner-overrides(
       (
-        active-indicator-color: var(--mat-sys-secondary),
+        active-indicator-color: vars.$secondary,
       )
     );
   }
@@ -14,7 +15,7 @@
   &.hra-spinner-color-light {
     @include mat.progress-spinner-overrides(
       (
-        active-indicator-color: var(--mat-sys-on-secondary),
+        active-indicator-color: vars.$on-secondary,
       )
     );
   }
@@ -22,7 +23,7 @@
   &.hra-spinner-color-color {
     @include mat.progress-spinner-overrides(
       (
-        active-indicator-color: var(--mat-sys-on-tertiary-fixed),
+        active-indicator-color: vars.$on-tertiary-fixed,
       )
     );
   }
