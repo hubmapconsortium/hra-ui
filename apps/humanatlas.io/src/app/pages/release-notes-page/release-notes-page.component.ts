@@ -1,6 +1,16 @@
 import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, input, linkedSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  linkedSignal,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -43,6 +53,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReleaseNotesPageComponent {
+  readonly content = viewChild.required<ElementRef<HTMLElement>>('content');
+
   /** Http injector */
   readonly http = inject(HttpClient);
 
@@ -66,6 +78,8 @@ export class ReleaseNotesPageComponent {
     this.releaseNotesResolver(this.currentVersion().version),
   );
 
+  readonly contentWidth = signal<number>(0);
+
   /**
    * Subscribes to the current resolver to update data and sets anchor scrolling offset
    */
@@ -76,6 +90,15 @@ export class ReleaseNotesPageComponent {
         this.currentVersionData.set(data);
       });
     });
+
+    effect((cleanup) => {
+      const observer = new ResizeObserver(() =>
+        this.contentWidth.set(Math.min(this.content().nativeElement.clientWidth, 640)),
+      );
+      observer.observe(this.content().nativeElement, { box: 'border-box' });
+      cleanup(() => observer.disconnect());
+    });
+
     this.viewport.setOffset([0, 104]);
   }
 

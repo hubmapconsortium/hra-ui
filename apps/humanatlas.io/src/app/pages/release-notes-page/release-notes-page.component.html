@@ -26,7 +26,7 @@
     </hra-page-section>
   </hra-table-of-contents-layout-header>
 
-  <div class="page-content">
+  <div class="page-content" #content>
     <hra-page-section
       [tagline]="`${currentVersion().label}, ${currentVersion().date}`"
       [anchor]="toAnchor(currentVersion().label)"
@@ -66,7 +66,7 @@
         <markdown [data]="component.content" />
       }
       @if (component.youtubeId) {
-        <youtube-player [videoId]="component.youtubeId"></youtube-player>
+        <youtube-player [videoId]="component.youtubeId" [width]="contentWidth()"></youtube-player>
       }
       @if (component.buttonUrl) {
         <a mat-button hraCtaButton class="action section-button" [href]="component.buttonUrl" target="_blank">
