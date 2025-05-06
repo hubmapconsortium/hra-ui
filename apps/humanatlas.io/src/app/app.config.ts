@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
+import { provideMarkdown } from 'ngx-markdown';
 
 import { appRoutes } from './app.routes';
-import { HttpClient } from '@angular/common/http';
-import { provideMarkdown } from 'ngx-markdown';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -12,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideDesignSystem(),
     provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
     provideMarkdown({ loader: HttpClient }),
+    provideContentTemplateDefs([PageSectionDef]),
   ],
 };
