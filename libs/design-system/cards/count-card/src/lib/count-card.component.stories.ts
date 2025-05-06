@@ -1,14 +1,12 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { CountCardComponent } from './count-card.component';
-
-import { CategoryLogoComponent } from '@hra-ui/design-system/brand/category-logo';
 
 /**
  * Metadata of CountCardComponent.
  */
 const meta: Meta<CountCardComponent> = {
-  title: 'Design System/Cards/Count Card',
   component: CountCardComponent,
+  title: 'Design System/Cards/Count Card',
   parameters: {
     design: {
       type: 'figma',
@@ -16,41 +14,22 @@ const meta: Meta<CountCardComponent> = {
     },
   },
   args: {
-    count: 1,
-    label: 'Count Card Title',
-    categoryIcon: 'category',
+    count: 'num',
+    label: 'label text',
+    categoryIcon: 'data',
   },
-  decorators: [
-    moduleMetadata({
-      imports: [CategoryLogoComponent],
-    }),
-  ],
+  render: (args) => ({
+    props: args,
+  }),
 };
+
 export default meta;
 type Story = StoryObj<CountCardComponent>;
 
 export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <hra-count-card
-        [count]="count"
-        [label]="label"
-        [category]="category"
-      >
-        <div class="placeholder">placeholder content</div>
-      </hra-count-card>
-    `,
-    styles: [
-      `.placeholder {
-          padding: 3rem;
-          gap: .5rem;
-          background: var(--mat-sys-outline-variant);
-          height: 908px;
-          text-align: center;
-          font: var(--mat-sys-display-small);
-          letter-spacing: var(--mat-sys-display-small-tracking);
-        }`,
-    ],
-  }),
+  args: {
+    count: '[num]',
+    label: 'label text',
+    categoryIcon: 'data',
+  },
 };

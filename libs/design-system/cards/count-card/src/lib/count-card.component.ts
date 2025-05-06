@@ -11,11 +11,11 @@ import { CategoryLogoComponent, toCategoryLogoId } from '@hra-ui/design-system/b
 })
 export class CountCardComponent {
   /** Count */
-  readonly count = input.required<number>();
+  readonly count = input.required<string>();
 
   /** Label text*/
   readonly label = input.required<string>();
 
-  /** Website category icon */
+  /** Category icon */
   readonly categoryIcon = input(undefined, { transform: toCategoryLogoId });
 }

@@ -1,3 +1,28 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0 1rem 0;
+  width: 9rem;
+  gap: 1rem;
+
+  .category-logo {
+    width: 3.375rem;
+    height: 3.375rem;
+  }
+
+  .count {
+    margin: 0;
+    @include utils.use-font(headline, large);
+    color: vars.$secondary;
+  }
+
+  .label-text {
+    margin: 0;
+    @include utils.use-font(body, xl);
+    color: vars.$primary;
+  }
 }
