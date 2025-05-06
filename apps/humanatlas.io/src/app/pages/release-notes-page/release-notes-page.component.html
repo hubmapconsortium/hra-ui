@@ -1,52 +1,63 @@
-<hra-page-section tagline="Release Notes" level="1" underlined>
-  <div class="header-content">
-    What's new in the Human Reference Atlas.
-    <mat-form-field class="version-select" subscriptSizing="dynamic">
-      <mat-label>Release Version</mat-label>
-      <mat-select
-        disableRipple
-        panelClass="options-container"
-        [(ngModel)]="currentVersion"
-        (selectionChange)="navigate($event)"
-      >
-        <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
-        @for (dataset of versions(); track dataset.version) {
-          <mat-option [value]="dataset">
-            <div class="release-label">
-              <span class="release-name">{{ dataset.label }}</span>
-              <span class="release-date">{{ dataset.date }}</span>
-            </div>
-          </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+<hra-table-of-contents-layout>
+  <hra-table-of-contents-layout-header>
+    <hra-page-section tagline="Release Notes" level="1" underlined>
+      <div class="header-content">
+        <div>What's new in the Human Reference Atlas.</div>
+        <mat-form-field class="version-select" subscriptSizing="dynamic">
+          <mat-label>Release Version</mat-label>
+          <mat-select
+            disableRipple
+            panelClass="options-container"
+            [(ngModel)]="currentVersion"
+            (selectionChange)="navigate($event)"
+          >
+            <mat-select-trigger>{{ currentVersion().label }}</mat-select-trigger>
+            @for (dataset of versions(); track dataset.version) {
+              <mat-option [value]="dataset">
+                <div class="release-label">
+                  <span class="release-name">{{ dataset.label }}</span>
+                  <span class="release-date">{{ dataset.date }}</span>
+                </div>
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </hra-page-section>
+  </hra-table-of-contents-layout-header>
+
+  <div class="page-content">
+    <hra-page-section
+      [tagline]="`${currentVersion().label}, ${currentVersion().date}`"
+      [anchor]="toAnchor(currentVersion().label)"
+      level="2"
+      underlined
+    >
+      <markdown [data]="currentVersion().description" />
+    </hra-page-section>
+
+    @for (data of currentVersionData(); track data.header) {
+      <hra-page-section [tagline]="data.header" [level]="data.level" [anchor]="toAnchor(data.header)">
+        <div class="section-content">
+          @if (data.components) {
+            <ng-container
+              [ngTemplateOutlet]="sectionData"
+              [ngTemplateOutletContext]="{ sectionContent: data.components }"
+            />
+          }
+          @for (section of data.sections; track section.header) {
+            <hra-page-section [tagline]="section.header" [level]="section.level" [anchor]="toAnchor(section.header)">
+              <ng-container
+                [ngTemplateOutlet]="sectionData"
+                [ngTemplateOutletContext]="{ sectionContent: section.components }"
+              />
+            </hra-page-section>
+          }
+        </div>
+      </hra-page-section>
+    }
   </div>
-</hra-page-section>
-
-<hra-page-section [tagline]="`${currentVersion().label}, ${currentVersion().date}`" level="2" underlined>
-  <markdown [data]="currentVersion().description" />
-</hra-page-section>
-
-@for (data of currentVersionData(); track data.header) {
-  <hra-page-section [tagline]="data.header" [level]="data.level">
-    <div class="section-content">
-      @if (data.components) {
-        <ng-container
-          [ngTemplateOutlet]="sectionData"
-          [ngTemplateOutletContext]="{ sectionContent: data.components }"
-        />
-      }
-      @for (section of data.sections; track section.header) {
-        <hra-page-section [tagline]="section.header" [level]="section.level">
-          <ng-container
-            [ngTemplateOutlet]="sectionData"
-            [ngTemplateOutletContext]="{ sectionContent: section.components }"
-          />
-        </hra-page-section>
-      }
-    </div>
-  </hra-page-section>
-}
+</hra-table-of-contents-layout>
 
 <ng-template let-sectionContent="sectionContent" #sectionData>
   <div class="subsection-content">

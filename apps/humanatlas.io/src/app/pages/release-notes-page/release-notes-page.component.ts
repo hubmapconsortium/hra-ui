@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, effect, inject, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
+import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { load } from 'js-yaml';
 import { MarkdownModule } from 'ngx-markdown';
 import { map, Observable } from 'rxjs';
@@ -34,6 +36,7 @@ import {
     ButtonsModule,
     MatIconModule,
     YouTubePlayerModule,
+    TableOfContentsLayoutModule,
   ],
   templateUrl: './release-notes-page.component.html',
   styleUrl: './release-notes-page.component.scss',
@@ -45,6 +48,9 @@ export class ReleaseNotesPageComponent {
 
   /** Router service */
   readonly router = inject(Router);
+
+  /** Viewport scroller manager */
+  readonly viewport = inject(ViewportScroller);
 
   /** Versions data */
   readonly versions = input.required<ReleaseVersionData[]>();
@@ -61,7 +67,7 @@ export class ReleaseNotesPageComponent {
   );
 
   /**
-   * Subscribes to the current resolver to update data
+   * Subscribes to the current resolver to update data and sets anchor scrolling offset
    */
   constructor() {
     effect(() => {
@@ -70,6 +76,7 @@ export class ReleaseNotesPageComponent {
         this.currentVersionData.set(data);
       });
     });
+    this.viewport.setOffset([0, 104]);
   }
 
   /**
@@ -101,5 +108,14 @@ export class ReleaseNotesPageComponent {
       map((yamlString) => load(yamlString)),
       map((raw) => ReleaseNotesSectionDataSchema.array().parse(raw)),
     );
+  }
+
+  /**
+   * Converts id to anchor id
+   * @param name Id
+   * @returns Anchor id
+   */
+  toAnchor(name: string): string {
+    return name.toLowerCase().split(' ').join('-');
   }
 }

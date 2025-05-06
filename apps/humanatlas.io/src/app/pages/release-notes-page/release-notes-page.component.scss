@@ -1,13 +1,10 @@
 @use 'utils';
 
 :host {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding: 2.5rem 1rem;
-
-  @media (min-width: 40rem) {
-    padding: 2.5rem 2.5rem;
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   .header-content {
