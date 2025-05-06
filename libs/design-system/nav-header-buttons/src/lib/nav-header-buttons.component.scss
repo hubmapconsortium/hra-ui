@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../libs/design-system/styles/vars';
 
 :host {
@@ -39,12 +40,16 @@
   }
 
   mat-button-toggle {
-    --mat-standard-button-toggle-height: 1.25rem;
-
     ::ng-deep .mat-button-toggle-button {
       display: flex;
       align-items: center;
     }
+
+    @include mat.button-toggle-overrides(
+      (
+        height: 1.25rem,
+      )
+    );
   }
 
   hra-software-status-indicator {
