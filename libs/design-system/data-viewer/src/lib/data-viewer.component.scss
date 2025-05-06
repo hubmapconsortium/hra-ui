@@ -1,11 +1,13 @@
+@use '@angular/material' as mat;
 @use '../../../styles/utils';
+@use '../../../styles/vars' as vars;
 
 :host {
   display: block;
-  color: var(--mat-sys-secondary);
-  background-color: var(--mat-sys-on-primary);
+  color: vars.$secondary;
+  background-color: vars.$on-primary;
   border-radius: 0.5rem;
-  border: 0.0625rem solid var(--mat-sys-outline-variant);
+  border: 0.0625rem solid vars.$outline-variant;
   overflow: hidden;
 
   .header,
@@ -18,8 +20,8 @@
     display: flex;
     align-items: center;
     height: 4.5rem;
-    background-color: var(--mat-sys-surface-container-low);
-    border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+    background-color: vars.$surface-container-low;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
     gap: 1rem;
 
     .header-label {
@@ -74,21 +76,30 @@
 
   .release-name {
     @include utils.use-font(label, medium);
-    --mat-option-label-text-color: var(--mat-sys-secondary);
+
+    @include mat.option-overrides(
+      (
+        label-text-color: vars.$secondary,
+      )
+    );
   }
 
   .release-date {
     @include utils.use-font(label, small);
-    color: var(--mat-sys-primary);
+    color: vars.$primary;
   }
 }
 
 .mat-mdc-option-active {
-  background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
+  background-color: utils.with-alpha(vars.$tertiary, 20%) !important;
   outline: none !important;
 
   ::ng-deep .mat-pseudo-checkbox {
-    --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--mat-sys-tertiary);
+    @include mat.pseudo-checkbox-overrides(
+      (
+        full-selected-checkmark-color: vars.$tertiary,
+      )
+    );
   }
 }
 
@@ -101,7 +112,7 @@
 
   .csv-desc {
     @include utils.use-font(label, small);
-    color: var(--mat-sys-primary);
+    color: vars.$primary;
   }
 }
 

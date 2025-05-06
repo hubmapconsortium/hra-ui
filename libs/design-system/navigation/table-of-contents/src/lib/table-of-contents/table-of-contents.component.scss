@@ -1,19 +1,20 @@
 @use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
 
 :host {
   display: block;
-  border: 0.0625rem solid var(--mat-sys-outline-variant);
+  border: 0.0625rem solid vars.$outline-variant;
   border-radius: 0.5rem;
 
   .tagline {
     @include utils.use-font(label, large);
     min-height: 3rem;
     padding: 0.75rem 1.5rem;
-    border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
+    border-bottom: 0.0625rem solid vars.$outline-variant;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    color: var(--mat-sys-secondary);
-    background-color: var(--mat-sys-surface-container-low);
+    color: vars.$secondary;
+    background-color: vars.$surface-container-low;
   }
 
   .links {
@@ -27,14 +28,14 @@
       border-radius: 0.5rem;
       padding: 0.3438rem 1rem;
       margin-left: calc((var(--indentation-level, 1) - 1) * 0.25rem);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
 
       &:hover {
-        background-color: utils.with-alpha(var(--mat-sys-secondary), 8%);
+        background-color: utils.with-alpha(vars.$secondary, 8%);
       }
 
       &:focus-visible {
-        @include utils.inset-outline(var(--mat-sys-primary));
+        @include utils.inset-outline(vars.$primary);
       }
     }
   }
@@ -53,7 +54,7 @@
       padding: 0;
 
       .link.active {
-        background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%);
+        background-color: utils.with-alpha(vars.$tertiary, 20%);
       }
     }
   }
