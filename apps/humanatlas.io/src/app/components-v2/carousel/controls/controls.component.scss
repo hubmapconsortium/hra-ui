@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: flex;
   align-items: center;
@@ -9,18 +12,18 @@
       width: 1.25rem;
       height: 1.25rem;
       margin: 0.875rem;
-      border: 0.125rem solid var(--mat-sys-primary);
+      border: 0.125rem solid vars.$primary;
       border-radius: 100%;
       cursor: pointer;
 
       &.swiper-pagination-bullet-active {
-        border: 0.125rem solid var(--mat-sys-tertiary);
+        border: 0.125rem solid vars.$tertiary;
       }
     }
 
     ::ng-deep .swiper-pagination-bullet-active::before {
       content: '';
-      background-color: var(--mat-sys-tertiary);
+      background-color: vars.$tertiary;
       display: block;
       position: relative;
       border-radius: 100%;
@@ -32,6 +35,10 @@
   }
 
   button {
-    --mdc-icon-button-state-layer-size: 2.5rem;
+    @include mat.button-overrides(
+      (
+        state-layer-size: 2.5rem,
+      )
+    );
   }
 }
