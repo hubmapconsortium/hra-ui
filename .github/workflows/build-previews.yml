@@ -47,10 +47,10 @@ jobs:
 
       - name: Deploy to Netlify
         id: deploy
-        run: npx netlify deploy --dir=deploy --filter=ftu-ui --json
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: npx netlify deploy --dir=deploy --filter=ftu-ui --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --json
 
       - name: Extract Deploy URL
         id: extract-url
