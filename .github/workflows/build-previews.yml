@@ -52,11 +52,11 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
-      - name: Extract Deploy URL
-        id: extract-url
-        run: |
-          DEPLOY_URL=$(echo '${{ steps.deploy.outputs.stdout }}' | jq -r '.url')
-          echo "NETLIFY_URL=$DEPLOY_URL" >> $GITHUB_OUTPUT
+      # - name: Extract Deploy URL
+      #   id: extract-url
+      #   run: |
+      #     DEPLOY_URL=$(echo '${{ steps.deploy.outputs.stdout }}' | jq -r '.url')
+      #     echo "NETLIFY_URL=$DEPLOY_URL" >> $GITHUB_OUTPUT
 
       - name: Create Deploy Comment
         uses: ./.github/actions/deploy-comment
