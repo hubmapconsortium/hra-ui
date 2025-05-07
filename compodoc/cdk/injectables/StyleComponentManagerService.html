@@ -1,0 +1,473 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>cdk</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">cdk</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >StyleComponentManagerService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>styling/src/lib/style-component-manager.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Manager of global style components</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#registerStyleComponents" >registerStyleComponents</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerStyleComponents"></a>
+                    <span class="name">
+                        <span ><b>registerStyleComponents</b></span>
+                        <a href="#registerStyleComponents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerStyleComponents(components: Types, options: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">styling/src/lib/style-component-manager.service.ts:58</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>Types</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Register style components. Each component is registered at most once.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>components</td>
+                                            <td>
+                                                        <code>Types</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Component classes</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Options object</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ComponentRefsFromTypes" target="_self" >ComponentRefsFromTypes&lt;Types&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Component instance references</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ApplicationRef,
+  ComponentRef,
+  EnvironmentInjector,
+  Injectable,
+  Injector,
+  Type,
+  assertInInjectionContext,
+  createComponent,
+  inject,
+  runInInjectionContext,
+} from &#x27;@angular/core&#x27;;
+
+/** Map of component types to instances */
+type ComponentInstanceMap &#x3D; Map&lt;Type&lt;unknown&gt;, ComponentRef&lt;unknown&gt;&gt;;
+
+/** Helper that turns an array of types into an array of component refs */
+type ComponentRefsFromTypes&lt;Types extends Type&lt;unknown&gt;[]&gt; &#x3D; {
+  [Index in keyof Types]: ComponentRef&lt;InstanceType&lt;Types[Index]&gt;&gt;;
+};
+
+/**
+ * Register style components. Each component is registered at most once.
+ * Must be called in an injection context or pass an injector in the options.
+ *
+ * @param components Component classes
+ * @param options Additional options
+ * @returns A component ref for each class
+ */
+export function registerStyleComponents&lt;const Types extends Type&lt;unknown&gt;[]&gt;(
+  components: Types,
+  options?: { injector?: Injector },
+): ComponentRefsFromTypes&lt;Types&gt; {
+  if (!options?.injector) {
+    assertInInjectionContext(registerStyleComponents);
+  }
+
+  const injector &#x3D; options?.injector ?? inject(Injector);
+  const manager &#x3D; inject(StyleComponentManagerService);
+  return manager.registerStyleComponents(components, { injector });
+}
+
+/**
+ * Manager of global style components
+ */
+@Injectable({ providedIn: &#x27;root&#x27; })
+export class StyleComponentManagerService {
+  /** Component instance registry */
+  private readonly registry &#x3D; new Map&lt;ApplicationRef, ComponentInstanceMap&gt;();
+
+  /**
+   * Register style components. Each component is registered at most once.
+   *
+   * @param components Component classes
+   * @param options Options object
+   * @returns Component instance references
+   */
+  registerStyleComponents&lt;const Types extends Type&lt;unknown&gt;[]&gt;(
+    components: Types,
+    options: { injector: Injector },
+  ): ComponentRefsFromTypes&lt;Types&gt; {
+    return runInInjectionContext(options.injector, () &#x3D;&gt; {
+      const instanceMap &#x3D; this.getInstanceMap(inject(ApplicationRef));
+      const environmentInjector &#x3D; inject(EnvironmentInjector);
+
+      return components.map((component) &#x3D;&gt;
+        this.getInstance(component, instanceMap, environmentInjector),
+      ) as ComponentRefsFromTypes&lt;Types&gt;;
+    });
+  }
+
+  /**
+   * Gets the component instance map for an application ref.
+   * The map is created if it doesn&#x27;t already exist and
+   * is registered to cleanup when the application is destroyed.
+   *
+   * @param appRef Application reference
+   * @returns A component instance map
+   */
+  private getInstanceMap(appRef: ApplicationRef): ComponentInstanceMap {
+    let instanceMap &#x3D; this.registry.get(appRef);
+    if (!instanceMap) {
+      instanceMap &#x3D; new Map();
+      this.registry.set(appRef, instanceMap);
+      appRef.onDestroy(() &#x3D;&gt; {
+        this.registry.delete(appRef);
+        instanceMap?.forEach((instance) &#x3D;&gt; instance.destroy());
+      });
+    }
+
+    return instanceMap;
+  }
+
+  /**
+   * Gets or creates a component instance, adding it to the provided instance map.
+   *
+   * @param component Component class
+   * @param instanceMap Instance map to check
+   * @param environmentInjector The environment injector used when creating a new instance
+   * @returns A component ref to the existing or newly created instance
+   */
+  private getInstance&lt;T&gt;(
+    component: Type&lt;T&gt;,
+    instanceMap: ComponentInstanceMap,
+    environmentInjector: EnvironmentInjector,
+  ): ComponentRef&lt;T&gt; {
+    let instance &#x3D; instanceMap.get(component) as ComponentRef&lt;T&gt;;
+    if (!instance) {
+      instance &#x3D; createComponent(component, { environmentInjector });
+      instanceMap.set(component, instance);
+    }
+
+    return instance;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'StyleComponentManagerService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -24,13 +24,13 @@
 <title>cluster_BrandModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="74,-70 74,-268 422,-268 422,-70 74,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_BrandModule_imports</title>
-<polygon fill="none" stroke="black" points="86,-78 86,-130 411,-130 411,-78 86,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_BrandModule_exports</title>
 <polygon fill="none" stroke="black" points="82,-208 82,-260 414,-260 414,-208 82,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_BrandModule_imports</title>
+<polygon fill="none" stroke="black" points="86,-78 86,-130 411,-130 411,-78 86,-78"/>
 </g>
 <!-- BrandLogoComponent -->
 <g id="node1" class="node">
