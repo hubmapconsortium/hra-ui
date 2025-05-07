@@ -70,7 +70,7 @@ runs:
     - name: Copy large assets
       shell: bash
       run: ${{ github.action_path }}/copy_assets.sh "${{ inputs.assets }}"
-      with:
+      env:
         DEPLOY_DIRECTORY: ${{ inputs.deploy-directory }}
 
     - name: Collect artifacts
