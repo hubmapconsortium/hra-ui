@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 :host {
   .organ-tabs {
     padding-bottom: 2rem;
@@ -132,13 +134,15 @@
   }
 }
 
-::ng-deep {
-  .mat-mdc-option {
-    --mat-option-label-text-size: 0.875rem;
-    --mat-option-label-text-tracking: 0;
-    --mat-option-label-text-color: #444c65;
-  }
+@include mat.option-overrides(
+  (
+    label-text-size: 0.875rem,
+    label-text-tracking: 0,
+    label-text-color: #444c65,
+  )
+);
 
+::ng-deep {
   .panelClass {
     position: relative;
     top: 1px;
