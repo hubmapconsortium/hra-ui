@@ -47,7 +47,7 @@ jobs:
 
       - name: Deploy to Netlify
         id: deploy
-        run: npx netlify deploy --dir=deploy --json
+        run: $(npx netlify deploy --dir=deploy --filter=ftu-ui --json --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --site ${{ secrets.NETLIFY_SITE_ID }})
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
