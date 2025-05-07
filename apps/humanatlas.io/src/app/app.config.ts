@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
@@ -12,7 +12,7 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideDesignSystem(),
-    provideRouter(appRoutes, withComponentInputBinding()),
+    provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
     provideMarkdown(),
     provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef]),
   ],
