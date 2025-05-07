@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
@@ -62,9 +61,6 @@ export class ReleaseNotesPageComponent {
   /** Router service */
   readonly router = inject(Router);
 
-  /** Viewport scroller manager */
-  readonly viewport = inject(ViewportScroller);
-
   /** Versions data */
   readonly versions = input.required<ReleaseVersionData[]>();
 
@@ -100,8 +96,6 @@ export class ReleaseNotesPageComponent {
       observer.observe(this.content().nativeElement, { box: 'border-box' });
       cleanup(() => observer.disconnect());
     });
-
-    this.viewport.setOffset([0, 104]);
   }
 
   /**

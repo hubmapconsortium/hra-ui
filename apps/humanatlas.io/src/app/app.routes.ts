@@ -23,6 +23,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'release-notes',
+    redirectTo: 'release-notes/v2.3',
+  },
+  {
     path: '**',
     redirectTo: '',
   },
