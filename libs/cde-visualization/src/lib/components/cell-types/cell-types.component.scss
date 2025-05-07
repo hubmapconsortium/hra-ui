@@ -38,7 +38,8 @@
 
   @include mat.table-overrides(
     (
-      background-color: white row-item-container-height: 1.75rem,
+      background-color: white,
+      row-item-container-height: 1.75rem,
       row-item-outline-width: 0,
       header-headline-color: vars.$arrow-color,
       header-container-height: 2rem,
