@@ -1,22 +1,37 @@
+@use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
-  --mat-text-button-hover-state-layer-opacity: 0;
-  --mat-text-button-pressed-state-layer-opacity: 0;
-  --mat-expansion-container-shape: 0;
-  --mat-expansion-container-background-color: #{vars.$surface-container-low};
+  @include mat.button-overrides(
+    (
+      text-hover-state-layer-opacity: 0,
+      text-pressed-state-layer-opacity: 0,
+    )
+  );
+
+  @include mat.expansion-overrides(
+    (
+      container-shape: 0,
+      container-background-color: vars.$surface-container-low,
+    )
+  );
 
   hra-expansion-panel {
-    --mat-expansion-container-shape: 0;
-    --mat-expansion-header-expanded-state-height: auto;
-    --mat-expansion-header-collapsed-state-height: auto;
-    --mat-expansion-header-hover-state-layer-color: transparent;
     border-color: vars.$outline-variant;
     background-color: vars.$secondary-container;
     border-width: 0 2px 2px 0px;
     border-style: solid;
     box-shadow: none;
+
+    @include mat.expansion-overrides(
+      (
+        container-shape: 0,
+        header-expanded-state-height: auto,
+        header-collapsed-state-height: auto,
+        header-hover-state-layer-color: transparent,
+      )
+    );
 
     ::ng-deep {
       .mat-expansion-panel-body {
@@ -68,7 +83,11 @@
       line-height: 21px;
 
       .mdc-button {
-        --mdc-text-button-label-text-color: #{vars.$on-tertiary-fixed};
+        @include mat.button-overrides(
+          (
+            text-label-text-color: vars.$on-tertiary-fixed,
+          )
+        );
         height: 100%;
         padding: 0;
       }
