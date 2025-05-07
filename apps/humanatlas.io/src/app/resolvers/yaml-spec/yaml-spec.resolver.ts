@@ -12,7 +12,7 @@ export function createYamlSpecResolver<T extends z.ZodTypeAny>(file: string, spe
     const http = inject(HttpClient);
     const assetsHref = inject(APP_ASSETS_HREF);
     const url = Location.joinWithSlash(assetsHref(), file);
-    return http.get(url).pipe(
+    return http.get(url, { responseType: 'text' }).pipe(
       map((data) => load(data, { filename: file })),
       map((data) => spec.parse(data)),
     );
