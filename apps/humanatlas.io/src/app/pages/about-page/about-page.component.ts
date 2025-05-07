@@ -1,5 +1,4 @@
-import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -31,17 +30,6 @@ import { AboutPageData } from '../../resolvers/about-page/about-page.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPageComponent {
-  /** Viewport scroller manager */
-  readonly viewport = inject(ViewportScroller);
-
   /** Page data */
   data = input.required<AboutPageData>();
-
-  /**
-   * Set offset value when scrolling between anchor links
-   * @param viewport Viewport scroller manager
-   */
-  constructor() {
-    this.viewport.setOffset([0, 104]);
-  }
 }
