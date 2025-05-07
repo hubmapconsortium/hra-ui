@@ -7,7 +7,15 @@
   #trigger="cdkOverlayOrigin"
 >
   <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
-  <input matInput [value]="rotation[sliderAxis]" />
+  <input
+    matInput
+    [value]="rotation[sliderAxis]"
+    class="input"
+    type="number"
+    [min]="-180"
+    [max]="180"
+    (change)="changeRotation.emit($any($event.target).value)"
+  />
 </mat-form-field>
 
 <ng-template
@@ -40,17 +48,5 @@
         #slider
       />
     </mat-slider>
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
-      <input
-        matInput
-        class="input"
-        type="number"
-        [value]="rotation[sliderAxis]"
-        [min]="-180"
-        [max]="180"
-        (change)="changeRotation.emit($any($event.target).value)"
-      />
-    </mat-form-field>
   </div>
 </ng-template>

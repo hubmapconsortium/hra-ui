@@ -25,7 +25,7 @@ export class SliderBoxComponent {
       originY: 'center',
       overlayX: 'end',
       overlayY: 'center',
-      offsetX: 80,
+      offsetX: -4,
     },
   ];
 
