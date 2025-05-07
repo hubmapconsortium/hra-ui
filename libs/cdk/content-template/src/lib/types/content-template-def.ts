@@ -7,6 +7,8 @@ export interface ContentTemplateDef<T> {
   component: Type<T>;
   /** Data spec */
   spec: AnyContentTemplateSpec;
+  /** Mapping from ng-content selector to property to project as content */
+  projectedProperties?: Record<string, string>;
 }
 
 /** Any content template defination */

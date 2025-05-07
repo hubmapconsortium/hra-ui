@@ -1,12 +1,19 @@
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
-  --mat-icon-color: var(--mat-sys-on-primary);
+  @include mat.icon-overrides(
+    (
+      color: vars.$on-primary,
+    )
+  );
   display: flex;
   justify-content: center;
   align-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: var(--mat-sys-corner-full);
-  background-color: var(--hra-category-logo-background-color, var(--mat-sys-on-secondary-fixed));
+  border-radius: vars.$corner-full;
+  background-color: var(--hra-category-logo-background-color, vars.$on-secondary-fixed);
 
   .logo {
     height: 60%;

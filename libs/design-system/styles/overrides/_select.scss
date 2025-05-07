@@ -19,8 +19,11 @@
       focus-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
       hover-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
       label-text-color: vars.$secondary,
-      label-text-line-height: 3.5rem,
-      label-text-font: vars.$label-medium,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-tracking: vars.$label-medium-tracking,
+      label-text-size: vars.$label-medium-size,
+      label-text-weight: vars.$label-medium-weight,
       selected-state-label-text-color: vars.$secondary,
       selected-state-layer-color: color-mix(in srgb, vars.$on-tertiary-container 8%, transparent),
     )

@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
@@ -48,10 +49,15 @@
   }
 
   .apps-sidenav {
-    --mat-sidenav-container-width: 35.25rem;
     border-radius: 0;
     background-color: vars.$surface-container-high;
     pointer-events: all;
+
+    @include mat.sidenav-overrides(
+      (
+        container-width: 35.25rem,
+      )
+    );
 
     .category {
       padding-top: 1rem;
