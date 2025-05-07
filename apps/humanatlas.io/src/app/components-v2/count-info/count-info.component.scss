@@ -12,7 +12,7 @@
     flex-direction: column;
 
     .card-icon {
-      color: var(--mat-sys-tertiary);
+      color: vars.$tertiary;
       margin: 1rem 0;
       height: 3rem;
       width: 3rem;
@@ -27,12 +27,12 @@
 
     .card-count {
       @include utils.use-font(headline, large);
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
     }
 
     .card-text {
       @include utils.use-font(label, medium);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
       text-align: center;
       margin-bottom: 1rem;
     }
