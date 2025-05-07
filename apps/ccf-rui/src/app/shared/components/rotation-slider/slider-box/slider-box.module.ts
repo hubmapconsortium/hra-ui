@@ -9,6 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 import { SliderBoxComponent } from './slider-box.component';
 import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [SliderBoxComponent],
@@ -21,6 +22,7 @@ import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
     MatFormFieldModule,
     ButtonsModule,
     MicroTooltipDirective,
+    OverlayModule,
   ],
   exports: [SliderBoxComponent],
 })

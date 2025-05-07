@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, signal } from '@angular/core';
 
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { Axis, Rotation } from '../rotation-slider.component';
 
 @Component({
@@ -10,11 +11,31 @@ import { Axis, Rotation } from '../rotation-slider.component';
 })
 export class SliderBoxComponent {
   @Input() sliderAxis!: Axis;
-  @Input() displayedSlider?: string;
+  /** Rotation value */
   @Input() rotation!: Rotation;
+  /** Step size to increase or decrease value by */
   @Input() step!: number;
-
-  @Output() readonly displaySlider = new EventEmitter<string>();
+  /** Reset rotation */
   @Output() readonly resetRotation = new EventEmitter<string>();
   @Output() readonly changeRotation = new EventEmitter<string>();
+
+  protected readonly positions: ConnectedPosition[] = [
+    {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -4,
+    },
+  ];
+
+  protected readonly isSliderOpen = signal(false);
+
+  showSlider(): void {
+    this.isSliderOpen.set(true);
+  }
+
+  closeSlider(): void {
+    this.isSliderOpen.set(false);
+  }
 }
