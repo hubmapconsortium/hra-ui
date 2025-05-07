@@ -13,18 +13,18 @@
 
     .header {
       @include utils.use-font(display, large);
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
     }
 
     .subheader {
       @include utils.use-font(title, large);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
       margin-bottom: 1rem;
     }
 
     .description {
       @include utils.use-font(body, xl);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
     }
   }
 
@@ -39,7 +39,7 @@
 
   hra-count-info {
     padding: 2rem 1rem;
-    background: var(--mat-sys-surface-dim);
+    background: vars.$surface-dim;
   }
 
   hra-section-cards {
