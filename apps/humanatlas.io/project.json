@@ -23,15 +23,7 @@
         "polyfills": "apps/humanatlas.io/src/polyfills.ts",
         "tsConfig": "apps/humanatlas.io/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/humanatlas.io/src/favicon.png",
-          "apps/humanatlas.io/src/assets",
-          {
-            "glob": "**/*",
-            "input": "apps/humanatlas.io/src/static",
-            "output": "."
-          }
-        ],
+        "assets": ["apps/humanatlas.io/src/favicon.png", "apps/humanatlas.io/src/assets"],
         "styles": ["apps/humanatlas.io/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": ["node_modules/swiper"]

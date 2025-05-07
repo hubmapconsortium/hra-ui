@@ -28,6 +28,10 @@ inputs:
     description: Whether to build storybook
     required: false
     default: 'true'
+  assets:
+    description: 'List of large assets to copy to the output folders, syntax: from1:to1,from2:to2,...'
+    required: false
+    default: 'apps/humanatlas.io/src/static/events/:apps/humanatlas.io/events/'
 
 runs:
   using: composite
@@ -62,6 +66,12 @@ runs:
         npx nx ${{ inputs.nx-command }} --targets=build-storybook --configuration=ci --parallel=false
       env:
         STORYBOOK_DISABLE_TELEMETRY: '1'
+
+    - name: Copy large assets
+      shell: bash
+      run: ${{ github.action_path }}/copy_assets.sh "${{ inputs.assets }}"
+      env:
+        DEPLOY_DIRECTORY: ${{ inputs.deploy-directory }}
 
     - name: Collect artifacts
       id: collect
