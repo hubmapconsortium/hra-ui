@@ -55,7 +55,7 @@ jobs:
 
           echo "$RESPONSE"
 
-          URL=$(echo "$RESPONSE" | jq -r '.url')
+          URL=$(echo "$RESPONSE" | jq -r '.deploy_url')
 
           echo "NETLIFY_URL=$URL" >> $GITHUB_OUTPUT
 
