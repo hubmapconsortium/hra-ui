@@ -3,23 +3,48 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  --mat-table-background-color: white;
-  --mdc-checkbox-unselected-icon-color: #{vars.$secondary};
-  --mdc-checkbox-selected-icon-color: #{vars.$secondary};
-  --mdc-checkbox-selected-checkmark-color: #{vars.$secondary};
-  --mdc-checkbox-state-layer-size: 28px;
-  --mat-sort-arrow-color: #{vars.$secondary};
-  --mat-table-row-item-container-height: 1.75rem;
-  --mat-table-row-item-outline-width: 0;
-  --mat-table-header-headline-color: var(--mat-sort-arrow-color);
-  --mdc-filled-button-container-height: 2rem;
-  --mat-table-header-container-height: 2rem;
-  --mat-menu-item-label-text-color: #{vars.$primary};
   border-color: vars.$outline-variant;
   padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
   border-style: solid;
   overflow: hidden;
+
+  @include mat.checkbox-overrides(
+    (
+      unselected-icon-color: vars.$secondary,
+      selected-icon-color: vars.$secondary,
+      selected-checkmark-color: vars.$secondary,
+      state-layer-size: 1.75rem,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-container-height: 2rem,
+    )
+  );
+
+  @include mat.menu-overrides(
+    (
+      item-label-text-color: vars.$primary,
+    )
+  );
+
+  @include mat.sort-overrides(
+    (
+      arrow-color: vars.$secondary,
+    )
+  );
+
+  @include mat.table-overrides(
+    (
+      background-color: white,
+      row-item-container-height: 1.75rem,
+      row-item-outline-width: 0,
+      header-headline-color: vars.$arrow-color,
+      header-container-height: 2rem,
+    )
+  );
 
   ::ng-deep {
     .celltypes-panel {
