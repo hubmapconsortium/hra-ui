@@ -24,6 +24,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'overview-training',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/training-overview/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
