@@ -1,0 +1,23 @@
+title: Data
+subtitle: |
+  The evolving Human Reference Atlas is constructed with unique data structures called digital objects.
+  Digital objects are organized in the HRA Knowledge Graph, a database application for querying and using
+  all Human Reference Atlas data.
+content:
+  - component: PageSection
+    tagline: Digital Objects
+    anchor: digital-objects
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Digital objects are unique data structures that construct the evolving Human Reference Atlas.
+        CSV files, called crosswalk tables, connect certain digital object types to ontology terminology.
+  - component: PageSection
+    tagline: Collaborator Data Portals
+    anchor: collaborator-data-portals
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Explore data repositories from collaborators who have contributed data to the Human Reference Atlas.
