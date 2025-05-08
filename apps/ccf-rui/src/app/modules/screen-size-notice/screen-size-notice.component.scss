@@ -1,16 +1,22 @@
-@use 'vars';
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
   flex-direction: column;
 
   .header {
-    --mat-dialog-headline-padding: 0 0 0 2rem;
     font: vars.$headline-small;
     letter-spacing: vars.$headline-small-tracking;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+
+    @include mat.dialog-overrides(
+      (
+        headline-padding: 0 0 0 2rem,
+      )
+    );
 
     &::before {
       display: none;
@@ -22,20 +28,21 @@
   }
 
   mat-dialog-content {
-    --mat-dialog-with-actions-content-padding: 0 2rem;
     font: vars.$body-large;
     letter-spacing: vars.$body-large-tracking;
-    --mdc-dialog-supporting-text-color: #{vars.$primary};
-  }
-
-  mat-dialog-actions {
-    --mat-dialog-actions-padding: 1rem 2rem;
+    @include mat.dialog-overrides(
+      (
+        actions-padding: 1rem 2rem,
+        container-shape: 1rem,
+        supporting-text-color: #{vars.$primary},
+        with-actions-content-padding: 0 2rem,
+      )
+    );
   }
 }
 
 ::ng-deep {
   .mat-mdc-dialog-container .mdc-dialog__surface {
-    --mdc-dialog-container-shape: 1rem;
     box-shadow: unset;
   }
 }
