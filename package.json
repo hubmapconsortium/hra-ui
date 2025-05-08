@@ -192,6 +192,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
     "lint-staged": "^15.2.7",
+    "netlify-cli": "^21.1.0",
     "ng-packagr": "18.2.1",
     "ngx-build-plus": "^18.0.0",
     "nx": "19.8.14",
