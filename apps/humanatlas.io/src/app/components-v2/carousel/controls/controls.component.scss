@@ -35,7 +35,7 @@
   }
 
   button {
-    @include mat.button-overrides(
+    @include mat.icon-button-overrides(
       (
         state-layer-size: 2.5rem,
       )
