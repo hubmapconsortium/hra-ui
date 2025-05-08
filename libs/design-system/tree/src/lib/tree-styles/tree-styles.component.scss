@@ -3,13 +3,15 @@
 @use '../../../../styles/vars';
 
 @include utils.global-styles() {
-  letter-spacing: vars.$label-medium-tracking;
-  cursor: pointer;
-  user-select: none;
-  outline: none;
+  mat-tree {
+    letter-spacing: vars.$label-medium-tracking;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
 
-  &:focus-visible .node-content {
-    border-color: vars.$tertiary;
+    &:focus-visible .node-content {
+      border-color: vars.$tertiary;
+    }
   }
 
   @include mat.tree-overrides(
