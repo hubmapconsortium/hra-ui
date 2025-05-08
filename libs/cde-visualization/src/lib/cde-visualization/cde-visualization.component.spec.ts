@@ -91,10 +91,6 @@ describe('CdeVisualizationComponent', () => {
     embedResult.view.signal.mockReturnThis();
   });
 
-  it('should render', async () => {
-    await expect(setup()).resolves.toBeDefined();
-  });
-
   it('filters the distances based on the current selection', async () => {
     const { fixture } = await setup();
     fixture.componentInstance.cellTypesSelection.set(['t-cell', 'b-cell']);
