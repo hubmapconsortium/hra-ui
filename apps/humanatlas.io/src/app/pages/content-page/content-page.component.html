@@ -1,0 +1,12 @@
+<hra-table-of-contents-layout>
+  <hra-table-of-contents-layout-header>
+    <hra-page-section [tagline]="data().title">
+      <span>{{ data().subtitle }}</span>
+      <!-- action button here -->
+    </hra-page-section>
+  </hra-table-of-contents-layout-header>
+
+  @for (item of data().content; track item) {
+    <ng-container *hraContentTemplateOutlet="item" />
+  }
+</hra-table-of-contents-layout>

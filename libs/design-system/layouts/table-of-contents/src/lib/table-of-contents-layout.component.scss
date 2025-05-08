@@ -1,0 +1,53 @@
+:host {
+  display: grid;
+  grid-template:
+    'header' auto
+    'toc' auto
+    'content' auto
+    / auto;
+  row-gap: 4rem;
+
+  .header {
+    grid-area: header;
+    max-width: 81.25rem;
+    justify-self: stretch;
+  }
+
+  .toc {
+    grid-area: toc;
+  }
+
+  .content {
+    grid-area: content;
+    max-width: 81.25rem;
+    justify-self: stretch;
+  }
+
+  .header,
+  .content,
+  .toc {
+    margin: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .header,
+    .content,
+    .toc {
+      margin: 0 2.5rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    grid-template:
+      'header toc' auto
+      'content toc' 1fr
+      / auto 17rem;
+
+    .toc {
+      position: sticky;
+      top: 2.5rem;
+      height: min-content;
+      margin: 2.5rem 0.75rem 1rem;
+    }
+  }
+}

@@ -1,12 +1,22 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
 @include utils.global-styles() {
   table[matSort] {
-    --mat-sort-arrow-color: vars.$secondary;
-    --mat-table-background-color: vars.$surface-container-low;
-    --mat-table-header-container-height: 2rem;
-    --mat-table-row-item-container-height: 2rem;
+    @include mat.sort-overrides(
+      (
+        arrow-color: vars.$secondary,
+      )
+    );
+
+    @include mat.table-overrides(
+      (
+        background-color: vars.$surface-container-low,
+        header-container-height: 2rem,
+        row-item-container-height: 2rem,
+      )
+    );
 
     th,
     tr > td {
@@ -53,7 +63,7 @@
   hra-table.vertical-dividers {
     th:not(:first-of-type),
     td:not(:first-of-type) {
-      border-left: 1px solid var(--mat-sys-outline) !important;
+      border-left: 1px solid vars.$outline !important;
     }
   }
 
@@ -76,16 +86,25 @@
   }
 
   table {
-    --mat-sort-arrow-color: var(--mat-sys-secondary);
-    --mat-table-background-color: var(--mat-sys-on-primary);
-    --mat-table-header-container-height: 2.5rem;
-    --mat-table-row-item-container-height: 2.5rem;
-    --mat-table-row-item-label-text-color: var(--mat-sys-primary);
-    --mat-table-header-headline-color: var(--mat-sys-secondary);
-    --mat-table-row-item-outline-color: var(--mat-sys-outline-variant);
+    @include mat.sort-overrides(
+      (
+        arrow-color: vars.$secondary,
+      )
+    );
+
+    @include mat.table-overrides(
+      (
+        background-color: vars.$on-primary,
+        header-container-height: 2.5rem,
+        row-item-container-height: 2.5rem,
+        row-item-label-text-color: vars.$primary,
+        header-headline-color: vars.$secondary,
+        row-item-outline-color: vars.$outline-variant,
+      )
+    );
 
     th {
-      border-bottom-color: var(--mat-sys-outline);
+      border-bottom-color: vars.$outline;
     }
 
     th,
@@ -94,7 +113,7 @@
     }
 
     thead {
-      background: var(--mat-sys-surface-dim);
+      background: vars.$surface-dim;
       border-bottom: 1px;
     }
 

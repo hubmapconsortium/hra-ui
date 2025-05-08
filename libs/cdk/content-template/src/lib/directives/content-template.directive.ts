@@ -1,7 +1,10 @@
+import { coerceArray, coerceElement } from '@angular/cdk/coercion';
 import {
+  ComponentMirror,
   ComponentRef,
   Directive,
   effect,
+  ErrorHandler,
   inject,
   input,
   reflectComponentType,
@@ -10,8 +13,29 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
-import { AnyContentTemplate, Classes, Styles } from '../types/content-template.schema';
+import { AnyContentTemplateDef } from '../types/content-template-def';
+import { AnyContentTemplate, Classes, ProjectedTemplateContent, Styles } from '../types/content-template.schema';
 import { classIter, styleIter } from '../utils/iters';
+
+/**
+ * Creates an error for definition lookup failures
+ *
+ * @param tag Component tag
+ * @returns A new error
+ */
+function getDefinitionLookupError(tag: string): Error {
+  return new Error(`No component definition for ${tag}`);
+}
+
+/**
+ * Creates an error for component reflection failures
+ *
+ * @param tag Component tag
+ * @returns A new error
+ */
+function getComponentReflectionError(tag: string): Error {
+  return new Error(`Unable to retrieve runtime information for ${tag}`);
+}
 
 /** A structural directive that renders a content template component */
 @Directive({
@@ -23,14 +47,18 @@ export class ContentTemplateOutletDirective {
 
   /** View container */
   private readonly viewContainerRef = inject(ViewContainerRef);
-  /** Content template definitions service */
-  private readonly contentTemplateService = inject(ContentTemplateDefRegistryService);
+  /** Renderer */
+  private readonly renderer = inject(Renderer2);
+  /** Error handler */
+  private readonly errorHandler = inject(ErrorHandler);
+  /** Content template definitions registry */
+  private readonly registry = inject(ContentTemplateDefRegistryService);
 
   /** Initializes the outlet */
   constructor() {
     effect((onCleanup) => {
-      const ref = this.render(this.data());
-      onCleanup(() => ref.destroy());
+      this.render(this.data());
+      onCleanup(() => this.viewContainerRef.clear());
     });
   }
 
@@ -41,55 +69,129 @@ export class ContentTemplateOutletDirective {
    * @returns A reference to the rendered component
    */
   private render(data: AnyContentTemplate): ComponentRef<unknown> {
-    const [component, parsedData] = this.selectComponentWithData(data);
-    const ref = this.viewContainerRef.createComponent(component);
+    const { viewContainerRef } = this;
+    const initialViewCount = viewContainerRef.length;
+    try {
+      const { component, spec, projectedProperties } = this.getDefinition(data.component);
+      const parsedData = spec.parse(data);
+      const mirror = this.reflectComponent(data.component, component);
+      const inputs = mirror.inputs.map((o) => o.propName);
+      const selectors = [...mirror.ngContentSelectors];
+      const projectableNodes = this.renderProjectedContent(selectors, projectedProperties, parsedData);
+      const ref = this.viewContainerRef.createComponent(component, { projectableNodes });
+      const el = coerceElement(ref.location);
 
-    this.setClasses(ref, parsedData.classes);
-    this.setStyles(ref, parsedData.styles);
-    this.setInputs(ref, parsedData);
+      this.bindClasses(el, parsedData.classes);
+      this.bindStyles(el, parsedData.styles);
+      this.bindInputs(ref, inputs, parsedData);
 
-    return ref;
+      return ref;
+    } catch (error: unknown) {
+      // Clean up all views created during this render call
+      while (viewContainerRef.length > initialViewCount) {
+        viewContainerRef.remove();
+      }
+
+      return this.handleError(data, error);
+    }
   }
 
-  private selectComponentWithData(data: AnyContentTemplate): [Type<unknown>, AnyContentTemplate] {
-    const def = this.contentTemplateService.getDef(data.component);
-    if (!def) {
-      throw new Error(`No definition for ${data.component}`);
-      // TODO return an error component instead!
+  /**
+   * Lookup a component definition
+   *
+   * @param tag Component tag
+   * @returns Definition object
+   * @throws If there is no definition for the tag
+   */
+  private getDefinition(tag: string): AnyContentTemplateDef {
+    const def = this.registry.getDef(tag);
+    if (def) {
+      return def;
     }
 
-    const parseResult = def.spec.safeParse(data);
-    if (!parseResult.success) {
-      throw new Error(`Failed to parse data for ${data.component}: ${parseResult.error.format()}`);
-      // TODO return an error component instead!
+    throw getDefinitionLookupError(tag);
+  }
+
+  /**
+   * Retrieve metadata about a component
+   *
+   * @param tag Component tag
+   * @param component Component class
+   * @returns A component mirror
+   * @throws If there is no metadata for the component
+   */
+  private reflectComponent(tag: string, component: Type<unknown>): ComponentMirror<unknown> {
+    const mirror = reflectComponentType(component);
+    if (mirror) {
+      return mirror;
     }
 
-    return [def.component, parseResult.data];
+    throw getComponentReflectionError(tag);
+  }
+
+  /**
+   * Renders projected content
+   *
+   * @param selectors ng-content selectors
+   * @param projectedProperties Mapping from selector to a property in the data
+   * @param data Component data
+   * @returns A nested list of nodes for each selector
+   */
+  private renderProjectedContent(
+    selectors: string[],
+    projectedProperties: Record<string, string> | undefined,
+    data: AnyContentTemplate,
+  ): Node[][] | undefined {
+    if (selectors.length === 0 || projectedProperties === undefined) {
+      return undefined;
+    }
+
+    return selectors.map((selector) => this.renderProjectedContentForSelector(selector, projectedProperties, data));
+  }
+
+  /**
+   * Renders projected content for a specific selector
+   *
+   * @param selector Selector string
+   * @param projectedProperties Mapping from selector to a property in the data
+   * @param data Component data
+   * @returns A list of nodes
+   */
+  private renderProjectedContentForSelector(
+    selector: string,
+    projectedProperties: Record<string, string>,
+    data: AnyContentTemplate,
+  ): Node[] {
+    const prop = projectedProperties[selector];
+    const templates = (prop && data[prop]) as ProjectedTemplateContent | undefined;
+    if (templates === undefined) {
+      return [];
+    }
+
+    return coerceArray(templates).map((template) => coerceElement(this.render(template).location));
   }
 
   /**
    * Adds classes to the component's element
    *
-   * @param ref Reference to the component
-   * @param data Component data
+   * @param el Reference to the element
+   * @param classes Html classes
    */
-  private setClasses(ref: ComponentRef<unknown>, classes: Classes | undefined): void {
-    const renderer = ref.injector.get(Renderer2);
+  private bindClasses(el: Element, classes: Classes | undefined): void {
     for (const cls of classIter(classes)) {
-      renderer.addClass(ref.location, cls);
+      this.renderer.addClass(el, cls);
     }
   }
 
   /**
    * Sets inline styles on the component's element
    *
-   * @param ref Reference to the component
-   * @param data Component data
+   * @param el Reference to the element
+   * @param styles Css styles
    */
-  private setStyles(ref: ComponentRef<unknown>, styles: Styles | undefined): void {
-    const renderer = ref.injector.get(Renderer2);
-    for (const [style, value] of styleIter(styles)) {
-      renderer.setStyle(ref.location, style, value);
+  private bindStyles(el: Element, styles: Styles | undefined): void {
+    for (const [style, value, flags] of styleIter(styles)) {
+      this.renderer.setStyle(el, style, value, flags);
     }
   }
 
@@ -97,15 +199,27 @@ export class ContentTemplateOutletDirective {
    * Binds input values from the data to the component
    *
    * @param ref Reference to the component
+   * @param inputs Input names
    * @param data Component data
    */
-  private setInputs(ref: ComponentRef<unknown>, data: AnyContentTemplate): void {
-    const mirror = reflectComponentType(ref.componentType);
-    const inputs = mirror?.inputs.map((o) => o.propName) ?? [];
+  private bindInputs(ref: ComponentRef<unknown>, inputs: string[], data: AnyContentTemplate): void {
     for (const key of inputs) {
       if (key in data) {
         ref.setInput(key, data[key]);
       }
     }
+  }
+
+  /**
+   * Handles errors thrown during rendering
+   *
+   * @param data Component data
+   * @param error Caught error
+   * @returns A component displaying the error
+   */
+  private handleError(data: AnyContentTemplate, error: unknown): ComponentRef<unknown> {
+    this.errorHandler.handleError(error);
+    // TODO
+    throw new Error('TODO render error component instead', { cause: error });
   }
 }

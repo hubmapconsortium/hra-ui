@@ -37,6 +37,11 @@ export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z.lazy(()
   return z.discriminatedUnion('component', contentTemplateSpecs);
 });
 
+/** Projected template content */
+export type ProjectedTemplateContent = z.infer<typeof ProjectedTemplateContentSchema>;
+/** Schema for projected content */
+export const ProjectedTemplateContentSchema = z.union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()]);
+
 /**
  * Sets the content template specs used when validating with `AnyContentTemplateSchema`
  *

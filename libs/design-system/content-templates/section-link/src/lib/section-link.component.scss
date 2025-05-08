@@ -57,6 +57,10 @@ $level-configs: (
       .icon {
         visibility: hidden;
       }
+
+      &:focus-visible .icon {
+        visibility: visible;
+      }
     }
   }
 
@@ -66,6 +70,12 @@ $level-configs: (
 
   &:hover .link-container .link .icon {
     visibility: visible;
+  }
+
+  @media (max-width: 639.9999px) {
+    .link-container {
+      display: none;
+    }
   }
 
   @each $level, $config in $level-configs {

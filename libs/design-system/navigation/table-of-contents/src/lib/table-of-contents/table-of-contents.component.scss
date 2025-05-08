@@ -1,53 +1,61 @@
 @use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
 
 :host {
-  ng-scrollbar {
-    display: flex;
-    flex-direction: column;
-    background: var(--mat-sys-on-primary);
-    z-index: 2;
-    overflow: auto;
-    width: 100%;
-    justify-self: anchor-center;
-    position: relative;
-    border: 1px solid var(--mat-sys-outline-variant);
-    border-radius: 0.5rem;
-    margin-bottom: 4rem;
-  }
+  display: block;
+  border: 0.0625rem solid vars.$outline-variant;
+  border-radius: 0.5rem;
 
-  .link-container {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .navigation-top {
+  .tagline {
     @include utils.use-font(label, large);
-    color: var(--mat-sys-secondary);
     min-height: 3rem;
-    align-content: center;
-    padding-left: 1.5rem;
-    background-color: var(--mat-sys-surface-container-low);
-    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    color: vars.$secondary;
+    background-color: vars.$surface-container-low;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    @include utils.use-font(label, medium);
+    padding: 0.5rem;
+
+    .link {
+      min-height: 2rem;
+      border-radius: 0.5rem;
+      padding: 0.3438rem 1rem;
+      margin-left: calc((var(--indentation-level, 1) - 1) * 0.25rem);
+      color: vars.$primary;
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$primary);
+      }
+    }
   }
 
   @media (min-width: 1000px) {
-    ng-scrollbar {
-      height: 100%;
-      padding: 2.5rem 0.75rem 0 0.75rem;
-      border: none;
-      margin-bottom: 0;
-    }
+    border: none;
 
-    .link-container {
-      padding: 0;
-    }
-
-    .navigation-top {
+    .tagline {
       min-height: 2.5rem;
+      padding: 0.5rem 1rem;
+      border-bottom: none;
       background-color: unset;
-      border-bottom: unset;
-      padding-left: 1rem;
+    }
+
+    .links {
+      padding: 0;
+
+      .link.active {
+        background-color: utils.with-alpha(vars.$tertiary, 20%);
+      }
     }
   }
 }

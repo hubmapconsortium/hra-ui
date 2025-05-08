@@ -94,34 +94,36 @@ $overrides: (
 );
 
 @mixin custom-variants() {
-  // Body XL
-  --mat-sys-body-xl: 400 1.125rem / 1.6875rem #{$_plain};
-  --mat-sys-body-xl-font: #{$_plain};
-  --mat-sys-body-xl-line-height: 1.6875rem;
-  --mat-sys-body-xl-size: 1.125rem;
-  --mat-sys-body-xl-tracking: 0rem;
-  --mat-sys-body-xl-weight: 400;
+  & {
+    // Body XL
+    --mat-sys-body-xl: 400 1.125rem / 1.6875rem #{$_plain};
+    --mat-sys-body-xl-font: #{$_plain};
+    --mat-sys-body-xl-line-height: 1.6875rem;
+    --mat-sys-body-xl-size: 1.125rem;
+    --mat-sys-body-xl-tracking: 0rem;
+    --mat-sys-body-xl-weight: 400;
 
-  // Wordmark
-  --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem #{$_brand};
-  --mat-sys-wordmark-large-font: #{$_brand};
-  --mat-sys-wordmark-large-line-height: 2.25rem;
-  --mat-sys-wordmark-large-size: 1.5625rem;
-  --mat-sys-wordmark-large-tracking: 0.00625rem;
-  --mat-sys-wordmark-large-weight: 400;
+    // Wordmark
+    --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem #{$_brand};
+    --mat-sys-wordmark-large-font: #{$_brand};
+    --mat-sys-wordmark-large-line-height: 2.25rem;
+    --mat-sys-wordmark-large-size: 1.5625rem;
+    --mat-sys-wordmark-large-tracking: 0.00625rem;
+    --mat-sys-wordmark-large-weight: 400;
 
-  --mat-sys-wordmark-small: 400 0.75rem / 1.125rem #{$_brand};
-  --mat-sys-wordmark-small-font: #{$_brand};
-  --mat-sys-wordmark-small-line-height: 1.125rem;
-  --mat-sys-wordmark-small-size: 0.75rem;
-  --mat-sys-wordmark-small-tracking: 0rem;
-  --mat-sys-wordmark-small-weight: 400;
+    --mat-sys-wordmark-small: 400 0.75rem / 1.125rem #{$_brand};
+    --mat-sys-wordmark-small-font: #{$_brand};
+    --mat-sys-wordmark-small-line-height: 1.125rem;
+    --mat-sys-wordmark-small-size: 0.75rem;
+    --mat-sys-wordmark-small-tracking: 0rem;
+    --mat-sys-wordmark-small-weight: 400;
 
-  // Micro label
-  --mat-sys-label-micro: 500 0.625rem / 1rem #{$_brand};
-  --mat-sys-label-micro-font: #{$_brand};
-  --mat-sys-label-micro-line-height: 1rem;
-  --mat-sys-label-micro-size: 0.625rem;
-  --mat-sys-label-micro-tracking: 0rem;
-  --mat-sys-label-micro-weight: 500;
+    // Micro label
+    --mat-sys-label-micro: 500 0.625rem / 1rem #{$_brand};
+    --mat-sys-label-micro-font: #{$_brand};
+    --mat-sys-label-micro-line-height: 1rem;
+    --mat-sys-label-micro-size: 0.625rem;
+    --mat-sys-label-micro-tracking: 0rem;
+    --mat-sys-label-micro-weight: 500;
+  }
 }
