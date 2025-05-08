@@ -7,6 +7,13 @@ import { load } from 'js-yaml';
 import { map } from 'rxjs';
 import { z } from 'zod';
 
+/**
+ * Creates a resolver function that loads and validates a yaml file
+ *
+ * @param file Yaml file path
+ * @param spec Zod schema to validate the spec
+ * @returns A resolver function
+ */
 export function createYamlSpecResolver<T extends z.ZodTypeAny>(file: string, spec: T): ResolveFn<z.infer<T>> {
   return () => {
     const http = inject(HttpClient);

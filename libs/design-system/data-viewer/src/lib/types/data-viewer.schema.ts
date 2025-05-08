@@ -44,8 +44,10 @@ export const ReleaseVersionDataSchema = z.object({
   organData: ViewerOrganDataSchema.array(),
 });
 
+/** Data viewer component data */
 export type DataViewer = z.infer<typeof DataViewerSchema>;
 
+/** Schema for data viewer component */
 export const DataViewerSchema = ContentTemplateSchema.extend({
   component: z.literal('DataViewer'),
   variant: z.string(),
