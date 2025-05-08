@@ -1,209 +1,227 @@
-@use 'utils';
-@use 'vars';
+@use '@angular/material' as mat;
+@use '../../../../libs/design-system/styles/utils' as utils;
+@use '../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   .sidenav-content {
     --mat-sidenav-container-background-color: #{vars.$surface-container-low};
-    width: fit-content;
+  width: fit-content;
+  @include mat.sidenav-overrides(
+    (
+      container-background-color: vars.$surface-container-low,
+    )
+  );
 
-    .sidenav-header {
-      display: flex;
-      align-items: center;
-      font: vars.$title-medium;
-      height: 4.5rem;
-      padding: 0 1rem 0 1.5rem;
-
-      .sidenav-title {
-        vertical-align: text-bottom;
-        color: vars.$secondary;
-      }
-
-      ccf-filters-content {
-        height: calc(100% - 4.5rem);
-      }
-    }
-  }
-
-  .left-panel,
-  hra-nav-header-buttons {
-    border-right: 1px solid vars.$outline-variant;
-  }
-
-  hra-nav-header-buttons,
-  .vis-panel {
-    border-bottom: 1px solid vars.$outline-variant;
-  }
-
-  .right-panel {
-    border-left: 1px solid vars.$outline-variant;
-  }
-
-  .page-content {
-    display: grid;
-    grid-template-columns: 24.5rem auto 24.625rem;
-    grid-template-rows: 0rem 0rem 5rem 1fr;
-    grid-template-areas:
-      'progress progress progress'
-      'back back back'
-      'header vis-panel right'
-      'left content right';
-    height: 100%;
-
-    background-color: vars.$surface-container-low;
-  }
-
-  &.embedded .page-content {
-    grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
-
-    .ontologies {
-      max-height: calc(100vh - 14.375rem);
-    }
-  }
-
-  &:not(.embedded) .page-content hra-back-button-bar {
-    display: none;
-  }
-
-  mat-progress-bar {
-    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
-    --mdc-linear-progress-track-color: transparent;
-    grid-area: progress;
-  }
-
-  hra-back-button-bar {
-    grid-area: back;
-  }
-
-  ::ng-deep hra-nav-header-buttons {
-    grid-area: header;
-    height: 100%;
-    align-items: center;
-    padding-left: 1rem;
-
-    .app-logo {
-      margin-right: 0rem !important;
-      height: 2.5rem;
-    }
-
-    .app-name {
-      margin-left: 0.75rem !important;
-    }
-
-    .logos-text .app-label {
-      font: vars.$title-medium !important;
-      letter-spacing: vars.$title-medium-tracking !important;
-    }
-  }
-
-  .vis-panel {
-    grid-area: vis-panel;
+  .sidenav-header {
     display: flex;
     align-items: center;
-    height: 100%;
-    padding: 0 1rem;
+    font: vars.$title-medium;
+    height: 4.5rem;
+    padding: 0 1rem 0 1.5rem;
 
-    .tagline {
-      @include utils.use-font(label, large);
-      margin-right: 0.125rem;
-    }
-
-    hra-expansion-panel-header-content {
-      width: 100%;
-    }
-
-    .filler {
-      flex-grow: 1;
-    }
-  }
-
-  .left-panel {
-    grid-area: left;
-    display: grid;
-    grid-template-rows: 3.375rem 3rem auto;
-    grid-template-areas:
-      'filter'
-      'toggle'
-      'ontologies';
-
-    .filter-data {
-      grid-area: filter;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 0.5rem;
-
-      .filter-button-label {
-        font: vars.$label-large;
-      }
-
-      .filter-text {
-        font: vars.$label-small;
-        color: vars.$primary;
-      }
-    }
-
-    .filter-button-container {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .filter-text {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: space-between;
-      margin-left: 3rem;
-    }
-
-    .toggle-settings {
-      grid-area: toggle;
-      padding: 0 1rem;
-    }
-
-    mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
-      width: 100%;
-
-      mat-button-toggle {
-        flex-grow: 1;
-      }
-    }
-
-    .ontologies {
-      display: flex;
-      flex-direction: column;
-      max-height: calc(100vh - 11.375rem);
-
-      ccf-ontology-selection {
-        flex: 1 1;
-        overflow: hidden;
-      }
-    }
-
-    .no-selection-notice {
-      font: vars.$label-medium;
+    .sidenav-title {
+      vertical-align: text-bottom;
       color: vars.$secondary;
-      padding: 0 1rem;
     }
-  }
 
-  .right-panel {
-    grid-area: right;
-  }
-
-  .content {
-    grid-area: content;
-    position: relative;
-
-    .spatial-search-button {
-      position: absolute;
-      margin: 0.75rem;
-      z-index: 1;
+    ccf-filters-content {
+      height: calc(100% - 4.5rem);
     }
   }
 }
 
+.left-panel,
+hra-nav-header-buttons {
+  border-right: 1px solid vars.$outline-variant;
+}
+
+hra-nav-header-buttons,
+.vis-panel {
+  border-bottom: 1px solid vars.$outline-variant;
+}
+
+.right-panel {
+  border-left: 1px solid vars.$outline-variant;
+}
+
+.page-content {
+  display: grid;
+  grid-template-columns: 24.5rem auto 24.625rem;
+  grid-template-rows: 0rem 0rem 5rem 1fr;
+  grid-template-areas:
+    'progress progress progress'
+    'back back back'
+    'header vis-panel right'
+    'left content right';
+  height: 100%;
+
+  background-color: vars.$surface-container-low;
+}
+
+&.embedded .page-content {
+  grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
+
+  .ontologies {
+    max-height: calc(100vh - 14.375rem);
+  }
+}
+
+&:not(.embedded) .page-content hra-back-button-bar {
+  display: none;
+}
+
+mat-progress-bar {
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-color: vars.$tertiary,
+      track-color: transparent,
+    )
+  );
+  grid-area: progress;
+}
+
+hra-back-button-bar {
+  grid-area: back;
+}
+
+::ng-deep hra-nav-header-buttons {
+  grid-area: header;
+  height: 100%;
+  align-items: center;
+  padding-left: 1rem;
+
+  .app-logo {
+    margin-right: 0rem !important;
+    height: 2.5rem;
+  }
+
+  .app-name {
+    margin-left: 0.75rem !important;
+  }
+
+  .logos-text .app-label {
+    font: vars.$title-medium !important;
+    letter-spacing: vars.$title-medium-tracking !important;
+  }
+}
+
+.vis-panel {
+  grid-area: vis-panel;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+
+  .tagline {
+    @include utils.use-font(label, large);
+    margin-right: 0.125rem;
+  }
+
+  hra-expansion-panel-header-content {
+    width: 100%;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+}
+
+.left-panel {
+  grid-area: left;
+  display: grid;
+  grid-template-rows: 3.375rem 3rem auto;
+  grid-template-areas:
+    'filter'
+    'toggle'
+    'ontologies';
+
+  .filter-data {
+    grid-area: filter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+
+    .filter-button-label {
+      font: vars.$label-large;
+    }
+
+    .filter-text {
+      font: vars.$label-small;
+      color: vars.$primary;
+    }
+  }
+
+  .filter-button-container {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .filter-text {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-left: 3rem;
+  }
+
+  .toggle-settings {
+    grid-area: toggle;
+    padding: 0 1rem;
+  }
+
+  mat-button-toggle-group {
+    @include mat.button-toggle-overrides(
+      (
+        selected-state-text-color: vars.$secondary,
+      )
+    );
+    width: 100%;
+
+    mat-button-toggle {
+      flex-grow: 1;
+    }
+  }
+
+  .ontologies {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 11.375rem);
+
+    ccf-ontology-selection {
+      flex: 1 1;
+      overflow: hidden;
+    }
+  }
+
+  .no-selection-notice {
+    font: vars.$label-medium;
+    color: vars.$secondary;
+    padding: 0 1rem;
+  }
+}
+
+.right-panel {
+  grid-area: right;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+
+  .spatial-search-button {
+    position: absolute;
+    margin: 0.75rem;
+    z-index: 1;
+  }
+}
+
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-  --mdc-snackbar-container-color: #{vars.$surface-dim};
-  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
+  @include mat.snack-bar-overrides(
+    (
+      container-color: vars.$surface-dim,
+      supporting-text-color: vars.$secondary,
+    )
+  );
+}
 }
