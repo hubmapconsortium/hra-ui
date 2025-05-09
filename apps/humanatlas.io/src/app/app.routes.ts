@@ -38,6 +38,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'millitome',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
