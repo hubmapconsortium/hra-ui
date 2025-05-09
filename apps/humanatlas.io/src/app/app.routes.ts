@@ -31,6 +31,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
