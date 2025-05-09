@@ -1,0 +1,18 @@
+<img alt="" [src]="imageUrl()" />
+<div class="card-content">
+  @if (componentName()) {
+    <h1 class="component-name">{{ componentName() }}</h1>
+  }
+  <span class="description">{{ description() }}</span>
+</div>
+
+<div class="card-footer">
+  <a mat-button hraCtaButton hraButtonSize="medium" [href]="leftActionUrl()">
+    {{ leftActionName() }}
+    <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+  </a>
+  <a mat-button hraCtaButton hraButtonSize="medium" hraButtonVariant="secondary" [href]="rightActionUrl()">
+    {{ rightActionName() }}
+    <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+  </a>
+</div>

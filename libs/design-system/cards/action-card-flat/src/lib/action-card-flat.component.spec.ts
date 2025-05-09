@@ -1,9 +1,9 @@
-import { ElevatedActionCardComponent } from './elevated-action-card.component';
+import { ActionCardFlatComponent } from './action-card-flat.component';
 import { render, screen } from '@testing-library/angular';
 
-describe('ElevatedActionCardComponent', () => {
+describe('ActionCardFlatComponent', () => {
   beforeEach(async () => {
-    await render(ElevatedActionCardComponent, {
+    await render(ActionCardFlatComponent, {
       componentInputs: {
         imageUrl: 'assets/ui-images/placeholder.png',
         productTitle: 'Product Title',

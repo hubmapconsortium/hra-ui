@@ -1,0 +1,12 @@
+<img alt="" [src]="imageUrl()" />
+<mat-divider class="top-divider"></mat-divider>
+<div class="card-content">
+  <h1 class="card-label">{{ tagline() }}</h1>
+  <span class="description">{{ description() }}</span>
+</div>
+
+<div class="card-footer">
+  <a mat-button hraPrimaryButton hraButtonSize="medium" [href]="actionUrl()" target="_blank">
+    {{ actionName() }}
+  </a>
+</div>

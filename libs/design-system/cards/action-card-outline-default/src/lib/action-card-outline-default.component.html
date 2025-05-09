@@ -1,0 +1,18 @@
+<div class="card-content">
+  <div class="card-header">
+    @if (app(); as logo) {
+      <hra-product-logo [id]="logo" class="product-logo" />
+    }
+    <h1 class="card-label">{{ tagline() }}</h1>
+  </div>
+  <span class="description">{{ description() }}</span>
+</div>
+
+<div class="card-footer">
+  <a mat-button hraPrimaryButton hraButtonSize="medium" [href]="leftActionUrl()">
+    {{ leftActionName() }}
+  </a>
+  <a mat-button hraPrimaryButton hraButtonSize="medium" hraButtonVariant="secondary" [href]="rightActionUrl()">
+    {{ rightActionName() }}
+  </a>
+</div>

@@ -1,20 +1,14 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background-color: vars.$surface-container-low;
-  height: 16.5rem;
-  width: 287px;
   display: flex;
   flex-direction: column;
+  width: 17rem;
+  height: 100%;
+  overflow: hidden;
+  background-color: vars.$surface-container-low;
   border: 1px solid vars.$outline;
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+  border-radius: 0.75rem;
 
   .card-content {
     padding: 1rem 1rem 0;
@@ -22,8 +16,7 @@
     overflow-y: auto;
   }
 
-  .product-title,
-  .web-component-name {
+  .card-label {
     font: vars.$title-small;
     letter-spacing: vars.$title-small-tracking;
     color: vars.$on-background;

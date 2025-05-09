@@ -1,14 +1,14 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
-import { ElevatedActionCardComponent } from './elevated-action-card.component';
+import { ActionCardElevatedComponent } from './action-card-elevated.component';
 
 const meta: Meta = {
   title: 'Design System/Cards/Action Card/Elevated Action Card',
-  component: ElevatedActionCardComponent,
+  component: ActionCardElevatedComponent,
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/Explorer-Components?node-id=1309-2257',
+      url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=6123-27683&t=KrvlsowH9Y8kLBqQ-4',
     },
   },
   argTypes: {
@@ -24,14 +24,15 @@ const meta: Meta = {
   ],
 };
 export default meta;
-type Story = StoryObj<ElevatedActionCardComponent>;
+type Story = StoryObj<ActionCardElevatedComponent>;
 
 export const Default: Story = {
   args: {
-    productTitle: 'Small Title',
+    productTitle: 'Small Label',
     imageUrl: 'assets/ui-images/placeholder.png',
-    description: 'This is a placeholder description (>125 characters.)',
-    componentName: 'Large Title',
+    description:
+      'This is a placeholder one sentence short description and ideally it contains less than 125 characters.',
+    componentName: 'Large Label',
     hideEmbedButton: false,
   },
 };

@@ -24,7 +24,7 @@
     <div class="card-collection">
       <div class="cards">
         @for (component of components; track component.id) {
-          <hra-elevated-action-card
+          <hra-action-card-elevated
             class="component-card"
             [imageUrl]="component.previewImage | assetUrl"
             [productTitle]="component.productTitle"
@@ -34,7 +34,7 @@
             (embedClick)="openSidenav(organ, component, 0)"
             (useAppClick)="onUseApp(organ, component)"
           >
-          </hra-elevated-action-card>
+          </hra-action-card-elevated>
         }
       </div>
     </div>

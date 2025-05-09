@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -8,13 +8,13 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
  */
 
 @Component({
-  selector: 'hra-elevated-action-card',
-  imports: [ButtonsModule, CommonModule],
-  templateUrl: './elevated-action-card.component.html',
-  styleUrl: './elevated-action-card.component.scss',
+  selector: 'hra-action-card-elevated',
+  imports: [ButtonsModule, HraCommonModule],
+  templateUrl: './action-card-elevated.component.html',
+  styleUrl: './action-card-elevated.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ElevatedActionCardComponent {
+export class ActionCardElevatedComponent {
   /** Image url */
   readonly imageUrl = input.required<string>();
 

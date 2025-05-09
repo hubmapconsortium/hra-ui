@@ -1,12 +1,11 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  border-radius: 0.5rem;
   overflow: hidden;
   background-color: vars.$surface-container-low;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
   min-width: 17rem;
-  max-width: 21rem;
+  max-width: 24.75rem;
+
   display: flex;
   flex-direction: column;
 
@@ -21,19 +20,11 @@
     overflow-y: auto;
   }
 
-  .product-title,
   .component-name {
     font: vars.$title-large;
     letter-spacing: vars.$title-large-tracking;
     color: vars.$on-background;
     margin: 0;
-  }
-
-  .product-title:has(+ .component-name) {
-    font: vars.$title-medium;
-    letter-spacing: vars.$title-medium-tracking;
-    color: vars.$inverse-surface;
-    margin-bottom: 0.5rem;
   }
 
   .description {
