@@ -231,7 +231,7 @@
             {
               "type": "item",
               "label": "Publications",
-              "url": "https://humanatlas.io/about#publications"
+              "url": "/publications"
             },
             {
               "type": "item",
