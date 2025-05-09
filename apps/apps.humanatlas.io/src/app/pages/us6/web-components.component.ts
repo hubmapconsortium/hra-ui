@@ -21,7 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
-import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
+import { ElevatedActionCardComponent } from '@hra-ui/design-system/cards/elevated-action-card';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
@@ -81,7 +81,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
     AppLabelComponent,
     EmbedSidenavContentComponent,
     NavigationModule,
-    WebComponentCardComponent,
+    ElevatedActionCardComponent,
   ],
   templateUrl: './web-components.component.html',
   styleUrls: ['./web-components.component.scss'],

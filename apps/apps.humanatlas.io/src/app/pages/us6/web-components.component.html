@@ -24,17 +24,17 @@
     <div class="card-collection">
       <div class="cards">
         @for (component of components; track component.id) {
-          <hra-web-component-card
+          <hra-elevated-action-card
             class="component-card"
             [imageUrl]="component.previewImage | assetUrl"
             [productTitle]="component.productTitle"
             [description]="component.description"
-            [webComponentName]="component.webComponentName"
+            [componentName]="component.webComponentName"
             [hideEmbedButton]="component.embedAs === 'external'"
             (embedClick)="openSidenav(organ, component, 0)"
             (useAppClick)="onUseApp(organ, component)"
           >
-          </hra-web-component-card>
+          </hra-elevated-action-card>
         }
       </div>
     </div>

@@ -5,8 +5,8 @@
   overflow: hidden;
   background-color: vars.$surface-container-low;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
-  max-height: 30.125rem;
-  width: 24.5rem;
+  min-width: 17rem;
+  max-width: 21rem;
   display: flex;
   flex-direction: column;
 
@@ -22,14 +22,14 @@
   }
 
   .product-title,
-  .web-component-name {
+  .component-name {
     font: vars.$title-large;
     letter-spacing: vars.$title-large-tracking;
     color: vars.$on-background;
     margin: 0;
   }
 
-  .product-title:has(+ .web-component-name) {
+  .product-title:has(+ .component-name) {
     font: vars.$title-medium;
     letter-spacing: vars.$title-medium-tracking;
     color: vars.$inverse-surface;

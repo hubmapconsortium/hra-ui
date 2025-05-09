@@ -1,10 +1,10 @@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
-import { WebComponentCardComponent } from './web-component-card.component';
+import { ElevatedActionCardComponent } from './elevated-action-card.component';
 
 const meta: Meta = {
-  title: 'Design System/Cards/WebComponentCardComponent',
-  component: WebComponentCardComponent,
+  title: 'Design System/Cards/Action Card/Elevated Action Card',
+  component: ElevatedActionCardComponent,
   parameters: {
     design: {
       type: 'figma',
@@ -14,7 +14,7 @@ const meta: Meta = {
   argTypes: {
     webComponentName: {
       control: 'select',
-      options: ['Web Component Name', undefined],
+      options: ['Component Name', undefined],
     },
   },
   decorators: [
@@ -24,14 +24,14 @@ const meta: Meta = {
   ],
 };
 export default meta;
-type Story = StoryObj<WebComponentCardComponent>;
+type Story = StoryObj<ElevatedActionCardComponent>;
 
 export const Default: Story = {
   args: {
-    productTitle: 'Product Title',
+    productTitle: 'Small Title',
     imageUrl: 'assets/ui-images/placeholder.png',
     description: 'This is a placeholder description (>125 characters.)',
-    webComponentName: 'Web Component Name',
+    componentName: 'Large Title',
     hideEmbedButton: false,
   },
 };

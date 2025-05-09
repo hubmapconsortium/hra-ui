@@ -3,26 +3,30 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
- * Component representing a web component card.
- * Displays an image, product title, web component name, and description.
+ * Component representing an elevated action card, commonly used for web components
+ * Displays an image, product title, component name, and description.
  */
 
 @Component({
-  selector: 'hra-web-component-card',
+  selector: 'hra-elevated-action-card',
   imports: [ButtonsModule, CommonModule],
-  templateUrl: './web-component-card.component.html',
-  styleUrl: './web-component-card.component.scss',
+  templateUrl: './elevated-action-card.component.html',
+  styleUrl: './elevated-action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WebComponentCardComponent {
+export class ElevatedActionCardComponent {
   /** Image url */
   readonly imageUrl = input.required<string>();
+
   /** Product title */
   readonly productTitle = input.required<string>();
-  /** Web Component Name */
-  readonly webComponentName = input<string | undefined>();
+
+  /** Component Name */
+  readonly componentName = input<string | undefined>();
+
   /** Description */
   readonly description = input.required<string>();
+
   /** Hide Embed button */
   readonly hideEmbedButton = input<boolean>();
 
