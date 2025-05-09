@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
 import { AnyContentTemplateDef } from '../types/content-template-def';
-import { AnyContentTemplate, Classes, ProjectedTemplateContent, Styles } from '../types/content-template.schema';
+import { AnyContentTemplate, Classes, ProjectedContentTemplate, Styles } from '../types/content-template.schema';
 import { classIter, styleIter } from '../utils/iters';
 
 /**
@@ -163,7 +163,7 @@ export class ContentTemplateOutletDirective {
     data: AnyContentTemplate,
   ): Node[] {
     const prop = projectedProperties[selector];
-    const templates = (prop && data[prop]) as ProjectedTemplateContent | undefined;
+    const templates = (prop && data[prop]) as ProjectedContentTemplate | undefined;
     if (templates === undefined) {
       return [];
     }

@@ -8,7 +8,7 @@ import { ProfileCardComponent } from './profile-card.component';
 
 const meta: Meta<ProfileCardComponent> = {
   component: ProfileCardComponent,
-  title: 'Design System/Cards/Profile',
+  title: 'Design System/Cards/Profile Card',
   parameters: {
     design: {
       type: 'figma',
@@ -52,7 +52,6 @@ export const Default: Story = {
         [pictureUrl]="pictureUrl"
         [name]="name"
         [description]="description"
-        [actionUrl]="actionUrl"
       >
         <a hraHyperlink [href]="actionUrl" target="_blank" rel="noopener noreferrer" class="action-link">
           Action <mat-icon>arrow_right_alt</mat-icon>
@@ -89,7 +88,6 @@ export const SocialIcons: Story = {
         [pictureUrl]="pictureUrl"
         [name]="name"
         [description]="description"
-        [actionUrl]="actionUrl"
       >
         <div class="social-media-actions" [class.centered]="alignment === 'center'">
           <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">

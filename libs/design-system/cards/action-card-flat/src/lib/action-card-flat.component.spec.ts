@@ -1,9 +1,9 @@
-import { WebComponentCardComponent } from './web-component-card.component';
+import { ActionCardFlatComponent } from './action-card-flat.component';
 import { render, screen } from '@testing-library/angular';
 
-describe('WebComponentCardComponent', () => {
+describe('ActionCardFlatComponent', () => {
   beforeEach(async () => {
-    await render(WebComponentCardComponent, {
+    await render(ActionCardFlatComponent, {
       componentInputs: {
         imageUrl: 'assets/ui-images/placeholder.png',
         productTitle: 'Product Title',

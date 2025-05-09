@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+
+  hra-action-card-outline-default {
+    width: 17.9375rem;
+    height: 16.5rem;
+  }
+}
