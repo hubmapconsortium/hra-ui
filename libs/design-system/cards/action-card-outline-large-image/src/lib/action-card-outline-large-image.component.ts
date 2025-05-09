@@ -21,7 +21,7 @@ export class ActionCardOutlineLargeImageComponent {
   readonly tagline = input<string | undefined>();
 
   /** Description */
-  readonly description = input.required<string>();
+  readonly description = input<string>();
 
   /** Action name */
   readonly actionName = input.required<string>();

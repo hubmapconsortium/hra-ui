@@ -3,8 +3,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  width: 17rem;
-  height: 100%;
+  min-width: 17rem;
+  max-width: 22.25rem;
   overflow: hidden;
   background-color: vars.$surface-container-low;
   border: 1px solid vars.$outline;
@@ -14,6 +14,10 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+  }
+
+  .product-logo {
+    min-width: 2.5rem;
   }
 
   .card-content {
@@ -41,7 +45,6 @@
   .card-footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
     height: 1.5rem;
     margin-bottom: 1.5rem;
   }
