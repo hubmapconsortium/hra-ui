@@ -1,5 +1,5 @@
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { TableComponent } from '../../../../table/src/lib/table/table.component';
+import { TableComponent } from './table.component';
 import { PageTableSchema } from '../types/page-table.schema';
 
 /** Content template definition for TableComponent */
