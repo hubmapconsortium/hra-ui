@@ -20,10 +20,6 @@
       )
     );
 
-    .mat-mdc-row .mat-mdc-cell {
-      border: none;
-    }
-
     th {
       border-bottom-color: var(--mat-sys-outline);
       background: var(--mat-sys-surface-dim);
@@ -143,6 +139,10 @@
       background: inherit;
     }
 
+    .mat-mdc-row .mat-mdc-cell {
+      border: none;
+    }
+
     th {
       color: var(--mat-sys-secondary);
       line-height: normal;
@@ -151,20 +151,16 @@
   }
 
   &.hra-table-style-alternating {
-    tr {
-      border: none;
-    }
-
     tr:nth-child(even) {
       background-color: var(--mat-sys-surface-container);
+    }
+
+    .mat-mdc-row .mat-mdc-cell {
+      border: none;
     }
 
     tr:nth-child(odd) {
       background-color: var(--mat-sys-surface-container-lowest);
     }
-  }
-
-  &.hra-table-style-divider {
-    //
   }
 }
