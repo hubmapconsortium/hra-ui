@@ -18,50 +18,45 @@ content:
   - component: PageSection
     tagline: HRA-VCCF Data Files
     anchor: hra-vccf-data-files
-    level: 2
-    content:
-      component: Markdown
-      data: |
-        The HRA-VCCF is available as comma-separated values in [GitHub](https://github.com/hubmapconsortium/hra-vccf).
-  - component: PageSection
-    tagline: HRA-VCCF Table
-    anchor: hra-vccf-table
     level: 3
     content:
-      component: PageTable
-      columns:
-        position: Position
-        name: Name
-        weight: Weight
-        symbol: Symbol
-        notes: Notes
-      rows:
-        - position: 1
-          name: Hydrogen
-          weight: 1.0079
-          symbol: H
-          notes:
-            markdown: |
-              <span>This is markdown</span>
+      - component: Markdown
+        data: |
+          The HRA-VCCF is available as comma-separated values in [GitHub](https://github.com/hubmapconsortium/hra-vccf).
+      - component: PageTable
+        columns:
+          position: Position
+          name: Name
+          weight: Weight
+          symbol: Symbol
+          notes: Notes
+        rows:
+          - position: 1
+            name: Hydrogen
+            weight: 1.0079
+            symbol: H
+            notes:
+              markdown: |
+                <span>This is markdown</span>
 
-        - position: 2
-          name: Helium
-          weight: 4.0026
-          symbol: He
-          notes:
-            markdown: |
-              <a href="https://www.google.com">This is a link</a>
+          - position: 2
+            name: Helium
+            weight: 4.0026
+            symbol: He
+            notes:
+              markdown: |
+                <a href="https://www.google.com">This is a link</a>
 
-        - position: 3
-          name: Beryllium
-          weight: 9.0122
-          symbol: Be
-          notes:
-            markdown: |
-              <img src="assets/brand/mark/default.svg"></img>
-      style: alternating
-      enableSort: false
-      verticalDividers: false
+          - position: 3
+            name: Beryllium
+            weight: 9.0122
+            symbol: Be
+            notes:
+              markdown: |
+                <img src="assets/brand/mark/default.svg"></img>
+        style: alternating
+        enableSort: false
+        verticalDividers: false
   - component: PageSection
     tagline: Terms of Use
     anchor: terms-of-use
