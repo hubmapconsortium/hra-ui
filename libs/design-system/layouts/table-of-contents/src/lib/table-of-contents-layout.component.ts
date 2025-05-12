@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsComponent } from '@hra-ui/design-system/navigation/table-of-contents';
@@ -20,4 +21,6 @@ export class TableOfContentsLayoutHeaderComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [providePageSectionNavigation()],
 })
-export class TableOfContentsLayoutComponent {}
+export class TableOfContentsLayoutComponent {
+  protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
+}
