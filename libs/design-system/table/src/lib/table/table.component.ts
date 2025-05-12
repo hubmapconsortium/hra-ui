@@ -5,28 +5,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
-
-/** Single table row */
-export type TableRow = Record<string, string | number | TableLink | TableMarkdown>;
-/** Table columns */
-export type TableColumns<T extends TableRow> = (keyof T & string)[] | Partial<Record<keyof T & string, string>>;
-
-/** Value to use if cell contains a link */
-export interface TableLink {
-  /** Link label */
-  label: unknown;
-  /** Link url */
-  url: string;
-}
-
-/** Type for markdown table entry */
-export interface TableMarkdown {
-  /** Markdown as string */
-  markdown: string;
-}
-
-/** Table style */
-export type TableVariant = 'alternating' | 'divider' | 'basic';
+import { TableColumnsForRows, TableRow, TableVariant } from '../types/page-table.schema';
 
 /**
  * Angular Material table with sort feature
@@ -50,11 +29,11 @@ export type TableVariant = 'alternating' | 'divider' | 'basic';
   },
 })
 export class TableComponent<T extends TableRow = TableRow> {
-  /** Unsorted data */
-  readonly data = input.required<T[]>();
-
   /** Columns in table */
-  readonly columns = input.required<TableColumns<T>>();
+  readonly columns = input.required<TableColumnsForRows<T>>();
+
+  /** Unsorted data */
+  readonly rows = input.required<T[]>();
 
   /** Table style */
   readonly style = input<TableVariant>('alternating');
@@ -90,11 +69,11 @@ export class TableComponent<T extends TableRow = TableRow> {
 
   /** Gets the columns in the data that contain only numbers */
   protected readonly numericColumns = computed(() => {
-    if (this.data().length === 0) {
+    if (this.rows().length === 0) {
       return new Set();
     }
 
-    const item = this.data()[0];
+    const item = this.rows()[0];
     return new Set(Object.keys(item).filter((key) => typeof item[key] === 'number'));
   });
 
@@ -107,7 +86,7 @@ export class TableComponent<T extends TableRow = TableRow> {
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
-      this.dataSource.data = this.data();
+      this.dataSource.data = this.rows();
     });
 
     effect(() => {
