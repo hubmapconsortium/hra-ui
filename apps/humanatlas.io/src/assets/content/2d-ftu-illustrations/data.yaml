@@ -25,3 +25,54 @@ content:
         A crosswalk table is then created for each FTU illustration, linking the terms in the ASCT+B table to the
         individual cells in the illustration. This provides an opportunity to add interactive functionality and extends the
         potential uses for each FTU.
+  - component: PageSection
+    tagline: Data Viewer
+    anchor: data-viewer
+    level: 3
+    content:
+      component: DataViewer
+      variant: ftu
+      githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
+      releaseVersionData:
+        - version: '9'
+          label: 9th Release (v2.3)
+          date: December 2024
+          crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv
+          organData:
+            - label: Kidneys
+              icon: kidneys
+              cards:
+                - label: Ascending Thin Limb of Loop of Henle
+                  alt: Image of Ascending Thin Limb of Loop of Henle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+                - label: Cortical Collecting Duct
+                  alt: Image of Cortical Collecting Duct
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/crosswalk.csv
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg
+  - component: PageSection
+    tagline: Summary statistics
+    anchor: summary-statistics
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        A summarized view of the number of anatomical structures and cell types per functional tissue unit.
