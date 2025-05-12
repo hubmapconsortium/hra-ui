@@ -36,6 +36,7 @@ export const TableRowSchema = z.record(z.union([z.string(), z.number(), TableLin
 /** Type for table columns */
 export type TableColumns = z.infer<typeof TableColumnsSchema>;
 
+/** Type for table columns for rows */
 export type TableColumnsForRows<T extends TableRow> = (keyof T & string)[] | Partial<Record<keyof T & string, string>>;
 
 /** Schema for table columns */
