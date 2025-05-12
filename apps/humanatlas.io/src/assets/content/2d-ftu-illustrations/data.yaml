@@ -1,0 +1,27 @@
+title: Functional tissue unit (FTU) illustrations
+subtitle: A functional tissue unit (FTU) is the smallest tissue organization that
+  performs a unique physiologic function and is replicated multiple times in a whole organ.
+  Functional tissue unit illustrations may be used to explore cell type populations by gene,
+  protein, and lipid biomarkers in the Functional Tissue Unit (FTU) Explorer app.
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Functional tissue unit illustrations are anatomically correct illustrations of
+        functional tissue units (FTUs). The illustrations are developed by a specialist in
+        2D medical illustration and approved by organ experts.<br><br>
+
+        Illustrations are created using terms from the Anatomical Structures,
+        Cell Types, and Biomarker (ASCT+B) table for each organ. Subject matter experts collaborate on
+        a list of anatomical structures and/or cell types to be included in each FTU.
+        Histology atlases and data sets are consulted for visual reference, and research is undertaken to
+        determine if cell sizes and their relative number and distribution is known for a given FTU.
+        Reasonable estimates are made when placing cells in the illustration and relating them to a scale bar.<br><br>
+
+        A crosswalk table is then created for each FTU illustration, linking the terms in the ASCT+B table to the
+        individual cells in the illustration. This provides an opportunity to add interactive functionality and extends the
+        potential uses for each FTU.

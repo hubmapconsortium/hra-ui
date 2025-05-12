@@ -24,6 +24,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: '2d-ftu-illustrations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/2d-ftu-illustrations/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
