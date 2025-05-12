@@ -14,7 +14,7 @@ export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
 
 /** Schema for content page data */
 export const ContentPageDataSchema = z.object({
-  // schema: z.string().optional(),
+  $schema: z.string(),
   title: z.string(),
   subtitle: z.string(),
   // actionUrl: z.string().url().optional(),
