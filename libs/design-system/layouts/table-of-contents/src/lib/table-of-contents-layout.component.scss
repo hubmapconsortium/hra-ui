@@ -6,6 +6,7 @@
     'content' auto
     / auto;
   row-gap: 4rem;
+  margin: 2.5rem 0;
 
   .header,
   .content {
@@ -23,6 +24,9 @@
   }
 
   .content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
     grid-area: content;
     padding: 0 1rem 5rem;
   }
@@ -55,9 +59,8 @@
     .toc {
       position: sticky;
       top: 7rem;
+      height: min-content;
       margin: 0 0.75rem 1rem;
-      height: calc(100vh - 7rem);
-      max-height: fit-content;
     }
   }
 }
