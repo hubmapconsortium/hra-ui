@@ -1,4 +1,4 @@
-export { PageTableDef } from './lib/table/page-table.definition';
+export { PageTableDef } from './lib/types/page-table.definition';
 export {
   TableLink,
   TableLinkSchema,

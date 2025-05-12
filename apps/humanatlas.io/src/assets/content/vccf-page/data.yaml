@@ -29,7 +29,13 @@ content:
     level: 3
     content:
       component: PageTable
-      data:
+      columns:
+        position: Position
+        name: Name
+        weight: Weight
+        symbol: Symbol
+        notes: Notes
+      rows:
         - position: 1
           name: Hydrogen
           weight: 1.0079
@@ -53,12 +59,6 @@ content:
           notes:
             markdown: |
               <img src="assets/brand/mark/default.svg"></img>
-      columns:
-        position: Position
-        name: Name
-        weight: Weight
-        symbol: Symbol
-        notes: Notes
       style: alternating
       enableSort: false
       verticalDividers: false
