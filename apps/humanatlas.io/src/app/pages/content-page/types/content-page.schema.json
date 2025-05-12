@@ -43,6 +43,19 @@
         "subtitle": {
           "type": "string"
         },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
         "content": {
           "type": "array",
           "items": {

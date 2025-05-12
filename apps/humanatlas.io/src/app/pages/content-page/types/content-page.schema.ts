@@ -17,7 +17,12 @@ export const ContentPageDataSchema = z.object({
   $schema: z.string(),
   title: z.string(),
   subtitle: z.string(),
-  // actionUrl: z.string().url().optional(),
+  action: z
+    .object({
+      label: z.string(),
+      url: z.string(),
+    })
+    .optional(),
   content: AnyContentTemplateSchema.array(),
 });
 
