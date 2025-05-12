@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, i
 import { MatIconModule } from '@angular/material/icon';
 import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/cdk/icons';
 import { findOrThrow } from '@hra-ui/common/array-util';
+
 import { logos, namespaceConfigs } from './static-data/product-logos.json';
 import { ProductLogo, ProductLogoId } from './types/product-logos.schema';
 

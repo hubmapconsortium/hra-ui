@@ -5,7 +5,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
- * Outline Default Card
+ * Outline Large Image Card
  */
 @Component({
   selector: 'hra-action-card-outline-large-image',

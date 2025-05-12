@@ -1,8 +1,10 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { z } from 'zod';
 
+/** Large image card type */
 export type ActionCardOutlineLargeImage = z.infer<typeof ActionCardOutlineLargeImageSchema>;
 
+/** Large image card schema structure */
 export const ActionCardOutlineLargeImageSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCardOutlineLargeImage'),
   imageUrl: z.string(),
@@ -12,8 +14,7 @@ export const ActionCardOutlineLargeImageSchema = ContentTemplateSchema.extend({
   actionUrl: z.string(),
 });
 
-export type ActionCardOutlineLargeImageList = z.infer<typeof ActionCardOutlineLargeImageListSchema>;
-
+/** Large image card list schema structure */
 export const ActionCardOutlineLargeImageListSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCardOutlineLargeImageList'),
   cards: ActionCardOutlineLargeImageSchema.array(),

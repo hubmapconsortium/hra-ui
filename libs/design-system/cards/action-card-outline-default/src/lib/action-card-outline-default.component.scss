@@ -6,7 +6,6 @@
   min-width: 17rem;
   max-width: 22.25rem;
   overflow: hidden;
-  background-color: vars.$surface-container-low;
   border: 1px solid vars.$outline;
   border-radius: 0.75rem;
 
@@ -45,7 +44,7 @@
   .card-footer {
     display: flex;
     justify-content: space-between;
-    height: 1.5rem;
-    margin-bottom: 1.5rem;
+    font: vars.$label-large;
+    padding: 0 1rem 1rem;
   }
 }

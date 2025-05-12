@@ -1,18 +1,21 @@
-title: Data
+title: Data overview
 subtitle: |
-  The evolving Human Reference Atlas is constructed with unique data structures called digital objects.
-  Digital objects are organized in the HRA Knowledge Graph, a database application for querying and using
-  all Human Reference Atlas data.
+  The evolving Human Reference Atlas is built with distinct data structures called <a href="/overview-data#digital-objects">digital objects</a>.
+  New and updated data is released twice a year on June 15 and December 15.
+actionUrl: https://lod.humanatlas.io/
+actionName: Get data
+category: data
 content:
   - component: PageSection
-    tagline: Digital Objects
+    tagline: Digital objects
     anchor: digital-objects
     level: 2
     content:
       - component: Markdown
         data: |
-          Digital objects are unique data structures that construct the evolving Human Reference Atlas.
-          CSV files, called crosswalk tables, connect certain digital object types to ontology terminology.
+          Digital objects are unique data categories building the Human Reference Atlas. Digital objects are organized within the <a href="https://lod.humanatlas.io" target="_blank">Knowledge Graph database application</a>.
+          Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
+          and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
       - component: ActionCardOutlineDefaultList
         cards:
           - component: ActionCardOutlineDefault
@@ -35,14 +38,6 @@ content:
             app: cell-type-annotations
             tagline: Cell Type Annotations
             description: Ontology ID labels for cell type annotation cell types.
-            leftActionName: Learn more
-            leftActionUrl: http://www.google.com
-            rightActionName: Get data
-            rightActionUrl: http://www.google.com
-          - component: ActionCardOutlineDefault
-            app: asctb-reporter
-            tagline: ASCT+B Tables
-            description: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
             leftActionName: Learn more
             leftActionUrl: http://www.google.com
             rightActionName: Get data
@@ -80,13 +75,13 @@ content:
             rightActionName: Get data
             rightActionUrl: http://www.google.com
   - component: PageSection
-    tagline: Collaborator Data Portals
+    tagline: Collaborator data portals
     anchor: collaborator-data-portals
     level: 2
     content:
       - component: Markdown
         data: |
-          Explore data repositories from collaborators who have contributed data to the Human Reference Atlas.
+          Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
       - component: ActionCardOutlineLargeImageList
         cards:
           - component: ActionCardOutlineLargeImage

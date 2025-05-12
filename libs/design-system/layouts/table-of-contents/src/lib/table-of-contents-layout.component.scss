@@ -3,14 +3,18 @@
   grid-template:
     'header' auto
     'toc' auto
-    'content' auto
-    / auto;
+    'content' auto / auto;
   row-gap: 4rem;
+  padding: 2.5rem 0;
+
+  .header,
+  .content {
+    justify-self: center;
+    max-width: 87.5rem;
+  }
 
   .header {
     grid-area: header;
-    max-width: 81.25rem;
-    justify-self: stretch;
   }
 
   .toc {
@@ -19,19 +23,26 @@
 
   .content {
     grid-area: content;
-    max-width: 81.25rem;
-    justify-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   .header,
-  .content,
+  .content {
+    padding: 0 1rem;
+  }
+
   .toc {
     margin: 0 1rem;
   }
 
   @media (min-width: 640px) {
     .header,
-    .content,
+    .content {
+      padding: 0 2.5rem;
+    }
+
     .toc {
       margin: 0 2.5rem;
     }
@@ -39,15 +50,15 @@
 
   @media (min-width: 1000px) {
     grid-template:
-      'header toc' auto
-      'content toc' 1fr
-      / auto 17rem;
+      'header toc'
+      'content toc';
+    grid-template-columns: auto 272px;
 
     .toc {
       position: sticky;
-      top: 2.5rem;
+      top: 7.5rem;
       height: min-content;
-      margin: 2.5rem 0.75rem 1rem;
+      margin: 0rem 0.75rem 1rem;
     }
   }
 }

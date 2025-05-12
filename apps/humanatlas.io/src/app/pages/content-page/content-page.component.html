@@ -1,8 +1,18 @@
 <hra-table-of-contents-layout>
   <hra-table-of-contents-layout-header>
-    <hra-page-section [tagline]="data().title">
-      <span>{{ data().subtitle }}</span>
-      <!-- action button here -->
+    <hra-page-section
+      [tagline]="data().title"
+      [product]="data().product"
+      [organ]="data().organ"
+      [category]="data().category"
+    >
+      <markdown>{{ data().subtitle }}</markdown>
+      @if (data().actionUrl) {
+        <a mat-button hraCtaButton [href]="data().actionUrl" target="_blank">
+          {{ data().actionName }}
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </a>
+      }
     </hra-page-section>
   </hra-table-of-contents-layout-header>
 

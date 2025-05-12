@@ -1,8 +1,10 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { z } from 'zod';
 
+/** Outline default card type */
 export type ActionCardOutlineDefault = z.infer<typeof ActionCardOutlineDefaultSchema>;
 
+/** Outline default card schema structure */
 export const ActionCardOutlineDefaultSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCardOutlineDefault'),
   app: z.string(),
@@ -14,8 +16,7 @@ export const ActionCardOutlineDefaultSchema = ContentTemplateSchema.extend({
   rightActionUrl: z.string(),
 });
 
-export type ActionCardOutlineDefaultList = z.infer<typeof ActionCardOutlineDefaultListSchema>;
-
+/** Outline default card list schema structure */
 export const ActionCardOutlineDefaultListSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCardOutlineDefaultList'),
   cards: ActionCardOutlineDefaultSchema.array(),
