@@ -1,0 +1,252 @@
+{
+  "$ref": "#/definitions/ContentPage",
+  "definitions": {
+    "AnyContentTemplate": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/DataViewer"
+        },
+        {
+          "$ref": "#/definitions/Markdown"
+        },
+        {
+          "$ref": "#/definitions/PageSection"
+        }
+      ]
+    },
+    "Classes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "ContentPageData": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["title", "subtitle", "content"],
+      "additionalProperties": false
+    },
+    "DataViewer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "DataViewer"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "githubIconsUrl": {
+          "type": "string"
+        },
+        "releaseVersionData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "crosswalkUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "extractionsSitesUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "referenceOrgansUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "organData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "alt": {
+                            "type": "string"
+                          },
+                          "fileUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "fullscreenUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "sourceDataUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "crosswalkUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "files": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              },
+                              "required": ["label", "url"],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": ["label", "fileUrl", "sourceDataUrl", "files"],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": ["label", "icon", "cards"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["version", "label", "date", "organData"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "Markdown": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Markdown"
+        },
+        "classes": {
+          "$ref": "#/definitions/DataViewer/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/DataViewer/properties/styles"
+        },
+        "data": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "PageSection": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageSection"
+        },
+        "classes": {
+          "$ref": "#/definitions/DataViewer/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/DataViewer/properties/styles"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "anchor": {
+          "type": "string"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AnyContentTemplate"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnyContentTemplate"
+              }
+            }
+          ]
+        }
+      },
+      "required": ["component", "tagline", "content"],
+      "additionalProperties": false
+    },
+    "Styles": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "ContentPage": {
+      "$ref": "#/definitions/ContentPageData"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -90,6 +90,10 @@ async function buildJsonSchemaAction(file, options) {
   const module = await import(`data:text/javascript,${encodeURIComponent(code)}`);
   const rootSchema = getRootSchema(file, module, schema);
   const definitions = useDefinitions ? getDefinitions(module, rootSchema) : undefined;
+
+  // If the root schema is lazy this will evaluate it before rather than after the definitions
+  void rootSchema.schema;
+
   const result = zodToJsonSchema(rootSchema, { name, definitions });
   const content = await formatOutput(result, resolve(output));
 

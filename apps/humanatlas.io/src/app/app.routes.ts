@@ -31,6 +31,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'vccf',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
