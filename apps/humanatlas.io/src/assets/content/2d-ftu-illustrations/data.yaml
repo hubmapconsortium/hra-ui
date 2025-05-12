@@ -73,6 +73,6 @@ content:
     anchor: summary-statistics
     level: 3
     content:
-      component: Markdown
-      data: |
-        A summarized view of the number of anatomical structures and cell types per functional tissue unit.
+      - component: Markdown
+        data: |
+          A summarized view of the number of anatomical structures and cell types per functional tissue unit.
