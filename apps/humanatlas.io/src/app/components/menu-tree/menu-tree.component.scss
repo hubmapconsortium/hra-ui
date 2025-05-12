@@ -1,5 +1,12 @@
+@use '@angular/material' as mat;
+
 :host {
-  --mat-icon-color: white;
+  @include mat.icon-overrides(
+    (
+      icon-color: white,
+    )
+  );
+
   .menu-tree-button {
     background-color: #444c65;
     z-index: 2;
@@ -97,7 +104,11 @@
   cursor: pointer;
   display: block;
   padding: 0;
-  --mat-tree-node-min-height: 2.5rem;
+  @include mat.tree-overrides(
+    (
+      node-min-height: 2.5rem,
+    )
+  );
 
   &[aria-expanded='true']:hover {
     background: unset;

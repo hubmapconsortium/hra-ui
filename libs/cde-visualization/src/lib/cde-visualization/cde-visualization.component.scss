@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
@@ -15,7 +16,11 @@
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$tertiary,
+      )
+    );
   }
 
   .header {
@@ -74,9 +79,12 @@
       background-color: vars.$on-primary;
       color: vars.$secondary;
       .mat-mdc-menu-item {
-        --mat-menu-item-with-icon-leading-spacing: 1rem;
-        --mat-menu-item-with-icon-trailing-spacing: 1rem;
-
+        @include mat.menu-overrides(
+          (
+            item-leading-spacing: 1rem,
+            item-trailing-spacing: 1rem,
+          )
+        );
         .mat-mdc-menu-item-text {
           font: vars.$label-medium;
         }
@@ -105,10 +113,14 @@
 }
 
 ::ng-deep .download-snackbar-panel {
-  --mdc-snackbar-container-color: #{vars.$surface-container};
-  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
   translate: 0 -2rem;
   text-align: center;
+  @include mat.snack-bar-overrides(
+    (
+      container-color: vars.$surface-container,
+      supporting-text-color: vars.$secondary,
+    )
+  );
 
   .mdc-snackbar__surface {
     border-radius: 0.5rem !important;

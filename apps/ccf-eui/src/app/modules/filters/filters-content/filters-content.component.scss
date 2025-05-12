@@ -1,4 +1,5 @@
-@use 'vars';
+@use '@angular/material' as mat;
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: grid;
@@ -7,7 +8,11 @@
     'form'
     'buttons';
 
-  --mdc-filled-text-field-container-color: #{vars.$surface-container};
+  @include mat.form-field-overrides(
+    (
+      filled-container-color: vars.$surface-container,
+    )
+  );
 
   form {
     grid-area: form;
@@ -45,9 +50,13 @@
   }
 
   .dropdown-form-field {
-    --mat-form-field-container-height: 3rem;
-    --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
-    --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+    @include mat.form-field-overrides(
+      (
+        container-height: 3rem,
+        filled-with-label-container-padding-top: 1.25rem,
+        filled-with-label-container-padding-bottom: 0rem,
+      )
+    );
 
     ::ng-deep .mdc-floating-label {
       transform: translateY(-100%);
@@ -85,10 +94,14 @@
 }
 
 .dropdown-option {
-  --mdc-list-list-item-label-text-color: #{vars.$primary} !important;
   font: vars.$label-medium !important;
   min-height: 3rem !important;
   outline: none !important;
+  @include mat.option-overrides(
+    (
+      label-text-color: vars.$primary,
+    )
+  );
 
   &.mdc-list-item--selected {
     background-color: rgb(from vars.$tertiary r g b / 0.2) !important;

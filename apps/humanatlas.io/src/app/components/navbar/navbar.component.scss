@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 }
@@ -6,10 +8,11 @@
   display: none;
 }
 
-.mat-mdc-unelevated-button.mat-primary {
-  --mat-mdc-button-persistent-ripple-color: none;
-  --mat-mdc-button-ripple-color: none;
-}
+@include mat.button-overrides(
+  (
+    filled-ripple-color: none,
+  )
+);
 
 .navigation-title {
   height: 100%;
@@ -30,10 +33,6 @@
 .navigation-items > a,
 button {
   color: #444c65;
-  --mat-menu-item-label-text-size: 14px;
-  --mat-menu-item-label-text-line-height: 200%;
-  --mat-menu-item-label-text-weight: 300;
-  --mat-menu-item-label-text-tracking: 0.005em;
   word-wrap: normal;
   overflow: visible;
   min-height: 2rem;
@@ -44,6 +43,15 @@ button {
   padding-top: 0.313rem;
   text-decoration: none;
   line-height: 1.5rem;
+
+  @include mat.menu-overrides(
+    (
+      item-label-text-size: 0.875rem,
+      item-label-text-line-height: 200%,
+      item-label-text-weight: 300,
+      item-label-text-tracking: 0.005em,
+    )
+  );
 }
 
 .inverse {
