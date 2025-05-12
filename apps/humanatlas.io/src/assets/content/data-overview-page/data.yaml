@@ -23,57 +23,57 @@ content:
             tagline: 3D Organs
             description: 3D human organs with ontological terminology.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /3d-reference-library?version=2.1&organ=Blood%20Vasculature
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/ref-organ
           - component: ActionCardOutlineDefault
             app: asctb-reporter
             tagline: ASCT+B Tables
             description: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /asctb-tables
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/asct-b
           - component: ActionCardOutlineDefault
             app: cell-type-annotations
             tagline: Cell Type Annotations
             description: Ontology ID labels for cell type annotation cell types.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /cell-type-annotations
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/ctann
           - component: ActionCardOutlineDefault
             app: ftu
             tagline: Functional Tissue Unit (FTU) Illustrations
             description: Illustrations of the smallest tissue organization performing a unique physiologic function and is replicated multiple times in a human organ.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /2d-ftu-illustrations?version=2.1&organ=Kidney
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/2d-ftu
           - component: ActionCardOutlineDefault
             app: omap
             tagline: Organ Mapping Antibody Panel (OMAP) Tables
             description: Collections of antibodies spatially mapping anatomical structures and cell types.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /omap
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/omap
           - component: ActionCardOutlineDefault
             app: millitome
             tagline: Millitome
             description: Files for assigning spatial locations to HuBMAP IDs and gathering metadata.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /millitome
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/millitome
           - component: ActionCardOutlineDefault
             app: vascular-geometry
             tagline: Vascular Geometry
             description: Human blood vascular system information capturing key attributes of different vessels.
             leftActionName: Learn more
-            leftActionUrl: http://www.google.com
+            leftActionUrl: /vccf
             rightActionName: Get data
-            rightActionUrl: http://www.google.com
+            rightActionUrl: https://lod.humanatlas.io/vascular-geometry
   - component: PageSection
     tagline: Collaborator data portals
     anchor: collaborator-data-portals
@@ -88,24 +88,24 @@ content:
             imageUrl: 'assets/content/data-overview-page/images/HuBMAP.png'
             tagline: Human BioMolecular Atlas Program (HuBMAP) Data Portal
             actionName: Explore
-            actionUrl: http://www.google.com
+            actionUrl: https://portal.hubmapconsortium.org/
           - component: ActionCardOutlineLargeImage
             imageUrl: 'assets/content/data-overview-page/images/SenNet.png'
             tagline: Cellular Senescence Network (SenNet) Data Portal
             actionName: Explore
-            actionUrl: http://www.google.com
+            actionUrl: https://data.sennetconsortium.org/
           - component: ActionCardOutlineLargeImage
             imageUrl: 'assets/content/data-overview-page/images/KPMP.png'
             tagline: Kidney Precision Medicine Project (KPMP) Data Portal
             actionName: Explore
-            actionUrl: http://www.google.com
+            actionUrl: https://www.kpmp.org/
           - component: ActionCardOutlineLargeImage
             imageUrl: 'assets/content/data-overview-page/images/GTEx.png'
             tagline: The Genotype-Tissue Expression (GTEx) Portal
             actionName: Explore
-            actionUrl: http://www.google.com
+            actionUrl: https://www.gtexportal.org/home/
           - component: ActionCardOutlineLargeImage
             imageUrl: 'assets/content/data-overview-page/images/GUDMAP.png'
             tagline: GenitoUrinary Development Molecular Anatomy Project (GUDMAP) Database
             actionName: Explore
-            actionUrl: http://www.google.com
+            actionUrl: https://www.atlas-d2k.org/gudmap/
