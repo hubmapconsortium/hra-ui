@@ -7,13 +7,14 @@ import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { PageTableDef } from '@hra-ui/design-system/table';
+import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, PageTableDef]),
+    provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, PageTableDef, VersionedDataTableDef]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
     provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
