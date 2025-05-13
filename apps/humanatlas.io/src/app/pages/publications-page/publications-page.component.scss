@@ -1,4 +1,5 @@
 @use 'utils';
+@use 'vars';
 
 :host {
   .banner {
@@ -6,10 +7,10 @@
     display: flex;
     justify-content: center;
     padding: 1rem;
-    background-color: var(--mat-sys-secondary);
+    background-color: vars.$secondary;
     align-items: center;
     flex-wrap: wrap;
-    color: var(--mat-sys-on-primary);
+    color: vars.$on-primary;
   }
 
   .banner-text {
@@ -22,59 +23,7 @@
     }
   }
 
-  .page-sections {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
-
   ::ng-deep markdown {
-    overflow-wrap: break-word;
-
-    p:last-of-type {
-      margin-block-end: 0;
-    }
-  }
-
-  // Set the markdown link styling here since we can't use hyperlink directive in markdown
-  ::ng-deep markdown a {
-    text-decoration: none;
-
-    &:link,
-    &:link mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed);
-    }
-
-    &:visited,
-    &:visited mat-icon {
-      color: var(--mat-sys-tertiary-fixed);
-    }
-
-    &:focus-visible,
-    &:hover,
-    &:active {
-      text-decoration: underline solid currentColor 0.0625rem;
-      text-underline-offset: 0.125rem;
-    }
-
-    &:focus-visible {
-      color: var(--mat-sys-secondary);
-      outline: 0.125rem solid var(--mat-sys-tertiary);
-      border-radius: 0.25rem;
-
-      & mat-icon {
-        color: var(--mat-sys-secondary);
-      }
-    }
-
-    &:hover,
-    &:hover mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed);
-    }
-
-    &:active,
-    &:active mat-icon {
-      color: var(--mat-sys-on-tertiary-fixed-variant);
-    }
+    overflow-wrap: anywhere;
   }
 }

@@ -3,8 +3,9 @@ import { ContentPageComponent } from './pages/content-page/content-page.componen
 import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
+import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
 import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { publicationsResolver } from './resolvers/publications-page/publications-page-resolver';
+import { createJsonSpecResolver } from './resolvers/spec.resolver';
 import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
 
 /** Application routes */
@@ -21,7 +22,7 @@ export const appRoutes: Route[] = [
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
-      publications: publicationsResolver,
+      publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
     },
   },
   {
