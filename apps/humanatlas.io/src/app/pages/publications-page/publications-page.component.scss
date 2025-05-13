@@ -1,0 +1,29 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  .banner {
+    @include utils.use-font(display, large);
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: vars.$secondary;
+    align-items: center;
+    flex-wrap: wrap;
+    color: vars.$on-primary;
+  }
+
+  .banner-text {
+    min-width: 18.25rem;
+    text-align: center;
+
+    @media (min-width: 792px) {
+      min-width: 18rem;
+      margin-left: 0.75rem;
+    }
+  }
+
+  ::ng-deep markdown {
+    overflow-wrap: anywhere;
+  }
+}
