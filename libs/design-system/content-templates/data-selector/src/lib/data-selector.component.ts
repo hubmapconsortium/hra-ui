@@ -13,6 +13,7 @@ import { DataSelector } from './types/data-selector.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataSelectorComponent {
+  /** Label for the selector */
   readonly label = input.required<string>();
 
   /** An array of “payload” objects, of any shape */

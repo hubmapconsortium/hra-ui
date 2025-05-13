@@ -1,8 +1,10 @@
 import { AnyContentTemplateSchema, ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { z } from 'zod';
 
+/** DataSelector component data */
 export type DataSelector = z.infer<typeof DataSelectorSchema>;
 
+/** Schema for DataSelector component */
 export const DataSelectorSchema = ContentTemplateSchema.extend({
   component: z.literal('DataSelector'),
   label: z.string(),
