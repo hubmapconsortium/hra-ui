@@ -45,6 +45,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'vccf',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },

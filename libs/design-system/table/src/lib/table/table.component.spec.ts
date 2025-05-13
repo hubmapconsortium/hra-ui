@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/angular';
-import { TableComponent, TableRow } from './table.component';
+import { TableComponent } from './table.component';
+import { TableRow } from '../types/page-table.schema';
 
 describe('Table  Component', () => {
   const TABLE_DATA: TableRow[] = [
@@ -11,7 +12,7 @@ describe('Table  Component', () => {
   it('It should render the table data', async () => {
     const { detectChanges } = await render(TableComponent, {
       inputs: {
-        data: TABLE_DATA,
+        rows: TABLE_DATA,
         columns: ['name', 'value'],
       },
     });
