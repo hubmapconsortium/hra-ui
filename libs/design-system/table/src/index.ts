@@ -14,5 +14,3 @@ export {
   PageTableSchema,
 } from './lib/types/page-table.schema';
 export { TableComponent } from './lib/table/table.component';
-export * from './lib/providers';
-
