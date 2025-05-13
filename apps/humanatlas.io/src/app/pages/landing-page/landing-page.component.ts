@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
-import { CountInfoComponent } from '../../components-v2/count-info/count-info.component';
+import { CountCardComponent } from '@hra-ui/design-system/cards/count-card';
 import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
 import { LandingPageData } from '../../resolvers/landing-page/landing-page.schema';
 
@@ -10,7 +10,7 @@ import { LandingPageData } from '../../resolvers/landing-page/landing-page.schem
  */
 @Component({
   selector: 'hra-landing-page',
-  imports: [HraCommonModule, CarouselComponent, CountInfoComponent, SectionCardsComponent],
+  imports: [HraCommonModule, CarouselComponent, CountCardComponent, SectionCardsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

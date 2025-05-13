@@ -9,9 +9,10 @@
   min-width: 9rem;
   gap: 1rem;
 
-  .category-logo {
+  .logo {
     width: 3.375rem;
     height: 3.375rem;
+    background: var(--mat-sys-inverse-surface);
   }
 
   .count-card-content {

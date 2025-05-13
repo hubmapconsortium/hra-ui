@@ -1,4 +1,12 @@
-<hra-category-logo [id]="categoryIcon()" class="category-logo" />
+@if (categoryIcon(); as id) {
+  <hra-category-logo [id]="id" class="logo" />
+}
+@if (productIcon(); as id) {
+  <hra-product-logo [id]="id" class="logo" />
+}
+@if (organIcon(); as id) {
+  <hra-organ-logo [id]="id" class="logo" />
+}
 <div class="count-card-content">
   <p class="count">
     {{ count() | number }}

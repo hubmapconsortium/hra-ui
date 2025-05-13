@@ -16,6 +16,26 @@
     {
       "id": "training",
       "icon": "category:training"
+    },
+    {
+      "id": "biomarkers",
+      "icon": "category:biomarkers"
+    },
+    {
+      "id": "cell-types",
+      "icon": "category:cell-types"
+    },
+    {
+      "id": "experts",
+      "icon": "category:experts"
+    },
+    {
+      "id": "publications",
+      "icon": "category:publications"
+    },
+    {
+      "id": "antibody",
+      "icon": "category:antibody"
     }
   ],
   "namespaceConfigs": [
