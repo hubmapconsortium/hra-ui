@@ -33,10 +33,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'overview-training',
+    path: 'training',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/training-overview/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
