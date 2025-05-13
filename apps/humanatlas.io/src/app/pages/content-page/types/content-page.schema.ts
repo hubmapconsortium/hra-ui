@@ -8,6 +8,7 @@ import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { z } from 'zod';
+import { PageTableSchema } from '@hra-ui/design-system/table';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
@@ -32,6 +33,7 @@ export {
   DataViewerSchema,
   MarkdownSchema,
   PageSectionSchema,
+  PageTableSchema,
   StylesSchema,
   // TODO: Add more
 };
@@ -41,6 +43,7 @@ export default z.lazy(() => {
     DataViewerSchema,
     MarkdownSchema,
     PageSectionSchema,
+    PageTableSchema,
     // TODO: Add more
   ]);
 
