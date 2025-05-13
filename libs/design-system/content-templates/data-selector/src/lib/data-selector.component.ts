@@ -5,6 +5,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { DataSelector } from './types/data-selector.schema';
 
+/**
+ * Data Selector Component
+ *
+ * This component allows the user to select an item from a list of items.
+ * The items are passed as an object, where the keys are the labels and the values are the items.
+ */
 @Component({
   selector: 'hra-data-selector',
   imports: [CommonModule, MatFormFieldModule, MatSelectModule, ContentTemplateOutletDirective],
