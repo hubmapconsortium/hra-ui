@@ -1,28 +1,29 @@
 @use '@angular/material' as mat;
 @use '../../../../styles/utils';
+@use '../../../../styles/vars';
 
 :host {
   table {
     @include mat.sort-overrides(
       (
-        arrow-color: var(--mat-sys-secondary),
+        arrow-color: vars.$secondary,
       )
     );
 
     @include mat.table-overrides(
       (
-        background-color: var(--mat-sys-on-primary),
+        background-color: vars.$on-primary,
         header-container-height: 2.5rem,
         row-item-container-height: 2.5rem,
-        row-item-label-text-color: var(--mat-sys-primary),
-        header-headline-color: var(--mat-sys-secondary),
-        row-item-outline-color: var(--mat-sys-outline-variant),
+        row-item-label-text-color: vars.$primary,
+        header-headline-color: vars.$secondary,
+        row-item-outline-color: vars.$outline-variant,
       )
     );
 
     th {
-      border-bottom-color: var(--mat-sys-outline);
-      background: var(--mat-sys-surface-dim);
+      border-bottom-color: vars.$outline;
+      background: vars.$surface-dim;
       border-bottom: 1px;
     }
 
@@ -66,20 +67,20 @@
   table[matSort] {
     @include mat.sort-overrides(
       (
-        arrow-color: var(--mat-sys-secondary),
+        arrow-color: vars.$secondary,
       )
     );
 
     @include mat.table-overrides(
       (
-        background-color: var(--mat-sys-surface-container-low),
+        background-color: vars.$surface-container-low,
         header-container-height: 2rem,
         row-item-container-height: 2rem,
       )
     );
 
     th {
-      background: var(--mat-sys-surface-dim);
+      background: vars.$surface-dim;
       border-bottom: 1px;
     }
 
@@ -118,7 +119,7 @@
     }
 
     &:focus-visible {
-      border-color: var(--mat-sys-secondary);
+      border-color: vars.$secondary;
     }
     .mat-sort-header-content {
       cursor: text;
@@ -128,7 +129,7 @@
   &.vertical-dividers {
     th:not(:first-of-type),
     td:not(:first-of-type) {
-      border-left: 1px solid var(--mat-sys-outline) !important;
+      border-left: 1px solid vars.$outline !important;
     }
   }
 
@@ -144,7 +145,7 @@
     }
 
     th {
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
       line-height: normal;
       border-bottom: none;
     }
@@ -152,7 +153,7 @@
 
   &.hra-table-style-alternating {
     tr:nth-child(even) {
-      background-color: var(--mat-sys-surface-container);
+      background-color: vars.$surface-container;
     }
 
     .mat-mdc-row .mat-mdc-cell {
@@ -160,7 +161,7 @@
     }
 
     tr:nth-child(odd) {
-      background-color: var(--mat-sys-surface-container-lowest);
+      background-color: vars.$surface-container-lowest;
     }
   }
 }
