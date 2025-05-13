@@ -40,6 +40,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'training',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
