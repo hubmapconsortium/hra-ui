@@ -33,6 +33,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-population-graphs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-population-graphs/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
