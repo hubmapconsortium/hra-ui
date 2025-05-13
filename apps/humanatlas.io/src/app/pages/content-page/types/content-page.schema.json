@@ -34,11 +34,27 @@
     "ContentPageData": {
       "type": "object",
       "properties": {
+        "$schema": {
+          "type": "string"
+        },
         "title": {
           "type": "string"
         },
         "subtitle": {
           "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
         },
         "content": {
           "type": "array",
@@ -47,7 +63,7 @@
           }
         }
       },
-      "required": ["title", "subtitle", "content"],
+      "required": ["$schema", "title", "subtitle", "content"],
       "additionalProperties": false
     },
     "DataViewer": {
