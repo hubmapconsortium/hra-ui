@@ -1,5 +1,5 @@
-title: Application Programming Interfaces (APIs)
-subtitle: Query and interact with the HRA using Python, JavaScript, SPARQL, REST, and more.
+title: API
+subtitle: Query and interact with the Human Reference Atlas using Python, JavaScript, SPARQL, REST, and more.
 content:
   - component: PageSection
     tagline: Overview
@@ -13,12 +13,12 @@ content:
         - HRA-API:
           - Production: https://apps.humanatlas.io/api/
           - OpenAPI Specification: https://apps.humanatlas.io/api/hra-api-spec.yaml
-          - JavaScript Library: ![npm (scoped)](https://img.shields.io/npm/v/hra-api) [hra-api](https://www.npmjs.com/package/hra-api)
+          - JavaScript Library: [hra-api](https://www.npmjs.com/package/hra-api) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/hra-api?labelColor=%23E6EAF0&color=%23FFC8BC)
         - HRA-API Client Libraries:
-          - JavaScript: ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/js-client) [@hra-api/js-client](https://www.npmjs.com/package/@hra-api/js-client)
-          - TypeScript: ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/ts-client) [@hra-api/ts-client](https://www.npmjs.com/package/@hra-api/ts-client)
-          - Angular 17+: ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/ng-client) [@hra-api/ng-client](https://www.npmjs.com/package/@hra-api/ng-client)
-          - Python 3.6+: ![PyPI](https://img.shields.io/pypi/v/hra-api-client) [hra-api-client](https://pypi.org/project/hra-api-client/)
+          - JavaScript: [@hra-api/js-client](https://www.npmjs.com/package/@hra-api/js-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/js-client?labelColor=%23E6EAF0&color=%23FFC8BC)
+          - TypeScript: [@hra-api/ts-client](https://www.npmjs.com/package/@hra-api/ts-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/ts-client?labelColor=%23E6EAF0&color=%23FFC8BC)
+          - Angular 17+: [@hra-api/ng-client](https://www.npmjs.com/package/@hra-api/ng-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@hra-api/ng-client?labelColor=%23E6EAF0&color=%23FFC8BC)
+          - Python 3.6+: [hra-api-client](https://pypi.org/project/hra-api-client/) &nbsp; ![PyPI](https://img.shields.io/pypi/v/hra-api-client?labelColor=%23E6EAF0&color=%23FFC8BC)
         - HRA Knowledge Graph (HRA-KG):
           - Production: https://lod.humanatlas.io
           - SPARQL Endpoint: https://lod.humanatlas.io/sparql
@@ -26,22 +26,29 @@ content:
           - grlc queries using the HRA-KG SPARQL endpoint: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/
           - grlc queries using the Ubergraph SPARQL endpoint: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ubergraph/
           - More queries available at: https://github.com/hubmapconsortium/ccf-grlc/
-        - Deprecated APIs:
-          - HRA-API v1.x:
-            - Production: https://apps.humanatlas.io/hra-api/
-            - OpenAPI Specification: https://apps.humanatlas.io/hra-api/ccf-api-spec.yaml
-          - CCF-OPENAPI Client Libraries:
-            - JavaScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/js-client) [@ccf-openapi/js-client](https://www.npmjs.com/package/@ccf-openapi/js-client)
-            - TypeScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ts-client) [@ccf-openapi/ts-client](https://www.npmjs.com/package/@ccf-openapi/ts-client)
-            - Angular 15+: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ng-client) [@ccf-openapi/ng-client](https://www.npmjs.com/package/@ccf-openapi/ng-client)
-            - Python 3.6+: ![PyPI](https://img.shields.io/pypi/v/ccf-openapi) [ccf-openapi](https://pypi.org/project/ccf-openapi/)
-          - CCF API Sample Notebooks/Vignettes:
-            - Python 3.6+:
-              - Basic Usage: ccf-api-usage.ipynb
-              - Use case walkthrough: ccf-api-usecase.ipynb
-            - JavaScript:
-              - Basic Usage: https://observablehq.com/@cns-iu/ccf-api-documentation-javascript
-              - Use case walkthrough: https://observablehq.com/@cns-iu/ccf-api-usecase-javascript
+
+  - component: PageSection
+    tagline: Deprecated APIs
+    anchor: deprecated-apis
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        - HRA-API v1.x:
+          - Production: https://apps.humanatlas.io/hra-api/
+          - OpenAPI Specification: https://apps.humanatlas.io/hra-api/ccf-api-spec.yaml
+        - CCF-OPENAPI Client Libraries:
+          - JavaScript: [@ccf-openapi/js-client](https://www.npmjs.com/package/@ccf-openapi/js-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/js-client?labelColor=%23E6EAF0&color=%23D6E8F8)
+          - TypeScript: [@ccf-openapi/ts-client](https://www.npmjs.com/package/@ccf-openapi/ts-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ts-client?labelColor=%23E6EAF0&color=%23D6E8F8)
+          - Angular 15+: [@ccf-openapi/ng-client](https://www.npmjs.com/package/@ccf-openapi/ng-client) &nbsp; ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ng-client?labelColor=%23E6EAF0&color=%23D6E8F8)
+          - Python 3.6+: [ccf-openapi](https://pypi.org/project/ccf-openapi/) &nbsp; ![PyPI](https://img.shields.io/pypi/v/ccf-openapi?labelColor=%23E6EAF0&color=%23D6E8F8)
+        - CCF API Sample Notebooks/Vignettes:
+          - Python 3.6+:
+            - Basic Usage: ccf-api-usage.ipynb
+            - Use case walkthrough: ccf-api-usecase.ipynb
+          - JavaScript:
+            - Basic Usage: https://observablehq.com/@cns-iu/ccf-api-documentation-javascript
+            - Use case walkthrough: https://observablehq.com/@cns-iu/ccf-api-usecase-javascript
         - CCF.OWL v2.3.0:
           - PURL: https://purl.humanatlas.io/graph/ccf
           - BioPortal: https://bioportal.bioontology.org/ontologies/CCF
