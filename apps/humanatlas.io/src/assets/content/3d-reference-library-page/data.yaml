@@ -1,5 +1,9 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
 title: 3D Organs
 subtitle: 3D human organ files mapped with ontological terminology.
+action:
+  label: Use Data
+  url: /TODO
 content:
   - component: PageSection
     tagline: Overview

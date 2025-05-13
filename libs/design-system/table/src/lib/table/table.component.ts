@@ -13,6 +13,7 @@ import { TableColumnsForRows, TableRow, TableVariant } from '../types/page-table
 @Component({
   selector: 'hra-table',
   templateUrl: 'table.component.html',
+  styleUrls: ['table.component.scss'],
   imports: [
     HraCommonModule,
     MatTableModule,
