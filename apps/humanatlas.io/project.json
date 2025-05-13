@@ -60,16 +60,13 @@
         "tsConfig": "apps/humanatlas.io/tsconfig.app.json"
       }
     },
-    "build-pages-schema": {
+    "build-json-schemas": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "rm -rf ./apps/humanatlas.io/src/app/utils/data-schema.js",
-          "tsc --target esnext -m nodenext --skipLibCheck ./apps/humanatlas.io/src/app/utils/data-schema.ts",
-          "node ./apps/humanatlas.io/src/app/utils/cli.mjs json-schemas ./apps/humanatlas.io/src/pages.schema.json",
-          "npx nx format:write --files apps/humanatlas.io/src/pages.schema.json"
+          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/pages/content-page/types/content-page.schema.ts --name ContentPage"
         ],
-        "parallel": false
+        "parallel": true
       }
     }
   }
