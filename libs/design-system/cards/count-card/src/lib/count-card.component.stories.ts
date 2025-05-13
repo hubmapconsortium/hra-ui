@@ -14,7 +14,8 @@ const meta: Meta<CountCardComponent> = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    categoryIcon: 'data',
+    iconType: 'category',
+    icon: 'data',
   },
   render: (args) => ({
     props: args,
@@ -29,6 +30,7 @@ export const Default: Story = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    categoryIcon: 'data',
+    iconType: 'category',
+    icon: 'data',
   },
 };
