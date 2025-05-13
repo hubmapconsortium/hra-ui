@@ -4,6 +4,7 @@ import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
+import { DataSelectorDef } from '@hra-ui/design-system/content-templates/data-selector';
 import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideDesignSystem(),
     provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
     provideMarkdown(),
-    provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef]),
+    provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, DataSelectorDef]),
   ],
 };
