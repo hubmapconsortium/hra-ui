@@ -22,5 +22,6 @@ export class TableOfContentsLayoutHeaderComponent {}
   providers: [providePageSectionNavigation()],
 })
 export class TableOfContentsLayoutComponent {
+  /** Whether the screen width is currently greater than or equal to 1100px */
   protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
 }
