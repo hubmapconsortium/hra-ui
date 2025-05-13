@@ -15,7 +15,7 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
-    provideDesignSystem(),  
+    provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
     provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, PageTableDef, VersionedDataTableDef]),
   ],

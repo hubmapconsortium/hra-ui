@@ -38,13 +38,12 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
     },
-  }
+  },
   {
     path: 'training',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
-
     },
   },
   {
