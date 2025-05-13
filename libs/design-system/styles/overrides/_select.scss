@@ -14,13 +14,12 @@
     )
   );
 
-    @include mat.pseudo-checkbox-overrides(
+  @include mat.pseudo-checkbox-overrides(
     (
       full-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
       minimal-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
     )
   );
-
 
   @include mat.option-overrides(
     (
