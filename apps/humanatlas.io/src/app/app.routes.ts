@@ -33,6 +33,16 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'standard-operating-procedures',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/standard-operating-procedures-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
     path: 'vccf',
     component: ContentPageComponent,
     resolve: {

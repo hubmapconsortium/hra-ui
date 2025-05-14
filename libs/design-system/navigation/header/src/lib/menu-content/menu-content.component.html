@@ -1,20 +1,21 @@
 @let isDesktop = variant() === 'desktop';
 @for (item of menu().items; track $index) {
   @if (item.type === 'group') {
-    <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: item }"></ng-container>
+    <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: item }" />
   } @else if (isDesktop) {
-    <mat-divider class="divider"></mat-divider>
+    <mat-divider class="divider" />
   }
 }
 
 <ng-template hraMenuGroup let-group #groupTemplate>
-  @if (group.url.startsWith('http')) {
-    <a mat-button class="group-label" [attr.href]="group.url" target="_blank" rel="noopener noreferrer">
+  @let url = resolveUrl(group.url);
+  @if (url.isAbsolute) {
+    <a mat-button class="group-label" [attr.href]="url.value" target="_blank" rel="noopener noreferrer">
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
-    <a mat-button class="group-label" [routerLink]="group.url">
+    <a mat-button class="group-label" [routerLink]="url.value">
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
@@ -29,12 +30,12 @@
   @let items = group.items ?? [];
   @if (items.length > 0) {
     @if (isDesktop) {
-      <mat-divider class="divider"></mat-divider>
+      <mat-divider class="divider" />
     }
 
     @for (item of items; track $index) {
       @let template = item.type === 'subgroup' ? subgroupTemplate : itemTemplate;
-      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
+      <ng-container *ngTemplateOutlet="template; context: { $implicit: item }" />
     }
   }
 </ng-template>
@@ -45,25 +46,26 @@
   </div>
   <div class="subgroup-items">
     @for (item of subgroup.items; track $index) {
-      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
     }
   </div>
 </ng-template>
 
 <ng-template hraMenuItem let-item #itemTemplate>
-  @if (item.url.startsWith('http')) {
+  @let url = resolveUrl(item.url);
+  @if (url.isAbsolute) {
     <a
       mat-button
       hraSecondaryButton
       class="item-label"
-      [attr.href]="item.url"
+      [attr.href]="url.value"
       target="_blank"
       rel="noopener noreferrer"
     >
       {{ item.label }}
     </a>
   } @else {
-    <a mat-button hraSecondaryButton class="item-label" [routerLink]="item.url">
+    <a mat-button hraSecondaryButton class="item-label" [routerLink]="url.value">
       {{ item.label }}
     </a>
   }
