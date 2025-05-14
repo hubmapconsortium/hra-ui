@@ -2,11 +2,6 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  @include mat.icon-overrides(
-    (
-      color: vars.$on-primary,
-    )
-  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +9,12 @@
   height: 2.5rem;
   border-radius: vars.$corner-full;
   background-color: var(--hra-organ-logo-background-color, #ff0043);
+
+  @include mat.icon-overrides(
+    (
+      color: vars.$on-primary,
+    )
+  );
 
   .logo {
     height: 60%;
