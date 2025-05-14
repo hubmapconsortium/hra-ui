@@ -1,3 +1,4 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
 title: Vasculature Common Coordinate Framework
 subtitle: The first open, computer-readable, and comprehensive database of the adult human blood vasculature
 content:
