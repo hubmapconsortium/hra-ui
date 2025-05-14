@@ -1,5 +1,9 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
 title: API
 subtitle: Query and interact with the Human Reference Atlas using Python, JavaScript, SPARQL, REST, and more.
+action:
+  label: Use app
+  url: https://apps.humanatlas.io/api/
 content:
   - component: PageSection
     tagline: Overview
