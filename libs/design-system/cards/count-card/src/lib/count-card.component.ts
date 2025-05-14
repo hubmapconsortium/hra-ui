@@ -26,7 +26,7 @@ export class CountCardComponent {
   readonly label = input.required<string>();
 
   /** Icon type */
-  readonly iconType = input<string>();
+  readonly iconType = input.required<string>();
 
   /** Icon */
   readonly icon = input.required<string>();

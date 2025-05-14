@@ -14,8 +14,13 @@ const meta: Meta<CountCardComponent> = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    iconType: 'category',
     icon: 'data',
+  },
+  argTypes: {
+    iconType: {
+      control: 'select',
+      options: ['category', 'organ', 'product'],
+    },
   },
   render: (args) => ({
     props: args,
