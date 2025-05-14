@@ -1,5 +1,5 @@
 <mat-card class="url-card" [class.post]="method() === 'POST'" id="url">
-  <hra-code-block [code]="request()" language="html"></hra-code-block>
+  <hra-code-block [code]="`${method()}: ${request()}`" language="html"></hra-code-block>
 </mat-card>
 <div class="buttons">
   <button mat-button (click)="clipboard.copy(request())">
