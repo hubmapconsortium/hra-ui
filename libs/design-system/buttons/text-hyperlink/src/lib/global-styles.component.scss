@@ -11,7 +11,8 @@
     text-decoration: none;
 
     &:link,
-    &:link mat-icon {
+    &:link mat-icon,
+    markdown a {
       color: vars.$on-tertiary-fixed;
     }
 
