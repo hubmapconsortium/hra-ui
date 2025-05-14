@@ -29,40 +29,42 @@ carouselItems:
 countInfo:
   - count: 17
     label: consortia
-    icon:
-      fontText: diversity_3
-  - count: 250+
+    icon: contribute
+    iconType: category
+  - count: 250
     label: experts
-    icon:
-      fontText: school
-  - count: 1,000+
+    showSuffix: true
+    icon: experts
+    iconType: category
+  - count: 1000
     label: publications
-    icon:
-      fontText: docs
+    showSuffix: true
+    icon: publications
+    iconType: category
   - count: 71
     label: organs
-    icon:
-      fontText: neurology
-  - count: 4,694
+    icon: heart
+    iconType: organ
+  - count: 4694
     label: anatomical structures
-    icon:
-      fontText: favorite
-  - count: 1,288
+    icon: asctb-reporter
+    iconType: product
+  - count: 1288
     label: cell types
-    icon:
-      url: assets/content/landing-page/images/cell-types.svg
-  - count: 2,018
+    icon: cell-types
+    iconType: category
+  - count: 2018
     label: biomarkers
-    icon:
-      fontText: add_location
+    icon: biomarkers
+    iconType: category
   - count: 23
     label: organ mapping antibody panels
-    icon:
-      fontText: map
+    icon: antibody
+    iconType: category
   - count: 22
     label: functional tissue units
-    icon:
-      fontText: layers
+    icon: ftu
+    iconType: product
 
 sectionCardInfo:
   - tagline: Join

@@ -15,6 +15,16 @@
   <hra-carousel [items]="data().carouselItems" />
 </div>
 
-<hra-count-info [countInfoList]="data().countInfo" />
+<div class="count-cards">
+  @for (card of data().countInfo; track card) {
+    <hra-count-card
+      [count]="card.count"
+      [label]="card.label"
+      [showSuffix]="card.showSuffix"
+      [iconType]="card.iconType"
+      [icon]="card.icon"
+    />
+  }
+</div>
 
 <hra-section-cards [cardInfo]="data().sectionCardInfo" />
