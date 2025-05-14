@@ -27,7 +27,7 @@ content:
 
   - component: PageSection
     tagline: Summary Statistics
-    anchor: summary-Statistics
+    anchor: summary-statistics
     level: 3
     content:
       - component: Markdown
