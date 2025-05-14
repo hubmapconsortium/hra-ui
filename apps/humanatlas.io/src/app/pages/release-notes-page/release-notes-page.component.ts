@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-import { injectParams } from 'ngxtension/inject-params';
 import { ReleaseNotesContent } from './types/content.schema';
 import { ReleaseNotesVersions } from './types/versions.schema';
 
@@ -18,15 +17,9 @@ import { ReleaseNotesVersions } from './types/versions.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReleaseNotesPageComponent {
+  readonly version = input.required<string>();
   readonly versions = input.required<ReleaseNotesVersions>();
   readonly data = input.required<ReleaseNotesContent>();
-
-  protected readonly versionId = injectParams('version');
-  protected readonly version = computed(() => {
-    const id = this.versionId();
-    const { versions } = this.versions();
-    return versions.find((item) => item.version === id) ?? versions[0];
-  });
 
   // /** Release notes content ref */
   // readonly content = viewChild.required<ElementRef<HTMLElement>>('content');
