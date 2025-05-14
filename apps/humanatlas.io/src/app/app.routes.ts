@@ -64,6 +64,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'ccf-ontology',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
