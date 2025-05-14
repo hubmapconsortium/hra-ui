@@ -27,21 +27,21 @@ content:
         &emsp;Segmentation of Single Cells and Anatomical Structures<br>
         &emsp;[Running a Kaggle Competition](https://zenodo.org/records/10019550)<br>
         [Anatomical Structures and their Cell Type Population](https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
-        &emsp;[Computing Cell Type Populations From Single Cell Bulk Data (Cell by Gene Matrices)]()<br>
-        &emsp;[Computing Cell Type Populations From Spatial Data (Cell by Protein Matrices Using OMAP-aligned Datasets)]()<br>
-        &emsp;[Exploring Cell Type Population Data in HRA User Interfaces]()<br>
-        &emsp;[Using Cell Type Population Data to Predict The Location or Biomolecular Composition of Tissue Blocks]()<br>
+        &emsp;Computing Cell Type Populations From Single Cell Bulk Data (Cell by Gene Matrices)<br>
+        &emsp;Computing Cell Type Populations From Spatial Data (Cell by Protein Matrices Using OMAP-aligned Datasets)<br>
+        &emsp;Exploring Cell Type Population Data in HRA User Interfaces<br>
+        &emsp;Using Cell Type Population Data to Predict The Location or Biomolecular Composition of Tissue Blocks<br>
         [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1ORM4FJ1eoMCOpHkj0aig30iXqzIRWbFvojlxcdnkwnA/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
         &emsp;[Authoring the Pathway Organ Crosswalk Tables](https://zenodo.org/records/11623745)<br>
         &emsp;[Constructing Blood Vasculature-Organ Crosswalk Diagrams](https://zenodo.org/records/11623898)<br>
         &emsp;[Authoring the Pathway Crosswalk Table](https://zenodo.org/records/11623415)<br>
         &emsp;[Authoring the Blood Vasculature Geometry Table](https://zenodo.org/records/11623223)<br>
-        [Vasculature Computations]()<br>
-        &emsp;[Computing Vessel Properties]()<br>
+        Vasculature Computations<br>
+        &emsp;Computing Vessel Properties<br>
         &emsp;[Computing Cell Type to Vasculature Distance Distributions](https://zenodo.org/records/10371473)<br>
         [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
         &emsp;[Authoring ASCT+B Tables](https://zenodo.org/records/7382751)<br>
-        &emsp;[Authoring ASCT+B Tables Using The ASCT+B Generator Python Script]()<br>
+        &emsp;Authoring ASCT+B Tables Using The ASCT+B Generator Python Script<br>
         &emsp;[Construction of Organ Mapping Antibody Panels (OMAPs)](https://zenodo.org/records/7386417)<br>
         &emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)<br>
         &emsp;[Constructing Antibody Validation Reports (AVRs)](https://zenodo.org/records/7418624)<br>
