@@ -1,0 +1,61 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
+title: |
+  Preview: Explore Biomarker Expressions for Cell Types
+subtitle: Use the Exploration User Interface to examine anatomical structures, cell types, and biomarkers
+action:
+  label: Use App
+  url: https://apps.humanatlas.io/eui/
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Biomarker expression levels depend on demographic groups (e.g., sex, age) and assay types (bulk vs. spatial data).
+        The enhanced Exploration User Interface (EUI) supports the study of biomarker expression across cell types and organs.
+        Users can now filter data by anatomical structures, cell types, and biomarkers.
+        The biomarker list includes genes, lipids, proteins, metabolites, and proteoforms.
+  - component: PageSection
+    tagline: Demonstration Primary APIs
+    anchor: demonstration-primary-apis
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Use the primary APIs from the demonstration to improve the accuracy of cell type predictions.
+        - <a href="https://apps.humanatlas.io/hra-api/">Open API Link</a>
+  - component: PageSection
+    tagline: Demo Code
+    anchor: demo-code
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Human Reference Atlas APIs are available freely on GitHub.
+        -  <a href="https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/eui-exploration-user-interface">GitHub Repository</a>
+  - component: PageSection
+    tagline: Application Features
+    anchor: application-features
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Explore registered tissue blocks spatially with the Exploration User Interface.
+  - component: PageSection
+    tagline: Feature Map 2024
+    anchor: feature-map-2024
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        <img src="assets/content/explore-biomarker-expressions-page/images/eui_features.svg"></img>
+  - component: PageSection
+    tagline: Application User Interface 2024
+    anchor: application-user-interface-2024
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        <img src="assets/content/explore-biomarker-expressions-page/images/us3.png"></img>

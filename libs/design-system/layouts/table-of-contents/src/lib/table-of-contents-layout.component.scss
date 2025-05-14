@@ -31,4 +31,10 @@
       margin: 0 0.75rem 1rem;
     }
   }
+
+  ::ng-deep markdown {
+    img {
+      width: 100%;
+    }
+  }
 }
