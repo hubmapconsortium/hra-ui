@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
+
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
 import { CountCardComponent } from '@hra-ui/design-system/cards/count-card';
 import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
