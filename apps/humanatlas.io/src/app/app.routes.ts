@@ -59,6 +59,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-azimuth',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },

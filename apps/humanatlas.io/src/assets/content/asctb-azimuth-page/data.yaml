@@ -1,0 +1,56 @@
+title: ASCT+B cell types data from Azimuth reference data with summaries
+subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data.
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        ASCT+B tables represent cell-by-gene (CxG) relationships that are also captured in the HuBMAP Azimuth references.
+        This site provides the cell-type typology for all existing Azimuth annotated reference datasets;
+        the Azimuth cell-type typology trees can be visualized in the ASCT+B Reporter.
+
+        We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth.
+        In January of 2022, Azimuth supports single-cell RNA-seq data exclusively.
+        As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites),
+        data differences will decrease.
+
+  - component: PageSection
+    tagline: Azimuth cell type typologies and counts
+    anchor: azimuth-cell-typologies-counts
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        In November of 2022, 10 Azimuth molecular reference maps for the human are available.
+        For each, we provide the cell-type typology as a file that can be visualized in the ASCT+B Reporter together
+        with a table that lists the annotation level and the number of cell-types for each unique cell in the organ-specific
+        Azimuth reference.
+
+  - component: PageSection
+    tagline: Comparison of CxG in ASCT+B vs. Azimuth
+    anchor: comparison-of-cxg-asctb-azimuth
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        The below table shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in January 2022.
+        An automatically generated, up-to-date comparison is available for download here; this XLS file also contains separate sheets with
+        cell-types that are not (yet) covered in the ASCT+B tables. Details on how the comparison is calculated are on GitHub.
+        Note that not all Azimuth cell types have CL IDs; in these cases, matching is done based on cell-type names.
+
+        Data from Azimuth Website GitHub Repository has been parsed to derive cell-type typologies:
+
+  - component: PageSection
+    tagline: Summary statistics
+    anchor: summary-statistics
+    level: 4
+    content:
+      component: PageTable
+      columns:
+        - column: Organ
+#
+# TODO - Multi-header Table
+#
