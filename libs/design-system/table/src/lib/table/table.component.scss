@@ -3,21 +3,25 @@
 @use '../../../../styles/vars';
 
 :host {
+  ng-scrollbar {
+    max-height: 35rem;
+  }
+
   table {
     @include mat.sort-overrides(
       (
-        arrow-color: var(--mat-sys-secondary),
+        arrow-color: vars.$secondary,
       )
     );
 
     @include mat.table-overrides(
       (
-        background-color: var(--mat-sys-on-primary),
+        background-color: vars.$on-primary,
         header-container-height: 2.5rem,
         row-item-container-height: 2.5rem,
-        row-item-label-text-color: var(--mat-sys-primary),
-        header-headline-color: var(--mat-sys-secondary),
-        row-item-outline-color: var(--mat-sys-outline-variant),
+        row-item-label-text-color: vars.$primary,
+        header-headline-color: vars.$secondary,
+        row-item-outline-color: vars.$outline-variant,
       )
     );
 
