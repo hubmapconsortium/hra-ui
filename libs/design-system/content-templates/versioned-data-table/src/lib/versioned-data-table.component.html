@@ -1,0 +1,18 @@
+<mat-form-field>
+  <mat-label class="label"> {{ label() }} </mat-label>
+  <mat-select class="select" [value]="selection()" (selectionChange)="selection.set($event.value)">
+    @for (item of items(); track $index) {
+      <mat-option [value]="$index">
+        {{ item.label }}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<hra-table
+  [columns]="item().columns"
+  [rows]="item().rows"
+  [style]="item().style"
+  [enableSort]="item().enableSort"
+  [verticalDividers]="item().verticalDividers"
+/>

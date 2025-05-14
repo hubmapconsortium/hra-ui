@@ -11,6 +11,12 @@
         },
         {
           "$ref": "#/definitions/PageSection"
+        },
+        {
+          "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/PageTable"
         }
       ]
     },
@@ -34,11 +40,27 @@
     "ContentPageData": {
       "type": "object",
       "properties": {
+        "$schema": {
+          "type": "string"
+        },
         "title": {
           "type": "string"
         },
         "subtitle": {
           "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
         },
         "content": {
           "type": "array",
@@ -47,7 +69,7 @@
           }
         }
       },
-      "required": ["title", "subtitle", "content"],
+      "required": ["$schema", "title", "subtitle", "content"],
       "additionalProperties": false
     },
     "DataViewer": {
@@ -233,6 +255,89 @@
       "required": ["component", "tagline", "content"],
       "additionalProperties": false
     },
+    "PageTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/DataViewer/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/DataViewer/properties/styles"
+        },
+        "columns": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "label": {},
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["url"],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "markdown": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["markdown"],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          }
+        },
+        "style": {
+          "type": "string",
+          "enum": ["alternating", "divider", "basic"],
+          "default": "alternating"
+        },
+        "enableSort": {
+          "type": "boolean",
+          "default": false
+        },
+        "verticalDividers": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["component", "columns", "rows"],
+      "additionalProperties": false
+    },
     "Styles": {
       "anyOf": [
         {
@@ -243,6 +348,108 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "VersionedDataTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "VersionedDataTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/DataViewer/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/DataViewer/properties/styles"
+        },
+        "label": {
+          "type": "string"
+        },
+        "selection": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "columns": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "label": {},
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["url"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "markdown": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["markdown"],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                }
+              },
+              "style": {
+                "type": "string",
+                "enum": ["alternating", "divider", "basic"],
+                "default": "alternating"
+              },
+              "enableSort": {
+                "type": "boolean",
+                "default": false
+              },
+              "verticalDividers": {
+                "type": "boolean",
+                "default": false
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": ["columns", "rows", "label"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "label", "items"],
+      "additionalProperties": false
     },
     "ContentPage": {
       "$ref": "#/definitions/ContentPageData"

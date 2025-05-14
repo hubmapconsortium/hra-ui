@@ -1,8 +1,8 @@
 <ng-scrollbar>
   @let typed = typedMenu();
   @if (typed.type === 'menu') {
-    <hra-menu-content variant="desktop" [menu]="typed.menu"></hra-menu-content>
+    <hra-menu-content variant="desktop" [menu]="typed.menu" [baseUrl]="baseUrl()" />
   } @else {
-    <hra-hubmap-menu-content [menu]="typed.menu"></hra-hubmap-menu-content>
+    <hra-hubmap-menu-content [menu]="typed.menu" />
   }
 </ng-scrollbar>
