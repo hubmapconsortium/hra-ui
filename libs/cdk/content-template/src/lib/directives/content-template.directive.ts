@@ -43,7 +43,7 @@ function getComponentReflectionError(tag: string): Error {
 })
 export class ContentTemplateOutletDirective {
   /** Content template data */
-  readonly data = input.required<AnyContentTemplate>({ alias: 'hraContentTemplateOutlet' });
+  readonly data = input.required<AnyContentTemplate | undefined>({ alias: 'hraContentTemplateOutlet' });
 
   /** View container */
   private readonly viewContainerRef = inject(ViewContainerRef);
@@ -57,8 +57,11 @@ export class ContentTemplateOutletDirective {
   /** Initializes the outlet */
   constructor() {
     effect((onCleanup) => {
-      this.render(this.data());
-      onCleanup(() => this.viewContainerRef.clear());
+      const data = this.data();
+      if (data !== undefined) {
+        this.render(data);
+        onCleanup(() => this.viewContainerRef.clear());
+      }
     });
   }
 
