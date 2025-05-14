@@ -1,12 +1,12 @@
-<mat-card class="url-card" [class.post]="function() === 'POST'" id="url">
-  <hra-code-block [code]="url()" language="html"></hra-code-block>
+<mat-card class="url-card" [class.post]="method() === 'POST'" id="url">
+  <hra-code-block [code]="request()" language="html"></hra-code-block>
 </mat-card>
 <div class="buttons">
-  <button mat-button class="copy-btn" (click)="copyData(url())">
-    <mat-icon>{{ leftButton().icon }}</mat-icon>
-    {{ leftButton().label }}
+  <button mat-button (click)="clipboard.copy(request())">
+    <mat-icon>content_copy</mat-icon>
+    Copy
   </button>
-  <a mat-button class="copy-btn tryme" href="{{ rightButton().url }}" target="_blank">
+  <a mat-button [attr.href]="rightButton().url" target="_blank">
     {{ rightButton().label }}
     <mat-icon>{{ rightButton().icon }}</mat-icon>
   </a>

@@ -1,3 +1,3 @@
-export { APICommandDef } from './lib/api-command.definition';
-export { APICommand, APICommandSchema } from './lib/api-command.schema';
-export { APICommandComponent } from './api-command.component';
+export { ApiCommandDef } from './lib/api-command.definition';
+export { ApiCommand, ApiCommandSchema } from './lib/api-command.schema';
+export { ApiCommandComponent } from './api-command.component';

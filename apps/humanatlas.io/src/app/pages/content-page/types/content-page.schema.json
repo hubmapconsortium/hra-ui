@@ -19,7 +19,7 @@
           "$ref": "#/definitions/PageTable"
         },
         {
-          "$ref": "#/definitions/APICommand"
+          "$ref": "#/definitions/ApiCommand"
         }
       ]
     },
@@ -40,29 +40,18 @@
         }
       ]
     },
-    "APICommand": {
+    "ApiCommand": {
       "type": "object",
       "properties": {
         "component": {
           "type": "string",
-          "const": "APICommand"
+          "const": "ApiCommand"
         },
-        "url": {
+        "request": {
           "type": "string"
         },
-        "function": {
+        "method": {
           "type": "string"
-        },
-        "leftButton": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "icon": {
-              "type": "string"
-            }
-          }
         },
         "rightButton": {
           "type": "object",
@@ -79,7 +68,7 @@
           }
         }
       },
-      "required": ["component", "url", "leftButton", "rightButton"],
+      "required": ["component", "request", "method", "rightButton"],
       "additionalProperties": false
     },
     "ContentPageData": {

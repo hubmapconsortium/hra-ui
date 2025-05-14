@@ -6,7 +6,7 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
   }
 
   @media (min-width: 640px) {
@@ -29,12 +29,6 @@
       width: 17rem;
       height: min-content;
       margin: 0 0.75rem 1rem;
-    }
-  }
-
-  ::ng-deep markdown {
-    img {
-      width: 100%;
     }
   }
 }

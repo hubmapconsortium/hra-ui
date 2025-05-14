@@ -3,7 +3,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { APICommandDef } from '@hra-ui/design-system/content-templates/api-command';
+import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
       PageSectionDef,
       PageTableDef,
       VersionedDataTableDef,
-      APICommandDef,
+      ApiCommandDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),

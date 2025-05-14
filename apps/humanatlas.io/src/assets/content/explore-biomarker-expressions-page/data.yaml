@@ -26,42 +26,30 @@ content:
         data: |
           Use the primary APIs from the demonstration to improve the accuracy of cell type predictions.
           - <a href="https://apps.humanatlas.io/hra-api/">Open API Link</a>
-      - component: APICommand
-        url: https://apps.humanatlas.io/api/hra-pop/cell-summary-report
-        function: POST
-        leftButton:
-          icon: content_copy
-          label: Copy
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/cell-summary-report
+        method: POST
         rightButton:
           icon: api
           label: Try me
           url: https://apps.humanatlas.io/api/#post-/hra-pop/cell-summary-report
-      - component: APICommand
-        url: https://apps.humanatlas.io/api/hra-pop/supported-organs
-        function: GET
-        leftButton:
-          icon: content_copy
-          label: Copy
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-organs
+        method: GET
         rightButton:
           icon: api
           label: Try me
           url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-organs
-      - component: APICommand
-        url: https://apps.humanatlas.io/api/hra-pop/supported-tools
-        function: GET
-        leftButton:
-          icon: content_copy
-          label: Copy
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-tools
+        method: GET
         rightButton:
           icon: api
           label: Try me
           url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-tools
-      - component: APICommand
-        url: https://apps.humanatlas.io/api/hra-pop/supported-reference-organs
-        function: GET
-        leftButton:
-          icon: content_copy
-          label: Copy
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-reference-organs
+        method: GET
         rightButton:
           icon: api
           label: Try me

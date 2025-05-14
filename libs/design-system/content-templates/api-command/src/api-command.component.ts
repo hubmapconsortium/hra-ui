@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
 
-import { APICommandButton } from './lib/api-command.schema';
+import { ApiCommandButton } from './lib/api-command.schema';
 
 /** Displays a card for users to copy and access API information */
 @Component({
@@ -15,24 +15,16 @@ import { APICommandButton } from './lib/api-command.schema';
   imports: [MatCardModule, ButtonsModule, MatIconModule, CodeBlockComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class APICommandComponent {
+export class ApiCommandComponent {
   /** Service for copying text to clipboard */
-  private readonly clipboard = inject(Clipboard);
+  readonly clipboard = inject(Clipboard);
 
-  /** Details of the APIs and buttons */
-  readonly url = input.required<string>();
+  /** The request url */
+  readonly request = input.required<string>();
 
-  /** API function to use */
-  readonly function = input.required<string>();
-
-  /** Left button info */
-  readonly leftButton = input.required<APICommandButton>();
+  /** API method to use */
+  readonly method = input.required<string>();
 
   /** Right button info */
-  readonly rightButton = input.required<APICommandButton>();
-
-  /** Copies data inside the card to clipboard */
-  copyData(request: string) {
-    this.clipboard.copy(request);
-  }
+  readonly rightButton = input.required<ApiCommandButton>();
 }

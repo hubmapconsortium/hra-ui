@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
-import { APICommandComponent } from './api-command.component';
+import { ApiCommandComponent } from './api-command.component';
 
-const meta: Meta<APICommandComponent> = {
-  component: APICommandComponent,
+const meta: Meta<ApiCommandComponent> = {
+  component: ApiCommandComponent,
   title: 'Design System/API Command',
   parameters: {
     design: {
@@ -14,16 +14,12 @@ const meta: Meta<APICommandComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<APICommandComponent>;
+type Story = StoryObj<ApiCommandComponent>;
 
 export const Get: Story = {
   args: {
-    url: 'https://apps.humanatlas.io/api/hra-pop/supported-organs',
-    function: 'GET',
-    leftButton: {
-      icon: 'content_copy',
-      label: 'Copy',
-    },
+    request: 'https://apps.humanatlas.io/api/hra-pop/supported-organs',
+    method: 'GET',
     rightButton: {
       icon: 'api',
       label: 'Try me',
@@ -34,12 +30,8 @@ export const Get: Story = {
 
 export const Post: Story = {
   args: {
-    url: 'https://apps.humanatlas.io/api/hra-pop/cell-summary-report',
-    function: 'POST',
-    leftButton: {
-      icon: 'content_copy',
-      label: 'Copy',
-    },
+    request: 'https://apps.humanatlas.io/api/hra-pop/cell-summary-report',
+    method: 'POST',
     rightButton: {
       icon: 'api',
       label: 'Try me',
