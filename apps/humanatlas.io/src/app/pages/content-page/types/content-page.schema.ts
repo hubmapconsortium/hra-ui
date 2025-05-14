@@ -4,12 +4,13 @@ import {
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
+import { APICommandSchema } from '@hra-ui/design-system/content-templates/api-command';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
-import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
-import { z } from 'zod';
+import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
+import { z } from 'zod';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
@@ -37,6 +38,7 @@ export {
   PageTableSchema,
   StylesSchema,
   VersionedDataTableSchema,
+  APICommandSchema,
   // TODO: Add more
 };
 
