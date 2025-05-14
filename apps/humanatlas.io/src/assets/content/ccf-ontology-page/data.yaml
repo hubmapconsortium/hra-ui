@@ -9,7 +9,7 @@ content:
     content:
       component: Markdown
       data: |
-        The Common Coordinate Framework (CCF) Ontology1 provides standard terminologies and data structures for describing specimens,
+        The Common Coordinate Framework (CCF) Ontology<sup>1</sup> provides standard terminologies and data structures for describing specimens,
         biological structures, and spatial positions of tissue blocks and organs linked to existing ontologies.
 
         With HRA v2.1 (https://humanatlas.io/release-notes/v2.1, June 2024), CCF Ontology v3.0,
@@ -18,7 +18,7 @@ content:
         HRA-curated Digital Objects (DOs) resulting in the HRA (https://purl.humanatlas.io/collection/hra/v2.1).
 
         Prior to this (HRA v2.0), CCF Ontology v2.3.0 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus
-        embedded HRA v2.0 data used in HRA applications and interfaces2.
+        embedded HRA v2.0 data used in HRA applications and interfaces<sup>2</sup>.
         The same was true for all HRA versions prior to 2.0.
 
         CCF v3.0 details key vocabulary for six types of HRA-curated DOs (ASCT+B tables, OMAPs, 2D and 3D reference objects,
