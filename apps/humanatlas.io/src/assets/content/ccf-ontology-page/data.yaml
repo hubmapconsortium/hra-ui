@@ -1,0 +1,50 @@
+$schema: '../../../app/pages/content-page/types/content-page.schema.json'
+title: Common Coordinate Framework Ontology
+subtitle: A Common Coordinate Framework (CCF) for a human body provides a unique address for each cell in the human body. It is similar to the latitude-longtitude system used to navigate a world map.
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        The Common Coordinate Framework (CCF) Ontology<sup>1</sup> provides standard terminologies and data structures for describing specimens,
+        biological structures, and spatial positions of tissue blocks and organs linked to existing ontologies.
+
+        With HRA v2.1 (https://humanatlas.io/release-notes/v2.1, June 2024), CCF Ontology v3.0,
+        the embedded HRA data was removed andthe CCF Ontology now cleanly describes the HRA vocabulary.
+        Concretely, the HRA v2.1 uses the CCF Ontology v3.0 vocabulary with HRA-specific classes and instances from
+        HRA-curated Digital Objects (DOs) resulting in the HRA (https://purl.humanatlas.io/collection/hra/v2.1).
+
+        Prior to this (HRA v2.0), CCF Ontology v2.3.0 published in the 6th HRA release (Dec 2023) provides vocabulary for HRA plus
+        embedded HRA v2.0 data used in HRA applications and interfaces<sup>2</sup>.
+        The same was true for all HRA versions prior to 2.0.
+
+        CCF v3.0 details key vocabulary for six types of HRA-curated DOs (ASCT+B tables, OMAPs, 2D and 3D reference objects,
+        Cell Type Annotation Crosswalks, vascular geometry, and dataset-graphs).
+        About 10,000 experimental datasets have been linked to the HRA with the HRA Cell Type Populations graph (hra-pop),
+        which is also part of the HRA KG (https://purl.humanatlas.io/graph/hra-pop).
+        Named graphs provide information on data coverage. In total, HRA KG has 41 classes and 73 properties.
+
+        Additionally, the HRA KG hosts other reference ontologies as mirrors, including UBERON, Cell Ontology,
+        and the CCF so that they can be queried together at https://lod.humanatlas.io/vocab.
+
+        The HRA v2.1 (https://bioportal.bioontology.org/ontologies/HRA) as well as
+        the CCF Ontology v3.0 (https://bioportal.bioontology.org/ontologies/CCF) are available via BioPortal,
+        the world's most comprehensive repository of biomedical ontologies.
+
+        The HRA 3D Reference Objects are also hosted by NIH 3D, an open, community-driven portal to download, share,
+        and create bioscientific and medical 3D models for 3D printing and interactive 3D visualization,
+        including virtual and augmented reality (https://3d.nih.gov/collections/hra).
+  - component: PageSection
+    tagline: References
+    anchor: references
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        [1] Herr, B. W. et al. Specimen, biological structure, and spatial ontologies in support of a Human Reference Atlas. Sci. Data 10, 171 (2023).
+        doi: https://doi.org/10.1038/s41597-023-01993-8<br><br>
+        [2] Börner, K. et al. Tissue registration and exploration user interfaces in support of a human reference atlas. Commun. Biol. 5, 1369 (2022).
+        doi: https://doi.org/10.1038/s42003-022-03644-x

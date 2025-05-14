@@ -1,21 +1,60 @@
-import { AnyContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
-import { toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import {
+  AnyContentTemplateSchema,
+  ClassesSchema,
+  setContentTemplateSpecs,
+  StylesSchema,
+} from '@hra-ui/cdk/content-template';
+import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
+import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
+import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
+import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { z } from 'zod';
+import { PageTableSchema } from '@hra-ui/design-system/table';
+import { ActionCardOutlineDefaultListSchema } from '@hra-ui/design-system/cards/action-card-outline-default';
+import { ActionCardOutlineLargeImageListSchema } from '@hra-ui/design-system/cards/action-card-outline-large-image';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
 
 /** Schema for content page data */
 export const ContentPageDataSchema = z.object({
-  // schema: z.string().optional(),
+  $schema: z.string(),
   title: z.string(),
   subtitle: z.string(),
-  category: z.string().transform(toCategoryLogoId).optional(),
-  product: z.string().transform(toProductLogoId).optional(),
-  organ: z.string().transform(toOrganLogoId).optional(),
-  actionUrl: z.string().url().optional(),
-  actionName: z.string().optional(),
+  action: z
+    .object({
+      label: z.string(),
+      url: z.string(),
+    })
+    .optional(),
   content: AnyContentTemplateSchema.array(),
+});
+
+export {
+  AnyContentTemplateSchema,
+  ClassesSchema,
+  DataViewerSchema,
+  MarkdownSchema,
+  PageSectionSchema,
+  PageTableSchema,
+  StylesSchema,
+  VersionedDataTableSchema,
+  ActionCardOutlineDefaultListSchema,
+  ActionCardOutlineLargeImageListSchema,
+  // TODO: Add more
+};
+
+export default z.lazy(() => {
+  setContentTemplateSpecs([
+    DataViewerSchema,
+    MarkdownSchema,
+    PageSectionSchema,
+    VersionedDataTableSchema,
+    PageTableSchema,
+    ActionCardOutlineDefaultListSchema,
+    ActionCardOutlineLargeImageListSchema,
+    // TODO: Add more
+  ]);
+
+  return ContentPageDataSchema;
 });

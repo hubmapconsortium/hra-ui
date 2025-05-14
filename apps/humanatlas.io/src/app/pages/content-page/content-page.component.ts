@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-import { MarkdownModule } from 'ngx-markdown';
 
 import { ContentPageData } from './types/content-page.schema';
 
@@ -15,13 +15,13 @@ import { ContentPageData } from './types/content-page.schema';
 @Component({
   selector: 'hra-content-page',
   imports: [
-    CommonModule,
-    ContentTemplateOutletDirective,
-    PageSectionComponent,
-    TableOfContentsLayoutModule,
-    MarkdownModule,
+    HraCommonModule,
     ButtonsModule,
+    ContentTemplateOutletDirective,
     MatIconModule,
+    PageSectionComponent,
+    RouterModule,
+    TableOfContentsLayoutModule,
   ],
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss',

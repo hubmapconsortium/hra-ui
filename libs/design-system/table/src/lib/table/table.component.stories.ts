@@ -1,7 +1,7 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { provideMarkdown } from 'ngx-markdown';
-
-import { TableComponent, TableRow } from './table.component';
+import { TableRow } from '../types/page-table.schema';
+import { TableComponent } from './table.component';
 
 /** Example data */
 const exampleData: TableRow[] = [
@@ -42,7 +42,7 @@ const meta: Meta<TableComponent> = {
     }),
   ],
   args: {
-    data: exampleData,
+    rows: exampleData,
     columns: ['position', 'name', 'weight', 'symbol'],
     enableSort: true,
     verticalDividers: false,
@@ -113,7 +113,7 @@ export const WithMarkdown: Story = {
       symbol: 'Symbol',
       notes: 'Notes',
     },
-    data: [
+    rows: [
       {
         position: 1,
         name: 'Hydrogen',
