@@ -1,3 +1,4 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
 title: Millitome
 subtitle: A unique 3D printed tool for the uniform sectioning of organs
 content:
