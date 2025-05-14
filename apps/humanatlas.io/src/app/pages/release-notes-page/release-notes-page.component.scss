@@ -1,89 +1,95 @@
 @use 'utils';
 
 :host {
-  .page-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+  display: block;
+
+  .subtitle {
+    margin-bottom: 1.5rem;
   }
 
-  .header-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+  // .page-content {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 4rem;
+  // }
 
-  .subsection-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+  // .header-content {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 1.5rem;
+  // }
 
-  .version-select {
-    width: 15.5rem;
+  // .subsection-content {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 1.5rem;
+  // }
 
-    // Keep the mat select label from shrinking
-    ::ng-deep .mdc-floating-label {
-      transform: translateY(-106%) !important;
-      @include utils.use-font(label, small);
-    }
+  // .version-select {
+  //   width: 15.5rem;
 
-    mat-select-trigger {
-      @include utils.use-font(label, medium);
-    }
-  }
+  //   // Keep the mat select label from shrinking
+  //   ::ng-deep .mdc-floating-label {
+  //     transform: translateY(-106%) !important;
+  //     @include utils.use-font(label, small);
+  //   }
 
-  .section-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
+  //   mat-select-trigger {
+  //     @include utils.use-font(label, medium);
+  //   }
+  // }
 
-  .section-button {
-    width: fit-content;
-  }
+  // .section-content {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 4rem;
+  // }
 
-  ::ng-deep markdown {
-    p {
-      margin: 0;
-    }
+  // .section-button {
+  //   width: fit-content;
+  // }
 
-    ul {
-      margin: 0;
-      list-style-type: disc;
-      padding-inline-start: 1.5rem;
-      overflow-wrap: break-word;
-    }
+  // ::ng-deep markdown {
+  //   p {
+  //     margin: 0;
+  //   }
 
-    img {
-      max-width: 100%;
-      width: 40rem;
-    }
+  //   ul {
+  //     margin: 0;
+  //     list-style-type: disc;
+  //     padding-inline-start: 1.5rem;
+  //     overflow-wrap: break-word;
+  //   }
 
-    a {
-      color: var(--mat-sys-on-tertiary-fixed);
-    }
-  }
+  //   img {
+  //     max-width: 100%;
+  //     width: 40rem;
+  //   }
+
+  //   a {
+  //     color: var(--mat-sys-on-tertiary-fixed);
+  //   }
+  // }
 }
 
-.release-label {
-  display: flex;
-  flex-direction: column;
+// .release-label {
+//   display: flex;
+//   flex-direction: column;
 
-  .release-name {
-    @include utils.use-font(label, medium);
-    color: var(--mat-sys-secondary);
-  }
+//   .release-name {
+//     @include utils.use-font(label, medium);
+//     color: var(--mat-sys-secondary);
+//   }
 
-  .release-date {
-    @include utils.use-font(label, small);
-    color: var(--mat-sys-primary);
-  }
-}
+//   .release-date {
+//     @include utils.use-font(label, small);
+//     color: var(--mat-sys-primary);
+//   }
+// }
 
-// Styling for selected dropdown items
-.mat-mdc-option-active {
-  --mat-option-selected-state-label-text-color: var(--mat-sys-on-tertiary-fixed);
-  background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
-  outline: none !important;
-}
+// // Styling for selected dropdown items
+// .mat-mdc-option-active {
+//   --mat-option-selected-state-label-text-color: var(--mat-sys-on-tertiary-fixed);
+//   background-color: utils.with-alpha(var(--mat-sys-tertiary), 20%) !important;
+//   outline: none !important;
+// }

@@ -3,7 +3,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
 import { CountInfoComponent } from '../../components-v2/count-info/count-info.component';
 import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
-import { LandingPageData } from '../../resolvers/landing-page/landing-page.schema';
+import { LandingPageData } from './types/landing-page.schema';
 
 /**
  * HRA landing page component

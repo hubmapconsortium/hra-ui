@@ -2,13 +2,12 @@ import { Route } from '@angular/router';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { LandingPageDataSchema } from './pages/landing-page/types/landing-page.schema';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
 import { ReleaseNotesPageComponent } from './pages/release-notes-page/release-notes-page.component';
-import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { releaseVersionResolver } from './resolvers/release-notes-page/release-version.resolver';
-import { createJsonSpecResolver } from './resolvers/spec.resolver';
-import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
+import ReleaseNotesVersionsSchema from './pages/release-notes-page/types/versions.schema';
+import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -17,14 +16,17 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      data: landingPageResolver,
+      data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
   {
     path: 'release-notes/:version',
     component: ReleaseNotesPageComponent,
+    data: {
+      data: {},
+    },
     resolve: {
-      versions: releaseVersionResolver,
+      versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
     },
   },
   {

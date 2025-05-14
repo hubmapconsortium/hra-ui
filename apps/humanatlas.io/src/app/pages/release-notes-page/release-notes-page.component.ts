@@ -1,140 +1,116 @@
-import { HttpClient } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  linkedSignal,
-  signal,
-  viewChild,
-} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { Router } from '@angular/router';
-import { YouTubePlayerModule } from '@angular/youtube-player';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-import { load } from 'js-yaml';
-import { MarkdownModule } from 'ngx-markdown';
-import { map, Observable } from 'rxjs';
-
-import {
-  ReleaseNotesSectionData,
-  ReleaseNotesSectionDataSchema,
-  ReleaseVersionData,
-} from '../../resolvers/release-notes-page/release-notes-page.schema';
+import { injectParams } from 'ngxtension/inject-params';
+import { ReleaseNotesContent } from './types/content.schema';
+import { ReleaseNotesVersions } from './types/versions.schema';
 
 /**
  * Page for displaying current and past HRA release notes
  */
 @Component({
   selector: 'hra-release-notes-page',
-  imports: [
-    HraCommonModule,
-    ContentTemplatesModule,
-    MarkdownModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    FormsModule,
-    ButtonsModule,
-    MatIconModule,
-    YouTubePlayerModule,
-    TableOfContentsLayoutModule,
-  ],
+  imports: [HraCommonModule, ContentTemplateOutletDirective, ContentTemplatesModule, TableOfContentsLayoutModule],
   templateUrl: './release-notes-page.component.html',
   styleUrl: './release-notes-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReleaseNotesPageComponent {
-  /** Release notes content ref */
-  readonly content = viewChild.required<ElementRef<HTMLElement>>('content');
+  readonly versions = input.required<ReleaseNotesVersions>();
+  readonly data = input.required<ReleaseNotesContent>();
 
-  /** Http injector */
-  readonly http = inject(HttpClient);
+  protected readonly versionId = injectParams('version');
+  protected readonly version = computed(() => {
+    const id = this.versionId();
+    const { versions } = this.versions();
+    return versions.find((item) => item.version === id) ?? versions[0];
+  });
 
-  /** Router service */
-  readonly router = inject(Router);
+  // /** Release notes content ref */
+  // readonly content = viewChild.required<ElementRef<HTMLElement>>('content');
 
-  /** Versions data */
-  readonly versions = input.required<ReleaseVersionData[]>();
+  // /** Http injector */
+  // readonly http = inject(HttpClient);
 
-  /** Current selected release version */
-  readonly currentVersion = linkedSignal<ReleaseVersionData>(() => this.versions()[0]);
+  // /** Router service */
+  // readonly router = inject(Router);
 
-  /** Data to display on the page */
-  readonly currentVersionData = linkedSignal<ReleaseNotesSectionData[]>(() => []);
+  // /** Versions data */
+  // readonly versions = input.required<ReleaseVersionData[]>();
 
-  /** Resolver based on current version */
-  readonly resolver = linkedSignal<Observable<ReleaseNotesSectionData[]>>(() =>
-    this.releaseNotesResolver(this.currentVersion().version),
-  );
+  // /** Current selected release version */
+  // readonly currentVersion = linkedSignal<ReleaseVersionData>(() => this.versions()[0]);
 
-  /** Width of content section (used to set YouTube player width) */
-  readonly contentWidth = signal<number>(0);
+  // /** Data to display on the page */
+  // readonly currentVersionData = linkedSignal<ReleaseNotesSectionData[]>(() => []);
 
-  /**
-   * Subscribes to the current resolver to update data and sets anchor scrolling offset
-   */
-  constructor() {
-    effect(() => {
-      this.resolver().subscribe((data) => {
-        this.setCurrentVersionFromUrl(this.router.url);
-        this.currentVersionData.set(data);
-      });
-    });
+  // /** Resolver based on current version */
+  // readonly resolver = linkedSignal<Observable<ReleaseNotesSectionData[]>>(() =>
+  //   this.releaseNotesResolver(this.currentVersion().version),
+  // );
 
-    effect((cleanup) => {
-      const observer = new ResizeObserver(() =>
-        this.contentWidth.set(Math.min(this.content().nativeElement.clientWidth, 640)),
-      );
-      observer.observe(this.content().nativeElement, { box: 'border-box' });
-      cleanup(() => observer.disconnect());
-    });
-  }
+  // /** Width of content section (used to set YouTube player width) */
+  // readonly contentWidth = signal<number>(0);
 
-  /**
-   * Navigates to release version path on version select
-   * @param event Mat select event
-   */
-  navigate(event: MatSelectChange) {
-    this.router.navigate([`/release-notes/v${event.value.version}`]);
-  }
+  // /**
+  //  * Subscribes to the current resolver to update data and sets anchor scrolling offset
+  //  */
+  // constructor() {
+  //   effect(() => {
+  //     this.resolver().subscribe((data) => {
+  //       this.setCurrentVersionFromUrl(this.router.url);
+  //       this.currentVersionData.set(data);
+  //     });
+  //   });
 
-  /**
-   * Sets current version from the page url
-   * @param url Current url
-   */
-  setCurrentVersionFromUrl(url: string) {
-    const currentVersionNum = url.split('/')[2].split('#')[0].slice(1);
-    this.currentVersion.set(
-      this.versions().find((v) => v.version.toString() === currentVersionNum) || this.versions()[0],
-    );
-  }
+  //   effect((cleanup) => {
+  //     const observer = new ResizeObserver(() =>
+  //       this.contentWidth.set(Math.min(this.content().nativeElement.clientWidth, 640)),
+  //     );
+  //     observer.observe(this.content().nativeElement, { box: 'border-box' });
+  //     cleanup(() => observer.disconnect());
+  //   });
+  // }
 
-  /**
-   * Returns an observable for fetching release notes
-   * @param version Current release version
-   * @returns Observable with page data
-   */
-  releaseNotesResolver(version: string): Observable<ReleaseNotesSectionData[]> {
-    return this.http.get(`assets/content/pages-v2/release-notes/v${version}.yaml`, { responseType: 'text' }).pipe(
-      map((yamlString) => load(yamlString)),
-      map((raw) => ReleaseNotesSectionDataSchema.array().parse(raw)),
-    );
-  }
+  // /**
+  //  * Navigates to release version path on version select
+  //  * @param event Mat select event
+  //  */
+  // navigate(event: MatSelectChange) {
+  //   this.router.navigate([`/release-notes/v${event.value.version}`]);
+  // }
 
-  /**
-   * Converts id to anchor id
-   * @param name Id
-   * @returns Anchor id
-   */
-  toAnchor(name: string): string {
-    return name.toLowerCase().split(' ').join('-');
-  }
+  // /**
+  //  * Sets current version from the page url
+  //  * @param url Current url
+  //  */
+  // setCurrentVersionFromUrl(url: string) {
+  //   const currentVersionNum = url.split('/')[2].split('#')[0].slice(1);
+  //   this.currentVersion.set(
+  //     this.versions().find((v) => v.version.toString() === currentVersionNum) || this.versions()[0],
+  //   );
+  // }
+
+  // /**
+  //  * Returns an observable for fetching release notes
+  //  * @param version Current release version
+  //  * @returns Observable with page data
+  //  */
+  // releaseNotesResolver(version: string): Observable<ReleaseNotesSectionData[]> {
+  //   return this.http.get(`assets/content/pages-v2/release-notes/v${version}.yaml`, { responseType: 'text' }).pipe(
+  //     map((yamlString) => load(yamlString)),
+  //     map((raw) => ReleaseNotesSectionDataSchema.array().parse(raw)),
+  //   );
+  // }
+
+  // /**
+  //  * Converts id to anchor id
+  //  * @param name Id
+  //  * @returns Anchor id
+  //  */
+  // toAnchor(name: string): string {
+  //   return name.toLowerCase().split(' ').join('-');
+  // }
 }
