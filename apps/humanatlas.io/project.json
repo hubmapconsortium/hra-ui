@@ -30,12 +30,6 @@
       },
       "configurations": {
         "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/humanatlas.io/src/environments/environment.ts",
-              "with": "apps/humanatlas.io/src/environments/environment.prod.ts"
-            }
-          ],
           "budgets": [
             {
               "type": "initial",
