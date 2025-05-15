@@ -20,6 +20,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
@@ -38,6 +45,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
