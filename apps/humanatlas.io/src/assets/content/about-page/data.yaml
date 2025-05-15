@@ -4,7 +4,6 @@ subtitle: |
   The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support
   cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their
   individual and collective function.
-
   - A Common Coordinate Framework (CCF) for a human body provides a unique address for each cell in the human body. It is similar to the
     latitude-longtitude system used to navigate a world map.
   - The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human
@@ -31,6 +30,10 @@ content:
         data: |
           Please reach out to us with questions:
       - component: FlexContainer
+        styles:
+          margin-top: 3rem
+        rowGap: 2.5rem
+        columnGap: 5rem
         content:
           - component: ProfileCard
             name: Katy Börner
@@ -38,20 +41,25 @@ content:
               Principal Investigator\
               Director, Cyberinfrastructure for Network Science Center at Indiana University
             pictureUrl: assets/content/about-page/images/katy.png
-            alignment: left
+            action:
+              label: Email
+              url: mailto:katy@iu.edu
           - component: ProfileCard
             name: Bruce W. Herr II
             description: |
               Technical Director, Cyberinfrastructure for Network Science Center at Indiana University
             pictureUrl: assets/content/about-page/images/bruce.png
-            alignment: left
+            action:
+              label: Email
+              url: mailto:bherr@iu.edu
           - component: ProfileCard
             name: Andreas Bueckle
             description: |
               Research Lead, Cyberinfrastructure for Network Science Center at Indiana University
             pictureUrl: assets/content/about-page/images/andreas.png
-            alignment: left
-
+            action:
+              label: Email
+              url: mailto:abueckle@iu.edu
   - component: PageSection
     tagline: Editorial Board
     anchor: editorial-board
@@ -68,6 +76,61 @@ content:
           - optimize incentive structures (e.g., HRA papers in major journals, awards for highest-quality contributions by organ teams/editors/reviewers),
           - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
           - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
+      - component: FlexContainer
+        styles:
+          margin-top: 3rem
+        rowGap: 2.5rem
+        columnGap: 5rem
+        content:
+          - component: ProfileCard
+            name: Kristin Ardlie
+            description: |
+              Director, GTEx Laboratory Data Analysis and Coordination Center at the Broad Institute of MIT\
+              Institute Scientist, Harvard
+            pictureUrl: assets/content/about-page/images/KArdile.png
+            action:
+              label: Profile
+              url: https://www.broadinstitute.org/bios/kristin-ardlie
+          - component: ProfileCard
+            name: Fiona Ginty
+            description: |
+              Senior Principal Scientist in Precision Diagnostics, GE HealthCare Technology & Innovation Center
+            pictureUrl: assets/content/about-page/images/FGinty.png
+            action:
+              label: Profile
+              url: https://www.gevernova.com/research
+          - component: ProfileCard
+            name: Marc Halushka
+            description: |
+              Professor of Pathology and Oncology, Johns Hopkins University School of Medicine
+            pictureUrl: assets/content/about-page/images/MHalushka.png
+            # action:
+            #   label: Profile
+            #   url: https://labs.pathology.jhu.edu/halushka/team/
+          - component: ProfileCard
+            name: Matthias Kretzler
+            description: |
+              Professor of Computational Medicine & Bioinformatics, Professor of Internal Medicine, University of Michigan
+            pictureUrl: assets/content/about-page/images/MKretzler.png
+            action:
+              label: Profile
+              url: https://medschool.umich.edu/departments/computational-medicine-bioinformatics
+          - component: ProfileCard
+            name: Louise C. Laurent
+            description: |
+              Vice Chair for Translational Research, Director of Perinatal Research, University of California San Diego
+            pictureUrl: assets/content/about-page/images/LCLaurent.png
+            action:
+              label: Profile
+              url: https://obgyn.ucsd.edu/research/labs/laurent/index.html
+          - component: ProfileCard
+            name: Mike Snyder
+            description: |
+              Chair for Department of Genetics, Director of Center for Genomics and Personalized Medicine, Stanford University
+            pictureUrl: assets/content/about-page/images/MSnyder.png
+            action:
+              label: Profile
+              url: https://med.stanford.edu/snyderlab/about.html
   - component: PageSection
     tagline: Funding
     anchor: funding

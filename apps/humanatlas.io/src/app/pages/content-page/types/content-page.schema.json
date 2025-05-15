@@ -50,6 +50,15 @@
           "type": "string",
           "const": "FlexContainer"
         },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
         "content": {
           "type": "array",
           "items": {

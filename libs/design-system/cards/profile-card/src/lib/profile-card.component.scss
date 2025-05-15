@@ -41,8 +41,12 @@
       }
     }
 
-    .actions {
+    .action-link {
       @include utils.use-font(label, large);
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      height: 2.5rem;
     }
 
     /* Style for centered alignment */
