@@ -1,6 +1,22 @@
 {
   "$ref": "#/definitions/ReleaseNotesVersions",
   "definitions": {
+    "ReleaseNotesVersion": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
+      "required": ["version", "label", "date"],
+      "additionalProperties": false
+    },
     "ReleaseNotesVersions": {
       "type": "object",
       "properties": {
@@ -10,20 +26,7 @@
         "versions": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              },
-              "label": {
-                "type": "string"
-              },
-              "date": {
-                "type": "string"
-              }
-            },
-            "required": ["version", "label", "date"],
-            "additionalProperties": false
+            "$ref": "#/definitions/ReleaseNotesVersion"
           }
         }
       },

@@ -65,8 +65,7 @@
       "options": {
         "commands": [
           "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/pages/content-page/types/content-page.schema.ts --name ContentPage",
-          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/pages/release-notes-page/types/content.schema.ts --name ReleaseNotesContent",
-          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/pages/release-notes-page/types/versions.schema.ts --name ReleaseNotesVersions"
+          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/schemas/release-notes-version/release-notes-version.schema.ts --name ReleaseNotesVersions"
         ],
         "parallel": true
       }

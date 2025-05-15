@@ -5,10 +5,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { LandingPageDataSchema } from './pages/landing-page/types/landing-page.schema';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
-import { ReleaseNotesPageComponent } from './pages/release-notes-page/release-notes-page.component';
-import ReleaseNotesVersionsSchema from './pages/release-notes-page/types/versions.schema';
+import { createReleaseNotesContentResolver } from './resolvers/release-notes-content.resolver';
 import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
-import { createReleaseNotesContentResolver } from './pages/release-notes-page/resolvers/content.resolver';
+import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -21,27 +20,18 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'release-notes/:version',
+    component: ContentPageComponent,
+    resolve: {
+      versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
+      data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
+    },
+  },
+  {
     path: 'release-notes',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        // Preferably this would redirect to the latest version based on the versions data
-        // But it is not available at this point. Async redirectTo may become available in angular 20
-        redirectTo: 'v2.3',
-      },
-      {
-        path: ':version',
-        component: ReleaseNotesPageComponent,
-        resolve: {
-          versions: createYamlSpecResolver(
-            'assets/content/release-notes-page/versions.yaml',
-            ReleaseNotesVersionsSchema,
-          ),
-          data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
-        },
-      },
-    ],
+    // Preferably this would redirect to the latest version based on the versions data
+    // But it is not available at this point. Async redirectTo may become available in angular 20
+    redirectTo: 'release-notes/v2.3',
   },
   {
     path: 'publications',

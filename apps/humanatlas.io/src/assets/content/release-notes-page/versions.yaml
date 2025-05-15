@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/release-notes-page/types/versions.schema.json
+$schema: ../../../app/schemas/release-notes-version/release-notes-version.schema.json
 versions:
   - version: '2.3'
     label: 9th Release (v2.3)
