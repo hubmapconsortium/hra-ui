@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Cell Type Annotations
 subtitle: Ontology ID labels for cell type annotation cell types.
 action:
