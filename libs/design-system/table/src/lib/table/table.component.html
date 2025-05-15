@@ -1,4 +1,4 @@
-<ng-scrollbar hraScrollOverflowFade>
+<ng-scrollbar hraScrollOverflowFade class="table-overflow-container" scrollOverflowFadeOffset="28">
   <table
     mat-table
     [dataSource]="dataSource"
@@ -17,6 +17,7 @@
           mat-sort-header
           [class.numeric]="isNumeric"
           [sortActionDescription]="`Sort by ${label}`"
+          sticky
         >
           {{ label }}
         </th>
@@ -34,7 +35,7 @@
       </ng-container>
     }
 
-    <tr mat-header-row *matHeaderRowDef="columnIds()"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
     <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
   </table>
 </ng-scrollbar>
