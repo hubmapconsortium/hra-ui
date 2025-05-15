@@ -62,6 +62,15 @@
         }
       }
     }
+    max-height: 26rem;
+    overflow: auto;
+    border-radius: 0.25rem;
+  }
+
+  .table-overflow-container {
+    max-height: 35rem;
+    overflow: auto;
+    border-radius: 0.25rem;
   }
 
   table[matSort] {
