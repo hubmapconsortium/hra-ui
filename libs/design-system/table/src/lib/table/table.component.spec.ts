@@ -16,7 +16,7 @@ describe('Table  Component', () => {
         columns: ['name', 'value'],
       },
     });
-    detectChanges();
+    // detectChanges();
     expect(screen.getByText('Test Name')).toBeInTheDocument();
     expect(screen.getByText(100)).toBeInTheDocument();
   });

@@ -6,35 +6,47 @@
     [matSortDisabled]="!enableSort()"
     aria-label="Table with sort function"
   >
-    @for (column of columnIds(); track column) {
-      <ng-container [matColumnDef]="column">
-        @let label = columnLabels()[column];
-        @let isNumeric = numericColumns().has(column);
+    @let templates = { text, numeric, markdown, link };
 
+    @for (column of _columns(); track column.column) {
+      @let type = getColumnType(column);
+      @let template = templates[type];
+
+      <ng-container [matColumnDef]="column.column">
         <th
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-          [class.numeric]="isNumeric"
-          [sortActionDescription]="`Sort by ${label}`"
+          [attr.data-column-type]="type"
+          [sortActionDescription]="`Sort by ${column.label}`"
         >
-          {{ label }}
+          {{ column.label }}
         </th>
-        <td mat-cell *matCellDef="let element" [class.numeric]="isNumeric">
-          @if (element[column]['markdown']; as markdown) {
-            <markdown>{{ markdown }}</markdown>
-          } @else if (element[column]['url']) {
-            <a hraHyperlink [href]="element[column]['url']" target="_blank" rel="noopener noreferrer">
-              {{ element[column]['label'] }}
-            </a>
-          } @else {
-            {{ element[column] }}
-          }
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }" />
         </td>
       </ng-container>
     }
-
     <tr mat-header-row *matHeaderRowDef="columnIds()"></tr>
     <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
   </table>
 </ng-scrollbar>
+
+<ng-template hraTextRowElement #text let-text>
+  <span class="text">{{ text }}</span>
+</ng-template>
+
+<ng-template #numeric let-value>
+  <span class="numeric">{{ value | number }}</span>
+</ng-template>
+
+<ng-template #markdown let-markdown>
+  <markdown class="markdown" [data]="markdown" />
+</ng-template>
+
+<ng-template hraLinkRowElement #link let-label let-column="column" let-element="element">
+  @let url = element[column.type.urlColumn];
+  <a hraHyperlink class="link" [attr.href]="url" target="_blank" rel="noopener noreferrer">
+    {{ label }}
+  </a>
+</ng-template>
