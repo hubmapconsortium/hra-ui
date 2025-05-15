@@ -1,0 +1,14 @@
+@use '../../../styles/utils';
+@use '../../../styles/vars';
+
+@include utils.global-styles() {
+  .hra-filled-icon {
+    background-color: var(--hra-filled-icon-color);
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: vars.$corner-full;
+  }
+}
