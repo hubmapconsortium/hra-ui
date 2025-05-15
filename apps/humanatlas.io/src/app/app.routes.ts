@@ -5,8 +5,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
 import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { createJsonSpecResolver } from './resolvers/spec.resolver';
-import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
+import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
