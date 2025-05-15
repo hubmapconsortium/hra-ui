@@ -1,0 +1,221 @@
+$schema: ../../../app/pages/content-page/types/content-page.schema.json
+title: Cell Type Annotations
+subtitle: Ontology ID labels for cell type annotation cell types.
+action:
+  label: Use Data
+  url: https://lod.humanatlas.io/ctann
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Azimuth[1], CellTypist[2,3], Popular Vote (popV)[4], and other cell type annotation tools let users upload a sc/snRNA-seq dataset and
+        output a cell type name for each cell in the dataset. The number and type of cell types these cell type annotation tools can assign differs
+        among tools and when compared to the number of cell types recorded in the ASCT+B Tables, see Summary Statistics adopted from a related preprint[5].
+        Note that ASCT+B tables keep track of cell types per anatomical structure (AS) while cell type annotation tools use organ-level data.
+
+        Cell Type Annotation crosswalks are used in the HuBMAP, SenNet portals, HRApop, and the Azimuth website.
+
+        Note that ASCT+B Tables are versioned and revised with each new HRA release in June and December as new terms are added to Uberon and Cell Ontology;
+        thus, the crosswalks are revised as needed, versioned, and republished with each HRA release.
+
+        To map cell type labels to standardized Cell Ontology (CL) labels and CL IDs used in ASCT+B Tables, crosswalk tables for Azimuth, CellTypist, and
+        Popular vote (popV) were constructed. Use tool-specific crosswalk tables:
+
+  - component: PageSection
+    tagline: Summary Statistics
+    anchor: summary-statistics
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          View the number of anatomical structures and unique cell types in ASCT+B tables vs. number of cell types that different cell type annotation tools can assign.
+      - component: PageTable
+        columns:
+          organ: Organ
+          as: '#AS'
+          cellTypes: '#CellTypes'
+          azimuthVersion: Azimuth v0.4.6
+          cellTypistVersion: CellTypist v1.6
+          popvVersion: popV Unversioned
+        rows:
+          - organ: blood
+            as: '1'
+            cellTypes: '29'
+            azimuthVersion: '41'
+            cellTypistVersion: '26'
+            popvVersion: '18'
+          - organ: blood vasculature
+            as: '1204'
+            cellTypes: '65'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '14'
+          - organ: bone marrow
+            as: '1'
+            cellTypes: '47'
+            azimuthVersion: '43'
+            cellTypistVersion: '39'
+            popvVersion: '14'
+          - organ: eye
+            as: '41'
+            cellTypes: '58'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '27'
+          - organ: heart
+            as: '1216'
+            cellTypes: '68'
+            azimuthVersion: '25'
+            cellTypistVersion: '49'
+            popvVersion: '6'
+          - organ: hippocampal gyrus (formation)
+            as: '4'
+            cellTypes: '45'
+            azimuthVersion: '0'
+            cellTypistVersion: '20'
+            popvVersion: '0'
+          - organ: intestine
+            as: '1'
+            cellTypes: '0'
+            azimuthVersion: '0'
+            cellTypistVersion: '38'
+            popvVersion: '0'
+          - organ: kidney
+            as: '64'
+            cellTypes: '75'
+            azimuthVersion: '58'
+            cellTypistVersion: '34'
+            popvVersion: '0'
+          - organ: large intestine
+            as: '64'
+            cellTypes: '86'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '16'
+          - organ: liver
+            as: '597'
+            cellTypes: '46'
+            azimuthVersion: '25'
+            cellTypistVersion: '35'
+            popvVersion: '12'
+          - organ: lung
+            as: '690'
+            cellTypes: '209'
+            azimuthVersion: '78'
+            cellTypistVersion: '71'
+            popvVersion: '36'
+          - organ: lymph node
+            as: '35'
+            cellTypes: '46'
+            azimuthVersion: '0'
+            cellTypistVersion: '28'
+            popvVersion: '22'
+          - organ: male reproductive system
+            as: '1215'
+            cellTypes: '77'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '13'
+          - organ: mammary gland
+            as: '1'
+            cellTypes: '0'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '14'
+          - organ: mesenteric lymph node
+            as: '1'
+            cellTypes: '1'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '22'
+          - organ: palatine tonsil
+            as: '96'
+            cellTypes: '22'
+            azimuthVersion: '81'
+            cellTypistVersion: '0'
+            popvVersion: '0'
+          - organ: pancreas
+            as: '29'
+            cellTypes: '33'
+            azimuthVersion: '11'
+            cellTypistVersion: '9'
+            popvVersion: '14'
+          - organ: prostate gland
+            as: '1213'
+            cellTypes: '77'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '13'
+          - organ: skeletal muscle tissue
+            as: '1'
+            cellTypes: '0'
+            azimuthVersion: '0'
+            cellTypistVersion: '18'
+            popvVersion: '0'
+          - organ: skin
+            as: '19'
+            cellTypes: '48'
+            azimuthVersion: '0'
+            cellTypistVersion: '23'
+            popvVersion: '21'
+          - organ: small intestine
+            as: '43'
+            cellTypes: '35'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '16'
+          - organ: spleen
+            as: '86'
+            cellTypes: '71'
+            azimuthVersion: '0'
+            cellTypistVersion: '32'
+            popvVersion: '22'
+          - organ: thymus
+            as: '534'
+            cellTypes: '63'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '21'
+          - organ: trachea
+            as: '14'
+            cellTypes: '18'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '18'
+          - organ: urinary bladder
+            as: '16'
+            cellTypes: '15'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '14'
+          - organ: uterus
+            as: '65'
+            cellTypes: '33'
+            azimuthVersion: '0'
+            cellTypistVersion: '0'
+            popvVersion: '13'
+          - organ: white adipose tissue
+            as: '1'
+            cellTypes: '0'
+            azimuthVersion: '26'
+            cellTypistVersion: '0'
+            popvVersion: '0'
+        style: alternating
+        enableSort: true
+
+  - component: PageSection
+    tagline: References
+    anchor: references
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          1. Hao, Y. et al. Integrated analysis of multimodal single-cell data. Cell 184, 3573-3587.e29 (2021).
+          2. Domínguez Conde, C. et al. Cross-tissue immune cell analysis reveals tissue-specific features in humans. Science 376, eabl5197 (2022).
+          3. Chuan Xu et al. Automatic cell type harmonization and integration across Human Cell Atlas datasets. bioRxiv 2023.05.01.538994 (2023) doi:10.1101/2023.05.01.538994.
+          4. YosefLab. Releases · https://github.com/YosefLab/PopV (2023).
+          5. Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage. bioRxiv 2024.03.27.587041 (2024) doi:10.1101/2024.03.27.587041.
