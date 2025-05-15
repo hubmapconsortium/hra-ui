@@ -1,13 +1,12 @@
 import { Route } from '@angular/router';
 
 import { ContentPageComponent } from './pages/content-page/content-page.component';
-import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
-import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
-import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { createJsonSpecResolver } from './resolvers/spec.resolver';
-import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
+import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
+import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -16,14 +15,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      data: landingPageResolver,
-    },
-  },
-  {
-    path: 'asctb-tables',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
   {

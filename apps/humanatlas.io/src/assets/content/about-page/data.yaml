@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: About
 subtitle: |
   The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support
