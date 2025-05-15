@@ -1,12 +1,10 @@
 import { Route } from '@angular/router';
 
-import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
-import { AboutPageResolver } from './resolvers/about-page/about-page.resolver';
 import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
 import { createJsonSpecResolver } from './resolvers/spec.resolver';
 import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
@@ -22,17 +20,17 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'about',
-    component: AboutPageComponent,
-    resolve: {
-      data: AboutPageResolver,
-    },
-  },
-  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
+    },
+  },
+  {
+    path: 'about',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
     },
   },
   {

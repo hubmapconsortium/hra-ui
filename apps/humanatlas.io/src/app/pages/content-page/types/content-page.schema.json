@@ -17,6 +17,12 @@
         },
         {
           "$ref": "#/definitions/PageTable"
+        },
+        {
+          "$ref": "#/definitions/FlexContainer"
+        },
+        {
+          "$ref": "#/definitions/ProfileCard"
         }
       ]
     },
@@ -36,6 +42,61 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "FlexContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "FlexContainer"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "ProfileCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ProfileCard"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "alignment": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "default": "left"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["component", "name", "description", "pictureUrl"],
+      "additionalProperties": false
     },
     "ContentPageData": {
       "type": "object",

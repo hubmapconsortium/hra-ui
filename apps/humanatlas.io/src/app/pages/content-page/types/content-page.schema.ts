@@ -10,6 +10,8 @@ import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { z } from 'zod';
 import { PageTableSchema } from '@hra-ui/design-system/table';
+import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
+import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
@@ -37,6 +39,8 @@ export {
   PageTableSchema,
   StylesSchema,
   VersionedDataTableSchema,
+  FlexContainerSchema,
+  ProfileCardSchema,
   // TODO: Add more
 };
 
@@ -47,6 +51,8 @@ export default z.lazy(() => {
     PageSectionSchema,
     VersionedDataTableSchema,
     PageTableSchema,
+    FlexContainerSchema,
+    ProfileCardSchema,
     // TODO: Add more
   ]);
 

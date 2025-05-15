@@ -10,11 +10,21 @@ import { PageTableDef } from '@hra-ui/design-system/table';
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
+import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, PageTableDef, VersionedDataTableDef]),
+    provideContentTemplateDefs([
+      DataViewerDef,
+      MarkdownDef,
+      PageSectionDef,
+      PageTableDef,
+      VersionedDataTableDef,
+      FlexContainerDef,
+      ProfileCardDef,
+    ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
     provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
