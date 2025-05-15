@@ -112,6 +112,8 @@ export class NumericRowElementDirective {
     TextHyperlinkDirective,
     LinkRowElementDirective,
     TextRowElementDirective,
+    MarkdownRowElementDirective,
+    NumericRowElementDirective,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',

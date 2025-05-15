@@ -1,46 +1,60 @@
-<ng-scrollbar hraScrollOverflowFade>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    matSort
-    [matSortDisabled]="!enableSort()"
-    aria-label="Table with sort function"
-  >
-    @let templates = { text, numeric, markdown, link };
+<ng-scrollbar
+  externalViewport=".scroll-viewport"
+  externalContentWrapper=".content-wrapper"
+  externalSpacer="tbody"
+  asyncDetection="auto"
+  hraScrollOverflowFade
+  [scrollOverflowFadeOffset]="40"
+>
+  <div class="scroll-viewport">
+    <div class="content-wrapper">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        [matSortDisabled]="!enableSort()"
+        aria-label="Table with sort function"
+      >
+        @let templates = { text, numeric, markdown, link };
 
-    @for (column of _columns(); track column.column) {
-      @let type = getColumnType(column);
-      @let template = templates[type];
+        @for (column of _columns(); track column.column) {
+          @let type = getColumnType(column);
+          @let template = templates[type];
 
-      <ng-container [matColumnDef]="column.column">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          [attr.data-column-type]="type"
-          [sortActionDescription]="`Sort by ${column.label}`"
-        >
-          {{ column.label }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <ng-container *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }" />
-        </td>
-      </ng-container>
-    }
-    <tr mat-header-row *matHeaderRowDef="columnIds()"></tr>
-    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
-  </table>
+          <ng-container [matColumnDef]="column.column">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              [attr.data-column-type]="type"
+              [sortActionDescription]="`Sort by ${column.label}`"
+            >
+              {{ column.label }}
+            </th>
+            <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
+              <ng-container
+                *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
+              />
+            </td>
+          </ng-container>
+        }
+
+        <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
+      </table>
+    </div>
+  </div>
 </ng-scrollbar>
 
 <ng-template hraTextRowElement #text let-text>
   <span class="text">{{ text }}</span>
 </ng-template>
 
-<ng-template #numeric let-value>
+<ng-template hraNumericRowElement #numeric let-value>
   <span class="numeric">{{ value | number }}</span>
 </ng-template>
 
-<ng-template #markdown let-markdown>
+<ng-template hraMarkdownRowElement #markdown let-markdown>
   <markdown class="markdown" [data]="markdown" />
 </ng-template>
 
