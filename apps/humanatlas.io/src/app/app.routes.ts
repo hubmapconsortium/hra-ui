@@ -18,6 +18,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
