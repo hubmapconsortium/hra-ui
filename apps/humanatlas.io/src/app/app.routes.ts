@@ -54,6 +54,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'standard-operating-procedures',
     component: ContentPageComponent,
     resolve: {
@@ -75,6 +89,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'ccf-ontology',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
