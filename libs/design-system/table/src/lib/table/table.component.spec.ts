@@ -34,7 +34,8 @@ describe('Table  Component', () => {
     { serial_no: 1, name: '**Peter Parker**', age: 30, download: 'https://example.com' },
     { serial_no: 2, name: '**Mary Jane**', age: 28, download: 'https://example.com' },
   ];
-  it('It should render the table data', async () => {
+
+  it('It should render the table data from local', async () => {
     await render(TableComponent, {
       inputs: {
         rows: TABLE_ROWS,
@@ -44,5 +45,17 @@ describe('Table  Component', () => {
     });
     expect(screen.getByText('Mary Jane')).toBeInTheDocument();
     expect(screen.getByText(30)).toBeInTheDocument();
+  });
+
+  it('It should render the table data from URL', async () => {
+    global.URL.createObjectURL = jest.fn().mockReturnValue('blob:fakeblob');
+    const csvUrl = URL.createObjectURL(new Blob([], { type: 'text/csv' }));
+    await render(TableComponent, {
+      inputs: {
+        csvUrl,
+        columns: TABLE_COLUMNS,
+      },
+      providers: [provideHttpClient(), provideMarkdown()],
+    });
   });
 });
