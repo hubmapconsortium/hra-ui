@@ -7,14 +7,11 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
   ElementRef,
-  inject,
   input,
   viewChild,
 } from '@angular/core';
-import { SwiperContainer } from 'swiper/element';
+import { register, SwiperContainer } from 'swiper/element/bundle';
 import { SwiperOptions } from 'swiper/types';
-
-import { SWIPER_INIT } from '../../utils/swiper';
 import { CarouselItem } from './carousel.schema';
 import { ContentComponent } from './content/content.component';
 import { ControlsComponent } from './controls/controls.component';
@@ -65,10 +62,10 @@ export class CarouselComponent {
   );
 
   /**
-   * Injects SWIPER_INIT injection token, initializes swiper with config
+   * Registers swiper then initializes the carousel swiper element with config
    */
   constructor() {
-    inject(SWIPER_INIT)();
+    register();
 
     effect(() => {
       const swiperEl = coerceElement(this.swiper());

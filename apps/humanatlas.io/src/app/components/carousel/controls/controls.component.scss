@@ -1,3 +1,5 @@
+@use 'vars';
+
 :host {
   display: flex;
   align-items: center;
@@ -6,32 +8,31 @@
     display: flex;
 
     ::ng-deep span {
+      position: relative;
       width: 1.25rem;
       height: 1.25rem;
       margin: 0.875rem;
-      border: 0.125rem solid var(--mat-sys-primary);
+      border-width: 0.125rem;
+      border-style: solid;
+      border-color: vars.$primary;
       border-radius: 100%;
       cursor: pointer;
 
       &.swiper-pagination-bullet-active {
-        border: 0.125rem solid var(--mat-sys-tertiary);
+        border-color: vars.$tertiary;
       }
     }
 
     ::ng-deep .swiper-pagination-bullet-active::before {
       content: '';
-      background-color: var(--mat-sys-tertiary);
       display: block;
-      position: relative;
-      border-radius: 100%;
+      position: absolute;
+      inset: 0;
       width: 0.625rem;
       height: 0.625rem;
-      top: 0.1875rem;
-      left: 0.1875rem;
+      margin: auto;
+      border-radius: 100%;
+      background-color: vars.$tertiary;
     }
-  }
-
-  button {
-    --mdc-icon-button-state-layer-size: 2.5rem;
   }
 }

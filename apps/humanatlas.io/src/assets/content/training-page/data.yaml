@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Training
 subtitle: Learn how to construct and use the Human Reference Atlas.
 content:
