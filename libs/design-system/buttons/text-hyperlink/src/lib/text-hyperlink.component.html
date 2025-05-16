@@ -1,0 +1,15 @@
+@if (urlTree(); as link) {
+  <a mat-button hraHyperlink [routerLink]="link">
+    {{ text() }}
+    @if (icon(); as fontIcon) {
+      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>
+    }
+  </a>
+} @else {
+  <a mat-button hraHyperlink [href]="url()" target="_blank" rel="noopener noreferrer">
+    {{ text() }}
+    @if (icon(); as fontIcon) {
+      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>
+    }
+  </a>
+}
