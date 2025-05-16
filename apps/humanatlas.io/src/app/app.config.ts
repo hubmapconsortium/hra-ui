@@ -12,17 +12,19 @@ import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 
 import { appRoutes } from './app.routes';
+import { ReleaseNotesVersionSelectorDef } from './components/release-notes-version-selector/release-notes-version-selector.definition';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateDefs([
+      ButtonDef,
       DataViewerDef,
       MarkdownDef,
       PageSectionDef,
       PageTableDef,
+      ReleaseNotesVersionSelectorDef,
       VersionedDataTableDef,
-      ButtonDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),

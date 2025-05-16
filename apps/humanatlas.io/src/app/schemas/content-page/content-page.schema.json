@@ -4,6 +4,9 @@
     "AnyContentTemplate": {
       "anyOf": [
         {
+          "$ref": "#/definitions/Button"
+        },
+        {
           "$ref": "#/definitions/DataViewer"
         },
         {
@@ -13,13 +16,13 @@
           "$ref": "#/definitions/PageSection"
         },
         {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
           "$ref": "#/definitions/VersionedDataTable"
         },
         {
           "$ref": "#/definitions/PageTable"
-        },
-        {
-          "$ref": "#/definitions/Button"
         }
       ]
     },
@@ -412,6 +415,23 @@
         "verticalDividers": {
           "type": "boolean",
           "default": false
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
         }
       },
       "required": ["component"],

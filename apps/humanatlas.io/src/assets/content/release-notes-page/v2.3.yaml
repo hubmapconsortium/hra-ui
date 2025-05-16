@@ -1,6 +1,8 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Release Notes
 subtitle: What’s new in the Human Reference Atlas.
+headerContent:
+  component: ReleaseNotesVersionSelector
 content: []
 # # yaml-language-server: $schema=https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/apps/humanatlas.io/src/pages.schema.json
 
