@@ -5,6 +5,7 @@ import {
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
+import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
@@ -32,6 +33,7 @@ export const ContentPageDataSchema = z.object({
 
 export {
   AnyContentTemplateSchema,
+  ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
   MarkdownSchema,
@@ -43,6 +45,7 @@ export {
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ButtonSchema,
     DataViewerSchema,
     MarkdownSchema,
     PageSectionSchema,
