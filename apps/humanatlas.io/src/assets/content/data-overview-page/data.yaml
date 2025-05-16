@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Data overview
 subtitle: |
   The evolving Human Reference Atlas is built with distinct data structures called <a href="/overview-data#digital-objects">digital objects</a>.

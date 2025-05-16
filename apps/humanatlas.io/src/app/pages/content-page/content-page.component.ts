@@ -6,8 +6,8 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-
-import { ContentPageData } from './types/content-page.schema';
+import { ContentPageData } from '../../schemas/content-page/content-page.schema';
+import { MarkdownModule } from 'ngx-markdown';
 
 /**
  * Content Page Component
@@ -22,6 +22,7 @@ import { ContentPageData } from './types/content-page.schema';
     PageSectionComponent,
     RouterModule,
     TableOfContentsLayoutModule,
+    MarkdownModule,
   ],
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss',

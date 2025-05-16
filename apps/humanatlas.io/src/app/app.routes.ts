@@ -1,12 +1,11 @@
 import { Route } from '@angular/router';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
-import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
-import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
-import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { createJsonSpecResolver } from './resolvers/spec.resolver';
-import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
+import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
+import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -15,7 +14,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      data: landingPageResolver,
+      data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
   {
@@ -33,10 +32,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'overview-data',
+    path: 'cell-type-annotations',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -75,6 +74,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'overview-data',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
