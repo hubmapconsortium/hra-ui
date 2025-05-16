@@ -11,6 +11,7 @@ export type VersionedData = z.infer<typeof VersionedDataSchema>;
  * Schema for versioned data
  */
 export const VersionedDataSchema = PageTableSchema.pick({
+  csvUrl: true,
   columns: true,
   rows: true,
   style: true,

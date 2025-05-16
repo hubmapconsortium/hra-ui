@@ -1,3 +1,7 @@
 :host {
   display: block;
+
+  hra-table {
+    height: calc(100% - 4.25rem);
+  }
 }
