@@ -9,6 +9,7 @@ import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-sec
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { PageTableDef } from '@hra-ui/design-system/table';
+import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { provideMarkdown } from 'ngx-markdown';
 
 import { appRoutes } from './app.routes';
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       PageTableDef,
       VersionedDataTableDef,
       ButtonDef,
+      TextHyperlinkDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
