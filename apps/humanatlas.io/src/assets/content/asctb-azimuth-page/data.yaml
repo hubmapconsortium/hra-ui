@@ -49,9 +49,35 @@ content:
     anchor: summary-statistics
     level: 4
     content:
-      component: Markdown
-      data: |
-        TODO: Multi-header table comes here.
+      component: PageTable
+      style: alternating
+      enableSort: true
+      csvUrl: assets/content/asctb-azimuth-page/asctb-summary-stats.csv
+      columns:
+        - column: Organ
+          label: Organ
+        - column: AzimuthUniqueNames
+          label: 'Azimuth cell types with unique names'
+        - column: AzimuthUniqueIDs
+          label: 'Azimuth cell types with unique IDs'
+        - column: ASCTBUniqueNames
+          label: 'ASCT+B v1.0 cell types with unique names'
+        - column: ASCTBUniqueIDs
+          label: 'ASCT+B v1.0 cell types with unique IDs'
+        - column: MatchingUniqueNames
+          label: 'Matching cell types with unique names'
+        - column: MatchingUniqueIDs
+          label: 'Matching cell types with unique IDs'
+        - column: AnnotationLevelsAzimuthRef
+          label: 'Annotation levels in Azimuth reference'
+        - column: TotalCellsAzimuthRef
+          label: 'Total cell count in Azimuth reference'
+        - column: BiomarkersAzimuth
+          label: 'Azimuth biomarkers'
+        - column: BiomarkersASCTB
+          label: 'ASCT+B biomarkers'
+        - column: BiomarkersMatches
+          label: 'Matching biomarkers'
 
   - component: PageSection
     tagline: Azimuth cell type counts
