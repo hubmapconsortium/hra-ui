@@ -14,19 +14,23 @@ import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { provideMarkdown } from 'ngx-markdown';
 
 import { appRoutes } from './app.routes';
+import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
+import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateDefs([
+      ButtonDef,
       DataViewerDef,
+      FlexContainerDef,
+      ImageDef,
       MarkdownDef,
       PageSectionDef,
       PageTableDef,
-      VersionedDataTableDef,
-      ButtonDef,
-      ImageDef,
+      ProfileCardDef,
       TextHyperlinkDef,
+      VersionedDataTableDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
