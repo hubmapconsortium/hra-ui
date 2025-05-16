@@ -408,6 +408,9 @@
           "items": {
             "type": "object",
             "properties": {
+              "csvUrl": {
+                "$ref": "#/definitions/PageTable/properties/csvUrl"
+              },
               "columns": {
                 "$ref": "#/definitions/PageTable/properties/columns"
               },
