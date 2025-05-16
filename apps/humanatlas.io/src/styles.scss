@@ -5,3 +5,43 @@
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 }
+
+// Set the markdown link styling here since we can't use hyperlink directive in markdown
+markdown a {
+  &:link,
+  &:link mat-icon {
+    color: var(--mat-sys-on-tertiary-fixed);
+  }
+
+  &:visited,
+  &:visited mat-icon {
+    color: var(--mat-sys-tertiary-fixed);
+  }
+
+  &:focus-visible,
+  &:hover,
+  &:active {
+    text-decoration: underline solid currentColor 0.0625rem;
+    text-underline-offset: 0.125rem;
+  }
+
+  &:focus-visible {
+    color: var(--mat-sys-secondary);
+    outline: 0.125rem solid var(--mat-sys-tertiary);
+    border-radius: 0.25rem;
+
+    & mat-icon {
+      color: var(--mat-sys-secondary);
+    }
+  }
+
+  &:hover,
+  &:hover mat-icon {
+    color: var(--mat-sys-on-tertiary-fixed);
+  }
+
+  &:active,
+  &:active mat-icon {
+    color: var(--mat-sys-on-tertiary-fixed-variant);
+  }
+}

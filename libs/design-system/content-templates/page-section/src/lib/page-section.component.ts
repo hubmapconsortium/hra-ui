@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
+import { BRAND } from 'zod';
+
 import { PageSectionInstance, PageSectionService } from './services/page-section.service';
 
 /**
@@ -30,15 +32,14 @@ export class PageSectionComponent implements PageSectionInstance {
   /** Level of <hx> element to use for the header */
   readonly level = input(1, { transform: numberAttribute });
 
-  // TODO icons
-  // /** App icon */
-  // readonly app = input('');
+  /** App icon */
+  readonly product = input<string & BRAND<'ProductLogoId'>>();
 
-  // /** Organ icon */
-  // readonly organ = input('');
+  /** Organ icon */
+  readonly organ = input<string & BRAND<'OrganLogoId'>>();
 
-  // /** Website category icon */
-  // readonly category = input('');
+  /** Website category icon */
+  readonly category = input<string & BRAND<'CategoryLogoId'>>();
 
   /** Anchor id for the section */
   readonly anchor = input<string>();

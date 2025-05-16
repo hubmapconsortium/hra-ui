@@ -1,0 +1,10 @@
+@for (card of cards(); track $index) {
+  <hra-action-card-outline-large-image
+    [imageUrl]="card.imageUrl"
+    [tagline]="card.tagline"
+    [description]="card.description"
+    [actionName]="card.actionName"
+    [actionUrl]="card.actionUrl"
+  >
+  </hra-action-card-outline-large-image>
+}

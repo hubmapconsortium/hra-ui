@@ -77,6 +77,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'overview-data',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '**',
     redirectTo: '',
   },
