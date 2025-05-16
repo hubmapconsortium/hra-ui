@@ -17,8 +17,52 @@
         },
         {
           "$ref": "#/definitions/PageTable"
+        },
+        {
+          "$ref": "#/definitions/Button"
         }
       ]
+    },
+    "Button": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Button"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "label": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["default", "flat", "cta", "fab"]
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "secondary"]
+        },
+        "size": {
+          "type": "string",
+          "enum": ["small", "medium"]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "label", "href"],
+      "additionalProperties": false
     },
     "Classes": {
       "anyOf": [
@@ -80,10 +124,10 @@
           "const": "DataViewer"
         },
         "classes": {
-          "$ref": "#/definitions/Classes"
+          "$ref": "#/definitions/Button/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Styles"
+          "$ref": "#/definitions/Button/properties/styles"
         },
         "variant": {
           "type": "string"
@@ -199,10 +243,10 @@
           "const": "Markdown"
         },
         "classes": {
-          "$ref": "#/definitions/DataViewer/properties/classes"
+          "$ref": "#/definitions/Button/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/DataViewer/properties/styles"
+          "$ref": "#/definitions/Button/properties/styles"
         },
         "data": {
           "type": "string"
@@ -222,10 +266,10 @@
           "const": "PageSection"
         },
         "classes": {
-          "$ref": "#/definitions/DataViewer/properties/classes"
+          "$ref": "#/definitions/Button/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/DataViewer/properties/styles"
+          "$ref": "#/definitions/Button/properties/styles"
         },
         "tagline": {
           "type": "string"
@@ -263,10 +307,10 @@
           "const": "PageTable"
         },
         "classes": {
-          "$ref": "#/definitions/DataViewer/properties/classes"
+          "$ref": "#/definitions/Button/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/DataViewer/properties/styles"
+          "$ref": "#/definitions/Button/properties/styles"
         },
         "csvUrl": {
           "type": "string"
@@ -392,10 +436,10 @@
           "const": "VersionedDataTable"
         },
         "classes": {
-          "$ref": "#/definitions/DataViewer/properties/classes"
+          "$ref": "#/definitions/Button/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/DataViewer/properties/styles"
+          "$ref": "#/definitions/Button/properties/styles"
         },
         "label": {
           "type": "string"
