@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Release Notes
 subtitle: What’s new in the Human Reference Atlas.
 content: []

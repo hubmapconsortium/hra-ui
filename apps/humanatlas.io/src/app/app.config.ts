@@ -17,6 +17,10 @@ export const appConfig: ApplicationConfig = {
     provideContentTemplateDefs([DataViewerDef, MarkdownDef, PageSectionDef, PageTableDef, VersionedDataTableDef]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
-    provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+    ),
   ],
 };

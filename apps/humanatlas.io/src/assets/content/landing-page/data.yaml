@@ -1,5 +1,4 @@
-# TODO specify the schema
-
+$schema: ../../../app/schemas/landing-page/landing-page.schema.json
 carouselItems:
   - tagline: Map the human body at single cell resolution
     description: Read our flagship paper about the thousands of experts building a Human Reference Atlas.

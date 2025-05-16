@@ -1,3 +1,4 @@
+import { coerceArray } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -6,8 +7,8 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-import { ContentPageData } from './types/content-page.schema';
-import { coerceArray } from '@angular/cdk/coercion';
+
+import { ContentPageData } from '../../schemas/content-page/content-page.schema';
 
 /**
  * Content Page Component

@@ -1,8 +1,0 @@
-<div *ngFor="let data of data">
-  @if (data.heading) {
-    <div class="body-title" [attr.id]="data.id ?? null">{{ data.heading }}</div>
-  }
-  <div class="body-description">
-    <markdown>{{ data.descriptions }}</markdown>
-  </div>
-</div>

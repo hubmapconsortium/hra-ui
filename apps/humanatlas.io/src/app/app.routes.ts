@@ -1,12 +1,13 @@
 import { Route } from '@angular/router';
+
 import { ContentPageComponent } from './pages/content-page/content-page.component';
-import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { LandingPageDataSchema } from './pages/landing-page/types/landing-page.schema';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
-import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
 import { createReleaseNotesContentResolver } from './resolvers/release-notes-content.resolver';
 import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
+import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
 
 /** Application routes */
@@ -48,6 +49,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'standard-operating-procedures',
     component: ContentPageComponent,
     resolve: {
@@ -69,6 +84,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'ccf-ontology',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
