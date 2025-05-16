@@ -56,6 +56,9 @@ content:
       columns:
         - column: Organ
           label: Organ
+          type:
+            type: link
+            urlColumn: OrganURL
         - column: AzimuthUniqueNames
           label: 'Azimuth cell types with unique names'
         - column: AzimuthUniqueIDs
