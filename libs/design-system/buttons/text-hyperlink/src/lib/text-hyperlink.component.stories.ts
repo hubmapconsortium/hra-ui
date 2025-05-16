@@ -14,10 +14,6 @@ const meta: Meta<TextHyperlinkComponent> = {
     text: 'Link Text',
     url: 'https://google.com',
   },
-  // render: (args) => ({
-  //   props: args,
-  //   template: `<a hraHyperlink href="${args.link}" target="_blank" rel="noopener noreferrer">${args.link}</a>`,
-  // }),
 };
 export default meta;
 type Story = StoryObj<TextHyperlinkComponent>;
