@@ -26,6 +26,10 @@ export const appConfig: ApplicationConfig = {
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
-    provideRouter(appRoutes, withComponentInputBinding(), withInMemoryScrolling({ anchorScrolling: 'enabled' })),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+    ),
   ],
 };

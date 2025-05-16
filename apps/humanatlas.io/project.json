@@ -30,12 +30,6 @@
       },
       "configurations": {
         "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/humanatlas.io/src/environments/environment.ts",
-              "with": "apps/humanatlas.io/src/environments/environment.prod.ts"
-            }
-          ],
           "budgets": [
             {
               "type": "initial",
@@ -64,7 +58,9 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/pages/content-page/types/content-page.schema.ts --name ContentPage"
+          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/schemas/content-page/content-page.schema.ts --name ContentPage",
+          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/schemas/landing-page/landing-page.schema.ts --name LandingPage",
+          "node tools/scripts/build-json-schema.mjs apps/humanatlas.io/src/app/schemas/publications-page/publications-page.schema.ts --name PublicationsPage"
         ],
         "parallel": true
       }

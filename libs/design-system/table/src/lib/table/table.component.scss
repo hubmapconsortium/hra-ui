@@ -3,6 +3,10 @@
 @use '../../../../styles/vars';
 
 :host {
+  ng-scrollbar {
+    max-height: 35rem;
+  }
+
   table {
     @include mat.sort-overrides(
       (
