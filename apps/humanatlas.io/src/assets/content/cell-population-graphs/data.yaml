@@ -1,27 +1,32 @@
-$schema: '../../../app/pages/content-page/types/content-page.schema.json'
-title: Cell Popultion Graphs
-subtitle: An interactive tool for exploring and comparing cell populations
+$schema: '../../../app/schemas/content-page/content-page.schema.json'
+title: Cell Population Graphs
+subtitle: Compare cell type populations across datasets.
 content:
   - component: PageSection
     tagline: Overview
     anchor: overview
     level: 2
     content:
-      component: Markdown
-      data: |
-        Visualization tool for comparing cell-type distributions from single-cell RNA sequencing datasets from HuBMAP and
-        other public data portals. The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy)
-        is visualized as count or percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location
-        (for blocks that were registered via the tissue registration user interface [RUI] into a 3D reference organ model),
-        and they can be grouped by dataset-specific properties (e.g., age, ethnicity, sex, or UV exposure).
-
+      - component: Markdown
+        data: |
+          Visualization tool for comparing cell-type distributions from single-cell RNA sequencing datasets from HuBMAP and other public data portals.
+          The number of cells per cell type in a dataset (e.g., derived from a tissue block, tissue section, or biopsy) is visualized as count or
+          percentage in a bar graph. Datasets can be sorted by total cell count or tissue block location (for blocks that were registered via the
+          tissue registration user interface [RUI] into a 3D reference organ model), and they can be grouped by dataset-specific properties
+          (e.g., age, ethnicity, sex, or UV exposure).
+      - component: Button
+        label: Use app
+        href: https://hubmapconsortium.github.io/tissue-bar-graphs/
+        type: cta
   - component: PageSection
     tagline: Example visualization
     anchor: example-visualization
     level: 3
     content:
-      component: Markdown
-      data: |
-        Ten datasets from the [Human Digital Twin](https://doi.org/10.1038/s42003-023-04991-z) paper by Soumya et al.
-
-        <img src="assets/content/cell-population-graphs/images/cell-population-comparison.svg" />
+      - component: Markdown
+        data: |
+          Datasets from the [Human Digital Twin](https://doi.org/10.1038/s42003-023-04991-z) paper by Soumya et al.
+      - component: Image
+        src: assets/content/cell-population-graphs/images/cell-population-comparison.svg
+        styles:
+          margin-top: 1.5rem

@@ -20,6 +20,9 @@
         },
         {
           "$ref": "#/definitions/Button"
+        },
+        {
+          "$ref": "#/definitions/Image"
         }
       ]
     },
@@ -80,6 +83,9 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "ContentPage": {
+      "$ref": "#/definitions/ContentPageData"
     },
     "ContentPageData": {
       "type": "object",
@@ -233,6 +239,29 @@
         }
       },
       "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Image"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "src"],
       "additionalProperties": false
     },
     "Markdown": {
@@ -478,9 +507,6 @@
       },
       "required": ["component", "label", "items"],
       "additionalProperties": false
-    },
-    "ContentPage": {
-      "$ref": "#/definitions/ContentPageData"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
