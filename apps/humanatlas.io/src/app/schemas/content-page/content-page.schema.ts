@@ -11,6 +11,7 @@ import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
+import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { z } from 'zod';
 
 /** Content page type */
@@ -32,27 +33,29 @@ export const ContentPageDataSchema = z.object({
 
 export {
   AnyContentTemplateSchema,
+  ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
+  ImageSchema,
   MarkdownSchema,
   PageSectionSchema,
   PageTableSchema,
   StylesSchema,
+  TextHyperlinkSchema,
   VersionedDataTableSchema,
-  ButtonSchema,
-  ImageSchema,
   // TODO: Add more
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ButtonSchema,
     DataViewerSchema,
+    ImageSchema,
     MarkdownSchema,
     PageSectionSchema,
-    VersionedDataTableSchema,
     PageTableSchema,
-    ButtonSchema,
-    ImageSchema,
+    TextHyperlinkSchema,
+    VersionedDataTableSchema,
     // TODO: Add more
   ]);
 
