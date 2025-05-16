@@ -76,14 +76,12 @@ content:
     anchor: feature-map-2024
     level: 3
     content:
-      component: Markdown
-      data: |
-        <img src="assets/content/explore-biomarker-expressions-page/images/eui_features.svg"></img>
+      component: Image
+      src: assets/content/explore-biomarker-expressions-page/images/eui_features.svg
   - component: PageSection
     tagline: Application User Interface 2024
     anchor: application-user-interface-2024
     level: 3
     content:
-      component: Markdown
-      data: |
-        <img src="assets/content/explore-biomarker-expressions-page/images/us3.png"></img>
+      component: Image
+      src: assets/content/explore-biomarker-expressions-page/images/us3.png

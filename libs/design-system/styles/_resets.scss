@@ -24,7 +24,10 @@ input[type='number'] {
 }
 
 markdown {
-  img {
-    width: 100%;
+  p {
+    margin-bottom: 0;
+  }
+  ul {
+    margin: 0;
   }
 }

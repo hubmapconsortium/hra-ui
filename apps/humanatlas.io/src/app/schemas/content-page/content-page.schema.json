@@ -4,7 +4,19 @@
     "AnyContentTemplate": {
       "anyOf": [
         {
+          "$ref": "#/definitions/ApiCommand"
+        },
+        {
+          "$ref": "#/definitions/Button"
+        },
+        {
           "$ref": "#/definitions/DataViewer"
+        },
+        {
+          "$ref": "#/definitions/FlexContainer"
+        },
+        {
+          "$ref": "#/definitions/Image"
         },
         {
           "$ref": "#/definitions/Markdown"
@@ -13,18 +25,59 @@
           "$ref": "#/definitions/PageSection"
         },
         {
-          "$ref": "#/definitions/VersionedDataTable"
-        },
-        {
           "$ref": "#/definitions/PageTable"
         },
         {
-          "$ref": "#/definitions/ApiCommand"
+          "$ref": "#/definitions/ProfileCard"
         },
         {
-          "$ref": "#/definitions/Button"
+          "$ref": "#/definitions/TextHyperlink"
+        },
+        {
+          "$ref": "#/definitions/VersionedDataTable"
         }
       ]
+    },
+    "ApiCommand": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ApiCommand"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "request": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST"]
+        },
+        "rightButton": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["label"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["component", "request", "method", "rightButton"],
+      "additionalProperties": false
     },
     "Button": {
       "type": "object",
@@ -34,10 +87,10 @@
           "const": "Button"
         },
         "classes": {
-          "$ref": "#/definitions/Classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "label": {
           "type": "string"
@@ -84,37 +137,6 @@
         }
       ]
     },
-    "ApiCommand": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "ApiCommand"
-        },
-        "request": {
-          "type": "string"
-        },
-        "method": {
-          "type": "string"
-        },
-        "rightButton": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "icon": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "required": ["component", "request", "method", "rightButton"],
-      "additionalProperties": false
-    },
     "ContentPageData": {
       "type": "object",
       "properties": {
@@ -158,10 +180,10 @@
           "const": "DataViewer"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "variant": {
           "type": "string"
@@ -269,6 +291,58 @@
       "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
       "additionalProperties": false
     },
+    "FlexContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "FlexContainer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Image"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "src"],
+      "additionalProperties": false
+    },
     "Markdown": {
       "type": "object",
       "properties": {
@@ -277,10 +351,10 @@
           "const": "Markdown"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "data": {
           "type": "string"
@@ -300,10 +374,10 @@
           "const": "PageSection"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "tagline": {
           "type": "string"
@@ -341,10 +415,10 @@
           "const": "PageTable"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "csvUrl": {
           "type": "string"
@@ -451,6 +525,38 @@
       "required": ["component"],
       "additionalProperties": false
     },
+    "ProfileCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ProfileCard"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "centerContent": {
+          "type": "boolean"
+        },
+        "actions": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["component", "name", "description", "pictureUrl"],
+      "additionalProperties": false
+    },
     "Styles": {
       "anyOf": [
         {
@@ -462,6 +568,32 @@
         }
       ]
     },
+    "TextHyperlink": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "TextHyperlink"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "text", "url"],
+      "additionalProperties": false
+    },
     "VersionedDataTable": {
       "type": "object",
       "properties": {
@@ -470,10 +602,10 @@
           "const": "VersionedDataTable"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "label": {
           "type": "string"
