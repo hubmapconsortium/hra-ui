@@ -4641,3 +4641,182 @@ content:
                 as_as: 73
                 as_ct: 28
                 ct_bm: 65
+          - label: 1st Release (v1.0)
+            columns:
+              organ: Organ
+              download: Download ASCT+B Tables
+              table_version: Table Version
+              as_count: '#AS'
+              ct_count: '#CT'
+              b_count: '#B Total'
+              bg: '#BG'
+              bp: '#BP'
+              as_as: '#AS-AS'
+              as_ct: '#AS-CT'
+              ct_bm: '#CT-BM'
+            rows:
+              - organ:
+                  label: Bone Marrow & Blood/Pelvis
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_BM_Blood_Pelvis.csv
+                table_version: v1.0
+                as_count: 2
+                ct_count: 45
+                b_count: 231
+                bg: 177
+                bp: 54
+                as_as: 2
+                as_ct: 70
+                ct_bm: 631
+              - organ:
+                  label: Brain
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_Allen_Brain.csv
+                table_version: v1.0
+                as_count: 184
+                ct_count: 127
+                b_count: 257
+                bg: 257
+                bp: 0
+                as_as: 185
+                as_ct: 127
+                ct_bm: 346
+              - organ:
+                  label: Heart
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Heart.csv
+                table_version: v1.0
+                as_count: 50
+                ct_count: 23
+                b_count: 45
+                bg: 45
+                bp: 0
+                as_as: 60
+                as_ct: 183
+                ct_bm: 74
+              - organ:
+                  label: Intestine Large
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Intestine_Large.csv
+                table_version: v1.0
+                as_count: 48
+                ct_count: 57
+                b_count: 85
+                bg: 84
+                bp: 1
+                as_as: 290
+                as_ct: 1
+                ct_bm: 158
+              - organ:
+                  label: Kidney
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Kidney.csv
+                table_version: v1.0
+                as_count: 61
+                ct_count: 62
+                b_count: 150
+                bg: 150
+                bp: 0
+                as_as: 62
+                as_ct: 60
+                ct_bm: 257
+              - organ:
+                  label: Lung
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Lung.csv
+                table_version: v1.0
+                as_count: 146
+                ct_count: 87
+                b_count: 258
+                bg: 258
+                bp: 0
+                as_as: 911
+                as_ct: 1
+                ct_bm: 658
+              - organ:
+                  label: Lymph Node
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_NIH_Lymph_Node.csv
+                table_version: v1.0
+                as_count: 35
+                ct_count: 45
+                b_count: 167
+                bg: 94
+                bp: 73
+                as_as: 57
+                as_ct: 121
+                ct_bm: 417
+              - organ:
+                  label: Skin
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Skin.csv
+                table_version: v1.0
+                as_count: 15
+                ct_count: 36
+                b_count: 68
+                bg: 0
+                bp: 68
+                as_as: 17
+                as_ct: 19
+                ct_bm: 96
+              - organ:
+                  label: Spleen
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Spleen.csv
+                table_version: v1.0
+                as_count: 27
+                ct_count: 66
+                b_count: 163
+                bg: 72
+                bp: 91
+                as_as: 55
+                as_ct: 413
+                ct_bm: 372
+              - organ:
+                  label: Thymus
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Thymus.csv
+                table_version: v1.0
+                as_count: 17
+                ct_count: 41
+                b_count: 442
+                bg: 378
+                bp: 64
+                as_as: 37
+                as_ct: 198
+                ct_bm: 613
+              - organ:
+                  label: Vasculature
+                  url: /TODO
+                download:
+                  label: CSV
+                  url: https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Vasculature.csv
+                table_version: v1.0
+                as_count: 839
+                ct_count: 2
+                b_count: 1
+                bg: 1
+                bp: 0
+                as_as: 867
+                as_ct: 604
+                ct_bm: 2
