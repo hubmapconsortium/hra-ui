@@ -13,6 +13,9 @@
           "$ref": "#/definitions/FlexContainer"
         },
         {
+          "$ref": "#/definitions/Image"
+        },
+        {
           "$ref": "#/definitions/Markdown"
         },
         {
@@ -271,6 +274,29 @@
         }
       },
       "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Image"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "src"],
       "additionalProperties": false
     },
     "Markdown": {
