@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.button-overrides(
+    (
+      text-with-icon-horizontal-padding: 0,
+      text-icon-spacing: 0.375rem,
+    )
+  );
+
+  mat-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
