@@ -221,7 +221,7 @@
             {
               "type": "item",
               "label": "About",
-              "url": "/about"
+              "url": "https://humanatlas.io/about/"
             },
             {
               "type": "item",

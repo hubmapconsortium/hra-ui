@@ -33,29 +33,28 @@ export const ContentPageDataSchema = z.object({
 
 export {
   AnyContentTemplateSchema,
+  ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
+  FlexContainerSchema,
   MarkdownSchema,
   PageSectionSchema,
   PageTableSchema,
+  ProfileCardSchema,
   StylesSchema,
   VersionedDataTableSchema,
-  FlexContainerSchema,
-  ProfileCardSchema,
-  ButtonSchema,
-  // TODO: Add more
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ButtonSchema,
     DataViewerSchema,
+    FlexContainerSchema,
     MarkdownSchema,
     PageSectionSchema,
-    VersionedDataTableSchema,
     PageTableSchema,
-    FlexContainerSchema,
     ProfileCardSchema,
-    ButtonSchema,
+    VersionedDataTableSchema,
     // TODO: Add more
   ]);
 

@@ -4,7 +4,13 @@
     "AnyContentTemplate": {
       "anyOf": [
         {
+          "$ref": "#/definitions/Button"
+        },
+        {
           "$ref": "#/definitions/DataViewer"
+        },
+        {
+          "$ref": "#/definitions/FlexContainer"
         },
         {
           "$ref": "#/definitions/Markdown"
@@ -13,19 +19,13 @@
           "$ref": "#/definitions/PageSection"
         },
         {
-          "$ref": "#/definitions/VersionedDataTable"
-        },
-        {
           "$ref": "#/definitions/PageTable"
-        },
-        {
-          "$ref": "#/definitions/FlexContainer"
         },
         {
           "$ref": "#/definitions/ProfileCard"
         },
         {
-          "$ref": "#/definitions/Button"
+          "$ref": "#/definitions/VersionedDataTable"
         }
       ]
     },
@@ -86,70 +86,6 @@
           "additionalProperties": {}
         }
       ]
-    },
-    "FlexContainer": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "FlexContainer"
-        },
-        "styles": {
-          "$ref": "#/definitions/Styles"
-        },
-        "rowGap": {
-          "type": "string"
-        },
-        "columnGap": {
-          "type": "string"
-        },
-        "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
-          }
-        }
-      },
-      "required": ["component", "content"],
-      "additionalProperties": false
-    },
-    "ProfileCard": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "ProfileCard"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "pictureUrl": {
-          "type": "string"
-        },
-        "alignment": {
-          "type": "string",
-          "enum": ["left", "right"],
-          "default": "left"
-        },
-        "action": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "required": ["label", "url"],
-          "additionalProperties": false
-        }
-      },
-      "required": ["component", "name", "description", "pictureUrl"],
-      "additionalProperties": false
     },
     "ContentPageData": {
       "type": "object",
@@ -303,6 +239,35 @@
         }
       },
       "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "FlexContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "FlexContainer"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
       "additionalProperties": false
     },
     "Markdown": {
@@ -485,6 +450,38 @@
         }
       },
       "required": ["component"],
+      "additionalProperties": false
+    },
+    "ProfileCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ProfileCard"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "centerContent": {
+          "type": "boolean"
+        },
+        "actions": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
     "Styles": {

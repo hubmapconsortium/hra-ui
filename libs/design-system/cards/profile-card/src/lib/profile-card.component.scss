@@ -2,60 +2,47 @@
 @use '../../../../styles/vars' as vars;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: fit-content;
+  height: 100%;
+  max-width: 272px;
 
-  .profile-card {
-    max-width: 272px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  .picture {
+    width: 11.25rem;
+    height: 13.375rem;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%);
+    border-left: 0.75rem solid #ff0043;
+    margin-bottom: 2rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    margin-bottom: 1rem;
+    flex-grow: 1;
+
+    .name {
+      @include utils.use-font(title, medium);
+      color: vars.$secondary;
+      margin-bottom: 0.5rem;
+    }
+
+    .description {
+      @include utils.use-font(body, large);
+      color: vars.$on-secondary-fixed;
+    }
+  }
+
+  &.hra-profile-card-center-content {
+    text-align: center;
 
     .picture {
-      width: 11.25rem;
-      height: 13.375rem;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%);
-      border-left: 0.75rem solid #ff0043;
-      margin-bottom: 2rem;
-
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .content {
-      margin-bottom: 1rem;
-      flex-grow: 1;
-
-      .name {
-        @include utils.use-font(title, medium);
-        color: vars.$secondary;
-        margin-bottom: 0.5rem;
-      }
-
-      .description {
-        @include utils.use-font(body, large);
-        color: vars.$on-secondary-fixed;
-      }
-    }
-
-    .action-link {
-      @include utils.use-font(label, large);
-      display: inline-flex;
-      gap: 0.5rem;
-      align-items: center;
-      height: 2.5rem;
-    }
-
-    /* Style for centered alignment */
-    &.centered {
-      text-align: center;
-
-      .picture {
-        margin: 0 auto 2rem auto;
-      }
+      margin: 0 auto 2rem auto;
     }
   }
 }
