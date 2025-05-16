@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: ASCT+B cell types data from Azimuth reference data with summaries
 subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data.
 content:

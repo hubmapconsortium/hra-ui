@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Millitome
 subtitle: A unique 3D printed tool for the uniform sectioning of organs
 action:
@@ -38,58 +38,55 @@ content:
     content:
       - component: Markdown
         data: |
-          Download millitome sets for 3D-printing
+          Download millitome sets for 3D-printing.
+
       - component: PageTable
-        columns:
-          organ: Organ
-          sex: Sex
-          leftRight: Left/Right
-        rows:
-          - organ:
-              {
-                label: Kidney,
-                url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/,
-              }
-            sex: Female
-            leftRight: Left
-          - organ:
-              label: Kidney
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_R/
-            sex: Female
-            leftRight: Right
-          - organ:
-              label: Kidney
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_L/
-            sex: Male
-            leftRight: Left
-          - organ:
-              label: Kidney
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_R/
-            sex: Male
-            leftRight: Right
-          - organ:
-              label: Pancreas
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/G_Pancreas/
-            sex: Generic
-            leftRight: N/A
-          - organ:
-              label: Pancreas
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Pancreas/
-            sex: Female
-            leftRight: N/A
-          - organ:
-              label: Pancreas
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Pancreas/
-            sex: Male
-            leftRight: N/A
-          - organ:
-              label: Spleen
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Spleen/
-            sex: Female
-            leftRight: N/A
-          - organ:
-              label: Spleen
-              url: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Spleen/
-            sex: Male
-            leftRight: N/A
+        style: alternating
         enableSort: true
+        columns:
+          - column: Organ
+            label: Organ
+            type:
+              type: link
+              urlColumn: organUrl
+          - column: Sex
+            label: Sex
+          - column: LeftRight
+            label: Left/Right
+        rows:
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/,
+            Sex: Female
+            LeftRight: Left
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_R/
+            Sex: Female
+            LeftRight: Right
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_L/
+            Sex: Male
+            LeftRight: Left
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_R/
+            Sex: Male
+            LeftRight: Right
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/G_Pancreas/
+            Sex: Generic
+            LeftRight: N/A
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Pancreas/
+            Sex: Female
+            LeftRight: N/A
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Pancreas/
+            Sex: Male
+            LeftRight: N/A
+          - Organ: Spleen
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Spleen/
+            Sex: Female
+            LeftRight: N/A
+          - Organ: Spleen
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Spleen/
+            Sex: Male
+            LeftRight: N/A

@@ -3,7 +3,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
-import { PublicationsPageData } from './publications-page.schema';
+import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
 
 /** A single publication item */
 interface PublicationItem {

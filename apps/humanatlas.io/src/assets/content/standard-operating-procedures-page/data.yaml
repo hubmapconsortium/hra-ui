@@ -1,3 +1,4 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Standard Operating Procedures (SOPs)
 subtitle: Standard operating procedures (SOPs) for Human Reference Atlas construction, visualization, and usage.
 content:
