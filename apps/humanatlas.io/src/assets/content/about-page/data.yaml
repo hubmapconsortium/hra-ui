@@ -29,6 +29,12 @@ content:
       - component: Markdown
         data: |
           Please reach out to us with questions:
+      - component: Button
+        label: Email the team
+        href: mailto:infoccf@iu.edu
+        type: cta
+        styles:
+          margin-top: 1.5rem
       - component: FlexContainer
         styles:
           margin-top: 3rem
