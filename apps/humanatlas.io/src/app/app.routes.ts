@@ -92,6 +92,16 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'explore-biomarker-expressions',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {

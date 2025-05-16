@@ -1,0 +1,41 @@
+@use '../../../styles/vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.card-overrides(
+    (
+      elevated-container-shape: 0.25rem,
+      elevated-container-color: vars.$surface-container,
+      elevated-container-elevation: 0,
+    )
+  );
+
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  .url-card {
+    border-left: solid #bad2e7 0.5rem;
+    height: 3rem;
+    justify-content: center;
+    overflow: hidden;
+
+    &.post {
+      border-color: #8dc599;
+    }
+  }
+
+  hra-code-block {
+    border: none;
+    padding: 0;
+
+    ::ng-deep code {
+      color: vars.$primary;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 0.25rem;
+  }
+}

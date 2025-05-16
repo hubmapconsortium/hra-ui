@@ -4,6 +4,9 @@
     "AnyContentTemplate": {
       "anyOf": [
         {
+          "$ref": "#/definitions/ApiCommand"
+        },
+        {
           "$ref": "#/definitions/Button"
         },
         {
@@ -35,6 +38,47 @@
         }
       ]
     },
+    "ApiCommand": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ApiCommand"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "request": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST"]
+        },
+        "rightButton": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["label"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["component", "request", "method", "rightButton"],
+      "additionalProperties": false
+    },
     "Button": {
       "type": "object",
       "properties": {
@@ -43,10 +87,10 @@
           "const": "Button"
         },
         "classes": {
-          "$ref": "#/definitions/Classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "label": {
           "type": "string"
@@ -136,10 +180,10 @@
           "const": "DataViewer"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "variant": {
           "type": "string"
@@ -255,10 +299,10 @@
           "const": "FlexContainer"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "rowGap": {
           "type": "string"
@@ -284,10 +328,10 @@
           "const": "Image"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "src": {
           "type": "string"
@@ -307,10 +351,10 @@
           "const": "Markdown"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "data": {
           "type": "string"
@@ -330,10 +374,10 @@
           "const": "PageSection"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "tagline": {
           "type": "string"
@@ -371,10 +415,10 @@
           "const": "PageTable"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "csvUrl": {
           "type": "string"
@@ -489,10 +533,10 @@
           "const": "ProfileCard"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "name": {
           "type": "string"
@@ -532,10 +576,10 @@
           "const": "TextHyperlink"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "text": {
           "type": "string"
@@ -558,10 +602,10 @@
           "const": "VersionedDataTable"
         },
         "classes": {
-          "$ref": "#/definitions/Button/properties/classes"
+          "$ref": "#/definitions/ApiCommand/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Button/properties/styles"
+          "$ref": "#/definitions/ApiCommand/properties/styles"
         },
         "label": {
           "type": "string"

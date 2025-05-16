@@ -7,6 +7,7 @@ import {
 import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
+import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
@@ -35,6 +36,7 @@ export const ContentPageDataSchema = z.object({
 
 export {
   AnyContentTemplateSchema,
+  ApiCommandSchema,
   ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
@@ -47,6 +49,7 @@ export {
   StylesSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
+  // TODO: Add more
 };
 
 export default z.lazy(() => {
