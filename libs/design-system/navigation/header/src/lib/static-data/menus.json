@@ -167,7 +167,7 @@
         {
           "type": "group",
           "label": "Training Overview",
-          "url": "https://humanatlas.io/overview-training/",
+          "url": "https://humanatlas.io/training/",
           "items": [
             {
               "type": "item",
@@ -182,27 +182,27 @@
             {
               "type": "item",
               "label": "Human Atlas Stories",
-              "url": "https://humanatlas.io/overview-training-outreach#human-atlas-stories"
+              "url": "https://humanatlas.io/training-outreach#human-atlas-stories"
             },
             {
               "type": "item",
               "label": "Events",
-              "url": "https://humanatlas.io/overview-training-outreach#events"
+              "url": "https://humanatlas.io/training-outreach#events"
             },
             {
               "type": "item",
               "label": "Kaggle Competitions",
-              "url": "https://humanatlas.io/overview-training#kaggle"
+              "url": "https://humanatlas.io/training#kaggle-competitions"
             },
             {
               "type": "item",
               "label": "Release Notes",
-              "url": "https://humanatlas.io/overview-training#release-notes"
+              "url": "https://humanatlas.io/release-notes"
             },
             {
               "type": "item",
               "label": "Previews",
-              "url": "https://humanatlas.io/overview-training#previews"
+              "url": "https://humanatlas.io/training#previews"
             }
           ]
         }
@@ -231,7 +231,7 @@
             {
               "type": "item",
               "label": "Publications",
-              "url": "/publications"
+              "url": "https://humanatlas.io/publications"
             },
             {
               "type": "item",
