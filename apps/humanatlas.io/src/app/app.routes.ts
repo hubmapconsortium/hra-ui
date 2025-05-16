@@ -33,24 +33,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'api',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'millitome',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'cell-type-annotations',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
