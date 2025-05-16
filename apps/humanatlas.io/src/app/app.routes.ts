@@ -32,6 +32,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'millitome',
     component: ContentPageComponent,
     resolve: {
@@ -43,13 +50,6 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'api',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -67,6 +67,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-azimuth',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
