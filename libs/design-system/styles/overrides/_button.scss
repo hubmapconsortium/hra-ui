@@ -92,8 +92,10 @@
         )
       );
 
-      background-color: vars.$tertiary;
-      clip-path: $background-clip-path;
+      & {
+        background-color: vars.$tertiary;
+        clip-path: $background-clip-path;
+      }
 
       .mat-ripple {
         clip-path: $background-clip-path;
@@ -147,6 +149,12 @@
       );
 
       @include utils.inset-outline(vars.$tertiary);
+    }
+
+    mat-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
     }
   }
 

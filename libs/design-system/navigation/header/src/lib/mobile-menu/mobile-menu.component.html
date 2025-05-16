@@ -1,4 +1,4 @@
-<mat-divider> </mat-divider>
+<mat-divider />
 <ng-scrollbar>
   <mat-accordion displayMode="flat" multi="false">
     @for (menu of menus(); track $index) {
@@ -6,27 +6,27 @@
         <mat-expansion-panel-header class="header">
           <mat-panel-title>
             {{ menu.label }}
-            <mat-icon class="toggle-icon"> </mat-icon>
+            <mat-icon class="toggle-icon" />
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <hra-menu-content class="content" variant="mobile" [menu]="menu"></hra-menu-content>
+        <hra-menu-content class="content" variant="mobile" [menu]="menu" [baseUrl]="baseUrl()" />
       </mat-expansion-panel>
 
-      <mat-divider> </mat-divider>
+      <mat-divider />
     }
 
     <mat-expansion-panel class="panel" hideToggle>
       <mat-expansion-panel-header class="header">
         <mat-panel-title>
           HuBMAP Tools & Applications
-          <mat-icon class="toggle-icon"> </mat-icon>
+          <mat-icon class="toggle-icon" />
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <hra-hubmap-menu-content class="content" [menu]="hubmapMenu()"> </hra-hubmap-menu-content>
+      <hra-hubmap-menu-content class="content" [menu]="hubmapMenu()" />
     </mat-expansion-panel>
 
-    <mat-divider> </mat-divider>
+    <mat-divider />
   </mat-accordion>
 </ng-scrollbar>

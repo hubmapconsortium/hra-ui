@@ -1,5 +1,5 @@
 @for (group of menu(); track $index) {
-  <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: group }"></ng-container>
+  <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: group }" />
 }
 
 <ng-template hraHubmapMenuGroup let-group #groupTemplate>
@@ -9,7 +9,7 @@
 
   <div class="group-items">
     @for (item of group.items; track $index) {
-      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
     }
   </div>
 </ng-template>
@@ -21,6 +21,5 @@
     [description]="item.description"
     [icon]="item.icon | assetUrl"
     [link]="item.url"
-  >
-  </hra-app-nav-button>
+  />
 </ng-template>
