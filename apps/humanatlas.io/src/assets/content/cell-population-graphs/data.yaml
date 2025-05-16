@@ -28,5 +28,3 @@ content:
           Datasets from the [Human Digital Twin](https://doi.org/10.1038/s42003-023-04991-z) paper by Soumya et al.
       - component: Image
         src: assets/content/cell-population-graphs/images/cell-population-comparison.svg
-        styles:
-          margin-top: 1.5rem

@@ -83,7 +83,7 @@ content:
         - [ASCT+B Reporter Comparison](https://hubmapconsortium.github.io/hra-previews/pilots/pilot1.html)
         - [ASCT+B Cell-Types Data from Azimuth Reference Data with Summaries](asctb-azimuth)
         - [CCF Tissue Block Annotation: Mesh-Level Collision Detection](https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html)
-        - [Cell Population Graphs](https://humanatlas.io/cell-population-graphs)
+        - [Cell Population Graphs](/cell-population-graphs)
         - [Common Coordinate Framework Ontology](https://humanatlas.io/ccf-ontology)
         - [Comparing Tabula Sapiens to the Human Reference Atlas](https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html)
         - [Explore Biomarker Expressions for Cell Types](https://humanatlas.io/user-story/3)
