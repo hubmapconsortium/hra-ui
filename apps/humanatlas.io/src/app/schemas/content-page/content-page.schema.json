@@ -84,9 +84,6 @@
         }
       ]
     },
-    "ContentPage": {
-      "$ref": "#/definitions/ContentPageData"
-    },
     "ContentPageData": {
       "type": "object",
       "properties": {
@@ -507,6 +504,9 @@
       },
       "required": ["component", "label", "items"],
       "additionalProperties": false
+    },
+    "ContentPage": {
+      "$ref": "#/definitions/ContentPageData"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
