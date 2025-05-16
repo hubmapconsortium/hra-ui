@@ -1,7 +1,6 @@
 import {
   AnyContentTemplateSchema,
   ClassesSchema,
-  ProjectedContentTemplateSchema,
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
@@ -26,8 +25,7 @@ export const ContentPageDataSchema = z.object({
       url: z.string(),
     })
     .optional(),
-  headerContent: ProjectedContentTemplateSchema.optional(),
-  content: ProjectedContentTemplateSchema,
+  content: AnyContentTemplateSchema.array(),
 });
 
 export {
