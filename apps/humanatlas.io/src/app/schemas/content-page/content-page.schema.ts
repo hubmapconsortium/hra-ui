@@ -1,6 +1,7 @@
 import {
   AnyContentTemplateSchema,
   ClassesSchema,
+  ProjectedContentTemplateSchema,
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
@@ -11,6 +12,7 @@ import { VersionedDataTableSchema } from '@hra-ui/design-system/content-template
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
+import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
@@ -26,30 +28,32 @@ export const ContentPageDataSchema = z.object({
       url: z.string(),
     })
     .optional(),
-  content: AnyContentTemplateSchema.array(),
+  headerContent: ProjectedContentTemplateSchema.optional(),
+  content: ProjectedContentTemplateSchema,
 });
 
 export {
   AnyContentTemplateSchema,
+  ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
   MarkdownSchema,
   PageSectionSchema,
   PageTableSchema,
+  ReleaseNotesVersionSelectorSchema,
   StylesSchema,
   VersionedDataTableSchema,
-  ButtonSchema,
-  // TODO: Add more
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ButtonSchema,
     DataViewerSchema,
     MarkdownSchema,
     PageSectionSchema,
-    VersionedDataTableSchema,
     PageTableSchema,
-    ButtonSchema,
+    ReleaseNotesVersionSelectorSchema,
+    VersionedDataTableSchema,
     // TODO: Add more
   ]);
 

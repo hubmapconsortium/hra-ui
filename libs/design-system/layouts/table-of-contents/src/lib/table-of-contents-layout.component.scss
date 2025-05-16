@@ -23,6 +23,11 @@
       margin: auto;
     }
 
+    .header,
+    .content {
+      max-width: 87.5rem;
+    }
+
     .toc {
       position: sticky;
       top: 7rem;
