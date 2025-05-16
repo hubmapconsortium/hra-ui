@@ -4,6 +4,7 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from 
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
+import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
       PageSectionDef,
       PageTableDef,
       VersionedDataTableDef,
+      ButtonDef,
       ApiCommandDef,
     ]),
     provideDesignSystem(),

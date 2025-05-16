@@ -5,6 +5,7 @@ import {
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
 import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
+import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
@@ -39,6 +40,7 @@ export {
   StylesSchema,
   VersionedDataTableSchema,
   ApiCommandSchema,
+  ButtonSchema,
   // TODO: Add more
 };
 
@@ -49,6 +51,7 @@ export default z.lazy(() => {
     PageSectionSchema,
     VersionedDataTableSchema,
     PageTableSchema,
+    ButtonSchema,
     // TODO: Add more
   ]);
 
