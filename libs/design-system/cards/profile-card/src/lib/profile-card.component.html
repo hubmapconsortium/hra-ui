@@ -1,16 +1,10 @@
-<div class="profile-card" [class.centered]="alignment() === 'center'">
-  <div class="picture">
-    <img [src]="pictureUrl()" alt="Profile Picture" />
-  </div>
-  <div class="content">
-    <div class="name">{{ name() }}</div>
-    <markdown class="description" [data]="description()"></markdown>
-  </div>
-
-  @if (action()) {
-    <a hraHyperlink [href]="action()?.url" target="_blank" rel="noopener noreferrer" class="action-link">
-      {{ action()?.label }}
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
-  }
+<div class="picture">
+  <img [src]="pictureUrl()" alt="Profile Picture" />
+</div>
+<div class="content">
+  <div class="name">{{ name() }}</div>
+  <markdown class="description" [data]="description()" />
+</div>
+<div class="actions">
+  <ng-content></ng-content>
 </div>

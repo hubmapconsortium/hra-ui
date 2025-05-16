@@ -7,4 +7,7 @@ import { ProfileCardSchema } from './profile-card.schema';
 export const ProfileCardDef: ContentTemplateDef<ProfileCardComponent> = {
   component: ProfileCardComponent,
   spec: ProfileCardSchema,
+  projectedProperties: {
+    '*': 'actions',
+  },
 };

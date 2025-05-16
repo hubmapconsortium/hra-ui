@@ -1,27 +1,22 @@
-import { Component, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { MarkdownModule } from 'ngx-markdown';
-
-import { ProfileCardButton } from './types/profile-card.schema';
-
-/** Alignment options */
-export type Alignment = 'left' | 'center';
 
 /**
  * Profile Card for displaying user information and relevant links
  */
 @Component({
   selector: 'hra-profile-card',
-  imports: [HraCommonModule, MatIconModule, MarkdownModule, TextHyperlinkDirective],
+  imports: [HraCommonModule, MatIconModule, MarkdownModule],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.hra-profile-card-center-content]': 'centerContent()',
+  },
 })
 export class ProfileCardComponent {
-  /** Field for alignment option */
-  readonly alignment = input<Alignment>();
-
   /** Field for profile picture URL */
   readonly pictureUrl = input.required<string>();
 
@@ -31,6 +26,6 @@ export class ProfileCardComponent {
   /** Field for description */
   readonly description = input.required<string>();
 
-  /** Action info for profile card button */
-  readonly action = input<ProfileCardButton>();
+  /** Whether to center card content */
+  readonly centerContent = input(false, { transform: booleanAttribute });
 }
