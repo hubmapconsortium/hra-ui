@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
@@ -22,6 +23,13 @@ export const appRoutes: Route[] = [
     component: PublicationsPageComponent,
     resolve: {
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
+    },
+  },
+  {
+    path: 'about',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
