@@ -95,6 +95,17 @@
 
       th {
         border-bottom: 0.0625rem solid vars.$outline;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        vertical-align: bottom;
+      }
+    }
+
+    ::ng-deep tbody {
+      td {
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        vertical-align: top;
       }
     }
   }
@@ -110,7 +121,7 @@
 
   &.hra-table-style-alternating {
     ::ng-deep tbody tr:nth-child(even) {
-      background-color: vars.$surface;
+      background-color: vars.$surface-container;
     }
   }
 }

@@ -42,6 +42,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'about',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '3d-reference-library',
     component: ContentPageComponent,
     resolve: {
@@ -49,17 +56,24 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'cell-type-annotations',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'api',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'millitome',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -80,6 +94,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-azimuth',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'training',
     component: ContentPageComponent,
     resolve: {
@@ -87,10 +108,27 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'explore-biomarker-expressions',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-population-graphs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-population-graphs/data.yaml', ContentPageDataSchema),
     },
   },
   {

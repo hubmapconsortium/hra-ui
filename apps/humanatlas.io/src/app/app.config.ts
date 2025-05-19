@@ -4,6 +4,11 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from 
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
+import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
+import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
+import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
+import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
@@ -18,12 +23,17 @@ import { ReleaseNotesVersionSelectorDef } from './components/release-notes-versi
 export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateDefs([
+      ApiCommandDef,
       ButtonDef,
       DataViewerDef,
+      FlexContainerDef,
+      ImageDef,
       MarkdownDef,
       PageSectionDef,
       PageTableDef,
       ReleaseNotesVersionSelectorDef,
+      ProfileCardDef,
+      TextHyperlinkDef,
       VersionedDataTableDef,
     ]),
     provideDesignSystem(),
