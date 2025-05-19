@@ -19,13 +19,6 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'asctb-tables',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
@@ -35,6 +28,13 @@ export const appRoutes: Route[] = [
 
   // Content pages
   // Please try to keep sorted in alphabetical order
+  {
+    path: '3d-reference-library',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: 'about',
     component: ContentPageComponent,
@@ -50,17 +50,17 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: '3d-reference-library',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'asctb-azimuth',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
