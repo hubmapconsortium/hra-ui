@@ -5,6 +5,7 @@
 :host {
   display: block;
   overflow: hidden;
+  height: 100%;
 
   @include mat.table-overrides(
     (
