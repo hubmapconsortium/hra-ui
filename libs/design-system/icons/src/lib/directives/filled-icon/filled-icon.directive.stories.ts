@@ -1,6 +1,7 @@
 import { MatIconModule } from '@angular/material/icon';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { FilledIconDirective } from './filled-icon.directive';
+import { configureSvgIconNamespace } from '../../svg-icons/namespace.service';
 
 const meta: Meta<FilledIconDirective> = {
   component: FilledIconDirective,
@@ -12,7 +13,7 @@ const meta: Meta<FilledIconDirective> = {
     },
   },
   args: {
-    color: '#ff0043',
+    fillColor: '#ff0043',
   },
   decorators: [
     moduleMetadata({
@@ -27,8 +28,28 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <mat-icon hraFilledIcon="${args.color}">
+      <mat-icon hraFilledIcon [fillColor]="fillColor">
         publish
+      </mat-icon>
+    `,
+  }),
+};
+
+export const ColorFromConfig: Story = {
+  render: (args) => ({
+    applicationConfig: {
+      providers: [
+        configureSvgIconNamespace({
+          namespace: 'organ',
+          directory: 'assets/brand/organ-logos',
+          color: '#ffffff',
+          fillColor: args.fillColor,
+        }),
+      ],
+    },
+    props: args,
+    template: `
+      <mat-icon hraFilledIcon svgIcon="organ:brain">
       </mat-icon>
     `,
   }),
