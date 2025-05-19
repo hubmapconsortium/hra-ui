@@ -24,12 +24,29 @@ content:
       - component: Markdown
         data: |
           The HRA-VCCF is available as comma-separated values in [GitHub](https://github.com/hubmapconsortium/hra-vccf).
-      - component: PageTable
+      - component: VersionedDataTable
         style: alternating
         enableSort: false
         verticalDividers: false
-        columns: []
-        rows: []
+        label: Release Version
+        columns:
+          - column: label
+            label: Organ
+            type:
+              type: link
+              urlColumn: url
+          - column: FileType
+            label: Download HRA-VCCF File
+            type:
+              type: link
+              urlColumn: FileLink
+          - column: releaseVersion
+            label: Release Version
+          - column: dot
+            label: Digital Object Type
+        items:
+          - label: 8th Release (v2.2)
+            csvUrl: assets/content/vccf-page/table-data/version2_2.csv
   - component: PageSection
     tagline: Terms of Use
     anchor: terms-of-use
