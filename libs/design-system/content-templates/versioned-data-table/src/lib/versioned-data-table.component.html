@@ -10,9 +10,9 @@
 </mat-form-field>
 
 <hra-table
-  [columns]="item().columns"
+  [columns]="item().columns ?? columns()"
   [rows]="item().rows"
-  [style]="item().style"
-  [enableSort]="item().enableSort"
-  [verticalDividers]="item().verticalDividers"
+  [style]="item().style ?? style()"
+  [enableSort]="item().enableSort ?? enableSort()"
+  [verticalDividers]="item().verticalDividers ?? verticalDividers()"
 />

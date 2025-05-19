@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { TableComponent } from '@hra-ui/design-system/table';
+import { TableColumn, TableComponent, TableVariant } from '@hra-ui/design-system/table';
 import { VersionedData } from './types/versioned-data-table.schema';
 
 /**
@@ -27,6 +27,14 @@ export class VersionedDataTableComponent {
 
   /** The initial selection */
   readonly selection = model(0);
+
+  readonly columns = input<TableColumn[]>();
+
+  readonly style = input<TableVariant>('alternating');
+
+  readonly enableSort = input(false);
+
+  readonly verticalDividers = input(false);
 
   /** Item with the selected key */
   protected readonly item = computed(() => {
