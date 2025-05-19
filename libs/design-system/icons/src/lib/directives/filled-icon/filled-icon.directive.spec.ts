@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { render } from '@testing-library/angular';
 import { screen } from '@testing-library/dom';
 import { FilledIconDirective } from './filled-icon.directive';
@@ -7,7 +8,7 @@ describe('FilledIconDirective', () => {
     const testColor = '#ff0043';
 
     await render(`<mat-icon hraFilledIcon fillColor="${testColor}">Test Icon</mat-icon>`, {
-      imports: [FilledIconDirective],
+      imports: [FilledIconDirective, MatIconModule],
     });
 
     const element = screen.getByText('Test Icon');
