@@ -47,6 +47,21 @@ content:
         items:
           - label: 8th Release (v2.2)
             csvUrl: assets/content/vccf-page/table-data/version2_2.csv
+          - label: 7th Release (v2.1)
+            csvUrl: assets/content/vccf-page/table-data/version2_1.csv
+          - label: 6th Release (v2.0)
+            csvUrl: assets/content/vccf-page/table-data/version2_0.csv
+          - label: 5th Release (v1.4)
+            csvUrl: assets/content/vccf-page/table-data/version1_4.csv
+          - label: 4th Release (v1.3)
+            csvUrl: assets/content/vccf-page/table-data/version1_3.csv
+          - label: 3rd Release (v1.2)
+            csvUrl: assets/content/vccf-page/table-data/version1_2.csv
+          - label: 2nd Release (v1.1)
+            csvUrl: assets/content/vccf-page/table-data/version1_1.csv
+          - label: 1st Release (v1.0)
+            csvUrl: assets/content/vccf-page/table-data/version1_0.csv
+
   - component: PageSection
     tagline: Terms of Use
     anchor: terms-of-use
@@ -66,7 +81,7 @@ content:
     content:
       component: Markdown
       data: |
-        The HRA-VCCF is released under Creative Commons Attribution 4.0 International (CC BY 4.0).
+        [Attribution 4.0 International (CC BY 4.0)]()
   - component: PageSection
     tagline: Citation
     anchor: citation
