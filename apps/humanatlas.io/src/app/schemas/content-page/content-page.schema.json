@@ -466,16 +466,13 @@
         },
         "style": {
           "type": "string",
-          "enum": ["alternating", "divider", "basic"],
-          "default": "alternating"
+          "enum": ["alternating", "divider", "basic"]
         },
         "enableSort": {
-          "type": "boolean",
-          "default": false
+          "type": "boolean"
         },
         "verticalDividers": {
-          "type": "boolean",
-          "default": false
+          "type": "boolean"
         }
       },
       "required": ["component"],
@@ -563,6 +560,18 @@
         "styles": {
           "$ref": "#/definitions/Button/properties/styles"
         },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "style": {
+          "$ref": "#/definitions/PageTable/properties/style"
+        },
+        "enableSort": {
+          "$ref": "#/definitions/PageTable/properties/enableSort"
+        },
+        "verticalDividers": {
+          "$ref": "#/definitions/PageTable/properties/verticalDividers"
+        },
         "label": {
           "type": "string"
         },
@@ -574,6 +583,9 @@
           "items": {
             "type": "object",
             "properties": {
+              "csvUrl": {
+                "$ref": "#/definitions/PageTable/properties/csvUrl"
+              },
               "columns": {
                 "$ref": "#/definitions/PageTable/properties/columns"
               },
