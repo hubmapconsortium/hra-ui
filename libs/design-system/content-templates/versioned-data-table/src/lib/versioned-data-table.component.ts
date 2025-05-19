@@ -28,12 +28,16 @@ export class VersionedDataTableComponent {
   /** The initial selection */
   readonly selection = model(0);
 
+  /** The columns */
   readonly columns = input<TableColumn[]>();
 
+  /** The style of the table */
   readonly style = input<TableVariant>('alternating');
 
+  /** The sort of the table */
   readonly enableSort = input(false);
 
+  /** The dividers of the table */
   readonly verticalDividers = input(false);
 
   /** Item with the selected key */
