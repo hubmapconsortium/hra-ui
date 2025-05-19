@@ -32,7 +32,14 @@ export type VersionedDataTable = z.infer<typeof VersionedDataTableSchema>;
  * This schema extends the PageTableSchema and adds additional properties
  * specific to the versioned table data component.
  */
-export const VersionedDataTableSchema = ContentTemplateSchema.extend({
+export const VersionedDataTableSchema = ContentTemplateSchema.merge(
+  PageTableSchema.pick({
+    columns: true,
+    style: true,
+    enableSort: true,
+    verticalDividers: true,
+  }),
+).extend({
   component: z.literal('VersionedDataTable'),
   label: z.string(),
   selection: z.number().optional(),

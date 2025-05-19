@@ -1,9 +1,9 @@
-Organ,AzimuthUniqueNames,AzimuthUniqueIDs,ASCTBUniqueNames,ASCTBUniqueIDs,MatchingUniqueNames,MatchingUniqueIDs,AnnotationLevelsAzimuthRef,TotalCellsAzimuthRef,BiomarkersAzimuth,BiomarkersASCTB,BiomarkersMatches
-Bone Marrow & Blood,72,32,46,16,5,N/A,3,35355,352,199,87
-Brain,187,10,127,N/A,123,N/A,4,24402,864,254,152
-Heart,24,N/A,17,18,N/A,6,2,656509,216,48,25
-Kidney,53,39,61,46,23,N/A,3,58461,432,150,70
-Lung,67,43,93,74,14,N/A,2,65662,556,172,73
-Pancreas,13,12,0,0,0,N/A,1,35289,128,0,0
-Spleen,49,N/A,66,N/A,N/A,4,9,5104,N/A,N/A,N/A
-Lung V2,90,N/A,84,82,N/A,8,6,584884,390,172,54
+Organ,OrganURL,AzimuthUniqueNames,AzimuthUniqueIDs,ASCTBUniqueNames,ASCTBUniqueIDs,MatchingUniqueNames,MatchingUniqueIDs,AnnotationLevelsAzimuthRef,TotalCellsAzimuthRef,BiomarkersAzimuth,BiomarkersASCTB,BiomarkersMatches
+Blood & bone marrow,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/pbmc.csv,72,32,46,16,5,N/A,3,35355,352,199,87
+Brain,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/motor_cortex.csv,187,10,127,N/A,123,N/A,4,24402,864,254,152
+Heart,https://github.com/hubmapconsortium/asctb-azimuth-data-comparison/blob/gh-pages/Heart.csv,24,N/A,17,18,N/A,6,2,656509,216,48,25
+Kidney,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/kidney.csv,53,39,61,46,23,N/A,3,58461,432,150,70
+Lung,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/lung.csv,67,43,93,74,14,N/A,2,65662,556,172,73
+Pancreas,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/pancreas.csv,13,12,0,0,0,N/A,1,35289,128,0,0
+Spleen,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/spleen.csv,49,N/A,66,N/A,N/A,4,9,5104,N/A,N/A,N/A
+Lung V2,https://hubmapconsortium.github.io/asctb-azimuth-data-comparison/Human%20Lung%20v2.celltype_stats.csv,90,N/A,84,82,N/A,8,6,584884,390,172,54

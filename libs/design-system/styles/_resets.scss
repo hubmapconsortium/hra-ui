@@ -22,3 +22,12 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
+
+markdown {
+  p {
+    margin-bottom: 0;
+  }
+  ul {
+    margin: 0;
+  }
+}

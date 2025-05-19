@@ -5,12 +5,16 @@ import {
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
 import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
+import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
+import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
+import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
+import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
-import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { z } from 'zod';
 
 /** Content page type */
@@ -32,27 +36,34 @@ export const ContentPageDataSchema = z.object({
 
 export {
   AnyContentTemplateSchema,
+  ApiCommandSchema,
+  ButtonSchema,
   ClassesSchema,
   DataViewerSchema,
+  FlexContainerSchema,
+  ImageSchema,
   MarkdownSchema,
   PageSectionSchema,
   PageTableSchema,
+  ProfileCardSchema,
   StylesSchema,
-  VersionedDataTableSchema,
-  ButtonSchema,
   TextHyperlinkSchema,
+  VersionedDataTableSchema,
   // TODO: Add more
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ButtonSchema,
     DataViewerSchema,
+    FlexContainerSchema,
+    ImageSchema,
     MarkdownSchema,
     PageSectionSchema,
-    VersionedDataTableSchema,
     PageTableSchema,
-    ButtonSchema,
+    ProfileCardSchema,
     TextHyperlinkSchema,
+    VersionedDataTableSchema,
     // TODO: Add more
   ]);
 
