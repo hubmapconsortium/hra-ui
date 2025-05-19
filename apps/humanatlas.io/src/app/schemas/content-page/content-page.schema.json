@@ -1,0 +1,609 @@
+{
+  "$ref": "#/definitions/ContentPage",
+  "definitions": {
+    "AnyContentTemplate": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Button"
+        },
+        {
+          "$ref": "#/definitions/DataViewer"
+        },
+        {
+          "$ref": "#/definitions/FlexContainer"
+        },
+        {
+          "$ref": "#/definitions/Image"
+        },
+        {
+          "$ref": "#/definitions/Markdown"
+        },
+        {
+          "$ref": "#/definitions/PageSection"
+        },
+        {
+          "$ref": "#/definitions/PageTable"
+        },
+        {
+          "$ref": "#/definitions/ProfileCard"
+        },
+        {
+          "$ref": "#/definitions/TextHyperlink"
+        },
+        {
+          "$ref": "#/definitions/VersionedDataTable"
+        }
+      ]
+    },
+    "Button": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Button"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "label": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["default", "flat", "cta", "fab"]
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "secondary"]
+        },
+        "size": {
+          "type": "string",
+          "enum": ["small", "medium"]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "label", "href"],
+      "additionalProperties": false
+    },
+    "Classes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "ContentPageData": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["$schema", "title", "subtitle", "content"],
+      "additionalProperties": false
+    },
+    "DataViewer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "DataViewer"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "githubIconsUrl": {
+          "type": "string"
+        },
+        "releaseVersionData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "crosswalkUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "extractionsSitesUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "referenceOrgansUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "organData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "alt": {
+                            "type": "string"
+                          },
+                          "fileUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "fullscreenUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "sourceDataUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "crosswalkUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "files": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              },
+                              "required": ["label", "url"],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": ["label", "fileUrl", "sourceDataUrl", "files"],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": ["label", "icon", "cards"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["version", "label", "date", "organData"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "FlexContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "FlexContainer"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Image"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "src"],
+      "additionalProperties": false
+    },
+    "Markdown": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Markdown"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "data": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "PageSection": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageSection"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "anchor": {
+          "type": "string"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AnyContentTemplate"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnyContentTemplate"
+              }
+            }
+          ]
+        }
+      },
+      "required": ["component", "tagline", "content"],
+      "additionalProperties": false
+    },
+    "PageTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "type": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": ["text", "numeric", "markdown"]
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "text"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "numeric"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "markdown"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "link"
+                          },
+                          "urlColumn": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "urlColumn"],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                ],
+                "default": "text"
+              }
+            },
+            "required": ["column", "label"],
+            "additionalProperties": false
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean"]
+            }
+          }
+        },
+        "style": {
+          "type": "string",
+          "enum": ["alternating", "divider", "basic"],
+          "default": "alternating"
+        },
+        "enableSort": {
+          "type": "boolean",
+          "default": false
+        },
+        "verticalDividers": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "ProfileCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ProfileCard"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "centerContent": {
+          "type": "boolean"
+        },
+        "actions": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["component", "name", "description", "pictureUrl"],
+      "additionalProperties": false
+    },
+    "Styles": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "TextHyperlink": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "TextHyperlink"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "text", "url"],
+      "additionalProperties": false
+    },
+    "VersionedDataTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "VersionedDataTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/Button/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Button/properties/styles"
+        },
+        "label": {
+          "type": "string"
+        },
+        "selection": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "columns": {
+                "$ref": "#/definitions/PageTable/properties/columns"
+              },
+              "rows": {
+                "$ref": "#/definitions/PageTable/properties/rows"
+              },
+              "style": {
+                "$ref": "#/definitions/PageTable/properties/style"
+              },
+              "enableSort": {
+                "$ref": "#/definitions/PageTable/properties/enableSort"
+              },
+              "verticalDividers": {
+                "$ref": "#/definitions/PageTable/properties/verticalDividers"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": ["label"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "label", "items"],
+      "additionalProperties": false
+    },
+    "ContentPage": {
+      "$ref": "#/definitions/ContentPageData"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

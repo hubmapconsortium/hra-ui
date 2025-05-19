@@ -5,7 +5,7 @@ import { MobileMenuComponent } from './mobile-menu.component';
 describe('MobileMenuComponent', () => {
   it('should render all menus', async () => {
     await render(MobileMenuComponent, {
-      inputs: { hubmapMenu: HUBMAP_MENU, menus: MENUS },
+      inputs: { hubmapMenu: HUBMAP_MENU, menus: MENUS, baseUrl: undefined },
     });
 
     for (const menu of MENUS) {
