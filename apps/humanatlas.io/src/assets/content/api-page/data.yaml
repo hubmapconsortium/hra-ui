@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: API
 subtitle: Query and interact with the Human Reference Atlas using Python, JavaScript, SPARQL, REST, and more.
 action:
@@ -57,5 +57,3 @@ content:
           - PURL: https://purl.humanatlas.io/graph/ccf
           - BioPortal: https://bioportal.bioontology.org/ontologies/CCF
           - Ontology Lookup Service (OLS): https://www.ebi.ac.uk/ols4/ontologies/ccf
-
-# TODO - Action Button is Pending

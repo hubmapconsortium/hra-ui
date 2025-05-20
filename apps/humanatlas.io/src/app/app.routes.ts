@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
-import { ContentPageDataSchema } from './pages/content-page/types/content-page.schema';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
-import { PublicationsPageDataSchema } from './pages/publications-page/publications-page.schema';
-import { landingPageResolver } from './resolvers/landing-page/landing-page.resolver';
-import { createJsonSpecResolver } from './resolvers/spec.resolver';
-import { createYamlSpecResolver } from './resolvers/yaml-spec/yaml-spec.resolver';
+import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
+import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -15,7 +15,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      data: landingPageResolver,
+      data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
   {
@@ -25,6 +25,9 @@ export const appRoutes: Route[] = [
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
     },
   },
+
+  // Content pages
+  // Please try to keep sorted in alphabetical order
   {
     path: '3d-reference-library',
     component: ContentPageComponent,
@@ -33,10 +36,69 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'about',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'api',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-azimuth',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'ccf-ontology',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-population-graphs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-population-graphs/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'explore-biomarker-expressions',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: 'millitome',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -50,13 +112,6 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'vccf',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'training',
     component: ContentPageComponent,
     resolve: {
@@ -64,7 +119,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'vccf',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+
+  // Error pages and redirects
+  {
+    path: '404',
+    component: NotFoundPageComponent,
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: '404',
   },
 ];

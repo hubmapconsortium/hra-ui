@@ -1,26 +1,6 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { z } from 'zod';
 
-/** Type for table link */
-export type TableLink = z.infer<typeof TableLinkSchema>;
-
-/** Schema for table link */
-export const TableLinkSchema = z.object({
-  /** Link label */
-  label: z.unknown(),
-  /** Link url */
-  url: z.string(),
-});
-
-/** Type for markdown table entry */
-export type TableMarkdown = z.infer<typeof TableMarkdownSchema>;
-
-/** Schema for markdown table entry */
-export const TableMarkdownSchema = z.object({
-  /** Markdown as string */
-  markdown: z.string(),
-});
-
 /** Type for table style */
 export type TableVariant = z.infer<typeof TableVariantSchema>;
 
@@ -31,16 +11,72 @@ export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']);
 export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
-export const TableRowSchema = z.record(z.union([z.string(), z.number(), TableLinkSchema, TableMarkdownSchema]));
+export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean()]));
+
+/** Type for Text Column */
+export type TextColumnType = z.infer<typeof TextColumnTypeSchema>;
+
+/** Schema for Text Column */
+export const TextColumnTypeSchema = z.object({
+  type: z.literal('text'),
+});
+
+/** Type for Numeric Column */
+export type NumericColumnType = z.infer<typeof NumericColumnTypeSchema>;
+
+/** Schema for Numeric Column */
+export const NumericColumnTypeSchema = z.object({
+  type: z.literal('numeric'),
+  // TODO add format
+});
+
+/** Type for Markdown Column */
+export type MarkdownColumnType = z.infer<typeof MarkdownColumnTypeSchema>;
+
+/** Schema for Markdown Column */
+export const MarkdownColumnTypeSchema = z.object({
+  type: z.literal('markdown'),
+});
+
+/** Type for Link Column */
+export type LinkColumnType = z.infer<typeof LinkColumnTypeSchema>;
+
+/** Schema for Markdown Column */
+export const LinkColumnTypeSchema = z.object({
+  type: z.literal('link'),
+  urlColumn: z.string(),
+});
+
+/** Union of Schema Types for Simple Columns */
+export const SimpleTableColumnTypeSchema = z.union([
+  TextColumnTypeSchema.shape.type,
+  NumericColumnTypeSchema.shape.type,
+  MarkdownColumnTypeSchema.shape.type,
+]);
+
+/** Inferred types for Table Columns */
+export type TableColumnType = z.infer<typeof TableColumnTypeSchema>;
+
+/** Union of Schema Types for Table Columns */
+export const TableColumnTypeSchema = z.union([
+  TextColumnTypeSchema,
+  NumericColumnTypeSchema,
+  MarkdownColumnTypeSchema,
+  LinkColumnTypeSchema,
+]);
 
 /** Type for table columns */
-export type TableColumns = z.infer<typeof TableColumnsSchema>;
+export type TableColumn = z.infer<typeof TableColumnSchema>;
 
-/** Type for table columns for rows */
-export type TableColumnsForRows<T extends TableRow> = (keyof T & string)[] | Partial<Record<keyof T & string, string>>;
+/** Type for the columns with type specified */
+export type TableColumnWithType<C extends TableColumnType> = Omit<TableColumn, 'type'> & { type: C };
 
 /** Schema for table columns */
-export const TableColumnsSchema = z.union([z.array(z.string()), z.record(z.string(), z.string())]);
+export const TableColumnSchema = z.object({
+  column: z.string(),
+  label: z.string(),
+  type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default('text'),
+});
 
 /** Page table component data */
 export type PageTable = z.infer<typeof PageTableSchema>;
@@ -48,9 +84,10 @@ export type PageTable = z.infer<typeof PageTableSchema>;
 /** Schema for page table component */
 export const PageTableSchema = ContentTemplateSchema.extend({
   component: z.literal('PageTable'),
-  columns: TableColumnsSchema,
-  rows: z.array(TableRowSchema),
-  style: TableVariantSchema.default('alternating'),
-  enableSort: z.boolean().default(false),
-  verticalDividers: z.boolean().default(false),
+  csvUrl: z.string().optional(),
+  columns: TableColumnSchema.array().optional(),
+  rows: z.array(TableRowSchema).optional(),
+  style: TableVariantSchema.optional(),
+  enableSort: z.boolean().optional(),
+  verticalDividers: z.boolean().optional(),
 });

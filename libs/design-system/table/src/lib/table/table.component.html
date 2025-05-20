@@ -1,41 +1,68 @@
-<ng-scrollbar hraScrollOverflowFade class="table-overflow-container" scrollOverflowFadeOffset="28">
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    matSort
-    [matSortDisabled]="!enableSort()"
-    aria-label="Table with sort function"
-  >
-    @for (column of columnIds(); track column) {
-      <ng-container [matColumnDef]="column">
-        @let label = columnLabels()[column];
-        @let isNumeric = numericColumns().has(column);
+<!-- TODO fix overflow fade
+  hraScrollOverflowFade
+  [scrollOverflowFadeOffset]="40"
+-->
+<ng-scrollbar
+  externalViewport=".scroll-viewport"
+  externalContentWrapper=".content-wrapper"
+  externalSpacer="tbody"
+  asyncDetection="auto"
+>
+  <div class="scroll-viewport">
+    <div class="content-wrapper">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        [matSortDisabled]="!enableSort()"
+        aria-label="Table with sort function"
+      >
+        @let templates = { text, numeric, markdown, link };
 
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          [class.numeric]="isNumeric"
-          [sortActionDescription]="`Sort by ${label}`"
-          sticky
-        >
-          {{ label }}
-        </th>
-        <td mat-cell *matCellDef="let element" [class.numeric]="isNumeric">
-          @if (element[column]['markdown']; as markdown) {
-            <markdown>{{ markdown }}</markdown>
-          } @else if (element[column]['url']) {
-            <a hraHyperlink [href]="element[column]['url']" target="_blank" rel="noopener noreferrer">
-              {{ element[column]['label'] }}
-            </a>
-          } @else {
-            {{ element[column] }}
-          }
-        </td>
-      </ng-container>
-    }
+        @for (column of _columns(); track column.column) {
+          @let type = getColumnType(column);
+          @let template = templates[type];
 
-    <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
-    <tr mat-row [class.odd]="i % 2 === 1" *matRowDef="let row; let i = index; columns: columnIds()"></tr>
-  </table>
+          <ng-container [matColumnDef]="column.column">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              [attr.data-column-type]="type"
+              [sortActionDescription]="`Sort by ${column.label}`"
+            >
+              {{ column.label }}
+            </th>
+            <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
+              <ng-container
+                *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
+              />
+            </td>
+          </ng-container>
+        }
+
+        <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
+      </table>
+    </div>
+  </div>
 </ng-scrollbar>
+
+<ng-template hraTextRowElement #text let-text>
+  <span class="text">{{ text }}</span>
+</ng-template>
+
+<ng-template hraNumericRowElement #numeric let-value>
+  <span class="numeric">{{ value | number }}</span>
+</ng-template>
+
+<ng-template hraMarkdownRowElement #markdown let-markdown>
+  <markdown class="markdown" [data]="markdown" />
+</ng-template>
+
+<ng-template hraLinkRowElement #link let-label let-column="column" let-element="element">
+  @let url = element[column.type.urlColumn];
+  <a hraHyperlink class="link" [attr.href]="url" target="_blank" rel="noopener noreferrer">
+    {{ label }}
+  </a>
+</ng-template>
