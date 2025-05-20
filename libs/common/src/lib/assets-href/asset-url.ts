@@ -11,7 +11,10 @@ import { APP_ASSETS_HREF } from './tokens';
  * @returns An url
  */
 export function buildAssetUrl(base: string, path: string, type?: 'css'): string {
-  const url = Location.joinWithSlash(base, path);
+  let url = path;
+  if (URL.parse(url) === null) {
+    url = Location.joinWithSlash(base, path);
+  }
   return type === 'css' ? `url("${url}")` : url;
 }
 
