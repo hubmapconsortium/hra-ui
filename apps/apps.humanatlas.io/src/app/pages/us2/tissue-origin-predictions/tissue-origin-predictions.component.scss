@@ -1,4 +1,4 @@
-@use 'vars';
+@use '../../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
@@ -14,7 +14,7 @@ h1 {
 }
 
 .title {
-  color: var(--mat-sys-on-secondary-container);
+  color: vars.$on-secondary-container;
 }
 
 .info-text {

@@ -142,7 +142,7 @@ rapi-doc::part(btn-outline) {
           content: 'add';
           color: var(--mat-form-field-select-option-text-color);
           &:hover {
-            color: --var(--primary-color);
+            color: var(--primary-color);
           }
         }
       }

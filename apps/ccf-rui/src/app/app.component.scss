@@ -1,4 +1,5 @@
-@use 'vars';
+@use '@angular/material' as mat;
+@use '../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: grid;
@@ -63,15 +64,23 @@
     hra-expansion-panel-header-content {
       display: flex;
       gap: 1rem;
-      mat-button-toggle-group {
-        --mat-standard-button-toggle-height: auto;
-      }
+
+      @include mat.button-toggle-overrides(
+        (
+          height: auto,
+        )
+      );
     }
   }
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
   z-index: 2000 !important;
-  --mdc-snackbar-container-color: #{vars.$surface-dim};
-  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
+
+  @include mat.snack-bar-overrides(
+    (
+      container-color: vars.$surface-dim,
+      supporting-text-color: vars.$secondary,
+    )
+  );
 }
