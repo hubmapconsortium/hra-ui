@@ -434,6 +434,13 @@ input[type=number] {
   -moz-appearance: textfield; /* Firefox */
 }
 
+markdown p {
+  margin-bottom: 0;
+}
+markdown ul {
+  margin: 0;
+}
+
 html {
   --mat-sys-background: #f5fafb;
   --mat-sys-error: #883700;
@@ -801,8 +808,6 @@ html [mat-button].hra-button-variant-secondary:not(.hra-cta-button) {
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
   /* Order of path: bottom left -> top left -> top right -> bottom right y-axis -> bottom right x-axis */
-  background-color: var(--mat-sys-tertiary);
-  clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
   --mdc-text-button-label-text-color: var(--mat-sys-on-primary);
@@ -821,6 +826,10 @@ html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
   --mat-text-button-hover-state-layer-opacity: 0;
+}
+html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
+  background-color: var(--mat-sys-tertiary);
+  clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) .mat-ripple {
   clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
@@ -865,6 +874,11 @@ html [mat-button]:focus-visible {
 }
 html [mat-button]:focus-visible {
   --mdc-text-button-label-text-color: var(--mat-sys-secondary);
+}
+html [mat-button] mat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
 }
 html [mat-flat-button]:hover:not(:active) {
   box-shadow: 0.0625rem 0.125rem 1rem 0rem rgb(from var(--mat-sys-tertiary) r g b/56%);
@@ -1044,7 +1058,13 @@ html {
   --mat-form-field-container-height: 3rem;
 }
 html {
+  --mat-form-field-container-text-font: var(--mat-sys-label-medium);
+}
+html {
   --mat-form-field-disabled-input-text-placeholder-color: rgb(from var(--mat-sys-secondary) r g b/40%);
+}
+html {
+  --mat-form-field-enabled-select-arrow-color: var(--mat-sys-on-secondary-fixed);
 }
 html {
   --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
@@ -1062,7 +1082,7 @@ html {
   --mdc-filled-text-field-disabled-active-indicator-color: rgb(from var(--mat-sys-secondary) r g b/40%);
 }
 html {
-  --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-secondary);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-inverse-surface);
 }
 html {
   --mdc-filled-text-field-focus-label-text-color: var(--mat-sys-secondary);
@@ -1080,7 +1100,7 @@ html {
   --mdc-filled-text-field-input-text-placeholder-color: var(--mat-sys-primary);
 }
 html {
-  --mdc-filled-text-field-label-text-color: var(--mat-sys-primary);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-inverse-surface);
 }
 html {
   --mdc-filled-text-field-label-text-font: var(--mat-sys-label-small-font);
@@ -1110,7 +1130,7 @@ html {
   --mat-form-field-filled-with-label-container-padding-bottom: 0.25rem;
 }
 html {
-  --mat-form-field-focus-select-arrow-color: var(--mat-sys-on-surface-variant);
+  --mat-form-field-focus-select-arrow-color: var(--mat-sys-primary);
 }
 html {
   --mdc-outlined-text-field-label-text-font: var(--mat-sys-label-medium);
@@ -1242,6 +1262,12 @@ html {
   --mat-select-placeholder-text-color: var(--mat-sys-on-primary);
 }
 html {
+  --mat-full-pseudo-checkbox-selected-checkmark-color: rgb(from var(--mat-sys-tertiary) r g b/20%);
+}
+html {
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: rgb(from var(--mat-sys-tertiary) r g b/20%);
+}
+html {
   --mat-option-focus-state-layer-color: color-mix(in srgb, var(--mat-sys-on-surface) 4%, transparent);
 }
 html {
@@ -1269,17 +1295,8 @@ html {
   --mat-option-selected-state-label-text-color: var(--mat-sys-secondary);
 }
 html {
-  --mat-option-selected-state-layer-color: color-mix(in srgb, var(--mat-sys-on-tertiary-container) 8%, transparent);
+  --mat-option-selected-state-layer-color: rgb(from var(--mat-sys-tertiary) r g b/20%);
 }
 html mat-option.mat-mdc-option {
   margin-bottom: 0.5px;
-}
-html mat-option.mat-mdc-option:focus-visible {
-  outline: 2px solid var(--mat-sys-tertiary);
-}
-html mat-option.mat-mdc-option {
-  --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--mat-sys-on-tertiary-container);
-}
-html mat-option.mat-mdc-option.mat-mdc-option-active {
-  outline: 1px solid color-mix(in srgb, var(--mat-sys-on-surface) 32%, transparent);
 }
