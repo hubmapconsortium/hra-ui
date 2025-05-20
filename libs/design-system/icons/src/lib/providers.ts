@@ -1,12 +1,21 @@
-import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
-import { provideStyleComponents } from '@hra-ui/cdk/styling';
-import { IconBackgroundGlobalStylesComponent } from './global-styles.component';
+import { EnvironmentProviders, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';
+import { registerFontClasses } from './font-icons/classes';
+import { registerSvgIconResolver } from './svg-icons/resolver';
+import { ICONS_CONFIG, IconsConfig } from './tokens';
 
 /**
- * Applies backgrounds to icons
+ * Provides icon configuration and initialization
  *
- * @returns Icon background providers
+ * @param config Icons configuration
+ * @returns Providers
  */
-export function provideIcons(): EnvironmentProviders {
-  return makeEnvironmentProviders([provideStyleComponents(IconBackgroundGlobalStylesComponent)]);
+export function provideIcons(config: IconsConfig = {}): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    {
+      provide: ICONS_CONFIG,
+      useValue: config,
+    },
+    provideAppInitializer(registerFontClasses),
+    provideAppInitializer(registerSvgIconResolver),
+  ]);
 }

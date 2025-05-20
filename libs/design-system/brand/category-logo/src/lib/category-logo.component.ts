@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/cdk/icons';
+import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/design-system/icons';
 import { findOrThrow } from '@hra-ui/common/array-util';
 import { logos, namespaceConfigs } from './static-data/category-logos.json';
 import { CategoryLogo, CategoryLogoId } from './types/category-logos.schema';
