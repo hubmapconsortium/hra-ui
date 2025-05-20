@@ -1,0 +1,7 @@
+@if (fontIcon()) {
+  <mat-icon [fontIcon]="fontIcon() ?? ''"></mat-icon>
+} @else if (svgIcon()) {
+  <mat-icon [svgIcon]="svgIcon() ?? ''"></mat-icon>
+} @else {
+  <mat-icon></mat-icon>
+}
