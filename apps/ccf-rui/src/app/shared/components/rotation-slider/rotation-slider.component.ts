@@ -32,7 +32,6 @@ export type Axis = 'x' | 'y' | 'z';
   host: {
     '(document:keydown)': 'changeStep($event)',
     '(document:keyup)': 'changeStep($event)',
-    '(window:mouseup)': 'closeResults($event)',
   },
   standalone: false,
 })
