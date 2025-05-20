@@ -33,7 +33,9 @@ export class ContentPageComponent {
   /** input data for content page */
   readonly data = input.required<ContentPageData>();
 
+  /** header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));
 
+  /** content data */
   protected readonly content = computed(() => coerceArray(this.data().content));
 }
