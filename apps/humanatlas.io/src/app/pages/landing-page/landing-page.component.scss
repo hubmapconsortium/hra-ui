@@ -45,6 +45,7 @@
   hra-section-cards {
     margin: 6rem 1rem;
     max-width: 87.5rem;
+    align-self: center;
   }
 
   @media (min-width: 640px) {
@@ -62,6 +63,7 @@
 
     hra-section-cards {
       margin: 6rem 2.5rem;
+      align-self: center;
     }
   }
 }

@@ -1,0 +1,128 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+
+  @include mat.table-overrides(
+    (
+      background-color: transparent,
+
+      header-container-height: 2.5rem,
+      header-headline-color: vars.$secondary,
+      header-headline-font: vars.$label-medium-font,
+      header-headline-line-height: vars.$label-medium-line-height,
+      header-headline-size: vars.$label-medium-size,
+      header-headline-tracking: vars.$label-medium-tracking,
+      header-headline-weight: vars.$label-medium-weight,
+
+      footer-container-height: 2.5rem,
+      footer-supporting-text-font: vars.$label-medium-font,
+      footer-supporting-text-line-height: vars.$label-medium-line-height,
+      footer-supporting-text-size: vars.$label-medium-size,
+      footer-supporting-text-tracking: vars.$label-medium-tracking,
+      footer-supporting-text-weight: vars.$label-medium-weight,
+
+      row-item-container-height: 2.5rem,
+      row-item-label-text-color: vars.$primary,
+      row-item-label-text-font: vars.$label-medium-font,
+      row-item-label-text-line-height: vars.$label-medium-line-height,
+      row-item-label-text-size: vars.$label-medium-size,
+      row-item-label-text-tracking: vars.$label-medium-tracking,
+      row-item-label-text-weight: vars.$label-medium-weight,
+      row-item-outline-width: 0px,
+    )
+  );
+
+  @include mat.sort-overrides(
+    (
+      arrow-color: vars.$secondary,
+    )
+  );
+
+  ng-scrollbar {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  th[data-column-type='numeric'],
+  td[data-column-type='numeric'] {
+    text-align: right;
+  }
+
+  th[data-column-type='numeric'] ::ng-deep .mat-sort-header-container {
+    justify-content: end;
+  }
+
+  .numeric {
+    margin-right: 1.125rem;
+  }
+
+  markdown ::ng-deep {
+    p:first-child {
+      margin-top: 0.5rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &.hra-table-style-basic {
+    ::ng-deep thead {
+      background-color: vars.$on-primary;
+    }
+  }
+
+  &.hra-table-style-divider,
+  &.hra-table-style-alternating {
+    @include mat.table-overrides(
+      (
+        background-color: vars.$on-primary,
+      )
+    );
+
+    ng-scrollbar {
+      --scrollbar-offset: 4;
+      border: 0.0625rem solid vars.$outline;
+      border-radius: 0.5rem;
+    }
+
+    ::ng-deep thead {
+      background-color: vars.$surface-dim;
+
+      th {
+        border-bottom: 0.0625rem solid vars.$outline;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        vertical-align: bottom;
+      }
+    }
+
+    ::ng-deep tbody {
+      td {
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        vertical-align: top;
+      }
+    }
+  }
+
+  &.hra-table-style-divider {
+    @include mat.table-overrides(
+      (
+        row-item-outline-color: vars.$outline-variant,
+        row-item-outline-width: 0.0625rem,
+      )
+    );
+  }
+
+  &.hra-table-style-alternating {
+    ::ng-deep tbody tr:nth-child(even) {
+      background-color: vars.$surface-container;
+    }
+  }
+}

@@ -4,6 +4,8 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
 import { provideDesignSystem } from '../src/index';
 import compodocJson from './compodoc/documentation.json';
+import { provideMarkdown } from 'ngx-markdown';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'hra-dummy-component',
@@ -31,6 +33,7 @@ const preview: Preview = {
     applicationConfig({
       providers: [
         provideDesignSystem(),
+        provideMarkdown({ loader: HttpClient }),
         provideRouter(
           [{ path: '**', component: DummyComponent }],
           withInMemoryScrolling({ anchorScrolling: 'enabled' }),

@@ -1,0 +1,9 @@
+label,url,releaseVersion,dot,version,FileType,FileLink
+Blood Vasculature Female,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-f-blood-vasculature.html,v1.2,3D Reference Object,2.0,GLB,https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-f-blood-vasculature.glb
+Blood Vasculature Male,https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-blood-vasculature.html,v1.2,3D Reference Object,2.0,GLB,https://ccf-ontology.hubmapconsortium.org/objects/v1.4/3d-vh-m-blood-vasculature.glb
+Blood Vasculature Organ Crosswalk,https://cdn.humanatlas.io/hra-releases/v2.0/docs/asct-b/blood-vasculature-organ-crosswalk.html,v1.1,Crosswalk,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/blood-vasculature-organ-crosswalk.csv
+Blood Vasculature Geometry,https://cdn.humanatlas.io/hra-releases/v2.0/docs/vascular-geometry/blood-vasculature-geometry.html,v1.1,Vascular Geometry,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/vascular-geometry/blood-vasculature-geometry.csv
+Blood Vasculature,https://cdn.humanatlas.io/hra-releases/v2.0/docs/asct-b/asct-b-vh-blood-vasculature.html,v1.5,ASCT+B Table,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/asct-b-vh-blood-vasculature.csv
+Lymph Vasculature,https://cdn.humanatlas.io/hra-releases/v2.0/docs/asct-b/asct-b-vh-lymph-vasculature.html,v1.4,ASCT+B Table,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/asct-b-vh-lymph-vasculature.csv
+Muscular System,https://cdn.humanatlas.io/hra-releases/v2.0/docs/asct-b/asct-b-vh-muscular-system.html,v1.1,ASCT+B Table,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/asct-b-vh-muscular-system.csv
+Skeleton,https://cdn.humanatlas.io/hra-releases/v2.0/docs/asct-b/asct-b-vh-skeleton.html,v1.1,ASCT+B Table,2.0,CSV,https://cdn.humanatlas.io/hra-releases/v2.0/asct-b/asct-b-vh-skeleton.csv

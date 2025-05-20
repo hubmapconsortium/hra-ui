@@ -7,20 +7,23 @@
   @include mat.form-field-overrides(
     (
       container-height: 3rem,
+      container-text-font: vars.$label-medium,
 
       disabled-input-text-placeholder-color: utils.with-alpha(vars.$secondary, 40%),
+      enabled-select-arrow-color: vars.$on-secondary-fixed,
+
       filled-container-color: vars.$surface-container,
       filled-disabled-container-color: utils.with-alpha(vars.$secondary, 4%),
       filled-disabled-input-text-color: utils.with-alpha(vars.$secondary, 40%),
       filled-disabled-label-text-color: utils.with-alpha(vars.$secondary, 40%),
       filled-disabled-active-indicator-color: utils.with-alpha(vars.$secondary, 40%),
-      filled-focus-active-indicator-color: vars.$secondary,
+      filled-focus-active-indicator-color: vars.$inverse-surface,
       filled-focus-label-text-color: vars.$secondary,
       filled-hover-label-text-color: vars.$primary,
       filled-hover-active-indicator-color: vars.$secondary,
       filled-input-text-color: vars.$secondary,
       filled-input-text-placeholder-color: vars.$primary,
-      filled-label-text-color: vars.$primary,
+      filled-label-text-color: vars.$inverse-surface,
       filled-label-text-font: vars.$label-small-font,
       filled-label-text-weight: vars.$label-small-weight,
       filled-label-text-size: vars.$label-small-size,
@@ -31,7 +34,7 @@
 
       filled-with-label-container-padding-top: 1.25rem,
       filled-with-label-container-padding-bottom: 0.25rem,
-      focus-select-arrow-color: vars.$on-surface-variant,
+      focus-select-arrow-color: vars.$primary,
 
       outlined-label-text-font: vars.$label-medium,
       outlined-label-text-color: vars.$primary-fixed,
