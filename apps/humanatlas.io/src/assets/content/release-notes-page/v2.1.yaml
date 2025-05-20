@@ -173,9 +173,8 @@ content:
     anchor: new-cifar-video
     level: 3
     content:
-      - component: Markdown
-        data: |
-          TODO: Video component with id -F6i5KOVGx8
+      - component: YouTubePlayer
+        videoId: -F6i5KOVGx8
 
   - component: PageSection
     tagline: Resources
@@ -296,9 +295,5 @@ content:
     anchor: hra-vccf
     level: 3
     content:
-      - component: Markdown
-        data: |
-          Human Reference Atlas: Vasculature Common Coordinate Framework
-      - component: Markdown
-        data: |
-          TODO: Video component with id zQeMgxo8n_U
+      - component: YouTubePlayer
+        videoId: zQeMgxo8n_U

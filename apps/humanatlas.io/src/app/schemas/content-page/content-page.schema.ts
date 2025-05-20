@@ -14,6 +14,7 @@ import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
+import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
@@ -53,6 +54,7 @@ export {
   StylesSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
+  YouTubePlayerSchema,
 };
 
 export default z.lazy(() => {
@@ -69,6 +71,7 @@ export default z.lazy(() => {
     ReleaseNotesVersionSelectorSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
+    YouTubePlayerSchema,
     // TODO: Add more
   ]);
 

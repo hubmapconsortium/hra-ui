@@ -17,6 +17,7 @@ import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { ReleaseNotesVersionSelectorDef } from './components/release-notes-version-selector/release-notes-version-selector.definition';
+import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -34,6 +35,7 @@ export const appConfig: ApplicationConfig = {
       ProfileCardDef,
       TextHyperlinkDef,
       VersionedDataTableDef,
+      YouTubePlayerDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),

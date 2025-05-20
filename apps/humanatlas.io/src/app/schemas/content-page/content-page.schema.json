@@ -38,6 +38,9 @@
         },
         {
           "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/YouTubePlayer"
         }
       ]
     },
@@ -675,6 +678,26 @@
         }
       },
       "required": ["component", "label", "items"],
+      "additionalProperties": false
+    },
+    "YouTubePlayer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "YouTubePlayer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "videoId"],
       "additionalProperties": false
     },
     "ContentPage": {
