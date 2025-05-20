@@ -1,0 +1,5 @@
+label,url,releaseVersion,dot,version,FileType,FileLink
+Blood Vasculature Female,https://doi.org/10.48539/HBM232.FSRK.728,v1.2,3D Reference Object,1.3,GLB,https://cdn.humanatlas.io/hra-releases/v1.3/models/VH_F_Blood_Vasculature.glb
+Blood Vasculature Male,https://doi.org/10.48539/HBM686.LBDQ.998,v1.2,3D Reference Object,1.3,GLB,https://cdn.humanatlas.io/hra-releases/v1.3/models/VH_M_Blood_Vasculature.glb
+Blood Vasculature,https://doi.org/10.48539/HBM948.FMZR.475,v1.3,ASCT+B Table,1.3,CSV,https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-blood-vasculature.csv
+Lymph Vasculature,https://doi.org/10.48539/HBM469.NHVB.448,v1.2,ASCT+B Table,1.3,CSV,https://cdn.humanatlas.io/hra-releases/v1.3/asct-b/asct-b-vh-lymph-vasculature.csv

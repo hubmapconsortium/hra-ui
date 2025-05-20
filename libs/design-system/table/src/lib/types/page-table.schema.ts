@@ -87,7 +87,7 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   csvUrl: z.string().optional(),
   columns: TableColumnSchema.array().optional(),
   rows: z.array(TableRowSchema).optional(),
-  style: TableVariantSchema.default('alternating'),
-  enableSort: z.boolean().default(false),
-  verticalDividers: z.boolean().default(false),
+  style: TableVariantSchema.optional(),
+  enableSort: z.boolean().optional(),
+  verticalDividers: z.boolean().optional(),
 });

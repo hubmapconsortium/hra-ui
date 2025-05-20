@@ -48,16 +48,16 @@ export {
   MarkdownSchema,
   PageSectionSchema,
   PageTableSchema,
-  ReleaseNotesVersionSelectorSchema,
   ProfileCardSchema,
+  ReleaseNotesVersionSelectorSchema,
   StylesSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
-  // TODO: Add more
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ApiCommandSchema,
     ButtonSchema,
     DataViewerSchema,
     FlexContainerSchema,
@@ -65,8 +65,8 @@ export default z.lazy(() => {
     MarkdownSchema,
     PageSectionSchema,
     PageTableSchema,
-    ReleaseNotesVersionSelectorSchema,
     ProfileCardSchema,
+    ReleaseNotesVersionSelectorSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
     // TODO: Add more

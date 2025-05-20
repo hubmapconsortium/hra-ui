@@ -1,0 +1,10 @@
+label,url,releaseVersion,dot,version,FileType,FileLink
+Blood Vasculature Female,https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3,v1.3,3D Reference Object,2.1,GLB,https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb
+Blood Vasculature Male,https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3,v1.3,3D Reference Object,2.1,GLB,https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb
+Blood Vasculature Organ Crosswalk,https://purl.humanatlas.io/asct-b/blood-vasculature-organ-crosswalk/v1.2,v1.2,Crosswalk,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature-organ-crosswalk/v1.2/assets/blood-vasculature-organ-crosswalk.csv
+Blood Vasculature Geometry,https://purl.humanatlas.io/vascular-geometry/blood-vasculature-geometry/v1.1,v1.1,Vascular Geometry,2.1,CSV,https://cdn.humanatlas.io/digital-objects/vascular-geometry/blood-vasculature-geometry/v1.1/assets/blood-vasculature-geometry.csv
+Blood Vasculature,https://purl.humanatlas.io/asct-b/blood-vasculature/v1.6,v1.6,ASCT+B Table,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature/v1.6/assets/asct-b-vh-blood-vasculature.csv
+Lymph Vasculature,https://purl.humanatlas.io/asct-b/lymph-vasculature/v1.5,v1.5,ASCT+B Table,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/lymph-vasculature/v1.5/assets/asct-b-vh-lymph-vasculature.csv
+Muscular System,https://purl.humanatlas.io/asct-b/muscular-system/v1.2,v1.2,ASCT+B Table,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/muscular-system/v1.2/assets/asct-b-vh-muscular-system.csv
+Peripheral Nervous System to Organ Crosswalk,https://lod.humanatlas.io/asct-b/peripheral-nervous-system-organ-crosswalk/v1.1/,v1.1,Crosswalk,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/peripheral-nervous-system-organ-crosswalk/v1.1/assets/peripheral-nervous-system-organ-crosswalk.csv
+Skeleton,https://purl.humanatlas.io/asct-b/skeleton/v1.2,v1.2,ASCT+B Table,2.1,CSV,https://cdn.humanatlas.io/digital-objects/asct-b/skeleton/v1.2/assets/asct-b-vh-skeleton.csv
