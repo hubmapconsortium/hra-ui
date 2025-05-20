@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
@@ -21,24 +21,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'release-notes/:version',
-    component: ContentPageComponent,
-    resolve: {
-      versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
-      data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
-    },
-  },
-  {
-    path: 'release-notes',
-    // Preferably this would redirect to the latest version based on the versions data
-    // But it is not available at this point. Async redirectTo may become available in angular 20
-    redirectTo: 'release-notes/v2.3',
-  },
-  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
+    },
+  },
+
+  // Content pages
+  // Please try to keep sorted in alphabetical order
+  {
+    path: '3d-reference-library',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -49,48 +45,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: '3d-reference-library',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'api',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'millitome',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'cell-type-annotations',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'standard-operating-procedures',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver(
-        'assets/content/standard-operating-procedures-page/data.yaml',
-        ContentPageDataSchema,
-      ),
-    },
-  },
-  {
-    path: 'vccf',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -101,20 +59,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'training',
+    path: 'asctb-tables',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'explore-biomarker-expressions',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver(
-        'assets/content/explore-biomarker-expressions-page/data.yaml',
-        ContentPageDataSchema,
-      ),
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -132,7 +80,75 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-type-annotations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'explore-biomarker-expressions',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: 'millitome',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'release-notes',
+    // Preferably this would redirect to the latest version based on the versions data
+    // But it is not available at this point. Async redirectTo may become available in angular 20
+    redirectTo: 'release-notes/v2.3',
+  },
+  {
+    path: 'release-notes/:version',
+    component: ContentPageComponent,
+    resolve: {
+      versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
+      data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
+    },
+  },
+  {
+    path: 'standard-operating-procedures',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/standard-operating-procedures-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: 'training',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'vccf',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+
+  // Error pages and redirects
+  {
+    path: '404',
+    component: NotFoundPageComponent,
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: '404',
   },
 ];
