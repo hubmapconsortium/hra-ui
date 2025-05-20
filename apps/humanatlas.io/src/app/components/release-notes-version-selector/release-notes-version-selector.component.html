@@ -1,1 +1,15 @@
-<p>release-notes-version-selector works!</p>
+<mat-form-field>
+  <mat-label>Release Version</mat-label>
+  <mat-select
+    disableRipple
+    panelClass="options-container"
+    (selectionChange)="navigateToVersion($event.value)"
+    [value]="version()"
+  >
+    @for (ver of versions(); track $index) {
+      <mat-option [value]="'v' + ver.version">
+        {{ ver.label }}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>
