@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
 
 import { NavHeaderButtonsComponent } from './nav-header-buttons.component';

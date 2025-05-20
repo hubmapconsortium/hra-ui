@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/angular';
 import { NavHeaderComponent } from './nav-header.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideIcons } from '@hra-ui/design-system/icons';
 
 describe('NavHeaderComponent', () => {
   const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideIcons()];

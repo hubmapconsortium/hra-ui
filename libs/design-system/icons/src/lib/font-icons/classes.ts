@@ -1,4 +1,4 @@
-import { assertInInjectionContext, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { ICONS_CONFIG } from '../tokens';
 
@@ -10,8 +10,6 @@ export const DEFAULT_FONT_CLASSES = ['material-symbols-rounded'];
  * Must be called in an injection context.
  */
 export function registerFontClasses(): void {
-  assertInInjectionContext(registerFontClasses);
-
   const registry = inject(MatIconRegistry);
   const config = inject(ICONS_CONFIG, { optional: true });
   const initialClasses = registry.getDefaultFontSetClass();

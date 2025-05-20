@@ -1,6 +1,6 @@
 import { render } from '@testing-library/angular';
 import { AppComponent } from './app.component';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
