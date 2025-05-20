@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
@@ -24,11 +25,56 @@ export const appRoutes: Route[] = [
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
     },
   },
+
+  // Content pages
+  // Please try to keep sorted in alphabetical order
   {
     path: '3d-reference-library',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'about',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-azimuth',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'ccf-ontology',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'cell-population-graphs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-population-graphs/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -39,10 +85,27 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'api',
+    path: 'explore-biomarker-expressions',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: 'millitome',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'overview-data',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -56,13 +119,6 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'vccf',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'training',
     component: ContentPageComponent,
     resolve: {
@@ -70,21 +126,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'ccf-ontology',
+    path: 'vccf',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
     },
   },
+
+  // Error pages and redirects
   {
-    path: 'overview-data',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
-    },
+    path: '404',
+    component: NotFoundPageComponent,
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '404',
   },
 ];

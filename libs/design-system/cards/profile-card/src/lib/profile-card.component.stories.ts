@@ -1,9 +1,8 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
-
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { ProfileCardComponent } from './profile-card.component';
 
 const meta: Meta<ProfileCardComponent> = {
@@ -16,16 +15,10 @@ const meta: Meta<ProfileCardComponent> = {
     },
   },
   args: {
-    alignment: 'left',
     pictureUrl: 'assets/ui-images/placeholder.png',
     name: 'Firstname Lastname',
     description: 'Occupation, Company',
-  },
-  argTypes: {
-    alignment: {
-      control: 'select',
-      options: ['left', 'center'],
-    },
+    centerContent: false,
   },
 };
 export default meta;
@@ -48,10 +41,10 @@ export const Default: Story = {
     ],
     template: `
       <hra-profile-card
-        [alignment]="alignment"
         [pictureUrl]="pictureUrl"
         [name]="name"
         [description]="description"
+        [centerContent]="centerContent"
       >
         <a hraHyperlink [href]="actionUrl" target="_blank" rel="noopener noreferrer" class="action-link">
           Action <mat-icon>arrow_right_alt</mat-icon>
@@ -84,10 +77,10 @@ export const SocialIcons: Story = {
     ],
     template: `
       <hra-profile-card
-        [alignment]="alignment"
         [pictureUrl]="pictureUrl"
         [name]="name"
         [description]="description"
+        [centerContent]="centerContent"
       >
         <div class="social-media-actions" [class.centered]="alignment === 'center'">
           <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">

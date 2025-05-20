@@ -1,7 +1,7 @@
 <hra-table-of-contents-layout>
   <hra-table-of-contents-layout-header>
     <hra-page-section [tagline]="data().title">
-      <markdown [data]="data().subtitle"></markdown>
+      <markdown class="subtitle" [data]="data().subtitle"></markdown>
       @if (data().action; as action) {
         @if (action.url.startsWith('http')) {
           <a
