@@ -7,7 +7,7 @@
     [value]="version()"
   >
     @for (ver of versions(); track $index) {
-      <mat-option [value]="'v' + ver.version">
+      <mat-option [value]="ver.version">
         {{ ver.label }}
       </mat-option>
     }

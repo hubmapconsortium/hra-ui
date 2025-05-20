@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ReleaseNotesVersionSelectorComponent {
   /** Selected release version */
-  readonly version = injectParams((params) => (params['version'] as string | undefined) ?? '');
+  readonly version = injectParams((params) => (params['version'] as string | undefined)?.slice(1) ?? '');
   /** List of release note versions */
   readonly versions = injectRouteData((data) => (data['versions'] as ReleaseNotesVersions | undefined)?.versions ?? []);
 
@@ -27,6 +27,6 @@ export class ReleaseNotesVersionSelectorComponent {
 
   /** Navigates to the selected release version */
   protected navigateToVersion(version: string): void {
-    this.router.navigate(['release-notes', version]);
+    this.router.navigate(['release-notes', `v${version}`]);
   }
 }

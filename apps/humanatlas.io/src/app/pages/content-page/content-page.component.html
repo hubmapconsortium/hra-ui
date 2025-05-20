@@ -24,13 +24,13 @@
         }
       }
 
-      @for (item of headerContent(); track item) {
+      @for (item of headerContent(); track $index) {
         <ng-container *hraContentTemplateOutlet="item" />
       }
     </hra-page-section>
   </hra-table-of-contents-layout-header>
 
-  @for (item of content(); track item) {
+  @for (item of content(); track $index) {
     <ng-container *hraContentTemplateOutlet="item" />
   }
 </hra-table-of-contents-layout>
