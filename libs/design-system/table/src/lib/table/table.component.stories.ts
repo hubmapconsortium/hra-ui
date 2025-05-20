@@ -1,31 +1,63 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { provideMarkdown } from 'ngx-markdown';
-import { TableRow } from '../types/page-table.schema';
+import { TableColumn, TableRow } from '../types/page-table.schema';
 import { TableComponent } from './table.component';
+import { unparse } from 'papaparse';
+
+const columns: TableColumn[] = [
+  {
+    column: 'position',
+    label: 'Position',
+    type: 'text',
+  },
+  {
+    column: 'name',
+    label: 'Name',
+    type: 'markdown',
+  },
+  {
+    column: 'weight',
+    label: 'Weight',
+    type: 'numeric',
+  },
+  {
+    column: 'symbol',
+    label: 'Symbol',
+    type: {
+      type: 'link',
+      urlColumn: 'symbolUrl',
+    },
+  },
+];
+
+const symbolUrl = 'https://google.com';
 
 /** Example data */
-const exampleData: TableRow[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 11, name: 'Sodium', weight: 22.9897, symbol: { label: 'Na', url: 'https://google.com' } },
-  { position: 12, name: 'Magnesium', weight: 24.305, symbol: { label: 'Mg', url: 'https://google.com' } },
-  { position: 13, name: 'Aluminum', weight: 26.9815, symbol: { label: 'Al', url: 'https://google.com' } },
-  { position: 14, name: 'Silicon', weight: 28.0855, symbol: { label: 'Si', url: 'https://google.com' } },
-  { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: { label: 'P', url: 'https://google.com' } },
-  { position: 16, name: 'Sulfur', weight: 32.06, symbol: { label: 'S', url: 'https://google.com' } },
-  { position: 17, name: 'Chlorine', weight: 35.453, symbol: { label: 'Cl', url: 'https://google.com' } },
-  { position: 18, name: 'Argon', weight: 39.948, symbol: { label: 'Ar', url: 'https://google.com' } },
-  { position: 19, name: 'Potassium', weight: 39.0983, symbol: { label: 'K', url: 'https://google.com' } },
-  { position: 20, name: 'Calcium', weight: 40.078, symbol: { label: 'Ca', url: 'https://google.com' } },
+const rows: TableRow[] = [
+  { position: 1, name: '**Hydrogen**', weight: 1.0079, symbol: 'H', symbolUrl },
+  { position: 2, name: '**Helium**', weight: 4.0026, symbol: 'He', symbolUrl },
+  { position: 3, name: '**Lithium**', weight: 6.941, symbol: 'Li', symbolUrl },
+  { position: 4, name: '**Beryllium**', weight: 9.0122, symbol: 'Be', symbolUrl },
+  { position: 5, name: '**Boron**', weight: 10.811, symbol: 'B', symbolUrl },
+  { position: 6, name: '**Carbon**', weight: 12.0107, symbol: 'C', symbolUrl },
+  { position: 7, name: '**Nitrogen**', weight: 14.0067, symbol: 'N', symbolUrl },
+  { position: 8, name: '**Oxygen**', weight: 15.9994, symbol: 'O', symbolUrl },
+  { position: 9, name: '**Fluorine**', weight: 18.9984, symbol: 'F', symbolUrl },
+  { position: 10, name: '**Neon**', weight: 20.1797, symbol: 'Ne', symbolUrl },
+  { position: 11, name: '**Sodium**', weight: 22.9897, symbol: 'Na', symbolUrl },
+  { position: 12, name: '**Magnesium**', weight: 24.305, symbol: 'Mg', symbolUrl },
+  { position: 13, name: '**Aluminum**', weight: 26.9815, symbol: 'Al', symbolUrl },
+  { position: 14, name: '**Silicon**', weight: 28.0855, symbol: 'Si', symbolUrl },
+  { position: 15, name: '**Phosphorus**', weight: 30.9738, symbol: 'P', symbolUrl },
+  { position: 16, name: '**Sulfur**', weight: 32.06, symbol: 'S', symbolUrl },
+  { position: 17, name: '**Chlorine**', weight: 35.453, symbol: 'Cl', symbolUrl },
+  { position: 18, name: '**Argon**', weight: 39.948, symbol: 'Ar', symbolUrl },
+  { position: 19, name: '**Potassium**', weight: 39.0983, symbol: 'K', symbolUrl },
+  { position: 20, name: '**Calcium**', weight: 40.078, symbol: 'Ca', symbolUrl },
 ];
+
+const csvContent = unparse(rows, { header: true });
+const csvUrl = URL.createObjectURL(new Blob([csvContent], { type: 'text/csv' }));
 
 const meta: Meta<TableComponent> = {
   component: TableComponent,
@@ -42,10 +74,8 @@ const meta: Meta<TableComponent> = {
     }),
   ],
   args: {
-    rows: exampleData,
-    columns: ['position', 'name', 'weight', 'symbol'],
-    enableSort: true,
-    verticalDividers: false,
+    rows,
+    columns,
   },
   argTypes: {
     style: {
@@ -93,54 +123,9 @@ export const WithScrolling: Story = {
   }),
 };
 
-export const ColumnInputAsRecord: Story = {
+export const WithCsvUrl: Story = {
   args: {
-    columns: {
-      position: 'Index',
-      name: 'Element',
-      weight: 'Weight',
-      symbol: 'Symbol',
-    },
-  },
-};
-
-export const WithMarkdown: Story = {
-  args: {
-    columns: {
-      position: 'Position',
-      name: 'Name',
-      weight: 'Weight',
-      symbol: 'Symbol',
-      notes: 'Notes',
-    },
-    rows: [
-      {
-        position: 1,
-        name: 'Hydrogen',
-        weight: 1.0079,
-        symbol: 'H',
-        notes: {
-          markdown: '<span>This is markdown</span>',
-        },
-      },
-      {
-        position: 2,
-        name: 'Helium',
-        weight: 4.0026,
-        symbol: 'He',
-        notes: {
-          markdown: '<a href="https://www.google.com">This is a link</a>',
-        },
-      },
-      {
-        position: 3,
-        name: 'Beryllium',
-        weight: 9.0122,
-        symbol: 'Be',
-        notes: {
-          markdown: '<img src="assets/brand/mark/default.svg"></img>',
-        },
-      },
-    ],
+    rows: undefined,
+    csvUrl,
   },
 };
