@@ -74,8 +74,10 @@ const meta: Meta<TableComponent> = {
     }),
   ],
   args: {
-    rows,
+    enableSort: true,
+    verticalDividers: false,
     columns,
+    rows,
   },
   argTypes: {
     style: {

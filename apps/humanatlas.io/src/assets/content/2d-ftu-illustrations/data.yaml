@@ -1,4 +1,4 @@
-$schema: ../../../app/pages/content-page/types/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Functional Tissue Unit (FTU) Illustrations
 subtitle: |
   A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function and is
