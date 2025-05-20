@@ -14,6 +14,13 @@
     )
   );
 
+  @include mat.pseudo-checkbox-overrides(
+    (
+      full-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
+      minimal-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
+    )
+  );
+
   @include mat.option-overrides(
     (
       focus-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
@@ -25,25 +32,11 @@
       label-text-size: vars.$label-medium-size,
       label-text-weight: vars.$label-medium-weight,
       selected-state-label-text-color: vars.$secondary,
-      selected-state-layer-color: color-mix(in srgb, vars.$on-tertiary-container 8%, transparent),
+      selected-state-layer-color: utils.with-alpha(vars.$tertiary, 20%),
     )
   );
 
   mat-option.mat-mdc-option {
     margin-bottom: 0.5px;
-
-    &:focus-visible {
-      outline: 2px solid vars.$tertiary;
-    }
-
-    @include mat.core-overrides(
-      (
-        pseudo-checkbox-minimal-selected-checkmark-color: vars.$on-tertiary-container,
-      )
-    );
-
-    &.mat-mdc-option-active {
-      outline: 1px solid color-mix(in srgb, vars.$on-surface 32%, transparent);
-    }
   }
 }

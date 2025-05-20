@@ -1,0 +1,93 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Training
+subtitle: Learn how to construct and use the Human Reference Atlas.
+content:
+  - component: PageSection
+    tagline: Standard Operating Procedures (SOPs)
+    anchor: sops
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Processes and procedures to ensure the standardized construction of the Human Reference Atlas.
+
+        - [Standard Operating Procedures](standard-operating-procedures)
+        - [Standard Operating Procedure Glossary](standard-operating-procedures)
+
+  - component: PageSection
+    tagline: Introduction to the Human Reference Atlas
+    anchor: introduction
+    level: 2
+    content:
+      component: Markdown
+      data: Introductory level content made for general audiences of the Human Reference Atlas.
+
+  - component: PageSection
+    tagline: Human Atlas Stories
+    anchor: human-atlas-stories
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Mixed-media animated essays designed to introduce the HRA to a general audience.
+
+        1. [What is a Human Reference Atlas?](https://cns-iu.github.io/hra-scrollytelling/story1.html)
+        2. [Squiggy's Identity Crisis](https://cns-iu.github.io/hra-scrollytelling/story2.html)
+        3. [Something's NOT Registering!](https://cns-iu.github.io/hra-scrollytelling/story3.html)
+        4. [Data Detangle](https://cns-iu.github.io/hra-scrollytelling/story4.html)
+        5. [Know Your Body Buddies](https://cns-iu.github.io/hra-scrollytelling/story5.html)
+
+  - component: PageSection
+    tagline: 24 Hour Events
+    anchor: 24-hour-events
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Scholars and practitioners present and discuss their work in a fun and accessible style over the course of 24 hours.
+
+        - [Multiscale Human 2024](https://humanatlas.io/events/2024-24h/)
+        - [Human Reference Atlas 2022](https://humanatlas.io/events/2022-24h/)
+
+  - component: PageSection
+    tagline: Visible Human Course
+    anchor: visible-human-course
+    level: 3
+    content:
+      component: Markdown
+      data: The [Visible Human Course](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc) is free and it empowers anyone to help construct and properly use the evolving Human Reference Atlas.
+
+  - component: PageSection
+    tagline: Kaggle Competitions
+    anchor: kaggle-competitions
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Algorithm development challenges that engage teams from around the globe to develop code for Human Reference Atlas construction.
+
+        1. [Hacking the Kidney by HuBMAP](https://humanatlas.io/kaggle-one)
+        2. [Hacking the Human Body by HuBMAP and HPA](https://humanatlas.io/kaggle-two)
+        3. [Hacking the Human Vasculature by HuBMAP](https://humanatlas.io/kaggle-three)
+        4. [Hacking the Human Vasculature in 3D](https://humanatlas.io/kaggle-four)
+
+  - component: PageSection
+    tagline: Previews
+    anchor: previews
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Previews showcase pilot and example functionality of current and former Human Reference Atlas projects.
+
+        - [ASCT+B Reporter Comparison](https://hubmapconsortium.github.io/hra-previews/pilots/pilot1.html)
+        - [ASCT+B Cell-Types Data from Azimuth Reference Data with Summaries](asctb-azimuth)
+        - [CCF Tissue Block Annotation: Mesh-Level Collision Detection](https://hubmapconsortium.github.io/hra-previews/pilots/pilot7.html)
+        - [Cell Population Graphs](/cell-population-graphs)
+        - [Common Coordinate Framework Ontology](https://humanatlas.io/ccf-ontology)
+        - [Comparing Tabula Sapiens to the Human Reference Atlas](https://hubmapconsortium.github.io/hra-previews/pilots/pilot5.html)
+        - [Explore Biomarker Expressions for Cell Types](https://humanatlas.io/user-story/3)
+        - [Functional Tissue Unit Segmentation](https://hubmapconsortium.github.io/hra-previews/pilots/pilot6.html)
+        - [HRA vs. Experimental Data](https://hubmapconsortium.github.io/hra-previews/pilots/pilot3.html)
+        - [Human Atlas Stories](https://hubmapconsortium.github.io/hra-previews/pilots/pilot4.html)
+        - [Vasculature CCF Visualization](https://hubmapconsortium.github.io/hra-previews/pilots/pilot2.html)

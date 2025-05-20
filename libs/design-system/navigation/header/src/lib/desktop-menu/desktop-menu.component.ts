@@ -19,6 +19,8 @@ import { Menu } from '../types/menus.schema';
 export class DesktopMenuComponent {
   /** Menu to display */
   readonly menu = input.required<Menu | HubmapMenuGroup[]>();
+  /** Base url - Menu urls starting with this will be converted into router links */
+  readonly baseUrl = input.required<string | undefined>();
 
   /** Menu object along with whether it is a hubmap or regular menu type */
   protected readonly typedMenu = computed(() => {
