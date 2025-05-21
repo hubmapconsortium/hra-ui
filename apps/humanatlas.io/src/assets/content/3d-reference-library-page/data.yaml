@@ -72,7 +72,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/united-male/v1.7
                     files: []
               - label: Blood Vasculature
-                icon: all-organs
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: Blood Vasculature, Female
@@ -527,7 +527,7 @@ content:
             date: June 2024
             organData:
               - label: Blood Vasculature
-                icon: blood-vasculature
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: Blood Vasculature, Female
@@ -956,7 +956,7 @@ content:
             date: December 2023
             organData:
               - label: Blood Vasculature
-                icon: blood-vasculature
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: The Vasculature, blood, female
@@ -1385,7 +1385,7 @@ content:
             date: June 2023
             organData:
               - label: Blood Vasculature
-                icon: blood-vasculature
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: The Vasculature, blood, female
@@ -1814,7 +1814,7 @@ content:
             date: December 2022
             organData:
               - label: Blood Vasculature
-                icon: blood-vasculature
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: The Vasculature, blood, female
@@ -2181,7 +2181,7 @@ content:
             date: June 2022
             organData:
               - label: Blood Vasculature
-                icon: blood-vasculature
+                icon: vasculature-thick
                 cards:
                   - label: Female
                     alt: The Vasculature, blood, female
