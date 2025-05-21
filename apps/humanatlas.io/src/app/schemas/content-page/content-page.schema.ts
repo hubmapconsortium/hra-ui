@@ -1,6 +1,7 @@
 import {
   AnyContentTemplateSchema,
   ClassesSchema,
+  ProjectedContentTemplateSchema,
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
@@ -13,9 +14,11 @@ import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
+import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
+import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
@@ -31,7 +34,8 @@ export const ContentPageDataSchema = z.object({
       url: z.string(),
     })
     .optional(),
-  content: AnyContentTemplateSchema.array(),
+  headerContent: ProjectedContentTemplateSchema.optional(),
+  content: ProjectedContentTemplateSchema,
 });
 
 export {
@@ -46,14 +50,16 @@ export {
   PageSectionSchema,
   PageTableSchema,
   ProfileCardSchema,
+  ReleaseNotesVersionSelectorSchema,
   StylesSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
-  // TODO: Add more
+  YouTubePlayerSchema,
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
+    ApiCommandSchema,
     ButtonSchema,
     DataViewerSchema,
     FlexContainerSchema,
@@ -62,8 +68,10 @@ export default z.lazy(() => {
     PageSectionSchema,
     PageTableSchema,
     ProfileCardSchema,
+    ReleaseNotesVersionSelectorSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
+    YouTubePlayerSchema,
     // TODO: Add more
   ]);
 
