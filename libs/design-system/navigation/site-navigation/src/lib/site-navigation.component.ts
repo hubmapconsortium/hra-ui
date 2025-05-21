@@ -26,6 +26,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SiteNavigationComponent {
+  // TODO: Refactor this to a different file
   protected navigationItems = [
     {
       label: 'Getting Started',
