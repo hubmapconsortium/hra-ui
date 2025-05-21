@@ -1,0 +1,38 @@
+<div class="heading">
+  <div class="tagline">Help & Documentation</div>
+  <div class="description">
+    Documentation, guides, and standard operating procedures for Human Reference Atlas usage.
+  </div>
+</div>
+
+<mat-divider />
+
+<div class="content">
+  <mat-nav-list>
+    @for (navigationItem of navigationItems; track navigationItem) {
+      @if (navigationItem.isCategory) {
+        <mat-expansion-panel class="category">
+          <mat-expansion-panel-header class="header">
+            <mat-icon>{{ navigationItem.icon }}</mat-icon>
+            <div>{{ navigationItem.label }}</div>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <div class="pages">
+              @for (child of navigationItem.children; track child) {
+                <mat-list-item class="page" [disableRipple]="true">
+                  <a matListItemTitle [routerLink]="child.link">{{ child.label }}</a>
+                </mat-list-item>
+              }
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      } @else {
+        <mat-list-item class="category-page" [disableRipple]="true">
+          <mat-icon matListItemIcon>{{ navigationItem.icon }}</mat-icon>
+          <a matListItemTitle [routerLink]="navigationItem.link">{{ navigationItem.label }}</a>
+        </mat-list-item>
+      }
+      <mat-divider />
+    }
+  </mat-nav-list>
+</div>
