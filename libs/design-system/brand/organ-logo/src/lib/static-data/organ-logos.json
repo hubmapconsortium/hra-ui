@@ -90,6 +90,10 @@
       "icon": "organ:mammary_gland"
     },
     {
+      "id": "manubrium",
+      "icon": "organ:manubrium"
+    },
+    {
       "id": "neurons",
       "icon": "organ:neurons"
     },
@@ -128,6 +132,10 @@
     {
       "id": "prostate",
       "icon": "organ:prostate"
+    },
+    {
+      "id": "renal-pelvis-right",
+      "icon": "organ:renal_pelvis_right"
     },
     {
       "id": "skin",
