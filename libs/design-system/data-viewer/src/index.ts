@@ -1,5 +1,5 @@
 export { DataViewerComponent } from './lib/data-viewer.component';
-export { DataViewerDef } from './lib/data-viewer.definition';
+export { DataViewerDef } from './lib/types/data-viewer.definition';
 export {
   DataViewer,
   DataViewerSchema,
