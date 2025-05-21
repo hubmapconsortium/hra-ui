@@ -22,10 +22,6 @@
       "icon": "organ:brain"
     },
     {
-      "id": "breast",
-      "icon": "organ:breast"
-    },
-    {
       "id": "extrapulmonary-bronchus",
       "icon": "organ:extrapulmonary_bronchus"
     },
@@ -88,6 +84,10 @@
     {
       "id": "lymph-nodes",
       "icon": "organ:lymph_nodes"
+    },
+    {
+      "id": "mammary-gland",
+      "icon": "organ:mammary_gland"
     },
     {
       "id": "neurons",

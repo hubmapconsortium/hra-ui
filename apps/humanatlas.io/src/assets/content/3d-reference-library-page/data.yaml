@@ -271,7 +271,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
                     files: []
               - label: Mammary Gland
-                icon: all-organs
+                icon: mammary-gland
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
