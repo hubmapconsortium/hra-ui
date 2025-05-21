@@ -1,11 +1,10 @@
 import { Route } from '@angular/router';
+import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
+import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
-import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { createReleaseNotesContentResolver } from './resolvers/release-notes-content.resolver';
-import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
-import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
 import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
