@@ -1,0 +1,38 @@
+{
+  "$ref": "#/definitions/ReleaseNotesVersions",
+  "definitions": {
+    "ReleaseNotesVersion": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
+      "required": ["version", "label", "date"],
+      "additionalProperties": false
+    },
+    "ReleaseNotesVersions": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReleaseNotesVersion"
+          }
+        }
+      },
+      "required": ["$schema", "versions"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

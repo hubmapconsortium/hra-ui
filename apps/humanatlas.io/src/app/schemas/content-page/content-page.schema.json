@@ -31,10 +31,16 @@
           "$ref": "#/definitions/ProfileCard"
         },
         {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
           "$ref": "#/definitions/TextHyperlink"
         },
         {
           "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/YouTubePlayer"
         }
       ]
     },
@@ -162,11 +168,21 @@
           "required": ["label", "url"],
           "additionalProperties": false
         },
+        "headerContent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AnyContentTemplate"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnyContentTemplate"
+              }
+            }
+          ]
+        },
         "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
-          }
+          "$ref": "#/definitions/ContentPageData/properties/headerContent"
         }
       },
       "required": ["$schema", "title", "subtitle", "content"],
@@ -391,17 +407,7 @@
           "type": "string"
         },
         "content": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/AnyContentTemplate"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AnyContentTemplate"
-              }
-            }
-          ]
+          "$ref": "#/definitions/ContentPageData/properties/headerContent"
         }
       },
       "required": ["component", "tagline", "content"],
@@ -548,10 +554,27 @@
           "type": "boolean"
         },
         "actions": {
-          "$ref": "#/definitions/PageSection/properties/content"
+          "$ref": "#/definitions/ContentPageData/properties/headerContent"
         }
       },
       "required": ["component", "name", "description", "pictureUrl"],
+      "additionalProperties": false
+    },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        }
+      },
+      "required": ["component"],
       "additionalProperties": false
     },
     "Styles": {
@@ -655,6 +678,26 @@
         }
       },
       "required": ["component", "label", "items"],
+      "additionalProperties": false
+    },
+    "YouTubePlayer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "YouTubePlayer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "videoId"],
       "additionalProperties": false
     },
     "ContentPage": {
