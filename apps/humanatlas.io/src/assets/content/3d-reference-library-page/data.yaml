@@ -502,7 +502,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-male-right/v1.2
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: Urinary Bladder, Female
@@ -918,7 +918,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-male-right/v1.2
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: Urinary Bladder, Female
@@ -1347,7 +1347,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-ureter-r.html
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: The urinary bladder, female
@@ -1776,7 +1776,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.3/docs/ref-organs/ureter-male-right.html
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: The urinary bladder, female
@@ -2143,7 +2143,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.3/docs/ref-organs/ureter-male-right.html
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: The urinary bladder, female
@@ -2497,7 +2497,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.2/docs/ref-organs/ureter-male-right.html
                     files: []
               - label: Urinary Bladder
-                icon: urinary-bladder
+                icon: bladder
                 cards:
                   - label: Female
                     alt: The urinary bladder, female
