@@ -479,7 +479,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/trachea-male/v1.1
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -895,7 +895,7 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/trachea-male/v1.1
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -1324,7 +1324,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v2.0/docs/ref-organs/3d-vh-m-trachea.html
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female L
                     alt: The ureter, left, female
@@ -1753,7 +1753,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.4/docs/ref-organs/3d-vh-m-trachea.html
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female L
                     alt: The ureter, left, female
@@ -2120,7 +2120,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.3/docs/ref-organs/thymus-male.html
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female L
                     alt: The ureter, left, female
@@ -2474,7 +2474,7 @@ content:
                     sourceDataUrl: https://cdn.humanatlas.io/hra-releases/v1.2/docs/ref-organs/thymus-male.html
                     files: []
               - label: Ureter
-                icon: ureter
+                icon: ureter-right
                 cards:
                   - label: Female L
                     alt: The ureter, left, female

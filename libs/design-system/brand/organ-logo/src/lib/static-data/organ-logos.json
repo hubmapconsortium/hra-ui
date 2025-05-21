@@ -154,6 +154,10 @@
       "icon": "organ:spleen"
     },
     {
+      "id": "sternum",
+      "icon": "organ:sternum"
+    },
+    {
       "id": "stomach",
       "icon": "organ:stomach"
     },
