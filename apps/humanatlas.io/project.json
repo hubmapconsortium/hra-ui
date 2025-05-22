@@ -25,8 +25,7 @@
             "glob": "**/*",
             "output": "./assets"
           }
-        ],
-        "polyfills": ["apps/humanatlas.io/src/polyfills.ts"]
+        ]
       },
       "configurations": {
         "production": {
@@ -53,6 +52,9 @@
       "options": {
         "tsConfig": "apps/humanatlas.io/tsconfig.app.json"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/humanatlas.io/browser/"
     },
     "build-json-schemas": {
       "executor": "nx:run-commands",
