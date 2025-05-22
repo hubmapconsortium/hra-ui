@@ -1,0 +1,22 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Knowledge Graph
+subtitle: |
+  This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
+
+  - Text always goes on top.
+  - Other components may be swapped out for the button set.
+action:
+  label: Action button
+  url: ''
+content:
+  - component: PageSection
+    tagline: Heading
+    anchor: heading
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
+
+        - Text always goes on top.
+        - Other components may be swapped out for the button set.

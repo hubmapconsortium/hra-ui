@@ -108,7 +108,6 @@ export class NumericRowElementDirective {
     MatSortModule,
     MatTableModule,
     ScrollingModule,
-    ScrollOverflowFadeDirective,
     TextHyperlinkDirective,
     LinkRowElementDirective,
     TextRowElementDirective,
