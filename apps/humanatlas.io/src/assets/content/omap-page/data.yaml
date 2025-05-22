@@ -84,7 +84,7 @@ content:
     content:
       - component: VersionedDataTable
         styles:
-          height: 35rem
+          --hra-table-max-height: 35rem
         enableSort: true
         verticalDividers: true
         label: Release Version

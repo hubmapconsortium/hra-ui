@@ -7,9 +7,9 @@
   overflow: hidden;
   height: 100%;
 
-.vertical-divider {
-  border-left: 1px solid vars.$outline-variant;
-}
+  .vertical-divider {
+    border-left: 1px solid vars.$outline-variant;
+  }
 
   @include mat.table-overrides(
     (
@@ -50,6 +50,7 @@
   ng-scrollbar {
     height: 100%;
     overflow: hidden;
+    max-height: var(--hra-table-max-height);
   }
 
   th[data-column-type='numeric'],
