@@ -1,8 +1,7 @@
 import { Location } from '@angular/common';
 import { ResolveFn } from '@angular/router';
-
-import { ContentPageData, ContentPageDataSchema } from '../schemas/content-page/content-page.schema';
-import { createYamlSpecResolver } from './spec.resolver';
+import { ContentPageData, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
+import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 
 /**
  * Creates resolver for getting release notes content
