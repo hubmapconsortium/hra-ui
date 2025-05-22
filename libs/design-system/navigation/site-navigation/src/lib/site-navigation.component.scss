@@ -2,30 +2,16 @@
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
-// TODO: Refactor navigation styles
 :host {
-  $header-height: 2.5rem;
-
   display: block;
   background-color: vars.$surface-container-low;
   border-right: 0.0625rem solid vars.$outline;
   padding: 3rem 1rem;
   width: 20rem;
 
-  @include mat.expansion-overrides(
-    (
-      container-shape: vars.$corner-none,
-      container-background-color: transparent,
-      header-collapsed-state-height: 1.5rem,
-      header-expanded-state-height: $header-height,
-      header-hover-state-layer-color: utils.with-alpha(vars.$secondary, 8%),
-      header-text-font: vars.$label-large-font,
-      header-text-size: vars.$label-large-size,
-      header-text-weight: vars.$label-large-weight,
-      header-text-line-height: vars.$label-large-line-height,
-      header-text-tracking: vars.$label-large-tracking,
-    )
-  );
+  mat-nav-list {
+    padding: 0;
+  }
 
   @include mat.divider-overrides(
     (
@@ -36,8 +22,14 @@
   @include mat.list-overrides(
     (
       list-item-one-line-container-height: 1.5rem,
-      list-item-hover-state-layer-color: vars.$secondary,
+      list-item-label-text-color: vars.$primary,
+
+      list-item-hover-label-text-color: vars.$tertiary-fixed,
+      list-item-hover-state-layer-color: vars.$on-tertiary-fixed,
       list-item-hover-state-layer-opacity: 8%,
+      list-item-hover-leading-icon-color: vars.$tertiary-fixed,
+
+      list-item-selected-container-color: vars.$tertiary,
     )
   );
 
@@ -59,54 +51,5 @@
 
   .content {
     margin-top: 0.5rem;
-
-    mat-nav-list {
-      padding: 0;
-    }
-
-    ::ng-deep .mat-expansion-panel-body {
-      padding: 0;
-    }
-
-    .category {
-      box-shadow: none;
-      margin: 0.5rem 0;
-
-      .header {
-        border-radius: 0.5rem;
-        padding: 0.5rem 1rem;
-
-        ::ng-deep .mat-content {
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        @include utils.use-font(label, medium);
-      }
-
-      .page {
-        padding-left: 3.25rem;
-      }
-    }
-
-    .page,
-    .category-page {
-      border-radius: 0.5rem;
-      cursor: pointer;
-      gap: 0.75rem;
-      margin: 0.5rem 0;
-      padding: 1.25rem 1rem;
-      width: 100%;
-      @include utils.use-font(label, medium);
-
-      mat-icon {
-        margin: 0;
-      }
-
-      a[matListItemTitle] {
-        text-wrap: wrap;
-        @include utils.use-font(label, medium);
-      }
-    }
   }
 }

@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+@use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
+
+:host {
+  display: block;
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0;
+  }
+
+  @include mat.expansion-overrides(
+    (
+      container-shape: vars.$corner-none,
+      container-background-color: transparent,
+      header-collapsed-state-height: 1.5rem,
+      header-expanded-state-height: 1.5rem,
+      header-hover-state-layer-color: utils.with-alpha(vars.$secondary, 8%),
+      header-text-font: vars.$label-large-font,
+      header-text-size: vars.$label-large-size,
+      header-text-weight: vars.$label-large-weight,
+      header-text-line-height: vars.$label-large-line-height,
+      header-text-tracking: vars.$label-large-tracking,
+    )
+  );
+
+  .category {
+    box-shadow: none;
+    margin: 0.5rem 0;
+
+    .header {
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+
+      ::ng-deep .mat-content {
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      @include utils.use-font(label, medium);
+    }
+  }
+}

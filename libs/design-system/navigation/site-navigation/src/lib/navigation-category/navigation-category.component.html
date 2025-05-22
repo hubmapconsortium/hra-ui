@@ -1,0 +1,11 @@
+<mat-expansion-panel class="category">
+  <mat-expansion-panel-header class="header">
+    <mat-icon>{{ navigationCategory().icon }}</mat-icon>
+    <div>{{ navigationCategory().label }}</div>
+  </mat-expansion-panel-header>
+  <div matExpansionPanelContent>
+    @for (navigationItem of navigationCategory().children; track navigationItem) {
+      <hra-navigation-page [navigationItem]="navigationItem" [isInCategory]="true" />
+    }
+  </div>
+</mat-expansion-panel>

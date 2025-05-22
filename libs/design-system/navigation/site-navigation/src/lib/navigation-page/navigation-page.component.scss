@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+@use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
+
+:host {
+  display: block;
+
+  .in-category {
+    padding-left: 3.5rem !important;
+  }
+
+  .page {
+    align-items: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    gap: 0.75rem;
+    margin: 0.5rem 0;
+    padding: 1.25rem 1rem;
+    width: 100%;
+    @include utils.use-font(label, medium);
+
+    &:hover {
+      mat-icon {
+        color: vars.$tertiary-fixed;
+      }
+    }
+
+    mat-icon {
+      margin: 0;
+    }
+
+    a[matListItemTitle] {
+      text-wrap: wrap;
+      @include utils.use-font(label, medium);
+    }
+  }
+}

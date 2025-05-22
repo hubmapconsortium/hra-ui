@@ -7,7 +7,7 @@ const meta: Meta<SiteNavigationComponent> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=1819-14983',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=3376-12978',
     },
   },
 };
