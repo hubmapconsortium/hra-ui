@@ -2,6 +2,10 @@
 @use '@angular/material' as mat;
 
 :host {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
   @include mat.card-overrides(
     (
       elevated-container-shape: 0.25rem,
@@ -9,10 +13,6 @@
       elevated-container-elevation: 0,
     )
   );
-
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
 
   .url-card {
     border-left: solid #bad2e7 0.5rem;

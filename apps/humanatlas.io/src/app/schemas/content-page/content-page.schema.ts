@@ -10,31 +10,17 @@ import { ActionCardOutlineDefaultListSchema } from '@hra-ui/design-system/cards/
 import { ActionCardOutlineLargeImageListSchema } from '@hra-ui/design-system/cards/action-card-outline-large-image';
 import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
 import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
+import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
+import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
-
-/** Content page type */
-export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
-
-/** Schema for content page data */
-export const ContentPageDataSchema = z.object({
-  $schema: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
-  action: z
-    .object({
-      label: z.string(),
-      url: z.string(),
-    })
-    .optional(),
-  content: AnyContentTemplateSchema.array(),
-});
+import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
 
 export {
   ActionCardOutlineDefaultListSchema,
@@ -50,15 +36,15 @@ export {
   PageSectionSchema,
   PageTableSchema,
   ProfileCardSchema,
+  ReleaseNotesVersionSelectorSchema,
   StylesSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
+  YouTubePlayerSchema,
 };
 
 export default z.lazy(() => {
   setContentTemplateSpecs([
-    ActionCardOutlineDefaultListSchema,
-    ActionCardOutlineLargeImageListSchema,
     ApiCommandSchema,
     ButtonSchema,
     DataViewerSchema,
@@ -68,8 +54,10 @@ export default z.lazy(() => {
     PageSectionSchema,
     PageTableSchema,
     ProfileCardSchema,
+    ReleaseNotesVersionSelectorSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
+    YouTubePlayerSchema,
     // TODO: Add more
   ]);
 
