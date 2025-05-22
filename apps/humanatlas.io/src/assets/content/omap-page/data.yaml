@@ -85,9 +85,9 @@ content:
       - component: VersionedDataTable
         styles:
           height: 35rem
-        label: Release Version
-        verticalDividers: true
         enableSort: true
+        verticalDividers: true
+        label: Release Version
         items:
           - label: 8th Release (v2.2)
             csvUrl: assets/content/omap-page/table-data/omaps_release8.csv

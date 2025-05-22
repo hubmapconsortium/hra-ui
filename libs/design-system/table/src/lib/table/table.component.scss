@@ -7,6 +7,10 @@
   overflow: hidden;
   height: 100%;
 
+.vertical-divider {
+  border-left: 1px solid vars.$outline-variant;
+}
+
   @include mat.table-overrides(
     (
       background-color: transparent,

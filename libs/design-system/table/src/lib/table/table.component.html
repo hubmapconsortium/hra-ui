@@ -30,10 +30,16 @@
               mat-sort-header
               [attr.data-column-type]="type"
               [sortActionDescription]="`Sort by ${column.label}`"
+              [class.vertical-divider]="verticalDividers() && column.column !== _columns()[0].column"
             >
               {{ column.label }}
             </th>
-            <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
+            <td
+              mat-cell
+              *matCellDef="let element"
+              [attr.data-column-type]="type"
+              [class.vertical-divider]="verticalDividers() && column.column !== _columns()[0].column"
+            >
               <ng-container
                 *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
               />
