@@ -1,0 +1,6 @@
+<mat-list-item class="page" [class.in-category]="isInCategory()">
+  @if (navigationItem().icon) {
+    <mat-icon matListItemIcon>{{ navigationItem().icon }}</mat-icon>
+  }
+  <a matListItemTitle [routerLink]="navigationItem().url">{{ navigationItem().label }}</a>
+</mat-list-item>

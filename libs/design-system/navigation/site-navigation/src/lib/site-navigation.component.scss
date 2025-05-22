@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  display: block;
+  background-color: vars.$surface-container-low;
+  border-right: 0.0625rem solid vars.$outline;
+  padding: 3rem 1rem;
+  width: 20rem;
+
+  mat-nav-list {
+    padding: 0;
+  }
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
+
+  @include mat.list-overrides(
+    (
+      list-item-one-line-container-height: 1.5rem,
+      list-item-label-text-color: vars.$primary,
+
+      list-item-hover-label-text-color: vars.$tertiary-fixed,
+      list-item-hover-state-layer-color: vars.$on-tertiary-fixed,
+      list-item-hover-state-layer-opacity: 8%,
+      list-item-hover-leading-icon-color: vars.$tertiary-fixed,
+
+      list-item-selected-container-color: vars.$tertiary,
+    )
+  );
+
+  .heading {
+    padding: 0 0.75rem;
+
+    .tagline {
+      color: vars.$secondary;
+      margin-bottom: 8px;
+      @include utils.use-font(title, small);
+    }
+
+    .description {
+      color: vars.$primary;
+      margin-bottom: 1.5rem;
+      @include utils.use-font(body, medium);
+    }
+  }
+
+  .content {
+    margin-top: 0.5rem;
+  }
+}
