@@ -13,7 +13,7 @@
       @if (navMenuItem.type === 'category') {
         <hra-navigation-category [navigationCategory]="navMenuItem" />
       } @else if (navMenuItem.type === 'item') {
-        <hra-navigation-page [navigationItem]="navMenuItem" />
+        <hra-navigation-item [navigationItem]="navMenuItem" />
       }
       <mat-divider />
     }

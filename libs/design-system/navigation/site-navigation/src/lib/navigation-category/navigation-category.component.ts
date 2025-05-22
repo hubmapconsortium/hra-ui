@@ -2,17 +2,18 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { NavigationPageComponent } from '../navigation-page/navigation-page.component';
 import { DocsNavigationCategory } from '../types/docs-navigation.schema';
-import { MatNavList } from '@angular/material/list';
+import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
 
+/** Navigation Category Component */
 @Component({
   selector: 'hra-navigation-category',
-  imports: [CommonModule, MatExpansionModule, MatIconModule, NavigationPageComponent, MatNavList],
+  imports: [CommonModule, MatExpansionModule, MatIconModule, NavigationItemComponent],
   templateUrl: './navigation-category.component.html',
   styleUrl: './navigation-category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationCategoryComponent {
+  /** Navigation category data */
   readonly navigationCategory = input.required<DocsNavigationCategory>();
 }

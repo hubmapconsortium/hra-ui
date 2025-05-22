@@ -5,7 +5,7 @@
   </mat-expansion-panel-header>
   <div matExpansionPanelContent>
     @for (navigationItem of navigationCategory().children; track navigationItem) {
-      <hra-navigation-page [navigationItem]="navigationItem" [isInCategory]="true" />
+      <hra-navigation-item [navigationItem]="navigationItem" [isInCategory]="true" />
     }
   </div>
 </mat-expansion-panel>

@@ -1,19 +1,9 @@
 import { render } from '@testing-library/angular';
-import { screen } from '@testing-library/dom';
-import { userEvent } from '@testing-library/user-event';
 import { SiteNavigationComponent } from './site-navigation.component';
 
-describe('BackButtonBarComponent', () => {
-  it('has a back button', async () => {
-    const click = jest.fn();
-    await render(SiteNavigationComponent, {
-      on: {
-        backClick: click,
-      },
-    });
-
-    const button = screen.getByRole('button', { name: /back/i });
-    await userEvent.click(button);
-    expect(click).toHaveBeenCalledTimes(1);
+describe('SiteNavigationComponent', () => {
+  it('should render', async () => {
+    const promise = render(SiteNavigationComponent);
+    await expect(promise).resolves.toBeTruthy();
   });
 });
