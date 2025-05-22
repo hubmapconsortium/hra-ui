@@ -1,13 +1,15 @@
-<mat-form-field>
-  <mat-label class="label"> {{ label() }} </mat-label>
-  <mat-select class="select" [value]="selection()" (selectionChange)="selection.set($event.value)">
-    @for (item of items(); track $index) {
-      <mat-option [value]="$index">
-        {{ item.label }}
-      </mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+@if (!hideVersionSelector()) {
+  <mat-form-field>
+    <mat-label class="label"> {{ label() }} </mat-label>
+    <mat-select class="select" [value]="selection()" (selectionChange)="selection.set($event.value)">
+      @for (item of items(); track $index) {
+        <mat-option [value]="$index">
+          {{ item.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
 
 <hra-table
   [csvUrl]="item().csvUrl"
