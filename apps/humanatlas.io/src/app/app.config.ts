@@ -5,6 +5,8 @@ import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ActionCardOutlineDefaultListDef } from '@hra-ui/design-system/cards/action-card-outline-default';
+import { ActionCardOutlineLargeImageListDef } from '@hra-ui/design-system/cards/action-card-outline-large-image';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
@@ -23,6 +25,8 @@ import { ReleaseNotesVersionSelectorDef } from './components/release-notes-versi
 export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateDefs([
+      ActionCardOutlineDefaultListDef,
+      ActionCardOutlineLargeImageListDef,
       ApiCommandDef,
       ButtonDef,
       DataViewerDef,

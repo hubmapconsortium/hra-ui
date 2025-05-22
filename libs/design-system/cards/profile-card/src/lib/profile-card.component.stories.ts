@@ -1,14 +1,13 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
-
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { ProfileCardComponent } from './profile-card.component';
 
 const meta: Meta<ProfileCardComponent> = {
   component: ProfileCardComponent,
-  title: 'Design System/Cards/Profile',
+  title: 'Design System/Cards/Profile Card',
   parameters: {
     design: {
       type: 'figma',

@@ -1,8 +1,132 @@
 {
   "$ref": "#/definitions/ContentPage",
   "definitions": {
+    "ActionCardOutlineDefaultList": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ActionCardOutlineDefaultList"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "string",
+                "const": "ActionCardOutlineDefault"
+              },
+              "classes": {
+                "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
+              },
+              "styles": {
+                "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
+              },
+              "app": {
+                "type": "string"
+              },
+              "tagline": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "leftActionName": {
+                "type": "string"
+              },
+              "leftActionUrl": {
+                "type": "string"
+              },
+              "rightActionName": {
+                "type": "string"
+              },
+              "rightActionUrl": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "component",
+              "app",
+              "description",
+              "leftActionName",
+              "leftActionUrl",
+              "rightActionName",
+              "rightActionUrl"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "cards"],
+      "additionalProperties": false
+    },
+    "ActionCardOutlineLargeImageList": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ActionCardOutlineLargeImageList"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "string",
+                "const": "ActionCardOutlineLargeImage"
+              },
+              "classes": {
+                "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
+              },
+              "styles": {
+                "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
+              },
+              "imageUrl": {
+                "type": "string"
+              },
+              "tagline": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "actionName": {
+                "type": "string"
+              },
+              "actionUrl": {
+                "type": "string"
+              }
+            },
+            "required": ["component", "imageUrl", "actionName", "actionUrl"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "cards"],
+      "additionalProperties": false
+    },
     "AnyContentTemplate": {
       "anyOf": [
+        {
+          "$ref": "#/definitions/ActionCardOutlineDefaultList"
+        },
+        {
+          "$ref": "#/definitions/ActionCardOutlineLargeImageList"
+        },
         {
           "$ref": "#/definitions/ApiCommand"
         },
@@ -52,10 +176,10 @@
           "const": "ApiCommand"
         },
         "classes": {
-          "$ref": "#/definitions/Classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/Styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "request": {
           "type": "string"
@@ -93,10 +217,10 @@
           "const": "Button"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "label": {
           "type": "string"
@@ -196,10 +320,10 @@
           "const": "DataViewer"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "variant": {
           "type": "string"
@@ -315,10 +439,10 @@
           "const": "FlexContainer"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "rowGap": {
           "type": "string"
@@ -344,10 +468,10 @@
           "const": "Image"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "src": {
           "type": "string"
@@ -367,10 +491,10 @@
           "const": "Markdown"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "data": {
           "type": "string"
@@ -390,10 +514,10 @@
           "const": "PageSection"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "tagline": {
           "type": "string"
@@ -421,10 +545,10 @@
           "const": "PageTable"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "csvUrl": {
           "type": "string"
@@ -536,10 +660,10 @@
           "const": "ProfileCard"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "name": {
           "type": "string"
@@ -596,10 +720,10 @@
           "const": "TextHyperlink"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "text": {
           "type": "string"
@@ -622,10 +746,10 @@
           "const": "VersionedDataTable"
         },
         "classes": {
-          "$ref": "#/definitions/ApiCommand/properties/classes"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/classes"
         },
         "styles": {
-          "$ref": "#/definitions/ApiCommand/properties/styles"
+          "$ref": "#/definitions/ActionCardOutlineDefaultList/properties/styles"
         },
         "columns": {
           "$ref": "#/definitions/PageTable/properties/columns"

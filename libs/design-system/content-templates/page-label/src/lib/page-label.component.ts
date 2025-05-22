@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, numberAttribute } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CategoryLogoComponent, toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
-import { OrganLogoComponent, toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+import { CategoryLogoComponent } from '@hra-ui/design-system/brand/category-logo';
+import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
+import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
+import { BRAND } from 'zod';
 
 /** Label for a page section. Can also be used standalone */
 @Component({
@@ -28,19 +29,18 @@ export class PageLabelComponent {
   /** Which level of <hx> to use */
   readonly level = input(1, { transform: numberAttribute });
 
-  // TODO needs icon update
-  /** App icon */
-  readonly app = input(undefined, { transform: toProductLogoId });
+  /** Product icon */
+  readonly product = input<string & BRAND<'ProductLogoId'>>();
 
   /** Organ icon */
-  readonly organ = input(undefined, { transform: toOrganLogoId });
+  readonly organ = input<string & BRAND<'OrganLogoId'>>();
 
   /** Website category icon */
-  readonly category = input(undefined, { transform: toCategoryLogoId });
+  readonly category = input<string & BRAND<'CategoryLogoId'>>();
 
   /** Anchor id of this label */
   readonly anchor = input<string>();
 
   /** Whether any of the icon inputs are set */
-  protected readonly hasIcons = computed(() => this.app() || this.organ() || this.category());
+  protected readonly hasIcons = computed(() => this.product() || this.organ() || this.category());
 }

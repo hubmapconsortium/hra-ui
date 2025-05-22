@@ -1,13 +1,13 @@
-import { WebComponentCardComponent } from './web-component-card.component';
+import { ActionCardElevatedComponent } from './action-card-elevated.component';
 import { render, screen } from '@testing-library/angular';
 
-describe('WebComponentCardComponent', () => {
+describe('ActionCardElevatedComponent', () => {
   beforeEach(async () => {
-    await render(WebComponentCardComponent, {
+    await render(ActionCardElevatedComponent, {
       componentInputs: {
         imageUrl: 'assets/ui-images/placeholder.png',
         productTitle: 'Product Title',
-        webComponentName: 'Web Component Name',
+        componentName: 'Web Component Name',
         description: 'This is a placeholder description (>125 characters.)',
       },
     });
