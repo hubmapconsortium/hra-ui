@@ -782,7 +782,7 @@ html {
   --mat-filled-button-horizontal-padding: 1rem;
 }
 html {
-  --mat-filled-button-hover-state-layer-opacity: 0;
+  --mat-filled-button-hover-state-layer-opacity: 8%;
 }
 html {
   --mat-filled-button-icon-offset: 0;
@@ -837,18 +837,13 @@ html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) .mat-ripple 
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):disabled {
   background-color: rgb(from var(--mat-sys-outline-variant) r g b/38%);
 }
-html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active) {
-  background-color: transparent;
-  clip-path: unset;
-  box-shadow: unset;
-  filter: drop-shadow(0.0625rem 0.125rem 1rem rgb(from var(--mat-sys-tertiary) r g b/56%));
-}
-html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active):before {
+html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active):not(:disabled):before {
   content: "";
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: var(--mat-sys-tertiary);
+  background-color: var(--mat-sys-on-primary);
+  opacity: 8%;
   clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):focus-visible {
@@ -879,9 +874,6 @@ html [mat-button] mat-icon {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
-}
-html [mat-flat-button]:hover:not(:active) {
-  box-shadow: 0.0625rem 0.125rem 1rem 0rem rgb(from var(--mat-sys-tertiary) r g b/56%);
 }
 html [mat-flat-button]:focus-visible {
   outline: 2px solid var(--mat-sys-tertiary);
