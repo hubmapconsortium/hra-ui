@@ -1,5 +1,5 @@
 <div class="picture">
-  <img [src]="pictureUrl()" alt="Profile Picture" />
+  <img [attr.src]="pictureUrl() | assetUrl" [attr.alt]="`Profile picture of ${name()}`" />
 </div>
 <div class="content">
   <div class="name">{{ name() }}</div>
