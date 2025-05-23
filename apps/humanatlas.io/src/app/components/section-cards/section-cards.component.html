@@ -2,12 +2,22 @@
 
 <div class="cards">
   @for (card of cardInfo(); track card) {
-    <a class="section-card" [routerLink]="card.route">
-      <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="" />
-      <div class="card-content">
-        <span class="tagline">{{ card.tagline }}</span>
-        <span class="description">{{ card.description }}</span>
-      </div>
-    </a>
+    @if (card.url; as url) {
+      <a class="section-card" [attr.href]="url" target="_blank" rel="noopener noreferrer">
+        <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="" />
+        <div class="card-content">
+          <span class="tagline">{{ card.tagline }}</span>
+          <span class="description">{{ card.description }}</span>
+        </div>
+      </a>
+    } @else {
+      <a class="section-card" [routerLink]="card.route">
+        <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="" />
+        <div class="card-content">
+          <span class="tagline">{{ card.tagline }}</span>
+          <span class="description">{{ card.description }}</span>
+        </div>
+      </a>
+    }
   }
 </div>

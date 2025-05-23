@@ -143,51 +143,6 @@
         }
       ]
     },
-    "ContentPageData": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "action": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "required": ["label", "url"],
-          "additionalProperties": false
-        },
-        "headerContent": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/AnyContentTemplate"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AnyContentTemplate"
-              }
-            }
-          ]
-        },
-        "content": {
-          "$ref": "#/definitions/ContentPageData/properties/headerContent"
-        }
-      },
-      "required": ["$schema", "title", "subtitle", "content"],
-      "additionalProperties": false
-    },
     "DataViewer": {
       "type": "object",
       "properties": {
@@ -407,7 +362,17 @@
           "type": "string"
         },
         "content": {
-          "$ref": "#/definitions/ContentPageData/properties/headerContent"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AnyContentTemplate"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnyContentTemplate"
+              }
+            }
+          ]
         }
       },
       "required": ["component", "tagline", "content"],
@@ -554,7 +519,7 @@
           "type": "boolean"
         },
         "actions": {
-          "$ref": "#/definitions/ContentPageData/properties/headerContent"
+          "$ref": "#/definitions/PageSection/properties/content"
         }
       },
       "required": ["component", "name", "description", "pictureUrl"],
@@ -701,7 +666,39 @@
       "additionalProperties": false
     },
     "ContentPage": {
-      "$ref": "#/definitions/ContentPageData"
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
+        "headerContent": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        },
+        "content": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["$schema", "title", "subtitle", "content"],
+      "additionalProperties": false
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
