@@ -6,6 +6,13 @@
   display: block;
   overflow: hidden;
   height: 100%;
+  border: 0.0625rem solid vars.$outline;
+  border-radius: 0.5rem;
+
+  .vertical-divider th:not(:first-child),
+  .vertical-divider td:not(:first-child) {
+    border-left: 1px solid vars.$outline-variant;
+  }
 
   @include mat.table-overrides(
     (
@@ -46,6 +53,10 @@
   ng-scrollbar {
     height: 100%;
     overflow: hidden;
+
+    ::ng-deep .ng-scroll-viewport {
+      max-height: var(--hra-table-max-height);
+    }
   }
 
   th[data-column-type='numeric'],
@@ -87,8 +98,6 @@
 
     ng-scrollbar {
       --scrollbar-offset: 4;
-      border: 0.0625rem solid vars.$outline;
-      border-radius: 0.5rem;
     }
 
     ::ng-deep thead {

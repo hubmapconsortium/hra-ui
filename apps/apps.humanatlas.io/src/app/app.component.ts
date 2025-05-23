@@ -71,6 +71,11 @@ export class AppComponent {
               label: 'EUI',
               url: 'https://cdn.humanatlas.io/ui--staging/ccf-eui/',
             },
+            {
+              type: 'item',
+              label: 'humanatlas.io',
+              url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
+            },
           ],
         },
       ],
