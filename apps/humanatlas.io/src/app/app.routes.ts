@@ -103,6 +103,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'omap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/omap-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'release-notes',
     // Preferably this would redirect to the latest version based on the versions data
     // But it is not available at this point. Async redirectTo may become available in angular 20
@@ -138,13 +145,6 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'omap',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/omap-page/data.yaml', ContentPageDataSchema),
     },
   },
 
