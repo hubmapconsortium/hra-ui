@@ -15,6 +15,7 @@
         [dataSource]="dataSource"
         matSort
         [matSortDisabled]="!enableSort()"
+        [class.vertical-divider]="verticalDividers()"
         aria-label="Table with sort function"
       >
         @let templates = { text, numeric, markdown, link };
