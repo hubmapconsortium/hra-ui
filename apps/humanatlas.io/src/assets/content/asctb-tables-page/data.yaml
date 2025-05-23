@@ -29,9 +29,12 @@ content:
       - component: VersionedDataTable
         styles:
           height: 40rem
+        controllers:
+          - id: VersionedTableParamSync
         label: Release Version
         items:
           - label: 8th Release (v2.2)
+            version: v2.2
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release8.csv
             columns: &table_columns
               - column: Organ
@@ -95,20 +98,26 @@ content:
                 label: '#CT-BM'
                 type: numeric
           - label: 7th Release (v2.1)
+            version: v2.1
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release7.csv
             columns: *table_columns
           - label: 6th Release (v2.0)
+            version: v2.0
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release6.csv
             columns: *table_columns
           - label: 5th Release (v1.4)
+            version: v1.4
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release5.csv
             columns: *table_columns
           - label: 4th Release (v1.3)
+            version: v1.3
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release4.csv
           - label: 3rd Release (v1.2)
+            version: v1.2
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release3.csv
             columns: *table_columns
           - label: 2nd Release (v1.1)
+            version: v1.1
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release2.csv
             columns:
               - column: Organ
@@ -148,6 +157,7 @@ content:
                 label: '#CT-BM'
                 type: numeric
           - label: 1st Release (v1.0)
+            version: v1.0
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release1.csv
             columns:
               - column: Organ

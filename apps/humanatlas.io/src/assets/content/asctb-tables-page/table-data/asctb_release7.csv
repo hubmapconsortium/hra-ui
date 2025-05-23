@@ -1,5 +1,5 @@
 Organ,csv,table_version,AS,CT,B_Total,BG,BP,BM,BF,BL,ASWithNoLink,CTWithNoLink,BWithNoLink,ASWithNoCT,CTWithNoB,AS_AS,AS_CT,CT_BM,url,csvLabel
-anatomical systems,https://cdn.humanatlas.io/digital-objects/asct-b/anatomical-systems/v1.0/assets/asct-b-vh-anatomical-systems.csv,v1.0,86,2,1,1,0,0,0,0,0,0,0,44,2,89,0,0,https://purl.humanatlas.io/asct-b/anatomical-systems/v1.0,CSV,CSV
+anatomical systems,https://cdn.humanatlas.io/digital-objects/asct-b/anatomical-systems/v1.0/assets/asct-b-vh-anatomical-systems.csv,v1.0,86,2,1,1,0,0,0,0,0,0,0,44,2,89,0,0,https://purl.humanatlas.io/asct-b/anatomical-systems/v1.0,CSV
 blood pelvis,https://cdn.humanatlas.io/digital-objects/asct-b/blood-pelvis/v1.4/assets/asct-b-vh-blood-pelvis.csv,v1.4,6,31,140,106,34,0,0,0,0,0,0,5,8,3,29,304,https://purl.humanatlas.io/asct-b/blood-pelvis/v1.4,CSV
 blood vasculature,https://cdn.humanatlas.io/digital-objects/asct-b/blood-vasculature/v1.6/assets/asct-b-vh-blood-vasculature.csv,v1.6,1059,12,11,11,0,0,0,0,224,0,0,4,8,1082,3673,11,https://purl.humanatlas.io/asct-b/blood-vasculature/v1.6,CSV
 bone marrow,https://cdn.humanatlas.io/digital-objects/asct-b/bone-marrow/v1.5/assets/asct-b-vh-bone-marrow.csv,v1.5,5,49,231,179,52,0,0,0,0,0,0,4,7,1,47,558,https://purl.humanatlas.io/asct-b/bone-marrow/v1.5,CSV

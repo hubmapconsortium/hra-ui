@@ -6,15 +6,28 @@ import {
   effect,
   ErrorHandler,
   inject,
+  Injector,
   input,
   reflectComponentType,
   Renderer2,
   Type,
   ViewContainerRef,
 } from '@angular/core';
+import { findOrThrow } from '@hra-ui/common/array-util';
+import {
+  ContentTemplateController,
+  ContentTemplateControllerConstructor,
+  ContentTemplateControllerRegistryService,
+} from '../services/controller-registry.service';
 import { ContentTemplateDefRegistryService } from '../services/def-registry.service';
 import { AnyContentTemplateDef } from '../types/content-template-def';
-import { AnyContentTemplate, Classes, ProjectedContentTemplate, Styles } from '../types/content-template.schema';
+import {
+  AnyContentTemplate,
+  Classes,
+  Controller,
+  ProjectedContentTemplate,
+  Styles,
+} from '../types/content-template.schema';
 import { classIter, styleIter } from '../utils/iters';
 
 /**
@@ -52,7 +65,9 @@ export class ContentTemplateOutletDirective {
   /** Error handler */
   private readonly errorHandler = inject(ErrorHandler);
   /** Content template definitions registry */
-  private readonly registry = inject(ContentTemplateDefRegistryService);
+  private readonly defRegistry = inject(ContentTemplateDefRegistryService);
+  /** Content template controller registry */
+  private readonly controllerRegistry = inject(ContentTemplateControllerRegistryService);
 
   /** Initializes the outlet */
   constructor() {
@@ -80,13 +95,16 @@ export class ContentTemplateOutletDirective {
       const mirror = this.reflectComponent(data.component, component);
       const inputs = mirror.inputs.map((o) => o.propName);
       const selectors = [...mirror.ngContentSelectors];
+      const controllers = this.getControllers(parsedData.controllers);
+      const injector = Injector.create({ providers: controllers, parent: this.viewContainerRef.injector });
       const projectableNodes = this.renderProjectedContent(selectors, projectedProperties, parsedData);
-      const ref = this.viewContainerRef.createComponent(component, { projectableNodes });
+      const ref = this.viewContainerRef.createComponent(component, { injector, projectableNodes });
       const el = coerceElement(ref.location);
 
       this.bindClasses(el, parsedData.classes);
       this.bindStyles(el, parsedData.styles);
       this.bindInputs(ref, inputs, parsedData);
+      this.attachControllers(ref, controllers, parsedData);
 
       return ref;
     } catch (error: unknown) {
@@ -107,7 +125,7 @@ export class ContentTemplateOutletDirective {
    * @throws If there is no definition for the tag
    */
   private getDefinition(tag: string): AnyContentTemplateDef {
-    const def = this.registry.getDef(tag);
+    const def = this.defRegistry.getDef(tag);
     if (def) {
       return def;
     }
@@ -130,6 +148,17 @@ export class ContentTemplateOutletDirective {
     }
 
     throw getComponentReflectionError(tag);
+  }
+
+  private getControllers(controllers: Controller[] | undefined): ContentTemplateControllerConstructor[] {
+    if (controllers === undefined) {
+      return [];
+    }
+
+    const { controllerRegistry } = this;
+    return controllers
+      .map(({ id }) => controllerRegistry.getController(id))
+      .filter((controller) => controller !== undefined);
   }
 
   /**
@@ -210,6 +239,23 @@ export class ContentTemplateOutletDirective {
       if (key in data) {
         ref.setInput(key, data[key]);
       }
+    }
+  }
+
+  private attachControllers(
+    ref: ComponentRef<unknown>,
+    controllers: ContentTemplateControllerConstructor[],
+    data: AnyContentTemplate,
+  ): void {
+    if (data.controllers === undefined) {
+      return;
+    }
+
+    for (const controller of controllers) {
+      const options = findOrThrow(data.controllers, (o) => o.id === controller.id);
+      const instance = ref.injector.get<ContentTemplateController>(controller);
+      instance.attach(ref, options);
+      ref.onDestroy(() => instance.detach());
     }
   }
 

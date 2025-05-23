@@ -30,6 +30,13 @@ export const appRoutes: Route[] = [
   // Content pages
   // Please try to keep sorted in alphabetical order
   {
+    path: '2d-ftu-illustrations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/2d-ftu-illustrations/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: '3d-reference-library',
     component: ContentPageComponent,
     resolve: {

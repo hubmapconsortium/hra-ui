@@ -40,6 +40,9 @@ export class VersionedDataTableComponent {
   /** The dividers of the table */
   readonly verticalDividers = input(false);
 
+  /** Whether to hide the version dropdown selector */
+  readonly hideVersionSelector = input(false);
+
   /** Item with the selected key */
   protected readonly item = computed(() => {
     const selection = this.selection();

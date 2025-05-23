@@ -19,6 +19,7 @@ export const VersionedDataSchema = PageTableSchema.pick({
   verticalDividers: true,
 }).extend({
   label: z.string(),
+  version: z.string(),
 });
 
 /**
