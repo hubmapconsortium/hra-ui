@@ -67,16 +67,16 @@ sectionCardInfo:
   - tagline: Join
     description: Register for the monthly Human Reference Atlas Working Group
     imageSrc: assets/content/landing-page/images/join.svg
-    route: overview-data
+    route: /overview-data
   - tagline: Data
     description: Research the data constructing Human Reference Atlas
     imageSrc: assets/content/landing-page/images/data.svg
-    route: ccf-ontology
+    route: /ccf-ontology
   - tagline: Apps
     description: Construct, visualize, and use Human Reference Atlas applications
     imageSrc: assets/content/landing-page/images/apps.svg
-    route: overview-tools
+    route: /overview-tools
   - tagline: Training
     description: Check out HuBMAP’s education and engagement efforts
     imageSrc: assets/content/landing-page/images/training.svg
-    route: overview-training-outreach
+    route: /training
