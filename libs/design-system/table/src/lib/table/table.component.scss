@@ -8,7 +8,7 @@
   height: 100%;
 
   .vertical-divider th:not(:first-child),
-  td:not(:first-child) {
+  .vertical-divider td:not(:first-child) {
     border-left: 1px solid vars.$outline-variant;
   }
 
