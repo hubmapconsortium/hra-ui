@@ -10,8 +10,10 @@ export type Styles = z.infer<typeof StylesSchema>;
 /** Extra css styles for a content template component */
 export const StylesSchema = z.union([z.string(), z.record(z.any())]);
 
+/** Controller declaration */
 export type Controller = z.infer<typeof ControllerSchema>;
 
+/** Schema for a content template controller */
 export const ControllerSchema = z.object({ id: z.string() }).passthrough();
 
 /** Base schema for content template components */
