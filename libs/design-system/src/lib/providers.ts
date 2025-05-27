@@ -5,6 +5,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideChips } from '@hra-ui/design-system/buttons/chips';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideTrees } from '@hra-ui/design-system/tree';
 import { provideIcons, provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
@@ -27,7 +28,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideButtons(),
     provideChips(),
     provideCodeBlock(),
-    provideDesignSystemIcons(),
     provideIcons(),
     provideScrolling(options?.scrolling),
     provideTrees(),

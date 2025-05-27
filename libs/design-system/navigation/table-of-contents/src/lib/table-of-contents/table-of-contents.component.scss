@@ -27,7 +27,7 @@
       min-height: 2rem;
       border-radius: 0.5rem;
       padding: 0.3438rem 1rem;
-      margin-left: calc((var(--indentation-level, 1) - 1) * 0.25rem);
+      margin-left: calc((var(--indentation-level, 1) - 1) * 0.75rem);
       color: vars.$primary;
 
       &:hover {

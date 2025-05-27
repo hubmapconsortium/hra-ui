@@ -31,10 +31,16 @@
           "$ref": "#/definitions/ProfileCard"
         },
         {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
           "$ref": "#/definitions/TextHyperlink"
         },
         {
           "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/YouTubePlayer"
         }
       ]
     },
@@ -136,41 +142,6 @@
           "additionalProperties": {}
         }
       ]
-    },
-    "ContentPageData": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "action": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "required": ["label", "url"],
-          "additionalProperties": false
-        },
-        "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
-          }
-        }
-      },
-      "required": ["$schema", "title", "subtitle", "content"],
-      "additionalProperties": false
     },
     "DataViewer": {
       "type": "object",
@@ -554,6 +525,23 @@
       "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
     "Styles": {
       "anyOf": [
         {
@@ -657,8 +645,60 @@
       "required": ["component", "label", "items"],
       "additionalProperties": false
     },
+    "YouTubePlayer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "YouTubePlayer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "videoId"],
+      "additionalProperties": false
+    },
     "ContentPage": {
-      "$ref": "#/definitions/ContentPageData"
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
+        "headerContent": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        },
+        "content": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["$schema", "title", "subtitle", "content"],
+      "additionalProperties": false
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
