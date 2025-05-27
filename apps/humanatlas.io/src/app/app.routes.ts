@@ -89,7 +89,7 @@ export const appRoutes: Route[] = [
     path: 'data',
     component: ContentPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/data-overview-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
