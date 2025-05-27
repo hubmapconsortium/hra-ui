@@ -110,9 +110,12 @@
               },
               "route": {
                 "type": "string"
+              },
+              "url": {
+                "type": "string"
               }
             },
-            "required": ["tagline", "description", "imageSrc", "route"],
+            "required": ["tagline", "description", "imageSrc"],
             "additionalProperties": false
           }
         }
