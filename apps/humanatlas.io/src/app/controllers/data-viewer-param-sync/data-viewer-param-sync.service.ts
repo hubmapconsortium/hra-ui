@@ -3,47 +3,75 @@ import { ContentTemplateController, Controller } from '@hra-ui/cdk/content-templ
 import { DataViewerComponent } from '@hra-ui/design-system/data-viewer';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 
-// @Injectable()
-// export class DataViewerParamSyncControllerService implements ContentTemplateController {
-//   /** The controller ID */
-//   static readonly id = 'DataViewerParamSync';
+@Injectable()
+export class DataViewerParamSyncControllerService implements ContentTemplateController {
+  /** The controller ID */
+  static readonly id = 'DataViewerParamSync';
 
-//   /** The version from URL params */
-//   private readonly version = linkedQueryParam('version');
+  /** The version from URL params */
+  private readonly version = linkedQueryParam('version');
 
-//   private readonly organ = linkedQueryParam('organ');
+  /** The organ from URL params */
+  private readonly organ = linkedQueryParam('organ');
 
-//   /** The component reference for the versioned data table */
-//   private readonly componentRef = signal<ComponentRef<DataViewerComponent> | undefined>(undefined);
+  /** The component reference for the versioned data viewer */
+  private readonly componentRef = signal<ComponentRef<DataViewerComponent> | undefined>(undefined);
 
-//   /** constructor */
-//   constructor() {
-//     effect(() => {
-//       const version = this.version();
-//       const organ = this.organ();
-//       const componentRef = this.componentRef();
-//       if (version && organ && componentRef) {
-//         const versionItems = componentRef.instance.releaseVersionData();
-//         const versionIndex = versionItems.findIndex((item) => item.version === version);
-//         const organItems = versionItems[versionIndex]?.organData;
-//         const organIndex = organItems?.findIndex((item) => item.label === organ);
-//         if (versionIndex !== -1 && organIndex !== -1) {
-//           componentRef.setInput('currentVersion', versionItems[versionIndex]);
-//           componentRef.setInput('organ', organItems[organIndex]);
-//         }
-//       }
-//     });
-//   }
+  /** constructor */
+  constructor() {
+    effect(() => {
+      const version = this.version();
+      const organ = this.organ();
+      const componentRef = this.componentRef();
 
-//   // TODO
-// //   /** attach function that sets the correct version and organ in the URL*/
-// //   attach(componentRef: ComponentRef<unknown>, options: Controller): void {
-// //     const { instance } = componentRef;
-// //     if (instance instanceof DataViewerComponent) {
-// //       this.componentRef.set(componentRef as ComponentRef<DataViewerComponent>);
-// //       instance.releaseVersion_.subscribe((index) => {
-// //         const versionItems = instance.releaseVersionData();
-// //         if()
-// // }
+      if (componentRef) {
+        const instance = componentRef.instance;
 
-// }
+        if (version) {
+          const releaseVersionData = instance.releaseVersionData();
+          const validVersion = releaseVersionData.find((item) => item.version === version);
+          if (validVersion) {
+            instance.releaseVersion.set(version);
+          }
+        }
+
+        if (organ && instance.releaseVersion()) {
+          const releaseVersionData = instance.releaseVersionData();
+          const currentReleaseVersion =
+            releaseVersionData.find((item) => item.version === instance.releaseVersion()) ?? releaseVersionData[0];
+          const validOrgan = currentReleaseVersion.organData.find((item) => item.label === organ);
+          if (validOrgan) {
+            instance.organ.set(organ);
+          }
+        }
+      }
+    });
+  }
+
+  /** attach function that sets the correct version and organ in the URL*/
+  attach(componentRef: ComponentRef<unknown>, options: Controller): void {
+    const { instance } = componentRef;
+    if (instance instanceof DataViewerComponent) {
+      this.componentRef.set(componentRef as ComponentRef<DataViewerComponent>);
+
+      // Subscribe to release version changes to update URL
+      instance.releaseVersion.subscribe((version) => {
+        if (version) {
+          this.version.set(version);
+        }
+      });
+
+      // Subscribe to organ changes to update URL
+      instance.organ.subscribe((organLabel) => {
+        if (organLabel) {
+          this.organ.set(organLabel);
+        }
+      });
+    }
+  }
+
+  /** detach function that cleans up the component reference */
+  detach(): void {
+    this.componentRef.set(undefined);
+  }
+}

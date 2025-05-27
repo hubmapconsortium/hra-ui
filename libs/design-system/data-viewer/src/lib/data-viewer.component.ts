@@ -13,7 +13,6 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 import { ReleaseVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
-import { explicitEffect } from 'ngxtension/explicit-effect';
 
 /**
  * Data viewer component
@@ -50,8 +49,10 @@ export class DataViewerComponent {
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
 
+  /** model signal for the release version */
   readonly releaseVersion = model<string>();
 
+  /** model signal for the organ */
   readonly organ = model<string>();
 
   /** Current selected release version */
