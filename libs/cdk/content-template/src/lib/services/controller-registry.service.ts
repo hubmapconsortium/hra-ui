@@ -13,7 +13,11 @@ import { Controller } from '../types/content-template.schema';
  * and their interaction with the content template system.
  */
 export interface ContentTemplateController {
+  /** attaches the controller  */
   attach(componentRef: ComponentRef<unknown>, options: Controller): void;
+  /**
+   * Detaches the controller from the component instance.
+   */
   detach(): void;
 }
 
