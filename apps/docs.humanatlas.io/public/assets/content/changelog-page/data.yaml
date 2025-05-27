@@ -1,0 +1,13 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Changelog
+subtitle: |
+  Changelog for the Human Reference Atlas (HRA) User Interfaces.
+
+content:
+  - component: PageSection
+    tagline: Apps
+    anchor: apps
+    level: 2
+    content:
+      - component: HraMarkdown
+        src: 'assets/content/changelog-page/CHANGELOG.md'
