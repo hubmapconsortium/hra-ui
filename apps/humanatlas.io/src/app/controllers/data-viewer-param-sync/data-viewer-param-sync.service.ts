@@ -3,6 +3,9 @@ import { ContentTemplateController, Controller } from '@hra-ui/cdk/content-templ
 import { DataViewerComponent } from '@hra-ui/design-system/data-viewer';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 
+/**
+ * Service to synchronize the DataViewerComponent's version and organ with URL parameters.
+ */
 @Injectable()
 export class DataViewerParamSyncControllerService implements ContentTemplateController {
   /** The controller ID */
