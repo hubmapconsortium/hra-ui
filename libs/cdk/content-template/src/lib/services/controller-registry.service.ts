@@ -22,7 +22,14 @@ export interface ContentTemplateController {
  * Used to register controllers with the ContentTemplateControllerRegistryService.
  */
 export interface ContentTemplateControllerConstructor {
+  /**
+   * Unique identifier for the controller.
+   * This ID is used to register and retrieve the controller from the registry.
+   */
   readonly id: string;
+  /**
+   * Creates a new instance of the content template controller.
+   */
   new (...args: unknown[]): ContentTemplateController;
 }
 
