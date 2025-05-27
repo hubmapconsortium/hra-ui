@@ -276,12 +276,6 @@
             "required": ["version", "label", "date", "organData"],
             "additionalProperties": false
           }
-        },
-        "releaseVersion": {
-          "type": "string"
-        },
-        "organ": {
-          "type": "string"
         }
       },
       "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
