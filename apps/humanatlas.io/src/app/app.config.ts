@@ -19,11 +19,12 @@ import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { ReleaseNotesVersionSelectorDef } from './components/release-notes-version-selector/release-notes-version-selector.definition';
 import { VersionedTableParamSyncControllerService } from './controllers/versioned-table-param-sync/versioned-table-param-sync.service';
+import { DataViewerParamSyncControllerService } from './controllers/data-viewer-param-sync/data-viewer-param-sync.service';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideContentTemplateControllers([VersionedTableParamSyncControllerService]),
+    provideContentTemplateControllers([VersionedTableParamSyncControllerService, DataViewerParamSyncControllerService]),
     provideContentTemplateDefs([
       ApiCommandDef,
       ButtonDef,

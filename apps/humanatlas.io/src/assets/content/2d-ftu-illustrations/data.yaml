@@ -35,8 +35,12 @@ content:
     level: 3
     content:
       component: DataViewer
+      controllers:
+        - id: DataViewerParamSync
       variant: ftu
       githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
+      releaseVersion: '8'
+      organ: Kidney
       releaseVersionData:
         - version: '8'
           label: 8th Release (v2.2)
