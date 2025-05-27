@@ -1,6 +1,6 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { HraCommonModule } from '@hra-ui/common';
+import { AssetUrlPipe, HraCommonModule } from '@hra-ui/common';
 import { MarkdownModule } from 'ngx-markdown';
 
 /**
@@ -8,7 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
  */
 @Component({
   selector: 'hra-profile-card',
-  imports: [HraCommonModule, MatIconModule, MarkdownModule],
+  imports: [HraCommonModule, MatIconModule, MarkdownModule, AssetUrlPipe],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

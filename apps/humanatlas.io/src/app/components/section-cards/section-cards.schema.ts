@@ -8,5 +8,6 @@ export const SectionCardItemSchema = z.object({
   tagline: z.string(),
   description: z.string(),
   imageSrc: z.string(),
-  route: z.string(),
+  route: z.string().optional(),
+  url: z.string().optional(),
 });

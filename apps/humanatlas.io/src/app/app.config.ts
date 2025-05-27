@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateControllers, provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
@@ -41,6 +41,7 @@ export const appConfig: ApplicationConfig = {
       YouTubePlayerDef,
     ]),
     provideDesignSystem(),
+    provideExperimentalZonelessChangeDetection(),
     provideMarkdown({ loader: HttpClient }),
     provideRouter(
       appRoutes,

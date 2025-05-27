@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { HraCommonModule } from '@hra-ui/common';
+import { AssetUrlPipe, HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
@@ -22,7 +22,7 @@ interface PublicationItem {
  */
 @Component({
   selector: 'hra-publications-page',
-  imports: [HraCommonModule, ContentTemplatesModule, MarkdownModule, TableOfContentsLayoutModule],
+  imports: [HraCommonModule, ContentTemplatesModule, MarkdownModule, TableOfContentsLayoutModule, AssetUrlPipe],
   templateUrl: './publications-page.component.html',
   styleUrl: './publications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,7 +48,7 @@ export class PublicationsPageComponent {
           year: +year,
           tagline: year,
           anchor: `year-${year}`,
-          contents: contents.map((value) => this.removeAuthorLinks(value)),
+          contents: contents.map((value) => this.fixupContent(value)),
         }) satisfies PublicationItem,
     );
     const filteredItems = items.filter(({ year, contents }) => Number.isInteger(year) && contents.length > 0);
@@ -56,15 +56,18 @@ export class PublicationsPageComponent {
   }
 
   /**
-   * Removes author links
+   * Fixes problems with publication content html
+   *
    * @param value HTML string
    * @returns HTML string without author links
    */
-  private removeAuthorLinks(value: string): string {
+  private fixupContent(value: string): string {
     const parser = new DOMParser();
     const doc = parser.parseFromString(value, 'text/html');
     const authorLinks = doc.body.querySelectorAll('a[href]:not([itemprop="url"])');
     authorLinks.forEach((link) => link.replaceWith(link.textContent as string));
+    const publicationLinks = doc.body.querySelectorAll('a[href^="/docs/publications/"]');
+    publicationLinks.forEach((el) => el.setAttribute('href', `https://cns.iu.edu${el.getAttribute('href')}`));
     return doc.body.innerHTML;
   }
 }
