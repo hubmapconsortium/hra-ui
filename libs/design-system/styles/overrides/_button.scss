@@ -25,7 +25,7 @@
       filled-container-height: 2.5rem,
       filled-container-shape: vars.$corner-extra-small,
       filled-horizontal-padding: 1rem,
-      filled-hover-state-layer-opacity: 0,
+      filled-hover-state-layer-opacity: 8%,
       filled-icon-offset: 0
     )
   );
@@ -105,18 +105,14 @@
         background-color: utils.with-alpha(vars.$outline-variant, 38%);
       }
 
-      &:hover:not(:active) {
-        background-color: transparent;
-        clip-path: unset;
-        box-shadow: unset;
-        filter: drop-shadow(0.0625rem 0.125rem 1rem utils.with-alpha(vars.$tertiary, 56%));
-
+      &:hover:not(:active):not(:disabled) {
         &:before {
           content: '';
           position: absolute;
           z-index: -1;
           inset: 0;
-          background: vars.$tertiary;
+          background-color: vars.$on-primary;
+          opacity: 8%;
           clip-path: $background-clip-path;
         }
       }
@@ -159,10 +155,6 @@
   }
 
   [mat-flat-button] {
-    &:hover:not(:active) {
-      box-shadow: 0.0625rem 0.125rem 1rem 0rem utils.with-alpha(vars.$tertiary, 56%);
-    }
-
     &:focus-visible {
       @include mat.button-overrides(
         (

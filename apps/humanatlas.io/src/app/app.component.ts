@@ -12,7 +12,7 @@ const ANCHOR_SCROLL_PADDING = 24;
  * Root component
  */
 @Component({
-  selector: 'ccf-root',
+  selector: 'hra-root',
   imports: [RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
