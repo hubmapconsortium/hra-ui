@@ -40,12 +40,49 @@ content:
           A standards-compliant SPARQL 1.1 endpoint is available for executing custom semantic queries over RDF data.
           This interface provides full graph access, including support for content negotiation to retrieve data in various RDF serialization formats.
 
+  - component: PageSection
+    tagline: cURL Example
+    anchor: curl-example
+    level: 4
+    content:
       - component: Markdown
         data: |
-          - Endpoint: https://lod.humanatlas.io/sparql
-          -	Method: POST
-          -	Content-Type: application/sparql-query
-          -	Supports: RDF/XML, Turtle, JSON, CSV (via Accept headers)
+          Here's a sample query that retrieves the **count of 3D anatomical structures** from the HRA Knowledge Graph.
+
+          ```
+          #+ summary: Count of 3D Anatomical Structures
+          #+ description: Count of 3D Anatomical Structures
+
+          PREFIX ccf: <http://purl.org/ccf/>
+          PREFIX HRA: <https://purl.humanatlas.io/collection/hra>
+
+          SELECT (COUNT(?as3d) as ?as_count)
+          FROM HRA:
+          WHERE {
+            SELECT DISTINCT ?as3d WHERE {
+              ?as3d ccf:has_reference_organ ?y .
+              FILTER(!CONTAINS(STR(?y), '/united-'))
+            }
+          }
+          ```
+
+          To execute this query, use the following cURL command:
+
+          ```bash
+          curl -L -g "https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/as-3d-cnt"
+          ```
+
+          The response will return the count of 3D anatomical structures in the graph, like this:
+
+          ```
+          as_count
+          1295
+          ```
+
+      - component: Button
+        label: Explore More Queries
+        href: https://apps.humanatlas.io/api/grlc/
+        type: cta
 
   - component: PageSection
     tagline: REST API
@@ -80,7 +117,7 @@ content:
           -	Python 3.6+
 
       - component: Button
-        label: Know More
+        label: Learn More
         href: https://humanatlas.io/api
         type: cta
 
