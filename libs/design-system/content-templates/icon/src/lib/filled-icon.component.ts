@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { FilledIconDirective } from '@hra-ui/design-system/icons';
 
 /**
  * Filled Icon Component
@@ -10,16 +11,18 @@ import { MatIconModule } from '@angular/material/icon';
  */
 @Component({
   selector: 'hra-filled-icon',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, FilledIconDirective],
   templateUrl: './filled-icon.component.html',
   styleUrl: './filled-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilledIconComponent {
-  /**This is the font icon */
-  readonly fontIcon = input<string>();
-  /**This is the SVG icon */
-  readonly svgIcon = input<string>();
-  /** This is the HRA filled icon */
-  readonly hraFilledIcon = input<string>();
+  /** Font icon */
+  readonly fontIcon = input<string>('');
+  /** SVG icon */
+  readonly svgIcon = input<string>('');
+  /** Icon color */
+  readonly iconColor = input<string>();
+  /** Fill color */
+  readonly fillColor = input<string>();
 }

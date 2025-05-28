@@ -16,4 +16,6 @@ export const FilledIconSchema = ContentTemplateSchema.extend({
   component: z.literal('FilledIcon'),
   fontIcon: z.string().optional(),
   svgIcon: z.string().optional(),
+  iconColor: z.string().optional(),
+  fillColor: z.string().optional(),
 });
