@@ -1,21 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMarkdown } from 'ngx-markdown';
 import { HraMarkdownComponent } from './markdown.component';
+import { render } from '@testing-library/angular';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('MarkdownComponent', () => {
-  let component: HraMarkdownComponent;
-  let fixture: ComponentFixture<HraMarkdownComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HraMarkdownComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HraMarkdownComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
+  it('should render', async () => {
+    const component = await render(HraMarkdownComponent, {
+      providers: [provideMarkdown(), provideHttpClient()],
+      inputs: {
+        src: 'assets/content/changelog-page/CHANGELOG.md',
+      },
+    });
     expect(component).toBeTruthy();
   });
 });

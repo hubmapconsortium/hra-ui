@@ -11,6 +11,7 @@ export const MarkdownSchema = ContentTemplateSchema.extend({
   src: z.string().optional(),
 });
 
+/** Markdown wrapper component data */
 export type HraMarkdown = z.infer<typeof HraMarkdownSchema>;
 
 /** Schema for markdown wrapper component */

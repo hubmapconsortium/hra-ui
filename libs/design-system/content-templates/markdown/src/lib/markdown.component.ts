@@ -3,10 +3,13 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AssetUrlPipe } from '@hra-ui/common';
 import { MarkdownComponent } from 'ngx-markdown';
 
+/**
+ * Markdown wrapper component to load markdown from a source file.
+ */
 @Component({
   selector: 'hra-markdown',
   imports: [CommonModule, MarkdownComponent, AssetUrlPipe],
-  template: `<markdown [data]="data() ? data() : undefined" [src]="src() ? (src() | assetUrl) : undefined" />`,
+  template: `<markdown [data]="data()" [src]="src() ? (src()! | assetUrl) : undefined" />`,
   styles: `
     :host {
       display: block;
@@ -15,6 +18,9 @@ import { MarkdownComponent } from 'ngx-markdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HraMarkdownComponent {
-  readonly data = input<string>('');
-  readonly src = input<string>('');
+  /** Markdown data input */
+  readonly data = input<string>();
+
+  /** Markdown source file input */
+  readonly src = input<string>();
 }
