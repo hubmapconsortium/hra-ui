@@ -20,4 +20,6 @@ export class FilledIconComponent {
   readonly fontIcon = input<string>();
   /**This is the SVG icon */
   readonly svgIcon = input<string>();
+  /** This is the HRA filled icon */
+  readonly hraFilledIcon = input<string>();
 }
