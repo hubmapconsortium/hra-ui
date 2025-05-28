@@ -13,4 +13,5 @@ function URLParsePonyfill(url: string, base?: string): URL | null {
   }
 }
 
+/** Alias for `URL.parse` if available otherwise a ponyfill */
 export const parseUrl = typeof URL.parse === 'function' ? URL.parse : URLParsePonyfill;
