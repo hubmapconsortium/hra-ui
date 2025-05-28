@@ -203,6 +203,13 @@ export const ALL_POSSIBLE_ORGANS = (
       id: 'http://purl.obolibrary.org/obo/UBERON_2001553',
     },
     {
+      src: 'app:mouth',
+      organ: 'Mouth',
+      name: 'Mouth',
+      hasSex: true,
+      id: 'http://purl.obolibrary.org/obo/UBERON_0000165',
+    },
+    {
       disabled: true,
       src: 'app:ovary-left',
       organ: 'Ovary',
