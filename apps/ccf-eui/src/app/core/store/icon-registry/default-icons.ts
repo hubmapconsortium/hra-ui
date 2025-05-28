@@ -56,6 +56,7 @@ export const DEFAULT_ICONS: DefaultIconDefinition[] = [
   { name: 'lung-right', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-lung-right.svg' },
   { name: 'lung', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-lungs.svg' },
   { name: 'lymph-nodes', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-lymph-nodes.svg' },
+  { name: 'mouth', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-mouth.svg' },
   { name: 'neurons', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-neurons.svg' },
   { name: 'ovaries', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-ovaries.svg' },
   { name: 'ovary-left', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-ovary-left.svg' },
