@@ -1590,7 +1590,7 @@ content:
     content:
       - component: Markdown
         data: |
-          -  Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations
+          -  [Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)
   - component: PageSection
     tagline: License
     anchor: license
@@ -1598,7 +1598,7 @@ content:
     content:
       - component: Markdown
         data: |
-          Attribution 4.0 International (CC BY 4.0)
+          [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
   - component: PageSection
     tagline: Disclaimer
     anchor: disclaimer
@@ -1633,7 +1633,7 @@ content:
         data: |
           If you use the 2D data files in v1.2 release, please cite this effort as follows:<br><br>
           Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
-          HuBMAP CCF 2D Reference Object Library. Accessed on March 6, 2022.<br><br>
+          [*HuBMAP CCF 2D Reference Object Library*](https://humanatlas.io/2d-ftu-illustrations). Accessed on March 6, 2022.<br><br>
           If you use the 2D data files in v1.3 release, please cite this effort as follows:<br><br>
           Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
-          HuBMAP CCF 2D Reference Object Library. Accessed on December 15, 2022.
+          [*HuBMAP CCF 2D Reference Object Library*](https://humanatlas.io/2d-ftu-illustrations). Accessed on December 15, 2022.
