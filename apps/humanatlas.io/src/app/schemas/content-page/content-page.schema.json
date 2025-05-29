@@ -176,7 +176,8 @@
           "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "variant": {
-          "type": "string"
+          "type": "string",
+          "enum": ["ftu", "3d-organ"]
         },
         "githubIconsUrl": {
           "type": "string"
@@ -233,11 +234,11 @@
                             "type": "string",
                             "format": "uri"
                           },
-                          "fullscreenUrl": {
+                          "sourceDataUrl": {
                             "type": "string",
                             "format": "uri"
                           },
-                          "sourceDataUrl": {
+                          "fullscreenUrl": {
                             "type": "string",
                             "format": "uri"
                           },
