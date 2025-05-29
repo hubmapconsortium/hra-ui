@@ -1574,7 +1574,6 @@ content:
                       url: https://hubmapconsortium.github.io/ccf-2d-reference-object-library/v1.0/png/thymus_lobule_thymus.png
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/thymus_lobule_thymus.svg
-
   - component: PageSection
     tagline: Summary statistics
     anchor: summary-statistics
@@ -1583,3 +1582,58 @@ content:
       - component: Markdown
         data: |
           A summarized view of the number of anatomical structures and cell types per functional tissue unit.
+      - component: SummaryStatisticsTable
+  - component: PageSection
+    tagline: Standard operating procedures (SOPs)
+    anchor: standard-operating-procedures
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          -  Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations
+  - component: PageSection
+    tagline: License
+    anchor: license
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Attribution 4.0 International (CC BY 4.0)
+  - component: PageSection
+    tagline: Disclaimer
+    anchor: disclaimer
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          These illustrations are a stylized representation of the average number and distribution of cell-type populations within a functional tissue unit (FTU).
+          Cell types are included based on their linkage to the FTU in each organ's Anatomical Structures, Cell Type, and Biomarkers (ASCT+B) Table. The intention is to
+          illustrate relationships between individual cells and to include visual information on their relative shape, scale, and distribution within the tissue.
+          A relationship to blood supply is indicated.<br><br>
+          We are working towards an understanding of cellular relationships within each FTU, as well as perfusion,
+          innervation, structural and extracellular matrix support. Greater relationships of scale within the body are also considered. Smaller FTUs may be nested within larger FTUs.<br><br>
+          This work is iterative and will be updated in regular publication cycles. In future releases, illustrations will be linked to data sets interactively.<br><br>
+          Machine learning and AI are employed in segmenting these FTUs from data which will be connected to the illustrations in future publication cycles.
+  - component: PageSection
+    tagline: Terms of use
+    anchor: terms-of-use
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          HuBMAP data are supplied with no warranties, expressed or implied, including without limitation, any warranty of merchantability or fitness for a particular purpose or non-infringement.
+          No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty. The Parties make no representations that the use of the data will not
+          infringe any patent or proprietary rights of third parties.
+  - component: PageSection
+    tagline: Citation
+    anchor: citation
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          If you use the 2D data files in v1.2 release, please cite this effort as follows:<br><br>
+          Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
+          HuBMAP CCF 2D Reference Object Library. Accessed on March 6, 2022.<br><br>
+          If you use the 2D data files in v1.3 release, please cite this effort as follows:<br><br>
+          Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. 2022.
+          HuBMAP CCF 2D Reference Object Library. Accessed on December 15, 2022.
