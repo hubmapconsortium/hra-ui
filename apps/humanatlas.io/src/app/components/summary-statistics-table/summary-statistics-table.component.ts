@@ -29,35 +29,35 @@ export class SummaryStatisticsTableComponent {
   /** Columns for the table */
   readonly columns = input<TableColumn[]>([
     {
-      column: 'FTU Label in Uberon',
+      column: 'Ftulabel',
       label: 'FTU Label in Uberon',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'FTU ID in Uberon',
+      column: 'FtuId',
       label: 'FTU ID in Uberon',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CT Label in CL',
+      column: 'CtLabel',
       label: 'CT Label in CL',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CT ID in CL',
+      column: 'CtId',
       label: 'CT ID in CL',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CT Label in 2D Object',
+      column: 'CtLabelIn2D',
       label: 'CT Label in 2D Object',
       type: {
         type: 'text',
