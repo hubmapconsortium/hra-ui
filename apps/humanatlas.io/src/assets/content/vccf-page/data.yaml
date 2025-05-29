@@ -46,20 +46,28 @@ content:
             label: Digital Object Type
         items:
           - label: 8th Release (v2.2)
+            version: v2.2
             csvUrl: assets/content/vccf-page/table-data/version2_2.csv
           - label: 7th Release (v2.1)
+            version: v2.1
             csvUrl: assets/content/vccf-page/table-data/version2_1.csv
           - label: 6th Release (v2.0)
+            version: v2.0
             csvUrl: assets/content/vccf-page/table-data/version2_0.csv
           - label: 5th Release (v1.4)
+            version: v1.4
             csvUrl: assets/content/vccf-page/table-data/version1_4.csv
           - label: 4th Release (v1.3)
+            version: v1.3
             csvUrl: assets/content/vccf-page/table-data/version1_3.csv
           - label: 3rd Release (v1.2)
+            version: v1.2
             csvUrl: assets/content/vccf-page/table-data/version1_2.csv
           - label: 2nd Release (v1.1)
+            version: v1.1
             csvUrl: assets/content/vccf-page/table-data/version1_1.csv
           - label: 1st Release (v1.0)
+            version: v1.0
             csvUrl: assets/content/vccf-page/table-data/version1_0.csv
 
   - component: PageSection
