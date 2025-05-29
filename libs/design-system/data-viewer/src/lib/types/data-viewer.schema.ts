@@ -16,8 +16,8 @@ export const ViewerCardSchema = z.object({
   label: z.string(),
   alt: z.string().optional(),
   fileUrl: z.string().url(),
-  fullscreenUrl: z.string().url().optional(),
   sourceDataUrl: z.string().url(),
+  fullscreenUrl: z.string().url().optional(),
   crosswalkUrl: z.string().url().optional(),
   files: ViewerFileSchema.array(),
 });
@@ -50,7 +50,7 @@ export type DataViewer = z.infer<typeof DataViewerSchema>;
 /** Schema for data viewer component */
 export const DataViewerSchema = ContentTemplateSchema.extend({
   component: z.literal('DataViewer'),
-  variant: z.string(),
+  variant: z.enum(['ftu', '3d-organ']),
   githubIconsUrl: z.string(),
   releaseVersionData: ReleaseVersionDataSchema.array(),
 });
