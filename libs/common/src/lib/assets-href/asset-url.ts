@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Signal, assertInInjectionContext, computed, inject } from '@angular/core';
+import { parseUrl } from '../utils/url';
 import { APP_ASSETS_HREF } from './tokens';
 
 /**
@@ -12,7 +13,7 @@ import { APP_ASSETS_HREF } from './tokens';
  */
 export function buildAssetUrl(base: string, path: string, type?: 'css'): string {
   let url = path;
-  if (URL.parse(url) === null) {
+  if (parseUrl(url) === null) {
     url = Location.joinWithSlash(base, path);
   }
   return type === 'css' ? `url("${url}")` : url;

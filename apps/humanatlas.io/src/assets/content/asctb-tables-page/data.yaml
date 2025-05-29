@@ -105,6 +105,7 @@ content:
             columns: *table_columns
           - label: 4th Release (v1.3)
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release4.csv
+            columns: *table_columns
           - label: 3rd Release (v1.2)
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release3.csv
             columns: *table_columns
