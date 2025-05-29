@@ -1,0 +1,134 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Introduction
+anchor: introduction
+subtitle: |
+  Welcome to the Human Reference Atlas (HRA) Developer Documentation!
+
+  The Human Reference Atlas is a multiscale, three-dimensional, data-rich, open-access atlas of the healthy human body.
+  Designed for researchers, developers, and educators, the HRA brings together anatomical structures, cell types, and biomarkers into
+  a harmonized coordinate system that supports advanced visualization, spatial data integration, and computational analysis.
+
+  Whether you're building web applications using HRA APIs, visualizing organs in 3D, or contributing your own data and tools to the ecosystem,
+  this documentation has everything you need to get started.
+action:
+  label: Explore the HRA
+  url: https://humanatlas.io/
+content:
+  - component: PageSection
+    tagline: Important elements
+    anchor: important-elements
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Quickly navigate to the core sections of the HRA platform. These elements are essential for understanding the HRA's structure and functionality:
+
+          **Changelog**: Track all recent updates to APIs, models, and datasets. Includes detailed patch notes and breaking changes.
+      - component: TextHyperlink
+        text: Learn More
+        url: /changelog
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **API Reference**: Access detailed technical documentation for the HRA's public APIs. Includes endpoints for querying anatomical structures, retrieving reference models, and exploring spatial ontologies.
+      - component: TextHyperlink
+        text: Learn More
+        url: /api-reference
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Frequently Asked Questions (FAQs)**: Find answers to the most commonly asked questions by users, contributors, and developers.
+      - component: TextHyperlink
+        text: Learn More
+        url: /faqs
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Support**: Get help from the development team and community. Submit GitHub issues, ask questions, or reach out directly.
+      - component: TextHyperlink
+        text: Learn More
+        url: /support
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Digital Objects**: Explore downloadable resources like 3D reference organs, ASCT+B tables, and coordinate frameworks in various formats (GLB, JSON, CSV).
+      - component: TextHyperlink
+        text: Learn More
+        url: /digital-objects
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Knowledge Graph**: Dive into the relationships between anatomical structures, biomarkers, and cell types using the HRA's semantically enriched graph representation.
+      - component: TextHyperlink
+        text: Learn More
+        url: /knowledge-graph
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Web Components**: Use plug-and-play UI components designed for rendering organ data, tables, and coordinate mappings directly into your applications.
+      - component: TextHyperlink
+        text: Learn More
+        url: /web-components
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Design System**: Ensure design consistency across HRA apps by leveraging shared UI guidelines, reusable components, and color systems.
+      - component: TextHyperlink
+        text: Learn More
+        url: /design-system
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: What is the Human Reference Atlas?
+    anchor: hra-description
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas is a high-resolution, interoperable framework for mapping the human body. It supports:
+          - **Multiscale modeling** - from organ systems to single cells.
+
+            The HRA aims to construct a comprehensive reference model of the healthy human body across all levels, from organs and tissues down to cells and canonical biomarkers.
+            Cell types are organized in a multi-level typology, and biomarkers (such as genes, proteins, metabolites, proteoforms, and lipids) are also organized in a biomarker typology.
+
+          - **Spatial registration** - using 3D models and coordinate mappings to localize biological data.
+
+            A core component of the HRA is the Common Coordinate Framework (CCF). The CCF helps harmonize multimodal data, including 3D organ models, histology images, and omics data.
+            The CCF consists of ontologies, reference object libraries, software, and training materials that enable experts to semantically annotate tissue samples and precisely describe their locations in
+            the human body ("registration"), and to align multimodal tissue data from different individuals to a 3D reference coordinate system ("mapping").
+
+          - **Semantic labeling** - linking anatomical structures, cell types, and biomarkers (ASCT+B).
+
+            The Human Reference Atlas (HRA) is built on three core components: anatomical structures, cell types, and biomarkers - all documented within the ASCT+B tables.
+            These tables define the hierarchical “part_of” relationships among organs and tissues, identify the cell types “located_in” each structure,
+            and associate biomarkers that characterize those cell types. Each entity is validated against, or contributed to, established biomedical ontologies to ensure semantic consistency.
+            To bridge across systems and modalities, crosswalks link 2D and 3D anatomical structures and cell types with their corresponding ASCT+B terms.
+            Similarly, Azimuth-derived cell types are mapped to ASCT+B terms and ontology identifiers using these crosswalks, enabling integrated spatial and semantic analysis.
+
+          - **Cross-consortium integration** - combining efforts from NIH, HuBMAP, GTEx, KPMP, SPARC, and more.
+
+            The HRA is a collaborative effort involving experts from more than 20 consortia. The HRA Working Group brings together technical leads and experimental teams from HuBMAP,
+            along with experts from GTEx, GUDMAP, KPMP, BRAIN Initiative Cell Census Network Initiative (BICCN), Cellular Senescence Network (SenNet),
+            and other NIH-funded consortia, as well as strong support from the Human Cell Atlas effort (HCA).
+            The HRA data, code, and portal infrastructure are developed jointly by these groups.
+
+  - component: PageSection
+    tagline: Getting Started with the HRA Portal
+    anchor: getting-started
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Ready to dive in? Here's how you can begin using the Human Reference Atlas tools:
+
+          - **[Browse 3D Organs](https://humanatlas.io/3d-reference-library)** in the Reference Library.
+          - **[Query spatial ontologies](https://humanatlas.io/api)** using the API.
+          - **[Visualize tissue registration](https://registration.humanatlas.io/)** with the Registration User Interface.
+          - **[Use web components](https://github.com/hubmapconsortium/ccf-ui)** to embed HRA visuals in your own platform.

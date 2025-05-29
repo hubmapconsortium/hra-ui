@@ -1,10 +1,11 @@
+import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, computed, Directive, effect, ErrorHandler, inject, input, viewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
+import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
-import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
 import {
@@ -18,7 +19,6 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
-import { Location } from '@angular/common';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -108,7 +108,6 @@ export class NumericRowElementDirective {
     MatSortModule,
     MatTableModule,
     ScrollingModule,
-    ScrollOverflowFadeDirective,
     TextHyperlinkDirective,
     LinkRowElementDirective,
     TextRowElementDirective,
@@ -152,7 +151,7 @@ export class TableComponent<T extends TableRow = TableRow> {
       const url = this.csvUrl();
       if (url === undefined) {
         return undefined;
-      } else if (URL.parse(url)) {
+      } else if (parseUrl(url)) {
         return url;
       }
       return Location.joinWithSlash(this.assetsHref(), url);

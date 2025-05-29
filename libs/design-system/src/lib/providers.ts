@@ -2,13 +2,12 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpFeature, HttpFeatureKind, provideHttpClient } from '@angular/common/http';
 import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideIcons } from '@hra-ui/cdk/icons';
 import { provideButtons } from '@hra-ui/design-system/buttons';
 import { provideChips } from '@hra-ui/design-system/buttons/chips';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
 import { provideTrees } from '@hra-ui/design-system/tree';
-import { provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
+import { provideIcons, provideIcons as provideDesignSystemIcons } from '@hra-ui/design-system/icons';
 
 /** Design system provider options */
 export interface DesignSystemOptions {
@@ -28,7 +27,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideButtons(),
     provideChips(),
     provideCodeBlock(),
-    provideDesignSystemIcons(),
     provideIcons(),
     provideScrolling(options?.scrolling),
     provideTrees(),

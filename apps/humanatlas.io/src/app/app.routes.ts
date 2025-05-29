@@ -1,12 +1,13 @@
 import { Route } from '@angular/router';
+import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
+import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
-import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
-import { createJsonSpecResolver, createYamlSpecResolver } from './resolvers/spec.resolver';
-import { ContentPageDataSchema } from './schemas/content-page/content-page.schema';
+import { createReleaseNotesContentResolver } from './resolvers/release-notes-content.resolver';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
 import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
+import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -28,6 +29,13 @@ export const appRoutes: Route[] = [
 
   // Content pages
   // Please try to keep sorted in alphabetical order
+  {
+    path: '2d-ftu-illustrations',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/2d-ftu-illustrations/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: '3d-reference-library',
     component: ContentPageComponent,
@@ -99,6 +107,27 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'omap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/omap-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'release-notes',
+    // Preferably this would redirect to the latest version based on the versions data
+    // But it is not available at this point. Async redirectTo may become available in angular 20
+    redirectTo: 'release-notes/v2.3',
+  },
+  {
+    path: 'release-notes/:version',
+    component: ContentPageComponent,
+    resolve: {
+      versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
+      data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
     },
   },
   {

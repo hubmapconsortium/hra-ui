@@ -31,10 +31,19 @@
           "$ref": "#/definitions/ProfileCard"
         },
         {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
+          "$ref": "#/definitions/SummaryStatisticsTable"
+        },
+        {
           "$ref": "#/definitions/TextHyperlink"
         },
         {
           "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/YouTubePlayer"
         }
       ]
     },
@@ -50,6 +59,19 @@
         },
         "styles": {
           "$ref": "#/definitions/Styles"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"],
+            "additionalProperties": true
+          }
         },
         "request": {
           "type": "string"
@@ -91,6 +113,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "label": {
           "type": "string"
@@ -137,41 +162,6 @@
         }
       ]
     },
-    "ContentPageData": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "action": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "required": ["label", "url"],
-          "additionalProperties": false
-        },
-        "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
-          }
-        }
-      },
-      "required": ["$schema", "title", "subtitle", "content"],
-      "additionalProperties": false
-    },
     "DataViewer": {
       "type": "object",
       "properties": {
@@ -185,8 +175,12 @@
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
         "variant": {
-          "type": "string"
+          "type": "string",
+          "enum": ["ftu", "3d-organ"]
         },
         "githubIconsUrl": {
           "type": "string"
@@ -243,11 +237,11 @@
                             "type": "string",
                             "format": "uri"
                           },
-                          "fullscreenUrl": {
+                          "sourceDataUrl": {
                             "type": "string",
                             "format": "uri"
                           },
-                          "sourceDataUrl": {
+                          "fullscreenUrl": {
                             "type": "string",
                             "format": "uri"
                           },
@@ -304,6 +298,9 @@
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
         "rowGap": {
           "type": "string"
         },
@@ -333,6 +330,9 @@
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
         "src": {
           "type": "string"
         },
@@ -356,6 +356,9 @@
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
         "data": {
           "type": "string"
         },
@@ -378,6 +381,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "tagline": {
           "type": "string"
@@ -419,6 +425,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "csvUrl": {
           "type": "string"
@@ -535,6 +544,9 @@
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
         "name": {
           "type": "string"
         },
@@ -554,6 +566,26 @@
       "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
     "Styles": {
       "anyOf": [
         {
@@ -564,6 +596,35 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "SummaryStatisticsTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "SummaryStatisticsTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "organColumn": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
     },
     "TextHyperlink": {
       "type": "object",
@@ -577,6 +638,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "text": {
           "type": "string"
@@ -603,6 +667,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
         },
         "columns": {
           "$ref": "#/definitions/PageTable/properties/columns"
@@ -647,9 +714,12 @@
               },
               "label": {
                 "type": "string"
+              },
+              "version": {
+                "type": "string"
               }
             },
-            "required": ["label"],
+            "required": ["label", "version"],
             "additionalProperties": false
           }
         }
@@ -657,8 +727,63 @@
       "required": ["component", "label", "items"],
       "additionalProperties": false
     },
+    "YouTubePlayer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "YouTubePlayer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ApiCommand/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ApiCommand/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ApiCommand/properties/controllers"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "videoId"],
+      "additionalProperties": false
+    },
     "ContentPage": {
-      "$ref": "#/definitions/ContentPageData"
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
+        "headerContent": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        },
+        "content": {
+          "$ref": "#/definitions/PageSection/properties/content"
+        }
+      },
+      "required": ["$schema", "title", "subtitle", "content"],
+      "additionalProperties": false
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
