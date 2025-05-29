@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { TextHyperlinkDirective } from './directives/text-hyperlink.directive';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Router, RouterModule } from '@angular/router';
+import { parseUrl } from '@hra-ui/common';
+import { TextHyperlinkDirective } from './directives/text-hyperlink.directive';
 
 /**
  * Text hyperlink component
@@ -41,7 +42,7 @@ export class TextHyperlinkComponent {
    */
   protected readonly urlTree = computed(() => {
     const url = this.url();
-    if (this.router && URL.parse(url) === null) {
+    if (this.router && parseUrl(url) === null) {
       return this.router.parseUrl(url);
     }
     return undefined;
