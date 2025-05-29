@@ -9,17 +9,17 @@ export const appRoutes: Route[] = [
   // Please try to keep sorted in alphabetical order
 
   {
-    path: 'knowledge-graph',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'changelog',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'knowledge-graph',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
     },
   },
   {

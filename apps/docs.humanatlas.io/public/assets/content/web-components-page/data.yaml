@@ -25,11 +25,11 @@ content:
           By positioning and annotating tissue samples in a standardized 3D space, researchers can ensure consistent data integration across studies.
           The RUI supports over 50 organs and captures metadata such as tissue dimensions and anatomical structures involved.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -51,7 +51,6 @@ content:
               </ccf-rui>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
@@ -69,11 +68,11 @@ content:
 
           The **Exploration User Interface (EUI)** enables interactive exploration of spatially registered tissue data across multiple scales. Users can visualize tissue blocks within 3D organ models, navigate through various coordinate systems, and integrate anatomical structures, cell types, and biomarkers. This tool is ideal for analyzing spatial relationships and validating tissue registrations.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -96,7 +95,6 @@ content:
               </ccf-eui>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
@@ -114,11 +112,11 @@ content:
 
           The **EUI Organ Information** component provides detailed metadata for specific organs within the Human Reference Atlas. Users can access information about anatomical structures, associated cell types, and relevant biomarkers, facilitating a comprehensive understanding of organ-specific data.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -140,7 +138,6 @@ content:
               </ccf-organ-info>
             </body>
           </html>
-          ```
 
   - component: PageSection
     tagline: EUI 3D Organ Viewer
@@ -153,11 +150,11 @@ content:
 
           The **EUI 3D Organ Viewer** offers a dynamic visualization of 3D organ models, allowing users to interact with spatially registered tissue blocks and explore anatomical structures in a three-dimensional context. This tool enhances the understanding of spatial relationships within organs.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -172,7 +169,6 @@ content:
               <ccf-body-ui-wc> </ccf-body-ui-wc>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
@@ -206,11 +202,11 @@ content:
 
           The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs. It visualizes FTUs in 2D, highlighting cell types and biomarker expression, and provides detailed illustrations and data for various organs.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -239,7 +235,6 @@ content:
               </hra-ftu-ui>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
@@ -257,11 +252,11 @@ content:
 
           The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs. It visualizes FTUs in 2D, highlighting cell types and biomarker expression, and provides detailed illustrations and data for various organs.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -288,7 +283,6 @@ content:
               </hra-ftu-ui>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
@@ -306,11 +300,11 @@ content:
 
           The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs. It visualizes FTUs in 2D, highlighting cell types and biomarker expression, and provides detailed illustrations and data for various organs.
 
-      - component: Markdown
-        data: |
           **Basic Usage Example:**
 
-          ```html
+      - component: CodeBlock
+        language: html
+        code: |
           <!doctype html>
           <html lang="en">
             <head>
@@ -328,7 +322,6 @@ content:
               </hra-medical-illustration>
             </body>
           </html>
-          ```
 
       - component: TextHyperlink
         text: View Detailed Embedding Guide on GitHub
