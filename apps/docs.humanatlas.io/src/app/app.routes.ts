@@ -1,6 +1,6 @@
-import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
-import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { Route } from '@angular/router';
+import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
+import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 
 /** Application routes */
