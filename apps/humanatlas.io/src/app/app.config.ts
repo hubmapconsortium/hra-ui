@@ -18,6 +18,7 @@ import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { ReleaseNotesVersionSelectorDef } from './components/release-notes-version-selector/release-notes-version-selector.definition';
+import { SummaryStatisticsTableDef } from './components/summary-statistics-table/summary-statistics-table.definition';
 import { VersionedTableParamSyncControllerService } from './controllers/versioned-table-param-sync/versioned-table-param-sync.service';
 import { DataViewerParamSyncControllerService } from './controllers/data-viewer-param-sync/data-viewer-param-sync.service';
 
@@ -36,6 +37,7 @@ export const appConfig: ApplicationConfig = {
       PageTableDef,
       ProfileCardDef,
       ReleaseNotesVersionSelectorDef,
+      SummaryStatisticsTableDef,
       TextHyperlinkDef,
       VersionedDataTableDef,
       YouTubePlayerDef,
