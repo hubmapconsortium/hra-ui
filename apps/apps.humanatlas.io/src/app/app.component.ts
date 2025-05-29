@@ -78,6 +78,11 @@ export class AppComponent {
             },
             {
               type: 'item',
+              label: 'ASCT+B Reporter',
+              url: 'https://cdn.humanatlas.io/ui--staging/asctb-reporter/',
+            },
+            {
+              type: 'item',
               label: 'humanatlas.io',
               url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
             },
