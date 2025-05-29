@@ -15,6 +15,6 @@ export const SummaryStatisticsTableSchema = ContentTemplateSchema.merge(
   }),
 ).extend({
   component: z.literal('SummaryStatisticsTable'),
-  csvUrl: z.string(),
-  organColumn: z.string(),
+  csvUrl: z.string().optional(),
+  organColumn: z.string().optional(),
 });
