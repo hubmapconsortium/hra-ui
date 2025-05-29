@@ -15,7 +15,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
     },
   },
-
   {
     path: 'changelog',
     component: ContentPageComponent,
@@ -23,7 +22,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
     },
   },
-
   {
     path: 'web-components',
     component: ContentPageComponent,
