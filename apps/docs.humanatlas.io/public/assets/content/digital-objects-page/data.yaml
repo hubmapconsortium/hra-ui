@@ -1,0 +1,89 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Digital Objects
+subtitle: The Human Reference Atlas (HRA) is constructed upon a diverse set of Digital Objects (DOs) that encapsulate the anatomical, cellular, and molecular intricacies of the healthy human body.
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Digital Objects serve as the data components used for generating the HRA KG.
+        A Digital Object is defined as a unit of information that includes properties (attributes or characteristics of the object)
+        and may also include methods (means of performing operations on the object).
+
+        Each Digital Object in the HRA KG is uniquely identified by a Persistent Uniform Resource Locator (PURL).
+        This PURL incorporates the digital object's type, name, and version, allowing for reliable access to specific data versions.
+
+        For instance, the PURL https://lod.humanatlas.io/asct-b/kidney/v1.6 identifies the ASCT+B table for the kidney at version 1.6.
+        Each digital object is linked to established ontologies such as Uberon, Cell Ontology (CL),
+        and Provisional Cell Ontology (PCL) through crosswalk tables, ensuring semantic consistency and interoperability.
+
+  - component: PageSection
+    tagline: Types
+    anchor: types
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Digital Objects can be categorized into various types, each serving a specific purpose within the HRA KG.
+          The primary types of Digital Objects include:
+      - component: Markdown
+        data: |
+          **ASCT-B**: Represents Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables.
+          These tables contain detailed knowledge about human body parts, including AS, CT, and the biomarkers (B) that characterize them.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/asctb-tables
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **3D Reference Organs**: High-resolution, anatomically accurate 3D models of human organs, derived from sources like the Visible Human Project. These models provide spatial context for tissue registration and data visualization.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/3d-reference-library
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Functional Tissue Explorer (FTU)**: Provides 2D illustrations of Functional Tissue Unit (FTU) structures in an organ, with image assets and cell annotations.
+          They illustrate anatomical structures (AS), as FTUs are AS, and the cell types (CT) within them.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/2d-ftu-illustrations
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Cell Type Annotations**: Mappings that associate cell types identified in external datasets (e.g., Azimuth) with standardized HRA terms, facilitating cross-dataset comparisons and analyses.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/asctb-tables
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Organ Mapping Antibody Panels (OMAPs)**: OMAPs contain panels of antibodies designed to target specific proteins for identifying CT, AS, cell states,
+          or cell membrane staining within organs based on experimental projects.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/omap
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Militome**: A 3D-printed tool designed to systematically section organs into uniformly sized tissue blocks, ensuring consistent sampling for analysis.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/millitome
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Vascular Geometry**: Detailed models and data representing the vascular structures within organs, capturing the complexity of blood vessel networks.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/vccf
+        icon: arrow_right_alt

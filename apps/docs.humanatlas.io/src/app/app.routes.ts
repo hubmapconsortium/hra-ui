@@ -1,3 +1,5 @@
+import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
+import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { Route } from '@angular/router';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 
@@ -7,7 +9,13 @@ export const appRoutes: Route[] = [
   // Please try to keep sorted in alphabetical order
 
   // TODO: add content pages here!
-
+  {
+    path: 'digital-objects',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   // Error pages and redirects
   {
     path: '404',
