@@ -16,6 +16,13 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
     },
   },
+  {
+    path: 'knowledge-graph',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
+    },
+  },
 
   // Error pages and redirects
   {

@@ -1,5 +1,6 @@
 import { InjectionToken, signal, WritableSignal } from '@angular/core';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
+import { parseUrl } from '../utils/url';
 import { getCurrentScriptFromElement, getCurrentScriptFromStackTrace } from './current-script';
 
 /** Injection token for the application wide base url for all asset links */
@@ -16,7 +17,7 @@ export const APP_ASSETS_HREF = new InjectionToken<WritableSignal<string>>('appAs
  */
 export function getDefaultAssetsHref(candidates: Iterable<string | undefined> = getAssetsHrefCandidatePaths()): string {
   for (const path of candidates) {
-    const url = URL.parse('./', path);
+    const url = parseUrl('./', path);
     if (url && ['http:', 'https:'].includes(url.protocol)) {
       return url.href;
     }
