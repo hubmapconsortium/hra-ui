@@ -1,0 +1,137 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Knowledge Graph
+subtitle: |
+  The Human Resource Atlas (HRA) Knowledge Graph (KG) integrates anatomical structures, cell types,
+  and biomarkers across the healthy human body into a unified, semantically-rich data graph designed for querying, visualization,
+  and analysis.
+
+  The current version of the HRA-KG encompasses:
+  - 71 distinct human organs
+  - 5,800 detailed anatomical structures
+  - 2,268 precisely classified cell types
+  - 2,531 rigorously defined biomarkers
+  - 10 million nodes interconnected by 171 million edges
+  - Approximately 126 GB of graph data
+
+  The Knowledge Graph supports semantic queries, detailed analytics, and seamless integration with external applications and platforms.
+
+action:
+  label: Explore the Knowledge Graph
+  url: 'https://lod.humanatlas.io/graph'
+content:
+  - component: PageSection
+    tagline: Accessing the HRA Knowledge Graph
+    anchor: accessing-the-hra-kg
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        The Human Reference Atlas Knowledge Graph (HRA-KG) can be accessed programmatically via a SPARQL endpoint or a RESTful API with
+        client libraries in JavaScript, TypeScript, Angular, and Python. Interactive access is also available through web-based user interfaces.
+        All data follows Linked Open Data principles and supports standard RDF formats.
+
+  - component: PageSection
+    tagline: SPARQL Endpoint
+    anchor: sparql-endpoint
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          A standards-compliant SPARQL 1.1 endpoint is available for executing custom semantic queries over RDF data.
+          This interface provides full graph access, including support for content negotiation to retrieve data in various RDF serialization formats.
+
+  - component: PageSection
+    tagline: cURL Example
+    anchor: curl-example
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Here's a sample query that retrieves the **count of 3D anatomical structures** from the HRA Knowledge Graph.
+
+          ```
+          #+ summary: Count of 3D Anatomical Structures
+          #+ description: Count of 3D Anatomical Structures
+
+          PREFIX ccf: <http://purl.org/ccf/>
+          PREFIX HRA: <https://purl.humanatlas.io/collection/hra>
+
+          SELECT (COUNT(?as3d) as ?as_count)
+          FROM HRA:
+          WHERE {
+            SELECT DISTINCT ?as3d WHERE {
+              ?as3d ccf:has_reference_organ ?y .
+              FILTER(!CONTAINS(STR(?y), '/united-'))
+            }
+          }
+          ```
+
+          To execute this query, use the following cURL command:
+
+          ```bash
+          curl -L -g "https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/as-3d-cnt"
+          ```
+
+          The response will return the count of 3D anatomical structures in the graph, like this:
+
+          ```
+          as_count
+          1295
+          ```
+
+      - component: Button
+        label: Explore More Queries
+        href: https://apps.humanatlas.io/api/grlc/
+        type: cta
+
+  - component: PageSection
+    tagline: REST API
+    anchor: rest-api
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The HRA API provides a simplified REST interface for accessing HRA-KG content without requiring knowledge of SPARQL.
+          It exposes key endpoints like anatomical structures, cell types, spatial references, and datasets.
+
+      - component: Button
+        label: Use the API
+        href: https://apps.humanatlas.io/api
+        type: cta
+
+  - component: PageSection
+    tagline: Client Libraries
+    anchor: client-libraries
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Official client libraries are available to streamline access to the HRA-KG through the REST API.
+          These libraries simplify tasks such as querying endpoints, handling authentication (if applicable),
+          and processing responses in application development environments.
+
+          Libraries are available for:
+
+          -	JavaScript / TypeScript
+          -	Angular 17+
+          -	Python 3.6+
+
+      - component: Button
+        label: Learn More
+        href: https://humanatlas.io/api
+        type: cta
+
+  - component: PageSection
+    tagline: Interactive User Interfaces
+    anchor: interactive-ui
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          These tools support ontology browsing, data inspection, and semantic navigation without requiring SPARQL or API interaction.
+
+          Several browser-based tools enable visual exploration of HRA-KG data and its associated ontologies.
+
+          -	LOD Graph Viewer: https://lod.humanatlas.io/graph/ccf/v1.0.0
+          -	HRA Dashboard: https://apps.humanatlas.io/dashboard/data
+          -	Exploration Interfaces: Accessible via the HRA Portal
