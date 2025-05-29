@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { assetsUrl } from '@hra-ui/common';
+import { MatIconModule } from '@angular/material/icon';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import saveAs from 'file-saver';
 import { injectParams } from 'ngxtension/inject-params';
-import { parse } from 'papaparse';
+import { parse, unparse } from 'papaparse';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Summary Statistics Table Component
@@ -14,7 +17,7 @@ import { parse } from 'papaparse';
  */
 @Component({
   selector: 'hra-summary-statistics-table',
-  imports: [CommonModule, TableComponent],
+  imports: [CommonModule, ButtonsModule, MatIconModule, TableComponent],
   templateUrl: './summary-statistics-table.component.html',
   styleUrl: './summary-statistics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -101,5 +104,20 @@ export class SummaryStatisticsTableComponent {
 
     const collator = new Intl.Collator(undefined, { usage: 'search', sensitivity: 'base' });
     return items.filter((item) => collator.compare(`${item[key]}`, organ) === 0);
+  }
+
+  /** function to download CSV or data of rows */
+  download(): void {
+    const csvUrl = this.csvUrl();
+    const rows = this.rows();
+    const organ = this.organ() ?? 'Kidney';
+    const filename = `${organ}.csv`;
+    if (csvUrl) {
+      saveAs(csvUrl, filename);
+    } else {
+      const content = unparse(rows, { header: true });
+      const blob = new Blob([content], { type: 'text/csv' });
+      saveAs(blob, filename);
+    }
   }
 }
