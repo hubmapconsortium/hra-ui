@@ -2558,6 +2558,7 @@ content:
             label: Uberon ID
         items:
           - label: 8th Release (v2.2)
+            version: '8'
             csvUrl: assets/content/3d-reference-library-page/table-data/as-per-organ.csv
   - component: PageSection
     tagline: Standard Operating Procedures (SOP)

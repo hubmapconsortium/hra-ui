@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { assetsUrl } from '@hra-ui/common';
+import { MatIconModule } from '@angular/material/icon';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import saveAs from 'file-saver';
 import { injectParams } from 'ngxtension/inject-params';
-import { parse } from 'papaparse';
+import { parse, unparse } from 'papaparse';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Summary Statistics Table Component
@@ -14,14 +17,14 @@ import { parse } from 'papaparse';
  */
 @Component({
   selector: 'hra-summary-statistics-table',
-  imports: [CommonModule, TableComponent],
+  imports: [CommonModule, ButtonsModule, MatIconModule, TableComponent],
   templateUrl: './summary-statistics-table.component.html',
   styleUrl: './summary-statistics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryStatisticsTableComponent {
   /** URL for the CSV */
-  readonly csvUrl = input('assets/content/2d-ftu-page/table-data/ftu-cell-count-7th-release.csv');
+  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-count-7th-release.csv');
 
   /** Column name for the organ */
   readonly organColumn = input('Organ');
@@ -29,7 +32,7 @@ export class SummaryStatisticsTableComponent {
   /** Columns for the table */
   readonly columns = input<TableColumn[]>([
     {
-      column: 'Ftulabel',
+      column: 'FtuLabel',
       label: 'FTU Label in Uberon',
       type: {
         type: 'text',
@@ -88,6 +91,11 @@ export class SummaryStatisticsTableComponent {
     defaultValue: [],
   });
 
+  /** Computed property that filters the items by the organ, calls @function filterItemsByOrgan */
+  protected readonly rows = computed(() =>
+    this.filterItemsByOrgan(this.items.value(), this.organColumn(), this.organ() ?? 'Kidney'),
+  );
+
   /** Function that filters the items by the organ */
   private filterItemsByOrgan(items: TableRow[], key: string, organ: string): TableRow[] {
     if (!organ) {
@@ -98,8 +106,18 @@ export class SummaryStatisticsTableComponent {
     return items.filter((item) => collator.compare(`${item[key]}`, organ) === 0);
   }
 
-  /** Computed property that filters the items by the organ, calls @function filterItemsByOrgan */
-  protected readonly rows = computed(() =>
-    this.filterItemsByOrgan(this.items.value(), this.organColumn(), this.organ() ?? ''),
-  );
+  /** function to download CSV or data of rows */
+  download(): void {
+    const csvUrl = this.csvUrl();
+    const rows = this.rows();
+    const organ = this.organ() ?? 'Kidney';
+    const filename = `${organ}.csv`;
+    if (csvUrl) {
+      saveAs(csvUrl, filename);
+    } else {
+      const content = unparse(rows, { header: true });
+      const blob = new Blob([content], { type: 'text/csv' });
+      saveAs(blob, filename);
+    }
+  }
 }
