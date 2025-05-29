@@ -4,7 +4,7 @@ import { ActionCardOutlineLargeImageComponent } from './action-card-outline-larg
 
 const meta: Meta<ActionCardOutlineLargeImageComponent> = {
   component: ActionCardOutlineLargeImageComponent,
-  title: 'Design System/Cards/Action Card/Outline Large Image Action Card',
+  title: 'Design System/Cards/Action Card old/Outline Large Image Action Card',
   parameters: {
     design: {
       type: 'figma',

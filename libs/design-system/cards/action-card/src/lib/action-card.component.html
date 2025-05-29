@@ -1,0 +1,33 @@
+@if (variant() !== 'outlined-with-icons') {
+  <div class="header">
+    @if (image(); as src) {
+      <img class="image" [attr.src]="src | assetUrl" alt="" />
+    }
+  </div>
+}
+
+@if (variant() === 'outlined') {
+  <mat-divider />
+}
+
+<div class="content">
+  @if (variant() === 'elevated') {
+    <div class="subtagline">{{ subtagline() }}</div>
+  }
+  <div class="tagline">
+    @for (icon of icons(); track icon) {
+      <mat-icon hraFilledIcon class="icon" [svgIcon]="icon" />
+    }
+    <span>{{ tagline() }}</span>
+  </div>
+
+  <div class="description">
+    <ng-content />
+  </div>
+
+  <div class="actions">
+    <ng-content select="hra-action-card-action:not([alignment='right'])" />
+    <div class="spacer"></div>
+    <ng-content select="hra-action-card-action[alignment='right']" />
+  </div>
+</div>

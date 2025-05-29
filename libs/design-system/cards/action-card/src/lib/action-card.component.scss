@@ -1,0 +1,124 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .header {
+    .image {
+      width: 100%;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .description {
+      flex-grow: 1;
+    }
+
+    .actions {
+      display: flex;
+
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &.hra-action-card-variant-elevated,
+  &.hra-action-card-variant-flat,
+  &.hra-action-card-variant-outlined,
+  &.hra-action-card-variant-outlined-with-icons {
+    .content {
+      .subtagline {
+        @include utils.use-font(title, small);
+        color: vars.$on-secondary-fixed;
+      }
+
+      .tagline {
+        @include utils.use-font(title, medium);
+        color: vars.$secondary;
+      }
+
+      .description {
+        @include utils.use-font(body, large);
+        color: vars.$primary;
+      }
+    }
+  }
+
+  &.hra-action-card-variant-elevated,
+  &.hra-action-card-variant-flat {
+    .content {
+      .tagline,
+      .description {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  &.hra-action-card-variant-elevated {
+    min-width: 17rem;
+    max-width: 21rem;
+    min-height: 29.25rem;
+    border-radius: 0.75rem;
+    background-color: vars.$surface-container-low;
+    box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$secondary, 24%);
+
+    .content {
+      margin: 1rem;
+    }
+  }
+
+  &.hra-action-card-variant-flat {
+    min-width: 17rem;
+    max-width: 24.75rem;
+    min-height: 26rem;
+
+    .content {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &.hra-action-card-variant-outlined,
+  &.hra-action-card-variant-outlined-with-icons {
+    border: 0.0625rem solid vars.$outline;
+    border-radius: 0.75rem;
+    background-color: vars.$on-primary;
+
+    .content {
+      .tagline {
+        @include utils.use-font(title, small);
+      }
+    }
+  }
+
+  &.hra-action-card-variant-outlined {
+    width: 17rem;
+    min-height: 23.75rem;
+
+    .content {
+      margin: 0.75rem 1rem;
+
+      .tagline,
+      .description {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  &.hra-action-card-variant-outlined-with-icons {
+    min-width: 17rem;
+    max-width: 19.25rem;
+    min-height: 20.75rem;
+
+    .content {
+      margin: 1rem;
+    }
+  }
+}

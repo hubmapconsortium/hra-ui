@@ -3,7 +3,7 @@ import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular'
 import { ActionCardElevatedComponent } from './action-card-elevated.component';
 
 const meta: Meta = {
-  title: 'Design System/Cards/Action Card/Elevated Action Card',
+  title: 'Design System/Cards/Action Card old/Elevated Action Card',
   component: ActionCardElevatedComponent,
   parameters: {
     design: {

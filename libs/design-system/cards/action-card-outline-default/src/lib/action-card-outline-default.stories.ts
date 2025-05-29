@@ -4,7 +4,7 @@ import { ActionCardOutlineDefaultComponent } from './action-card-outline-default
 
 const meta: Meta<ActionCardOutlineDefaultComponent> = {
   component: ActionCardOutlineDefaultComponent,
-  title: 'Design System/Cards/Action Card/Outline Default Action Card',
+  title: 'Design System/Cards/Action Card old/Outline Default Action Card',
   parameters: {
     design: {
       type: 'figma',
