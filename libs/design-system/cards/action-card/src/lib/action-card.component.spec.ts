@@ -1,21 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render } from '@testing-library/angular';
 import { ActionCardComponent } from './action-card.component';
 
 describe('ActionCardComponent', () => {
-  let component: ActionCardComponent;
-  let fixture: ComponentFixture<ActionCardComponent>;
+  it('should create', async () => {
+    const promise = render(ActionCardComponent, {
+      inputs: {
+        variant: 'elevated',
+        tagline: 'Title',
+      },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ActionCardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ActionCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    await expect(promise).resolves.toBeTruthy();
   });
 });
