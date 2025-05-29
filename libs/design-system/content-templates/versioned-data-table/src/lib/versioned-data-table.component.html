@@ -10,7 +10,9 @@
     </mat-select>
   </mat-form-field>
 }
-
+<button mat-icon-button class="download" (click)="download()">
+  <mat-icon>download</mat-icon>
+</button>
 <hra-table
   [csvUrl]="item().csvUrl"
   [columns]="item().columns ?? columns()"

@@ -1,8 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TableColumn, TableComponent, TableVariant } from '@hra-ui/design-system/table';
+import { saveAs } from 'file-saver';
+import { unparse } from 'papaparse';
 import { VersionedData } from './types/versioned-data-table.schema';
 
 /**
@@ -13,7 +17,7 @@ import { VersionedData } from './types/versioned-data-table.schema';
  */
 @Component({
   selector: 'hra-versioned-data-table',
-  imports: [CommonModule, MatFormFieldModule, MatSelectModule, TableComponent],
+  imports: [CommonModule, ButtonsModule, MatFormFieldModule, MatSelectModule, TableComponent, MatIconModule],
   templateUrl: './versioned-data-table.component.html',
   styleUrl: './versioned-data-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,4 +53,17 @@ export class VersionedDataTableComponent {
     const items = this.items();
     return items[selection] ?? items[0];
   });
+
+  /** function to download CSV or data of rows */
+  download(): void {
+    const { csvUrl, rows = [], label } = this.item();
+    const filename = `${label}.csv`;
+    if (csvUrl) {
+      saveAs(csvUrl, filename);
+    } else {
+      const content = unparse(rows, { header: true });
+      const blob = new Blob([content], { type: 'text/csv' });
+      saveAs(blob, filename);
+    }
+  }
 }
