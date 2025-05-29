@@ -21,7 +21,7 @@ import { parse } from 'papaparse';
 })
 export class SummaryStatisticsTableComponent {
   /** URL for the CSV */
-  readonly csvUrl = input('assets/content/2d-ftu-page/table-data/ftu-cell-count-7th-release.csv');
+  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-count-7th-release.csv');
 
   /** Column name for the organ */
   readonly organColumn = input('Organ');
@@ -29,7 +29,7 @@ export class SummaryStatisticsTableComponent {
   /** Columns for the table */
   readonly columns = input<TableColumn[]>([
     {
-      column: 'Ftulabel',
+      column: 'FtuLabel',
       label: 'FTU Label in Uberon',
       type: {
         type: 'text',
@@ -88,6 +88,11 @@ export class SummaryStatisticsTableComponent {
     defaultValue: [],
   });
 
+  /** Computed property that filters the items by the organ, calls @function filterItemsByOrgan */
+  protected readonly rows = computed(() =>
+    this.filterItemsByOrgan(this.items.value(), this.organColumn(), this.organ() ?? 'Kidney'),
+  );
+
   /** Function that filters the items by the organ */
   private filterItemsByOrgan(items: TableRow[], key: string, organ: string): TableRow[] {
     if (!organ) {
@@ -97,9 +102,4 @@ export class SummaryStatisticsTableComponent {
     const collator = new Intl.Collator(undefined, { usage: 'search', sensitivity: 'base' });
     return items.filter((item) => collator.compare(`${item[key]}`, organ) === 0);
   }
-
-  /** Computed property that filters the items by the organ, calls @function filterItemsByOrgan */
-  protected readonly rows = computed(() =>
-    this.filterItemsByOrgan(this.items.value(), this.organColumn(), this.organ() ?? ''),
-  );
 }
