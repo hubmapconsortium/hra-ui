@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, model, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,17 +49,31 @@ export class DataViewerComponent {
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
 
+  /** model signal for the release version */
+  readonly releaseVersion = model<string>();
+
+  /** model signal for the organ */
+  readonly organ = model<string>();
+
   /** Current selected release version */
-  readonly currentVersion = linkedSignal(() => this.releaseVersionData()[0]);
+  protected readonly releaseVersion_ = computed(() => {
+    const releaseVersion = this.releaseVersion();
+    const data = this.releaseVersionData();
+    return data.find((item) => item.version === releaseVersion) ?? data[0];
+  });
 
   /** Current organ selected */
-  readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
+  protected readonly organ_ = computed(() => {
+    const organ = this.organ();
+    const releaseVersion = this.releaseVersion_();
+    return releaseVersion.organData.find((item) => item.label === organ) ?? releaseVersion.organData[0];
+  });
 
   /** Icon for the currently selected organ */
-  readonly organIconId = computed(() => this.organ().icon as OrganLogoId);
+  protected readonly organIconId = computed(() => this.organ_().icon as OrganLogoId);
 
   /** Title to display on the data viewer */
-  readonly viewerTitle = computed(() => {
+  protected readonly viewerTitle = computed(() => {
     return this.variant() === 'ftu' ? 'Functional Tissue Units' : '3D Organs';
   });
 }
