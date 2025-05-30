@@ -17,6 +17,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'digital-objects',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'knowledge-graph',
     component: ContentPageComponent,
     resolve: {
