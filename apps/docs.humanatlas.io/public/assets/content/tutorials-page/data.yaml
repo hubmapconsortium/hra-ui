@@ -1,0 +1,17 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Tutorials
+subtitle: Explore our tutorials to learn how to use Human Atlas.
+action:
+  label: View Tutorials
+  url: https://humanatlas.io/
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
+        Text always goes on top.
+        Other components may be swapped out for the button set.
