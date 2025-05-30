@@ -1,11 +1,17 @@
+@use '@angular/material' as mat;
 @use 'vars';
 
 :host {
-  --mdc-filled-text-field-container-color: #{vars.$surface-container};
-  --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed};
-  --mat-form-field-container-height: 3rem;
-  --mat-form-field-filled-with-label-container-padding-top: 1rem;
-  --mat-form-field-filled-with-label-container-padding-bottom: 0rem;
+  @include mat.form-field-overrides(
+    (
+      container-height: 3rem,
+      filled-container-color: vars.$surface-container,
+      filled-focus-active-indicator-color: vars.$error,
+      filled-label-text-color: vars.$on-primary-fixed,
+      filled-with-label-container-padding-bottom: 0rem,
+      filled-with-label-container-padding-top: 1rem,
+    )
+  );
 
   ::ng-deep .mdc-floating-label--float-above {
     transform: translateY(-100%);
@@ -45,10 +51,15 @@
   }
 
   .chips-area {
-    --mdc-icon-button-state-layer-size: 2rem;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 2rem,
+      )
+    );
   }
 
   .search-input {
@@ -68,8 +79,6 @@
   }
 
   .error {
-    --mdc-filled-text-field-focus-active-indicator-color: #{vars.$error};
-
     mat-label {
       color: vars.$error;
     }
@@ -77,11 +86,16 @@
 }
 
 ::ng-deep .mat-mdc-autocomplete-panel {
-  --mat-autocomplete-background-color: #{vars.$surface-container-low};
-  overflow: hidden !important;
   display: flex;
   flex-direction: column;
   max-height: none !important;
+  overflow: hidden !important;
+
+  @include mat.autocomplete-overrides(
+    (
+      background-color: vars.$surface-container-low,
+    )
+  );
 
   ng-scrollbar {
     max-height: 18rem;

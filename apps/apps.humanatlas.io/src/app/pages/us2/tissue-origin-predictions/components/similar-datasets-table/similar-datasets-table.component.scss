@@ -46,15 +46,15 @@
       }
 
       th {
-        color: var(--mat-sys-on-primary-container);
-        background-color: var(--mat-sys-surface-container);
+        color: vars.$on-primary-container;
+        background-color: vars.$surface-container;
       }
       td {
         max-width: 16.38rem;
         overflow: hidden;
         text-overflow: ellipsis;
         box-sizing: border-box;
-        color: var(--mat-sys-inverse-surface);
+        color: vars.$inverse-surface;
         white-space: nowrap;
       }
 
