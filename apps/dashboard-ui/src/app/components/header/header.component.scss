@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../styles/cta' as cta;
-@use '../../../../../../libs/design-system/styles/vars' as vars;
+@use 'vars';
 
 :host {
   width: 100%;

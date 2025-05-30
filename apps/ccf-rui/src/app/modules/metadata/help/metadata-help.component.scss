@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../../../../../../libs/design-system/styles/vars' as vars;
+@use 'vars';
 
 ::ng-deep .metadata-help {
   @include mat.divider-overrides(
