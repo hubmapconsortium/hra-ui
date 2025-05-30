@@ -686,7 +686,7 @@ html mat-button-toggle-group.hra-button-toggle-size-small {
   --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-small-tracking);
 }
 html mat-button-toggle-group.hra-button-toggle-size-small .mat-button-toggle-label-content {
-  padding: 0.3125rem 0.5rem;
+  padding: 0 0.5rem;
 }
 html mat-button-toggle-group.hra-button-toggle-size-medium {
   --mat-standard-button-toggle-height: 2rem;
@@ -707,7 +707,7 @@ html mat-button-toggle-group.hra-button-toggle-size-medium {
   --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-medium-tracking);
 }
 html mat-button-toggle-group.hra-button-toggle-size-medium .mat-button-toggle-label-content {
-  padding: 0.3438rem 0.5rem;
+  padding: 0 0.5rem;
 }
 html mat-button-toggle-group.hra-button-toggle-size-large {
   --mat-standard-button-toggle-height: 2.5rem;
@@ -728,7 +728,7 @@ html mat-button-toggle-group.hra-button-toggle-size-large {
   --mat-standard-button-toggle-label-text-tracking: var(--mat-sys-label-large-tracking);
 }
 html mat-button-toggle-group.hra-button-toggle-size-large .mat-button-toggle-label-content {
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
 }
 html {
   --mdc-text-button-label-text-color: var(--mat-sys-on-tertiary-fixed);
