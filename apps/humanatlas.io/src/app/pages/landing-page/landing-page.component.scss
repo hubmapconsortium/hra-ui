@@ -1,4 +1,5 @@
 @use 'utils';
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
@@ -14,19 +15,25 @@
     max-width: 80rem;
     display: flex;
     flex-direction: column;
-  }
+    align-self: center;
+    margin: 5rem 2.5rem;
+    max-width: 80rem;
 
-  .header {
-    @include utils.use-font(display, large);
-    color: var(--mat-sys-secondary);
-  }
+    .header {
+      @include utils.use-font(display, large);
+      color: vars.$secondary;
+    }
 
-  .subheader {
-    @include utils.use-font(title, large);
-    color: var(--mat-sys-primary);
-  }
-  .description {
-    @include utils.use-font(body, xl);
+    .subheader {
+      @include utils.use-font(title, large);
+      color: vars.$primary;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      @include utils.use-font(body, xl);
+      color: vars.$primary;
+    }
   }
 
   .carousel-container {
@@ -40,7 +47,7 @@
 
   hra-count-info {
     padding: 2rem 1rem;
-    background: var(--mat-sys-surface-dim);
+    background: vars.$surface-dim;
   }
 
   hra-section-cards {
