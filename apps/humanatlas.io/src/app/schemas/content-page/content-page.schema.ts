@@ -19,6 +19,7 @@ import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
 import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
+import { SummaryStatisticsTableSchema } from '../../components/summary-statistics-table/summary-statistics-table.schema';
 
 export {
   AnyContentTemplateSchema,
@@ -34,6 +35,7 @@ export {
   ProfileCardSchema,
   ReleaseNotesVersionSelectorSchema,
   StylesSchema,
+  SummaryStatisticsTableSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
   YouTubePlayerSchema,
@@ -51,6 +53,7 @@ export default z.lazy(() => {
     PageTableSchema,
     ProfileCardSchema,
     ReleaseNotesVersionSelectorSchema,
+    SummaryStatisticsTableSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
     YouTubePlayerSchema,
