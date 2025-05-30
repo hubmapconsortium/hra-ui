@@ -108,7 +108,7 @@ content:
     content:
       - component: Markdown
         data: |
-          <img src="assets/ui-images/eui-organ-information.png" width="50%" />
+          <img src="assets/ui-images/eui-organ-information.png" width="100%" />
 
           The **EUI Organ Information** component provides detailed metadata for specific organs within the Human Reference Atlas. Users can access information about anatomical structures, associated cell types, and relevant biomarkers, facilitating a comprehensive understanding of organ-specific data.
 
@@ -146,7 +146,7 @@ content:
     content:
       - component: Markdown
         data: |
-          <img src="assets/ui-images/eui-3d-organ-viewer.png" width="50%" />
+          <img src="assets/ui-images/eui-3d-organ-viewer.png" width="100%" />
 
           The **EUI 3D Organ Viewer** offers a dynamic visualization of 3D organ models, allowing users to interact with spatially registered tissue blocks and explore anatomical structures in a three-dimensional context. This tool enhances the understanding of spatial relationships within organs.
 
