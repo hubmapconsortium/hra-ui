@@ -19,6 +19,7 @@ import { routeData } from './utils/route-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  constructor() {}
   /**
    * Data for breadcrumbs in navigation header.
    */
