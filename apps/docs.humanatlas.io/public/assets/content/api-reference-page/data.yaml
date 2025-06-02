@@ -40,7 +40,7 @@ content:
           To obtain a session token:
 
           1. Make a `POST` request to the `/v1/session-token` endpoint.
-          2. Include the required request body parameters in JSON format. These parameters can include filters such as `dataSources`, `consortiums`, `ageRange`, `biomarkerTerms`, and more.
+          2. Include the required request body parameters in JSON format. These parameters can include filters such as `consortiums`, `ageRange`, `biomarkerTerms`, and more.
           3. The response will contain a `token` string that you can use in subsequent API requests.
 
           Here's an example `POST` request to get a session token:
@@ -51,22 +51,27 @@ content:
           curl -X POST "https://apps.humanatlas.io/api/v1/session-token" \
             -H "Content-Type: application/json" \
             -d '{
-                  "dataSources": [null],
+                  "dataSources": [
+                    null
+                  ],
                   "filter": {
-                    "sex": "both",
-                    "ageRange": [0, 0],
-                    "binRange": [0, 0]
-                  },
-                  "consortiums": ["hubmap"],
-                  "spatialSearches": [
-                    {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0,
-                      "radius": 0,
-                      "target": "string"
-                    }
-                  ]
+                    "sex": "Both",
+                    "ageRange": [
+                      0
+                    ],
+                    "tmc": [
+                      "string"
+                    ],
+                    "spatialSearches": [
+                      {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0,
+                        "radius": 0,
+                        "target": "string"
+                      }
+                    ]
+                  }
                 }'
 
       - component: Markdown
@@ -102,196 +107,286 @@ content:
   - component: PageSection
     anchor: javascript-client
     level: 2
-    tagline: JavaScript Client Library
+    tagline: Client Libraries
     content:
-      - component: Markdown
-        data: |
-          The JavaScript client library allows you to interact with the Human Reference Atlas (HRA) API in Node.js or browser environments.
+      - component: PageSection
+        anchor: javascript-client
+        level: 3
+        tagline: JavaScript
+        content:
+          - component: Markdown
+            data: |
+              The JavaScript client library allows you to interact with the Human Reference Atlas (HRA) API in Node.js or browser environments.
 
-          #### Installation
+              **Installation**
 
-          Install the package via npm:
+              Install the package via npm:
 
-      - component: CodeBlock
-        language: bash
-        code: |
-          $  npm install @hra-api/js-client --save
+          - component: CodeBlock
+            language: bash
+            code: |
+              npm install @hra-api/js-client --save
 
-      - component: Markdown
-        data: |
-          #### Usage
+          - component: Markdown
+            data: |
+              Then build the module using the following command:
 
-          Here's a basic example of how to use the library:
+          - component: CodeBlock
+            language: bash
+            code: |
+              npm run build
 
-      - component: CodeBlock
-        language: javascript
-        code: |
-          const HraApiJsClient = require('@hra-api/js-client');
+          - component: Markdown
+            data: |
+              **Usage**
 
-          const api = new HraApiJsClient.DsGraphApi();
-          const opts = {
-            token: 'your_token_here' // Replace with your authentication token if required
-          };
+              Here's a basic example of how to use the library:
 
-          api.atlasD2k(opts).then(function(data) {
-            console.log('API called successfully. Returned data: ' + data);
-          }, function(error) {
-            console.error(error);
-          });
+          - component: CodeBlock
+            language: javascript
+            code: |
+              const HraApiJsClient = require('@hra-api/js-client');
 
-      - component: Button
-        label: Learn More
-        href: https://www.npmjs.com/package/@hra-api/js-client
-        type: cta
+              const api = new HraApiJsClient.DsGraphApi();
+              const opts = {
+                token: 'your_token_here' // Replace with your authentication token if required
+              };
+
+              api.atlasD2k(opts).then(function(data) {
+                console.log('API called successfully. Returned data: ' + data);
+              }, function(error) {
+                console.error(error);
+              });
+
+          - component: Button
+            label: Learn More
+            href: https://www.npmjs.com/package/@hra-api/js-client
+            type: cta
+
+      - component: PageSection
+        anchor: typescript-client
+        level: 3
+        tagline: TypeScript
+        content:
+          - component: Markdown
+            data: |
+              The TypeScript client library, `@hra-api/ts-client`, provides a typed interface to interact with the Human Reference Atlas (HRA) API using the Fetch API. It's suitable for environments like Node.js, Webpack, and Browserify.
+
+              **Installation**
+
+              Install the package via npm:
+
+          - component: CodeBlock
+            language: bash
+            code: |
+              npm install @hra-api/ts-client --save
+
+          - component: Markdown
+            data: |
+              Then build the module using the following command:
+
+          - component: CodeBlock
+            language: bash
+            code: |
+              npm run build
+
+          - component: Markdown
+            data: |
+              **Usage**
+
+              Here's a basic example of how to use the library:
+
+          - component: CodeBlock
+            language: typescript
+            code: |
+              import { DsGraphApi } from '@hra-api/ts-client';
+
+              const api = new DsGraphApi();
+              const opts = {
+                token: 'your_token_here' // Replace with your authentication token if required
+              };
+
+              api.atlasD2k(opts).then((data) => {
+                console.log('API called successfully. Returned data:', data);
+              }).catch((error) => {
+                console.error(error);
+              });
+
+          - component: Button
+            label: Learn More
+            href: https://www.npmjs.com/package/@hra-api/ts-client
+            type: cta
+
+      - component: PageSection
+        anchor: angular-client
+        level: 3
+        tagline: Angular
+        content:
+          - component: Markdown
+            data: |
+              The Angular client library provides services and modules to integrate the HRA API into Angular applications.
+
+              **Installation**
+
+              Install the package via npm:
+
+          - component: CodeBlock
+            language: bash
+            code: |
+              npm install @hra-api/ng-client --save
+
+          - component: Markdown
+            data: |
+              **Usage**
+
+              Import the `HraApiModule` into your Angular module:
+
+          - component: CodeBlock
+            language: typescript
+            code: |
+              import { NgModule } from '@angular/core';
+              import { HttpClientModule } from '@angular/common/http';
+              import { HraApiModule } from '@hra-api/ng-client';
+
+              @NgModule({
+                imports: [
+                  HttpClientModule,
+                  HraApiModule
+                ],
+                declarations: [AppComponent],
+                bootstrap: [AppComponent]
+              })
+              export class AppModule {}
+
+          - component: Markdown
+            data: |
+              To configure the API with custom parameters:
+
+          - component: CodeBlock
+            language: typescript
+            code: |
+              import { HraApiModule, HraApiConfiguration, HraApiConfigurationParameters } from '@hra-api/ng-client';
+
+              export function apiConfigFactory(): HraApiConfiguration {
+                const params: HraApiConfigurationParameters = {
+                  // set configuration parameters here
+                };
+                return new HraApiConfiguration(params);
+              }
+
+              @NgModule({
+                imports: [HraApiModule.forRoot(apiConfigFactory)],
+                declarations: [AppComponent],
+                bootstrap: [AppComponent]
+              })
+              export class AppModule {}
+
+          - component: Button
+            label: Learn More
+            href: https://www.npmjs.com/package/@hra-api/ng-client
+            type: cta
+
+      - component: PageSection
+        anchor: python-client
+        level: 3
+        tagline: Python
+        content:
+          - component: Markdown
+            data: |
+              The Python client library, `hra-api-client`, allows you to interact with the HRA API in Python applications and notebooks.
+
+              **Installation**
+
+              Install the package via pip:
+
+          - component: CodeBlock
+            language: bash
+            code: |
+              pip install hra-api-client
+
+          - component: Markdown
+            data: |
+              **Usage**
+
+              Here's a basic example of how to use the library:
+
+          - component: CodeBlock
+            language: python
+            code: |
+              from hra_api_client import DsGraphApi
+
+              api = DsGraphApi()
+              response = api.atlas_d2k()
+              print("API called successfully. Returned data:", response)
+
+          - component: Button
+            label: Learn More
+            href: https://pypi.org/project/hra-api-client/
+            type: cta
 
   - component: PageSection
-    anchor: typescript-client
+    anchor: hra-knowledge-graph
     level: 2
-    tagline: TypeScript Client Library
+    tagline: HRA Knowledge Graph (HRA-KG)
     content:
       - component: Markdown
         data: |
-          The TypeScript client library, `@hra-api/ts-client`, provides a typed interface to interact with the Human Reference Atlas (HRA) API using the Fetch API. It's suitable for environments like Node.js, Webpack, and Browserify.
+          The **Human Reference Atlas Knowledge Graph (HRA-KG)** provides a semantic web interface to the HRA data. It is a linked data resource, accessible via a **SPARQL endpoint** for querying complex relationships and ontologies in the HRA.
 
-          #### Installation
+          - **Production Site:** [https://lod.humanatlas.io](https://lod.humanatlas.io)
+          - **SPARQL Endpoint:** [https://lod.humanatlas.io/sparql](https://lod.humanatlas.io/sparql)
 
-          Install the package via npm:
+          You can use the SPARQL endpoint directly with tools like **YASGUI**, **SPARQLWrapper (Python)**, or any other SPARQL client to explore and query the data.
 
-      - component: CodeBlock
-        language: bash
-        code: |
-          npm install @hra-api/ts-client --save
-
-      - component: Markdown
-        data: |
-          #### Usage
-
-          Here's a basic example of how to use the library:
+          **Sample SPARQL Query:**
 
       - component: CodeBlock
-        language: typescript
+        language: sql
         code: |
-          import { DsGraphApi } from '@hra-api/ts-client';
+          PREFIX ccf: <http://purl.org/ccf/>
+          PREFIX dcat: <http://www.w3.org/ns/dcat#>
+          PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+          PREFIX schema: <http://schema.org/>
+          PREFIX LOD: <https://lod.humanatlas.io>
 
-          const api = new DsGraphApi();
-          const opts = {
-            token: 'your_token_here' // Replace with your authentication token if required
-          };
-
-          api.atlasD2k(opts).then((data) => {
-            console.log('API called successfully. Returned data:', data);
-          }).catch((error) => {
-            console.error(error);
-          });
-
-      - component: Button
-        label: Learn More
-        href: https://www.npmjs.com/package/@hra-api/ts-client
-        type: cta
-
-  - component: PageSection
-    anchor: angular-client
-    level: 2
-    tagline: Angular Client Library
-    content:
-      - component: Markdown
-        data: |
-          The Angular client library provides services and modules to integrate the HRA API into Angular applications.
-
-          #### Installation
-
-          Install the package via npm:
-
-      - component: CodeBlock
-        language: bash
-        code: |
-          npm install @hra-api/ng-client --save
-
-      - component: Markdown
-        data: |
-          #### Usage
-
-          Import the `HraApiModule` into your Angular module:
-
-      - component: CodeBlock
-        language: typescript
-        code: |
-          import { NgModule } from '@angular/core';
-          import { HttpClientModule } from '@angular/common/http';
-          import { HraApiModule } from '@hra-api/ng-client';
-
-          @NgModule({
-            imports: [
-              HttpClientModule,
-              HraApiModule
-            ],
-            declarations: [AppComponent],
-            bootstrap: [AppComponent]
-          })
-          export class AppModule {}
-
-      - component: Markdown
-        data: |
-          To configure the API with custom parameters:
-
-      - component: CodeBlock
-        language: typescript
-        code: |
-          import { HraApiModule, HraApiConfiguration, HraApiConfigurationParameters } from '@hra-api/ng-client';
-
-          export function apiConfigFactory(): HraApiConfiguration {
-            const params: HraApiConfigurationParameters = {
-              // set configuration parameters here
-            };
-            return new HraApiConfiguration(params);
+          SELECT *
+          FROM LOD:
+          WHERE {
+            [] a dcat:Dataset ;
+              schema:name ?name ;
+              schema:additionalType ?type ;
+              schema:version ?version ;
+              schema:dateCreated ?published ;
+              rdfs:seeAlso ?purl ;
+            .
           }
+          ORDER BY ?type ?name ?version
 
-          @NgModule({
-            imports: [HraApiModule.forRoot(apiConfigFactory)],
-            declarations: [AppComponent],
-            bootstrap: [AppComponent]
-          })
-          export class AppModule {}
+      - component: TextHyperlink
+        text: HRA-KG Queries (SPARQL via grlc)
+        url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/
+        icon: arrow_right_alt
 
-      - component: Button
-        label: Learn More
-        href: https://www.npmjs.com/package/@hra-api/ng-client
-        type: cta
+      - component: TextHyperlink
+        text: Ubergraph Queries (SPARQL via grlc)
+        url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ubergraph/
+        icon: arrow_right_alt
+
+      - component: TextHyperlink
+        text: Explore available SPARQL queries on GitHub
+        url: https://github.com/hubmapconsortium/ccf-grlc
+        icon: arrow_right_alt
 
   - component: PageSection
-    anchor: python-client
+    anchor: grlc-apis
     level: 2
-    tagline: Python Client Library
+    tagline: grlc APIs
     content:
       - component: Markdown
         data: |
-          The Python client library, `hra-api-client`, allows you to interact with the HRA API in Python applications and notebooks.
-
-          #### Installation
-
-          Install the package via pip:
-
-      - component: CodeBlock
-        language: bash
-        code: |
-          pip install hra-api-client
-
-      - component: Markdown
-        data: |
-          #### Usage
-
-          Here's a basic example of how to use the library:
-
-      - component: CodeBlock
-        language: python
-        code: |
-          from hra_api_client import DsGraphApi
-
-          api = DsGraphApi()
-          response = api.atlas_d2k()
-          print("API called successfully. Returned data:", response)
+          The **grlc APIs** provide REST-style endpoints built on top of the HRA Knowledge Graph and Ubergraph SPARQL endpoints. They simplify accessing complex SPARQL queries through a RESTful interface.
 
       - component: Button
-        label: Learn More
-        href: https://pypi.org/project/hra-api-client/
+        label: Explore grlc APIs on the HRA API Page
+        href: https://apps.humanatlas.io/api
         type: cta

@@ -16,6 +16,7 @@ export function provideCodeBlock(): EnvironmentProviders {
         xml: () => import('highlight.js/lib/languages/xml'),
         bash: () => import('highlight.js/lib/languages/bash'),
         python: () => import('highlight.js/lib/languages/python'),
+        sql: () => import('highlight.js/lib/languages/sql'),
       },
     }),
     provideStyleComponents(CodeBlockGlobalStylesComponent),
