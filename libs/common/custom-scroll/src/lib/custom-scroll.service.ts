@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { Router, Event, Scroll, NavigationEnd, NavigationSkipped, RouterEvent } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
-import { filter, pairwise } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { Event, NavigationEnd, NavigationSkipped, Router, RouterEvent, Scroll } from '@angular/router';
+import { filter, pairwise, startWith } from 'rxjs/operators';
 
 /**
  * Custom scroll service to handle scroll restoration on navigation events
@@ -16,6 +16,7 @@ export class CustomScrollService {
    * Injects the ViewportScroller.
    */
   private viewportScroller = inject(ViewportScroller);
+
   /**
    * CustomScrollService constructor
    * @param router The Angular Router instance to listen for navigation events
@@ -37,6 +38,7 @@ export class CustomScrollService {
     this.router.events
       .pipe(
         filter((e: Event): e is Scroll => e instanceof Scroll),
+        startWith(new Scroll(new NavigationEnd(-1, '', ''), null, null)),
         pairwise(),
       )
       .subscribe((e: Scroll[]) => {
