@@ -24,17 +24,34 @@
     <div class="card-collection">
       <div class="cards">
         @for (component of components; track component.id) {
-          <hra-action-card-elevated
+          <hra-action-card
             class="component-card"
-            [imageUrl]="component.previewImage | assetUrl"
-            [productTitle]="component.productTitle"
-            [description]="component.description"
-            [componentName]="component.webComponentName"
-            [hideEmbedButton]="component.embedAs === 'external'"
-            (embedClick)="openSidenav(organ, component, 0)"
-            (useAppClick)="onUseApp(organ, component)"
+            variant="elevated"
+            [tagline]="component.webComponentName || component.productTitle"
+            [subtagline]="component.webComponentName && component.productTitle"
+            [image]="component.previewImage"
           >
-          </hra-action-card-elevated>
+            {{ component.description }}
+
+            <hra-action-card-action>
+              <button mat-button hraPrimaryButton hraButtonSize="medium" (click)="onUseApp(organ, component)">
+                Use App
+              </button>
+            </hra-action-card-action>
+
+            @if (component.embedAs !== 'external') {
+              <hra-action-card-action alignment="right">
+                <button
+                  mat-flat-button
+                  hraPrimaryButton
+                  hraButtonSize="medium"
+                  (click)="openSidenav(organ, component, 0)"
+                >
+                  Embed
+                </button>
+              </hra-action-card-action>
+            }
+          </hra-action-card>
         }
       </div>
     </div>

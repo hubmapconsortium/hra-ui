@@ -1,7 +1,6 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,9 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
-import { ActionCardElevatedComponent } from '@hra-ui/design-system/cards/action-card-elevated';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-sidenav-content.component';
@@ -81,7 +80,6 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
     AppLabelComponent,
     EmbedSidenavContentComponent,
     NavigationModule,
-    ActionCardElevatedComponent,
   ],
   templateUrl: './web-components.component.html',
   styleUrls: ['./web-components.component.scss'],
