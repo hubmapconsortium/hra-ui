@@ -9,5 +9,5 @@ content:
     anchor: apps
     level: 2
     content:
-      - component: HraMarkdown
+      - component: Markdown
         src: 'assets/content/changelog-page/CHANGELOG.md'
