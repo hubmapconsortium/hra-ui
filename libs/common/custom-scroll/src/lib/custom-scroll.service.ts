@@ -8,7 +8,13 @@ import { filter, pairwise } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class CustomScrollService {
+  /**
+   * Injects the Angular Router.
+   */
   private router = inject(Router);
+  /**
+   * Injects the ViewportScroller.
+   */
   private viewportScroller = inject(ViewportScroller);
   /**
    * CustomScrollService constructor
