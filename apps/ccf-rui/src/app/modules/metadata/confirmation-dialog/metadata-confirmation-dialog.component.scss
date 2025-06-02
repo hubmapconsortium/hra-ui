@@ -1,12 +1,17 @@
+@use '@angular/material' as mat;
 @use 'vars';
 
 :host {
   display: block;
   position: relative;
-
-  --mat-dialog-headline-padding: 1.75rem 2rem 0;
-  --mat-dialog-with-actions-content-padding: 1rem 2rem 0;
-  --mat-dialog-actions-padding: 1rem 2rem;
+  @include mat.dialog-overrides(
+    (
+      actions-alignment: space-between,
+      actions-padding: 1rem 2rem,
+      headline-padding: 1.75rem 2rem 0,
+      with-actions-content-padding: 1rem 2rem 0,
+    )
+  );
 
   .title {
     font: vars.$headline-small;
@@ -24,9 +29,5 @@
     &::before {
       display: none;
     }
-  }
-
-  .actions {
-    --mat-dialog-actions-alignment: space-between;
   }
 }

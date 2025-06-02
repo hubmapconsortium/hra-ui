@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
@@ -5,6 +6,11 @@
   .sidenav-content {
     --mat-sidenav-container-background-color: #{vars.$surface-container-low};
     width: fit-content;
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+      )
+    );
 
     .sidenav-header {
       display: flex;
@@ -65,8 +71,12 @@
   }
 
   mat-progress-bar {
-    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
-    --mdc-linear-progress-track-color: transparent;
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$tertiary,
+        track-color: transparent,
+      )
+    );
     grid-area: progress;
   }
 
@@ -161,7 +171,11 @@
     }
 
     mat-button-toggle-group {
-      --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
+      @include mat.button-toggle-overrides(
+        (
+          selected-state-text-color: vars.$secondary,
+        )
+      );
       width: 100%;
 
       mat-button-toggle {
@@ -201,9 +215,13 @@
       z-index: 1;
     }
   }
-}
 
-::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-  --mdc-snackbar-container-color: #{vars.$surface-dim};
-  --mdc-snackbar-supporting-text-color: #{vars.$secondary};
+  ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
+    @include mat.snack-bar-overrides(
+      (
+        container-color: vars.$surface-dim,
+        supporting-text-color: vars.$secondary,
+      )
+    );
+  }
 }

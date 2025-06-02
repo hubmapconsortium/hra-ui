@@ -1,13 +1,18 @@
+@use '@angular/material' as mat;
 @use 'vars';
 
 :host {
   mat-form-field {
-    --mdc-filled-text-field-active-indicator-color: #{vars.$primary};
-    --mdc-filled-text-field-focus-active-indicator-color: #{vars.$primary};
-    --mdc-filled-text-field-input-text-color: #{vars.$primary};
-    --mat-form-field-trailing-icon-color: #{vars.$primary};
-    --mat-form-field-leading-icon-color: #{vars.$primary};
     width: 100%;
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-input-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        trailing-icon-color: vars.$primary,
+      )
+    );
   }
 
   mat-label {
@@ -31,13 +36,16 @@
   }
 
   mat-checkbox {
-    --mdc-checkbox-state-layer-size: 3rem;
-    --mdc-checkbox-selected-icon-color: #{vars.$on-tertiary-fixed};
-    --mdc-checkbox-selected-focus-icon-color: #{vars.$on-tertiary-fixed};
-
     ::ng-deep label {
       font: vars.$label-medium;
       padding-right: 0.5rem;
     }
   }
+  @include mat.checkbox-overrides(
+    (
+      selected-icon-color: vars.$on-tertiary-fixed,
+      selected-focus-icon-color: vars.$on-tertiary-fixed,
+      state-layer-size: 3rem,
+    )
+  );
 }
