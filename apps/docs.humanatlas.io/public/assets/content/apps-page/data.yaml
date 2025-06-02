@@ -1,0 +1,130 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Apps
+subtitle: |
+  Explore the applications built on the Human Reference Atlas (HRA) to visualize, register, and analyze anatomical and cellular data. These tools support researchers, developers, and educators in interacting with the HRA's multiscale, multimodal datasets.
+action:
+  label: Launch HRA Apps
+  url: https://apps.humanatlas.io/
+  icon: apps
+content:
+  - component: PageSection
+    tagline: Apps Overview
+    anchor: applications-overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas offers a collection of applications designed to facilitate the exploration, registration, and analysis of human anatomical and cellular data. These tools provide interactive interfaces and programmatic access to the HRA's comprehensive datasets, supporting a wide range of research and educational activities.
+      - component: PageSection
+        tagline: HRA API
+        anchor: hra-api
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The HRA API provides programmatic access to the Human Reference Atlas, allowing developers to integrate HRA data and functionalities into their applications. It supports a wide range of queries and operations on anatomical structures, cell types, and biomarker data.
+
+      - component: Button
+        label: Use the HRA API
+        href: https://apps.humanatlas.io/api
+        type: cta
+
+      - component: PageSection
+        tagline: ASCT+B Reporter
+        anchor: asctb
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The ASCT+B Reporter is a visualization tool that allows users to explore and compare Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables. It provides insights into the relationships between different biological entities and supports the validation and refinement of the HRA's reference data.
+              [Use the ASCT+B Reporter](https://humanatlas.io/asctb-reporter)
+
+      - component: PageSection
+        tagline: Cell Distance Explorer
+        anchor: cde
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Cell Distance Explorer enables users to compute, visualize, and explore distance distributions between different cells, cell types, and anatomical structures. It supports the analysis of spatial relationships within tissues and organs, aiding in the understanding of cellular organization and interactions.
+              [Access the Cell Distance Explorer](https://apps.humanatlas.io/)
+
+      - component: PageSection
+        tagline: Cell Population Generator
+        anchor: cpg
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Cell Population Generator allows users to generate and analyze cell populations based on specific criteria, such as anatomical location or biomarker expression. It supports the simulation and study of cellular distributions within the human body.
+              [Access the Cell Population Generator](https://apps.humanatlas.io/)
+
+      - component: PageSection
+        tagline: Dashboard
+        anchor: dashboard
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The HRA Dashboard provides an overview of the size and coverage of HRA data, including the number and types of datasets, usage statistics over time, and links to related publications and experimental data. It serves as a central hub for monitoring the growth and impact of the HRA.
+              [View the HRA Dashboard](https://apps.humanatlas.io/dashboard)
+
+      - component: PageSection
+        tagline: Exploration User Interface (EUI)
+        anchor: eui
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Exploration User Interface (EUI) is an interactive tool for exploring and validating spatially registered tissue blocks and cell-type populations. It allows users to navigate through the HRA's 3D anatomical models and examine detailed information about specific regions and cell types.
+              [Use the Exploration User Interface](https://humanatlas.io/exploration-user-interface)
+
+      - component: PageSection
+        tagline: Registration User Interface (RUI)
+        anchor: rui
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Registration User Interface (RUI) supports the registration of three-dimensional (3D) tissue blocks within 3D reference organs. It enables users to position and annotate tissue samples accurately within the HRA's spatial framework, facilitating data integration and comparison.
+              [Use the Registration User Interface](https://apps.humanatlas.io/rui/)
+
+      - component: PageSection
+        tagline: Functional Tissue Unit (FTU) Explorer
+        anchor: ftu
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Functional Tissue Unit (FTU) Explorer allows users to examine cell type abundance and biomarker expression values within functional tissue units. It provides insights into the organization and function of specific tissue regions, supporting detailed anatomical and molecular analyses.
+              [Explore Functional Tissue Units](https://apps.humanatlas.io/)
+
+      - component: PageSection
+        tagline: Organ Gallery
+        anchor: organ-gallery
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The HRA Organ Gallery is an immersive application that enables users to explore 3D reference organs, anatomical structures, and cell types in virtual reality. It offers an engaging platform for education and research, allowing for an in-depth examination of human anatomy.
+              [Access the Organ Gallery](https://humanatlas.io/hra-organ-gallery)
+
+      - component: PageSection
+        tagline: Tissue Origin Predictor
+        anchor: tissue-origin-predictor
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The Tissue Origin Predictor is a demonstration application that, given a cell type population, returns relevant anatomical structures, datasets, and RUI locations from the HRA. It assists in identifying the potential origin of tissue samples based on cellular composition.
+              [Use the Tissue Origin Predictor](https://apps.humanatlas.io/)
+
+      - component: PageSection
+        tagline: Web Components
+        anchor: web-components
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The HRA Web Components are reusable UI components designed for rendering organ data, tables, and coordinate mappings directly into applications. They facilitate the integration of HRA visualizations and data into custom tools and platforms.
+              [Explore HRA Web Components](https://apps.humanatlas.io/)
