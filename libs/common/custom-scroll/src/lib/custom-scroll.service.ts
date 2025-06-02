@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router, Event, Scroll, NavigationEnd, NavigationSkipped, RouterEvent } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { filter, pairwise } from 'rxjs/operators';
@@ -8,15 +8,14 @@ import { filter, pairwise } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class CustomScrollService {
+  private router = inject(Router);
+  private viewportScroller = inject(ViewportScroller);
   /**
    * CustomScrollService constructor
    * @param router The Angular Router instance to listen for navigation events
    * @param viewportScroller The ViewportScroller instance to manage scroll positions
    */
-  constructor(
-    private router: Router,
-    private viewportScroller: ViewportScroller,
-  ) {
+  constructor() {
     this.viewportScroller.setHistoryScrollRestoration('manual');
     this.handleScrollOnNavigation();
   }
