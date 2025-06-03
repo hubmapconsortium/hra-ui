@@ -9,7 +9,7 @@ import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
-import { HraMarkdownDef, MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
+import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
@@ -29,7 +29,6 @@ export const appConfig: ApplicationConfig = {
       FlexContainerDef,
       ImageDef,
       MarkdownDef,
-      HraMarkdownDef,
       PageSectionDef,
       PageTableDef,
       ProfileCardDef,
