@@ -5,7 +5,7 @@ import { FONT_ICONS_CLASSES, SVG_ICON_DIRECTORY } from './utils/tokens';
 /**
  * Enum of all icon feature kinds
  */
-export const enum IconFeatureKind {
+const enum IconFeatureKind {
   FontIconClasses,
   SvgIconDirectory,
 }
@@ -13,8 +13,10 @@ export const enum IconFeatureKind {
 /**
  * An icon feature object. All properties are internal!
  */
-export interface IconFeature<KindT extends IconFeatureKind> {
+interface IconFeature<KindT extends IconFeatureKind> {
+  /** Feature kind */
   __kind: KindT;
+  /** Feature providers */
   __providers: (Provider | EnvironmentProviders)[];
 }
 
@@ -34,8 +36,14 @@ function makeIconFeature<KindT extends IconFeatureKind>(kind: KindT, providers: 
   return { __kind: kind, __providers: providers };
 }
 
+/** Font icon classes feature */
 export type FontIconClassesFeature = IconFeature<IconFeatureKind.FontIconClasses>;
 
+/**
+ * Set the default font icon classes
+ *
+ * @param classes Default font icon classes
+ */
 export function withFontIconClasses(classes: string[]): FontIconClassesFeature {
   return makeIconFeature(IconFeatureKind.FontIconClasses, [
     {
@@ -45,8 +53,14 @@ export function withFontIconClasses(classes: string[]): FontIconClassesFeature {
   ]);
 }
 
+/** Svg icon directory feature */
 export type SvgIconDirectoryFeature = IconFeature<IconFeatureKind.SvgIconDirectory>;
 
+/**
+ * Set the svg icon directory
+ *
+ * @param directory Icon directory
+ */
 export function withSvgIconDirectory(directory: string): SvgIconDirectoryFeature {
   return makeIconFeature(IconFeatureKind.SvgIconDirectory, [
     {
@@ -56,9 +70,14 @@ export function withSvgIconDirectory(directory: string): SvgIconDirectoryFeature
   ]);
 }
 
+/**
+ * Setups design system icons
+ *
+ * @param features Additional icon features
+ */
 export function provideIcons(...features: IconFeatures[]): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideEnvironmentInitializer(initializeIcons),
-    features.map((feature) => feature.__providers),
+    ...features.map((feature) => feature.__providers).flat(),
   ]);
 }

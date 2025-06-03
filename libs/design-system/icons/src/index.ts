@@ -2,8 +2,6 @@ export { IconComponent } from './lib/icon/icon.component';
 export { IconsModule } from './lib/icons.module';
 export {
   FontIconClassesFeature,
-  IconFeature,
-  IconFeatureKind,
   IconFeatures,
   provideIcons,
   SvgIconDirectoryFeature,

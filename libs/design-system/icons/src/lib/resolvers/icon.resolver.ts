@@ -5,6 +5,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { SVG_ICON_DIRECTORY } from '../utils/tokens';
 
+/**
+ * Creates a new resolver that resolves svg icons by
+ * concatenating the svg icon directory with the icon
+ * namespace and name.
+ *
+ * @returns An icon resolver
+ */
 export function createSvgIconResolver(): IconResolver {
   assertInInjectionContext(createSvgIconResolver);
 

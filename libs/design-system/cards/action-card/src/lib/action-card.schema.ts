@@ -2,12 +2,16 @@ import { ContentTemplateSchema, ProjectedContentTemplateSchema } from '@hra-ui/c
 import { IconListSchema } from '@hra-ui/design-system/icons';
 import { z } from 'zod';
 
+/** Action card variants */
 export type ActionCardVariant = z.infer<typeof ActionCardVariantSchema>;
 
+/** Schema for action card variants */
 export const ActionCardVariantSchema = z.enum(['elevated', 'flat', 'outlined', 'outlined-with-icons']);
 
+/** Content template action card data */
 export type ActionCard = z.infer<typeof ActionCardSchema>;
 
+/** Schema for content template action card data */
 export const ActionCardSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCard'),
   variant: ActionCardVariantSchema,
