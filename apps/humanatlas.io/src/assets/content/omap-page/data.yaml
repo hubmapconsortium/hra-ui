@@ -90,6 +90,7 @@ content:
         label: Release Version
         items:
           - label: 8th Release (v2.2)
+            version: v2.2
             csvUrl: assets/content/omap-page/table-data/omaps_release8.csv
             columns: &table_columns
               - column: omapId
@@ -123,15 +124,19 @@ content:
                 label: '#BP'
                 type: numeric
           - label: 7th Release (v2.1)
+            version: v2.1
             csvUrl: assets/content/omap-page/table-data/omaps_release7.csv
             columns: *table_columns
           - label: 6th Release (v2.0)
+            version: v2.0
             csvUrl: assets/content/omap-page/table-data/omaps_release6.csv
             columns: *table_columns
           - label: 5th Release (v1.4)
+            version: v1.4
             csvUrl: assets/content/omap-page/table-data/omaps_release5.csv
             columns: *table_columns
           - label: 4th Release (v1.3)
+            version: v1.3
             csvUrl: assets/content/omap-page/table-data/omaps_release4.csv
             columns:
               - column: omapId
@@ -160,6 +165,7 @@ content:
                 label: '#BP'
                 type: numeric
           - label: 3rd Release (v1.2)
+            version: v1.2
             csvUrl: assets/content/omap-page/table-data/omaps_release3.csv
             columns:
               - column: omapId
@@ -183,6 +189,7 @@ content:
                 label: '#BP'
                 type: numeric
           - label: 2nd Release (v1.1)
+            version: v1.1
             csvUrl: assets/content/omap-page/table-data/omaps_release2.csv
             columns:
               - column: organ

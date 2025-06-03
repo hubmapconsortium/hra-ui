@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use 'utils';
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
   display: block;
@@ -8,6 +9,13 @@
   /* Responsive Styling */
 
   /* 1921px and beyond */
+
+  @include mat.select-overrides(
+    (
+      trigger-text-font: vars.$label-medium-font,
+    )
+  );
+
   .splash {
     position: relative;
 

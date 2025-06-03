@@ -14,6 +14,19 @@
         "styles": {
           "$ref": "#/definitions/Styles"
         },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"],
+            "additionalProperties": true
+          }
+        },
         "variant": {
           "type": "string",
           "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
@@ -131,6 +144,9 @@
           "$ref": "#/definitions/ReleaseNotesVersionSelector"
         },
         {
+          "$ref": "#/definitions/SummaryStatisticsTable"
+        },
+        {
           "$ref": "#/definitions/TextHyperlink"
         },
         {
@@ -153,6 +169,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "request": {
           "type": "string"
@@ -194,6 +213,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "label": {
           "type": "string"
@@ -252,6 +274,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "variant": {
           "type": "string",
@@ -373,6 +398,9 @@
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
         "rowGap": {
           "type": "string"
         },
@@ -401,6 +429,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "svgIcon": {
           "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/svgIcon"
@@ -431,6 +462,9 @@
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
         "src": {
           "type": "string"
         },
@@ -454,6 +488,9 @@
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
         "data": {
           "type": "string"
         },
@@ -476,6 +513,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "tagline": {
           "type": "string"
@@ -510,6 +550,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "csvUrl": {
           "type": "string"
@@ -626,6 +669,9 @@
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
         },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
         "name": {
           "type": "string"
         },
@@ -657,6 +703,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         }
       },
       "required": ["component"],
@@ -673,6 +722,35 @@
         }
       ]
     },
+    "SummaryStatisticsTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "SummaryStatisticsTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "organColumn": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
     "TextHyperlink": {
       "type": "object",
       "properties": {
@@ -685,6 +763,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "text": {
           "type": "string"
@@ -711,6 +792,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "columns": {
           "$ref": "#/definitions/PageTable/properties/columns"
@@ -755,9 +839,12 @@
               },
               "label": {
                 "type": "string"
+              },
+              "version": {
+                "type": "string"
               }
             },
-            "required": ["label"],
+            "required": ["label", "version"],
             "additionalProperties": false
           }
         }
@@ -777,6 +864,9 @@
         },
         "styles": {
           "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
         },
         "videoId": {
           "type": "string"
