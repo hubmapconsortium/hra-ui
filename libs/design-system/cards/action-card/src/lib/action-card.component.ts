@@ -1,9 +1,7 @@
-import { coerceArray } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-// import { FilledIconDirective } from '@hra-ui/design-system/icons';
+import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { ActionCardVariant } from './action-card.schema';
 
 @Component({
@@ -17,7 +15,7 @@ export class ActionCardActionComponent {
 
 @Component({
   selector: 'hra-action-card',
-  imports: [HraCommonModule, MatDividerModule, MatIconModule],
+  imports: [HraCommonModule, MatDividerModule, IconsModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,5 +28,5 @@ export class ActionCardComponent {
   readonly tagline = input.required<string>();
   readonly subtagline = input<string>();
   readonly image = input<string>();
-  readonly icons = input([], { transform: (value: string | string[] = []) => coerceArray(value) });
+  readonly icons = input([], { transform: coerceIconList });
 }

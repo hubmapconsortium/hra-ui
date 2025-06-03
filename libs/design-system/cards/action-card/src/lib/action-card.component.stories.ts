@@ -100,7 +100,7 @@ export const Outlined: Story = {
 
 export const OutlinedWithIcons: Story = {
   args: {
-    // TODO icons: ['product:asctb-reporter']
+    icons: ['category:data'],
   },
   render: render(
     'outlined-with-icons',
