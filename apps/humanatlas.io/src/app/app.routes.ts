@@ -141,6 +141,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'tissue-origin-predictor',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/tissue-origin-predictor-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'training',
     component: ContentPageComponent,
     resolve: {
