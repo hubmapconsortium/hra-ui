@@ -19,6 +19,15 @@ export class IconConfigRegistryService {
     return this;
   }
 
+  setIconConfig(name: string, namespace: string | undefined, config: IconConfig): this {
+    if (namespace === undefined) {
+      [namespace, name] = this.splitIconName(name);
+    }
+
+    this.configs.set(`${namespace}:${name}`, config);
+    return this;
+  }
+
   getIconConfig(name: string, namespace?: string): IconConfig | undefined {
     if (namespace === undefined) {
       [namespace, name] = this.splitIconName(name);

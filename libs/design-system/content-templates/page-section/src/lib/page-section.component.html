@@ -1,13 +1,5 @@
 <section [attr.id]="anchor() || null" #section>
-  <hra-page-label
-    class="header"
-    [tagline]="tagline()"
-    [level]="level()"
-    [anchor]="anchor()"
-    [product]="product()"
-    [organ]="organ()"
-    [category]="category()"
-  />
+  <hra-page-label class="header" [tagline]="tagline()" [level]="level()" [icons]="icons()" [anchor]="anchor()" />
 
   <div class="content">
     <ng-content />

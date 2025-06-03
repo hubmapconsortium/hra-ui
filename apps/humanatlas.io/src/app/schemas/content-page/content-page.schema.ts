@@ -17,6 +17,7 @@ import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-
 import { VersionedDataTableSchema } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
+import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
 import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
@@ -29,6 +30,7 @@ export {
   ClassesSchema,
   DataViewerSchema,
   FlexContainerSchema,
+  IconSchema,
   ImageSchema,
   MarkdownSchema,
   PageSectionSchema,
@@ -48,6 +50,7 @@ export default z.lazy(() => {
     ButtonSchema,
     DataViewerSchema,
     FlexContainerSchema,
+    IconSchema,
     ImageSchema,
     MarkdownSchema,
     PageSectionSchema,
@@ -57,7 +60,6 @@ export default z.lazy(() => {
     TextHyperlinkSchema,
     VersionedDataTableSchema,
     YouTubePlayerSchema,
-    // TODO: Add more
   ]);
 
   return ContentPageDataSchema;

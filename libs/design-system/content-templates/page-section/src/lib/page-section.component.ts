@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
-import { BRAND } from 'zod';
 
+import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { PageSectionInstance, PageSectionService } from './services/page-section.service';
 
 /**
@@ -20,7 +20,7 @@ import { PageSectionInstance, PageSectionService } from './services/page-section
  */
 @Component({
   selector: 'hra-page-section',
-  imports: [CommonModule, MatDividerModule, PageLabelComponent],
+  imports: [CommonModule, MatDividerModule, IconsModule, PageLabelComponent],
   templateUrl: './page-section.component.html',
   styleUrl: './page-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,14 +32,8 @@ export class PageSectionComponent implements PageSectionInstance {
   /** Level of <hx> element to use for the header */
   readonly level = input(1, { transform: numberAttribute });
 
-  /** App icon */
-  readonly product = input<string & BRAND<'ProductLogoId'>>();
-
-  /** Organ icon */
-  readonly organ = input<string & BRAND<'OrganLogoId'>>();
-
-  /** Website category icon */
-  readonly category = input<string & BRAND<'CategoryLogoId'>>();
+  /** Icons to display as part of the label */
+  readonly icons = input([], { transform: coerceIconList });
 
   /** Anchor id for the section */
   readonly anchor = input<string>();

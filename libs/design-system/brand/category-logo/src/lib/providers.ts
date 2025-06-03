@@ -6,13 +6,13 @@ const CATEGORY_ICON_CONFIG: IconConfig = {
   backgroundColor: '#4b4b5e',
 };
 
-const categoryIconConfigResolver: IconConfigResolver = (_name, namespace) => {
-  return namespace === 'category' ? CATEGORY_ICON_CONFIG : undefined;
-};
+function createCategoryIconConfigResolver(): IconConfigResolver {
+  return (_name, namespace) => (namespace === 'category' ? CATEGORY_ICON_CONFIG : undefined);
+}
 
 export function provideCategoryLogos(): EnvironmentProviders {
   return provideEnvironmentInitializer(() => {
     const registry = inject(IconConfigRegistryService);
-    registry.addIconConfigResolver(categoryIconConfigResolver);
+    registry.addIconConfigResolver(createCategoryIconConfigResolver());
   });
 }

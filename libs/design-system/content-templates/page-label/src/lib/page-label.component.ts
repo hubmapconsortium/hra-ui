@@ -5,19 +5,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
 import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
+import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { BRAND } from 'zod';
 
 /** Label for a page section. Can also be used standalone */
 @Component({
   selector: 'hra-page-label',
-  imports: [
-    CommonModule,
-    ProductLogoComponent,
-    OrganLogoComponent,
-    // CategoryLogoComponent,
-    SectionLinkComponent,
-    MatIconModule,
-  ],
+  imports: [CommonModule, IconsModule, SectionLinkComponent],
   templateUrl: './page-label.component.html',
   styleUrl: './page-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,18 +23,9 @@ export class PageLabelComponent {
   /** Which level of <hx> to use */
   readonly level = input(1, { transform: numberAttribute });
 
-  /** Product icon */
-  readonly product = input<string & BRAND<'ProductLogoId'>>();
-
-  /** Organ icon */
-  readonly organ = input<string & BRAND<'OrganLogoId'>>();
-
-  /** Website category icon */
-  readonly category = input<string & BRAND<'CategoryLogoId'>>();
+  /** Icons to display as part of the label */
+  readonly icons = input([], { transform: coerceIconList });
 
   /** Anchor id of this label */
   readonly anchor = input<string>();
-
-  /** Whether any of the icon inputs are set */
-  protected readonly hasIcons = computed(() => this.product() || this.organ() || this.category());
 }

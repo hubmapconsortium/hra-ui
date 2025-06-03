@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-
 import { PageLabelComponent } from './page-label.component';
-import { toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-// import { toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
-import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 
 const meta: Meta<PageLabelComponent> = {
   component: PageLabelComponent,
@@ -27,27 +23,17 @@ const meta: Meta<PageLabelComponent> = {
 export default meta;
 type Story = StoryObj<PageLabelComponent>;
 
-export const App: Story = {
+export const Default: Story = {
   args: {
-    product: toProductLogoId('ftu'),
+    // TODO icons
+    // product: toProductLogoId('ftu'),
   },
 };
 
-export const Organ: Story = {
+export const MultipleIcons: Story = {
   args: {
-    organ: toOrganLogoId('bladder'),
-  },
-};
-
-export const WebsiteCategory: Story = {
-  args: {
-    // category: toCategoryLogoId('data'),
-  },
-};
-
-export const Multiple: Story = {
-  args: {
-    product: toProductLogoId('ftu'),
-    organ: toOrganLogoId('bladder'),
+    // TODO icons
+    // product: toProductLogoId('ftu'),
+    // organ: toOrganLogoId('bladder'),
   },
 };
