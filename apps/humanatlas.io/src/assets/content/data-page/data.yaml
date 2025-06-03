@@ -19,63 +19,113 @@ content:
           and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
       - component: FlexContainer
         content:
-          []
-          # - component: ActionCardOutlineDefault
-          #   app: 3d-organ
-          #   tagline: 3D Organs
-          #   description: 3D human organs with ontological terminology.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /3d-reference-library?version=2.1&organ=Blood%20Vasculature
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/ref-organ
-          # - component: ActionCardOutlineDefault
-          #   app: asctb-reporter
-          #   tagline: ASCT+B Tables
-          #   description: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /asctb-tables
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/asct-b
-          # - component: ActionCardOutlineDefault
-          #   app: cell-type-annotations
-          #   tagline: Cell Type Annotations
-          #   description: Ontology ID labels for cell type annotation cell types.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /cell-type-annotations
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/ctann
-          # - component: ActionCardOutlineDefault
-          #   app: ftu
-          #   tagline: Functional Tissue Unit (FTU) Illustrations
-          #   description: Illustrations of the smallest tissue organization performing a unique physiologic function and is replicated multiple times in a human organ.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /2d-ftu-illustrations?version=2.1&organ=Kidney
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/2d-ftu
-          # - component: ActionCardOutlineDefault
-          #   app: omap
-          #   tagline: Organ Mapping Antibody Panel (OMAP) Tables
-          #   description: Collections of antibodies spatially mapping anatomical structures and cell types.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /omap
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/omap
-          # - component: ActionCardOutlineDefault
-          #   app: millitome
-          #   tagline: Millitome
-          #   description: Files for assigning spatial locations to HuBMAP IDs and gathering metadata.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /millitome
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/millitome
-          # - component: ActionCardOutlineDefault
-          #   app: vascular-geometry
-          #   tagline: Vascular Geometry
-          #   description: Human blood vascular system information capturing key attributes of different vessels.
-          #   leftActionName: Learn more
-          #   leftActionUrl: /vccf
-          #   rightActionName: Get data
-          #   rightActionUrl: https://lod.humanatlas.io/vascular-geometry
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: 3D Organs
+            icons: product:3d-organ
+            content:
+              - component: Markdown
+                data: 3D human organs with ontological terminology.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /3d-reference-library?version=2.1&organ=Blood%20Vasculature
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/ref-organ
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: ASCT+B Tables
+            icons: product:asctb-reporter
+            content:
+              - component: Markdown
+                data: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /asctb-tables
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/asct-b
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Cell Type Annotations
+            icons: product:cell-type-annotations
+            content:
+              - component: Markdown
+                data: Ontology ID labels for cell type annotation cell types.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /cell-type-annotations
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/ctann
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Functional Tissue Unit (FTU) Illustrations
+            icons: product:ftu
+            content:
+              - component: Markdown
+                data: |
+                  Illustrations of the smallest tissue organization performing a unique physiologic function
+                  and is replicated multiple times in a human organ.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /2d-ftu-illustrations?version=2.1&organ=Kidney
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/2d-ftu
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Organ Mapping Antibody Panel (OMAP) Tables
+            icons: product:omap
+            content:
+              - component: Markdown
+                data: Collections of antibodies spatially mapping anatomical structures and cell types.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /omap
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/omap
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Millitome
+            icons: product:millitome
+            content:
+              - component: Markdown
+                data: Files for assigning spatial locations to HuBMAP IDs and gathering metadata.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /millitome
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/millitome
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Vascular Geometry
+            icons: product:vascular-geometry
+            content:
+              - component: Markdown
+                data: Human blood vascular system information capturing key attributes of different vessels.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /vccf
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/vascular-geometry
   - component: PageSection
     tagline: Collaborator data portals
     anchor: collaborator-data-portals

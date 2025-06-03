@@ -11,7 +11,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { CardMenuComponent } from '../card-menu/card-menu.component';
-import { ViewerCard } from '../types/data-viewer.schema';
+import { DataViewerVariant, ViewerCard } from '../types/data-viewer.schema';
 
 /**
  * This is a responsive component used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
@@ -38,7 +38,7 @@ export class ViewerCardComponent {
   private readonly dialog = inject(MatDialog);
 
   /** Data viewer variant the card belongs to */
-  readonly variant = input.required<string>();
+  readonly variant = input.required<DataViewerVariant>();
 
   /** Viewer card data */
   readonly viewerCardData = input.required<ViewerCard>();
