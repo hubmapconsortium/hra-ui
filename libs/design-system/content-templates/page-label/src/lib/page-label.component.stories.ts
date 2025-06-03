@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
 import { PageLabelComponent } from './page-label.component';
-import { toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
+// import { toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
 // import { toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
 import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 
@@ -35,7 +35,7 @@ export const App: Story = {
 
 export const Organ: Story = {
   args: {
-    organ: toOrganLogoId('bladder'),
+    // organ: toOrganLogoId('bladder'),
   },
 };
 
@@ -48,6 +48,6 @@ export const WebsiteCategory: Story = {
 export const Multiple: Story = {
   args: {
     product: toProductLogoId('ftu'),
-    organ: toOrganLogoId('bladder'),
+    // organ: toOrganLogoId('bladder'),
   },
 };
