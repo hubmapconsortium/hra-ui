@@ -46,5 +46,5 @@ content:
       - component: Markdown
         data: |
           Human Reference Atlas APIs are available freely on GitHub.
-          - [GitHub Repository](#)
+          - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us6-lightweight-atlas-components/)
           - [Open API Link](#)
