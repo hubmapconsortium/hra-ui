@@ -44,8 +44,10 @@ export const ReleaseVersionDataSchema = z.object({
   organData: ViewerOrganDataSchema.array(),
 });
 
+/** Data viewer variant */
 export type DataViewerVariant = z.infer<typeof DataViewerVariantSchema>;
 
+/** Schema for data viewer variant */
 export const DataViewerVariantSchema = z.enum(['ftu', '3d-organ']);
 
 /** Data viewer component data */
