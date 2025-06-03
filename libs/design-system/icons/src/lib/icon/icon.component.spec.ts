@@ -16,7 +16,7 @@ describe('IconComponent', () => {
   it('should create', async () => {
     const component = await render(IconComponent, {
       providers,
-      componentInputs: {
+      inputs: {
         icon: { fontIcon: 'arrow_left_alt' },
       },
     });
@@ -27,7 +27,7 @@ describe('IconComponent', () => {
   it('should render svg icon', async () => {
     const { fixture } = await render(IconComponent, {
       providers,
-      componentInputs: {
+      inputs: {
         svgIcon: 'product:ftu',
       },
     });
