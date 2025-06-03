@@ -15,8 +15,9 @@ import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/v
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { PageTableDef } from '@hra-ui/design-system/table';
-import { provideMarkdown } from 'ngx-markdown';
+import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { CodeBlockDef } from '@hra-ui/design-system/code-block';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -34,10 +35,11 @@ export const appConfig: ApplicationConfig = {
       TextHyperlinkDef,
       VersionedDataTableDef,
       YouTubePlayerDef,
+      CodeBlockDef,
     ]),
     provideDesignSystem(),
     provideExperimentalZonelessChangeDetection(),
-    provideMarkdown({ loader: HttpClient }),
+    provideMarkdown({ loader: HttpClient, markedOptions: { provide: MARKED_OPTIONS, useValue: { gfm: true } } }),
     provideRouter(
       appRoutes,
       withComponentInputBinding(),
