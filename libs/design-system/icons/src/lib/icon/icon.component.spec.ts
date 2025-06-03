@@ -1,4 +1,3 @@
-import {} from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { Provider } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -17,7 +16,7 @@ describe('IconComponent', () => {
   it('should create', async () => {
     const component = await render(IconComponent, {
       providers,
-      componentInputs: {
+      inputs: {
         icon: { fontIcon: 'arrow_left_alt' },
       },
     });
@@ -28,7 +27,7 @@ describe('IconComponent', () => {
   it('should render svg icon', async () => {
     const { fixture } = await render(IconComponent, {
       providers,
-      componentInputs: {
+      inputs: {
         svgIcon: 'product:ftu',
       },
     });
