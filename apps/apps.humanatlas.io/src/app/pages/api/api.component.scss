@@ -35,6 +35,11 @@
       justify-content: center;
       padding: 6rem 2.5rem;
 
+      .logo {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
       .splash-title {
         @include utils.use-font(display, large);
         margin-bottom: 0.5rem;

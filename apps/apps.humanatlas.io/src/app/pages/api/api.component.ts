@@ -8,17 +8,18 @@ import {
   ElementRef,
   inject,
   InjectionToken,
+  input,
   model,
   viewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
 import { Server } from '../../interfaces/server.interface';
+import { IconComponent } from '@hra-ui/design-system/icons';
 
 /**
  * Custom injection token to lazy load the theme for Rapidoc.
@@ -48,13 +49,16 @@ function loadRapidocStyles(): void {
  */
 @Component({
   selector: 'hra-api',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, ProductLogoComponent],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, IconComponent],
   templateUrl: './api.component.html',
   styleUrl: './api.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ApiComponent {
+  /** Product api logo*/
+  readonly logo = input<string>('product:api');
+
   /** model to handle serverId from resolver
    * and change within the component
    */
@@ -64,11 +68,6 @@ export class ApiComponent {
    * list of available servers
    */
   protected readonly servers = servers;
-
-  /**
-   * Product logo id
-   */
-  protected readonly logo = toProductLogoId('api');
 
   /**
    * stores the selected server
