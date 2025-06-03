@@ -12,10 +12,10 @@ export class DataViewerParamSyncControllerService implements ContentTemplateCont
   static readonly id = 'DataViewerParamSync';
 
   /** The version from URL params */
-  private readonly version = linkedQueryParam('version');
+  private readonly version = linkedQueryParam('version', { preserveFragment: true });
 
   /** The organ from URL params */
-  private readonly organ = linkedQueryParam('organ');
+  private readonly organ = linkedQueryParam('organ', { preserveFragment: true });
 
   /** The component reference for the versioned data viewer */
   private readonly componentRef = signal<ComponentRef<DataViewerComponent> | undefined>(undefined);
