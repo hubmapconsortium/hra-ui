@@ -3,7 +3,7 @@ import { IconConfig, IconConfigRegistryService, IconConfigResolver } from '@hra-
 
 const CATEGORY_ICON_CONFIG: IconConfig = {
   color: '#ffffff',
-  backgroundColor: '#201e3d',
+  backgroundColor: '#4b4b5e',
 };
 
 const categoryIconConfigResolver: IconConfigResolver = (_name, namespace) => {

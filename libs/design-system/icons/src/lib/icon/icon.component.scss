@@ -1,3 +1,18 @@
+@use '../../../../styles/vars';
+
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.hra-icon-filled {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: vars.$corner-full;
+
+    mat-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
 }

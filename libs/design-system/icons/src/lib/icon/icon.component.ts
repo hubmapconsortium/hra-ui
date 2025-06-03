@@ -10,9 +10,9 @@ import { IconConfigRegistryService } from '../services/icon-config.service';
   styleUrl: './icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.hra-icon-filled]': '!!svgConfig?.backgroundColor',
-    '[style.color]': 'svgConfig?.color || null',
-    '[style.background-color]': 'svgConfig?.backgroundColor || null',
+    '[class.hra-icon-filled]': '!!svgConfig()?.backgroundColor',
+    '[style.color]': 'svgConfig()?.color || null',
+    '[style.background-color]': 'svgConfig()?.backgroundColor || null',
   },
 })
 export class IconComponent {
