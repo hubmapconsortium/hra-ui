@@ -1,7 +1,7 @@
 import { IconComponent } from '@hra-ui/design-system/icons';
 import { Meta, StoryObj } from '@storybook/angular';
 
-const ICONS = ['graphs', 'ftu', 'collections', '3d-organ', 'omap'];
+const ICONS = ['graphs', 'ftu', 'collections', '3d-organ', 'omap'].map((icon) => `product:${icon}`);
 
 const meta: Meta<IconComponent> = {
   component: IconComponent,
