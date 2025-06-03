@@ -1,35 +1,41 @@
 @use '../../../../styles/utils';
 @use '../../../../styles/vars' as vars;
 
+$padding: 0.5rem;
+$menu-height: 2.5rem;
+
 :host {
-  .object {
-    border-radius: 0.5rem;
-    box-shadow: 1px 3px 6px 0px rgb(from vars.$shadow r g b / 24%);
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-    aspect-ratio: 100 / 58;
-    align-content: center;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 1px 3px 6px 0px rgb(from vars.$shadow r g b / 24%);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 100 / 58;
+  align-content: center;
 
-    .viewer-image,
-    .model-viewer {
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-      padding: 0.5rem;
-    }
+  .viewer-image,
+  .model-viewer {
+    height: calc(100% - 2 * $padding - $menu-height);
+    width: 100%;
+    object-fit: contain;
+    padding: $padding;
   }
-}
 
-.csv-button {
-  padding: 0.5rem 1rem;
+  .viewer-image {
+    cursor: pointer;
+  }
 
-  .csv-label {
+  .object-menu {
     display: flex;
-  }
+    align-items: center;
+    padding: 0 $padding;
+    height: $menu-height;
 
-  .csv-desc {
-    @include utils.use-font(label, small);
-    color: vars.$primary;
+    .tagline {
+      @include utils.use-font(label, large);
+      flex-grow: 1;
+      margin: 0.5rem 0.75rem;
+    }
   }
 }
 
@@ -62,16 +68,5 @@
   .dialog-image {
     height: 100%;
     width: 100%;
-  }
-}
-
-.object-menu {
-  display: flex;
-  align-items: center;
-
-  .tagline {
-    @include utils.use-font(label, large);
-    flex-grow: 1;
-    margin: 0.5rem 0.75rem;
   }
 }
