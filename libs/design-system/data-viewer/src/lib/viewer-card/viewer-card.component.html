@@ -1,26 +1,23 @@
-<div class="object">
-  @if (variant() === 'ftu') {
-    <img
-      class="viewer-image"
-      aria-hidden="true"
-      [alt]="viewerCardData().alt"
-      [src]="viewerCardData().fileUrl"
-      (click)="openImageViewer(fullscreen)"
-      (keyup.enter)="openImageViewer(fullscreen)"
-    />
-    <ng-container [ngTemplateOutlet]="fullscreen"> </ng-container>
-  } @else {
-    <model-viewer
-      class="model-viewer"
-      [alt]="viewerCardData().alt"
-      [src]="viewerCardData().fileUrl"
-      shadow-intensity="1"
-      camera-controls
-      auto-rotate
-    >
-    </model-viewer>
-  }
-</div>
+@if (variant() === 'ftu') {
+  <img
+    class="viewer-image"
+    aria-hidden="true"
+    [alt]="viewerCardData().alt"
+    [src]="viewerCardData().fileUrl"
+    (click)="openImageViewer(fullscreen)"
+    (keyup.enter)="openImageViewer(fullscreen)"
+  />
+} @else {
+  <model-viewer
+    class="model-viewer"
+    [alt]="viewerCardData().alt"
+    [src]="viewerCardData().fileUrl"
+    shadow-intensity="1"
+    camera-controls
+    auto-rotate
+  >
+  </model-viewer>
+}
 
 <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
 
