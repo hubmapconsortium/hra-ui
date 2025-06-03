@@ -1,4 +1,3 @@
-export { MarkdownDef, HraMarkdownDef } from './lib/markdown.definition';
+export { MarkdownDef } from './lib/markdown.definition';
 export { Markdown, MarkdownSchema } from './lib/markdown.schema';
-
-export * from './lib/markdown.component';
+export { MarkdownComponent } from './lib/markdown.component';
