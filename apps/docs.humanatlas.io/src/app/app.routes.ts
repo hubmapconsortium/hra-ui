@@ -24,6 +24,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'changelog',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'digital-objects',
     component: ContentPageComponent,
     resolve: {
