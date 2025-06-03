@@ -1,8 +1,8 @@
-import { SvgIconNamespaceConfigSchema } from '@hra-ui/design-system/icons';
+// import { SvgIconNamespaceConfigSchema } from '@hra-ui/design-system/icons';
 import { z } from 'zod';
 
 /* Reexport so the schema generator detects this as a recurring schema */
-export { SvgIconNamespaceConfigSchema };
+// export { SvgIconNamespaceConfigSchema };
 
 /** Organ logo id */
 export type OrganLogoId = OrganLogo['id'];
@@ -21,7 +21,7 @@ export type OrganLogos = z.infer<typeof OrganLogosSchema>;
 export const OrganLogosSchema = z.object({
   $schema: z.string(),
   logos: OrganLogoSchema.array(),
-  namespaceConfigs: SvgIconNamespaceConfigSchema.array(),
+  // namespaceConfigs: SvgIconNamespaceConfigSchema.array(),
 });
 
 export default OrganLogosSchema;

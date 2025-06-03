@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/design-system/icons';
+// import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/design-system/icons';
 import { findOrThrow } from '@hra-ui/common/array-util';
 
 import { logos, namespaceConfigs } from './static-data/product-logos.json';
@@ -10,7 +10,7 @@ import { ProductLogo, ProductLogoId } from './types/product-logos.schema';
 /** Typed logo items */
 const LOGOS = logos as ProductLogo[];
 /** Typed namespace configurations */
-const NAMESPACE_CONFIGS = namespaceConfigs as SvgIconNamespaceConfig[];
+// const NAMESPACE_CONFIGS = namespaceConfigs as SvgIconNamespaceConfig[];
 
 /** Global initialization token */
 const PRODUCT_LOGOS_INITIALIZATION = new InjectionToken<void>('', {
@@ -22,7 +22,7 @@ const PRODUCT_LOGOS_INITIALIZATION = new InjectionToken<void>('', {
  * Configure the icon resolver to find product logos
  */
 function initializeProductLogos(): void {
-  inject(SvgIconNamespaceService).setNamespaceConfigs(NAMESPACE_CONFIGS);
+  // inject(SvgIconNamespaceService).setNamespaceConfigs(NAMESPACE_CONFIGS);
 }
 
 /**

@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/design-system/icons';
+// import { SvgIconNamespaceConfig, SvgIconNamespaceService } from '@hra-ui/design-system/icons';
 import { findOrThrow } from '@hra-ui/common/array-util';
-import { logos, namespaceConfigs } from './static-data/organ-logos.json';
+import { logos } from './static-data/organ-logos.json';
 import { OrganLogo, OrganLogoId } from './types/organ-logos.schema';
 
 /** Typed logo items */
 const LOGOS = logos as OrganLogo[];
 /** Typed namespace configurations */
-const NAMESPACE_CONFIGS = namespaceConfigs as SvgIconNamespaceConfig[];
+// const NAMESPACE_CONFIGS = namespaceConfigs as SvgIconNamespaceConfig[];
 
 /** Global initialization token */
 const ORGAN_LOGOS_INITIALIZATION = new InjectionToken<void>('', {
@@ -21,7 +21,7 @@ const ORGAN_LOGOS_INITIALIZATION = new InjectionToken<void>('', {
  * Configure the icon resolver to find organ logos
  */
 function initializeOrganLogos(): void {
-  inject(SvgIconNamespaceService).setNamespaceConfigs(NAMESPACE_CONFIGS);
+  // inject(SvgIconNamespaceService).setNamespaceConfigs(NAMESPACE_CONFIGS);
 }
 
 /**

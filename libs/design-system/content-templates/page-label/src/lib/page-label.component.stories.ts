@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 
 import { PageLabelComponent } from './page-label.component';
 import { toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
+// import { toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
 import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 
 const meta: Meta<PageLabelComponent> = {
@@ -41,7 +41,7 @@ export const Organ: Story = {
 
 export const WebsiteCategory: Story = {
   args: {
-    category: toCategoryLogoId('data'),
+    // category: toCategoryLogoId('data'),
   },
 };
 

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, numberAttribute } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CategoryLogoComponent } from '@hra-ui/design-system/brand/category-logo';
+// import { CategoryLogoComponent } from '@hra-ui/design-system/brand/category-logo';
 import { OrganLogoComponent } from '@hra-ui/design-system/brand/organ-logo';
 import { ProductLogoComponent } from '@hra-ui/design-system/brand/product-logo';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
@@ -14,7 +14,7 @@ import { BRAND } from 'zod';
     CommonModule,
     ProductLogoComponent,
     OrganLogoComponent,
-    CategoryLogoComponent,
+    // CategoryLogoComponent,
     SectionLinkComponent,
     MatIconModule,
   ],

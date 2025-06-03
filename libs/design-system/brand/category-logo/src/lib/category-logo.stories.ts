@@ -1,10 +1,8 @@
+import { IconComponent } from '@hra-ui/design-system/icons';
 import { Meta, StoryObj } from '@storybook/angular';
-import { getCategoryLogoIds, CategoryLogoComponent } from './category-logo.component';
 
-const sortedIds = [...getCategoryLogoIds()].sort((a, b) => a.localeCompare(b));
-
-const meta: Meta<CategoryLogoComponent> = {
-  component: CategoryLogoComponent,
+const meta: Meta<IconComponent> = {
+  component: IconComponent,
   title: 'Design System/Brand/Category Logo',
   parameters: {
     design: {
@@ -13,16 +11,17 @@ const meta: Meta<CategoryLogoComponent> = {
     },
   },
   argTypes: {
-    id: {
+    svgIcon: {
       control: 'select',
-      options: sortedIds,
+      options: [],
+      mapping: {},
     },
   },
   args: {
-    id: sortedIds[0],
+    svgIcon: 'category:data',
   },
 };
 export default meta;
-type Story = StoryObj<CategoryLogoComponent>;
+type Story = StoryObj<IconComponent>;
 
 export const Default: Story = {};

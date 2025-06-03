@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { FilledIconDirective } from '@hra-ui/design-system/icons';
+// import { FilledIconDirective } from '@hra-ui/design-system/icons';
 import { ActionCardVariant } from './action-card.schema';
 
 @Component({
@@ -17,7 +17,7 @@ export class ActionCardActionComponent {
 
 @Component({
   selector: 'hra-action-card',
-  imports: [HraCommonModule, MatDividerModule, MatIconModule, FilledIconDirective],
+  imports: [HraCommonModule, MatDividerModule, MatIconModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
