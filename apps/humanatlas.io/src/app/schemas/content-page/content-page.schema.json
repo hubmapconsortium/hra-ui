@@ -89,7 +89,7 @@
           "$ref": "#/definitions/ActionCard/properties/content"
         }
       },
-      "required": ["component", "variant", "tagline", "content"],
+      "required": ["component", "variant", "tagline"],
       "additionalProperties": false
     },
     "AnyContentTemplate": {
@@ -796,6 +796,9 @@
         },
         "subtitle": {
           "type": "string"
+        },
+        "icons": {
+          "$ref": "#/definitions/ActionCard/properties/icons"
         },
         "action": {
           "type": "object",

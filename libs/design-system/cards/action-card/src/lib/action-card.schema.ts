@@ -15,7 +15,7 @@ export const ActionCardSchema = ContentTemplateSchema.extend({
   subtagline: z.string().optional(),
   image: z.string().optional(),
   icons: IconListSchema.optional(),
-  content: ProjectedContentTemplateSchema,
+  content: ProjectedContentTemplateSchema.optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
 });

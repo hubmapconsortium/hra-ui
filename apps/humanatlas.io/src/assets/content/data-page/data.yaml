@@ -18,6 +18,8 @@ content:
           Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
           and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
       - component: FlexContainer
+        rowGap: 1.5rem
+        columnGap: 1.5rem
         content:
           - component: ActionCard
             variant: outlined-with-icons
@@ -84,7 +86,7 @@ content:
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Organ Mapping Antibody Panel (OMAP) Tables
-            icons: product:omap
+            icons: product:omaps
             content:
               - component: Markdown
                 data: Collections of antibodies spatially mapping anatomical structures and cell types.
@@ -135,30 +137,46 @@ content:
         data: |
           Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
       - component: FlexContainer
+        rowGap: 1.5rem
+        columnGap: 1.5rem
         content:
-          []
-          # - component: ActionCardOutlineLargeImage
-          #   imageUrl: 'assets/content/data-overview-page/images/HuBMAP.png'
-          #   tagline: Human BioMolecular Atlas Program (HuBMAP) Data Portal
-          #   actionName: Explore
-          #   actionUrl: https://portal.hubmapconsortium.org/
-          # - component: ActionCardOutlineLargeImage
-          #   imageUrl: 'assets/content/data-overview-page/images/SenNet.png'
-          #   tagline: Cellular Senescence Network (SenNet) Data Portal
-          #   actionName: Explore
-          #   actionUrl: https://data.sennetconsortium.org/
-          # - component: ActionCardOutlineLargeImage
-          #   imageUrl: 'assets/content/data-overview-page/images/KPMP.png'
-          #   tagline: Kidney Precision Medicine Project (KPMP) Data Portal
-          #   actionName: Explore
-          #   actionUrl: https://www.kpmp.org/
-          # - component: ActionCardOutlineLargeImage
-          #   imageUrl: 'assets/content/data-overview-page/images/GTEx.png'
-          #   tagline: The Genotype-Tissue Expression (GTEx) Portal
-          #   actionName: Explore
-          #   actionUrl: https://www.gtexportal.org/home/
-          # - component: ActionCardOutlineLargeImage
-          #   imageUrl: 'assets/content/data-overview-page/images/GUDMAP.png'
-          #   tagline: GenitoUrinary Development Molecular Anatomy Project (GUDMAP) Database
-          #   actionName: Explore
-          #   actionUrl: https://www.atlas-d2k.org/gudmap/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/HuBMAP.png
+            tagline: Human BioMolecular Atlas Program (HuBMAP) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://portal.hubmapconsortium.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/SenNet.png
+            tagline: Cellular Senescence Network (SenNet) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://data.sennetconsortium.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/KPMP.png
+            tagline: Kidney Precision Medicine Project (KPMP) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.kpmp.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/GTEx.png
+            tagline: The Genotype-Tissue Expression (GTEx) Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.gtexportal.org/home/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/GUDMAP.png
+            tagline: GenitoUrinary Development Molecular Anatomy Project (GUDMAP) Database
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.atlas-d2k.org/gudmap/
