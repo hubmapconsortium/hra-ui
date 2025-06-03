@@ -25,15 +25,12 @@ type Story = StoryObj<PageLabelComponent>;
 
 export const Default: Story = {
   args: {
-    // TODO icons
-    // product: toProductLogoId('ftu'),
+    icons: 'product:ftu',
   },
 };
 
 export const MultipleIcons: Story = {
   args: {
-    // TODO icons
-    // product: toProductLogoId('ftu'),
-    // organ: toOrganLogoId('bladder'),
+    icons: ['product:ftu', 'organ:bladder'],
   },
 };

@@ -44,13 +44,17 @@ export const ReleaseVersionDataSchema = z.object({
   organData: ViewerOrganDataSchema.array(),
 });
 
+export type DataViewerVariant = z.infer<typeof DataViewerVariantSchema>;
+
+export const DataViewerVariantSchema = z.enum(['ftu', '3d-organ']);
+
 /** Data viewer component data */
 export type DataViewer = z.infer<typeof DataViewerSchema>;
 
 /** Schema for data viewer component */
 export const DataViewerSchema = ContentTemplateSchema.extend({
   component: z.literal('DataViewer'),
-  variant: z.enum(['ftu', '3d-organ']),
+  variant: DataViewerVariantSchema,
   githubIconsUrl: z.string(),
   releaseVersionData: ReleaseVersionDataSchema.array(),
 });

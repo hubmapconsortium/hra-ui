@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
-// import { OrganLogoComponent, OrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-// import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { ReleaseVersionData } from './types/data-viewer.schema';
+import { DataViewerVariant, ReleaseVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 
@@ -20,19 +19,18 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 @Component({
   selector: 'hra-data-viewer',
   imports: [
+    ButtonsModule,
+    ExpansionPanelModule,
+    FormsModule,
     HraCommonModule,
+    IconsModule,
+    MatDividerModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule,
-    ButtonsModule,
     MatSelectModule,
-    ExpansionPanelModule,
-    ViewerCardComponent,
-    // ProductLogoComponent,
-    // OrganLogoComponent,
-    FormsModule,
-    ViewerMenuComponent,
     PlainTooltipDirective,
+    ViewerCardComponent,
+    ViewerMenuComponent,
   ],
   templateUrl: './data-viewer.component.html',
   styleUrl: './data-viewer.component.scss',
@@ -44,7 +42,7 @@ export class DataViewerComponent {
   readonly releaseVersionData = input.required<ReleaseVersionData[]>();
 
   /** Data viewer variant */
-  readonly variant = input.required<string>();
+  readonly variant = input.required<DataViewerVariant>();
 
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
@@ -54,12 +52,4 @@ export class DataViewerComponent {
 
   /** Current organ selected */
   readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
-
-  /** Icon for the currently selected organ */
-  // readonly organIconId = computed(() => this.organ().icon as OrganLogoId);
-
-  /** Title to display on the data viewer */
-  readonly viewerTitle = computed(() => {
-    return this.variant() === 'ftu' ? 'Functional Tissue Units' : '3D Organs';
-  });
 }

@@ -1,7 +1,6 @@
+import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
-import { MatIconModule } from '@angular/material/icon';
 import { PageSectionComponent } from './page-section.component';
 
 const meta: Meta<PageSectionComponent> = {
