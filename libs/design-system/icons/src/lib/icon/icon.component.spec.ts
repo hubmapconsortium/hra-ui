@@ -1,4 +1,3 @@
-import {} from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { Provider } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
