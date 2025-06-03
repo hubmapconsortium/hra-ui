@@ -16,7 +16,7 @@
   }
   <div class="tagline">
     @for (icon of icons(); track icon) {
-      <mat-icon hraFilledIcon class="icon" [svgIcon]="icon" />
+      <hra-icon class="icon" [icon]="icon" />
     }
     <span>{{ tagline() }}</span>
   </div>

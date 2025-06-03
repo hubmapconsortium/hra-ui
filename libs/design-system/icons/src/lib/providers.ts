@@ -19,6 +19,11 @@ export interface IconFeature<KindT extends IconFeatureKind> {
 }
 
 /**
+ * All icon features
+ */
+export type IconFeatures = FontIconClassesFeature | SvgIconDirectoryFeature;
+
+/**
  * Helper for creating icon feature objects
  *
  * @param kind Feature kind
@@ -29,7 +34,9 @@ function makeIconFeature<KindT extends IconFeatureKind>(kind: KindT, providers: 
   return { __kind: kind, __providers: providers };
 }
 
-export function withFontIconClasses(classes: string[]): IconFeature<IconFeatureKind.FontIconClasses> {
+export type FontIconClassesFeature = IconFeature<IconFeatureKind.FontIconClasses>;
+
+export function withFontIconClasses(classes: string[]): FontIconClassesFeature {
   return makeIconFeature(IconFeatureKind.FontIconClasses, [
     {
       provide: FONT_ICONS_CLASSES,
@@ -38,7 +45,9 @@ export function withFontIconClasses(classes: string[]): IconFeature<IconFeatureK
   ]);
 }
 
-export function withSvgIconDirectory(directory: string): IconFeature<IconFeatureKind.SvgIconDirectory> {
+export type SvgIconDirectoryFeature = IconFeature<IconFeatureKind.SvgIconDirectory>;
+
+export function withSvgIconDirectory(directory: string): SvgIconDirectoryFeature {
   return makeIconFeature(IconFeatureKind.SvgIconDirectory, [
     {
       provide: SVG_ICON_DIRECTORY,
@@ -47,7 +56,7 @@ export function withSvgIconDirectory(directory: string): IconFeature<IconFeature
   ]);
 }
 
-export function provideIcons(...features: IconFeature<IconFeatureKind>[]): EnvironmentProviders {
+export function provideIcons(...features: IconFeatures[]): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideEnvironmentInitializer(initializeIcons),
     features.map((feature) => feature.__providers),

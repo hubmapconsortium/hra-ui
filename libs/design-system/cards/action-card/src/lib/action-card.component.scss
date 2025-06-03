@@ -18,6 +18,12 @@
     flex-direction: column;
     flex-grow: 1;
 
+    .tagline {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .description {
       flex-grow: 1;
     }
