@@ -21,6 +21,11 @@
             "input": "libs/design-system/assets",
             "glob": "**/*",
             "output": "./assets"
+          },
+          {
+            "glob": "CHANGELOG.md",
+            "input": ".",
+            "output": "assets/content/changelog-page"
           }
         ]
       },

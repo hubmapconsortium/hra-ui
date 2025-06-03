@@ -24,11 +24,13 @@ import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     CoreModule,
     MatIconModule,
     ContentModule,
