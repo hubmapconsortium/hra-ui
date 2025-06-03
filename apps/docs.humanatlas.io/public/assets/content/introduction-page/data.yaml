@@ -71,6 +71,14 @@ content:
 
       - component: Markdown
         data: |
+          **HRA Apps**: Explore interactive applications built on the HRA platform for visualizing organs, registering tissue samples, analyzing cell populations, and navigating spatial and semantic biomedical data.
+      - component: TextHyperlink
+        text: Learn More
+        url: /apps
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
           **Web Components**: Use plug-and-play UI components designed for rendering organ data, tables, and coordinate mappings directly into your applications.
       - component: TextHyperlink
         text: Learn More
