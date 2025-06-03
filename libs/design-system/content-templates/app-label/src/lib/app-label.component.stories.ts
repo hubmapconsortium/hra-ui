@@ -24,7 +24,7 @@ type Story = StoryObj<AppLabelComponent>;
 export const Default: Story = {
   args: {
     tagline: 'Product Name',
-    logo: 'apps',
+    // logo: 'apps',
     appStatus: 'Preview',
   },
 };

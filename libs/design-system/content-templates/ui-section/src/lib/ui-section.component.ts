@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { MatIcon } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
-import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+// import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
 
@@ -23,7 +23,7 @@ export class UiSectionComponent {
   /** Product image path */
   readonly imagePath = input.required<string>();
   /** Product logo */
-  readonly logo = input.required({ transform: toProductLogoId });
+  // readonly logo = input.required({ transform: toProductLogoId });
   /** App software status */
   readonly appStatus = input<SoftwareStatus>();
 

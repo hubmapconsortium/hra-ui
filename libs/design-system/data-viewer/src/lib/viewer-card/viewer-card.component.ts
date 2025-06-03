@@ -6,7 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
-import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+// import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
@@ -38,7 +38,7 @@ export class ViewerCardComponent {
   private readonly dialog = inject(MatDialog);
 
   /** Data viewer variant the card belongs to */
-  readonly variant = input.required<ProductLogoId>();
+  readonly variant = input.required<string>();
 
   /** Viewer card data */
   readonly viewerCardData = input.required<ViewerCard>();

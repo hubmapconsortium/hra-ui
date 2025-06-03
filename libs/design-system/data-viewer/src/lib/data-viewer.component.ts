@@ -6,7 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 // import { OrganLogoComponent, OrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+// import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -28,7 +28,7 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
     MatSelectModule,
     ExpansionPanelModule,
     ViewerCardComponent,
-    ProductLogoComponent,
+    // ProductLogoComponent,
     // OrganLogoComponent,
     FormsModule,
     ViewerMenuComponent,
@@ -44,7 +44,7 @@ export class DataViewerComponent {
   readonly releaseVersionData = input.required<ReleaseVersionData[]>();
 
   /** Data viewer variant */
-  readonly variant = input.required({ transform: toProductLogoId });
+  readonly variant = input.required<string>();
 
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();

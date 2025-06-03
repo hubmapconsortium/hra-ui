@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+// import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
@@ -20,7 +20,7 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
     MatButtonToggleModule,
     BrandMarkComponent,
     ButtonsModule,
-    ProductLogoComponent,
+    // ProductLogoComponent,
     SoftwareStatusIndicatorComponent,
     PlainTooltipDirective,
   ],
@@ -45,5 +45,5 @@ export class NavHeaderButtonsComponent {
   readonly hraTooltip = input<string>();
 
   /** App as a product logo id */
-  protected readonly appId = computed(() => toProductLogoId(this.app()));
+  // protected readonly appId = computed(() => toProductLogoId(this.app()));
 }
