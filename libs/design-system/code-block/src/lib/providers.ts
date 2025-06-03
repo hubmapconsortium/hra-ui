@@ -10,9 +10,13 @@ export function provideCodeBlock(): EnvironmentProviders {
       coreLibraryLoader: () => import('highlight.js/lib/core'),
       lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
       languages: {
+        javascript: () => import('highlight.js/lib/languages/javascript'),
         typescript: () => import('highlight.js/lib/languages/typescript'),
         css: () => import('highlight.js/lib/languages/css'),
         xml: () => import('highlight.js/lib/languages/xml'),
+        bash: () => import('highlight.js/lib/languages/bash'),
+        python: () => import('highlight.js/lib/languages/python'),
+        sql: () => import('highlight.js/lib/languages/sql'),
       },
     }),
     provideStyleComponents(CodeBlockGlobalStylesComponent),
