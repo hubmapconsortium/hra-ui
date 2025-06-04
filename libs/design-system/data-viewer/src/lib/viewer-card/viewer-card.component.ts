@@ -1,17 +1,14 @@
-import '@google/model-viewer';
-
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import '@google/model-viewer';
 import { HraCommonModule } from '@hra-ui/common';
-import { ProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-
 import { CardMenuComponent } from '../card-menu/card-menu.component';
-import { ViewerCard } from '../types/data-viewer.schema';
+import { DataViewerVariant, ViewerCard } from '../types/data-viewer.schema';
 
 /**
  * This is a responsive component used in digital object viewer components. This card design was inspired by YouTube's Thumbnail component.
@@ -38,7 +35,7 @@ export class ViewerCardComponent {
   private readonly dialog = inject(MatDialog);
 
   /** Data viewer variant the card belongs to */
-  readonly variant = input.required<ProductLogoId>();
+  readonly variant = input.required<DataViewerVariant>();
 
   /** Viewer card data */
   readonly viewerCardData = input.required<ViewerCard>();

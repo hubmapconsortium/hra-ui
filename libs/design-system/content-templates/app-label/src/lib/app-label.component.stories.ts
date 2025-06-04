@@ -3,7 +3,7 @@ import { AppLabelComponent } from './app-label.component';
 import { provideDesignSystem } from '@hra-ui/design-system';
 
 const meta: Meta = {
-  title: 'Design System/App Label',
+  title: 'Design System/Content Templates/App Label',
   component: AppLabelComponent,
   parameters: {
     design: {
@@ -24,7 +24,7 @@ type Story = StoryObj<AppLabelComponent>;
 export const Default: Story = {
   args: {
     tagline: 'Product Name',
-    logo: 'apps',
+    logo: 'product:apps',
     appStatus: 'Preview',
   },
 };
