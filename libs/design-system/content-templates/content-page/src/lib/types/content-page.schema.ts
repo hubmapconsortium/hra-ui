@@ -1,4 +1,5 @@
 import { ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
+import { IconListSchema } from '@hra-ui/design-system/icons';
 import { z } from 'zod';
 
 /** Content page type */
@@ -9,6 +10,7 @@ export const ContentPageDataSchema = z.object({
   $schema: z.string(),
   title: z.string(),
   subtitle: z.string(),
+  icons: IconListSchema.optional(),
   action: z
     .object({
       label: z.string(),

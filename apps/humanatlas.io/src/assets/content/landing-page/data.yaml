@@ -9,7 +9,7 @@ carouselItems:
   - tagline: Contribute data to the Human Reference Atlas
     description: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
     imageSrc: assets/content/landing-page/images/carousel3.svg
-    action: Learn More,
+    action: Learn More
     link:
       route: asctb-reporter
   - tagline: Learn more about the Human BioMolecular Atlas Program

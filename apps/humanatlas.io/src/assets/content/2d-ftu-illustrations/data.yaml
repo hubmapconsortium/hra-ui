@@ -46,7 +46,7 @@ content:
           crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Ascending Thin Limb of Loop of Henle
                   alt: Image of Ascending Thin Limb of Loop of Henle
@@ -145,7 +145,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: large-intestine
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -160,7 +160,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -175,7 +175,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg
             - label: Lung
-              icon: lungs
+              icon: organ:lungs
               cards:
                 - label: Bronchial Submucosal Gland
                   alt: Image of Bronchial Submucosal Gland
@@ -202,7 +202,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Acinus
                   alt: Image of Acinus
@@ -241,7 +241,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.svg
             - label: Prostate
-              icon: Prostate icon
+              icon: organ:Prostate icon
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -256,7 +256,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.svg
             - label: Skin
-              icon: Skin icon
+              icon: organ:Skin icon
               cards:
                 - label: Dermal Papilla
                   alt: Image of Dermal Papilla
@@ -283,7 +283,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/2d-ftu-skin-epidermal-ridge.svg
             - label: Small Intestine
-              icon: Small Intestine icon
+              icon: organ:Small Intestine icon
               cards:
                 - label: Intestinal Villus
                   alt: Image of Intestinal Villus
@@ -298,7 +298,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.svg
             - label: Spleen
-              icon: Spleen icon
+              icon: organ:Spleen icon
               cards:
                 - label: Red Pulp
                   alt: Image of Red Pulp
@@ -325,7 +325,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.svg
             - label: Thymus
-              icon: Thymus icon
+              icon: organ:Thymus icon
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule
@@ -346,7 +346,7 @@ content:
           crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Ascending Thin Limb of Loop of Henle
                   alt: Image of Ascending Thin Limb of Loop of Henle
@@ -453,7 +453,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -469,7 +469,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -485,7 +485,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.2/assets/2d-ftu-liver-liver-lobule.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Acinus
                   alt: Image of Acinus
@@ -527,7 +527,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.svg
             - label: Prostate
-              icon: prostate
+              icon: organ:prostate
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -543,7 +543,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.svg
             - label: Skin
-              icon: skin
+              icon: organ:skin
               cards:
                 - label: Dermal Papilla
                   alt: Image of Dermal Papilla
@@ -572,7 +572,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/2d-ftu-skin-epidermal-ridge.svg
             - label: Small Intestine
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Intestinal Villus
                   alt: Image of Intestinal Villus
@@ -588,7 +588,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.svg
             - label: Spleen
-              icon: spleen
+              icon: organ:spleen
               cards:
                 - label: Red Pulp
                   alt: Image of Red Pulp
@@ -617,7 +617,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.1/assets/2d-ftu-spleen-white-pulp.svg
             - label: Thymus
-              icon: thymus
+              icon: organ:thymus
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule
@@ -637,7 +637,7 @@ content:
           date: December 2023
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Ascending Thin Loop Of Henle
                   alt: Image of Ascending Thin Loop Of Henle
@@ -736,7 +736,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: large-intestine
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -751,7 +751,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -766,7 +766,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-liver-liver-lobule.svg
             - label: Lung
-              icon: lungs
+              icon: organ:lungs
               cards:
                 - label: Bronchial Submucosal Gland
                   alt: Image of Bronchial Submucosal Gland
@@ -793,7 +793,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Intercalated Duct
                   alt: Image of Intercalated Duct
@@ -832,7 +832,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
             - label: Prostate
-              icon: prostate
+              icon: organ:prostate
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -847,7 +847,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
             - label: Skin
-              icon: skin
+              icon: organ:skin
               cards:
                 - label: Dermal Papilla
                   alt: Image of Dermal Papilla
@@ -874,7 +874,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
             - label: Small Intestine
-              icon: small-intestine
+              icon: organ:small-intestine
               cards:
                 - label: Intestinal Villus
                   alt: Image of Intestinal Villus
@@ -889,7 +889,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-small-intestine-villus.svg
             - label: Spleen
-              icon: spleen
+              icon: organ:spleen
               cards:
                 - label: Red Pulp
                   alt: Image of Red Pulp
@@ -916,7 +916,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/2d-ftu-spleen-white-pulp.svg
             - label: Thymus
-              icon: thymus
+              icon: organ:thymus
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule
@@ -935,7 +935,7 @@ content:
           date: June 2023
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Ascending Thin Loop Of Henle
                   alt: Image of Ascending Thin Loop Of Henle
@@ -1034,7 +1034,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: large-intestine
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -1049,7 +1049,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -1064,7 +1064,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg
             - label: Lung
-              icon: lungs
+              icon: organ:lungs
               cards:
                 - label: Bronchial Submucosal Gland
                   alt: Image of Bronchial Submucosal Gland
@@ -1091,7 +1091,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Intercalated Duct
                   alt: Image of Intercalated Duct
@@ -1130,7 +1130,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
             - label: Prostate
-              icon: prostate
+              icon: organ:prostate
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -1145,7 +1145,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
             - label: Skin
-              icon: skin
+              icon: organ:skin
               cards:
                 - label: Dermal Papilla
                   alt: Image of Dermal Papilla
@@ -1172,7 +1172,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
             - label: Spleen
-              icon: spleen
+              icon: organ:spleen
               cards:
                 - label: Red Pulp
                   alt: Image of Red Pulp
@@ -1199,7 +1199,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.4/2d-ftu/2d-ftu-spleen-white-pulp.svg
             - label: Thymus
-              icon: thymus
+              icon: organ:thymus
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule
@@ -1218,7 +1218,7 @@ content:
           date: December 2022
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Ascending Thin Loop Of Henle
                   alt: Image of Ascending Thin Loop Of Henle
@@ -1317,7 +1317,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: large-intestine
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -1332,7 +1332,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-large-intestine-crypt-lieberkuhn.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -1347,7 +1347,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-liver-liver-lobule.svg
             - label: Lung
-              icon: lungs
+              icon: organ:lungs
               cards:
                 - label: Bronchial Submucosal Gland
                   alt: Image of Bronchial Submucosal Gland
@@ -1374,7 +1374,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-lung-pulmonary-alveolus.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Intercalated Duct
                   alt: Image of Intercalated Duct
@@ -1413,7 +1413,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-pancreas-islets-langerhans.svg
             - label: Prostate
-              icon: prostate
+              icon: organ:prostate
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -1428,7 +1428,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-prostate-prostate-glandular-acinus.svg
             - label: Skin
-              icon: skin
+              icon: organ:skin
               cards:
                 - label: Dermal Papilla
                   alt: Image of Dermal Papilla
@@ -1455,7 +1455,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-skin-epidermal-ridge.svg
             - label: Thymus
-              icon: thymus
+              icon: organ:thymus
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule
@@ -1474,7 +1474,7 @@ content:
           date: June 2022
           organData:
             - label: Kidney
-              icon: kidneys
+              icon: organ:kidneys
               cards:
                 - label: Nephron
                   alt: Image of Nephron
@@ -1497,7 +1497,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/renal_corpuscle_kidney.svg
             - label: Large Intestine
-              icon: large-intestine
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
@@ -1510,7 +1510,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/crypt_lieberkuhn_large_intestine.svg
             - label: Liver
-              icon: liver
+              icon: organ:liver
               cards:
                 - label: Liver Lobule
                   alt: Image of Liver Lobule
@@ -1523,7 +1523,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/liver_lobule_liver.svg
             - label: Lungs
-              icon: lungs
+              icon: organ:lungs
               cards:
                 - label: Pulmonary Alveolus
                   alt: Image of Pulmonary Alveolus
@@ -1536,7 +1536,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/pulmonary_alveolus_lung.svg
             - label: Pancreas
-              icon: pancreas
+              icon: organ:pancreas
               cards:
                 - label: Islets of Langerhans
                   alt: Image of Islets of Langerhans
@@ -1549,7 +1549,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/islets_langerhans_pancreas.svg
             - label: Prostate
-              icon: prostate
+              icon: organ:prostate
               cards:
                 - label: Prostate Glandular Acinus
                   alt: Image of Prostate Glandular Acinus
@@ -1562,7 +1562,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.2/2d-ftu/prostate_glandular_acinus_prostate.svg
             - label: Thymus
-              icon: thymus
+              icon: organ:thymus
               cards:
                 - label: Thymus Lobule
                   alt: Image of Thymus Lobule

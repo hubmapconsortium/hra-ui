@@ -18,9 +18,9 @@ import { ViewerCard } from '../types/data-viewer.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardMenuComponent {
-  /** Reference to menu component */
-  readonly menu = viewChild.required('menu', { read: MatMenu });
-
   /** Viewer card data */
   readonly card = input.required<ViewerCard>();
+
+  /** Reference to menu component */
+  readonly menu = viewChild.required('menu', { read: MatMenu });
 }

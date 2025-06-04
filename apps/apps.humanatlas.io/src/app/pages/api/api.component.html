@@ -3,7 +3,7 @@
     <video autoplay muted loop playsinline [src]="'videos/api-anim-v2.mp4' | assetUrl" #video></video>
   </div>
   <div class="splash-content">
-    <hra-product-logo [id]="logo" />
+    <hra-icon class="logo" [svgIcon]="logo()" />
     <div class="splash-title m">HRA API</div>
     <div class="splash-description">
       This API provides programmatic access to data registered to the Human Reference Atlas.

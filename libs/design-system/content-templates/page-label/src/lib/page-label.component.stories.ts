@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/angular';
-
 import { PageLabelComponent } from './page-label.component';
 
 const meta: Meta<PageLabelComponent> = {
@@ -24,27 +23,14 @@ const meta: Meta<PageLabelComponent> = {
 export default meta;
 type Story = StoryObj<PageLabelComponent>;
 
-export const App: Story = {
+export const Default: Story = {
   args: {
-    app: 'ftu',
+    icons: 'product:ftu',
   },
 };
 
-export const Organ: Story = {
+export const MultipleIcons: Story = {
   args: {
-    organ: 'bladder',
-  },
-};
-
-export const WebsiteCategory: Story = {
-  args: {
-    category: 'data',
-  },
-};
-
-export const Multiple: Story = {
-  args: {
-    app: 'ftu',
-    organ: 'bladder',
+    icons: ['product:ftu', 'organ:bladder'],
   },
 };
