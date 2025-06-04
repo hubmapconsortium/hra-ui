@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { provideIcons } from './providers';
-import { ICONS_CONFIG } from './tokens';
+import { provideIcons, withFontIconClasses, withSvgIconDirectory } from './providers';
+import { MatIconRegistry } from '@angular/material/icon';
 
-describe('provideIcons(config)', () => {
-  it('sets the icons config', () => {
-    const dir = 'test/dir/';
-    TestBed.configureTestingModule({ providers: [provideIcons({ svgDirectory: dir })] });
+describe('provideIcons', () => {
+  it('should apply the features', () => {
+    TestBed.configureTestingModule({
+      providers: [provideIcons(withFontIconClasses(['foobar']), withSvgIconDirectory('assets/'))],
+    });
 
-    expect(TestBed.inject(ICONS_CONFIG).svgDirectory).toEqual(dir);
+    const registry = TestBed.inject(MatIconRegistry);
+    expect(registry.getDefaultFontSetClass()).toContain('foobar');
   });
 });

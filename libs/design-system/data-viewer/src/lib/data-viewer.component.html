@@ -1,9 +1,16 @@
 <div class="header">
   <div class="logos">
-    <hra-product-logo [id]="variant()"></hra-product-logo>
-    <hra-organ-logo [id]="organIconId()"></hra-organ-logo>
+    @let productIcon = variant() === 'ftu' ? 'product:ftu' : 'product:3d-organ';
+    <hra-icon [svgIcon]="productIcon" />
+    <hra-icon [svgIcon]="organ_().icon" />
   </div>
-  <span class="header-label">{{ viewerTitle() }}</span>
+  <span class="header-label">
+    @if (variant() === 'ftu') {
+      Functional Tissue Units
+    } @else {
+      3D Organs
+    }
+  </span>
   <button
     mat-icon-button
     [matMenuTriggerFor]="viewermenu.menu()"

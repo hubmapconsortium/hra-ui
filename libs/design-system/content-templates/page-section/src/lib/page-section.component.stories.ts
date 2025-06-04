@@ -1,7 +1,6 @@
+import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
-import { MatIconModule } from '@angular/material/icon';
 import { PageSectionComponent } from './page-section.component';
 
 const meta: Meta<PageSectionComponent> = {
@@ -17,6 +16,7 @@ const meta: Meta<PageSectionComponent> = {
     tagline: 'Page label',
     level: 1,
     anchor: 'page-label',
+    icons: 'product:apps',
   },
   decorators: [
     moduleMetadata({
@@ -31,7 +31,7 @@ type Story = StoryObj<PageSectionComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<hra-page-section tagline="${args.tagline}" level="${args.level}" anchor="${args.anchor}">
+    template: `<hra-page-section [tagline]="tagline" [level]="level" [icons]="icons" [anchor]="anchor">
       This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
       <ul>
         <li>Components may be swapped out for this button set</li>

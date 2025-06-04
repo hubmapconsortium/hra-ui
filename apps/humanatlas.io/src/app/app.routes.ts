@@ -93,6 +93,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'data',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'explore-biomarker-expressions',
     component: ContentPageComponent,
     resolve: {

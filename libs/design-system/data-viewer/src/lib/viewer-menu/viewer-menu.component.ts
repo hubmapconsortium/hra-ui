@@ -18,12 +18,12 @@ import { ReleaseVersionData } from '../types/data-viewer.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewerMenuComponent {
-  /** Reference to menu component */
-  readonly menu = viewChild.required('menu', { read: MatMenu });
-
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
 
   /** Current selected release version */
   readonly currentVersion = input.required<ReleaseVersionData>();
+
+  /** Reference to menu component */
+  readonly menu = viewChild.required('menu', { read: MatMenu });
 }
