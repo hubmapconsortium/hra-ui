@@ -1,14 +1,5 @@
 :host {
   display: block;
-  background: linear-gradient(180deg, #d5dbe3 0%, #ffffff 100%);
-
-  hra-header {
-    margin-bottom: 7rem;
-  }
-
-  &:has(.menu-open) {
-    overflow: hidden;
-  }
 
   @media (max-width: 1440px) {
     hra-header {
