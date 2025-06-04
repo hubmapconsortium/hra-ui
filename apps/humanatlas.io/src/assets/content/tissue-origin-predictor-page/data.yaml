@@ -59,8 +59,8 @@ content:
           url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-reference-organs
 
   - component: PageSection
-    tagline: APIs
-    anchor: apis
+    tagline: Code
+    anchor: code
     level: 2
     content:
       - component: Markdown
