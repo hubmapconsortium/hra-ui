@@ -24,7 +24,7 @@ content:
 
   - component: PageSection
     tagline: 2D vs. virtual reality
-    anchor: 2d-virtual-reality
+    anchor: 2d-vs-virtual-reality
     level: 3
     content:
       - component: Markdown
@@ -72,8 +72,8 @@ content:
         NodeArray, and GLBObject classes to store 3D organs in GLB format.
         Once the setup is complete, the user can interact with the organs, and the entire scene takes about 5-7 seconds to load when running natively on the Meta Quest 2 or 3.
         Through the HRA Organ Gallery, users can investigate 55 3D reference organs and 800+ mapped tissue blocks obtained from 300+ diverse donors and providers and
-        20+ tissue data providers (as of HRA v2.1), connected to 6000+ datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR, information visualization,
-        and bioinformatics.
+        20+ tissue data providers (as of HRA v2.1), connected to 6000+ datasets, in a cohesive, immersive, and 3D VR environment at the convergence of VR,
+        information visualization, and bioinformatics.
 
   - component: PageSection
     tagline: Feedback
