@@ -12,14 +12,13 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
 import { Server } from '../../interfaces/server.interface';
-import { IconComponent } from '@hra-ui/design-system/icons';
 
 /**
  * Custom injection token to lazy load the theme for Rapidoc.
@@ -49,7 +48,7 @@ function loadRapidocStyles(): void {
  */
 @Component({
   selector: 'hra-api',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, IconComponent],
+  imports: [HraCommonModule, ButtonsModule, IconsModule, ServerSelectorComponent],
   templateUrl: './api.component.html',
   styleUrl: './api.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -94,7 +93,12 @@ export class ApiComponent {
   constructor() {
     inject(RAPIDOC_STYLES);
 
-    effect(() => this.videoElement().nativeElement.play());
+    effect(() =>
+      this.videoElement()
+        .nativeElement.play()
+        // Ignore exceptions
+        .catch(() => undefined),
+    );
   }
 
   /**
