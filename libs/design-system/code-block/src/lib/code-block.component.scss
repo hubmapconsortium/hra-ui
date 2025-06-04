@@ -14,7 +14,12 @@
     letter-spacing: 0rem;
     text-align: left;
     display: flex;
-    max-width: 35.5rem;
+    /* Disabled max-width for expanding the code-block in other places.
+       Affected Areas:
+       - US6 Embed Drawer - Drawer Width (need to handle in drawer)
+       - API Command Component - No changes
+    */
+    // max-width: 35.5rem;
     white-space: pre-wrap;
 
     code {
