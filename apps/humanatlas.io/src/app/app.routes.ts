@@ -103,6 +103,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'ftu-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'millitome',
     component: ContentPageComponent,
     resolve: {
