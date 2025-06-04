@@ -11,4 +11,14 @@ describe('ProgressSpinnerComponent', () => {
     });
     await expect(promise).resolves.toBeTruthy();
   });
+
+  it('should check for the size large', async () => {
+    const { fixture } = await render(ProgressSpinnerComponent, {
+      inputs: {
+        size: 'large',
+        color: 'color',
+      },
+    });
+    await expect(fixture.componentInstance.size()).toBe('large');
+  });
 });

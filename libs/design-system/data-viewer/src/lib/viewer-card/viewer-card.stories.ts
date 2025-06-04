@@ -1,4 +1,4 @@
-import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
+// import { toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { Meta, StoryObj } from '@storybook/angular';
 
 import { ViewerCard } from '../types/data-viewer.schema';
@@ -58,14 +58,14 @@ type Story = StoryObj<ViewerCardComponent>;
 
 export const FTUCard: Story = {
   args: {
-    variant: toProductLogoId('ftu'),
+    variant: 'ftu',
     viewerCardData: testCard,
   },
 };
 
 export const OrganCard: Story = {
   args: {
-    variant: toProductLogoId('3d-organ'),
+    variant: '3d-organ',
     viewerCardData: testOrgan,
   },
 };

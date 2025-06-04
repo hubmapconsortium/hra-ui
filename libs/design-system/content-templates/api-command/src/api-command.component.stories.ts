@@ -4,7 +4,7 @@ import { ApiCommandComponent } from './api-command.component';
 
 const meta: Meta<ApiCommandComponent> = {
   component: ApiCommandComponent,
-  title: 'Design System/API Command',
+  title: 'Design System/Content Templates/API Command',
   parameters: {
     design: {
       type: 'figma',

@@ -21,7 +21,7 @@
     },
     {
       "id": "eui-organ-information",
-      "productTitle": "EUI",
+      "productTitle": "Exploration User Interface (EUI)",
       "webComponentName": "Organ Information",
       "description": "View data registered to the HRA for a specific organ.",
       "previewImage": "assets/ui-images/eui-organ-information.png",
@@ -30,7 +30,7 @@
     },
     {
       "id": "eui-3d-organ-viewer",
-      "productTitle": "EUI",
+      "productTitle": "Exploration User Interface (EUI)",
       "webComponentName": "3D Organ Viewer",
       "description": "Interact with a 3D scene constructed from extraction sites registered to the HRA.",
       "previewImage": "assets/ui-images/eui-3d-organ-viewer.png",

@@ -1,4 +1,14 @@
-export { FilledIconDirective, FilledIconStylesComponent } from './lib/directives/filled-icon/filled-icon.directive';
-export { provideIcons } from './lib/providers';
-export { SvgIconNamespaceConfig, SvgIconNamespaceConfigSchema } from './lib/svg-icons/namespace.schema';
-export { configureSvgIconNamespace, SvgIconNamespaceService } from './lib/svg-icons/namespace.service';
+export { IconComponent } from './lib/icon/icon.component';
+export { IconsModule } from './lib/icons.module';
+export {
+  FontIconClassesFeature,
+  IconFeatures,
+  provideIcons,
+  SvgIconDirectoryFeature,
+  withFontIconClasses,
+  withSvgIconDirectory,
+} from './lib/providers';
+export { IconConfig, IconConfigRegistryService, IconConfigResolver } from './lib/services/icon-config.service';
+export { IconDef } from './lib/types/icon.definition';
+export { Icon, IconData, IconDataSchema, IconList, IconListSchema, IconSchema } from './lib/types/icon.schema';
+export { coerceIconList } from './lib/utils/coercion';
