@@ -1,7 +1,9 @@
 @use '../../../../../design-system/styles/utils';
+@use '../../../../../design-system/styles/vars';
 
 :host {
   display: block;
+  background-color: vars.$secondary-container;
 
   .content {
     display: flex;
