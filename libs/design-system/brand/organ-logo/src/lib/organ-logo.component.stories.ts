@@ -1,10 +1,10 @@
+import { IconComponent } from '@hra-ui/design-system/icons';
 import { Meta, StoryObj } from '@storybook/angular';
-import { getOrganLogoIds, OrganLogoComponent } from './organ-logo.component';
 
-const sortedIds = [...getOrganLogoIds()].sort((a, b) => a.localeCompare(b));
+const ICONS = ['all-organs', 'blood', 'large-intestine', 'neurons', 'skin'].map((icon) => `organ:${icon}`);
 
-const meta: Meta<OrganLogoComponent> = {
-  component: OrganLogoComponent,
+const meta: Meta<IconComponent> = {
+  component: IconComponent,
   title: 'Design System/Brand/Organ Logo',
   parameters: {
     design: {
@@ -13,16 +13,16 @@ const meta: Meta<OrganLogoComponent> = {
     },
   },
   argTypes: {
-    id: {
+    svgIcon: {
       control: 'select',
-      options: sortedIds,
+      options: ICONS,
     },
   },
   args: {
-    id: sortedIds[0],
+    svgIcon: ICONS[0],
   },
 };
 export default meta;
-type Story = StoryObj<OrganLogoComponent>;
+type Story = StoryObj<IconComponent>;
 
 export const Default: Story = {};

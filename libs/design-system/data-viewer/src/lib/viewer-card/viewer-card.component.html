@@ -7,9 +7,7 @@
     (click)="openImageViewer(fullscreen)"
     (keyup.enter)="openImageViewer(fullscreen)"
   />
-}
-
-@if (variant() === '3d-organ') {
+} @else {
   <model-viewer
     class="model-viewer"
     [alt]="viewerCardData().alt"
@@ -50,6 +48,6 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <hra-card-menu #cardMenu [variant]="variant()" [card]="viewerCardData()"></hra-card-menu>
+    <hra-card-menu [card]="viewerCardData()" #cardMenu />
   </div>
 </ng-template>

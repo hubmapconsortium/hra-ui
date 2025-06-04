@@ -11,7 +11,7 @@ import { HraCommonModule } from '@hra-ui/common';
   styleUrl: './flex-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.gap]': 'rowGap()',
+    '[style.row-gap]': 'rowGap()',
     '[style.column-gap]': 'columnGap()',
   },
 })

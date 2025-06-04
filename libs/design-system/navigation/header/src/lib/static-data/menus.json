@@ -9,7 +9,7 @@
         {
           "type": "group",
           "label": "Data Overview",
-          "url": "https://humanatlas.io/overview-data/",
+          "url": "https://humanatlas.io/data/",
           "items": [
             {
               "type": "item",

@@ -1,13 +1,7 @@
-@if (hasIcons()) {
+@if (icons().length > 0) {
   <div class="header-icons">
-    @if (app(); as id) {
-      <hra-product-logo [id]="id" class="product-logo" />
-    }
-    @if (organ(); as id) {
-      <hra-organ-logo [id]="id" class="organ-logo" />
-    }
-    @if (category(); as id) {
-      <hra-category-logo [id]="id" class="category-logo" />
+    @for (icon of icons(); track icon) {
+      <hra-icon [icon]="icon" />
     }
   </div>
 }
