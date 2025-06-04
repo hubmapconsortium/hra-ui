@@ -17,6 +17,7 @@ import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { CodeBlockDef } from '@hra-ui/design-system/code-block';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -34,6 +35,7 @@ export const appConfig: ApplicationConfig = {
       TextHyperlinkDef,
       VersionedDataTableDef,
       YouTubePlayerDef,
+      CodeBlockDef,
     ]),
     provideDesignSystem(),
     provideExperimentalZonelessChangeDetection(),

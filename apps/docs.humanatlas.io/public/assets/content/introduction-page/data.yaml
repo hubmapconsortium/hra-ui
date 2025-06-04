@@ -47,10 +47,10 @@ content:
 
       - component: Markdown
         data: |
-          **Support**: Get help from the development team and community. Submit GitHub issues, ask questions, or reach out directly.
+          **Tutorials**: Step-by-step guides to help you get started with the HRA. Covers everything from basic API usage to advanced data exploration techniques.
       - component: TextHyperlink
         text: Learn More
-        url: /support
+        url: /tutorials
         icon: arrow_right_alt
 
       - component: Markdown
