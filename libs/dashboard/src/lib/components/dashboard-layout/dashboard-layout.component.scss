@@ -2,6 +2,7 @@
   display: block;
   max-width: min(80rem, calc(100vw - 12rem));
   margin: 0 auto;
+  padding: 6rem 2.5rem;
 
   ::ng-deep > :nth-child(n + 4) {
     margin-bottom: 1.5rem;
