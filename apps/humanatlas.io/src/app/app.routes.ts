@@ -93,6 +93,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'editorial-board',
+    redirectTo: '/about#editorial-board',
+  },
+  {
     path: 'explore-biomarker-expressions',
     component: ContentPageComponent,
     resolve: {
@@ -124,6 +128,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'overview-training-outreach',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'release-notes',
     // Preferably this would redirect to the latest version based on the versions data
     // But it is not available at this point. Async redirectTo may become available in angular 20
@@ -148,11 +159,8 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'training',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
-    },
+    path: 'team',
+    redirectTo: '/about',
   },
   {
     path: 'vccf',
