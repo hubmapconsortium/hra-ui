@@ -93,6 +93,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'dashboard',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'data',
     component: ContentPageComponent,
     resolve: {
@@ -114,6 +121,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
+    }
+  },
+  {
+    path: 'kaggle-four',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -152,6 +166,13 @@ export const appRoutes: Route[] = [
         'assets/content/standard-operating-procedures-page/data.yaml',
         ContentPageDataSchema,
       ),
+    },
+  },
+  {
+    path: 'tissue-origin-predictor',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/tissue-origin-predictor-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
