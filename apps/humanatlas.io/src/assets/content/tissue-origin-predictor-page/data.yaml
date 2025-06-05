@@ -1,0 +1,69 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Tissue Origin Predictor
+subtitle: Upload a cell type population file to predict 3D tissue origin.
+action:
+  label: Use app
+  url: https://apps.humanatlas.io/us2/
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Determining the spatial location from which a human tissue sample was extracted is important for analyses when tissue context matters.
+          Traditional methods rely on textual annotations (e.g., organ or anatomical terms) and lack details on the 3D size, location, and rotation of tissue.
+          The HRA API uses biomarker expression profile similarities to predict tissue locations in 3D, a critical improvement for atlas construction and essential for downstream applications like disease diagnostics and targeted treatments.
+
+  - component: PageSection
+    tagline: Demo Video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: AlcTRCMU2ME
+
+  - component: PageSection
+    tagline: APIs
+    anchor: apis
+    level: 2
+    content:
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/cell-summary-report
+        method: POST
+        rightButton:
+          icon: api
+          label: Try me
+          url: https://apps.humanatlas.io/api/#post-/hra-pop/cell-summary-report
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-organs
+        method: GET
+        rightButton:
+          icon: api
+          label: Try me
+          url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-organs
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-tools
+        method: GET
+        rightButton:
+          icon: api
+          label: Try me
+          url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-tools
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/supported-reference-organs
+        method: GET
+        rightButton:
+          icon: api
+          label: Try me
+          url: https://apps.humanatlas.io/api/#get-/hra-pop/supported-reference-organs
+
+  - component: PageSection
+    tagline: Code
+    anchor: code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - [GitHub](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us2-cell-to-spatial)
+          - [Open API Link](#)
