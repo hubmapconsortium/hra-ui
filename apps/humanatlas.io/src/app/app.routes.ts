@@ -110,6 +110,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'kaggle-four',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'millitome',
     component: ContentPageComponent,
     resolve: {
