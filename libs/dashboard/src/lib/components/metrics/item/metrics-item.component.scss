@@ -2,12 +2,16 @@
   display: block;
 
   .count {
-    display: inline-block;
     color: #b20a2f;
+    display: inline-block;
+    font-family: 'Metropolis';
     margin: 0;
+    font-size: 1.25rem;
   }
 
   .label {
+    font-family: 'Metropolis';
+    font-size: 0.875rem;
     color: #4c4c58;
   }
 }

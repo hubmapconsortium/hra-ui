@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: block;
   max-width: min(80rem, calc(100vw - 12rem));
@@ -15,23 +18,26 @@
   }
 
   .title {
+    color: vars.$on-background;
+    font-family: 'Metropolis';
+    font-size: 2.375rem;
     margin-bottom: 0.5rem;
-    color: #201e3d;
   }
 
   .description {
-    color: #464954;
-    letter-spacing: 0.5px;
-    margin-bottom: 2rem;
-    max-width: 63.25rem;
+    font-family: 'Nunito Sans Variable';
     font-weight: 400;
+    color: vars.$primary-fixed;
+    font-size: 1.3125rem;
+    margin-bottom: 2rem;
+    line-height: 1.3125rem;
   }
 
   .read-btn {
     --mdc-filled-button-container-height: 2.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.875rem;
     padding: 0.5rem 1.5rem;
     width: max-content;
     line-height: 1.5rem;
@@ -39,10 +45,8 @@
     letter-spacing: 0.75px;
 
     mat-icon {
-      font-size: 1.5rem;
       height: 1.5rem;
       width: 1.5rem;
-      font-weight: 300;
     }
   }
 
