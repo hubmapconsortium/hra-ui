@@ -128,6 +128,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-two-page/data.yaml', ContentPageDataSchema),
+    }
+  },
+  {
+    path: 'kaggle-three',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-three-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -142,6 +149,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/omap-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'organ-gallery',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/organ-gallery-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
