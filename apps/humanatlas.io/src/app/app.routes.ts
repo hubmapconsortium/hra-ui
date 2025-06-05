@@ -93,6 +93,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'dashboard',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'editorial-board',
     redirectTo: '/about#editorial-board',
   },
@@ -104,6 +111,27 @@ export const appRoutes: Route[] = [
         'assets/content/explore-biomarker-expressions-page/data.yaml',
         ContentPageDataSchema,
       ),
+    },
+  },
+  {
+    path: 'hra-organ-gallery',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/organ-gallery-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-four',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-three',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-three-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -161,6 +189,13 @@ export const appRoutes: Route[] = [
   {
     path: 'team',
     redirectTo: '/about',
+  },
+  {
+    path: 'tissue-origin-predictor',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/tissue-origin-predictor-page/data.yaml', ContentPageDataSchema),
+    },
   },
   {
     path: 'vccf',
