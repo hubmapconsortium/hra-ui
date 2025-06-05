@@ -93,6 +93,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'dashboard',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'data',
     component: ContentPageComponent,
     resolve: {
