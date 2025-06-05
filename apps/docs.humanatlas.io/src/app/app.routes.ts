@@ -38,6 +38,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'design-system',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/design-system-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'digital-objects',
     component: ContentPageComponent,
     resolve: {
