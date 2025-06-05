@@ -145,6 +145,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'organ-gallery',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/organ-gallery-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'release-notes',
     // Preferably this would redirect to the latest version based on the versions data
     // But it is not available at this point. Async redirectTo may become available in angular 20
