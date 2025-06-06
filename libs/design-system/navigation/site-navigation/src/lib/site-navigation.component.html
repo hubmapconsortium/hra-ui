@@ -9,9 +9,13 @@
 
 <div class="content">
   <mat-nav-list>
-    @for (navMenuItem of navigationMenu.menuItems; track navMenuItem) {
+    @for (navMenuItem of navigationMenu(); track navMenuItem) {
       @if (navMenuItem.type === 'category') {
-        <hra-navigation-category [navigationCategory]="navMenuItem" />
+        <hra-navigation-category
+          [navigationCategory]="navMenuItem"
+          [expanded]="expandedCategory() === navMenuItem.label"
+          (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
+        />
       } @else if (navMenuItem.type === 'item') {
         <hra-navigation-item [navigationItem]="navMenuItem" />
       }

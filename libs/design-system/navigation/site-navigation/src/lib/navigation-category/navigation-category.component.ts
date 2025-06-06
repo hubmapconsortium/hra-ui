@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { DocsNavigationCategory } from '../types/docs-navigation.schema';
@@ -16,4 +16,8 @@ import { NavigationItemComponent } from '../navigation-item/navigation-item.comp
 export class NavigationCategoryComponent {
   /** Navigation category data */
   readonly navigationCategory = input.required<DocsNavigationCategory>();
+
+  readonly expanded = input<boolean>(false);
+
+  readonly expandedChange = output<boolean>();
 }

@@ -22,13 +22,19 @@ export const DocsNavigationCategorySchema = z.object({
   children: z.array(DocsNavigationItemSchema),
 });
 
+/** Docs Menu Items Array Type */
+export type DocsMenuItems = z.infer<typeof DocsMenuItemsSchema>;
+
+/** Docs Menu Items Array Schema */
+export const DocsMenuItemsSchema = z.array(z.union([DocsNavigationCategorySchema, DocsNavigationItemSchema]));
+
 /** Docs Navigation Menu */
 export type DocsNavigationMenu = z.infer<typeof DocsNavigationMenuSchema>;
 
 /** Docs Navigation Menu Schema */
 export const DocsNavigationMenuSchema = z.object({
   $schema: z.string(),
-  menuItems: z.array(z.union([DocsNavigationCategorySchema, DocsNavigationItemSchema])),
+  menuItems: DocsMenuItemsSchema,
 });
 
 export default DocsNavigationMenuSchema;
