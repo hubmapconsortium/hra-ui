@@ -131,6 +131,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'kaggle-one',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-one-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'kaggle-two',
     component: ContentPageComponent,
     resolve: {
