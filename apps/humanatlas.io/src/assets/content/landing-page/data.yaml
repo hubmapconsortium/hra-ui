@@ -79,4 +79,4 @@ sectionCardInfo:
   - tagline: Training
     description: Check out HuBMAP’s education and engagement efforts
     imageSrc: assets/content/landing-page/images/training.svg
-    route: /training
+    route: /overview-training-outreach

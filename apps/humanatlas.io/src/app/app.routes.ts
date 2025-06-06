@@ -8,6 +8,7 @@ import { createReleaseNotesContentResolver } from './resolvers/release-notes-con
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
 import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
+import { createExternalRedirectRoute } from './utils/external-redirect';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -57,19 +58,18 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // TODO asctb-reporter
-  {
-    path: 'asctb-tables',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
-    },
-  },
   {
     path: 'asctb-reporter',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'asctb-tables',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -175,7 +175,10 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // TODO overview-tools redirect to docs.humanatlas.io/apps
+  {
+    path: 'overview-tools',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
+  },
   {
     path: 'overview-training-outreach',
     component: ContentPageComponent,
@@ -183,7 +186,10 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // TODO overview-use-the-hra redirect to docs.humanatlas.io/apps
+  {
+    path: 'overview-use-the-hra',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
+  },
   {
     path: 'publications',
     component: PublicationsPageComponent,
@@ -226,8 +232,14 @@ export const appRoutes: Route[] = [
     path: 'team',
     redirectTo: '/about',
   },
-  // TODO usage-metrics redirect to apps.humanatlas.io/dashboard/usage
-  // TODO user-story redirect to docs.humanatlas.io/apps
+  {
+    path: 'usage-metrics',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/dashboard/usage'),
+  },
+  {
+    path: 'user-story',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
+  },
   // TODO user-story/1
   {
     path: 'user-story/2',
