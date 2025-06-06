@@ -104,7 +104,17 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // TODO faq/omap
+  {
+    path: 'faq',
+    redirectTo: 'faq/omap',
+  },
+  {
+    path: 'faq/omap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/omap-faqs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: 'hra-organ-gallery',
     component: ContentPageComponent,
@@ -174,12 +184,18 @@ export const appRoutes: Route[] = [
     },
   },
   // TODO overview-use-the-hra redirect to docs.humanatlas.io/apps
-  // TODO registration-user-interface
   {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
       publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
+    },
+  },
+  {
+    path: 'registration-user-interface',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -194,13 +210,6 @@ export const appRoutes: Route[] = [
     resolve: {
       versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
       data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
-    },
-  },
-  {
-    path: 'rui',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
