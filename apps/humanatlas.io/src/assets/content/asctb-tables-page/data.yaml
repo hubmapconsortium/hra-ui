@@ -28,7 +28,7 @@ content:
           CT and B (i.e., which B characterize a CT). Biomarker abbreviations: genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).
       - component: VersionedDataTable
         styles:
-          height: 40rem
+          --hra-table-max-height: 35rem
         controllers:
           - id: VersionedTableParamSync
         label: Release Version

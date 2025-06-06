@@ -1583,6 +1583,8 @@ content:
         data: |
           A summarized view of the number of anatomical structures and cell types per functional tissue unit.
       - component: SummaryStatisticsTable
+        styles:
+          --hra-table-max-height: 35rem
   - component: PageSection
     tagline: Standard operating procedures (SOPs)
     anchor: standard-operating-procedures
