@@ -9,7 +9,7 @@ import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
-  selector: 'hra-root',
+  selector: 'hra-apps',
   imports: [CommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
