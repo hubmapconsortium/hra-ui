@@ -72,6 +72,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-reporter',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {
