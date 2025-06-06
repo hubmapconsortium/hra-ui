@@ -208,6 +208,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'rui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'standard-operating-procedures',
     component: ContentPageComponent,
     resolve: {
