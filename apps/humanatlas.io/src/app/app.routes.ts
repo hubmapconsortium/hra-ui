@@ -121,7 +121,7 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
-    }
+    },
   },
   {
     path: 'kaggle-four',
