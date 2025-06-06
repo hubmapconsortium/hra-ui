@@ -114,6 +114,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'ftu-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'hra-organ-gallery',
     component: ContentPageComponent,
     resolve: {
@@ -125,6 +132,20 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-one',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-one-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-two',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-two-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
