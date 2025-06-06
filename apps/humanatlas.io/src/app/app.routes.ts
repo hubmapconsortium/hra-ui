@@ -223,7 +223,13 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // TODO user-story/5
+  {
+    path: 'user-story/5',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-distance-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: 'user-story/6',
     component: ContentPageComponent,
