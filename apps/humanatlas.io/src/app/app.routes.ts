@@ -198,6 +198,7 @@ export const appRoutes: Route[] = [
     redirectTo: '/about',
   },
   // TODO usage-metrics redirect to apps.humanatlas.io/dashboard/usage
+  // TODO user-story redirect to docs.humanatlas.io/apps
   // TODO user-story/1
   {
     path: 'user-story/2',
