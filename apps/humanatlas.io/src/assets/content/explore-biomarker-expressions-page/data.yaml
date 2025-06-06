@@ -77,7 +77,7 @@ content:
     level: 3
     content:
       component: Image
-      src: assets/content/explore-biomarker-expressions-page/images/eui_features.svg
+      src: assets/ui-images/eui_features.png
   - component: PageSection
     tagline: Application User Interface 2024
     anchor: application-user-interface-2024

@@ -1,0 +1,51 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Cell Distance Explorer
+subtitle: Compute, visualize, and explore distance distributions.
+icons: product:cde
+action:
+  url: https://apps.humanatlas.io/cde/
+  label: Use app
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Format and upload spatial data and explore resulting visualizations:
+
+          - This app reads spatial data mapped to X-Y coordinates for 2D and X-Y-Z coordinates for 3D along with their associated cell types, generating cell-cell distance distribution visualizations for analyses.
+            - Spatial data could include cells, cell types, and anatomical structures (e.g., functional tissue units), and cell types and morphological features (e.g., the edge of an organ), or any other data with X-Y coordinates or X-Y-Z coordinates.
+          - This app can be used to add granularity to our understanding of how disease develops (e.g., how tumor cells grow or metastasize) in support of targeted therapies.
+
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: onJB6Ee3nLw
+
+  - component: PageSection
+    tagline: Code
+    anchor: code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/cde-cell-distance-explorer/)
+            - [HRA Notebooks](https://github.com/x-atlas-consortia/hra-notebooks/tree/main)
+              - [Hierarchical Tissue Unit Annotation](https://github.com/x-atlas-consortia/hra-notebooks/blob/main/notebooks/hra-hierarchical-cell-neighborhoods.ipynb)
+
+  - component: PageSection
+    tagline: Collaborators
+    anchor: collaborators
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - Thank you to the Peter Sorger Lab for providing the CyCIF colorectal cancer data for the 2D intestine cell sample visualization
+            - Publication: [Multiplexed 3D atlas of state transitions and immune interaction in colorectal cancer](https://www.sciencedirect.com/science/article/pii/S0092867422015719?via%3Dihub)
+          - Thank you to GE Healthcare for providing the Cell DIVE skin data for the 3D skin sample visualization
+            - Publication: [3D reconstruction of skin and spatial mapping of immune cell density, vascular distance and effects of sun exposure and aging](https://www.nature.com/articles/s42003-023-04991-z)

@@ -100,6 +100,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-distance-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-distance-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dashboard',
     component: ContentPageComponent,
     resolve: {
@@ -114,6 +121,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'eui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'explore-biomarker-expressions',
     component: ContentPageComponent,
     resolve: {
@@ -124,10 +138,31 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'ftu-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'kaggle-four',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-one',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-one-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'kaggle-two',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kaggle-two-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
