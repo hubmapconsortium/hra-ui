@@ -86,6 +86,11 @@ export class AppComponent {
               label: 'humanatlas.io',
               url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
             },
+            {
+              type: 'item',
+              label: 'docs.humanatlas.io',
+              url: 'https://apps.humanatlas.io/beta--docs.humanatlas.io/',
+            },
           ],
         },
       ],
