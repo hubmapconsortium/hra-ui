@@ -71,7 +71,7 @@ sectionCardInfo:
   - tagline: Data
     description: Research the data constructing Human Reference Atlas
     imageSrc: assets/content/landing-page/images/data.svg
-    route: /data
+    route: /overview-data
   - tagline: Apps
     description: Construct, visualize, and use Human Reference Atlas applications
     imageSrc: assets/content/landing-page/images/apps.svg
@@ -79,4 +79,4 @@ sectionCardInfo:
   - tagline: Training
     description: Check out HuBMAP’s education and engagement efforts
     imageSrc: assets/content/landing-page/images/training.svg
-    route: /training
+    route: /overview-training-outreach
