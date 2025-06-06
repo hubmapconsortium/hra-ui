@@ -15,6 +15,6 @@
   .label {
     @include utils.use-font(label, medium);
     color: vars.$on-secondary-fixed;
-    line-height: 1.875rem;
+    line-height: 1.3125rem;
   }
 }
