@@ -19,13 +19,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
-  {
-    path: 'publications',
-    component: PublicationsPageComponent,
-    resolve: {
-      publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
-    },
-  },
 
   // Content pages
   // Please try to keep sorted in alphabetical order
@@ -64,6 +57,7 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
     },
   },
+  // TODO asctb-reporter
   {
     path: 'asctb-tables',
     component: ContentPageComponent,
@@ -93,33 +87,11 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'dashboard',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
     path: 'editorial-board',
     redirectTo: '/about#editorial-board',
   },
-  {
-    path: 'explore-biomarker-expressions',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver(
-        'assets/content/explore-biomarker-expressions-page/data.yaml',
-        ContentPageDataSchema,
-      ),
-    },
-  },
-  {
-    path: 'ftu-explorer',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
-    },
-  },
+  // TODO exploration-user-interface
+  // TODO faq/omap
   {
     path: 'hra-organ-gallery',
     component: ContentPageComponent,
@@ -156,6 +128,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'landing-page',
+    redirectTo: '/',
+  },
+  {
     path: 'millitome',
     component: ContentPageComponent,
     resolve: {
@@ -176,11 +152,21 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
     },
   },
+  // TODO overview-tools redirect to docs.humanatlas.io/apps
   {
     path: 'overview-training-outreach',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  // TODO overview-use-the-hra redirect to docs.humanatlas.io/apps
+  // TODO registration-user-interface
+  {
+    path: 'publications',
+    component: PublicationsPageComponent,
+    resolve: {
+      publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
     },
   },
   {
@@ -211,11 +197,45 @@ export const appRoutes: Route[] = [
     path: 'team',
     redirectTo: '/about',
   },
+  // TODO usage-metrics redirect to apps.humanatlas.io/dashboard/usage
+  // TODO user-story/1
   {
-    path: 'tissue-origin-predictor',
+    path: 'user-story/2',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/tissue-origin-predictor-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'user-story/3',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        'assets/content/explore-biomarker-expressions-page/data.yaml',
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: 'user-story/4',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  // TODO user-story/5
+  {
+    path: 'user-story/6',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'user-story/7',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -223,13 +243,6 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'web-components',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
 
