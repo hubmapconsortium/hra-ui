@@ -114,6 +114,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'eui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'explore-biomarker-expressions',
     component: ContentPageComponent,
     resolve: {
