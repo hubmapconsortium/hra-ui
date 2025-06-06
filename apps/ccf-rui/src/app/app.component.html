@@ -1,6 +1,6 @@
 <hra-back-button-bar class="back-bar" (backClick)="page.cancelRegistration()"></hra-back-button-bar>
 <hra-nav-header-buttons
-  app="rui"
+  app="product:rui"
   [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
   appTitle="Registration User Interface"
   [brandmark]="true"
@@ -40,10 +40,11 @@
       aria-label="Mode Select"
       hideSingleSelectionIndicator
       hraButtonToggleSize="medium"
-      (change)="updateView($event.value === 'preview')"
+      [ngModel]="viewType()"
+      (ngModelChange)="updateView($event)"
     >
-      <mat-button-toggle value="register" checked>Register</mat-button-toggle>
-      <mat-button-toggle value="preview">Preview</mat-button-toggle>
+      <mat-button-toggle value="register">Register</mat-button-toggle>
+      <mat-button-toggle value="3d">Preview</mat-button-toggle>
     </mat-button-toggle-group>
   </hra-expansion-panel-header-content>
 </hra-expansion-panel>

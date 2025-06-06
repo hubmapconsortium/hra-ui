@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
+import { IconList } from '@hra-ui/design-system/icons';
 import { PageSectionInstance, PageSectionService } from './services/page-section.service';
 
 /**
@@ -30,15 +31,8 @@ export class PageSectionComponent implements PageSectionInstance {
   /** Level of <hx> element to use for the header */
   readonly level = input(1, { transform: numberAttribute });
 
-  // TODO icons
-  // /** App icon */
-  // readonly app = input('');
-
-  // /** Organ icon */
-  // readonly organ = input('');
-
-  // /** Website category icon */
-  // readonly category = input('');
+  /** Icons to display as part of the label */
+  readonly icons = input<IconList>();
 
   /** Anchor id for the section */
   readonly anchor = input<string>();

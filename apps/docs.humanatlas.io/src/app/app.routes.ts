@@ -17,10 +17,59 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'api-reference',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'apps',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'changelog',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'design-system',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/design-system-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'digital-objects',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'knowledge-graph',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'tutorials',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/tutorials-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'web-components',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
 

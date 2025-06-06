@@ -1,25 +1,26 @@
+@use '@angular/material' as mat;
 @use 'vars';
 
 :host {
   --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
 
+  border-top: 1px solid vars.$outline-variant;
+  color: vars.$secondary;
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-top: 1px solid vars.$outline-variant;
-  color: vars.$secondary;
 
   .header {
+    align-items: center;
     display: flex;
     font: vars.$label-medium;
     min-height: 2.5rem;
-    align-items: center;
     padding: 0 1rem;
 
     .header-num-results {
       display: flex;
-      gap: 0.25rem;
       font: vars.$label-small;
+      gap: 0.25rem;
     }
   }
 
@@ -28,7 +29,11 @@
   }
 
   mat-tree {
-    --mat-tree-container-background-color: #{vars.$surface-container-low};
+    @include mat.tree-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+      )
+    );
     padding-left: 0.75rem;
   }
 
@@ -55,11 +60,15 @@
   }
 
   .biomarkers-toggle {
-    --mat-standard-button-toggle-selected-state-text-color: #{vars.$secondary};
-    display: flex;
     align-items: center;
+    display: flex;
     min-height: 2.25rem;
     padding: 0 1rem;
+    @include mat.button-toggle-overrides(
+      (
+        selected-state-text-color: vars.$secondary,
+      )
+    );
 
     .mat-button-toggle-group {
       width: 100%;

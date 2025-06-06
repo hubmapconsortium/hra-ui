@@ -5,6 +5,7 @@ import { provideContentTemplateControllers, provideContentTemplateDefs } from '@
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
@@ -14,6 +15,7 @@ import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-sec
 import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
+import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
@@ -27,10 +29,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateControllers([VersionedTableParamSyncControllerService, DataViewerParamSyncControllerService]),
     provideContentTemplateDefs([
+      ActionCardDef,
       ApiCommandDef,
       ButtonDef,
       DataViewerDef,
       FlexContainerDef,
+      IconDef,
       ImageDef,
       MarkdownDef,
       PageSectionDef,
@@ -48,7 +52,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       appRoutes,
       withComponentInputBinding(),
-      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+      withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
   ],
 };

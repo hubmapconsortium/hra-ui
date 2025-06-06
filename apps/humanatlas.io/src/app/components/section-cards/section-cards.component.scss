@@ -1,4 +1,6 @@
+@use '@angular/material' as mat;
 @use 'utils';
+@use 'vars';
 
 :host {
   display: flex;
@@ -8,7 +10,7 @@
 
   .section-title {
     @include utils.use-font(headline, large);
-    color: var(--mat-sys-secondary);
+    color: vars.$secondary;
     text-align: center;
   }
 
@@ -19,8 +21,12 @@
     flex-wrap: wrap;
 
     .section-card {
-      --mdc-elevated-card-container-shape: 0.5rem;
-      box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--mat-sys-shadow), 24%);
+      @include mat.card-overrides(
+        (
+          elevated-container-shape: 0.5rem,
+        )
+      );
+      box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 24%);
       display: flex;
       flex-direction: column;
       width: 18.25rem;
@@ -29,11 +35,11 @@
       overflow: hidden;
 
       &:hover {
-        box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(var(--mat-sys-shadow), 32%);
+        box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 32%);
       }
 
       &:focus {
-        border: 1px solid var(--mat-sys-tertiary);
+        border: 1px solid vars.$tertiary;
       }
     }
 
@@ -50,12 +56,12 @@
 
       .tagline {
         @include utils.use-font(title, small);
-        color: var(--mat-sys-on-tertiary-fixed);
+        color: vars.$on-tertiary-fixed;
       }
 
       .description {
         @include utils.use-font(label, medium);
-        color: var(--mat-sys-primary);
+        color: vars.$primary;
       }
     }
   }

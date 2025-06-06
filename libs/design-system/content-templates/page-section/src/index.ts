@@ -1,5 +1,5 @@
 export { PageSectionComponent } from './lib/page-section.component';
-export { PageSectionDef } from './lib/page-section.definition';
+export { PageSectionDef } from './lib/types/page-section.definition';
 export { providePageSectionNavigation } from './lib/providers';
 export {
   PageSectionActivationOptions,

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { ActionCardActionComponent, ActionCardComponent } from '@hra-ui/design-system/cards/action-card';
 import { FlatCardModule } from '@hra-ui/design-system/cards/flat-card';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
-import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
 
 @NgModule({
-  imports: [FlatCardModule, WebComponentCardComponent, ProfileCardComponent],
-  exports: [FlatCardModule, WebComponentCardComponent, ProfileCardComponent],
+  imports: [ActionCardComponent, ActionCardActionComponent, FlatCardModule, ProfileCardComponent],
+  exports: [ActionCardComponent, ActionCardActionComponent, FlatCardModule, ProfileCardComponent],
 })
 export class CardsModule {}
