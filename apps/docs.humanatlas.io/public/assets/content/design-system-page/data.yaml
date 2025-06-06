@@ -5,7 +5,7 @@ subtitle: |
 
   Designers use [Figma's design system file structure](https://help.figma.com/hc/en-us/articles/14552802134807-Lesson-1-Welcome-to-design-systems) to create reusable components,
   patterns, and styles that ensure consistency across the Human Reference Atlas (HRA) applications.
-
+icons: product:design-system
 content:
   - component: PageSection
     tagline: Storybook UI Components
