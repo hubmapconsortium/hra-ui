@@ -4,19 +4,3 @@
 .hra-app {
   @include theming.theme(light-theme.$theme);
 }
-
-body {
-  margin: 0;
-}
-
-body:has(.menu-open) {
-  overflow: hidden;
-
-  hra-header {
-    background-color: unset;
-  }
-}
-
-a {
-  text-decoration: none;
-}

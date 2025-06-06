@@ -1,17 +1,20 @@
+@use '../../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: block;
 
   .count {
-    color: #b20a2f;
+    @include utils.use-font(title, medium);
+    color: vars.$on-tertiary-fixed;
     display: inline-block;
-    font-family: 'Metropolis';
     margin: 0;
-    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 
   .label {
-    font-family: 'Metropolis';
-    font-size: 0.875rem;
-    color: #4c4c58;
+    @include utils.use-font(label, medium);
+    color: vars.$on-secondary-fixed;
+    line-height: 1.875rem;
   }
 }

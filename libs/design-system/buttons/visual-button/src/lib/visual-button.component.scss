@@ -38,9 +38,9 @@
     }
 
     .label {
+      @include utils.use-font(title, medium);
       color: vars.$on-tertiary-fixed;
       text-align: center;
-      font-size: 1.25rem;
     }
 
     mat-icon {
