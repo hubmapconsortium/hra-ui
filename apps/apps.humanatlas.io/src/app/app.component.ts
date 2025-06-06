@@ -9,7 +9,7 @@ import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
-  selector: 'hra-root',
+  selector: 'hra-apps',
   imports: [CommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -85,6 +85,11 @@ export class AppComponent {
               type: 'item',
               label: 'humanatlas.io',
               url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
+            },
+            {
+              type: 'item',
+              label: 'docs.humanatlas.io',
+              url: 'https://apps.humanatlas.io/beta--docs.humanatlas.io/',
             },
           ],
         },

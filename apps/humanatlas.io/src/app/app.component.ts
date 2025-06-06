@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
+
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
 
@@ -12,7 +13,7 @@ const ANCHOR_SCROLL_PADDING = 24;
  * Root component
  */
 @Component({
-  selector: 'hra-root',
+  selector: 'hra-portal',
   imports: [RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
