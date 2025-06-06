@@ -145,6 +145,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'faq/omap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/omap-faqs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'organ-gallery',
     component: ContentPageComponent,
     resolve: {
