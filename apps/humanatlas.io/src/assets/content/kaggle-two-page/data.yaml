@@ -1,0 +1,108 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: |
+  HuBMAP + HPA - Hacking the Human Body
+subtitle: 'Kaggle competition timeline: June 22, 2022 to September 22, 2022'
+headerContent:
+  - component: FlexContainer
+    columnGap: 2rem
+    content:
+      - component: Button
+        label: Read publication
+        type: cta
+        href: https://www.nature.com/articles/s41467-023-40291-0
+
+      - component: Button
+        label: View competition
+        type: cta
+        variant: secondary
+        href: https://www.kaggle.com/competitions/hubmap-organ-segmentation
+
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          This challenge asks participants to develop models that can accurately identify and segment functional tissue units
+          (FTUs)—the cellular neighborhoods that perform key functions—across five human organs using tissue section images.
+          By improving FTU detection methods that generalize across organs and datasets, participants contribute to building a
+          Human Reference Atlas that could transform how we understand and improve human health at the molecular level.
+
+  - component: PageSection
+    tagline: Awards ceremony
+    anchor: awards-ceremony
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: AF--edMjvss
+
+  - component: PageSection
+    tagline: Winning teams
+    anchor: winning-teams
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Accuracy prizes:
+          - 1st place ($15,000): I need SegFormer - [Opusen](https://www.kaggle.com/opusen)
+            - [Discussion page](https://www.kaggle.com/competitions/hubmap-organ-segmentation/discussion/356201)
+            - [Code repository](https://github.com/open-mmlab/mmsegmentation/tree/master/configs/segformer)
+          - 2nd place ($10,000): [Victor Durnov](https://www.kaggle.com/victorsd)
+            - [Code repository](https://www.kaggle.com/code/victorsd/2nd-place-inference/notebook?scriptVersionId=106240458)
+          - 3rd place: Human Torus Team - [Igor Krashenyi](https://www.kaggle.com/igorkrashenyi), [Dennis Sakva](https://www.kaggle.com/sakvaua), [Alexander Zarichkovyi](https://www.kaggle.com/alexkirnas), [Volodymyr](https://www.kaggle.com/vladimirsydor)
+            - [Code repository](https://www.kaggle.com/code/vladimirsydor/hubmap-2021-inference-v1/notebook?scriptVersionId=106283407)
+
+          Judges prizes:
+          - Scientific prizes (2 x $10,000):
+            - Team: Seungcheul Kim
+              - [Summary notebook](https://www.kaggle.com/code/cheulkay/hubmap-hpa-presentation)
+              - [Code notebook](https://www.kaggle.com/code/cheulkay/hubmap-inference)
+            - Team: Xiaoqi Jia
+              - [Interface notebook](https://www.kaggle.com/code/gray98/will-noisy-label-impede-the-performance-of-models)
+              - [Code notebook](https://www.kaggle.com/code/gray98/learning-with-noisy-label)
+          - Diversity prize ($10,000): Nghi Huynh, Yuan Hong, Matteo Cacciola
+            - [Code notebook](https://www.kaggle.com/code/nghihuynh/hubmap-hpa-methodology-submission)
+
+  - component: PageSection
+    tagline: Publication
+    anchor: publication
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The competition results are published in Nature Communications: [Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms](https://www.nature.com/articles/s41467-023-40291-0).
+
+  - component: PageSection
+    tagline: How to cite
+    anchor: how-to-cite
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Jain, Y., Godwin, L.L., Joshi, S. et al. Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms. Nat Commun 14, 4656 (2023). https://doi.org/10.1038/s41467-023-40291-0
+
+  - component: PageSection
+    tagline: Data and code
+    anchor: data-code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - All data and code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the [GitHub repository](https://github.com/cns-iu/ccf-research-kaggle-2022).
+
+  - component: PageSection
+    tagline: Acknowledgements
+    anchor: acknowledgements
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          We would like to thank the many individuals that made this competition possible, including:
+          - Organizers: Andrea de Souza (Eli Lilly and Company), Katy Börner, Yashvardhan Jain (Indiana University), Emma Lundberg (Science for Life Laboratory), Cecilia Lindskog (Uppsala University, Sweden), Amy Kemper (Google).
+          - Support Team: Lisel Record, Shriya Mandarapu (Indiana University), Trang Le (Stanford, Science for Life Laboratory).
+          - Kaggle Sponsors: Google, Genentech (A member of the Roche Group), and Indiana University.
+          - Kaggle Judges: Zorina Galis (NIH), Carolina Wahlby (Uppsala University, Sweden), Artem Sokolov (Harvard), Constantin Kappel (Leica Microsystems), Anna Kreshuk (EMBL), Blue Lake (UC San Diego), David Van Valen (CalTech), and Nathan Heath Patterson (Vanderbilt School of Medicine).
+          - Funders: This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.
+          This research has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671, NIH awards U54EY032442-01 and U54HG010426-01, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) award U54DK120058, U54DK120058, the NIDDK Kidney Precision Medicine Project grant U2CDK114886, and the Knut and Alice Wallenberg Foundation. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
