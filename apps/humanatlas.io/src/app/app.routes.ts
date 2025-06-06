@@ -128,7 +128,7 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-one-page/data.yaml', ContentPageDataSchema),
-    }
+    },
   },
   {
     path: 'kaggle-three',
