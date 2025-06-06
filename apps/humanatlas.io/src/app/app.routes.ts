@@ -72,6 +72,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-reporter',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {
@@ -93,6 +100,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-distance-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-distance-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dashboard',
     component: ContentPageComponent,
     resolve: {
@@ -104,6 +118,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'eui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -166,6 +187,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'faq/omap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/omap-faqs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'organ-gallery',
     component: ContentPageComponent,
     resolve: {
@@ -184,6 +212,13 @@ export const appRoutes: Route[] = [
     resolve: {
       versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
       data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
+    },
+  },
+  {
+    path: 'rui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
