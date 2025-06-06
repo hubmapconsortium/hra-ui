@@ -72,6 +72,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-reporter',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {
@@ -205,6 +212,13 @@ export const appRoutes: Route[] = [
     resolve: {
       versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
       data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
+    },
+  },
+  {
+    path: 'rui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
