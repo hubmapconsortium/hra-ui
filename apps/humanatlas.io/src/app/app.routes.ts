@@ -66,6 +66,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'asctb-reporter',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'ccf-ontology',
     component: ContentPageComponent,
     resolve: {
@@ -90,7 +97,13 @@ export const appRoutes: Route[] = [
     path: 'editorial-board',
     redirectTo: '/about#editorial-board',
   },
-  // TODO exploration-user-interface
+  {
+    path: 'exploration-user-interface',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   // TODO faq/omap
   {
     path: 'hra-organ-gallery',
