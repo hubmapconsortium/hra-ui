@@ -93,6 +93,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-distance-explorer',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-distance-explorer-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dashboard',
     component: ContentPageComponent,
     resolve: {
@@ -104,6 +111,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'eui',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
