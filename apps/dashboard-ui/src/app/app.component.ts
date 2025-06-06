@@ -1,13 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { routeData } from './shared/utils/route-data';
 
 /**
  * App Component
  */
 @Component({
   selector: 'hra-root',
-  imports: [RouterModule, NavigationModule],
+  imports: [ButtonsModule, IconsModule, NavigationModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -15,6 +19,9 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
   },
 })
 export class AppComponent {
+  private readonly data = routeData();
+  protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
+
   /** Initialize app */
   constructor() {
     inject(Router).initialNavigation();

@@ -1,6 +1,11 @@
 :host {
   display: block;
 
+  button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   @media (max-width: 1440px) {
     hra-header {
       margin-bottom: 6.5rem;
