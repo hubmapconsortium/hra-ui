@@ -59,6 +59,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'support',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/support-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'tutorials',
     component: ContentPageComponent,
     resolve: {
@@ -72,7 +79,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
-
   // Error pages and redirects
   {
     path: '404',
