@@ -1,12 +1,12 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Web Components
+title: Embedding Web Components
 subtitle: |
   The HRA Web Components are a collection of reusable, modular UI elements designed to simplify interaction with
   the Human Reference Atlas (HRA) ecosystem. These components help developers build applications that visualize and
   explore complex biological data such as 3D organ models, tissue block registrations, and cell-type mappings.
 
   Think of them as ready-made building blocks: just plug them into your web app, and you can instantly access and interact with the HRA data.
-
+icons: product:web-components
 action:
   label: Explore Components
   url: https://apps.humanatlas.io/us6

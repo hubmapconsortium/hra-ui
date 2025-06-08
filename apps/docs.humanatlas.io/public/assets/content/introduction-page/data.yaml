@@ -10,6 +10,7 @@ subtitle: |
 
   Whether you're building web applications using HRA APIs, visualizing organs in 3D, or contributing your own data and tools to the ecosystem,
   this documentation has everything you need to get started.
+icons: product:developer-portal
 action:
   label: Explore the HRA
   url: https://humanatlas.io/

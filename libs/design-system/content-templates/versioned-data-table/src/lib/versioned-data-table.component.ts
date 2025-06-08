@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { TableColumn, TableComponent, TableVariant } from '@hra-ui/design-system/table';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { saveAs } from 'file-saver';
 import { unparse } from 'papaparse';
 import { VersionedData } from './types/versioned-data-table.schema';
@@ -17,7 +18,15 @@ import { VersionedData } from './types/versioned-data-table.schema';
  */
 @Component({
   selector: 'hra-versioned-data-table',
-  imports: [CommonModule, ButtonsModule, MatFormFieldModule, MatSelectModule, TableComponent, MatIconModule],
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    IconsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    PlainTooltipDirective,
+    TableComponent,
+  ],
   templateUrl: './versioned-data-table.component.html',
   styleUrl: './versioned-data-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

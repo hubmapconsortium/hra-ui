@@ -39,6 +39,9 @@
     },
     "serve": {
       "executor": "@nx/angular:dev-server"
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ftu-ui/browser/"
     }
   }
 }
