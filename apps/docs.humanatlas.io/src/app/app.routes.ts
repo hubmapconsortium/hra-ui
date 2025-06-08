@@ -52,6 +52,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'faqs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/faqs/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'knowledge-graph',
     component: ContentPageComponent,
     resolve: {
