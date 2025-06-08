@@ -1,0 +1,68 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: |
+  SenNet + HOA - Hacking the Human Vasculature in 3D
+subtitle: 'Kaggle competition timeline: November 7, 2023 to February 6, 2024'
+action:
+  label: View Competition
+  url: https://www.kaggle.com/competitions/blood-vessel-segmentation
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Participants are asked to segment blood vessels.
+          Participants will create a model trained on 3D Hierarchical Phase-Contrast Tomography (HiP-CT) data from
+          human kidneys to help complete a picture of vasculature throughout a body. This work will better researchers' understanding of the size,
+          shape, branching angles, and patterning of blood vessels in human tissue.
+
+  - component: PageSection
+    tagline: Awards Ceremony
+    anchor: awards-ceremony
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: OxZOZ_TTq80
+
+  - component: PageSection
+    tagline: Winning teams
+    anchor: winning-teams
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Accuracy prizes:
+          - 1st place ($25,000): [Clevert](https://www.kaggle.com/clevert) and [Lum0s517](https://www.kaggle.com/Lum0s517)
+            - [Solution summary](https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475522)
+          - 2nd place ($20,000): [ryo](https://www.kaggle.com/ojimaryoji)
+            - [Solution summary](https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475657)
+          - 3rd place ($15,000): [ForcewithMe](https://www.kaggle.com/forcewithme)
+            - [Solution summary](https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475074)
+          - 4th place ($10,000): [Igor Krashenyi](https://www.kaggle.com/igorkrashenyi)
+            - [Solution summary](https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475052)
+          - 5th place ($5,000): [Ivan Panshin](https://www.kaggle.com/ivanpan)
+            - [Solution summary](https://www.kaggle.com/competitions/blood-vessel-segmentation/discussion/475288)
+
+  - component: PageSection
+    tagline: Data and code
+    anchor: data-code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - All training data used in the competition is available on the [competition website](https://www.kaggle.com/competitions/blood-vessel-segmentation/data).
+          - All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the [GitHub repository](https://github.com/cns-iu/hra-sennet-hoa-kaggle-2024).
+
+  - component: PageSection
+    tagline: Acknowledgements
+    anchor: acknowledgements
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          We would like to thank the many individuals that made this competition possible, including:
+          - Organizers: Katy Börner, Peter Lee, Claire Walsh, Yashvardhan Jain, Lisel Record, Nancy Ruschman
+          - Competition Sponsors: Kaggle, CIFAR, Indiana University, UCL, Royal Academy of Engineering, Chan Zuckerberg Initiative, Techpoint
+          - Funders: This work has been funded in part by NIH under award U24CA268108. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.

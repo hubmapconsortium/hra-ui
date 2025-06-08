@@ -14,7 +14,7 @@ subtitle: |
   - Approximately 126 GB of graph data
 
   The Knowledge Graph supports semantic queries, detailed analytics, and seamless integration with external applications and platforms.
-
+icons: product:knowledge-graph
 action:
   label: Explore the Knowledge Graph
   url: 'https://lod.humanatlas.io/graph'

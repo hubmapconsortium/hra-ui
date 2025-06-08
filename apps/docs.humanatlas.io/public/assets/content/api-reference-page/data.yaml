@@ -11,7 +11,7 @@ subtitle: |
   - Query anatomical structures and their spatial relationships
   - Access data schemas, endpoints, and example queries
   - Integrate CCF data into custom tools, visualizations, or workflows
-
+icons: product:api
 content:
   - component: PageSection
     tagline: Get Started

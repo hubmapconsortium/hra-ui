@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { assetsUrl } from '@hra-ui/common';
 import { MatIconModule } from '@angular/material/icon';
+import { assetsUrl } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import saveAs from 'file-saver';
-import { injectParams } from 'ngxtension/inject-params';
+import { injectQueryParams } from 'ngxtension/inject-query-params';
 import { parse, unparse } from 'papaparse';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Summary Statistics Table Component
@@ -83,7 +83,7 @@ export class SummaryStatisticsTableComponent {
   ]);
 
   /** The organ to filter by, from the URL */
-  private readonly organ = injectParams('organ');
+  private readonly organ = injectQueryParams('organ');
 
   /** Fetches the CSV data and parses it into TableRow objects */
   private readonly items = httpResource.text<TableRow[]>(assetsUrl(this.csvUrl), {

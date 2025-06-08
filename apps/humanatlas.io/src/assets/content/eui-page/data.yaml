@@ -1,0 +1,79 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Exploration User Interface
+subtitle: Explore and validate spatially registered single-cell datasets in three-dimensions across organs.
+action:
+  label: Use app
+  url: https://apps.humanatlas.io/eui/
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Exploration User Interface (EUI) app showcases spatially registered data across multiple scales.
+          Navigate multiple coordinate systems, including spatial, physiologic, and organ-based browsing.
+
+  - component: PageSection
+    tagline: App features
+    anchor: app-features
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - List navigation: Browse, select, show, and hide anatomical structures, cell types, and biomarkers with their nested tree listings in the left side menu.
+          - Filter: Open filter options (e.g. sex, assay types, etc) to refine the 3D scene viewer and data results on the right side menu.
+          - Selecting tissue blocks: It is possible to select a block of tissue samples either using the bodies on stage or the cards in the right side menu.
+            Color coding helps to identify different selections.
+          - Registered data: Dig deeper into the source data with the cards in the results list on the right side menu.
+
+          <img src="assets/ui-images/eui_features.png" width="100%" />
+
+  - component: PageSection
+    tagline: Tutorials and demo videos
+    anchor: tutorials-demo-videos
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - [EUI 1.7.0 Demo](https://www.youtube.com/watch?v=YAHJqvD3Q_8)
+          - [How to double-check a RUI registration with the EUI](https://www.youtube.com/watch?v=UloDIG0S64w)
+          - [Tutorial: Using the Exploration User Interface (EUI) on the GTEx Portal](https://www.youtube.com/watch?v=CWCGORb2zZ4)
+          - [Spatial Search in the Exploration User Interface](https://www.youtube.com/watch?v=UfxMpzatowE)
+
+      - component: YouTubePlayer
+        videoId: YAHJqvD3Q_8
+
+  - component: PageSection
+    tagline: Using spatial search filters
+    anchor: using-spacial-search
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Spatial search is a way to filter data specific to one organ:
+          1. Click the Spatial Search button in the 3D scene or the “Add Spatial Search” button in the filter menu.
+          2. Select a donor sex and an organ.
+          3. Use the Probing Sphere to explore the organ in 3D space by colliding with tissue blocks. As tissue block collisons are detected,
+             relevant data updates on right side menu.
+          4. Click the Run Spatial Search button to use the current spatial location results as a filter. Add as many spatial search filters as needed.
+          5. Click the Apply Filters button to analyze the selected spatial locations in the Exploration User Interface's default view.
+          6. Modify spatial locations as needed by opening the filter menu. Spatial locations can be hidden or shown. \
+             Spatial locations can be deleted by clicking the trash icon button. Click the Apply Filters button to apply modified spatial locations.
+
+  - component: PageSection
+    tagline: Navigating 3D space
+    anchor: navigateing-3d-space
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - Movement Options:
+            - Keyboard: Use keys Q, A, W, S, D, and E to move the Probing Sphere.
+            - Mouse: Click a Tissue Block to center the Probing Sphere on the block.
+          - Resize: Increase or decrease the radius size of the Probing Sphere.
+          - Navigation Speed: Press Shift on the keyboard while pressing any navigation button to increase the navigation speed of the Probing Sphere.
+          - Zoom: Use the mouse wheel or trackpad to zoom in and out.
+          - Rotate: Modify the camera view by using the mouse or trackpad to click and drag in the desired direction.
+          - Reset: Click the Reset Camera View button or the Reset Probing Sphere button to start fresh.

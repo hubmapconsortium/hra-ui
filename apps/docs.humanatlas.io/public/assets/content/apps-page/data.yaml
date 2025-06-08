@@ -8,10 +8,10 @@ subtitle: |
 
   Whether you're visualizing 3D reference organs, registering tissue blocks in spatial context,
   or querying cell-type-biomarker relationships, these applications expose HRA capabilities through both intuitive UIs and API integrations.
+icons: product:apps
 action:
   label: Launch HRA Apps
   url: https://apps.humanatlas.io/
-  icon: apps
 content:
   - component: PageSection
     tagline: HRA API

@@ -1,0 +1,100 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: ASCT+B Reporter
+subtitle: Construct, explore, and compare data visually.
+headerContent:
+  - component: FlexContainer
+    content:
+      - component: Button
+        label: Use app
+        href: ''
+        type: cta
+
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables aim to capture the nested part_of structure of human organ systems
+        from gross anatomical structure scale to subcellular biomarker scale. Functional tissue units (FTUs) for an organ system are identified
+        as well as the typology of cells and biomarkers used to uniquely identify cell types within that organ system (e.g., gene, protein,
+        proteoforms, lipid or metabolic markers). Ontology terms and unique identifiers are matched to AS, CT, and B wherever possible for semantic
+        search capability within Human Reference Atlas apps. This data is authored and reviewed by an international team of anatomists, pathologists,
+        physicians, and other experts and it used to develop a common coordinate framework (CCF) of the healthy human body.
+
+        The ASCT+B Reporter is a visualization app to explore, compare, and construct Human Reference Atlas digital objects ASCT+B Tables and Organ
+        Mapping Antibody Panels (OMAPs). This app includes a partonomy tree that presents relationships between various anatomical structures and
+        substructures, that are linked to their respective cell types and biomarkers via bimodal networks. This app also presents an indented list
+        view of the partonomy tree and lists statistics for various metadata (e.g., counts of ASCT+B Table entity types and relationship types) which
+        are downloadable. The debug log lists any issues related to the data provided in the table. This app has a backend server, the ASCT+B API, to
+        retrieve the data from Google Sheets and convert it to a machine-readable format.
+
+  - component: PageSection
+    tagline: App features
+    anchor: app-features
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        <img src="assets/content/asctb-reporter-page/images/app-features.png" width="100%" />
+
+  - component: PageSection
+    tagline: App guide
+    anchor: app-guide
+    level: 2
+    content: []
+
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: pzUFmDhQEO8
+
+  - component: PageSection
+    tagline: Comparing datasets
+    anchor: comparing-datasets
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The ASCT+B Reporter currently supports comparing:
+          - ASCT+B Tables to ASCT+B Tables
+          - ASCT+B Tables to experimental data
+          - ASCT+B Tables to OMAP Tables
+
+  - component: PageSection
+    tagline: How to add data for comparison
+    anchor: how-to-add-data-for-comparison
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          1. In the ASCT+B Reporter application, click the Compare button in top toolbar to open the Compare side panel.
+          2. Use templates to format data into an ASCT+B Table or an OMAP Compare Table.
+          3. Add data to compare in two ways:
+              <ol type="a">
+                <li>Upload an ASCT+B Table or OMAP Compare Table CSV or XLSX,</li>
+                <li>Add the URL of a publicly accessible Google Sheet.</li>
+            </ol>
+          4. Optional: Add a title and description for the dataset.
+          5. Optional: Select a color for visualizing the data.
+          6. Optional: Add more datasets by clicking the Add button, then repeat step 1 and step 2 for each additional dataset.
+          7. Click the Compare button to generate the visualization to start comparing.
+
+  - component: PageSection
+    tagline: How to make a Google Sheet publicly accessible
+    anchor: how-to-make-a-google-sheet-publicly-accessible
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          1. Locate and open the Google Sheet for comparison.
+          2. Click the Share button in the top right toolbar.
+          3. The Share modal is now visible > Locate the General Access section.
+          4. In the General Access dropdown, select “Anyone with the link”.
+          5. In the General Access area, select “Viewer” permissions.
+          6. Click the Done button.
