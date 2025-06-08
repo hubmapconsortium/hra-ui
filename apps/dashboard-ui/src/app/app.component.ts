@@ -19,7 +19,11 @@ import { routeData } from './shared/utils/route-data';
   },
 })
 export class AppComponent {
+  /** Route Data */
   private readonly data = routeData();
+  /**
+   * Breadcrumbs data (computed from above signal).
+   */
   protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
 
   /** Initialize app */
