@@ -23,6 +23,7 @@ export class SliderBoxComponent {
   /** Update rotation */
   @Output() readonly changeRotation = new EventEmitter<string>();
 
+  /** Slider overlay position */
   protected readonly positions: ConnectedPosition[] = [
     {
       originX: 'start',
@@ -33,12 +34,15 @@ export class SliderBoxComponent {
     },
   ];
 
+  /** Whether the slider is open */
   protected readonly isSliderOpen = signal(false);
 
+  /** Open the slider */
   showSlider(): void {
     this.isSliderOpen.set(true);
   }
 
+  /** Close the slider */
   closeSlider(): void {
     this.isSliderOpen.set(false);
   }
