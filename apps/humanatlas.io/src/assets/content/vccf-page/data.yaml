@@ -26,6 +26,8 @@ content:
         data: |
           The HRA-VCCF is available as comma-separated values in [GitHub](https://github.com/hubmapconsortium/hra-vccf).
       - component: VersionedDataTable
+        styles:
+          --hra-table-max-height: 35rem
         style: alternating
         enableSort: false
         verticalDividers: false

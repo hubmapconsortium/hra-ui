@@ -16,11 +16,6 @@
           "apps/humanatlas.io/src/favicon.png",
           "apps/humanatlas.io/src/assets",
           {
-            "glob": "**/*",
-            "input": "apps/humanatlas.io/src/static",
-            "output": "."
-          },
-          {
             "input": "libs/design-system/assets",
             "glob": "**/*",
             "output": "./assets"

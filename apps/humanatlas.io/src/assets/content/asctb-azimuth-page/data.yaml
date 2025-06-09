@@ -50,6 +50,8 @@ content:
     level: 4
     content:
       component: PageTable
+      styles:
+        --hra-table-max-height: 35rem
       style: alternating
       enableSort: true
       csvUrl: assets/content/asctb-azimuth-page/asctb-summary-stats.csv
