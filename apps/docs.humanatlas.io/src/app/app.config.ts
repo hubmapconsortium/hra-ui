@@ -3,6 +3,7 @@ import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
@@ -23,6 +24,7 @@ import { CodeBlockDef } from '@hra-ui/design-system/code-block';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideContentTemplateDefs([
+      ActionCardDef,
       ApiCommandDef,
       ButtonDef,
       DataViewerDef,
