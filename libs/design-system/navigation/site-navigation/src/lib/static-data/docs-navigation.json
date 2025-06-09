@@ -31,7 +31,6 @@
         { "type": "item", "label": "Web Components", "url": "" }
       ]
     },
-
     {
       "type": "category",
       "label": "Data",

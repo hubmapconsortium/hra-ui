@@ -21,7 +21,7 @@
 
   @include mat.list-overrides(
     (
-      list-item-one-line-container-height: 1.5rem,
+      // list-item-one-line-container-height: 1.5rem,
       list-item-label-text-color: vars.$primary,
 
       list-item-hover-label-text-color: vars.$tertiary-fixed,
@@ -29,7 +29,7 @@
       list-item-hover-state-layer-opacity: 8%,
       list-item-hover-leading-icon-color: vars.$tertiary-fixed,
 
-      list-item-selected-container-color: vars.$tertiary,
+      list-item-selected-container-color: vars.$tertiary
     )
   );
 

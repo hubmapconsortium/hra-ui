@@ -34,4 +34,9 @@
       @include utils.use-font(label, medium);
     }
   }
+
+  mat-list-item {
+    padding: 0.5rem 1rem !important;
+    height: unset !important;
+  }
 }

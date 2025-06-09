@@ -1,5 +1,8 @@
 <hra-header baseUrl="docs.humanatlas.io" />
-<div class="content">
-  <router-outlet />
+<div class="main">
+  <hra-site-navigation [navigationMenu]="navigationMenu"></hra-site-navigation>
+  <div class="content">
+    <router-outlet />
+  </div>
 </div>
 <hra-footer />

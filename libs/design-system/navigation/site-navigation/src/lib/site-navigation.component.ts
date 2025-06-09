@@ -33,8 +33,11 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
 export class SiteNavigationComponent {
   /** Navigation Menu Items */
   readonly navigationMenu = input.required<DocsMenuItems>();
+
+  /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 
+  /** Event handler to change the expanded navigation category */
   changeExpandedCategory(isExpanded: boolean, category: string) {
     if (isExpanded) {
       this.expandedCategory.set(category);
