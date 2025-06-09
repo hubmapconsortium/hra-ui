@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ActionCardActionComponent, ActionCardComponent } from '@hra-ui/design-system/cards/action-card';
 
 import { SectionCardItem } from './section-cards.schema';
-import { ActionCardActionComponent, ActionCardComponent } from '@hra-ui/design-system/cards/action-card';
-import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /**
  * Section card that links to another page

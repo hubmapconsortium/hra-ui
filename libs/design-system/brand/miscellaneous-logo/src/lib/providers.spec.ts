@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { IconConfigRegistryService, provideIcons } from '@hra-ui/design-system/icons';
-import { provideCategoryLogos } from './providers';
+import { provideMiscellaneousLogos } from './providers';
 
-describe('provideCategoryLogos', () => {
+describe('provideMiscellaneousLogos', () => {
   it('should register a config resolver', () => {
     TestBed.configureTestingModule({
-      providers: [provideIcons(), provideCategoryLogos()],
+      providers: [provideIcons(), provideMiscellaneousLogos()],
     });
 
     const service = TestBed.inject(IconConfigRegistryService);
-    const config = service.getIconConfig('test', 'category');
+    const config = service.getIconConfig('test', 'misc');
     expect(config).toBeDefined();
 
     const config2 = service.getIconConfig('test', 'other');

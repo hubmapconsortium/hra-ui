@@ -66,18 +66,18 @@ countInfo:
 
 sectionCardInfo:
   - tagline: Join our working group
-    icon: category:contribute
+    icon: misc:contribute
     url: https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH
     action: Register
   - tagline: Data overview
-    icon: category:data
+    icon: misc:data
     route: /overview-data
     action: Learn more
   - tagline: Apps overview
-    icon: category:explore
+    icon: misc:explore
     url: https://apps.humanatlas.io/
     action: Learn more
   - tagline: Help & documentation
-    icon: category:training
+    icon: misc:training
     route: /overview-training-outreach
     action: Learn more
