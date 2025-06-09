@@ -240,7 +240,13 @@ export const appRoutes: Route[] = [
     path: 'user-story',
     ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
   },
-  // TODO user-story/1
+  {
+    path: 'user-story/1',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/cell-population-predictor-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: 'user-story/2',
     component: ContentPageComponent,
