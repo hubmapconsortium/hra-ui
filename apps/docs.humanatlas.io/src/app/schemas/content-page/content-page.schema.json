@@ -1,0 +1,918 @@
+{
+  "$ref": "#/definitions/ContentPage",
+  "definitions": {
+    "ActionCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ActionCard"
+        },
+        "classes": {
+          "$ref": "#/definitions/Classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/Styles"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"],
+            "additionalProperties": true
+          }
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "subtagline": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "icons": {
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "svgIcon": {
+                      "type": "string"
+                    },
+                    "fontIcon": {
+                      "type": "string"
+                    },
+                    "fontSet": {
+                      "type": "string"
+                    },
+                    "inline": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            },
+            {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AnyContentTemplate"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnyContentTemplate"
+              }
+            }
+          ]
+        },
+        "actionsLeft": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        },
+        "actionsRight": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        }
+      },
+      "required": ["component", "variant", "tagline"],
+      "additionalProperties": false
+    },
+    "AnyContentTemplate": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ActionCard"
+        },
+        {
+          "$ref": "#/definitions/ApiCommand"
+        },
+        {
+          "$ref": "#/definitions/Button"
+        },
+        {
+          "$ref": "#/definitions/DataViewer"
+        },
+        {
+          "$ref": "#/definitions/FlexContainer"
+        },
+        {
+          "$ref": "#/definitions/Icon"
+        },
+        {
+          "$ref": "#/definitions/Image"
+        },
+        {
+          "$ref": "#/definitions/Markdown"
+        },
+        {
+          "$ref": "#/definitions/PageSection"
+        },
+        {
+          "$ref": "#/definitions/PageTable"
+        },
+        {
+          "$ref": "#/definitions/ProfileCard"
+        },
+        {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
+          "$ref": "#/definitions/SummaryStatisticsTable"
+        },
+        {
+          "$ref": "#/definitions/TextHyperlink"
+        },
+        {
+          "$ref": "#/definitions/VersionedDataTable"
+        },
+        {
+          "$ref": "#/definitions/YouTubePlayer"
+        }
+      ]
+    },
+    "ApiCommand": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ApiCommand"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "request": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST"]
+        },
+        "rightButton": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["label"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["component", "request", "method", "rightButton"],
+      "additionalProperties": false
+    },
+    "Button": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Button"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "label": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["default", "flat", "cta", "fab"]
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "secondary"]
+        },
+        "size": {
+          "type": "string",
+          "enum": ["small", "medium"]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "label", "href"],
+      "additionalProperties": false
+    },
+    "Classes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "DataViewer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "DataViewer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["ftu", "3d-organ"]
+        },
+        "githubIconsUrl": {
+          "type": "string"
+        },
+        "releaseVersionData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "crosswalkUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "extractionsSitesUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "referenceOrgansUrl": {
+                "type": "string",
+                "format": "uri"
+              },
+              "organData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "alt": {
+                            "type": "string"
+                          },
+                          "fileUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "sourceDataUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "fullscreenUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "crosswalkUrl": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "files": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              },
+                              "required": ["label", "url"],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": ["label", "fileUrl", "sourceDataUrl", "files"],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": ["label", "icon", "cards"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["version", "label", "date", "organData"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "FlexContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "FlexContainer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "Icon": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Icon"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "svgIcon": {
+          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/svgIcon"
+        },
+        "fontIcon": {
+          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/fontIcon"
+        },
+        "fontSet": {
+          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/fontSet"
+        },
+        "inline": {
+          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/inline"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Image"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "src"],
+      "additionalProperties": false
+    },
+    "Markdown": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Markdown"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "data": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "PageSection": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageSection"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "icons": {
+          "$ref": "#/definitions/ActionCard/properties/icons"
+        },
+        "anchor": {
+          "type": "string"
+        },
+        "content": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        }
+      },
+      "required": ["component", "tagline", "content"],
+      "additionalProperties": false
+    },
+    "PageTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "PageTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "type": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": ["text", "numeric", "markdown"]
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "text"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "numeric"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "markdown"
+                          }
+                        },
+                        "required": ["type"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "link"
+                          },
+                          "urlColumn": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "urlColumn"],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                ],
+                "default": "text"
+              }
+            },
+            "required": ["column", "label"],
+            "additionalProperties": false
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean"]
+            }
+          }
+        },
+        "style": {
+          "type": "string",
+          "enum": ["alternating", "divider", "basic"]
+        },
+        "enableSort": {
+          "type": "boolean"
+        },
+        "verticalDividers": {
+          "type": "boolean"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "ProfileCard": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ProfileCard"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "centerContent": {
+          "type": "boolean"
+        },
+        "actions": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        }
+      },
+      "required": ["component", "name", "description", "pictureUrl"],
+      "additionalProperties": false
+    },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "Styles": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "SummaryStatisticsTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "SummaryStatisticsTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "organColumn": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
+    "TextHyperlink": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "TextHyperlink"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "text", "url"],
+      "additionalProperties": false
+    },
+    "VersionedDataTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "VersionedDataTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "style": {
+          "$ref": "#/definitions/PageTable/properties/style"
+        },
+        "enableSort": {
+          "$ref": "#/definitions/PageTable/properties/enableSort"
+        },
+        "verticalDividers": {
+          "$ref": "#/definitions/PageTable/properties/verticalDividers"
+        },
+        "label": {
+          "type": "string"
+        },
+        "selection": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "csvUrl": {
+                "$ref": "#/definitions/PageTable/properties/csvUrl"
+              },
+              "columns": {
+                "$ref": "#/definitions/PageTable/properties/columns"
+              },
+              "rows": {
+                "$ref": "#/definitions/PageTable/properties/rows"
+              },
+              "style": {
+                "$ref": "#/definitions/PageTable/properties/style"
+              },
+              "enableSort": {
+                "$ref": "#/definitions/PageTable/properties/enableSort"
+              },
+              "verticalDividers": {
+                "$ref": "#/definitions/PageTable/properties/verticalDividers"
+              },
+              "label": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": ["label", "version"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "label", "items"],
+      "additionalProperties": false
+    },
+    "YouTubePlayer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "YouTubePlayer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "videoId": {
+          "type": "string"
+        }
+      },
+      "required": ["component", "videoId"],
+      "additionalProperties": false
+    },
+    "ContentPage": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "icons": {
+          "$ref": "#/definitions/ActionCard/properties/icons"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["label", "url"],
+          "additionalProperties": false
+        },
+        "headerContent": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        },
+        "content": {
+          "$ref": "#/definitions/ActionCard/properties/content"
+        }
+      },
+      "required": ["$schema", "title", "subtitle", "content"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
