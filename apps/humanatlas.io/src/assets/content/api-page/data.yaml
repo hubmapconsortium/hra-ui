@@ -4,6 +4,7 @@ subtitle: Query and interact with the Human Reference Atlas using Python, JavaSc
 action:
   label: Use app
   url: https://apps.humanatlas.io/api/
+icons: product:api
 content:
   - component: PageSection
     tagline: Overview

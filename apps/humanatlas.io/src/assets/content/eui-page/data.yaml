@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Exploration User Interface
 subtitle: Explore and validate spatially registered single-cell datasets in three-dimensions across organs.
+icons: product:eui
 action:
   label: Use app
   url: https://apps.humanatlas.io/eui/
