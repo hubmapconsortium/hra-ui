@@ -10,6 +10,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DocsMenuItems } from './types/docs-navigation.schema';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 /** Site Navigation Component for HRA Docs */
 @Component({
@@ -25,6 +27,8 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
     RouterModule,
     NavigationCategoryComponent,
     NavigationItemComponent,
+    NgScrollbar,
+    ScrollingModule,
   ],
   templateUrl: './site-navigation.component.html',
   styleUrl: './site-navigation.component.scss',

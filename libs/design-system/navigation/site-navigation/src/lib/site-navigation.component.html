@@ -1,25 +1,29 @@
-<div class="heading">
-  <div class="tagline">Help & Documentation</div>
-  <div class="description">
-    Documentation, guides, and standard operating procedures for Human Reference Atlas usage.
+<ng-scrollbar>
+  <div class="scrollbar-container">
+    <div class="heading">
+      <div class="tagline">Help & Documentation</div>
+      <div class="description">
+        Documentation, guides, and standard operating procedures for Human Reference Atlas usage.
+      </div>
+    </div>
+
+    <mat-divider />
+
+    <div class="content">
+      <mat-nav-list>
+        @for (navMenuItem of navigationMenu(); track navMenuItem) {
+          @if (navMenuItem.type === 'category') {
+            <hra-navigation-category
+              [navigationCategory]="navMenuItem"
+              [expanded]="expandedCategory() === navMenuItem.label"
+              (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
+            />
+          } @else if (navMenuItem.type === 'item') {
+            <hra-navigation-item [navigationItem]="navMenuItem" />
+          }
+          <mat-divider />
+        }
+      </mat-nav-list>
+    </div>
   </div>
-</div>
-
-<mat-divider />
-
-<div class="content">
-  <mat-nav-list>
-    @for (navMenuItem of navigationMenu(); track navMenuItem) {
-      @if (navMenuItem.type === 'category') {
-        <hra-navigation-category
-          [navigationCategory]="navMenuItem"
-          [expanded]="expandedCategory() === navMenuItem.label"
-          (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
-        />
-      } @else if (navMenuItem.type === 'item') {
-        <hra-navigation-item [navigationItem]="navMenuItem" />
-      }
-      <mat-divider />
-    }
-  </mat-nav-list>
-</div>
+</ng-scrollbar>
