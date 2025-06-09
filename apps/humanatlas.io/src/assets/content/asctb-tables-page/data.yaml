@@ -1,9 +1,10 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: ASCT+B Tables
 subtitle: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
+icons: product:asctb-reporter
 action:
   label: Get data
-  url: https://lod.humanatlas.io/asct-b/
+  url: https://purl.humanatlas.io/asct-b
 content:
   - component: PageSection
     tagline: Overview

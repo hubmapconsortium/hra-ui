@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Registration User Interface
 subtitle: Register human tissue blocks spatially to 3D organs.
+icons: product:rui
 action:
   label: Use app
   url: https://apps.humanatlas.io/rui/

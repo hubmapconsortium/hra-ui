@@ -3,10 +3,11 @@ title: Functional Tissue Unit (FTU) Illustrations
 subtitle: |
   A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function and is
   replicated multiple times in a whole organ. Functional tissue unit illustrations may be used to explore cell type populations by
-  gene, protein, and lipid biomarkers in the [Functional Tissue Unit (FTU) Explorer app.](https://apps.humanatlas.io/ftu-explorer/#/)
+  gene, protein, and lipid biomarkers in the [Functional Tissue Unit (FTU) Explorer app.](https://apps.humanatlas.io/ftu-explorer/)
+icons: product:ftu
 action:
   label: Get data
-  url: https://lod.humanatlas.io/2d-ftu/
+  url: https://purl.humanatlas.io/2d-ftu
 content:
   - component: PageSection
     tagline: Overview

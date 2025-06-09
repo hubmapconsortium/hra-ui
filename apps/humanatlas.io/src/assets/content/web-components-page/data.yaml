@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Web Components
 subtitle: Explore, use, and share Human Reference Atlas web components.
+icons: product:web-components
 action:
   label: Use app
   url: https://apps.humanatlas.io/beta/us6

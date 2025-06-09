@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Functional Tissue Unit Explorer
 subtitle: Examine cell type populations and biomarker expression values for functional tissue units (FTUs).
+icons: product:ftu
 headerContent:
   component: FlexContainer
   columnGap: 2rem
