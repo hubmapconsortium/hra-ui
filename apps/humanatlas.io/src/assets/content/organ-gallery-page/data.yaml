@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: HRA Organ Gallery
 subtitle: Explore organs, donor data, tissue blocks, datasets, and cells across scales in virtual reality.
+icons: product:organ-gallery
 action:
   label: Use app
   url: https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/
