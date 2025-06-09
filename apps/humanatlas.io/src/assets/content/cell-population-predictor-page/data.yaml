@@ -1,0 +1,53 @@
+$schema: '../../../app/schemas/content-page/content-page.schema.json'
+title: Cell Population Predictor
+subtitle: Upload a 3D tissue extraction site to predict cell type populations for the site.
+icons: product:cell-population-predictor
+action:
+  url: https://apps.humanatlas.io/us1/
+  label: Use app
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Predicting the type of a cell (e.g., endothelial cell or B cell) is crucial in computational biology (e.g., tailored therapeutics that,
+          which target specific cell types) and reference atlas construction. Given a cell type, we can derive the functions, pathways, and role of
+          cells in disease and aging.
+
+          Existing cell type annotation tools analyze gene or protein expression profiles specific for an organ but independent
+          of their location within an organ. However, location matters-tissue cut from different locations in the very same anatomical structure can have very
+          different cell types and biomarker expression profiles.
+
+          Computational biologists can use this app to annotate cell types in bulk or spatial data.
+          The API combines biomarker expression profile and 3D location data, resulting in enhanced cell type prediction accuracy.
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: onJB6Ee3nLw
+  - component: PageSection
+    tagline: APIs
+    anchor: apis
+    level: 2
+    content:
+      - component: ApiCommand
+        request: https://apps.humanatlas.io/api/hra-pop/rui-location-cell-summary
+        method: POST
+        rightButton:
+          icon: api
+          label: Try me
+          url: https://apps.humanatlas.io/api/hra-pop/rui-location-cell-summary
+  - component: PageSection
+    tagline: Code
+    anchor: code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us1-spatial-to-cell)
+          - [Open API Link](https://apps.humanatlas.io/api/
