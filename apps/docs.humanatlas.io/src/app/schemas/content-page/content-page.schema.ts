@@ -18,10 +18,7 @@ import { VersionedDataTableSchema } from '@hra-ui/design-system/content-template
 import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { IconSchema } from '@hra-ui/design-system/icons';
-import { PageTableSchema } from '@hra-ui/design-system/table';
 import { z } from 'zod';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { ReleaseNotesVersionSelectorSchema } from '../../../../../humanatlas.io/src/app/components/release-notes-version-selector/release-notes-version-selector.schema';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { SummaryStatisticsTableSchema } from '../../../../../humanatlas.io/src/app/components/summary-statistics-table/summary-statistics-table.schema';
 
@@ -37,9 +34,7 @@ export {
   ImageSchema,
   MarkdownSchema,
   PageSectionSchema,
-  PageTableSchema,
   ProfileCardSchema,
-  ReleaseNotesVersionSelectorSchema,
   StylesSchema,
   SummaryStatisticsTableSchema,
   TextHyperlinkSchema,
@@ -58,9 +53,7 @@ export default z.lazy(() => {
     ImageSchema,
     MarkdownSchema,
     PageSectionSchema,
-    PageTableSchema,
     ProfileCardSchema,
-    ReleaseNotesVersionSelectorSchema,
     SummaryStatisticsTableSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
