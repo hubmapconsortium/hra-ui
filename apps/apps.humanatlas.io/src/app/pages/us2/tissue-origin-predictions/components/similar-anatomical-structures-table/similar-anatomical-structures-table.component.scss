@@ -1,5 +1,12 @@
 @use 'vars';
 
+.table-overflow-container {
+  max-height: 35rem;
+  overflow: auto;
+  border: 1px solid vars.$outline;
+  border-radius: 0.25rem;
+}
+
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
@@ -20,13 +27,20 @@
 
   .predictions-table {
     background-color: vars.$secondary-container;
-    border-collapse: collapse;
+
+    th,
+    tr:not(:last-child) {
+      border-bottom: 0.0625rem solid vars.$outline;
+    }
 
     th,
     td {
       font: vars.$label-medium;
       letter-spacing: vars.$label-medium-tracking;
-      border: 0.0625rem solid vars.$outline;
+
+      &:not(:last-child) {
+        border-right: 0.0625rem solid vars.$outline;
+      }
     }
 
     th {
