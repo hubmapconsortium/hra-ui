@@ -102,10 +102,7 @@
               "tagline": {
                 "type": "string"
               },
-              "description": {
-                "type": "string"
-              },
-              "imageSrc": {
+              "icon": {
                 "type": "string"
               },
               "route": {
@@ -113,9 +110,12 @@
               },
               "url": {
                 "type": "string"
+              },
+              "action": {
+                "type": "string"
               }
             },
-            "required": ["tagline", "description", "imageSrc"],
+            "required": ["tagline", "icon", "action"],
             "additionalProperties": false
           }
         }

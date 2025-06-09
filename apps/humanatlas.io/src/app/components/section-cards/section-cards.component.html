@@ -3,21 +3,17 @@
 <div class="cards">
   @for (card of cardInfo(); track card) {
     @if (card.url; as url) {
-      <a class="section-card" [attr.href]="url" target="_blank" rel="noopener noreferrer">
-        <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="" />
-        <div class="card-content">
-          <span class="tagline">{{ card.tagline }}</span>
-          <span class="description">{{ card.description }}</span>
-        </div>
-      </a>
+      <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
+        <hra-action-card-action>
+          <a hraHyperlink [href]="card.url">{{ card.action }}</a>
+        </hra-action-card-action>
+      </hra-action-card>
     } @else {
-      <a class="section-card" [routerLink]="card.route">
-        <img class="card-image" [src]="card.imageSrc | assetUrl" [alt]="" />
-        <div class="card-content">
-          <span class="tagline">{{ card.tagline }}</span>
-          <span class="description">{{ card.description }}</span>
-        </div>
-      </a>
+      <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
+        <hra-action-card-action>
+          <a hraHyperlink [href]="card.route">{{ card.action }}</a>
+        </hra-action-card-action>
+      </hra-action-card>
     }
   }
 </div>
