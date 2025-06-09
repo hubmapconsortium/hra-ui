@@ -58,7 +58,7 @@
     - type: styled-group
       components:
         - type: title
-          title: December 13, 2024
+          title: December 15, 2024
           styles:
             font-size: 20px
             line-height: 28px
