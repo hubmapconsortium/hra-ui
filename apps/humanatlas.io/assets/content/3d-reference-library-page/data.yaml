@@ -2538,6 +2538,8 @@ content:
       - component: Markdown
         data: A summarized view of the number of anatomical structures per 3D organ.
       - component: VersionedDataTable
+        styles:
+          --hra-table-max-height: 35rem
         label: Release Verison
         enableSort: false
         verticalDividers: false
