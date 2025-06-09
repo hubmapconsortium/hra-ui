@@ -10,7 +10,7 @@ export const appRoutes: Route[] = [
 
   // TODO: add content pages here!
   {
-    path: '',
+    path: 'dev',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
