@@ -8,7 +8,7 @@ export const DocsNavigationItemSchema = z.object({
   type: z.literal('item'),
   label: z.string(),
   icon: z.string().optional(),
-  url: z.string().url(),
+  url: z.string(),
 });
 
 /** Docs Navigation Category */

@@ -51,8 +51,7 @@
           "type": "string"
         },
         "url": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "required": ["type", "label", "url"],

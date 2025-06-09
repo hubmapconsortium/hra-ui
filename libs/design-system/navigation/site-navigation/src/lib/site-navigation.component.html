@@ -16,10 +16,11 @@
             <hra-navigation-category
               [navigationCategory]="navMenuItem"
               [expanded]="expandedCategory() === navMenuItem.label"
+              [currentPath]="currentPath()"
               (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
             />
           } @else if (navMenuItem.type === 'item') {
-            <hra-navigation-item [navigationItem]="navMenuItem" />
+            <hra-navigation-item [navigationItem]="navMenuItem" [currentPath]="currentPath()" />
           }
           <mat-divider />
         }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListItem, MatListItemTitle } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
@@ -17,9 +17,15 @@ export class NavigationItemComponent {
   /** Navigation Item Data */
   readonly navigationItem = input.required<DocsNavigationItem>();
 
+  readonly currentPath = input.required<string>();
+
   /**
    * Boolean flag to indicate whether the
    * navigation item is present in a category or not.
    */
   readonly isInCategory = input<boolean>(false);
+
+  isActive(path: string) {
+    return computed(() => this.currentPath() === path);
+  }
 }
