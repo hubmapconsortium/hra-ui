@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
@@ -6,9 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-
-import { SliderBoxComponent } from './slider-box.component';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { SliderBoxComponent } from './slider-box.component';
 
 @NgModule({
   declarations: [SliderBoxComponent],
@@ -21,6 +21,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     MatFormFieldModule,
     ButtonsModule,
     PlainTooltipDirective,
+    OverlayModule,
   ],
   exports: [SliderBoxComponent],
 })
