@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Dashboard
 subtitle: Visualize the evolution of Human Reference Atlas.
+icons: product:dashboard
 action:
   label: Use app
   url: https://apps.humanatlas.io/dashboard/
