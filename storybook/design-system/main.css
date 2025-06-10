@@ -653,13 +653,16 @@ html {
   --mat-sys-label-micro-weight: 500;
 }
 html {
-  --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
-}
-html {
   --mat-standard-button-toggle-height: 2.5rem;
 }
 html {
   --mat-standard-button-toggle-shape: var(--mat-sys-corner-extra-small);
+}
+html {
+  --mat-standard-button-toggle-background-color: transparent;
+}
+html {
+  --mat-standard-button-toggle-divider-color: var(--mat-sys-primary);
 }
 html {
   --mat-standard-button-toggle-selected-state-background-color: rgb(from var(--mat-sys-tertiary) r g b/20%);
