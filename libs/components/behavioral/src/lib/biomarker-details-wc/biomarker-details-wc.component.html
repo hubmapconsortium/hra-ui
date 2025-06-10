@@ -43,7 +43,10 @@
       <div *ngIf="tab.rows.length !== 0" class="legends">
         <div class="legends-left">
           <hra-label-box class="legend-header gradient">
-            <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="gradientHoverInfo()"
+            <mat-icon
+              class="icon material-symbols-outlined"
+              [hraHover]="infoTooltip"
+              [hraHoverData]="gradientHoverInfo()"
               >info_outlined</mat-icon
             >
             Biomarker Expression Mean in FTU
@@ -55,7 +58,9 @@
 
         <div class="legends-right">
           <hra-label-box class="legend-header size">
-            <mat-icon class="icon" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()">info_outlined</mat-icon>
+            <mat-icon class="icon material-symbols-outlined" [hraHover]="infoTooltip" [hraHoverData]="sizeHoverInfo()"
+              >info_outlined</mat-icon
+            >
             Percentage of Cells in FTU
           </hra-label-box>
           <div class="legend size">

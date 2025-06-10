@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { assetsUrl } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import saveAs from 'file-saver';
 import { injectQueryParams } from 'ngxtension/inject-query-params';
 import { parse, unparse } from 'papaparse';
@@ -17,7 +18,7 @@ import { parse, unparse } from 'papaparse';
  */
 @Component({
   selector: 'hra-summary-statistics-table',
-  imports: [CommonModule, ButtonsModule, MatIconModule, TableComponent],
+  imports: [CommonModule, ButtonsModule, MatIconModule, PlainTooltipDirective, TableComponent],
   templateUrl: './summary-statistics-table.component.html',
   styleUrl: './summary-statistics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

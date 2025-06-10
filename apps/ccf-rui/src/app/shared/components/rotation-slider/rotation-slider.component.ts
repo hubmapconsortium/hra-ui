@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  Input,
-  Output,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Type in which the values of the sliders are stored. */
@@ -42,27 +33,18 @@ export type Axis = 'x' | 'y' | 'z';
   host: {
     '(document:keydown)': 'changeStep($event)',
     '(document:keyup)': 'changeStep($event)',
-    '(window:mouseup)': 'closeResults($event)',
   },
   standalone: false,
 })
 export class RotationSliderComponent {
-  /** Element reference */
-  private readonly el = inject<ElementRef<Node>>(ElementRef);
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-rotation-slider';
 
   /** Input that allows the rotation to be changed from outside of the component */
   @Input() rotation = DEFAULT_ROTATION;
 
   /** Output that emits the new rotation whenever it is changed from within the component */
   @Output() readonly rotationChange = new EventEmitter<Rotation>();
-
-  /** Currently active axis slider */
-  displayedSlider?: Axis;
 
   /** List of all axis */
   axisOptions: Axis[] = ['x', 'y', 'z'];
@@ -97,22 +79,8 @@ export class RotationSliderComponent {
     this.axisOptions.forEach((axis) => this.resetRotation(axis));
   }
 
-  /** Opens the slider for a single axis */
-  displaySlider(dimension: Axis): void {
-    this.displayedSlider = dimension;
-  }
-
   /** Changes the step size based on whether the shift key is pressed */
   changeStep(target: KeyboardEvent): void {
     this.step = target.shiftKey ? 30 : 1;
-  }
-
-  /** Closes the slider */
-  closeResults(event: Event): void {
-    if (this.displayedSlider && event.target instanceof Node) {
-      if (!this.el.nativeElement.contains(event.target)) {
-        this.displayedSlider = undefined;
-      }
-    }
   }
 }

@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Tissue Origin Predictor
 subtitle: Upload a cell type population file to predict 3D tissue origin.
+icons: product:tissue-origin-predictor
 action:
   label: Use app
   url: https://apps.humanatlas.io/us2/

@@ -27,6 +27,13 @@ export const appRoutes: Route[] = [
     path: 'apps',
     component: ContentPageComponent,
     resolve: {
+      data: createYamlSpecResolver('assets/content/apps-overview-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'dev/apps',
+    component: ContentPageComponent,
+    resolve: {
       data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
     },
   },
@@ -52,10 +59,24 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'faqs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/faqs/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'knowledge-graph',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'support',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/support-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -72,7 +93,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
-
   // Error pages and redirects
   {
     path: '404',

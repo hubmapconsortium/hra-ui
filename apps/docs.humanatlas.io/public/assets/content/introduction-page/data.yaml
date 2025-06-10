@@ -75,7 +75,7 @@ content:
           **HRA Apps**: Explore interactive applications built on the HRA platform for visualizing organs, registering tissue samples, analyzing cell populations, and navigating spatial and semantic biomedical data.
       - component: TextHyperlink
         text: Learn More
-        url: /apps
+        url: /dev/apps
         icon: arrow_right_alt
 
       - component: Markdown

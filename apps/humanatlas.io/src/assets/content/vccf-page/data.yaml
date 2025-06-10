@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Vasculature Common Coordinate Framework
 subtitle: The first open, computer-readable, and comprehensive database of the adult human blood vasculature
+icons: product:vascular-geometry
 content:
   - component: PageSection
     tagline: Overview
@@ -25,6 +26,8 @@ content:
         data: |
           The HRA-VCCF is available as comma-separated values in [GitHub](https://github.com/hubmapconsortium/hra-vccf).
       - component: VersionedDataTable
+        styles:
+          --hra-table-max-height: 35rem
         style: alternating
         enableSort: false
         verticalDividers: false
