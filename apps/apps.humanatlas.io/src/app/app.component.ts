@@ -83,6 +83,11 @@ export class AppComponent {
             },
             {
               type: 'item',
+              label: 'FTU Explorer',
+              url: 'https://apps.humanatlas.io/api--staging/ftu-explorer/',
+            },
+            {
+              type: 'item',
               label: 'humanatlas.io',
               url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
             },
