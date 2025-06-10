@@ -1,6 +1,16 @@
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
+  @include mat.form-field-overrides(
+    (
+      filled-label-text-color: vars.$primary,
+      filled-input-text-color: vars.$primary,
+      filled-with-label-container-padding-top: 23px,
+      filled-with-label-container-padding-bottom: 0px,
+    )
+  );
+
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -31,8 +41,7 @@
     }
 
     mat-form-field {
-      --mdc-filled-text-field-input-text-color: #{vars.$on-primary-fixed-variant};
-      --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed-variant};
+      font: var(--mat-sys-label-medium);
 
       ::ng-deep {
         .mat-mdc-form-field-subscript-wrapper {
@@ -41,6 +50,7 @@
 
         .mdc-floating-label {
           transform: translateY(-100%);
+          top: 1.25rem;
         }
       }
     }
