@@ -5,7 +5,7 @@ import { dashboardDataResolver } from './shared/resolvers/dashboard-data/dashboa
 import { yamlFileResolver } from './shared/resolvers/yaml-file/yaml-file.resolver';
 
 /** Index spec file URL */
-const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data/dashboards/index.yaml';
+const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data--staging/dashboards/index.yaml';
 
 /** Application routes definition */
 export const appRoutes: Route[] = [
