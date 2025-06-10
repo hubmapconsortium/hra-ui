@@ -19,8 +19,6 @@ import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/you
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { z } from 'zod';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { SummaryStatisticsTableSchema } from '../../../../../humanatlas.io/src/app/components/summary-statistics-table/summary-statistics-table.schema';
 
 export {
   ActionCardSchema,
@@ -36,7 +34,6 @@ export {
   PageSectionSchema,
   ProfileCardSchema,
   StylesSchema,
-  SummaryStatisticsTableSchema,
   TextHyperlinkSchema,
   VersionedDataTableSchema,
   YouTubePlayerSchema,
@@ -54,7 +51,6 @@ export default z.lazy(() => {
     MarkdownSchema,
     PageSectionSchema,
     ProfileCardSchema,
-    SummaryStatisticsTableSchema,
     TextHyperlinkSchema,
     VersionedDataTableSchema,
     YouTubePlayerSchema,
