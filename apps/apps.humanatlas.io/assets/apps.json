@@ -48,7 +48,7 @@
               "imagePath": "assets/ui-images/cell_population_predictor.png",
               "logoPath": "product:cell-population-predictor",
               "appStatus": "Preview",
-              "appUrl": "https://apps.humanatlas.io/us1/",
+              "appUrl": "/us1",
               "documentLink": "https://humanatlas.io/user-story/1"
             },
             {
@@ -57,7 +57,7 @@
               "imagePath": "assets/ui-images/tissue_origin_predictor.png",
               "logoPath": "product:tissue-origin-predictor",
               "appStatus": "Preview",
-              "appUrl": "https://apps.humanatlas.io/us2/",
+              "appUrl": "/us2",
               "documentLink": "https://humanatlas.io/user-story/2"
             },
             {
@@ -106,7 +106,7 @@
               "imagePath": "assets/ui-images/web_components.png",
               "logoPath": "product:web-components",
               "appStatus": "Preview",
-              "appUrl": "https://apps.humanatlas.io/us6/",
+              "appUrl": "/us6",
               "documentLink": "https://humanatlas.io/user-story/6"
             },
             {
@@ -115,7 +115,7 @@
               "imagePath": "assets/ui-images/api.png",
               "logoPath": "product:api",
               "appStatus": "Beta",
-              "appUrl": "https://apps.humanatlas.io/api/#",
+              "appUrl": "/api",
               "documentLink": "https://humanatlas.io/api"
             }
           ]
