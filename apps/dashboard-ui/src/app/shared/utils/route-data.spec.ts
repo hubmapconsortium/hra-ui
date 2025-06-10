@@ -1,10 +1,10 @@
 import { render } from '@testing-library/angular';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { provideRouter, Router, RouterOutlet } from '@angular/router';
 import { routeData } from './route-data';
 
 @Component({
-  template: 'Child Component',
+  template: 'Child',
   standalone: true,
 })
 class ChildComponent {}
@@ -14,19 +14,13 @@ class ChildComponent {}
   standalone: true,
   imports: [RouterOutlet],
 })
-class ParentComponent {}
-
-@Component({
-  template: '<router-outlet></router-outlet>',
-  standalone: true,
-  imports: [RouterOutlet],
-})
 class TestAppComponent {
-  private router = inject(Router);
-  readonly data = routeData();
+  data = routeData();
 
-  async navigateToChild() {
-    await this.router.navigate(['/parent/child']);
+  constructor(private router: Router) {}
+
+  navigateToChild() {
+    return this.router.navigate(['/parent/child']);
   }
 }
 
@@ -37,7 +31,6 @@ describe('routeData', () => {
         provideRouter([
           {
             path: 'parent',
-            component: ParentComponent,
             data: { title: 'Parent' },
             children: [
               {
@@ -52,9 +45,7 @@ describe('routeData', () => {
     });
 
     const component = fixture.componentInstance;
-
     await component.navigateToChild();
-
     expect(component.data()).toBeDefined();
   });
 });
