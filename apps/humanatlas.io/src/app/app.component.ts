@@ -31,10 +31,13 @@ export class AppComponent {
   /** Navigation menu for the application */
   protected readonly navigationMenu = DOCS_NAVIGATION_MENU;
 
+  /** Router */
   private readonly router = inject(Router);
 
+  /** Current router path from the router signal */
   readonly routePath = this.currentRoutePath();
 
+  /** Navigation visibility flag value */
   protected isNavigationVisible = true;
 
   /** Initialize the application */
@@ -59,6 +62,10 @@ export class AppComponent {
     });
   }
 
+  /**
+   * Gets the current route path from router as a signal
+   * TODO: Move to Utils
+   */
   currentRoutePath(): Signal<string> {
     const route$ = this.router.events.pipe(
       filter((event) => event.type === EventType.NavigationEnd),
