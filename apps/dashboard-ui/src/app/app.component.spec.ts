@@ -11,4 +11,12 @@ describe('AppComponent', () => {
       providers: globalProviders,
     });
   });
+
+  it('should create the component', async () => {
+    const { fixture } = await render(AppComponent, {
+      providers: globalProviders,
+    });
+
+    expect(fixture.componentInstance).toBeTruthy();
+  });
 });

@@ -90,7 +90,7 @@ export class MenuContentComponent {
    */
   resolveUrl(url: string): { isAbsolute: boolean; value: string | UrlTree } {
     const { router } = this;
-    const baseUrl = Location.stripTrailingSlash(this.baseUrl() ?? '');
+    const baseUrl = Location.stripTrailingSlash(this.baseUrl() ?? '') + '/';
     let isAbsolute = url.startsWith('http');
     if (baseUrl && url.startsWith(baseUrl)) {
       isAbsolute = false;
