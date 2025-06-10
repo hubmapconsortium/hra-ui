@@ -11,7 +11,7 @@ cards:
     actionsLeft:
       component: TextHyperlink
       text: Learn more
-      url: /introduction
+      url: https://humanatlas.io/overview-training-outreach
   - component: ActionCard
     variant: outlined-with-icons
     tagline: Project Overview
@@ -55,7 +55,7 @@ cards:
     actionsLeft:
       component: TextHyperlink
       text: Learn more
-      url: https://humanatlas.io/overview-training-outreach
+      url: /dev
   - component: ActionCard
     variant: outlined-with-icons
     tagline: Publications
@@ -65,7 +65,7 @@ cards:
     actionsLeft:
       component: TextHyperlink
       text: Learn more
-      url: https://humanatlas.io/publications
+      url: http://humanatlas.io/publications
   - component: ActionCard
     variant: outlined-with-icons
     tagline: Release Notes
@@ -75,7 +75,7 @@ cards:
     actionsLeft:
       component: TextHyperlink
       text: Learn more
-      url: https://humanatlas.io/standard-operating-procedures
+      url: https://humanatlas.io/release-notes
   - component: ActionCard
     variant: outlined-with-icons
     tagline: Standard Operating Procedures (SOPs)
