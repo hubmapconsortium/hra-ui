@@ -2,9 +2,11 @@
 
 :host {
   display: block;
+  width: 100%;
   max-width: 72.5rem;
   margin: 0 auto;
   margin-top: 7.1875rem;
+  padding: 0 1rem;
 }
 
 h1 {
@@ -28,7 +30,6 @@ h1 {
   margin-bottom: 10.25rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 3rem;
 
   .card {
@@ -69,6 +70,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 2rem;
   }
 }
 

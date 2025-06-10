@@ -2,8 +2,10 @@
 
 :host {
   display: block;
+  width: 100%;
   max-width: 72.5rem;
   margin: 10rem auto;
+  padding: 0 1rem;
 }
 
 h1 {
@@ -60,6 +62,7 @@ button {
       td {
         font: vars.$label-medium;
         letter-spacing: vars.$label-medium-tracking;
+        padding: 0 1rem;
 
         &:not(:last-child) {
           border-right: 0.0625rem solid vars.$outline;
