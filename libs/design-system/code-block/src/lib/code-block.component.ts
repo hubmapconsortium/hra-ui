@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /**
  * Component representing a code block.
@@ -9,7 +10,7 @@ import { HighlightModule } from 'ngx-highlightjs';
 @Component({
   selector: 'hra-code-block',
   standalone: true,
-  imports: [CommonModule, HighlightModule],
+  imports: [CommonModule, HighlightModule, ScrollingModule],
   templateUrl: './code-block.component.html',
   styleUrl: './code-block.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
