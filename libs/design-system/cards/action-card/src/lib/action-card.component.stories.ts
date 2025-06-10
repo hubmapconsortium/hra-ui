@@ -100,7 +100,7 @@ export const Outlined: Story = {
 
 export const OutlinedWithIcons: Story = {
   args: {
-    icons: ['category:data'],
+    icons: ['misc:data'],
   },
   render: render(
     'outlined-with-icons',
