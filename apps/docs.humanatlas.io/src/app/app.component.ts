@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 
 /**
- * Main application component
+ * Main application component for docs
  */
 @Component({
   selector: 'hra-docs',
