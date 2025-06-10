@@ -27,7 +27,7 @@ export class AppComponent {
   /**
    * Breadcrumbs data (computed from above signal).
    */
-  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
+  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs']);
 
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();

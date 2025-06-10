@@ -1,13 +1,20 @@
+@use '../../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: block;
 
   .count {
+    @include utils.use-font(title, medium);
+    color: vars.$on-tertiary-fixed;
     display: inline-block;
-    color: #b20a2f;
     margin: 0;
+    line-height: 1.875rem;
   }
 
   .label {
-    color: #4c4c58;
+    @include utils.use-font(label, medium);
+    color: vars.$on-secondary-fixed;
+    line-height: 1.3125rem;
   }
 }
