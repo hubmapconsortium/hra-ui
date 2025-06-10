@@ -1,6 +1,5 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Introduction
-anchor: introduction
 subtitle: |
   Welcome to the Human Reference Atlas (HRA) Developer Documentation!
 

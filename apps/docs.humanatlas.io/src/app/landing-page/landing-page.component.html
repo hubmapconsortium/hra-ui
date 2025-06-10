@@ -1,22 +1,13 @@
-<div class="top-image" alt=""></div>
+<img class="banner" [attr.src]="data().bannerUrl | assetUrl" alt="" />
 
 <div class="content">
-  <span class="header">Help & Documentation</span>
+  <span class="header">
+    {{ data().tagline }}
+  </span>
 
-  <hra-flex-container>
-    @for (card of data().docCardInfo; track card) {
-      <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline">
-        {{ card.description }}
-        <hra-action-card-action>
-          <a hraHyperlink [href]="card.route1" target="_blank" rel="noopener noreferrer">{{ card.action1 }}</a>
-        </hra-action-card-action>
-
-        @if (card.route2) {
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink [href]="card.route1" target="_blank" rel="noopener noreferrer">{{ card.action2 }}</a>
-          </hra-action-card-action>
-        }
-      </hra-action-card>
+  <hra-flex-container rowGap="1.5rem" columnGap="1.5rem">
+    @for (card of data().cards; track card) {
+      <ng-container *hraContentTemplateOutlet="card" />
     }
   </hra-flex-container>
 </div>

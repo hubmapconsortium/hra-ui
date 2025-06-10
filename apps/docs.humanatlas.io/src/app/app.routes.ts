@@ -2,8 +2,9 @@ import { Route } from '@angular/router';
 import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
-import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -16,13 +17,6 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
-    },
-  },
-  {
-    path: 'introduction',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -72,6 +66,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/faqs/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'introduction',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
     },
   },
   {

@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Apps Overview
 subtitle: |
   Web application tools are needed to construct, use, and visualize [Human Reference Atlas data](https://humanatlas.io/overview-data).

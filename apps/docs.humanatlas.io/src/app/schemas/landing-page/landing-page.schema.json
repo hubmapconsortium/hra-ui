@@ -7,36 +7,159 @@
         "$schema": {
           "type": "string"
         },
-        "docCardInfo": {
+        "tagline": {
+          "type": "string"
+        },
+        "bannerUrl": {
+          "type": "string"
+        },
+        "cards": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
+              "component": {
+                "type": "string",
+                "const": "ActionCard"
+              },
+              "classes": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "styles": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "controllers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["id"],
+                  "additionalProperties": true
+                }
+              },
+              "variant": {
+                "type": "string",
+                "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
+              },
               "tagline": {
                 "type": "string"
               },
-              "description": {
+              "subtagline": {
                 "type": "string"
               },
-              "route1": {
+              "image": {
                 "type": "string"
               },
-              "action1": {
-                "type": "string"
+              "icons": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "svgIcon": {
+                            "type": "string"
+                          },
+                          "fontIcon": {
+                            "type": "string"
+                          },
+                          "fontSet": {
+                            "type": "string"
+                          },
+                          "inline": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "$ref": "#/definitions/LandingPage/properties/cards/items/properties/icons/anyOf/0/anyOf/1"
+                        }
+                      ]
+                    }
+                  }
+                ]
               },
-              "route2": {
-                "type": "string"
+              "content": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "component": {
+                        "type": "string"
+                      },
+                      "classes": {
+                        "$ref": "#/definitions/LandingPage/properties/cards/items/properties/classes"
+                      },
+                      "styles": {
+                        "$ref": "#/definitions/LandingPage/properties/cards/items/properties/styles"
+                      },
+                      "controllers": {
+                        "$ref": "#/definitions/LandingPage/properties/cards/items/properties/controllers"
+                      }
+                    },
+                    "required": ["component"],
+                    "additionalProperties": true
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/LandingPage/properties/cards/items/properties/content/anyOf/0"
+                    }
+                  }
+                ]
               },
-              "action2": {
-                "type": "string"
+              "actionsLeft": {
+                "$ref": "#/definitions/LandingPage/properties/cards/items/properties/content"
+              },
+              "actionsRight": {
+                "$ref": "#/definitions/LandingPage/properties/cards/items/properties/content"
               }
             },
-            "required": ["tagline", "description", "route1", "action1"],
+            "required": ["component", "variant", "tagline"],
             "additionalProperties": false
           }
         }
       },
-      "required": ["$schema", "docCardInfo"],
+      "required": ["$schema", "tagline", "bannerUrl", "cards"],
       "additionalProperties": false
     }
   },

@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Frequently Asked Questions (FAQs)
 subtitle: |
   Welcome to the Human Reference Atlas (HRA) FAQs page! Here you’ll find answers to common questions about using, integrating,

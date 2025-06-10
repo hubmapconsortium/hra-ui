@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  flex-grow: 1;
 
   .header {
     .image {
@@ -36,6 +37,7 @@
 
     .actions {
       display: flex;
+      @include utils.use-font(label, large);
 
       .spacer {
         flex-grow: 1;
