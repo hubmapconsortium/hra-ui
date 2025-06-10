@@ -117,6 +117,9 @@
           "$ref": "#/definitions/Button"
         },
         {
+          "$ref": "#/definitions/CodeBlock"
+        },
+        {
           "$ref": "#/definitions/DataViewer"
         },
         {
@@ -139,12 +142,6 @@
         },
         {
           "$ref": "#/definitions/ProfileCard"
-        },
-        {
-          "$ref": "#/definitions/ReleaseNotesVersionSelector"
-        },
-        {
-          "$ref": "#/definitions/SummaryStatisticsTable"
         },
         {
           "$ref": "#/definitions/TextHyperlink"
@@ -261,6 +258,32 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "CodeBlock": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "CodeBlock"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "code": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
     },
     "DataViewer": {
       "type": "object",
@@ -691,26 +714,6 @@
       "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
-    "ReleaseNotesVersionSelector": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "ReleaseNotesVersionSelector"
-        },
-        "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
-        },
-        "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
-        },
-        "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
-        }
-      },
-      "required": ["component"],
-      "additionalProperties": false
-    },
     "Styles": {
       "anyOf": [
         {
@@ -721,35 +724,6 @@
           "additionalProperties": {}
         }
       ]
-    },
-    "SummaryStatisticsTable": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "SummaryStatisticsTable"
-        },
-        "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
-        },
-        "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
-        },
-        "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
-        },
-        "columns": {
-          "$ref": "#/definitions/PageTable/properties/columns"
-        },
-        "csvUrl": {
-          "type": "string"
-        },
-        "organColumn": {
-          "type": "string"
-        }
-      },
-      "required": ["component"],
-      "additionalProperties": false
     },
     "TextHyperlink": {
       "type": "object",

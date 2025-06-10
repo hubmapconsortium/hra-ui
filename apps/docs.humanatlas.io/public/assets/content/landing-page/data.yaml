@@ -1,0 +1,88 @@
+$schema: ../../../../src/app/schemas/landing-page/landing-page.schema.json
+tagline: Help & Documentation
+bannerUrl: assets/content/landing-page/images/banner.png
+cards:
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Introduction to the Human Reference Atlas
+    content:
+      - component: Markdown
+        data: Introductory level content made for general audiences.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: https://humanatlas.io/overview-training-outreach
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Project Overview
+    content:
+      - component: Markdown
+        data: Learn about our team, editorial board, and funders.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: https://humanatlas.io/about
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Apps
+    content:
+      - component: Markdown
+        data: Explore the Human Reference Atlas application library.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: /apps
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Data
+    content:
+      - component: Markdown
+        data: Learn about digital objects, unique data structures, that build the Human Reference Atlas.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: https://humanatlas.io/overview-data
+    actionsRight:
+      component: TextHyperlink
+      text: Get data
+      url: https://lod.humanatlas.io/
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Development
+    content:
+      - component: Markdown
+        data: Development guidance for building Human Reference Atlas data, code, and user interfaces.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: /dev
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Publications
+    content:
+      - component: Markdown
+        data: Explore all publications of the Human Reference Atlas.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: http://humanatlas.io/publications
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Release Notes
+    content:
+      - component: Markdown
+        data: See what’s new every 6 months.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: https://humanatlas.io/release-notes
+  - component: ActionCard
+    variant: outlined-with-icons
+    tagline: Standard Operating Procedures (SOPs)
+    content:
+      - component: Markdown
+        data: Standardized procedures for Human Reference Atlas collaborators.
+    actionsLeft:
+      component: TextHyperlink
+      text: Learn more
+      url: https://humanatlas.io/standard-operating-procedures

@@ -3,6 +3,9 @@ import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-syst
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+
 /** Application routes */
 export const appRoutes: Route[] = [
   // Content pages
@@ -10,10 +13,10 @@ export const appRoutes: Route[] = [
 
   // TODO: add content pages here!
   {
-    path: 'dev',
-    component: ContentPageComponent,
+    path: '',
+    component: LandingPageComponent,
     resolve: {
-      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
   {
@@ -28,6 +31,13 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/apps-overview-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'dev',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
     },
   },
   {

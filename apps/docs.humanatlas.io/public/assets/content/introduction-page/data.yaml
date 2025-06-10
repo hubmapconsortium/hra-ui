@@ -1,6 +1,5 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Introduction to HRA Development
-anchor: introduction
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Introduction
 subtitle: |
   The Human Reference Atlas (HRA) is a multiscale, three-dimensional, data-rich, open-access atlas of the healthy human body. Designed for researchers, developers, and educators,
   the HRA brings together anatomical structures, cell types, and biomarkers into a harmonized coordinate system that supports advanced visualization, spatial data integration,

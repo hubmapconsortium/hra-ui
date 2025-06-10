@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Embedding Web Components
 subtitle: |
   The HRA Web Components are a collection of reusable, modular UI elements designed to simplify interaction with

@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Apps
 subtitle: |
   Explore the applications developed to provide functional interfaces for interacting with HRA's integrated anatomical and cellular datasets, enabling spatial registration, semantic exploration, and data-driven analysis.
