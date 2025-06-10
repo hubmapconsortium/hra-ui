@@ -11,7 +11,7 @@
     } @else {
       <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
         <hra-action-card-action>
-          <a hraHyperlink [href]="card.route">{{ card.action }}</a>
+          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>
         </hra-action-card-action>
       </hra-action-card>
     }
