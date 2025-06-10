@@ -6,8 +6,8 @@ export type SectionCardItem = z.infer<typeof SectionCardItemSchema>;
 /** Section card item Zod schema */
 export const SectionCardItemSchema = z.object({
   tagline: z.string(),
-  description: z.string(),
-  imageSrc: z.string(),
+  icon: z.string(),
   route: z.string().optional(),
   url: z.string().optional(),
+  action: z.string(),
 });

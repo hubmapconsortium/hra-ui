@@ -3,7 +3,7 @@ title: Data overview
 subtitle: |
   The evolving Human Reference Atlas is built with distinct data structures called <a href="/overview-data#digital-objects">digital objects</a>.
   New and updated data is released twice a year on June 15 and December 15.
-icons: category:data
+icons: misc:data
 action:
   url: https://purl.humanatlas.io
   label: Get data

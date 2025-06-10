@@ -1,7 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Training
 subtitle: Learn how to construct and use the Human Reference Atlas.
-icons: category:training
+icons: misc:training
 content:
   - component: PageSection
     tagline: Standard Operating Procedures (SOPs)
