@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: ASCT+B Reporter
 subtitle: Construct, explore, and compare data visually.
+icons: product:asctb-reporter
 headerContent:
   - component: FlexContainer
     content:

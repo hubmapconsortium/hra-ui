@@ -3,10 +3,21 @@ title: Functional Tissue Unit (FTU) Illustrations
 subtitle: |
   A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function and is
   replicated multiple times in a whole organ. Functional tissue unit illustrations may be used to explore cell type populations by
-  gene, protein, and lipid biomarkers in the [Functional Tissue Unit (FTU) Explorer app.](https://apps.humanatlas.io/ftu-explorer/#/)
-action:
-  label: Get data
-  url: https://lod.humanatlas.io/2d-ftu/
+  gene, protein, and lipid biomarkers in the [Functional Tissue Unit (FTU) Explorer app.](https://apps.humanatlas.io/ftu-explorer/)
+icons: product:ftu
+headerContent:
+  - component: FlexContainer
+    columnGap: 2rem
+    content:
+      - component: Button
+        label: Get data
+        href: https://purl.humanatlas.io/2d-ftu
+        type: cta
+      - component: Button
+        label: Read publication
+        href: https://doi.org/10.1038/s41467-024-54591-6
+        type: cta
+        variant: secondary
 content:
   - component: PageSection
     tagline: Overview
@@ -40,7 +51,7 @@ content:
       variant: ftu
       githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
       releaseVersionData:
-        - version: '8'
+        - version: '2.2'
           label: 8th Release (v2.2)
           date: December 2024
           crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv
@@ -340,7 +351,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.svg
 
-        - version: '7'
+        - version: '2.1'
           label: 7th Release (v2.1)
           date: June 2024
           crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv
@@ -632,7 +643,7 @@ content:
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.png
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.svg
-        - version: '6'
+        - version: '2.0'
           label: 6th Release (v2.0)
           date: December 2023
           organData:
@@ -930,7 +941,7 @@ content:
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-thymus-thymus-lobule.png
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v2.0/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
-        - version: '5'
+        - version: '1.4'
           label: 5th Release (v1.4)
           date: June 2023
           organData:
@@ -1213,7 +1224,7 @@ content:
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.png
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
-        - version: '4'
+        - version: '1.3'
           label: 4th Release (v1.3)
           date: December 2022
           organData:
@@ -1469,7 +1480,7 @@ content:
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.png
                     - label: SVG
                       url: https://cdn.humanatlas.io/hra-releases/v1.3/2d-ftu/2d-ftu-thymus-thymus-lobule.svg
-        - version: '3'
+        - version: '1.2'
           label: 3rd Release (v1.2)
           date: June 2022
           organData:
@@ -1583,6 +1594,8 @@ content:
         data: |
           A summarized view of the number of anatomical structures and cell types per functional tissue unit.
       - component: SummaryStatisticsTable
+        styles:
+          --hra-table-max-height: 35rem
   - component: PageSection
     tagline: Standard operating procedures (SOPs)
     anchor: standard-operating-procedures

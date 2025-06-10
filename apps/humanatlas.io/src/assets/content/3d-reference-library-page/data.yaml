@@ -3,7 +3,8 @@ title: 3D Organs
 subtitle: 3D human organ files mapped with ontological terminology.
 action:
   label: Use Data
-  url: https://lod.humanatlas.io/ref-organ/asct-b-3d-models-crosswalk/ # cross-check
+  url: https://purl.humanatlas.io/ref-organ
+icons: product:ftu
 content:
   - component: PageSection
     tagline: Overview
@@ -2538,6 +2539,8 @@ content:
       - component: Markdown
         data: A summarized view of the number of anatomical structures per 3D organ.
       - component: VersionedDataTable
+        styles:
+          --hra-table-max-height: 35rem
         label: Release Verison
         enableSort: false
         verticalDividers: false

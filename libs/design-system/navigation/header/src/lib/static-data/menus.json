@@ -8,8 +8,17 @@
       "items": [
         {
           "type": "group",
+          "label": "Knowledge Graph",
+          "url": "https://lod.humanatlas.io/",
+          "description": "Query, filter, and download digital objects"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
           "label": "Data Overview",
-          "url": "https://humanatlas.io/data/",
+          "url": "https://humanatlas.io/overview-data/",
           "items": [
             {
               "type": "item",
@@ -135,7 +144,7 @@
                 {
                   "type": "item",
                   "label": "ASCT+B Reporter",
-                  "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/"
+                  "url": "https://apps.humanatlas.io/asctb-reporter/"
                 }
               ]
             },
@@ -167,7 +176,7 @@
         {
           "type": "group",
           "label": "Training Overview",
-          "url": "https://humanatlas.io/training/",
+          "url": "https://humanatlas.io/overview-training-outreach/",
           "items": [
             {
               "type": "item",
@@ -182,17 +191,17 @@
             {
               "type": "item",
               "label": "Human Atlas Stories",
-              "url": "https://humanatlas.io/training-outreach#human-atlas-stories"
+              "url": "https://humanatlas.io/overview-training-outreach#human-atlas-stories"
             },
             {
               "type": "item",
               "label": "Events",
-              "url": "https://humanatlas.io/training-outreach#events"
+              "url": "https://humanatlas.io/overview-training-outreach#events"
             },
             {
               "type": "item",
               "label": "Kaggle Competitions",
-              "url": "https://humanatlas.io/training#kaggle-competitions"
+              "url": "https://humanatlas.io/overview-training-outreach#kaggle-competitions"
             },
             {
               "type": "item",
@@ -202,7 +211,7 @@
             {
               "type": "item",
               "label": "Previews",
-              "url": "https://humanatlas.io/training#previews"
+              "url": "https://humanatlas.io/overview-training-outreach#previews"
             }
           ]
         }

@@ -1,6 +1,7 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Cell Type Annotations
 subtitle: Ontology ID labels for cell type annotation cell types.
+icons: product:cell-type-annotations
 action:
   label: Use Data
   url: https://lod.humanatlas.io/ctann
@@ -35,7 +36,7 @@ content:
           View the number of anatomical structures and unique cell types in ASCT+B tables vs. number of cell types that different cell type annotation tools can assign.
       - component: PageTable
         styles:
-          height: 40rem
+          --hra-table-max-height: 35rem
         style: alternating
         enableSort: true
         csvUrl: assets/content/cell-type-annotations-page/ct-per-organ-per-tool.csv
