@@ -1,0 +1,44 @@
+{
+  "$ref": "#/definitions/LandingPage",
+  "definitions": {
+    "LandingPage": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "docCardInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tagline": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "route1": {
+                "type": "string"
+              },
+              "action1": {
+                "type": "string"
+              },
+              "route2": {
+                "type": "string"
+              },
+              "action2": {
+                "type": "string"
+              }
+            },
+            "required": ["tagline", "description", "route1", "action1"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["$schema", "docCardInfo"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

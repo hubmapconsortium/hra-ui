@@ -1,0 +1,37 @@
+$schema: ../../../app/schemas/landing-page/landing-page.schema.json
+
+docCardInfo:
+  - tagline: Introduction to the Human Reference Atlas
+    description: Introductory level content made for general audiences.
+    route1: /introduction
+    action1: Learn more
+  - tagline: Project Overview
+    description: Learn about our team, editorial board, and funders.
+    route1: https://humanatlas.io/about
+    action1: Learn more
+  - tagline: Apps
+    description: Explore the Human Reference Atlas application library.
+    route1: /apps
+    action1: Learn more
+  - tagline: Data
+    description: Learn about digital objects, unique data structures, that build the Human Reference Atlas.
+    route1: https://humanatlas.io/overview-data
+    action1: Learn more
+    route2: https://lod.humanatlas.io/
+    action2: Get data
+  - tagline: Development
+    description: Development guidance for building Human Reference Atlas data, code, and user interfaces.
+    route1: https://humanatlas.io/overview-training-outreach
+    action1: Learn more
+  - tagline: Publications
+    description: Explore all publications of the Human Reference Atlas.
+    route1: https://humanatlas.io/publications
+    action1: Learn more
+  - tagline: Release Notes
+    description: See what’s new every 6 months.
+    route1: https://humanatlas.io/standard-operating-procedures
+    action1: Learn more
+  - tagline: Standard Operating Procedures (SOPs)
+    description: Standardized procedures for Human Reference Atlas collaborators.
+    route1: https://humanatlas.io/standard-operating-procedures
+    action1: Learn more

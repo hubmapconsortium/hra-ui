@@ -1,0 +1,33 @@
+@use 'utils';
+
+:host {
+  .top-image {
+    height: 18.75rem;
+    background: url('./docs_landing_page.png') no-repeat;
+    background-size: cover;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2.5rem;
+  }
+
+  .header {
+    @include utils.use-font(display, medium);
+  }
+
+  hra-flex-container {
+    gap: 1.5rem;
+  }
+
+  hra-action-card {
+    width: 17.625rem;
+    height: 13.75rem;
+  }
+
+  hra-action-card-action {
+    @include utils.use-font(label, large);
+  }
+}
