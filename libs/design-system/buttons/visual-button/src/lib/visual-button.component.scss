@@ -38,6 +38,7 @@
     }
 
     .label {
+      @include utils.use-font(title, medium);
       color: vars.$on-tertiary-fixed;
       text-align: center;
     }

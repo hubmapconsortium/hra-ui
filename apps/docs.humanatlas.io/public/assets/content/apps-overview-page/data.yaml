@@ -1,9 +1,9 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Apps Overview
 subtitle: |
   Web application tools are needed to construct, use, and visualize [Human Reference Atlas data](https://humanatlas.io/overview-data).
   New and updated applications are released twice a year on June 15 and December 15.
-icons: category:explore
+icons: misc:explore
 content:
   - component: PageSection
     tagline: Apps

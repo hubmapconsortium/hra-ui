@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Digital Objects
 subtitle: The Human Reference Atlas (HRA) is constructed upon a diverse set of Digital Objects (DOs) that encapsulate the anatomical, cellular, and molecular intricacies of the healthy human body.
 icons: product:developer-portal

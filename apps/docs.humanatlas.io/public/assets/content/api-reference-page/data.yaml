@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: API Reference
 subtitle: |
   The Human Reference Atlas (HRA) API provides programmatic access to the data and services of the Common Coordinate Framework (CCF). Whether you're a researcher, developer, or data scientist, you can use the HRA API to explore anatomical structures, spatial relationships, and reference data across various biological domains.

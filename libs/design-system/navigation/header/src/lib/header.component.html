@@ -96,11 +96,11 @@
     }
   </div>
 
-  @if (breadcrumbs().length > 0) {
+  @if (breadcrumbs(); as crumbs) {
     <mat-divider />
 
     <div class="navigation">
-      <hra-breadcrumbs [crumbs]="breadcrumbs()" />
+      <hra-breadcrumbs [crumbs]="crumbs" />
       <div class="filler"></div>
       <ng-content />
     </div>

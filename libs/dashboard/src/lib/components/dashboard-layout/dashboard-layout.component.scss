@@ -1,7 +1,12 @@
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: block;
   max-width: min(80rem, calc(100vw - 12rem));
   margin: 0 auto;
+  padding: 6rem 2.5rem;
 
   ::ng-deep > :nth-child(n + 4) {
     margin-bottom: 1.5rem;
@@ -14,23 +19,23 @@
   }
 
   .title {
+    color: vars.$on-background;
+    @include utils.use-font(display, medium);
     margin-bottom: 0.5rem;
-    color: #201e3d;
   }
 
   .description {
-    color: #464954;
-    letter-spacing: 0.5px;
+    @include utils.use-font(body, xl);
+    color: vars.$primary-fixed;
     margin-bottom: 2rem;
-    max-width: 63.25rem;
-    font-weight: 400;
+    line-height: 1.3125rem;
   }
 
   .read-btn {
     --mdc-filled-button-container-height: 2.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.875rem;
     padding: 0.5rem 1.5rem;
     width: max-content;
     line-height: 1.5rem;
@@ -38,10 +43,8 @@
     letter-spacing: 0.75px;
 
     mat-icon {
-      font-size: 1.5rem;
       height: 1.5rem;
       width: 1.5rem;
-      font-weight: 300;
     }
   }
 
@@ -103,6 +106,7 @@
   }
 
   @media (max-width: 320px) {
+    padding: 0 1rem;
     max-width: calc(100vw - 2rem);
     ::ng-deep > :nth-child(n + 4) {
       &:not(hra-dashboard-metrics-container) {

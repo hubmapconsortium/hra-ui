@@ -1,8 +1,8 @@
 import { EnvironmentProviders, inject, provideEnvironmentInitializer } from '@angular/core';
 import { IconConfig, IconConfigRegistryService, IconConfigResolver } from '@hra-ui/design-system/icons';
 
-/** Icon configuration for category logos */
-const CATEGORY_ICON_CONFIG: IconConfig = {
+/** Icon configuration for miscellaneous logos */
+const MISCELLANEOUS_ICON_CONFIG: IconConfig = {
   color: '#ffffff',
   backgroundColor: '#4b4b5e',
 };
@@ -12,16 +12,16 @@ const CATEGORY_ICON_CONFIG: IconConfig = {
  *
  * @returns A configuration resolver
  */
-function createCategoryLogoConfigResolver(): IconConfigResolver {
-  return (_name, namespace) => (namespace === 'category' ? CATEGORY_ICON_CONFIG : undefined);
+function createMiscellaneousLogoConfigResolver(): IconConfigResolver {
+  return (_name, namespace) => (namespace === 'misc' ? MISCELLANEOUS_ICON_CONFIG : undefined);
 }
 
 /**
- * Initializes category logo icons
+ * Initializes miscellaneous logo icons
  */
-export function provideCategoryLogos(): EnvironmentProviders {
+export function provideMiscellaneousLogos(): EnvironmentProviders {
   return provideEnvironmentInitializer(() => {
     const registry = inject(IconConfigRegistryService);
-    registry.addIconConfigResolver(createCategoryLogoConfigResolver());
+    registry.addIconConfigResolver(createMiscellaneousLogoConfigResolver());
   });
 }
