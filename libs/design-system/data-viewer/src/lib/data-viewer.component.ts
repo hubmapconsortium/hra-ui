@@ -1,19 +1,17 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, model, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
-import { OrganLogoComponent, OrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
-
-import { ReleaseVersionData } from './types/data-viewer.schema';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { DataViewerVariant, ReleaseVersionData } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Data viewer component
@@ -21,19 +19,18 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 @Component({
   selector: 'hra-data-viewer',
   imports: [
+    ButtonsModule,
+    ExpansionPanelModule,
+    FormsModule,
     HraCommonModule,
+    IconsModule,
+    MatDividerModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule,
-    ButtonsModule,
     MatSelectModule,
-    ExpansionPanelModule,
-    ViewerCardComponent,
-    ProductLogoComponent,
-    OrganLogoComponent,
-    FormsModule,
-    ViewerMenuComponent,
     PlainTooltipDirective,
+    ViewerCardComponent,
+    ViewerMenuComponent,
   ],
   templateUrl: './data-viewer.component.html',
   styleUrl: './data-viewer.component.scss',
@@ -45,22 +42,28 @@ export class DataViewerComponent {
   readonly releaseVersionData = input.required<ReleaseVersionData[]>();
 
   /** Data viewer variant */
-  readonly variant = input.required({ transform: toProductLogoId });
+  readonly variant = input.required<DataViewerVariant>();
 
   /** Link to the HRA Organ Icons GitHub repository */
   readonly githubIconsUrl = input.required<string>();
 
+  /** model signal for the release version */
+  readonly releaseVersion = model<string>();
+
+  /** model signal for the organ */
+  readonly organ = model<string>();
+
   /** Current selected release version */
-  readonly currentVersion = linkedSignal(() => this.releaseVersionData()[0]);
+  protected readonly releaseVersion_ = computed(() => {
+    const releaseVersion = this.releaseVersion();
+    const data = this.releaseVersionData();
+    return data.find((item) => item.version === releaseVersion) ?? data[0];
+  });
 
   /** Current organ selected */
-  readonly organ = linkedSignal(() => this.currentVersion().organData[0]);
-
-  /** Icon for the currently selected organ */
-  readonly organIconId = computed(() => this.organ().icon as OrganLogoId);
-
-  /** Title to display on the data viewer */
-  readonly viewerTitle = computed(() => {
-    return this.variant() === 'ftu' ? 'Functional Tissue Units' : '3D Organs';
+  protected readonly organ_ = computed(() => {
+    const organ = this.organ();
+    const releaseVersion = this.releaseVersion_();
+    return releaseVersion.organData.find((item) => item.label === organ) ?? releaseVersion.organData[0];
   });
 }

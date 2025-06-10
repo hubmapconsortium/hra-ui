@@ -1,6 +1,16 @@
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
+  @include mat.form-field-overrides(
+    (
+      filled-label-text-color: vars.$primary,
+      filled-input-text-color: vars.$primary,
+      filled-with-label-container-padding-top: 23px,
+      filled-with-label-container-padding-bottom: 0px,
+    )
+  );
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -8,31 +18,32 @@
 
   .rotation-value {
     cursor: pointer;
+    width: 5rem;
+    font: var(--mat-sys-label-medium);
 
     input {
       cursor: pointer;
     }
-  }
-
-  mat-form-field {
-    width: 5rem;
-    --mdc-filled-text-field-input-text-color: #{vars.$on-primary-fixed-variant};
-    --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed-variant};
 
     ::ng-deep .mdc-floating-label {
       transform: translateY(-100%);
+      top: 1.25rem;
     }
   }
+}
 
+::ng-deep .rotation-slider-overlay {
   .slider-container {
     display: flex;
     align-items: center;
     background: vars.$on-primary;
     border-radius: 0.5rem;
     box-shadow: 0px 5px 4px 0px #201e3d29;
-    z-index: 1;
     padding: 1rem;
-    translate: 1rem;
+
+    mat-form-field {
+      width: 5rem;
+    }
 
     mat-slider {
       --mdc-slider-active-track-color: #{vars.$on-tertiary-fixed};
@@ -48,11 +59,11 @@
         cursor: not-allowed;
       }
 
-      ::ng-deep mat-slider-visual-thumb {
+      mat-slider-visual-thumb {
         transition: none;
       }
 
-      ::ng-deep .mdc-slider__track--inactive {
+      .mdc-slider__track--inactive {
         opacity: 1;
       }
     }

@@ -6,13 +6,13 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem 0 1rem 0;
-  min-width: 9rem;
+  width: 9rem;
   gap: 1rem;
 
   .logo {
     width: 3.375rem;
     height: 3.375rem;
-    background: var(--mat-sys-inverse-surface);
+    background-color: var(--mat-sys-inverse-surface) !important;
   }
 
   .count-card-content {
@@ -30,5 +30,6 @@
     margin: 0;
     @include utils.use-font(body, xl);
     color: vars.$primary;
+    text-align: center;
   }
 }

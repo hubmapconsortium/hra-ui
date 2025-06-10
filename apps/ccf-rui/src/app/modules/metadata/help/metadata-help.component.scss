@@ -1,5 +1,17 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
 ::ng-deep .metadata-help {
-  --mat-divider-color: #acb5c3;
-  --mat-menu-divider-bottom-spacing: 0;
-  --mat-menu-divider-top-spacing: 0;
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline,
+    )
+  );
+
+  @include mat.menu-overrides(
+    (
+      divider-bottom-spacing: 0,
+      divider-top-spacing: 0,
+    )
+  );
 }

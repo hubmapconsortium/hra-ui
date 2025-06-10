@@ -1,0 +1,46 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Functional Tissue Unit Explorer
+subtitle: Examine cell type populations and biomarker expression values for functional tissue units (FTUs).
+icons: product:ftu
+headerContent:
+  component: FlexContainer
+  columnGap: 2rem
+  content:
+    - component: Button
+      label: Use app
+      href: https://apps.humanatlas.io/ftu-explorer/#/
+      type: cta
+    - component: Button
+      label: Publication
+      href: https://www.biorxiv.org/content/10.1101/2023.10.16.562593v3
+      type: cta
+      variant: secondary
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Compare FTUs in terms of cell types and mean biomarker expression levels for healthy reference tissue.
+          The FTU Explorer showcases single-cell expression data from the [Anatomogram](https://www.ebi.ac.uk/about/news/updates-from-data-resources/anatomograms-new-feature-single-cell-expression-atlas/) site by EMBL-EBI.
+          The FTU Explorer was designed in close collaboration with the Kidney Precision Medicine Project and the European Bioinformatics Institute.
+
+  - component: PageSection
+    tagline: App features
+    anchor: app-features
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          <img src="assets/content/ftu-explorer-page/images/ftu_explorer.png" width="100%" />
+
+  - component: PageSection
+    tagline: Code
+    anchor: code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - [Github Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/ftu-explorer/)

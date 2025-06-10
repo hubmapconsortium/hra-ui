@@ -1,5 +1,12 @@
 @use 'vars';
 
+.table-overflow-container {
+  max-height: 35rem;
+  overflow: auto;
+  border: 1px solid vars.$outline;
+  border-radius: 0.25rem;
+}
+
 .table-container {
   margin-top: 3rem;
   margin-bottom: 0.3125rem;
@@ -20,13 +27,16 @@
 
   .dataset-table {
     background-color: vars.$secondary-container;
-    border-collapse: collapse;
+
+    th,
+    tr:not(:last-child) {
+      border-bottom: 0.0625rem solid vars.$outline;
+    }
 
     th,
     td {
       font: vars.$label-medium;
       letter-spacing: vars.$label-medium-tracking;
-      border: 0.0625rem solid vars.$outline;
     }
 
     th {
@@ -46,15 +56,15 @@
       }
 
       th {
-        color: var(--mat-sys-on-primary-container);
-        background-color: var(--mat-sys-surface-container);
+        color: vars.$on-primary-container;
+        background-color: vars.$surface-container;
       }
       td {
         max-width: 16.38rem;
         overflow: hidden;
         text-overflow: ellipsis;
         box-sizing: border-box;
-        color: var(--mat-sys-inverse-surface);
+        color: vars.$inverse-surface;
         white-space: nowrap;
       }
 

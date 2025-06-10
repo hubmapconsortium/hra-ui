@@ -1,3 +1,4 @@
+import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { z } from 'zod';
 
 /** Type for viewer file data, includes label and URL */
@@ -15,8 +16,8 @@ export const ViewerCardSchema = z.object({
   label: z.string(),
   alt: z.string().optional(),
   fileUrl: z.string().url(),
-  fullscreenUrl: z.string().url().optional(),
   sourceDataUrl: z.string().url(),
+  fullscreenUrl: z.string().url().optional(),
   crosswalkUrl: z.string().url().optional(),
   files: ViewerFileSchema.array(),
 });
@@ -41,4 +42,21 @@ export const ReleaseVersionDataSchema = z.object({
   extractionsSitesUrl: z.string().url().optional(),
   referenceOrgansUrl: z.string().url().optional(),
   organData: ViewerOrganDataSchema.array(),
+});
+
+/** Data viewer variant */
+export type DataViewerVariant = z.infer<typeof DataViewerVariantSchema>;
+
+/** Schema for data viewer variant */
+export const DataViewerVariantSchema = z.enum(['ftu', '3d-organ']);
+
+/** Data viewer component data */
+export type DataViewer = z.infer<typeof DataViewerSchema>;
+
+/** Schema for data viewer component */
+export const DataViewerSchema = ContentTemplateSchema.extend({
+  component: z.literal('DataViewer'),
+  variant: DataViewerVariantSchema,
+  githubIconsUrl: z.string(),
+  releaseVersionData: ReleaseVersionDataSchema.array(),
 });

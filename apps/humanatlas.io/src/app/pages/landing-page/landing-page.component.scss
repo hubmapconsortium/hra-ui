@@ -1,10 +1,18 @@
 @use 'utils';
+@use 'vars';
 
 :host {
   display: flex;
   flex-direction: column;
 
+  .intro,
+  hra-section-cards {
+    align-self: center;
+  }
+
   .intro {
+    margin: 5rem 1rem;
+    max-width: 80rem;
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -13,18 +21,18 @@
 
     .header {
       @include utils.use-font(display, large);
-      color: var(--mat-sys-secondary);
+      color: vars.$secondary;
     }
 
     .subheader {
       @include utils.use-font(title, large);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
       margin-bottom: 1rem;
     }
 
     .description {
       @include utils.use-font(body, xl);
-      color: var(--mat-sys-primary);
+      color: vars.$primary;
     }
   }
 
@@ -39,16 +47,18 @@
 
   .count-cards {
     display: flex;
+    padding: 2rem 2.5rem;
+    background: vars.$surface-dim;
+    justify-content: space-between;
     justify-content: center;
-    gap: 5rem;
-    background: var(--mat-sys-surface-dim);
-    padding: 32px 40px;
     flex-wrap: wrap;
+    gap: 1.75rem;
   }
 
   hra-section-cards {
     margin: 6rem 1rem;
     max-width: 87.5rem;
+    align-self: center;
   }
 
   @media (min-width: 640px) {
@@ -65,7 +75,8 @@
     }
 
     hra-section-cards {
-      margin: 6rem 2.5rem;
+      margin: 7.5rem 0;
+      align-self: center;
     }
   }
 }

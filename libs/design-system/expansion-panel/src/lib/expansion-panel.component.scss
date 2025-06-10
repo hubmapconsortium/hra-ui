@@ -6,7 +6,7 @@
   .header {
     display: flex;
     align-items: center;
-    font: vars.$label-large;
+    font: vars.$label-medium;
     color: vars.$secondary;
   }
 
@@ -21,7 +21,7 @@
   }
 
   .content {
-    font: vars.$label-large;
+    font: vars.$label-medium;
     display: flex;
     flex-direction: column;
     ::ng-deep &[style*='visibility: hidden'] * {

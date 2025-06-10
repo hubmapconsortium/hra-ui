@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  hra-table {
+    height: 100%;
+  }
+
+  mat-form-field ~ hra-table {
+    height: calc(100% - 4.25rem);
+  }
+
+  .download {
+    margin-left: 1rem;
+  }
+}

@@ -1,16 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { CategoryLogoComponent, toCategoryLogoId } from '@hra-ui/design-system/brand/category-logo';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
-import { OrganLogoComponent, toOrganLogoId } from '@hra-ui/design-system/brand/organ-logo';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
+import { IconsModule } from '@hra-ui/design-system/icons';
 
 /**
  * Component representing a count card.
- * Displays a count, a label, and a category icon.
+ * Displays a count, a label, and an icon.
  */
 @Component({
   selector: 'hra-count-card',
-  imports: [CommonModule, CategoryLogoComponent, ProductLogoComponent, OrganLogoComponent],
+  imports: [HraCommonModule, IconsModule],
   templateUrl: './count-card.component.html',
   styleUrl: './count-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,17 +28,4 @@ export class CountCardComponent {
 
   /** Icon */
   readonly icon = input.required<string>();
-
-  /** Category icon */
-  protected readonly categoryIcon = computed(() =>
-    this.iconType() === 'category' ? toCategoryLogoId(this.icon()) : undefined,
-  );
-
-  /** Product icon */
-  protected readonly productIcon = computed(() =>
-    this.iconType() === 'product' ? toProductLogoId(this.icon()) : undefined,
-  );
-
-  /** Organ icon */
-  protected readonly organIcon = computed(() => (this.iconType() === 'organ' ? toOrganLogoId(this.icon()) : undefined));
 }

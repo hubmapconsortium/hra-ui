@@ -1,0 +1,73 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Cell Type Annotations
+subtitle: Ontology ID labels for cell type annotation cell types.
+icons: product:cell-type-annotations
+action:
+  label: Use Data
+  url: https://lod.humanatlas.io/ctann
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Azimuth[1], CellTypist[2,3], Popular Vote (popV)[4], and other cell type annotation tools let users upload a sc/snRNA-seq dataset and
+        output a cell type name for each cell in the dataset. The number and type of cell types these cell type annotation tools can assign differs
+        among tools and when compared to the number of cell types recorded in the ASCT+B Tables, see Summary Statistics adopted from a related preprint[5].
+        Note that ASCT+B tables keep track of cell types per anatomical structure (AS) while cell type annotation tools use organ-level data.
+
+        Cell Type Annotation crosswalks are used in the HuBMAP, SenNet portals, HRApop, and the Azimuth website.
+
+        Note that ASCT+B Tables are versioned and revised with each new HRA release in June and December as new terms are added to Uberon and Cell Ontology;
+        thus, the crosswalks are revised as needed, versioned, and republished with each HRA release.
+
+        To map cell type labels to standardized Cell Ontology (CL) labels and CL IDs used in ASCT+B Tables, crosswalk tables for Azimuth, CellTypist, and
+        Popular vote (popV) were constructed. Use tool-specific crosswalk tables:
+
+  - component: PageSection
+    tagline: Summary Statistics
+    anchor: summary-statistics
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          View the number of anatomical structures and unique cell types in ASCT+B tables vs. number of cell types that different cell type annotation tools can assign.
+      - component: PageTable
+        styles:
+          --hra-table-max-height: 35rem
+        style: alternating
+        enableSort: true
+        csvUrl: assets/content/cell-type-annotations-page/ct-per-organ-per-tool.csv
+        columns:
+          - column: Organ
+            label: Organ
+          - column: AS
+            label: '#AS'
+            type: numeric
+          - column: CT
+            label: '#Cell Types'
+            type: numeric
+          - column: Azimuth
+            label: Azimuth v0.4.6
+            type: numeric
+          - column: CellTypist
+            label: CellTypist v1.6
+            type: numeric
+          - column: popV
+            label: popV unversioned
+            type: numeric
+
+  - component: PageSection
+    tagline: References
+    anchor: references
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          1. Hao, Y. et al. Integrated analysis of multimodal single-cell data. Cell 184, 3573-3587.e29 (2021).
+          2. Domínguez Conde, C. et al. Cross-tissue immune cell analysis reveals tissue-specific features in humans. Science 376, eabl5197 (2022).
+          3. Chuan Xu et al. Automatic cell type harmonization and integration across Human Cell Atlas datasets. bioRxiv 2023.05.01.538994 (2023) doi:10.1101/2023.05.01.538994.
+          4. YosefLab. Releases · https://github.com/YosefLab/PopV (2023).
+          5. Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage. bioRxiv 2024.03.27.587041 (2024) doi:10.1101/2024.03.27.587041.

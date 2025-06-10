@@ -1,0 +1,23 @@
+@use '../../../../styles/vars';
+
+:host {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-icon {
+    width: inherit;
+    height: inherit;
+  }
+
+  &.hra-icon-filled {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: vars.$corner-full;
+
+    mat-icon {
+      width: 60%;
+      height: 60%;
+    }
+  }
+}

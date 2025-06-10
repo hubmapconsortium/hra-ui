@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
+import { ActionCardActionComponent, ActionCardComponent } from '@hra-ui/design-system/cards/action-card';
 import { FlatCardModule } from '@hra-ui/design-system/cards/flat-card';
-import { WebComponentCardComponent } from '@hra-ui/design-system/cards/web-component-card';
-
-/** All re-exported modules, components, directives, etc. */
-const REEXPORTS = [FlatCardModule, WebComponentCardComponent];
+import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
 
 @NgModule({
-  imports: REEXPORTS,
-  exports: REEXPORTS,
+  imports: [ActionCardComponent, ActionCardActionComponent, FlatCardModule, ProfileCardComponent],
+  exports: [ActionCardComponent, ActionCardActionComponent, FlatCardModule, ProfileCardComponent],
 })
 export class CardsModule {}

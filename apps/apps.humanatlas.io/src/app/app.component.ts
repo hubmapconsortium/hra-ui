@@ -9,7 +9,7 @@ import { routeData } from './utils/route-data';
 
 /** Main application component */
 @Component({
-  selector: 'hra-root',
+  selector: 'hra-apps',
   imports: [CommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -27,7 +27,7 @@ export class AppComponent {
   /**
    * Breadcrumbs data (computed from above signal).
    */
-  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
+  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs']);
 
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();
@@ -69,7 +69,32 @@ export class AppComponent {
             {
               type: 'item',
               label: 'EUI',
-              url: 'https://cdn.humanatlas.io/ui--staging/ccf-eui/',
+              url: 'https://apps.humanatlas.io/api--staging/eui/',
+            },
+            {
+              type: 'item',
+              label: 'RUI',
+              url: 'https://apps.humanatlas.io/api--staging/rui/',
+            },
+            {
+              type: 'item',
+              label: 'ASCT+B Reporter',
+              url: 'https://cdn.humanatlas.io/ui--staging/asctb-reporter/',
+            },
+            {
+              type: 'item',
+              label: 'FTU Explorer',
+              url: 'https://apps.humanatlas.io/api--staging/ftu-explorer/',
+            },
+            {
+              type: 'item',
+              label: 'humanatlas.io',
+              url: 'https://apps.humanatlas.io/beta--humanatlas.io/',
+            },
+            {
+              type: 'item',
+              label: 'docs.humanatlas.io',
+              url: 'https://apps.humanatlas.io/beta--docs.humanatlas.io/',
             },
           ],
         },

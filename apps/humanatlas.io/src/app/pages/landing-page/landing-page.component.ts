@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { CarouselComponent } from '../../components-v2/carousel/carousel.component';
+import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { CountCardComponent } from '@hra-ui/design-system/cards/count-card';
-import { SectionCardsComponent } from '../../components-v2/section-cards/section-cards.component';
-import { LandingPageData } from '../../resolvers/landing-page/landing-page.schema';
+import { SectionCardsComponent } from '../../components/section-cards/section-cards.component';
+import { LandingPageData } from '../../schemas/landing-page/landing-page.schema';
 
 /**
  * HRA landing page component

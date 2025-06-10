@@ -76,8 +76,10 @@ export class HeaderComponent {
   readonly hubmapMenu = input(HUBMAP_MENU);
   /** All other menus */
   readonly menus = input(MENUS);
+  /** Base url - Menu urls starting with this will be converted into router links */
+  readonly baseUrl = input<string>();
   /** Breadcrumb items */
-  readonly breadcrumbs = input<BreadcrumbItem[]>([]);
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
   /**
    * Progress bar progress.
    * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.

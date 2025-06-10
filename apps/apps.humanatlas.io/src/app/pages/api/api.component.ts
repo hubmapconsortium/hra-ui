@@ -8,13 +8,13 @@ import {
   ElementRef,
   inject,
   InjectionToken,
+  input,
   model,
   viewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
-import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
@@ -48,13 +48,16 @@ function loadRapidocStyles(): void {
  */
 @Component({
   selector: 'hra-api',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, ServerSelectorComponent, ProductLogoComponent],
+  imports: [HraCommonModule, ButtonsModule, IconsModule, ServerSelectorComponent],
   templateUrl: './api.component.html',
   styleUrl: './api.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ApiComponent {
+  /** Product api logo*/
+  readonly logo = input<string>('product:api');
+
   /** model to handle serverId from resolver
    * and change within the component
    */
@@ -64,11 +67,6 @@ export class ApiComponent {
    * list of available servers
    */
   protected readonly servers = servers;
-
-  /**
-   * Product logo id
-   */
-  protected readonly logo = toProductLogoId('api');
 
   /**
    * stores the selected server
@@ -95,7 +93,12 @@ export class ApiComponent {
   constructor() {
     inject(RAPIDOC_STYLES);
 
-    effect(() => this.videoElement().nativeElement.play());
+    effect(() =>
+      this.videoElement()
+        .nativeElement.play()
+        // Ignore exceptions
+        .catch(() => undefined),
+    );
   }
 
   /**

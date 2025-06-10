@@ -5,9 +5,10 @@
 @mixin overrides() {
   @include mat.button-toggle-overrides(
     (
-      divider-color: vars.$primary,
       height: 2.5rem,
       shape: vars.$corner-extra-small,
+      background-color: transparent,
+      divider-color: vars.$primary,
       selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
       selected-state-text-color: vars.$secondary,
     )
@@ -26,7 +27,7 @@
     );
 
     .mat-button-toggle-label-content {
-      padding: 0.3125rem 0.5rem;
+      padding: 0 0.5rem;
     }
   }
 
@@ -43,7 +44,7 @@
     );
 
     .mat-button-toggle-label-content {
-      padding: 0.3438rem 0.5rem;
+      padding: 0 0.5rem;
     }
   }
 
@@ -60,7 +61,7 @@
     );
 
     .mat-button-toggle-label-content {
-      padding: 0.5rem 1rem;
+      padding: 0 1rem;
     }
   }
 }

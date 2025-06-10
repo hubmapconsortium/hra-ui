@@ -1,0 +1,134 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Digital Objects
+subtitle: The Human Reference Atlas (HRA) is constructed upon a diverse set of Digital Objects (DOs) that encapsulate the anatomical, cellular, and molecular intricacies of the healthy human body.
+icons: product:developer-portal
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Digital Objects serve as the data components used for generating the HRA KG.
+        A Digital Object is defined as a unit of information that includes properties (attributes or characteristics of the object)
+        and may also include methods (means of performing operations on the object).
+
+        Each Digital Object in the HRA KG is uniquely identified by a Persistent Uniform Resource Locator (PURL).
+        This PURL incorporates the digital object's type, name, and version, allowing for reliable access to specific data versions.
+
+        For instance, the PURL [kidney (v1.6) graph data](https://lod.humanatlas.io/asct-b/kidney/v1.6) identifies the ASCT+B table for the kidney at version 1.6.
+        Each digital object is linked to established ontologies such as Uberon, Cell Ontology (CL),
+        and Provisional Cell Ontology (PCL) through crosswalk tables, ensuring semantic consistency and interoperability.
+
+  - component: PageSection
+    tagline: Digital Object Types
+    anchor: digital-object-types
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Digital Objects can be categorized into various types, each serving a specific purpose within the HRA KG.
+          The primary types of Digital Objects include:
+      - component: Markdown
+        data: |
+          **ASCT+B Tables**: The Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables contain detailed knowledge about human body parts in a hierarchical order, explaining the organization of Anatomical Structures (AS), the Cell Types (CT) found in each AS, and the Biomarkers (B) that distinguish each CT.
+          These tables are foundational for semantic annotation, linked to other digital objects via crosswalks and are available in CSV format.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/asctb-tables
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **3D Reference Organs**: High-resolution, anatomically accurate 3D models of human organs, derived from sources like the Visible Human Project. These models provide spatial context for tissue registration and data visualization, supporting formats such as GLB and OBJ.
+          Each 3D model object is annotated with a proper label and an identifier from the Uberon and FMA ontologies. They are used in HRA applications to register and explore tissue blocks and associated datasets.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/3d-reference-library
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Functional Tissue Unit (FTU) Illustrations**: FTUs are the smallest functional units within organs, such as nephrons in kidneys or alveoli in lungs. The HRA provides 2D illustrations of these units, highlighting their anatomical structures and associated cell types, aiding in detailed tissue analysis.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/2d-ftu-illustrations
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Cell Type Annotations**: These mappings associate cell types identified in external datasets (e.g., Azimuth) with standardized HRA terms, facilitating cross-dataset comparisons and analyses.
+          They enhance interoperability between diverse single-cell datasets. They are referenced by other digital object types to annotate AS, CT, and B with ontology terms and they can be downloaded as CSV and XLSX files.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/cell-type-annotations
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Organ Mapping Antibody Panels (OMAPs)**: OMAPs consist of curated panels of antibodies designed to target specific proteins for identifying cell types, anatomical structures, cell states, or cell membrane staining within organs.
+          They are essential for standardized multiplexed tissue imaging.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/omap
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Militome**: The Militome is a 3D-printed tool designed to systematically section organs into uniformly sized tissue blocks, ensuring consistent sampling for analysis.
+          It is accompanied by metadata detailing block positions and dimensions.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/millitome
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Vascular Geometry**: Detailed models and data representing the vascular structures within organs, capturing the complexity of blood vessel networks.
+          These models support studies on blood flow, nutrient delivery, and disease modeling and they provide vascular metadata for asct-b DOs. They can be downloaded in their raw distributions as CSV files.
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/vccf
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: Accessing Digital Objects
+    anchor: access
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas provides a wide range of interfaces and resources for accessing, exploring, and integrating Digital Objects.
+
+          Refer to the following resources for more information on how to access and utilize these digital objects effectively:
+
+      - component: Markdown
+        data: |
+          **HRA Portal**: The central hub for all HRA tools, data, and documentation. Browse 3D models, ASCT+B tables, FTUs, and more.
+      - component: TextHyperlink
+        text: Visit Portal
+        url: https://humanatlas.io
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **HRA API**: Offers programmatic access to Digital Objects, crosswalk tables, ontologies, spatial data, and reference organs.
+      - component: TextHyperlink
+        text: View API
+        url: https://humanatlas.io/api
+        icon: arrow_right_alt
+
+      - component: Markdown
+        data: |
+          **Data Portals**:
+          - [HuBMAP Portal](https://portal.hubmapconsortium.org)
+          - [SenNet Portal](https://data.sennetconsortium.org/ccf-eui)
+          - [GTEx Portal](https://gtexportal.org/home/eui)
+          - [KPMP Tissue Atlas](https://apps.humanatlas.io/eui/kpmp.html)
+
+      - component: Markdown
+        data: |
+          **GitHub Repositories**:
+          - [HRA Digital Object Processor](https://github.com/hubmapconsortium/hra-do-processor)
+          - [HRA KG Repository](https://github.com/hubmapconsortium/hra-kg)

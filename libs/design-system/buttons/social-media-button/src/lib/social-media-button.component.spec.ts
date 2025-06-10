@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideIcons } from '@hra-ui/cdk/icons';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
 import { SocialMediaButtonComponent } from './social-media-button.component';
 import { SOCIAL_IDS } from './static-data/parsed';
