@@ -17,5 +17,6 @@ import { DOCS_NAVIGATION_MENU } from '@hra-ui/design-system/navigation/site-navi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  /** Navigation menu for the application */
   protected readonly navigationMenu = DOCS_NAVIGATION_MENU;
 }

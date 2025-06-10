@@ -1,5 +1,10 @@
 <hra-header baseUrl="https://humanatlas.io/" />
-
-<router-outlet />
-
+<div class="main" [class.navigation-visible]="!isNavigationVisible">
+  @if (isNavigationVisible) {
+    <hra-site-navigation [navigationMenu]="navigationMenu"></hra-site-navigation>
+  }
+  <div class="content">
+    <router-outlet />
+  </div>
+</div>
 <hra-footer />

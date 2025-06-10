@@ -1,3 +1,21 @@
 :host {
   display: block;
+
+  .main {
+    display: flex;
+
+    &.navigation-visible {
+      display: block;
+      .content {
+        max-width: unset;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: calc(100% - 20rem);
+  }
 }
