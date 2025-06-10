@@ -14,9 +14,9 @@ describe('SectionCardsComponent', () => {
         cardInfo: [
           {
             tagline: 'Tagline',
-            description: 'Test',
-            imageSrc: 'test-image-src',
+            icon: 'test-image-src',
             route: 'test-route',
+            action: 'Test',
           },
         ],
       },

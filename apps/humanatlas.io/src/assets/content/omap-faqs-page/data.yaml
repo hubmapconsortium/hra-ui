@@ -8,12 +8,12 @@ headerContent:
     content:
       - component: Button
         label: Get data
-        href: ''
+        href: 'https://purl.humanatlas.io/omap'
         type: cta
 
       - component: Button
         label: Learn more
-        href: ''
+        href: 'https://humanatlas.io/omap'
         type: cta
         variant: secondary
 

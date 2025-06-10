@@ -36,6 +36,13 @@ export const appRoutes: Route[] = [
     path: 'apps',
     component: ContentPageComponent,
     resolve: {
+      data: createYamlSpecResolver('assets/content/apps-overview-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'dev/apps',
+    component: ContentPageComponent,
+    resolve: {
       data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
     },
   },
