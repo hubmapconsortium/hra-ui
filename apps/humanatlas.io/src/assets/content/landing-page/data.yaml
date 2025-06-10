@@ -1,32 +1,33 @@
 $schema: ../../../app/schemas/landing-page/landing-page.schema.json
 carouselItems:
-  - tagline: Map the human body at single cell resolution
-    description: Read our flagship paper about the thousands of experts building a Human Reference Atlas.
-    imageSrc: assets/content/landing-page/images/carousel1.svg
-    action: View Paper
+  - tagline: New publication
+    description: |
+      Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
+    imageSrc: assets/content/landing-page/images/carousel1.png
+    action: Read
     link:
-      url: https://doi.org/10.1038/s41556-021-00788-6
-  - tagline: Contribute data to the Human Reference Atlas
-    description: Use the ASCT+B Reporter tool to explore data in the context of the Human Reference Atlas.
-    imageSrc: assets/content/landing-page/images/carousel3.svg
-    action: Learn More
+      url: https://www.nature.com/articles/s41592-024-02563-5
+  - tagline: New preprint
+    description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data
+    imageSrc: assets/content/landing-page/images/carousel2.png
+    action: Read
     link:
-      route: asctb-reporter
-  - tagline: Learn more about the Human BioMolecular Atlas Program
-    description: Explore HuBMAP data code and documentation using the HuBMAP Data Portal.
-    imageSrc: assets/content/landing-page/images/carousel6.svg
-    action: HuBMAP Data Portal
+      url: https://doi.org/10.1101/2024.12.22.630006
+  - tagline: New publication
+    description: Functional tissue units in the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel3.png
+    action: Read
     link:
-      url: https://portal.hubmapconsortium.org/
-  - tagline: Learn more about the Cellular Senescence Network (SenNet) Program
-    description: Explore SenNet data, code, and documentation using the SenNet Data Portal.
-    imageSrc: assets/content/landing-page/images/carousel_sennet.svg
-    action: SenNet Data Portal
+      url: https://www.nature.com/articles/s41467-024-54591-6
+  - tagline: Read the flagship publication of the Human Reference Atlas
+    description: Anatomical structures, cell types and biomarkers of the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel4.png
+    action: Read
     link:
-      url: https://data.sennetconsortium.org/
+      url: https://www.nature.com/articles/s41556-021-00788-6
 
 countInfo:
-  - count: 17
+  - count: 26
     label: consortia
     icon:
       fontText: diversity_3
@@ -38,23 +39,23 @@ countInfo:
     label: publications
     icon:
       fontText: docs
-  - count: 71
+  - count: 57
     label: organs
     icon:
       fontText: neurology
-  - count: 4,694
+  - count: 2,665
     label: anatomical structures
     icon:
       fontText: favorite
-  - count: 1,288
+  - count: 953
     label: cell types
     icon:
       url: assets/content/landing-page/images/cell-types.svg
-  - count: 2,018
+  - count: 2,842
     label: biomarkers
     icon:
       fontText: add_location
-  - count: 23
+  - count: 20
     label: organ mapping antibody panels
     icon:
       fontText: map
@@ -64,19 +65,19 @@ countInfo:
       fontText: layers
 
 sectionCardInfo:
-  - tagline: Join
-    description: Register for the monthly Human Reference Atlas Working Group
-    imageSrc: assets/content/landing-page/images/join.svg
+  - tagline: Join our working group
+    icon: misc:contribute
     url: https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH
-  - tagline: Data
-    description: Research the data constructing Human Reference Atlas
-    imageSrc: assets/content/landing-page/images/data.svg
+    action: Register
+  - tagline: Data overview
+    icon: misc:data
     route: /overview-data
-  - tagline: Apps
-    description: Construct, visualize, and use Human Reference Atlas applications
-    imageSrc: assets/content/landing-page/images/apps.svg
+    action: Learn more
+  - tagline: Apps overview
+    icon: misc:explore
     url: https://apps.humanatlas.io/
-  - tagline: Training
-    description: Check out HuBMAP’s education and engagement efforts
-    imageSrc: assets/content/landing-page/images/training.svg
+    action: Learn more
+  - tagline: Help & documentation
+    icon: misc:training
     route: /overview-training-outreach
+    action: Learn more

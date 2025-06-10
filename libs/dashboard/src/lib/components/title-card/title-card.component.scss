@@ -1,3 +1,6 @@
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: inline-block;
   background-color: white;
@@ -7,7 +10,8 @@
   min-width: 18rem;
 
   .title {
-    color: #201e3d;
+    @include utils.use-font(title, large);
+    color: vars.$on-background;
     display: inline-block;
     margin-bottom: 0.75rem;
   }
@@ -49,7 +53,7 @@
     max-width: 21rem;
 
     .mat-caption {
-      font-weight: 500;
+      @include utils.use-font(label, medium);
     }
   }
 }

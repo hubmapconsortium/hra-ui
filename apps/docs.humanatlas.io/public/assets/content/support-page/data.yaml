@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Support
 subtitle: |
   Welcome to the Human Reference Atlas (HRA) Support Portal for Developers and Users! The HRA is a comprehensive,

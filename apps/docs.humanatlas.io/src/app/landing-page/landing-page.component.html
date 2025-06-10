@@ -1,0 +1,13 @@
+<img class="banner" [attr.src]="data().bannerUrl | assetUrl" alt="" />
+
+<div class="content">
+  <span class="header">
+    {{ data().tagline }}
+  </span>
+
+  <hra-flex-container rowGap="1.5rem" columnGap="1.5rem">
+    @for (card of data().cards; track card) {
+      <ng-container *hraContentTemplateOutlet="card" />
+    }
+  </hra-flex-container>
+</div>

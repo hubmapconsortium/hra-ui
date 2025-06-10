@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Tutorials
 subtitle: |
   Get started with hands-on tutorials designed to help you interact with the Human Reference Atlas (HRA) using Python. These interactive Jupyter notebooks walk you through how to access, explore, and integrate HRA Digital Objects, APIs, and UI components in a step-by-step way.
@@ -6,7 +6,6 @@ icons: product:developer-portal
 action:
   label: Explore HRA Notebooks
   url: https://github.com/x-atlas-consortia/hra-notebooks
-  icon: arrow_right_alt
 content:
   - component: PageSection
     tagline: Introduction to the HRA Tutorials

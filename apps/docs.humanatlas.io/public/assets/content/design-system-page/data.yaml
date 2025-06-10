@@ -1,4 +1,4 @@
-$schema: ../../../app/schemas/content-page/content-page.schema.json
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Design System
 subtitle: |
   A unified visual and interaction framework for all Human Reference Atlas applications.

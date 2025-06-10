@@ -27,7 +27,7 @@ export class AppComponent {
   /**
    * Breadcrumbs data (computed from above signal).
    */
-  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs'] ?? []);
+  protected readonly crumbs = computed((): BreadcrumbItem[] => this.data()['crumbs']);
 
   /** is user navigating to a different page */
   protected readonly isNavigating = isNavigating();
@@ -80,6 +80,11 @@ export class AppComponent {
               type: 'item',
               label: 'ASCT+B Reporter',
               url: 'https://cdn.humanatlas.io/ui--staging/asctb-reporter/',
+            },
+            {
+              type: 'item',
+              label: 'FTU Explorer',
+              url: 'https://apps.humanatlas.io/api--staging/ftu-explorer/',
             },
             {
               type: 'item',
