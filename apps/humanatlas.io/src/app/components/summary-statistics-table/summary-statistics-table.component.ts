@@ -25,7 +25,7 @@ import { parse, unparse } from 'papaparse';
 })
 export class SummaryStatisticsTableComponent {
   /** URL for the CSV */
-  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-counts.csv');
+  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-counts-9th-release.csv');
 
   /** Column name for the organ */
   readonly organColumn = input('organ');
