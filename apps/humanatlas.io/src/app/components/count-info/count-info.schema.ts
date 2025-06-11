@@ -7,5 +7,5 @@ export type CountInfoItem = z.infer<typeof CountInfoItemSchema>;
 export const CountInfoItemSchema = z.object({
   label: z.string(),
   count: z.union([z.number(), z.string()]),
-  icon: z.union([z.object({ fontText: z.string() }), z.object({ url: z.string() })]),
+  icon: z.string(),
 });
