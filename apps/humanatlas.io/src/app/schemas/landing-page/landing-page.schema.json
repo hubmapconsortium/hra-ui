@@ -66,28 +66,7 @@
                 "type": ["number", "string"]
               },
               "icon": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "fontText": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["fontText"],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "url": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["url"],
-                    "additionalProperties": false
-                  }
-                ]
+                "type": "string"
               }
             },
             "required": ["label", "count", "icon"],
