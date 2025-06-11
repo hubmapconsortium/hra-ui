@@ -104,14 +104,6 @@ export class AppComponent {
     },
   ];
 
+  /** Router instance for navigation */
   protected readonly router = inject(Router);
-
-  constructor() {
-    effect(() => {
-      // Log the current breadcrumbs to the console
-      console.log('Current breadcrumbs:', this.crumbs());
-      console.log('route data:', this.data());
-      console.log('current url', this.router.url);
-    });
-  }
 }
