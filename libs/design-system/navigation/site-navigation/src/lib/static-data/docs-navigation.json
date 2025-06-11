@@ -6,8 +6,12 @@
       "label": "Getting Started",
       "icon": "info",
       "children": [
-        { "type": "item", "label": "Introduction to the Human Reference Atlas", "url": "" },
-        { "type": "item", "label": "Project Overview", "url": "" }
+        {
+          "type": "item",
+          "label": "Introduction to the Human Reference Atlas",
+          "url": "https://humanatlas.io/"
+        },
+        { "type": "item", "label": "Project Overview", "url": "https://humanatlas.io/overview-project" }
       ]
     },
     {
@@ -41,18 +45,22 @@
       "icon": "database",
       "children": [
         { "type": "item", "label": "Data Overview", "url": "https://humanatlas.io/overview-data" },
-        { "type": "item", "label": "3D Organs", "url": "" },
-        { "type": "item", "label": "ASCT+B Tables", "url": "" },
-        { "type": "item", "label": "Cell Type Annotations", "url": "" },
-        { "type": "item", "label": "Collections", "url": "" },
-        { "type": "item", "label": "Dataset Graphs", "url": "" },
-        { "type": "item", "label": "Functional Tissue Unit (FTU) Illustrations", "url": "" },
-        { "type": "item", "label": "Graphs", "url": "" },
-        { "type": "item", "label": "Landmarks", "url": "" },
+        { "type": "item", "label": "3D Organs", "url": "https://humanatlas.io/3d-reference-library" },
+        { "type": "item", "label": "ASCT+B Tables", "url": "https://humanatlas.io/asctb-tables" },
+        { "type": "item", "label": "Cell Type Annotations", "url": "https://humanatlas.io/cell-type-annotations" },
+        { "type": "item", "label": "Collections", "url": "https://humanatlas.io/collections" },
+        { "type": "item", "label": "Dataset Graphs", "url": "https://humanatlas.io/dataset-graphs" },
+        {
+          "type": "item",
+          "label": "Functional Tissue Unit (FTU) Illustrations",
+          "url": "https://humanatlas.io/2d-ftu-illustrations"
+        },
+        { "type": "item", "label": "Graphs", "url": "https://humanatlas.io/graphs" },
+        { "type": "item", "label": "Landmarks", "url": "https://humanatlas.io/landmarks" },
         { "type": "item", "label": "Millitome", "url": "https://humanatlas.io/millitome" },
-        { "type": "item", "label": "Organ Mapping Antibody Panels", "url": "" },
+        { "type": "item", "label": "Organ Mapping Antibody Panels", "url": "https://humanatlas.io/omap" },
         { "type": "item", "label": "Schema", "url": "" },
-        { "type": "item", "label": "Vascular Geometry", "url": "" }
+        { "type": "item", "label": "Vascular Geometry", "url": "https://humanatlas.io/vccf" }
       ]
     },
     {
@@ -60,7 +68,11 @@
       "label": "Development",
       "icon": "code",
       "children": [
-        { "type": "item", "label": "Introduction to HRA Development", "url": "https://docs.humanatlas.io/" },
+        {
+          "type": "item",
+          "label": "Introduction to HRA Development",
+          "url": "https://docs.humanatlas.io/introduction"
+        },
         { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/api-reference" },
         { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/apps" },
         { "type": "item", "label": "Change Log", "url": "https://docs.humanatlas.io/changelog" },

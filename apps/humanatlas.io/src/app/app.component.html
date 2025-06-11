@@ -1,7 +1,7 @@
 <hra-header baseUrl="https://humanatlas.io/" />
-<div class="main" [class.navigation-visible]="!isNavigationVisible">
-  @if (isNavigationVisible) {
-    <hra-site-navigation [navigationMenu]="navigationMenu" baseUrl="https://humanatlas.io"></hra-site-navigation>
+<div class="main" [class.navigation-visible]="siteNavigationEnabled()">
+  @if (siteNavigationEnabled()) {
+    <hra-site-navigation baseUrl="https://humanatlas.io" />
   }
   <div class="content">
     <router-outlet />

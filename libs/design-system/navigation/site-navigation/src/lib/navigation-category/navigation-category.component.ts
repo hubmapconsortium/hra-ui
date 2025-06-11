@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
 import { DocsNavigationCategory } from '../types/docs-navigation.schema';
-import { currentRoutePath } from '../utils/navigation';
 
 /** Navigation Category Component */
 @Component({
@@ -24,25 +23,22 @@ export class NavigationCategoryComponent {
   /** Base URL for the appliation */
   readonly baseUrl = input.required<string>();
 
-  /** Current Route */
-  readonly currentPath = currentRoutePath();
-
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
 
-  constructor() {
-    effect(() => {
-      const current = this.baseUrl() + this.currentPath();
-      const category = this.navigationCategory();
+  // constructor() {
+  //   effect(() => {
+  //     const current = this.baseUrl() + this.currentPath();
+  //     const category = this.navigationCategory();
 
-      const isMatch = category?.children?.some((child) => {
-        const target = child.url;
-        return target === '' ? current === '' : current === target || current.startsWith(target + '/');
-      });
+  //     const isMatch = category?.children?.some((child) => {
+  //       const target = child.url;
+  //       return target === '' ? current === '' : current === target || current.startsWith(target + '/');
+  //     });
 
-      if (isMatch) {
-        this.expandedChange.emit(true);
-      }
-    });
-  }
+  //     if (isMatch) {
+  //       this.expandedChange.emit(true);
+  //     }
+  //   });
+  // }
 }

@@ -1,17 +1,27 @@
-<mat-list-item
-  class="page"
-  [class.in-category]="isInCategory()"
-  [activated]="isActive(navigationItem().url)()"
-  (click)="navigate(navigationItem().url)"
->
-  @if (navigationItem().icon) {
-    <mat-icon matListItemIcon>{{ navigationItem().icon }}</mat-icon>
-  }
+@if (url().isAbsolute) {
+  <a mat-list-item [href]="url().value">
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+} @else {
+  <a
+    mat-list-item
+    [routerLink]="url().value"
+    [activated]="rla.isActive"
+    routerLinkActive="active"
+    #rla="routerLinkActive"
+  >
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+}
 
-  @let url = resolveUrl(navigationItem().url);
-  @if (url.isAbsolute) {
-    <a matListItemTitle [href]="url.value" #navLink>{{ navigationItem().label }}</a>
-  } @else {
-    <a [routerLink]="url.value" matListItemTitle #navLink>{{ navigationItem().label }}</a>
-  }
-</mat-list-item>
+<ng-template #content>
+  <div class="nav-content">
+    @if (navigationItem().icon; as icon) {
+      <mat-icon matListItemIcon>{{ icon }}</mat-icon>
+    }
+
+    <span matListItemTitle>
+      {{ navigationItem().label }}
+    </span>
+  </div>
+</ng-template>

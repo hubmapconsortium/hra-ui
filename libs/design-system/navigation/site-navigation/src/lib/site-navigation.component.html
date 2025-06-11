@@ -15,9 +15,9 @@
           @if (navMenuItem.type === 'category') {
             <hra-navigation-category
               [navigationCategory]="navMenuItem"
+              [baseUrl]="baseUrl()"
               [expanded]="expandedCategory() === navMenuItem.label"
               (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
-              [baseUrl]="baseUrl()"
             />
           } @else if (navMenuItem.type === 'item') {
             <hra-navigation-item [navigationItem]="navMenuItem" [baseUrl]="baseUrl()" />

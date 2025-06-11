@@ -3,9 +3,10 @@
     <mat-icon>{{ navigationCategory().icon }}</mat-icon>
     <div>{{ navigationCategory().label }}</div>
   </mat-expansion-panel-header>
+
   <div matExpansionPanelContent>
     @for (navigationItem of navigationCategory().children; track navigationItem) {
-      <hra-navigation-item [navigationItem]="navigationItem" [isInCategory]="true" [baseUrl]="baseUrl()" />
+      <hra-navigation-item [navigationItem]="navigationItem" [baseUrl]="baseUrl()" />
     }
   </div>
 </mat-expansion-panel>

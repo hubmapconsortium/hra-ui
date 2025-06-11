@@ -4,6 +4,7 @@
 
 :host {
   display: block;
+  --hra-navigation-item-padding-left: 3.5rem;
 
   ::ng-deep .mat-expansion-panel-body {
     padding: 0;

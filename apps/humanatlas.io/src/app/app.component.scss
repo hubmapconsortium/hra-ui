@@ -4,18 +4,12 @@
   .main {
     display: flex;
 
-    &.navigation-visible {
-      display: block;
-      .content {
-        max-width: unset;
-      }
+    .content {
+      flex: 1;
     }
   }
 
-  .content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+  .main.navigation-visible .content {
     max-width: calc(100% - 20rem);
   }
 }
