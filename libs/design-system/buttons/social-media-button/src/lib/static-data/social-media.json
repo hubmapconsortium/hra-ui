@@ -2,19 +2,9 @@
   "$schema": "../types/social-media.schema.json",
   "socials": [
     {
-      "id": "x",
-      "icon": "social:x",
-      "link": "https://twitter.com/cnscenter"
-    },
-    {
-      "id": "facebook",
-      "icon": "social:facebook",
-      "link": "https://www.facebook.com/cnscenter/"
-    },
-    {
-      "id": "instagram",
-      "icon": "social:instagram",
-      "link": "https://www.instagram.com/cns_at_iu/"
+      "id": "linkedin",
+      "icon": "social:linkedin",
+      "link": "https://www.linkedin.com/company/cns-indiana-university-bloomington"
     },
     {
       "id": "youtube",
@@ -22,14 +12,29 @@
       "link": "https://www.youtube.com/@CNSCenter/"
     },
     {
-      "id": "linkedin",
-      "icon": "social:linkedin",
-      "link": "https://www.linkedin.com/company/cns-indiana-university-bloomington"
+      "id": "instagram",
+      "icon": "social:instagram",
+      "link": "https://www.instagram.com/cns_at_iu/"
+    },
+    {
+      "id": "facebook",
+      "icon": "social:facebook",
+      "link": "https://www.facebook.com/cnscenter/"
     },
     {
       "id": "github",
       "icon": "social:github",
       "link": "https://github.com/hubmapconsortium/hra-ui"
+    },
+    {
+      "id": "bluesky",
+      "icon": "social:bluesky",
+      "link": "https://bsky.app/profile/cnscenter.bsky.social"
+    },
+    {
+      "id": "x",
+      "icon": "social:x",
+      "link": "https://twitter.com/cnscenter"
     },
     {
       "id": "email",
