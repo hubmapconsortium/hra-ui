@@ -7,7 +7,10 @@
   @include mat.form-field-overrides(
     (
       container-height: 3rem,
-      container-text-font: vars.$label-medium,
+      container-text-font: vars.$label-medium-font,
+      container-text-size: vars.$label-medium-size,
+      container-text-weight: vars.$label-medium-weight,
+      container-text-line-height: vars.$label-medium-line-height,
 
       disabled-input-text-placeholder-color: utils.with-alpha(vars.$secondary, 40%),
       enabled-select-arrow-color: vars.$on-secondary-fixed,
@@ -23,7 +26,7 @@
       filled-hover-active-indicator-color: vars.$secondary,
       filled-input-text-color: vars.$secondary,
       filled-input-text-placeholder-color: vars.$primary,
-      filled-label-text-color: vars.$inverse-surface,
+      filled-label-text-color: vars.$on-secondary-fixed,
       filled-label-text-font: vars.$label-small-font,
       filled-label-text-weight: vars.$label-small-weight,
       filled-label-text-size: vars.$label-small-size,
