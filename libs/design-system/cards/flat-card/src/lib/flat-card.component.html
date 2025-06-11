@@ -14,11 +14,9 @@
   <mat-divider class="top-divider"></mat-divider>
 }
 
-<ng-scrollbar>
-  <div class="card-content">
-    <ng-content></ng-content>
-  </div>
-</ng-scrollbar>
+<div class="card-content">
+  <ng-content></ng-content>
+</div>
 
 @if (showButtonsFooter()) {
   <ng-content select="hra-flat-card-actions"></ng-content>

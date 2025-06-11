@@ -18,7 +18,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002113"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=kidney-v1.4&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "kidney-renal-corpuscle"
@@ -51,7 +51,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0000059"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=large-intestine-v1.3&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "large-intestine-crypt-lieberkuhn"
@@ -84,7 +84,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002107"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=liver-v1.2&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "liver-liver-lobule"
@@ -117,7 +117,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002048"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=lung-v1.4&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "lung-bronchial-submucosal-gland"
@@ -150,7 +150,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0001264"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=pancreas-v1.3&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "pancreas-intercalated-duct"
@@ -183,7 +183,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0000079"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=Prostate-v1.1&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "prostate-prostate-glandular-acinus"
@@ -216,7 +216,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002097"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=skin-v1.3&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "skin-dermal-papilla"
@@ -249,7 +249,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002108"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=Small_Intestine-v1.1&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "small-intestine-villus"
@@ -282,7 +282,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002106"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=spleen-v1.3&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "spleen-white-pulp"
@@ -315,7 +315,7 @@
           "organ": "http://purl.obolibrary.org/obo/UBERON_0002370"
         },
         "asctb-reporter": {
-          "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=thymus-v1.4&playground=false"
+          "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
           "illustration": "thymus-thymus-lobule"

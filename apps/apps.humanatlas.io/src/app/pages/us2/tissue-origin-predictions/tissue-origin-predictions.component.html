@@ -35,17 +35,22 @@
   <hra-workflow-card tagline="Metadata" class="card card-2">
     <div class="metadata-container">
       <div class="titles">
-        <div>Source Data</div>
-        <div>Organ</div>
-        <div>Annotation Tool</div>
-        <div>Creation Date/Time</div>
-      </div>
-
-      <div class="values">
-        <div>{{ data().file.name }}</div>
-        <div>{{ data().organ ?? 'no organ selected' }}</div>
-        <div>{{ data().tool ?? 'no tool selected' }}</div>
-        <div>{{ predictionDate }}</div>
+        <div class="metadata-row">
+          <span class="label">Source Data</span>
+          <span class="value">{{ data().file.name }}</span>
+        </div>
+        <div class="metadata-row">
+          <span class="label">Organ</span>
+          <span class="value">{{ data().organ ?? 'no organ selected' }}</span>
+        </div>
+        <div class="metadata-row">
+          <span class="label">Annotation Tool</span>
+          <span class="value">{{ data().tool ?? 'no tool selected' }}</span>
+        </div>
+        <div class="metadata-row">
+          <span class="label">Creation Date/Time</span>
+          <span class="value">{{ predictionDate }}</span>
+        </div>
       </div>
     </div>
   </hra-workflow-card>

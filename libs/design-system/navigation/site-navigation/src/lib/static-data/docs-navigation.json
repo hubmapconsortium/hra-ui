@@ -37,7 +37,7 @@
         },
         { "type": "item", "label": "Functional Tissue Unit Explorer", "url": "https://humanatlas.io/user-story/4" },
         { "type": "item", "label": "HRA Organ Gallery", "url": "https://humanatlas.io/hra-organ-gallery" },
-        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/knowledge-graph" },
+        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/dev/kg" },
         {
           "type": "item",
           "label": "Registration User Interface",
@@ -82,7 +82,7 @@
         { "type": "item", "label": "Design System", "url": "https://docs.humanatlas.io/dev/design-system" },
         { "type": "item", "label": "Digital Objects", "url": "https://docs.humanatlas.io/dev/digital-objects" },
         { "type": "item", "label": "Embedding Web Components", "url": "https://docs.humanatlas.io/dev/web-components" },
-        { "type": "item", "label": "FAQs", "url": "https://docs.humanatlas.io/dev/faqs" },
+        { "type": "item", "label": "FAQs", "url": "https://docs.humanatlas.io/dev/faq" },
         { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/dev/kg" },
         { "type": "item", "label": "Support", "url": "https://docs.humanatlas.io/dev/support" },
         { "type": "item", "label": "Tutorials", "url": "https://docs.humanatlas.io/dev/tutorials" }
