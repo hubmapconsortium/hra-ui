@@ -30,22 +30,24 @@ countInfo:
   - count: 26
     label: consortia
     icon: misc:contribute
-  - count: 250+
+  - count: 250
     label: experts
+    showSuffix: true
     icon: misc:experts
-  - count: 1,000+
+  - count: 1000
     label: publications
+    showSuffix: true
     icon: misc:publications
   - count: 73
     label: organs
-    icon: misc:heart
-  - count: 4,719
+    icon: organ:heart
+  - count: 4719
     label: anatomical structures
-    icon: misc:asctb-reporter
-  - count: 1,303
+    icon: product:asctb-reporter
+  - count: 1303
     label: cell types
     icon: misc:cell-type
-  - count: 2,018
+  - count: 2018
     label: biomarkers
     icon: misc:biomarker
   - count: 30

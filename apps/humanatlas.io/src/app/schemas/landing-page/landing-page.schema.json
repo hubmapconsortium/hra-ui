@@ -59,17 +59,20 @@
           "items": {
             "type": "object",
             "properties": {
+              "count": {
+                "type": "number"
+              },
               "label": {
                 "type": "string"
               },
-              "count": {
-                "type": ["number", "string"]
+              "showSuffix": {
+                "type": "boolean"
               },
               "icon": {
                 "type": "string"
               }
             },
-            "required": ["label", "count", "icon"],
+            "required": ["count", "label", "icon"],
             "additionalProperties": false
           }
         },

@@ -16,6 +16,9 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     component: LandingPageComponent,
+    data: {
+      siteNavigation: false,
+    },
     resolve: {
       data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
@@ -304,6 +307,9 @@ export const appRoutes: Route[] = [
   {
     path: '404',
     component: NotFoundPageComponent,
+    data: {
+      siteNavigation: false,
+    },
   },
   {
     path: '**',

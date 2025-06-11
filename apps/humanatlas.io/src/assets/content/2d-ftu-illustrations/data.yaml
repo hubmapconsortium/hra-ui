@@ -51,6 +51,357 @@ content:
       variant: ftu
       githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
       releaseVersionData:
+        - version: '2.3'
+          label: 9th Release (v2.3)
+          date: June 2025
+          crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.5/assets/asct-b-2d-models-crosswalk.csv
+          organData:
+            - label: Kidney
+              icon: organ:kidneys
+              cards:
+                - label: Ascending Thin Limb of Loop of Henle
+                  alt: Image of Ascending Thin Limb of Loop of Henle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
+                - label: Cortical Collecting Duct
+                  alt: Image of Cortical Collecting Duct
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.3/assets/2d-ftu-kidney-cortical-collecting-duct.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.3/assets/2d-ftu-kidney-cortical-collecting-duct.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.3
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.3/assets/2d-ftu-kidney-cortical-collecting-duct.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.3/assets/2d-ftu-kidney-cortical-collecting-duct.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.3/assets/2d-ftu-kidney-cortical-collecting-duct.svg
+                - label: Descending Thin Limb of Loop of Henle
+                  alt: Image of Descending Thin Limb of Loop of Henle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg
+                - label: Inner Medullary Collecting Duct
+                  alt: Image of Inner Medullary Collecting Duct
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg
+                - label: Nephron
+                  alt: Image of Nephron
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg
+                - label: Outer Medullary Collecting Duct
+                  alt: Image of Outer Medullary Collecting Duct
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg
+                - label: Renal Corpuscle
+                  alt: Image of Renal Corpuscle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg
+                - label: Thick Ascending Limb of Loop of Henle
+                  alt: Image of Thick Ascending Limb of Loop of Henle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
+            - label: Large Intestine
+              icon: organ:large-intestine
+              cards:
+                - label: Crypt of Lieberkuhn
+                  alt: Image of Crypt of Lieberkuhn
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg
+            - label: Liver
+              icon: organ:liver
+              cards:
+                - label: Liver Lobule
+                  alt: Image of Liver Lobule
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/liver-liver-lobule/v1.3
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg
+            - label: Lung
+              icon: organ:lungs
+              cards:
+                - label: Bronchial Submucosal Gland
+                  alt: Image of Bronchial Submucosal Gland
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.2/assets/2d-ftu-lung-bronchial-submucosal-gland.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.2/assets/2d-ftu-lung-bronchial-submucosal-gland.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.2/assets/2d-ftu-lung-bronchial-submucosal-gland.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.2/assets/2d-ftu-lung-bronchial-submucosal-gland.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.2/assets/2d-ftu-lung-bronchial-submucosal-gland.svg
+                - label: Pulmonary Alveolus
+                  alt: Image of Pulmonary Alveolus
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus/v1.3
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.svg
+            - label: Mouth
+              icon: organ:mouth
+              cards:
+                - label: Parotid Gland Ducto-Acinar
+                  alt: Image of Parotid Gland Ducto-Acinar
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-parotid-gland/v1.0/assets/2d-ftu-mouth-parotid-gland.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-parotid-gland/v1.0/assets/2d-ftu-mouth-parotid-gland.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/mouth-parotid-gland/v1.0
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-parotid-gland/v1.0/assets/2d-ftu-mouth-parotid-gland.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-parotid-gland/v1.0/assets/2d-ftu-mouth-parotid-gland.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-parotid-gland/v1.0/assets/2d-ftu-mouth-parotid-gland.svg
+                - label: Sublingual Gland Ducto-Acinar
+                  alt: Image of Sublingual Gland Ducto-Acinar
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-sublingual-gland/v1.0/assets/2d-ftu-mouth-sublingual-gland.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-sublingual-gland/v1.0/assets/2d-ftu-mouth-sublingual-gland.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/mouth-sublingual-gland/v1.0
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-sublingual-gland/v1.0/assets/2d-ftu-mouth-sublingual-gland.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-sublingual-gland/v1.0/assets/2d-ftu-mouth-sublingual-gland.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-sublingual-gland/v1.0/assets/2d-ftu-mouth-sublingual-gland.svg
+                - label: Submandibular Gland Ducto-Acinar
+                  alt: Image of Submandibular Gland Ducto-Acinar
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-submandibular-gland/v1.0/assets/2d-ftu-mouth-submandibular-gland.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-submandibular-gland/v1.0/assets/2d-ftu-mouth-submandibular-gland.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/mouth-submandibular-gland/v1.0
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-submandibular-gland/v1.0/assets/2d-ftu-mouth-submandibular-gland.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-submandibular-gland/v1.0/assets/2d-ftu-mouth-submandibular-gland.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/mouth-submandibular-gland/v1.0/assets/2d-ftu-mouth-submandibular-gland.svg
+            - label: Pancreas
+              icon: organ:pancreas
+              cards:
+                - label: Acinus
+                  alt: Image of Acinus
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.svg
+                - label: Intercalated Duct
+                  alt: Image of Intercalated Duct
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.svg
+                - label: Islets of Langerhans
+                  alt: Image of Islets of Langerhans
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.svg
+            - label: Prostate
+              icon: organ:prostate
+              cards:
+                - label: Prostate Glandular Acinus
+                  alt: Image of Prostate Glandular Acinus
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.svg
+            - label: Skin
+              icon: organ:skin
+              cards:
+                - label: Dermal Papilla
+                  alt: Image of Dermal Papilla
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla/v1.1
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.svg
+                - label: Epidermal Ridge
+                  alt: Image of Epidermal Ridge
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.2/assets/2d-ftu-skin-epidermal-ridge.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.2/assets/2d-ftu-skin-epidermal-ridge.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.2/assets/2d-ftu-skin-epidermal-ridge.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.2/assets/2d-ftu-skin-epidermal-ridge.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.2/assets/2d-ftu-skin-epidermal-ridge.svg
+                - label: Hair follicle
+                  alt: Image of Hair follicle
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-hair-follicle/v1.0/assets/2d-ftu-skin-hair-follicle.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-hair-follicle/v1.0/assets/2d-ftu-skin-hair-follicle.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/skin-hair-follicle/v1.0
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-hair-follicle/v1.0/assets/2d-ftu-skin-hair-follicle.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-hair-follicle/v1.0/assets/2d-ftu-skin-hair-follicle.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-hair-follicle/v1.0/assets/2d-ftu-skin-hair-follicle.svg
+            - label: Small Intestine
+              icon: organ:small-intestine
+              cards:
+                - label: Intestinal Villus
+                  alt: Image of Intestinal Villus
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/small-intestine-villus/v1.0
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.svg
+            - label: Spleen
+              icon: organ:spleen
+              cards:
+                - label: Red Pulp
+                  alt: Image of Red Pulp
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/spleen-red-pulp/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.svg
+                - label: White Pulp
+                  alt: Image of White Pulp
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/spleen-white-pulp/v1.2
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.svg
+            - label: Thymus
+              icon: organ:thymus
+              cards:
+                - label: Thymus Lobule
+                  alt: Image of Thymus Lobule
+                  fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.3/assets/2d-ftu-thymus-thymus-lobule.png
+                  fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.3/assets/2d-ftu-thymus-thymus-lobule.svg
+                  sourceDataUrl: https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule/v1.3
+                  files:
+                    - label: Adobe Illustrator
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.3/assets/2d-ftu-thymus-thymus-lobule.ai
+                    - label: PNG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.3/assets/2d-ftu-thymus-thymus-lobule.png
+                    - label: SVG
+                      url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.3/assets/2d-ftu-thymus-thymus-lobule.svg
+
         - version: '2.2'
           label: 8th Release (v2.2)
           date: December 2024

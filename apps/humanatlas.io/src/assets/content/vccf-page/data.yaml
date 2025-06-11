@@ -48,6 +48,9 @@ content:
           - column: dot
             label: Digital Object Type
         items:
+          - label: 9th Release (v2.3)
+            version: v2.3
+            csvUrl: assets/content/vccf-page/table-data/version2_3.csv
           - label: 8th Release (v2.2)
             version: v2.2
             csvUrl: assets/content/vccf-page/table-data/version2_2.csv

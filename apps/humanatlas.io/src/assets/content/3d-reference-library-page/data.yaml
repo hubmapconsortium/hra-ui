@@ -55,6 +55,488 @@ content:
         variant: 3d-organ
         githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
         releaseVersionData:
+          - version: '9'
+            label: 9th Release (v2.3)
+            date: June 2025
+            organData:
+              - label: All Organs
+                icon: organ:all-organs
+                cards:
+                  - label: Female
+                    alt: All Organs, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.8/assets/3d-vh-f-united.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/united-female/v1.8
+                    files: []
+                  - label: Male
+                    alt: All Organs, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.8/assets/3d-vh-m-united.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/united-male/v1.8
+                    files: []
+              - label: Blood Vasculature
+                icon: organ:blood-vasculature
+                cards:
+                  - label: Female
+                    alt: Blood Vasculature, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Blood Vasculature, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
+                    files: []
+              - label: Brain
+                icon: organ:brain
+                cards:
+                  - label: Female
+                    alt: Brain, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/brain-female/v1.4/assets/3d-allen-f-brain.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/brain-female/v1.4
+                    files: []
+                  - label: Male
+                    alt: Brain, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.4/assets/3d-allen-m-brain.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/brain-male/v1.4
+                    files: []
+              - label: Eye
+                icon: organ:eye
+                cards:
+                  - label: Female, L
+                    alt: Eye, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-left/v1.3/assets/3d-vh-f-eye-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3
+                    files: []
+                  - label: Female, R
+                    alt: Eye, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-female-right/v1.3/assets/3d-vh-f-eye-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/eye-female-right/v1.3
+                    files: []
+                  - label: Male, L
+                    alt: Eye, Male, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-left/v1.3/assets/3d-vh-m-eye-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3
+                    files: []
+                  - label: Male, R
+                    alt: Eye, Male, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/3d-vh-m-eye-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/eye-male-right/v1.3
+                    files: []
+              - label: Fallopian Tube
+                icon: organ:fallopian-tube
+                cards:
+                  - label: Female, L
+                    alt: Fallopian Tube, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-left/v1.2/assets/3d-vh-f-fallopian-tube-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2
+                    files: []
+                  - label: Female, R
+                    alt: Fallopian Tube, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/fallopian-tube-female-right/v1.2/assets/3d-vh-f-fallopian-tube-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/fallopian-tube-female-right/v1.2
+                    files: []
+              - label: Heart
+                icon: organ:heart
+                cards:
+                  - label: Female
+                    alt: Heart, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-female/v1.3/assets/3d-vh-f-heart.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/heart-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Heart, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/assets/3d-vh-m-heart.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/heart-male/v1.3
+                    files: []
+              - label: Kidney
+                icon: organ:kidneys
+                cards:
+                  - label: Female, L
+                    alt: Kidney, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-female-left/v1.3/assets/3d-vh-f-kidney-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/kidney-female-left/v1.3
+                    files: []
+                  - label: Female, R
+                    alt: Kidney, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-female-right/v1.3/assets/3d-vh-f-kidney-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/kidney-female-right/v1.3
+                    files: []
+                  - label: Male, L
+                    alt: Kidney, Male, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-male-left/v1.3/assets/3d-vh-m-kidney-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/kidney-male-left/v1.3
+                    files: []
+                  - label: Male, R
+                    alt: Kidney, Male, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-male-right/v1.3/assets/3d-vh-m-kidney-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/kidney-male-right/v1.3
+                    files: []
+              - label: Knee
+                icon: organ:knee
+                cards:
+                  - label: Female, L
+                    alt: Knee, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/knee-female-left/v1.3/assets/3d-vh-f-knee-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/knee-female-left/v1.3
+                    files: []
+                  - label: Female, R
+                    alt: Knee, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/knee-female-right/v1.3/assets/3d-vh-f-knee-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/knee-female-right/v1.3
+                    files: []
+                  - label: Male, L
+                    alt: Knee, Male, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/knee-male-left/v1.2/assets/3d-vh-m-knee-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/knee-male-left/v1.2
+                    files: []
+                  - label: Male, R
+                    alt: Knee, Male, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/knee-male-right/v1.2/assets/3d-vh-m-knee-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/knee-male-right/v1.2
+                    files: []
+              - label: Large Intestine
+                icon: organ:large-intestine
+                cards:
+                  - label: Female
+                    alt: Large Intestine, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-female/v1.3/assets/3d-sbu-f-large-intestine.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Large Intestine, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-male/v1.3/assets/3d-sbu-m-large-intestine.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/large-intestine-male/v1.3
+                    files: []
+              - label: Larynx
+                icon: organ:larynx
+                cards:
+                  - label: Female
+                    alt: Larynx, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/larynx-female/v1.1/assets/3d-vh-f-larynx.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/larynx-female/v1.1
+                    files: []
+                  - label: Male
+                    alt: Larynx, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/larynx-male/v1.1/assets/3d-vh-m-larynx.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/larynx-male/v1.1
+                    files: []
+              - label: Liver
+                icon: organ:liver
+                cards:
+                  - label: Female
+                    alt: Liver, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/liver-female/v1.2/assets/3d-vh-f-liver.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/liver-female/v1.2
+                    files: []
+                  - label: Male
+                    alt: Liver, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.2/assets/3d-vh-m-liver.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/liver-male/v1.2
+                    files: []
+              - label: Lung
+                icon: organ:lungs
+                cards:
+                  - label: Female
+                    alt: Lung, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-female/v1.4/assets/3d-vh-f-lung.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/lung-female/v1.4
+                    files: []
+                  - label: Male
+                    alt: Lung, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/3d-vh-m-lung.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/lung-male/v1.4
+                    files: []
+              - label: Lymph Node
+                icon: organ:lymph-node
+                cards:
+                  - label: Female
+                    alt: Lymph Node, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-female/v1.4/assets/3d-nih-f-lymph-node.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/lymph-node-female/v1.4
+                    files: []
+                  - label: Male
+                    alt: Lymph Node, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.4/assets/3d-nih-m-lymph-node.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/lymph-node-male/v1.4
+                    files: []
+              - label: Main Bronchus
+                icon: organ:extrapulmonaryBronchus
+                cards:
+                  - label: Female
+                    alt: Main Bronchus, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-female/v1.1/assets/3d-vh-f-main-bronchus.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
+                    files: []
+                  - label: Male
+                    alt: Main Bronchus, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/3d-vh-m-main-bronchus.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
+                    files: []
+              - label: Mammary Gland
+                icon: organ:mammary-gland
+                cards:
+                  - label: Female, L
+                    alt: Mammary Gland, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/assets/3d-vh-f-mammary-gland-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1
+                    files: []
+                  - label: Female, R
+                    alt: Mammary Gland, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.1/assets/3d-vh-f-mammary-gland-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/mammary-gland-female-right/v1.1
+                    files: []
+              - label: Manubrium
+                icon: organ:manubrium
+                cards:
+                  - label: Female
+                    alt: Manubrium, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/manubrium-female/v1.0/assets/3d-vh-f-manubrium.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/manubrium-female/v1.0
+                    files: []
+              - label: Mouth
+                icon: organ:mouth
+                cards:
+                  - label: Female
+                    alt: Mouth, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mouth-female/v1.0/assets/3d-vh-f-mouth.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/mouth-female/v1.0
+                    files: []
+                  - label: Male
+                    alt: Mouth, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mouth-male/v1.0/assets/3d-vh-m-mouth.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/mouth-male/v1.0
+                    files: []
+              - label: Ovary
+                icon: organ:ovary
+                cards:
+                  - label: Female, L
+                    alt: Ovary, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ovary-female-left/v1.3/assets/3d-vh-f-ovary-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ovary-female-left/v1.3
+                    files: []
+                  - label: Female, R
+                    alt: Ovary, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ovary-female-right/v1.3/assets/3d-vh-f-ovary-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ovary-female-right/v1.3
+                    files: []
+              - label: Palatine Tonsil
+                icon: organ:palatineTonsil
+                cards:
+                  - label: Female, L
+                    alt: Palatine Tonsil, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/palatine-tonsil-female-left/v1.2/assets/3d-vh-f-palatine-tonsil-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-left/v1.2
+                    files: []
+                  - label: Female, R
+                    alt: Palatine Tonsil, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/palatine-tonsil-female-right/v1.2/assets/3d-vh-f-palatine-tonsil-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-right/v1.2
+                    files: []
+                  - label: Male, L
+                    alt: Palatine Tonsil, Male, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/palatine-tonsil-male-left/v1.2/assets/3d-vh-m-palatine-tonsil-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/palatine-tonsil-male-left/v1.2
+                    files: []
+                  - label: Male, R
+                    alt: Palatine Tonsil, Male, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/palatine-tonsil-male-right/v1.2/assets/3d-vh-m-palatine-tonsil-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/palatine-tonsil-male-right/v1.2
+                    files: []
+              - label: Pancreas
+                icon: organ:pancreas
+                cards:
+                  - label: Female
+                    alt: Pancreas, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-female/v1.3/assets/3d-vh-f-pancreas.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/pancreas-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Pancreas, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/assets/3d-vh-m-pancreas.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/pancreas-male/v1.3
+                    files: []
+              - label: Pelvis
+                icon: organ:bone-marrow
+                cards:
+                  - label: Female
+                    alt: Pelvis, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-female/v1.3/assets/3d-vh-f-pelvis.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/pelvis-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Pelvis, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-male/v1.3/assets/3d-vh-m-pelvis.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/pelvis-male/v1.3
+                    files: []
+              - label: Placenta
+                icon: organ:placenta
+                cards:
+                  - label: Female
+                    alt: Placenta, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/placenta-full-term-female/v1.1/assets/3d-vh-f-placenta-full-term.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/placenta-full-term-female/v1.1
+                    files: []
+              - label: Prostate
+                icon: organ:prostate
+                cards:
+                  - label: Male
+                    alt: Prostate, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/3d-vh-m-prostate.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/prostate-male/v1.2
+                    files: []
+              - label: Renal Pelvis
+                icon: organ:bone-marrow
+                cards:
+                  - label: Female,, L
+                    alt: Renal Pelvis, Female,, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-female-left/v1.0/assets/3d-vh-f-renal-pelvis-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/renal-pelvis-female-left/v1.0
+                    files: []
+                  - label: Female,, R
+                    alt: Renal Pelvis, Female,, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-female-right/v1.0/assets/3d-vh-f-renal-pelvis-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/renal-pelvis-female-right/v1.0
+                    files: []
+                  - label: male,, L
+                    alt: Renal Pelvis, male,, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-male-left/v1.0/assets/3d-vh-m-renal-pelvis-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/renal-pelvis-male-left/v1.0
+                    files: []
+                  - label: male,, R
+                    alt: Renal Pelvis, male,, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/renal-pelvis-male-right/v1.0/assets/3d-vh-m-renal-pelvis-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/renal-pelvis-male-right/v1.0
+                    files: []
+              - label: Skin
+                icon: organ:skin
+                cards:
+                  - label: Female
+                    alt: Skin, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/assets/3d-vh-f-skin.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/skin-female/v1.5
+                    files: []
+                  - label: Male
+                    alt: Skin, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/skin-male/v1.4/assets/3d-vh-m-skin.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/skin-male/v1.4
+                    files: []
+              - label: Small Intestine
+                icon: organ:small-intestine
+                cards:
+                  - label: Female
+                    alt: Small Intestine, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-female/v1.2/assets/3d-vh-f-small-intestine.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/small-intestine-female/v1.2
+                    files: []
+                  - label: Male
+                    alt: Small Intestine, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-male/v1.2/assets/3d-vh-m-small-intestine.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/small-intestine-male/v1.2
+                    files: []
+              - label: Spinal Cord
+                icon: organ:spinal-cord
+                cards:
+                  - label: Female
+                    alt: Spinal Cord, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/spinal-cord-female/v1.1/assets/3d-vh-f-spinal-cord.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/spinal-cord-female/v1.1
+                    files: []
+                  - label: Male
+                    alt: Spinal Cord, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/spinal-cord-male/v1.1/assets/3d-vh-m-spinal-cord.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/spinal-cord-male/v1.1
+                    files: []
+              - label: Spleen
+                icon: organ:spleen
+                cards:
+                  - label: Female
+                    alt: Spleen, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-female/v1.3/assets/3d-vh-f-spleen.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/spleen-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Spleen, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-male/v1.3/assets/3d-vh-m-spleen.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/spleen-male/v1.3
+                    files: []
+              - label: Sternum
+                icon: organ:sternum
+                cards:
+                  - label: Female
+                    alt: Sternum, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/sternum-female/v1.0/assets/3d-vh-f-sternum.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/sternum-female/v1.0
+                    files: []
+              - label: Thymus
+                icon: organ:thymus
+                cards:
+                  - label: Female
+                    alt: Thymus, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/thymus-female/v1.3/assets/3d-vh-f-thymus.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/thymus-female/v1.3
+                    files: []
+                  - label: Male
+                    alt: Thymus, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/thymus-male/v1.3/assets/3d-vh-m-thymus.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/thymus-male/v1.3
+                    files: []
+              - label: Trachea
+                icon: organ:trachea
+                cards:
+                  - label: Female
+                    alt: Trachea, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-female/v1.1/assets/3d-vh-f-trachea.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/trachea-female/v1.1
+                    files: []
+                  - label: Male
+                    alt: Trachea, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/3d-vh-m-trachea.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/trachea-male/v1.1
+                    files: []
+              - label: Ureter
+                icon: organ:ureter
+                cards:
+                  - label: Female, L
+                    alt: Ureter, Female, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-female-left/v1.2/assets/3d-vh-f-ureter-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-female-left/v1.2
+                    files: []
+                  - label: Female, R
+                    alt: Ureter, Female, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-female-right/v1.2/assets/3d-vh-f-ureter-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-female-right/v1.2
+                    files: []
+                  - label: Male, L
+                    alt: Ureter, Male, Left
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-male-left/v1.2/assets/3d-vh-m-ureter-l.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-male-left/v1.2
+                    files: []
+                  - label: Male, R
+                    alt: Ureter, Male, Right
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-male-right/v1.2/assets/3d-vh-m-ureter-r.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/ureter-male-right/v1.2
+                    files: []
+              - label: Urinary Bladder
+                icon: organ:urinary-bladder
+                cards:
+                  - label: Female
+                    alt: Urinary Bladder, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/urinary-bladder-female/v1.2/assets/3d-vh-f-urinary-bladder.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/urinary-bladder-female/v1.2
+                    files: []
+                  - label: Male
+                    alt: Urinary Bladder, Male
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/urinary-bladder-male/v1.2/assets/3d-vh-m-urinary-bladder.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/urinary-bladder-male/v1.2
+                    files: []
+              - label: Uterus
+                icon: organ:uterus
+                cards:
+                  - label: Female
+                    alt: Uterus, Female
+                    fileUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/assets/3d-vh-f-uterus.glb
+                    sourceDataUrl: https://purl.humanatlas.io/ref-organ/uterus-female/v1.2
+                    files: []
+
           - version: '8'
             label: 8th Release (v2.2)
             date: December 2024
@@ -2560,8 +3042,8 @@ content:
           - column: uberon_id
             label: Uberon ID
         items:
-          - label: 8th Release (v2.2)
-            version: '8'
+          - label: 9th Release (v2.3)
+            version: '9'
             csvUrl: assets/content/3d-reference-library-page/table-data/as-per-organ.csv
   - component: PageSection
     tagline: Standard Operating Procedures (SOP)

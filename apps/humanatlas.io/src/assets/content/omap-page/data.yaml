@@ -90,9 +90,9 @@ content:
         verticalDividers: true
         label: Release Version
         items:
-          - label: 8th Release (v2.2)
-            version: v2.2
-            csvUrl: assets/content/omap-page/table-data/omaps_release8.csv
+          - label: 9th Release (v2.3)
+            version: v2.3
+            csvUrl: assets/content/omap-page/table-data/omaps_release9.csv
             columns: &table_columns
               - column: omapId
                 label: OMAP ID
@@ -124,6 +124,10 @@ content:
               - column: bp
                 label: '#BP'
                 type: numeric
+          - label: 8th Release (v2.2)
+            version: v2.2
+            csvUrl: assets/content/omap-page/table-data/omaps_release8.csv
+            columns: *table_columns
           - label: 7th Release (v2.1)
             version: v2.1
             csvUrl: assets/content/omap-page/table-data/omaps_release7.csv
