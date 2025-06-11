@@ -104,7 +104,9 @@
   }
 
   &.hra-action-card-variant-outlined {
+    height: 13.75rem;
     width: 17rem;
+    max-width: 22.25rem;
 
     .content {
       margin: 0.75rem 1rem;
