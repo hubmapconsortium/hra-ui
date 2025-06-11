@@ -7,6 +7,9 @@
         "id": {
           "type": "string"
         },
+        "label": {
+          "type": "string"
+        },
         "icon": {
           "type": "string"
         },
@@ -17,7 +20,7 @@
           "type": "string"
         }
       },
-      "required": ["id", "icon", "link"],
+      "required": ["id", "label", "icon", "link"],
       "additionalProperties": false
     },
     "Socials": {
