@@ -1,0 +1,101 @@
+{
+  "$schema": "../types/docs-navigation.schema.json",
+  "menuItems": [
+    {
+      "type": "category",
+      "label": "Getting Started",
+      "icon": "info",
+      "children": [
+        {
+          "type": "item",
+          "label": "Introduction to the Human Reference Atlas",
+          "url": "https://humanatlas.io/introduction"
+        },
+        { "type": "item", "label": "Project Overview", "url": "https://humanatlas.io/overview-project" }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Apps",
+      "icon": "apps",
+      "children": [
+        { "type": "item", "label": "Apps overview", "url": "https://humanatlas.io/apps" },
+        { "type": "item", "label": "API", "url": "https://humanatlas.io/api" },
+        { "type": "item", "label": "ASCT+B Reporter", "url": "https://humanatlas.io/asctb-reporter" },
+        { "type": "item", "label": "Cell Distance Explorer", "url": "https://humanatlas.io/cell-distance-explorer" },
+        { "type": "item", "label": "Cell Population Graphs", "url": "https://humanatlas.io/cell-population-graphs" },
+        {
+          "type": "item",
+          "label": "Cell Population Predictor",
+          "url": "https://humanatlas.io/cell-population-predictor"
+        },
+        { "type": "item", "label": "Dashboard", "url": "https://humanatlas.io/dashboard" },
+        { "type": "item", "label": "Exploration User Interface", "url": "https://humanatlas.io/eui" },
+        { "type": "item", "label": "Functional Tissue Unit Explorer", "url": "https://humanatlas.io/ftu" },
+        { "type": "item", "label": "HRA Organ Gallery", "url": "https://humanatlas.io/organ-gallery" },
+        { "type": "item", "label": "Knowledge Graph", "url": "https://humanatlas.io/knowledge-graph" },
+        { "type": "item", "label": "Registration User Interface", "url": "https://humanatlas.io/rui" },
+        { "type": "item", "label": "Tissue Origin Predictor", "url": "https://humanatlas.io/tissue-origin-predictor" },
+        { "type": "item", "label": "Web Components", "url": "https://humanatlas.io/web-components" }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Data",
+      "icon": "database",
+      "children": [
+        { "type": "item", "label": "Data Overview", "url": "https://humanatlas.io/overview-data" },
+        { "type": "item", "label": "3D Organs", "url": "https://humanatlas.io/3d-reference-library" },
+        { "type": "item", "label": "ASCT+B Tables", "url": "https://humanatlas.io/asctb-tables" },
+        { "type": "item", "label": "Cell Type Annotations", "url": "https://humanatlas.io/cell-type-annotations" },
+        { "type": "item", "label": "Collections", "url": "https://humanatlas.io/collections" },
+        { "type": "item", "label": "Dataset Graphs", "url": "https://humanatlas.io/dataset-graphs" },
+        {
+          "type": "item",
+          "label": "Functional Tissue Unit (FTU) Illustrations",
+          "url": "https://humanatlas.io/2d-ftu-illustrations"
+        },
+        { "type": "item", "label": "Graphs", "url": "https://humanatlas.io/graphs" },
+        { "type": "item", "label": "Landmarks", "url": "https://humanatlas.io/landmarks" },
+        { "type": "item", "label": "Millitome", "url": "https://humanatlas.io/millitome" },
+        { "type": "item", "label": "Organ Mapping Antibody Panels", "url": "https://humanatlas.io/omap" },
+        { "type": "item", "label": "Schema", "url": "" },
+        { "type": "item", "label": "Vascular Geometry", "url": "https://humanatlas.io/vccf" }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Development",
+      "icon": "code",
+      "children": [
+        {
+          "type": "item",
+          "label": "Introduction to HRA Development",
+          "url": "https://docs.humanatlas.io/introduction"
+        },
+        { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/api-reference" },
+        { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/apps" },
+        { "type": "item", "label": "Change Log", "url": "https://docs.humanatlas.io/changelog" },
+        { "type": "item", "label": "Design System", "url": "https://docs.humanatlas.io/design-system" },
+        { "type": "item", "label": "Digital Objects", "url": "https://docs.humanatlas.io/digital-objects" },
+        { "type": "item", "label": "Embedding Web Components", "url": "https://docs.humanatlas.io/web-components" },
+        { "type": "item", "label": "FAQs", "url": "https://docs.humanatlas.io/faqs" },
+        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/knowledge-graph" },
+        { "type": "item", "label": "Support", "url": "https://docs.humanatlas.io/support" },
+        { "type": "item", "label": "Tutorials", "url": "https://docs.humanatlas.io/tutorials" }
+      ]
+    },
+    {
+      "type": "item",
+      "label": "Release Notes",
+      "icon": "news",
+      "url": "https://humanatlas.io/release-notes"
+    },
+    {
+      "type": "item",
+      "label": "Standard Operating Procedures",
+      "icon": "checklist",
+      "url": "https://humanatlas.io/standard-operating-procedures"
+    }
+  ]
+}

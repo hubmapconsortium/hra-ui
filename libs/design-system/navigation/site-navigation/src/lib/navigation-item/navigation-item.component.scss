@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+@use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
+
+:host {
+  display: block;
+
+  a {
+    border-radius: 0.5rem;
+    cursor: pointer;
+    gap: 0.75rem;
+    height: unset !important;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem !important;
+    padding-left: var(--hra-navigation-item-padding-left, 1rem) !important;
+
+    &.active {
+      span {
+        color: vars.$tertiary-fixed;
+      }
+    }
+
+    &:hover {
+      mat-icon {
+        color: vars.$tertiary-fixed;
+      }
+    }
+
+    .nav-content {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    mat-icon {
+      margin: 0;
+    }
+
+    span {
+      @include utils.use-font(label, medium);
+      white-space: normal;
+    }
+  }
+
+  .in-category {
+    padding-left: 3.5rem !important;
+  }
+}
