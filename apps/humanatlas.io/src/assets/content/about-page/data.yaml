@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: About
+title: About the Human Reference Atlas
 subtitle: |
   The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support
   cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their
