@@ -44,7 +44,7 @@
           "url": "https://humanatlas.io/registration-user-interface"
         },
         { "type": "item", "label": "Tissue Origin Predictor", "url": "https://humanatlas.io/user-story/2" },
-        { "type": "item", "label": "Web Components", "url": "https://humanatlas.io/user-story-6" }
+        { "type": "item", "label": "Web Components", "url": "https://humanatlas.io/user-story/6" }
       ]
     },
     {
@@ -76,16 +76,16 @@
           "label": "Introduction to HRA Development",
           "url": "https://docs.humanatlas.io/dev"
         },
-        { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/api-reference" },
-        { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/apps" },
-        { "type": "item", "label": "Change Log", "url": "https://docs.humanatlas.io/changelog" },
-        { "type": "item", "label": "Design System", "url": "https://docs.humanatlas.io/design-system" },
-        { "type": "item", "label": "Digital Objects", "url": "https://docs.humanatlas.io/digital-objects" },
-        { "type": "item", "label": "Embedding Web Components", "url": "https://docs.humanatlas.io/web-components" },
-        { "type": "item", "label": "FAQs", "url": "https://docs.humanatlas.io/faqs" },
-        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/knowledge-graph" },
-        { "type": "item", "label": "Support", "url": "https://docs.humanatlas.io/support" },
-        { "type": "item", "label": "Tutorials", "url": "https://docs.humanatlas.io/tutorials" }
+        { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/dev/api" },
+        { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/dev/apps" },
+        { "type": "item", "label": "Change Log", "url": "https://docs.humanatlas.io/dev/changelog" },
+        { "type": "item", "label": "Design System", "url": "https://docs.humanatlas.io/dev/design-system" },
+        { "type": "item", "label": "Digital Objects", "url": "https://docs.humanatlas.io/dev/digital-objects" },
+        { "type": "item", "label": "Embedding Web Components", "url": "https://docs.humanatlas.io/dev/web-components" },
+        { "type": "item", "label": "FAQs", "url": "https://docs.humanatlas.io/dev/faqs" },
+        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/dev/kg" },
+        { "type": "item", "label": "Support", "url": "https://docs.humanatlas.io/dev/support" },
+        { "type": "item", "label": "Tutorials", "url": "https://docs.humanatlas.io/dev/tutorials" }
       ]
     },
     {

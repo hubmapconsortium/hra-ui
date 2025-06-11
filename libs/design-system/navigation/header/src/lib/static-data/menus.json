@@ -64,7 +64,7 @@
           "type": "group",
           "label": "HRA API",
           "description": "Get API access to all Human Reference Atlas datasets.",
-          "url": "https://humanatlas.io/api/"
+          "url": "https://apps.humanatlas.io/api/"
         },
         {
           "type": "divider"
@@ -195,11 +195,6 @@
             },
             {
               "type": "item",
-              "label": "Events",
-              "url": "https://humanatlas.io/overview-training-outreach#events"
-            },
-            {
-              "type": "item",
               "label": "Kaggle Competitions",
               "url": "https://humanatlas.io/overview-training-outreach#kaggle-competitions"
             },
@@ -229,7 +224,7 @@
           "items": [
             {
               "type": "item",
-              "label": "About",
+              "label": "About the HRA",
               "url": "https://humanatlas.io/about/"
             },
             {
