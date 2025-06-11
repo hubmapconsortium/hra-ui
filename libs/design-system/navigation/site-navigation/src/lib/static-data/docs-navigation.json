@@ -74,7 +74,7 @@
         {
           "type": "item",
           "label": "Introduction to HRA Development",
-          "url": "https://docs.humanatlas.io/introduction"
+          "url": "https://docs.humanatlas.io/dev"
         },
         { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/api-reference" },
         { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/apps" },
