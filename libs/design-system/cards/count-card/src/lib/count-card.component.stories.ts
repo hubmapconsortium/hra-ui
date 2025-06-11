@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
+
 import { CountCardComponent } from './count-card.component';
 
 const meta: Meta<CountCardComponent> = {
@@ -14,8 +15,14 @@ const meta: Meta<CountCardComponent> = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    iconType: 'category',
+    iconType: 'misc',
     icon: 'data',
+  },
+  argTypes: {
+    icon: {
+      control: 'select',
+      options: ['biomarker', 'cell-type', 'contribute', 'data', 'experts', 'explore', 'publications', 'training'],
+    },
   },
   render: (args) => ({
     props: args,
@@ -30,7 +37,7 @@ export const Default: Story = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    iconType: 'category',
+    iconType: 'misc',
     icon: 'data',
   },
 };
