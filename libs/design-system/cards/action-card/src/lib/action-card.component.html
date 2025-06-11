@@ -6,6 +6,10 @@
   </div>
 }
 
+@if (variant() === 'outlined' && image()) {
+  <mat-divider />
+}
+
 <div class="content">
   @if (variant() === 'elevated') {
     <div class="subtagline">{{ subtagline() }}</div>
