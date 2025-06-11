@@ -29,40 +29,33 @@ carouselItems:
 countInfo:
   - count: 26
     label: consortia
-    icon:
-      fontText: diversity_3
-  - count: 250+
+    icon: misc:contribute
+  - count: 250
     label: experts
-    icon:
-      fontText: school
-  - count: 1,000+
+    showSuffix: true
+    icon: misc:experts
+  - count: 1000
     label: publications
-    icon:
-      fontText: docs
+    showSuffix: true
+    icon: misc:publications
   - count: 73
     label: organs
-    icon:
-      fontText: neurology
-  - count: 4,719
+    icon: organ:heart
+  - count: 4719
     label: anatomical structures
-    icon:
-      fontText: favorite
-  - count: 1,303
+    icon: product:asctb-reporter
+  - count: 1303
     label: cell types
-    icon:
-      url: assets/content/landing-page/images/cell-types.svg
-  - count: 2,018
+    icon: misc:cell-type
+  - count: 2018
     label: biomarkers
-    icon:
-      fontText: add_location
+    icon: misc:biomarker
   - count: 30
     label: organ mapping antibody panels
-    icon:
-      fontText: map
+    icon: product:omaps
   - count: 26
     label: functional tissue units
-    icon:
-      fontText: layers
+    icon: product:ftu
 
 sectionCardInfo:
   - tagline: Join our working group
