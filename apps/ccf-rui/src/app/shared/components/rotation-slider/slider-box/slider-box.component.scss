@@ -1,6 +1,16 @@
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
+  @include mat.form-field-overrides(
+    (
+      filled-label-text-color: vars.$primary,
+      filled-input-text-color: vars.$primary,
+      filled-with-label-container-padding-top: 23px,
+      filled-with-label-container-padding-bottom: 0px,
+    )
+  );
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -8,17 +18,16 @@
 
   .rotation-value {
     cursor: pointer;
+    width: 5rem;
+    font: var(--mat-sys-label-medium);
 
     input {
       cursor: pointer;
     }
 
-    width: 5rem;
-    --mdc-filled-text-field-input-text-color: #{vars.$on-primary-fixed-variant};
-    --mdc-filled-text-field-label-text-color: #{vars.$on-primary-fixed-variant};
-
-    .mdc-floating-label {
+    ::ng-deep .mdc-floating-label {
       transform: translateY(-100%);
+      top: 1.25rem;
     }
   }
 }
