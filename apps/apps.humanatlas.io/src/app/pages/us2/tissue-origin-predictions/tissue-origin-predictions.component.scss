@@ -29,11 +29,12 @@ h1 {
   margin-top: 3rem;
   margin-bottom: 10.25rem;
   display: flex;
-  justify-content: space-between;
-  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 
   .card {
-    width: 36.25rem;
+    width: 33.25rem;
     --hra-workflow-card-header-padding: 0 0 0.5rem 0;
   }
 

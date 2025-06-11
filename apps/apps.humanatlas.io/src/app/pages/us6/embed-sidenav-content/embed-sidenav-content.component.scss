@@ -3,6 +3,7 @@
 :host {
   display: block;
   height: 100%;
+  width: 100%;
 
   .card-actions {
     display: flex;
@@ -19,7 +20,7 @@
 
   .iframe-container .app-iframe {
     border: none;
-    width: 37.875rem;
+    width: 28.875rem;
     height: calc(100vh - 9.5rem);
   }
 }
