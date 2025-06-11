@@ -50,30 +50,30 @@ h1 {
     letter-spacing: vars.$label-medium-tracking;
   }
 
-.metadata-container {
-  .titles {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    .metadata-row {
+  .metadata-container {
+    .titles {
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
 
-      .label {
-        min-width: 8rem;
-        color: vars.$on-surface-variant;
-      }
+      .metadata-row {
+        display: flex;
+        gap: 1rem;
 
-      .value {
-        flex: 1;
-        color: vars.$primary;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        .label {
+          min-width: 8rem;
+          color: vars.$on-surface-variant;
+        }
+
+        .value {
+          flex: 1;
+          color: vars.$primary;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
-}
 
   .buttons {
     display: flex;
