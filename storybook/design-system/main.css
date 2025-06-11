@@ -1053,13 +1053,25 @@ html {
   --mat-form-field-container-height: 3rem;
 }
 html {
-  --mat-form-field-container-text-font: var(--mat-sys-label-medium);
+  --mat-form-field-container-text-font: var(--mat-sys-label-medium-font);
+}
+html {
+  --mat-form-field-container-text-size: var(--mat-sys-label-medium-size);
+}
+html {
+  --mat-form-field-container-text-weight: var(--mat-sys-label-medium-weight);
+}
+html {
+  --mat-form-field-container-text-line-height: var(--mat-sys-label-medium-line-height);
 }
 html {
   --mat-form-field-disabled-input-text-placeholder-color: rgb(from var(--mat-sys-secondary) r g b/40%);
 }
 html {
   --mat-form-field-enabled-select-arrow-color: var(--mat-sys-on-secondary-fixed);
+}
+html {
+  --mdc-filled-text-field-active-indicator-color: var(--mat-sys-primary);
 }
 html {
   --mdc-filled-text-field-container-color: var(--mat-sys-surface-container);
@@ -1077,7 +1089,16 @@ html {
   --mdc-filled-text-field-disabled-active-indicator-color: rgb(from var(--mat-sys-secondary) r g b/40%);
 }
 html {
-  --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-inverse-surface);
+  --mdc-filled-text-field-error-label-text-color: var(--mat-sys-error);
+}
+html {
+  --mdc-filled-text-field-error-caret-color: var(--mat-sys-error);
+}
+html {
+  --mdc-filled-text-field-error-active-indicator-color: var(--mat-sys-error);
+}
+html {
+  --mdc-filled-text-field-focus-active-indicator-color: var(--mat-sys-on-secondary-fixed);
 }
 html {
   --mdc-filled-text-field-focus-label-text-color: var(--mat-sys-secondary);
@@ -1095,7 +1116,7 @@ html {
   --mdc-filled-text-field-input-text-placeholder-color: var(--mat-sys-primary);
 }
 html {
-  --mdc-filled-text-field-label-text-color: var(--mat-sys-inverse-surface);
+  --mdc-filled-text-field-label-text-color: var(--mat-sys-on-secondary-fixed);
 }
 html {
   --mdc-filled-text-field-label-text-font: var(--mat-sys-label-small-font);
@@ -1105,18 +1126,6 @@ html {
 }
 html {
   --mdc-filled-text-field-label-text-size: var(--mat-sys-label-small-size);
-}
-html {
-  --mdc-filled-text-field-error-label-text-color: var(--mat-sys-error);
-}
-html {
-  --mdc-filled-text-field-error-caret-color: var(--mat-sys-error);
-}
-html {
-  --mdc-filled-text-field-error-active-indicator-color: var(--mat-sys-error);
-}
-html {
-  --mdc-filled-text-field-active-indicator-color: var(--mat-sys-on-secondary-fixed);
 }
 html {
   --mat-form-field-filled-with-label-container-padding-top: 1.25rem;
