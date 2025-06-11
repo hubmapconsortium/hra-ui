@@ -28,13 +28,8 @@
     color: vars.$outline-variant;
   }
 
-  ng-scrollbar {
-    flex: 1;
-  }
-
   .card-content {
     padding: 1rem;
-    overflow-y: auto;
   }
 
   .card-footer {

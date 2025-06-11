@@ -124,7 +124,7 @@ export class WebComponentsComponent {
     disposeOnNavigation: true,
     hasBackdrop: true,
     height: '100vh',
-    maxWidth: '50vw',
+    maxWidth: '60vw',
     positionStrategy: this.overlay.position().global().top().right(),
     scrollStrategy: this.overlay.scrollStrategies.block(),
   });
