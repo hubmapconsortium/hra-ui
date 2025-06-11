@@ -25,20 +25,4 @@ export class NavigationCategoryComponent {
 
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
-
-  // constructor() {
-  //   effect(() => {
-  //     const current = this.baseUrl() + this.currentPath();
-  //     const category = this.navigationCategory();
-
-  //     const isMatch = category?.children?.some((child) => {
-  //       const target = child.url;
-  //       return target === '' ? current === '' : current === target || current.startsWith(target + '/');
-  //     });
-
-  //     if (isMatch) {
-  //       this.expandedChange.emit(true);
-  //     }
-  //   });
-  // }
 }

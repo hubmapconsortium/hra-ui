@@ -5,11 +5,10 @@ import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { IsActiveMatchOptions, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { IsActiveMatchOptions, Router, RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { filter } from 'rxjs';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { DocsMenuItems, DocsNavigationCategory } from './types/docs-navigation.schema';
@@ -47,8 +46,10 @@ export class SiteNavigationComponent {
   /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 
+  /** Angular Router */
   private readonly router = inject(Router);
 
+  /** Constructor */
   constructor() {
     const ref = effect(() => {
       this.expandedCategory.set(this.findExpandedCategory(this.navigationMenu()));
@@ -63,11 +64,14 @@ export class SiteNavigationComponent {
     }
   }
 
+  /** Finds the expanded category
+   * @param menu Docs Menu Items
+   */
   private findExpandedCategory(menu: DocsMenuItems): string {
     const categories = menu.filter((val): val is DocsNavigationCategory => val.type === 'category');
     const matchOptions: IsActiveMatchOptions = {
       paths: 'exact',
-      matrixParams: 'exact',
+      matrixParams: 'ignored',
       queryParams: 'ignored',
       fragment: 'ignored',
     };

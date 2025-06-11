@@ -21,6 +21,7 @@ export class NavigationItemComponent {
   /** Base URL for the appliation */
   readonly baseUrl = input.required<string>();
 
+  /** Resolved URL for the navigation item */
   protected readonly url = computed(() => resolveUrl(this.navigationItem().url, this.router, this.baseUrl()));
 
   /** Angular Router */
