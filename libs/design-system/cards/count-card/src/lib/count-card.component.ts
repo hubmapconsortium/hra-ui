@@ -29,11 +29,15 @@ export class CountCardComponent implements OnInit {
   /** Icon */
   readonly icon = input.required<string>();
 
+  /** Number currently displayed in count */
   readonly currentCount = signal(0);
 
+  /**
+   * Initializes count up animation on init
+   */
   ngOnInit() {
     const updateCounter = () => {
-      const d = Math.ceil(this.count() / 100);
+      const d = Math.ceil(this.count() / 100); //Counts faster if count is larger
       if (this.currentCount() && this.currentCount() + d >= this.count()) {
         this.currentCount.set(this.count());
         return;
