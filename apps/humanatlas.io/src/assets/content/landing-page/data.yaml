@@ -39,27 +39,27 @@ countInfo:
     label: publications
     icon:
       fontText: docs
-  - count: 57
+  - count: 73
     label: organs
     icon:
       fontText: neurology
-  - count: 2,665
+  - count: 4,719
     label: anatomical structures
     icon:
       fontText: favorite
-  - count: 953
+  - count: 1,303
     label: cell types
     icon:
       url: assets/content/landing-page/images/cell-types.svg
-  - count: 2,842
+  - count: 2,018
     label: biomarkers
     icon:
       fontText: add_location
-  - count: 20
+  - count: 30
     label: organ mapping antibody panels
     icon:
       fontText: map
-  - count: 22
+  - count: 26
     label: functional tissue units
     icon:
       fontText: layers
