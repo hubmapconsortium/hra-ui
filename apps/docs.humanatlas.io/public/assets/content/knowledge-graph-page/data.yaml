@@ -79,10 +79,10 @@ content:
           1295
           ```
 
-      - component: Button
-        label: Explore More Queries
-        href: https://apps.humanatlas.io/api/grlc/
-        type: cta
+      - component: TextHyperlink
+        text: Explore More Queries
+        url: https://apps.humanatlas.io/api/grlc/
+        icon: arrow_right_alt
 
   - component: PageSection
     tagline: REST API
@@ -94,10 +94,10 @@ content:
           The HRA API provides a simplified REST interface for accessing HRA-KG content without requiring knowledge of SPARQL.
           It exposes key endpoints like anatomical structures, cell types, spatial references, and datasets.
 
-      - component: Button
-        label: Use the API
-        href: https://apps.humanatlas.io/api
-        type: cta
+      - component: TextHyperlink
+        text: Use the API
+        url: https://apps.humanatlas.io/api
+        icon: arrow_right_alt
 
   - component: PageSection
     tagline: Client Libraries
@@ -116,10 +116,10 @@ content:
           -	Angular 17+
           -	Python 3.6+
 
-      - component: Button
-        label: Learn More
-        href: https://humanatlas.io/api
-        type: cta
+      - component: TextHyperlink
+        text: Learn More
+        url: https://humanatlas.io/api
+        icon: arrow_right_alt
 
   - component: PageSection
     tagline: Interactive User Interfaces
