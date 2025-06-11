@@ -17,7 +17,7 @@ describe('FooterComponent', () => {
   });
 
   it('should display copyright information correctly', async () => {
-    const copyrightText = screen.getByText(/2024 CNS at Indiana University/);
+    const copyrightText = screen.getByText(/2025 CNS at Indiana University/);
     expect(screen.getByText(/copyright/)).toBeInTheDocument();
     expect(copyrightText).toBeInTheDocument();
   });
