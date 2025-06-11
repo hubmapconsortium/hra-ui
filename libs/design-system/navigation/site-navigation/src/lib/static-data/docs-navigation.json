@@ -61,7 +61,6 @@
           "label": "Functional Tissue Unit (FTU) Illustrations",
           "url": "https://humanatlas.io/2d-ftu-illustrations"
         },
-        { "type": "item", "label": "Landmarks", "url": "https://humanatlas.io/landmarks" },
         { "type": "item", "label": "Millitome", "url": "https://humanatlas.io/millitome" },
         { "type": "item", "label": "Organ Mapping Antibody Panels", "url": "https://humanatlas.io/omap" },
         { "type": "item", "label": "Vascular Geometry", "url": "https://humanatlas.io/vccf" }

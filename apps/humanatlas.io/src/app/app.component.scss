@@ -5,11 +5,22 @@
     display: flex;
 
     .content {
-      flex: 1;
+      flex: 1 1;
+      width: 100%;
     }
   }
 
-  .main.navigation-visible .content {
-    max-width: calc(100% - 20rem);
+  @media (max-width: 1099.99px) {
+    .main {
+      hra-site-navigation {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .main.navigation-visible .content {
+      max-width: calc(100% - 20rem);
+    }
   }
 }
