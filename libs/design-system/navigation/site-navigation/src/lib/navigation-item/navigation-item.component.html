@@ -1,11 +1,17 @@
 <mat-list-item
   class="page"
   [class.in-category]="isInCategory()"
-  [activated]="currentPath() === navigationItem().url"
-  (click)="navLink.click()"
+  [activated]="isActive(navigationItem().url)()"
+  (click)="navigate(navigationItem().url)"
 >
   @if (navigationItem().icon) {
     <mat-icon matListItemIcon>{{ navigationItem().icon }}</mat-icon>
   }
-  <a [routerLink]="navigationItem().url" matListItemTitle #navLink>{{ navigationItem().label }}</a>
+
+  @let url = resolveUrl(navigationItem().url);
+  @if (url.isAbsolute) {
+    <a matListItemTitle [href]="url.value" #navLink>{{ navigationItem().label }}</a>
+  } @else {
+    <a [routerLink]="url.value" matListItemTitle #navLink>{{ navigationItem().label }}</a>
+  }
 </mat-list-item>

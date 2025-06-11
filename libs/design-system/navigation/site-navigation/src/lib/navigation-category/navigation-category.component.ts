@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output, effect } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { DocsNavigationCategory } from '../types/docs-navigation.schema';
 import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
+import { DocsNavigationCategory } from '../types/docs-navigation.schema';
+import { currentRoutePath } from '../utils/navigation';
 
 /** Navigation Category Component */
 @Component({
@@ -20,16 +21,26 @@ export class NavigationCategoryComponent {
   /** Navigation category expanded state */
   readonly expanded = input<boolean>(false);
 
-  readonly currentPath = input.required<string>();
+  /** Base URL for the appliation */
+  readonly baseUrl = input.required<string>();
+
+  /** Current Route */
+  readonly currentPath = currentRoutePath();
 
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
 
   constructor() {
     effect(() => {
-      const path = this.currentPath();
+      const current = this.baseUrl() + this.currentPath();
       const category = this.navigationCategory();
-      if (category?.children?.some((child) => child.url === path)) {
+
+      const isMatch = category?.children?.some((child) => {
+        const target = child.url;
+        return target === '' ? current === '' : current === target || current.startsWith(target + '/');
+      });
+
+      if (isMatch) {
         this.expandedChange.emit(true);
       }
     });

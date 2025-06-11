@@ -1,13 +1,11 @@
 import { coerceElement } from '@angular/cdk/coercion';
 import { ViewportScroller } from '@angular/common';
-import { Component, effect, ElementRef, inject, Signal, viewChild } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { EventType, Router, RouterModule } from '@angular/router';
+import { Component, effect, ElementRef, inject, viewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
-import { DOCS_NAVIGATION_MENU } from '@hra-ui/design-system/navigation/site-navigation';
-import { filter, map } from 'rxjs';
+import { currentRoutePath, DOCS_NAVIGATION_MENU } from '@hra-ui/design-system/navigation/site-navigation';
 
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
@@ -31,11 +29,8 @@ export class AppComponent {
   /** Navigation menu for the application */
   protected readonly navigationMenu = DOCS_NAVIGATION_MENU;
 
-  /** Router */
-  private readonly router = inject(Router);
-
   /** Current router path from the router signal */
-  readonly routePath = this.currentRoutePath();
+  readonly routePath = currentRoutePath();
 
   /** Navigation visibility flag value */
   protected isNavigationVisible = true;
@@ -60,18 +55,5 @@ export class AppComponent {
         this.isNavigationVisible = true;
       }
     });
-  }
-
-  /**
-   * Gets the current route path from router as a signal
-   * TODO: Move to Utils
-   */
-  currentRoutePath(): Signal<string> {
-    const route$ = this.router.events.pipe(
-      filter((event) => event.type === EventType.NavigationEnd),
-      map((event) => event.urlAfterRedirects),
-    );
-
-    return toSignal(route$, { initialValue: this.router.url });
   }
 }
