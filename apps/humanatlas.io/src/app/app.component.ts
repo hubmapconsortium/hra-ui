@@ -26,8 +26,10 @@ export class AppComponent {
   /** Reference to the header html element */
   private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
 
+  /** Route data */
   private readonly data = routeData();
 
+  /** Whether site navigation is enabled for the current route */
   protected readonly siteNavigationEnabled = computed(() => this.data()['siteNavigation'] !== false);
 
   /** Initialize the application */
