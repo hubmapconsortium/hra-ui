@@ -14,7 +14,6 @@ export const LandingPageDataSchema = z.object({
       count: z.number(),
       label: z.string(),
       showSuffix: z.boolean().optional(),
-      iconType: z.enum(['misc', 'product', 'organ']),
       icon: z.string(),
     })
     .array(),

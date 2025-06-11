@@ -68,15 +68,11 @@
               "showSuffix": {
                 "type": "boolean"
               },
-              "iconType": {
-                "type": "string",
-                "enum": ["misc", "product", "organ"]
-              },
               "icon": {
                 "type": "string"
               }
             },
-            "required": ["count", "label", "iconType", "icon"],
+            "required": ["count", "label", "icon"],
             "additionalProperties": false
           }
         },

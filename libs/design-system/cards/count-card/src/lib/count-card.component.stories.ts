@@ -15,13 +15,21 @@ const meta: Meta<CountCardComponent> = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    iconType: 'misc',
-    icon: 'data',
+    icon: 'misc:data',
   },
   argTypes: {
     icon: {
       control: 'select',
-      options: ['biomarker', 'cell-type', 'contribute', 'data', 'experts', 'explore', 'publications', 'training'],
+      options: [
+        'misc:biomarker',
+        'misc:cell-type',
+        'misc:contribute',
+        'misc:data',
+        'misc:experts',
+        'misc:explore',
+        'misc:publications',
+        'misc:training',
+      ],
     },
   },
   render: (args) => ({
@@ -37,7 +45,6 @@ export const Default: Story = {
     count: 250,
     showSuffix: true,
     label: 'label text',
-    iconType: 'misc',
-    icon: 'data',
+    icon: 'misc:data',
   },
 };

@@ -23,9 +23,6 @@ export class CountCardComponent implements OnInit {
   /** Label text*/
   readonly label = input.required<string>();
 
-  /** Icon type */
-  readonly iconType = input<string>();
-
   /** Icon */
   readonly icon = input.required<string>();
 
