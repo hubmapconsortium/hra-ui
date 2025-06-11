@@ -33,10 +33,15 @@
       border-bottom: 0.0625rem solid vars.$outline;
     }
 
+    ::ng-deep tbody tr:nth-child(even) {
+      background-color: vars.$surface-container;
+    }
+
     th,
     td {
       font: vars.$label-medium;
       letter-spacing: vars.$label-medium-tracking;
+      padding: 0.5rem 1rem;
     }
 
     th {
