@@ -38,6 +38,7 @@ countInfo:
     iconType: misc
   - count: 1000
     label: publications
+    showSuffix: true
     icon: publications
     iconType: misc
   - count: 73
