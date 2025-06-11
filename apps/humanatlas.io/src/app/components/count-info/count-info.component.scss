@@ -13,17 +13,9 @@
     flex-direction: column;
 
     .card-icon {
-      color: vars.$tertiary;
       margin: 1rem 0;
-      height: 3rem;
-      width: 3rem;
-      font-size: 3rem;
-
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 300,
-        'GRAD' 0,
-        'opsz' 48;
+      width: 3.375rem;
+      height: 3.375rem;
     }
 
     .card-count {
@@ -32,7 +24,7 @@
     }
 
     .card-text {
-      @include utils.use-font(label, medium);
+      @include utils.use-font(body, xl);
       color: vars.$primary;
       text-align: center;
       margin-bottom: 1rem;
