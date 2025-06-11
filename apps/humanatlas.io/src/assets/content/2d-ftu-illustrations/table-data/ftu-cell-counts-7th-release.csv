@@ -1,4 +1,4 @@
-Organ,FtuLabel,FtuId,CtLabel,CtId,CtLabelIn2D,#AS,#CT
+organ,ftu_label,ftu_id,ftu_part_label,ftu_part_id,ftu_part_svg_label,as_count,ct_count
 Kidney,Cortical Collecting Duct,UBERON:0004203,kidney cortex collecting duct intercalated cell,CL:1000715,Cortical Collecting Duct Intercalated Cell Type B,0,2
 Kidney,Cortical Collecting Duct,UBERON:0004203,kidney collecting duct alpha-intercalated cell,CL:4030015,Cortical Collecting Duct Intercalated Cell Type A,0,4
 Kidney,Cortical Collecting Duct,UBERON:0004203,peritubular capillary endothelial cell,CL:1001033,Endothelium Peritubular Capillary,0,5

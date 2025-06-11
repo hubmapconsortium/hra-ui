@@ -25,57 +25,50 @@ import { parse, unparse } from 'papaparse';
 })
 export class SummaryStatisticsTableComponent {
   /** URL for the CSV */
-  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-count-7th-release.csv');
+  readonly csvUrl = input('assets/content/2d-ftu-illustrations/table-data/ftu-cell-counts-9th-release.csv');
 
   /** Column name for the organ */
-  readonly organColumn = input('Organ');
+  readonly organColumn = input('organ');
 
   /** Columns for the table */
   readonly columns = input<TableColumn[]>([
     {
-      column: 'FtuLabel',
+      column: 'ftu_label',
       label: 'FTU Label in Uberon',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'FtuId',
+      column: 'ftu_id',
       label: 'FTU ID in Uberon',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CtLabel',
+      column: 'ftu_part_label',
       label: 'CT Label in CL',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CtId',
+      column: 'ftu_part_id',
       label: 'CT ID in CL',
       type: {
         type: 'text',
       },
     },
     {
-      column: 'CtLabelIn2D',
-      label: 'CT Label in 2D Object',
-      type: {
-        type: 'text',
-      },
-    },
-    {
-      column: '#AS',
+      column: 'as_count',
       label: '#AS',
       type: {
         type: 'numeric',
       },
     },
     {
-      column: '#CT',
+      column: 'ct_count',
       label: '#CT',
       type: {
         type: 'numeric',
