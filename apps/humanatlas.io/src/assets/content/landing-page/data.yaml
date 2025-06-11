@@ -52,10 +52,10 @@ countInfo:
     icon: misc:biomarker
   - count: 30
     label: organ mapping antibody panels
-    icon: product:omaps
+    icon: misc:omaps
   - count: 26
     label: functional tissue units
-    icon: product:ftu
+    icon: misc:ftu
 
 sectionCardInfo:
   - tagline: Join our working group

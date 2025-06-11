@@ -3,7 +3,7 @@ title: Cell Type Annotations
 subtitle: Ontology ID labels for cell type annotation cell types.
 icons: product:cell-type-annotations
 action:
-  label: Use Data
+  label: Get data
   url: https://lod.humanatlas.io/ctann
 content:
   - component: PageSection

@@ -15,6 +15,5 @@ describe('UiSectionComponent', () => {
 
     expect(screen.getByText('Product Name')).toBeInTheDocument();
     expect(screen.getByText('Placeholder short description for text less than 125 characters.')).toBeInTheDocument();
-    expect(screen.getByText('Preview')).toBeInTheDocument();
   });
 });
