@@ -14,6 +14,7 @@ export const appRoutes: Route[] = [
   // TODO: add content pages here!
   {
     path: '',
+    pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
