@@ -3,41 +3,49 @@
   "socials": [
     {
       "id": "linkedin",
+      "label": "Connect with CNS on LinkedIn",
       "icon": "social:linkedin",
       "link": "https://www.linkedin.com/company/cns-indiana-university-bloomington"
     },
     {
       "id": "youtube",
+      "label": "Learn about CNS on YouTube",
       "icon": "social:youtube",
       "link": "https://www.youtube.com/@CNSCenter/"
     },
     {
       "id": "instagram",
+      "label": "Connect with CNS on Instagram",
       "icon": "social:instagram",
       "link": "https://www.instagram.com/cns_at_iu/"
     },
     {
       "id": "facebook",
+      "label": "Connect with CNS on Facebook",
       "icon": "social:facebook",
       "link": "https://www.facebook.com/cnscenter/"
     },
     {
       "id": "github",
+      "label": "CNS GitHub",
       "icon": "social:github",
       "link": "https://github.com/hubmapconsortium/hra-ui"
     },
     {
       "id": "bluesky",
+      "label": "Connect with CNS on Bluesky",
       "icon": "social:bluesky",
       "link": "https://bsky.app/profile/cnscenter.bsky.social"
     },
     {
       "id": "x",
+      "label": "Connect with CNS on X (formerly Twitter)",
       "icon": "social:x",
       "link": "https://twitter.com/cnscenter"
     },
     {
       "id": "email",
+      "label": "Email us",
       "icon": "email",
       "link": "mailto:infoccf@iu.edu",
       "isFontIcon": true

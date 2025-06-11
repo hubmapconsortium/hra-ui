@@ -8,6 +8,7 @@ export type SocialMedia = z.infer<typeof SocialMediaSchema>;
 /** Schema for social media item */
 export const SocialMediaSchema = z.object({
   id: z.string().brand<'SocialMediaId'>(),
+  label: z.string(),
   icon: z.string(),
   isFontIcon: z.boolean().optional(),
   link: z.string(),
