@@ -45,9 +45,14 @@
     }
   }
 
-  hra-count-info {
-    padding: 2rem 1rem;
+  .count-cards {
+    display: flex;
+    padding: 2rem 2.5rem;
     background: vars.$surface-dim;
+    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.75rem;
   }
 
   hra-section-cards {
