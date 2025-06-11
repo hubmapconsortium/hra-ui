@@ -37,7 +37,7 @@
         },
         { "type": "item", "label": "Functional Tissue Unit Explorer", "url": "https://humanatlas.io/user-story/4" },
         { "type": "item", "label": "HRA Organ Gallery", "url": "https://humanatlas.io/hra-organ-gallery" },
-        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/knowledge-graph" },
+        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/dev/kg" },
         {
           "type": "item",
           "label": "Registration User Interface",
