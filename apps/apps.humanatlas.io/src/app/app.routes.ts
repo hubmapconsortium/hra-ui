@@ -25,6 +25,9 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     component: LandingPageComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }] satisfies BreadcrumbItem[],
+    },
   },
   {
     path: 'us1',
