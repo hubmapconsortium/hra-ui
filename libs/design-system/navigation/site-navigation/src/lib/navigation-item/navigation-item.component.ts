@@ -5,6 +5,7 @@ import { MatListItem, MatListItemTitle } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
 import { DocsNavigationItem } from '../types/docs-navigation.schema';
 import { resolveUrl } from '../utils/resolve-url';
+import { ACTIVE_MATCH_OPTIONS } from '../utils/match-options';
 
 /** Navigation Item Component */
 @Component({
@@ -23,6 +24,9 @@ export class NavigationItemComponent {
 
   /** Resolved URL for the navigation item */
   protected readonly url = computed(() => resolveUrl(this.navigationItem().url, this.router, this.baseUrl()));
+
+  /** Options for router link active */
+  protected routerLinkActiveOptions = ACTIVE_MATCH_OPTIONS;
 
   /** Angular Router */
   private readonly router = inject(Router);

@@ -8,10 +8,6 @@ import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schem
 
 /** Application routes */
 export const appRoutes: Route[] = [
-  // Content pages
-  // Please try to keep sorted in alphabetical order
-
-  // TODO: add content pages here!
   {
     path: '',
     pathMatch: 'full',
@@ -20,13 +16,9 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/landing-page/data.yaml', LandingPageDataSchema),
     },
   },
-  {
-    path: 'api-reference',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
-    },
-  },
+
+  // Content pages
+  // Please try to keep sorted in alphabetical order
   {
     path: 'apps',
     component: ContentPageComponent,
@@ -42,6 +34,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'dev/api',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dev/apps',
     component: ContentPageComponent,
     resolve: {
@@ -49,61 +48,62 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'changelog',
+    path: 'dev/changelog',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'design-system',
+    path: 'dev/design-system',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/design-system-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'digital-objects',
+    path: 'dev/digital-objects',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'faqs',
+    path: 'dev/faq',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/faqs/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'knowledge-graph',
+    path: 'dev/kg',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'support',
+    path: 'dev/support',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/support-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'tutorials',
+    path: 'dev/tutorials',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/tutorials-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
-    path: 'web-components',
+    path: 'dev/web-components',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
+
   // Error pages and redirects
   {
     path: '404',

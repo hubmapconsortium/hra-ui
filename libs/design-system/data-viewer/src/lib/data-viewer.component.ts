@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';

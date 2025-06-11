@@ -8,6 +8,7 @@
     [routerLink]="url().value"
     [activated]="rla.isActive"
     routerLinkActive="active"
+    [routerLinkActiveOptions]="routerLinkActiveOptions"
     #rla="routerLinkActive"
   >
     <ng-container *ngTemplateOutlet="content" />

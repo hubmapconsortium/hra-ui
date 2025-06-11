@@ -9,9 +9,9 @@
         {
           "type": "item",
           "label": "Introduction to the Human Reference Atlas",
-          "url": "https://humanatlas.io/introduction"
+          "url": "https://humanatlas.io/overview-training-outreach#introduction"
         },
-        { "type": "item", "label": "Project Overview", "url": "https://humanatlas.io/overview-project" }
+        { "type": "item", "label": "About the Human Reference Atlas", "url": "https://humanatlas.io/about" }
       ]
     },
     {
