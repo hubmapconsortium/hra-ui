@@ -1,0 +1,223 @@
+﻿organ,organ_id,ftu_label,ftu_id,ftu_part_svg_ct_label,ftu_part_label,ftu_part_id,ftu_part_svg_label,as_count,ct_count
+Kidney,UBERON:0002113,Cortical Collecting Duct,UBERON:0004203,Intercalated Cell Type B,kidney connecting tubule beta-intercalated cell,CL:4030021,Cortical Collecting Duct Intercalated Cell Type B,0,2
+Kidney,UBERON:0002113,Cortical Collecting Duct,UBERON:0004203,Connecting Tubule Intercalated Cell Type A,kidney connecting tubule alpha-intercalated cell,CL:4030020,Cortical Collecting Duct Intercalated Cell Type A,0,4
+Kidney,UBERON:0002113,Cortical Collecting Duct,UBERON:0004203,,peritubular capillary endothelial cell,CL:1001033,Endothelium Peritubular Capillary,0,5
+Kidney,UBERON:0002113,Cortical Collecting Duct,UBERON:0004203,Cortical Collecting Duct Principal Cell,kidney cortex collecting duct principal cell,CL:1000714,Cortical Collecting Duct Principal Cell,0,9
+Kidney,UBERON:0002113,Outer Medullary Collecting Duct,UBERON:0004204,Outer Medullary Collecting Duct Intercalated Cell Type A,kidney outer medulla collecting duct intercalated cell,CL:1000717,Outer Medullary Collecting Duct Intercalated Cell Type A,0,5
+Kidney,UBERON:0002113,Outer Medullary Collecting Duct,UBERON:0004204,Outer Medullary Collecting Duct Principal Cell,kidney outer medulla collecting duct principal cell,CL:1000716,Outer Medullary Collecting Duct Principal Cell,0,10
+Kidney,UBERON:0002113,Outer Medullary Collecting Duct,UBERON:0004204,,peritubular capillary endothelial cell,CL:1001033,Endothelium Peritubular Capillary,0,2
+Kidney,UBERON:0002113,Inner Medullary Collecting Duct,UBERON:0004205,Inner Medullary Collecting Duct Cell,kidney inner medulla collecting duct principal cell,CL:1000718,Inner Medullary Collecting Duct Cell,0,14
+Kidney,UBERON:0002113,Inner Medullary Collecting Duct,UBERON:0004205,,peritubular capillary endothelial cell,CL:1001033,Endothelium Peritubular Capillary,0,5
+Kidney,UBERON:0002113,Thick Ascending Limb Of Loop Of Henle,UBERON:0001291,Thick Ascending Limb Cell,kidney loop of Henle thick ascending limb epithelial cell,CL:1001106,Thick Ascending Limb Cell,0,9
+Kidney,UBERON:0002113,Thick Ascending Limb Of Loop Of Henle,UBERON:0001291,,peritubular capillary endothelial cell,CL:1001033,Endothelium Peritubular Capillary,0,5
+Kidney,UBERON:0002113,Descending Limb of Loop of Henle,UBERON:0001289,Descending Thin Limb Cell,kidney loop of Henle thin descending limb epithelial cell,CL:1001111,Descending Thin Limb Cell,0,3
+Kidney,UBERON:0002113,Descending Limb of Loop of Henle,UBERON:0001289,,vasa recta descending limb cell,CL:1001285,Descending Vasa Recta,0,3
+Kidney,UBERON:0002113,Loop Of Henle Ascending Limb Thin Segment,UBERON:0004193,Ascending Thin Limb Cell,kidney loop of Henle thin ascending limb epithelial cell,CL:1001107,Ascending Thin Limb Cell,0,3
+Kidney,UBERON:0002113,Loop Of Henle Ascending Limb Thin Segment,UBERON:0004193,,vasa recta ascending limb cell,CL:1001131,Ascending Vasa Recta,0,5
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,cortical collecting duct,UBERON:0004203,Collecting Duct,1,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,proximal straight tubule,UBERON:0001290,Proximal Tubule,1,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,proximal convoluted tubule segment 2,UBERON:0004197,Proximal Tubule,1,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,proximal convoluted tubule segment 1,UBERON:0004196,Proximal Tubule,1,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Proximal Tubule Epithelial Cell Segment 1,epithelial cell of proximal tubule segment 1,CL:4030009,Proximal Tubule,0,16
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,distal convoluted tubule,UBERON:0001292,Distal Convulated Tubule,1,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Distal Convoluted Tubule Cell,kidney distal convoluted tubule epithelial cell,CL:1000849,Distal Convulated Tubule,0,15
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,renal connecting tubule,UBERON:0005097,Connecting Tubule,2,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Connecting Tubule Cell,kidney connecting tubule epithelial cell,CL:1000768,Connecting Tubule,0,16
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Macula Densa cell,macula densa epithelial cell,CL:1000850,Macula Densa,0,9
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,thick ascending limb of loop of Henle,UBERON:0001291,Thick Ascending Limb Of Loop Of Henle,2,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,loop of Henle ascending limb thin segment,UBERON:0004193,Ascending Thin Limb Of Loop Of Henle,2,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,descending thin limb,UBERON:0005096,Descending Thin Limb Of Loop Of Henle,2,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Inner Medullary Collecting Duct Cell,kidney inner medulla collecting duct principal cell,CL:1000718,Collecting Duct,0,14
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,,Renal Corpuscle,UBERON:0001229,Renal Corpuscle,2,0
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Ascending Thin Limb Cell,kidney loop of Henle thin ascending limb epithelial cell,CL:1001107,Ascending Thin Limb Of Loop Of Henle Cell,0,2
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Descending Thin Limb Cell,kidney loop of Henle thin descending limb epithelial cell,CL:1001111,Descending Thin Limb Of Loop Of Henle Cell,0,2
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Thick Ascending Limb Cell,kidney loop of Henle thick ascending limb epithelial cell,CL:1001106,Thick Ascending Limb Of Loop Of Henle Cell,0,11
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Cortical Collecting Duct Principal Cell,kidney cortex collecting duct principal cell,CL:1000714,Cortical Collecting Duct Principal Cell,0,15
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Outer Medullary Collecting Duct Principal Cell,kidney outer medulla collecting duct principal cell,CL:1000716,Outer Medullary Collecting Duct Principal Cell,0,15
+Kidney,UBERON:0002113,Nephron,UBERON:0001285,Outer Medullary Collecting Duct Principal Cell,kidney inner medulla collecting duct,CL:1000718,Inner Medullary Collecting Duct Principal Cell,0,14
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Mesangial Cell,glomerular mesangial cell,CL:1000742,Glomerular Mesangial Cell,0,16
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Podocyte,podocyte,CL:0000653,Glomerular Visceral Epithelial Cell,0,27
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Proximal Tubule Epithelial Cell,epithelial cell of proximal tubule,CL:0002306,Epithelial Cell Proximal Tubule,0,8
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Glomerular Capillary Endothelial Cell,glomerular capillary endothelial cell,CL:1001005,Glomerular Capillary Endothelial Cell,0,10
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,,kidney efferent arteriole endothelial cell,CL:1001099,Efferent Arteriole Endothelial Cell,0,28
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Parietal Epithelial Cell,parietal epithelial cell,CL:1000452,Parietal Epithelial Cell,0,12
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,,kidney afferent arteriole endothelial cell,CL:1001096,Afferent Arteriole Endothelial Cell,0,19
+Kidney,UBERON:0002113,Renal Corpuscle,UBERON:0001229,Macula Densa cell,macula densa epithelial cell,CL:1000850,Macula Densa Epithelial Cell,0,7
+Large Intestine,UBERON:0000059,crypt of Lieberkuhn of large intestine,UBERON:0001984,goblet,large intestine crypt goblet cell,CL:1000321,Goblet Cells,0,53
+Large Intestine,UBERON:0000059,crypt of Lieberkuhn of large intestine,UBERON:0001984,absorptive,enterocyte of epithelium of large intestine,CL:0002071,Absorptive Cells,0,136
+Large Intestine,UBERON:0000059,crypt of Lieberkuhn of large intestine,UBERON:0001984,neuroendocrine,neuroendocrine cell,CL:0000165,Enteroendocrine Cells,0,5
+Large Intestine,UBERON:0000059,crypt of Lieberkuhn of large intestine,UBERON:0001984,epithelial stem cell,intestinal crypt stem cell of large intestine,CL:0009016,Epithelial Stem Cells,0,5
+Large Intestine,UBERON:0000059,crypt of Lieberkuhn of large intestine,UBERON:0001984,tuft cell,intestinal tuft cell,CL:0019032,Tuft Cell,0,5
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,portal fibroblast,hepatic portal fibroblast,CL:0009100,Hepatic Portal Fibroblast,0,4
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,,blood vessel smooth muscle cell,CL:0019018,Blood Vessel Smooth Muscle Cell,0,8
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,endothelial cell,endothelial cell of artery,CL:1000413,Endothelial Cell,0,4
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,cuboidal cell (Small cholangiocytes are cuboidal),stratified cuboidal epithelial cell,CL:0000241,Stratified Cuboidal Epithelial Cell,0,7
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,columnar cell (larger cholangiocytes are more columnar) has ciliae,columnar/cuboidal epithelial cell,CL:0000075,Columnar Cuboidal epithelial Cell,0,9
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,endothelial cell,vein endothelial cell,CL:0002543,Vein Endothelial Cell,0,13
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,hepatic oval cell ,Hepatic oval stem cell,CL:0002196,Hepatic Progenitor Cell,0,18
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,liver sinusoid endothelial cell,endothelial cell of hepatic sinusoid,CL:1000398,Endothelial Cell Of Hepatic Sinusoid,0,13
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,quiescent hepatic stellate cell,hepatic stellate cell,CL:0000632,Hepatic Stellate Cell,0,4
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,Kupffer cell,Kupffer Cell,CL:0000091,Kupffer Cell,0,4
+Liver,UBERON:0002107,Liver Lobule,UBERON:0004647,hepatocyte,hepatocyte,CL:0000182,Hepatocyte,0,68
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,airway submucosal gland ciliated duct cells,airway submucosal gland duct ciliated cell,CL:4033055,Ciliated Cell Of Submucosal Gland,0,16
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,airway submucosal gland duct basal cell,airway submucosal gland duct basal cell,CL:4033024,Basal Cell Of Submucosal Gland,0,12
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,mucus secreting cell of bronchus submucosal gland,mucus secreting cell of bronchus submucosal gland,CL:4033022,Mucus Cell,0,52
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,airway submucosal gland collecting duct epithelial cell,airway submucosal gland collecting duct epithelial cell,CL:4033023,Epithelial cell Of Submucosal Gland,0,2
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,serous secreting cell of bronchus submucosal gland,serous secreting cell of bronchus submucosal gland,CL:4033005,Serous Cell,0,55
+Lung,UBERON:0002048,Bronchus Submucosal Gland,UBERON:8410043,myoepithelial cell of bronchus submucosal gland,myoepithelial cell of bronchus submucosal gland,CL:4033003,Myoepithelial cell,0,20
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,alveolar type II cell,type II pneumocyte,CL:0002063,Type II Pneumocyte,0,6
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,lung pericyte,lung pericyte,CL:0009089,Pericyte,0,2
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,alveolar type I cell,type I pneumocyte,CL:0002062,Type I Pneumocyte,0,14
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,alveolar type 1 fibroblast cell,alveolar type 1 fibroblast cell,CL:4028004,Lung Matrix Fibroblast,0,7
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,secondary crest myofibroblast,secondary crest myofibroblast,CL:4033016,Secondary Crest Myofibroblast,0,9
+Lung,UBERON:0002048,Alveolus of Lung,UBERON:0002299,CAP1 general capillary gCap,alveolar capillary type 1 endothelial cell,CL:4028002,Capillary Endothelial Cell,0,27
+Pancreas,UBERON:0001264,Intercalated Duct of Pancreas,UBERON:0014726,Pancreas exocrine glandular cell,epithelial cell of exocrine pancreas,CL:1001433,Ductal Epithelial Cell,0,25
+Pancreas,UBERON:0001264,Intercalated Duct of Pancreas,UBERON:0014726,Centroacinar cell,pancreatic centro-acinar cell,CL:0002080,Centroacinar Cell,0,2
+Pancreas,UBERON:0001264,Intercalated Duct of Pancreas,UBERON:0014726,,intercalated duct of pancreas,UBERON:0014726,intercalated duct,1,0
+Pancreas,UBERON:0001264,Intercalated Duct of Pancreas,UBERON:0014726,,pancreatic acinus,UBERON:0001263,pancreatic acinus,1,0
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,Acinar cell,pancreatic acinar cell,CL:0002064,Pancreatic Acinar Cell,0,9
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,Pancreatic goblet cell,pancreatic goblet cell,CL:1000322,Pancreatic Goblet Cell,0,1
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,Ductal epithelial cell,epithelial cell of exocrine pancreas,CL:1001433,Ductal Epithelial Cell,0,14
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,Centroacinar cell,pancreatic centro-acinar cell,CL:0002080,Centroacinar Cell,0,2
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,,,,Tuft Cell,0,1
+Pancreas,UBERON:0001264,Pancreatic Acinus,UBERON:0001263,,intercalated duct of pancreas,UBERON:0014726,Intercalated Duct,1,0
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,Alpha cell,pancreatic A cell,CL:0000171,Pancreatic A Cell,0,65
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,Beta cell,type B pancreatic cell,CL:0000169,Pancreatic B Cell,0,116
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,Delta cell,pancreatic D cell,CL:0000173,Pancreatic D Cell,0,19
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,PP cell,pancreatic PP cell,CL:0002275,Pancreatic PP Cell,0,11
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,,capillary endothelial cell,CL:0002144,Capillary Endothelial Cell,0,7
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,Macrophage,macrophage,CL:0000235,Macrophage,0,4
+Pancreas,UBERON:0001264,Islet of Langerhans,UBERON:0000006,,,,Pericyte,0,1
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,periprostatic fibroblast,fibroblast of subepithelial connective tissue of prostatic gland,CL:1000301,Fibroblast Of Subepithelial Connective Tissue Of Prostatic Gland,0,101
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,prostate smooth muscle,smooth muscle cell of prostate,CL:1000487,Smooth Muscle Cell Of Prostate,0,76
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,interstitial fibroblast,fibroblast of connective tissue of prostate,CL:1000299,Fibroblast Of Connective Tissue Of Prostate,0,20
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,,,,Prostate Gland Microvascular Endothelial Cell,0,3
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,luminal epithelia,luminal cell of prostate epithelium,CL:0002340,Luminal Cell Of Prostate Epithelium,0,120
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,basal epithelia,basal cell of prostate epithelium,CL:0002341,Basal Cell Of Prostate Epithelium,0,174
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,vascular associated smooth muscle cell,vascular associated smooth muscle cell,CL:0000359,Vascular Smooth Muscle Cell,0,4
+Prostate,UBERON:0002367,Prostate Glandular Acinus,UBERON:0004179,perictye,pericyte,CL:0000669,Prostate Pericyte,0,3
+Skin of Body,UBERON:0002097,Dermal Papilla,UBERON:0000412,Fibroblast,skin fibroblast,CL:0002620,Skin Fibroblast,0,39
+Skin of Body,UBERON:0002097,Dermal Papilla,UBERON:0000412,Endothelial cell,endothelial cell,CL:0000115,Blood Vessel,0,7
+Skin of Body,UBERON:0002097,Epidermal Ridge of Digit,UBERON:0013487,Keratinocytes (Spinous),prickle cell,CL:0000649,Prickle Cell,0,104
+Skin of Body,UBERON:0002097,Epidermal Ridge of Digit,UBERON:0013487,Langerhans cell,epidermal Langerhans cell,CL:0002457,Epidermal Langerhans Cell,0,3
+Skin of Body,UBERON:0002097,Epidermal Ridge of Digit,UBERON:0013487,Keratinocyte (Basal),basal cell,CL:0000646,Basal Cell,0,35
+Skin of Body,UBERON:0002097,Epidermal Ridge of Digit,UBERON:0013487,Merkel cell,Merkel cell,CL:0000242,Merkel Cell,0,2
+Skin of Body,UBERON:0002097,Epidermal Ridge of Digit,UBERON:0013487,Melanocyte,melanocyte of skin,CL:1000458,Melanocyte,0,4
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,natural killer (NK) cell,natural killer cell,CL:0000623,Natural Killer Cell,0,4
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,fibroblasts,fibroblast,CL:0000057,Fibroblast,0,18
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,Tuft cells,tuft cell of small intestine,CL:0009080,Tuft Cell,0,18
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,enterocytes,enterocyte,CL:0000584,Enterocyte,0,305
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,mast cells,mast cell,CL:0000097,Mast Cell,0,3
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,goblet cell,duodenal goblet cell,CL:1000324,Goblet Cell,0,16
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,myofibroblast,myofibroblast,CL:0000186,Myofibroblast,0,79
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,plasma,plasma cell,CL:0000786,Plasma Cell,0,9
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,dendritic cell (DC),dendritic cell,CL:0000451,Dendritic Cell,0,12
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,B cell,B cell,CL:0000236,B Cell,0,160
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,eosinophils,eosinophil,CL:0000771,Eosinophil,0,4
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,ILCs,innate lymphoid cell,CL:0001065,Innate Lymphoid Cell,0,26
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,endocrine,endocrine cell,CL:0000163,Endocrine Cell,0,2
+Small Intestine,UBERON:0002108,Intestinal Villus,UBERON:0001213,neutrophils,neutrophil,CL:0000775,Neutrophil,0,4
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Monocytes,"CD14-positive, CD16-low monocyte",CL:0001055,CD14 Positive,0,5
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Follicular Dendritic Cell (FDC),follicular dendritic cell,CL:0000442,Follicular Dendritic Cell,0,7
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Plasmablast,plasmablast,CL:0000980,plasmablast,0,3
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,,neutrophil,CL:0000775,Neutrophil,0,5
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Tingible Body Macrophage,splenic tingible body macrophage,CL:0000877,Splenic Tingible Body Macrophage,0,6
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,,splenic marginal zone macrophage,CL:0000872,Splenic Marginal Zone Macrophage,0,2
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Macrophage,splenic red pulp macrophage,CL:0000874,Splenic Red Pulp Macrophage,0,12
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Dendritic Cell,"dendritic cell, human",CL:0001056,Dendritic Cell,0,8
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,Hematopoetic Stem Cell,hematopoetic stem cell,CL:0000037,Hematopoetic Stem Cell,0,9
+Spleen,UBERON:0002106,Red Pulp of Spleen,UBERON:0001250,,reticular cell of splenic sinusoid,,Reticular Cell Of Splenic Sinusoid,0,31
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Macrophage,splenic white pulp macrophage,CL:0000876,Splenic Marginal Zone Macrophage,0,19
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,,,,T Cells Outer Pals,0,94
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,,,,T Cells Inner Pals,0,385
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,,smooth muscle cell,CL:0000192,Smooth Muscle Cell,0,11
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Splenic endothelial cell,splenic endothelial cell,CL:2000053,Splenic Endothelial Cell,0,21
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Splenic Stromal Cell (non-FRC/non-FDC),stromal cell,CL:0000499,Stromal Cell,0,6
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Red Pulp Reticular Cell,reticular cell of splenic cord,CL:1000489,Reticular Cell Of Splenic Cord,0,7
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Monocytes,"CD14-positive, CD16-low monocyte",CL:0001055,CD14 Positive,0,2
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Follicular Dendritic Cell (FDC),follicular dendritic cell,CL:0000442,Follicular Dendritic Cell,0,7
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,Plasmablast,plasmablast,CL:0000980,Plasmablast,0,3
+Spleen,UBERON:0002106,White Pulp of Spleen,UBERON:0001959,,neutrophil,CL:0000775,Neutrophil,0,3
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,double positive thymocyte,"double-positive, alpha-beta thymocyte",CL:0000809,Double Positive Alpha Beta Thymocyte,0,170
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,thymus subcapsular epithelium,UBERON:0006936,Subcapsular Thymocytes,92,0
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,plasmacytoid dendritic cell,thymic plasmacytoid dendritic cell,CL:0000942,Thymic Plasmacytoid Dendritic Cell,0,5
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,blood endothelial cell,blood vessel endothelial cell,CL:0000071,Blood Vessel Endothelial Cell,0,15
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,macrophage,thymic cortical macrophage,CL:0000883,Thymic Cortical Macrophage,0,4
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,subcapsular cortical epithelial cell,subcapsular cortical epithelial cell,CL:0009077,Subcapsular Cortical Epithelial Cell,0,11
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,beige adipocyte,beige adipocyte,CL:0001070,Beige Adipocyte,0,2
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,T cell,CL:0000084,T Cells,0,29
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,,,Medullary Thymocytes,0,123
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,medullary thymic epithelial cell type 1,medullary thymic epithelial cell type 1,CL:0009071,Medullary Thymic Epithelial Cell,0,16
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,Hassall's corpuscle,UBERON:0003987,Hassalls Corpuscle,1,0
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,memory B cell,CL:0000787,B Cell,0,8
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,corticomedullary thymic epithelial cell,corticomedullary thymic epithelial cell,CL:0009070,Corticomedullary Thymic Epithelial Cell,0,45
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,,leukocyte,CL:0000738,White Blood Cell,0,10
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,macrophage,thymic medullary macrophage,CL:0000882,Thymic Medullary Macrophage,0,4
+Thymus,UBERON:0002370,Thymus Lobule,UBERON:0002125,naive B cell,naive B cell,CL:0000788,B Cell,0,8
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Epithelium,,,Epithelium,,1
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Cuticle of Hair,cuticle of hair,UBERON:0002076,Cuticle of Hair,1,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Cortex of Hair,cortex of hair,UBERON:0002077,Cortex of Hair,1,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Hair medulla,hair medulla,UBERON:0005184,Hair medulla,1,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Sebum secreting cell,sebum secreting cell,CL:0000317,Sebum secreting cell,0,194
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Myoepithelial cell of sweat gland,myoepithelial cell of sweat gland,CL:1000417,Myoepithelial cell of sweat gland,0,59
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Arrector pili muscle cell of vibrisa,arrector muscle of hair,UBERON:0002033,Arrector pili muscle cell of vibrisa,41,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Keratenocyte stem cell,keratinocyte stem cell,CL:0002337,Keratenocyte stem cell,0,55
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,hair outer root sheath,hair outer root sheath,UBERON:0005942,hair outer root sheath,1,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Hair inner root sheath,hair inner root sheath,UBERON:0005941,Hair inner root sheath,1,0
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Hair germinal matrix cell,hair germinal matrix cell,CL:0002562,Hair germinal matrix cell,0,85
+Skin of Body,UBERON:0002097,Hair follicle,UBERON:0002073,Hair follicle melanocyte,hair follicle melanocyte,CL:0002483,Hair follicle melanocyte,0,13
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,adipocyte,adipocyte,CL:0000136,Adipocyte,0,1
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,basal ductal cell,basal ductal cell,,Basal_Ductal_Cell,0,5
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,dendritic cell,dendritic cell,CL:0000451,Dendritic_Cell,0,1
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,endothelial cell,endothelial cell,CL:0000115,Endothelial_Cell,0,3
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,excretory duct epithelial cell,excretory duct epithelial cell,,Excretor_Ductal_Epithelial_Cell,0,8
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,helper T,helper T,,Helper_T_Cell,0,4
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,IgA secreting plasma cell,IgA secreting plasma cell,CL:0000987,IgA_Secreting_Plasma_Cell,0,13
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,intercalated duct epithelial cell,intercalated duct epithelial cell,CL:4052048,Intercalated_Duct_Epithelial_Cell,0,59
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,ionocyte,ionocyte,,Ionocyte,0,3
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,macrophage,macrophage,CL:0000235,Macrophage,0,1
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,mast cell,mast cell,CL:0000097,Mast_Cell,0,1
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,myoepithelial cell,myoepithelial cell,,Myoepithelial_cell,0,44
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,periacinar fibroblast,periacinar fibroblast,,Periacinar_Fibroblast,0,21
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,pericyte,pericyte,CL:0000669,Pericyte,0,3
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,periductal fibroblast,periductal fibroblast,,Periductal_Fibroblast,0,35
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,serous acinar cell,serous acinar cell,,Serous_Acinar_Cell,0,36
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,smooth muscle cell,smooth muscle cell,CL:0000192,Smooth_Muscle_ Cell,0,6
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,striated duct epithelial cell,striated duct epithelial cell,CL:4052049,Straited_Ductal_Epithelial_Cell,0,27
+Mouth,UBERON:0000165,Parotid Gland,UBERON:0001831,tuft cell,tuft cell,,Tuft_Cell,0,1
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,demilune acinar cell,demilune acinar cell,,Demilune_Acinar_Cell,0,12
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,dendritic cell,dendritic cell,CL:0000451,Dendritic_Cell,0,1
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,endothelial cell,endothelial cell,CL:0000115,Endothelial_Cell,0,3
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,helper T,helper T,,Helper_T_Cell,0,4
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,IgA secreting plasma cell,IgA secreting plasma cell,CL:0000987,IgA_Secreting_Plasma_Cell,0,13
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,intercalated duct epithelial cell,intercalated duct epithelial cell,CL:4052048,Intercalated_Duct_Epithelial_Cell,0,102
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,ionocyte,ionocyte,,Ionocyte,0,3
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,macrophage,macrophage,CL:0000235,Macrophage,0,1
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,mast cell,mast cell,CL:0000097,Mast_Cell,0,1
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,mucous acinar cell,mucous acinar cell,,Mucous_Acinar_Cell,0,32
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,myoepithelial cell,myoepithelial cell,,Myoepithelial_cell,0,44
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,periacinar fibroblast,periacinar fibroblast,,Periacinar_Fibroblast,0,21
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,pericyte,pericyte,CL:0000669,Pericyte,0,3
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,periductal fibroblast,periductal fibroblast,,Periductal_Fibroblast,0,35
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,seromucosal acinar cell,seromucosal acinar cell,,Seromucosal_Acinar_Cell,0,5
+Mouth,UBERON:0000165,sublingual gland,UBERON:0001832,smooth muscle cell,smooth muscle cell,CL:0000192,Smooth_Muscle_ Cell,0,6
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,basal ductal cell,basal ductal cell,,Basal_Ductal_Cell,0,5
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,demilune acinar cell,demilune acinar cell,,Demilune_Acinar_Cell,0,12
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,dendritic cell,dendritic cell,CL:0000451,Dendritic_Cell,0,1
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,endothelial cell,endothelial cell,CL:0000115,Endothelial_Cell,0,3
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,excretory duct epithelial cell,excretory duct epithelial cell,,Excretor_Ductal_Epithelial_Cell,0,8
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,helper T,helper T,,Helper_T_Cell,0,4
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,IgA secreting plasma cell,IgA secreting plasma cell,CL:0000987,IgA_Secreting_Plasma_Cell,0,13
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,intercalated duct epithelial cell,intercalated duct epithelial cell,CL:4052048,Intercalated_Duct_Epithelial_Cell,0,59
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,ionocyte,ionocyte,,Ionocyte,0,3
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,macrophage,macrophage,CL:0000235,Macrophage,0,1
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,mast cell,mast cell,CL:0000097,Mast_Cell,0,1
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,mucous acinar cell,mucous acinar cell,,mucous acinar cell,0,32
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,myoepithelial cell,myoepithelial cell,,Myoepithelial_cell,0,44
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,periacinar fibroblast,periacinar fibroblast,,Periacinar_Fibroblast,0,21
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,pericyte,pericyte,CL:0000669,Pericyte,0,3
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,periductal fibroblast,periductal fibroblast,,Periductal_Fibroblast,0,35
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,seromucosal acinar cell,seromucosal acinar cell,,seromucosal acinar cell,0,5
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,smooth muscle cell,smooth muscle cell,CL:0000192,Smooth_Muscle_ Cell,0,6
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,striated duct epithelial cell,striated duct epithelial cell,CL:4052049,Straited_Ductal_Epithelial_Cell,0,27
+Mouth,UBERON:0000165,submandibular gland,UBERON:0001736,tuft cell,tuft cell,,Tuft_Cell,0,1
