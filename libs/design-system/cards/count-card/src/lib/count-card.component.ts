@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
 
@@ -13,7 +13,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
   styleUrl: './count-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountCardComponent {
+export class CountCardComponent implements OnInit {
   /** Count */
   readonly count = input.required<number>();
 
@@ -28,4 +28,19 @@ export class CountCardComponent {
 
   /** Icon */
   readonly icon = input.required<string>();
+
+  readonly currentCount = signal(0);
+
+  ngOnInit() {
+    const updateCounter = () => {
+      const d = Math.ceil(this.count() / 100);
+      if (this.currentCount() && this.currentCount() + d >= this.count()) {
+        this.currentCount.set(this.count());
+        return;
+      }
+      this.currentCount.update((count) => count + d);
+      requestAnimationFrame(updateCounter);
+    };
+    requestAnimationFrame(updateCounter);
+  }
 }

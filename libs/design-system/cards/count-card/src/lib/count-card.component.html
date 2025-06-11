@@ -1,10 +1,10 @@
 <hra-icon class="logo" [svgIcon]="iconType() + ':' + icon()" />
 <div class="count-card-content">
-  <p class="count">
-    {{ count() | number }}
+  <div class="count">
+    {{ currentCount() | number }}
     @if (showSuffix()) {
       <span>+</span>
     }
-  </p>
+  </div>
   <p class="label-text">{{ label() }}</p>
 </div>

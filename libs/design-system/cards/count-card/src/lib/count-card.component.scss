@@ -21,7 +21,7 @@
     align-items: center;
   }
   .count {
-    margin: 0;
+    display: flex;
     @include utils.use-font(headline, large);
     color: vars.$secondary;
   }
