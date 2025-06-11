@@ -34,9 +34,9 @@ content:
           - id: VersionedTableParamSync
         label: Release Version
         items:
-          - label: 8th Release (v2.2)
-            version: v2.2
-            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release8.csv
+          - label: 9th Release (v2.3)
+            version: v2.3
+            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release9.csv
             columns: &table_columns
               - column: Organ
                 label: Organ
@@ -98,6 +98,10 @@ content:
               - column: CT_BM
                 label: '#CT-BM'
                 type: numeric
+          - label: 8th Release (v2.2)
+            version: v2.2
+            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release8.csv
+            columns: *table_columns
           - label: 7th Release (v2.1)
             version: v2.1
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release7.csv
