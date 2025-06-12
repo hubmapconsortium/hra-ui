@@ -39,13 +39,13 @@ content:
     content:
       - component: Markdown
         data: |
-          - [EUI 1.7.0 Demo](https://www.youtube.com/watch?v=YAHJqvD3Q_8)
+          - [EUI Demo](https://www.youtube.com/watch?v=OQ0N8pZS4Rc)
           - [How to double-check a RUI registration with the EUI](https://www.youtube.com/watch?v=UloDIG0S64w)
           - [Tutorial: Using the Exploration User Interface (EUI) on the GTEx Portal](https://www.youtube.com/watch?v=CWCGORb2zZ4)
           - [Spatial Search in the Exploration User Interface](https://www.youtube.com/watch?v=UfxMpzatowE)
 
       - component: YouTubePlayer
-        videoId: YAHJqvD3Q_8
+        videoId: OQ0N8pZS4Rc
 
   - component: PageSection
     tagline: Using spatial search filters
