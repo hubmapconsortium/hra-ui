@@ -161,26 +161,28 @@ export class AppComponent implements OnInit {
     this.showConsentSnackBar();
   }
 
-  /** Shows the consent snackbar */
-  showConsentSnackBar() {
-    const consent = this.consentService.consent;
-    const isNotSet = consent === 'not-set';
-    const shouldOptIn = isNotSet || consent === 'rescinded';
+  /** Shows the consent snackbar with user tracking preferences */
+  showConsentSnackBar(): void {
+    const { consent } = this.consentService;
+    const isInitialConsent = consent === 'not-set';
+    const shouldOptIn = isInitialConsent || consent === 'rescinded';
 
-    const actionText = shouldOptIn ? (isNotSet ? 'I understand' : 'Opt in') : 'Opt out';
-    const duration = isNotSet ? Infinity : 6000;
+    const config = {
+      message: 'We log usage to improve this service.',
+      action: shouldOptIn ? (isInitialConsent ? 'I understand' : 'Opt in') : 'Opt out',
+      persistent: isInitialConsent,
+      duration: isInitialConsent ? Infinity : 6000,
+    };
 
     this.snackbar
-      .open('We log usage to improve this service.', actionText, isNotSet, 'start', {
-        duration,
-      })
+      .open(config.message, config.action, config.persistent, 'start', { duration: config.duration })
       .afterDismissed()
       .pipe(take(1))
       .subscribe(({ dismissedByAction }) => {
-        if (dismissedByAction) {
-          return this.consentService.setConsent('given');
+        const newConsent = dismissedByAction ? (shouldOptIn ? 'given' : 'rescinded') : 'rescinded';
+        if (dismissedByAction || isInitialConsent) {
+          this.consentService.setConsent(newConsent);
         }
-        return this.consentService.setConsent('rescinded');
       });
   }
 
