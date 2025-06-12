@@ -27,7 +27,7 @@ content:
         Popular vote (popV) were constructed. Use tool-specific crosswalk tables:
 
   - component: PageSection
-    tagline: Summary Statistics
+    tagline: Summary statistics
     anchor: summary-statistics
     level: 3
     content:

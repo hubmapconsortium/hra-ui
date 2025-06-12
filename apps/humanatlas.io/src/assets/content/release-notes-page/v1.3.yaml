@@ -1,0 +1,36 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Release Notes
+subtitle: What's new in the Human Reference Atlas.
+headerContent:
+  component: ReleaseNotesVersionSelector
+content:
+  - component: PageSection
+    tagline: Data
+    anchor: data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas now includes 57 reference organs with 1,588 anatomical structures.
+          The following reference organs were added:
+            - left/right female mammary glands
+            - update to skin to accommodate addition of mammary glands and future skeletal muscle additions in legs
+            - landmark organs added for mammary gland registration user interface (RUI) support: sternum, manubrium, xiphoid process, axillary tail of breast, lower outer quadrant of breast, lower inner quadrant of breast, upper outer quadrant of breast, lower inner quadrant of breast
+          13 ASCT+B tables were revised: blood; blood vasculature; bone marrow; brain; eye; heart; large intestine; lymph vasculature; ovary; pancreas; small intestine, spleen; thymus
+          19 2D functional tissue unit (FTU) reference illustrations were added to support Functional Tissue Unit (FTU) Explorer.
+            - kidney: nephron, renal corpuscle, cortical collecting duct, outer medullary collecting duct, inner medullary collecting duct, thick ascending loop of Henle, thin ascending loop of Henle, thin descending loop of Henle
+            - large intestine: crypt of Lieberkuhn
+            - liver: liver lobule
+            - lung: alveoli, bronchial submucosal gland
+            - pancreas: acinus, islets of Langerhans, intercalated duct
+            - prostate: prostate glandular acinus
+            - skin: epidermal ridge, dermal papilla
+            - thymus: thymus lobule
+      - component: PageSection
+        tagline: Previews
+        anchor: previews
+        level: 2
+        content:
+          - component: Markdown
+            data: |
+              Starting from an accessible overview of the Atlas project, readers will be able to link to the HRA topics, concepts, and practices they wish to explore in more detail.

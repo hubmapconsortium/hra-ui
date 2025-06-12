@@ -5,7 +5,7 @@
     @if (card.url; as url) {
       <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
         <hra-action-card-action>
-          <a hraHyperlink [href]="card.url">{{ card.action }}</a>
+          <a hraHyperlink [attr.href]="card.url" target="_blank">{{ card.action }}</a>
         </hra-action-card-action>
       </hra-action-card>
     } @else {

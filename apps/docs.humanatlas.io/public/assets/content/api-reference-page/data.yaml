@@ -99,10 +99,10 @@ content:
         code: |
           curl -X GET "https://apps.humanatlas.io/api/v1/hubmap/rui_locations.jsonld?cache=false"
 
-      - component: Button
-        label: Explore Full API Directory
-        href: https://apps.humanatlas.io/api
-        type: cta
+      - component: TextHyperlink
+        text: Explore Full API Directory
+        url: https://apps.humanatlas.io/api
+        icon: arrow_right_alt
 
   - component: PageSection
     anchor: javascript-client
@@ -158,10 +158,10 @@ content:
                 console.error(error);
               });
 
-          - component: Button
-            label: Learn More
-            href: https://www.npmjs.com/package/@hra-api/js-client
-            type: cta
+          - component: TextHyperlink
+            text: Learn More
+            url: https://www.npmjs.com/package/@hra-api/js-client
+            icon: arrow_right_alt
 
       - component: PageSection
         anchor: typescript-client
@@ -212,10 +212,10 @@ content:
                 console.error(error);
               });
 
-          - component: Button
-            label: Learn More
-            href: https://www.npmjs.com/package/@hra-api/ts-client
-            type: cta
+          - component: TextHyperlink
+            text: Learn More
+            url: https://www.npmjs.com/package/@hra-api/ts-client
+            icon: arrow_right_alt
 
       - component: PageSection
         anchor: angular-client
@@ -281,10 +281,10 @@ content:
               })
               export class AppModule {}
 
-          - component: Button
-            label: Learn More
-            href: https://www.npmjs.com/package/@hra-api/ng-client
-            type: cta
+          - component: TextHyperlink
+            text: Learn More
+            url: https://www.npmjs.com/package/@hra-api/ng-client
+            icon: arrow_right_alt
 
       - component: PageSection
         anchor: python-client
@@ -319,10 +319,10 @@ content:
               response = api.atlas_d2k()
               print("API called successfully. Returned data:", response)
 
-          - component: Button
-            label: Learn More
-            href: https://pypi.org/project/hra-api-client/
-            type: cta
+          - component: TextHyperlink
+            text: Learn More
+            url: https://pypi.org/project/hra-api-client/
+            icon: arrow_right_alt
 
   - component: PageSection
     anchor: hra-knowledge-graph
@@ -386,7 +386,7 @@ content:
         data: |
           The **grlc APIs** provide REST-style endpoints built on top of the HRA Knowledge Graph and Ubergraph SPARQL endpoints. They simplify accessing complex SPARQL queries through a RESTful interface.
 
-      - component: Button
-        label: Explore grlc APIs on the HRA API Page
-        href: https://apps.humanatlas.io/api
-        type: cta
+      - component: TextHyperlink
+        text: Explore grlc APIs on the HRA API Page
+        url: https://apps.humanatlas.io/api
+        icon: arrow_right_alt
