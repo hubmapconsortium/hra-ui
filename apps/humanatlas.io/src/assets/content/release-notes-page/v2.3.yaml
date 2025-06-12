@@ -22,7 +22,7 @@ content:
           - 10 Crosswalk Tables
           - 7 Vasculature Common Coordinate Framework (VCCF) Tables
       - component: Button
-        label: Get Data
+        label: Get data
         href: https://purl.humanatlas.io/collection/hra/v2.3
         type: cta
 
