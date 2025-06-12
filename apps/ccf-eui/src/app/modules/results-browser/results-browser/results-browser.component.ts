@@ -1,7 +1,17 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -90,12 +100,18 @@ export class ResultsBrowserComponent {
         return result;
       }
     }
-    this.viewport().checkViewportSize();
     return items;
   });
 
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  constructor() {
+    effect(() => {
+      this.items(); // Grab a dependency on items
+      this.viewport().checkViewportSize();
+    });
+  }
 
   /**
    * Notifies listeners when a selection/deselection is made
