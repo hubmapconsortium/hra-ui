@@ -27,6 +27,7 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
     data: {
       crumbs: [{ name: 'Apps', route: '/' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://docs.humanatlas.io/apps',
     },
   },
   {
@@ -50,6 +51,7 @@ export const appRoutes: Route[] = [
     ],
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 1' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/user-story/1',
     },
   },
   {
@@ -73,6 +75,7 @@ export const appRoutes: Route[] = [
     ],
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 2' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/user-story/2',
     },
   },
   {
@@ -80,6 +83,7 @@ export const appRoutes: Route[] = [
     component: WebComponentsComponent,
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 6' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/user-story/6',
     },
   },
   {
@@ -103,6 +107,7 @@ export const appRoutes: Route[] = [
     ],
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'API' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/api',
     },
   },
   {

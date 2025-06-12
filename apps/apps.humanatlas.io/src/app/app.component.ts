@@ -106,4 +106,13 @@ export class AppComponent {
 
   /** Router instance for navigation */
   protected readonly router = inject(Router);
+
+  /** Help data for the current route */
+  getHelpUrl(): string {
+    const currentRouteData = this.data();
+    if (currentRouteData && currentRouteData['helpUrl']) {
+      return currentRouteData['helpUrl'] as string;
+    }
+    return `https://humanatlas.io${this.router.url}`;
+  }
 }
