@@ -38,3 +38,7 @@ versions:
     #   a digital atlas of the human body that lets users query and explore anatomical structures, cell types, and biomarkers
     #   down to the cellular level. Every six months, a new version of Human Reference Atlas data and code is released with user
     #   interfaces that make it possible to visually explore the atlas or programmatically access the data.
+
+  - version: '1.4'
+    label: 5th Release (v1.4)
+    date: June 2023
