@@ -33,16 +33,11 @@
     grid-template-rows: auto 3rem 5rem min-content;
   }
 
-  .cursor {
-    cursor: pointer;
-    position: fixed;
-    top: 4.5rem;
-    right: 2rem;
-    z-index: 3;
-
-    @media (min-height: 49.5rem) {
-      top: 5.25rem;
-    }
+  .table-header-group {
+    grid-area: table;
+    display: flex;
+    max-width: 100%;
+    border-bottom: 1px solid rgba(var(--light-dividers));
   }
 
   .table {
@@ -57,6 +52,17 @@
 
     ::ng-deep .mat-mdc-tab {
       max-width: 14rem;
+    }
+
+    ::ng-deep .expansion-icon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+      height: 100%;
+    }
+
+    .cursor {
+      pointer-events: auto;
     }
   }
 
