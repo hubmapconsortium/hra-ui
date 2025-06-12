@@ -73,7 +73,7 @@
           >
             <mat-checkbox
               class="checkbox"
-              (change)="handleSelection(result, $event.checked)"
+              (click)="handleSelection(result, !result.selected)"
               [ngStyle]="{
                 '--mdc-checkbox-selected-icon-color': getColor(result),
                 '--mdc-checkbox-selected-hover-icon-color': getColor(result),
