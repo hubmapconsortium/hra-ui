@@ -37,9 +37,8 @@ content:
     anchor: awards-ceremony
     level: 3
     content:
-      - component: Markdown
-        data: |
-          <img src="assets/content/kaggle-one-page/images/winning-team.svg" width="100%" />
+      - component: Image
+        src: assets/content/kaggle-one-page/images/winning-team.svg
 
   - component: PageSection
     tagline: Winning teams
