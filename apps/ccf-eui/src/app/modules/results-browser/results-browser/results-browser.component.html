@@ -63,7 +63,7 @@
   </hra-expansion-panel>
 
   <ng-scrollbar hraScrollOverflowFade cdkVirtualScrollingElement>
-    <cdk-virtual-scroll-viewport [itemSize]="56">
+    <cdk-virtual-scroll-viewport [itemSize]="56" #viewport>
       <div class="results-browser-list">
         <ng-container *cdkVirtualFor="let result of items(); trackBy: trackByResult">
           <div

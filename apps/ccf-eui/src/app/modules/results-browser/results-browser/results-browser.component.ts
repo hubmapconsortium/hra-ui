@@ -1,6 +1,7 @@
 import { Immutable } from '@angular-ru/cdk/typings';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal, viewChild } from '@angular/core';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +13,6 @@ import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } fr
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
 
@@ -45,6 +45,9 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsBrowserComponent {
+  /** Virtual scroll viewport */
+  readonly viewport = viewChild.required<CdkVirtualScrollViewport>('viewport');
+
   /** Input array of List Results to display */
   readonly listResults = input.required<Immutable<ListResult[]>>();
 
@@ -78,7 +81,7 @@ export class ResultsBrowserComponent {
   /** Whether at least one item is selected */
   readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
 
-  /** Filtered items */
+  /** Filtered items; resize viewport after items updated */
   readonly items = computed(() => {
     const items = this.listResults();
     if (this.showSelected()) {
@@ -87,6 +90,7 @@ export class ResultsBrowserComponent {
         return result;
       }
     }
+    this.viewport().checkViewportSize();
     return items;
   });
 
