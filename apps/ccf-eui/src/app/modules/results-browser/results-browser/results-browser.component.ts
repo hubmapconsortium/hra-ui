@@ -91,7 +91,7 @@ export class ResultsBrowserComponent {
   /** Whether at least one item is selected */
   readonly hasSelectedItems = computed(() => this.listResults().some((item) => item.selected));
 
-  /** Filtered items; resize viewport after items updated */
+  /** Filtered items */
   readonly items = computed(() => {
     const items = this.listResults();
     if (this.showSelected()) {
@@ -106,6 +106,7 @@ export class ResultsBrowserComponent {
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  /** Resize viewport on changes to the items */
   constructor() {
     effect(() => {
       this.items(); // Grab a dependency on items
