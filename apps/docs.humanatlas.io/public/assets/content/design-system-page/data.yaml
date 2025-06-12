@@ -12,6 +12,9 @@ content:
     anchor: storybook
     level: 2
     content:
+      - component: Image
+        src: assets/content/design-system-page/images/storybook.png
+
       - component: Markdown
         data: |
           The **Human Reference Atlas Design System** includes a documented and interactive component library available in **Storybook**.
@@ -23,9 +26,6 @@ content:
           - Stories are organized by categories such as **Buttons**, **Forms**, **Navigation**, and more.
           - The Storybook is automatically updated with new components and changes from the design system.
           - **Stories** are linked to their corresponding Figma designs for easy reference.
-
-      - component: Image
-        src: assets/content/design-system-page/images/storybook.png
 
   - component: PageSection
     tagline: Human Reference Atlas Design System - Figma
@@ -70,13 +70,14 @@ content:
     anchor: component-organization
     level: 2
     content:
+      - component: Image
+        src: assets/content/design-system-page/images/figma_comp_organization.png
+
       - component: Markdown
         data: |
           Designers organize the **Component Library** in Figma by categories for easy navigation and developer handoff.
 
           Each component is associated with a corresponding application screen or UI pattern, helping ensure traceability from design to implementation.
-      - component: Image
-        src: assets/content/design-system-page/images/figma_comp_organization.png
 
   - component: PageSection
     tagline: Component Handoff- From Design to Development
