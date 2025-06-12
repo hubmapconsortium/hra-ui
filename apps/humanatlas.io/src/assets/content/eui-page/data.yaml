@@ -29,7 +29,8 @@ content:
             Color coding helps to identify different selections.
           - Registered data: Dig deeper into the source data with the cards in the results list on the right side menu.
 
-          <img src="assets/ui-images/eui_features.png" width="100%" />
+      - component: Image
+        src: assets/ui-images/eui_features.png
 
   - component: PageSection
     tagline: Tutorials and demo videos
