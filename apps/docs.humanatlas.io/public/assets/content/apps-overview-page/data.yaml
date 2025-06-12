@@ -27,7 +27,7 @@ content:
               url: https://humanatlas.io/api
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/api/
           - component: ActionCard
             variant: outlined-with-icons
@@ -42,7 +42,7 @@ content:
               url: https://humanatlas.io/asctb-reporter
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/asctb-reporter/
           - component: ActionCard
             variant: outlined-with-icons
@@ -57,7 +57,7 @@ content:
               url: https://humanatlas.io/user-story/5
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/cde/
           - component: ActionCard
             variant: outlined-with-icons
@@ -72,7 +72,7 @@ content:
               url: https://humanatlas.io/cell-population-graphs
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://hubmapconsortium.github.io/tissue-bar-graphs/
           - component: ActionCard
             variant: outlined-with-icons
@@ -87,7 +87,7 @@ content:
               url: https://humanatlas.io/user-story/1
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/us1/
           - component: ActionCard
             variant: outlined-with-icons
@@ -102,7 +102,7 @@ content:
               url: https://humanatlas.io/user-story/7
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/dashboard/
           - component: ActionCard
             variant: outlined-with-icons
@@ -117,7 +117,7 @@ content:
               url: https://humanatlas.io/exploration-user-interface
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/eui/
           - component: ActionCard
             variant: outlined-with-icons
@@ -132,7 +132,7 @@ content:
               url: https://humanatlas.io/user-story/4
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/ftu-explorer/
           - component: ActionCard
             variant: outlined-with-icons
@@ -147,7 +147,7 @@ content:
               url: https://humanatlas.io/hra-organ-gallery
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/
           - component: ActionCard
             variant: outlined-with-icons
@@ -162,7 +162,7 @@ content:
               url: /knowledge-graph
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://lod.humanatlas.io/
           - component: ActionCard
             variant: outlined-with-icons
@@ -177,7 +177,7 @@ content:
               url: https://humanatlas.io/registration-user-interface
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/rui/
           - component: ActionCard
             variant: outlined-with-icons
@@ -192,7 +192,7 @@ content:
               url: https://humanatlas.io/user-story/2
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/us2/
           - component: ActionCard
             variant: outlined-with-icons
@@ -207,7 +207,7 @@ content:
               url: https://humanatlas.io/user-story/6
             actionsRight:
               component: TextHyperlink
-              text: Use App
+              text: Use app
               url: https://apps.humanatlas.io/us6/
   - component: PageSection
     tagline: Collaborator apps

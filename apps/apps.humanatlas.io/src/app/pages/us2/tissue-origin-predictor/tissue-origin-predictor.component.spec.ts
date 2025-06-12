@@ -29,7 +29,7 @@ describe('TissueOriginPredictorComponent', () => {
     expect(file).toBeInTheDocument();
   });
 
-  it('should use sample file when user clicks on the Use Sample button', async () => {
+  it('should use sample file when user clicks on the Use sample button', async () => {
     const mockFile = new File([''], 'sample.csv', { type: 'text/plain' });
 
     const { fixture } = await render(TissueOriginPredictorComponent, {
@@ -38,7 +38,7 @@ describe('TissueOriginPredictorComponent', () => {
 
     TestBed.inject(SAMPLE_FILE);
 
-    const useSampleButton = screen.getByText('Use Sample');
+    const useSampleButton = screen.getByText('Use sample');
     await userEvent.click(useSampleButton);
     fixture.detectChanges();
 

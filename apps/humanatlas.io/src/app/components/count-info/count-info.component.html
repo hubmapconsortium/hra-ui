@@ -1,0 +1,7 @@
+@for (card of countInfoList(); track card) {
+  <div class="count-card">
+    <hra-icon class="card-icon" [svgIcon]="card.icon" />
+    <span class="card-count">{{ card.count }}</span>
+    <span class="card-text">{{ card.label }}</span>
+  </div>
+}

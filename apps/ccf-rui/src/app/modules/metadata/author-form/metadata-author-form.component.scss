@@ -22,4 +22,8 @@
       grid-column: 1 / span 2;
     }
   }
+
+  mat-error {
+    font-family: vars.$label-small-font;
+  }
 }

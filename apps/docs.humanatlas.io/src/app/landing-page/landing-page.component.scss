@@ -17,13 +17,4 @@
   .header {
     @include utils.use-font(display, medium);
   }
-
-  ::ng-deep hra-action-card {
-    max-width: 17.625rem !important;
-    height: 13.75rem;
-
-    p {
-      margin-top: 0;
-    }
-  }
 }
