@@ -8,7 +8,7 @@
 }
 
 <ng-template hraMenuGroup let-group #groupTemplate>
-  @let url = resolveUrl(group.url);
+  @let url = resolveUrl(group.url, group.external);
   @if (url.isAbsolute) {
     <a mat-button class="group-label" [attr.href]="url.value" target="_blank" rel="noopener noreferrer">
       {{ group.label }}
@@ -52,7 +52,7 @@
 </ng-template>
 
 <ng-template hraMenuItem let-item #itemTemplate>
-  @let url = resolveUrl(item.url);
+  @let url = resolveUrl(item.url, item.external);
   @if (url.isAbsolute) {
     <a
       mat-button
