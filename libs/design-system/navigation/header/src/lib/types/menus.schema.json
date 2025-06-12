@@ -32,6 +32,9 @@
         "external": {
           "type": "boolean"
         },
+        "target": {
+          "type": "string"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -65,6 +68,9 @@
         },
         "external": {
           "type": "boolean"
+        },
+        "target": {
+          "type": "string"
         }
       },
       "required": ["type", "label", "url"],
