@@ -1,14 +1,14 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter } from '@hra-api/ng-client';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
-import { ALL_ORGANS, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { combineLatest } from 'rxjs';
+import { combineLatest, take } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
@@ -137,7 +137,7 @@ export class AppComponent implements OnInit {
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
     readonly localStorageSyncService: LocalStorageSyncService,
-    readonly snackbar: MatSnackBar,
+    readonly snackbar: SnackbarService,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
   ) {
     this.data.tissueBlockData$.subscribe();
@@ -158,15 +158,30 @@ export class AppComponent implements OnInit {
 
   /** Initialize the component */
   ngOnInit(): void {
-    const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
-      data: {
-        preClose: () => {
-          snackBar.dismiss();
-        },
-      },
-      panelClass: 'usage-snackbar',
-      duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
-    });
+    this.showConsentSnackBar();
+  }
+
+  /** Shows the consent snackbar */
+  showConsentSnackBar() {
+    const consent = this.consentService.consent;
+    const isNotSet = consent === 'not-set';
+    const shouldOptIn = isNotSet || consent === 'rescinded';
+
+    const actionText = shouldOptIn ? (isNotSet ? 'I understand' : 'Opt in') : 'Opt out';
+    const duration = isNotSet ? Infinity : 6000;
+
+    this.snackbar
+      .open('We log usage to improve this service.', actionText, isNotSet, 'start', {
+        duration,
+      })
+      .afterDismissed()
+      .pipe(take(1))
+      .subscribe(({ dismissedByAction }) => {
+        if (dismissedByAction) {
+          return this.consentService.setConsent('given');
+        }
+        return this.consentService.setConsent('rescinded');
+      });
   }
 
   /** Format a range of values */
