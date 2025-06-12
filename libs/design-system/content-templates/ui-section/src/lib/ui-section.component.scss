@@ -45,6 +45,7 @@
   .ui-section-buttons {
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
   }
 
   @media (min-width: 320px) and (max-width: 639px) {

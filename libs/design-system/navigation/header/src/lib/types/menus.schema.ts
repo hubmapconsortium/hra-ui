@@ -7,6 +7,8 @@ export const MenuItemSchema = z.object({
   type: z.literal('item'),
   label: z.string(),
   url: z.string().url(),
+  external: z.boolean().optional(),
+  target: z.string().optional(),
 });
 
 /** A menu divider */
@@ -33,6 +35,8 @@ export const MenuGroupSchema = z.object({
   label: z.string(),
   description: z.string().optional(),
   url: z.string().url(),
+  external: z.boolean().optional(),
+  target: z.string().optional(),
   items: z.union([MenuSubGroupSchema, MenuItemSchema]).array().optional(),
 });
 
