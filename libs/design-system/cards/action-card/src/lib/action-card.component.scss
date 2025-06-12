@@ -49,6 +49,7 @@
   &.hra-action-card-variant-flat,
   &.hra-action-card-variant-outlined,
   &.hra-action-card-variant-outlined-with-icons {
+    min-width: 17rem;
     .content {
       .subtagline {
         @include utils.use-font(title, small);
@@ -105,6 +106,7 @@
 
   &.hra-action-card-variant-outlined {
     width: 17rem;
+    max-width: 17rem;
 
     .content {
       margin: 0.75rem 1rem;

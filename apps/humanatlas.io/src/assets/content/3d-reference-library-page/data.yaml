@@ -2,7 +2,7 @@ $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: 3D Organs
 subtitle: 3D human organ files mapped with ontological terminology.
 action:
-  label: Use Data
+  label: Get data
   url: https://purl.humanatlas.io/ref-organ
 icons: product:ftu
 content:

@@ -1,0 +1,33 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .count-card {
+    width: 10rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .card-icon {
+      margin: 1rem 0;
+      width: 3.375rem;
+      height: 3.375rem;
+    }
+
+    .card-count {
+      @include utils.use-font(headline, large);
+      color: vars.$secondary;
+    }
+
+    .card-text {
+      @include utils.use-font(body, xl);
+      color: vars.$primary;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+}
