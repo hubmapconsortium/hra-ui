@@ -37,9 +37,8 @@ content:
     anchor: app-features
     level: 3
     content:
-      component: Markdown
-      data: |
-        <img src="assets/content/asctb-reporter-page/images/app-features.png" width="100%" />
+      - component: Image
+        src: assets/content/asctb-reporter-page/images/app-features.png
 
   - component: PageSection
     tagline: App guide

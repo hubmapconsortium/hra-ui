@@ -21,9 +21,8 @@ content:
     anchor: app-preview
     level: 3
     content:
-      - component: Markdown
-        data: |
-          <img src="assets/content/web-components-page/images/app-preview.png" width="100%" />
+      - component: Image
+        src: assets/content/web-components-page/images/app-preview.png
 
   - component: PageSection
     tagline: Integration
