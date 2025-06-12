@@ -1,0 +1,54 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Release Notes
+subtitle: What's new in the Human Reference Atlas.
+headerContent:
+  component: ReleaseNotesVersionSelector
+content:
+  - component: PageSection
+    tagline: Data
+    anchor: data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas now includes:
+            - 5 new ASCT+B Tables: Spinal cord, trachea, bronchus, skeleton, muscular system
+              - 4,279 anatomical structures
+              - 1,303 cell types
+              - 2,018 biomarkers
+            - 6 revised ASCT+B tables: Blood vasculature, eye, lymph vasculature, brain, kidney, lung
+            - 2 new 2D Functional Tissue Unit (FTU) Illustrations: Red pulp of spleen, white pulp of spleen
+            - 10 new 3D Reference Objects for four organs: Palatine tonsil, trachea, bronchus, larynx
+            - 4 revised 3D Reference Objects for one organ: Eye
+            - 6 new Organ Mapping Antibody Panels (OMAPs): Placenta term IMC, Kidney CODEX, Tonsil MACSima,
+            Spleen IBEX, Retina IBEX, Pancreas CODEX
+            - 1 new Vasculature Geometry: Blood vasculature
+
+      - component: PageSection
+        tagline: Human Reference Atlas Diversity
+        anchor: diversity
+        level: 2
+        content:
+          - component: Markdown
+            data: |
+              The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building and using the Human Reference Atlas. The survey is conducted annually to measure how the Human Reference Atlas community evolves over time.
+              This baseline survey was shared with 297 individuals and the response rate was 7.7%. The first survey was run in April of 2023 and the survey will be rerun in March-April of 2024.
+              Respondents hold the following roles in the Human Reference Atlas:
+              - ASCT+B Table author
+              - ASCT+B Table reviewer
+              - Infrastructure designer
+              - Interface designer
+              - Organizer
+              - User
+              - Interface tester
+              - Other
+              - I prefer not to respond
+
+      - component: PageSection
+        tagline: Previews
+        anchor: previews
+        level: 2
+        content:
+          - component: Markdown
+            data: |
+              The Human Atlas Stories is a collection of scrollytelling features and animated essays interconnected stories designed to introduce the Human Reference Atlas (HRA) to a general audience.
